@@ -140,6 +140,8 @@ body.light {
 
   .header {background-color: lighten($light-text-color, 95%);}
 
+  .title { a{text-shadow: 2px 2px 0.03em lighten($light-link-color, 15%);}}
+
   .highlight {
     background-color: lighten($light-text-color, 98%);
     border-color: lighten($light-text-color, 98%);
@@ -228,6 +230,8 @@ body.dark {
   }
 
   .header {background-color: $dark-background-color}
+
+  .title { a {text-shadow: 2px 2px 0.05em darken($dark-text-color, 15%);}}
 
   .highlight {
     background-color: darken($dark-text-color, 98%);
