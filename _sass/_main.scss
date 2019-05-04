@@ -21,6 +21,8 @@ $navigation-padding: 15px;       // top/bottom padding of navbar
 
 $navigation-item-spacing: 28px;  // spacing between each of the navigation items
 
+$code-padding: 4px;  // padding for inline code will be this, and double this for regular code
+
 $title-size: 350%;
 $description-size: 150%;
 
@@ -94,15 +96,27 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
 /* code highlight formatting */
 .highlight {
   span, code, pre {font-family:"Fira Code";}
-  border: 1px solid;
-  border-radius: 5px;
 
-  overflow-x: auto;
-  padding: 5px;
+  pre {
+    border: 1px solid;
+    border-radius: $code-padding;
+
+    overflow-x: auto;
+    padding: $code-padding;
+  }
 }
+
 .highlighter-rouge {
   font-family:"Fira Code";
-  padding-bottom: $line-spacing;
+  margin-bottom: $line-spacing;
+
+  border: 1px solid;
+  border-radius: $code-padding;
+
+  padding-left: $code-padding;
+  padding-right: $code-padding;
+  padding-top: $code-padding / 2;
+  padding-bottom: $code-padding / 2;
 }
 
 body {
@@ -147,10 +161,12 @@ body.light {
     }
   }
 
-  .highlight {
-    background-color: lighten($light-text-color, 98%);
-    border-color: lighten($light-text-color, 98%);
+  .highlight, .highlighter-rouge {
+    background-color: lighten($light-text-color, 95%);
+    border-color: lighten($light-text-color, 95%);
+  }
 
+  .highlight {
     /* Credit to https://gist.github.com/wataru420/2048287 */
     .hll { background-color: #ffffcc }
     .c { color: #408080; font-style: italic } /* Comment */
@@ -244,10 +260,12 @@ body.dark {
     }
   }
 
-  .highlight {
-    background-color: darken($dark-text-color, 98%);
-    border-color: darken($dark-text-color, 98%);
+  .highlight, .highlighter-rouge {
+    background-color: darken($dark-text-color, 95%);
+    border-color: darken($dark-text-color, 95%);
+  }
 
+  .highlight {
     .hll { background-color: #272822; }
     .c { color: #75715e } /* Comment */
     .err { color: #960050; background-color: #1e0010 } /* Error */
@@ -307,7 +325,6 @@ body.dark {
     .vg { color: #f8f8f2 } /* Name.Variable.Global */
     .vi { color: #f8f8f2 } /* Name.Variable.Instance */
     .il { color: #ae81ff } /* Literal.Number.Integer.Long */
-
     .gh { } /* Generic Heading & Diff Header */
     .gu { color: #75715e; } /* Generic.Subheading & Diff Unified/Comment? */
     .gd { color: #f92672; } /* Generic.Deleted & Diff Deleted */
