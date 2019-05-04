@@ -1,0 +1,18 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- PAGE TITLE AND DESCRIPTION -->
+  <title>{{ site.title }}/{{ page.title }}</title>
+  <meta name="description" content="site.description">
+
+  <!-- FONTS -->
+  <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+
+  <!-- USE THE GENERATED STYLESHEETS -->
+  <link rel="stylesheet" href="{{'/assets/css/main.css' | absolute_url}}">
+
+  <!-- CANONICAL -->
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+</head>
+
