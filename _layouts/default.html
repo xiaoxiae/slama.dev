@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  {% include head.html %}
+  <body class="{% if site.dark-theme %} dark {% else %} light {% endif %}">
+
+    {% include header.html %}
+    <div class="content">
+      <center>
+        <div class="navigation">
+          {% if page.title == "Home" %}
+            <span class="current-page-item"><a href="{{site.url}}{{site.baseurl}}">Home</a></span>
+          {% else %}
+            <a href="{{site.url}}{{site.baseurl}}">Home</a>
+          {% endif %}
+
+          {% for p in site.pages %}
+            {% if p.title and p.title != "Home" %}
+              <span class="navigation-separator"></span>
+              {% if p.title == page.title %}
+                <span class="current-page-item"><a href="{{p.url | prepend: site.baseurl }}">{{p.title}}</a></span>
+              {% else %}
+                <a href="{{p.url | prepend: site.baseurl }}">{{p.title}}</a>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </center>
+
+      {{ content }}
+    </div>
+
+  </body>
+</html>
