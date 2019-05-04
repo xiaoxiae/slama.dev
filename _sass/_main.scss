@@ -19,7 +19,7 @@ $website-padding: 25px;  // left/right padding of website content
 $header-padding: 10px;           // top/bottom padding of header
 $navigation-padding: 15px;       // top/bottom padding of navbar
 
-$navigation-item-spacing: 18px;  // spacing between each of the navigation items
+$navigation-item-spacing: 28px;  // spacing between each of the navigation items
 
 $title-size: 350%;
 $description-size: 150%;
@@ -109,9 +109,15 @@ body {
   font-family:"Fira Sans";
   font-weight: 300;
 
-  ul {
-    list-style-type: circle;
+  ul, ol {
     padding-left: $list-item-left-padding;
+    margin-top: -$line-spacing / 1.5;
+    padding-bottom: $line-spacing;
+  }
+
+  ul ul, ol ul {
+    margin: 0;
+    padding-bottom: 0;
   }
 
   p, hr {margin-bottom: $line-spacing;}
