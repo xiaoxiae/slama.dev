@@ -147,6 +147,14 @@ body {
   h1 {padding-bottom: $h1-spacing;}
   h2 {padding-bottom: $h2-spacing;}
   h3 {padding-bottom: $h3-spacing;}
+
+  // image formatting
+  img {
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+  }
 }
 
 
