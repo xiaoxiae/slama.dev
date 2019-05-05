@@ -2,6 +2,7 @@
 layout: page
 title : Projects
 permalink: /projects/
+order: 1
 ---
 
 This page includes some of the projects that I am/was working on (and would like to brag about 😇).

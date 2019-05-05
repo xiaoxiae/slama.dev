@@ -13,7 +13,8 @@
             <a href="{{site.url}}{{site.baseurl}}">Home</a>
           {% endif %}
 
-          {% for p in site.pages %}
+          {% assign sections_sorted = site.pages | sort: 'order' %}
+          {% for p in sections_sorted %}
             {% if p.title and p.title != "Home" %}
               <span class="navigation-separator"></span>
               {% if p.title == page.title %}
