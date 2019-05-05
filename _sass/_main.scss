@@ -13,7 +13,7 @@ $dark-background-color: #000;
 
 
 /* SIZE DEFINITIONS */
-$website-size: 700px;    // width of content on the website
+$website-size: 700px;    // width of content of the website
 $website-padding: 25px;  // left/right padding of website content
 
 $header-padding: 10px;           // top/bottom padding of header
@@ -23,13 +23,14 @@ $navigation-item-spacing: 20px;  // spacing between each of the navigation items
 
 $code-padding: 4px;  // padding for inline code will be this, and double this for regular code
 
+// relative size from regular <p> text
 $title-size: 350%;
 $description-size: 150%;
 
-/* text formatting */
+// text formatting
 $line-spacing: 20px;  // spacing after paragraph
 $h1-spacing: 12px;    // spacing after h1
-$h2-spacing: 10px;     // spacing after h2
+$h2-spacing: 10px;    // spacing after h2
 $h3-spacing: 8px;     // spacing after h3
 
 $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
@@ -41,7 +42,7 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
   padding:0;
 }
 
-/* make content (including nav bar) fit the page */
+// restruct content width
 .content {
   max-width: $website-size;
 
@@ -51,16 +52,16 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
   padding-right: $website-padding;
 }
 
-/* navigation bar formatting */
+// navigation bar formatting
 .navigation {
   padding-top: $navigation-padding;
-  padding-bottom: $navigation-padding;
+  padding-bottom: $navigation-padding * 2;
 
   a {
     text-decoration: none;
   }
 
-  /* separator character + spacing */
+  // separator character + spacing
   .navigation-separator {
     margin-left: $navigation-item-spacing / 2;
     margin-right: $navigation-item-spacing / 2;
@@ -71,7 +72,7 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
 
 .current-page-item {font-weight: 500 !important;}
 
-/* title formatting */
+// title formatting
 .title {
   a {
     font-size: $title-size;
@@ -85,7 +86,7 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
   }
 }
 
-/* header formatting (wraps title for the background to go all the way) */
+// header formatting (wraps title for the background to go all the way)
 .header {
   padding-left: $website-padding;
   padding-right: $website-padding;
@@ -93,7 +94,7 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
   padding-bottom: $header-padding;
 }
 
-/* code highlight formatting */
+// code highlight formatting
 .highlight {
   span, code, pre {font-family:"Fira Code";}
 
@@ -120,11 +121,14 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
 }
 
 body {
+  // text formatting
   font-family:"Fira Sans";
   text-align: justify;
   font-weight: 300;
   line-height: 1.5;
 
+
+  // list formatting
   ul, ol {
     padding-left: $list-item-left-padding;
     padding-bottom: $line-spacing;
@@ -135,6 +139,7 @@ body {
     padding-bottom: 0;
   }
 
+  // text spacing
   p, hr {margin-bottom: $line-spacing;}
 
   h1, h2, h3 {font-weight:normal;}
@@ -170,7 +175,6 @@ body.light {
   }
 
   .highlight {
-    /* Credit to https://gist.github.com/wataru420/2048287 */
     .hll { background-color: #ffffcc }
     .c { color: #408080; font-style: italic } /* Comment */
     .err { border: 1px solid #FF0000 } /* Error */

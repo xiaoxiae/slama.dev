@@ -1,10 +1,9 @@
-# title and decription of the webpage
 title: "slama.dev"
 description: "Tom's personal website."
 
-baseurl: ""  # base url of all pages (/blog/...)
-url: ""      # url of the webpage (www.something.com)
+baseurl: ""
+url: ""
 
-dark-theme: false  # whether to use the dark theme or not
+dark-theme: false
 
 markdown: kramdown
