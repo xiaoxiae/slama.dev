@@ -70,13 +70,13 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
   }
 }
 
-.current-page-item {font-weight: 500 !important;}
+.current-page-item {font-weight: bold !important;}
 
 // title formatting
 .title {
   a {
     font-size: $title-size;
-    font-family:"Fira Code";
+    font-family:"Fira Code Light", monospace;
     text-decoration: none;
   }
 
@@ -96,7 +96,7 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
 
 // code highlight formatting
 .highlight {
-  span, code, pre {font-family:"Fira Code";}
+  span, code, pre {font-family:"Fira Code Light", monospace;}
 
   pre {
     border: 1px solid;
@@ -108,7 +108,7 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
 }
 
 .highlighter-rouge {
-  font-family:"Fira Code";
+  font-family:"Fira Code Light", monospace;
   margin-bottom: $line-spacing;
 
   border: 1px solid;
@@ -122,9 +122,8 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
 
 body {
   // text formatting
-  font-family:"Fira Sans";
+  font-family:"Fira Sans Light", sans-serif;
   text-align: justify;
-  font-weight: 300;
   line-height: 1.5;
 
 
