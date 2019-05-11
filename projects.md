@@ -8,6 +8,8 @@ order: 1
 This page includes some of the projects that I am/was working on (and would like to brag about 😇).
 The programming languages they are written in are quite diverse, but Python is definitely one of my favorites!
 
+The rest of my many (mostly unfinished) projects can be found on my [GitHub page](https://github.com/xiaoxiae).
+
 ---
 
 ## Robotics Simplified [[code](https://github.com/xiaoxiae/Robotics-Simplified-Website)]
