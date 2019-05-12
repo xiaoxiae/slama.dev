@@ -1,8 +1,8 @@
 title: "slama.dev"
 description: "Tom's personal website."
 
-baseurl: ""
 url: "https://slama.dev/"
+baseurl: ""
 
 dark-theme: false
 
