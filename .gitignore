@@ -7,3 +7,6 @@ Gemfile.lock
 
 # Python files
 __pycache__/
+
+# PyCharm project files
+.idea/
