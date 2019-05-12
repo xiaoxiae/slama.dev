@@ -2,33 +2,39 @@ from ftplib import FTP, error_perm
 import os
 from getpass import getpass
 
+
 def remove_content():
     """Recursively removes all non-permanent content."""
-    permanent = ["info.php", "subdom", "domains", ".htaccess", ".gitkeep"]
+    permanent_files = ["info.php", ".htaccess", ".gitkeep"]
+    permanent_folders = ["subdom", "domains"]
 
     # for all subdirectories of the current directory
     for content in ftp.nlst():
-        # if the content isn't permanent
-        if content not in permanent:
-            if "." in content:
-                # if it's a file, delete it immediately
+        # if it's a file
+        if "." in content:
+            # and the content isn't permanent
+            if content not in permanent_files:
+                # if it's a file, delete it
                 ftp.delete(content)
-                print("DELETED FILE: " + ftp.pwd() + "/" + content)
-            else:
-                # move down to the directory and call remove_content
-                ftp.cwd(content)
-                remove_content()
 
-                # move up a directory and delete the folder
-                ftp.cwd("..")
+                print("DELETED FILE: " + ftp.pwd() + "/" + content)
+        else:
+            # move down to the directory and recursively call remove_content
+            ftp.cwd(content)
+            remove_content()
+
+            # move up a directory and delete the folder, if it doesn't already exist
+            ftp.cwd("..")
+            if content not in permanent_folders:
                 ftp.rmd(content)
-                print("DELETED FOLDER: " + ftp.pwd() + "/" + content)
+
+            print("DELETED FOLDER: " + ftp.pwd() + "/" + content)
 
 
 def add_content():
     "Recursively adds the content from the _site folder to the website."
     # move to the _site
-    os.chdir("../_site")
+    os.chdir(os.path.join("..", "_site"))
 
     # get all directories
     directories = []
@@ -36,15 +42,16 @@ def add_content():
         if directory[2:] != "":
             directories.append(directory[2:].replace("\\", "/"))
 
-    # upload all directories
+    # upload (create) all directories
     for directory in sorted(directories):
-        ftp.mkd(directory)
-        print("CREATED DIRECTORY: " + directory)
+        if directory not in ftp.nlst():
+            ftp.mkd(directory)
+            print("CREATED DIRECTORY: " + directory)
 
     # get all files
     files = [os.path.join(root, name)[2:].replace("\\", "/")
-            for root, dirs, files in os.walk(".")
-            for name in files]
+             for root, dirs, files in os.walk(".")
+             for name in files]
 
     # upload all files
     for file in files:
@@ -73,5 +80,5 @@ while True:
             # disconnect from the server and terminate the script
             print(ftp.quit())
             quit()
-    except error_perm:
-        print("Incorrect username or password!")
+    except Exception as e:
+        print(e)
