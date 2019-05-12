@@ -7,3 +7,5 @@ url: "https://slama.dev/"
 dark-theme: false
 
 markdown: kramdown
+
+exclude: [scripts/]
