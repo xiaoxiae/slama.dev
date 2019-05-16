@@ -3,7 +3,7 @@
   {% include head.html %}
 
   <!-- set a theme, depending on the _config.yml variable -->
-  <body class="{% if site.dark-theme %}dark{% else %}light{% endif %}">
+  <body class="{{site.color-theme}}">
 
     {% include header.html %}
     <div class="content">

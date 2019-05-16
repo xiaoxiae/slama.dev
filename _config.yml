@@ -5,7 +5,7 @@ url: "https://slama.dev/"
 wiki-url: "https://wiki.slama.dev/"
 baseurl: ""
 
-dark-theme: false
+color-theme: "light"
 
 markdown: kramdown
 
