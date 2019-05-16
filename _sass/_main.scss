@@ -162,13 +162,13 @@ body.light {
     &:hover {color: $light-text-color !important;}
   }
 
+  .current-page-item, .header {
+    a {color: $light-text-color !important;}
+  }
+
   .header {
     background-color: lighten($light-text-color, 93%);
-
-    a {
-      color: $light-text-color !important;
-      text-shadow: 2px 2px 0.03em lighten($light-link-color, 15%);
-    }
+    a {text-shadow: 2px 2px 0.03em lighten($light-link-color, 15%);}
   }
 
   .highlight, .highlighter-rouge {
@@ -259,13 +259,13 @@ body.dark {
     &:hover {color: $dark-text-color !important;}
   }
 
+  .current-page-item, .header {
+    a {color: $dark-text-color !important;}
+  }
+
   .header {
     background-color: $dark-background-color;
-
-    a {
-      color: $dark-text-color !important;
-      text-shadow: 2px 2px 0.05em darken($dark-text-color, 15%);
-    }
+    a {text-shadow: 2px 2px 0.05em darken($dark-text-color, 15%);}
   }
 
   .highlight, .highlighter-rouge {
