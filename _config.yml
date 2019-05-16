@@ -2,6 +2,7 @@ title: "slama.dev"
 description: "Tom's personal website."
 
 url: "https://slama.dev/"
+wiki-url: "https://wiki.slama.dev/"
 baseurl: ""
 
 dark-theme: false
