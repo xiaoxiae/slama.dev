@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   {% include head.html %}
 
   <!-- set a theme, depending on the _config.yml variable -->
@@ -8,10 +8,9 @@
     {% include header.html %}
     <div class="content">
       <!-- navigation bar -->
-      <center>
-        <div class="navigation">
-          <!-- home link -->
-          {% if page.title == "Home" %}
+      <div class="navigation">
+        <!-- home link -->
+        {% if page.title == "Home" %}
             <span class="current-page-item"><a href="{{site.url}}{{site.baseurl}}">Home</a></span>
           {% else %}
             <a href="{{site.url}}{{site.baseurl}}">Home</a>
@@ -31,10 +30,9 @@
           {% endfor %}
 
           <!-- wiki link -->
-          <span class="navigation-separator"></span>
-          <a href="{{ site.wiki-url }}">Wiki</a>
-        </div>
-      </center>
+        <span class="navigation-separator"></span>
+        <a href="{{ site.wiki-url }}">Wiki</a>
+      </div>
 
       {{ content }}
     </div>

@@ -42,7 +42,7 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
   padding:0;
 }
 
-// restruct content width
+// restrict content width
 .content {
   max-width: $website-size;
 
@@ -54,12 +54,10 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
 
 // navigation bar formatting
 .navigation {
-  padding-top: $navigation-padding;
-  padding-bottom: $navigation-padding * 2;
+  padding: $navigation-padding;
 
-  a {
-    text-decoration: none;
-  }
+  text-align: center;
+  a {text-decoration: none;}
 
   // separator character + spacing
   .navigation-separator {
@@ -73,8 +71,15 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
 // highlight the currently selected page
 .current-page-item {font-weight: bold !important;}
 
-// title formatting
-.title {
+// header formatting (wraps title for the background to go all the way)
+.header {
+  padding: $header-padding $website-padding;
+
+  a, p {
+    text-align: center;
+    display: block;
+  }
+
   a {
     font-size: $title-size;
     font-family:"Fira Code Light", monospace;
@@ -83,16 +88,8 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
 
   p {
     font-size: $description-size;
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
-}
-
-// header formatting (wraps title for the background to go all the way)
-.header {
-  padding-left: $website-padding;
-  padding-right: $website-padding;
-  padding-top: $header-padding;
-  padding-bottom: $header-padding;
 }
 
 // code highlight formatting
@@ -115,10 +112,7 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
   border: 1px solid;
   border-radius: $code-padding;
 
-  padding-left: $code-padding;
-  padding-right: $code-padding;
-  padding-top: $code-padding / 2;
-  padding-bottom: $code-padding / 2;
+  padding: $code-padding / 2 $code-padding;
 }
 
 body {
@@ -168,9 +162,9 @@ body.light {
     &:hover {color: $light-text-color !important;}
   }
 
-  .header {background-color: lighten($light-text-color, 93%);}
+  .header {
+    background-color: lighten($light-text-color, 93%);
 
-  .title {
     a {
       color: $light-text-color !important;
       text-shadow: 2px 2px 0.03em lighten($light-link-color, 15%);
@@ -265,10 +259,9 @@ body.dark {
     &:hover {color: $dark-text-color !important;}
   }
 
-  .header {background-color: $dark-background-color}
+  .header {
+    background-color: $dark-background-color;
 
-
-  .title {
     a {
       color: $dark-text-color !important;
       text-shadow: 2px 2px 0.05em darken($dark-text-color, 15%);
