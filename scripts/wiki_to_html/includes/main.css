@@ -1,19 +1,18 @@
 body {
-    font-family: "Fira Sans", sans-serif;
-    font-weight: 300;
+  font-family:"Fira Sans Light", sans-serif;
 }
 
 h1, h2, h3 {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 code {
-    font-family: "Fira Mono", monospace;
+  font-family:"Fira Code Light", monospace;
 
-    background-color: whitesmoke;
-    border: 1px solid whitesmoke;
+  background-color: whitesmoke;
+  border: 1px solid whitesmoke;
 
-    border-radius: 5px;
+  border-radius: 5px;
 
-    padding: 2px 3px;
+  padding: 2px 3px;
 }
