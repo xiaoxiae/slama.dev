@@ -7,7 +7,11 @@
   <link rel="icon" type="image/png" href="{{ site.url }}/assets/favicon.png" />
 
   <!-- PAGE TITLE AND DESCRIPTION -->
-  <title>{{ site.title }}/{{ page.title | downcase }}</title>
+  {% if page.title == "Home" %}
+    <title>{{ site.title }}/</title>
+  {% else %}
+    <title>{{ site.title }}/{{ page.title | downcase }}/</title>
+  {% endif %}
   <meta name="description" content="site.description">
 
   <!-- FONTS -->
