@@ -7,7 +7,7 @@ order: 2
 
 Here is a list of songs that I listen to on a daily basis. Most of them are rock, but the list also includes other genres, such as metal or even popular music.
 
-If you feel like the list is missing something, submit an issue to the [GitHub repository](https://github.com/xiaoxiae/The-Perfect-Playlist) and I'll be sure to give it a listen 🙂!
+If you feel like the list is missing something, let me know and I'll be sure to give it a listen!
 
 ---
 
@@ -52,6 +52,7 @@ If you feel like the list is missing something, submit an issue to the [GitHub r
 - George Harrison -- My Sweet Lord
 - Glen Campbell -- Southern Nights
 - Guns n' Roses -- Paradise City
+- Herman's Hermits -- No Milk Today
 - Jackson 5 -- I Want You Back
 - Jay & The Americans -- Come A Little Bit Closer
 - Johnny Cash -- God's Gonna Cut You Down
@@ -105,7 +106,9 @@ If you feel like the list is missing something, submit an issue to the [GitHub r
 - Sweet -- Fox On The Run
 - Sweet -- The Ballroom Blitz
 - The Animals -- The House of the Rising Sun
+- The Clash -- Should I Stay or Should I Go
 - The Eagles -- Hotel California
+- The Handsome Family -- Far From Any Road
 - The Mamas & the Papas -- California Dreamin'
 - The Proclaimers -- I'm Gonna Be
 - The Rolling Stones -- (I Can't Get No) Satisfaction
@@ -117,4 +120,8 @@ If you feel like the list is missing something, submit an issue to the [GitHub r
 - Toto -- Africa
 - Toto -- Hold The Line
 - Trinity -- Annibale E I Cantori Moderni
+- Turtles -- Happy Together
 - Van Morrison -- Brown Eyed Girl
+
+- Rick Astley -- Never Gonna Give You Up
+

@@ -8,7 +8,7 @@ order: 3
 Here is an exhaustive list of hardware/software that I use, and explanations as to why.
 I made it to both show you cool software you might have missed, and for personal brainstorming purposes, since enjoy having things neatly organized.
 
-If you think there are some noteworthy alternatives that I should check out, I'd be more than happy to hear about them 🙂!
+If you think there are some noteworthy alternatives that I should check out, I'd be more than happy to hear about them!
 
 ---
 
@@ -41,8 +41,8 @@ If you think there are some noteworthy alternatives that I should check out, I'd
 - [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/) -- a fast and _reliable add blocker._
 - [Privacy Badger](https://addons.mozilla.org/en-US/firefox/addon/privacy-badger17/) -- a _smart tracker blocker._
 - [BlockSite](https://addons.mozilla.org/en-US/firefox/addon/blocksite/) -- _blocks specified sites_. ~~Sort of~~ helps to combat procrastination.
-- [I don't care about cookies](https://addons.mozilla.org/en-US/firefox/addon/i-dont-care-about-cookies/) -- _automatically accepts website cookies,_ since most websites don't care anyway.
-- [Nuke Anything](https://addons.mozilla.org/en-US/firefox/addon/nuke-anything-enhanced/) -- _remove selected elements_ from websites. Useful for blocking add blocker blockers.
+- [I don't care about cookies](https://addons.mozilla.org/en-US/firefox/addon/i-dont-care-about-cookies/) -- _automatically accepts website cookies_.
+- [Nuke Anything](https://addons.mozilla.org/en-US/firefox/addon/nuke-anything-enhanced/) -- _removes selected elements_ from websites. Useful for blocking add blocker blockers.
 
 ## Audio/Video
 - [VLC](https://www.videolan.org/vlc/) -- a _multiplatform media player._ Plays everything, without any issues!

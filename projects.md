@@ -5,8 +5,8 @@ permalink: /projects/
 order: 1
 ---
 
-This page includes some of the projects that I am/was working on (and would like to brag about 😇).
-The programming languages they are written in are quite diverse, but Python is definitely one of my favorites!
+This page includes some of the projects that I am/was working on (and would like to brag about).
+The programming languages they are written in are quite diverse, but Python is one of my favorites!
 
 The rest of my many (mostly unfinished) projects can be found on my [GitHub page](https://github.com/xiaoxiae).
 
@@ -30,7 +30,9 @@ It uses the PyQt5 library and supports weighted graphs, labels, simple physics a
 I am an avid Project Euler solver, with solutions written mostly in Python, but also in Java and Haskell.
 Feel free to add me using my friend key:
 
-`956716_DwTpBfRZWAMltzYgO3qMNFiQkZCMZyYg`
+```
+956716_DwTpBfRZWAMltzYgO3qMNFiQkZCMZyYg
+```
 {: style="text-align: center;"}
 
 The solutions themselves are not open source, since I want people to experience the joy of solving the problems by themselves (and because I don't want my account to get suspended).
