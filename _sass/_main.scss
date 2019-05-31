@@ -4,7 +4,7 @@
 $website-color: #0066ff;
 
 $light-text-color: #000;
-$light-link-color: #888;
+$light-link-color: #666;
 $light-background-color: #fff;
 
 $dark-text-color: #fff;
@@ -121,7 +121,6 @@ body {
   text-align: justify;
   line-height: 1.5;
 
-
   // list formatting
   ul, ol {
     padding-left: $list-item-left-padding;
@@ -162,6 +161,8 @@ body.light {
     &:hover {color: $light-text-color !important;}
   }
 
+  hr {border: 1px solid $light-text-color;}
+
   .current-page-item, .header {
     a {color: $light-text-color !important;}
   }
@@ -172,8 +173,8 @@ body.light {
   }
 
   .highlight, .highlighter-rouge {
-    background-color: lighten($light-text-color, 95%);
-    border-color: lighten($light-text-color, 95%);
+    background-color: lighten($light-text-color, 93%);
+    border-color: lighten($light-text-color, 93%);
   }
 
   .highlight {
@@ -258,6 +259,8 @@ body.dark {
     color: $dark-link-color !important;
     &:hover {color: $dark-text-color !important;}
   }
+
+  hr {border: 1px solid $dark-text-color;}
 
   .current-page-item, .header {
     a {color: $dark-text-color !important;}
