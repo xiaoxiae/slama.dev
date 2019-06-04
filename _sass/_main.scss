@@ -115,6 +115,42 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
   padding: $code-padding / 2 $code-padding;
 }
 
+.cv-table {
+  border-spacing: 0 $line-spacing;
+  border-collapse: separate;
+
+  td {padding: $line-spacing / 2;}
+
+  p:last-of-type {margin-bottom: 0;}
+}
+
+.cv-spacer {
+  padding: $line-spacing / 2;
+}
+
+// spacing and sizes for cv groups
+// see www.stackoverflow.com/questions/56381846/ for width
+.cv-primary-group {
+  font-size: $description-size;
+  width: $line-spacing + 16px;
+}
+
+.cv-secondary-group {
+  width: $line-spacing + 4px;
+}
+
+.cv-primary-group, .cv-secondary-group {
+  text-align: center;
+  vertical-align: middle;
+
+  span {
+    transform: rotate(180deg);
+    writing-mode: vertical-rl;
+
+    white-space:nowrap;
+  }
+}
+
 body {
   // text formatting
   font-family:"Fira Sans Light", sans-serif;
@@ -155,6 +191,9 @@ body {
 body.light {
   color: $light-text-color;
   background-color: $light-background-color;
+
+  .cv-primary-group {border-right: 2px solid $light-text-color;}
+  .cv-secondary-group {border-right: 1px solid $light-text-color;}
 
   a {
     color: $light-link-color !important;
@@ -254,6 +293,9 @@ body.light {
 body.dark {
   color: $dark-text-color;
   background-color: darken($dark-text-color, 85%);
+
+  .cv-primary-group {border-right: 2px solid $dark-text-color;}
+  .cv-secondary-group {border-right: 1px solid $dark-text-color;}
 
   a {
     color: $dark-link-color !important;
