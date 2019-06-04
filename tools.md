@@ -2,7 +2,7 @@
 layout: page
 title : Tools
 permalink: /tools/
-order: 3
+order: 2
 ---
 
 Here is an exhaustive list of hardware/software that I use, and explanations as to why.
