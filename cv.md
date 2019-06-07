@@ -7,7 +7,7 @@ order: 3
 
 This section of the personal website is dedicated to my curriculum vitae.
 
-For additional information, feel free to contact me at `tomas [at] slama [dot] dev`, or browse through my [GitHub profile](https://github.com/xiaoxiae/).
+For additional information, feel free to contact me at `tomas [at] slama [dot] dev`, and to browse through my [GitHub profile](https://github.com/xiaoxiae/).
 
 <hr style="margin-bottom: 0;">
 
@@ -23,8 +23,10 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
     <td class="cv-content-cell">
       <p>
         <strong>Robotics course lecturer</strong>
+		<br>
+		<em>Vzdělávací Centrum Turnov</em>
         <br>
-        As a lecturer of a course focused on LEGO Mindstorms, my job was to create the curriculum for the course (7 meetings, 1.5 hours each) focused on programming and building a robot, and then to teach the course to children of ages 10 through 13.
+        As a robotics course lecturer, my job was to create the curriculum for a course (7 meetings, 1.5 hours each) focused on programming and building a LEGO Mindstorms robot, and then to teach said course to middle/high school children.
       </p>
     </td>
   </tr>
@@ -53,7 +55,7 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
 		<em>Vzdělávací Centrum Turnov</em>
         <br>
         The job description was quite similar to my previous work at VCT.
-		I used the VEX Edr robot kit and Python to introduce basic concepts of robotics design and algorithms, which sparked the Robotics Simplified website (see projects section below).
+		I used the VEX Edr robot kit and Python to introduce basic concepts of robotics design and algorithms, which sparked the Robotics Simplified project (see projects section below).
 		Programming was taught using Processing in Python mode, creating interactive sketches that illustrated key concepts like loops and variables.
       </p>
     </td>
@@ -67,28 +69,28 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
     </td>
     <td colspan="2" class="cv-content-cell">
       <p>
-        <strong>Robotics Simplified</strong> [<a href="http://robotics-simplified.com/">website</a>] [<a href="https://github.com/xiaoxiae/Robotics-Simplified-Website">GitHub</a>] [<a href="https://github.com/xiaoxiae/soc-paper-2019">whitepaper</a>]
-        <br>
-        A website for learning about robotics in a simple and intuitive way.
-        It is powered by Jekyll and features illustrations and visualizations of the discussed concepts, code examples in Python, and is also available as a PDF.
-      </p>
-      <p>
-        <strong>Graph Visualizer</strong> [<a href="https://github.com/xiaoxiae/GraphVisualizer">GitHub</a>]
+        <strong>Graph Visualizer</strong> <em>(2019)</em> [<a href="https://github.com/xiaoxiae/GraphVisualizer">GitHub</a>]
         <br>
         A Python application for visualizing discrete mathematics graphs.
         It uses the PyQt5 library and supports weighted graphs, labels, simple physics and import/export.
       </p>
       <p>
-        <strong>Metal Moose 2018</strong> [<a href="https://github.com/MetalMooseFRC/MetalMoose2018">GitHub</a>]
+        <strong>Robotics Simplified</strong> <em>(2018–19)</em> [<a href="http://robotics-simplified.com/">website</a>] [<a href="https://github.com/xiaoxiae/Robotics-Simplified-Website">GitHub</a>] [<a href="https://github.com/xiaoxiae/soc-paper-2019">whitepaper</a>]
         <br>
-        As a former member of the FRC team Metal Moose and the head of programming, I was in charge of programming our robot for the 2018 Power-Up season.
-        Features of the robot include an autonomous parsing language, double PID control (turning and driving) and a polynomial function for controlling the elevator of the robot.
+        A website for learning about robotics in a simple and intuitive way.
+        It is powered by Jekyll and features illustrations and visualizations of the discussed concepts, code examples in Python, and is also available as a PDF.
       </p>
       <p>
-        <strong>Project Euler</strong> [<a href="https://projecteuler.net/progress=thexiaoxiae">profile</a>]
+        <strong>Metal Moose 2018</strong> <em>(2017–18)</em> [<a href="https://github.com/MetalMooseFRC/MetalMoose2018">GitHub</a>]
+        <br>
+        As a former member of the FRC team Metal Moose and the head of programming, I was in charge of programming our robot for the 2018 Power-Up season.
+        Features of the robot include an autonomous language, double PID control (for turning and driving) and a polynomial function for controlling the elevator of the robot.
+      </p>
+      <p>
+        <strong>Project Euler </strong> <em>(2016–)</em> [<a href="https://projecteuler.net/progress=thexiaoxiae">profile</a>]
         <br>
         I am an avid Project Euler solver, with solutions written mostly in Python, but also in Java and Haskell.
-        The solutions themselves are not open source, since I want people to experience the joy of solving the problems by themselves (and because I don't want my account to get suspended).
+        The solutions themselves are not open source, since I want people to experience the joy of solving the problems by themselves.
       </p>
     </td>
   </tr>
@@ -105,8 +107,8 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
     <td class="cv-content-cell">
       <strong>Westtown School</strong>
       <br>
-      I received a scholarship to study at the school thanks to the ASSIST program. My year was focused on First Robotics Challenge, mathematical modeling, electrotechnics, and programming.
-	  As for the extracurricular activities, I was the chess club leader and a member of the scenic art design team.
+      I received an ASSIST scholarship to study at a private US school for one year. My year was focused mainly on the First Robotics Challenge, mathematical modeling, electrotechnics, and programming.
+	  As for the extracurricular activities, I was the chess club leader, member of the mathematics club and a part of the scenic art design team.
     </td>
   </tr>
   <tr>
@@ -118,7 +120,7 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
       <strong>Turnov Grammar School</strong>
       <br>
 	  As a high school student, I was a frequent participant of English, mathematics and programming competitions.
-	  I completed my maturita exam in May of 2019. The exam subjects were maths, Czech and English languages, and computer science. 
+	  I completed my maturita exam in the May of 2019. The exam subjects were maths, Czech and English languages, and computer science.
     </p>
     </td>
   </tr>
@@ -148,7 +150,7 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
     </td>
     <td class="cv-content-cell">
       <p>
-	    <strong>Python</strong> – problem solving, scripting, GUI apps (using PyQt5).
+	    <strong>Python</strong> – problem solving, scripting, GUI applications (using PyQt5).
 		<br>
 		<strong>Java</strong> – problem solving, FRC robotics programming (using WPILib).
       </p>
