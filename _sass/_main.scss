@@ -4,13 +4,18 @@
 $website-color: #0066ff;
 
 $light-text-color: #000;
-$light-link-color: #666;
+$light-link-color: #777;
 $light-background-color: #fff;
 
+$light-header-background-color: lighten($light-text-color, 93%);
+$light-code-background-color: $light-header-background-color;
+
 $dark-text-color: #fff;
-$dark-link-color: #ccc;
+$dark-link-color: #999;
 $dark-background-color: #000;
 
+$dark-header-background-color: $dark-background-color;
+$dark-code-background-color: $dark-header-background-color;
 
 /* SIZE DEFINITIONS */
 $website-size: 700px;    // width of content of the website
@@ -25,7 +30,7 @@ $code-padding: 4px;  // padding for inline code will be this, and double this fo
 
 // relative size from regular <p> text
 $title-size: 350%;
-$description-size: 150%;
+$description-size: 125%;
 
 // text formatting
 $line-spacing: 20px;  // spacing after paragraph
@@ -69,7 +74,7 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
 }
 
 // highlight the currently selected page
-.current-page-item {font-weight: bold !important;}
+.current-page-item {font-weight: bold;}
 
 // header formatting (wraps title for the background to go all the way)
 .header {
@@ -119,7 +124,7 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
   border-spacing: 0 $line-spacing;
   border-collapse: separate;
 
-  td {padding: $line-spacing / 2;}
+  td {padding: 0 $line-spacing / 2 ;}
 
   p:last-of-type {margin-bottom: 0;}
 }
@@ -142,7 +147,7 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
 .cv-primary-group, .cv-secondary-group {
   text-align: center;
   vertical-align: middle;
-
+   
   span {
     transform: rotate(180deg);
     writing-mode: vertical-rl;
@@ -207,13 +212,13 @@ body.light {
   }
 
   .header {
-    background-color: lighten($light-text-color, 93%);
+    background-color: $light-header-background-color;
     a {text-shadow: 2px 2px 0.03em lighten($light-link-color, 15%);}
   }
 
   .highlight, .highlighter-rouge {
-    background-color: lighten($light-text-color, 93%);
-    border-color: lighten($light-text-color, 93%);
+    background-color: $light-code-background-color; 
+    border-color: $light-code-background-color;
   }
 
   .highlight {
@@ -309,13 +314,13 @@ body.dark {
   }
 
   .header {
-    background-color: $dark-background-color;
+    background-color: $dark-header-background-color;
     a {text-shadow: 2px 2px 0.05em darken($dark-text-color, 15%);}
   }
 
   .highlight, .highlighter-rouge {
-    background-color: darken($dark-text-color, 95%);
-    border-color: darken($dark-text-color, 95%);
+    background-color: $dark-code-background-color;
+    border-color: $dark-code-background-color;
   }
 
   .highlight {
