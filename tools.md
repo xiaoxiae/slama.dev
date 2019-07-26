@@ -58,5 +58,5 @@ If you think there are some noteworthy alternatives that I should check out, I'd
 
 ## Miscellaneous
 - [GitKraken](https://www.gitkraken.com/) -- a _Git client,_ since I am not really used to working with Git on the command line.
-- [i3wm](https://i3wm.org/) -- a _tiling window manager_ that I use on my Arch Linux laptop. Great for working with multiple apps/terminals.
-- [Syncthing](https://syncthing.net/) -- a decentralized cross-platform app for _syncing files._ I use it to seamlessly sync all of my data across an Android phone, a Linux laptop and a Windows PC.
+- [i3wm](https://i3wm.org/) -- a _tiling window manager_ that I use on my Arch Linux laptop. Great for managing multiple desktops and apps.
+- [Syncthing](https://syncthing.net/) -- a decentralized cross-platform app for _syncing files._ I use it to seamlessly sync all of my data across an Android phone, a Linux laptop, and a Windows PC.

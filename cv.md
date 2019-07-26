@@ -62,7 +62,7 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
   </tr>
 
   <tr class="cv-spacer"></tr>
-  
+
   <tr>
     <td class="cv-primary-group">
       <p><span>Projects</span></p>
@@ -84,7 +84,7 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
         <strong>Metal Moose 2018</strong> <em>(2017–18)</em> [<a href="https://github.com/MetalMooseFRC/MetalMoose2018">GitHub</a>]
         <br>
         As a former member of the FRC team Metal Moose and the head of programming, I was in charge of programming our robot for the 2018 Power-Up season.
-        Features of the robot include an autonomous language, double PID control (for turning and driving) and a polynomial function for controlling the elevator of the robot.
+        Features of the robot include an autonomous language, double PID control (turning and driving) and a polynomial function for controlling the elevator of the robot.
       </p>
       <p>
         <strong>Project Euler </strong> <em>(2016–)</em> [<a href="https://projecteuler.net/progress=thexiaoxiae">profile</a>]
@@ -98,17 +98,17 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
   <tr class="cv-spacer"></tr>
 
   <tr>
-    <td rowspan="2" class="cv-primary-group">
+    <td rowspan="3" class="cv-primary-group">
       <p><span>Education</span></p>
     </td>
     <td class="cv-secondary-group">
       <p><span>2017–2018</span></p>
   	</td>
     <td class="cv-content-cell">
-      <strong>Westtown School</strong>
+      <strong>Westtown School</strong> (completed)
       <br>
-      I received an ASSIST scholarship to study at a private US school for one year. My year was focused mainly on the First Robotics Challenge, mathematical modeling, electrotechnics, and programming.
-	  As for the extracurricular activities, I was the chess club leader, member of the mathematics club and a part of the scenic art design team.
+      I received an ASSIST scholarship to study at a private US school for one year. My focus was mainly on the First Robotics Competition, mathematical modeling, electrotechnics, and programming.
+	  As for the extracurricular activities, I was the chess club leader, a member of the mathematics club and a part of the scenic art design team.
     </td>
   </tr>
   <tr>
@@ -117,10 +117,22 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
     </td>
     <td class="cv-content-cell">
     <p>
-      <strong>Turnov Grammar School</strong>
+      <strong>Turnov Grammar School</strong> (completed)
       <br>
 	  As a high school student, I was a frequent participant of English, mathematics and programming competitions.
 	  I completed my maturita exam in the May of 2019. The exam subjects were maths, Czech and English languages, and computer science.
+    </p>
+    </td>
+  </tr>
+  <tr>
+    <td class="cv-secondary-group">
+      <p><span>2019–2022</span></p>
+    </td>
+    <td class="cv-content-cell">
+    <p>
+      <strong>Charles University in Prague</strong> (preliminarily accepted)
+      <br>
+      I intend on getting my bachelor's degree in Computer Science at the Charles University in Prague, likely to be followed by a master's degree.
     </p>
     </td>
   </tr>
@@ -136,11 +148,11 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
   	</td>
     <td class="cv-content-cell">
       <p>
-	  	<strong>Czech:</strong> native proficiency
+	  	<strong>Czech: </strong>native proficiency
 		<br>
-		<strong>English:</strong> bilingual proficiency
+		<strong>English: </strong>bilingual proficiency
 		<br>
-		<strong>Spanish:</strong> elementary proficiency
+		<strong>Spanish: </strong>elementary proficiency
       </p>
     </td>
   </tr>
@@ -160,7 +172,7 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
 		<strong>LaTeX</strong> – typesetting papers and presentations.
 	  </p>
       <p>
-	  	<strong>Haskell, Perl</strong> as languages of interest – basic problem solving.
+	  	<strong>Haskell, Perl 6</strong> as languages of interest – basic problem solving.
       </p>
     </td>
   </tr>
