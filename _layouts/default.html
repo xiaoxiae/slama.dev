@@ -11,23 +11,29 @@
       <div class="navigation">
         <!-- home link -->
         {% if page.title == "Home" %}
-            <span class="current-page-item"><a href="{{site.url}}{{site.baseurl}}">Home</a></span>
-          {% else %}
-            <a href="{{site.url}}{{site.baseurl}}">Home</a>
-          {% endif %}
+          <span class="current-page-item"><a href="{{site.url}}{{site.baseurl}}">Home</a></span>
+        {% else %}
+          <a href="{{site.url}}{{site.baseurl}}">Home</a>
+        {% endif %}
 
-          <!-- links to the rest of the articles -->
-          {% assign sections_sorted = site.pages | sort: 'order' %}
-          {% for p in sections_sorted %}
-            {% if p.title and p.title != "Home" %}
-              <span class="navigation-separator"></span>
-              {% if p.title == page.title %}
-                <span class="current-page-item"><a href="{{p.url | prepend: site.baseurl }}">{{p.title}}</a></span>
-              {% else %}
-                <a href="{{p.url | prepend: site.baseurl }}">{{p.title}}</a>
-              {% endif %}
+        <!-- links to the rest of the articles -->
+        {% assign sections_sorted = site.pages | sort: 'order' %}
+        {% for p in sections_sorted %}
+          {% if p.title and p.title != "Home" and p.title != 404 %}
+            <span class="navigation-separator"></span>
+
+			{% assign link_url = p.url | prepend: site.baseurl %}
+
+            {% if p.title == page.title %}
+              <span class="current-page-item"><a href="{{link_url}}">{{p.title}}</a></span>
+            {% else %}
+              <a href="{{link_url}}">{{p.title}}</a>
             {% endif %}
-          {% endfor %}
+
+			
+
+          {% endif %}
+        {% endfor %}
 
           <!-- wiki link -->
         <span class="navigation-separator"></span>
