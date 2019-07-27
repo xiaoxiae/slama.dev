@@ -3,6 +3,10 @@ scratch and to deploy it via FTP."""
 
 import os
 
+# move to the directory of this script, so it can execute system commands in appropriate
+# directories
+os.chdir(os.path.dirname(os.path.realpath(__file__)))
+
 # clean and build website
 os.chdir("..")
 os.system("bundle exec jekyll clean")
