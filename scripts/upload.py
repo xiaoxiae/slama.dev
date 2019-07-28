@@ -5,7 +5,7 @@ from getpass import getpass
 
 def remove_content():
     """Recursively removes all non-permanent content."""
-    permanent_files = ["info.php", ".htaccess", ".gitkeep"]
+    permanent_files = ["info.php", ".gitkeep"]
     permanent_folders = ["subdom", "domains"]
 
     # for all subdirectories of the current directory
@@ -49,13 +49,15 @@ def add_content():
             print("CREATED DIRECTORY: " + directory)
 
     # get all files
-    files = [os.path.join(root, name)[2:].replace("\\", "/")
-             for root, dirs, files in os.walk(".")
-             for name in files]
+    files = [
+        os.path.join(root, name)[2:].replace("\\", "/")
+        for root, dirs, files in os.walk(".")
+        for name in files
+    ]
 
     # upload all files
     for file in files:
-        ftp.storbinary('STOR ' + file, open(file, "rb"))
+        ftp.storbinary("STOR " + file, open(file, "rb"))
         print("CREATED FILE: " + file)
 
 
@@ -69,7 +71,7 @@ while True:
     try:
         with FTP(ip, login, password) as ftp:
             print("Connected!")
-            print(ftp.cwd('www'))
+            print(ftp.cwd("www"))
 
             # remove all content that isn't permanent
             remove_content()
