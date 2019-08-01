@@ -14,9 +14,23 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
 <table class="cv-table">
 
   <tr>
-    <td rowspan="3" class="cv-primary-group">
+    <td rowspan="4" class="cv-primary-group">
       <p><span>Experience</span></p>
     </td>
+    <td class="cv-secondary-group">
+      <p><span>July 2019</span></p>
+    </td>
+    <td class="cv-content-cell">
+      <p>
+        <strong>Programming Camp Organizer</strong>
+		<br>
+		<em><a href="http://protab.cz/">ProTab.cz</a></em>
+        <br>
+        My role as a ProTab camp organizer included giving lectures about programming-related topics, help prepare and organize afternoon games and activities, and create fun problems for the attendees to solve and earn points for.
+      </p>
+    </td>
+  </tr>
+  <tr>
     <td class="cv-secondary-group">
       <p><span>2018–2019</span></p>
     </td>
@@ -171,6 +185,9 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
 		<br>
 		<strong>LaTeX</strong> – typesetting papers and presentations.
 	  </p>
+      <p>
+	  	<strong>Vim</strong> – my editor of choice.
+      </p>
       <p>
 	  	<strong>Haskell, Perl 6</strong> as languages of interest – basic problem solving.
       </p>
