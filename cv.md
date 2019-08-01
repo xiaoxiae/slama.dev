@@ -18,21 +18,23 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
       <p><span>Experience</span></p>
     </td>
     <td class="cv-secondary-group">
-      <p><span>2016–2017</span></p>
+      <p><span>2018–2019</span></p>
     </td>
     <td class="cv-content-cell">
       <p>
-        <strong>Robotics course lecturer</strong>
+        <strong>Robotics and programming course lecturer</strong>
 		<br>
-		<em>Vzdělávací Centrum Turnov</em>
+		<em><a href="http://www.vct.cz/">Vzdělávací Centrum Turnov</a></em>
         <br>
-        As a robotics course lecturer, my job was to create the curriculum for a course (7 meetings, 1.5 hours each) focused on programming and building a LEGO Mindstorms robot, and then to teach said course to middle/high school children.
+        The job description was quite similar to my previous work at VCT.
+		I used the VEX Edr robot kit and Python to introduce basic concepts of robotics design and algorithms, which sparked the Robotics Simplified project (see projects section below).
+		Programming was taught using Processing in Python mode, creating interactive sketches that illustrated key concepts like loops and variables.
       </p>
     </td>
   </tr>
   <tr>
     <td class="cv-secondary-group">
-      <p><span>2018</span></p>
+      <p><span>June 2018</span></p>
     </td>
     <td class="cv-content-cell">
       <p>
@@ -46,17 +48,15 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
   </tr>
   <tr>
     <td class="cv-secondary-group">
-      <p><span>2018–2019</span></p>
+      <p><span>2016–2017</span></p>
     </td>
     <td class="cv-content-cell">
       <p>
-        <strong>Robotics and programming course lecturer</strong>
+        <strong>Robotics course lecturer</strong>
 		<br>
-		<em>Vzdělávací Centrum Turnov</em>
+		<em><a href="http://www.vct.cz/">Vzdělávací Centrum Turnov</a></em>
         <br>
-        The job description was quite similar to my previous work at VCT.
-		I used the VEX Edr robot kit and Python to introduce basic concepts of robotics design and algorithms, which sparked the Robotics Simplified project (see projects section below).
-		Programming was taught using Processing in Python mode, creating interactive sketches that illustrated key concepts like loops and variables.
+        As a robotics course lecturer, my job was to create the curriculum for a course (7 meetings, 1.5 hours each) focused on programming and building a LEGO Mindstorms robot, and then to teach said course to middle/high school children.
       </p>
     </td>
   </tr>
@@ -87,7 +87,7 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
         Features of the robot include an autonomous language, double PID control (turning and driving) and a polynomial function for controlling the elevator of the robot.
       </p>
       <p>
-        <strong>Project Euler </strong> <em>(2016–)</em> [<a href="https://projecteuler.net/progress=thexiaoxiae">profile</a>]
+        <strong>Project Euler </strong> <em>(2016–present)</em> [<a href="https://projecteuler.net/progress=thexiaoxiae">profile</a>]
         <br>
         I am an avid Project Euler solver, with solutions written mostly in Python, but also in Java and Haskell.
         The solutions themselves are not open source, since I want people to experience the joy of solving the problems by themselves.
@@ -101,6 +101,18 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
     <td rowspan="3" class="cv-primary-group">
       <p><span>Education</span></p>
     </td>
+    <td class="cv-secondary-group">
+      <p><span>2019–2022</span></p>
+    </td>
+    <td class="cv-content-cell">
+    <p>
+      <strong>Charles University in Prague</strong> (currently studying)
+      <br>
+      I intend on getting my bachelor's degree in Computer Science at the Charles University in Prague, likely to be followed by a master's degree.
+    </p>
+    </td>
+  </tr>
+  <tr>
     <td class="cv-secondary-group">
       <p><span>2017–2018</span></p>
   	</td>
@@ -121,18 +133,6 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
       <br>
 	  As a high school student, I was a frequent participant of English, mathematics and programming competitions.
 	  I completed my maturita exam in the May of 2019. The exam subjects were maths, Czech and English languages, and computer science.
-    </p>
-    </td>
-  </tr>
-  <tr>
-    <td class="cv-secondary-group">
-      <p><span>2019–2022</span></p>
-    </td>
-    <td class="cv-content-cell">
-    <p>
-      <strong>Charles University in Prague</strong> (preliminarily accepted)
-      <br>
-      I intend on getting my bachelor's degree in Computer Science at the Charles University in Prague, likely to be followed by a master's degree.
     </p>
     </td>
   </tr>
