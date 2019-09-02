@@ -13,7 +13,7 @@ If you think there are some noteworthy alternatives that I should check out, I'd
 ---
 
 ## Hardware
-- Laptop: [ThinkPad 11e (4th Gen)](https://www.lenovo.com/us/en/laptops/thinkpad/11e-and-chromebooks/c/thinkpad11e) -- a durable laptop with a touchscreen (+ a pen) that I run Arch Linux on. It has a decent battery, a comfortable keyboard, and is relatively small and light.
+- Laptop: [ThinkPad 11e (4th Gen)](https://www.lenovo.com/us/en/laptops/thinkpad/11e-and-chromebooks/c/thinkpad11e) -- a durable laptop with a touchscreen (+ a pen) that I run ~~Arch Linux~~ Antergos on. It has a decent battery, a comfortable keyboard, and is relatively small and light.
 - Mobile phone: [Samsung Galaxy S8](https://www.samsung.com/us/explore/galaxy-s8/) -- works well enough for everyday usage.
 
 ---
@@ -28,8 +28,8 @@ If you think there are some noteworthy alternatives that I should check out, I'd
   - [vim-airline](https://github.com/vim-airline/vim-airline) -- _improves the status/tabline._ It looks quite slick, and helps with orientation.
 
 ## Command Line
-- [Ranger](https://wiki.archlinux.org/index.php/Ranger) -- a _text-based file manager._ It's quick, simple, and has Vim-like key bindings. I found it easier to control than Midnight Commander, but it's mostly a personal preference.
-- [fish](https://fishshell.com/) -- a _(f)riendly (i)nteractive (sh)ell._ Features out-of-the-box autosuggestions, has a nice scripting syntax and is overall much more pleasant to work with than Bash (at least for me).
+- [Ranger](https://wiki.archlinux.org/index.php/Ranger) -- a _text-based file manager._ It's quick, simple, and has Vim-like key bindings. I found it easier to control than other file editors, but it's mostly a personal preference.
+- [fish](https://fishshell.com/) -- a _(f)riendly (i)nteractive (sh)ell._ Features out-of-the-box autosuggestions, has a nice scripting syntax, a [vi mode](https://fishshell.com/docs/current/commands.html#fish_vi_mode), and is overall much more pleasant to work with than Bash (at least for me).
 
 ## Internet Browsing
 - [FireFox](https://www.mozilla.org/en-US/firefox/) -- better than Chrome! I use it mostly for privacy concerns and for the fact that I find internet browser diversity an important issue.
@@ -38,25 +38,22 @@ If you think there are some noteworthy alternatives that I should check out, I'd
 ### Addons
 - [Tree Style Tab](https://addons.mozilla.org/en-US/firefox/addon/tree-style-tab/) -- _moves tabs to the side of the browser_ -- an absolute necessity for working with multiple browser tabs.
 - [Vim Vixen](https://addons.mozilla.org/en-US/firefox/addon/vim-vixen/) -- _browsing with Vim-like bindings_ -- provides a much faster browsing experience than using a mouse (in most cases).<br/><br/>
-- [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/) -- a fast and _reliable add blocker._
-- [Privacy Badger](https://addons.mozilla.org/en-US/firefox/addon/privacy-badger17/) -- a _smart tracker blocker._
-- [BlockSite](https://addons.mozilla.org/en-US/firefox/addon/blocksite/) -- _blocks specified sites_. ~~Sort of~~ helps to combat procrastination.
-- [I don't care about cookies](https://addons.mozilla.org/en-US/firefox/addon/i-dont-care-about-cookies/) -- _automatically accepts website cookies_.
-- [Nuke Anything](https://addons.mozilla.org/en-US/firefox/addon/nuke-anything-enhanced/) -- _removes selected elements_ from websites. Useful for blocking add blocker blockers.
+- [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/) -- a fast and reliable _add blocker._
+- [Cookie AutoDelete](https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/) -- _automatically deletes cookies_ after closing the browser/leaving the domain to help combat tracking.
+- [NoScript](https://addons.mozilla.org/en-US/firefox/addon/noscript/) -- _blocks all JS scripts_ on websites (unless specified otherwise).
 
 ## Audio/Video
-- [VLC](https://www.videolan.org/vlc/) -- a _multiplatform media player._ Plays everything, without any issues!
-- [Audacity](https://www.audacityteam.org/) -- a _multiplatform audio editor._ A quality multiplatform open source program for editing audio files.
+- [VLC](https://www.videolan.org/vlc/) -- a _multiplatform media player._ Plays everything, without (mostly) any issues!
+- [Audacity](https://www.audacityteam.org/) -- a _free multiplatform audio editor._ A quality multiplatform open source program for editing audio files.
 
 ## Graphics
 - [GIMP](https://www.gimp.org/) -- a _bitmap image editor._
 - [Inkscape](https://inkscape.org/) -- a _vector image editor._
-- [Fusion 360](https://www.autodesk.com/products/fusion-360) -- a stellar _CAD software_ (free for students) that I use for all of my CAD modeling.
+- [Fusion 360](https://www.autodesk.com/products/fusion-360) -- a stellar _CAD software_ (free for students) that I use for all of my CAD modeling. It's sadly Windows-only, but I haven't found any good Linux alternatives.
 
 ## Note-taking
-- [Xournal++](https://github.com/xournalpp/xournalpp) -- an app for _taking handwritten notes._ It's a worthy alternative to OneNote that I use to manage all of my school notes.
+- [Xournal++](https://github.com/xournalpp/xournalpp) -- an app for _taking handwritten notes_ that I use to manage all of my notes from my classes. Similar to OneNote, with minor differences.
 
 ## Miscellaneous
-- [GitKraken](https://www.gitkraken.com/) -- a _Git client,_ since I am not really used to working with Git on the command line.
 - [i3wm](https://i3wm.org/) -- a _tiling window manager_ that I use on my Arch Linux laptop. Great for managing multiple desktops and apps.
-- [Syncthing](https://syncthing.net/) -- a decentralized cross-platform app for _syncing files._ I use it to seamlessly sync all of my data across an Android phone, a Linux laptop, and a Windows PC.
+- [Syncthing](https://syncthing.net/) -- a decentralized cross-platform app for _syncing files._ I use it to sync all of my data across an Android phone, a Linux laptop, and a Windows PC.

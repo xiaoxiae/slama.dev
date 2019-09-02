@@ -54,7 +54,7 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
       <p>
         <strong>Design and engineering laboratory internship</strong>
 		<br>
-		<em>Westtown School Design and Engineering Lab</em>
+		<em><a href="http://www.westtown.edu/">Westtown School</a></em>
         <br>
         The internship included work on projects regarding the FRC team Metal Moose and on other STEM-related projects, such as an Arduino robotic arm.
       </p>
@@ -122,7 +122,7 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
     <p>
       <strong>Charles University in Prague</strong> (currently studying)
       <br>
-      I intend on getting my bachelor's degree in Computer Science at the Charles University in Prague, likely to be followed by a master's degree.
+      I am getting my bachelor's degree in Computer Science at the Charles University in Prague, likely to be followed by a master's degree.
     </p>
     </td>
   </tr>
@@ -187,9 +187,6 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
 	  </p>
       <p>
 	  	<strong>Vim</strong> – my editor of choice.
-      </p>
-      <p>
-	  	<strong>Haskell, Perl 6</strong> as languages of interest – basic problem solving.
       </p>
     </td>
   </tr>

@@ -35,9 +35,9 @@ If you feel like the list is missing something, let me know and I'll be sure to 
 - Creedence Clearwater Revival -- Green River
 - Creedence Clearwater Revival -- Have You Ever Seen The Rain
 - Creedence Clearwater Revival -- I Heard It Through The Grapevine
-- David Bowie – Life On Mars
-- David Bowie – Space Oddity
-- David Bowie – Starman
+- David Bowie -- Life On Mars
+- David Bowie -- Space Oddity
+- David Bowie -- Starman
 - Derek and the Dominos -- Layla
 - Dire Straits -- Money For Nothing
 - Dire Straits -- Sultans Of Swing
