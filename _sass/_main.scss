@@ -27,9 +27,14 @@ $navigation-padding: 15px;       // top/bottom padding of navbar
 $navigation-item-spacing: 20px;  // spacing between each of the navigation items
 
 $code-padding: 4px;  // padding for inline code will be this, and double this for regular code
+$code-border-roundness: 10px;  // roundness of the code border
+
+/* FONT SETTINGS */
+$monospaced-font: "Fira Code Light";
+$serif-font: "Fira Sans Light";
 
 // relative size from regular <p> text
-$title-size: 350%;
+$title-size: 200%;
 $description-size: 125%;
 
 // text formatting
@@ -55,6 +60,7 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
 
   padding-left: $website-padding;
   padding-right: $website-padding;
+  padding-bottom: $website-padding;
 }
 
 // navigation bar formatting
@@ -79,16 +85,14 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
 // header formatting (wraps title for the background to go all the way)
 .header {
   padding: $header-padding $website-padding;
+  text-align: center;
 
-  a, p {
-    text-align: center;
-    display: block;
-  }
-
-  a {
+  // the main text
+  a, h1 {
     font-size: $title-size;
-    font-family:"Fira Code Light", monospace;
+    font-family: $monospaced-font, monospace;
     text-decoration: none;
+	padding-bottom: 0;
   }
 
   p {
@@ -97,29 +101,20 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
   }
 }
 
-// code highlight formatting
-.highlight {
-  span, code, pre {font-family:"Fira Code Light", monospace;}
-
+// code highlighting
+.highlighter-rouge {
   pre {
-    border: 1px solid;
-    border-radius: $code-padding;
-
     overflow-x: auto;
     padding: $code-padding;
   }
-}
 
-.highlighter-rouge {
-  font-family:"Fira Code Light", monospace;
-  margin-bottom: $line-spacing;
-
-  border: 1px solid;
-  border-radius: $code-padding;
+  border-radius: $code-border-roundness;
 
   padding: $code-padding / 2 $code-padding;
+  margin-bottom: $line-spacing;
 }
 
+/* TABLE FORMATTING */
 .cv-table {
   border-spacing: 0 $line-spacing;
   border-collapse: separate;
@@ -129,9 +124,7 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
   p:last-of-type {margin-bottom: 0;}
 }
 
-.cv-spacer {
-  padding: $line-spacing / 2;
-}
+.cv-spacer {padding: $line-spacing / 2;}
 
 // spacing and sizes for cv groups
 // see www.stackoverflow.com/questions/56381846/ for width
@@ -140,9 +133,7 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
   width: $line-spacing + 16px;
 }
 
-.cv-secondary-group {
-  width: $line-spacing + 4px;
-}
+.cv-secondary-group {width: $line-spacing + 4px;}
 
 .cv-primary-group, .cv-secondary-group {
   text-align: center;
@@ -158,7 +149,7 @@ $list-item-left-padding: 25px;  // makes it so bullets don't stick out the page
 
 body {
   // text formatting
-  font-family:"Fira Sans Light", sans-serif;
+  font-family: $serif-font, sans-serif;
   line-height: 1.5;
 
   // list formatting
@@ -166,11 +157,13 @@ body {
     padding-left: $list-item-left-padding;
     padding-bottom: $line-spacing;
   }
-
   ul ul, ol ul {
     margin: 0;
     padding-bottom: 0;
   }
+
+  // remove spacing between a paragraph followed by a list
+  p + ul, p + ol {margin-top: -$line-spacing;}
 
   // text spacing
   p, hr {margin-bottom: $line-spacing;}
@@ -187,6 +180,15 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto
+  }
+
+  // code formatting
+  code {
+    font-family: $monospaced-font, monospace;
+
+    // reduced tab size to 4
+    tab-size: 4;
+    -moz-tab-size: 4;
   }
 }
 
@@ -206,9 +208,7 @@ body.light {
 
   hr {border: 1px solid $light-text-color;}
 
-  .current-page-item, .header {
-    a {color: $light-text-color !important;}
-  }
+  .current-page-item, .header {a {color: $light-text-color !important;}}
 
   .header {
     background-color: $light-header-background-color;
@@ -308,9 +308,7 @@ body.dark {
 
   hr {border: 1px solid $dark-text-color;}
 
-  .current-page-item, .header {
-    a {color: $dark-text-color !important;}
-  }
+  .current-page-item, .header {a {color: $dark-text-color !important;}}
 
   .header {
     background-color: $dark-header-background-color;
