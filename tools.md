@@ -1,7 +1,6 @@
 ---
-layout: page
-title : Tools
-permalink: /tools/
+title: Tools
+layout: default
 order: 2
 ---
 

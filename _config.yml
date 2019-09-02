@@ -5,6 +5,9 @@ url: "https://slama.dev/"
 wiki-url: "https://wiki.slama.dev/"
 baseurl: ""
 
+# done so permalinks don't have to be hard-coded
+permalink: /:categories/:title/
+
 color-theme: "light"
 
 markdown: kramdown

@@ -1,7 +1,6 @@
 ---
-layout: page
-title : CV
-permalink: /cv/
+title: CV
+layout: default
 order: 3
 ---
 

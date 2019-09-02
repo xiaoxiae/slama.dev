@@ -1,7 +1,6 @@
 ---
-layout: page
-title : Music
-permalink: /music/
+title: Music
+layout: default
 order: 1
 ---
 
