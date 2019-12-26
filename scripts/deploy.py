@@ -13,8 +13,5 @@ os.system("bundle exec jekyll clean")
 os.system("bundle exec jekyll build")
 os.chdir("scripts")
 
-# convert the wiki to a page
-import wiki_to_html.__main__
-
 # upload the website
 import upload
