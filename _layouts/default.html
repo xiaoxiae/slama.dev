@@ -1,60 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-    <!-- ICON -->
-    <link rel="icon" type="image/png" href="{{site.url}}/assets/favicon.png" />
-  
-    <!-- PAGE TITLE AND DESCRIPTION -->
-    {% if page.order == 0 %}
-      <title>{{ site.title }}/</title>
-    {% else %}
-      <title>{{ site.title }} – {{ page.title }}</title>
-    {% endif %}
-    <meta name="description" content="{{site.description}}">
-  
-    <!-- FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Fira+Sans" rel="stylesheet">
-  
-    <!-- CSS STYLESHEETS -->
-    <link rel="stylesheet" href="{{'/assets/css/main.css' | absolute_url}}">
-  
-    <!-- CANONICAL -->
-    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  </head>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+		<!-- ICON -->
+		<link rel="icon" type="image/png" href="{{site.url}}/assets/favicon.png" />
+	
+		<!-- PAGE TITLE AND DESCRIPTION -->
+		{% if page.order == 0 %}
+			<title>{{ site.title }}/</title>
+		{% else %}
+			<title>{{ site.title }} – {{ page.title }}</title>
+		{% endif %}
+		<meta name="description" content="{{site.description}}">
+	
+		<!-- FONTS -->
+		<link href="https://fonts.googleapis.com/css?family=Fira+Mono|Fira+Sans" rel="stylesheet">
+	
+		<!-- CSS STYLESHEETS -->
+		<link rel="stylesheet" href="{{'/assets/css/main.css' | absolute_url}}">
+	
+		<!-- CANONICAL -->
+		<link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+	</head>
 
-  <!-- set a theme, depending on the _config.yml variable -->
-  <body class="{{site.color-theme}}">
+	<!-- set a theme, depending on the _config.yml variable -->
+	<body class="{{site.color-theme}}">
 
-    <div class="header">
-      <h1><a href="/">{{ site.title }}</a></h1>
-      <p><em>{{site.description}}</em></p>
-    </div>
+		<div class="header">
+			<h1><a href="/">{{ site.title }}</a></h1>
+			<p><em>{{site.description}}</em></p>
+		</div>
 
-    <div class="content">
-      <!-- navigation bar -->
-      <div class="navigation">
-        {% assign sections_sorted = site.pages | sort: 'order' %}
-        {% for p in sections_sorted %}
-          {% if p.title and p.title != 404 %}
-            {% if p.title == page.title %}
-              <span class="current-page-item"><a href="{{p.url}}">{{p.title}}</a></span>
-            {% else %}
-              <a href="{{p.url}}">{{p.title}}</a>
-            {% endif %}
-			
-            <!-- don't insert the navigation separator at the very end -->
-			{% unless p == sections_sorted.last %}
-              <span class="navigation-separator"></span>
-			{% endunless %}
-          {% endif %}
-        {% endfor %}
-      </div>
+		<div class="content">
+			<!-- navigation bar -->
+			<div class="navigation">
+				{% assign sections_sorted = site.pages | sort: 'order' %}
+				{% for p in sections_sorted %}
+					{% if p.title and p.title != 404 %}
+						{% if p.title == page.title %}
+							<span class="current-page-item"><a href="{{p.url}}">{{p.title}}</a></span>
+						{% else %}
+							<a href="{{p.url}}">{{p.title}}</a>
+						{% endif %}
 
-      {{ content }}
-    </div>
-  </body>
+						<!-- don't insert the navigation separator at the very end -->
+						{% unless p == sections_sorted.last %}
+							<span class="navigation-separator"></span>
+						{% endunless %}
+					{% endif %}
+				{% endfor %}
+			</div>
+
+			{{ content }}
+		</div>
+	</body>
 </html>
