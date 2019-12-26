@@ -10,3 +10,6 @@ __pycache__/
 
 # PyCharm project files
 .idea/
+
+# Katex (since the math is statically generated)
+assets/js/katex.min.js
