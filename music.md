@@ -4,9 +4,10 @@ layout: default
 order: 1
 ---
 
-Here is a list of songs that I listen to on a daily basis. Most of them are rock, but the list also includes other genres, such as metal or even popular music.
+Here is a list of songs that I listen to on a daily basis. 
+Most of them are rock, but the list also includes other genres, such as metal or even pop music.
 
-If you feel like the list is missing something, let me know and I'll be sure to give it a listen!
+If you feel like the list is missing something that you feel I should listen to, let me know and I'll be sure to check it out!
 
 ---
 
