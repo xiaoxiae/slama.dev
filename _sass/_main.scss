@@ -32,6 +32,7 @@ $code-border-roundness: 10px;	// roundness of the code border
 // relative size from regular <p> text
 $title-size: 200%;
 $description-size: 125%;
+$footer-size: 80%;
 
 // text formatting
 $line-spacing: 20px;	// spacing after paragraph
@@ -211,6 +212,11 @@ body {
 		// reduced tab size to 4
 		tab-size: 4;
 		-moz-tab-size: 4;
+	}
+
+	footer {
+		font-size: $footer-size;
+		text-align: center; 
 	}
 }
 
