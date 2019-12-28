@@ -1,11 +1,10 @@
 title: "slama.dev"
 description: "Tom's personal website."
 
-url: "https://slama.dev/"
-wiki-url: "https://wiki.slama.dev/"
+url: "https://slama.dev"
 baseurl: ""
 
-permalink: /:categories/:title/
+permalink: :categories/:title/
 
 color-theme: "light"
 
