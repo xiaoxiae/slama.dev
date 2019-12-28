@@ -13,3 +13,5 @@ __pycache__/
 
 # Katex (since the math is statically generated)
 assets/js/katex.min.js
+assets/css/katex.min.css
+assets/css/fonts
