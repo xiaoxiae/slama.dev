@@ -29,10 +29,6 @@ $navigation-item-spacing: 20px;	// spacing between each of the navigation items
 $code-padding: 4px;	// padding for inline code will be this, and double this for regular code
 $code-border-roundness: 10px;	// roundness of the code border
 
-/* FONT SETTINGS */
-$monospaced-font: "Fira Code Light";
-$serif-font: "Fira Sans Light";
-
 // relative size from regular <p> text
 $title-size: 200%;
 $description-size: 125%;
@@ -44,6 +40,31 @@ $h2-spacing: 10px;		// spacing after h2
 $h3-spacing: 8px;		// spacing after h3
 
 $list-item-left-padding: 25px;	// makes it so bullets don't stick out the page
+
+
+/* FONT SETTINGS */
+$serif-font: "Fira Sans Light";
+$monospaced-font: "Fira Code";
+
+@font-face{
+    font-family: 'Fira Sans Light';
+    src: local("Fira Sans Light"),
+         url("/assets/fonts/FiraSans-Light.eot") format("embedded-opentype"),
+         url("/assets/fonts/FiraSans-Light.woff") format("woff"),
+         url("/assets/fonts/FiraSans-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'Fira Mono';
+    src: local("Fira Mono"),
+         url("/assets/fonts/FiraSans-Light.eot") format("embedded-opentype"),
+         url("/assets/fonts/FiraSans-Light.woff") format("woff"),
+         url("/assets/fonts/FiraSans-Light.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
 
 
 /* WEBSITE-WIDE SETTINGS */
