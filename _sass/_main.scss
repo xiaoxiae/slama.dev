@@ -178,11 +178,9 @@ $monospaced-font: "Fira Code";
 .right {text-align: right;}
 
 body {
-	// text formatting
 	font-family: $serif-font, sans-serif;
 	line-height: 1.5;
 
-	// list formatting
 	ul, ol {
 		padding-left: $list-item-left-padding;
 		padding-bottom: $line-spacing;
@@ -193,7 +191,8 @@ body {
 		padding-bottom: 0;
 	}
 
-	// text spacing
+	li { p { margin-bottom: 0; } }
+
 	p, hr {margin-bottom: $line-spacing;}
 
 	h1, h2, h3 {font-weight:normal;}
@@ -202,7 +201,6 @@ body {
 	h2 {padding-bottom: $h2-spacing;}
 	h3 {padding-bottom: $h3-spacing;}
 
-	// image formatting
 	img {
 		width: 90%;
 		display: block;
@@ -210,7 +208,6 @@ body {
 		margin-right: auto
 	}
 
-	// code formatting
 	code {
 		font-family: $monospaced-font, monospace;
 
@@ -219,6 +216,8 @@ body {
 		-moz-tab-size: 4;
 	}
 
+	article { header { h2 { padding-bottom: 0; } } }
+	
 	footer {
 		font-size: $footer-size;
 		text-align: center; 

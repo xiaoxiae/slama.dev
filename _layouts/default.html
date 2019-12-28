@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<!-- ICON -->
-		<link rel="icon" type="image/png" href="{{site.url}}/assets/favicon.png" />
+		<link rel="icon" type="image/png" href="{{ site.url }}/assets/favicon.png" />
 
 		<!-- PAGE TITLE AND DESCRIPTION -->
 		{% if page.order == 0 %}
@@ -19,13 +19,13 @@
 		<meta name="description" content="{{site.description}}">
 
 		<!-- CSS STYLESHEETS -->
-		<link rel="stylesheet" href="{{'/assets/css/main.css' | absolute_url}}">
+		<link rel="stylesheet" href="{{ site.url }}/assets/css/main.css">
 
 		<!-- KATEX -->
-		<link rel="stylesheet" href="{{'/assets/css/katex.min.css' | absolute_url}}">
+		<link rel="stylesheet" href="{{ site.url }}/assets/css/katex.min.css">
 
 		<!-- CANONICAL -->
-		<link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+		<link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
 	</head>
 
 	<!-- set a theme, depending on the _config.yml variable -->
