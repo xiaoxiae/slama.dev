@@ -123,5 +123,3 @@ If you feel like the list is missing something that you feel I should listen to,
 - Turtles -- Happy Together
 - Van Morrison -- Brown Eyed Girl
 
-- Rick Astley -- Never Gonna Give You Up
-
