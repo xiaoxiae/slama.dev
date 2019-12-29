@@ -1,20 +1,22 @@
-# Ruby files
+# Ruby
 *.gem
 .bundle
 .sass-cache
 _site
 Gemfile.lock
 
-# Python files
+# Python
 __pycache__/
 
-# PyCharm project files
-.idea/
+# Jekyll
+.jekyll-cache/
 
-# Katex (since the math is statically generated)
+# Katex
 assets/js/katex.min.js
 assets/css/katex.min.css
 assets/css/fonts
 
-# Binary filetypes
+# Binary files
 *.zip
+favicon.*
+
