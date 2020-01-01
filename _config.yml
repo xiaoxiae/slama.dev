@@ -6,8 +6,6 @@ baseurl: ""
 
 permalink: :categories/:title/
 
-color-theme: "light"
-
 markdown: kramdown
 
 # exclude Jekyll-related files and scripts
