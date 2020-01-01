@@ -17,7 +17,7 @@ $dark-background-color: #000;
 $dark-header-background-color: $dark-background-color;
 $dark-code-background-color: $dark-header-background-color;
 
-/* SIZE DEFINITIONS */
+/* SIZES */
 $website-size: 700px;	// width of content of the website
 $website-padding: 25px;	// left/right padding of website content
 
@@ -29,18 +29,16 @@ $navigation-item-spacing: 20px;	// spacing between each of the navigation items
 $code-padding: 4px;	// padding for inline code will be this, and double this for regular code
 $code-border-roundness: 10px;	// roundness of the code border
 
-// relative size from regular <p> text
 $title-size: 200%;
 $description-size: 125%;
 $footer-size: 80%;
 
-// text formatting
 $line-spacing: 20px;	// spacing after paragraph
 $h1-spacing: 12px;		// spacing after h1
 $h2-spacing: 10px;		// spacing after h2
 $h3-spacing: 8px;		// spacing after h3
 
-$list-item-left-padding: 25px;	// makes it so bullets don't stick out the page
+$list-item-left-padding: 25px;	// so bullets don't stick out the page
 
 
 /* FONT SETTINGS */
