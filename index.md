@@ -16,7 +16,7 @@ This website contains posts about things I feel are interesting enough to put on
 Links to the periodically updated ones can be found at the top; the rest can be found here: 
 {% assign posts = site.posts | sorted %}
 {% for post in posts %}
-- [{{ post.title}}]({{ post.url }}) ({{ post.date  | date: "%d. %m. %Y"}})
+- [{{ post.title}}]({{ post.url }}) ({{ post.date  | date: "%-d. %-m. %Y"}})
 {% endfor %}
 
 {: .right}
