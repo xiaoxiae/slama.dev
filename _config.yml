@@ -9,4 +9,8 @@ permalink: :categories/:title/
 markdown: kramdown
 
 # exclude Jekyll-related files and scripts
-exclude: ["Gemfile", "Gemfile.lock", "scripts/", "README.md", "s-theme.gemspec"]
+exclude: ["Gemfile", "Gemfile.lock", "scripts/", "README.md", "s-theme.gemspec", "LICENSE.txt"]
+
+# exclude sourcemaps in production
+sass:
+  sourcemap: never
