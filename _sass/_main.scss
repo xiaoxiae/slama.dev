@@ -34,11 +34,21 @@ $title-size: 200%;
 $description-size: 125%;
 $footer-size: 80%;
 
+$line-height: 1.4;
+
 $line-spacing: 20px;	// spacing after paragraph
-$h1-spacing: 12px;		// spacing after h1
-$h2-spacing: 10px;		// spacing after h2
-$h3-spacing: 8px;		// spacing after h3
-$h4-spacing: 6px;		// spacing after h4
+
+$h2-spacing: 8px;
+$h3-spacing: 5px;
+$h4-spacing: 3px;
+$h5-spacing: 2px;
+$h6-spacing: 1px;
+
+$h2-size: 27px;
+$h3-size: 23px;
+$h4-size: 20px;
+$h5-size: 18px;
+$h6-size: 16px;
 
 $list-item-left-padding: 25px;	// so bullets don't stick out the page
 
@@ -180,7 +190,10 @@ $monospaced-font: "Fira Code Light";
 
 body {
 	font-family: $serif-font, sans-serif;
-	line-height: 1.5;
+	line-height: $line-height;
+
+	// fix Jekyll generating p tags inside li
+	li { p { margin-bottom: 0; } }
 
 	ul, ol {
 		padding-left: $list-item-left-padding;
@@ -192,22 +205,32 @@ body {
 		padding-bottom: 0;
 	}
 
-	li { p { margin-bottom: 0; } }
+	p + ul, p + ol { margin-top: -$line-spacing / 4 * 3; }
 
 	p, hr {margin-bottom: $line-spacing;}
 
-	h1, h2, h3, h4 {font-weight:normal;}
+	h2, h3, h4, h5, h6 { font-weight:normal; }
 
-	h1 {padding-bottom: $h1-spacing;}
-	h2 {padding-bottom: $h2-spacing;}
-	h3 {padding-bottom: $h3-spacing;}
-	h3 {padding-bottom: $h4-spacing;}
+	h2 {padding-bottom: $h2-spacing; font-size: $h2-size;}
+	h3 {padding-bottom: $h3-spacing; font-size: $h3-size;}
+	h4 {padding-bottom: $h4-spacing; font-size: $h4-size;}
+	h5 {padding-bottom: $h5-spacing; font-size: $h5-size;}
+	h6 {padding-bottom: $h6-spacing; font-size: $h6-size;}
 
-	img {
-		width: 90%;
-		display: block;
-		margin-left: auto;
-		margin-right: auto
+	figure {
+		img, svg {
+			max-width: 90%;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		figcaption {
+			text-align: center; 
+			font-style: italic;
+		}
+
+		margin-bottom: $line-spacing;
 	}
 
 	code {
@@ -219,6 +242,23 @@ body {
 	}
 
 	article { header { h2 { padding-bottom: 0; } } }
+
+	table {
+		border-top: 2px solid;
+		border-bottom: 2px solid;
+	
+		border-collapse: separate; 
+		border-spacing: $line-spacing / 2 $line-spacing / 3;
+
+		th { border-bottom: 1px solid; }
+
+		td, th {padding: 0 $line-spacing / 2;}
+
+		margin-left: auto;
+		margin-right: auto;
+
+		margin-bottom: $line-spacing;
+	}
 
 	footer {
 		font-size: $footer-size;
@@ -237,14 +277,14 @@ body {
 	.cv-secondary-group {border-right: 1px solid $light-text-color;}
 
 	a {
-		color: $light-link-color !important;
-		&:hover {color: $light-text-color !important;}
+		color: $light-link-color;
+		&:hover {color: $light-text-color;}
 	}
 
 	hr {border: 1px solid $light-text-color;}
 
 	.current-page-item, .header {
-		a {color: $light-text-color !important;}
+		a {color: $light-text-color;}
 	}
 
 	.header {
@@ -335,18 +375,22 @@ body {
 		color: $dark-text-color;
 		background-color: $dark-background-color;
 
+		// update SVG colors appropriately
+		svg { filter: invert(100%); }
+		.katex {svg { filter: invert(0%); } }
+
 		.cv-primary-group {border-right: 2px solid $dark-text-color;}
 		.cv-secondary-group {border-right: 1px solid $dark-text-color;}
 
 		a {
-			color: $dark-link-color !important;
-			&:hover {color: $dark-text-color !important;}
+			color: $dark-link-color;
+			&:hover {color: $dark-text-color;}
 		}
 
 		hr {border: 1px solid $dark-text-color;}
 
 		.current-page-item, .header {
-			a {color: $dark-text-color !important;}
+			a {color: $dark-text-color;}
 		}
 
 		.header {
