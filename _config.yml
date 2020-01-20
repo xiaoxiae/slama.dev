@@ -4,8 +4,6 @@ description: "Tomáš Sláma's personal website."
 url: "https://slama.dev"
 baseurl: ""
 
-permalink: :categories/:title/
-
 markdown: kramdown
 
 # exclude Jekyll-related files and scripts
