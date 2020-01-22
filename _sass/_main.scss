@@ -33,6 +33,7 @@ $code-border-roundness: 6px;	// roundness of the code border
 $title-size: 200%;
 $description-size: 125%;
 $footer-size: 80%;
+$toc-size: $footer-size;
 
 $line-height: 1.4;
 
@@ -188,6 +189,12 @@ $monospaced-font: "Fira Code Light";
 .center {text-align: center;}
 .right {text-align: right;}
 
+// TOC formatting
+#markdown-toc {
+	font-size: $toc-size;
+	margin-top: 0;
+}
+
 body {
 	font-family: $serif-font, sans-serif;
 	line-height: $line-height;
@@ -200,12 +207,13 @@ body {
 		padding-bottom: $line-spacing;
 	}
 
-	ul ul, ol ul {
+	ul ul, ol ul, ul ol, ol ol {
 		margin: 0;
 		padding-bottom: 0;
 	}
 
 	p + ul, p + ol { margin-top: -$line-spacing / 4 * 3; }
+	ol, ul {p + ul, p + ol {margin-top: 0; }}
 
 	p, hr {margin-bottom: $line-spacing;}
 
