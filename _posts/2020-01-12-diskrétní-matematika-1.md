@@ -1,7 +1,6 @@
 ---
 layout: post
 language: cz
-
 ---
 
 V rámci přípravy na zkoušku z kurzu Diskrétní matematiky (zimní semestr MFF UK 2020) jsem vypracoval následující článek, ve kterém jsou shrnuty informace z přednášky.
