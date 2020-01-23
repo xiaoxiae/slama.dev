@@ -256,7 +256,9 @@ body {
 		border-bottom: 2px solid;
 	
 		border-collapse: separate; 
+
 		border-spacing: $line-spacing / 2 $line-spacing / 3;
+		.katex {border-spacing: 0;}
 
 		th { border-bottom: 1px solid; }
 
