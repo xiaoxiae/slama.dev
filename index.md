@@ -17,7 +17,7 @@ The language of the blog is English, but some posts might be written in other la
 Links to the periodically updated ones can be found at the top; the rest can be found here: 
 {% assign posts = site.posts | sorted %}
 {% for post in posts %}
-- {% if post.language %}[{{post.language | upcase}}] {% endif%}[{{ post.title}}]({{ post.url }}) ({{ post.date  | date: "%-d. %-m. %Y"}})
+- {% if post.language %}[{{post.language | upcase}}] {% endif%}[{{ post.title}}]({{ post.url }}) ({{ post.date  | date: "%-d. %-m. %Y"}}{% if post.category %}; {{post.category}}{% endif%})
 {% endfor %}
 
 {: .right}

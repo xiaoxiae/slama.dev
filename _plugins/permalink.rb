@@ -17,7 +17,7 @@ module Jekyll
           title = item.data['title']
         end
 
-        item.data['permalink'] = I18n.transliterate("#{category}/#{title}/").downcase.gsub(" ", "-")
+        item.data['permalink'] = I18n.transliterate("#{title}/").downcase.gsub(" ", "-")
       end
     end
   end

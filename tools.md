@@ -11,6 +11,8 @@ If you think there are some interesting programs that I should check out, I'd be
 
 ---
 
+## Tools
+
 ### Editing
 - [Vim](https://www.vim.org/) -- the ultimate text editor. Takes ~~a while~~ forever to get used to, but it's more than worth the effort.
 	- [VimWiki](https://github.com/vimwiki/vimwiki) -- a plugin for creating Wikis. Very useful for writing things down (in Markdown syntax) and linking them together.
