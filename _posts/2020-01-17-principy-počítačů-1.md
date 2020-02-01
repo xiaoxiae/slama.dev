@@ -4,8 +4,6 @@ language: cz
 category: "lecture notes"
 ---
 
-V rámci přípravy na zkoušku z Principů počítačů (zimní semestr MFF UK 2020) jsem vypracoval následující článek, ve kterém jsou shrnuty informace z přednášek.
-
 - .
 {:toc}
 
@@ -162,7 +160,7 @@ V rámci přípravy na zkoušku z Principů počítačů (zimní semestr MFF UK 
 	- `SHL` a `SHR` -- `<<` a `>>` -- **posouvá k MSb, ne doleva/doprava**
 		- `ROL`, `ROR` (_bit rotation_) -- jako posun, ale cyklí čísla; opět k MSb
 - unární:
-	- `NOT` -- `!` -- opak
+	- `NOT` -- `~` -- opak
 
 #### Záporná čísla v počítači
 1. jako celá čísla, ale první bit je znaménko
@@ -692,7 +690,9 @@ mov    %ax,-0x1e(%rbp)
 
 #### Šestnáctkový výpis
 - hex view(er) -- vypsání souborů jako šestnáctkové byty
-	- na Linuxu `xxd <soubor>`; obrácený převod `xxd -r <soubor>`
+	- na Linuxu:
+		- `xxd <soubor>`; obrácený převod `xxd -r <soubor>` 
+		- `hexdump <soubor> -C`
 - pozor -- {% latex %}1B{% endlatex %} = 2 znaky
 - 3 sloupečky (tradičně po 16 znacích -- dobře se počítá pozice):
 	1. hex offset (pozice v souboru)
