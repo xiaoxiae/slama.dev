@@ -33,7 +33,7 @@ If you think there are some interesting programs that I should check out, I'd be
 - [Tree Style Tab](https://addons.mozilla.org/en-US/firefox/addon/tree-style-tab/) -- moves tabs to the side of the browser, which is an absolute necessity if you're working with multiple browser tabs at the same time.
 - [Vim Vixen](https://addons.mozilla.org/en-US/firefox/addon/vim-vixen/) -- provides relatively decent browsing with Vim-like bindings.
 
-- [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/) -- an add blocker.
+- [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/) -- an ad blocker.
 - [Cookie AutoDelete](https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/) -- automatically deletes cookies after closing the browser (for anti-tracking).
 - [NoScript](https://addons.mozilla.org/en-US/firefox/addon/noscript/) -- blocks specified JavaScript code on visited websites.
 
