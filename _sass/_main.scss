@@ -383,8 +383,8 @@ body {
 		color: $dark-text-color;
 		background-color: $dark-background-color;
 
-		// update SVG colors appropriately
-		svg { filter: invert(100%); }
+		// update image colors appropriately
+		svg, img { filter: invert(100%); }
 		.katex {svg { filter: invert(0%); } }
 
 		.cv-primary-group {border-right: 2px solid $dark-text-color;}

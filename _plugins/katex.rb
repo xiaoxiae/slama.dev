@@ -4,7 +4,7 @@ module Jekyll
   module Tags
     class KatexBlock < Liquid::Block
 
-      PATH_TO_JS = "./assets/js/katex.min.js"
+      PATH_TO_JS = "./_plugins/katex.min.js"
 
       def initialize(tag, markup, tokens)
         super

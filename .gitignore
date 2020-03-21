@@ -12,7 +12,7 @@ __pycache__/
 .jekyll-cache/
 
 # Katex
-assets/js/katex.min.js
+_plugins/katex.min.js
 assets/css/katex.min.css
 assets/css/fonts
 
