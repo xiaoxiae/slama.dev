@@ -13,9 +13,23 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
 <table class="cv-table">
 
   <tr>
-    <td rowspan="4" class="cv-primary-group">
+    <td rowspan="5" class="cv-primary-group">
       <p><span>Experience</span></p>
     </td>
+    <td class="cv-secondary-group">
+      <p><span>November 2019–present</span></p>
+    </td>
+    <td class="cv-content-cell">
+      <p>
+        <strong>Network Wizard</strong>
+		<br>
+		<em><a href="https://kam.mff.cuni.cz/">KAM</a></em>
+        <br>
+		My work includes management of the network, handling software and hardware issues and other CS-related things at the Charles University (Faculty of Mathematics and Physics), Czech Republic.
+      </p>
+    </td>
+  </tr>
+  <tr>
     <td class="cv-secondary-group">
       <p><span>July 2019</span></p>
     </td>
