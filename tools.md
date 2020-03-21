@@ -4,14 +4,12 @@ layout: default
 order: 2
 ---
 
-Here is an exhaustive list of hardware/software that I use, and explanations as to why.
+## Tools
+
+Here is an exhaustive list of software that I use, and explanations as to why.
 I made it both to showcase cool software that you might have missed and for personal brainstorming purposes.
 
 If you think there are some interesting programs that I should check out, I'd be more than happy to hear about them!
-
----
-
-## Tools
 
 ### Editing
 - [Vim](https://www.vim.org/) -- the ultimate text editor. Takes ~~a while~~ forever to get used to, but it's more than worth the effort.
