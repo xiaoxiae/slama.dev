@@ -1,22 +1,14 @@
-# Ruby
+# Ruby/Jekyll files
 *.gem
+_site
 .bundle
 .sass-cache
-_site
+.jekyll-cache/
 Gemfile.lock
 
 # Python
 __pycache__/
 
-# Jekyll
-.jekyll-cache/
-
-# Katex
-_plugins/katex.min.js
-assets/css/katex.min.css
-assets/css/fonts
-
-# Binary files
-*.zip
-favicon.*
-
+# Private
+scripts/login.py
+ignored/

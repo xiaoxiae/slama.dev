@@ -1,5 +1,0 @@
-url: "http://localhost:4000"
-
-# include sourcemaps in development
-sass:
-  sourcemap: always

@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import os, glob, sys
 from subprocess import Popen, DEVNULL, PIPE
 
@@ -85,17 +87,6 @@ def get_argument_parser() -> argparse.ArgumentParser:
         help="the margins around the cropped Xournal++ files (in points, default 15)",
     )
 
-    # separator
-    parser.add_argument(
-        "-s",
-        "--separator",
-        dest="separator",
-        metavar="S",
-        type=str,
-        default=None,
-        help="the separator between individual files; none by default",
-    )
-
     # compress
     parser.add_argument(
         "-c",
@@ -122,6 +113,7 @@ def get_argument_parser() -> argparse.ArgumentParser:
 
     # only specific files
     group.add_argument(
+        "-i",
         "-f",
         "--files",
         dest="files",
@@ -141,9 +133,17 @@ arguments = parser.parse_args()
 
 # go through the specified markdown files
 for i, name in enumerate(arguments.files):
+    out_name = name[:-4] + 'svg'
+
     # check if the file exists
     if not os.path.exists(name):
-        sys.exit(f"The Xournal file '{name}' not found, exiting.")
+        print(f"'{name}' not found, skipping.")
+        continue
+
+    # check if the output file doesn't already exist
+    if os.path.exists(out_name):
+        print(f"'{out_name}' already exists, skipping.")
+        continue
 
     # get the svg from Xournal++, storing it in a temporary file
     tmp = NamedTemporaryFile(mode="w+", suffix=".svg")
@@ -154,13 +154,11 @@ for i, name in enumerate(arguments.files):
 
     # possibly use scour to compress the SVG; else just output
     if arguments.compress:
-        print(
+        out = (
             Popen(["scour"], stdin=PIPE, stdout=PIPE, stderr=DEVNULL)
             .communicate(input=cropped_svg.encode())[0]
             .decode()
         )
-    else:
-        print(cropped_svg)
 
-    if arguments.separator is not None and i != len(arguments.files) - 1:
-        print(arguments.separator)
+    print(out)
+

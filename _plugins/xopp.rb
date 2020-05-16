@@ -5,21 +5,17 @@ module Jekyll
         super
         parts = name.split("&")
 
-        # parse the name
         @name = parts[0].strip()
 
-        # parse the optional caption
-        @caption = ""
-        if parts.length != 1
+        unless parts[1].nil?
           @caption = parts[1].strip()
         end
       end
 
       def render(context)
-        title = context.environments.first["page"]["slug"]
-        image = `python scripts/xopp_to_svg.py -f=_includes/#{title}/#{@name}.xopp`
+        content = `scripts/xopp_to_svg -i _includes/#{context.environments.first["page"]["slug"]}/#{@name}.xopp`
 
-        return "<figure>" + image + (@caption == "" ? "" : "<figcaption>#{@caption}</figcaption>") + "</figure>"
+        return "<figure>#{content}#{@caption == "" ? "" : "<figcaption>#{@caption}</figcaption>"}</figure>"
       end
     end
   end
