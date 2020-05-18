@@ -6,12 +6,14 @@ module Jekyll
 
       def initialize(tag, markup, tokens)
         super
-
-        @display = markup.include? 'display'
+        @markup = markup
       end
 
       def render(context)
-        File.open("scripts/katex_server/in", 'w') { |file| file.write(super(context) ) }
+        File.open("scripts/katex_server/in", 'w') {
+          |file| file.write("#{@markup}\n" + super(context))
+        }
+
         return File.read("scripts/katex_server/out")
       end
     end

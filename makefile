@@ -9,7 +9,7 @@ all: $(MP3_FILES)
 %.svg: %.xopp
 	scripts/xopp_to_svg -f $^
 
-all: $(SVG) build upload 
+all: $(SVG) build upload
 
 build:
 	scripts/katex_server/start

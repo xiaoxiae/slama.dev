@@ -6,6 +6,13 @@ html_title: Typesetting math with LaTeX in Jekyll
 excerpt: There are many posts on the internet describing how to typeset LaTeX math with Jekyll, but none of them exactly met my requirements. After experimenting with various options for typesetting math with Jekyll, I found a pretty good solution. This post is a tutorial on how it works and how to set it up.
 ---
 
+**UPDATE (18. 5. 2020):** It seems that this setup is needlesly tedious in favor of [this Ruby Gem](https://github.com/linjer/jekyll-katex) that does pretty much the same thing. 
+
+That being said, both this setup and the Gem are very slow due to using `ExecJS`, so I'll be making an update version of this tutorial that is much, much faster.
+
+---
+
+
 [There](https://stackoverflow.com/questions/10987992/using-mathjax-with-jekyll) [are](http://haixing-hu.github.io/programming/2013/09/20/how-to-use-mathjax-in-jekyll-generated-github-pages/) [many](https://stackoverflow.com/questions/25146431/how-to-use-mathjax-in-jekyll) [posts](http://dasonk.com/blog/2012/10/09/Using-Jekyll-and-Mathjax) [on](https://lyk6756.github.io/2016/11/25/write_latex_equations.html) [the](http://sgeos.github.io/github/jekyll/2016/08/21/adding_mathjax_to_a_jekyll_github_pages_blog.html) [internet](https://quuxplusone.github.io/blog/2018/08/05/mathjax-in-jekyll/) describing how to typeset LaTeX math with Jekyll, but none of them exactly met my requirements. After experimenting with various options for typesetting math with Jekyll, I found a pretty good solution that: 
 - is *easy to implement and use in posts*
 - *doesn't require any JavaScript on the website itself*, since the math is generated statically and only uses HTML, CSS and fonts (feel free to disable JavaScript for my blog, it should be perfectly readable 🙂!)

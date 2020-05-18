@@ -9,8 +9,15 @@ function recursive_stream() {
 	var is = fs.createReadStream(path.join(__dirname, 'in'));
 
 	is.on("data", function(data) {
-		var os = fs.createWriteStream(path.join(__dirname, 'out'))
-		os.end(katex.renderToString(data.toString()));
+		request = data.toString();
+		parameters = request.split("\n")[0];
+		request = request.substring(parameters.length + 1);
+		parameters = parameters.trim().split(/\s"/);
+
+		os = fs.createWriteStream(path.join(__dirname, 'out'))
+		os.end(katex.renderToString(request, {
+			displayMode: parameters.includes("display")
+		}));
 
 		recursive_stream();
 	}); 
