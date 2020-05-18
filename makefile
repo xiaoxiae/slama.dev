@@ -4,21 +4,21 @@
 XOPP = $(shell find _includes/ -type f -name '*.xopp')
 SVG = $(patsubst %.xopp, %.svg, $(XOPP))
 
-%.svg: %.xopp ; scripts/xopp_to_svg -f $^
+all: build upload
 
-all: $(SVG) build upload
-
-build:
+build: $(SVG)
 	scripts/katex_server/start
 	bundle exec jekyll build --trace
 	scripts/katex_server/stop
 
-serve:
+serve: $(SVG)
 	scripts/katex_server/start
 	trap "scripts/katex_server/stop; exit 0" 2
 	bundle exec jekyll serve
 
+%.svg: %.xopp
+	scripts/xopp_to_svg -f $^
+
 upload: ; scripts/upload
 
 clean: ; bundle exec jekyll clean --trace
-
