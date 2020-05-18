@@ -4,8 +4,6 @@ module Jekyll
   module Tags
     class KatexBlock < Liquid::Block
 
-      PATH_TO_JS = "./_plugins/katex.min.js"
-
       def initialize(tag, markup, tokens)
         super
 
@@ -13,9 +11,8 @@ module Jekyll
       end
 
       def render(context)
-        @katex = ExecJS.compile(open(PATH_TO_JS).read)
-
-        return @katex.call("katex.renderToString", super, {displayMode: @display})
+        File.open("scripts/katex_server/in", 'w') { |file| file.write(super(context) ) }
+        return File.read("scripts/katex_server/out")
       end
     end
   end

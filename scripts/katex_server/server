@@ -1,0 +1,19 @@
+#!/bin/node
+
+const katex = require('./katex.min.js');
+const readline = require('readline');
+const fs = require('fs');
+const path = require('path');
+
+function recursive_stream() {
+	var is = fs.createReadStream(path.join(__dirname, 'in'));
+
+	is.on("data", function(data) {
+		var os = fs.createWriteStream(path.join(__dirname, 'out'))
+		os.end(katex.renderToString(data.toString()));
+
+		recursive_stream();
+	}); 
+}
+
+recursive_stream();

@@ -133,16 +133,9 @@ arguments = parser.parse_args()
 
 # go through the specified markdown files
 for i, name in enumerate(arguments.files):
-    out_name = name[:-4] + 'svg'
-
     # check if the file exists
     if not os.path.exists(name):
         print(f"'{name}' not found, skipping.")
-        continue
-
-    # check if the output file doesn't already exist
-    if os.path.exists(out_name):
-        print(f"'{out_name}' already exists, skipping.")
         continue
 
     # get the svg from Xournal++, storing it in a temporary file
@@ -160,5 +153,8 @@ for i, name in enumerate(arguments.files):
             .decode()
         )
 
-    print(out)
+    out_name = name[:-4] + 'svg'
+    with open(out_name, "w") as f:
+        f.write(out)
+        print(f"{name} -> {out_name}")
 

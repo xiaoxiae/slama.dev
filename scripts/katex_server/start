@@ -1,0 +1,6 @@
+#!/bin/fish
+
+set dir (dirname (status -f))
+
+echo $fish_pid > $dir/.pid
+$dir/server &

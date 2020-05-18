@@ -13,7 +13,7 @@ module Jekyll
       end
 
       def render(context)
-        content = `scripts/xopp_to_svg -i _includes/#{context.environments.first["page"]["slug"]}/#{@name}.xopp`
+        content =  File.read("_includes/#{context.environments.first["page"]["slug"]}/#{@name}.svg")
 
         return "<figure>#{content}#{@caption == "" ? "" : "<figcaption>#{@caption}</figcaption>"}</figure>"
       end
