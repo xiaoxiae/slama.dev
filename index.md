@@ -14,11 +14,12 @@ As for sports, I really enjoy climbing, slacklining and snowboarding.
 
 This website contains posts about things I feel are interesting enough to put on the internet. 
 The language of the blog is English, but some posts might be written in other languages.
-Links to the periodically updated ones can be found at the top; the rest can be found here: 
-{% assign posts = site.posts | sorted %}
-{% for post in posts %}
+Links to the periodically updated ones can be found at the top; the rest can be found below.
+{% for post in site.posts %}
+{% assign currentdate = post.date | date: "%Y" %}
+{% if currentdate != date %}
+### {{ currentdate }}
+{% assign date = currentdate %} 
+{% endif %}
 - {% if post.language %}[{{post.language | upcase}}] {% endif%}[{{ post.title}}]({{ post.url }}) ({{ post.date  | date: "%-d. %-m. %Y"}}{% if post.category %}; {{post.category}}{% endif%})
 {% endfor %}
-
-{: .right}
-Enjoy! ❤️
