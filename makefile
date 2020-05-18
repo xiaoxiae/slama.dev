@@ -1,13 +1,10 @@
-.PHONY: all clean build upload serve
+.PHONY:  all clean build upload serve
+.SILENT:
 
 XOPP = $(shell find _includes/ -type f -name '*.xopp')
 SVG = $(patsubst %.xopp, %.svg, $(XOPP))
 
-.PHONY: all
-all: $(MP3_FILES)
-
-%.svg: %.xopp
-	scripts/xopp_to_svg -f $^
+%.svg: %.xopp ; scripts/xopp_to_svg -f $^
 
 all: $(SVG) build upload
 
@@ -21,10 +18,7 @@ serve:
 	trap "scripts/katex_server/stop; exit 0" 2
 	bundle exec jekyll serve
 
-upload:
-	scripts/upload
+upload: ; scripts/upload
 
-clean:
-	rm (find _includes/ -type f -name "*.svg")
-	bundle exec jekyll clean --trace
+clean: ; bundle exec jekyll clean --trace
 
