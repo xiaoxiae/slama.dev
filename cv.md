@@ -96,25 +96,30 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
     </td>
     <td colspan="2" class="cv-content-cell">
       <p>
-        <strong>Graph Visualizer</strong> <em>(2019)</em> [<a href="https://github.com/xiaoxiae/GraphVisualizer">GitHub</a>]
+        <strong>GNU Tar</strong> (2020, C) [<a href="https://github.com/xiaoxiae/mytar.c">GitHub</a>]
         <br>
-        A Python application for visualizing discrete mathematics graphs.
-        It uses the PyQt5 library and supports weighted graphs, labels, simple physics and import/export.
+		A C implementation of GNU TAR for my university course.
       </p>
       <p>
-        <strong>Robotics Simplified</strong> <em>(2018–19)</em> [<a href="http://robotics-simplified.com/">website</a>] [<a href="https://github.com/xiaoxiae/Robotics-Simplified-Website">GitHub</a>] [<a href="https://github.com/xiaoxiae/soc-paper-2019">whitepaper</a>]
+        <strong>Grafátko</strong> (2019–present, Python) [<a href="https://github.com/xiaoxiae/Grafatko">GitHub</a>]
+        <br>
+		An app for creating and visualizing graphs and graph-related algorithms.
+      </p>
+      <p>
+        <strong>Robotics Simplified</strong> (2018–19) [<a href="http://robotics-simplified.com/">website</a>] [<a href="https://github.com/xiaoxiae/Robotics-Simplified-Website">GitHub</a>] [<a href="https://github.com/xiaoxiae/soc-paper-2019">whitepaper</a>]
         <br>
         A website for learning about robotics in a simple and intuitive way.
         It is powered by Jekyll and features illustrations and visualizations of the discussed concepts, code examples in Python, and is also available as a PDF.
       </p>
       <p>
-        <strong>Metal Moose 2018</strong> <em>(2017–18)</em> [<a href="https://github.com/MetalMooseFRC/MetalMoose2018">GitHub</a>]
+        <strong>Metal Moose 2018</strong> (2017–18, Java) [<a href="https://github.com/MetalMooseFRC/MetalMoose2018">GitHub</a>]
         <br>
         As a former member of the FRC team Metal Moose and the head of programming, I was in charge of programming our robot for the 2018 Power-Up season.
         Features of the robot include an autonomous language, double PID control (turning and driving) and a polynomial function for controlling the elevator of the robot.
+		I also wrote a little interactive <a href="https://github.com/xiaoxiae/PurePursuitAlgorithm">pure pursuit visualisation</a> that simulates the algorithm.
       </p>
       <p>
-        <strong>Project Euler </strong> <em>(2016–present)</em> [<a href="https://projecteuler.net/progress=thexiaoxiae">profile</a>]
+        <strong>Project Euler </strong> (2016–present) [<a href="https://projecteuler.net/progress=thexiaoxiae">profile</a>]
         <br>
         I am an avid Project Euler solver, with solutions written mostly in Python, but also in Java and Haskell.
         The solutions themselves are not open source, since I want people to experience the joy of solving the problems by themselves.
@@ -129,7 +134,7 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
       <p><span>Education</span></p>
     </td>
     <td class="cv-secondary-group">
-      <p><span>2019–2022</span></p>
+      <p><span>2019–present</span></p>
     </td>
     <td class="cv-content-cell">
     <p>
