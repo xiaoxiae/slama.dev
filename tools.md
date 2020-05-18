@@ -4,9 +4,7 @@ layout: default
 order: 2
 ---
 
-## Tools
-
-Here is an exhaustive list of software that I use, and explanations as to why.
+Here is an exhaustive list of software that I use (for one reason or another).
 I made it both to showcase cool software that you might have missed and for personal brainstorming purposes.
 
 If you think there are some interesting programs that I should check out, I'd be more than happy to hear about them!
@@ -17,7 +15,6 @@ If you think there are some interesting programs that I should check out, I'd be
 	- [UltiSnips](https://github.com/sirver/UltiSnips) -- a plugin for creating expanding snippets.
 	- [surround.vim](https://github.com/tpope/vim-surround) -- a plugin for surrounding parts of text with brackets/tags. Useful for working with tag-heavy markup languages like HTML, and for bracketing in general.
 	- [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors) -- handy little plugin for managing multiple selections at once, similar to Atom and Sublime Text.
-- [CLion](https://www.jetbrains.com/clion/) (for C and C++) and [Rider](https://www.jetbrains.com/rider/) (for C#) -- excellent multiplatform IDEs for a variety of programming languages. Made by JetBrains, a Czech company!
 
 ### Command Line
 - [Ranger](https://wiki.archlinux.org/index.php/Ranger) -- a text-based file manager. The controls feel quite natural to me thanks to its Vim-like key bindings.
@@ -32,19 +29,18 @@ If you think there are some interesting programs that I should check out, I'd be
 - [Vim Vixen](https://addons.mozilla.org/en-US/firefox/addon/vim-vixen/) -- provides relatively decent browsing with Vim-like bindings.
 
 - [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/) -- an add blocker.
-- [Cookie AutoDelete](https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete/) -- automatically deletes cookies after closing the browser (for anti-tracking).
-- [NoScript](https://addons.mozilla.org/en-US/firefox/addon/noscript/) -- blocks specified JavaScript code on visited websites.
+- [NoScript](https://addons.mozilla.org/en-US/firefox/addon/noscript/) -- blocks (certain) JavaScript code on visited websites.
+- [Vim Vixen](https://addons.mozilla.org/en-US/firefox/addon/vim-vixen/) -- Vim for the browser. A little underwhelming, but I'm addicted :).
 
 ### Audio/Video
 - [MPV](https://www.videolan.org/vlc/) -- a multiplatform media player. I switched to it from VLC, since it's much more lightweight, customizable and doesn't completely break my window manager.
-- [Audacity](https://www.audacityteam.org/) -- a multiplatform audio editor.
 
 ### Graphics
 - [GIMP](https://www.gimp.org/) -- a bitmap image editor.
 - [Inkscape](https://inkscape.org/) -- a vector image editor.
 
 ### Note-taking
-- [Xournal++](https://github.com/xournalpp/xournalpp) -- an app for taking handwritten notes that I use to manage all of my notes from my classes. Similar to OneNote, but perhaps not as polished.
+- [Xournal++](https://github.com/xournalpp/xournalpp) -- an app for taking handwritten notes that I use to manage all of my notes from my classes. Similar to OneNote, but more focused on writing than anything else.
 
 ### Miscellaneous
 - [i3wm](https://i3wm.org/) -- an awesome tiling window manager that I use on my Arch Linux laptop. 

@@ -4,7 +4,6 @@ layout: default
 order: 1
 ---
 
-## Music
 Here is a list of songs that I listen to on a daily basis. 
 Most of them are rock, but the list also includes other genres, such as metal or even pop music.
 
@@ -76,7 +75,6 @@ If you feel like the list is missing something that you feel I ought to listen t
 - Marvin Gaye & Tammi Terrell -- Ain't No Mountain High Enough
 - Men At Work -- Down Under
 - Metallica -- Enter Sandman
-- Mungo Jerry -- In The Summertime
 - Muse -- Knights of Cydonia
 - Neil Diamond -- Sweet Caroline
 - Nirvana -- Smells Like Teen Spirit
