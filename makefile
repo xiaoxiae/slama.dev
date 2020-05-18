@@ -18,8 +18,8 @@ build:
 
 serve:
 	scripts/katex_server/start
+	trap "scripts/katex_server/stop; exit 0" 2
 	bundle exec jekyll serve
-	scripts/katex_server/stop
 
 upload:
 	scripts/upload
