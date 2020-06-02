@@ -12,6 +12,7 @@ __pycache__/
 # Private
 scripts/login.py
 ignored/
+_drafts/
 
 # xopp -> svg
 _includes/**/*.svg
