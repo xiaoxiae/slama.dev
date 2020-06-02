@@ -96,6 +96,11 @@ For additional information, feel free to contact me at `tomas [at] slama [dot] d
     </td>
     <td colspan="2" class="cv-content-cell">
       <p>
+        <strong>Terraria NPC Happiness</strong> (2020, Python) [<a href="https://github.com/xiaoxiae/TerrariaNPCHappiness">GitHub</a>]
+        <br>
+		A small program to calculate the optimal layouts for Terraria NPCs, given their neighbour and biome preferences. Definitely not the product of procrastination during finals.
+      </p>
+      <p>
         <strong>GNU Tar</strong> (2020, C) [<a href="https://github.com/xiaoxiae/mytar.c">GitHub</a>]
         <br>
 		A C implementation of GNU TAR for my university course.
