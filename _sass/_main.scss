@@ -190,8 +190,10 @@ $monospaced-font: "Fira Code Light";
 .center {text-align: center;}
 .right {text-align: right; * {margin-right: 0 !important; }}
 
-// CSS for blinking stuff
-.blink {animation: blinker 1.15s linear infinite;}
+.book {
+	> li { padding-bottom: $line-spacing; }
+	> li:last-child { padding-bottom: 0px; }
+}
 
 // TOC formatting
 #markdown-toc {
@@ -491,13 +493,6 @@ body {
 			.gu { color: $gravel; } /* Generic.Subheading & Diff Unified/Comment? */
 			.gd { color: $lime; } /* Generic.Deleted & Diff Deleted */
 			.gi { color: $orange; } /* Generic.Inserted & Diff Inserted */
-		}
-
-		@keyframes blinker {
-			0%   {background-color: $dark-text-color; color: $dark-code-background-color;}
-			49.99%   {background-color: $dark-text-color; color: $dark-code-background-color;}
-			50%  {background-color: $dark-code-background-color; color: $dark-text-color;}
-			100% {background-color: $dark-code-background-color; color: $dark-text-color;}
 		}
 	}
 }
