@@ -16,9 +16,9 @@ This section covers various kinds of books that I think are worth reading.
 
 - **Mistborn** [[Wikipedia](https://en.wikipedia.org/wiki/Mistborn_series)] by Brandon Sanderson -- another amazing series from Brandon Sanderson. It has a very unique magic system, despite being set in the same universe as The Stormlight Archive ([Cosmere](https://en.wikipedia.org/wiki/Brandon_Sanderson#Cosmere)).
 	1. **The Final Empire**
-	2. **The Well of Ascension** (currently reading)
-	3. **The Hero of Ages** (yet to read)
-	4. **The Alloy of Law** (yet to read)
+	2. **The Well of Ascension**
+	3. **The Hero of Ages**
+	4. **The Alloy of Law** (currently reading)
 	5. **Shadows of Self** (yet to read)
 	6. **The Bands of Mourning** (yet to read)
 
