@@ -1,4 +1,4 @@
-.PHONY:  all clean build upload
+.PHONY:  all clean build upload serve
 .SILENT:
 
 XOPP = $(shell find _includes/ -type f -name '*.xopp')
@@ -15,5 +15,7 @@ build: $(SVG) _includes/cv.md
 	scripts/xopp_to_svg -f $^
 
 upload: ; scripts/upload
+
+serve: ; bundle exec jekyll serve --drafts 
 
 clean: ; bundle exec jekyll clean --trace
