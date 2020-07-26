@@ -6,7 +6,7 @@ _site
 .jekyll-cache/
 Gemfile.lock
 
-# Python
+# Python cache
 __pycache__/
 
 # Private
@@ -16,3 +16,6 @@ _drafts/
 
 # xopp -> svg
 _includes/**/*.svg
+
+# generated cv
+_includes/cv.html
