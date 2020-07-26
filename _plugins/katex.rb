@@ -1,20 +1,34 @@
 require 'execjs'
+require 'digest'
 
 module Jekyll
   module Tags
     class KatexBlock < Liquid::Block
 
+      PATH_TO_JS = "./_plugins/katex.min.js"
+
       def initialize(tag, markup, tokens)
         super
-        @markup = markup
+
+        @display = markup.include? 'display'
       end
 
       def render(context)
-        File.open("scripts/katex_server/in", 'w') {
-          |file| file.write("#{@markup}\n" + super(context))
-        }
+        @hash = Digest::SHA2.hexdigest super
+        @cache_path = './.katex-cache/' + @hash
 
-        return File.read("scripts/katex_server/out")
+        if(File.exist?(@cache_path))
+          return File.read(@cache_path)
+        else
+          @cache_dir_path = File.dirname(@cache_path)
+          Dir.mkdir(@cache_dir_path) unless Dir.exist?(@cache_dir_path)
+
+          @katex = ExecJS.compile(open(PATH_TO_JS).read)
+          @result =  @katex.call("katex.renderToString", super, {displayMode: @display})
+
+          File.open(@cache_path, 'w') { |file| file.write(@result) }
+          return @result
+        end
       end
     end
   end

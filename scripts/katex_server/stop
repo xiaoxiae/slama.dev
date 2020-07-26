@@ -1,6 +1,0 @@
-#!/bin/fish
-
-set dir (dirname (status -f))
-
-pkill -P (cat $dir/.pid)
-exit 0
