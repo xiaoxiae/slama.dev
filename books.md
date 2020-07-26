@@ -14,7 +14,7 @@ This section covers various kinds of books that I think are worth reading.
 	2. **Words of Radiance**
 	3. **Oathbringer**
 
-- **Mistborn** [[Wikipedia](https://en.wikipedia.org/wiki/Mistborn_series)] by Brandon Sanderson -- another amazing series from Brandon Sanderson. It has a very unique magic system, despite being set in the same universe as The Stormlight Archive ([Cosmere](https://en.wikipedia.org/wiki/Brandon_Sanderson#Cosmere)).
+- **Mistborn** [[Wikipedia](https://en.wikipedia.org/wiki/Mistborn_series)] by Brandon Sanderson -- another amazing series from Brandon Sanderson. It has a very unique magic system, despite being set in the same universe as The Stormlight Archive ([Cosmere](https://en.wikipedia.org/wiki/Brandon_Sanderson#Cosmere)). The first and the second series vary greatly in their setting (medieval x industrial revolution), but I would argue that both are a great fit.
 	1. **The Final Empire**
 	2. **The Well of Ascension**
 	3. **The Hero of Ages**

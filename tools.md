@@ -40,7 +40,7 @@ If you think there are some interesting programs that I should check out, I'd be
 - [Inkscape](https://inkscape.org/) -- a vector image editor.
 
 ### Note-taking
-- [Xournal++](https://github.com/xournalpp/xournalpp) -- an app for taking handwritten notes that I use to manage all of my notes from my classes. Similar to OneNote, but more focused on writing than anything else.
+- [Xournal++](https://github.com/xournalpp/xournalpp) -- an app for taking handwritten notes that I use to manage all of my notes from my classes. Similar to OneNote, but mostly focused on writing.
 
 ### Miscellaneous
 - [i3wm](https://i3wm.org/) -- an awesome tiling window manager that I use on my Arch Linux laptop. 
