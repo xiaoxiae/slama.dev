@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+# TODO: /www/. for removing, . for uploading -- make consistent
+# TODO: include checksum in the uploaded files
+
 from ftplib import FTP, error_perm
 from typing import *
 import hashlib
@@ -14,7 +17,7 @@ permanent_files = ["info.php", ".gitkeep"]
 permanent_folders = ["subdom", "domains"]
 
 # files and folders to ignore when uploading
-ignored_files = []
+ignored_files = ["makefile"]
 ignored_folders = ["scripts"]
 
 checksum_file_name = "checksum.json"
