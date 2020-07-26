@@ -6,7 +6,9 @@ SVG = $(patsubst %.xopp, %.svg, $(XOPP))
 
 all: build upload
 
-build: $(SVG)
+_includes/cv.md: ; scripts/generate_cv
+
+build: $(SVG) _includes/cv.md
 	scripts/katex_server/start
 	bundle exec jekyll build --trace
 	scripts/katex_server/stop
