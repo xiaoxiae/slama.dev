@@ -2,20 +2,20 @@
 .SILENT:
 
 XOPP = $(shell find _includes/ -type f -name '*.xopp')
-SVG = $(patsubst %.xopp, %.svg, $(XOPP))
+SVG  = $(patsubst %.xopp, %.svg, $(XOPP))
 
 all: build upload
 
-_includes/cv.md: ; scripts/generate_cv
+build: $(SVG) _includes/cv.md; bundle exec jekyll build --trace
+serve: $(SVG) _includes/cv.md; bundle exec jekyll serve --trace --drafts
 
-build: $(SVG) _includes/cv.md
-	bundle exec jekyll build --trace
+upload: ; scripts/upload
+
+clean:
+	rm -r .katex-cache/
+	bundle exec jekyll clean --trace
 
 %.svg: %.xopp
 	scripts/xopp_to_svg -f $^
 
-upload: ; scripts/upload
-
-serve: ; bundle exec jekyll serve --drafts 
-
-clean: ; bundle exec jekyll clean --trace
+_includes/cv.md: ; scripts/generate_cv
