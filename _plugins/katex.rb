@@ -14,19 +14,27 @@ module Jekyll
       end
 
       def render(context)
+        # generate a hash from the math expression
         @hash = Digest::SHA2.hexdigest super
         @cache_path = './.katex-cache/' + @hash
 
+        # use it if it exists
         if(File.exist?(@cache_path))
           return File.read(@cache_path)
+
+        # else generate one and store it
         else
+          # create the cache directory, if it doesn't exist
           @cache_dir_path = File.dirname(@cache_path)
           Dir.mkdir(@cache_dir_path) unless Dir.exist?(@cache_dir_path)
 
+          # render using ExecJS
           @katex = ExecJS.compile(open(PATH_TO_JS).read)
           @result =  @katex.call("katex.renderToString", super, {displayMode: @display})
 
+          # save to cache
           File.open(@cache_path, 'w') { |file| file.write(@result) }
+
           return @result
         end
       end
