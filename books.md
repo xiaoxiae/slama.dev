@@ -18,8 +18,8 @@ This section covers various kinds of books that I think are worth reading.
 	1. **The Final Empire**
 	2. **The Well of Ascension**
 	3. **The Hero of Ages**
-	4. **The Alloy of Law** (currently reading)
-	5. **Shadows of Self** (yet to read)
+	4. **The Alloy of Law**
+	5. **Shadows of Self** (currently reading)
 	6. **The Bands of Mourning** (yet to read)
 
 - **The Kingkiller Chronicle** [[Wikipedia](https://en.wikipedia.org/wiki/The_Kingkiller_Chronicle)] by Patrick Rothfuss -- a thrilling series that I would not recommend anyone to read until the last book in the series is finished (see the controversy for yourself if you're interested).
