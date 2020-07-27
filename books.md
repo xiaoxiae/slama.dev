@@ -14,7 +14,7 @@ This section covers various kinds of books that I think are worth reading.
 	2. **Words of Radiance**
 	3. **Oathbringer**
 
-- **Mistborn** [[Wikipedia](https://en.wikipedia.org/wiki/Mistborn_series)] by Brandon Sanderson -- another amazing series from Brandon Sanderson. It has a very unique magic system, despite being set in the same universe as The Stormlight Archive ([Cosmere](https://en.wikipedia.org/wiki/Brandon_Sanderson#Cosmere)). The first and the second series vary greatly in their setting (medieval x industrial revolution), but I would argue that both are a great fit.
+- **Mistborn** [[Wikipedia](https://en.wikipedia.org/wiki/Mistborn_series)] by Brandon Sanderson -- another amazing series from Brandon Sanderson. It has a very unique magic system, despite being set in the same universe as The Stormlight Archive ([Cosmere](https://en.wikipedia.org/wiki/Brandon_Sanderson#Cosmere)). The first and the second series vary greatly in their setting (medieval {% latex %}\times{% endlatex %} industrial revolution), but I would argue that both are a great fit.
 	1. **The Final Empire**
 	2. **The Well of Ascension**
 	3. **The Hero of Ages**
@@ -40,6 +40,6 @@ This section covers various kinds of books that I think are worth reading.
 {:.book}
 - [CZ] **Průvodce labyrintem algoritmů** [[PDF](http://pruvodce.ucw.cz/static/pruvodce.pdf)] od Martina Mareše -- úžasná příručka (a skripta) pro studium algoritmů a datových struktur. Vřele doporučeno komukoliv, koho alespoň trochu zajímá teoretická informatika.
 
-- [CZ] **Lineární Algebra (nejen) pro informatiky** [[PDF verze 2018](https://www.ms.mff.cuni.cz/~sejkoraji/sbirka/zalohy/skripta_la.pdf)] od Milana Hladíka -- kvalitně zpracovaná (byť, dle mého názoru, občas ne úplně přístupná) skripta pro Lineární Algebru.
+- [CZ] **Lineární Algebra (nejen) pro informatiky** [[PDF verze 2018](https://www.ms.mff.cuni.cz/~sejkoraji/sbirka/zalohy/skripta_la.pdf)] od Milana Hladíka -- kvalitně zpracovaná (byť dle mého názoru občas ne úplně přístupná) skripta pro Lineární Algebru.
 
 - **Computer Systems: A Programmer's Perspective** [[PDF 2. edice](http://guanzhou.pub/files/Computer%20System_EN.pdf)] -- an in-depth look at how computers actually work. A very comprehensive resource for CS-related courses, namely for those related to computer architecture.
