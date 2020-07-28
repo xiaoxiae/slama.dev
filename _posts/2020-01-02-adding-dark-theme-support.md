@@ -25,7 +25,7 @@ It seems that setting dark theme for a given system will set up the browser them
 2. create a new variable `ui.systemUsesDarkTheme` and set it to `1`
 
 #### Chrome (>= 76)
-1. run chrome with the `--force-dark-mode` flag
+1. run with the `--force-dark-mode` flag
 
 ### Support
 It seems that this CSS option has been getting attention only recently, so it might take a while for the browsers to adopt it in a more user-friendly, since it's just so much better than having to deal with JavaScript.
