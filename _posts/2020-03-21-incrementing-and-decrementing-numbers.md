@@ -3,12 +3,6 @@ layout: post
 category: "Vim"
 ---
 
-This post marks the first of a series about Vim. I'm doing it both to force myself to learn something new about the editor and to tell you something that you might not have previously known.
-
----
-
-Vim has some cool tools for incrementing-decrementing numbers.
-
 Some of you might know that pressing `<C-a>`/`<C-x>` in command mode _increases/decreases the next number on the line the cursor is currently on_:
 
 ```
