@@ -69,7 +69,6 @@ def remove_content(old: Dict[str, str], new: Dict[str, str]):
                 if not arguments.debug:
                     ftp.delete(content)
 
-                # don't print it when we remove checksum file
                 if content != checksum_file_name:
                     print(f"     Removing file: {relpath}")
 
@@ -181,7 +180,8 @@ os.chdir(site_dir)
 print(f"               FTP: Connecting to {ip}...", end="")
 with FTP(ip, login, password) as ftp:
     print(" connected.")
-    print("               FTP: " + ftp.cwd(website_ftp_folder))
+
+    ftp.cwd(website_ftp_folder)
 
     new = get_hashsum_dictionary()
     json.dump(new, open(checksum_file_name, "w"), indent=4, sort_keys=True)
@@ -208,4 +208,7 @@ with FTP(ip, login, password) as ftp:
         ftp.storbinary("STOR " + checksum_file_name, open(checksum_file_name, "rb"))
 
     # disconnect from the server and terminate the script
-    print("               FTP: " + ftp.quit())
+    ftp.quit()
+
+    print("               FTP: done.")
+
