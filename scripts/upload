@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 
-# TODO: /www/. for removing, . for uploading -- make consistent
-# TODO: exclude checksum from the removed files
 # TODO: store more information in the checksum file to make the update faster
 #       - it's quite slow to recurse using FTP
 
@@ -18,18 +16,28 @@ from getpass import getpass
 permanent_files = ["info.php", ".gitkeep"]
 permanent_folders = ["subdom", "domains"]
 
-# files and folders to ignore when uploading
-ignored_files = ["makefile"]
-ignored_folders = ["scripts"]
-
 checksum_file_name = "checksum.json"
 
 website_ftp_folder = "www"
 
 
 parser = argparse.ArgumentParser(description="Smart-upload a folder via FTP.")
+
 parser.add_argument(
-    "-d", "--debug", help="only print the actions", action="store_true", dest="debug"
+    "-d",
+    "--dry-run",
+    "--debug",
+    help="only print the actions, don't actually do them",
+    action="store_true",
+    dest="debug",
+)
+
+parser.add_argument(
+    "-i",
+    "--ignore-checksum",
+    help="ignore the checksum file (meaning everything is removed an then uploaded)",
+    action="store_true",
+    dest="ignore_checksum",
 )
 
 arguments = parser.parse_args()
@@ -37,6 +45,8 @@ arguments = parser.parse_args()
 
 def remove_content(old: Dict[str, str], new: Dict[str, str]):
     """Removes all relevant content on the FTP server."""
+    pwd = ftp.pwd()
+
     # for all subdirectories of the current directory
     for content in ftp.nlst():
         # a very not-pretty way to determine if a path is a file or not
@@ -49,18 +59,19 @@ def remove_content(old: Dict[str, str], new: Dict[str, str]):
             is_file = False
 
         # get the folder/file path relative to the website ftp folder
-        relative_path = (ftp.pwd() + "/" + content)[len(website_ftp_folder) + 2 :]
+        relpath = (pwd + "/" + content)[len(website_ftp_folder) + 2 :]
 
         # if it's a file
         if is_file:
-            # and the content isn't permanent
-            if content not in permanent_files and not hashsums_match(
-                old, new, relative_path
-            ):
+            # and the content, if it isn't permanent
+            if content not in permanent_files and not hashsums_match(old, new, relpath):
                 # if it's a file, delete it
                 if not arguments.debug:
                     ftp.delete(content)
-                print("     Removing file: " + ftp.pwd() + "/" + content)
+
+                # don't print it when we remove checksum file
+                if content != checksum_file_name:
+                    print(f"     Removing file: {relpath}")
 
         elif content not in permanent_folders:
             # move down to the directory and recursively call remove_content
@@ -73,7 +84,7 @@ def remove_content(old: Dict[str, str], new: Dict[str, str]):
             if remaining_files == 0:
                 if not arguments.debug:
                     ftp.rmd(content)
-                print("Removing directory: " + ftp.pwd() + "/" + content)
+                print(f"Removing directory: {relpath}")
 
 
 def add_content(old: Dict[str, str], new: Dict[str, str]):
@@ -83,7 +94,7 @@ def add_content(old: Dict[str, str], new: Dict[str, str]):
     for directory, _, _ in os.walk("."):
         stripped_directory = directory[2:]
 
-        if stripped_directory != "" and stripped_directory not in ignored_folders:
+        if stripped_directory != "":
             # the replace is for windows' paths
             directories.append(stripped_directory.replace(os.sep, "/"))
 
@@ -97,18 +108,19 @@ def add_content(old: Dict[str, str], new: Dict[str, str]):
         except Exception as e:
             if not arguments.debug:
                 ftp.mkd(directory)
-            print("  Create directory: " + directory)
+            print("Creating directory: " + directory)
 
     # upload files...
     for file in new:
         # that are not ignored and didn't match hashsums
-        if file not in ignored_files and not hashsums_match(old, new, file):
+        if not hashsums_match(old, new, file):
             if not arguments.debug:
                 ftp.storbinary("STOR " + file, open(file, "rb"))
-            print("       Upload file: " + file)
+            print("    Uploading file: " + file)
 
 
-def hashsums_match(old, new, key):
+def hashsums_match(old: Dict, new: Dict, key: str):
+    """Return True if a key is in both the dictionaries and its value matches."""
     return key in old and key in new and old[key] == new[key]
 
 
@@ -123,17 +135,17 @@ def generate_hashsum(file_name):
     return hash_sha256.hexdigest()
 
 
-def get_list_of_files():
-    """Return the list of files in the current directory."""
-    return [
-        os.path.join(root, name)[2:]
-        for root, dirs, files in os.walk(".")
-        for name in files
-    ]
-
-
-def get_hashsum_file():
-    return {f: generate_hashsum(f) for f in get_list_of_files()}
+def get_hashsum_dictionary():
+    """Return a dictionary of hashes of file contents in the current directory and all
+    its subdirectories."""
+    return {
+        f: generate_hashsum(f)
+        for f in [
+            os.path.join(root, name)[2:]
+            for root, dirs, files in os.walk(".")
+            for name in files
+        ]
+    }
 
 
 # read credentials
@@ -162,22 +174,21 @@ site_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "..", "_sit
 
 # change to the _site directory (if it exists)
 if not os.path.exists(site_dir):
-    print(f"               FTP: _site folder does not exist, exitting.")
-    quit()
-
+    quit(f"               FTP: _site folder does not exist, exiting.")
 
 os.chdir(site_dir)
 
-print(f"               FTP: Connecting to {ip}...")
+print(f"               FTP: Connecting to {ip}...", end="")
 with FTP(ip, login, password) as ftp:
+    print(" connected.")
     print("               FTP: " + ftp.cwd(website_ftp_folder))
 
-    new = get_hashsum_file()
+    new = get_hashsum_dictionary()
     json.dump(new, open(checksum_file_name, "w"), indent=4, sort_keys=True)
 
     # get the old hashsum
     old = {}
-    if checksum_file_name in ftp.nlst():
+    if checksum_file_name in ftp.nlst() and not arguments.ignore_checksum:
         # get the old checksum by reading the file on the server
         lines = []
         ftp.retrlines(f"RETR {checksum_file_name}", lambda x: lines.append(x))
@@ -198,4 +209,3 @@ with FTP(ip, login, password) as ftp:
 
     # disconnect from the server and terminate the script
     print("               FTP: " + ftp.quit())
-    quit()
