@@ -2,6 +2,7 @@
 
 # TODO: store more information in the checksum file to make the update faster
 #       - it's quite slow to recurse using FTP
+# TODO: Update file, instead of remove file > add file
 
 from ftplib import FTP, error_perm
 from typing import *

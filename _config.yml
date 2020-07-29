@@ -16,4 +16,5 @@ exclude: [
     "makefile",
     "LICENSE.txt",
     "README.md",
+    ".katex-cache/",
 ]
