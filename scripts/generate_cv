@@ -70,7 +70,7 @@ nodes = [
                 ],
             ),
             Node(
-                "July 2019",
+                "2019–2020, July",
                 [
                     Node(
                         "**Programming Camp Organizer<br>**"
@@ -104,15 +104,20 @@ nodes = [
         "Projects",
         [
             Node(
-                "**Terraria NPC Happiness** (2020, Python) "
-                "[[GitHub](https://github.com/xiaoxiae/TerrariaNPCHappiness)]<br>A "
-                "small program to calculate the optimal layouts for Terraria NPCs, "
-                "given their neighbour and biome preferences. Definitely not a product "
-                "of procrastination during finals.\n\n"
+                "**Vimvaldi** (2020, Python – Curses, Abjad)"
+                " [[GitHub](https://github.com/xiaoxiae/vimvaldi)]<br> A terminal app"
+                " for editing musical scores in the terminal with Vim-like"
+                " controls.\n\n"
+                + "**Terraria NPC Happiness** (2020, Python)"
+                " [[GitHub](https://github.com/xiaoxiae/TerrariaNPCHappiness)]<br>A"
+                " small program to calculate the optimal layouts for Terraria NPCs,"
+                " given their neighbour and biome preferences. Internally uses Dijkstra"
+                " to do so, with some optimizations. Definitely not a product of"
+                " procrastination during finals.\n\n"
                 + "**GNU Tar** (2020, C) "
                 "[[GitHub](https://github.com/xiaoxiae/mytar.c)]<br> A C "
-                "implementation of GNU TAR for my university course.\n\n"
-                + "**Grafátko** (2019–present, Python)"
+                "implementation of GNU TAR for my C university course.\n\n"
+                + "**Grafátko** (2019–present, Python – PyQt5)"
                 " [[GitHub](https://github.com/xiaoxiae/Grafatko)]<br>An app for"
                 " creating and visualizing graphs and graph-related algorithms.\n\n"
                 + "**Robotics Simplified** (2018–19)"
@@ -158,13 +163,13 @@ nodes = [
                 "2017–2018",
                 [
                     Node(
-                        "**Westtown School** (completed)<br>I received an ASSIST"
-                        " scholarship to study at a private US school for one year. My"
-                        " focus was mainly on the First Robotics Competition,"
-                        " mathematical modeling, electrotechnics, and programming. As"
-                        " for the extracurricular activities, I was the chess club"
-                        " leader, a member of the mathematics club and a part of the"
-                        " scenic art design team."
+                        "**Westtown School** (completed)<br>I received an ASSIST "
+                        "scholarship to study at a private US school for one year. My "
+                        "focus was mainly on the First Robotics Competition, "
+                        "mathematical modeling, electrotechnics, and programming. As "
+                        "for the extracurricular activities, I was the chess club "
+                        "leader, a member of the mathematics club and a part of the "
+                        "scenic art design team."
                     )
                 ],
             ),
@@ -172,11 +177,11 @@ nodes = [
                 "2015–2019",
                 [
                     Node(
-                        "**Turnov Grammar School** (completed)<br> As a high school"
-                        " student, I was a frequent participant of English, mathematics"
-                        " and programming competitions. I completed my maturita exam in"
-                        " the May of 2019. The exam subjects were maths, Czech and"
-                        " English languages, and computer science."
+                        "**Turnov Grammar School** (completed)<br> As a high school "
+                        "student, I was a frequent participant of English, mathematics "
+                        "and programming competitions. I completed my maturita exam in "
+                        "the May of 2019. The exam subjects were maths, Czech and "
+                        "English languages, and computer science."
                     )
                 ],
             ),
@@ -195,18 +200,28 @@ nodes = [
                 ],
             ),
             Node("Programming", [Node("See projects 🙂.")]),
+            Node(
+                "Other",
+                [
+                    Node(
+                        "I have a Czech **first aid certificate** (Kurz první pomoci od"
+                        " ZdrSemu), meaning that I can attend a summer camp as a medic"
+                        " (in the Czech republic)."
+                    )
+                ],
+            ),
         ],
     ),
     Node(
         "Interests",
         [
             Node(
-                "My favorite sports are rock climbing, snowboarding, ballroom dancing"
-                " and slack(lin)ing.  I also enjoy playing chess and indie computer"
-                " games.\n\n"
-                + "As a person, I am quite open and friendly, so meeting and"
-                " collaborating with new people on interesting projects is something I"
-                " very much enjoy."
+                "My favorite sports are rock climbing, snowboarding, ballroom dancing "
+                "and slack(lin)ing.  I also enjoy playing chess and indie computer "
+                "games.\n\n"
+                + "As a person, I am quite open and friendly – meeting and "
+                "collaborating with new people on interesting projects is something I "
+                "very much enjoy."
             )
         ],
     ),
