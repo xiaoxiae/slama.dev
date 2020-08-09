@@ -1,12 +1,13 @@
 ---
 layout: post
 category: "Vim"
-excerpt: In this post, we'll talk about how history of changes is implemented in Vim (compared to other editors), how to make it persistent, why the `<u>` + `<C-r>` combination isn't doing it justice and what are some plugins you can use to improve your workflow!
+excerpt: "In this post, we'll talk about how history of changes is implemented in Vim (compared to other editors), how to make it persistent, why the `<u>` + `<C-r>` combination isn't doing it justice and what are some plugins you can use to improve your workflow!"
 ---
+
+- .
+{:toc}
 
 In this post, we'll talk about how history of changes is implemented in Vim (compared to other editors), how to make it persistent, why the `<u>` + `<C-r>` combination isn't doing it justice and what are some plugins you can use to improve your workflow!
-
----
 
 ### Implementations
 Most editors keep a **linear** history of changes made to a given file, meaning that you can only move forward and backward in time. While simple to implement, it isn't an ideal solution -- what if you undoed some changes, made new ones and only after realized that the previous changes were actually the ones you wanted to keep?

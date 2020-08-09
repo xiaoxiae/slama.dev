@@ -7,12 +7,8 @@ category: "lecture notes"
 - .
 {:toc}
 
----
-
 ### Relace
 Definice: relace mezi množinami {% latex %}X, Y \equiv R \subseteq X \times Y{% endlatex %} (podmnožina kartézského součinu)
-
-{% xopp relace %}
 
 - prázdná: {% latex %}\emptyset{% endlatex %} (nic s ničím)
 - univerzální: {% latex %}X \times Y{% endlatex %} (vše se vším)
@@ -24,7 +20,6 @@ Definice: relace mezi množinami {% latex %}X, Y \equiv R \subseteq X \times Y{%
 
 - složená: {% latex %}x \left(R \circ S\right) z \equiv\ \exists y \in Y: xRy \land ySz{% endlatex %}
 	- tzn. tj. musí existovat cesta (když si to představíme jako grafy)
-
 
 #### Funkce
 Definice: relace {% latex %}f{% endlatex %} mezi {% latex %}X, Y{% endlatex %} je funkce (zobrazení) {% latex %}\ \equiv \forall x \in X \ \exists!\ y \in Y: x f y{% endlatex %}

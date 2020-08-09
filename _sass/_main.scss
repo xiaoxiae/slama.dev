@@ -195,10 +195,18 @@ $monospaced-font: "Fira Code Light";
 	> li:last-child { padding-bottom: 0px; }
 }
 
+.footnotes { border-top: 1px solid; }
+
 // TOC formatting
 #markdown-toc {
 	font-size: $toc-size;
-	margin-top: 0;
+	margin-top: 0px;
+	margin-left: $line-spacing / 2;
+	padding-top: $line-spacing / 2;
+	padding-right: $line-spacing;
+	padding-bottom: $line-spacing / 2;
+	float: right;
+	border: 2px solid;
 }
 
 body {

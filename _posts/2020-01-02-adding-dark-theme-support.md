@@ -2,6 +2,9 @@
 layout: post
 ---
 
+- .
+{:toc}
+
 I've been meaning to add dark theme support to this website for quite a while. I even made a whole CSS class, but didn't know how to actually integrate it into the website (having both the light and the dark theme, that is). All of the options that I thought about (cookie, local storage, weird CSS hacks) were ugly, complicated, involved JavaScript, and were an overall no-no for a website that aims to be as simple as possible.
 
 After some time and a bit more research, I stumbled upon the miraculous [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme#Result) CSS media query that triggers depending on the color scheme preferences of the user's browser -- exactly what I wanted!
