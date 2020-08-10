@@ -13,11 +13,11 @@ import json
 import argparse
 from getpass import getpass
 
-# files and folders not to remove
-permanent_files = ["info.php", ".gitkeep"]
-permanent_folders = ["subdom", "domains"]
-
 checksum_file_name = "checksum.json"
+
+# files and folders not to remove
+permanent_files = ["info.php", ".gitkeep", checksum_file_name]
+permanent_folders = ["subdom", "domains"]
 
 website_ftp_folder = "www"
 
@@ -69,9 +69,6 @@ def remove_content(old: Dict[str, str], new: Dict[str, str]):
                 # if it's a file, delete it
                 if not arguments.debug:
                     ftp.delete(content)
-
-                if content != checksum_file_name:
-                    print(f"     Removing file: {relpath}")
 
         elif content not in permanent_folders:
             # move down to the directory and recursively call remove_content
@@ -202,7 +199,7 @@ with FTP(ip, login, password) as ftp:
     # add all content from _site folder which is not ignored
     add_content(old, new)
 
-    # always manually upload the checksum file
+    # always manually update the checksum file at the end
     if not arguments.debug:
         if checksum_file_name in ftp.nlst():
             ftp.delete(checksum_file_name)
@@ -212,4 +209,3 @@ with FTP(ip, login, password) as ftp:
     ftp.quit()
 
     print("               FTP: done.")
-
