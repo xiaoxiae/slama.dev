@@ -3,7 +3,6 @@
 _site
 .bundle
 .*-cache
-Gemfile.lock
 __pycache__/
 
 # Private
