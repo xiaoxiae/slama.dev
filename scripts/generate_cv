@@ -120,6 +120,11 @@ nodes = [
                 + "**Grafátko** (2019–present, Python – PyQt5)"
                 " [[GitHub](https://github.com/xiaoxiae/Grafatko)]<br>An app for"
                 " creating and visualizing graphs and graph-related algorithms.\n\n"
+                + "**Advent of Code** (2018, 2019) [GitHub"
+                " [2018](https://github.com/xiaoxiae/Advent-of-Code-2018),"
+                " [2019](https://github.com/xiaoxiae/Advent-of-Code-2019)]<br>I"
+                " annually participate in Advent of code, as a fun thing to do with my"
+                " CS-oriented friends. All of the solutions are in Python."
                 + "**Robotics Simplified** (2018–19)"
                 " [[GitHub](https://github.com/xiaoxiae/Robotics-Simplified-Website)]"
                 " [[whitepaper](https://github.com/xiaoxiae/soc-paper-2019)]<br>A"
@@ -137,11 +142,6 @@ nodes = [
                 " little interactive [pure pursuit"
                 " visualisation](https://github.com/xiaoxiae/PurePursuitAlgorithm) that"
                 " simulates the algorithm.\n\n"
-                + "**Advent of Code** (2018, 2019) [GitHub"
-                " [2018](https://github.com/xiaoxiae/Advent-of-Code-2018),"
-                " [2019](https://github.com/xiaoxiae/Advent-of-Code-2019)]<br>I"
-                " annually participate in Advent of code, as a fun thing to do with my"
-                " CS-oriented friends. All of the solutions are in Python."
             )
         ],
     ),
