@@ -210,6 +210,12 @@ $monospaced-font: "Fira Code Light";
 	padding-right: $line-spacing;
 	padding-bottom: $line-spacing / 2;
 	float: right;
+
+	@media (max-width: 500px) {
+		float: none;
+		margin-bottom: $line-spacing;
+	}
+
 	border: 2px solid;
 }
 
