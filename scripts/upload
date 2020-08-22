@@ -69,6 +69,7 @@ def remove_content(old: Dict[str, str], new: Dict[str, str]):
                 # if it's a file, delete it
                 if not arguments.debug:
                     ftp.delete(content)
+                print(f"     Removing file: {relpath}")
 
         elif content not in permanent_folders:
             # move down to the directory and recursively call remove_content
