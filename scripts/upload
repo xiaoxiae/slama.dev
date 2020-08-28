@@ -26,8 +26,8 @@ parser = argparse.ArgumentParser(description="Smart-upload a folder via FTP.")
 
 parser.add_argument(
     "-d",
-    "--dry-run",
     "--debug",
+    "--dry-run",
     help="only print the actions, don't actually do them",
     action="store_true",
     dest="debug",
@@ -38,7 +38,6 @@ parser.add_argument(
     "--ignore-checksum",
     help="ignore the checksum file (meaning everything is removed an then uploaded)",
     action="store_true",
-    dest="ignore_checksum",
 )
 
 arguments = parser.parse_args()
