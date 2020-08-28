@@ -21,4 +21,4 @@ RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^subdom/[^/]+/(.+[^/])$ /$1/ [R]
 
 # 404 handling
-ErrorDocument 404 /404.html
+ErrorDocument 404 /404/
