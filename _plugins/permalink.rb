@@ -23,7 +23,7 @@ module Jekyll
 
       # slugify pages with titles
       site.pages.each do |item|
-        if item.data['title'].nil?
+        if item.data['title'].nil? or item.data['title'] == "Home"
           next
         end
 

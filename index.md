@@ -1,4 +1,5 @@
 ---
+title: Home
 layout: default
 order: 0
 ---
