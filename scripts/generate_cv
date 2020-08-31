@@ -124,7 +124,7 @@ nodes = [
                 " [2018](https://github.com/xiaoxiae/Advent-of-Code-2018),"
                 " [2019](https://github.com/xiaoxiae/Advent-of-Code-2019)]<br>I"
                 " annually participate in Advent of code, as a fun thing to do with my"
-                " CS-oriented friends. All of the solutions are in Python."
+                " CS-oriented friends. All of the solutions are in Python.\n\n"
                 + "**Robotics Simplified** (2018–19)"
                 " [[GitHub](https://github.com/xiaoxiae/Robotics-Simplified-Website)]"
                 " [[whitepaper](https://github.com/xiaoxiae/soc-paper-2019)]<br>A"
@@ -141,7 +141,7 @@ nodes = [
                 " function for controlling the elevator of the robot. I also wrote a"
                 " little interactive [pure pursuit"
                 " visualisation](https://github.com/xiaoxiae/PurePursuitAlgorithm) that"
-                " simulates the algorithm.\n\n"
+                " simulates the algorithm."
             )
         ],
     ),
@@ -216,7 +216,7 @@ nodes = [
         "Interests",
         [
             Node(
-                "My favorite sports are rock climbing, snowboarding, ballroom dancing "
+                "My favorite sports are [rock climbing](/climbing), snowboarding, ballroom dancing "
                 "and slack(lin)ing.  I also enjoy playing chess and indie computer "
                 "games.\n\n"
                 + "As a person, I am quite open and friendly – meeting and "
