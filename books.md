@@ -26,7 +26,7 @@ This section covers various kinds of books that I think are worth reading.
 
 - **Skyward** [[Wikipedia](https://en.wikipedia.org/wiki/Skyward_(novel))] by Brandon Sanderson -- as a huge fan of Sanderson's fictional work, I was not sure about him pulling off a good space opera, but I was very, very wrong. The series is a breath of fresh air in the midst of all of his fantasy worlds (at least to someone who's practically been binging all of Sanderson's work) and I can't recommend it enough.
 	1. **Skyward**
-	2. **Starsight** (currently reading)
+	2. **Starsight**
 	3. **Nowhere** (to be released)
 
 - **The Rithmatist** [[Wikipedia](https://en.wikipedia.org/wiki/The_Rithmatist)] by Brandon Sanderson -- an excellent young adult fantasy novel. Although the target audience is children (which is reflected mostly in character behavior and development), I still loved discovering the unique magic system that Sanderson created.
