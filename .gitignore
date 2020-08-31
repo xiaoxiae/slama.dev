@@ -10,6 +10,9 @@ scripts/login.py
 ignored/
 _drafts/
 
+# Too big to VC (scary binaries)
+climbing/
+
 # xopp -> svg
 _includes/**/*.svg
 
