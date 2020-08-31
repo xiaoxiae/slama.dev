@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ffmpeg -i $1 -vcodec libx264 -crf 28 $(echo $1 | cut -d\. -f 1)-out.$(echo $1 | cut -d\. -f 2)
