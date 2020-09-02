@@ -66,9 +66,10 @@ def remove_content(old: Dict[str, str], new: Dict[str, str]):
             # and the content, if it isn't permanent
             if content not in permanent_files and not hashsums_match(old, new, relpath):
                 # if it's a file, delete it
-                print(f"     Removing file: {relpath}")
+                print(f"     Removing file: {relpath}...", end="")
                 if not arguments.debug:
                     ftp.delete(content)
+                print(" done.")
 
         elif content not in permanent_folders:
             # move down to the directory and recursively call remove_content
@@ -79,9 +80,10 @@ def remove_content(old: Dict[str, str], new: Dict[str, str]):
             ftp.cwd("..")
 
             if remaining_files == 0:
-                print(f"Removing directory: {relpath}")
+                print(f"Removing directory: {relpath}...", end="")
                 if not arguments.debug:
                     ftp.rmd(content)
+                print(" done.")
 
 
 def add_content(old: Dict[str, str], new: Dict[str, str]):
@@ -103,17 +105,19 @@ def add_content(old: Dict[str, str], new: Dict[str, str]):
             ftp.cwd(directory)
             ftp.cwd(pwd)
         except Exception as e:
-            print("Creating directory: " + directory)
+            print(f"Creating directory: {directory}...", end="")
             if not arguments.debug:
                 ftp.mkd(directory)
+            print(" done.")
 
     # upload files...
     for file in new:
         # that are not ignored and didn't match hashsums
         if not hashsums_match(old, new, file):
-            print("    Uploading file: " + file)
+            print(f"    Uploading file: {file}...", end="")
             if not arguments.debug:
                 ftp.storbinary("STOR " + file, open(file, "rb"))
+            print(" done.")
 
 
 def hashsums_match(old: Dict, new: Dict, key: str):
