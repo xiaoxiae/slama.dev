@@ -128,6 +128,31 @@ nodes = [
                 ],
             ),
             Node(
+                "Robotics",
+                [
+                    Node(
+                        "**Robotics Simplified** (2018–19)"
+                        " [[website](https://xiaoxiae.github.io/Robotics-Simplified-Website/)]"
+                        " [[GitHub](https://github.com/xiaoxiae/Robotics-Simplified-Website)]"
+                        " [[whitepaper](https://github.com/xiaoxiae/soc-paper-2019)]<br>A"
+                        " website for learning about robotics in a simple and intuitive way. It"
+                        " is powered by Jekyll and features illustrations and visualizations of"
+                        " the discussed concepts, code examples in Python, and is also"
+                        " available as a PDF.\n\n"
+                        "**Metal Moose 2018** (2017–18, Java)"
+                        " [[GitHub](https://github.com/MetalMooseFRC/MetalMoose2018)]<br>As a"
+                        " former member of the FRC team Metal Moose and the head of"
+                        " programming, I was in charge of programming our robot for the 2018"
+                        " Power-Up season.  Features of the robot include an autonomous"
+                        " language, double PID control (turning and driving) and a polynomial"
+                        " function for controlling the elevator of the robot. I also wrote a"
+                        " little interactive [pure pursuit"
+                        " visualisation](https://github.com/xiaoxiae/PurePursuitAlgorithm) that"
+                        " simulates the algorithm."
+                    )
+                ],
+            ),
+            Node(
                 "Academia",
                 [
                     Node(
@@ -155,36 +180,11 @@ nodes = [
                         " [2019](https://github.com/xiaoxiae/Advent-of-Code-2019)]<br>I"
                         " annually participate in Advent of code, as a fun thing to do with my"
                         " CS-oriented friends. All of the solutions are in Python.\n\n"
-                        "**Project Euler** (Python + Java + C) [[profile](https://projecteuler.net/progress=thexiaoxiae)]<br>."
+                        "**Project Euler** (Python + Java + C) [[profile](https://projecteuler.net/progress=thexiaoxiae)]<br>"
                         "I really enjoy Project Euler and used to be an avid solver. This "
                         "is actually the website that got me to start programming some "
                         "years back and will always have a special place for me, even if "
                         "I don't really solve as often as I once had."
-                    )
-                ],
-            ),
-            Node(
-                "Robotics",
-                [
-                    Node(
-                        "**Robotics Simplified** (2018–19)"
-                        " [[website](https://xiaoxiae.github.io/Robotics-Simplified-Website/)]"
-                        " [[GitHub](https://github.com/xiaoxiae/Robotics-Simplified-Website)]"
-                        " [[whitepaper](https://github.com/xiaoxiae/soc-paper-2019)]<br>A"
-                        " website for learning about robotics in a simple and intuitive way. It"
-                        " is powered by Jekyll and features illustrations and visualizations of"
-                        " the discussed concepts, code examples in Python, and is also"
-                        " available as a PDF.\n\n"
-                        "**Metal Moose 2018** (2017–18, Java)"
-                        " [[GitHub](https://github.com/MetalMooseFRC/MetalMoose2018)]<br>As a"
-                        " former member of the FRC team Metal Moose and the head of"
-                        " programming, I was in charge of programming our robot for the 2018"
-                        " Power-Up season.  Features of the robot include an autonomous"
-                        " language, double PID control (turning and driving) and a polynomial"
-                        " function for controlling the elevator of the robot. I also wrote a"
-                        " little interactive [pure pursuit"
-                        " visualisation](https://github.com/xiaoxiae/PurePursuitAlgorithm) that"
-                        " simulates the algorithm."
                     )
                 ],
             ),
