@@ -16,7 +16,7 @@ module Jekyll
         date = @name.scan(/(\d\d\d\d)-(\d\d)-(\d\d)/)
 
         return "<figure class='video' style='#{@style}'>" \
-          "<iframe src='#{@name}' allowfullscreen></iframe>" \
+          "<video controls><source src='#{@name}' type='video/mp4'></video>" \
           "<figcaption class='figcaption-margin'>#{date[0][0]}/#{date[0][1]}/#{date[0][2]}</figcaption>" \
           "</figure>"
       end
