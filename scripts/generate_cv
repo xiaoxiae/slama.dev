@@ -104,23 +104,16 @@ nodes = [
         "Programming",
         [
             Node(
-                "GUI Applications",
+                "CL/GUI Applications",
                 [
                     Node(
+                        "**Grafátko** (2019–2020, Python – PyQt5)"
+                        " [[GitHub](https://github.com/xiaoxiae/Grafatko)]<br>An app for"
+                        " creating and visualizing graphs and graph-related algorithms.\n\n"
                         "**Vimvaldi** (2020, Python – Curses, Abjad)"
                         " [[GitHub](https://github.com/xiaoxiae/vimvaldi)]<br> A terminal app"
                         " for editing musical scores in the terminal with Vim-like"
                         " controls.\n\n"
-                        "**Grafátko** (2019–2020, Python – PyQt5)"
-                        " [[GitHub](https://github.com/xiaoxiae/Grafatko)]<br>An app for"
-                        " creating and visualizing graphs and graph-related algorithms.\n\n"
-                    )
-                ],
-            ),
-            Node(
-                "CLI Applications",
-                [
-                    Node(
                         "**GNU Tar** (2020, C) [[GitHub](https://github.com/xiaoxiae/mytar.c)]<br> A C "
                         "implementation of GNU TAR for my C university course. Note that "
                         "the implementation is restricted to 'ftxv' flags and doesn't handle "
