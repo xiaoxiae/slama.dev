@@ -80,6 +80,31 @@ $monospaced-font: "Fira Code Light";
 	font-style: normal;
 }
 
+@font-face {
+	font-family: 'Font Awesome 5 Free';
+	src: url('/assets/css/fonts/fa-solid-900.woff2') format('woff2'),
+		url('/assets/css/fonts/fa-solid-900.woff') format('woff'),
+		url('/assets/css/fonts/fa-solid-900.ttf') format('truetype'),
+}
+
+.fa {
+	font-family: 'Font Awesome 5 Free';
+	font-weight: 900;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Font Awesome 5 Brands';
+	src: url('/assets/css/fonts/fa-brands-400.woff2') format('woff2'),
+		url('/assets/css/fonts/fa-brands-400.woff') format('woff'),
+		url('/assets/css/fonts/fa-brands-400.ttf') format('truetype');
+}
+
+.fab {
+	font-family: 'Font Awesome 5 Brands';
+	font-weight: 400;
+	font-style: normal;
+}
 
 /* WEBSITE-WIDE SETTINGS */
 * {
