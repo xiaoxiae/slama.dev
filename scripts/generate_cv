@@ -54,7 +54,7 @@ class Node:
 
 nodes = [
     Node(
-        "Experience",
+        "Job Experience",
         [
             Node(
                 "November 2019–present",
@@ -101,7 +101,7 @@ nodes = [
         ],
     ),
     Node(
-        "Projects",
+        "Programming",
         [
             Node(
                 "GUI Applications",
@@ -204,7 +204,7 @@ nodes = [
                 "2019–present",
                 [
                     Node(
-                        "**Charles University in Prague** (currently studying)<br>I am "
+                        "**Charles University in Prague**<br>I am "
                         "getting my bachelor's degree in Computer Science at the "
                         "Charles University in Prague, likely to be followed by a "
                         "master's degree."
@@ -251,7 +251,6 @@ nodes = [
                     )
                 ],
             ),
-            Node("Programming", [Node("See projects 🙂.")]),
             Node(
                 "Other",
                 [
@@ -269,7 +268,7 @@ nodes = [
         [
             Node(
                 "My favorite sports are [rock climbing](/climbing), snowboarding, ballroom dancing "
-                "and slack(lin)ing.  I also enjoy playing chess and indie computer "
+                "and slacklining. I also enjoy playing chess and indie computer "
                 "games.\n\n"
                 + "As a person, I am quite open and friendly – meeting and "
                 "collaborating with new people on interesting projects is something I "
