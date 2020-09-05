@@ -64,8 +64,8 @@ nodes = [
                         "_[KAM](https://kam.mff.cuni.cz/)_<br>"
                         "My work includes network management, handling "
                         "software and hardware issues and other CS-related things "
-                        "at the Charles University (Faculty of Mathematics and "
-                        "Physics), Czech Republic."
+                        "at the Charles University (Department of Applied Mathematics), "
+                        "Czech Republic."
                     ),
                 ],
             ),
@@ -115,15 +115,11 @@ nodes = [
                         " for editing musical scores in the terminal with Vim-like"
                         " controls.\n\n"
                         "**GNU Tar** (2020, C) [[GitHub](https://github.com/xiaoxiae/mytar.c)]<br> A C "
-                        "implementation of GNU TAR for my C university course. Note that "
-                        "the implementation is restricted to 'ftxv' flags and doesn't handle "
-                        "directories.\n\n"
+                        "implementation of GNU TAR for my C university course.\n\n"
                         "**Terraria NPC Happiness** (2020, Python)"
                         " [[GitHub](https://github.com/xiaoxiae/TerrariaNPCHappiness)]<br>A"
                         " small program to calculate the optimal layouts for Terraria NPCs,"
-                        " given their neighbour and biome preferences. Internally uses Dijkstra"
-                        " to do so, with some optimizations. Definitely not a product of"
-                        " procrastination during finals.\n\n"
+                        " given their neighbour and biome preferences.\n\n"
                     )
                 ],
             ),
@@ -135,15 +131,12 @@ nodes = [
                         " [[website](https://xiaoxiae.github.io/Robotics-Simplified-Website/)]"
                         " [[GitHub](https://github.com/xiaoxiae/Robotics-Simplified-Website)]"
                         " [[whitepaper](https://github.com/xiaoxiae/soc-paper-2019)]<br>A"
-                        " website for learning about robotics in a simple and intuitive way. It"
-                        " is powered by Jekyll and features illustrations and visualizations of"
-                        " the discussed concepts, code examples in Python, and is also"
-                        " available as a PDF.\n\n"
+                        " website for learning about robotics in a simple and intuitive way.\n\n"
                         "**Metal Moose 2018** (2017–18, Java)"
                         " [[GitHub](https://github.com/MetalMooseFRC/MetalMoose2018)]<br>As a"
                         " former member of the FRC team Metal Moose and the head of"
                         " programming, I was in charge of programming our robot for the 2018"
-                        " Power-Up season.  Features of the robot include an autonomous"
+                        " Power-Up season. Features of the robot include an autonomous"
                         " language, double PID control (turning and driving) and a polynomial"
                         " function for controlling the elevator of the robot. I also wrote a"
                         " little interactive [pure pursuit"
@@ -160,13 +153,13 @@ nodes = [
                         " [[GitHub](https://github.com/xiaoxiae/inline-bfs-dfs-presentation)]<br>As"
                         " a part of my university course on advanced algorithms, I've prepared"
                         " a presentation on a linear-time in-place BFS and DFS and implemented DFS"
-                        " (for graphs with nodes of degrees > 2.\n\n"
+                        " (for graphs with nodes of degrees > 2).\n\n"
                         "**Education Scripts** (2019–present, Python)"
                         " [[GitHub](https://github.com/xiaoxiae/Education-Scripts)]<br>I've"
                         " developed a pretty comprehensive set of scripts for simplifying my"
-                        " university education. They simplify things like opening course "
+                        " university education. They simplify things like opening course"
                         " folder/website, managing homework and even emailing the teachers."
-                        " They can automatically initialize when a CSV of a given (SIS) format is "
+                        " They can automatically initialize when a CSV of a given (SIS) format is"
                         " provided, so they are pretty easy to use.\n\n"
                     )
                 ],
@@ -175,7 +168,7 @@ nodes = [
                 "Competitions/Events",
                 [
                     Node(
-                        "**Advent of Code** (2018, 2019) [GitHub"
+                        "**Advent of Code** [GitHub"
                         " [2018](https://github.com/xiaoxiae/Advent-of-Code-2018),"
                         " [2019](https://github.com/xiaoxiae/Advent-of-Code-2019)]<br>I"
                         " annually participate in Advent of code, as a fun thing to do with my"
@@ -197,7 +190,7 @@ nodes = [
                 "2019–present",
                 [
                     Node(
-                        "**Charles University in Prague**<br>I am "
+                        "**Charles University in Prague, Faculty of Mathematics and Physics [[website](https://www.mff.cuni.cz/en)]**<br>I am "
                         "getting my bachelor's degree in Computer Science at the "
                         "Charles University in Prague, likely to be followed by a "
                         "master's degree."
@@ -208,7 +201,7 @@ nodes = [
                 "2017–2018",
                 [
                     Node(
-                        "**Westtown School**<br>I received an ASSIST "
+                        "**Westtown School [[website](https://www.westtown.edu/index.cfm)]**<br>I received an ASSIST "
                         "scholarship to study at a private US school for one year. My "
                         "focus was mainly on the First Robotics Competition, "
                         "mathematical modeling, electrotechnics, and programming. As "
@@ -222,7 +215,7 @@ nodes = [
                 "2015–2019",
                 [
                     Node(
-                        "**Turnov Grammar School** <br> As a high school "
+                        "**Turnov Grammar School [[website](http://www.gytu.cz/postnuke/index.php)]** <br> As a high school "
                         "student, I was a frequent participant of English, mathematics "
                         "and programming competitions. I completed my maturita exam in "
                         "the May of 2019. The exam subjects were maths, Czech and "
@@ -239,8 +232,9 @@ nodes = [
                 "Languages",
                 [
                     Node(
-                        "**Czech:** native proficiency <br> **English:** bilingual"
-                        " proficiency <br> **Spanish:** elementary proficiency"
+                        "**Czech:** native proficiency<br>"
+                        "**English:** bilingual proficiency<br>"
+                        "**Spanish:** elementary proficiency"
                     )
                 ],
             ),
