@@ -38,6 +38,7 @@ If you think there are some interesting programs that I should check out, I'd be
 ### Graphics
 - [GIMP](https://www.gimp.org/) -- a bitmap image editor.
 - [Inkscape](https://inkscape.org/) -- a vector image editor.
+- [FreeCAD](https://www.freecadweb.org/) -- a CAD modeler, mostly because Fusion 360 is not available on Linux.
 
 ### Note-taking
 - [Xournal++](https://github.com/xournalpp/xournalpp) -- an app for taking handwritten notes that I use to manage all of my notes from my classes. Similar to OneNote, but mostly focused on writing.
