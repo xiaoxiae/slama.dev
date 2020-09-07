@@ -29,3 +29,12 @@ The difficulty of boulders range from VB to around V12 and are as follows:
 
 {% video smichoff-yellow-2020-08-31.mp4 width:48%;float:right %}
 
+### Blue (V9 to V11)
+{% video smichoff-blue-2020-09-07-1.mp4 width:48%;float:left %}
+{% video smichoff-blue-2020-09-07-2.mp4 width:48%;float:right %}
+
+### Salmon orange (V8 to V10)
+{% video smichoff-salmon-2020-09-07-1.mp4 width:48%;float:left %}
+{% video smichoff-salmon-2020-09-07-2.mp4 width:48%;float:right %}
+{% video smichoff-salmon-2020-09-07-3.mp4 width:48%;float:left %}
+{% video smichoff-salmon-2020-09-07-4.mp4 width:48%;float:right %}
