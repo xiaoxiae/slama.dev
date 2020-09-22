@@ -70,15 +70,15 @@ nodes = [
                 ],
             ),
             Node(
-                "July 2019, 2020",
+                "2019–present",
                 [
                     Node(
-                        "**Programming Camp Organizer<br>**"
-                        "_[ProTab.cz](http://protab.cz/)_<br>"
-                        "My role as a ProTab camp organizer included giving lectures "
-                        "about programming-related topics, help prepare and organize "
-                        "afternoon games and activities, and create fun problems for "
-                        "the attendees to solve (using programming)."
+                        "**ProTab/KSP summer camp Organizer<br>**"
+                        "_[ProTab.cz](http://protab.cz/), [KSP](https://ksp.mff.cuni.cz/sksp/)_<br>"
+                        "My role as a programming/CS-oriented camp organizer includes "
+                        "giving lectures about programming-related topics, help "
+                        "prepare and organize afternoon games and activities, and "
+                        "create fun problems for the attendees to solve."
                     ),
                 ],
             ),
@@ -161,6 +161,9 @@ nodes = [
                         " folder/website, managing homework and even emailing the teachers."
                         " They can automatically initialize when a CSV of a given (SIS) format is"
                         " provided, so they are pretty easy to use.\n\n"
+                        "**Lectures** [[GitHub](https://github.com/xiaoxiae/lectures)]<br>"
+                        "Notes on lectures that I am able to give on various (mostly CS-related)"
+                        " topics."
                     )
                 ],
             ),
@@ -244,7 +247,7 @@ nodes = [
                     Node(
                         "I have a Czech **first aid certificate** (Kurz první pomoci od "
                         "ZdrSemu), meaning that I can attend a summer camp as a medic "
-                        "(in the Czech republic)."
+                        "(in the Czech Republic)."
                     )
                 ],
             ),
@@ -254,7 +257,7 @@ nodes = [
         "Interests",
         [
             Node(
-                "My favorite sports are [rock climbing](/climbing), snowboarding, ballroom dancing "
+                "My favorite sports are rock climbing ([see me climb](/climbing)), snowboarding, ballroom dancing "
                 "and slacklining. I also enjoy playing chess and indie computer "
                 "games.\n\n"
                 + "As a person, I am quite open and friendly – meeting and "
