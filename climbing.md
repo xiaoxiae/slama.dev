@@ -49,3 +49,6 @@ The difficulty of boulders are as follows:
 
 {% video smichoff-salmon-2020-09-21-1.mp4 | width:48%;float:left %}
 {% video smichoff-salmon-2020-09-21-2.mp4 | width:48%;float:right %}
+
+{% video smichoff-salmon-2020-09-23-1.mp4 | width:48%;float:left | Flash %}
+{% video smichoff-salmon-2020-09-23-2.mp4 | width:48%;float:right | Flash %}
