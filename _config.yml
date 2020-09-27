@@ -6,15 +6,15 @@ baseurl: ""
 
 markdown: kramdown
 
-# exclude Jekyll-related files and scripts
+# exclude Jekyll-related files, scripts and generated content
 exclude: [
-    "Gemfile",
-    "Gemfile.lock",
-    "s-theme.gemspec",
-    "ignored/",
-    "scripts/",
-    "makefile",
-    "LICENSE.txt",
-    "README.md",
-    ".katex-cache/",
+  "Gemfile",
+  "Gemfile.lock",
+  "s-theme.gemspec",
+  "ignored/",
+  "scripts/",
+  "makefile",
+  "LICENSE.txt",
+  "README.md",
+  ".katex-cache/",
 ]
