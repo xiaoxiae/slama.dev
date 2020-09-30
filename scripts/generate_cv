@@ -3,6 +3,7 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from markdown import markdown
+from typing import *
 import os
 
 base = os.path.dirname(os.path.realpath(__file__))
@@ -13,12 +14,11 @@ class Node:
     content: str
     children: Optional[List[Node]] = None
 
-    def leaf_count(self):
+    def leaf_count(self) -> int:
         """Return the number of leafs of the node."""
         if self.children is None:
             return 1
-        else:
-            return sum([child.leaf_count() for child in self.children])
+        return sum([child.leaf_count() for child in self.children])
 
     def to_string(self, depth=0, max_depth=3, tr=True):
         """Get the node string associated with the node."""
@@ -60,12 +60,11 @@ nodes = [
                 "November 2019–present",
                 [
                     Node(
-                        "**Network Wizard**<br>"
-                        "_[KAM](https://kam.mff.cuni.cz/)_<br>"
-                        "My work includes network management, handling "
-                        "software and hardware issues and other CS-related things "
-                        "at the Charles University (Department of Applied Mathematics), "
-                        "Czech Republic."
+                        "**Network Wizard**<br>_[KAM](https://kam.mff.cuni.cz/)_<br>My"
+                        " work includes network management, handling software and"
+                        " hardware issues and other CS-related things at the Charles"
+                        " University (Department of Applied Mathematics), Czech"
+                        " Republic."
                     ),
                 ],
             ),
@@ -73,12 +72,13 @@ nodes = [
                 "2019–present",
                 [
                     Node(
-                        "**ProTab/KSP summer camp Organizer<br>**"
-                        "_[ProTab.cz](http://protab.cz/), [KSP](https://ksp.mff.cuni.cz/sksp/)_<br>"
-                        "My role as a programming/CS-oriented camp organizer includes "
-                        "giving lectures about programming-related topics, help "
-                        "prepare and organize afternoon games and activities, and "
-                        "create fun problems for the attendees to solve."
+                        "**ProTab/KSP summer camp"
+                        " Organizer<br>**_[ProTab.cz](http://protab.cz/),"
+                        " [KSP](https://ksp.mff.cuni.cz/sksp/)_<br>My role as a"
+                        " programming/CS-oriented camp organizer includes giving"
+                        " lectures about programming-related topics, help prepare and"
+                        " organize afternoon games and activities, and create fun"
+                        " problems for the attendees to solve."
                     ),
                 ],
             ),
@@ -86,16 +86,61 @@ nodes = [
                 "2018–2019",
                 [
                     Node(
-                        "**Robotics and programming course lecturer**<br>"
-                        "_[Vzdělávací Centrum Turnov](http://www.vct.cz/)_<br>"
-                        "The job description was quite similar to my previous work at "
-                        "VCT. I used the VEX Edr robot kit and Python to introduce "
-                        "basic concepts of robotics design and algorithms, which "
-                        "sparked the Robotics Simplified project (see projects section "
-                        "below).  Programming was taught using Processing in Python "
-                        "mode, creating interactive sketches that illustrated key "
-                        "concepts like loops and variables."
+                        "**Robotics and programming course lecturer**<br>_[Vzdělávací"
+                        " Centrum Turnov](http://www.vct.cz/)_<br>I used the VEX Edr"
+                        " robot kit and Python to introduce basic concepts of robotics"
+                        " design and algorithms, which sparked the [Robotics Simplified"
+                        " website](https://xiaoxiae.github.io/Robotics-Simplified-Website/)."
+                        " Programming was taught using Processing in Python mode,"
+                        " creating interactive sketches that illustrated key concepts"
+                        " like loops and variables."
                     ),
+                ],
+            ),
+        ],
+    ),
+    Node(
+        "Education",
+        [
+            Node(
+                "2019–present",
+                [
+                    Node(
+                        "**Charles University in Prague, Faculty of Mathematics and"
+                        " Physics [[website](https://www.mff.cuni.cz/en)]**<br>I am"
+                        " getting my bachelor's degree in Computer Science at the"
+                        " Charles University in Prague, likely to be followed by a"
+                        " master's degree."
+                    )
+                ],
+            ),
+            Node(
+                "2017–2018",
+                [
+                    Node(
+                        "**Westtown School"
+                        " [[website](https://www.westtown.edu/index.cfm)]**<br>I"
+                        " received an ASSIST scholarship to study at a private US"
+                        " school for one year. My focus was mainly on the First"
+                        " Robotics Competition, mathematical modeling, electrotechnics,"
+                        " and programming. As for the extracurricular activities, I was"
+                        " the chess club leader, a member of the mathematics club and a"
+                        " part of the scenic art design team."
+                    )
+                ],
+            ),
+            Node(
+                "2015–2019",
+                [
+                    Node(
+                        "**Turnov Grammar School"
+                        " [[website](http://www.gytu.cz/postnuke/index.php)]** <br> As"
+                        " a high school student, I was a frequent participant of"
+                        " English, mathematics and programming competitions. I"
+                        " completed my maturita exam in the May of 2019. The exam"
+                        " subjects were maths, Czech and English languages, and"
+                        " computer science."
+                    )
                 ],
             ),
         ],
@@ -108,18 +153,14 @@ nodes = [
                 [
                     Node(
                         "**Grafátko** (2019–2020, Python – PyQt5)"
-                        " [[GitHub](https://github.com/xiaoxiae/Grafatko)]<br>An app for"
-                        " creating and visualizing graphs and graph-related algorithms.\n\n"
-                        "**Vimvaldi** (2020, Python – Curses, Abjad)"
-                        " [[GitHub](https://github.com/xiaoxiae/vimvaldi)]<br> A terminal app"
-                        " for editing musical scores in the terminal with Vim-like"
-                        " controls.\n\n"
-                        "**GNU Tar** (2020, C) [[GitHub](https://github.com/xiaoxiae/mytar.c)]<br> A C "
-                        "implementation of GNU TAR for my C university course.\n\n"
-                        "**Terraria NPC Happiness** (2020, Python)"
-                        " [[GitHub](https://github.com/xiaoxiae/TerrariaNPCHappiness)]<br>A"
-                        " small program to calculate the optimal layouts for Terraria NPCs,"
-                        " given their neighbour and biome preferences.\n\n"
+                        " [[GitHub](https://github.com/xiaoxiae/Grafatko)]<br>An app"
+                        " for creating and visualizing graphs and graph-related"
+                        " algorithms.\n\n**Vimvaldi** (2020, Python – Curses, Abjad)"
+                        " [[GitHub](https://github.com/xiaoxiae/vimvaldi)]<br> A"
+                        " terminal app for editing musical scores in the terminal with"
+                        " Vim-like controls.\n\n**GNU Tar** (2020, C)"
+                        " [[GitHub](https://github.com/xiaoxiae/mytar.c)]<br> A C"
+                        " implementation of GNU TAR for my C university course.\n\n"
                     )
                 ],
             ),
@@ -131,17 +172,18 @@ nodes = [
                         " [[website](https://xiaoxiae.github.io/Robotics-Simplified-Website/)]"
                         " [[GitHub](https://github.com/xiaoxiae/Robotics-Simplified-Website)]"
                         " [[whitepaper](https://github.com/xiaoxiae/soc-paper-2019)]<br>A"
-                        " website for learning about robotics in a simple and intuitive way.\n\n"
-                        "**Metal Moose 2018** (2017–18, Java)"
-                        " [[GitHub](https://github.com/MetalMooseFRC/MetalMoose2018)]<br>As a"
-                        " former member of the FRC team Metal Moose and the head of"
-                        " programming, I was in charge of programming our robot for the 2018"
-                        " Power-Up season. Features of the robot include an autonomous"
-                        " language, double PID control (turning and driving) and a polynomial"
-                        " function for controlling the elevator of the robot. I also wrote a"
-                        " little interactive [pure pursuit"
-                        " visualisation](https://github.com/xiaoxiae/PurePursuitAlgorithm) that"
-                        " simulates the algorithm."
+                        " website for learning about robotics in a simple and intuitive"
+                        " way.\n\n**Metal Moose 2018** (2017–18, Java)"
+                        " [[GitHub](https://github.com/MetalMooseFRC/MetalMoose2018)]<br>As"
+                        " a former member of the [FRC team](TODO) Metal Moose and the"
+                        " head of programming, I was in charge of programming our robot"
+                        " for the 2018 Power-Up season. Features of the robot include"
+                        " an autonomous language, double PID control (turning and"
+                        " driving) and a polynomial function for controlling the"
+                        " elevator of the robot. I also wrote a little interactive"
+                        " [pure pursuit"
+                        " visualisation](https://github.com/xiaoxiae/PurePursuitAlgorithm)"
+                        " that simulates the algorithm."
                     )
                 ],
             ),
@@ -149,21 +191,22 @@ nodes = [
                 "Academia",
                 [
                     Node(
-                        "**Linear-Time In-Place DFS and BFS presentation + implementation** (2019, Python)"
+                        "**Linear-Time In-Place DFS and BFS** (2019, Python)"
                         " [[GitHub](https://github.com/xiaoxiae/inline-bfs-dfs-presentation)]<br>As"
-                        " a part of my university course on advanced algorithms, I've prepared"
-                        " a presentation on a linear-time in-place BFS and DFS and implemented DFS"
-                        " (for graphs with nodes of degrees > 2).\n\n"
-                        "**Education Scripts** (2019–present, Python)"
+                        " a part of my university course on advanced algorithms, I've"
+                        " prepared a presentation on a linear-time in-place BFS and DFS"
+                        " and implemented DFS (for graphs with nodes of degrees >"
+                        " 2).\n\n**Education Scripts** (2019–present, Python)"
                         " [[GitHub](https://github.com/xiaoxiae/Education-Scripts)]<br>I've"
-                        " developed a pretty comprehensive set of scripts for simplifying my"
-                        " university education. They simplify things like opening course"
-                        " folder/website, managing homework and even emailing the teachers."
-                        " They can automatically initialize when a CSV of a given (SIS) format is"
-                        " provided, so they are pretty easy to use.\n\n"
-                        "**Lectures** [[GitHub](https://github.com/xiaoxiae/lectures)]<br>"
-                        "Notes on lectures that I am able to give on various (mostly CS-related)"
-                        " topics."
+                        " developed a pretty comprehensive set of scripts for"
+                        " simplifying my university education. They simplify things"
+                        " like opening course folder/website, managing homework and"
+                        " even emailing the teachers. They can automatically initialize"
+                        " from a CSV in the format that a lot of  Czech universities"
+                        " provide (SIS), so they are easy use.\n\n**Lectures**"
+                        " [[GitHub](https://github.com/xiaoxiae/lectures)]<br>Notes on"
+                        " lectures that I am able to give on various (mostly"
+                        " CS-related) topics."
                     )
                 ],
             ),
@@ -174,55 +217,14 @@ nodes = [
                         "**Advent of Code** [GitHub"
                         " [2018](https://github.com/xiaoxiae/Advent-of-Code-2018),"
                         " [2019](https://github.com/xiaoxiae/Advent-of-Code-2019)]<br>I"
-                        " annually participate in Advent of code, as a fun thing to do with my"
-                        " CS-oriented friends. All of the solutions are in Python.\n\n"
-                        "**Project Euler** (Python + Java + C) [[profile](https://projecteuler.net/progress=thexiaoxiae)]<br>"
-                        "I really enjoy Project Euler and used to be an avid solver. This "
-                        "is actually the website that got me to start programming some "
-                        "years back and will always have a special place for me, even if "
-                        "I don't really solve as often as I once had."
-                    )
-                ],
-            ),
-        ],
-    ),
-    Node(
-        "Education",
-        [
-            Node(
-                "2019–present",
-                [
-                    Node(
-                        "**Charles University in Prague, Faculty of Mathematics and Physics [[website](https://www.mff.cuni.cz/en)]**<br>I am "
-                        "getting my bachelor's degree in Computer Science at the "
-                        "Charles University in Prague, likely to be followed by a "
-                        "master's degree."
-                    )
-                ],
-            ),
-            Node(
-                "2017–2018",
-                [
-                    Node(
-                        "**Westtown School [[website](https://www.westtown.edu/index.cfm)]**<br>I received an ASSIST "
-                        "scholarship to study at a private US school for one year. My "
-                        "focus was mainly on the First Robotics Competition, "
-                        "mathematical modeling, electrotechnics, and programming. As "
-                        "for the extracurricular activities, I was the chess club "
-                        "leader, a member of the mathematics club and a part of the "
-                        "scenic art design team."
-                    )
-                ],
-            ),
-            Node(
-                "2015–2019",
-                [
-                    Node(
-                        "**Turnov Grammar School [[website](http://www.gytu.cz/postnuke/index.php)]** <br> As a high school "
-                        "student, I was a frequent participant of English, mathematics "
-                        "and programming competitions. I completed my maturita exam in "
-                        "the May of 2019. The exam subjects were maths, Czech and "
-                        "English languages, and computer science."
+                        " annually participate in Advent of code, as a fun thing to do"
+                        " with my CS-oriented friends. All of the solutions are in"
+                        " Python.\n\n**Project Euler** (Python + Java + C)"
+                        " [[profile](https://projecteuler.net/progress=thexiaoxiae)]<br>I"
+                        " really enjoy Project Euler and used to be an avid solver."
+                        " This is actually the website that got me to start programming"
+                        " some years back and will always have a special place for me,"
+                        " even if I don't really solve as often as I once had."
                     )
                 ],
             ),
@@ -245,9 +247,9 @@ nodes = [
                 "Other",
                 [
                     Node(
-                        "I have a Czech **first aid certificate** (Kurz první pomoci od "
-                        "ZdrSemu), meaning that I can attend a summer camp as a medic "
-                        "(in the Czech Republic)."
+                        "I have a Czech **first aid certificate** (Kurz první pomoci od"
+                        " ZdrSemu), meaning that I can attend a summer camp as a medic"
+                        " (in the Czech Republic)."
                     )
                 ],
             ),
@@ -257,9 +259,9 @@ nodes = [
         "Interests",
         [
             Node(
-                "My favorite sports are rock climbing ([see me climb](/climbing)), snowboarding, ballroom dancing "
-                "and slacklining. I also enjoy playing chess and indie computer "
-                "games.\n\n"
+                "My favorite sports are rock climbing ([see me climb](/climbing)),"
+                " snowboarding, ballroom dancing and slacklining. I also enjoy playing"
+                " chess and indie computer games.\n\n"
                 + "As a person, I am quite open and friendly – meeting and "
                 "collaborating with new people on interesting projects is something I "
                 "very much enjoy."
