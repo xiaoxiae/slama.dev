@@ -24,6 +24,9 @@ If you think there are some interesting programs that I should check out, I'd be
 - [FireFox](https://www.mozilla.org/en-US/firefox/) -- better than Chrome! I use it mostly for privacy concerns and for the fact that I find internet browser diversity an important issue.
 	- [DuckDuckGo](https://duckduckgo.com/) -- better than Google Search (for mostly the same reason as FireFox).
 
+### Email
+- [Neomutt](https://github.com/neomutt/) + [Offlineimap](https://github.com/neomutt/) + [MSMTP](https://marlam.de/msmtp/) -- after using ThunderBird for a year, mail was still one part of my workflow that just didn't fit in. During the summer of 2020, I started experimenting with Neomutt and although difficult to setup, it's really great to use.
+
 #### FireFox Addons
 - [Tree Style Tab](https://addons.mozilla.org/en-US/firefox/addon/tree-style-tab/) -- moves tabs to the side of the browser, which is an absolute necessity if you're working with multiple browser tabs at the same time.
 - [Vim Vixen](https://addons.mozilla.org/en-US/firefox/addon/vim-vixen/) -- provides relatively decent browsing with Vim-like bindings.
