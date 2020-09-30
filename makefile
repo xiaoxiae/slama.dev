@@ -6,8 +6,8 @@ SVG  = $(patsubst %.xopp, %.svg, $(XOPP))
 
 all: build upload
 
-build: $(SVG) bundle exec jekyll build --trace
-serve: $(SVG) bundle exec jekyll serve --trace --drafts
+build: $(SVG); bundle exec jekyll build --trace
+serve: $(SVG); bundle exec jekyll serve --trace --drafts
 
 upload: ; scripts/upload
 
