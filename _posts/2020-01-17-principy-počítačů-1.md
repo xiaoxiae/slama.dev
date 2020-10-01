@@ -10,7 +10,7 @@ category: "lecture notes"
 ### Zjednodušené schéma počítače
 
 {: style="max-width: 50%" :} 
-{% xopp 19-07-10_22-58-36 & Harvardská architektura%}
+{% xopp 19-07-10_22-58-36 & Harvardská architektura %}
 
 - vymyšlena na univerzitě v Harvardu
 - **CPU** -- vykonává instrukce
@@ -33,7 +33,7 @@ category: "lecture notes"
 	1. napsala manuál stroje
 	2. napadlo ji, že by se mohlo pracovat i s **jinými informacemi než s čísly** (texty, obrazy, hudba...)
 
-### Kódování informace v počítačí
+### Kódování informace v počítači
 - pojďme si zakódovat čísla {% latex %}0, 1, 2, \ldots, 1 000 000{% endlatex %}
 
 #### Analogový přenos
@@ -66,7 +66,7 @@ category: "lecture notes"
 
 2. měření **rozdílu napětí** dvou vodičů
 	- výhoda -- elektromagnetické rušení signál neovlivňuje, jelikož rozdíl je relativní
-{% xopp 19-07-10_23-22-08 & diferenciální přenos (levo); USB konektor (pravo) %}
+{% xopp 19-07-10_23-22-08 & diferenciální přenos (vlevo); USB konektor (vpravo) %}
 
 - délka bitů musí být jasně dána, aby přijímající dobře interpretoval informace
 	- dnes bývá dána hardwarově
@@ -598,7 +598,7 @@ mov    %ax,-0x1e(%rbp)
 	- slouží jak pro vstup, tak pro výstup
 	- `DIR` registry určuje směr pinů, `IN` a `OUT` jsou hodnoty na vstupu/výstupu
 
-#### Permanentní datové uložiště
+#### Permanentní datové úložiště
 - hodilo by se -- konfigurace (když umře napájení...)
 
 ##### HDD
@@ -631,7 +631,7 @@ mov    %ax,-0x1e(%rbp)
 - používají **LBA** -- linear block adressing (není to už trojice -- lehčí na programování)
 - přenosová rychlost je menší ({% latex %}10 MBps{% endlatex %}), přístupová také ({% latex %}100 ms{% endlatex %})
 
-##### Řadiče pro uložiště
+##### Řadiče pro úložiště
 - registry:
 	- adresový
 	- příkazový
@@ -655,7 +655,7 @@ mov    %ax,-0x1e(%rbp)
 	- obecně: volné sektory
 - **OS** -- abstrakce nad disky
 	- stejné API pro čtení, psaní, práce s metadaty...
-	- používají všechny programy -- `open()` volá (Cčkovou funkci, která volá) systémovou funkci
+	- používají všechny programy -- `open()` volá (_C_éčkovou funkci, která volá) systémovou funkci
 
 #### V Pythonu
 
@@ -720,7 +720,7 @@ mov    %ax,-0x1e(%rbp)
 	- vnímáme malé spektrum (viditelně světlo)
 	- tyčinky (rozsah) x čípky (frekvence -- 3 barvy)
 
-{% xopp 20-19-01_20-15-41 & čipky v oku %}
+{% xopp 20-19-01_20-15-41 & čípky v oku %}
 
 - barevná bit depth:
 	- {% latex %}3b{% endlatex %} na pixel -- dost neúsporné (jen jestli je červelá/zelená/modrá) a blbě se rozděluje
