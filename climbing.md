@@ -35,6 +35,8 @@ The difficulty of boulders are as follows:
 {% video smichoff-yellow-2020-09-30-2.mp4 | width:48%;float:left %}
 {% video smichoff-yellow-2020-09-30-3.mp4 | width:48%;float:right %}
 
+{% video smichoff-yellow-2020-10-01.mp4 | width:100%;float:left %}
+
 ### Blue
 {% video smichoff-blue-2020-09-07-1.mp4 | width:48%;float:left %}
 {% video smichoff-blue-2020-09-07-2.mp4 | width:48%;float:right %}
