@@ -221,6 +221,36 @@ $monospaced-font: "Fira Code Light";
 	> li:last-child { padding-bottom: 0px; }
 }
 
+.row {
+  display: flex;
+
+  * {
+	  filter: invert(0%);
+	  image-orientation: from-image;
+  } 
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.c1 {
+  flex: 100%;
+  padding: 5px;
+}
+
+.c2 {
+  flex: 50%;
+  padding: 5px;
+}
+
+.c3 {
+  flex: 33.33%;
+  padding: 5px;
+}
+
 .footnotes {
 	border-top: 1px solid;
 	padding-top: $line-spacing / 4;
