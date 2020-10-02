@@ -12,24 +12,22 @@ for root, dirs, files in os.walk("../photography/"):
         if name.endswith(("jpg", "jpeg")) and "raw" in root:
             path = os.path.join(root, name)
 
-            command = [
-                "jpegoptim",
-                "-s",
-                "-S",
-                SIZE,
-                path,
-                "-d",
-                os.path.join(root, ".."),
+            # first command is to create a low-res version of the default image
+            # second command is to strip the metadata from the pictures
+            commands = [
+                ["jpegoptim", "-s", "-S", SIZE, path, "-d", os.path.join(root, "..")],
+                ["jpegoptim", "-s", path],
             ]
 
-            result = (
-                [
-                    f
-                    for f in Popen(command, stdout=PIPE, stderr=PIPE).communicate()
-                    if f != b""
-                ][0]
-                .decode()
-                .strip()
-            )
+            for command in commands:
+                result = (
+                    [
+                        f
+                        for f in Popen(command, stdout=PIPE, stderr=PIPE).communicate()
+                        if f != b""
+                    ][0]
+                    .decode()
+                    .strip()
+                )
 
-            print(f"            Images: {result}")
+                print(f"            Images: {result}")
