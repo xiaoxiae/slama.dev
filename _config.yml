@@ -13,6 +13,7 @@ exclude: [
   "s-theme.gemspec",
   "ignored/",
   "scripts/",
+  "raw/",
   "makefile",
   "LICENSE.txt",
   "README.md",

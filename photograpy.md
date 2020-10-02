@@ -4,68 +4,20 @@ layout: default
 order: 5
 ---
 
-<div class="row">
-  <div class="c2">
-    <img src="flowers/1.jpg" style="width:100%">
-  </div>
-  <div class="c2">
-    <img src="flowers/2.jpg" style="width:100%">
-  </div>
-</div>
+Below is a galery of some of the nicer photos that I've taken. All of them had been compressed to around 512kb to be web-usable. If you'd like the originals, click on the photos.
 
-<div class="row">
-  <div class="c2">
-    <img src="panoramas/1.jpg" style="width:100%">
-  </div>
-  <div class="c2">
-    <img src="panoramas/2.jpg" style="width:100%">
-  </div>
-</div>
+None of the photos are copyrighted in any, way so feel free to use them however you wish 🙂!
 
-<div class="row">
-  <div class="c1">
-    <img src="panoramas/3.jpeg" style="width:100%">
-  </div>
-</div>
+---
 
-<div class="row">
-  <div class="c1">
-    <img src="panoramas/4.jpeg" style="width:100%">
-  </div>
-</div>
-
-<div class="row">
-  <div class="c1">
-    <img src="panoramas/5.jpeg" style="width:100%">
-  </div>
-</div>
-
-<div class="row">
-  <div class="c2">
-    <img src="cliffs/1.jpeg" style="width:100%">
-  </div>
-  <div class="c2">
-    <img src="cliffs/2.jpeg" style="width:100%">
-  </div>
-</div>
-
-<div class="row">
-  <div class="c3">
-    <img src="christmas/1.jpg" style="width:100%">
-  </div>
-  <div class="c3">
-    <img src="christmas/2.jpg" style="width:100%">
-  </div>
-  <div class="c3">
-    <img src="christmas/3.jpg" style="width:100%">
-  </div>
-</div>
-
-<div class="row">
-  <div class="c2">
-    <img src="christmas/4.jpg" style="width:100%">
-  </div>
-  <div class="c2">
-    <img src="christmas/5.jpg" style="width:100%">
-  </div>
-</div>
+{% photos flowers/raw/1.jpg | flowers/raw/2.jpg %}
+{% photos panoramas/raw/1.jpg | panoramas/raw/2.jpg %}
+{% photos panoramas/raw/3.jpeg %}
+{% photos panoramas/raw/4.jpeg %}
+{% photos panoramas/raw/5.jpeg %}
+{% photos cliffs/raw/1.jpeg | cliffs/raw/2.jpeg %}
+{% photos winter/raw/1.jpeg %}
+{% photos winter/raw/2.jpeg | winter/raw/3.jpeg %}
+{% photos winter/raw/4.jpg | winter/raw/5.jpg %}
+{% photos christmas/raw/1.jpg | christmas/raw/2.jpg | christmas/raw/3.jpg %}
+{% photos christmas/raw/4.jpg | christmas/raw/5.jpg %}

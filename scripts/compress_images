@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+
+import os
+from subprocess import Popen, PIPE
+
+os.chdir(os.path.dirname(os.path.realpath(__file__)))
+SIZE = "512"
+
+for root, dirs, files in os.walk("../photography/"):
+    for name in files:
+        # use jpegoptim to optimize raw images
+        if name.endswith(("jpg", "jpeg")) and "raw" in root:
+            path = os.path.join(root, name)
+
+            command = [
+                "jpegoptim",
+                "-s",
+                "-S",
+                SIZE,
+                path,
+                "-d",
+                os.path.join(root, ".."),
+            ]
+
+            result = (
+                [
+                    f
+                    for f in Popen(command, stdout=PIPE, stderr=PIPE).communicate()
+                    if f != b""
+                ][0]
+                .decode()
+                .strip()
+            )
+
+            print(f"            Images: {result}")

@@ -222,34 +222,25 @@ $monospaced-font: "Fira Code Light";
 }
 
 .row {
-  display: flex;
+	display: flex;
 
-  * {
-	  filter: invert(0%);
-	  image-orientation: from-image;
-  } 
+	* {
+		filter: invert(0%);
+		image-orientation: from-image;
+		width: 100%;
+	}
 }
 
 .row::after {
-  content: "";
-  clear: both;
-  display: table;
+	content: "";
+	clear: both;
+	display: table;
 }
 
-.c1 {
-  flex: 100%;
-  padding: 5px;
-}
-
-.c2 {
-  flex: 50%;
-  padding: 5px;
-}
-
-.c3 {
-  flex: 33.33%;
-  padding: 5px;
-}
+.c1, .c2, .c3 { padding: 5px; }
+.c1 { flex: 100%; }
+.c2 { flex: 50%; }
+.c3 { flex: 33.33%; }
 
 .footnotes {
 	border-top: 1px solid;
