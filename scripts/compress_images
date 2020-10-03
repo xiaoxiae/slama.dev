@@ -2,9 +2,14 @@
 
 import os
 from subprocess import Popen, PIPE
+import argparse
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
-SIZE = "512"
+MAX = "10"  # out of 100
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-f", "--force", action="store_true")
+arguments = parser.parse_args()
 
 for root, dirs, files in os.walk("../photography/"):
     for name in files:
@@ -15,9 +20,12 @@ for root, dirs, files in os.walk("../photography/"):
             # first command is to create a low-res version of the default image
             # second command is to strip the metadata from the pictures
             commands = [
-                ["jpegoptim", "-s", "-S", SIZE, path, "-d", os.path.join(root, "..")],
+                ["jpegoptim", "-s", f"-m{MAX}", path, "-d", os.path.join(root, "..")],
                 ["jpegoptim", "-s", path],
             ]
+
+            if arguments.force:
+                commands[0].append("-o")
 
             for command in commands:
                 result = (
