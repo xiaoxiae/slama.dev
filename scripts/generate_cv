@@ -259,9 +259,9 @@ nodes = [
         "Interests",
         [
             Node(
-                "My favorite sports are rock climbing ([see me climb](/climbing)),"
+                "My favorite sports are rock climbing ([see me climb](/climbing/)),"
                 " snowboarding, ballroom dancing and slacklining. I also enjoy playing"
-                " indie computer games and [taking pictures](photography/).\n\n"
+                " indie computer games and [taking pictures](/photography/).\n\n"
                 + "As a person, I am quite open and friendly – meeting and "
                 "collaborating with new people on interesting projects is something I "
                 "very much enjoy."
