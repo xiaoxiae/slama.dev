@@ -1,5 +1,9 @@
 RewriteEngine On
 
+# redirect to https from http
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
 # domain and subdomain rules
 RewriteCond %{REQUEST_URI} !^domains/
 RewriteCond %{REQUEST_URI} !^/domains/
