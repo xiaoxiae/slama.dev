@@ -1,41 +1,77 @@
 #!/usr/bin/env python3
 
 import os
+from typing import *
 from subprocess import Popen, PIPE
 import argparse
+import yaml
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
-MAX = "10"  # out of 100
+MAX = 10  # out of 100
+CACHE_FOLDER = ".compress_images"
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-f", "--force", action="store_true")
 arguments = parser.parse_args()
+
+full_size = 0
+reduced_size = 0
+something_changed = False
+
+config = {}
+if os.path.exists(CACHE_FOLDER):
+    with open(CACHE_FOLDER, "r") as f:
+        config = yaml.safe_load(f.read())
+
+
+def print_formatted_message(obj):
+    print(f"            Images: {obj}")
+
+
+def execute_command(command: List[str]):
+    result = Popen(command, stdout=PIPE, stderr=PIPE).communicate()
+    print_formatted_message([f for f in result if f != b""][0].decode().strip())
+
 
 for root, dirs, files in os.walk("../photography/"):
     for name in files:
         # use jpegoptim to optimize raw images
         if name.endswith(("jpg", "jpeg")) and "raw" in root:
             path = os.path.join(root, name)
+            reduced_path = os.path.join(root, "..")
+            reduced_name = os.path.join(reduced_path, name)
 
             # first command is to create a low-res version of the default image
             # second command is to strip the metadata from the pictures
             commands = [
-                ["jpegoptim", "-s", f"-m{MAX}", path, "-d", os.path.join(root, "..")],
                 ["jpegoptim", "-s", path],
+                ["jpegoptim", "-s", f"-m{MAX}", path, "-d", reduced_path, "-o"],
             ]
 
-            if arguments.force:
-                commands[0].append("-o")
+            # strip metadata
+            if path not in config:
+                execute_command(commands[0])
+                something_changed = True
+                config[path] = 100
 
-            for command in commands:
-                result = (
-                    [
-                        f
-                        for f in Popen(command, stdout=PIPE, stderr=PIPE).communicate()
-                        if f != b""
-                    ][0]
-                    .decode()
-                    .strip()
-                )
+            # create low-res image
+            if (
+                reduced_name not in config
+                or not os.path.exists(reduced_name)
+                or config[reduced_name] != MAX
+            ):
+                execute_command(commands[1])
+                something_changed = True
+                config[reduced_name] = MAX
 
-                print(f"            Images: {result}")
+            full_size += os.path.getsize(path)
+            reduced_size += os.path.getsize(reduced_name)
+
+with open(CACHE_FOLDER, "w") as f:
+    f.write(yaml.dump(config))
+
+if something_changed:
+    print_formatted_message(f"size before: {round(full_size / (1024 ** 2), 2)} MB")
+    print_formatted_message(f"size after: {round(reduced_size / (1024 ** 2), 2)} MB")
+else:
+    print_formatted_message("no changes.")
+
