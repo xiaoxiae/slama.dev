@@ -18,6 +18,7 @@ raw/
 # xopp -> svg
 _includes/**/*.svg
 
-# generated cv
+# generated
 _includes/cv.html
 _includes/songs.md
+scripts/.compress_images
