@@ -270,7 +270,7 @@ nodes = [
     ),
 ]
 
-separator = """<tr class="cv-spacer"></tr>"""
+separator = """<tr></tr>"""
 
 result = f"""
 <table class="cv-table">

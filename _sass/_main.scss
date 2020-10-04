@@ -175,16 +175,17 @@ $monospaced-font: "Fira Code Light";
 }
 
 .cv-table {
-	border-spacing: 0 $line-spacing;
+	border-spacing: 0 $line-spacing * 5/3;
 	border-collapse: separate;
 
 	td {padding: 0 $line-spacing / 2 ;}
 
+	p {margin-bottom: $line-spacing / 2;}
 	p:last-of-type {margin-bottom: 0;}
-}
 
-.cv-spacer {
-	padding: $line-spacing / 2;
+	tr {
+		margin-bottom: 20px;
+	}
 }
 
 // spacing and sizes for cv groups
