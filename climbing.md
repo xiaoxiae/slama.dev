@@ -50,6 +50,10 @@ The difficulty of boulders are as follows:
 {% video smichoff-blue-2020-09-30-1.mp4 | width:48%;float:left %}
 {% video smichoff-blue-2020-09-30-2.mp4 | width:48%;float:right %}
 
+{% video smichoff-blue-2020-10-04-1.mp4 | width:48%;float:left %}
+{% video smichoff-blue-2020-10-04-2.mp4 | width:48%;float:right %}
+
+
 ### Salmon orange
 {% video smichoff-salmon-2020-09-07-1.mp4 | width:48%;float:left %}
 {% video smichoff-salmon-2020-09-07-2.mp4 | width:48%;float:right %}
@@ -66,3 +70,9 @@ The difficulty of boulders are as follows:
 
 {% video smichoff-salmon-2020-09-25-1.mp4 | width:48%;float:left | Intended beta! %}
 {% video smichoff-salmon-2020-09-25-2.mp4 | width:48%;float:right %}
+
+{% video smichoff-salmon-2020-10-04-1.mp4 | width:48%;float:left %}
+{% video smichoff-salmon-2020-10-04-2.mp4 | width:48%;float:right %}
+{% video smichoff-salmon-2020-10-04-3.mp4 | width:48%;float:left %}
+{% video smichoff-salmon-2020-10-04-4.mp4 | width:48%;float:right %}
+{% video smichoff-salmon-2020-10-04-5.mp4 | width:100%;float:left %}
