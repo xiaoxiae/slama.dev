@@ -203,9 +203,19 @@ Důkaz rozumného:
 Důkaz wtf (indukce):
 - {% latex %}n = 1{% endlatex %}... {% latex %}e \cdot 1 \cdot \frac{1}{e} \le 1{% endlatex %}
 - {% latex %}n - 1 \rightarrow n{% endlatex %}:
-{% latex display %}\begin{aligned} n! = n \left(n - 1\right)! &\le^\mathrm{IP} en \left(n - 1\right) \left(\frac{n - 1}{e}\right)^{n - 1} \\ &= en \cdot \left(\frac{n}{e}\right)^n \cdot \underbrace{\left(\frac{n}{e}\right)^n \cdot \left(n - 1\right) \cdot \left(\frac{n - 1}{e}\right)^{n - 1}}_{\le 1} \end{aligned}{% endlatex %}
-- platí, jelikož {% latex %}a \le b \implies a = b \cdot c{% endlatex %} pro {% latex %}c \le 1{% endlatex %}
+{% latex display %}\begin{aligned} n! = n \left(n - 1\right)! &\le^\mathrm{IP} en \left(n - 1\right) \left(\frac{n - 1}{e}\right)^{n - 1} \\ &= en \left(\frac{n}{e}\right)^n \left(\frac{e}{n}\right)^n \left(n - 1\right) \left(\frac{n - 1}{e}\right)^{n - 1} \\
+&= en \left(\frac{n}{e}\right)^n \underbrace{\left(\frac{n - 1}{n}\right)^n e}_{\le 1}
+\end{aligned}{% endlatex %}
 
+Důkaz, toho proč ten výraz {% latex %}\le 1{% endlatex %}:
+
+{% latex display %}
+\begin{aligned} 
+\left(1 - \frac{1}{n}\right)^n e &\le \left(e^{-\frac{1}{n}}\right)^n e = e^{-1} e = 1 \qquad 1 + x \le e^x
+\end{aligned}
+{% endlatex %}
+
+- pozn.: {% latex %}a \le b \implies a = b c{% endlatex %} pro {% latex %}c \le 1{% endlatex %}, proto to vlastně děláme
 
 #### Princip inkluze/exkluze
 Nechť {% latex %}A_1, \ldots, A_n{% endlatex %} jsou konečné množiny. Potom:
