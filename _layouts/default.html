@@ -28,9 +28,7 @@
 		<link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
 	</head>
 
-	<!-- set a theme, depending on the _config.yml variable -->
 	<body>
-
 		<div class="header">
 			<h1><a href="/">{{ site.title }}</a></h1>
 			<p><em>{{site.description}}</em></p>
@@ -39,10 +37,11 @@
 		<div class="content">
 			<!-- navigation bar -->
 			<div class="navigation">
-				{% assign sections_sorted = site.pages | sort: 'order' %}
+				{% assign sections_sorted = site.documents | concat: site.pages | sort: 'order' %}
 				{% for p in sections_sorted %}
-					{% if p.title and p.title != 404 %}
-						{% if p.title == page.title %}
+					{% if p.title and p.order %}
+						<!-- special wiki treatment ahead! -->
+						{% if p.title == page.title or page.collection == "wiki" and p.collection == "wiki" %}
 							<span class="current-page-item"><a href="{{p.url}}">{{p.title}}</a></span>
 						{% else %}
 							<a href="{{p.url}}">{{p.title}}</a>
@@ -64,7 +63,4 @@
 			</footer>
 		</div>
 	</body>
-
-
-
 </html>

@@ -1,9 +1,8 @@
 title: "slama.dev"
 description: "Tomáš Sláma's personal website."
-
 url: "https://slama.dev"
-baseurl: ""
 
+baseurl: ""
 markdown: kramdown
 
 # exclude Jekyll-related files, scripts and generated content
@@ -19,3 +18,21 @@ exclude: [
   "README.md",
   ".katex-cache/",
 ]
+
+collections:
+  wiki:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "wiki"
+    values:
+      layout: "wiki"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+permalink: /:slugified_categories/:title/

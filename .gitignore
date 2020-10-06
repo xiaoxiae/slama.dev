@@ -15,8 +15,9 @@ climbing/
 photography/
 raw/
 
-# xopp -> svg
+# xopp, svg
 _includes/**/*.svg
+_includes/**/*.xopp*
 
 # generated
 _includes/cv.html
