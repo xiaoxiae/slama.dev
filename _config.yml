@@ -14,6 +14,8 @@ exclude: [
   "scripts/",
   "raw/",
   "makefile",
+  "_wiki/private",
+  "_wiki/diary",
   "LICENSE.txt",
   "README.md",
   ".katex-cache/",
