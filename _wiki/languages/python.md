@@ -1,9 +1,9 @@
 ---
 ---
 
-### Data structures
+{% match ### Data structures %}
 
-#### Heap
+{% match #### Heap %}
 - requires `heapq`
 
 | Action | Code                                |

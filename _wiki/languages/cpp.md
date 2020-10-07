@@ -2,7 +2,7 @@
 title: C++
 ---
 
-### Dictionaries
+{% match ### Dictionaries %}
 - `#include <map>`            // hashing, constant access
 - `#include <unordered_map>`  // R&B trees, log(n) access
 
@@ -12,20 +12,21 @@ title: C++
 | contains | `m.count(element);`   |
 | add      | `m[index] = element;` |
 
-### Strings
+
+{% match ### Strings %}
 
 | Action | Code          |
 | ---    | ---           |
 | length | `s.length();` |
 
-### Array 
+{% match ### Array %}
 
 | Action          | Code                                                   |
 | ---             | ---                                                    |
 | create          | `int *array = new int[size];`, requires `<new>`        |
 | fill with stuff | `fill_n(array, size, element)`, requires `<algorithm>` |
 
-### Sorting
+{% match ### Sorting %}
 - `#include <algorithm>`
 - `std::sort(RandomAccessIterator first, RandomAccessIterator last, Compare comp)`
 	- `comp` not required, default used

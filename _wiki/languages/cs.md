@@ -2,7 +2,7 @@
 title: C#
 ---
 
-### Dictionaries
+{% match ### Dictionaries %}
 - `using System.Collections.Generic;`
 
 | Action   | Code                                                   |
@@ -11,7 +11,7 @@ title: C#
 | contains | `d.ContainsKey(element);`                              |
 | add      | `d[index] = element;`                                  |
 
-### Strings
+{% match ### Strings %}
 
 | Action                       | Code                                                 |
 | ---                          | ---                                                  |
@@ -19,17 +19,17 @@ title: C#
 | split                        | `s.Split(char);`                                     |
 | split on multiple delimiters | `s.Split(delimiters);`, `delimiters` jsou pole charů |
 
-### Array 
+{% match ### Array %}
 
 | Action          | Code                                                |
 | ---             | ---                                                 |
 | create          | `int[] array = new int[];`                          |
 | fill with stuff | `Array.Fill(table, -1, 0, 256);`, requires `System` |
 
-### Arguments
+{% match ### Arguments %}
 - are in `main`'s `string[] args`, ya dingus
 
-### Reading from files
+{% match ### Reading from files %}
 
 | Action    | Code                                                              |
 | ---       | ---                                                               |
@@ -37,7 +37,7 @@ title: C#
 | read line | `file.ReadLine()`                                                 |
 | close     | `file.Close();`                                                   |
 
-### Try/except
+{% match ### Try/except %}
 ```cs
 try {
 	// stuff
@@ -46,12 +46,10 @@ try {
 }
 ```
 
-### Arithmetic overflows
+{% match ### Arithmetic overflows %}
 ```cs
 checked {
 	// kód
 }
 ```
 - is not controlled when functions are called from this block (how could it, when they're probably already translated...)
-
-
