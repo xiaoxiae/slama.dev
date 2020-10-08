@@ -26,8 +26,14 @@ title: C#
 | create          | `int[] array = new int[];`                          |
 | fill with stuff | `Array.Fill(table, -1, 0, 256);`, requires `System` |
 
-{% match ### Arguments %}
-- are in `main`'s `string[] args`, ya dingus
+{% match ### Printing %}
+- requires `System`
+
+| Action            | Code                        |
+| ---               | ---                         |
+| print             | `Console.WriteLine(stuff);` |
+| print w/o newline | `Console.Write(stuff);`     |
+
 
 {% match ### Reading from files %}
 
