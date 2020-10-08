@@ -2,7 +2,17 @@
 title: C++
 ---
 
-{% match ### Dictionaries %}
+{% match ### Data structures %}
+
+{% match #### Arrays %}
+
+| Action          | Code                                                   |
+| ---             | ---                                                    |
+| create          | `int *array = new int[size];`, requires `<new>`        |
+| fill with stuff | `fill_n(array, size, element)`, requires `<algorithm>` |
+
+
+{% match #### Dictionaries %}
 
 | Class                      | Behavior                 |
 | ---                        | ---                      |
@@ -21,14 +31,6 @@ title: C++
 | Action | Code          |
 | ---    | ---           |
 | length | `s.length();` |
-
-{% match ### Array %}
-
-| Action          | Code                                                   |
-| ---             | ---                                                    |
-| create          | `int *array = new int[size];`, requires `<new>`        |
-| fill with stuff | `fill_n(array, size, element)`, requires `<algorithm>` |
-
 
 {% match ### Printing %}
 - requires `<iostream>`

@@ -2,7 +2,16 @@
 title: C#
 ---
 
-{% match ### Dictionaries %}
+{% match ### Data structures %}
+
+{% match #### Arrays %}
+
+| Action          | Code                                                |
+| ---             | ---                                                 |
+| create          | `int[] array = new int[];`                          |
+| fill with stuff | `Array.Fill(table, -1, 0, 256);`, requires `System` |
+
+{% match #### Dictionaries %}
 - `using System.Collections.Generic;`
 
 | Action   | Code                                                   |
@@ -19,13 +28,6 @@ title: C#
 | split                        | `s.Split(char);`                                     |
 | split on multiple delimiters | `s.Split(delimiters);`, `delimiters` jsou pole charů |
 
-{% match ### Array %}
-
-| Action          | Code                                                |
-| ---             | ---                                                 |
-| create          | `int[] array = new int[];`                          |
-| fill with stuff | `Array.Fill(table, -1, 0, 256);`, requires `System` |
-
 {% match ### Printing %}
 - requires `System`
 
@@ -33,7 +35,6 @@ title: C#
 | ---               | ---                         |
 | print             | `Console.WriteLine(stuff);` |
 | print w/o newline | `Console.Write(stuff);`     |
-
 
 {% match ### Reading from files %}
 

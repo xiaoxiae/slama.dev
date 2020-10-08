@@ -7,7 +7,7 @@ permalink: wiki/
 {:.center}
 ### Languages
 
-| [C++](languages/cpp) | [C#](languages/cs) | [Python](languages/python) |
+| [C++](languages/cpp) | [C#](languages/cs) | [Python](languages/python) | [Haskell](languages/haskell) |
 
 {:.center}
 ### Programs
