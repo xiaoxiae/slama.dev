@@ -80,6 +80,7 @@
 - defined using `function p1 p2 = <body>`
 - can't begin with a capital letter!
 - good practice to give it an explicit type declaration:
+
 ```hs
 removeNonUppercase :: String -> String
 removeNonUppercase st = [ c | c <- st, c `elem` ['A'..'Z']]
@@ -122,6 +123,163 @@ removeNonUppercase st = [ c | c <- st, c `elem` ['A'..'Z']]
 | `Num`       | acts like a number                              |
 | `Integral`  | only whole numbers, contains `Int` and `Integer |
 | `Floating`  | floating point numbers (`Float` and `Double`)   |
+
+#### Pattern matching
+- normal use:
+
+```hs
+factorial :: Int -> Int
+factorial 0 = 1
+factorial n = n * factorial(n - 1)
+```
+
+- lists:
+
+```hs
+head' :: [a] -> a
+head' []    = error "Can't head an empty list."
+head' (x:_) = x
+```
+
+##### As-patterns
+- when we also want the original pattern match:
+
+```hs
+firstLetter :: String -> String
+firstLetter [] = "The string is empty!"
+firstLetter all@(x:_) = "The first character of '" ++ all ++ "'is '" ++ [x]
+```
+
+##### Guards
+- conditions on a given pattern
+
+```hs
+bmiTell :: Double -> String
+bmiTell bm
+  | bm <= 18.5 = "Skinny"
+  | bm <= 20.0 = "Ok."
+  | bm <= 30.0 = "Not skinny."
+  | otherwise  = "See a doctor."
+```
+
+##### `where`
+- defining stuff locally to make the code more readable
+
+```hs
+bmiTell :: Double -> Double -> String
+bmiTell weight height
+  | bmi <= skinny = "Skinny"
+  | bmi <= normal = "Ok."
+  | bmi <= overweight = "Not skinny."
+  | otherwise  = "See a doctor."
+  where bmi = weight / height^2
+        skinny = 18.5
+        normal = 20.0
+        overweight = 30.0
+```
+
+- seen only within a body where they are defined
+	- not even shared across bodies for different patters
+- both functions and variables can be defined inside `where`
+- we can also pattern match inside:
+
+```hs
+  where bmi = weight / height^2
+        (skinny, normal, overweight) = (18.5, 20.0 30.0)
+```
+```hs
+  where (f:_) = firstName
+        (l:_) = lastName
+```
+
+##### `let ... in` expressions
+- like guards, but much more local
+
+```hs
+testFunction :: Int -> Int
+testFunction f =
+    let x = 3
+        y = 5
+    in f * x + y
+```
+- pattern matching can also be used
+- also, they are expressions, so we can use them anywhere
+
+##### `case` expressions
+- pattern matching anywhere in the code (since it's just syntactic sugar for case expressions!)
+
+```hs
+let head' :: [a] -> a;
+    head' xs = case xs of [ ]    -> error "No head for empty lists!"
+                          (x: _) -> x
+```
+
+##### Sections
+- partially apply infix functions
+
+```hs
+divideByTen :: (Floating a) => a -> a
+divideByTen = (/10)
+--same as divideByTen x = x/10
+
+overTen :: (Floating a) => a -> a
+overTen = (10/)
+--same as overTen x = 10/x
+
+divide :: (Floating a) => a -> a -> a
+divide = (/)
+--same as divide a b = a/b
+```
+- watch out for `(-4)` -- this is actually just `-4` -- do `subtract 4` instead
+
+##### Higher-order functions
+- the concept of partially applying parameters to functions:
+	- `zip [1, 2, 3]` is a `Num a => [b] -> [(a, b)]` type function
+	- `(+3)` is a `Num a => a -> a` type function
+- generally, `f a = g b a` is the same as `f = g b` (because of this)
+- parentheses in type declarations matter (since `->` is right-associative):
+
+```hs
+applyTwice :: (a -> a) -> a -> a
+applyTwice f a = f (f a)
+```
+
+```hs
+zipWith' :: (a -> b -> c) -> [a] -> [b] -> [c]
+zipWith' f _ []          = []
+zipWith' f [] _          = []
+zipWith' f (x:xs) (y:ys) = f x y:zipWith' f xs ys
+```
+
+| Function                               | Behavior                              |
+| ---                                    | ---                                   |
+| `map :: (a -> b) -> [a] -> [b] `       | maps a function onto a list           |
+| `filter :: (a -> Bool) -> [a] -> [a] ` | filters out elements that don't match |
+
+
+##### Lambdas
+- one-time functions
+
+```hs
+filter (\x -> x `mod` 3 == 0) [1..100]
+```
+
+##### Folding
+- take a binary function, a variable and start 'folding' a given list (foldable, actually, but I'm not sure what that is for now) by applying the binary function between the accumulator and the head of the list
+
+| Function                                  | Behavior                          |
+| ---                                       | ---                               |
+| `foldl :: (b -> a -> b) -> b -> [a] -> b` | left-to-right                     |
+| `foldr :: (a -> b -> b) -> b -> [a] -> b` | right-to-left (note the `a -> b`) |
+| `foldl1 :: (a -> a -> a) -> [a] -> a`     | `foldl`, 1st element is the acc.  |
+| `foldr1 :: (a -> a -> a) -> [a] -> a`     | `foldr`, 1st element is the acc.  |
+
+- list can be the accumulator too (it doesn't just have to be like an int):
+
+```hs
+map' :: (a -> b) -> [a] -> [b]
+map' f = foldr (\x acc -> f x : acc) []
+```
 
 ---
 
