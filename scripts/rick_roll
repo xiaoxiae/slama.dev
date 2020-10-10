@@ -3,6 +3,8 @@
 import string
 import os
 
+from utilities import *
+
 base = os.path.dirname(os.path.realpath(__file__))
 
 rick = """
@@ -227,6 +229,4 @@ with open(os.path.join(base, "../_includes/songs.md"), "w") as f:
         else:
             f.write(char)
 
-print("              Rick: rolled.")
-
-
+print_formatted_message("Rick", "rolled.")

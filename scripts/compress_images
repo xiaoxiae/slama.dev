@@ -2,34 +2,36 @@
 
 import os
 from typing import *
-from subprocess import Popen, PIPE
 import argparse
 import yaml
+
+from utilities import *
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 MAX = 10  # out of 100
 CACHE_FOLDER = ".compress_images"
+SUB = "Images"
 
-parser = argparse.ArgumentParser()
-arguments = parser.parse_args()
-
-full_size = 0
-reduced_size = 0
+full_size = 0  # total size of images before compression
+reduced_size = 0  # total size of images before compression
 something_changed = False
 
+
+def execute_shell_command(command: List[str]):
+    result = Popen(command, stdout=PIPE, stderr=PIPE).communicate()
+    print_formatted_message(SUB, [f for f in result if f != b""][0].decode().strip())
+
+
+def format_to_mb(size: int) -> str:
+    """Format to megabytes."""
+    return round(size / (1024 ** 2), 2)
+
+
 config = {}
+new_config = {}
 if os.path.exists(CACHE_FOLDER):
     with open(CACHE_FOLDER, "r") as f:
         config = yaml.safe_load(f.read())
-
-
-def print_formatted_message(obj):
-    print(f"            Images: {obj}")
-
-
-def execute_command(command: List[str]):
-    result = Popen(command, stdout=PIPE, stderr=PIPE).communicate()
-    print_formatted_message([f for f in result if f != b""][0].decode().strip())
 
 
 for root, dirs, files in os.walk("../photography/"):
@@ -48,30 +50,36 @@ for root, dirs, files in os.walk("../photography/"):
             ]
 
             # strip metadata
-            if path not in config:
-                execute_command(commands[0])
+            force_low_res = False  # to possibly force-create a new low-res version
+            if path not in config or config[path][1] != get_file_hashsum(path):
+                execute_shell_command(commands[0])
+                new_config[path] = [100, get_file_hashsum(path)]
+                force_low_res = True
                 something_changed = True
-                config[path] = 100
+            else:
+                new_config[path] = config[path]
 
             # create low-res image
             if (
-                reduced_name not in config
-                or not os.path.exists(reduced_name)
-                or config[reduced_name] != MAX
+                not os.path.exists(reduced_name)
+                or reduced_name not in config
+                or config[reduced_name] != [MAX, get_file_hashsum(reduced_name)]
+                or force_low_res
             ):
-                execute_command(commands[1])
+                execute_shell_command(commands[1])
+                new_config[reduced_name] = [MAX, get_file_hashsum(reduced_name)]
                 something_changed = True
-                config[reduced_name] = MAX
+            else:
+                new_config[reduced_name] = config[reduced_name]
 
             full_size += os.path.getsize(path)
             reduced_size += os.path.getsize(reduced_name)
 
 with open(CACHE_FOLDER, "w") as f:
-    f.write(yaml.dump(config))
+    f.write(yaml.dump(new_config))
 
 if something_changed:
-    print_formatted_message(f"size before: {round(full_size / (1024 ** 2), 2)} MB")
-    print_formatted_message(f"size after: {round(reduced_size / (1024 ** 2), 2)} MB")
+    print_formatted_message(SUB, f"size before: {format_to_mb(full_size)} MB")
+    print_formatted_message(SUB, f"size after: {reduced_size} MB")
 else:
-    print_formatted_message("no changes.")
-
+    print_formatted_message(SUB, "no changes.")

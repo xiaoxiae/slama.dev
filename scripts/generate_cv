@@ -6,6 +6,8 @@ from markdown import markdown
 from typing import *
 import os
 
+from utilities import *
+
 base = os.path.dirname(os.path.realpath(__file__))
 
 
@@ -280,4 +282,4 @@ result = f"""
 
 with open(os.path.join(base, "../_includes/cv.html"), "w") as f:
     f.write(result)
-    print("                CV: created.")
+    print_formatted_message("CV", "created.")
