@@ -20,6 +20,16 @@ title: C#
 | contains | `d.ContainsKey(element);`                              |
 | add      | `d[index] = element;`                                  |
 
+{% match #### Queues %}
+
+| Action | Code                                         |
+| ---    | ---                                          |
+| create | `Queue<string> q = new Queue<string>();`     |
+| add    | `q.Enqueue(element);`                        |
+| pop    | `q.Dequeue(element);`                        |
+| size   | `q.Count;`                                   |
+| peek   | `q.Peek();`                                  |
+
 {% match ### Strings %}
 
 | Action                       | Code                                                 |
@@ -27,6 +37,7 @@ title: C#
 | length                       | `s.Length;`                                          |
 | split                        | `s.Split(char);`                                     |
 | split on multiple delimiters | `s.Split(delimiters);`, `delimiters` jsou pole charů |
+| convert to integer           | `int.Parse(string);`                                 |
 
 {% match ### Printing %}
 - requires `System`
@@ -36,13 +47,15 @@ title: C#
 | print             | `Console.WriteLine(stuff);` |
 | print w/o newline | `Console.Write(stuff);`     |
 
-{% match ### Reading from files %}
+{% match ### File I/O %}
 
-| Action    | Code                                                              |
-| ---       | ---                                                               |
-| open      | `System.IO.StreamReader file = new System.IO.StreamReader(path);` |
-| read line | `file.ReadLine()`                                                 |
-| close     | `file.Close();`                                                   |
+| Action     | Code                                                              |
+| ---        | ---                                                               |
+| reading    | `System.IO.StreamReader f = new System.IO.StreamReader(path);`    |
+| read line  | `f.ReadLine();`                                                   |
+| writing    | `System.IO.StreamWriter f = new System.IO.StreamWriter(path);`    |
+| write line | `f.WriteLine(line);`                                              |
+| close      | `f.Close();`                                                      |
 
 {% match ### Try/except %}
 ```cs
@@ -53,7 +66,7 @@ try {
 }
 ```
 
-{% match ### Arithmetic overflows %}
+### Arithmetic overflows
 ```cs
 checked {
 	// kód
