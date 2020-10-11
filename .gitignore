@@ -22,4 +22,5 @@ _includes/**/*.xopp*
 # generated
 _includes/cv.html
 _includes/songs.md
-scripts/.compress_images
+cv.pdf
+scripts/.*

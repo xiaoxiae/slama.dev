@@ -18,7 +18,6 @@ exclude: [
   "_wiki/diary",
   "LICENSE.txt",
   "README.md",
-  ".katex-cache/",
 ]
 
 collections:

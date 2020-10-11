@@ -2,13 +2,33 @@
 
 from __future__ import annotations
 from dataclasses import dataclass
+
+from subprocess import Popen, PIPE, DEVNULL
 from markdown import markdown
+
 from typing import *
 import os
+import re
 
 from utilities import *
 
 base = os.path.dirname(os.path.realpath(__file__))
+
+
+def latex(c: str):
+    """Convert a format to another one using Pandoc."""
+    result = []
+    for line in re.split("<br>", c.replace("\n\n", "\n\n\\vspace{0.4em}")):
+        result.append(
+            Popen(["pandoc", "--to", "latex"], stdout=PIPE, stdin=PIPE)
+            .communicate(input=line.encode())[0]
+            .decode()
+            .strip()
+        )
+    return r" \newline ".join(result)
+
+
+html = markdown
 
 
 @dataclass
@@ -22,14 +42,45 @@ class Node:
             return 1
         return sum([child.leaf_count() for child in self.children])
 
-    def to_string(self, depth=0, max_depth=3, tr=True):
+    def hashsum(self):
+        return get_string_hashsum(
+            self.content
+            + "<<<OPEN>>>"
+            + "<<<MID>>>".join([child.hashsum() for child in (self.children or [])])
+            + "<<<CLOSE>>>"
+        )
+
+    def to_latex(self, depth=0):
+        if self.children is None:
+            return latex(self.content)
+
+        if depth == 0:
+            result = f"\\section*{{{self.content}}}\n"
+
+            if self.children[0].children is not None:
+                result += r"\begin{tabular}{L!{\VRule}R}" + "\n"
+                for child in self.children:
+                    result += child.to_latex(depth + 1)[:-2] + r"  \\"
+                return result[: -len(r"  \\")] + r" \end{tabular}" + "\n"
+            else:
+                return result + latex(self.children[0].content)
+
+        elif depth == 1:
+            result = latex(self.content)
+
+            for child in self.children:
+                result += " & " + child.to_latex(depth + 1) + r"\\"
+
+        return result + "\n"
+
+    def to_html(self, depth=0, max_depth=3, tr=True):
         """Get the node string associated with the node."""
 
         if self.children is None:
             return f"""
             {'<tr>' if tr else ''}
             <td class="cv-content-cell" colspan="{max_depth - depth}">
-                {markdown(self.content)}
+                {html(self.content)}
             </td>
             {'</tr>' if tr else ''}
             """
@@ -39,9 +90,9 @@ class Node:
                 <td rowspan="{self.leaf_count()}" class="cv-primary-group">
                     <p><span>{self.content}</span></p>
                 </td>
-                {self.children[0].to_string(depth + 1, tr=False)}
+                {self.children[0].to_html(depth + 1, tr=False)}
             </tr>
-            {"".join([child.to_string(depth + 1) for child in self.children[1:]])}
+            {"".join([child.to_html(depth + 1) for child in self.children[1:]])}
             """
         elif depth == 1:
             return f"""
@@ -49,7 +100,7 @@ class Node:
             <td class="cv-secondary-group">
               <p><span>{self.content}</span></p>
             </td>
-            {"".join([child.to_string(depth + 1, tr=False) for child in self.children])}
+            {"".join([child.to_html(depth + 1, tr=False) for child in self.children])}
             {'</tr>' if tr else ''}
             """
 
@@ -59,10 +110,10 @@ nodes = [
         "Job Experience",
         [
             Node(
-                "November 2019–present",
+                "2019–present",
                 [
                     Node(
-                        "**Network Wizard**<br>_[KAM](https://kam.mff.cuni.cz/)_<br>My"
+                        "**Network Wizard** at [[KAM](https://kam.mff.cuni.cz/)]<br>My"
                         " work includes network management, handling software and"
                         " hardware issues and other CS-related things at the Charles"
                         " University (Department of Applied Mathematics), Czech"
@@ -75,8 +126,8 @@ nodes = [
                 [
                     Node(
                         "**ProTab/KSP summer camp"
-                        " Organizer<br>**_[ProTab.cz](http://protab.cz/),"
-                        " [KSP](https://ksp.mff.cuni.cz/sksp/)_<br>My role as a"
+                        " Organizer** [[ProTab.cz](http://protab.cz/),"
+                        " [KSP](https://ksp.mff.cuni.cz/sksp/)]<br>My role as a"
                         " programming/CS-oriented camp organizer includes giving"
                         " lectures about programming-related topics, help prepare and"
                         " organize afternoon games and activities, and create fun"
@@ -88,8 +139,8 @@ nodes = [
                 "2018–2019",
                 [
                     Node(
-                        "**Robotics and programming course lecturer**<br>_[Vzdělávací"
-                        " Centrum Turnov](http://www.vct.cz/)_<br>I used the VEX Edr"
+                        "**Robotics and programming course lecturer** at [[VCT](http://www.vct.cz/)]"
+                        " <br>I used the VEX Edr"
                         " robot kit and Python to introduce basic concepts of robotics"
                         " design and algorithms, which sparked the [Robotics Simplified"
                         " website](https://xiaoxiae.github.io/Robotics-Simplified-Website/)."
@@ -108,10 +159,10 @@ nodes = [
                 "2019–present",
                 [
                     Node(
-                        "**Charles University in Prague, Faculty of Mathematics and"
-                        " Physics [[website](https://www.mff.cuni.cz/en)]**<br>I am"
+                        "**Charles University, Faculty of Mathematics and"
+                        " Physics** [[website](https://www.mff.cuni.cz/en)]<br>I am"
                         " getting my bachelor's degree in Computer Science at the"
-                        " Charles University in Prague, likely to be followed by a"
+                        " Charles University, likely to be followed by a"
                         " master's degree."
                     )
                 ],
@@ -120,8 +171,8 @@ nodes = [
                 "2017–2018",
                 [
                     Node(
-                        "**Westtown School"
-                        " [[website](https://www.westtown.edu/index.cfm)]**<br>I"
+                        "**Westtown School**"
+                        " [[website](https://www.westtown.edu/index.cfm)]<br>I"
                         " received an ASSIST scholarship to study at a private US"
                         " school for one year. My focus was mainly on the First"
                         " Robotics Competition, mathematical modeling, electrotechnics,"
@@ -135,8 +186,8 @@ nodes = [
                 "2015–2019",
                 [
                     Node(
-                        "**Turnov Grammar School"
-                        " [[website](http://www.gytu.cz/postnuke/index.php)]** <br> As"
+                        "**Turnov Grammar School**"
+                        " [[website](http://www.gytu.cz/postnuke/index.php)] <br> As"
                         " a high school student, I was a frequent participant of"
                         " English, mathematics and programming competitions. I"
                         " completed my maturita exam in the May of 2019. The exam"
@@ -160,9 +211,7 @@ nodes = [
                         " algorithms.\n\n**Vimvaldi** (2020, Python – Curses, Abjad)"
                         " [[GitHub](https://github.com/xiaoxiae/vimvaldi)]<br> A"
                         " terminal app for editing musical scores in the terminal with"
-                        " Vim-like controls.\n\n**GNU Tar** (2020, C)"
-                        " [[GitHub](https://github.com/xiaoxiae/mytar.c)]<br> A C"
-                        " implementation of GNU TAR for my C university course.\n\n"
+                        " Vim-like controls."
                     )
                 ],
             ),
@@ -177,15 +226,12 @@ nodes = [
                         " website for learning about robotics in a simple and intuitive"
                         " way.\n\n**Metal Moose 2018** (2017–18, Java)"
                         " [[GitHub](https://github.com/MetalMooseFRC/MetalMoose2018)]<br>As"
-                        " a former member of the [FRC team](TODO) Metal Moose and the"
+                        " a former member of the FRC team Metal Moose and the"
                         " head of programming, I was in charge of programming our robot"
                         " for the 2018 Power-Up season. Features of the robot include"
                         " an autonomous language, double PID control (turning and"
                         " driving) and a polynomial function for controlling the"
-                        " elevator of the robot. I also wrote a little interactive"
-                        " [pure pursuit"
-                        " visualisation](https://github.com/xiaoxiae/PurePursuitAlgorithm)"
-                        " that simulates the algorithm."
+                        " elevator of the robot."
                     )
                 ],
             ),
@@ -205,15 +251,12 @@ nodes = [
                         " like opening course folder/website, managing homework and"
                         " even emailing the teachers. They can automatically initialize"
                         " from a CSV in the format that a lot of  Czech universities"
-                        " provide (SIS), so they are easy use.\n\n**Lectures**"
-                        " [[GitHub](https://github.com/xiaoxiae/lectures)]<br>Notes on"
-                        " lectures that I am able to give on various (mostly"
-                        " CS-related) topics."
+                        " provide (SIS), so they are easy use."
                     )
                 ],
             ),
             Node(
-                "Competitions/Events",
+                "Coding",
                 [
                     Node(
                         "**Advent of Code** [GitHub"
@@ -261,9 +304,9 @@ nodes = [
         "Interests",
         [
             Node(
-                "My favorite sports are rock climbing ([see me climb](/climbing/)),"
+                "My favorite sports are rock climbing ([see me climb](https://slama.dev/climbing/)),"
                 " snowboarding, ballroom dancing and slacklining. I also enjoy playing"
-                " indie computer games and [taking pictures](/photography/).\n\n"
+                " indie computer games and [taking pictures](https://slama.dev/photography/). "
                 + "As a person, I am quite open and friendly – meeting and "
                 "collaborating with new people on interesting projects is something I "
                 "very much enjoy."
@@ -272,14 +315,78 @@ nodes = [
     ),
 ]
 
-separator = """<tr></tr>"""
 
-result = f"""
+cache_location = os.path.join(base, f".{os.path.basename(__file__)}")
+hashsum = get_string_hashsum("".join([node.hashsum() for node in nodes]))
+
+if os.path.exists(cache_location):
+    with open(cache_location, "r") as f:
+        contents = f.read().strip()
+
+    if contents == hashsum:
+        print_formatted_message("cv", "no changes.")
+        quit()
+
+html_result = f"""
 <table class="cv-table">
-{separator.join([node.to_string() for node in nodes])}
+{'<tr></tr>'.join([node.to_html() for node in nodes])}
 </table>
 """
 
 with open(os.path.join(base, "../_includes/cv.html"), "w") as f:
-    f.write(result)
-    print_formatted_message("CV", "created.")
+    f.write(html_result)
+    print_formatted_message("cv", "cv.html created.")
+
+# pre
+latex_result = r"""
+\documentclass[10pt]{article}
+\usepackage{array, xcolor, lipsum, bibentry}
+\usepackage[margin=3cm]{geometry}
+\usepackage[hidelinks, colorlinks=true, urlcolor=gray]{hyperref}
+
+\renewcommand{\arraystretch}{1.9}
+
+\hypersetup{%
+  colorlinks=true,%
+  linkcolor=green,%
+  linkbordercolor=red,%
+}
+
+\title{\bfseries\Huge Tomáš Sláma}
+\author{tomas@slama.dev}
+\date{}
+
+\definecolor{lightgray}{gray}{0.8}
+\newcolumntype{L}{>{\raggedleft}p{0.14\textwidth}}
+\newcolumntype{R}{p{0.8\textwidth}}
+\newcommand\VRule{\color{lightgray}\vrule width 0.5pt}
+
+\begin{document}
+\maketitle
+"""
+
+
+# body
+for node in nodes:
+    latex_result += node.to_latex()
+
+# post
+latex_result += r"""
+\end{document}
+"""
+
+tmp = ".cv-cache"
+if not os.path.exists(tmp):
+    os.mkdir(tmp)
+
+with open(os.path.join(tmp, "cv.tex"), "w") as f:
+    f.write(latex_result)
+
+os.chdir(tmp)
+Popen(["lualatex", "cv.tex"], stdout=DEVNULL).communicate()
+os.rename("cv.pdf", os.path.join(base, "../cv.pdf"))
+
+print_formatted_message("cv", "cv.pdf created.")
+
+with open(cache_location, "w") as f:
+    f.write(hashsum)
