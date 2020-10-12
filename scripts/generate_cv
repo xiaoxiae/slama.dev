@@ -55,18 +55,22 @@ class Node:
             return latex(self.content)
 
         if depth == 0:
-            result = f"\\section*{{{self.content}}}\n"
+            result = f"""
+            \\section*{{{self.content}}}
+            \\vspace{{-1em}}
+            \\hrule
+            """
 
             if self.children[0].children is not None:
                 result += r"\begin{tabular}{L!{\VRule}R}" + "\n"
                 for child in self.children:
-                    result += child.to_latex(depth + 1)[:-2] + r"  \\"
-                return result[: -len(r"  \\")] + r" \end{tabular}" + "\n"
+                    result += child.to_latex(depth + 1)
+                return result + r" \end{tabular} \filbreak " + "\n"
             else:
-                return result + latex(self.children[0].content)
+                return result + "\n\smallskip\n" + latex(self.children[0].content)
 
         elif depth == 1:
-            result = latex(self.content)
+            result = r"\textit{" + latex(self.content) + "}"
 
             for child in self.children:
                 result += " & " + child.to_latex(depth + 1) + r"\\"
@@ -340,29 +344,57 @@ with open(os.path.join(base, "../_includes/cv.html"), "w") as f:
 # pre
 latex_result = r"""
 \documentclass[10pt]{article}
-\usepackage{array, xcolor, lipsum, bibentry}
+\usepackage{array, xcolor, lipsum, bibentry,titlesec,hyperref}
 \usepackage[margin=3cm]{geometry}
-\usepackage[hidelinks, colorlinks=true, urlcolor=gray]{hyperref}
 
-\renewcommand{\arraystretch}{1.9}
+\titleformat{\section}{\scshape\fontsize{18pt}{20.6}\selectfont}{\thesection}{0em}{}
 
-\hypersetup{%
-  colorlinks=true,%
-  linkcolor=green,%
-  linkbordercolor=red,%
+\hypersetup{
+     colorlinks = true,
+     linkcolor = black,
+     anchorcolor = black,
+     citecolor = black,
+     filecolor = black,
+     urlcolor = black
 }
-
-\title{\bfseries\Huge Tomáš Sláma}
-\author{tomas@slama.dev}
-\date{}
 
 \definecolor{lightgray}{gray}{0.8}
 \newcolumntype{L}{>{\raggedleft}p{0.14\textwidth}}
-\newcolumntype{R}{p{0.8\textwidth}}
+\newcolumntype{R}{p{0.786\textwidth}}
 \newcommand\VRule{\color{lightgray}\vrule width 0.5pt}
 
 \begin{document}
-\maketitle
+
+\begin{center}
+	{\scshape\Huge Tomáš Sláma}
+	\smallskip
+	\smallskip
+	
+	\hrule
+
+	\vspace*{0.2cm}
+
+	{
+		\setlength\tabcolsep{3pt}
+		\Large\begin{tabular}{rlcrl}
+		\textbf{Email:}& \href{mailto:tomas@slama.dev}{tomas@slama.dev} &\phantom{aaa}&  \textbf{Phone:} & {+420 774 068 605} \\
+		\textbf{Website:}& \href{https://slama.dev}{slama.dev} && \textbf{Born:} & {1999, Turnov, CZ} \\
+		\textbf{GitHub:}& \href{https://github.com/xiaoxiae}{github.com/xiaoxiae}  && \textbf{Living:} & {Prague, CZ}\\
+	\end{tabular}}
+
+	\vspace*{0.5cm}
+\end{center}
+
+\renewcommand{\arraystretch}{1.9}
+
+\hypersetup{
+     colorlinks = true,
+     linkcolor = gray,
+     anchorcolor = gray,
+     citecolor = gray,
+     filecolor = gray,
+     urlcolor = gray
+}
 """
 
 
