@@ -120,4 +120,41 @@ void world(const t_arg & p);
 ...
 ```
 
+### Values/pointers/references
+- classes/struct are created/copied by value
 
+#### Values
+- `Beast x` _is_ a value
+- assignments are by value
+
+#### Pointers
+- C-style `*` or C++-style `std::shared_ptr`
+	- if we don't care about the lifetime of an object, use `*`
+	- if we do, use `std::stared_ptr` (since if no smart pointers are pointing to an objec, it gets taken care of)
+
+#### References
+- when we want to hold and modify some object, but not care about its lifetime
+- `Beast & x = some_beast(100);`
+- act as the objects (`x.health -= 50`)
+- assignment acts as value
+- is deleted by someone else who owns them
+- not like in Java -- we can iterate over a container and change its values
+
+#### TLDR
+- when dealing with dots, we expect to copy by value; when dealing with arrows, we expect to copy by reference
+- good to correctly name classes: `BeastPointer`
+- **copy on write** -- when using dot notation (but internally handling stuff using references or pointers), if we're not the only owner of an object but want to modify it, we must copy it first
+	- C++ containers behave like this
+
+#### Passing to functions
+- **read-only**
+	- pass by **value**
+	- pass by **const-reference** (for larger stuff)
+		- `void f(const std::string & x)`
+- **to be modified**
+	- pass by **lvalue-reference** (reference without const)
+		- `void f(std::string & x)`
+		- the argmuent must be something "on the left of the equal sign" - variable, array element,...
+	- pass by **rvalue-reference** (reference without const)
+		- `void f(std::string && x)`
+		- usefull when we can re-use the temporary value instead of dumping it

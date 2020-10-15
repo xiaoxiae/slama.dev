@@ -53,9 +53,10 @@ title: C#
 | ---        | ---                                                               |
 | reading    | `System.IO.StreamReader f = new System.IO.StreamReader(path);`    |
 | read line  | `f.ReadLine();`                                                   |
+| read chars | `int chars_read = f.Read(buffer, 0, BUFFER_SIZE);`                |
 | writing    | `System.IO.StreamWriter f = new System.IO.StreamWriter(path);`    |
 | write line | `f.WriteLine(line);`                                              |
-| close      | `f.Close();`                                                      |
+| close      | `f.Dispose();`                                                    |
 
 {% match ### Try/except %}
 ```cs
