@@ -7,7 +7,7 @@ module Jekyll
       end
 
       def render(context)
-        return `scripts/match "#{@name}" "#{context.environments.first["page"]["path"]}"`
+        return `_plugins/match.py "#{@name}" "#{context.environments.first["page"]["path"]}"`
       end
     end
   end
