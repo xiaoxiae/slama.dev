@@ -1,5 +1,0 @@
-#!/bin/bash
-for var in "$@"
-do
-	ffmpeg -i $var -vcodec libx264 -crf 28 $(echo $var | cut -d\. -f 1)-out.$(echo $var | cut -d\. -f 2)
-done
