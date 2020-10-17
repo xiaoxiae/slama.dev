@@ -12,7 +12,6 @@ exclude: [
   "s-theme.gemspec",
   "ignored/",
   "scripts/",
-  "raw/",
   "makefile",
   "_wiki/private",
   "_wiki/diary",
