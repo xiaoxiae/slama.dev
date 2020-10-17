@@ -2,7 +2,7 @@
 *.gem
 _site
 .bundle
-.*-cache
+.*cache
 __pycache__/
 
 # Private
