@@ -9,11 +9,11 @@ all: build upload
 build: $(SVG); bundle exec jekyll build --trace
 serve: $(SVG); bundle exec jekyll serve --trace --drafts
 
-upload: ; scripts/upload
+upload: ; _plugins/smart_ftp_upload.py 89.221.213.50 w220316 `secret-tool lookup service "slama.dev"`
 
 clean:
 	rm -r .katex-cache/
 	bundle exec jekyll clean --trace
 
 %.svg: %.xopp
-	scripts/xopp_to_svg -f $^
+	_plugins/xopp_to_svg.py -f $^
