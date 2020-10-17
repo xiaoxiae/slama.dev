@@ -174,42 +174,38 @@ $monospaced-font: "Fira Code Light";
 	margin-bottom: $line-spacing;
 }
 
-.cv-table {
-	border-spacing: 0 $line-spacing * 5/3;
-	border-collapse: separate;
+.cv {
+	tbody tr td:first-child {
+		min-width: 7em;
+		max-width: 7em;
+	}
 
-	td {padding: 0 $line-spacing / 2 ;}
+	border-collapse: collapse;
 
-	p {margin-bottom: $line-spacing / 2;}
-	p:last-of-type {margin-bottom: 0;}
+	tr:first-child {
+		// so the right column is always max. size
+		td + td  { width: 100% }
 
+		// space between border line and 
+		p:first-child { padding-top: $line-spacing / 3; }
+	}
+
+	// no spacing after last <p> in each table
+	tr:last-child {
+		*:last-child {
+			margin-bottom: 0px;
+			padding-bottom: 0px;
+		}
+	}
+
+	// line between left and right column
 	tr {
-		margin-bottom: 20px;
+		td { border-left: 1px solid; }
+		td:first-child { border-left: 0px solid; }
 	}
-}
 
-// spacing and sizes for cv groups
-// see www.stackoverflow.com/questions/56381846/ for width
-.cv-primary-group {
-	font-size: $description-size;
-	width: $line-spacing + 16px;
-}
-
-.cv-secondary-group {
-	width: $line-spacing + 4px;
-}
-
-.cv-primary-group, .cv-secondary-group {
-	text-align: center;
-	vertical-align: middle;
-	 
-	span {
-		transform: rotate(180deg);
-		writing-mode: vertical-rl;
-
-		white-space:nowrap;
-		font-weight: bold;
-	}
+	border-top: 2px solid;
+	border-bottom: 0px solid;
 }
 
 // CSS for aligning text
@@ -370,9 +366,6 @@ body {
 	color: $light-text-color;
 	background-color: $light-background-color;
 
-	.cv-primary-group {border-right: 2px solid $light-text-color;}
-	.cv-secondary-group {border-right: 1px solid $light-text-color;}
-
 	a {
 		color: $light-link-color;
 		&:hover {color: $light-text-color;}
@@ -473,9 +466,6 @@ body {
 		// update image colors appropriately
 		svg, img { filter: invert(100%); }
 		.katex {svg { filter: invert(0%); } }
-
-		.cv-primary-group {border-right: 2px solid $dark-text-color;}
-		.cv-secondary-group {border-right: 1px solid $dark-text-color;}
 
 		a {
 			color: $dark-link-color;
