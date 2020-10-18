@@ -59,8 +59,22 @@
 | `fst`     | get first element (only for pairs!)            |
 | `snd`     | get second element (only for pairs!)           |
 
+{% match #### Dictionaries  %}
+- we can implement one as a list of tuples (**association lists**)
+- `Data.Map` has a faster implementation (**maps**)
+	- better to import as `Map`, because some of the methods clash
+
+| Function                                                    | Behavior                                    |
+| ---                                                         | ---                                         |
+| `fromList :: (Ord k) => [(k, v)] -> Map.Map k v`            | takes an association list and returns a map |
+| `lookup :: (Ord k) => k -> Map.Map k v -> Maybe v`          | (maybe) get an element from the map         |
+| `insert :: (Ord k) => k -> v -> Map.Map k v -> Map.Map k v` | insert an element to the map                |
+| `size :: Map.Map k v -> Int`                                | return the size of the dictionary           |
+
 {% match ### Operators %}
 - _they are also functions, but any function compromised of only special characters is infix by default, wink wink_
+
+{% match ### Other %}
 
 #### Comparables
 
@@ -150,7 +164,7 @@ firstLetter [] = "The string is empty!"
 firstLetter all@(x:_) = "The first character of '" ++ all ++ "'is '" ++ [x]
 ```
 
-##### Guards
+#### Guards
 - conditions on a given pattern
 
 ```hs
@@ -162,7 +176,7 @@ bmiTell bm
   | otherwise  = "See a doctor."
 ```
 
-##### `where`
+#### `where`
 - defining stuff locally to make the code more readable
 
 ```hs
@@ -192,7 +206,7 @@ bmiTell weight height
         (l:_) = lastName
 ```
 
-##### `let ... in` expressions
+#### `let ... in` expressions
 - like guards, but much more local
 
 ```hs
@@ -205,7 +219,7 @@ testFunction f =
 - pattern matching can also be used
 - also, they are expressions, so we can use them anywhere
 
-##### `case` expressions
+#### `case` expressions
 - pattern matching anywhere in the code (since it's just syntactic sugar for case expressions!)
 
 ```hs
@@ -214,7 +228,7 @@ let head' :: [a] -> a;
                           (x: _) -> x
 ```
 
-##### Sections
+#### Sections
 - partially apply infix functions
 
 ```hs
@@ -232,7 +246,7 @@ divide = (/)
 ```
 - watch out for `(-4)` -- this is actually just `-4` -- do `subtract 4` instead
 
-##### Higher-order functions
+#### Higher-order functions
 - the concept of partially applying parameters to functions:
 	- `zip [1, 2, 3]` is a `Num a => [b] -> [(a, b)]` type function
 	- `(+3)` is a `Num a => a -> a` type function
@@ -257,28 +271,104 @@ zipWith' f (x:xs) (y:ys) = f x y:zipWith' f xs ys
 | `filter :: (a -> Bool) -> [a] -> [a] ` | filters out elements that don't match |
 
 
-##### Lambdas
+#### Lambdas
 - one-time functions
 
 ```hs
 filter (\x -> x `mod` 3 == 0) [1..100]
 ```
 
-##### Folding
+#### Folding
 - take a binary function, a variable and start 'folding' a given list (foldable, actually, but I'm not sure what that is for now) by applying the binary function between the accumulator and the head of the list
 
-| Function                                  | Behavior                          |
-| ---                                       | ---                               |
-| `foldl :: (b -> a -> b) -> b -> [a] -> b` | left-to-right                     |
-| `foldr :: (a -> b -> b) -> b -> [a] -> b` | right-to-left (note the `a -> b`) |
-| `foldl1 :: (a -> a -> a) -> [a] -> a`     | `foldl`, 1st element is the acc.  |
-| `foldr1 :: (a -> a -> a) -> [a] -> a`     | `foldr`, 1st element is the acc.  |
+| Function                                   | Behavior                          |
+| ---                                        | ---                               |
+| `foldl :: (b -> a -> b) -> b -> [a] -> b`  | left-to-right                     |
+| `foldr :: (a -> b -> b) -> b -> [a] -> b`  | right-to-left (note the `a -> b`) |
+| `foldl1 :: (a -> a -> a) -> [a] -> a`      | `foldl`, 1st element is the acc.  |
+| `foldr1 :: (a -> a -> a) -> [a] -> a`      | `foldr`, ^                        |
+| `foldl' :: (b -> a -> b) -> b -> [a] -> b` | non-lazy; found in `Data.List`    |
+| `foldr' :: (b -> a -> b) -> b -> [a] -> b` | ^                                 |
+| `foldl1' :: (a -> a -> a) -> [a] -> a`     | ^                                 |
+| `foldr1' :: (a -> a -> a) -> [a] -> a`     | ^                                 |
 
 - list can be the accumulator too (it doesn't just have to be like an int):
 
 ```hs
 map' :: (a -> b) -> [a] -> [b]
 map' f = foldr (\x acc -> f x : acc) []
+```
+
+#### Function Application (`$`)
+```hs
+($) :: (a -> b) -> a -> b
+f $ x = f x
+```
+- looks useless, but changes precedence
+- when used, everything on the right is applied as a parameter to what is on the left:
+
+```hs
+sum (map sqrt [1..100])
+sum $ map sqrt [1..100]
+
+sqrt (1 + 2 + 3)
+sqrt $ 1 + 2 + 3
+
+sum (filter (> 10) (map (*2) [2..10]))
+sum $ filter (> 10) (map (*2) [2..10])
+sum $ filter (> 10) $ map (*2) [2..10]
+```
+
+#### Function Composition `(.)`
+```hs
+(.) :: (b -> c) -> (a -> b) -> a -> c
+f . g = \x f (g x)
+```
+- is right-associative (`f (g (z x)) == (f . g . z) x`)
+- is sometimes more concise than a lambda
+
+```hs
+\x -> negate (abs x)
+negate . abs
+```
+
+### Modules
+- **module** = a file that defines some functions, types and type classes
+- **program** = a collection of modules
+
+#### Importing
+- must be done before defining any functions
+```hs
+import Module1                  -- entire module
+import Module2 (f1, f2)         -- only specific functions
+import Module2 hiding (f1, f2)  -- except specific functions
+import qualified Module2        -- must be called with Module2.something
+import qualified Module2 as M   -- must be called with M.something
+
+```
+
+#### Creating
+- soubor `Geometry.hs`
+```hs
+module Geometry
+( sphereVolume
+, sphereArea
+, cubeVolume
+) where
+
+<function definitions>
+```
+
+##### Submodules
+- folder `Geometry`
+- file `Sphere.hs`
+
+```hs
+module Geometry.Sphere
+( volume
+, area
+, cubeVolume
+) where
 ```
 
 ---
