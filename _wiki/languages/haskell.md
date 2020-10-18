@@ -379,4 +379,5 @@ module Geometry.Sphere
 ### Resources
 - [Learn You a Haskell for Great Good!](http://learnyouahaskell.com/introduction#about-this-tutorial)
 - Kowainik's [Haskell style guide](https://kowainik.github.io/posts/2019-02-06-style-guide)
+- [Ormolu autoformatter](https://github.com/tweag/ormolu)
 
