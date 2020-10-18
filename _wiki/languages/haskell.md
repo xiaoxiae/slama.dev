@@ -338,17 +338,18 @@ negate . abs
 
 #### Importing
 - must be done before defining any functions
+
 ```hs
 import Module1                  -- entire module
 import Module2 (f1, f2)         -- only specific functions
 import Module2 hiding (f1, f2)  -- except specific functions
 import qualified Module2        -- must be called with Module2.something
 import qualified Module2 as M   -- must be called with M.something
-
 ```
 
 #### Creating
 - soubor `Geometry.hs`
+
 ```hs
 module Geometry
 ( sphereVolume
@@ -369,10 +370,13 @@ module Geometry.Sphere
 , area
 , cubeVolume
 ) where
+
+<function definitions>
 ```
 
 ---
 
 ### Resources
 - [Learn You a Haskell for Great Good!](http://learnyouahaskell.com/introduction#about-this-tutorial)
+- Kowainik's [Haskell style guide](https://kowainik.github.io/posts/2019-02-06-style-guide)
 
