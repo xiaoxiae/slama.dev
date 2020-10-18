@@ -42,7 +42,7 @@ links = (
     + ", ".join(
         [
             f'<a href="/wiki/languages/{filename[:-3]}/#{name.lower()}">{language}</a>'
-            for filename, language in languages
+            for filename, language in sorted(languages, key=lambda x: x[1])
         ]
     )
     + "]"
