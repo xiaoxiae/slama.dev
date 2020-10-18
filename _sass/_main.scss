@@ -284,7 +284,9 @@ body {
 	ol, ul {p + ul, p + ol {margin-top: 0; }}
 
 	p, hr {margin-bottom: $line-spacing;}
-
+	
+	h2, h3, h4, h5, h6 {font-variant: small-caps;}
+ 
 	h2 {padding-bottom: $h2-spacing; font-size: $h2-size;}
 	h3 {padding-bottom: $h3-spacing; font-size: $h3-size;}
 	h4 {padding-bottom: $h4-spacing; font-size: $h4-size;}
