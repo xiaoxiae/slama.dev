@@ -175,37 +175,39 @@ $monospaced-font: "Fira Code Light";
 }
 
 .cv {
-	tbody tr td:first-child {
-		min-width: 7em;
-		max-width: 7em;
-	}
-
-	border-collapse: collapse;
-
-	tr:first-child {
-		// so the right column is always max. size
-		td + td  { width: 100% }
-
-		// space between border line and 
-		p:first-child { padding-top: $line-spacing / 3; }
-	}
-
-	// no spacing after last <p> in each table
-	tr:last-child {
-		*:last-child {
-			margin-bottom: 0px;
-			padding-bottom: 0px;
+	table {
+		tbody tr td:first-child {
+			min-width: 7em;
+			max-width: 7em;
 		}
-	}
 
-	// line between left and right column
-	tr {
-		td { border-left: 1px solid; }
-		td:first-child { border-left: 0px solid; }
-	}
+		border-collapse: collapse;
 
-	border-top: 2px solid;
-	border-bottom: 0px solid;
+		tr:first-child {
+			// so the right column is always max. size
+			td + td  { width: 100% }
+
+			// space between border line and 
+			p:first-child { padding-top: $line-spacing / 3; }
+		}
+
+		// no spacing after last <p> in each table
+		tr:last-child {
+			*:last-child {
+				margin-bottom: 0px;
+				padding-bottom: 0px;
+			}
+		}
+
+		// line between left and right column
+		tr {
+			td { border-left: 1px solid; }
+			td:first-child { border-left: 0px solid; }
+		}
+
+		border-top: 2px solid;
+		border-bottom: 0px solid;
+	}
 }
 
 // CSS for aligning text
