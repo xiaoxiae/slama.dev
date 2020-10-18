@@ -2,7 +2,7 @@
 ---
 
 - download Raspbian lite image
-- [format the SD card](Bootable USB drive using dd)
+- [format the SD card](/wiki/articles/bootable-usb-drive-using-dd)
 - create `wpa_supplicant.conf` with the following content (replacing the `<...>` stuff):
 
 ```
