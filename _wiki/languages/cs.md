@@ -51,6 +51,13 @@ title: C#
 - `==` compares contents, char by char (same as `.Equals()`)
 	- we can use `object.ReferenceEquals(o1, o2)` if we want reference equality
 
+| Action                       | Code                                                 |
+| ---                          | ---                                                  |
+| length                       | `s.Length;`                                          |
+| split                        | `s.Split(char);`                                     |
+| split on multiple delimiters | `s.Split(delimiters);`, `delimiters` jsou pole charů |
+| convert to integer           | `int.Parse(string);`                                 |
+
 #### `System.Text.StringBuilder`
 - "mutable string"
 - internally behaves like a dynamic array (amortized resize)
@@ -59,12 +66,25 @@ title: C#
 	- no copying happens -- internally, the new string points to the contents of the `StringBuilder` (so we don't have to copy twice)
 		- if we were to modify again, it does actually get copied
 
-| Action                       | Code                                                 |
-| ---                          | ---                                                  |
-| length                       | `s.Length;`                                          |
-| split                        | `s.Split(char);`                                     |
-| split on multiple delimiters | `s.Split(delimiters);`, `delimiters` jsou pole charů |
-| convert to integer           | `int.Parse(string);`                                 |
+#### Interpolation
+- `Console.Write("cislo = {0} a {1}", i, j");`
+	- same as `Console.Write("cislo = " + i.ToString() + " a " + j.ToString())`,
+	- calls `String.Format("format string", i, j)`
+		- creates new string
+- careful:
+
+```cs
+Console.WriteLine("{0}: Hello, {1}!", s1, s2);
+Console.WriteLine("{0}: Hello, " + s2 + "!", s1, s2);  // what if s2 == "{0}"
+```
+
+- **interpolated strings** -- `$"My name is {name} and I'm {age}."`
+	- is translated into a `String.Format` call (at compile time)
+	- the `{}` blocks can contain `:fmt` and `, fmt`
+		- sometimes better to surround with `()` (ternary...)
+	- if assigned to a `FormattableString`, an instance is created instead
+		- `.GetArgument(i)` returns the i-th argument
+		- `.Format()` creates a string
 
 {% match ### Chars %}
 - `System.Char` == `char` (keyword)
@@ -90,6 +110,93 @@ title: C#
 | writing    | `System.IO.StreamWriter f = new System.IO.StreamWriter(path);`    |
 | write line | `f.WriteLine(line);`                                              |
 | close      | `f.Dispose();`                                                    |
+
+{% match ### Classes %}
+
+{% match #### Constructor %}
+- same syntax as C++, but add `public` before it
+- if none is specified, a default one without parameters is created
+	- we have to write it explicitly if we want it besides a parametered one
+
+```cs
+class A {
+	int x = stuff;
+	
+	A () {}
+}
+
+// is equivalent to (for each constructor!)
+// stuff can be any code, not just literals
+
+class A {
+	A () {
+		int x = stuff;
+	}
+}
+```
+
+- when inheriting, the constructor of the predecesor should be called
+	- actually, everything inherits `: object` (if not inheriting anything)
+		- actually, `object == System.Object`
+
+```cs
+class A : Z {
+	int x = something;
+	
+	A () {stuff}
+}
+
+// is equivalent to (for each constructor!)
+// stuff can be any code, not just literals
+
+class A : Z {
+	A () {
+		int x = something;
+		
+		// constructor of Z
+		
+		stuff
+	}
+}
+```
+
+- which constructor of the predecessor is called?
+	- the one without parameters is called by default (it has to exist!)... or:
+
+```cs
+class A : Z {
+	A () : base(/*parameters for constructor of Z*/) {stuff}
+}
+
+// is equivalent to (for each constructor!)
+// stuff can be any code, not just literals
+
+class A : Z {
+	A () {
+		int x = something;
+		
+		// constructor of Z
+		
+		stuff
+	}
+}
+```
+
+- calling one constructor from another constructor:
+	- `A(): this(constructor parameters) {}`
+	- the stuff that would be called before `A()` isn't
+- **class constructors**:
+	- called before the first time an object of the class is created
+	- same as a regular constructor but for static variables
+	- if none is specified, a default blank one is created
+
+```cs
+class A {
+	static A() {}
+}
+```
+
+
 
 {% match ### Try/except %}
 ```cs
@@ -119,3 +226,12 @@ checked {
 }
 ```
 - is not controlled when functions are called from this block (how could it, when they're probably already translated...)
+
+### ???
+```cs
+/*/  // adding a * here uncomments the code
+
+code
+
+/**/
+```
