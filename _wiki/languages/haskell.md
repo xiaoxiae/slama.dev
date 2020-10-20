@@ -374,10 +374,97 @@ module Geometry.Sphere
 <function definitions>
 ```
 
+#### Exporting datatypes
+- the `..` signifies that we're exporting all constructors
+	- we can also export only specific values
+
+```hs
+module Geometry
+( Point(..)
+, Shapes(..)
+, volume
+, area
+) where
+```
+
+### Data types
+- define a simple new type
+
+```hs
+data Bool = True | False
+```
+
+- more complicated definition
+	- `deriving (Show)` is there so the object can be printed
+
+```hs
+data Point = Float Float deriving (Show)
+data Shape = Circle Point Float | Rectangle Point Point deriving (Show)
+```
+
+#### Record syntax
+
+```hs
+data Person = Person { firstName :: String
+                     , lastName :: String
+                     , age :: Int } deriving (Show)
+```
+
+- automatically creates functions for looking up the parameters
+- can be created using `Person {lastName="Sláma", firstName="Tomaš", age=20}`
+
+#### Type parameters
+- we can make constructors that produce new types!
+
+```hs
+data Maybe a = Nothing | Just a
+```
+
+- `a` is a **type parameter**
+	- we already saw `Map k v` -- that's parametrized
+- `Maybe` is a **type constructor**
+- `Nothing` is polymorphic -- if a function expects a `Maybe Int`, we can give it `Nothing` (since it doesn't contain any values, so it doesn't matter)
+- we _can_ put constraints into data declarations, but it's better not to -- we still need to put them to the functions that work with them and doing so could put needles constraints on some functions that don't need it
+- take care: when defining `data Vector a = Vector a a a` then `Vector a` is the type!
+
+#### Deriving
+
+| Constraint | Meaning                                         |
+| ---        | ---                                             |
+| `Eq`       | testing for equality (by parameters)            |
+| `Show`     | can be represented as strings                   |
+| `Read`     | can be converted from strings                   |
+| `Ord`      | compared by the order of the value constructors |
+
+##### `Ord`
+```hs
+data Weekdays = Mo | Tu | We | Th | Fr | Sa | Su
+  derives (Eq, Show, Read, Ord)
+
+-- read "Mo" :: Weekdays
+-- Mo < Tu
+-- show Mo
+```
+
+#### Type synonyms
+- nothing special
+
+```hs
+type String = [Char]  -- literally defined this way
+type Name = String    -- we want to convey more information
+```
+
+#### `Either`
+```hs
+data Either a b = Left a | Right b (deriving Eq, Ord, Read, Show)
+```
+
+- left usually contains information that something went wrong
+	- useful when we want more information than `Nothing` (literally)
+
 ---
 
 ### Resources
 - [Learn You a Haskell for Great Good!](http://learnyouahaskell.com/introduction#about-this-tutorial)
 - Kowainik's [Haskell style guide](https://kowainik.github.io/posts/2019-02-06-style-guide)
 - [Ormolu autoformatter](https://github.com/tweag/ormolu)
-
