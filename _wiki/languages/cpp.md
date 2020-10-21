@@ -120,41 +120,52 @@ void world(const t_arg & p);
 ...
 ```
 
-### Values/pointers/references
-- classes/struct are created/copied by value
-
-#### Values
-- `Beast x` _is_ a value
-- assignments are by value
-
-#### Pointers
-- C-style `*` or C++-style `std::shared_ptr`
-	- if we don't care about the lifetime of an object, use `*`
-	- if we do, use `std::stared_ptr` (since if no smart pointers are pointing to an objec, it gets taken care of)
+### References/pointers/links to stuff
 
 #### References
-- when we want to hold and modify some object, but not care about its lifetime
-- `Beast & x = some_beast(100);`
-- act as the objects (`x.health -= 50`)
-- assignment acts as value
-- is deleted by someone else who owns them
-- not like in Java -- we can iterate over a container and change its values
+- built-in to C++
+- pointing at an object when initialized, **can't be redirected**
+- identical (in use) with values (`r.a`)
+- can be one of three types:
+	- **(modifiable) L-value reference** (`T &`) -- the value must be an **L-value**
+	- **constant reference** (`const T &`) -- any object of type `T`
+	- **R-value reference** (`T &&`) -- the value must be **R-value**
 
-#### TLDR
-- when dealing with dots, we expect to copy by value; when dealing with arrows, we expect to copy by reference
-- good to correctly name classes: `BeastPointer`
-- **copy on write** -- when using dot notation (but internally handling stuff using references or pointers), if we're not the only owner of an object but want to modify it, we must copy it first
-	- C++ containers behave like this
+#### Pointers
 
-#### Passing to functions
-- **read-only**
-	- pass by **value**
-	- pass by **const-reference** (for larger stuff)
-		- `void f(const std::string & x)`
-- **to be modified**
-	- pass by **lvalue-reference** (reference without const)
-		- `void f(std::string & x)`
-		- the argmuent must be something "on the left of the equal sign" - variable, array element,...
-	- pass by **rvalue-reference** (reference without const)
-		- `void f(std::string && x)`
-		- usefull when we can re-use the temporary value instead of dumping it
+##### Raw (`*`)
+- built-in to C/C++
+- pointer arithmetics to access additional values in an array
+- special operators to access the value -- either `*p` or `p->a`
+- **manual deallocation** -- not great to use for ownership
+
+##### Smart (`std::shared_ptr<T>, std::unique_ptr<T>`)
+- template classes in the standard C++ library
+- introduced because pointers in C were the main root of most of problems regarding security, memory,...
+- (mostly the) same arithmetics as with `*`, but not really needed (see iterators)
+- **automatic ownership** -- meant to be used for ownership
+	- implemented using **reference counting**
+		- different than garbage collecting -- the objects are recycled immediately
+
+##### Iterators (`K::iterator, K::const_iterator`)
+- connected to the given container
+- the arithmetics don't just access the adjacent element, but can have a more complex behavior (go to next element in the tree)
+
+#### Passing to functions (TODO: more on this later)
+- if we want to modify the argument -- pass by **L-value reference** (`T &`)
+- else if copying is cheap (int, pointer, small struct) -- pass by **value** (`T`)
+- else if the type doesn't support modifying -- pass by **R-value reference** (`T &&`)
+- else if we want to store a copy of the parameter:
+	- if we care about speed, implement both `const T &` and `T &&`
+	- simplified: pass by value (`T`) and use `std::move()` when saving
+- else pass by **constant reference**
+
+#### Returning from functions
+- if a function makes an object accessible (`arr[]`)
+	- if we want to allow modifying the object, return by **L-value reference** (`T &`)
+	- else use **constant reference** (`const T &`)
+	- _the object must survive at least for a bit when returning from the function_
+		- if we're returning by reference and creating new data, this will never work
+- else return **value** (`T`)
+	- is (at least recently) quite fast (copy/move-elision)
+		- without it, the function would be rewritten with a new pointer parameter where to return the value from the function; 
