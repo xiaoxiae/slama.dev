@@ -196,30 +196,93 @@ class A {
 }
 ```
 
+{% match ### Variable scope %}
 
+{% match #### Local variables %}
+- created each time we enter `{`, deleted each time we leave `}`
+	- but... is extremely fast (1 instruction) and can be optimized by the compiler, if a variable is repeatedly created and discarded
+- the same name can't be reused within the same scope, but:
 
-{% match ### Try/except %}
+```cs
+if <something> {int b;} else {int b;}  // this is ok
+int b;  // this is not (already declared in a nested block)
+```
+
+- also, the compiler must know that the variable is initialized before use
+	- a hack is to assign something garbage to f (and add a comment)
+
+```cs
+int e = 1, f;
+if (e == 1) {f = 2;}
+e = f; // error, f is not initialized in all paths
+```
+
+{% match ### Exceptions %}
+- all exceptions must inherit the `Exception` class
+- takes a _long_ time (a lot of things have to be collected)
+	- a simple `try` block is basically free, though
+
+| Function     | Meaning                                  |
+| ---          | ---                                      |
+| e.Message    | error message as a `string`              |
+| e.StackTrace | trace of method call stack as a `string` |
+| e.StackTrace | trace of method call stack as a `string` |
+| e.ToString   | the formatted exception `string`         |
+
+#### Syntax
 ```cs
 try {
 	// stuff
 } catch (Exception e) {
-	// stuff
+	// stuff only executed if the type matches the exception raised
+} finally {
+	// stuff always executed
+	// for example, for closing IO/network resources
 }
 ```
 
+#### `using` 
+```cs
+using (type x = new Type()) {
+	// some code
+}
+```
+- is equivalent to
+
+```cs
+Type x;
+try {
+	x = new Type();  // could raise an exception!
+	
+	// some code
+} finally {
+	if (x != null) x.Dispose();
+}
+```
+
+- is also equivalent to (since C# 8.0)
+	- the `Dispose` is called when the variable goes out of scope
+
+```cs
+using type x = new Type();
+```
+
+- only works with objects that are **disposable** (inherit `IDisposable` {% latex %}\implies{% endlatex %} have a `Dispose` method)
+
+
 #### `var`
-- odvození v době překladu podle toho, co je na pravé straně
-- `string`, pole `int`ů...
-- pokud to při překladu nejde zjistit, tak to nejde:
+- derived at compile time, depending on what is on the right side
+- if we can't determine the type, the code won't compile
 	- `var x;`
 	- `var y = (1, 2, 3);`
 	- `var z = null`
-- deklarace je komentář -- `var` psát všude není rozumný:
-	- `var name = GetName();  // co tohle vrací?`
-- když budu chtít změnit implementaci, tak chci spíš:
-	- `var d = new List<int>();  // co když pak budu chtít změnit na HashSet?`
+- the declaration is a comment -- it's unwise to write `var` everywhere:
+	- `var name = GetName();     // what does this return?`
+	- `var d = new List<int>();  // what if I want to change List to a HashSet later?`
 
-### Arithmetic overflows
+### Other
+
+#### Arithmetic overflows
 ```cs
 checked {
 	// kód
@@ -227,11 +290,27 @@ checked {
 ```
 - is not controlled when functions are called from this block (how could it, when they're probably already translated...)
 
-### ???
+#### Commenting trick
 ```cs
 /*/  // adding a * here uncomments the code
 
 code
 
 /**/
+```
+
+#### `nameof(x)` [Microsoft Docs](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/nameof)
+- name of `x`:
+- useful when debugging, when showing exceptions to users...
+
+```cs
+Console.WriteLine(nameof(System.Collections.Generic));  // output: Generic
+Console.WriteLine(nameof(List<int>));                   // output: List
+Console.WriteLine(nameof(List<int>.Count));             // output: Count
+Console.WriteLine(nameof(List<int>.Add));               // output: Add
+
+var numbers = new List<int> { 1, 2, 3 };
+Console.WriteLine(nameof(numbers));        // output: numbers
+Console.WriteLine(nameof(numbers.Count));  // output: Count
+Console.WriteLine(nameof(numbers.Add));    // output: Add
 ```
