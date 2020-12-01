@@ -91,7 +91,6 @@ Console.WriteLine("{0}: Hello, " + s2 + "!", s1, s2);  // what if s2 == "{0}"
 - 2-byte UTF-16 character
 	- some characters must be at least a string, since some UTF-16 characters can be up to 4 bytes
 
-
 {% match ### Printing %}
 - requires `System`
 
@@ -196,6 +195,34 @@ class A {
 }
 ```
 
+{% match #### Inheritance %}
+```cs
+class A { }      // some stuff
+class B : A { }  // some stuff + some more stuff
+
+A a = new A(); // is fine
+a = new B();   // is also fine
+```
+
+- when inheriting, everything is inherited, **except constructors**
+	- it would be a mess -- which constructor would get called when
+- each class has **exactly one** predecessor
+	- if none is specified, `System.Object == object` is used automatically
+
+##### `System.Object`
+```cs
+class Object {
+	protected object MemberwiseClone() {}
+	public Type GetType() {}
+	public virtual bool Equals(object o) {}
+	public virtual string ToString() {}
+	public virtual int GetHashCode() {}
+	public static bool ReferenceEquals(object objA, object objB) {}
+	
+}
+```
+
+
 {% match ### Variable scope %}
 
 {% match #### Local variables %}
@@ -221,6 +248,7 @@ e = f; // error, f is not initialized in all paths
 - all exceptions must inherit the `Exception` class
 - takes a _long_ time (a lot of things have to be collected)
 	- a simple `try` block is basically free, though
+- watch out for things like `StackOverflow` -- some exceptions can't be caught
 
 | Function     | Meaning                                  |
 | ---          | ---                                      |
@@ -269,8 +297,84 @@ using type x = new Type();
 
 - only works with objects that are **disposable** (inherit `IDisposable` {% latex %}\implies{% endlatex %} have a `Dispose` method)
 
+### Properties
 
-#### `var`
+```cs
+int Property {
+	get { /* stuff to do */ }
+	set { /* stuff to do (with a variable `value`) */ }
+}
+```
+
+- syntactic sugar for defining a `int get` and `void set` methods
+	- must be used with `=` though, although it does internally generate methods `get_X` and `set_X`
+- `set` takes `value` as the only parameter
+	- "value" is a keyword only in the setter
+- is nice when we want to let the programmer know that we're just setting/getting something (although it may do something more complex)
+- also nice when internally having a variable that we don't want the user to access
+	- integers that are smaller than 50 and divisible by 3 -- setting will cause an exception (would be a pain to debug if the variable was public)
+- interfaces can also contain them!
+- **auto-implemented properties**: if we're just doing `get => value` and `set = value`, we can just do `get;` and `set;` and this code will get automatically generated
+	- what if we want to make an interface out of it in the future?
+	- what if we want to add constraints to the values in the future?
+
+### `=>`
+- syntactic sugar for:
+	- when a non-`void` method returns something
+	- when a void method has only one command
+- also **works for getters and setters!**
+
+### `ref`
+```cs
+void Inc(ref int x) { x += 1; }
+
+void f() {
+	int val = 3;
+	Inc(ref val);  // val will be 4
+}
+```
+
+- call **by reference**
+- address is passed and automatically de-referenced
+- parameter must be a variable, not an expression (what would that even mean?)
+- makes sense if we really want to modify the passed variable
+
+#### `out`
+```cs
+void Read(out int first, out int next) {
+	first = Console.Read();
+	next = Console.Read();
+}
+
+void f() {
+	int first, next;
+	Read(out first, out next);
+}
+```
+
+- similar to `ref`, but no value is passed by the caller
+- useful for returning/setting multiple things in a function
+- each `out` parameter must have a value assigned by the time it leaves the function
+	- no solution if we want to not assign the variables (assign dummy values...)
+- the variable can be declared as a part of the function call
+
+```cs
+int a;
+if (tryParse(something, out a)) { print("We failed: " + a); }
+print("We didn't fail: " + a);
+
+// <=>
+
+if (tryParse(something, out int a)) { print("We failed: " + a); }
+print("We didn't fail: " + a);
+
+// <=>
+
+if (tryParse(something, out var a)) { print("We failed: " + a); }
+print("We didn't fail: " + a);
+```
+
+### `var`
 - derived at compile time, depending on what is on the right side
 - if we can't determine the type, the code won't compile
 	- `var x;`
@@ -279,6 +383,17 @@ using type x = new Type();
 - the declaration is a comment -- it's unwise to write `var` everywhere:
 	- `var name = GetName();     // what does this return?`
 	- `var d = new List<int>();  // what if I want to change List to a HashSet later?`
+
+### Interfaces
+- a "contract" for classes to follow
+	- we can assign any class that implements an interface to variables with an interface (when we only require the functionality of the interface)
+- can't be instantiated
+- not entirely an abstract class -- classes can implement multiple interfaces
+	- (interfaces can also implement interfaces)
+
+### Abstract classes
+- sort of like interfaces, but with code
+- we can define default members and methods that all classes inheriting this one will use
 
 ### Other
 
