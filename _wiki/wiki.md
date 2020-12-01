@@ -20,5 +20,6 @@ permalink: wiki/
 | [Arduino CLI setup](articles/arduino-cli-setup/)                    | [Bootable USB drive using dd](articles/bootable-usb-drive-using-dd) |
 | [Dokuwiki + Apache install](articles/dokuwiki-apache-install)       | [Python Virtual Environments](articles/python-virtual-environments) |
 | [Raspberry Pi Headless Setup](articles/raspberry-pi-headless-setup) | [Linux](articles/linux)                                             |
+| [Wacom-related things](articles/wacom-related-things)               |                                                                     |
 
 
