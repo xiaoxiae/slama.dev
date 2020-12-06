@@ -249,6 +249,7 @@ $monospaced-font: "Fira Code Light";
 
 // TOC formatting
 #markdown-toc {
+	max-width: 30%;
 	font-size: $toc-size;
 	margin-top: 0px;
 	margin-left: $line-spacing / 2;
@@ -263,6 +264,25 @@ $monospaced-font: "Fira Code Light";
 	}
 
 	border: 2px solid;
+}
+
+// right floats
+// similar to TOC, TODO: better CSS
+.rightFloatBox {
+	font-size: $toc-size;
+	margin-top: 0px;
+	margin-left: $line-spacing / 2;
+	padding: $line-spacing / 2;
+	float: right;
+
+	@media (max-width: 500px) {
+		float: none;
+		margin-bottom: $line-spacing;
+	}
+
+	p { margin-bottom : 0pt; }
+
+	border: 1px solid;
 }
 
 body {
