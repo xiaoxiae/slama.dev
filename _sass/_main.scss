@@ -269,6 +269,7 @@ $monospaced-font: "Fira Code Light";
 // right floats
 // similar to TOC, TODO: better CSS
 .rightFloatBox {
+	max-width: 30%;
 	font-size: $toc-size;
 	margin-top: 0px;
 	margin-left: $line-spacing / 2;
