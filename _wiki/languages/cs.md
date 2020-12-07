@@ -222,6 +222,11 @@ class Object {
 }
 ```
 
+#### `sealed`
+- prevence dědičnosti
+- `sealed class` -- není inheritovatelná
+- `sealed void MojeFunkce()` -- není overridovatelná
+
 
 {% match ### Variable scope %}
 
