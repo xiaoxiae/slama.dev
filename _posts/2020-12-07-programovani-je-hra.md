@@ -136,8 +136,82 @@ else:
 	- Zvládnete to i bez operátoru `%`? {% latex %}(3b){% endlatex %}
 3. Máte číselné proměnné `a`, `b` a `c`, které mají různé hodnoty. Vypište tato čísla od nejmenšího po největší. Využijte toho, že `if`y mohou být vnořené. {% latex %}(4b){% endlatex %}
 
+### 2. hodina (17. 12. 2020)
+
+#### Uživatelský vstup
+- čtení věcí, které uživatelé zadají
+
+```py
+veta  = input()       # čtení věty
+cislo = int(input())  # čtení čísla
+
+print(veta)
+print(cislo)
+```
+
+1. Chceme se uživatele zeptat, kolik mu je let. Vypište jeho věk a pokud mu je více než 20, napište `Je ti více než 20!`. {% latex %}(1b){% endlatex %}
+
+#### Smyčky
+- opakování části kódu, dokud něco platí
+
+```py
+i = 0
+
+# vypíše čísla od 0 do 9
+while i < 10:
+	print(i)
+	i = i + 1
+```
+
+- smyčky také můžeme vnořovat do sebe
+
+```py
+i = 0
+
+# vypíše dvojice čísel od 0 do 9
+while i < 10:
+	j = 0
+	
+	while j < 10:
+		print(i, j)  # vypsání dvou věcí
+		j = j + 1
+
+	i = i + 1
+```
+
+1. Máte číselnou proměnnou `a`. Vypište všechna čísla od {% latex %}1{% endlatex %} do `a`. {% latex %}(1b){% endlatex %}
+	* Vypište jen sudá čísla {% latex %}(2b){% endlatex %}.
+2. Máte číselnou proměnnou `a`. Vypište všechna čísla, která dělí `a` {% latex %}(3b){% endlatex %}
+	* Vypište její prvočíselný rozklad. {% latex %}(5b){% endlatex %}
+3. Chceme napsat robota, který bude hádat čísla od {% latex %}1{% endlatex %} do {% latex %}100{% endlatex %}. Uživateli řekne číslo, které hádá, a zeptá se ho, zda je uživatelovo menší, nebo větší. {% latex %}(5b){% endlatex %}
+
+#### Pole
+- hodně proměnných za sebou
+
+```py
+x = [0, 0, 0]
+
+x[0] = 1
+x[1] = 10
+x[2] = 3
+
+print(x[0])    # vypíše hodnotu na první pozici
+print(x[1])    # vypíše hodnotu na druhé pozici
+print(x[2])    # vypíše hodnotu na třetí pozici
+
+print(x)       # vypíše pole: [1, 10, 3]
+print(len(x))  # vypíše délku pole (3)
+```
+
+1. Máte pole čísel `pole`. Vypište: 
+	- počet čísel v poli. {% latex %}(1b){% endlatex %}
+	- největší číslo v poli. {% latex %}(1b){% endlatex %}
+	- nejmenší číslo v poli. {% latex %}(1b){% endlatex %}
+	- součet čísel v poli. {% latex %}(1b){% endlatex %}
+
 ### Dodatečné materiály
 
+- [Python Tutor](http://www.pythontutor.com/visualize.html) -- vizualizér Python kódu, ze kterého je hezky vidět, co program dělá.
 - [Repl.it pro Python](https://repl.it/languages/python3) -- prostředí, ve kterém budeme programovat.
 - [Python 3](https://www.python.org/downloads/) -- webovky jazyka, ve kterém budeme programovat.
 - [Ponořme se do Pythonu](http://diveintopython3.py.cz/index.html) -- dobře napsaná kniha o programování v Pythonu 3, na kterou se můžete podívat, pokud byste se rádi Python učili i ve svém volném čase.
