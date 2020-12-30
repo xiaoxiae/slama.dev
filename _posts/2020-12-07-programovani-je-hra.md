@@ -18,13 +18,7 @@ Pokud byste se chtěli na cokoliv zeptat, tak jsem k zastižení tady:
 - **Discord:** `Tomáš Sláma#6609`
 
 ### Příklady
-Příklady jsou **nepovinné**, nejsme ve škole. Jsou tu hlavně pro to, abyste se lépe pochopili probíranou látku a rozhodně se nebudu zlobit, když za kurz nesplníte všechny. Na druhou stranu budu rád, když se alespoň část pokusíte vyřešit 🙂.
-
-Řešení posílejte na můj mail (viz. výše) v libovolném (alespoň trošku normálním) formátu. K tomu, abyste v tabulce měli jméno/přezdívku, mi výslovně napište, jakou chcete, jinak budou vaše body v tabulce bez jména.
-
-| jméno     | 1   | řeší KSP | součet |
-| :--       | --: | :-:      | --:    |
-| Max(imum) | 30  | ⭐       | 30     |
+Příklady jsou **nepovinné**, nejsme ve škole. Jsou tu hlavně pro to, abyste se lépe pochopili probíranou látku a rozhodně se nebudu zlobit, když za kurz nesplníte všechny. Na druhou stranu budu rád, když se alespoň část pokusíte vyřešit 🙂. Těžké příklady jsou označené hvězdičkou (⭐).
 
 ### 1. hodina (10. 12. 2020)
 
@@ -55,9 +49,9 @@ print(d)
 a+b = 123 # neplatné, jméno nesmí obsahovat +
 ```
 
-1. Vytvořte proměnné `a`, `b`, `c` tak, aby každá obsahovala jiný typ informací. {% latex %}(1b){% endlatex %}
-2. Máte číselné proměnné `a` a `b`. Napište program, který prohodí jejich obsah. {% latex %}(2b){% endlatex %}
-	* Zvládnete to bez použití pomocné proměnné (a bez použití `a, b = b, a`)? {% latex %}(5b){% endlatex %}
+1. Vytvořte proměnné `a`, `b`, `c` tak, aby každá obsahovala jiný typ informací.
+2. Máte číselné proměnné `a` a `b`. Napište program, který prohodí jejich obsah.
+	* Zvládnete to bez použití pomocné proměnné (a bez použití `a, b = b, a`)? ⭐
 
 #### Aritmetika
 
@@ -67,7 +61,7 @@ a+b = 123 # neplatné, jméno nesmí obsahovat +
 </div>
 
 - s proměnnými toho příliš nezvládneme, umět počítat
-- Python umí vyhodnocovat aritmet)ické výrazy
+- Python umí vyhodnocovat aritmetické výrazy
 	- běžné jsou `+`, `-`, `*`, `/`
 	- umí používat také závorky `(`, `)`
 	- další operátory:
@@ -88,11 +82,11 @@ print(d)
 print(e)
 ```
 
-1. Máte proměnnou `a`, která udává délku strany kostky. Vypište její obsah. {% latex %}(1b){% endlatex %}
+1. Máte proměnnou `a`, která udává délku strany kostky. Vypište její obsah.
 	* Vypište její plochu {% latex %}(2b){% endlatex %}.
-	* Vypište plochu největší koule, která se do kostky vejde. {% latex %}(2b){% endlatex %}.
-	* Vypište plochu největší kouke, do které se kostka vejde. {% latex %}(5b){% endlatex %}.
-2. Máte proměnnou `celsius` s číselnou hodnotou. Vypište, kolik je to Fahrenheitů ([odkaz na Wiki](https://cs.wikipedia.org/wiki/Stupeň_Fahrenheita), pokud nevíte, jak převod vypadá). {% latex %}(2b){% endlatex %}
+	* Vypište plochu největší koule, která se do kostky vejde.
+	* Vypište plochu největší koule, do které se kostka vejde. ⭐
+2. Máte proměnnou `celsius` s číselnou hodnotou. Vypište, kolik je to Fahrenheitů ([odkaz na Wiki](https://cs.wikipedia.org/wiki/Stupeň_Fahrenheita), pokud nevíte, jak převod vypadá).
 
 #### `if`, `else`
 
@@ -131,10 +125,10 @@ else:
 	print("a je větší nebo rovno 100")
 ```
 
-1. Máte číselné proměnné `a` a `b`. Vypište `<`, `>` nebo `=` podle toho, zda je `a` menší/větší/rovné. {% latex %}(1b){% endlatex %}
-2. Máte číselnou proměnnou `a`. Napište program, který vypíše `Sudé!` když je `a` sudé a `Liché!`, když je `a` liché. Použijte operátor `%` (zbytek po dělení). {% latex %}(2b){% endlatex %}
-	- Zvládnete to i bez operátoru `%`? {% latex %}(3b){% endlatex %}
-3. Máte číselné proměnné `a`, `b` a `c`, které mají různé hodnoty. Vypište tato čísla od nejmenšího po největší. Využijte toho, že `if`y mohou být vnořené. {% latex %}(4b){% endlatex %}
+1. Máte číselné proměnné `a` a `b`. Vypište `<`, `>` nebo `=` podle toho, zda je `a` menší/větší/rovné.
+2. Máte číselnou proměnnou `a`. Napište program, který vypíše `Sudé!` když je `a` sudé a `Liché!`, když je `a` liché. Použijte operátor `%` (zbytek po dělení).
+	- Zvládnete to i bez operátoru `%`?
+3. Máte číselné proměnné `a`, `b` a `c`, které mají různé hodnoty. Vypište tato čísla od nejmenšího po největší. Využijte toho, že `if`y mohou být vnořené. ⭐
 
 ### 2. hodina (17. 12. 2020)
 
@@ -149,7 +143,7 @@ print(veta)
 print(cislo)
 ```
 
-1. Chceme se uživatele zeptat, kolik mu je let. Vypište jeho věk a pokud mu je více než 20, napište `Je ti více než 20!`. {% latex %}(1b){% endlatex %}
+1. Chceme se uživatele zeptat, kolik mu je let. Vypište jeho věk a pokud mu je více než 20, napište `Je ti více než 20!`.
 
 #### Smyčky
 - opakování části kódu, dokud něco platí
@@ -179,11 +173,11 @@ while i < 10:
 	i = i + 1
 ```
 
-1. Máte číselnou proměnnou `a`. Vypište všechna čísla od {% latex %}1{% endlatex %} do `a`. {% latex %}(1b){% endlatex %}
+1. Máte číselnou proměnnou `a`. Vypište všechna čísla od {% latex %}1{% endlatex %} do `a`.
 	* Vypište jen sudá čísla {% latex %}(2b){% endlatex %}.
-2. Máte číselnou proměnnou `a`. Vypište všechna čísla, která dělí `a` {% latex %}(3b){% endlatex %}
-	* Vypište její prvočíselný rozklad. {% latex %}(5b){% endlatex %}
-3. Chceme napsat robota, který bude hádat čísla od {% latex %}1{% endlatex %} do {% latex %}100{% endlatex %}. Uživateli řekne číslo, které hádá, a zeptá se ho, zda je uživatelovo menší, nebo větší. {% latex %}(5b){% endlatex %}
+2. Máte číselnou proměnnou `a`. Vypište všechna čísla, která dělí `a`.
+	* Vypište její prvočíselný rozklad. ⭐
+3. Chceme napsat robota, který bude hádat čísla od {% latex %}1{% endlatex %} do {% latex %}100{% endlatex %}. Uživateli řekne číslo, které hádá, a zeptá se ho, zda je uživatelovo menší, nebo větší. ⭐
 
 #### Pole
 - hodně proměnných za sebou
@@ -215,8 +209,9 @@ print(len(x))  # vypíše délku pole (3)
 - [Repl.it pro Python](https://repl.it/languages/python3) -- prostředí, ve kterém budeme programovat.
 - [Python 3](https://www.python.org/downloads/) -- webovky jazyka, ve kterém budeme programovat.
 - [Ponořme se do Pythonu](http://diveintopython3.py.cz/index.html) -- dobře napsaná kniha o programování v Pythonu 3, na kterou se můžete podívat, pokud byste se rádi Python učili i ve svém volném čase.
-- [Korespondenční Seminář z Programování](http://ksp.mff.cuni.cz/z/) -- skvělý způsob, jak se na zajímavých úlohách naučit programovat a poznat při tom nové kamarády 🙂. Navíc budete mít 
+- [Korespondenční Seminář z Programování](http://ksp.mff.cuni.cz/z/) -- skvělý způsob, jak se na zajímavých úlohách naučit programovat a poznat při tom nové kamarády 🙂.
 - [Průvodce labyrintem algoritmů](http://pruvodce.ucw.cz/) -- super příručka pro ty, kteří by se něco rádi dozvěděli o algoritmech a datových strukturách, do hloubky.
+- [Advent Kódu](https://adventofcode.com/) -- stránka, kde na každý den je lehčí a těžší úloha, která se řeší s pomocí programování. Každoročně řeším a velice doporučuji!
 
 {:.center}
 ![Programování v kostce.](/assets/programovani-je-hra/turtles.png)
