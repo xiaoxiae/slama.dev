@@ -13,7 +13,7 @@ This section covers various kinds of books that I think are worth reading.
 	1. **The Way of Kings**
 	2. **Words of Radiance**
 	3. **Oathbringer**
-	4. **The Rhythm of War** (to be released)
+	4. **The Rhythm of War**
 
 - **Mistborn** [[Wikipedia](https://en.wikipedia.org/wiki/Mistborn_series)] by Brandon Sanderson -- another amazing series from Brandon Sanderson. It has a well thought-out magic system, despite being set in the same universe as The Stormlight Archive ([Cosmere](https://en.wikipedia.org/wiki/Brandon_Sanderson#Cosmere)). The first and the second series vary greatly in their setting (medieval {% latex %}\times{% endlatex %} industrial revolution), but I would argue that both are a great fit.
 	1. **The Final Empire**
@@ -30,6 +30,8 @@ This section covers various kinds of books that I think are worth reading.
 	3. **Nowhere** (to be released)
 
 - **The Rithmatist** [[Wikipedia](https://en.wikipedia.org/wiki/The_Rithmatist)] by Brandon Sanderson -- an excellent young adult fantasy novel. Although the target audience is children (which is reflected mostly in character behavior and development), I still loved discovering the unique magic system that Sanderson created.
+
+- **Legion: The Many Lives of Stephen Leeds** [[Wikipedia](https://en.wikipedia.org/wiki/Legion_(novella_series))] by Brandon Sanderson -- a set of three novellas about a man, whose hallucinations (so-called aspects) help him with logic, problem solving, languages and much more. It's quite catchy and has an exciting ending, but definitely I'm more into his fantasy works.
 
 - **The Kingkiller Chronicle** [[Wikipedia](https://en.wikipedia.org/wiki/The_Kingkiller_Chronicle)] by Patrick Rothfuss -- a thrilling series that I would not recommend anyone to read until the last book in the series is finished (see the controversy for yourself if you're interested).
 	1. **The Name of the Wind**
