@@ -16,7 +16,7 @@ module Jekyll
       def render(context)
         # generate a hash from the math expression
         @hash = Digest::SHA2.hexdigest super
-        @cache_path = './.katex-cache/' + @hash
+        @cache_path = './.katex-cache/' + @hash + @display.to_s
 
         # use it if it exists
         if(File.exist?(@cache_path))
