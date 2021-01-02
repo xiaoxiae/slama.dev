@@ -166,12 +166,17 @@ Zadefinujeme si náhodnou veličinu {% latex %}X = I_{S_2} + I_{S_4} + \ldots + 
 | ---                                          | ---                                                                                                                           | ---                                                  |
 | součet                                       | {% latex %}a_0 + b_0, a_1 + b_1, a_2 + b_2, \ldots{% endlatex %}                                                              | {% latex %}a(x) + b(x){% endlatex %}                 |
 | násobek                                      | {% latex %}\alpha a_0, \alpha a_1, \alpha a_2, \ldots {% endlatex %}                                                          | {% latex %}\alpha a(x){% endlatex %}                 |
+|                                              |                                                                                                                               |                                                      |
 | posun doprava                                | {% latex %}0, a_0, a_1, \ldots {% endlatex %}                                                                                 | {% latex %} \alpha xa(x){% endlatex %}               |
 | posun doleva                                 | {% latex %}a_1, a_2, a_3, \ldots {% endlatex %}                                                                               | {% latex %}\alpha \frac{a(x) - a_0}{x}{% endlatex %} |
+|                                              |                                                                                                                               |                                                      |
 | substituce {% latex %}\alpha x{% endlatex %} | {% latex %}a_0, \alpha a_1, \alpha^2 a_2, \ldots {% endlatex %}                                                               | {% latex %} \alpha a(\alpha x){% endlatex %}         |
 | substituce {% latex %}x^n{% endlatex %}      | {% latex %}a_0, 0, \overset{n - 1}{\ldots}, 0, a_1, 0, \overset{n - 1}{\ldots}, 0, a_2, \ldots {% endlatex %}                 | {% latex %} \alpha a(x^n){% endlatex %}              |
+|                                              |                                                                                                                               |                                                      |
 | derivace                                     | {% latex %}a_1, 2a_1, 3a_2, \ldots {% endlatex %}                                                                             | {% latex %} \alpha a'(x){% endlatex %}               |
 | integrování                                  | {% latex %}0, a_1, a_2/2, a_3/3, \ldots {% endlatex %}                                                                        | {% latex %} \int_{0}^{x} a(t) dt{% endlatex %}       |
+|                                              |                                                                                                                               |                                                      |
+| konvoluce                                  | {% latex %} \sum_{k = 0}^{n} a_k \cdot b_{n - k} {% endlatex %}                                                               | {% latex %} a(x) \cdot b(c){% endlatex %}            |
 
 Všechny důkazy jsou jednoduché rozepsání z definice.
 
@@ -201,3 +206,88 @@ Kde poslední rovnost platí, protože:
 - z posledních 3 závorek si vybereme {% latex %}1{% endlatex %} a z první závorky koeficient u {% latex %}70{% endlatex %}
 - ze druhé {% latex %}x^{31}{% endlatex %} a z první koeficient u {% latex %}72 - 31{% endlatex %}
 	- analogicky pro {% latex %}41{% endlatex %} a {% latex %}51{% endlatex %} ze třetí a čtvrté
+
+### 3. přednáška
+
+#### Fibonacciho čísla
+**Definice:** {% latex %}F_0 = 0, F_1 = 1, F_n = F_{n - 1} + F_{n - 2}, \forall n \ge 2{% endlatex %}
+- {% latex %}F(x) = F_0 + F_1x + F_2x^2 + F_3x^3{% endlatex %}
+
+| {% latex %}F_0{% endlatex %} | {% latex %}F_1{% endlatex %} | {% latex %}F_2{% endlatex %}       | {% latex %}F_3{% endlatex %}       | {% latex %}F_4{% endlatex %}       | Vytvořující funkce                |
+| ---                          | ---                          | ---                                | ---                                | ---                                | ---                               |
+| {% latex %}0{% endlatex %}   | {% latex %}1{% endlatex %}   | {% latex %}F_0 + F_1{% endlatex %} | {% latex %}F_1 + F_2{% endlatex %} | {% latex %}F_2 + F_3{% endlatex %} | {% latex %}F(x){% endlatex %}     |
+| {% latex %}0{% endlatex %}   | {% latex %}0{% endlatex %}   | {% latex %}F_1{% endlatex %}       | {% latex %}F_2{% endlatex %}       | {% latex %}F_3{% endlatex %}       | {% latex %}x F(x){% endlatex %}   |
+| {% latex %}0{% endlatex %}   | {% latex %}0{% endlatex %}   | {% latex %}F_0{% endlatex %}       | {% latex %}F_1{% endlatex %}       | {% latex %}F_2{% endlatex %}       | {% latex %}x^2 F(x){% endlatex %} |
+| {% latex %}0{% endlatex %}   | {% latex %}1{% endlatex %}   | {% latex %}0{% endlatex %}         | {% latex %}0{% endlatex %}         | {% latex %}0{% endlatex %}         | {% latex %}x{% endlatex %}        |
+
+Algebraickou úpravou dostáváme:
+{% latex display %}
+\begin{aligned}
+	F(x) &= \frac{x}{1 - x - x^2} \\
+	&= \frac{x}{\left(1 - \frac{1 + \sqrt{5}}{2}\right)\left(1 - \frac{1 - \sqrt{5}}{2}\right)} \qquad //\ \text{parciální zlomky }\\
+	&= \frac{\frac{1}{\sqrt{5}}}{1 - \frac{1 + \sqrt{5}}{2}x} - \frac{\frac{1}{\sqrt{5}}}{1 - \frac{1 - \sqrt{5}}{2}x}\\
+	&= \frac{1}{\sqrt{5}}\left(\frac{1}{1 - \frac{1 + \sqrt{5}}{2}x} - \frac{1}{1 - \frac{1 - \sqrt{5}}{2}x}\right) \qquad //\ \text{tvary $\frac{\pm 1}{1 - \lambda_{1, 2} x}$}\\
+\end{aligned}
+{% endlatex %}
+
+Pro daný koeficient vytvořující funkce tedy máme:
+{% latex display %}
+\begin{aligned}
+	F_n &= \frac{1}{\sqrt{5}} \left[\left(\frac{1 + \sqrt{5}}{2}\right)^n - \underbrace{\left(\frac{1 - \sqrt{5}}{2}\right)^n}_{\text{jde k $0$}}\right] \\
+	&= \left\lfloor \frac{1}{\sqrt{5}} \left(\frac{1 + \sqrt{5}}{2}\right)^n \right\rfloor \\
+\end{aligned}
+{% endlatex %}
+
+#### Catalanova čísla
+- {% latex %}b_n = {% endlatex %} počet binárních zakořeněných stromů na {% latex %}n{% endlatex %} vrcholech
+	- {% latex %}b_n = \sum_{k = 0}^{n - 1} b_k \cdot b_{n - k + 1}{% endlatex %}, rekurzíme se na obě části
+	- jde si rozmyslet, že {% latex %}b(x) = x \cdot b(x) \cdot b(x) + 1{% endlatex %}
+		- {% latex %}x{% endlatex %} je tam kvůli posunu, aby vycházelo správně indexování (suma nejede do $n$)
+		- {% latex %}1{% endlatex %} je tam kvůli tomu, aby nultý člen správně vycházel
+
+{% latex display %}
+\begin{aligned}
+	b(x) &= x \cdot b(x)^2 + 1 \\
+	b(x)_{1, 2} &= \frac{1 \pm \sqrt{1 - 4x}}{2x} \qquad //\ \text{ten s $+$ nedává smysl, diverguje}\\
+	\\
+	b(x) &= \frac{1 - 1 - \sum_{k = 1}^{\infty}(-4)^k \binom{1/2}{k} x^k }{2x} \qquad //\ \sqrt{1 - 4k} \overset{\text{ZBV}}{=} \sum_{k = 0}^{\infty} (-4)^k \binom{1/2}{k} x^k\\
+	&= -\frac{1}{2} \sum_{k = 1}^{\infty} (-4)^k \binom{1/2}{k} x^{k - 1}\\
+	&= -\frac{1}{2} \sum_{k = 1}^{\infty} (-4)^{n + 1} \binom{1/2}{n + 1}\\
+	\\
+	b_n &= \frac{1}{2} (-1)^{n} 2^{2n + 2} \frac{\frac{1}{2} \cdot \left(\frac{1}{2} - 1\right) \cdot \ldots \cdot \left(\frac{1}{2} - n\right)}{\left(n + 1\right)!}\\
+	&= \frac{1}{2} (-1)^{n} 2^{2n + 2} \frac{\frac{1}{2} \cdot \left(-\frac{1}{2}\right) \cdot \ldots \cdot \left(-\frac{2n - 1}{2}\right)}{\left(n + 1\right)!}\\
+	&= \frac{1}{2} 2^{2n + 2} \frac{\frac{1}{2} \cdot \frac{1}{2} \cdot \ldots \cdot \frac{2n - 1}{2}}{\left(n + 1\right)!} \qquad //\ \text{krácení záporných čísel}\\
+	&= 2^{n} \frac{1 \cdot 3 \cdot 5 \cdot \ldots \cdot (2n - 1)}{(n + 1)!} \cdot \frac{n!}{n!} \qquad //\ \text{krácení $2$}\\
+	&= \frac{1 \cdot 3 \cdot 5 \cdot \ldots \cdot (2n - 1)}{(n + 1) n!} \cdot \frac{2 \cdot 4 \cdot 6 \cdot \ldots \cdot 2n}{n!} \qquad //\ \text{rozdistribuování $2$}\\
+	&= \frac{1}{n + 1} \frac{(2n)!}{\left(n!\right)^2} \\
+	&= \frac{1}{n + 1} \binom{2n}{n} \\
+\end{aligned}
+{% endlatex %}
+
+#### Konečné projektivní roviny
+
+{:.rightFloatBox}
+<div markdown="1">
+{% latex %}x \in X{% endlatex %} je bod
+
+{% latex %}P \in \mathcal{P}{% endlatex %} je přímka
+</div>
+
+**Definice (KPR):** Nechť {% latex %}X{% endlatex %} je konečná množina, {% latex %}\mathcal{P}{% endlatex %} systém podmnožin množiny {% latex %}X{% endlatex %}. {% latex %}\left(X, \mathcal{P}\right){% endlatex %} je KPR pokud:
+1. Existuje {% latex %}Č \subseteq X, |Č| = 4{% endlatex %} t. ž. {% latex %}\forall P \in \mathcal{P}: |P \cap Č| \le 2{% endlatex %}
+	- „každá přímka obsahuje {% latex %}\le 2{% endlatex %} body z {% latex %}Č{% endlatex %}“
+2. {% latex %}\forall P, Q \in \mathcal{P}, P \neq Q: \exists! x \in X{% endlatex %} t. ž. {% latex %}P \cap Q = \left\{x\right\}{% endlatex %}
+	- „každé dvě přímky se protínají právě v {% latex %}1{% endlatex %} bodě“
+3. {% latex %}\forall x, y \in X, x \neq y \exists! P \in \mathcal{P}{% endlatex %} t. ž. {% latex %}x, y \in \mathcal{P}{% endlatex %}
+	- „každé dva body určují právě {% latex %}1{% endlatex %} přímku“
+
+**Příklad (Fanova rovina):**
+
+{:.center}
+![Fanova rovina.](/assets/kombinatorika-a-grafy-i/fanova-rovina.svg)
+
+**Tvrzení:** „v KPR mají všechny přímky stejný počet bodů“
+
+**Pomocné tvrzení:** {% latex %}\exists z \in X{% endlatex %}, které neleží ani na jedné z nich. Dokáže se přes to přes rozbor příkladů toho, jak vedou přímky přes {% latex %}Č{% endlatex %}:
+- pokud nevedou přes všechny body z {% latex %}Č{% endlatex %}, pak máme vyhráno
+- pokud vedou, tak existují dvě další přímky {% latex %}P_1{% endlatex %} a {% latex %}P_2{% endlatex %} vedoucí kolmo na naše přímky, jejich průnik je hledaný bod; původní přímky jím vést nemohou, protože pak by dvě přímky sdílely 2 body, což nelze
