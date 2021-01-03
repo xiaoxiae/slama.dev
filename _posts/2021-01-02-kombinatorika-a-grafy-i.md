@@ -14,7 +14,7 @@ category: "lecture notes"
 **Věta (meh odhad):**
 {% latex display %}n^{n/2} \le n! \le \left(\frac{n + 1}{2}\right)^n{% endlatex %}
 
-**Důkaz $$\ge$$:**
+**Důkaz {% latex %}\ge{% endlatex %}:**
 {% latex display %}
 \begin{aligned}
 	\left(n!\right)^2 &= 1 \cdot 2 \cdot 3 \cdot \ldots \cdot n \cdot n \cdot (n - 1) \cdot \ldots \cdot 2 \cdot 1 \\
@@ -83,7 +83,7 @@ Důkaz, toho proč ten výraz {% latex %}\le 1{% endlatex %}:
 - největší sčítanec je rovněž alespoň tak velký jako průměrný
 
 **Věta (nice odhad):**
-{% latex %}\frac{2^{2m}}{2 \sqrt{m}} \le \binom{2m}{m} \le \frac{2^{2m}}{\sqrt{2m}}{% endlatex %}
+{% latex display %}\frac{2^{2m}}{2 \sqrt{m}} \le \binom{2m}{m} \le \frac{2^{2m}}{\sqrt{2m}}{% endlatex %}
 
 **Důkaz:**
 
@@ -117,9 +117,9 @@ Druhá strana analogicky.
 
 ### 2. přednáška
 
-#### Náhodné procházky (v {% latex %}\mathbb{Z}^1{% endlatex %})
+#### Náhodné procházky
 
-**Definice náhodné procházky:** Náhodný proces, v každém kroku se panáček z bodu {% latex %}0{% endlatex %} posune doprava nebo doleva.
+**Definice náhodné procházky  (v {% latex %}\mathbb{Z}^1{% endlatex %}):** Náhodný proces, v každém kroku se panáček z bodu {% latex %}0{% endlatex %} posune doprava nebo doleva.
 
 - kde bude po {% latex %}n{% endlatex %} krocích?
 - {% latex %}\lim_{n \to \infty} \ldots{% endlatex %} že se po {% latex %}n{% endlatex %} krocích vrátil (někdy v průběhu) do počátku?
@@ -286,8 +286,214 @@ Pro daný koeficient vytvořující funkce tedy máme:
 {:.center}
 ![Fanova rovina.](/assets/kombinatorika-a-grafy-i/fanova-rovina.svg)
 
+##### Počet bodů a přímek
+
 **Tvrzení:** „v KPR mají všechny přímky stejný počet bodů“
 
 **Pomocné tvrzení:** {% latex %}\exists z \in X{% endlatex %}, které neleží ani na jedné z nich. Dokáže se přes to přes rozbor příkladů toho, jak vedou přímky přes {% latex %}Č{% endlatex %}:
 - pokud nevedou přes všechny body z {% latex %}Č{% endlatex %}, pak máme vyhráno
 - pokud vedou, tak existují dvě další přímky {% latex %}P_1{% endlatex %} a {% latex %}P_2{% endlatex %} vedoucí kolmo na naše přímky, jejich průnik je hledaný bod; původní přímky jím vést nemohou, protože pak by dvě přímky sdílely 2 body, což nelze
+
+### 4. přednáška
+
+**Důkaz původního tvrzení:** pro přímky {% latex %}P{% endlatex %}, {% latex %}P'{% endlatex %} a bod {% latex %}z{% endlatex %} (který nesdílí) budeme dělat bijekci tak, že budu tvořit přímky z bodu {% latex %}z{% endlatex %} na body z {% latex %}P{% endlatex %}, které budou rovněž protínat body z {% latex %}P'{% endlatex %}.
+
+**Definice (řád KPR):** řádem {% latex %}(X, \mathcal{P}){% endlatex %} je {% latex %}h = |P| - 1{% endlatex %} pro jakoukoliv {% latex %}P \in \mathcal{P}{% endlatex %}
+
+**Tvrzení:** nechť {% latex %}(X, \mathcal{P}){% endlatex %} je KPR řádu {% latex %}n{% endlatex %}. Pak:
+1. každým bodem prochází {% latex %}n + 1{% endlatex %} přímek
+2. {% latex %}|X| = n^2 + n + 1{% endlatex %}
+3. {% latex %}|\mathcal{P}| = n^2 + n + 1{% endlatex %}
+
+
+**Důkaz (i):** vezměme libovolné {% latex %}x \in X{% endlatex %}.
+
+**Pomocné tvrzení:** {% latex %}\exists P \in \mathcal{P}: x \not\in P{% endlatex %}
+- důkaz přes {% latex %}a, b, c \in Č{% endlatex %}, protože přímka {% latex %}ab{% endlatex %} a {% latex %}ac{% endlatex %} nemohou mít další společný bod než {% latex %}a{% endlatex %}
+
+Poté stačí uvážit následující obrázek a spočítat body/přímky. Další body už neexistují, protože kdyby existoval, tak by jím musela procházet přímka z {% latex %}x{% endlatex %} a ta by rovněž někde protínala {% latex %}P{% endlatex %} a nesplňovala tak axiomy.
+
+{% xopp primky-v-kpr %}
+
+Bodů na obrázku je {% latex display %}\overbrace{1}^{x} + \underbrace{\left(n + 1\right)}_{P_0 \ldots P_n}\overbrace{n}^{\text{body $P_i$, bez $x$}} = n^2 + n + 1{% endlatex %}
+
+Počet přímek dokážeme přes **dualitu.**
+
+#### Dualita KPR
+
+**Definice:** {% latex %}(X, \mathcal{S}){% endlatex %} je množinový systém, jeho incidenční graf je bipartitní graf s {% latex %}V = X \cup \mathcal{S}{% endlatex %}, {% latex %}E = \left\{(X, S) \in X \times \mathcal{S}\ |\ x \in S\right\}{% endlatex %}.
+
+**Definice:** {% latex %}(X, \mathcal{T}){% endlatex %} je duál {% latex %}(X, \mathcal{S}{% endlatex %} pokud {% latex %}Y = \mathcal{S}{% endlatex %} a {% latex %}\mathcal{T} = \left\{\left\{S \in \mathcal{S}\ |\ x \in S\right\}\ |\ x \in X\right\}{% endlatex %}
+- (👀) incidenční graf {% latex %}(Y, \mathcal{T}{% endlatex %} je incidenční graf {% latex %}(X, \mathcal{S}){% endlatex %} s prohozením stran
+
+**Příklad (duál Fanovy roviny):**
+
+{:.center}
+![Duál Fanovy roviny.](/assets/kombinatorika-a-grafy-i/dual-fanovy-roviny.svg)
+
+**Tvrzení:** duál KPR je KPR.
+
+{:.rightFloatBox}
+<div markdown="1">
+1. „každá přímka obsahuje {% latex %}\le 2{% endlatex %} body z {% latex %}Č{% endlatex %}“
+2. „každé dvě přímky se protínají právě v {% latex %}1{% endlatex %} bodě“
+3. „každé dva body určují právě {% latex %}1{% endlatex %} přímku“
+</div>
+
+**Důkaz:** ověření axiomů v duálním světě:
+1. {% latex %}\exists Č{% endlatex %} čtveřice přímek t. ž. {% latex %}\forall x \in X{% endlatex %} leží na nanejvýš {% latex %}2{% endlatex %} přímkách z {% latex %}Č{% endlatex %}
+	- stejné jako „žádné {% latex %}3{% endlatex %} přímky z {% latex %}Č{% endlatex %} nemají společný bod“
+	- zvolím {% latex %}Č = \left\{ab, cd, ad, bc\right\}{% endlatex %}, což funguje
+2. {% latex %}\forall x, y \in X, x \neq y: \exists! P \in \mathcal{P}{% endlatex %} t. ž. jimi prochází právě {% latex %}1{% endlatex %} přímka
+	- stejné jako původní axiom o přímkách
+3. analogicky viz. ^
+
+**Důsledek:** {% latex %}(X, \mathcal{P}){% endlatex %} je řádu {% latex %}n \implies |X| = n^2 + n + 1{% endlatex %}
+- duál {% latex %}(Y, \mathcal{T}){% endlatex %} je duál {% latex %}(X, \mathcal{P}){% endlatex %}, ten je stejného řádu a proto je i velikost {% latex %}|\mathcal{P}| = n^2 + n + 1{% endlatex %}
+
+#### Konstrukce KPR
+
+Pro KPR řádu {% latex %}p^k{% endlatex %}, {% latex %}p{% endlatex %} prvočíslo vezmu algebraické těleso {% latex %}\mathbb{K}{% endlatex %} řádu {% latex %}n{% endlatex %} (příklad {% latex %}\mathbb{K} = \mathbb{Z}_3{% endlatex %}.
+- {% latex %}T = \mathbb{K}^3 \setminus \left(0, 0, 0\right){% endlatex %}
+- na {% latex %}T{% endlatex %} zavedu ekvivalenci {% latex %}(x, y, t) \in T{% endlatex %} je ekvivalentní s {% latex %}(\lambda x, \lambda y, \lambda t), \forall \lambda \in \mathbb{K} \setminus {0}{% endlatex %}
+- {% latex %}X{% endlatex %} jsou ekvivalenční třídy nad {% latex %}T{% endlatex %}.
+- reprezentanti: poslední nenulová složka je {% latex %}1{% endlatex %}
+	- trojice tvaru {% latex %}(x, y, 1), (x, 1, 0), (1, 0, 0){% endlatex %}
+	- počet je {% latex %}n^2 + n + 1{% endlatex %}, což sedí
+- {% latex %}\mathcal{P}{% endlatex %}: pro každou {% latex %}(a, b, c) \in T{% endlatex %} definujeme přímku {% latex %}P_{a, b, c}{% endlatex %} jako množinu bodů {% latex %}(x, y, t){% endlatex %} splňující {% latex %}ax + by + ct = 0{% endlatex %}
+	- {% latex %}\forall (x, y, t) \in T, \forall \lambda \neq 0: (x, y, t){% endlatex %} splňuje {% latex %}\iff (\lambda x, \lambda y, \lambda t{% endlatex %} splňuje
+	- {% latex %}\forall (a, b, c) \in T, \forall \lambda{% endlatex %} fixuji {% latex %}(x, y, t) \in T: ax + by + ct = 0 \iff \lambda ax + \lambda by + \lambda ct = 0 \implies{% endlatex %} přímky {% latex %}P_{a, b, c} = P_{\lambda a, \lambda b, \lambda c} \implies |\mathcal{P}| = |X|{% endlatex %} a mohu si opět zvolit reprezentanty
+
+{:.rightFloatBox}
+<div markdown="1">
+1. „každá přímka obsahuje {% latex %}\le 2{% endlatex %} body z {% latex %}Č{% endlatex %}“
+2. „každé dvě přímky se protínají právě v {% latex %}1{% endlatex %} bodě“
+3. „každé dva body určují právě {% latex %}1{% endlatex %} přímku“
+</div>
+
+**Ověření axiomů:**
+1. {% latex %}Č = \left\{(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 1)\right\}{% endlatex %}
+	- jsou po třech lineárně nezávislé, proto tohle platí
+2. dvojice přímek {% latex %}(a_1, b_1, c_1){% endlatex %} a {% latex %}(a_2, b_2, c_2){% endlatex %} určují jeden bod:
+	- jsou lineárně nezávislé a dimenze jádra následující matice je tedy {% latex %}1{% endlatex %}:
+{% latex display %} \begin{pmatrix} a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \end{pmatrix} \begin{pmatrix} x \\ y \\ t \end{pmatrix} = 0 {% endlatex %}
+3. analogické, protože role {% latex %}(x, y, t){% endlatex %} a {% latex %}(a, b, c){% endlatex %} je identická
+
+### 5. přednáška
+
+#### Latinské čtverce
+
+**Definice (latinský čtverec)** řádu {% latex %}n{% endlatex %} je tabulka {% latex %}n \times n{% endlatex %} vyplněná čísly {% latex %}[n]{% endlatex %}, kde v žádném řádku či sloupci se symboly neopakují.
+
+**Definice (ortogonalita)**: LČ {% latex %}A, B{% endlatex %} jsou ortogonální, pokud pro každou dvojici symbolů {% latex %}a, b \in [n]{% endlatex %} existují indexy {% latex %}i, j \in [n]{% endlatex %} t. ž. {% latex %}(A)_{i, j} = a, (B)_{i, j} = b{% endlatex %}.
+- když přeložím čtverce přes sebe, najdu políčko {% latex %}(i, j){% endlatex %} obsahující dvojici {% latex %}(a, b){% endlatex %}
+- (👀) počet dvojic symbolů {% latex %}n^2 = {% endlatex %} počtu políček
+	- zobrazení je bijekce
+	- {% latex %}\forall (a, b){% endlatex %} se objeví v OLČ právě jednou
+- (👀) {% latex %}A{% endlatex %} je LČ {% latex %}\implies{% endlatex %} po následujících operacích je stále:
+	- permutace symbolů
+	- permutace sloupců/řádků
+- (👀) {% latex %}A, B{% endlatex %} jsou NOLČ {% latex %}\implies{% endlatex %} pokud dělám operace z předchozího pozorování v obou čtvercích, tak ortogonalitu zachovávám, jinak nutně ne
+
+**Příklad** dvou navzájem ortogonálních latinských čtverců stupně {% latex %}n{% endlatex %}:
+
+{% latex display %}
+\begin{matrix}
+	1 & 2 & 3 & 4 \\
+	2 & 1 & 4 & 3 \\
+	3 & 4 & 1 & 2 \\
+	4 & 3 & 2 & 1 
+\end{matrix} \qquad \begin{matrix}
+	1 & 2 & 3 & 4 \\
+	3 & 4 & 1 & 2 \\
+	4 & 3 & 2 & 1 \\
+	2 & 1 & 4 & 3 
+\end{matrix}
+{% endlatex %}
+
+**Lemma:** pro daný řád {% latex %}n{% endlatex %} může existovat nejvýše {% latex %}n - 1{% endlatex %} NOLČ.
+
+**Důkaz:** mějme maximální rodinu NOLČ {% latex %}L_1, \ldots, L_m{% endlatex %}. Permutuji symboly tak, aby každý první řádek byl {% latex %}1, 2, 3, \ldots, n{% endlatex %}. Uvažme políčko {% latex %}(2, 1){% endlatex %} -- jaké může obsahovat hodnoty?
+- ne {% latex %}1{% endlatex %}, ta je na {% latex %}(1, 1){% endlatex %}
+- ne nějaké {% latex %}k \in \left\{2, \ldots, n\right\}{% endlatex %} ve dvou čtvercích zároveň
+
+Čtverců je dohromady tedy nejvýše {% latex %}n - 1{% endlatex %}.
+
+(👀) pokud {% latex %}L_1, \ldots, L_{n - 1}{% endlatex %} jsou NOLČ, potom {% latex %}\forall k, k', k \neq k', \forall l, l', l \neq l' \exists i: \left(L_i\right)_{k, l} = \left(L_i\right)_{k', l'}{% endlatex %}
+
+**Důkaz:** zpermutujeme symboly tak, aby {% latex %}\forall i \left(L_i\right)_{k, l} = 1{% endlatex %}:
+
+{% latex display %}
+\underbrace{\begin{bmatrix} &   &   &   \\ & (1) &   &   \\ &   &   &   \\ &   & ? &   \end{bmatrix}
+			\qquad
+			\begin{bmatrix} &   &   &   \\ & (1) &   &   \\ &   &   &   \\ &   & ? &   \end{bmatrix}
+			\qquad
+			\ldots
+			\qquad
+			\begin{bmatrix} &   &   &   \\ & (1) &   &   \\ &   &   &   \\ &   & ? &   \end{bmatrix}}_{n - 1}
+{% endlatex %}
+
+Kde ve sloupci s otazníkem je {% latex %}1{% endlatex %}:
+- ne v řádku s {% latex %}(1){% endlatex %}
+- ne ve dvou čtvercích na stejném místě
+
+Mám tedy {% latex %}n - 1{% endlatex %} možností a musím přijít na {% latex %}n - 1{% endlatex %} různých řešení. Jedno z nich tedy vyjde na {% latex %}?{% endlatex %}.
+
+**Věta:** {% latex %}\exists L_1, \ldots, L_{n - 1}{% endlatex %} NOLČ {% latex %}\iff \exists KPR{% endlatex %} řádu {% latex %}n{% endlatex %}.
+
+**Důkaz:** konstrukce {% latex %}\Rightarrow{% endlatex %}
+- dány čtverce {% latex %}\exists L_1, \ldots, L_{n - 1}{% endlatex %}
+- body: {% latex %}r, s, l_1, l_{n - 1}, m_{1, 1}, m_{1, 2}, \ldots, m_{1, n}, \ldots, m_{n, n}{% endlatex %}
+- přímky:
+	- {% latex %}\mathrm{I}: \left\{r, s, l_1, \ldots, l_n - 1\right\}{% endlatex %}
+	- {% latex %}\mathrm{II}:{% endlatex %} řádky -- {% latex %}\forall i \in [n]: \left\{r, m_{i, 1}, m_{i, 2}, \ldots, m_{i, n}\right\}{% endlatex %}
+	- {% latex %}\mathrm{III}:{% endlatex %} sloupce -- {% latex %}\forall i \in [n]: \left\{r, m_{1, i}, m_{2, i}, \ldots, m_{n, i}\right\}{% endlatex %}
+	- {% latex %}\mathrm{IV}: \underbrace{\forall i \in [n]}_{\text{latinské čtverce}}, \underbrace{\forall j \in [n]}_{\text{symboly}}: \left\{l_i\right\} \cup \left\{m_{k, l}\ \mid\ \left(L_i\right)_{k, l} = j\right\}{% endlatex %}
+
+{:.center}
+![Latinský čtverec na KPR.](/assets/kombinatorika-a-grafy-i/kpr-to-lat.svg)
+
+{:.rightFloatBox}
+<div markdown="1">
+1. „každá přímka obsahuje {% latex %}\le 2{% endlatex %} body z {% latex %}Č{% endlatex %}“
+2. „každé dvě přímky se protínají právě v {% latex %}1{% endlatex %} bodě“
+3. „každé dva body určují právě {% latex %}1{% endlatex %} přímku“
+</div>
+
+**Ověření axiomů:**
+1. {% latex %}Č = \left\{r, s, m_{1, 1}, m_{2, 2}\right\}{% endlatex %}
+2. mezi:
+	- {% latex %}r, s, l_i \rightarrow \mathrm{I}{% endlatex %} 
+	- {% latex %}r, m_{k, l} \rightarrow \mathrm{II}{% endlatex %} 
+	- {% latex %}s, m_{k, l} \rightarrow \mathrm{III}{% endlatex %} 
+	- {% latex %}l_{i}, m_{k, l} \rightarrow \mathrm{IV}{% endlatex %}, symbol {% latex %}\left(L_i\right)_{k, l}{% endlatex %} určuje, o kterou přímku z {% latex %}l_i{% endlatex %} jde
+	- {% latex %}m_{k, l}, m_{k', l'} \rightarrow{% endlatex %}
+		- stejný řádek: {% latex %}\mathrm{II}{% endlatex %}
+		- stejný sloupec: {% latex %}\mathrm{III}{% endlatex %}
+		- jinak: {% latex %}\mathrm{IV}{% endlatex %} a existuje, vycházíme z minulého pozorování
+3. mezi:
+	- {% latex %}I, II \rightarrow r{% endlatex %}
+	- {% latex %}I, III \rightarrow s{% endlatex %}
+	- {% latex %}I, IV \rightarrow l_i{% endlatex %}
+	- {% latex %}II, II \rightarrow r{% endlatex %}
+	- {% latex %}III, III \rightarrow s{% endlatex %}
+	- {% latex %}II, III \rightarrow m_{k, l}{% endlatex %}
+	- {% latex %}II, IV \rightarrow {% endlatex %} čtverec je latinský, na řádku se symbol někde vyskytuje
+	- {% latex %}III, IV \rightarrow {% endlatex %} obdobně ^
+	- {% latex %}IV, IV \rightarrow {% endlatex %} 
+		- různé čtverce: přesně definice ortogonality (existuje dvojice souřadnic pro dvojici symbolů)
+		- stejné čtverce: {% latex %}l_i{% endlatex %}
+
+**Důkaz:** konstrukce {% latex %}\Leftarrow{% endlatex %}
+- dána KPR {% latex %}(X, \mathcal{P}){% endlatex %}, hledáme {% latex %}L_1, \ldots, L_{n - 1}{% endlatex %}
+	1. zvolíme libovolně přímku - označíme {% latex %}\mathrm{I}{% endlatex %} a její body {% latex %}\left\{r, s, l_1, \ldots, l_{n - 1}\right\}{% endlatex %}
+	2. {% latex %}\exists n{% endlatex %} přímek protínající {% latex %}r{% endlatex %} -- typ {% latex %}\mathrm{II}{% endlatex %} a opět oindexuji body
+	3. analogicky ^, typ {% latex %}\mathrm{III}{% endlatex %}, průsečíky jsou {% latex %}m_{k, l}{% endlatex %}
+	4. pro bod {% latex %}l_i{% endlatex %} oindexuj přímky {% latex %}Q_1, \ldots, Q_n{% endlatex %}; čtverec {% latex %}L_i{% endlatex %} má {% latex %}1{% endlatex %} na indexech {% latex %}Q_1{% endlatex %}, {% latex %}2{% endlatex %} na {% latex %}Q_2{% endlatex %}, {% latex %}\ldots{% endlatex %}
+
+Jsou NOLČ, protože:
+- průsečíky {% latex %}\mathrm{IV}{% endlatex %} s {% latex %}\mathrm{II}, \mathrm{III}{% endlatex %} jsou jednoznačné {% latex %}\implies{% endlatex %} čtverce jsou latinské
+- jednoznačnost průniku dvou přímek typu {% latex %}\mathrm{IV}{% endlatex %} -- dvě různé přímky typu {% latex %}\mathrm{IV}{% endlatex %} odpovídající dvěma různým čtvercům dávají souřadnici, kde se má dvojice symbolů nachází {% latex %}\implies{% endlatex %} ortogonalita
+
+{:.center}
+![KPR na latinský čtverec.](/assets/kombinatorika-a-grafy-i/lat-to-kpr.svg)
