@@ -7,6 +7,9 @@ category: "lecture notes"
 - .
 {:toc}
 
+### Úvodní informace
+Tato stránka obsahuje moje poznámky z přednášky Martina Kouteckého z roku 2020/2021. Pokud by byla někde chyba/nejasnost, tak ji prosím buďto [opravte pull requestem](https://github.com/xiaoxiae/slama.dev/blob/master/_posts/), nebo mi dejte vědět mailem.
+
 ### 1. přednáška
 
 #### Odhady faktoriálu
