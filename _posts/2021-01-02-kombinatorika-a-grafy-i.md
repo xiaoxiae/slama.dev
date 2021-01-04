@@ -497,3 +497,118 @@ Jsou NOLČ, protože:
 
 {:.center}
 ![KPR na latinský čtverec.](/assets/kombinatorika-a-grafy-i/lat-to-kpr.svg)
+
+### 6. přednáška
+
+#### Počítání dvěma způsoby
+
+**Tvrzení:** počet podmnožin {% latex %}X = \left| \binom{X}{k}\right| = \binom{|X|}{k}{% endlatex %}
+
+**Důkaz:** nechť máme bublinu s tečkami, každá reprezentuje uspořádanou {% latex %}k{% endlatex %}-tici prvků z {% latex %}X{% endlatex %}.
+- počet teček {% latex %}= n (n -1) (n-2) \ldots (n - k + 1) = \frac{n!}{(n - k)!}{% endlatex %} (vyberu první prvek, druhý prvek,...)
+- v každé buňce {% latex %}k{% endlatex %}-tic se stejnými prvky je {% latex %}k!{% endlatex %} prvků, počet buňek je to, co chceme (neuspořádaná {% latex %}k{% endlatex %}-tice)
+
+{% latex display %}
+\begin{aligned}
+	\frac{n!}{(n - k)!} &= \left|\binom{X}{k}\right| \cdot k! \\
+	\left|\binom{X}{k}\right|&=  \frac{n!}{(n - k)! k!} = \binom{n}{k} \\
+\end{aligned}
+{% endlatex %}
+
+**Věta (Spernerova):** nechť {% latex %}(\mathcal{P}, \subseteq){% endlatex %} je částečné uspořádání, kde {% latex %}\mathcal{P}{% endlatex %} je množinový systém. Nechť {% latex %}\mathcal{M}{% endlatex %} je nevětši antiřetězec ({% latex %}\forall M_1, M_2 \in \mathcal{M}, M_1 \neq M_2: M_1 \subsetneq M_2 \land M_2 \subsetneq M_1{% endlatex %}). Pak {% latex %}|\mathcal{M}| \le \binom{n}{\left\lceil \frac{n}{2} \right\rceil}{% endlatex %}, kde {% latex %}n = |X|{% endlatex %}.
+
+{:.center}
+![Sperenerova věta.](/assets/kombinatorika-a-grafy-i/spernerova-veta.svg)
+
+**Pomocné tvrzení:** {% latex %}\sum_{M \in \mathcal{M}} \left|M\right|! (n - \left|M\right|)! \le n!{% endlatex %}. Přes dvojí počítání počtu permutací na {% latex %}X{% endlatex %}:
+- počet permutací {% latex %}= n!{% endlatex %} (očividné)
+- počet permutací {% latex %}\ge \sum_{M \in \mathcal{M}} |M|! (n - |M|)! {% endlatex %}, protože:
+	- pro každé {% latex %}M{% endlatex %} dostanu jinou množinu permutaci
+	- {% latex %}M{% endlatex %} určuje množinu permutací takovou, že nejprve permutuji {% latex %}M{% endlatex %}, potom {% latex %}X \setminus M{% endlatex %}:
+
+{% xopp sperner %}
+
+- {% latex %}\emptyset \subseteq \left\{x_1\right\} \subseteq \left\{x_1, x_2\right\} \subseteq \ldots \subseteq M \subseteq \ldots \subseteq X{% endlatex %}
+	- zajímá nás, kolik různých řetězců obsahuje {% latex %}M{% endlatex %}
+- (👀) každý maximální řetězec obsahuje {% latex %}\le 1 M \in \mathcal{M}{% endlatex %} 
+
+**Důkaz (přes pomocné tvrzení):**
+{% latex display %}
+\begin{aligned}
+	\sum_{M \in \mathcal{M}} |M!| (n - |M|)! &\le n! \\
+	\sum \binom{n}{\left\lceil \frac{n}{2} \right\rceil}^{-1} \le \sum_{M \in \mathcal{M}} \frac{|M!| (n - |M|)!}{n!} &\le 1 \qquad //\ \text{používáme větší kombinační číslo} \\
+	\left|\mathcal{M}\right| &\le \binom{n}{\left\lceil \frac{n}{2} \right\rceil}  \\
+\end{aligned}
+{% endlatex %}
+
+#### Grafy bez {% latex %}C_k{% endlatex %}
+
+**Motivace:**
+- kolik nejvíce hran má {% latex %}G{% endlatex %}, když nemá {% latex %}C_k, \forall k{% endlatex %}?
+	- je to strom, tedy {% latex %}n - 1{% endlatex %}
+- kolik nejvíce hran má {% latex %}G{% endlatex %}, když nemá {% latex %}C_3{% endlatex %}?
+	- {% latex %}\mathcal{O}(n^2){% endlatex %}, uvažme bipartitní graf
+
+**Věta:** graf {% latex %}G{% endlatex %} s {% latex %}n{% endlatex %} vrcholy bez {% latex %}C_4{% endlatex %} má nejvýše {% latex %}\frac{1}{2} \left(n^{3/2} + n\right){% endlatex %} hran.
+
+**Důkaz:** dvojí počítání „vidliček“ (cest delky {% latex %}2{% endlatex %}):
+1. pro pevnou dvojici {% latex %}\left\{u, u'\right\}{% endlatex %} mám nanejvýš 1 vidličku (dvě by tvořily čtyřcyklus), tedy {% latex %}\#\ \text{vidliček}\ \le \binom{n}{2}{% endlatex %}
+2. pro pevný vrchol {% latex %}v{% endlatex %} máme {% latex %}\#\ \text{vidliček}\ = \binom{d(v)}{2}{% endlatex %}
+
+{% latex display %}
+\begin{aligned}
+	\#\ \text{vidliček}\ &= \sum_{v \in V} \binom{d(v)}{2} = \sum_{i = 1}^{n} \binom{d_i}{2} \le \binom{n}{2} \\
+	|E| &= \frac{1}{2} \sum_{i = 1}^{n} d_i \qquad //\ \text{princip sudosti}
+\end{aligned}
+{% endlatex %}
+
+Předpoklad: nemáme izolované vrcholy ({% latex %}d_i \ge 1{% endlatex %}), jsou zbytečné. Pak {% latex %}\binom{d_i}{2} \ge \frac{(d_i - 1)^2}{2}{% endlatex %}.
+
+{% latex display %}
+\frac{n^2}{2} \ge \binom{n}{2} \ge \sum_{i = 1}^{n} \binom{d_i}{2} \ge \sum \frac{(d_i - 1)^2}{2} = \sum \frac{k_i^2}{2} \qquad //\ \text{substituce} \\
+\sum k_i^2 \le n^2
+{% endlatex %}
+
+Využijeme Cauchy-Schwartzovu nerovnost na {% latex %}x = (k_1, \ldots, k_n), y = (1, \ldots, 1){% endlatex %}:
+{% latex display %}
+xy = \sum k_i = \sum d_i - 1 = 2|E| - n \\
+|| x ||_2 = \sqrt{\sum k_i^2} \le \sqrt{n^2} = n \qquad || y ||_2 = \sqrt{\sum 1} =  \sqrt{n}
+{% endlatex %}
+
+{% latex display %}
+\begin{aligned}
+	2|E| - n &= xy \le ||x||_2 ||y||_2 = n^{3/2} \\
+	|E| &\le \frac{1}{2} \left(n^{3/2} + n\right)
+\end{aligned}
+{% endlatex %}
+
+#### Počítání koster
+
+**Věta (Cayleyho formule):** počet koster úplného grafu {% latex %}\Kappa(n) = n^{n - 2}{% endlatex %}.
+- pozor, počítám i izomorfní kostry!
+
+**Důkaz:** počítání {% latex %}(T, r, č){% endlatex %}, kde:
+- {% latex %}T{% endlatex %} je strom na {% latex %}n{% endlatex %} vrcholech
+- {% latex %}r{% endlatex %} kořen (hrany vedou **do, ne z!**)
+- {% latex %}č{% endlatex %} očíslování hran (nějaké), {% latex %}č: E \mapsto [n - 1]{% endlatex %}
+
+1. {% latex %}\#(T, r, č) = \Kappa(n) \cdot n \cdot \left(n - 1\right)!{% endlatex %}
+	- {% latex %}T{% endlatex %} je to, co hledáme
+	- {% latex %}r{% endlatex %} volíme libovolně
+	- {% latex %}č{% endlatex %} je prostě random očíslovaní
+2. představa: přidávám hrany, až nakonec dojdu k {% latex %}(T, r, č){% endlatex %} a jsem v {% latex %}k{% endlatex %}-tém kroce:
+	- (👀) nesmím vést hranu uvnitř komponenty (cykly)
+	- (👀) musím vést hranu pouze z kořene dané komponenty (jeden vrchol by měl 2 rodiče)
+
+	1. zvolím, kam šipka povede... {% latex %}n{% endlatex %} způsobů
+	2. zvolím komponentu, ze které povede... {% latex %}n - k - 1{% endlatex %}
+
+{% latex display %}
+\begin{aligned}
+	\#(T, r, č) &= \prod_{k = 0}^{ \overbrace{n - 2}^{\text{počet šipek}}} n ( n - k - 1) = n^{n - 1} (n -1)! \\
+	\Kappa(n) \cdot n \cdot \left(n - 1\right)! &= n^{n - 1} (n -1)! \\
+	\Kappa(n) &= n^{n - 2}
+\end{aligned}
+{% endlatex %}
+
+
