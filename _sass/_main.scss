@@ -281,7 +281,10 @@ $monospaced-font: "Fira Code Light";
 		margin-bottom: $line-spacing;
 	}
 
-	p { margin-bottom : 0pt; }
+	// ad-hoc fixes of stuff somewhere 
+	p:last-child { margin-bottom : 0pt; }
+	ol:last-child { padding-bottom : 0pt; }
+	ul:last-child { padding-bottom : 0pt; }
 
 	border: 1px solid;
 }
