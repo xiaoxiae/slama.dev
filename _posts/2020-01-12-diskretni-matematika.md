@@ -8,7 +8,7 @@ category: "lecture notes"
 {:toc}
 
 ### Úvodní informace
-Tato stránka obsahuje moje poznámky z přednášky Martina Mareše z roku 2019/2020. Pokud by byla někde chyba/nejasnost, tak ji prosím buďto [opravte pull requestem](https://github.com/xiaoxiae/slama.dev/blob/master/_posts/), nebo mi dejte vědět mailem.
+Tato stránka obsahuje moje poznámky z přednášky Martina Mareše z roku 2019/2020. Pokud by byla někde chyba/nejasnost, nebo byste rádi někam přidali obrázek/text, tak stránku můžete upravit [pull requestem](https://github.com/xiaoxiae/slama.dev/blob/master/_posts/) (případně mi dejte vědět, např. na mail).
 
 ### Relace
 Definice: relace mezi množinami {% latex %}X, Y \equiv R \subseteq X \times Y{% endlatex %} (podmnožina kartézského součinu)

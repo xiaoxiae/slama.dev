@@ -7,6 +7,9 @@ category: "lecture notes"
 - .
 {:toc}
 
+### Úvodní informace
+Tato stránka obsahuje moje poznámky z přednášky Pavla Ježka z roku 2019/2020. Pokud by byla někde chyba/nejasnost, nebo byste rádi někam přidali obrázek/text, tak stránku můžete upravit [pull requestem](https://github.com/xiaoxiae/slama.dev/blob/master/_posts/) (případně mi dejte vědět, např. na mail).
+
 ### Zjednodušené schéma počítače
 
 {: style="max-width: 50%" :} 
