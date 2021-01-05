@@ -853,7 +853,6 @@ V {% latex %}H{% endlatex %} existuje vrcholový řez {% latex %}A \subseteq V(H
 
 Možná **TODO:** doplnit, pokud tohle nebude stačit.
 
-
 ### 10. přednáška
 
 #### Lepení uší
@@ -939,6 +938,122 @@ Možná **TODO:** doplnit, pokud tohle nebude stačit.
 4. Hammingův kód
 	- {% latex %}\implies (7,  4, 3)-{% endlatex %}kód
 
+### 11. přednáška
+
+#### Jak nejefektivněji můžeme kódovat?
+
+- {% latex %}A(n, d) = \underset{C}{\mathrm{max}} \log |C|{% endlatex %}
+	- {% latex %}C{% endlatex %} jsou binární kódy délky {% latex %}n{% endlatex %} s min. vzdáleností {% latex %}\ge d{% endlatex %}
+	- „max. velikost kódu, když určím jeho délku a vzdálenost“
+	- {% latex %}A(n, 1) = n{% endlatex %} (triviální kód)
+	- {% latex %}A(n, 2) \ge n - 1{% endlatex %} (paritní kód má {% latex %}|C| = 2^{n -1}, d = 2{% endlatex %})
+
+(👀) {% latex %}\forall d \le n, d \ge 2: A(n, d) \le A(n - 1, d - 1){% endlatex %}
+- mám {% latex %}C{% endlatex %} délky {% latex %}n{% endlatex %} s min. vzdáleností {% latex %}d{% endlatex %}
+- díky tomu, že vzdálenost je alespoň {% latex %}2{% endlatex %}, tak po odstranění bitu vzdálenost slov klesne nejvýše o {% latex %}1{% endlatex %} (pokud se slova v bytu liší)
+
+**Věta (Simpletonův odhad):** {% latex %}\forall d \le n{% endlatex %} platí {% latex %}A(n, d) \le n - d + 1{% endlatex %}
+- {% latex %}A(n, d) \le A(n - 1, d - 1) \le \ldots \le A(n - d + 1, 1) = n - d + 1{% endlatex %}
+- rovněž dostávám {% latex %}A(n, 2) \le A(n - 1, 1) = n - 1{% endlatex %} a vím, že {% latex %}A(n, 2) \ge n - 1{% endlatex %}, tedy rovnost
+
+**Tvrzení:** pro každé sudé {% latex %}d \le n{% endlatex %} je {% latex %}A(n, d) = A(n - 1, d - 1){% endlatex %}
+
+**Důkaz:** nechť {% latex %}C{% endlatex %} je {% latex %}(n - 1, k, d - 1){% endlatex %}-kód. Přidáním paritního bitu ke každému slovu vytvořím {% latex %}(n, k, d)-{% endlatex %}kód, protože slova {% latex %}c{% endlatex %} v liché vzdálenosti (speciálně {% latex %}d - 1{% endlatex %}) v {% latex %}C'{% endlatex %} mají vzdálenost o 1 větší (liší se jejich paritní symboly).
+- {% latex %}\implies{% endlatex %} nejzajímavější jsou kódy s lichým {% latex %}d{% endlatex %} (na sudé lze triviálně rozšířit)
+
+#### Lineární kódy
+
+**Definice:** kód {% latex %}C{% endlatex %} nad {% latex %}\mathbb{Z}_2^n{% endlatex %} je lineární kód, pokud tvoří vektorový podprostor.
+- {% latex %}\forall c, c' \in C: c + c' \in C{% endlatex %}
+- {% latex %}\forall \alpha \in \mathbb{Z}_2: \alpha c \in C{% endlatex %}
+
+(👀) pokud {% latex %}C{% endlatex %} je dimenze {% latex %}k{% endlatex %}, pak má {% latex %}2^k{% endlatex %} prvků, ale k jeho popisu stačí nějaká báze {% latex %}C \equiv k{% endlatex %} slov t. ž. ostatní dostanu lineárními kombinacemi.
+
+**Příklad:** Hammingův kód je lineární a generuje ho **generujicí matice**
+{% latex display %}
+\begin{matrix}
+	v_1 \\
+	v_2 \\
+	v_3 \\
+	v_4
+\end{matrix}
+\begin{pmatrix}
+	1 & 1 & 0 & 1 & 0 & 0 & 0 \\
+	0 & 1 & 1 & 0 & 1 & 0 & 0 \\
+	0 & 0 & 1 & 1 & 0 & 1 & 0 \\
+	0 & 0 & 0 & 1 & 1 & 0 & 1
+\end{pmatrix}{% endlatex %}
+
+- generující matice kódu {% latex %}H{% endlatex %}
+- {% latex %}\left\{v_1, \ldots, v_4\right\}{% endlatex %} je báze {% latex %}H{% endlatex %}
+- {% latex %}\forall c \in H \exists \alpha_1, \ldots, \alpha_4 \in \mathbb{Z}_2{% endlatex %} t. ž. {% latex %}c = \sum_{i = 1}^{4} \alpha_i v_i {% endlatex %}
+
+(👀) {% latex %}\forall x, y, z \in C: d(x, y) = d(x + z, y + z){% endlatex %}
+- „posunutí nějakým směrem“
+- {% latex %}x + z, y + z \in C{% endlatex %} (lineární kódy)
+	- {% latex %}d(x, y) = d(0, y - x){% endlatex %}
+	- {% latex %}\Delta(C) = \underset{x, y \in C}{\mathrm{min}}\ d(0, y - x) \implies \underset{x \in C}{\mathrm{min}}\ d(0, x){% endlatex %}, což je počet nenulových souřadnic
+
+---
+
+- {% latex %}\langle x, y \rangle \sum_{i = 1}^{n} x_i \cdot y_i{% endlatex %} -- něco jako skalární součin
+	- nemusí platit, že {% latex %}x \neq 0 \implies \langle x, x \rangle \neq 0{% endlatex %} (např. pro {% latex %}(1\ 1\ 0\ 0){% endlatex %}
+
+**Definice (duální kód)** {% latex %}C{% endlatex %} je ortogonální doplněk {% latex %}C^\perp = \left\{x\ |\ \langle x, y \rangle = 0, \forall y \in C\right\}{% endlatex %}
+- může být {% latex %}C \cap C^\perp \neq \left\{0\right\}{% endlatex %}, ale platí {% latex %}\mathrm{dim}\ C + \mathrm{dim}\ C^\perp = n{% endlatex %}
+
+(👀) {% latex %}C^\perp{% endlatex %} je opět vektorový podprostor, je to taky kód
+- má také generující matici {% latex %}M{% endlatex %} (tzv. **paritní/kontrolní**)
+- platí {% latex %}C = \left\{x\ |\ Mx = 0\right\}{% endlatex %} (z definice naší „ortogonality“)
+
+(👀) nechť {% latex %}G{% endlatex %} je generující matice kódu {% latex %}C{% endlatex %}
+- {% latex %}G{% endlatex %} můžu zgausoeliminovat na {% latex %}G'{% endlatex %}, která stále generuje {% latex %}C{% endlatex %}
+- ke kódování daného slova stačí sečíst příslušné řádky {% latex %}G'{% endlatex %}, protože se jedná o jediný způsob, jak dostat bity slova
+
+{% latex display %}c = (1\ 1\ 0\ 1) \qquad x = (\underbrace{1\ 1\ 0\ 1}_{\text{informační bity}} \overbrace{\ldots\ldots\ldots}^{\text{kontrolní/paritní bity}}){% endlatex %}
+
+##### Dekódování
+
+Mějme {% latex %}C{% endlatex %} lineární kód délky {% latex %}n{% endlatex %} nad {% latex %}\mathbb{Z}_2^4{% endlatex %}. Bylo odesláno slovo {% latex %}x \in C{% endlatex %} a přijato slovo {% latex %}\tilde{x}{% endlatex %}.
+- mohly nastat chyby {% latex %}e = \tilde{x} - x{% endlatex %} (chybový vektor)
+	- chceme ho objevit, abychom rozluštili {% latex %}x{% endlatex %}
+
+{% latex %}P{% endlatex %} je paritní matice kódu {% latex %}C{% endlatex %}, tzn. {% latex %}C = \left\{x\ |\ Px = 0\right\}{% endlatex %}.
+
+**Definice (syndrom)** slova {% latex %}z{% endlatex %} je {% latex %}Pz{% endlatex %}.
+- (👀) kódová slova {% latex %}\equiv{% endlatex %} slova se syndromem {% latex %}0{% endlatex %} (viz. definice {% latex %}P{% endlatex %}...)
+
+**Předpoklad:** chybový vektor {% latex %}e{% endlatex %} je slovo s nejmenší vahou ve své třídě
+- **třída** {% latex %}= \left\{e'\ |\ Pe' = P\tilde{x} = P(x + e) = Px + Pe = Pe\right\}{% endlatex %} (slova se stejným syndromem)
+- **reprezentant** třídy {% latex %}s \in Z_2^k{% endlatex %} je slovo {% latex %}m(s) \in Z_2^n{% endlatex %} t. ž. {% latex %}P m(s) = s{% endlatex %} t. ž. {% latex %}w(m(s){% endlatex %} je minimální
+
+**Dekódování:**
+- vezmu {% latex %}s = P\tilde{x}{% endlatex %}
+- najdu reprezentanta {% latex %}m(s){% endlatex %}
+- výsledek dekódování {% latex %}y = \tilde{x} - m(s) = \tilde{x} - m(P\tilde{x}){% endlatex %}
+	- (👀)  {% latex %}y{% endlatex %} má mezi kódovými slovy nejmenší vzdálenost od {% latex %}\tilde{x}{% endlatex %}
+
+**Příklad:**
+- {% latex %}G = \begin{matrix} v_1 \\ v_2 \end{matrix} \begin{pmatrix} 1 & 1 & 1 & 0 & 0 \\ 0 & 0 & 1 & 1 & 1 \end{pmatrix}{% endlatex %}
+- {% latex %}k = 2{% endlatex %}, máme {% latex %}4{% endlatex %} slova {% latex %}\left\{v_1, v_2, (0\ \ldots\ 0), v_1 + v_2\right\}{% endlatex %}
+- {% latex %}\Delta(C) = 3{% endlatex %} (počet jedniček vektoru báze)
+- jedná se o {% latex %}(5, 2, 3)-{% endlatex %}kód
+- {% latex %}P = \begin{pmatrix} 1 & 1 & 0 & 0 & 0 \\ 0 & 1 & 1 & 1 & 0 \\ 0 & 0 & 0 & 1 & 1 \end{pmatrix}{% endlatex %}
+
+1. {% latex %}\tilde{x} = v_1 = (1\ 1\ 1\ 0\ 0){% endlatex %}, {% latex %}P\tilde{x} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}{% endlatex %} (nulový syndrom, což je správně)
+2. {% latex %}\tilde{x} = (0\ 0\ 1\ 0\ 1){% endlatex %}, {% latex %}P\tilde{x} = \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}{% endlatex %} (nějaký syndrom)
+	- podíváme se do tabulky syndromů (vybruteforcená)
+	- dostaneme ze syndromu reprezentanta {% latex %}m(s) = (0\ 0\ 0\ 1\ 0){% endlatex %}
+	- spočítáme {% latex %}x = \tilde{x} - e = (0\ 0\ 1\ 1\ 1){% endlatex %}
+	- protože došlo k chybě v {% latex %}1{% endlatex %} pozici a jedná se o {% latex %}(5, 2, 3){% endlatex %}-kód, {% latex %}x{% endlatex %} je správné dekódování
+3. pro {% latex %}\tilde{x} = (0\ 1\ 1\ 0\ 1){% endlatex %} dostáváme váhu syndromu {% latex %}2{% endlatex %} a to už neopravíme
+
+##### Hammingovy kódy
+**Pozorování:** nechť {% latex %}P{% endlatex %} je kontrolní matice {% latex %}C{% endlatex %}. Pak {% latex %}\Delta(C) = {% endlatex %} maximální {% latex %}d{% endlatex %} t. ž. {% latex %}\forall d - 1{% endlatex %} sloupců {% latex %}P{% endlatex %} je lineárně nezávislých
+
+TODO: už mi to nemyslí, pak to dodělám
+
 ### Zdroje
 - [https://research.koutecky.name/db/teaching:kg12021_prednaska]() -- stránka cvičení
 	- odkaz na všechny obrázky, zdroje, nahrávky cvičení
+- [https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols]() -- {% latex %}\LaTeX{% endlatex %}ové matematické symboly
