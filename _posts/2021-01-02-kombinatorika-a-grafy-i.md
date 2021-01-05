@@ -289,13 +289,22 @@ Pro daný koeficient vytvořující funkce tedy máme:
 
 **Tvrzení:** „v KPR mají všechny přímky stejný počet bodů“
 
-**Pomocné tvrzení:** {% latex %}\exists z \in X{% endlatex %}, které neleží ani na jedné z nich. Dokáže se přes to přes rozbor příkladů toho, jak vedou přímky přes {% latex %}Č{% endlatex %}:
+**Pomocné tvrzení:** {% latex %}\forall P, P' \in \mathcal{P} \exists z \in X{% endlatex %}, které neleží ani na jedné z nich.
+
+Dokáže se přes to přes rozbor příkladů toho, jak vedou přímky přes {% latex %}Č{% endlatex %}:
 - pokud nevedou přes všechny body z {% latex %}Č{% endlatex %}, pak máme vyhráno
 - pokud vedou, tak existují dvě další přímky {% latex %}P_1{% endlatex %} a {% latex %}P_2{% endlatex %} vedoucí kolmo na naše přímky, jejich průnik je hledaný bod; původní přímky jím vést nemohou, protože pak by dvě přímky sdílely 2 body, což nelze
+
+{:.center}
+![](/assets/kombinatorika-a-grafy-i/bod-na-primce.svg)
 
 ### 4. přednáška
 
 **Důkaz původního tvrzení:** pro přímky {% latex %}P{% endlatex %}, {% latex %}P'{% endlatex %} a bod {% latex %}z{% endlatex %} (který nesdílí) budeme dělat bijekci tak, že budu tvořit přímky z bodu {% latex %}z{% endlatex %} na body z {% latex %}P{% endlatex %}, které budou rovněž protínat body z {% latex %}P'{% endlatex %}.
+
+{:.center}
+![](/assets/kombinatorika-a-grafy-i/kpr-bijekce.svg)
+
 
 **Definice (řád KPR):** řádem {% latex %}(X, \mathcal{P}){% endlatex %} je {% latex %}h = |P| - 1{% endlatex %} pro jakoukoliv {% latex %}P \in \mathcal{P}{% endlatex %}
 
@@ -314,7 +323,8 @@ Pro daný koeficient vytvořující funkce tedy máme:
 
 Poté stačí uvážit následující obrázek a spočítat body/přímky. Další body už neexistují, protože kdyby existoval, tak by jím musela procházet přímka z {% latex %}x{% endlatex %} a ta by rovněž někde protínala {% latex %}P{% endlatex %} (a nesplňovala tak axiomy.
 
-{% xopp primky-v-kpr %}
+{:.center}
+![](/assets/kombinatorika-a-grafy-i/kpr-pocet.svg)
 
 Bodů na obrázku je {% latex %}\overbrace{1}^{x} + \underbrace{\left(n + 1\right)}_{P_0 \ldots P_n}\overbrace{n}^{\text{body $P_i$, bez $x$}} = n^2 + n + 1{% endlatex %}
 
@@ -362,6 +372,9 @@ Pro KPR řádu {% latex %}p^k{% endlatex %}, {% latex %}p{% endlatex %} prvočí
 - {% latex %}\mathcal{P}{% endlatex %}: pro každou {% latex %}(a, b, c) \in T{% endlatex %} definujeme přímku {% latex %}P_{a, b, c}{% endlatex %} jako množinu bodů {% latex %}(x, y, t){% endlatex %} splňující {% latex %}ax + by + ct = 0{% endlatex %}
 	- {% latex %}\forall (x, y, t) \in T, \forall \lambda \neq 0: (x, y, t){% endlatex %} splňuje {% latex %}\iff (\lambda x, \lambda y, \lambda t{% endlatex %} splňuje
 	- {% latex %}\forall (a, b, c) \in T, \forall \lambda{% endlatex %} fixuji {% latex %}(x, y, t) \in T: ax + by + ct = 0 \iff \lambda ax + \lambda by + \lambda ct = 0 \implies{% endlatex %} přímky {% latex %}P_{a, b, c} = P_{\lambda a, \lambda b, \lambda c} \implies |\mathcal{P}| = |X|{% endlatex %} a mohu si opět zvolit reprezentanty
+
+{:.center}
+![](/assets/kombinatorika-a-grafy-i/kpr-alg.svg)
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -551,6 +564,9 @@ Jsou NOLČ, protože:
 	- {% latex %}\mathcal{O}(n^2){% endlatex %}, uvažme bipartitní graf
 
 **Věta:** graf {% latex %}G{% endlatex %} s {% latex %}n{% endlatex %} vrcholy bez {% latex %}C_4{% endlatex %} má nejvýše {% latex %}\frac{1}{2} \left(n^{3/2} + n\right){% endlatex %} hran.
+
+{:.rightFloatBox}
+![Vidlička.](/assets/kombinatorika-a-grafy-i/vidlicka.svg)
 
 **Důkaz:** dvojí počítání „vidliček“ (cest delky {% latex %}2{% endlatex %}):
 1. pro pevnou dvojici {% latex %}\left\{u, u'\right\}{% endlatex %} mám nanejvýš 1 vidličku (dvě by tvořily čtyřcyklus), tedy {% latex %}\#\ \text{vidliček}\ \le \binom{n}{2}{% endlatex %}
@@ -831,14 +847,98 @@ V {% latex %}H{% endlatex %} existuje vrcholový řez {% latex %}A \subseteq V(H
 
 **Věta (Mengerova):** {% latex %}k_v(G) \ge T \iff \forall u, v \in V \exists t{% endlatex %} vrcholově disjunktních cest
 
-**Důkaz:** obdobný, jen rozpojíme každý vrchol na dva ({% latex %}\mathrm{deg}_{\mathrm{in}}, \mathrm{deg}_{\mathrm{out}}{% endlatex %})
-- najdu max. celočíselny tok {% latex %}f{% endlatex %}
-- chci min. řez {% latex %}R'{% endlatex %} takový, že obsahuje pouze pomocné hrany
-	- vezmu řez {% latex %}R{% endlatex %} odpovídající {% latex %}F{% endlatex %} a vždy je posunu tak, aby podmínka platila
+**Důkaz ({% latex %}\Leftarrow{% endlatex %}):** stejný jako FF, jen nahraď „hrany“ za „vrcholy“.
 
-TODO: ještě doplnit na 10 přednášce
+**Důkaz ({% latex %}\Rightarrow{% endlatex %}):** uděláme trik s dělením vrcholů na dva ({% latex %}\mathrm{deg}_{\mathrm{in}}, \mathrm{deg}_{\mathrm{out}}{% endlatex %}) a v libovolném řezu nahradíme hrany vedoucí do/z vrcholů za hranu spojující vrcholy. 
+
+Možná **TODO:** doplnit, pokud tohle nebude stačit.
+
+
+### 10. přednáška
+
+#### Lepení uší
+
+**Věta:** graf je {% latex %}2{% endlatex %}-souvislý právě tehdy, když jej lze vytvořit  z {% latex %}K_3{% endlatex %} posloupností:
+- dělení hran
+- přidávání hran
+
+**Důkaz ({% latex %}\Rightarrow{% endlatex %}):**
+- zvolme {% latex %}G_0{% endlatex %} libovolně (kružnici mít musí, jinak není {% latex %}2{% endlatex %}-souvislý).
+- předpokládejme, že {% latex %}G_j, j \le i{% endlatex %} jsou definovány jako výše
+- pokud {% latex %}G_i = G{% endlatex %}, tak jsme hotovi
+- jinak {% latex %}E_i \neq E{% endlatex %}, {% latex %}G{% endlatex %} je souvislý
+	- {% latex %}\exists e = \left\{v, v'\right\} \in E \setminus E_i{% endlatex %}, která se dotýká původního grafu {% latex %}e \cap V_i \neq \emptyset{% endlatex %}
+		- pokud oba vrcholy {% latex %}e{% endlatex %} patří do {% latex %}V_i{% endlatex %}, tak ji přidám ({% latex %}G_{i + 1} = G_i + e{% endlatex %})
+		- pokud ne: {% latex %}G - v{% endlatex %} musí stále být souvislý ({% latex %}G{% endlatex %} je {% latex %}2{% endlatex %}-souvislý) -- prostě vezmeme nejkratší cestu zpět do nějakého {% latex %}G_j{% endlatex %}
+
+{:.center}
+![Lepení uší.](/assets/kombinatorika-a-grafy-i/ears.svg)
+
+**Důkaz ({% latex %}\Leftarrow{% endlatex %}):** stačí vidět, že nikdy nevznikne artikulace, protože uši lepím mezi {% latex %}2{% endlatex %} různé vrcholy.
+
+#### Samoopravné kódy
+
+**Hammingův kód:** vycházíme z fannovy roviny a o přímkách uvažujeme jako o prvcích {% latex %}\mathbb{Z}_2^7{% endlatex %}
+
+{% latex display %}H = \underbrace{\left\{\text{char. vektory přímek}\right\}}_{P_1 = \left\{1, 2, 4\right\} = (1\ 1\ 0\ 1\ 0\ 0\ 0)} \cup \underbrace{\left\{\text{char. vektory doplňků přímek}\right\}}_{P_1 + (1\ \ldots\ 1) = (0\ 0\ 1\ 0\ 1\ 1\ 1)} \cup \left\{(0\ \ldots\ 0), (1\ \ldots\ 1)\right\}{% endlatex %}
+- {% latex %}|H| = 7 + 7 + 2 = 16{% endlatex %}
+- {% latex %}c \in H{% endlatex %} je **kódové slovo**
+- {% latex %}H{% endlatex %} je **kód**
+- (👀) {% latex %}\forall c, c' \in H{% endlatex %} se liší v alespoň třech souřadnicích
+	- vychází z KPR, později dokážeme obecně
+- (👀)  {% latex %}\forall v \in \mathbb{Z}_2^7 \exists! c \in H{% endlatex %} t. ž. {% latex %}d(v, c) \le 1{% endlatex %}
+	- dostáváme z toho dekódovací pravidlo -- dekóduj na nejbližší slovo!
+
+**Protokol:**
+1. vezmi kódovou zprávu
+2. rozděl na {% latex %}4{% endlatex %}-bitové bloky
+3. zakóduj přes Hammingův kód
+	- nějak rozumně očísluj kódová slova!
+4. profit?
+
+**Výsledek:**
+- zpráva je o {% latex %}7/4{% endlatex %} delší
+- {% latex %}\mathrm{Pr}\left[\text{jeden blok se správně rozkóduje}\right] = \overbrace{(1 - p)^7}^{\text{vše ok}} + \overbrace{7p(1 - p)^6}^{\text{jeden špatně}} = (1-p)^6(1 + 6p){% endlatex %}
+- {% latex %}\mathrm{Pr}\left[\text{celá zpráva se správně dekóduje}\right] = \left((1-p)^6(1 + 6p)\right)^{n/4}{% endlatex %}
+	- pro {% latex %}n = 100, p = 0.01{% endlatex %} vyjde {% latex %}95\%{% endlatex %}, což je nice!
+
+---
+
+**Definice:**
+- {% latex %}\Sigma \ldots{% endlatex %} abeceda
+	- {% latex %}s \in \Sigma^n \ldots{% endlatex %} slovo (vstup)
+- {% latex %}C \subseteq \Sigma^n \ldots{% endlatex %} kód
+	- {% latex %}c \in C \ldots{% endlatex %} kódové slovo (naše special slova)
+	- {% latex %}|C| \ldots{% endlatex %} velikost kódu
+	- {% latex %}n \ldots{% endlatex %} délka kódu
+	- {% latex %}k = \log |C| \ldots{% endlatex %} dimenze kódu (bude se hodit později)
+- pro {% latex %}x, y \in \Sigma^n: d_H (x, y)\ldots{% endlatex %}  počet souřadnic, ve kterých se liší
+	- je to metrika
+	- {% latex %}d = \Delta(C) = \underset{x, y \in C}{\mathrm{min}}\ d(x, y) \ldots{% endlatex %} (min.) vzdálenost {% latex %}C{% endlatex %}
+		- {% latex %}d = 1 \ldots{% endlatex %} nepoznám chybu
+		- {% latex %}d = 2 \ldots{% endlatex %} poznám, že došlo k chybě
+		- {% latex %}d = 3 \ldots{% endlatex %} umím opravit {% latex %}1{% endlatex %} chybu
+- kód s vlastnostmi {% latex %}n, k, d{% endlatex %} se označuje {% latex %}(n,k,d)-{% endlatex %} kód
+
+**Příklady kódů:**
+1. totální kód {% latex %}C = \Sigma^n{% endlatex %} (nic se nekóduje)
+	- délka {% latex %} = n{% endlatex %}
+	- velikost {% latex %}= 2^k \implies k = \log |C| = n{% endlatex %}
+	- {% latex %}d = 1{% endlatex %}
+	- {% latex %}\implies (n, n, 1)-{% endlatex %}kód
+2. opakovací kód délky {% latex %}n{% endlatex %}
+	- délka {% latex %}= n{% endlatex %}
+	- velikost {% latex %}= 2 \implies k = 1{% endlatex %}
+	- {% latex %}d = n{% endlatex %}
+	- {% latex %}\implies (n, 1, n)-{% endlatex %}kód
+3. paritní kód {% latex %}C \subseteq \Sigma^n{% endlatex %} t. ž. {% latex %}x \in C: \sum_{x_i} = 0{% endlatex %} (počet jedniček je sudý)
+	- délka {% latex %}= n{% endlatex %}
+	- velikost {% latex %}= 2^{n - 1} \implies k = n - 1{% endlatex %}
+	- {% latex %}d = 2{% endlatex %}, protože změna bitů mění paritu
+	- {% latex %}\implies (n,  n - 1, 2)-{% endlatex %}kód
+4. Hammingův kód
+	- {% latex %}\implies (7,  4, 3)-{% endlatex %}kód
 
 ### Zdroje
 - [https://research.koutecky.name/db/teaching:kg12021_prednaska]() -- stránka cvičení
 	- odkaz na všechny obrázky, zdroje, nahrávky cvičení
-
