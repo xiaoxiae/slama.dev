@@ -1053,6 +1053,184 @@ Mějme {% latex %}C{% endlatex %} lineární kód délky {% latex %}n{% endlatex
 
 TODO: už mi to nemyslí, pak to dodělám
 
+### 12. přednáška
+
+TODO: navazuje na hammingovy kódy z 11.
+
+#### Ramseyova teorie
+
+**Motivace:** party o {% latex %}6{% endlatex %} lidech::
+
+{:.center}
+![](/assets/kombinatorika-a-grafy-i/ramsey-motivace.svg)
+
+**Věta:** pro každý graf na {% latex %}\ge 6{% endlatex %} vrcholech {% latex %}\exists{% endlatex %} podrgraf {% latex %}E_3{% endlatex %} (prázdný graf) nebo {% latex %}K_3{% endlatex %}.
+- {% latex %}\omega(G) \ge 3{% endlatex %} -- velikost maximální kliky
+- {% latex %}\alpha(G) \ge 3{% endlatex %} -- velikost maximální nezávislé množiny
+
+{:.rightFloatBox}
+![](/assets/kombinatorika-a-grafy-i/ramsey-obr.svg)
+
+**Důkaz:** vyberu libovolný vrchol {% latex %}u{% endlatex %}. Podívám se na vrcholy {% latex %}A{% endlatex %}, se kterými nesousedí, zbytek nechť je {% latex %}B{% endlatex %}.
+
+1. {% latex %}|A| \ge 3, A \supseteq \left\{x, y, z\right\} {% endlatex %}
+	- všichni mezi sebou mají hranu, pak máme {% latex %}K_3{% endlatex %}
+	- BUNO {% latex %}\exists{% endlatex %} nehrana {% latex %}xy{% endlatex %}, pak {% latex %}\left\{u, x, y\right\}{% endlatex %} tvoří {% latex %}E_3{% endlatex %}
+2. symetricky
+
+**Věta (obecnější Ramseyova):** nechť {% latex %}G{% endlatex %} má {% latex %}\ge \binom{k + l - 2}{k - 1}{% endlatex %} vrcholů {% latex %}\implies \omega(G) \ge k{% endlatex %}  nebo {% latex %}\alpha(G) \ge l{% endlatex %}.
+- (👀) ze symetrie kombinačních  čísel máme symetrii v {% latex %}k, l{% endlatex %}, protože {% latex %}\binom{k + l - 2}{k - 1} = \binom{k + l - 2}{l - 1}{% endlatex %}
+
+**Důkaz:** indukcí podle {% latex %}k + l{% endlatex %}
+- pro {% latex %}k = 1, l = 1{% endlatex %} a {% latex %}k = 2, l = 2{% endlatex %} jednoduché (vždy existuje hrana/nehrana)
+- pro {% latex %}k, l \ge 2{% endlatex %} a tvrzení platí pro {% latex %}k, l - 1{% endlatex %} a {% latex %}k-1, l{% endlatex %}
+	- {% latex %}n_1 = \binom{k + l - 3}{k - 1}{% endlatex %} a {% latex %}n_2 = \binom{k + l - 3}{l - 1 = k - 2}{% endlatex %} (dřívější odhady)
+		- (👀) platí, že {% latex %}n = n_1 + n_2{% endlatex %}
+
+Zvolím {% latex %}u \in G{% endlatex %} libovolně. Z principu holubníku ([Dirichletův princip](https://mathworld.wolfram.com/DirichletsBoxPrinciple.html)) je {% latex %}|A| \ge n_1, |B| \ge n_2{% endlatex %} (jsou-li ostře menší, tak nedají {% latex %}n-1{% endlatex %}, ale {% latex %}n - 2{% endlatex %}).
+1. {% latex %}|A| \ge n_1{% endlatex %}, použiji indukci na {% latex %}A{% endlatex %}:
+	- {% latex %}\omega(G[A]) \ge k{% endlatex %} a jsem hotov
+	- {% latex %}\alpha(G[A]) \ge l - 1{% endlatex %}, pak tato nezávislá množina spolu s {% latex %}u{% endlatex %} dává nezávislou mnozinu velikosti {% latex %}\ge l{% endlatex %}
+2. analogicky: {% latex %}|B| \ge n_2{% endlatex %}, použiji indukci na {% latex %}B{% endlatex %}:
+	- {% latex %}\omega(G[A]) \ge l{% endlatex %}, pak tato klika spolu s {% latex %}u{% endlatex %} dává kliku velikosti {% latex %}\ge k{% endlatex %}
+	- {% latex %}\alpha(G[A]) \ge l{% endlatex %} a jsem hotov
+
+**Důsledek:** {% latex %}\forall k, l \exists r(k, l){% endlatex %} t. ž. {% latex %}\forall G: \omega(G) \ge k{% endlatex %} nebo {% latex %}\alpha(G) \ge l{% endlatex %}.
+- {% latex %}r(k, l) = \mathrm{min}\ N{% endlatex %} t. ž. platí {% latex %}\forall G{% endlatex %} velikosti {% latex %}N{% endlatex %} platí výše uvedené
+- podle věty nahoře máme {% latex %}r(k, l) \le \binom{k + l - 2}{k - 1}{% endlatex %}
+
+**Pár hodnot:**
+- {% latex %}r(1, l) = 1{% endlatex %}
+- {% latex %}r(k, 1) = 1{% endlatex %}
+- {% latex %}r(2, l) = l{% endlatex %}
+- {% latex %}r(k, 2) = k{% endlatex %}
+- dříve jsme dokázali, že {% latex %}r(3, 3) \le 6 {% endlatex %} a z {% latex %}C_5{% endlatex %} víme, že {% latex %}r(3, 3) > 5{% endlatex %}, tedy {% latex %}r(3, 3) = 6{% endlatex %}
+
+**Definice {% latex %}r(k, k){% endlatex %}** symetrické Ramseyovo číslo, říká se mu {% latex %}r(n) = r(n, n){% endlatex %}. „Jak velký musí být graf, abych tam našel buď {% latex %}E_n{% endlatex %} nebo {% latex %}K_n{% endlatex %}“.
+
+**Věta:** {% latex %}k, n \in \mathbb{N}{% endlatex %} t. ž. {% latex %}\binom{n}{k} 2^{1 - \binom{k}{2}} < 1 \implies r(k) > n{% endlatex %}.
+
+Co jsou čísla zač? Použijeme odhad:
+- {% latex %}\frac{n}{k} \le \frac{n^k}{k!} < \frac{n^k}{2^{k/2 + 1}}{% endlatex %}
+
+{% latex display %}\binom{n}{k}2^{1 - \binom{k}{2}} < \frac{n^k}{2^{k/2 + 1}} 2^{1 - k(k - 1) / 2} = \left(\frac{n}{2^{k / 2}}\right)^k{% endlatex %}
+
+Kde poslední {% latex %}={% endlatex %} platí, protože:
+{% latex display %}\frac{1}{2^{k/2 + 1}} 2^{1 - k(k - 1)/2} = \frac{1}{2 \cdot 2^{k/2}} \frac{2}{2^{k(k - 1)/2}} = \frac{1}{2^{k/2 (1 + k - 1)}} = \left(\frac{1}{2^{k/2}}\right){% endlatex %}
+
+**Důsledek:** {% latex %}\forall k \ge 3: r(k) > 2^{k/2}{% endlatex %}
+- dosadíme {% latex %}n = 2^{k/2}{% endlatex %} do předchozího (předchozí je ostrý odhad, takže {% latex %}1^k < 1{% endlatex %} funguje)
+
+**Důkaz:** vezmu náhodný graf {% latex %}G{% endlatex %} t. ž. každá z {% latex %}\binom{n}{2}{% endlatex %} má pravděpodobnost {% latex %}1/2{% endlatex %}, nezávisle na ostatních. Nechť {% latex %}K \subseteq V, |K| = k{% endlatex %}. {% latex %}A_K \ldots{% endlatex %} jev, že {% latex %}G[K]{% endlatex %} je klika. {% latex %}\mathrm{Pr}[A_K] = \left(\frac{1}{2}\right)^{\binom{k}{2}} = 2^{-\binom{k}{2}}{% endlatex %}. Obdobně {% latex %}B_K{% endlatex %} jev, že vznikla nezávislá množina a {% latex %}C_K \ldots A_K \cup B_K \ldots \mathrm{Pr}[C_K] = 2 \cdot 2^{-\binom{k}{2}} = 2^{1 - \binom{k}{2}}{% endlatex %}. {% latex %}p \ldots{% endlatex %} pravděpodobnost, že {% latex %}\exists K \subseteq V{% endlatex %} t. ž. nastal jev {% latex %}C_K{% endlatex %}. Je ji těžké určit, protože jevy nejsou nezavislé (množiny se mohou překrývat), nám ale stačí odhad který předpokládá, že jsou jevy nezávislé:
+
+{% latex display %}\mathrm{Pr}[C] \le \sum_{K \in V, |K| = k} \mathrm{Pr}[C_K] = \binom{n}{k} \cdot 2^{1 - \binom{k}{s}} < 1{% endlatex %}
+- předposlední rovnost je z definice -- všechny možné {% latex %}K{% endlatex %}-tice
+- poslední rovnost je předpoklad věty
+- máme, že pravděpodobnost, že nějaká {% latex %}K{% endlatex %}-prvková množina bude tvořit buďto kliku nebo nezávislou množinu velikosti {% latex %}k{% endlatex %} je {% latex %}< 1{% endlatex %}, tedy pravděpodobnost, že to nenastane je {% latex %}> 0{% endlatex %}, tedy {% latex %}\exists{% endlatex %} nějaký z náhodných grafů, který tohle nesplňuje
+	- pokud pravděpodobnost je nenulová, tak musí existovat nějaké množství grafů, které tenhle jev mají (protože jinak by nerovnost nebyla ostrá
+
+### 13. přednáška
+
+#### Ramseyovy barevné/nekonečné věty
+
+{:.rightFloatBox}
+<div markdown="1">
+„Pokud mám alespoň {% latex %}\ge N{% endlatex %} prvků a dávám je do {% latex %}t{% endlatex %} holubníků, pak bude existovat holubník s alespoň {% latex %}k{% endlatex %} prvky.“
+</div>
+
+**Věta (princip holubníku):** pro každé {% latex %}t, k \in \mathbb{N} \exists N{% endlatex %} t. ž. {% latex %}\forall c: [n] \mapsto [t]{% endlatex %} platí, že {% latex %}\forall n \ge N \exists A \subseteq [n]{% endlatex %}, na níž je funkce {% latex %}c{% endlatex %} konstantní.
+
+**Důkaz:** {% latex %}N = t (k - 1) + 1{% endlatex %}.
+
+**Věta (nekonečný princip holubníku):** pro každé {% latex %}t \in \mathbb{N}{% endlatex %} a každé {% latex %}c: \mathbb{N} \mapsto [t]{% endlatex %} existuje nekonečná množina {% latex %}A \subseteq \mathbb{N}{% endlatex %}, pro níž je funkce {% latex %}c{% endlatex %} konstantní.
+- z „existuje holubník s hodně holuby“ máme „existuje holubník s nekonečně holuby“
+
+**Důkaz:** rozdělím {% latex %}\mathbb{N}{% endlatex %} na {% latex %}B_1, \ldots, B_t{% endlatex %}, kde {% latex %}B_i = \left\{m \in \mathbb{N}\ |\ c(m) = i\right\}{% endlatex %}. Protože sjednocením je nekonečná množina pak alespoň jedna musí být nekonečná.
+
+**Věta (nekonečná Ramseyova):** pro každé {% latex %}t \in \mathbb{N}, \forall c: \binom{\mathbb{N}}{2} \mapsto [t] \exists{% endlatex %} nekonečna množina {% latex %}A \subseteq \mathbb{N}{% endlatex %}, pro níž je funkce {% latex %}c{% endlatex %} na hranách {% latex %}\binom{A}{2}{% endlatex %} konstantní.
+
+{:.rightFloatBox}
+<div markdown="1">
+sanity check: {% latex %}A_1 \supset A_2 \supset \ldots {% endlatex %}
+</div>
+
+**Důkaz:** sestrojím posloupnost nekonečných množin {% latex %}A_1 = \mathbb{N}, \ldots{% endlatex %} a pro {% latex %}i = 1, 2, \ldots{% endlatex %} opakujeme:
+- vybereme {% latex %}v_i \in A_i{% endlatex %}
+- rozdělíme {% latex %}A{% endlatex %} na {% latex %}B_i^1, B_i^2\ldots, B_i^t{% endlatex %} podle toho, jakou barvu má hrana, která množinu spojuje s {% latex %}v_i{% endlatex %}
+	- jelikož {% latex %}A_i{% endlatex %} je nekonečná, tak {% latex %}\exists B_i^j{% endlatex %} pro nějakou barvu, která je také nekonečná
+- položme {% latex %}A_{i + 1} = B_i^j{% endlatex %}
+
+(👀) posloupnost vrcholů {% latex %}v_1, v_2, \ldots{% endlatex %} má vlastnost, že pokud {% latex %}i < j{% endlatex %}, pak {% latex %}\left\{v_i, v_j\right\}{% endlatex %} má barvu {% latex %}b_i{% endlatex %}
+- v každém kroku se zanořuju, ale při zanoření už platí, že všichni sousedi jsou k {% latex %}v_i{% endlatex %} spojeni hranou dané barvy
+- {% latex %}\implies{% endlatex %} barva hrany {% latex %}\left\{v_i, v_j\right\}{% endlatex %} závisí pouze na {% latex %}i{% endlatex %}, ne na {% latex %}j{% endlatex %}
+- mám posloupnost barev {% latex %}b_1, b_2, b_3, \ldots{% endlatex %}
+	- je nekonečná, ale opakuje se tu konečně mnoho hodnot
+	- aplikuji nekonečný holubník {% latex %}\implies \exists j \in [t]{% endlatex %} opakující-se nekonečněkrát a takové vrcholy vyberu, jednota barev vychází z pozorování
+
+{:.rightFloatBox}
+<div markdown="1">
+„Pokud {% latex %}n \ge N{% endlatex %}, tak každé obarvení {% latex %}K_n{% endlatex %} {% latex %}t{% endlatex %} barvami obsahuje jednobarevný {% latex %}K_k{% endlatex %} jako podgraf.“
+</div>
+
+**Věta (Ramseyova vícebarevná):** {% latex %}\forall t, k \in \mathbb{N}{% endlatex %} ({% latex %}t{% endlatex %} počet barev, {% latex %}k{% endlatex %} velikost kliky) {% latex %}\exists N \in \mathbb{N}{% endlatex %} t. ž. {% latex %}\forall c: \binom{[n]}{2} \mapsto [t], \forall n \ge N{% endlatex %} (obarvení {% latex %}K_n{% endlatex %} {% latex %}t{% endlatex %} barvami) existuje množina {% latex %}A \subseteq [n], |A| = k{% endlatex %}, pro níž je funkce {% latex %}c{% endlatex %} na {% latex %}\binom{A}{2}{% endlatex %} konstantní.
+
+
+**Důkaz:** adaptujeme nekonečný na konečný případ -- chtěli bychom posloupnost barev {% latex %}b_1, \ldots, b_{tk}{% endlatex %} -- když do toho praštíme holubníkem, tak máme barvu, která je tam {% latex %}k{% endlatex %}-krát. 
+- upravím konstrukci množin {% latex %}A_i{% endlatex %}: beru vždy největší třídu
+	- {% latex %}|A_{i + 1}| \ge \frac{|A_i| - 1}{t}{% endlatex %} (max. je větší/roven průměru)
+	- potřebuji, aby konstrukce běžela alespoň {% latex %}tk{% endlatex %} kroků
+	- potřebuji, aby {% latex %}|A_{tk}| \ge 1, |A_{tk - 1}| \ge t + 1, \ldots, |A_1| \ge \sum_{i = 0}^{tk} t^i = \frac{t^{tk + 1} - 1}{t - 1}{% endlatex %}
+		- na zkoušce nebude -- jen bychom měli vědět, že se to takhle dá umlátit
+
+**Definice (hypergraf)** je zobecněný graf, kde:
+- hrany jsou libovolné množiny (místo dvojic, jako v normálním grafu)
+- **uniformní** hypergraf -- hrany jsou {% latex %}p{% endlatex %}-prvkové množiny
+
+
+**Věta (nekonecná Ramseyova věta pro pětice):** {% latex %}\forall p, t \in \mathbb{N}{% endlatex %} a {% latex %}\forall c: \binom{\mathbb{N}}{p} \mapsto [t] \exists A \subseteq \mathbb{N}{% endlatex %} nekonečná t. ž. {% latex %}c{% endlatex %} je na {% latex %}\binom{A}{p}{% endlatex %} konstantní.
+- {% latex %}p{% endlatex %} je arita hran (velikost množin), {% latex %}t, k{% endlatex %} jsou stejné
+
+**Důkaz:** indukcí podle {% latex %}p{% endlatex %}, pro {% latex %}p=1{% endlatex %} je to nekonečný holubník (pro {% latex %}p = 2{% endlatex %} je to Ramsey)
+- IP: věta platí pro {% latex %}p - 1{% endlatex %}
+- opět konstruuji nekonečnou posloupnost {% latex %}A_i{% endlatex %}
+- v kroku {% latex %}i{% endlatex %} vyberu {% latex %}v_i \in A_i{% endlatex %}, nechť {% latex %}A_i' = A_i \setminus \left\{v_i\right\}{% endlatex %}
+
+{:.rightFloatBox}
+<div markdown="1">
+Pomocné obarvení {% latex %}(p-1){% endlatex %}-tic stejnými barvami, jako byla {% latex %}p{% endlatex %}-tice s vrcholem {% latex %}v_i{% endlatex %}.
+</div>
+
+- definuji obarvení {% latex %}(p - 1){% endlatex %}-tic {% latex %}A_i'{% endlatex %} {% latex %}c_i'(Q) = c(Q \cup \left\{v_i\right\}){% endlatex %}, {% latex %}Q \subseteq A_i'{% endlatex %}, {% latex %}|Q| = p - 1{% endlatex %}
+- z IP pro {% latex %}A_i'{% endlatex %} máme, že {% latex %}\exists B_i \subseteq A_i'{% endlatex %}, na jejichž {% latex %}(p-1){% endlatex %}-ticích je obarvení {% latex %}c_i'{% endlatex %} konstantní {% latex %} = b_i \in [t]{% endlatex %} a {% latex %}A_{i + 1} = B_i{% endlatex %} si vezmu do dalšího kroku
+
+(👀) barva {% latex %}p{% endlatex %}-tice {% latex %}\left\{v_{i_1}, \ldots, v_{i_p}\right\}{% endlatex %} (vzhledem k vzniklé posloupnosti {% latex %}v_1, v_2, \ldots{% endlatex %}), kde {% latex %}i_1 < i_2 < i_3 < i_p{% endlatex %} závisí pouze na barvě prvku {% latex %}v_{i_1}{% endlatex %}
+- vyberu z barev nějakou opakující-se nekonečněkrát a vrcholy s příslušnými indexy tvoří {% latex %}A{% endlatex %}
+
+**Věta (Ramseyova věta pro pětice):** {% latex %}\forall p, t, k \in \mathbb{N} \exists N \in \mathbb{N}{% endlatex %} t. ž. {% latex %}\forall n \ge N \exists A \subseteq [n], |A| = k{% endlatex %} t. ž. {% latex %}c{% endlatex %} je konstantní na {% latex %}\binom{A}{p}{% endlatex %}.
+
+**Důkaz:** mějme {% latex %}p, k, t{% endlatex %} z předpokladu věty. Uvážíme {% latex %}c_i: \binom{[n]}{p} \mapsto [t]{% endlatex %}. To je _dobré_, pokud {% latex %}\exists {% endlatex %} {% latex %}k{% endlatex %}-prvková jednobarevná podmnožina, jinak je _špatné_. Věta tedy tvrdí, že {% latex %}n \ge N{% endlatex %} jsou všechna {% latex %}c{% endlatex %} _dobrá_.
+
+Sporem: předpokládejme, že pro nekonečně mnoho {% latex %}n \exists{% endlatex %} _špatné_ obarvení.
+
+(👀) Pokud {% latex %}S_n{% endlatex %} je množina _špatných_ obarvení a {% latex %}S_n{% endlatex %} je neprázdné, pak {% latex %}S_{n - 1}{% endlatex %} je neprázdné, protože mám-li _špatné_ obarvení {% latex %}p{% endlatex %}-tic nad {% latex %}n{% endlatex %}, tak mohu zapomenout na {% latex %}n{% endlatex %}-tý prvek a tak dostanu _špatné_ obarvení i na {% latex %}n - 1{% endlatex %}.
+- **zůžení** {% latex %}z(c)(Q) = c(Q), Q \subseteq [n - 1], |Q| = p{% endlatex %} (prostě odeberu vrchol)
+
+Strukturu _špatných_ obarvení popíšeme stromem, kde hladiny jsou obarvení {% latex %}S_n{% endlatex %}; platí:
+- všechny hladiny jsou neprázdné (předpoklad pro spor)
+- všechny hladiny jsou konečné (nad {% latex %}S_n{% endlatex %} může být only so much obarvení)
+
+**Lemma (Königovo):** nekonečný zakořeněný strom s konečnými stupni obsahuje nekonečnou cestu z kořene.
+
+**Důkaz:** pokud máme vrcholy {% latex %}v_1, v_2, \ldots, v_{i - 1}{% endlatex %} na cestě, tak {% latex %}v_i{% endlatex %} vezmu jako kořen podstromu, který je nekonečný a opakuju.
+
+Díky tomuto lemmatu víme, že {% latex %}\exists{% endlatex %} nekonečná cesta z {% latex %}S_0{% endlatex %}. Z nekonečné Ramseyovy věty ale víme, že kdyby tomu tak bylo, tak neplatí, protože by existovalo nekonečné obarvení přirozených čísel (podle nekonečné cesty v tomto stromu).
+
+### Zkouška
+- cíl vyzkoušet, že máme o všem povědomí
+- přehledové otázky (např. vytvořující funkce, toky, kódy), kde u každého tématu bude věta
+	- jednu z vět z témat dokažte
+	- jinak u ostatních oblastí řekněte důležité věty/definice
+
 ### Zdroje
 - [https://research.koutecky.name/db/teaching:kg12021_prednaska]() -- stránka cvičení
 	- odkaz na všechny obrázky, zdroje, nahrávky cvičení
