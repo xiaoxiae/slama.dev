@@ -236,7 +236,7 @@ def funkce():     # žádnou hodnotu nebere
 print(funkce())   # vypíše 42
 ```
 
-- občas také nemusí nic brát:
+- občas také nemusí nic vracet:
 
 ```py
 def funkce():

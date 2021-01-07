@@ -301,6 +301,12 @@ body {
 		padding-bottom: $line-spacing;
 	}
 
+	// fixes https://blog.lysender.com/2014/09/css-elements-covered-by-a-container-div-not-clickable/
+	.katex-html { 
+		visibility: hidden;
+		* {visibility: visible;}
+	}
+
 	ul ul, ol ul, ul ol, ol ol {
 		margin: 0;
 		padding-bottom: 0;
