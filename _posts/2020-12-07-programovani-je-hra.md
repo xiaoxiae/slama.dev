@@ -83,7 +83,7 @@ print(e)
 ```
 
 1. Máte proměnnou `a`, která udává délku strany kostky. Vypište její obsah.
-	* Vypište její plochu {% latex %}(2b){% endlatex %}.
+	* Vypište její plochu.
 	* Vypište plochu největší koule, která se do kostky vejde.
 	* Vypište plochu největší koule, do které se kostka vejde. ⭐
 2. Máte proměnnou `celsius` s číselnou hodnotou. Vypište, kolik je to Fahrenheitů ([odkaz na Wiki](https://cs.wikipedia.org/wiki/Stupeň_Fahrenheita), pokud nevíte, jak převod vypadá).
@@ -174,7 +174,7 @@ while i < 10:
 ```
 
 1. Máte číselnou proměnnou `a`. Vypište všechna čísla od {% latex %}1{% endlatex %} do `a`.
-	* Vypište jen sudá čísla {% latex %}(2b){% endlatex %}.
+	* Vypište jen sudá čísla.
 2. Máte číselnou proměnnou `a`. Vypište všechna čísla, která dělí `a`.
 	* Vypište její prvočíselný rozklad. ⭐
 3. Chceme napsat robota, který bude hádat čísla od {% latex %}1{% endlatex %} do {% latex %}100{% endlatex %}. Uživateli řekne číslo, které hádá, a zeptá se ho, zda je uživatelovo menší, nebo větší. ⭐
@@ -198,15 +198,134 @@ print(len(x))  # vypíše délku pole (3)
 ```
 
 1. Máte pole čísel `pole`. Vypište: 
-	- počet čísel v poli. {% latex %}(1b){% endlatex %}
-	- největší číslo v poli. {% latex %}(1b){% endlatex %}
-	- nejmenší číslo v poli. {% latex %}(1b){% endlatex %}
-	- součet čísel v poli. {% latex %}(1b){% endlatex %}
+	- počet čísel v poli.
+	- největší číslo v poli.
+	- nejmenší číslo v poli.
+	- součet čísel v poli.
+
+### 3. hodina (7. 1. 2021)
+
+#### Processing
+- „sketchbook“ -- nástroj na tvorbu animací, her, vizualizací
+- programování v JavaScriptu, Javě a Pythonu
+
+##### Instalace
+1. stáhni a nainstaluj následující soubor: [https://download.processing.org/processing-3.5.4-windows64.zip]()
+2. po otevření aplikace `Processing 3` v pravém horním rohu rozklikni, vyber `Add Mode...`
+3. nainstaluj z nabídky Python mód
+4. restartuj a Python mód vyber
+
+##### Odbočka: funkce
+- „krabička“, která vezme nějaké hodnoty, vykoná kus kódu poté něco vrátí
+
+```py
+def funkce(x):    # bere nějakou hodnotu
+	y = x + 1
+	return y      # a vrátí ji o 1 zvětšenou
+
+print(funkce(4))  # vypíše 5
+print(funkce(-3)) # vypíše -2
+```
+
+- občas také nemusí nic brát:
+
+```py
+def funkce():     # žádnou hodnotu nebere
+	return 42     # vrací vždy 42
+
+print(funkce())   # vypíše 42
+```
+
+- občas také nemusí nic brát:
+
+```py
+def funkce():
+	print("jen vypisuju, nic neberu ani nevracím")
+	
+funkce()
+```
+
+##### Základní Processing program
+- `line(x1, y1, x2, y2)` -- vykreslení čáry
+- `rect(x1, y1, x2, y2)` -- vykreslení obdélníku
+- `ellipse(x1, y1, x2, y2)` -- vykreslení elipsy
+
+```py
+def setup():  # kód, který se vykoná pouze jednou
+	size(400, 400)   # nastavení velikosti okna
+	background(255)  # nastavení pozadí na bílou
+
+def draw():  # kód, který se dokola opakuje
+	line(200, 100, 200, 230)
+	line(200, 230, 220, 300)
+	line(200, 230, 180, 300)
+	line(200, 150, 180, 200)
+	line(200, 150, 220, 200)
+	ellipse(200, 100, 50, 50)
+	rect(-1, 300, 401, 401)
+```
+
+1. Přidejte panáčkovi domeček.
+2. Přidejte panáčkovi stylový klobouk.
+
+##### Používání proměnných
+
+```py
+x = 3   # definování proměnných
+y = 20
+
+def setup():
+	size(400, 400)
+
+def draw():
+	global x, y  # použití proměnných ve funkci
+	
+	background(255)
+	ellipse(x, y, 10, 10)
+	
+	# posouvaní míčku
+	# pokud vyjede mimo obrazovku, vrátíme ho zpět
+	x = (x + 3) % width
+	y = (y + 5) % height
+```
+
+1. Místo posouvání míčku simulujte "odrážení" od stěny.
+	- Přidejte gravitaci. ⭐
+	- Přidejte více míčků. ⭐
+
+##### Operace na canvasu
+- `translate(x, y)`: posuň plátno o {% latex %}(x, y){% endlatex %}
+- `rotate(degree(r))`: otoč plátno o {% latex %}r{% endlatex %} stupňů
+- po konci funkce `draw()` se opět resetuje!
+
+```py
+def setup():  # kód, který se vykoná pouze jednou
+	size(400, 400)   # nastavení velikosti okna
+	background(255)  # nastavení pozadí na bílou
+
+def draw():  # kód, který se dokola opakuje
+	translate(width/2, height/2)
+	rotate(radians(45))
+	translate(-width/2, -height/2)
+	
+	line(200, 100, 200, 230)
+	line(200, 230, 220, 300)
+	line(200, 230, 180, 300)
+	line(200, 150, 180, 200)
+	line(200, 150, 220, 200)
+	ellipse(200, 100, 50, 50)
+	rect(-1, 300, 401, 401)
+```
+
+1. Naprogramuje animaci panáčka, jak:
+	- se točí dokola.
+	- mává rukou tam a zpět.
 
 ### Dodatečné materiály
 
 - [Python Tutor](http://www.pythontutor.com/visualize.html) -- vizualizér Python kódu, ze kterého je hezky vidět, co program dělá.
 - [Repl.it pro Python](https://repl.it/languages/python3) -- prostředí, ve kterém budeme programovat.
+- [Processing 3](https://processing.org/) -- grafické prostředí, ve kterém budeme pracovat.
 - [Python 3](https://www.python.org/downloads/) -- webovky jazyka, ve kterém budeme programovat.
 - [Ponořme se do Pythonu](http://diveintopython3.py.cz/index.html) -- dobře napsaná kniha o programování v Pythonu 3, na kterou se můžete podívat, pokud byste se rádi Python učili i ve svém volném čase.
 - [Korespondenční Seminář z Programování](http://ksp.mff.cuni.cz/z/) -- skvělý způsob, jak se na zajímavých úlohách naučit programovat a poznat při tom nové kamarády 🙂.
