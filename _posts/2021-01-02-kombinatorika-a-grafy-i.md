@@ -21,12 +21,11 @@ Tato stránka obsahuje moje poznámky z přednášky Martina Kouteckého z roku 
 {% latex display %}
 \begin{aligned}
 	\left(n!\right)^2 &= 1 \cdot 2 \cdot 3 \cdot \ldots \cdot n \cdot n \cdot (n - 1) \cdot \ldots \cdot 2 \cdot 1 \\
-	&= \prod_{i = 1}^{n} \left(i \cdot (n - i + 1)\right) \\
-	&\le \left(\frac{n + 1}{2}\right)^n \qquad //\qquad i\left(n - i + 1\right) \le \frac{n + 1}{2},\ \forall i \in \left[n\right] \\
+	&= \prod_{i = 1}^{n} \left(i \cdot (n - i + 1)\right)
 \end{aligned}
 {% endlatex %}
 
-Kde u poslední úpravy využíváme A-G nerovnost:
+Využijeme A-G nerovnost:
 
 {% latex display %}
 \begin{aligned}
@@ -34,6 +33,9 @@ Kde u poslední úpravy využíváme A-G nerovnost:
 	\sqrt{i (n + 1 - i)} &\le \frac{i + n + 1 - i}{2} = \frac{n + 1}{2}
 \end{aligned}
 {% endlatex %}
+
+Dostáváme:
+{% latex display %}n! = \prod_{i = 1}^{n} \sqrt{i \cdot (n - i + 1)}\le \left(\frac{n + 1}{2}\right)^n{% endlatex %}
 
 **Důkaz {% latex %}\le{% endlatex %}:**
 
@@ -129,7 +131,7 @@ Druhá strana analogicky.
 - {% latex %}\lim_{n \to \infty} \ldots{% endlatex %} {% latex %}\mathbb{E}[\#\text{návratů do počátku}]{% endlatex %}?
 	- dokážeme, že jde k nekonečnu
 
-Zadefinujeme si náhodnou veličinu {% latex %}X = I_{S_2} + I_{S_4} + \ldots + I_{S_n} {% endlatex %}:
+Zadefinujeme si náhodnou veličinu {% latex %}X = I_{S_2} + I_{S_4} + \ldots + I_{S_{2n}} {% endlatex %}:
 - {% latex %}I_{S_{2n}}\ldots{% endlatex %} indikátor, že nastal jev „po {% latex %}2n{% endlatex %} krocích jsem v počátku“
 - {% latex %}\mathbb{E}[X] = \mathbb{E}[\#\text{návratů do počátku}]{% endlatex %}.
 - {% latex %}\mathrm{Pr}[\text{po $2n$ krocích jsem v počátku}] = \binom{2n}{n}/2^{2n}{% endlatex %}.
@@ -252,10 +254,10 @@ Pro daný koeficient vytvořující funkce tedy máme:
 	\\
 	b(x) &= \frac{1 - 1 - \sum_{k = 1}^{\infty}(-4)^k \binom{1/2}{k} x^k }{2x} \qquad //\ \sqrt{1 - 4k} \overset{\text{ZBV}}{=} \sum_{k = 0}^{\infty} (-4)^k \binom{1/2}{k} x^k\\
 	&= -\frac{1}{2} \sum_{k = 1}^{\infty} (-4)^k \binom{1/2}{k} x^{k - 1}\\
-	&= -\frac{1}{2} \sum_{k = 1}^{\infty} (-4)^{n + 1} \binom{1/2}{n + 1}\\
 	\\
-	b_n &= \frac{1}{2} (-1)^{n} 2^{2n + 2} \frac{\frac{1}{2} \cdot \left(\frac{1}{2} - 1\right) \cdot \ldots \cdot \left(\frac{1}{2} - n\right)}{\left(n + 1\right)!}\\
-	&= \frac{1}{2} (-1)^{n} 2^{2n + 2} \frac{\frac{1}{2} \cdot \left(-\frac{1}{2}\right) \cdot \ldots \cdot \left(-\frac{2n - 1}{2}\right)}{\left(n + 1\right)!}\\
+	b_n &= -\frac{1}{2} (-4)^{n + 1} \binom{1/2}{n + 1}\qquad //\ \text{konkrétní koeficient}\\
+	&= \frac{1}{2} (-1)^{n} 2^{2n + 2} \frac{\frac{1}{2} \cdot \left(\frac{1}{2} - 1\right) \cdot \overset{n + 1}{\ldots} \cdot \left(\frac{1}{2} - n\right)}{\left(n + 1\right)!}\\
+	&= \frac{1}{2} (-1)^{n} 2^{2n + 2} \frac{\frac{1}{2} \cdot \left(-\frac{1}{2}\right) \cdot \overset{n + 1}{\ldots} \cdot \left(-\frac{2n - 1}{2}\right)}{\left(n + 1\right)!}\\
 	&= \frac{1}{2} 2^{2n + 2} \frac{\frac{1}{2} \cdot \frac{1}{2} \cdot \ldots \cdot \frac{2n - 1}{2}}{\left(n + 1\right)!} \qquad //\ \text{krácení záporných čísel}\\
 	&= 2^{n} \frac{1 \cdot 3 \cdot 5 \cdot \ldots \cdot (2n - 1)}{(n + 1)!} \cdot \frac{n!}{n!} \qquad //\ \text{krácení $2$}\\
 	&= \frac{1 \cdot 3 \cdot 5 \cdot \ldots \cdot (2n - 1)}{(n + 1) n!} \cdot \frac{2 \cdot 4 \cdot 6 \cdot \ldots \cdot 2n}{n!} \qquad //\ \text{rozdistribuování $2$}\\
@@ -306,33 +308,36 @@ Dokáže se přes to přes rozbor příkladů toho, jak vedou přímky přes {% 
 ![](/assets/kombinatorika-a-grafy-i/kpr-bijekce.svg)
 
 
-**Definice (řád KPR):** řádem {% latex %}(X, \mathcal{P}){% endlatex %} je {% latex %}h = |P| - 1{% endlatex %} pro jakoukoliv {% latex %}P \in \mathcal{P}{% endlatex %}
+**Definice (řád KPR):** řádem {% latex %}(X, \mathcal{P}){% endlatex %} je {% latex %}h = |P| - 1{% endlatex %} pro jakoukoliv {% latex %}P \in \mathcal{P}{% endlatex %}.
 
 **Tvrzení:** nechť {% latex %}(X, \mathcal{P}){% endlatex %} je KPR řádu {% latex %}n{% endlatex %}. Pak:
 1. každým bodem prochází {% latex %}n + 1{% endlatex %} přímek 
-	- triviálně z definice
 2. {% latex %}|X| = n^2 + n + 1{% endlatex %}
 3. {% latex %}|\mathcal{P}| = n^2 + n + 1{% endlatex %}
-	- přes dualitu později
 
+**Důkaz:**
 
-**Důkaz:** vezměme libovolné {% latex %}x \in X{% endlatex %}.
+1. triviálně z definice.
+2. viz. níže.
+3. vychází z duality (viz. další kapitola).
 
-**Pomocné tvrzení:** {% latex %}\exists P \in \mathcal{P}: x \not\in P{% endlatex %}
-- důkaz přes {% latex %}a, b, c \in Č{% endlatex %}, protože přímka {% latex %}ab{% endlatex %} a {% latex %}ac{% endlatex %} nemohou mít další společný bod než {% latex %}a{% endlatex %} (došlo by ke sporu s některým z axiomů)
+Vezměme libovolné {% latex %}x \in X{% endlatex %}. Pak {% latex %}\exists P \in \mathcal{P}: x \not\in P{% endlatex %}, protože vezmeme-li vody, {% latex %}a, b, c \in Č{% endlatex %}, pak přímky {% latex %}ab{% endlatex %} a {% latex %}ac{% endlatex %} nemohou mít další společný bod než {% latex %}a{% endlatex %} (došlo by ke sporu s některým z axiomů).
 
-Poté stačí uvážit následující obrázek a spočítat body/přímky. Další body už neexistují, protože kdyby existoval, tak by jím musela procházet přímka z {% latex %}x{% endlatex %} a ta by rovněž někde protínala {% latex %}P{% endlatex %} (a nesplňovala tak axiomy.
+Poté stačí uvážit následující obrázek a spočítat body/přímky. Další body už neexistují, protože kdyby existoval, tak by jím musela procházet přímka z {% latex %}x{% endlatex %} a ta by rovněž někde protínala {% latex %}P{% endlatex %} (a nesplňovala tak axiomy).
 
 {:.center}
 ![](/assets/kombinatorika-a-grafy-i/kpr-pocet.svg)
 
-Bodů na obrázku je {% latex %}\overbrace{1}^{x} + \underbrace{\left(n + 1\right)}_{P_0 \ldots P_n}\overbrace{n}^{\text{body $P_i$, bez $x$}} = n^2 + n + 1{% endlatex %}
+Bodů na obrázku je {% latex %}\overbrace{1}^{x} + \underbrace{\left(n + 1\right)}_{P_0 \ldots P_n}\overbrace{n}^{\text{body $P_i$, bez $x$}} = n^2 + n + 1{% endlatex %}.
 
 #### Dualita KPR
 
-**Definice:** {% latex %}(X, \mathcal{S}){% endlatex %} je množinový systém, jeho incidenční graf je bipartitní graf s {% latex %}V = X \cup \mathcal{S}{% endlatex %}, {% latex %}E = \left\{(X, S) \in X \times \mathcal{S}\ |\ x \in S\right\}{% endlatex %}.
+{:.rightFloatBox}
+{% xopp xins %}
 
-**Definice:** {% latex %}(Y, \mathcal{T}){% endlatex %} je duál {% latex %}(X, \mathcal{S}){% endlatex %} pokud {% latex %}Y = \mathcal{S}{% endlatex %} a {% latex %}\mathcal{T} = \left\{\left\{s \in \mathcal{S}\ |\ x \in s\right\}\ |\ x \in X\right\}{% endlatex %}
+**Definice (incidenční graf):** {% latex %}(X, \mathcal{S}){% endlatex %} je množinový systém. Jeho incidenční graf je bipartitní graf {% latex display %}\left(V = X \cup \mathcal{S}, E = \left\{(x, s) \in X \times \mathcal{S}\ |\ x \in s\right\}\right){% endlatex %}
+
+**Definice (duál grafu):** {% latex %}(Y, \mathcal{T}){% endlatex %} je duál {% latex %}(X, \mathcal{S}){% endlatex %} pokud {% latex %}Y = \mathcal{S}{% endlatex %} a {% latex %}\mathcal{T} = \left\{\left\{s \in \mathcal{S}\ |\ x \in s\right\}\ |\ x \in X\right\}{% endlatex %}
 - (👀) incidenční graf {% latex %}(Y, \mathcal{T}){% endlatex %} je incidenční graf {% latex %}(X, \mathcal{S}){% endlatex %} s prohozením stran
 
 **Příklad (duál Fanovy roviny):**
@@ -362,15 +367,16 @@ Bodů na obrázku je {% latex %}\overbrace{1}^{x} + \underbrace{\left(n + 1\righ
 
 #### Konstrukce KPR
 
-Pro KPR řádu {% latex %}p^k{% endlatex %}, {% latex %}p{% endlatex %} prvočíslo vezmu algebraické těleso {% latex %}\mathbb{K}{% endlatex %} řádu {% latex %}n{% endlatex %} (příklad {% latex %}\mathbb{K} = \mathbb{Z}_3{% endlatex %}.
+Pro KPR řádu {% latex %}p^k{% endlatex %}, {% latex %}p{% endlatex %} prvočíslo vezmu algebraické těleso {% latex %}\mathbb{K}{% endlatex %} řádu {% latex %}n{% endlatex %} (příklad {% latex %}\mathbb{K} = \mathbb{Z}_3{% endlatex %}).
 - {% latex %}T = \mathbb{K}^3 \setminus \left(0, 0, 0\right){% endlatex %}
 - na {% latex %}T{% endlatex %} zavedu ekvivalenci {% latex %}(x, y, t) \in T{% endlatex %} je ekvivalentní s {% latex %}(\lambda x, \lambda y, \lambda t), \forall \lambda \in \mathbb{K} \setminus {0}{% endlatex %}
-- {% latex %}X{% endlatex %} jsou ekvivalenční třídy nad {% latex %}T{% endlatex %}.
+- body {% latex %}X{% endlatex %} jsou ekvivalenční třídy nad {% latex %}T{% endlatex %}
 - reprezentanti: poslední nenulová složka je {% latex %}1{% endlatex %}
 	- trojice tvaru {% latex %}(x, y, 1), (x, 1, 0), (1, 0, 0){% endlatex %}
+	- můžu si to dovolit, na reprezentanta převedu prostým pronásobením
 	- počet je {% latex %}n^2 + n + 1{% endlatex %}, což sedí
-- {% latex %}\mathcal{P}{% endlatex %}: pro každou {% latex %}(a, b, c) \in T{% endlatex %} definujeme přímku {% latex %}P_{a, b, c}{% endlatex %} jako množinu bodů {% latex %}(x, y, t){% endlatex %} splňující {% latex %}ax + by + ct = 0{% endlatex %}
-	- {% latex %}\forall (x, y, t) \in T, \forall \lambda \neq 0: (x, y, t){% endlatex %} splňuje {% latex %}\iff (\lambda x, \lambda y, \lambda t{% endlatex %} splňuje
+- přímky {% latex %}\mathcal{P}{% endlatex %}: pro každou {% latex %}(a, b, c) \in T{% endlatex %} definujeme přímku {% latex %}P_{a, b, c}{% endlatex %} jako množinu bodů {% latex %}(x, y, t){% endlatex %} splňující {% latex %}ax + by + ct = 0{% endlatex %}
+	- {% latex %}\forall (x, y, t) \in T, \forall \lambda \neq 0: (x, y, t){% endlatex %} splňuje {% latex %}\iff (\lambda x, \lambda y, \lambda t){% endlatex %} splňuje
 	- {% latex %}\forall (a, b, c) \in T, \forall \lambda{% endlatex %} fixuji {% latex %}(x, y, t) \in T: ax + by + ct = 0 \iff \lambda ax + \lambda by + \lambda ct = 0 \implies{% endlatex %} přímky {% latex %}P_{a, b, c} = P_{\lambda a, \lambda b, \lambda c} \implies |\mathcal{P}| = |X|{% endlatex %} a mohu si opět zvolit reprezentanty
 
 {:.center}
@@ -385,9 +391,9 @@ Pro KPR řádu {% latex %}p^k{% endlatex %}, {% latex %}p{% endlatex %} prvočí
 
 **Ověření axiomů:**
 1. {% latex %}Č = \left\{(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 1)\right\}{% endlatex %}
-	- jsou po třech lineárně nezávislé, proto tohle platí
+	- jsou po třech lineárně nezávislé, proto {% latex %}(1){% endlatex %} platí
 2. dvojice přímek {% latex %}(a_1, b_1, c_1){% endlatex %} a {% latex %}(a_2, b_2, c_2){% endlatex %} určují jeden bod:
-	- jsou lineárně nezávislé a dimenze jádra následující matice je tedy {% latex %}1{% endlatex %}:
+	- jsou lineárně nezávislé a dimenze jádra následující matice je tedy {% latex %}1{% endlatex %} a určují jeden bod (až na {% latex %}\alpha{% endlatex %}-násobek, což je definice bodů)
 {% latex display %} \begin{pmatrix} a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \end{pmatrix} \begin{pmatrix} x \\ y \\ t \end{pmatrix} = 0 {% endlatex %}
 3. analogické, protože role {% latex %}(x, y, t){% endlatex %} a {% latex %}(a, b, c){% endlatex %} je identická
 
@@ -396,15 +402,15 @@ Pro KPR řádu {% latex %}p^k{% endlatex %}, {% latex %}p{% endlatex %} prvočí
 #### Latinské čtverce
 
 **Definice (latinský čtverec)** řádu {% latex %}n{% endlatex %} je tabulka {% latex %}n \times n{% endlatex %} vyplněná čísly {% latex %}[n]{% endlatex %}, kde v žádném řádku či sloupci se symboly neopakují.
+- (👀) {% latex %}A{% endlatex %} je LČ {% latex %}\implies{% endlatex %} po následujících operacích je stále:
+	- permutace symbolů
+	- permutace sloupců/řádků
 
 **Definice (ortogonalita)**: LČ {% latex %}A, B{% endlatex %} jsou ortogonální, pokud pro každou dvojici symbolů {% latex %}a, b \in [n]{% endlatex %} existují indexy {% latex %}i, j \in [n]{% endlatex %} t. ž. {% latex %}(A)_{i, j} = a, (B)_{i, j} = b{% endlatex %}.
 - když přeložím čtverce přes sebe, najdu políčko {% latex %}(i, j){% endlatex %} obsahující dvojici {% latex %}(a, b){% endlatex %}
 - (👀) počet dvojic symbolů {% latex %}n^2 = {% endlatex %} počtu políček
 	- zobrazení je bijekce
 	- {% latex %}\forall (a, b){% endlatex %} se objeví v OLČ právě jednou
-- (👀) {% latex %}A{% endlatex %} je LČ {% latex %}\implies{% endlatex %} po následujících operacích je stále:
-	- permutace symbolů
-	- permutace sloupců/řádků
 - (👀) {% latex %}A, B{% endlatex %} jsou NOLČ {% latex %}\implies{% endlatex %} pokud dělám operace z předchozího pozorování v obou čtvercích, tak ortogonalitu zachovávám, jinak nutně ne
 
 **Příklad** dvou navzájem ortogonálních latinských čtverců stupně {% latex %}n{% endlatex %}:
@@ -425,11 +431,16 @@ Pro KPR řádu {% latex %}p^k{% endlatex %}, {% latex %}p{% endlatex %} prvočí
 
 **Lemma:** pro daný řád {% latex %}n{% endlatex %} může existovat nejvýše {% latex %}n - 1{% endlatex %} NOLČ.
 
-**Důkaz:** mějme maximální rodinu NOLČ {% latex %}L_1, \ldots, L_m{% endlatex %}. Permutuji symboly tak, aby každý první řádek byl {% latex %}1, 2, 3, \ldots, n{% endlatex %}. Uvažme políčko {% latex %}(2, 1){% endlatex %} -- jaké může obsahovat hodnoty?
-- ne {% latex %}1{% endlatex %}, ta je na {% latex %}(1, 1){% endlatex %}
-- ne nějaké {% latex %}k \in \left\{2, \ldots, n\right\}{% endlatex %} ve dvou čtvercích zároveň
+**Důkaz:** mějme maximální rodinu NOLČ {% latex %}L_1, \ldots, L_m{% endlatex %} a permutujme symboly tak, aby každý první řádek byl {% latex %}1, 2, 3, \ldots, n{% endlatex %}; uvažme symbol na pozici {% latex %}(2, 1){% endlatex %}:
+- není {% latex %}1{% endlatex %}, ta je na pozici {% latex %}(1, 1){% endlatex %}
+- není nějaké {% latex %}k \in \left\{2, \ldots, n\right\}{% endlatex %} ve dvou čtvercích zároveň
 
 Čtverců je dohromady tedy nejvýše {% latex %}n - 1{% endlatex %}.
+
+{:.rightFloatBox}
+<div markdown="1">
+Pro libovolné dvě pozice (které se liší v řádku a sloupci) existuje čtverec, který na nich má stejné hodnoty.
+</div>
 
 **Tvrzení:** pokud {% latex %}L_1, \ldots, L_{n - 1}{% endlatex %} jsou NOLČ, potom {% latex %}\forall k, k', k \neq k', \forall l, l', l \neq l' \exists i: \left(L_i\right)_{k, l} = \left(L_i\right)_{k', l'}{% endlatex %}
 
@@ -445,9 +456,9 @@ Pro KPR řádu {% latex %}p^k{% endlatex %}, {% latex %}p{% endlatex %} prvočí
 			\begin{bmatrix} &   &   &   \\ & (1) &   &   \\ &   &   &   \\ &   & ? &   \end{bmatrix}}_{n - 1}
 {% endlatex %}
 
-Kde ve sloupci s otazníkem je {% latex %}1{% endlatex %}:
-- ne v řádku s {% latex %}(1){% endlatex %}
-- ne ve dvou čtvercích na stejném místě
+Ve sloupci s otazníkem nemůže symbol {% latex %}1{% endlatex %} být:
+- v řádku s {% latex %}(1){% endlatex %}
+- ve dvou čtvercích na stejném místě
 
 Mám tedy {% latex %}n - 1{% endlatex %} možností a musím přijít na {% latex %}n - 1{% endlatex %} různých řešení. Jedno z nich tedy vyjde na {% latex %}?{% endlatex %}.
 
@@ -500,7 +511,7 @@ Mám tedy {% latex %}n - 1{% endlatex %} možností a musím přijít na {% late
 
 **Důkaz:** konstrukce {% latex %}\Leftarrow{% endlatex %}
 - dána KPR {% latex %}(X, \mathcal{P}){% endlatex %}, hledáme {% latex %}L_1, \ldots, L_{n - 1}{% endlatex %}
-	1. zvolíme libovolně přímku - označíme {% latex %}\mathrm{I}{% endlatex %} a její body {% latex %}\left\{r, s, l_1, \ldots, l_{n - 1}\right\}{% endlatex %}
+	1. zvolíme libovolně přímku {% latex %}I = \left\{r, s, l_1, \ldots, l_{n - 1}\right\}{% endlatex %}
 	2. {% latex %}\exists n{% endlatex %} přímek protínající {% latex %}r{% endlatex %} -- typ {% latex %}\mathrm{II}{% endlatex %} a opět oindexuji body
 	3. analogicky ^, typ {% latex %}\mathrm{III}{% endlatex %}, průsečíky jsou {% latex %}m_{k, l}{% endlatex %}
 	4. pro bod {% latex %}l_i{% endlatex %} oindexuj přímky {% latex %}Q_1, \ldots, Q_n{% endlatex %}; čtverec {% latex %}L_i{% endlatex %} má {% latex %}1{% endlatex %} na indexech {% latex %}Q_1{% endlatex %}, {% latex %}2{% endlatex %} na {% latex %}Q_2{% endlatex %}, {% latex %}\ldots{% endlatex %}
@@ -519,8 +530,8 @@ Jsou NOLČ, protože:
 **Tvrzení:** počet podmnožin {% latex %}X = \left| \binom{X}{k}\right| = \binom{|X|}{k}{% endlatex %}
 
 **Důkaz:** nechť máme bublinu s tečkami, každá reprezentuje uspořádanou {% latex %}k{% endlatex %}-tici prvků z {% latex %}X{% endlatex %}.
-- počet teček {% latex %}= n (n -1) (n-2) \ldots (n - k + 1) = \frac{n!}{(n - k)!}{% endlatex %} (vyberu první prvek, druhý prvek,...)
-- v každé buňce {% latex %}k{% endlatex %}-tic se stejnými prvky je {% latex %}k!{% endlatex %} prvků, počet buňek je to, co chceme (neuspořádaná {% latex %}k{% endlatex %}-tice)
+- počet teček {% latex %}= n (n -1) (n-2) \ldots (n - k + 1) = \frac{n!}{(n - k)!}{% endlatex %} (vyberu {% latex %}1.{% endlatex %} prvek, {% latex %}2.{% endlatex %} prvek,...)
+- v každé buňce {% latex %}k{% endlatex %}-tic (ekvivalenční třídě přes příslušnou relaci) se stejnými prvky je {% latex %}k!{% endlatex %} prvků, počet buňek je to, co chceme (neuspořádaná {% latex %}k{% endlatex %}-tice)
 
 {% latex display %}
 \begin{aligned}
@@ -529,7 +540,7 @@ Jsou NOLČ, protože:
 \end{aligned}
 {% endlatex %}
 
-**Věta (Spernerova):** nechť {% latex %}(\mathcal{P}, \subseteq){% endlatex %} je částečné uspořádání, kde {% latex %}\mathcal{P}{% endlatex %} je množinový systém. Nechť {% latex %}\mathcal{M}{% endlatex %} je nevětši antiřetězec ({% latex %}\forall M_1, M_2 \in \mathcal{M}, M_1 \neq M_2: M_1 \subsetneq M_2 \land M_2 \subsetneq M_1{% endlatex %}). Pak {% latex %}|\mathcal{M}| \le \binom{n}{\left\lceil \frac{n}{2} \right\rceil}{% endlatex %}, kde {% latex %}n = |X|{% endlatex %}.
+**Věta (Spernerova):** nechť {% latex %}(\mathcal{P}, \subseteq){% endlatex %} je částečné uspořádání, kde {% latex %}\mathcal{P}{% endlatex %} je množinový systém. Nechť {% latex %}\mathcal{M}{% endlatex %} je největší antiřetězec ({% latex %}\forall M_1, M_2 \in \mathcal{M}, M_1 \neq M_2: M_1 \subsetneq M_2 \land M_2 \subsetneq M_1{% endlatex %}). Pak {% latex %}|\mathcal{M}| \le \binom{n}{\left\lceil \frac{n}{2} \right\rceil}{% endlatex %}, kde {% latex %}n = |X|{% endlatex %}.
 
 {:.center}
 ![Sperenerova věta.](/assets/kombinatorika-a-grafy-i/spernerova-veta.svg)
@@ -544,7 +555,7 @@ Jsou NOLČ, protože:
 
 - {% latex %}\emptyset \subseteq \left\{x_1\right\} \subseteq \left\{x_1, x_2\right\} \subseteq \ldots \subseteq M \subseteq \ldots \subseteq X{% endlatex %}
 	- zajímá nás, kolik různých řetězců obsahuje {% latex %}M{% endlatex %}
-- (👀) každý maximální řetězec obsahuje {% latex %}\le 1 M \in \mathcal{M}{% endlatex %} 
+- (👀) každý maximální řetězec obsahuje {% latex %}\le 1\ M \in \mathcal{M}{% endlatex %} 
 
 **Důkaz (přes pomocné tvrzení):**
 {% latex display %}
@@ -570,13 +581,16 @@ Jsou NOLČ, protože:
 
 **Důkaz:** dvojí počítání „vidliček“ (cest delky {% latex %}2{% endlatex %}):
 1. pro pevnou dvojici {% latex %}\left\{u, u'\right\}{% endlatex %} mám nanejvýš 1 vidličku (dvě by tvořily čtyřcyklus), tedy {% latex %}\#\ \text{vidliček}\ \le \binom{n}{2}{% endlatex %}
-2. pro pevný vrchol {% latex %}v{% endlatex %} máme {% latex %}\#\ \text{vidliček}\ = \binom{d(v)}{2}{% endlatex %}
+2. pro pevný vrchol {% latex %}v{% endlatex %} máme {% latex %}\#\ \text{vidliček}\ = \binom{d_i}{2}{% endlatex %}
 
 {% latex display %}
-\begin{aligned}
-	\#\ \text{vidliček}\ &= \sum_{v \in V} \binom{d(v)}{2} = \sum_{i = 1}^{n} \binom{d_i}{2} \le \binom{n}{2} \\
-	|E| &= \frac{1}{2} \sum_{i = 1}^{n} d_i \qquad //\ \text{princip sudosti}
-\end{aligned}
+	\#\ \text{vidliček}\ = \sum_{i = 1}^{n} \binom{d_i}{2} \le \binom{n}{2}
+{% endlatex %}
+
+Také víme (z principu sudosti), že:
+
+{% latex display %}
+	|E| = \frac{1}{2} \sum_{i = 1}^{n} d_i
 {% endlatex %}
 
 Předpoklad: nemáme izolované vrcholy ({% latex %}d_i \ge 1{% endlatex %}), jsou zbytečné. Pak {% latex %}\binom{d_i}{2} \ge \frac{(d_i - 1)^2}{2}{% endlatex %}.
@@ -588,7 +602,7 @@ Předpoklad: nemáme izolované vrcholy ({% latex %}d_i \ge 1{% endlatex %}), js
 
 Využijeme Cauchy-Schwartzovu nerovnost na {% latex %}x = (k_1, \ldots, k_n), y = (1, \ldots, 1){% endlatex %}:
 {% latex display %}
-xy = \sum k_i = \sum d_i - 1 = 2|E| - n \\
+xy = \sum k_i = \sum \left(d_i - 1\right) = 2|E| - n \\
 || x ||_2 = \sqrt{\sum k_i^2} \le \sqrt{n^2} = n \qquad || y ||_2 = \sqrt{\sum 1} =  \sqrt{n}
 {% endlatex %}
 
@@ -604,15 +618,18 @@ xy = \sum k_i = \sum d_i - 1 = 2|E| - n \\
 **Věta (Cayleyho formule):** počet koster úplného grafu {% latex %}\Kappa(n) = n^{n - 2}{% endlatex %}.
 - pozor, počítám i izomorfní kostry!
 
+{:.rightFloatBox}
+{% xopp kostry %}
+
 **Důkaz:** počítání {% latex %}(T, r, č){% endlatex %}, kde:
 - {% latex %}T{% endlatex %} je strom na {% latex %}n{% endlatex %} vrcholech
-- {% latex %}r{% endlatex %} kořen (hrany vedou **do, ne z!**)
+- {% latex %}r{% endlatex %} kořen (hrany vedou do kořene, ne z něho)
 - {% latex %}č{% endlatex %} očíslování hran (nějaké), {% latex %}č: E \mapsto [n - 1]{% endlatex %}
 
 1. {% latex %}\#(T, r, č) = \Kappa(n) \cdot n \cdot \left(n - 1\right)!{% endlatex %}
 	- {% latex %}T{% endlatex %} je to, co hledáme
-	- {% latex %}r{% endlatex %} volíme libovolně
-	- {% latex %}č{% endlatex %} je prostě random očíslovaní
+	- {% latex %}r{% endlatex %} volíme libovolně z {% latex %}n{% endlatex %} vrcholů
+	- {% latex %}č{% endlatex %} je prostě random očíslovaní na {% latex %}n - 1{% endlatex %} hranách
 2. představa: přidávám hrany, až nakonec dojdu k {% latex %}(T, r, č){% endlatex %} a jsem v {% latex %}k{% endlatex %}-tém kroce:
 	- (👀) nesmím vést hranu uvnitř komponenty (cykly)
 	- (👀) musím vést hranu pouze z kořene dané komponenty (jeden vrchol by měl 2 rodiče)
@@ -642,7 +659,7 @@ xy = \sum k_i = \sum d_i - 1 = 2|E| - n \\
 
 **Definice (velikost toku)** {% latex %}w(f) = \sum f(z, x) - \sum f(x, z){% endlatex %} (to, co teče ze zdroje)
 
-**Důkaz:** existuje maximální tok. Nástin je takový, že množina toků je kompaktní a obsahuje tedy i maximum (nevznikne nám tam nějaká divnost)
+**Důkaz:** existuje maximální tok. Nástin je takový, že množina toků je kompaktní a obsahuje tedy i maximum (nevznikne nám tam nějaká divnost).
 
 **Definice (řez)** v síti je množina hran {% latex %}R \subseteq E(G){% endlatex %} taková, že v grafu {% latex %}(V, E \setminus R){% endlatex %} neexistuje cesta ze zdroje do stoku.
 - **kapacita** řezu je {% latex %}c(R) = \sum_{e \in R} c(e){% endlatex %}, analogicky tok
@@ -674,16 +691,18 @@ xy = \sum k_i = \sum d_i - 1 = 2|E| - n \\
 - vede proti směru a {% latex %}f(e) = 0{% endlatex %}
 
 **Tvrzení:** {% latex %}f{% endlatex %} je maximální {% latex %}\iff f{% endlatex %} je nasycený.
-- důkaz sporem, že {% latex %}f{% endlatex %} maximální je nasycený
-- je-li {% latex %}f{% endlatex %} nasycený, tak uvážíme množinu vrcholů, do kterých se lze dostat ze {% latex %}z{% endlatex %} po nasycené cestě -- {% latex %}A = \left\{v \in V\ |\ \exists\ \text{nenasycená cesta }\right\}{% endlatex %}
+
+**Důkaz:** sporem, že {% latex %}f{% endlatex %} maximální je nasycený.
+- tak uvážíme množinu vrcholů, do kterých se lze dostat ze {% latex %}z{% endlatex %} po nasycené cestě -- {% latex %}A = \left\{v \in V\ |\ \exists\ \text{nenasycená cesta }\right\}{% endlatex %}
 	- {% latex %}s \subsetneq A{% endlatex %} (jinak {% latex %}f{% endlatex %} není nasycený)
-	- {% latex %}\forall e \in S(A, V \setminus A){% endlatex %} platí {% latex %}f(e) = c(e){% endlatex %} a {% latex %}\forall e \ in S(V \setminus A, A){% endlatex %} platí {% latex %}f(e) = 0{% endlatex %} (jinak bychom nenasycenou cestu mohli prodloužit
+	- {% latex %}\forall e \in S(A, V \setminus A){% endlatex %} platí {% latex %}f(e) = c(e){% endlatex %}
+	- {% latex %}\forall e \in S(V \setminus A, A){% endlatex %} platí {% latex %}f(e) = 0{% endlatex %} (jinak bychom nenasycenou cestu mohli prodloužit
 
 {% latex display %}
 \begin{aligned}
-	w(f) &= f(A, V \setminus A) - f(V \setminus A, A) \qquad //\ \text{lemma}\\
-	&= c(A, V \setminus A) - 0 \qquad //\ \text{teď jsme dokázali} \\
-	&= c(A, V \setminus A)
+	w(f) &= f(A, V \setminus A) - f(V \setminus A, A) \qquad //\ \text{předešlé lemma}\\
+	&= c(A, V \setminus A) - 0\\
+	&= c(f)
 \end{aligned}
 {% endlatex %}
 
@@ -708,16 +727,23 @@ xy = \sum k_i = \sum d_i - 1 = 2|E| - n \\
 {:.center}
 ![Königova věta.](/assets/kombinatorika-a-grafy-i/konig.svg)
 
-Z toku mám maximální párování {% latex %}M{% endlatex %} velikosti {% latex %}k{% endlatex %} (protože tok byl maximální). Z toho umím sestrojit minimální řez. Ukážeme dvě implikace:
-
-{% latex %}W{% endlatex %} je minimální vrcholové pokrytí {% latex %}G{% endlatex %}, tak:
+- {% latex %}R{% endlatex %} je minimální {% latex %}z-s{% endlatex %} řez
+- {% latex %}C{% endlatex %} je minimální vrcholové pokrytí
+- {% latex %}f{% endlatex %} je maximální tok
+	- hrany v původním grafu jsou maximální párování
 - {% latex %}L, P ={% endlatex %} levá a pravá část grafu (bez zdroje a stoku)
+
+Z toku mám maximální párování {% latex %}M{% endlatex %} velikosti {% latex %}k{% endlatex %}, ze kterého sestrojím minimální řez {% latex %}R{% endlatex %}.
+
+{% latex %}R{% endlatex %} je minimální {% latex %}z-s{% endlatex %} řez. Ten upravíme na minimální řez {% latex %}R'{% endlatex %}, aby neobsahoval hrany původního grafu. To jde, protože hranu původního grafu mohu vyměnit za tu ze zdroje/stoku, protože ta je jediný způsob, jak se dostat do hrany z původního vrcholu.
+- {% latex %}W = \left\{u \in L\ |\ (z, u) \in R'\right\} \cup \left\{v \in P\ |\ (v, s) \in R'\right\}{% endlatex %}
+	- je vrcholové pokrytí, v původním grafu by jinak existovala {% latex %}z-s{% endlatex %} cesta a nejednalo se o řez
+
+{% latex %}W{% endlatex %} je minimální vrcholové pokrytí {% latex %}G{% endlatex %}:
 - {% latex %}R = \left\{(z, u)\ |\ u \in W \cap L\right\} \cup \left\{(u, s)\ |\ u \in W \cap P\right\} {% endlatex %}
 	- je řez (pro spor by existovala cesta, kterou by {% latex %}W{% endlatex %} nepokryl)
 
-{% latex %}R{% endlatex %} je minimální {% latex %}z-s{% endlatex %} řez. Ten upravíme na řez {% latex %}R'{% endlatex %}, aby neobsahoval hrany původního grafu. To jde, protože hranu původního grafu mohu vyměnit za tu ze zdroje/stoku, protože ta je jediný způsob, jak se dostat do hrany z původního vrcholu.
-- {% latex %}W = \left\{u \in L\ |\ (z, u) \in R'\right\} \cup \left\{v \in P\ |\ (v, s) \in R'\right\}{% endlatex %}
-	- je vrcholové pokrytí, protože stejný argument jako u obrácené implikace
+Dostáváme tedy, že min. řez je roven nějakému pokrytí, a že min. pokrytí je rovno nějakému řezu, tedy že min. pokrytí je rovno min. řezu.
 
 **Definice:**
 - **množinový systém** na množině {% latex %}X{% endlatex %} je {% latex %}(M_i)_{i \in I}, M_i \subseteq X{% endlatex %}
@@ -777,7 +803,7 @@ Protože {% latex %}k_1 \ge k_2{% endlatex %}, pak {% latex %}|N[j]| \ge |J|{% e
 - stupně: každý sloupec má stupeň {% latex %}n - k{% endlatex %} (počet nepoužitých symbolů)
 - symboly: každý symbol se vyskytuje v řádku právě jednou, tedy ještě není v {% latex %}n - k{% endlatex %} sloupcích
 
-Máme tedy {% latex %}n - k{% endlatex %}-regulární graf, pro který {% latex %}\exists{% endlatex %} perfektní párování (použití minulého důsledku).
+Máme tedy {% latex %}\left(n - k\right){% endlatex %}-regulární graf, pro který {% latex %}\exists{% endlatex %} perfektní párování (použití minulého důsledku).
 
 #### Míra souvislosti neorientovaných grafu
 
@@ -787,51 +813,59 @@ Máme tedy {% latex %}n - k{% endlatex %}-regulární graf, pro který {% latex 
 - **hranová souvislost** {% latex %}k_e(G) = \mathrm{min} \left\{|F|\ |\ F \subseteq E \text{ je hranový řez}\right\}{% endlatex %}
 - **vrcholová souvislost** {% latex %}k_v(G) = \begin{cases}n - 1 & G \cong K_n \\ \mathrm{min} \left\{|A|\ |\ A \subseteq V \text{ je vrcholový řez}\right\} & \text{jindy} \end{cases}{% endlatex %}
 - {% latex %}G{% endlatex %} je **hranově/vrcholově {% latex %}k{% endlatex %}-souvislý**, pokud {% latex %}k_{e/v}(G) \ge k{% endlatex %}
+	- „potřebuješ useknout alespoň {% latex %}k{% endlatex %} hran/vrcholů na to, aby se graf rozpadl“
 	- (👀) je-li {% latex %}3{% endlatex %}-souvislý, pak je i {% latex %}2{% endlatex %}-souvislý a {% latex %}1{% endlatex %}-souvislý
-	- je **kriticky {% latex %}k{% endlatex %}-souvislý**, pokud odstranění libovolného vrcholu sníží stupeň souvislosti
+	- je **kriticky** {% latex %}k{% endlatex %}-souvislý, pokud odstranění libovolného vrcholu sníží stupeň souvislosti
 		- stromy jsou hranově {% latex %}1{% endlatex %}-souvislé, vrcholově ne (co listy?)
 
 **Lemma:** {% latex %}\forall G, \forall e \in E{% endlatex %} platí {% latex %}k_e(G) - 1 \le k_e(G - e) \le k_e(G){% endlatex %}
-- zas tak triviální to není, u vrcholové může vzrůst (např. odstranění listu z kružnice)
-- lemma říká, že se hranová chová slušně
+- zas tak triviální to není, u vrcholové může (odstraněním vrcholu) vzrůst (listy z kružnice)
+- lemma říká, že se hranová souvislost „chová slušně“
 
-**Důkaz:** vezmu minimální řez {% latex %}F \subseteq E, F' = F \setminus \left\{e\right\}{% endlatex %} jistě musí být řez v {% latex %}G - e{% endlatex %} (ne nutně minimální), pak:
+{:.rightFloatBox}
+<div markdown="1">
+Tomovo poznámka: V důkazu {% latex %}k_e(G) \le k_v(G){% endlatex %} se tohle lemma nepoužívá (alespoň tak, jak to chápu). Jsem trochu zmatený z toho, proč Martin říkal, že ano.
+</div>
+
+**Důkaz ({% latex %}\le{% endlatex %}):** vezmu minimální řez {% latex %}F \subseteq E{% endlatex %} v {% latex %}G{% endlatex %}, {% latex %}F' = F \setminus \left\{e\right\}{% endlatex %} jistě musí být řez v {% latex %}G - e{% endlatex %}; pak:
 {% latex display %}k_e(G - e) \le |F'| \le |F| = k_e(G){% endlatex %}
 
-Co se druhé nerovnosti týče, vezmu min. řez {% latex %}B{% endlatex %} v {% latex %}G - e{% endlatex %}. Podobnou úvahou {% latex %}B' = B \cup \left\{e\right\}{% endlatex %} je řezem v {% latex %}G{% endlatex %}, pak:
-{% latex display %}k_e(G) \le |B'| = |B| + 1 = k_e(G - e) + 1{% endlatex %}
+**Důkaz ({% latex %}\ge{% endlatex %}):** vezmu minimální řez {% latex %}B{% endlatex %} v {% latex %}G - e{% endlatex %} {% latex %}B' = B \cup \left\{e\right\}{% endlatex %} je řezem v {% latex %}G{% endlatex %}, pak:
+{% latex display %}
+\begin{aligned}
+	k_e(G) \le |B'| &= |B| + 1 = k_e(G - e) + 1\\
+	k_e(G) &\le k_e(G - e)
+\end{aligned}
+{% endlatex %}
 
 **Lemma:** {% latex %}\forall G, \forall e \in E{% endlatex %} platí {% latex %}k_v(G) - 1 \le k_v(G - e) \le k_v(G){% endlatex %}
 
 **Důkaz:** trochu přeformulujeme... pro {% latex %}H = G - e: k_v (H + e) \le k_v (H) + 1{% endlatex %}:
 
-{:.rightFloatBox}
-<div markdown="1">
-Přidáváme hranu a sledujeme, co to dělá se souvislostí.
-</div>
-
-V {% latex %}H{% endlatex %} existuje vrcholový řez {% latex %}A \subseteq V(H){% endlatex %} t. ž. {% latex %}k_v(H) = |A|{% endlatex %}. Při odebrání {% latex %}A{% endlatex %} se {% latex %}H{% endlatex %} rozpadne na alespoň {% latex %}2{% endlatex %} komponenty:
-1. alespoň {% latex %}1{% endlatex %} konec {% latex %}e{% endlatex %} leží v {% latex %}A{% endlatex %}:
+V {% latex %}H{% endlatex %} existuje vrcholový řez {% latex %}A \subseteq V(H), k_v(H) = |A|{% endlatex %}. Při odebrání {% latex %}A{% endlatex %} se {% latex %}H{% endlatex %} rozpadne na alespoň {% latex %}2{% endlatex %} komponenty. Sledujeme (rozebíráme případy), co se se souvislostí stane, když přidáme do grafu hranu {% latex %}e{% endlatex %}:
+- alespoň {% latex %}1{% endlatex %} konec {% latex %}e{% endlatex %} leží v {% latex %}A{% endlatex %}:
 	- přidání {% latex %}e{% endlatex %} nespojí žádné {% latex %}2{% endlatex %} komponenty, {% latex %}A{% endlatex %} je řezem i pro {% latex %}G = H + e{% endlatex %}
-2. oba konce leží v {% latex %}1{% endlatex %} komponentě
+- oba konce leží v {% latex %}1{% endlatex %} komponentě
 	- stejný argument jako (1)
-3. hrana {% latex %}e{% endlatex %} spojuje {% latex %}2{% endlatex %} komponenty
+- hrana {% latex %}e{% endlatex %} spojuje {% latex %}2{% endlatex %} komponenty
 	- pokud je počet komponent {% latex %}\ge 3{% endlatex %}, tak je {% latex %}A{% endlatex %} stále řezem (po spojení jsou stále {% latex %}2{% endlatex %})
 	- pokud není, tak:
-		- {% latex %}|C_1| \ge 2{% endlatex %}; nechť {% latex %}e = xy{% endlatex %} a {% latex %}x{% endlatex %} leží v {% latex %}C_1{% endlatex %}, pak {% latex %}A \cup {x}{% endlatex %} je řezem, protože mi v obou komponentách něco zbylo
+		- BUNO {% latex %}|C_1| \ge 2{% endlatex %}; nechť {% latex %}e = xy{% endlatex %} a {% latex %}x{% endlatex %} leží v {% latex %}C_1{% endlatex %}, pak {% latex %}A \cup {x}{% endlatex %} je řezem, protože mi v obou komponentách něco zbylo
 		- {% latex %}|C_1| = |C_2| = 1{% endlatex %}:
 			- {% latex %}|V| = |A| + 2 \implies |A| = |V| - 2 = k_v(H){% endlatex %}
-			- {% latex %}k_v(H + e) \le |V| - 1 = |V| - 2 + 1 = k_v(H) + 1{% endlatex %}
+			- {% latex %}k_v(H + e) \overset{\text{def.}}{\le} |V| - 1 = k_v(H) + 1{% endlatex %}
 
 **Věta:** {% latex %}k_v(G) \le k_e(G){% endlatex %}: indukcí podle počtu hran:
 - pokud {% latex %}|E| < |V| - 1{% endlatex %}, pak je {% latex %}G{% endlatex %} nesouvislý a {% latex %}k_v(G) = 0 = k_e(G){% endlatex %}
 - nechť nadále {% latex %}k_e(G) > 0{% endlatex %}; vezmu min. hranový řez {% latex %}F \subseteq E{% endlatex %} a {% latex %}c \in F{% endlatex %}... {% latex %}G' = G - e{% endlatex %}
 	- na {% latex %}G'{% endlatex %} použiju IP, tedy {% latex %}k_v(G') \le k_e(G'){% endlatex %}
-	- z pomocných lemmat dostávám zbytek:
-{% latex display %}k_v(G) - 1 \overset{\text{lemma o vrcholech}}{\le} k_v(G - e) \overset{\mathrm{IP}}{\le} k_e(G - e) \overset{F' = F \ \left\{e\right\}\text{ je řezem } G - e}{=} k_e(G) - 1{% endlatex %}
+	- z lemmatu o souvislosti vrcholů (a přičtení jedničky) víme:
+{% latex display %}k_v(G) - 1 \le k_v(G - e) \overset{\mathrm{IP}}{\le} k_e(G - e) = k_e(G) - 1{% endlatex %}
+
+Kde poslední rovnost platí, protože {% latex %}F' = F \setminus {e}{% endlatex %} je (z definice) řezem {% latex %}G - e{% endlatex %}.
 
 **Věta (Ford-Fulkerson):** {% latex %}\forall G{% endlatex %}, pokud {% latex %}k_e(G) \ge t{% endlatex %}, pak {% latex %}\forall u, v
-{% endlatex %} mezi {% latex %}u, v \exists \ge t{% endlatex %} hranově disjunktních cest
+{% endlatex %} mezi {% latex %}u, v{% endlatex %} existuje alespoň {% latex %}t{% endlatex %} hranově disjunktních cest
 
 **Důkaz ({% latex %}\Leftarrow{% endlatex %}):** sporem nechť existuje hranový řez {% latex %}F{% endlatex %} a {% latex %}|F| < t{% endlatex %}. {% latex %}G \setminus F{% endlatex %} je rozdělený na více komponent. Vezmi {% latex %}u \in C_1, v \in C_2{% endlatex %}. Mezi {% latex %}u, v{% endlatex %} vedlo {% latex %}t{% endlatex %} hranově disjunktních cest. {% latex %}F{% endlatex %} nemohl přerušit všechny z nich.
 
