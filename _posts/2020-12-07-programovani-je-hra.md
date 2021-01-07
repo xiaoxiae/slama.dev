@@ -210,7 +210,7 @@ print(len(x))  # vypíše délku pole (3)
 - programování v JavaScriptu, Javě a Pythonu
 
 ##### Instalace
-1. stáhni a nainstaluj následující soubor: [https://download.processing.org/processing-3.5.4-windows64.zip]()
+1. stáhni a nainstaluj následující soubor: [https://download.processing.org/processing-3.5.4-windows64.zip](https://download.processing.org/processing-3.5.4-windows64.zip)
 2. po otevření aplikace `Processing 3` v pravém horním rohu rozklikni, vyber `Add Mode...`
 3. nainstaluj z nabídky Python mód
 4. restartuj a Python mód vyber
