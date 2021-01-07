@@ -28,15 +28,13 @@ Příklady jsou **nepovinné**, nejsme ve škole. Jsou tu hlavně pro to, abyste
 ```python
 a = 123               # krabička a, která drží číslo 123
 b = "Tohle je věta."  # krabička b, která drží větu
-c = True              # krabička c, která drží „pravdu“
-d = a                 # krabička d, která si uloží, co je v a
+c = a                 # krabička c, která si uloží, co je v a
 
 # print(...) vypíše cokoliv, co do něho dáte
 # pro nás zatím magie
 print(a)
 print(b)
 print(c)
-print(d)
 ```
 
 - jméno krabičky může obsahovat:
@@ -49,9 +47,8 @@ print(d)
 a+b = 123 # neplatné, jméno nesmí obsahovat +
 ```
 
-1. Vytvořte proměnné `a`, `b`, `c` tak, aby každá obsahovala jiný typ informací.
-2. Máte číselné proměnné `a` a `b`. Napište program, který prohodí jejich obsah.
-	* Zvládnete to bez použití pomocné proměnné (a bez použití `a, b = b, a`)? ⭐
+1. Máte číselné proměnné `a` a `b`. Napište program, který prohodí jejich obsah. [[řešení](/assets/programovani-je-hra/1.1.1.py)]
+	* Zvládnete to bez použití pomocné proměnné (a bez použití `a, b = b, a`)? ⭐ [[řešení](/assets/programovani-je-hra/1.1.1-1.py)]
 
 #### Aritmetika
 
@@ -82,11 +79,11 @@ print(d)
 print(e)
 ```
 
-1. Máte proměnnou `a`, která udává délku strany kostky. Vypište její obsah.
-	* Vypište její plochu.
-	* Vypište plochu největší koule, která se do kostky vejde.
-	* Vypište plochu největší koule, do které se kostka vejde. ⭐
-2. Máte proměnnou `celsius` s číselnou hodnotou. Vypište, kolik je to Fahrenheitů ([odkaz na Wiki](https://cs.wikipedia.org/wiki/Stupeň_Fahrenheita), pokud nevíte, jak převod vypadá).
+1. Máte proměnnou `a`, která udává délku strany kostky. Vypište její obsah. [[řešení](/assets/programovani-je-hra/1.2.1.py)]
+	* Vypište její plochu. [[řešení](/assets/programovani-je-hra/1.2.1-1.py)]
+	* Vypište plochu největší koule, která se do kostky vejde. [[řešení](/assets/programovani-je-hra/1.2.1-2.py)]
+	* Vypište plochu největší koule, do které se kostka vejde. ⭐ [[řešení](/assets/programovani-je-hra/1.2.1-3.py)]
+2. Máte proměnnou `celsius` s číselnou hodnotou. Vypište, kolik je to Fahrenheitů ([odkaz na Wiki](https://cs.wikipedia.org/wiki/Stupeň_Fahrenheita), pokud nevíte, jak převod vypadá). [[řešení](/assets/programovani-je-hra/1.2.2.py)]
 
 #### `if`, `else`
 
@@ -125,10 +122,10 @@ else:
 	print("a je větší nebo rovno 100")
 ```
 
-1. Máte číselné proměnné `a` a `b`. Vypište `<`, `>` nebo `=` podle toho, zda je `a` menší/větší/rovné.
-2. Máte číselnou proměnnou `a`. Napište program, který vypíše `Sudé!` když je `a` sudé a `Liché!`, když je `a` liché. Použijte operátor `%` (zbytek po dělení).
-	- Zvládnete to i bez operátoru `%`?
-3. Máte číselné proměnné `a`, `b` a `c`, které mají různé hodnoty. Vypište tato čísla od nejmenšího po největší. Využijte toho, že `if`y mohou být vnořené. ⭐
+1. Máte číselné proměnné `a` a `b`. Vypište `<`, `>` nebo `=` podle toho, zda je `a` menší/větší/rovné. [[řešení](/assets/programovani-je-hra/1.3.1.py)]
+2. Máte číselnou proměnnou `a`. Napište program, který vypíše `Sudé!` když je `a` sudé a `Liché!`, když je `a` liché. Použijte operátor `%` (zbytek po dělení). [[řešení](/assets/programovani-je-hra/1.3.2.py)]
+	- Zvládnete to i bez operátoru `%`? [[řešení](/assets/programovani-je-hra/1.3.2-1.py)]
+3. Máte číselné proměnné `a`, `b` a `c`, které mají různé hodnoty. Vypište tato čísla od nejmenšího po největší. Využijte toho, že `if`y mohou být vnořené. ⭐ [[řešení](/assets/programovani-je-hra/1.3.3.py)]
 
 ### 2. hodina (17. 12. 2020)
 
@@ -143,7 +140,7 @@ print(veta)
 print(cislo)
 ```
 
-1. Chceme se uživatele zeptat, kolik mu je let. Vypište jeho věk a pokud mu je více než 20, napište `Je ti více než 20!`.
+1. Chceme se uživatele zeptat, kolik mu je let. Vypište jeho věk a pokud mu je více než 20, napište `Je ti více než 20!`. [[řešení](/assets/programovani-je-hra/2.1.1.py)]
 
 #### Smyčky
 - opakování části kódu, dokud něco platí
@@ -173,11 +170,11 @@ while i < 10:
 	i = i + 1
 ```
 
-1. Máte číselnou proměnnou `a`. Vypište všechna čísla od {% latex %}1{% endlatex %} do `a`.
-	* Vypište jen sudá čísla.
-2. Máte číselnou proměnnou `a`. Vypište všechna čísla, která dělí `a`.
-	* Vypište její prvočíselný rozklad. ⭐
-3. Chceme napsat robota, který bude hádat čísla od {% latex %}1{% endlatex %} do {% latex %}100{% endlatex %}. Uživateli řekne číslo, které hádá, a zeptá se ho, zda je uživatelovo menší, nebo větší. ⭐
+1. Máte číselnou proměnnou `a`. Vypište všechna čísla od {% latex %}1{% endlatex %} do `a`. [[řešení](/assets/programovani-je-hra/2.2.1.py)]
+	* Vypište jen sudá čísla. [[řešení](/assets/programovani-je-hra/2.2.1-1.py)]
+2. Máte číselnou proměnnou `a`. Vypište všechna čísla, která dělí `a`. [[řešení](/assets/programovani-je-hra/2.2.2.py)]
+	* Vypište její prvočíselný rozklad. ⭐ [[řešení](/assets/programovani-je-hra/2.2.2-1.py)]
+3. Chceme napsat robota, který bude hádat čísla od {% latex %}1{% endlatex %} do {% latex %}100{% endlatex %}. Uživateli řekne číslo, které hádá, a zeptá se ho, zda je uživatelovo menší, nebo větší. ⭐ [[řešení](/assets/programovani-je-hra/2.2.3.py)]
 
 #### Pole
 - hodně proměnných za sebou
@@ -197,11 +194,11 @@ print(x)       # vypíše pole: [1, 10, 3]
 print(len(x))  # vypíše délku pole (3)
 ```
 
-1. Máte pole čísel `pole`. Vypište: 
-	- počet čísel v poli.
-	- největší číslo v poli.
-	- nejmenší číslo v poli.
-	- součet čísel v poli.
+1. Máte pole čísel `pole`. Vypište:  
+	- počet čísel v poli. [[řešení](/assets/programovani-je-hra/2.3.1-1.py)]
+	- největší číslo v poli. [[řešení](/assets/programovani-je-hra/2.3.1-2.py)]
+	- nejmenší číslo v poli. [[řešení](/assets/programovani-je-hra/2.3.1-3.py)]
+	- součet čísel v poli. [[řešení](/assets/programovani-je-hra/2.3.1-4.py)]
 
 ### 3. hodina (7. 1. 2021)
 
@@ -289,13 +286,13 @@ def draw():
 	y = (y + 5) % height
 ```
 
-1. Místo posouvání míčku simulujte "odrážení" od stěny.
-	- Přidejte gravitaci. ⭐
+1. Místo posouvání míčku simulujte "odrážení" od stěny. [[řešení](/assets/programovani-je-hra/3.2.1.py)]
+	- Přidejte gravitaci. ⭐ [[řešení](/assets/programovani-je-hra/3.2.1-1.py)]
 	- Přidejte více míčků. ⭐
 
 ##### Operace na canvasu
 - `translate(x, y)`: posuň plátno o {% latex %}(x, y){% endlatex %}
-- `rotate(degree(r))`: otoč plátno o {% latex %}r{% endlatex %} stupňů
+- `rotate(radians(r))`: otoč plátno o {% latex %}r{% endlatex %} stupňů
 - po konci funkce `draw()` se opět resetuje!
 
 ```py
@@ -318,8 +315,8 @@ def draw():  # kód, který se dokola opakuje
 ```
 
 1. Naprogramuje animaci panáčka, jak:
-	- se točí dokola.
-	- mává rukou tam a zpět.
+	- se točí dokola. [[řešení](/assets/programovani-je-hra/3.3.1-1.py)]
+	- mává rukou tam a zpět. [[řešení](/assets/programovani-je-hra/3.3.1-2.py)]
 
 ### Dodatečné materiály
 
