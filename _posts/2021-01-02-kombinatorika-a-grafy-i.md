@@ -1163,6 +1163,31 @@ Kde poslední {% latex %}={% endlatex %} platí, protože:
 - máme, že pravděpodobnost, že nějaká {% latex %}K{% endlatex %}-prvková množina bude tvořit buďto kliku nebo nezávislou množinu velikosti {% latex %}k{% endlatex %} je {% latex %}< 1{% endlatex %}, tedy pravděpodobnost, že to nenastane je {% latex %}> 0{% endlatex %}, tedy {% latex %}\exists{% endlatex %} nějaký z náhodných grafů, který tohle nesplňuje
 	- pokud pravděpodobnost je nenulová, tak musí existovat nějaké množství grafů, které tenhle jev mají (protože jinak by nerovnost nebyla ostrá
 
+**Jiný důkaz:**
+Někomu může použití pravděpodobnosti připadat trochu magické.
+Důkaz lze ale přeformulovat explicitněji.
+
+Uvažme všechny grafy na {% latex %}n{% endlatex %} vrcholech. Těch je {% latex %}2^{{n \choose 2}}{% endlatex %}.
+Kolik z nich obsahuje kliku nebo nezávislou množinu velikosti alespoň {% latex %}k{% endlatex %}? Tedy,
+kolik z nich je "dobrých"?
+Začněme jednodušeji -- označme množinu vrcholů {% latex %}V{% endlatex %} a mějme {% latex %}K \subseteq V, |K| = k{% endlatex %}.
+V kolika grafech tvoří {% latex %}K{% endlatex %} kliku? Hrany uvnitř {% latex %}K{% endlatex %} jsou fixované, ostatní můžeme nastavovat libovolně.
+Odpověď je tedy {% latex %}2^{{n \choose 2}-{k \choose 2}}{% endlatex %}. Případ nezávislé množiny je
+symetrický, tudíž v {% latex %}2 \, 2^{{n \choose 2}-{k \choose 2}} = 2^{{n \choose 2}-{k \choose 2}+1}{% endlatex %} grafech
+bude $K$ klika nebo nz. množina.
+
+Nyní zásadní krok: V součtu {% latex %}{n \choose k} 2^{{n \choose 2}-{k \choose 2}+1}{% endlatex %} přes všechny takové
+množiny {% latex %}K{% endlatex %} jsme započítali každý dobrý graf (nejspíše vícekrát, ale to nevadí). Každý dobrý
+graf totiž obsahuje kliku nebo nz. množinu velikosti *přesně* {% latex %}k{% endlatex %}.
+Tento součet je tedy horní mezí pro počet dobrých grafů.
+
+A jsme hotovi. Předpoklad věty je totiž po přenásobení ekvivalentní nerovnosti:
+
+{% latex display %}{n \choose k} 2^{{n \choose 2}-{k \choose 2}+1} < 2^{n \choose 2}{% endlatex %}
+
+A z té díky našemu odhadu tranzitivně plyne, že počet dobrých grafů je menší než počet všech grafů. Tedy
+existuje nedobrý graf na {% latex %}n{% endlatex %} vrcholech a {% latex %}r(k,k) > n{% endlatex %}.
+
 ### 13. přednáška
 
 #### Ramseyovy barevné/nekonečné věty
