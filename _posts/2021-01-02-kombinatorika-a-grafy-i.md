@@ -1163,6 +1163,11 @@ Kde poslední {% latex %}={% endlatex %} platí, protože:
 - máme, že pravděpodobnost, že nějaká {% latex %}K{% endlatex %}-prvková množina bude tvořit buďto kliku nebo nezávislou množinu velikosti {% latex %}k{% endlatex %} je {% latex %}< 1{% endlatex %}, tedy pravděpodobnost, že to nenastane je {% latex %}> 0{% endlatex %}, tedy {% latex %}\exists{% endlatex %} nějaký z náhodných grafů, který tohle nesplňuje
 	- pokud pravděpodobnost je nenulová, tak musí existovat nějaké množství grafů, které tenhle jev mají (protože jinak by nerovnost nebyla ostrá
 
+{:.rightFloatBox}
+<div markdown="1">
+Díky Matěji Kripnerovi za PR!
+</div>
+
 **Jiný důkaz:**
 Někomu může použití pravděpodobnosti připadat trochu magické.
 Důkaz lze ale přeformulovat explicitněji.
