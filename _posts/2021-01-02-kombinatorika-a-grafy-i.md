@@ -253,12 +253,11 @@ Rekurence pro {% latex %}b_n{% endlatex %} vypadá skoro jako konvoluce sama seb
 se nám líbilo něco jako {% latex %}b(x) = b(x)^2{% endlatex %}. Jenže narozdíl od
 konvoluce pronásobujeme jen prvních {% latex %}n-1{% endlatex %} prvků. Uvažme
 tedy posloupnost {% latex %}0, b_0, b_1, b_2, \ldots{% endlatex %} generovanou funkcí
-{% latex %}x b(x){% endlatex %}. Ta již je konvolucí sama sebe -- {% latex %}n{% endlatex %}-tý prvek se požere s nulou.
-Už bychom se tedy chtěli radovat s {% latex %}x b(x) = (x b(x))^2{% endlatex %}.
-Ovšem dostáváme nepřesnost u {% latex %}b_0{% endlatex %}, protože podle
+{% latex %}x b(x){% endlatex %}. Ta je již skoro konvolucí sama sebe -- {% latex %}n{% endlatex %}-tý prvek se v sumě požere s nulou.
+Jediná nepřesnost je u {% latex %}b_0{% endlatex %}, protože podle
 definice konvoluce {% latex %}b_0 = 0 \cdot b_0 + b_0 \cdot 0 = 0{% endlatex %}, ale my
 víme {% latex %}b_0 = 1{% endlatex %}. Stačí tedy přičíst jedničku posunutou o
-jedna doprava, tedy správně je {% latex %}x b(x) = (x b(x))^2 + x{% endlatex %}.
+jedna doprava, čímž dostaneme {% latex %}x b(x) = (x b(x))^2 + x{% endlatex %}.
 Jinými slovy {% latex %}b(x) = x b(x)^2 + 1{% endlatex %}.
 </div>
 
