@@ -226,8 +226,8 @@ Algebraickou úpravou dostáváme:
 {% latex display %}
 \begin{aligned}
 	F(x) &= \frac{x}{1 - x - x^2} \\
-	&= \frac{x}{\left(1 - \frac{1 + \sqrt{5}}{2}\right)\left(1 - \frac{1 - \sqrt{5}}{2}\right)} \qquad //\ \text{parciální zlomky }\\
-	&= \frac{\frac{1}{\sqrt{5}}}{1 - \frac{1 + \sqrt{5}}{2}x} - \frac{\frac{1}{\sqrt{5}}}{1 - \frac{1 - \sqrt{5}}{2}x}\\
+	&= \frac{x}{\left(1 - \frac{1 + \sqrt{5}}{2}x\right)\left(1 - \frac{1 - \sqrt{5}}{2}x\right)} \qquad //\ \text{algebra}\\
+	&= \frac{\frac{1}{\sqrt{5}}}{1 - \frac{1 + \sqrt{5}}{2}x} - \frac{\frac{1}{\sqrt{5}}}{1 - \frac{1 - \sqrt{5}}{2}x}  \qquad //\ \text{parciální zlomky }\\
 	&= \frac{1}{\sqrt{5}}\left(\frac{1}{1 - \frac{1 + \sqrt{5}}{2}x} - \frac{1}{1 - \frac{1 - \sqrt{5}}{2}x}\right) \qquad //\ \text{tvary $\frac{\pm 1}{1 - \lambda_{1, 2} x}$}\\
 \end{aligned}
 {% endlatex %}
@@ -636,10 +636,11 @@ xy = \sum k_i = \sum \left(d_i - 1\right) = 2|E| - n \\
 
 	1. zvolím, kam šipka povede... {% latex %}n{% endlatex %} způsobů
 	2. zvolím komponentu, ze které povede... {% latex %}n - k - 1{% endlatex %}
+		- máme {% latex %}n - k{% endlatex %} komponent a {% latex %}1{% endlatex %} je blokovaná
 
 {% latex display %}
 \begin{aligned}
-	\#(T, r, č) &= \prod_{k = 0}^{ \overbrace{n - 2}^{\text{počet šipek}}} n ( n - k - 1) = n^{n - 1} (n -1)! \\
+	\#(T, r, č) &= \prod_{k = 0}^{ \overbrace{n - 2}^{\text{počet šipek je $n - 1$}}} n ( n - k - 1) = n^{n - 1} (n -1)! \\
 	\Kappa(n) \cdot n \cdot \left(n - 1\right)! &= n^{n - 1} (n -1)! \\
 	\Kappa(n) &= n^{n - 2}
 \end{aligned}
@@ -653,13 +654,25 @@ xy = \sum k_i = \sum \left(d_i - 1\right) = 2|E| - n \\
 - {% latex %}G{% endlatex %} je orientovaný graf, {% latex %}z, s \in V(G){% endlatex %}
 - {% latex %}c: E \mapsto \mathbb{R}_{\ge 0}{% endlatex %}
 
+{:.rightFloatBox}
+<div markdown="1">
+1. omezení shora kapacitami
+2. Kirchhoff
+</div>
 **Definice (tok)** v síti je {% latex %}f: E \mapsto \mathbb{R}_{\ge 0}{% endlatex %}, t. ž.:
 1. {% latex %}\forall e \in E(G){% endlatex %} platí {% latex %}0 \le f(e) \le c(e){% endlatex %}
-2. {% latex %}\forall v \in V(G){% endlatex %}, v \not\in \left\{z, s\right\} platí {% latex %}\sum f(x, v) = f(v, y){% endlatex %}
+2. {% latex %}\forall v \in V(G), v \not\in \left\{z, s\right\}{% endlatex %} platí {% latex %}\sum f(x, v) = f(v, y){% endlatex %}
 
-**Definice (velikost toku)** {% latex %}w(f) = \sum f(z, x) - \sum f(x, z){% endlatex %} (to, co teče ze zdroje)
+{:.rightFloatBox}
+<div markdown="1">
+To, co teče ven ze zdroje.
+</div>
 
-**Důkaz:** existuje maximální tok. Nástin je takový, že množina toků je kompaktní a obsahuje tedy i maximum (nevznikne nám tam nějaká divnost).
+**Definice (velikost toku)** {% latex %}w(f) = \sum f(z, x) - \sum f(x, z){% endlatex %} 
+
+**Věta:** existuje maximální tok.
+
+**Nástin důkazu:** Nástin je takový, že množina toků je kompaktní a obsahuje tedy i maximum (nevznikne nám tam nějaká divnost).
 
 **Definice (řez)** v síti je množina hran {% latex %}R \subseteq E(G){% endlatex %} taková, že v grafu {% latex %}(V, E \setminus R){% endlatex %} neexistuje cesta ze zdroje do stoku.
 - **kapacita** řezu je {% latex %}c(R) = \sum_{e \in R} c(e){% endlatex %}, analogicky tok
@@ -834,7 +847,7 @@ Tomovo poznámka: V důkazu {% latex %}k_e(G) \le k_v(G){% endlatex %} se tohle 
 {% latex display %}
 \begin{aligned}
 	k_e(G) \le |B'| &= |B| + 1 = k_e(G - e) + 1\\
-	k_e(G) &\le k_e(G - e)
+	k_e(G) - 1 &\le k_e(G - e)
 \end{aligned}
 {% endlatex %}
 
