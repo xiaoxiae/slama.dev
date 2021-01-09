@@ -118,7 +118,7 @@ Máme tedy:
 \end{aligned}
 {% endlatex %}
 
-Druhá strana analogicky.
+Druhá strana analogicky (uvažujeme {% latex %}\left(1 - \frac{1}{3^2}\right)\left(1-\frac{1}{5^2}\right)\ldots = \left(\frac{2 \cdot 4}{3^2}\right)\left(\frac{4 \cdot 6}{5^2}\right)\ldots = \frac{1}{2 \left(2m\right) P^2}{% endlatex %}).
 
 ### 2. přednáška
 
