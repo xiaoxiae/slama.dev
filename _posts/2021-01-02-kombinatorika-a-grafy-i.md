@@ -56,9 +56,9 @@ e\left(\frac{n}{e}\right)^n \le n! \le en \left(\frac{n}{e}\right)^n
 {% endlatex %}
 
 **Důkaz (indukcí):**
-- {% latex %}n = 1{% endlatex %}... {% latex %}e \cdot 1 \cdot \frac{1}{e} \le 1{% endlatex %}
+- {% latex %}n = 1{% endlatex %}: {% latex display%}1 \le e \cdot 1 \cdot \frac{1}{e}{% endlatex %}
 - {% latex %}n - 1 \rightarrow n{% endlatex %}:
-{% latex %}\begin{aligned} n! = n \left(n - 1\right)! &\le^\mathrm{IP} en \left(n - 1\right) \left(\frac{n - 1}{e}\right)^{n - 1} \\ &= en \left(\frac{n}{e}\right)^n \left(\frac{e}{n}\right)^n \left(n - 1\right) \left(\frac{n - 1}{e}\right)^{n - 1} \\
+{% latex display %}\begin{aligned} n! = n \left(n - 1\right)! &\le^\mathrm{IP} en \left(n - 1\right) \left(\frac{n - 1}{e}\right)^{n - 1} \\ &= en \left(\frac{n}{e}\right)^n \left(\frac{e}{n}\right)^n \left(n - 1\right) \left(\frac{n - 1}{e}\right)^{n - 1} \\
 &= en \left(\frac{n}{e}\right)^n \underbrace{\left(\frac{n - 1}{n}\right)^n e}_{\le 1}
 \end{aligned}{% endlatex %}
 
@@ -134,7 +134,7 @@ Druhá strana analogicky (uvažujeme {% latex %}\left(1 - \frac{1}{3^2}\right)\l
 Zadefinujeme si náhodnou veličinu {% latex %}X = I_{S_2} + I_{S_4} + \ldots + I_{S_{2n}} {% endlatex %}:
 - {% latex %}I_{S_{2n}}\ldots{% endlatex %} indikátor, že nastal jev „po {% latex %}2n{% endlatex %} krocích jsem v počátku“
 - {% latex %}\mathbb{E}[X] = \mathbb{E}[\#\text{návratů do počátku}]{% endlatex %}.
-- {% latex %}\mathrm{Pr}[\text{po $2n$ krocích jsem v počátku}] = \binom{2n}{n}/2^{2n}{% endlatex %}.
+- {% latex %}\Pr[\text{po $2n$ krocích jsem v počátku}] = \binom{2n}{n}/2^{2n}{% endlatex %}.
 	- nahoře jsou možnosti vyrovnaných počtů kroků doprava/doleva
 	- dole jsou všechny scénáře pro {% latex %}2n{% endlatex %} kroků
 
@@ -146,7 +146,7 @@ Zadefinujeme si náhodnou veličinu {% latex %}X = I_{S_2} + I_{S_4} + \ldots + 
 \begin{aligned}
 	\mathbb{E}[X] &= \mathbb{E}\left[\sum_{i=1}^{\infty} I_{S_{2i}}\right]&& \\
 	              &= \sum_{i=1}^{\infty} \mathbb{E}\left[I_{S_{2i}}\right]&&//\ \text{linearita střední hodnoty}\\
-	              &= \sum_{i=1}^{\infty} \mathrm{Pr}\left[I_{S_{2i}}\right] &&//\ \text{střední hodnota indikátoru je pravděpodobnost}\\
+	              &= \sum_{i=1}^{\infty} \Pr\left[I_{S_{2i}}\right] &&//\ \text{střední hodnota indikátoru je pravděpodobnost}\\
 	              &= \sum_{i=1}^{\infty} \frac{1}{2 \sqrt{i}} && //\  \text{diverguje, odhadneme přes } \sum \frac{1}{n} \\
 \end{aligned}
 {% endlatex %}
@@ -175,12 +175,12 @@ Zadefinujeme si náhodnou veličinu {% latex %}X = I_{S_2} + I_{S_4} + \ldots + 
 | posun doleva                                 | {% latex %}a_1, a_2, a_3, \ldots {% endlatex %}                                                                               | {% latex %}\alpha \frac{a(x) - a_0}{x}{% endlatex %} |
 |                                              |                                                                                                                               |                                                      |
 | substituce {% latex %}\alpha x{% endlatex %} | {% latex %}a_0, \alpha a_1, \alpha^2 a_2, \ldots {% endlatex %}                                                               | {% latex %} \alpha a(\alpha x){% endlatex %}         |
-| substituce {% latex %}x^n{% endlatex %}      | {% latex %}a_0, 0, \overset{n - 1}{\ldots}, 0, a_1, 0, \overset{n - 1}{\ldots}, 0, a_2, \ldots {% endlatex %}                 | {% latex %} \alpha a(x^n){% endlatex %}              |
+| substituce {% latex %}x^n{% endlatex %}      | {% latex %}a_0, 0, \overset{n - 1}{\ldots}, 0, a_1, 0, \overset{n - 1}{\ldots}, 0, a_2, \ldots {% endlatex %}                 | {% latex %} a(x^n){% endlatex %}              |
 |                                              |                                                                                                                               |                                                      |
 | derivace                                     | {% latex %}a_1, 2a_1, 3a_2, \ldots {% endlatex %}                                                                             | {% latex %} \alpha a'(x){% endlatex %}               |
 | integrování                                  | {% latex %}0, a_1, a_2/2, a_3/3, \ldots {% endlatex %}                                                                        | {% latex %} \int_{0}^{x} a(t) dt{% endlatex %}       |
 |                                              |                                                                                                                               |                                                      |
-| konvoluce                                  | {% latex %} \sum_{k = 0}^{n} a_k \cdot b_{n - k} {% endlatex %}                                                               | {% latex %} a(x) \cdot b(c){% endlatex %}            |
+| konvoluce                                  | {% latex %} \sum_{k = 0}^{n} a_k \cdot b_{n - k} {% endlatex %}                                                               | {% latex %} a(x) \cdot b(x){% endlatex %}            |
 
 Všechny důkazy jsou jednoduché rozepsání z definice.
 
@@ -310,7 +310,7 @@ Dokáže se přes to přes rozbor příkladů toho, jak vedou přímky přes {% 
 
 **Definice (řád KPR):** řádem {% latex %}(X, \mathcal{P}){% endlatex %} je {% latex %}h = |P| - 1{% endlatex %} pro jakoukoliv {% latex %}P \in \mathcal{P}{% endlatex %}.
 
-**Tvrzení:** nechť {% latex %}(X, \mathcal{P}){% endlatex %} je KPR řádu {% latex %}n{% endlatex %}. Pak:
+**Tvrzení:** nechť {% latex %}(X, \mathcal{P}){% endlatex %} je KPR řádu {% latex %}p{% endlatex %}. Pak:
 1. každým bodem prochází {% latex %}n + 1{% endlatex %} přímek 
 2. {% latex %}|X| = n^2 + n + 1{% endlatex %}
 3. {% latex %}|\mathcal{P}| = n^2 + n + 1{% endlatex %}
@@ -801,9 +801,9 @@ Definuji SRR jako {% latex %}f(i) = x \in X{% endlatex %}, pokud po hraně {% la
 
 ### 9. přednáška
 
-**Důsledek:** nechť {% latex %}B = (V_1 \cup V_2, E){% endlatex %} je bipartitní graf, kde {% latex %}k_1 = \mathrm{min}\ \underset{v \in V_1}{\mathrm{deg}}\ v, k_2 = \mathrm{max}\ \underset{v \in V_2}{\mathrm{deg}}\ v {% endlatex %} a {% latex %}k_1 \ge k_2{% endlatex %}, pak je splněna Hallova podmínka.
+**Důsledek:** nechť {% latex %}B = (V_1 \cup V_2, E){% endlatex %} je bipartitní graf, kde {% latex %}k_1 = \mathrm{min}\ \underset{v \in V_1}{\deg}\ v, k_2 = \mathrm{max}\ \underset{v \in V_2}{\deg}\ v {% endlatex %} a {% latex %}k_1 \ge k_2{% endlatex %}, pak je splněna Hallova podmínka.
 
-**Důkaz:** Ověřím Hallovu podmínku (pozor, prohozené strany). Máme-li množinu {% latex %}J{% endlatex %} a každá vidí alespoň {% latex %}k_1{% endlatex %} hran, pak vidím {% latex %}\ge |J| k_1{% endlatex %} hran. Abych pohltil všechny tyto hrany, tak musí mapravo být alespoň {% latex %}k_2 |N[j]|{% endlatex %} vrcholů. Musí tedy platit:
+**Důkaz:** Ověřím Hallovu podmínku (pozor, prohozené strany). Máme-li množinu {% latex %}J{% endlatex %} a každá vidí alespoň {% latex %}k_1{% endlatex %} hran, pak vidím {% latex %}\ge |J| k_1{% endlatex %} hran. Abych pohltil všechny tyto hrany, tak musí napravo být alespoň {% latex %}k_2 |N[j]|{% endlatex %} vrcholů. Musí tedy platit:
 {% latex display %}|J| k_1 \le \#\ \text{hran} \le k_2 |N[J]|{% endlatex %}
 
 Protože {% latex %}k_1 \ge k_2{% endlatex %}, pak {% latex %}|N[j]| \ge |J|{% endlatex %}.
@@ -870,7 +870,7 @@ V {% latex %}H{% endlatex %} existuje vrcholový řez {% latex %}A \subseteq V(H
 
 **Věta:** {% latex %}k_v(G) \le k_e(G){% endlatex %}: indukcí podle počtu hran:
 - pokud {% latex %}|E| < |V| - 1{% endlatex %}, pak je {% latex %}G{% endlatex %} nesouvislý a {% latex %}k_v(G) = 0 = k_e(G){% endlatex %}
-- nechť nadále {% latex %}k_e(G) > 0{% endlatex %}; vezmu min. hranový řez {% latex %}F \subseteq E{% endlatex %} a {% latex %}c \in F{% endlatex %}... {% latex %}G' = G - e{% endlatex %}
+- nechť nadále {% latex %}k_e(G) > 0{% endlatex %}; vezmu min. hranový řez {% latex %}F \subseteq E{% endlatex %} a {% latex %}e \in F{% endlatex %}; také {% latex %}G' = G - e{% endlatex %}
 	- na {% latex %}G'{% endlatex %} použiju IP, tedy {% latex %}k_v(G') \le k_e(G'){% endlatex %}
 	- z lemmatu o souvislosti vrcholů (a přičtení jedničky) víme:
 {% latex display %}k_v(G) - 1 \le k_v(G - e) \overset{\mathrm{IP}}{\le} k_e(G - e) = k_e(G) - 1{% endlatex %}
@@ -896,7 +896,7 @@ Kde poslední rovnost platí, protože {% latex %}F' = F \setminus {e}{% endlate
 
 **Důkaz ({% latex %}\Leftarrow{% endlatex %}):** stejný jako FF, jen nahraď „hrany“ za „vrcholy“.
 
-**Důkaz ({% latex %}\Rightarrow{% endlatex %}):** uděláme trik s dělením vrcholů na dva ({% latex %}\mathrm{deg}_{\mathrm{in}}, \mathrm{deg}_{\mathrm{out}}{% endlatex %}) a v libovolném řezu nahradíme hrany vedoucí do/z vrcholů za hranu spojující vrcholy. 
+**Důkaz ({% latex %}\Rightarrow{% endlatex %}):** uděláme trik s dělením vrcholů na dva ({% latex %}\deg_{\mathrm{in}}, \deg_{\mathrm{out}}{% endlatex %}) a v libovolném řezu nahradíme hrany vedoucí do/z vrcholů za hranu spojující vrcholy. 
 
 Možná **TODO:** doplnit, pokud tohle nebude stačit.
 
@@ -944,8 +944,8 @@ Možná **TODO:** doplnit, pokud tohle nebude stačit.
 
 **Výsledek:**
 - zpráva je o {% latex %}7/4{% endlatex %} delší
-- {% latex %}\mathrm{Pr}\left[\text{jeden blok se správně rozkóduje}\right] = \overbrace{(1 - p)^7}^{\text{vše ok}} + \overbrace{7p(1 - p)^6}^{\text{jeden špatně}} = (1-p)^6(1 + 6p){% endlatex %}
-- {% latex %}\mathrm{Pr}\left[\text{celá zpráva se správně dekóduje}\right] = \left((1-p)^6(1 + 6p)\right)^{n/4}{% endlatex %}
+- {% latex %}\Pr\left[\text{jeden blok se správně rozkóduje}\right] = \overbrace{(1 - p)^7}^{\text{vše ok}} + \overbrace{7p(1 - p)^6}^{\text{jeden špatně}} = (1-p)^6(1 + 6p){% endlatex %}
+- {% latex %}\Pr\left[\text{celá zpráva se správně dekóduje}\right] = \left((1-p)^6(1 + 6p)\right)^{n/4}{% endlatex %}
 	- pro {% latex %}n = 100, p = 0.01{% endlatex %} vyjde {% latex %}95\%{% endlatex %}, což je nice!
 
 ---
@@ -955,32 +955,32 @@ Možná **TODO:** doplnit, pokud tohle nebude stačit.
 	- {% latex %}s \in \Sigma^n \ldots{% endlatex %} slovo (vstup)
 - {% latex %}C \subseteq \Sigma^n \ldots{% endlatex %} kód
 	- {% latex %}c \in C \ldots{% endlatex %} kódové slovo (naše special slova)
-	- {% latex %}|C| \ldots{% endlatex %} velikost kódu
-	- {% latex %}n \ldots{% endlatex %} délka kódu
+	- {% latex %}|C| \ldots{% endlatex %} velikost kódu (počet kódových slov)
+	- {% latex %}n \ldots{% endlatex %} délka kódu (kolikaznakové slova máme)
 	- {% latex %}k = \log |C| \ldots{% endlatex %} dimenze kódu (bude se hodit později)
-- pro {% latex %}x, y \in \Sigma^n: d_H (x, y)\ldots{% endlatex %}  počet souřadnic, ve kterých se liší
-	- je to metrika
+- pro {% latex %}x, y \in \Sigma^n: d_H (x, y) = d(x, y)\ldots{% endlatex %}  počet souřadnic, ve kterých se liší
 	- {% latex %}d = \Delta(C) = \underset{x, y \in C}{\mathrm{min}}\ d(x, y) \ldots{% endlatex %} (min.) vzdálenost {% latex %}C{% endlatex %}
 		- {% latex %}d = 1 \ldots{% endlatex %} nepoznám chybu
 		- {% latex %}d = 2 \ldots{% endlatex %} poznám, že došlo k chybě
 		- {% latex %}d = 3 \ldots{% endlatex %} umím opravit {% latex %}1{% endlatex %} chybu
+		- {% latex %}\Delta(C) \ge 2t + 1{% endlatex %} znamená, že „{% latex %}C{% endlatex %} má schopnost opravit {% latex %}t{% endlatex %} chyb“
 - kód s vlastnostmi {% latex %}n, k, d{% endlatex %} se označuje {% latex %}(n,k,d)-{% endlatex %} kód
 
 **Příklady kódů:**
 1. totální kód {% latex %}C = \Sigma^n{% endlatex %} (nic se nekóduje)
 	- délka {% latex %} = n{% endlatex %}
-	- velikost {% latex %}= 2^k \implies k = \log |C| = n{% endlatex %}
-	- {% latex %}d = 1{% endlatex %}
+	- velikost {% latex %}= 2^n \implies k = \log |C| = n{% endlatex %}
+	- {% latex %}\Delta(C) = 1{% endlatex %}
 	- {% latex %}\implies (n, n, 1)-{% endlatex %}kód
-2. opakovací kód délky {% latex %}n{% endlatex %}
+2. opakovací kód délky {% latex %}n{% endlatex %} (pozor, {% latex %}n{% endlatex %} je délka slova)
 	- délka {% latex %}= n{% endlatex %}
 	- velikost {% latex %}= 2 \implies k = 1{% endlatex %}
-	- {% latex %}d = n{% endlatex %}
+	- {% latex %}\Delta(C) = n{% endlatex %}
 	- {% latex %}\implies (n, 1, n)-{% endlatex %}kód
 3. paritní kód {% latex %}C \subseteq \Sigma^n{% endlatex %} t. ž. {% latex %}x \in C: \sum_{x_i} = 0{% endlatex %} (počet jedniček je sudý)
 	- délka {% latex %}= n{% endlatex %}
 	- velikost {% latex %}= 2^{n - 1} \implies k = n - 1{% endlatex %}
-	- {% latex %}d = 2{% endlatex %}, protože změna bitů mění paritu
+	- {% latex %}\Delta(C) = 2{% endlatex %}, protože změna bitů mění paritu
 	- {% latex %}\implies (n,  n - 1, 2)-{% endlatex %}kód
 4. Hammingův kód
 	- {% latex %}\implies (7,  4, 3)-{% endlatex %}kód
@@ -989,15 +989,18 @@ Možná **TODO:** doplnit, pokud tohle nebude stačit.
 
 #### Jak nejefektivněji můžeme kódovat?
 
+{:.rightFloatBox}
+<div markdown="1">
+Maximální velikost kódu (počet kódových slov), když určím délku a vzdálenost.
+</div>
+
 - {% latex %}A(n, d) = \underset{C}{\mathrm{max}} \log |C|{% endlatex %}
 	- {% latex %}C{% endlatex %} jsou binární kódy délky {% latex %}n{% endlatex %} s min. vzdáleností {% latex %}\ge d{% endlatex %}
-	- „max. velikost kódu, když určím jeho délku a vzdálenost“
 	- {% latex %}A(n, 1) = n{% endlatex %} (triviální kód)
 	- {% latex %}A(n, 2) \ge n - 1{% endlatex %} (paritní kód má {% latex %}|C| = 2^{n -1}, d = 2{% endlatex %})
 
 (👀) {% latex %}\forall d \le n, d \ge 2: A(n, d) \le A(n - 1, d - 1){% endlatex %}
-- mám {% latex %}C{% endlatex %} délky {% latex %}n{% endlatex %} s min. vzdáleností {% latex %}d{% endlatex %}
-- díky tomu, že vzdálenost je alespoň {% latex %}2{% endlatex %}, tak po odstranění bitu vzdálenost slov klesne nejvýše o {% latex %}1{% endlatex %} (pokud se slova v bytu liší)
+- po odstranění bitu vzdálenost slov klesne nejvýše o {% latex %}1{% endlatex %} (pokud se slova v bytu liší); velikost nového kódu {% latex %}|C'| = |C|{% endlatex %} (díky předpokladu funguje, žádná slova se nesloučí)
 
 **Věta (Simpletonův odhad):** {% latex %}\forall d \le n{% endlatex %} platí {% latex %}A(n, d) \le n - d + 1{% endlatex %}
 - {% latex %}A(n, d) \le A(n - 1, d - 1) \le \ldots \le A(n - d + 1, 1) = n - d + 1{% endlatex %}
@@ -1016,7 +1019,7 @@ Možná **TODO:** doplnit, pokud tohle nebude stačit.
 
 (👀) pokud {% latex %}C{% endlatex %} je dimenze {% latex %}k{% endlatex %}, pak má {% latex %}2^k{% endlatex %} prvků, ale k jeho popisu stačí nějaká báze {% latex %}C \equiv k{% endlatex %} slov t. ž. ostatní dostanu lineárními kombinacemi.
 
-**Příklad:** Hammingův kód je lineární a generuje ho **generujicí matice**
+**Příklad:** Hammingův kód {% latex %}\mathcal{H}{% endlatex %} je lineární a generuje ho **generujicí matice**
 {% latex display %}
 \begin{matrix}
 	v_1 \\
@@ -1033,10 +1036,11 @@ Možná **TODO:** doplnit, pokud tohle nebude stačit.
 
 - generující matice kódu {% latex %}H{% endlatex %}
 - {% latex %}\left\{v_1, \ldots, v_4\right\}{% endlatex %} je báze {% latex %}H{% endlatex %}
-- {% latex %}\forall c \in H \exists \alpha_1, \ldots, \alpha_4 \in \mathbb{Z}_2{% endlatex %} t. ž. {% latex %}c = \sum_{i = 1}^{4} \alpha_i v_i {% endlatex %}
+- {% latex %}\forall c \in H\ \exists \alpha_1, \ldots, \alpha_4 \in \mathbb{Z}_2{% endlatex %} t. ž. {% latex %}c = \sum_{i = 1}^{4} \alpha_i v_i {% endlatex %}
 
 (👀) {% latex %}\forall x, y, z \in C: d(x, y) = d(x + z, y + z){% endlatex %}
 - „posunutí nějakým směrem“
+- platí pro všechny kódy, ale hodí se jen u lineárních kódů, protože díky tomu, že tvoří VP je součet také kódové slovo
 - {% latex %}x + z, y + z \in C{% endlatex %} (lineární kódy)
 	- {% latex %}d(x, y) = d(0, y - x){% endlatex %}
 	- {% latex %}\Delta(C) = \underset{x, y \in C}{\mathrm{min}}\ d(0, y - x) \implies \underset{x \in C}{\mathrm{min}}\ d(0, x){% endlatex %}, což je počet nenulových souřadnic
@@ -1044,14 +1048,15 @@ Možná **TODO:** doplnit, pokud tohle nebude stačit.
 ---
 
 - {% latex %}\langle x, y \rangle \sum_{i = 1}^{n} x_i \cdot y_i{% endlatex %} -- něco jako skalární součin
-	- nemusí platit, že {% latex %}x \neq 0 \implies \langle x, x \rangle \neq 0{% endlatex %} (např. pro {% latex %}(1\ 1\ 0\ 0){% endlatex %}
+	- nemusí platit, že {% latex %}x \neq 0 \implies \langle x, x \rangle \neq 0{% endlatex %} (např. pro {% latex %}(1\ 1\ 0\ 0){% endlatex %})
 
 **Definice (duální kód)** {% latex %}C{% endlatex %} je ortogonální doplněk {% latex %}C^\perp = \left\{x\ |\ \langle x, y \rangle = 0, \forall y \in C\right\}{% endlatex %}
-- může být {% latex %}C \cap C^\perp \neq \left\{0\right\}{% endlatex %}, ale platí {% latex %}\mathrm{dim}\ C + \mathrm{dim}\ C^\perp = n{% endlatex %}
+- může být {% latex %}C \cap C^\perp \neq \left\{0\right\}{% endlatex %}, ale platí {% latex %}\dim C + \dim C^\perp = n{% endlatex %}
 
-(👀) {% latex %}C^\perp{% endlatex %} je opět vektorový podprostor, je to taky kód
+(👀) {% latex %}C^\perp{% endlatex %} je opět vektorový podprostor, je to tedy taky kód
 - má také generující matici {% latex %}M{% endlatex %} (tzv. **paritní/kontrolní**)
 - platí {% latex %}C = \left\{x\ |\ Mx = 0\right\}{% endlatex %} (z definice naší „ortogonality“)
+	- stačí ověřit ortogonalitu na bázové vektory
 
 (👀) nechť {% latex %}G{% endlatex %} je generující matice kódu {% latex %}C{% endlatex %}
 - {% latex %}G{% endlatex %} můžu zgausoeliminovat na {% latex %}G'{% endlatex %}, která stále generuje {% latex %}C{% endlatex %}
@@ -1096,13 +1101,84 @@ Mějme {% latex %}C{% endlatex %} lineární kód délky {% latex %}n{% endlatex
 3. pro {% latex %}\tilde{x} = (0\ 1\ 1\ 0\ 1){% endlatex %} dostáváme váhu syndromu {% latex %}2{% endlatex %} a to už neopravíme
 
 ##### Hammingovy kódy
-**Pozorování:** nechť {% latex %}P{% endlatex %} je kontrolní matice {% latex %}C{% endlatex %}. Pak {% latex %}\Delta(C) = {% endlatex %} maximální {% latex %}d{% endlatex %} t. ž. {% latex %}\forall d - 1{% endlatex %} sloupců {% latex %}P{% endlatex %} je lineárně nezávislých
+(👀) nechť {% latex %}P{% endlatex %} je kontrolní matice {% latex %}C{% endlatex %}. Pak {% latex %}\Delta(C) = {% endlatex %} maximální {% latex %}d{% endlatex %} t. ž. {% latex %}\forall d - 1{% endlatex %} sloupců {% latex %}P{% endlatex %} je lineárně nezávislých.
 
-TODO: už mi to nemyslí, pak to dodělám
+**Důkaz:** kódová slova {% latex %}\equiv Pc = 0{% endlatex %}. Nechť sloupce {% latex %}P{% endlatex %} jsou {% latex %}p_1, \ldots, p_n{% endlatex %}. Pak
+{% latex display %}\sum_{i = 1}^{n} c_i p_i = 0{% endlatex %}
+
+Pro spor nechť {% latex %}\exists x{% endlatex %} t. ž. {% latex %}\sum x_i p_i = 0{% endlatex %} a {% latex %}w(x) < d \rightarrow{% endlatex %} spor, protože pak {% latex %}x{% endlatex %} je kódové slovo ale {% latex %}\Delta(C) = d{% endlatex %}. To znamená, že {% latex %}\forall x: w(x) < d \rightarrow \sum_{i = 1}^{n}x_i p_i \neq 0 \rightarrow{% endlatex %} každých {% latex %}\le d - 1{% endlatex %} sloupců je lineárně nezávislých.
+
+**Důsledek:** pokud chci {% latex %}d = 3{% endlatex %}, potřebuji co největší matici {% latex %}P{% endlatex %} t. ž. {% latex %}\forall 2{% endlatex %} sloupce jsou lineárně nezávislé. To v {% latex %}\mathbb{Z}_2{% endlatex %} znamená, že musí být buď stejné, nebo jeden z nich nulový.
+
+{% latex display %}
+P = \underbrace{\begin{pmatrix}
+	0      & 0      & 0      & \cdots & 1 \\
+	\vdots & \vdots & \vdots & \ddots  & 1 \\
+	0      & 1      & 1      &        & 1 \\
+	1      & 0      & 1      &        & 1
+\end{pmatrix}}_{\text{$2^r - 1$ nenulových $r$-dim. vektorů}}
+{% endlatex %}
+
+Jedná se o binární zápisy čísel {% latex %}1 \ldots 2^{r} - 1{% endlatex %}. Nechť {% latex %}C{% endlatex %} je generovaný {% latex %}P{% endlatex %} a {% latex %}\mathcal{H}_r = C^\perp{% endlatex %} ({% latex %}P{% endlatex %} je paritní matice {% latex %}\mathcal{H}_r{% endlatex %}). Má délku {% latex %}n = 2^{r} - 1{% endlatex %} a {% latex %}\dim \mathcal{H}_r = n - r = 2^{r} - r - 1{% endlatex %}.
+
+Z pozorování (nezávislé sloupce) dostáváme, že {% latex %}\Delta(\mathcal{H}_r) = 3{% endlatex %}.
+
+**Věta:** pro každé {% latex %}r \ge 2{% endlatex %} je {% latex %}\mathcal{H}_r \left[2^{r} - 1, 2^r - r - 1, 3\right]{% endlatex %}-kód.
 
 ### 12. přednáška
+- (👀)  {% latex %}G = \left[I_k\ |\ P\right] \implies M = \begin{bmatrix} -P \\ I_{n - k} \end{bmatrix}^T{% endlatex %}
 
-TODO: navazuje na hammingovy kódy z 11.
+#### Dekódování Hammingova kódu
+- předpoklad: {% latex %}e{% endlatex %} má nejvýše {% latex %}1{% endlatex %} jedničku
+	- došlo k {% latex %}\le 1{% endlatex %} chybě
+- {% latex %}M{% endlatex %} je ve tvaru uvedeném výše (binární zápisy čísel {% latex %}1 \ldots 2^{r} - 1{% endlatex %}
+	- pozorování: syndrom {% latex %}M \tilde{x} = Me{% endlatex %} je {% latex %}y_i \equiv{% endlatex %} binární zápis {% latex %}i \iff{% endlatex %} došlo k chybě na pozici {% latex %}i{% endlatex %}
+
+#### Perfektnost kódu
+Pokud pro {% latex %}C{% endlatex %} platí {% latex %}\Delta(C) = 2t + 1{% endlatex %}, pak pro každé slovo {% latex %}x \in \mathbb{Z}^n_2{% endlatex %} je nejvýše jedno kódové slovo ve vzdálenosti {% latex %}\le t{% endlatex %} od {% latex %}x{% endlatex %}.
+- {% latex %}\implies{% endlatex %} symetrické koule se středem {% latex %}x{% endlatex %} a poloměrem {% latex %}t B(x, t) = \left\{z \in \mathbb{Z}_2^n\ |\ d(x, z) \le t\right\}{% endlatex %} jsou pro různá {% latex %}x \in C{% endlatex %} disjunktní
+
+**Věta (Hammingův odhad):** pro binární kód s {% latex %}\Delta(C) \ge 2t + 1{% endlatex %} platí {% latex display %}|C| \le \frac{2^t}{V(n, t)} {% endlatex %}
+- {% latex %}V(n, t){% endlatex %} je objem kombinatorické koule dimenze {% latex %}n{% endlatex %} o poloměru {% latex %}t{% endlatex %} {% latex %}= \sum_{i = 0}^{t} \binom{n}{i}{% endlatex %} (vždy způsoby, jak si vybrat {% latex %}i{% endlatex %} bitů a flipnout je)
+
+**Důkaz:** mám na {% latex %}2^n{% endlatex %} prvcích {% latex %}|C|{% endlatex %} disjunktních koulí objemu {% latex %}V(n, t){% endlatex %}... koule pokrývají {% latex %}|C| \cdot V(n, t){% endlatex %} prvků, což je {% latex %}\le 2^n{% endlatex %} (méně než všechny prvky) a vydělím.
+
+---
+
+{:.center}
+![](/assets/kombinatorika-a-grafy-i/komb-koule.svg)
+
+---
+
+**Definice:** kód {% latex %}C{% endlatex %} je perfektní, pokud pro něj platí Hammingův odhad s rovností.
+
+**Příklady perfektních kódů:**
+- totální (koule o poloměru 1)
+- opakovací kód liché délky 
+- jednoprvkový kód (koule zaplňuje celý prostor)
+
+**Tvrzení:** Hammingův kód je perfektní
+
+**Důkaz:** {% latex %}\mathcal{H}_r = \left[2^r - 1, 2^r - r - 1, 3\right]{% endlatex %}-kód.
+- {% latex %}3 = 2t + 1 \implies t = 1, V(n, t) = V(2^r - 1, 1) = 2^r{% endlatex %}
+	- poslední rovnost je počet vektorů lišící se v {% latex %}1{% endlatex %} souřadnici, {% latex %}+{% endlatex %} střed koule
+
+- {% latex %}k = \text{dimenze} = 2^r - r - 1{% endlatex %}
+-{% latex %}|C| = 2^k = 2^{2^r - r - 1}{% endlatex %}
+
+{% latex display %}\frac{2^n}{V(n, t)} = \frac{2^{2^r - 1}}{2^r} = 2^{n - r} = 2^{2^r - r - 1} = |C|{% endlatex %}
+
+#### Hadamardův kód
+- **duál Hammingova kódu** (prohození generující matice s paritní maticí pro Hammingův kód {% latex %}G \longleftrightarrow K{% endlatex %} dává Hadamardův kód)
+
+- {% latex %}x \ldots{% endlatex %} zpráva délky {% latex %}r{% endlatex %}
+- {% latex %}c = (c_1, \ldots, c_{2^r - 1}){% endlatex %}
+	- {% latex %}c_i = \langle x, y_i \rangle{% endlatex %}, kde {% latex %}y_i{% endlatex %} jsou binární zápisy čísla {% latex %}i{% endlatex %}
+
+**Tvrzení:** Hadamardův kód je {% latex %}\left[2^r, r, 2^{r - 1}\right]{% endlatex %}-kód.
+
+(👀) {% latex %}\langle x, y_i \rangle{% endlatex %} nenese informaci o {% latex %}x_1{% endlatex %}, pokud první bit {% latex %}y{% endlatex %} je {% latex %}0 \implies{% endlatex %} stačí brát {% latex %}y_i, i \in \left(2^{r - 1} , 2^r - 1\right){% endlatex %}
+- jedná se o **rozšířený Hadamardův kód** {% latex %}\left[2^r, r + 1, 2^{r - 1}\right]{% endlatex %}
 
 #### Ramseyova teorie
 
@@ -1168,9 +1244,9 @@ Kde poslední {% latex %}={% endlatex %} platí, protože:
 **Důsledek:** {% latex %}\forall k \ge 3: r(k) > 2^{k/2}{% endlatex %}
 - dosadíme {% latex %}n = 2^{k/2}{% endlatex %} do předchozího (předchozí je ostrý odhad, takže {% latex %}1^k < 1{% endlatex %} funguje)
 
-**Důkaz:** vezmu náhodný graf {% latex %}G{% endlatex %} t. ž. každá z {% latex %}\binom{n}{2}{% endlatex %} má pravděpodobnost {% latex %}1/2{% endlatex %}, nezávisle na ostatních. Nechť {% latex %}K \subseteq V, |K| = k{% endlatex %}. {% latex %}A_K \ldots{% endlatex %} jev, že {% latex %}G[K]{% endlatex %} je klika. {% latex %}\mathrm{Pr}[A_K] = \left(\frac{1}{2}\right)^{\binom{k}{2}} = 2^{-\binom{k}{2}}{% endlatex %}. Obdobně {% latex %}B_K{% endlatex %} jev, že vznikla nezávislá množina a {% latex %}C_K \ldots A_K \cup B_K \ldots \mathrm{Pr}[C_K] = 2 \cdot 2^{-\binom{k}{2}} = 2^{1 - \binom{k}{2}}{% endlatex %}. {% latex %}p \ldots{% endlatex %} pravděpodobnost, že {% latex %}\exists K \subseteq V{% endlatex %} t. ž. nastal jev {% latex %}C_K{% endlatex %}. Je ji těžké určit, protože jevy nejsou nezavislé (množiny se mohou překrývat), nám ale stačí odhad který předpokládá, že jsou jevy nezávislé:
+**Důkaz:** vezmu náhodný graf {% latex %}G{% endlatex %} t. ž. každá z {% latex %}\binom{n}{2}{% endlatex %} má pravděpodobnost {% latex %}1/2{% endlatex %}, nezávisle na ostatních. Nechť {% latex %}K \subseteq V, |K| = k{% endlatex %}. {% latex %}A_K \ldots{% endlatex %} jev, že {% latex %}G[K]{% endlatex %} je klika. {% latex %}\Pr[A_K] = \left(\frac{1}{2}\right)^{\binom{k}{2}} = 2^{-\binom{k}{2}}{% endlatex %}. Obdobně {% latex %}B_K{% endlatex %} jev, že vznikla nezávislá množina a {% latex %}C_K \ldots A_K \cup B_K \ldots \Pr[C_K] = 2 \cdot 2^{-\binom{k}{2}} = 2^{1 - \binom{k}{2}}{% endlatex %}. {% latex %}p \ldots{% endlatex %} pravděpodobnost, že {% latex %}\exists K \subseteq V{% endlatex %} t. ž. nastal jev {% latex %}C_K{% endlatex %}. Je ji těžké určit, protože jevy nejsou nezavislé (množiny se mohou překrývat), nám ale stačí odhad který předpokládá, že jsou jevy nezávislé:
 
-{% latex display %}\mathrm{Pr}[C] \le \sum_{K \in V, |K| = k} \mathrm{Pr}[C_K] = \binom{n}{k} \cdot 2^{1 - \binom{k}{s}} < 1{% endlatex %}
+{% latex display %}\Pr[C] \le \sum_{K \in V, |K| = k} \Pr[C_K] = \binom{n}{k} \cdot 2^{1 - \binom{k}{s}} < 1{% endlatex %}
 - předposlední rovnost je z definice -- všechny možné {% latex %}K{% endlatex %}-tice
 - poslední rovnost je předpoklad věty
 - máme, že pravděpodobnost, že nějaká {% latex %}K{% endlatex %}-prvková množina bude tvořit buďto kliku nebo nezávislou množinu velikosti {% latex %}k{% endlatex %} je {% latex %}< 1{% endlatex %}, tedy pravděpodobnost, že to nenastane je {% latex %}> 0{% endlatex %}, tedy {% latex %}\exists{% endlatex %} nějaký z náhodných grafů, který tohle nesplňuje
@@ -1302,11 +1378,7 @@ Strukturu _špatných_ obarvení popíšeme stromem, kde hladiny jsou obarvení 
 
 Díky tomuto lemmatu víme, že {% latex %}\exists{% endlatex %} nekonečná cesta z {% latex %}S_0{% endlatex %}. Z nekonečné Ramseyovy věty ale víme, že kdyby tomu tak bylo, tak neplatí, protože by existovalo nekonečné obarvení přirozených čísel (podle nekonečné cesty v tomto stromu).
 
-### Zkouška
-- cíl vyzkoušet, že máme o všem povědomí
-- přehledové otázky (např. vytvořující funkce, toky, kódy), kde u každého tématu bude věta
-	- jednu z vět z témat dokažte
-	- jinak u ostatních oblastí řekněte důležité věty/definice
+### [Forma zkoušky](/assets/kombinatorika-a-grafy-i/okruhy_kg1.pdf)
 
 ### Zdroje
 - [https://research.koutecky.name/db/teaching:kg12021_prednaska](https://research.koutecky.name/db/teaching:kg12021_prednaska) -- stránka cvičení
