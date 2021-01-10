@@ -296,6 +296,9 @@ Pro daný koeficient vytvořující funkce tedy máme:
 Dokáže se přes to přes rozbor příkladů toho, jak vedou přímky přes {% latex %}Č{% endlatex %}:
 - pokud nevedou přes všechny body z {% latex %}Č{% endlatex %}, pak máme vyhráno
 - pokud vedou, tak existují dvě další přímky {% latex %}P_1{% endlatex %} a {% latex %}P_2{% endlatex %} vedoucí kolmo na naše přímky, jejich průnik je hledaný bod; původní přímky jím vést nemohou, protože pak by dvě přímky sdílely 2 body, což nelze
+- {% latex %}P_1 \neq P{% endlatex %}, protože pak by {% latex %}P{% endlatex %}
+  obsahovala alespoň 3 body z {% latex %}Č{% endlatex %}. Podobně ostatní
+  nerovnosti.
 
 {:.center}
 ![](/assets/kombinatorika-a-grafy-i/bod-na-primce.svg)
