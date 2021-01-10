@@ -898,8 +898,6 @@ Kde poslední rovnost platí, protože {% latex %}F' = F \setminus {e}{% endlate
 
 **Důkaz ({% latex %}\Rightarrow{% endlatex %}):** uděláme trik s dělením vrcholů na dva ({% latex %}\deg_{\mathrm{in}}, \deg_{\mathrm{out}}{% endlatex %}) a v libovolném řezu nahradíme hrany vedoucí do/z vrcholů za hranu spojující vrcholy. 
 
-Možná **TODO:** doplnit, pokud tohle nebude stačit.
-
 ### 10. přednáška
 
 #### Lepení uší
@@ -913,7 +911,7 @@ Možná **TODO:** doplnit, pokud tohle nebude stačit.
 - předpokládejme, že {% latex %}G_j, j \le i{% endlatex %} jsou definovány jako výše
 - pokud {% latex %}G_i = G{% endlatex %}, tak jsme hotovi
 - jinak {% latex %}E_i \neq E{% endlatex %}, {% latex %}G{% endlatex %} je souvislý
-	- {% latex %}\exists e = \left\{v, v'\right\} \in E \setminus E_i{% endlatex %}, která se dotýká původního grafu {% latex %}e \cap V_i \neq \emptyset{% endlatex %}
+	- {% latex %}\exists e = \left\{v, v'\right\} \in E \setminus E_i{% endlatex %}, která se dotýká původního grafu ({% latex %}e \cap V_i \neq \emptyset{% endlatex %})
 		- pokud oba vrcholy {% latex %}e{% endlatex %} patří do {% latex %}V_i{% endlatex %}, tak ji přidám ({% latex %}G_{i + 1} = G_i + e{% endlatex %})
 		- pokud ne: {% latex %}G - v{% endlatex %} musí stále být souvislý ({% latex %}G{% endlatex %} je {% latex %}2{% endlatex %}-souvislý) -- prostě vezmeme nejkratší cestu zpět do nějakého {% latex %}G_j{% endlatex %}
 
@@ -1072,7 +1070,7 @@ Mějme {% latex %}C{% endlatex %} lineární kód délky {% latex %}n{% endlatex
 
 {% latex %}P{% endlatex %} je paritní matice kódu {% latex %}C{% endlatex %}, tzn. {% latex %}C = \left\{x\ |\ Px = 0\right\}{% endlatex %}.
 
-**Definice (syndrom)** slova {% latex %}z{% endlatex %} je {% latex %}Pz{% endlatex %}.
+**Definice (syndrom)** slova {% latex %}z \in C{% endlatex %} je {% latex %}Pz{% endlatex %}, kde {% latex %}P{% endlatex %} je paritní matice kódu {% latex %}C{% endlatex %}.
 - (👀) kódová slova {% latex %}\equiv{% endlatex %} slova se syndromem {% latex %}0{% endlatex %} (viz. definice {% latex %}P{% endlatex %}...)
 
 **Předpoklad:** chybový vektor {% latex %}e{% endlatex %} je slovo s nejmenší vahou ve své třídě
@@ -1131,17 +1129,17 @@ Z pozorování (nezávislé sloupce) dostáváme, že {% latex %}\Delta(\mathcal
 #### Dekódování Hammingova kódu
 - předpoklad: {% latex %}e{% endlatex %} má nejvýše {% latex %}1{% endlatex %} jedničku
 	- došlo k {% latex %}\le 1{% endlatex %} chybě
-- {% latex %}M{% endlatex %} je ve tvaru uvedeném výše (binární zápisy čísel {% latex %}1 \ldots 2^{r} - 1{% endlatex %}
+- {% latex %}M{% endlatex %} je ve tvaru uvedeném výše (binární zápisy čísel {% latex %}1 \ldots 2^{r} - 1{% endlatex %})
 	- pozorování: syndrom {% latex %}M \tilde{x} = Me{% endlatex %} je {% latex %}y_i \equiv{% endlatex %} binární zápis {% latex %}i \iff{% endlatex %} došlo k chybě na pozici {% latex %}i{% endlatex %}
 
 #### Perfektnost kódu
-Pokud pro {% latex %}C{% endlatex %} platí {% latex %}\Delta(C) = 2t + 1{% endlatex %}, pak pro každé slovo {% latex %}x \in \mathbb{Z}^n_2{% endlatex %} je nejvýše jedno kódové slovo ve vzdálenosti {% latex %}\le t{% endlatex %} od {% latex %}x{% endlatex %}.
-- {% latex %}\implies{% endlatex %} symetrické koule se středem {% latex %}x{% endlatex %} a poloměrem {% latex %}t B(x, t) = \left\{z \in \mathbb{Z}_2^n\ |\ d(x, z) \le t\right\}{% endlatex %} jsou pro různá {% latex %}x \in C{% endlatex %} disjunktní
+Pokud pro {% latex %}C{% endlatex %} platí {% latex %}\Delta(C) = 2t + 1{% endlatex %}, pak pro každé slovo {% latex %}x \in \mathbb{Z}^n_2{% endlatex %} je nejvýše jedno kódové slovo ve vzdálenosti {% latex %}\le t{% endlatex %} od {% latex %}x{% endlatex %}. jsou to tedy **symetrické koule** se středem {% latex %}x{% endlatex %} a poloměrem {% latex %}t{% endlatex %}, {% latex %}B(x, t) = \left\{z \in \mathbb{Z}_2^n\ |\ d(x, z) \le t\right\}{% endlatex %}; jsou pro různá {% latex %}x \in C{% endlatex %} disjunktní.
 
-**Věta (Hammingův odhad):** pro binární kód s {% latex %}\Delta(C) \ge 2t + 1{% endlatex %} platí {% latex display %}|C| \le \frac{2^t}{V(n, t)} {% endlatex %}
+**Věta (Hammingův odhad):** pro binární kód s {% latex %}\Delta(C) \ge 2t + 1{% endlatex %} platí {% latex display %}|C| \le \frac{2^n}{V(n, t)} {% endlatex %}
+- {% latex %}2^n{% endlatex %} je počet všech slov
 - {% latex %}V(n, t){% endlatex %} je objem kombinatorické koule dimenze {% latex %}n{% endlatex %} o poloměru {% latex %}t{% endlatex %} {% latex %}= \sum_{i = 0}^{t} \binom{n}{i}{% endlatex %} (vždy způsoby, jak si vybrat {% latex %}i{% endlatex %} bitů a flipnout je)
 
-**Důkaz:** mám na {% latex %}2^n{% endlatex %} prvcích {% latex %}|C|{% endlatex %} disjunktních koulí objemu {% latex %}V(n, t){% endlatex %}... koule pokrývají {% latex %}|C| \cdot V(n, t){% endlatex %} prvků, což je {% latex %}\le 2^n{% endlatex %} (méně než všechny prvky) a vydělím.
+**Důkaz:** mám na {% latex %}2^n{% endlatex %} prvcích {% latex %}|C|{% endlatex %} disjunktních koulí objemu {% latex %}V(n, t){% endlatex %}... koule pokrývají {% latex %}|C| \cdot V(n, t){% endlatex %} prvků, což je {% latex %}\le 2^n{% endlatex %} (méně nebo rovno všem prvkům -- nevím, jestli se nepřekrývají) a vydělím.
 
 ---
 
@@ -1164,9 +1162,9 @@ Pokud pro {% latex %}C{% endlatex %} platí {% latex %}\Delta(C) = 2t + 1{% endl
 	- poslední rovnost je počet vektorů lišící se v {% latex %}1{% endlatex %} souřadnici, {% latex %}+{% endlatex %} střed koule
 
 - {% latex %}k = \text{dimenze} = 2^r - r - 1{% endlatex %}
--{% latex %}|C| = 2^k = 2^{2^r - r - 1}{% endlatex %}
+- {% latex %}|C| = 2^k = 2^{2^r - r - 1}{% endlatex %}
 
-{% latex display %}\frac{2^n}{V(n, t)} = \frac{2^{2^r - 1}}{2^r} = 2^{n - r} = 2^{2^r - r - 1} = |C|{% endlatex %}
+{% latex display %}\frac{2^n}{V(n, t)} = \frac{2^{2^r - 1}}{2^r} = 2^{2^r - r - 1} = |C|{% endlatex %}
 
 #### Hadamardův kód
 - **duál Hammingova kódu** (prohození generující matice s paritní maticí pro Hammingův kód {% latex %}G \longleftrightarrow K{% endlatex %} dává Hadamardův kód)
@@ -1210,7 +1208,7 @@ Pokud pro {% latex %}C{% endlatex %} platí {% latex %}\Delta(C) = 2t + 1{% endl
 	- {% latex %}n_1 = \binom{k + l - 3}{k - 1}{% endlatex %} a {% latex %}n_2 = \binom{k + l - 3}{l - 1 = k - 2}{% endlatex %} (dřívější odhady)
 		- (👀) platí, že {% latex %}n = n_1 + n_2{% endlatex %}
 
-Zvolím {% latex %}u \in G{% endlatex %} libovolně. Z principu holubníku ([Dirichletův princip](https://mathworld.wolfram.com/DirichletsBoxPrinciple.html)) je {% latex %}|A| \ge n_1, |B| \ge n_2{% endlatex %} (jsou-li ostře menší, tak nedají {% latex %}n-1{% endlatex %}, ale {% latex %}n - 2{% endlatex %}).
+Zvolím {% latex %}u \in G{% endlatex %} libovolně a opět rozdělím graf na sousedy {% latex %}A{% endlatex %} a nesousedy {% latex %}B{% endlatex %} vrcholu {% latex %}u{% endlatex %}. Z principu holubníku ([Dirichletův princip](https://mathworld.wolfram.com/DirichletsBoxPrinciple.html)) je {% latex %}|A| \ge n_1{% endlatex %} nebo  {% latex %}|B| \ge n_2{% endlatex %} (jsou-li ostře menší, tak dají {% latex %}n - 2{% endlatex %}).
 1. {% latex %}|A| \ge n_1{% endlatex %}, použiji indukci na {% latex %}A{% endlatex %}:
 	- {% latex %}\omega(G[A]) \ge k{% endlatex %} a jsem hotov
 	- {% latex %}\alpha(G[A]) \ge l - 1{% endlatex %}, pak tato nezávislá množina spolu s {% latex %}u{% endlatex %} dává nezávislou mnozinu velikosti {% latex %}\ge l{% endlatex %}
@@ -1234,7 +1232,7 @@ Zvolím {% latex %}u \in G{% endlatex %} libovolně. Z principu holubníku ([Dir
 **Věta:** {% latex %}k, n \in \mathbb{N}{% endlatex %} t. ž. {% latex %}\binom{n}{k} 2^{1 - \binom{k}{2}} < 1 \implies r(k) > n{% endlatex %}.
 
 Co jsou čísla zač? Použijeme odhad:
-- {% latex %}\frac{n}{k} \le \frac{n^k}{k!} < \frac{n^k}{2^{k/2 + 1}}{% endlatex %}
+- {% latex %}\binom{n}{k} \le \frac{n^k}{k!} < \frac{n^k}{2^{k/2 + 1}}{% endlatex %}
 
 {% latex display %}\binom{n}{k}2^{1 - \binom{k}{2}} < \frac{n^k}{2^{k/2 + 1}} 2^{1 - k(k - 1) / 2} = \left(\frac{n}{2^{k / 2}}\right)^k{% endlatex %}
 
@@ -1300,7 +1298,7 @@ existuje nedobrý graf na {% latex %}n{% endlatex %} vrcholech a {% latex %}r(k,
 
 **Důkaz:** rozdělím {% latex %}\mathbb{N}{% endlatex %} na {% latex %}B_1, \ldots, B_t{% endlatex %}, kde {% latex %}B_i = \left\{m \in \mathbb{N}\ |\ c(m) = i\right\}{% endlatex %}. Protože sjednocením je nekonečná množina pak alespoň jedna musí být nekonečná.
 
-**Věta (nekonečná Ramseyova):** pro každé {% latex %}t \in \mathbb{N}, \forall c: \binom{\mathbb{N}}{2} \mapsto [t] \exists{% endlatex %} nekonečna množina {% latex %}A \subseteq \mathbb{N}{% endlatex %}, pro níž je funkce {% latex %}c{% endlatex %} na hranách {% latex %}\binom{A}{2}{% endlatex %} konstantní.
+**Věta (nekonečná Ramseyova (vícebarevná) věta):** pro každé {% latex %}t \in \mathbb{N}, \forall c: \binom{\mathbb{N}}{2} \mapsto [t] \exists{% endlatex %} nekonečna množina {% latex %}A \subseteq \mathbb{N}{% endlatex %}, pro níž je funkce {% latex %}c{% endlatex %} na hranách {% latex %}\binom{A}{2}{% endlatex %} (nekonečný úplný graf) konstantní.
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -1325,7 +1323,7 @@ sanity check: {% latex %}A_1 \supset A_2 \supset \ldots {% endlatex %}
 „Pokud {% latex %}n \ge N{% endlatex %}, tak každé obarvení {% latex %}K_n{% endlatex %} {% latex %}t{% endlatex %} barvami obsahuje jednobarevný {% latex %}K_k{% endlatex %} jako podgraf.“
 </div>
 
-**Věta (Ramseyova vícebarevná):** {% latex %}\forall t, k \in \mathbb{N}{% endlatex %} ({% latex %}t{% endlatex %} počet barev, {% latex %}k{% endlatex %} velikost kliky) {% latex %}\exists N \in \mathbb{N}{% endlatex %} t. ž. {% latex %}\forall c: \binom{[n]}{2} \mapsto [t], \forall n \ge N{% endlatex %} (obarvení {% latex %}K_n{% endlatex %} {% latex %}t{% endlatex %} barvami) existuje množina {% latex %}A \subseteq [n], |A| = k{% endlatex %}, pro níž je funkce {% latex %}c{% endlatex %} na {% latex %}\binom{A}{2}{% endlatex %} konstantní.
+**Věta (Ramseyova vícebarevná věta):** {% latex %}\forall t, k \in \mathbb{N}{% endlatex %} ({% latex %}t{% endlatex %} počet barev, {% latex %}k{% endlatex %} velikost kliky) {% latex %}\exists N \in \mathbb{N}{% endlatex %} t. ž. {% latex %}\forall c: \binom{[n]}{2} \mapsto [t], \forall n \ge N{% endlatex %} (obarvení {% latex %}K_n{% endlatex %} {% latex %}t{% endlatex %} barvami) existuje množina {% latex %}A \subseteq [n], |A| = k{% endlatex %}, pro níž je funkce {% latex %}c{% endlatex %} na {% latex %}\binom{A}{2}{% endlatex %} konstantní.
 
 
 **Důkaz:** adaptujeme nekonečný na konečný případ -- chtěli bychom posloupnost barev {% latex %}b_1, \ldots, b_{tk}{% endlatex %} -- když do toho praštíme holubníkem, tak máme barvu, která je tam {% latex %}k{% endlatex %}-krát. 
@@ -1338,10 +1336,10 @@ sanity check: {% latex %}A_1 \supset A_2 \supset \ldots {% endlatex %}
 **Definice (hypergraf)** je zobecněný graf, kde:
 - hrany jsou libovolné množiny (místo dvojic, jako v normálním grafu)
 - **uniformní** hypergraf -- hrany jsou {% latex %}p{% endlatex %}-prvkové množiny
-
-
-**Věta (nekonecná Ramseyova věta pro pětice):** {% latex %}\forall p, t \in \mathbb{N}{% endlatex %} a {% latex %}\forall c: \binom{\mathbb{N}}{p} \mapsto [t] \exists A \subseteq \mathbb{N}{% endlatex %} nekonečná t. ž. {% latex %}c{% endlatex %} je na {% latex %}\binom{A}{p}{% endlatex %} konstantní.
 - {% latex %}p{% endlatex %} je arita hran (velikost množin), {% latex %}t, k{% endlatex %} jsou stejné
+
+
+**Věta (nekonečná Ramseyova věta pro {% latex %}p{% endlatex %}-tice):** {% latex %}\forall p, t \in \mathbb{N}{% endlatex %} a {% latex %}\forall c: \binom{\mathbb{N}}{p} \mapsto [t] \exists A \subseteq \mathbb{N}{% endlatex %} nekonečná t. ž. {% latex %}c{% endlatex %} je na {% latex %}\binom{A}{p}{% endlatex %} konstantní.
 
 **Důkaz:** indukcí podle {% latex %}p{% endlatex %}, pro {% latex %}p=1{% endlatex %} je to nekonečný holubník (pro {% latex %}p = 2{% endlatex %} je to Ramsey)
 - IP: věta platí pro {% latex %}p - 1{% endlatex %}
@@ -1359,7 +1357,7 @@ Pomocné obarvení {% latex %}(p-1){% endlatex %}-tic stejnými barvami, jako by
 (👀) barva {% latex %}p{% endlatex %}-tice {% latex %}\left\{v_{i_1}, \ldots, v_{i_p}\right\}{% endlatex %} (vzhledem k vzniklé posloupnosti {% latex %}v_1, v_2, \ldots{% endlatex %}), kde {% latex %}i_1 < i_2 < i_3 < i_p{% endlatex %} závisí pouze na barvě prvku {% latex %}v_{i_1}{% endlatex %}
 - vyberu z barev nějakou opakující-se nekonečněkrát a vrcholy s příslušnými indexy tvoří {% latex %}A{% endlatex %}
 
-**Věta (Ramseyova věta pro pětice):** {% latex %}\forall p, t, k \in \mathbb{N} \exists N \in \mathbb{N}{% endlatex %} t. ž. {% latex %}\forall n \ge N \exists A \subseteq [n], |A| = k{% endlatex %} t. ž. {% latex %}c{% endlatex %} je konstantní na {% latex %}\binom{A}{p}{% endlatex %}.
+**Věta (Ramseyova věta pro {% latex %}p{% endlatex %}-tice):** {% latex %}\forall p, t, k \in \mathbb{N} \exists N \in \mathbb{N}{% endlatex %} t. ž. {% latex %}\forall n \ge N \exists A \subseteq [n], |A| = k{% endlatex %} t. ž. {% latex %}c{% endlatex %} je konstantní na {% latex %}\binom{A}{p}{% endlatex %}.
 
 **Důkaz:** mějme {% latex %}p, k, t{% endlatex %} z předpokladu věty. Uvážíme {% latex %}c_i: \binom{[n]}{p} \mapsto [t]{% endlatex %}. To je _dobré_, pokud {% latex %}\exists {% endlatex %} {% latex %}k{% endlatex %}-prvková jednobarevná podmnožina, jinak je _špatné_. Věta tedy tvrdí, že {% latex %}n \ge N{% endlatex %} jsou všechna {% latex %}c{% endlatex %} _dobrá_.
 
