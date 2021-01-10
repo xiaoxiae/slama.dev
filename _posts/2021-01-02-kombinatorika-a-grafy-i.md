@@ -317,6 +317,14 @@ Dokáže se přes to přes rozbor příkladů toho, jak vedou přímky přes {% 
 
 **Důkaz:**
 
+{:.rightFloatBox}
+<div markdown="1">
+Explicitní důkaz (3): Pro každý bod započítejme všechny přímky jím
+procházející. Dostaneme tak {% latex %}(n^2+n+1)(n+1){% endlatex %} přímek. Ale
+každou jsme započítali {% latex %}(n+1){% endlatex %}-krát -- jednou pro každý z
+jejích bodů.
+</div>
+
 1. triviálně z definice.
 2. viz. níže.
 3. vychází z duality (viz. další kapitola).
@@ -324,14 +332,6 @@ Dokáže se přes to přes rozbor příkladů toho, jak vedou přímky přes {% 
 Vezměme libovolné {% latex %}x \in X{% endlatex %}. Pak {% latex %}\exists P \in \mathcal{P}: x \not\in P{% endlatex %}, protože vezmeme-li vody, {% latex %}a, b, c \in Č{% endlatex %}, pak přímky {% latex %}ab{% endlatex %} a {% latex %}ac{% endlatex %} nemohou mít další společný bod než {% latex %}a{% endlatex %} (došlo by ke sporu s některým z axiomů).
 
 Poté stačí uvážit následující obrázek a spočítat body/přímky. Další body už neexistují, protože kdyby existoval, tak by jím musela procházet přímka z {% latex %}x{% endlatex %} a ta by rovněž někde protínala {% latex %}P{% endlatex %} (a nesplňovala tak axiomy).
-
-{:.rightFloatBox}
-<div markdown="1">
-Třetí bod už je zřejmý ze symetrie. Pro každý bod započítejme všechny přímky jím
-procházející. Dostaneme tak {% latex %}(n^2+n+1)(n+1){% endlatex %} přímek. Ale
-každou jsme započítali {% latex %}(n+1){% endlatex %}-krát -- jednou pro každý z
-jejích bodů.
-</div>
 
 {:.center}
 ![](/assets/kombinatorika-a-grafy-i/kpr-pocet.svg)
