@@ -247,6 +247,17 @@ Pro daný koeficient vytvořující funkce tedy máme:
 		- {% latex %}x{% endlatex %} je tam kvůli posunu, aby vycházelo správně indexování (suma nejde do {% latex %}n{% endlatex %})
 		- {% latex %}1{% endlatex %} je tam kvůli tomu, aby nultý člen správně vycházel
 
+Rekurence pro {% latex %}b_n{% endlatex %} vypadá skoro jako konvoluce sama sebe, takže by
+se nám líbilo něco jako {% latex %}b(x) = b(x)^2{% endlatex %}. Jenže narozdíl od
+konvoluce pronásobujeme jen prvních {% latex %}n-1{% endlatex %} prvků. Uvažme
+tedy posloupnost {% latex %}0, b_0, b_1, b_2, \ldots{% endlatex %} generovanou funkcí
+{% latex %}x b(x){% endlatex %}. Ta je již skoro konvolucí sama sebe -- {% latex %}n{% endlatex %}-tý prvek se v sumě požere s nulou.
+Jediná nepřesnost je u {% latex %}b_0{% endlatex %}, protože podle
+definice konvoluce {% latex %}b_0 = 0 \cdot b_0 + b_0 \cdot 0 = 0{% endlatex %}, ale my
+víme {% latex %}b_0 = 1{% endlatex %}. Stačí tedy přičíst jedničku posunutou o
+jedna doprava, čímž dostaneme {% latex %}x b(x) = (x b(x))^2 + x{% endlatex %}.
+Jinými slovy {% latex %}b(x) = x b(x)^2 + 1{% endlatex %}.
+
 {% latex display %}
 \begin{aligned}
 	b(x) &= x \cdot b(x)^2 + 1 \\
