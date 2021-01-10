@@ -71,8 +71,8 @@ Důkaz, toho proč ten výraz {% latex %}\le 1{% endlatex %}:
 {% endlatex %}
 
 - pozn.: {% latex %}a \le b \implies a = b c{% endlatex %} pro {% latex %}c \le 1{% endlatex %}, proto to vlastně děláme
-- Pro dolní mez postupujeme podobně, ale je potřeba indukční krok dokazovat pro
-  {% latex %}n{% endlatex %} -> {% latex %}n+1{% endlatex %}, místo {% latex %}n-1{% endlatex %} -> {% latex %}n{% endlatex %}.
+- pro dolní mez postupujeme podobně, ale je potřeba indukční krok dokazovat pro
+  {% latex %}n \rightarrow n+1{% endlatex %}, místo {% latex %}n-1 \rightarrow n{% endlatex %}.
 
 **Věta (Stirlingova formule)** (bez důkazu):
 {% latex display %}n! \cong \sqrt{2 \pi n} \left(\frac{n}{e}\right)^n{% endlatex %}
