@@ -282,6 +282,16 @@ Pro daný koeficient vytvořující funkce tedy máme:
 3. {% latex %}\forall x, y \in X, x \neq y \exists! P \in \mathcal{P}{% endlatex %} t. ž. {% latex %}x, y \in \mathcal{P}{% endlatex %}
 	- „každé dva body určují právě {% latex %}1{% endlatex %} přímku“
 
+{:.rightFloatBox}
+<div markdown="1">
+První axiom zajišťuje netrivialitu. Není těžké si rozmyslet, že lze nahradit
+axiomem _"Existují alespoň 2 různé přímky, z nichž každá má alespoň 3 body"_.
+Bez některé z těchto podmínek by definici vyhovovala např. libovolně velká
+množina bodů s právě jednou přímkou, která by všechny body spojovala. Případně
+by k tomuto schématu šel přidat ještě jeden bod, který by s každým dalším byl
+spojen dvoubodovou přímkou.
+</div>
+
 **Příklad (Fanova rovina):**
 
 {:.center}
