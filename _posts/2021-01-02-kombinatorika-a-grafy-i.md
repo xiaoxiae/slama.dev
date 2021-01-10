@@ -331,6 +331,14 @@ Dokáže se přes to přes rozbor příkladů toho, jak vedou přímky přes {% 
 
 **Důkaz:**
 
+{:.rightFloatBox}
+<div markdown="1">
+Explicitní důkaz (3): Pro každý bod započítejme všechny přímky jím
+procházející. Dostaneme tak {% latex %}(n^2+n+1)(n+1){% endlatex %} přímek. Ale
+každou jsme započítali {% latex %}(n+1){% endlatex %}-krát -- jednou pro každý z
+jejích bodů.
+</div>
+
 1. triviálně z definice.
 2. viz. níže.
 3. vychází z duality (viz. další kapitola).
