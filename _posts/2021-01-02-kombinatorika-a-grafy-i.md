@@ -325,6 +325,14 @@ Vezměme libovolné {% latex %}x \in X{% endlatex %}. Pak {% latex %}\exists P \
 
 Poté stačí uvážit následující obrázek a spočítat body/přímky. Další body už neexistují, protože kdyby existoval, tak by jím musela procházet přímka z {% latex %}x{% endlatex %} a ta by rovněž někde protínala {% latex %}P{% endlatex %} (a nesplňovala tak axiomy).
 
+{:.rightFloatBox}
+<div markdown="1">
+Třetí bod už je zřejmý ze symetrie. Pro každý bod započítejme všechny přímky jím
+procházející. Dostaneme tak {% latex %}(n^2+n+1)(n+1){% endlatex %} přímek. Ale
+každou jsme započítali {% latex %}(n+1){% endlatex %}-krát -- jednou pro každý z
+jejích bodů.
+</div>
+
 {:.center}
 ![](/assets/kombinatorika-a-grafy-i/kpr-pocet.svg)
 
