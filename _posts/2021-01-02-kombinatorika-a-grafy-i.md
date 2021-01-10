@@ -124,7 +124,7 @@ Druhá strana analogicky (uvažujeme {% latex %}\left(1 - \frac{1}{3^2}\right)\l
 
 #### Náhodné procházky
 
-**Definice náhodné procházky  (v {% latex %}\mathbb{Z}^1{% endlatex %}):** Náhodný proces, v každém kroku se panáček z bodu {% latex %}0{% endlatex %} posune doprava nebo doleva.
+**Definice náhodné procházky  (v {% latex %}\mathbb{Z}^1{% endlatex %}):** Náhodný proces, v každém kroku se panáček začínající v bodu {% latex %}0{% endlatex %} posune ze své aktuální pozice doprava nebo doleva.
 
 - kde bude po {% latex %}n{% endlatex %} krocích?
 - {% latex %}\lim_{n \to \infty} \ldots{% endlatex %} že se po {% latex %}n{% endlatex %} krocích vrátil (někdy v průběhu) do počátku?
@@ -540,7 +540,7 @@ Jsou NOLČ, protože:
 \end{aligned}
 {% endlatex %}
 
-**Věta (Spernerova):** nechť {% latex %}(\mathcal{P}, \subseteq){% endlatex %} je částečné uspořádání, kde {% latex %}\mathcal{P}{% endlatex %} je množinový systém. Nechť {% latex %}\mathcal{M}{% endlatex %} je největší antiřetězec ({% latex %}\forall M_1, M_2 \in \mathcal{M}, M_1 \neq M_2: M_1 \subsetneq M_2 \land M_2 \subsetneq M_1{% endlatex %}). Pak {% latex %}|\mathcal{M}| \le \binom{n}{\left\lceil \frac{n}{2} \right\rceil}{% endlatex %}, kde {% latex %}n = |X|{% endlatex %}.
+**Věta (Spernerova):** nechť {% latex %}(\mathcal{P}, \subseteq){% endlatex %} je částečné uspořádání, kde {% latex %}\mathcal{P}{% endlatex %} je množinový systém. Nechť {% latex %}\mathcal{M}{% endlatex %} je největší antiřetězec ({% latex %}\forall M_1, M_2 \in \mathcal{M}, M_1 \neq M_2: M_1 \nsubseteq M_2 \land M_2 \nsubseteq M_1{% endlatex %}). Pak {% latex %}|\mathcal{M}| \le \binom{n}{\left\lceil \frac{n}{2} \right\rceil}{% endlatex %}, kde {% latex %}n = |X|{% endlatex %}.
 
 {:.center}
 ![Sperenerova věta.](/assets/kombinatorika-a-grafy-i/spernerova-veta.svg)
@@ -661,7 +661,7 @@ xy = \sum k_i = \sum \left(d_i - 1\right) = 2|E| - n \\
 </div>
 **Definice (tok)** v síti je {% latex %}f: E \mapsto \mathbb{R}_{\ge 0}{% endlatex %}, t. ž.:
 1. {% latex %}\forall e \in E(G){% endlatex %} platí {% latex %}0 \le f(e) \le c(e){% endlatex %}
-2. {% latex %}\forall v \in V(G), v \not\in \left\{z, s\right\}{% endlatex %} platí {% latex %}\sum f(x, v) = f(v, y){% endlatex %}
+2. {% latex %}\forall v \in V(G), v \not\in \left\{z, s\right\}{% endlatex %} platí {% latex %}\sum f(x, v) = \sum f(v, y){% endlatex %}
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -707,7 +707,7 @@ To, co teče ven ze zdroje.
 
 **Důkaz:** sporem, že {% latex %}f{% endlatex %} maximální je nasycený.
 - tak uvážíme množinu vrcholů, do kterých se lze dostat ze {% latex %}z{% endlatex %} po nasycené cestě -- {% latex %}A = \left\{v \in V\ |\ \exists\ \text{nenasycená cesta }\right\}{% endlatex %}
-	- {% latex %}s \subsetneq A{% endlatex %} (jinak {% latex %}f{% endlatex %} není nasycený)
+	- {% latex %}s \nsubseteq A{% endlatex %} (jinak {% latex %}f{% endlatex %} není nasycený)
 	- {% latex %}\forall e \in S(A, V \setminus A){% endlatex %} platí {% latex %}f(e) = c(e){% endlatex %}
 	- {% latex %}\forall e \in S(V \setminus A, A){% endlatex %} platí {% latex %}f(e) = 0{% endlatex %} (jinak bychom nenasycenou cestu mohli prodloužit
 
@@ -1070,7 +1070,7 @@ Mějme {% latex %}C{% endlatex %} lineární kód délky {% latex %}n{% endlatex
 
 {% latex %}P{% endlatex %} je paritní matice kódu {% latex %}C{% endlatex %}, tzn. {% latex %}C = \left\{x\ |\ Px = 0\right\}{% endlatex %}.
 
-**Definice (syndrom)** slova {% latex %}z \in C{% endlatex %} je {% latex %}Pz{% endlatex %}, kde {% latex %}P{% endlatex %} je paritní matice kódu {% latex %}C{% endlatex %}.
+**Definice (syndrom)** slova {% latex %}z{% endlatex %} je {% latex %}Pz{% endlatex %}, kde {% latex %}P{% endlatex %} je paritní matice kódu {% latex %}C{% endlatex %}.
 - (👀) kódová slova {% latex %}\equiv{% endlatex %} slova se syndromem {% latex %}0{% endlatex %} (viz. definice {% latex %}P{% endlatex %}...)
 
 **Předpoklad:** chybový vektor {% latex %}e{% endlatex %} je slovo s nejmenší vahou ve své třídě
@@ -1104,7 +1104,7 @@ Mějme {% latex %}C{% endlatex %} lineární kód délky {% latex %}n{% endlatex
 **Důkaz:** kódová slova {% latex %}\equiv Pc = 0{% endlatex %}. Nechť sloupce {% latex %}P{% endlatex %} jsou {% latex %}p_1, \ldots, p_n{% endlatex %}. Pak
 {% latex display %}\sum_{i = 1}^{n} c_i p_i = 0{% endlatex %}
 
-Pro spor nechť {% latex %}\exists x{% endlatex %} t. ž. {% latex %}\sum x_i p_i = 0{% endlatex %} a {% latex %}w(x) < d \rightarrow{% endlatex %} spor, protože pak {% latex %}x{% endlatex %} je kódové slovo ale {% latex %}\Delta(C) = d{% endlatex %}. To znamená, že {% latex %}\forall x: w(x) < d \rightarrow \sum_{i = 1}^{n}x_i p_i \neq 0 \rightarrow{% endlatex %} každých {% latex %}\le d - 1{% endlatex %} sloupců je lineárně nezávislých.
+Pro spor nechť {% latex %}\exists x{% endlatex %} t. ž. {% latex %}\sum x_i p_i = 0{% endlatex %} (je tedy kódové slovo) a {% latex %}w(x) < d \rightarrow{% endlatex %}. To je spor, {% latex %}\Delta(C) = d{% endlatex %} ale tohle slovo má {% latex %}w(x) < d{% endlatex %}. To musí nutně znamenat, že {% latex %}\forall x: w(x) < d \rightarrow \sum_{i = 1}^{n}x_i p_i \neq 0 \rightarrow{% endlatex %} každých {% latex %}\le d - 1{% endlatex %} sloupců je tedy lineárně nezávislých.
 
 **Důsledek:** pokud chci {% latex %}d = 3{% endlatex %}, potřebuji co největší matici {% latex %}P{% endlatex %} t. ž. {% latex %}\forall 2{% endlatex %} sloupce jsou lineárně nezávislé. To v {% latex %}\mathbb{Z}_2{% endlatex %} znamená, že musí být buď stejné, nebo jeden z nich nulový.
 
