@@ -149,7 +149,7 @@ Zadefinujeme si náhodnou veličinu {% latex %}X = I_{S_2} + I_{S_4} + \ldots + 
 	\mathbb{E}[X] &= \mathbb{E}\left[\sum_{i=1}^{\infty} I_{S_{2i}}\right]&& \\
 	              &= \sum_{i=1}^{\infty} \mathbb{E}\left[I_{S_{2i}}\right]&&//\ \text{linearita střední hodnoty}\\
 	              &= \sum_{i=1}^{\infty} \Pr\left[I_{S_{2i}}\right] &&//\ \text{střední hodnota indikátoru je pravděpodobnost}\\
-	              &= \sum_{i=1}^{\infty} \frac{1}{2 \sqrt{i}} && //\  \text{diverguje, odhadneme přes } \sum \frac{1}{n} \\
+	              &\ge \sum_{i=1}^{\infty} \frac{1}{2 \sqrt{i}} && //\  \text{použití odhadu výše; diverguje} \\
 \end{aligned}
 {% endlatex %}
 
@@ -173,11 +173,11 @@ Zadefinujeme si náhodnou veličinu {% latex %}X = I_{S_2} + I_{S_4} + \ldots + 
 | součet                                       | {% latex %}a_0 + b_0, a_1 + b_1, a_2 + b_2, \ldots{% endlatex %}                                                              | {% latex %}a(x) + b(x){% endlatex %}                 |
 | násobek                                      | {% latex %}\alpha a_0, \alpha a_1, \alpha a_2, \ldots {% endlatex %}                                                          | {% latex %}\alpha a(x){% endlatex %}                 |
 |                                              |                                                                                                                               |                                                      |
-| posun doprava                                | {% latex %}0, a_0, a_1, \ldots {% endlatex %}                                                                                 | {% latex %} \alpha xa(x){% endlatex %}               |
-| posun doleva                                 | {% latex %}a_1, a_2, a_3, \ldots {% endlatex %}                                                                               | {% latex %}\alpha \frac{a(x) - a_0}{x}{% endlatex %} |
+| posun doprava                                | {% latex %}0, a_0, a_1, \ldots {% endlatex %}                                                                                 | {% latex %}xa(x){% endlatex %}               |
+| posun doleva                                 | {% latex %}a_1, a_2, a_3, \ldots {% endlatex %}                                                                               | {% latex %}\frac{a(x) - a_0}{x}{% endlatex %} |
 |                                              |                                                                                                                               |                                                      |
-| substituce {% latex %}\alpha x{% endlatex %} | {% latex %}a_0, \alpha a_1, \alpha^2 a_2, \ldots {% endlatex %}                                                               | {% latex %} \alpha a(\alpha x){% endlatex %}         |
-| substituce {% latex %}x^n{% endlatex %}      | {% latex %}a_0, 0, \overset{n - 1}{\ldots}, 0, a_1, 0, \overset{n - 1}{\ldots}, 0, a_2, \ldots {% endlatex %}                 | {% latex %} a(x^n){% endlatex %}              |
+| substituce {% latex %}\alpha x{% endlatex %} | {% latex %}a_0, \alpha a_1, \alpha^2 a_2, \ldots {% endlatex %}                                                               | {% latex %}a(\alpha x){% endlatex %}         |
+| substituce {% latex %}x^n{% endlatex %}      | {% latex %}a_0, 0, \overset{n - 1}{\ldots}, 0, a_1, 0, \overset{n - 1}{\ldots}, 0, a_2, \ldots {% endlatex %}                 | {% latex %}a(x^n){% endlatex %}              |
 |                                              |                                                                                                                               |                                                      |
 | derivace                                     | {% latex %}a_1, 2a_1, 3a_2, \ldots {% endlatex %}                                                                             | {% latex %} \alpha a'(x){% endlatex %}               |
 | integrování                                  | {% latex %}0, a_1, a_2/2, a_3/3, \ldots {% endlatex %}                                                                        | {% latex %} \int_{0}^{x} a(t) dt{% endlatex %}       |
@@ -366,7 +366,7 @@ Bodů na obrázku je {% latex %}\overbrace{1}^{x} + \underbrace{\left(n + 1\righ
 {:.rightFloatBox}
 {% xopp xins %}
 
-**Definice (incidenční graf):** {% latex %}(X, \mathcal{S}){% endlatex %} je množinový systém. Jeho incidenční graf je bipartitní graf {% latex display %}\left(V = X \cup \mathcal{S}, E = \left\{(x, s) \in X \times \mathcal{S}\ |\ x \in s\right\}\right){% endlatex %}
+**Definice (incidenční graf):** nechť {% latex %}(X, \mathcal{S}){% endlatex %} je množinový systém ({% latex %}\mathcal{S} \subseteq 2^X{% endlatex %}). Jeho incidenční graf je bipartitní graf {% latex display %}\left(V = X \cup \mathcal{S}, E = \left\{(x, s) \in X \times \mathcal{S}\ |\ x \in s\right\}\right){% endlatex %}
 
 **Definice (duál grafu):** {% latex %}(Y, \mathcal{T}){% endlatex %} je duál {% latex %}(X, \mathcal{S}){% endlatex %} pokud {% latex %}Y = \mathcal{S}{% endlatex %} a {% latex %}\mathcal{T} = \left\{\left\{s \in \mathcal{S}\ |\ x \in s\right\}\ |\ x \in X\right\}{% endlatex %}
 - (👀) incidenční graf {% latex %}(Y, \mathcal{T}){% endlatex %} je incidenční graf {% latex %}(X, \mathcal{S}){% endlatex %} s prohozením stran
@@ -393,7 +393,7 @@ Bodů na obrázku je {% latex %}\overbrace{1}^{x} + \underbrace{\left(n + 1\righ
 	- stejné jako původní axiom o přímkách
 3. analogicky viz. ^
 
-**Důsledek:** {% latex %}(X, \mathcal{P}){% endlatex %} je řádu {% latex %}n \implies |X| = n^2 + n + 1{% endlatex %}
+**Důsledek:** {% latex %}(X, \mathcal{P}){% endlatex %} je řádu {% latex %}n \implies |\mathcal{P}| = n^2 + n + 1{% endlatex %}
 - duál {% latex %}(Y, \mathcal{T}){% endlatex %} je duál {% latex %}(X, \mathcal{P}){% endlatex %}, ten je stejného řádu a proto je i velikost {% latex %}|\mathcal{P}| = n^2 + n + 1{% endlatex %}
 
 #### Konstrukce KPR
@@ -646,7 +646,7 @@ xy = \sum k_i = \sum \left(d_i - 1\right) = 2|E| - n \\
 
 #### Počítání koster
 
-**Věta (Cayleyho formule):** počet koster úplného grafu {% latex %}\Kappa(n) = n^{n - 2}{% endlatex %}.
+**Věta (Cayleyho formule):** počet koster úplného grafu {% latex %}\kappa(n) = n^{n - 2}{% endlatex %}.
 - pozor, počítám i izomorfní kostry!
 
 {:.rightFloatBox}
@@ -657,7 +657,7 @@ xy = \sum k_i = \sum \left(d_i - 1\right) = 2|E| - n \\
 - {% latex %}r{% endlatex %} kořen (hrany vedou do kořene, ne z něho)
 - {% latex %}č{% endlatex %} očíslování hran (nějaké), {% latex %}č: E \mapsto [n - 1]{% endlatex %}
 
-1. {% latex %}\#(T, r, č) = \Kappa(n) \cdot n \cdot \left(n - 1\right)!{% endlatex %}
+1. {% latex %}\#(T, r, č) = \kappa(n) \cdot n \cdot \left(n - 1\right)!{% endlatex %}
 	- {% latex %}T{% endlatex %} je to, co hledáme
 	- {% latex %}r{% endlatex %} volíme libovolně z {% latex %}n{% endlatex %} vrcholů
 	- {% latex %}č{% endlatex %} je prostě random očíslovaní na {% latex %}n - 1{% endlatex %} hranách
@@ -672,8 +672,8 @@ xy = \sum k_i = \sum \left(d_i - 1\right) = 2|E| - n \\
 {% latex display %}
 \begin{aligned}
 	\#(T, r, č) &= \prod_{k = 0}^{ \overbrace{n - 2}^{\text{počet šipek je $n - 1$}}} n ( n - k - 1) = n^{n - 1} (n -1)! \\
-	\Kappa(n) \cdot n \cdot \left(n - 1\right)! &= n^{n - 1} (n -1)! \\
-	\Kappa(n) &= n^{n - 2}
+	\kappa(n) \cdot n \cdot \left(n - 1\right)! &= n^{n - 1} (n -1)! \\
+	\kappa(n) &= n^{n - 2}
 \end{aligned}
 {% endlatex %}
 
@@ -1020,7 +1020,7 @@ Kde poslední rovnost platí, protože {% latex %}F' = F \setminus {e}{% endlate
 
 {:.rightFloatBox}
 <div markdown="1">
-Maximální velikost kódu (počet kódových slov), když určím délku a vzdálenost.
+Maximální dimenze kódu (logaritmus počtu kódových slov), když určím délku a vzdálenost.
 </div>
 
 - {% latex %}A(n, d) = \underset{C}{\mathrm{max}} \log |C|{% endlatex %}
@@ -1031,7 +1031,12 @@ Maximální velikost kódu (počet kódových slov), když určím délku a vzd�
 (👀) {% latex %}\forall d \le n, d \ge 2: A(n, d) \le A(n - 1, d - 1){% endlatex %}
 - po odstranění bitu vzdálenost slov klesne nejvýše o {% latex %}1{% endlatex %} (pokud se slova v bytu liší); velikost nového kódu {% latex %}|C'| = |C|{% endlatex %} (díky předpokladu funguje, žádná slova se nesloučí)
 
-**Věta (Simpletonův odhad):** {% latex %}\forall d \le n{% endlatex %} platí {% latex %}A(n, d) \le n - d + 1{% endlatex %}
+{:.rightFloatBox}
+<div markdown="1">
+Není to Simpletonův, ale Singletonův (viz. [Wikipedia](https://en.wikipedia.org/wiki/Singleton_bound)). Byť je ten odhad docela triviální 🙂.
+</div>
+
+**Věta (Singletonův odhad):** {% latex %}\forall d \le n{% endlatex %} platí {% latex %}A(n, d) \le n - d + 1{% endlatex %}
 - {% latex %}A(n, d) \le A(n - 1, d - 1) \le \ldots \le A(n - d + 1, 1) = n - d + 1{% endlatex %}
 - rovněž dostávám {% latex %}A(n, 2) \le A(n - 1, 1) = n - 1{% endlatex %} a vím, že {% latex %}A(n, 2) \ge n - 1{% endlatex %}, tedy rovnost
 
@@ -1076,7 +1081,8 @@ Maximální velikost kódu (počet kódových slov), když určím délku a vzd�
 
 ---
 
-- {% latex %}\langle x, y \rangle \sum_{i = 1}^{n} x_i \cdot y_i{% endlatex %} -- něco jako skalární součin
+- {% latex %}\langle x, y \rangle = \sum_{i = 1}^{n} x_i \cdot y_i{% endlatex %}
+	- něco jako skalární součin
 	- nemusí platit, že {% latex %}x \neq 0 \implies \langle x, x \rangle \neq 0{% endlatex %} (např. pro {% latex %}(1\ 1\ 0\ 0){% endlatex %})
 
 **Definice (duální kód)** {% latex %}C{% endlatex %} je ortogonální doplněk {% latex %}C^\perp = \left\{x\ |\ \langle x, y \rangle = 0, \forall y \in C\right\}{% endlatex %}
@@ -1149,6 +1155,7 @@ P = \underbrace{\begin{pmatrix}
 {% endlatex %}
 
 Jedná se o binární zápisy čísel {% latex %}1 \ldots 2^{r} - 1{% endlatex %}. Nechť {% latex %}C{% endlatex %} je generovaný {% latex %}P{% endlatex %} a {% latex %}\mathcal{H}_r = C^\perp{% endlatex %} ({% latex %}P{% endlatex %} je paritní matice {% latex %}\mathcal{H}_r{% endlatex %}). Má délku {% latex %}n = 2^{r} - 1{% endlatex %} a {% latex %}\dim \mathcal{H}_r = n - r = 2^{r} - r - 1{% endlatex %}.
+- {% latex %}n - r{% endlatex %} funguje, protože mají komplementární dimenze
 
 Z pozorování (nezávislé sloupce) dostáváme, že {% latex %}\Delta(\mathcal{H}_r) = 3{% endlatex %}.
 
@@ -1315,7 +1322,7 @@ existuje nedobrý graf na {% latex %}n{% endlatex %} vrcholech a {% latex %}r(k,
 „Pokud mám alespoň {% latex %}\ge N{% endlatex %} prvků a dávám je do {% latex %}t{% endlatex %} holubníků, pak bude existovat holubník s alespoň {% latex %}k{% endlatex %} prvky.“
 </div>
 
-**Věta (princip holubníku):** pro každé {% latex %}t, k \in \mathbb{N} \exists N{% endlatex %} t. ž. {% latex %}\forall c: [n] \mapsto [t]{% endlatex %} platí, že {% latex %}\forall n \ge N \exists A \subseteq [n]{% endlatex %}, na níž je funkce {% latex %}c{% endlatex %} konstantní.
+**Věta (princip holubníku):** pro každé {% latex %}t, k \in \mathbb{N} \exists N{% endlatex %} t. ž. {% latex %}\forall c: [n] \mapsto [t]{% endlatex %} platí, že {% latex %}\forall n \ge N \exists A \subseteq [n], |A| = k{% endlatex %}, na níž je funkce {% latex %}c{% endlatex %} konstantní.
 
 **Důkaz:** {% latex %}N = t (k - 1) + 1{% endlatex %}.
 
@@ -1324,7 +1331,7 @@ existuje nedobrý graf na {% latex %}n{% endlatex %} vrcholech a {% latex %}r(k,
 
 **Důkaz:** rozdělím {% latex %}\mathbb{N}{% endlatex %} na {% latex %}B_1, \ldots, B_t{% endlatex %}, kde {% latex %}B_i = \left\{m \in \mathbb{N}\ |\ c(m) = i\right\}{% endlatex %}. Protože sjednocením je nekonečná množina pak alespoň jedna musí být nekonečná.
 
-**Věta (nekonečná Ramseyova (vícebarevná) věta):** pro každé {% latex %}t \in \mathbb{N}, \forall c: \binom{\mathbb{N}}{2} \mapsto [t] \exists{% endlatex %} nekonečna množina {% latex %}A \subseteq \mathbb{N}{% endlatex %}, pro níž je funkce {% latex %}c{% endlatex %} na hranách {% latex %}\binom{A}{2}{% endlatex %} (nekonečný úplný graf) konstantní.
+**Věta (nekonečná Ramseyova (vícebarevná) věta):** pro každé {% latex %}t \in \mathbb{N}, \forall c: \binom{\mathbb{N}}{2} \mapsto [t] \exists{% endlatex %} nekonečná množina {% latex %}A \subseteq \mathbb{N}{% endlatex %}, pro níž je funkce {% latex %}c{% endlatex %} na hranách {% latex %}\binom{A}{2}{% endlatex %} (nekonečný úplný graf) konstantní.
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -1383,7 +1390,7 @@ Pomocné obarvení {% latex %}(p-1){% endlatex %}-tic stejnými barvami, jako by
 (👀) barva {% latex %}p{% endlatex %}-tice {% latex %}\left\{v_{i_1}, \ldots, v_{i_p}\right\}{% endlatex %} (vzhledem k vzniklé posloupnosti {% latex %}v_1, v_2, \ldots{% endlatex %}), kde {% latex %}i_1 < i_2 < i_3 < i_p{% endlatex %} závisí pouze na barvě prvku {% latex %}v_{i_1}{% endlatex %}
 - vyberu z barev nějakou opakující-se nekonečněkrát a vrcholy s příslušnými indexy tvoří {% latex %}A{% endlatex %}
 
-**Věta (Ramseyova věta pro {% latex %}p{% endlatex %}-tice):** {% latex %}\forall p, t, k \in \mathbb{N} \exists N \in \mathbb{N}{% endlatex %} t. ž. {% latex %}\forall n \ge N \exists A \subseteq [n], |A| = k{% endlatex %} t. ž. {% latex %}c{% endlatex %} je konstantní na {% latex %}\binom{A}{p}{% endlatex %}.
+**Věta (Ramseyova věta pro {% latex %}p{% endlatex %}-tice):** {% latex %}\forall p, t, k \in \mathbb{N} \exists N \in \mathbb{N}{% endlatex %} t. ž. {% latex %}\forall n \ge N, \forall c: \binom{[n]}{p}\ \exists A \subseteq [n], |A| = k{% endlatex %} t. ž. {% latex %}c{% endlatex %} je na {% latex %}\binom{A}{p}{% endlatex %} konstantní.
 
 **Důkaz:** mějme {% latex %}p, k, t{% endlatex %} z předpokladu věty. Uvážíme {% latex %}c_i: \binom{[n]}{p} \mapsto [t]{% endlatex %}. To je _dobré_, pokud {% latex %}\exists {% endlatex %} {% latex %}k{% endlatex %}-prvková jednobarevná podmnožina, jinak je _špatné_. Věta tedy tvrdí, že {% latex %}n \ge N{% endlatex %} jsou všechna {% latex %}c{% endlatex %} _dobrá_.
 
