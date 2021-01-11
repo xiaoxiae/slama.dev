@@ -352,10 +352,10 @@ Tato stránka obsahuje moje poznámky z přednášky Pavla Ježka z roku 2019/20
 
 #### Harvard x von Neumann
 
-|         | Harvard                            | von Neumann                              |
-| ---     | ---                                | ---                                      |
-| paměť   | data + kód jsou na stejné sběrnici | data + kód jsou na rozdílných sběrnicích |
-| využití | počítače                           | mikročipy                                |
+|         | Harvard                                  | von Neumann                        |
+| ---     | ---                                      | ---                                |
+| paměť   | data + kód jsou na rozdílných sběrnicích | data + kód jsou na stejné sběrnici |
+| využití | mikročipy                                | počítače                           |
 
 {% xopp 19-24-11_22-56-28 %}
 
