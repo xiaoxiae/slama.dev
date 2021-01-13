@@ -6,31 +6,50 @@ title: C++
 
 {% match #### Arrays %}
 
-| Action          | Code                                                   |
-| ---             | ---                                                    |
-| create          | `int *array = new int[size];`, requires `<new>`        |
-| fill with stuff | `fill_n(array, size, element)`, requires `<algorithm>` |
+| Action            | Code                                                    |
+| ---               | ---                                                     |
+| create (dynamic)  | `int *array = new int[size];`, requires `<new>`         |
+| create (constant) | `int array[constant size];`                             |
+| fill with stuff   | `fill_n(array, size, element);`, requires `<algorithm>` |
 
 
 {% match #### Dictionaries %}
 
-| Class                      | Behavior                 |
-| ---                        | ---                      |
-| `#include <map>`           | hashing, constant access |
-| `#include <unordered_map>` | R&B trees, log(n) access |
+- `#include <map>`           -- hashing, constant access
+- `#include <unordered_map>` -- R&B trees, {% latex %}\log(n){% endlatex %} access
 
-| Action   | Code                  |
-| ---      | ---                   |
-| create   | `map<int, int> m;`    |
-| contains | `m.count(element);`   |
-| add      | `m[index] = element;` |
+{% match #### Sets %}
+
+- `#include <set>`      -- usually a binary tree, {% latex %}\log(n){% endlatex %} access
+- `#include <hash_set>` -- hashing, constant access
 
 
 {% match ### Strings %}
 
-| Action | Code          |
-| ---    | ---           |
-| length | `s.length();` |
+| Action                             | Code                           |
+| ---                                | ---                            |
+| convert to integer                 | `std::stoi(value, &position)` |
+| length of string; constant         | `str.length()`                 |
+| end is optional                    | `str.substring(start, end)`    |
+| look for something, from the left  | `str.find(something)`          |
+| look for something, from the right | `str.rfind(something)`         |
+
+#### [`istringstream`](https://www.cplusplus.com/reference/sstream/istringstream/) / [`ostringstream`](https://www.cplusplus.com/reference/sstream/ostringstream/)
+- a stream classes on strings
+- has all the goodies that a stream class has
+
+| Action              | Code                                                    |
+| ---                 | ---                                                     |
+| create              | `std::istringstream iss(string);`                       |
+| read from/write to  | `iss >> variable`, `oss << variable`                  |
+| read till delimiter | `getline(is, line)`, where `line` is a string variable |
+
+{% match ### Chars %}
+
+| Action  | Code                    |
+| ---     | ---                     |
+| digits  | `std::isdigit(string);` |
+| letters | `std::isalpha(string);` |
 
 {% match ### Printing %}
 - requires `<iostream>`
@@ -38,11 +57,18 @@ title: C++
 	- is overloaded for various types (`endl` is a function!)
 - `std::cout << "Hello, world!" << std:endl;`
 
+{% match ### File I/O %}
+
+| Action            | Code                                  |
+| ---               | ---                                   |
+| reading from file | `std::ifstream fin("path/to/file");`  |
+| writing to file   | `std::ofstream fout("path/to/file");` |
+
 {% match ### Sorting %}
 - `#include <algorithm>`
 - `std::sort(RandomAccessIterator first, RandomAccessIterator last, Compare comp)`
 	- `comp` not required, default used
-	- usually `vector.begin()` and `vector.end()`
+	- usually `collection.begin()` and `collection.end()`
 
 {% match ### For each %}
 - from C++ 11
@@ -72,7 +98,7 @@ for (auto && x : p) {
 - exposes interface of a given cpp file to another one
 	- both have to include it for this to do so
 
-```hpp
+```cpp
 // world.hpp
 // prevent including the same header file twice:
 #idndef WORLD_HPP_
@@ -111,7 +137,7 @@ void function();
 - `const` prevents modification of the argument by the compiler
 - [this is a great read](http://duramecho.com/ComputerInformation/WhyHowCppConst.html) to understand what `const` does in various contexts
 
-```hpp
+```cpp
 // world.hpp
 ...
 void world(const t_arg & p);
