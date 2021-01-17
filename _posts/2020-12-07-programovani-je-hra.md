@@ -318,6 +318,55 @@ def draw():  # kód, který se dokola opakuje
 	- se točí dokola. [[řešení](/assets/programovani-je-hra/3.3.1-1.py)]
 	- mává rukou tam a zpět. [[řešení](/assets/programovani-je-hra/3.3.1-2.py)]
 
+### 4. hodina (14. 1. 2021)
+
+#### Zmáčknutí klávesy
+
+```cpp
+def keyPressed():
+	if key == 'a':
+		// vykoná se po zmáčknutí klávesy 'a'
+	else:
+		// vykoná se po zmáčknutí jiné klávesy
+		
+	// pro speciální klávesy jako šipky používejte `keyCode`:
+	if keyCode == LEFT:
+		// vykoná se po zmáčknutí levé šipky
+```
+
+- existuje také `keyReleased`, která značí puštění klávesy
+
+1. Naprogramujte čtverec, který se hýbe po stisknutí `wasd`. [[řešení](/assets/programovani-je-hra/4.1.1-1.py)]
+	- udělejte pohyb plynulý (brždění, když pustíme klávesu) ⭐ [[řešení](/assets/programovani-je-hra/4.1.1-2.py)]
+
+#### Zmáčknutí myši
+```cpp
+def mousePressed():
+	if mouseButton == LEFT:
+		// vykoná se po zmáčknutí levého tlačítka myši
+	elif mouseButton == RIGHT:
+		// vykoná se po zmáčknutí pravého tlačítka myši
+```
+
+- také je možné využít proměnné `mouseX` a `mouseY`, které udržují pozici kurzoru myši
+
+1. Naprogramujte kruh, který se vždy vykresuje na pozici myši. [[řešení](/assets/programovani-je-hra/4.2.1-1.py)]
+	- přidejte pohyb plynulý (aby se kruh plynule přibližoval k myši) [[řešení](/assets/programovani-je-hra/4.2.1-2.py)]
+
+#### Barvičky!
+- RGB spektrum -- míchání červené, zelené a modré složky
+- `fill(cervena, zelena, modra)` (vždy od `0` do `255`)
+- Processing má vestavěný nástroj na výběr barev:
+	- `Tools -> Color Selector...`
+
+1. Vytvořte červenou, zelenou, azurovou, bílou, černou, šedou, růžovou barvu.
+
+---
+
+1. Naprogramujte vykreslení černobílé {% latex %}8 \times 8{% endlatex %} šachovnice. [[řešení](/assets/programovani-je-hra/4.3.1.py)]
+2. Naprogramujte Conwayovu „Game of Life“ (ovládání myší + klávesami) ⭐.
+	- přidejte barvičky! ⭐⭐
+
 ### Dodatečné materiály
 
 - [Python Tutor](http://www.pythontutor.com/visualize.html) -- vizualizér Python kódu, ze kterého je hezky vidět, co program dělá.
