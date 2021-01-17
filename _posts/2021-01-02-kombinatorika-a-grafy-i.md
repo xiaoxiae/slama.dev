@@ -773,6 +773,7 @@ To, co teče ven ze zdroje.
 - přirozené: každé vylepšení cesty bude celočíselné a udělá to konečněkrát
 
 (👀) Celočíselný tok lze rozdělit na celočíselný součet cest a cyklů.
+
 **Důkaz:** Plyne z běhu F-F algoritmu. Tok je součtem zlepšujících cest a cyklů.
 
 ### 8. přednáška
