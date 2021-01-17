@@ -1437,3 +1437,4 @@ Díky tomuto lemmatu víme, že {% latex %}\exists{% endlatex %} nekonečná ces
 ### Poděkování
 - Matěji Kripnerovi za řadu PR opravujících chyby a přidávajících dodatečné informace.
 - Filipu Peškovi za upozornění na několik překlepů/chyb v důkazech a definicích.
+- Vojtěchu Kočandrlemu za PR a upozornění na překlepy.
