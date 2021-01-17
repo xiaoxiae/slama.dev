@@ -712,9 +712,9 @@ To, co teče ven ze zdroje.
 	- je to **elementární** řez (vezmu dvě množiny vrcholů a všechny hrany mezi nimi)
 		- každý v inkluzi minimální ({% latex %}R \setminus {e}{% endlatex %} není řez) řez je elementární
 
-##### min flow, max cut
+##### max flow, min cut
 
-**Věta (min flow, max cut):** pro každou síť je maximální tok roven minimálnímu řezu.
+**Věta (max flow, min cut):** pro každou síť je maximální tok roven minimálnímu řezu.
 
 **Lemma:** pro každou {% latex %}A \subseteq V{% endlatex %} t. ž. {% latex %}z \in A, s \not\in A{% endlatex %} a pro libovolný tok {% latex %}f{% endlatex %} platí: {% latex display %}w(f) = f(A, V \setminus A) - f(V \setminus A, A){% endlatex %}
 
