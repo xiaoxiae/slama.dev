@@ -710,7 +710,7 @@ To, co teče ven ze zdroje.
 - {% latex %}S(A, B) = \left\{(x, y) \in E\ |\ x \in A, y \in B\right\}{% endlatex %}
 	- neobsahuje hrany z {% latex %}B{% endlatex %} do {% latex %}A{% endlatex %}!
 	- je to **elementární** řez (vezmu dvě množiny vrcholů a všechny hrany mezi nimi)
-		- každý v inkluzi minimální ({% latex %}R \ {e}{% endlatex %} není řez) řez je elementární
+		- každý v inkluzi minimální ({% latex %}R \setminus {e}{% endlatex %} není řez) řez je elementární
 
 ##### min flow, max cut
 
@@ -721,8 +721,8 @@ To, co teče ven ze zdroje.
 **Důkaz:**
 {% latex display %}
 \begin{aligned}
-	w(f) &= \sum_{u \in A} \left(\sum_{(u, x \in E)} f(u, x) - \sum_{(x, u) \in E} f(x, u)\right) \qquad //\ \text{pouze definice} \\
-	&= \sum_{u \in A, v \not\in A} f(u, v) - \sum_{u \not\in A, v \in A} f(v, u) \qquad //\ \text{hrany v a přispějí jednou $+$ a jednou $-$} \\
+	w(f) &= \sum_{u \in A} \left(\sum_{(u, x) \in E} f(u, x) - \sum_{(x, u) \in E} f(x, u)\right) \qquad //\ \text{pouze definice} \\
+	&= \sum_{u \in A, v \not\in A} f(u, v) - \sum_{u \not\in A, v \in A} f(v, u) \qquad //\ \text{hrany uvnitř A přispějí jednou $+$ a jednou $-$} \\
 	&= f(A, V \setminus A) - f(V \setminus A, A) \\
 \end{aligned}
 {% endlatex %}
@@ -730,15 +730,29 @@ To, co teče ven ze zdroje.
 **Důsledek:** {% latex %}w(f) \le c(R){% endlatex %}, protože
 {% latex display %}w(f) = f(A, V \setminus A) - f(V \setminus A, A) \le f(A, V \setminus A) \le c(A, V \setminus A) \le c(R){% endlatex %}
 
-**Definice (nasycená cesta)** je cesta, pokud {% latex %}\exists e{% endlatex %} na cestě t. ž. buďto:
+**Definice (nasycená cesta)** je (neorientovaná) cesta, pokud {% latex %}\exists e{% endlatex %} na cestě t. ž. buďto:
 - vede po směru a {% latex %}f(e) = c(e){% endlatex %}
 - vede proti směru a {% latex %}f(e) = 0{% endlatex %}
+
+**Definice (nasycený tok)** je tok takový, že každá (neorientovaná) cesta ze {% latex %}z{% endlatex %} do {% latex %}s{% endlatex %} je nasycená.
 
 **Tvrzení:** {% latex %}f{% endlatex %} je maximální {% latex %}\iff f{% endlatex %} je nasycený.
 
 **Důkaz:** sporem, že {% latex %}f{% endlatex %} maximální je nasycený.
-- tak uvážíme množinu vrcholů, do kterých se lze dostat ze {% latex %}z{% endlatex %} po nasycené cestě -- {% latex %}A = \left\{v \in V\ |\ \exists\ \text{nenasycená cesta }\right\}{% endlatex %}
-	- {% latex %}s \nsubseteq A{% endlatex %} (jinak {% latex %}f{% endlatex %} není nasycený)
+- předpokládáme maximální {% latex %}f{% endlatex %}, který není nasycený, tedy existuje nenasycená cesta {% latex %}P{% endlatex %}
+	- {% latex %}\varepsilon_1 = min \left\{c(e)-f(e)\ |e \in P \text{ po směru } \right\}{% endlatex %}
+	- {% latex %}\varepsilon_2 = min \left\{f(e)\ |e \in P \text{ proti směru } \right\}{% endlatex %}
+	- {% latex %}\varepsilon_P = min \left\{\varepsilon_1, \varepsilon_2 \right\} > 0 {% endlatex %}, protože {% latex %}P{% endlatex %} není nasycená
+- sestrojme tok {% latex %}f'{% endlatex %} tak, že:
+	- {% latex %}f'(e) = f(e) + \varepsilon_P{% endlatex %} pro {% latex %}e \in P{% endlatex %} po směru
+	- {% latex %}f'(e) = f(e) - \varepsilon_P{% endlatex %} pro {% latex %}e \in P{% endlatex %} proti směru
+	- {% latex %}f'(e) = f(e){% endlatex %} pro {% latex %}e \notin P{% endlatex %}
+{% latex display %}w(f') = \sum f'(z,x) - f'(x,z) = w(f) + \varepsilon_P{% endlatex %}
+- {% latex %}f{% endlatex %} nebyl maximální, spor
+
+**Důkaz:** že {% latex %}f{% endlatex %} nasycený je maximální.
+- tak uvážíme množinu vrcholů, do kterých se lze dostat ze {% latex %}z{% endlatex %} po nenasycené cestě -- {% latex %}A = \left\{v \in V\ |\ \exists\ \text{nenasycená cesta }\right\}{% endlatex %}
+	- {% latex %}s \notin A{% endlatex %} (jinak {% latex %}f{% endlatex %} není nasycený)
 	- {% latex %}\forall e \in S(A, V \setminus A){% endlatex %} platí {% latex %}f(e) = c(e){% endlatex %}
 	- {% latex %}\forall e \in S(V \setminus A, A){% endlatex %} platí {% latex %}f(e) = 0{% endlatex %} (jinak bychom nenasycenou cestu mohli prodloužit
 
@@ -750,13 +764,16 @@ To, co teče ven ze zdroje.
 \end{aligned}
 {% endlatex %}
 
-##### Ford-fulkerson
+##### Ford-Fulkerson
 1. {% latex %}f(e) = 0, \forall e \in E{% endlatex %}
 2. dokud {% latex %}\exists{% endlatex %} zlepšující cesta {% latex %}P{% endlatex %}, zlepši tok přes {% latex %}P{% endlatex %}
 
 **Tvrzení:** pokud jsou kapacity racionální, pak algoritmus doběhne. Pokud jsou přirozené, dá celočíselný tok.
 - racionální: pronásobení LCM a důkaz pro přirozené
 - přirozené: každé vylepšení cesty bude celočíselné a udělá to konečněkrát
+
+(👀) Celočíselný tok lze rozdělit na celočíselný součet cest a cyklů.
+**Důkaz:** Plyne z běhu F-F algoritmu. Tok je součtem zlepšujících cest a cyklů.
 
 ### 8. přednáška
 
