@@ -1302,7 +1302,7 @@ Kde poslední {% latex %}={% endlatex %} platí, protože:
 
 {% latex display %}\Pr[C] \le \sum_{K \in V, |K| = k} \Pr[C_K] = \binom{n}{k} \cdot 2^{1 - \binom{k}{2}} < 1{% endlatex %}
 - předposlední rovnost je z definice -- všechny možné {% latex %}K{% endlatex %}-tice
-- poslední merovnost je předpoklad věty
+- poslední nerovnost je předpoklad věty
 - máme, že pravděpodobnost, že nějaká {% latex %}K{% endlatex %}-prvková množina bude tvořit buďto kliku nebo nezávislou množinu velikosti {% latex %}k{% endlatex %} je {% latex %}< 1{% endlatex %}, tedy pravděpodobnost, že to nenastane je {% latex %}> 0{% endlatex %}, tedy {% latex %}\exists{% endlatex %} nějaký z náhodných grafů, který tohle nesplňuje
 	- pokud pravděpodobnost je nenulová, tak musí existovat nějaké množství grafů, které tenhle jev mají (protože jinak by nerovnost nebyla ostrá)
 
