@@ -1264,13 +1264,13 @@ Pokud pro {% latex %}C{% endlatex %} platí {% latex %}\Delta(C) = 2t + 1{% endl
 	- {% latex %}n_1 = \binom{k + l - 3}{k - 1}{% endlatex %} a {% latex %}n_2 = \binom{k + l - 3}{l - 1 = k - 2}{% endlatex %} (dřívější odhady)
 		- (👀) platí, že {% latex %}n = n_1 + n_2{% endlatex %}
 
-Zvolím {% latex %}u \in G{% endlatex %} libovolně a opět rozdělím graf na sousedy {% latex %}A{% endlatex %} a nesousedy {% latex %}B{% endlatex %} vrcholu {% latex %}u{% endlatex %}. Z principu holubníku ([Dirichletův princip](https://mathworld.wolfram.com/DirichletsBoxPrinciple.html)) je {% latex %}|A| \ge n_1{% endlatex %} nebo  {% latex %}|B| \ge n_2{% endlatex %} (jsou-li ostře menší, tak dají {% latex %}n - 2{% endlatex %}).
+Zvolím {% latex %}u \in G{% endlatex %} libovolně a opět rozdělím graf na nesousedy {% latex %}A{% endlatex %} a sousedy {% latex %}B{% endlatex %} vrcholu {% latex %}u{% endlatex %}. Z principu holubníku ([Dirichletův princip](https://mathworld.wolfram.com/DirichletsBoxPrinciple.html)) je {% latex %}|A| \ge n_1{% endlatex %} nebo  {% latex %}|B| \ge n_2{% endlatex %} (jsou-li ostře menší, tak dají {% latex %}n - 2{% endlatex %}).
 1. {% latex %}|A| \ge n_1{% endlatex %}, použiji indukci na {% latex %}A{% endlatex %}:
 	- {% latex %}\omega(G[A]) \ge k{% endlatex %} a jsem hotov
 	- {% latex %}\alpha(G[A]) \ge l - 1{% endlatex %}, pak tato nezávislá množina spolu s {% latex %}u{% endlatex %} dává nezávislou mnozinu velikosti {% latex %}\ge l{% endlatex %}
 2. analogicky: {% latex %}|B| \ge n_2{% endlatex %}, použiji indukci na {% latex %}B{% endlatex %}:
-	- {% latex %}\omega(G[A]) \ge l{% endlatex %}, pak tato klika spolu s {% latex %}u{% endlatex %} dává kliku velikosti {% latex %}\ge k{% endlatex %}
-	- {% latex %}\alpha(G[A]) \ge l{% endlatex %} a jsem hotov
+	- {% latex %}\omega(G[B]) \ge k - 1{% endlatex %}, pak tato klika spolu s {% latex %}u{% endlatex %} dává kliku velikosti {% latex %}\ge k{% endlatex %}
+	- {% latex %}\alpha(G[B]) \ge l{% endlatex %} a jsem hotov
 
 **Důsledek:** {% latex %}\forall k, l \exists r(k, l){% endlatex %} t. ž. {% latex %}\forall G: \omega(G) \ge k{% endlatex %} nebo {% latex %}\alpha(G) \ge l{% endlatex %}.
 - {% latex %}r(k, l) = \mathrm{min}\ N{% endlatex %} t. ž. platí {% latex %}\forall G{% endlatex %} velikosti {% latex %}N{% endlatex %} platí výše uvedené
@@ -1293,18 +1293,18 @@ Co jsou čísla zač? Použijeme odhad:
 {% latex display %}\binom{n}{k}2^{1 - \binom{k}{2}} < \frac{n^k}{2^{k/2 + 1}} 2^{1 - k(k - 1) / 2} = \left(\frac{n}{2^{k / 2}}\right)^k{% endlatex %}
 
 Kde poslední {% latex %}={% endlatex %} platí, protože:
-{% latex display %}\frac{1}{2^{k/2 + 1}} 2^{1 - k(k - 1)/2} = \frac{1}{2 \cdot 2^{k/2}} \frac{2}{2^{k(k - 1)/2}} = \frac{1}{2^{k/2 (1 + k - 1)}} = \left(\frac{1}{2^{k/2}}\right){% endlatex %}
+{% latex display %}\frac{1}{2^{k/2 + 1}} 2^{1 - k(k - 1)/2} = \frac{1}{2 \cdot 2^{k/2}} \frac{2}{2^{k(k - 1)/2}} = \frac{1}{2^{k/2 (1 + k - 1)}} = \left(\frac{1}{2^{k/2}}\right)^k{% endlatex %}
 
 **Důsledek:** {% latex %}\forall k \ge 3: r(k) > 2^{k/2}{% endlatex %}
 - dosadíme {% latex %}n = 2^{k/2}{% endlatex %} do předchozího (předchozí je ostrý odhad, takže {% latex %}1^k < 1{% endlatex %} funguje)
 
-**Důkaz:** vezmu náhodný graf {% latex %}G{% endlatex %} t. ž. každá z {% latex %}\binom{n}{2}{% endlatex %} má pravděpodobnost {% latex %}1/2{% endlatex %}, nezávisle na ostatních. Nechť {% latex %}K \subseteq V, |K| = k{% endlatex %}. {% latex %}A_K \ldots{% endlatex %} jev, že {% latex %}G[K]{% endlatex %} je klika. {% latex %}\Pr[A_K] = \left(\frac{1}{2}\right)^{\binom{k}{2}} = 2^{-\binom{k}{2}}{% endlatex %}. Obdobně {% latex %}B_K{% endlatex %} jev, že vznikla nezávislá množina a {% latex %}C_K \ldots A_K \cup B_K \ldots \Pr[C_K] = 2 \cdot 2^{-\binom{k}{2}} = 2^{1 - \binom{k}{2}}{% endlatex %}. {% latex %}p \ldots{% endlatex %} pravděpodobnost, že {% latex %}\exists K \subseteq V{% endlatex %} t. ž. nastal jev {% latex %}C_K{% endlatex %}. Je ji těžké určit, protože jevy nejsou nezavislé (množiny se mohou překrývat), nám ale stačí odhad který předpokládá, že jsou jevy nezávislé:
+**Důkaz:** vezmu náhodný graf {% latex %}G{% endlatex %} t. ž. každá z {% latex %}\binom{n}{2}{% endlatex %} hran má pravděpodobnost {% latex %}1/2{% endlatex %}, nezávisle na ostatních. Nechť {% latex %}K \subseteq V, |K| = k{% endlatex %}. {% latex %}A_K \ldots{% endlatex %} jev, že {% latex %}G[K]{% endlatex %} je klika. {% latex %}\Pr[A_K] = \left(\frac{1}{2}\right)^{\binom{k}{2}} = 2^{-\binom{k}{2}}{% endlatex %}. Obdobně {% latex %}B_K{% endlatex %} jev, že vznikla nezávislá množina a {% latex %}C_K \ldots A_K \cup B_K \ldots \Pr[C_K] = 2 \cdot 2^{-\binom{k}{2}} = 2^{1 - \binom{k}{2}}{% endlatex %}. {% latex %}p \ldots{% endlatex %} pravděpodobnost, že {% latex %}\exists K \subseteq V{% endlatex %} t. ž. nastal jev {% latex %}C_K{% endlatex %}. Je ji těžké určit, protože jevy nejsou nezavislé (množiny se mohou překrývat), nám ale stačí odhad který předpokládá, že jsou jevy nezávislé:
 
-{% latex display %}\Pr[C] \le \sum_{K \in V, |K| = k} \Pr[C_K] = \binom{n}{k} \cdot 2^{1 - \binom{k}{s}} < 1{% endlatex %}
+{% latex display %}\Pr[C] \le \sum_{K \in V, |K| = k} \Pr[C_K] = \binom{n}{k} \cdot 2^{1 - \binom{k}{2}} < 1{% endlatex %}
 - předposlední rovnost je z definice -- všechny možné {% latex %}K{% endlatex %}-tice
-- poslední rovnost je předpoklad věty
+- poslední merovnost je předpoklad věty
 - máme, že pravděpodobnost, že nějaká {% latex %}K{% endlatex %}-prvková množina bude tvořit buďto kliku nebo nezávislou množinu velikosti {% latex %}k{% endlatex %} je {% latex %}< 1{% endlatex %}, tedy pravděpodobnost, že to nenastane je {% latex %}> 0{% endlatex %}, tedy {% latex %}\exists{% endlatex %} nějaký z náhodných grafů, který tohle nesplňuje
-	- pokud pravděpodobnost je nenulová, tak musí existovat nějaké množství grafů, které tenhle jev mají (protože jinak by nerovnost nebyla ostrá
+	- pokud pravděpodobnost je nenulová, tak musí existovat nějaké množství grafů, které tenhle jev mají (protože jinak by nerovnost nebyla ostrá)
 
 **Jiný důkaz:**
 Někomu může použití pravděpodobnosti připadat trochu magické.
@@ -1402,17 +1402,17 @@ sanity check: {% latex %}A_1 \supset A_2 \supset \ldots {% endlatex %}
 Pomocné obarvení {% latex %}(p-1){% endlatex %}-tic stejnými barvami, jako byla {% latex %}p{% endlatex %}-tice s vrcholem {% latex %}v_i{% endlatex %}.
 </div>
 
-- definuji obarvení {% latex %}(p - 1){% endlatex %}-tic {% latex %}A_i'{% endlatex %} {% latex %}c_i'(Q) = c(Q \cup \left\{v_i\right\}){% endlatex %}, {% latex %}Q \subseteq A_i'{% endlatex %}, {% latex %}|Q| = p - 1{% endlatex %}
+- definuji obarvení {% latex %}(p - 1){% endlatex %}-tic {% latex %}A_i'{% endlatex %}: {% latex %}c_i'(Q) = c(Q \cup \left\{v_i\right\}){% endlatex %}, {% latex %}Q \subseteq A_i'{% endlatex %}, {% latex %}|Q| = p - 1{% endlatex %}
 - z IP pro {% latex %}A_i'{% endlatex %} máme, že {% latex %}\exists B_i \subseteq A_i'{% endlatex %}, na jejichž {% latex %}(p-1){% endlatex %}-ticích je obarvení {% latex %}c_i'{% endlatex %} konstantní {% latex %} = b_i \in [t]{% endlatex %} a {% latex %}A_{i + 1} = B_i{% endlatex %} si vezmu do dalšího kroku
 
 (👀) barva {% latex %}p{% endlatex %}-tice {% latex %}\left\{v_{i_1}, \ldots, v_{i_p}\right\}{% endlatex %} (vzhledem k vzniklé posloupnosti {% latex %}v_1, v_2, \ldots{% endlatex %}), kde {% latex %}i_1 < i_2 < i_3 < i_p{% endlatex %} závisí pouze na barvě prvku {% latex %}v_{i_1}{% endlatex %}
 - vyberu z barev nějakou opakující-se nekonečněkrát a vrcholy s příslušnými indexy tvoří {% latex %}A{% endlatex %}
 
-**Věta (Ramseyova věta pro {% latex %}p{% endlatex %}-tice):** {% latex %}\forall p, t, k \in \mathbb{N} \exists N \in \mathbb{N}{% endlatex %} t. ž. {% latex %}\forall n \ge N, \forall c: \binom{[n]}{p}\ \exists A \subseteq [n], |A| = k{% endlatex %} t. ž. {% latex %}c{% endlatex %} je na {% latex %}\binom{A}{p}{% endlatex %} konstantní.
+**Věta (Ramseyova věta pro {% latex %}p{% endlatex %}-tice):** {% latex %}\forall p, t, k \in \mathbb{N} \exists N \in \mathbb{N}{% endlatex %} t. ž. {% latex %}\forall n \ge N, \forall c: \binom{[n]}{p} \mapsto [t]\ \exists A \subseteq [n], |A| = k{% endlatex %} t. ž. {% latex %}c{% endlatex %} je na {% latex %}\binom{A}{p}{% endlatex %} konstantní.
 
 **Důkaz:** mějme {% latex %}p, k, t{% endlatex %} z předpokladu věty. Uvážíme {% latex %}c_i: \binom{[n]}{p} \mapsto [t]{% endlatex %}. To je _dobré_, pokud {% latex %}\exists {% endlatex %} {% latex %}k{% endlatex %}-prvková jednobarevná podmnožina, jinak je _špatné_. Věta tedy tvrdí, že {% latex %}n \ge N{% endlatex %} jsou všechna {% latex %}c{% endlatex %} _dobrá_.
 
-Sporem: předpokládejme, že pro nekonečně mnoho {% latex %}n \exists{% endlatex %} _špatné_ obarvení.
+Sporem: předpokládejme, že pro nekonečně mnoho {% latex %}n{% endlatex %} {% latex %}\exists{% endlatex %} _špatné_ obarvení.
 
 (👀) Pokud {% latex %}S_n{% endlatex %} je množina _špatných_ obarvení a {% latex %}S_n{% endlatex %} je neprázdné, pak {% latex %}S_{n - 1}{% endlatex %} je neprázdné, protože mám-li _špatné_ obarvení {% latex %}p{% endlatex %}-tic nad {% latex %}n{% endlatex %}, tak mohu zapomenout na {% latex %}n{% endlatex %}-tý prvek a tak dostanu _špatné_ obarvení i na {% latex %}n - 1{% endlatex %}.
 - **zůžení** {% latex %}z(c)(Q) = c(Q), Q \subseteq [n - 1], |Q| = p{% endlatex %} (prostě odeberu vrchol)
