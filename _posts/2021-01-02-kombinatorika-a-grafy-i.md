@@ -331,9 +331,9 @@ Dokáže se přes to přes rozbor příkladů toho, jak vedou přímky přes {% 
 ![](/assets/kombinatorika-a-grafy-i/kpr-bijekce.svg)
 
 
-**Definice (řád KPR):** řádem {% latex %}(X, \mathcal{P}){% endlatex %} je {% latex %}h = |P| - 1{% endlatex %} pro jakoukoliv {% latex %}P \in \mathcal{P}{% endlatex %}.
+**Definice (řád KPR):** řádem {% latex %}(X, \mathcal{P}){% endlatex %} je {% latex %}n = |P| - 1{% endlatex %} pro jakoukoliv {% latex %}P \in \mathcal{P}{% endlatex %}.
 
-**Tvrzení:** nechť {% latex %}(X, \mathcal{P}){% endlatex %} je KPR řádu {% latex %}p{% endlatex %}. Pak:
+**Tvrzení:** nechť {% latex %}(X, \mathcal{P}){% endlatex %} je KPR řádu {% latex %}n{% endlatex %}. Pak:
 1. každým bodem prochází {% latex %}n + 1{% endlatex %} přímek 
 2. {% latex %}|X| = n^2 + n + 1{% endlatex %}
 3. {% latex %}|\mathcal{P}| = n^2 + n + 1{% endlatex %}
@@ -352,9 +352,9 @@ jejích bodů.
 2. viz. níže.
 3. vychází z duality (viz. další kapitola).
 
-Vezměme libovolné {% latex %}x \in X{% endlatex %}. Pak {% latex %}\exists P \in \mathcal{P}: x \not\in P{% endlatex %}, protože vezmeme-li vody, {% latex %}a, b, c \in Č{% endlatex %}, pak přímky {% latex %}ab{% endlatex %} a {% latex %}ac{% endlatex %} nemohou mít další společný bod než {% latex %}a{% endlatex %} (došlo by ke sporu s některým z axiomů).
+Vezměme libovolné {% latex %}x \in X{% endlatex %}. Pak {% latex %}\exists P \in \mathcal{P}: x \not\in P{% endlatex %}, protože vezmeme-li body {% latex %}a, b, c \in Č{% endlatex %}, pak přímky {% latex %}ab{% endlatex %} a {% latex %}ac{% endlatex %} nemohou mít další společný bod než {% latex %}a{% endlatex %} (došlo by ke sporu s některým z axiomů).
 
-Poté stačí uvážit následující obrázek a spočítat body/přímky. Další body už neexistují, protože kdyby existoval, tak by jím musela procházet přímka z {% latex %}x{% endlatex %} a ta by rovněž někde protínala {% latex %}P{% endlatex %} (a nesplňovala tak axiomy).
+Poté stačí uvážit následující obrázek a spočítat body/přímky. Další bod už neexistuje, protože kdyby existoval, tak by jím musela procházet přímka z {% latex %}x{% endlatex %} a ta by rovněž někde protínala {% latex %}P{% endlatex %} (a nesplňovala tak axiomy).
 
 {:.center}
 ![](/assets/kombinatorika-a-grafy-i/kpr-pocet.svg)
@@ -498,12 +498,12 @@ Mám tedy {% latex %}n - 1{% endlatex %} možností a musím přijít na {% late
 **Věta:** {% latex %}\exists L_1, \ldots, L_{n - 1}{% endlatex %} NOLČ {% latex %}\iff \exists KPR{% endlatex %} řádu {% latex %}n{% endlatex %}.
 
 **Důkaz:** konstrukce {% latex %}\Rightarrow{% endlatex %}
-- dány čtverce {% latex %}\exists L_1, \ldots, L_{n - 1}{% endlatex %}
+- dány čtverce {% latex %}L_1, \ldots, L_{n - 1}{% endlatex %}
 - body: {% latex %}r, s, l_1, l_{n - 1}, m_{1, 1}, m_{1, 2}, \ldots, m_{1, n}, \ldots, m_{n, n}{% endlatex %}
 - přímky:
 	- {% latex %}\mathrm{I}: \left\{r, s, l_1, \ldots, l_n - 1\right\}{% endlatex %}
 	- {% latex %}\mathrm{II}:{% endlatex %} řádky -- {% latex %}\forall i \in [n]: \left\{r, m_{i, 1}, m_{i, 2}, \ldots, m_{i, n}\right\}{% endlatex %}
-	- {% latex %}\mathrm{III}:{% endlatex %} sloupce -- {% latex %}\forall i \in [n]: \left\{r, m_{1, i}, m_{2, i}, \ldots, m_{n, i}\right\}{% endlatex %}
+	- {% latex %}\mathrm{III}:{% endlatex %} sloupce -- {% latex %}\forall i \in [n]: \left\{s, m_{1, i}, m_{2, i}, \ldots, m_{n, i}\right\}{% endlatex %}
 	- {% latex %}\mathrm{IV}: \underbrace{\forall i \in [n]}_{\text{latinské čtverce}}, \underbrace{\forall j \in [n]}_{\text{symboly}}: \left\{l_i\right\} \cup \left\{m_{k, l}\ \mid\ \left(L_i\right)_{k, l} = j\right\}{% endlatex %}
 
 {:.center}
@@ -519,15 +519,6 @@ Mám tedy {% latex %}n - 1{% endlatex %} možností a musím přijít na {% late
 **Ověření axiomů:**
 1. {% latex %}Č = \left\{r, s, m_{1, 1}, m_{2, 2}\right\}{% endlatex %}
 2. mezi:
-	- {% latex %}r, s, l_i \rightarrow \mathrm{I}{% endlatex %} 
-	- {% latex %}r, m_{k, l} \rightarrow \mathrm{II}{% endlatex %} 
-	- {% latex %}s, m_{k, l} \rightarrow \mathrm{III}{% endlatex %} 
-	- {% latex %}l_{i}, m_{k, l} \rightarrow \mathrm{IV}{% endlatex %}, symbol {% latex %}\left(L_i\right)_{k, l}{% endlatex %} určuje, o kterou přímku z {% latex %}l_i{% endlatex %} jde
-	- {% latex %}m_{k, l}, m_{k', l'} \rightarrow{% endlatex %}
-		- stejný řádek: {% latex %}\mathrm{II}{% endlatex %}
-		- stejný sloupec: {% latex %}\mathrm{III}{% endlatex %}
-		- jinak: {% latex %}\mathrm{IV}{% endlatex %} a existuje, vycházíme z minulého pozorování
-3. mezi:
 	- {% latex %}I, II \rightarrow r{% endlatex %}
 	- {% latex %}I, III \rightarrow s{% endlatex %}
 	- {% latex %}I, IV \rightarrow l_i{% endlatex %}
@@ -539,6 +530,15 @@ Mám tedy {% latex %}n - 1{% endlatex %} možností a musím přijít na {% late
 	- {% latex %}IV, IV \rightarrow {% endlatex %} 
 		- různé čtverce: přesně definice ortogonality (existuje dvojice souřadnic pro dvojici symbolů)
 		- stejné čtverce: {% latex %}l_i{% endlatex %}
+3. mezi:
+	- {% latex %}r, s, l_i \rightarrow \mathrm{I}{% endlatex %} 
+	- {% latex %}r, m_{k, l} \rightarrow \mathrm{II}{% endlatex %} 
+	- {% latex %}s, m_{k, l} \rightarrow \mathrm{III}{% endlatex %} 
+	- {% latex %}l_{i}, m_{k, l} \rightarrow \mathrm{IV}{% endlatex %}, symbol {% latex %}\left(L_i\right)_{k, l}{% endlatex %} určuje, o kterou přímku z {% latex %}l_i{% endlatex %} jde
+	- {% latex %}m_{k, l}, m_{k', l'} \rightarrow{% endlatex %}
+		- stejný řádek: {% latex %}\mathrm{II}{% endlatex %}
+		- stejný sloupec: {% latex %}\mathrm{III}{% endlatex %}
+		- jinak: {% latex %}\mathrm{IV}{% endlatex %} a existuje, vycházíme z minulého pozorování
 
 **Důkaz:** konstrukce {% latex %}\Leftarrow{% endlatex %}
 - dána KPR {% latex %}(X, \mathcal{P}){% endlatex %}, hledáme {% latex %}L_1, \ldots, L_{n - 1}{% endlatex %}
