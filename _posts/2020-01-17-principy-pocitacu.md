@@ -315,9 +315,9 @@ Tato stránka obsahuje moje poznámky z přednášky Pavla Ježka z roku 2019/20
 #### Rozbor PCF8570 SRAM paměti
 - {% latex %}3b{% endlatex %} programovatelná adresa, `1010` vestavěná
 - rychlost přenosu přes {% latex %}\text{I}^2 \text{C}{% endlatex %} je cca. {% latex %}100000Hz \sim 100000 bps{% endlatex %}
-	- {% latex %}\text{I}^2 \text{C}{% endlatex %} overhead je {% latex %}x / \left(3 \cdot 9\right) \rightarrow 3708 bps{% endlatex %}
+	- {% latex %}\text{I}^2 \text{C}{% endlatex %} overhead je {% latex %}x / \left(3 \cdot 9\right) \rightarrow 3708 Bps{% endlatex %}
 		- na každou transakci ({% latex %}8b{% endlatex %} + ack) přeneseme 3B, z toho jen 1 jsou data
-		- jde to zlepšit -- burst přenos (nezačínáme další přenosy, jen sekvenčně čteme/zapisujeme): {% latex %}\left(x - \left(2 \cdot 9\right)\right) /  9 \rightarrow 11109 bps{% endlatex %}
+		- jde to zlepšit -- burst přenos (nezačínáme další přenosy, jen sekvenčně čteme/zapisujeme): {% latex %}\left(x - \left(2 \cdot 9\right)\right) /  9 \rightarrow 11109 Bps{% endlatex %}
 - zápis -- 1 transakce
 - čtení -- 2 transakce (psaní do adresového registru nějakou hodnotu + zápis slova)
 
