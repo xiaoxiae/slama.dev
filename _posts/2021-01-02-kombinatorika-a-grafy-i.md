@@ -823,7 +823,7 @@ Analogicky pro grafy: bipartitní graf {% latex %}G = (L \cup P, E){% endlatex %
 **Důkaz (SSR {% latex %}\Rightarrow{% endlatex %} Hall):** zvolím libovolnou {% latex %}J \subseteq I{% endlatex %}. {% latex %}\forall j \in J \exists p_j \in M_j, p_j = f(j){% endlatex %}, tak že prvky {% latex %}p_j{% endlatex %} jsou navzájem různé ({% latex %}f{% endlatex %} je prostá).
 {% latex display %}|J| = \left|\left\{p_j\ |\ j \in J\right\}\right| \le |\bigcup_{j \in J} M_j|{% endlatex %}
 
-**Důkaz (Hall {% latex %}\Leftarrow{% endlatex %} SSR):** opět najdu v grafu (celočíselný, jednotková síť) maximální tok. Najdu minimální řez z hran pouze ze zdroje/do stoku, {% latex %}|R| = |R'|{% endlatex %}. Uvážím následující obrázek:
+**Důkaz (SSR {% latex %}\Leftarrow{% endlatex %} Hall):** opět najdu v grafu (celočíselný, jednotková síť) maximální tok. Najdu minimální řez z hran pouze ze zdroje/do stoku, {% latex %}|R| = |R'|{% endlatex %}. Uvážím následující obrázek:
 
 {% xopp hall %}
 
