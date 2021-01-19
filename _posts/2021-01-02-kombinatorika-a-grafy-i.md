@@ -1130,7 +1130,7 @@ Mějme {% latex %}C{% endlatex %} lineární kód délky {% latex %}n{% endlatex
 
 **Předpoklad:** chybový vektor {% latex %}e{% endlatex %} je slovo s nejmenší vahou ve své třídě
 - **třída** {% latex %}= \left\{e'\ |\ Pe' = P\tilde{x} = P(x + e) = Px + Pe = Pe\right\}{% endlatex %} (slova se stejným syndromem)
-- **reprezentant** třídy {% latex %}s \in Z_2^k{% endlatex %} je slovo {% latex %}m(s) \in Z_2^n{% endlatex %} t. ž. {% latex %}P m(s) = s{% endlatex %} t. ž. {% latex %}w(m(s){% endlatex %} je minimální
+- **reprezentant** třídy {% latex %}s \in Z_2^k{% endlatex %} je slovo {% latex %}m(s) \in Z_2^n{% endlatex %} t. ž. {% latex %}P m(s) = s{% endlatex %} t. ž. {% latex %}w(m(s)){% endlatex %} je minimální
 
 **Dekódování:**
 - vezmu {% latex %}s = P\tilde{x}{% endlatex %}
@@ -1161,7 +1161,7 @@ Mějme {% latex %}C{% endlatex %} lineární kód délky {% latex %}n{% endlatex
 
 Pro spor nechť {% latex %}\exists x{% endlatex %} t. ž. {% latex %}\sum x_i p_i = 0{% endlatex %} (je tedy kódové slovo) a {% latex %}w(x) < d \rightarrow{% endlatex %}. To je spor, {% latex %}\Delta(C) = d{% endlatex %} ale tohle slovo má {% latex %}w(x) < d{% endlatex %}. To musí nutně znamenat, že {% latex %}\forall x: w(x) < d \rightarrow \sum_{i = 1}^{n}x_i p_i \neq 0 \rightarrow{% endlatex %} každých {% latex %}\le d - 1{% endlatex %} sloupců je tedy lineárně nezávislých.
 
-**Důsledek:** pokud chci {% latex %}d = 3{% endlatex %}, potřebuji co největší matici {% latex %}P{% endlatex %} t. ž. {% latex %}\forall 2{% endlatex %} sloupce jsou lineárně nezávislé. To v {% latex %}\mathbb{Z}_2{% endlatex %} znamená, že musí být buď stejné, nebo jeden z nich nulový.
+**Důsledek:** pokud chci {% latex %}d = 3{% endlatex %}, potřebuji co největší matici {% latex %}P{% endlatex %} t. ž. {% latex %}\forall 2{% endlatex %} sloupce jsou lineárně nezávislé. To v {% latex %}\mathbb{Z}_2{% endlatex %} znamená, že musí být různé a žádný z nich není nulový.
 
 {% latex display %}
 P = \underbrace{\begin{pmatrix}
