@@ -319,19 +319,20 @@ def draw():  # kód, který se dokola opakuje
 	- mává rukou tam a zpět. [[řešení](/assets/programovani-je-hra/3.3.1-2.py)]
 
 ### 4. hodina (14. 1. 2021)
+1. Naprogramujte vykreslení černobílé {% latex %}8 \times 8{% endlatex %} šachovnice. [[řešení](/assets/programovani-je-hra/4.3.1.py)]
 
 #### Zmáčknutí klávesy
 
 ```cpp
 def keyPressed():
 	if key == 'a':
-		// vykoná se po zmáčknutí klávesy 'a'
+		# vykoná se po zmáčknutí klávesy 'a'
 	else:
-		// vykoná se po zmáčknutí jiné klávesy
+		# vykoná se po zmáčknutí jiné klávesy
 		
-	// pro speciální klávesy jako šipky používejte `keyCode`:
+	# pro speciální klávesy jako šipky používejte `keyCode`:
 	if keyCode == LEFT:
-		// vykoná se po zmáčknutí levé šipky
+		# vykoná se po zmáčknutí levé šipky
 ```
 
 - existuje také `keyReleased`, která značí puštění klávesy
@@ -343,9 +344,9 @@ def keyPressed():
 ```cpp
 def mousePressed():
 	if mouseButton == LEFT:
-		// vykoná se po zmáčknutí levého tlačítka myši
+		# vykoná se po zmáčknutí levého tlačítka myši
 	elif mouseButton == RIGHT:
-		// vykoná se po zmáčknutí pravého tlačítka myši
+		# vykoná se po zmáčknutí pravého tlačítka myši
 ```
 
 - také je možné využít proměnné `mouseX` a `mouseY`, které udržují pozici kurzoru myši
@@ -361,17 +362,32 @@ def mousePressed():
 
 1. Vytvořte červenou, zelenou, azurovou, bílou, černou, šedou, růžovou barvu.
 
----
+### 5. hodina (21. 1. 2021)
+1. Naprogramujte [Conwayovu „Game of Life“](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) (ovládání myší + klávesami) ⭐. [[řešení](/assets/programovani-je-hra/5.1.1-1.py)]
+	- přidejte barvičky! ⭐ [[řešení](/assets/programovani-je-hra/5.1.1-2.py)]
+	- přidejte ovládání držením levého/pravého tlačítka [[řešení](/assets/programovani-je-hra/5.1.1-3.py)]
 
-1. Naprogramujte vykreslení černobílé {% latex %}8 \times 8{% endlatex %} šachovnice. [[řešení](/assets/programovani-je-hra/4.3.1.py)]
-2. Naprogramujte Conwayovu „Game of Life“ (ovládání myší + klávesami) ⭐.
-	- přidejte barvičky! ⭐⭐
+#### Alternativní smyčka
+```py
+# následující smyčka:
+x = 0
+while x < 10:
+	print(x)
+	x += 1
+
+# jde také zapsat jako:
+for x in range(0, 10):
+	print(x)
+```
+
+- zápis je kratší a čitelnější
 
 ### Dodatečné materiály
 
 - [Python Tutor](http://www.pythontutor.com/visualize.html) -- vizualizér Python kódu, ze kterého je hezky vidět, co program dělá.
 - [Repl.it pro Python](https://repl.it/languages/python3) -- prostředí, ve kterém budeme programovat.
 - [Processing 3](https://processing.org/) -- grafické prostředí, ve kterém budeme pracovat.
+	- [Processing 3 Reference](https://py.processing.org/reference/) -- dokumentace Processingu, spolu s ukázkovými příklady.
 - [Python 3](https://www.python.org/downloads/) -- webovky jazyka, ve kterém budeme programovat.
 - [Ponořme se do Pythonu](http://diveintopython3.py.cz/index.html) -- dobře napsaná kniha o programování v Pythonu 3, na kterou se můžete podívat, pokud byste se rádi Python učili i ve svém volném čase.
 - [Korespondenční Seminář z Programování](http://ksp.mff.cuni.cz/z/) -- skvělý způsob, jak se na zajímavých úlohách naučit programovat a poznat při tom nové kamarády 🙂.
