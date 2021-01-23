@@ -30,10 +30,8 @@ If you think there are some interesting programs that I should check out, I'd be
 #### FireFox Addons
 - [Tree Style Tab](https://addons.mozilla.org/en-US/firefox/addon/tree-style-tab/) -- moves tabs to the side of the browser, which is an absolute necessity if you're working with multiple browser tabs at the same time.
 - [Vim Vixen](https://addons.mozilla.org/en-US/firefox/addon/vim-vixen/) -- provides relatively decent browsing with Vim-like bindings.
-
 - [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/) -- an add blocker.
 - [NoScript](https://addons.mozilla.org/en-US/firefox/addon/noscript/) -- blocks (certain) JavaScript code on visited websites.
-- [Vim Vixen](https://addons.mozilla.org/en-US/firefox/addon/vim-vixen/) -- Vim for the browser. A little underwhelming, but I'm addicted :).
 
 ### Audio/Video
 - [MPV](https://www.videolan.org/vlc/) -- a multiplatform media player. I switched to it from VLC, since it's much more lightweight, customizable and doesn't completely break my window manager.
