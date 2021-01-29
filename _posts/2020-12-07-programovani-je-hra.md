@@ -64,19 +64,22 @@ a+b = 123 # neplatné, jméno nesmí obsahovat +
 	- další operátory:
 		- `//` -- celočíselné dělení
 		- `%` -- zbytek po dělení
+		- `**` -- mocnění
 
 ```python
 a = 12 + 6 - 5   # a = 13
 b = a / 2        # b = 6.5
 c = -b           # c = -6.5
 d = 2 + 2 * 2    # d = 6
-e = (2 + 2) * 2  # d = 8
+e = (2 + 2) * 2  # e = 8
+f = 2 ** 3       # f = 8
 
 print(a)
 print(b)
 print(c)
 print(d)
 print(e)
+print(f)
 ```
 
 1. Máte proměnnou `a`, která udává délku strany kostky. Vypište její obsah. [[řešení](/assets/programovani-je-hra/1.2.1.py)]
@@ -194,11 +197,15 @@ print(x)       # vypíše pole: [1, 10, 3]
 print(len(x))  # vypíše délku pole (3)
 ```
 
-1. Máte pole čísel `pole`. Vypište:  
+1. Máte pole čísel `pole`. Vypište:
 	- počet čísel v poli. [[řešení](/assets/programovani-je-hra/2.3.1-1.py)]
 	- největší číslo v poli. [[řešení](/assets/programovani-je-hra/2.3.1-2.py)]
 	- nejmenší číslo v poli. [[řešení](/assets/programovani-je-hra/2.3.1-3.py)]
 	- součet čísel v poli. [[řešení](/assets/programovani-je-hra/2.3.1-4.py)]
+
+- pole jdou také „rozšiřovat“ pomocí funkcí:
+	- `pole.append(prvek)` přidá na konec pole prvek
+	- `pole.pop()` odebere z konce pole poslední prvek a vrátí ho
 
 ### 3. hodina (7. 1. 2021)
 
@@ -381,6 +388,70 @@ for x in range(0, 10):
 ```
 
 - zápis je kratší a čitelnější
+
+### 6. hodina (28. 1. 2021)
+
+#### Třídy
+
+{:.rightFloatBox}
+<div markdown="1">
+**Zajímavost:** metodám tvaru `__jméno__` se  říká „magické.“ Umí s objekty dělat řadu věcí, jako např. definovat, co znamená je sčítat, násobit, apod.
+</div>
+
+- **předpisy** věcí -- jaké mají vlastnosti, jak se chovají...
+	- příklad: míč/auto/člověk/zvíře...
+- specifickým proměnným tříd se říká **objekty**
+	- jsou to tzv. instance třídy
+- **dědičnost** -- vytváření tříd, které jsou případy jiných:
+	- každá další třída **dědí** vlastnosti předka a potenciálně přidává nějaké nové
+	- živočich {% latex %}\rightarrow{% endlatex %} obratlovec {% latex %}\rightarrow{% endlatex %} plaz {% latex %}\rightarrow{% endlatex %} krokodýl
+	- dopravní prostředek {% latex %}\rightarrow{% endlatex %} vozidlo {% latex %}\rightarrow{% endlatex %} automobil {% latex %}\rightarrow{% endlatex %} elektromobil
+	- těleso {% latex %}\rightarrow{% endlatex %} rovnoběžnostěn {% latex %}\rightarrow{% endlatex %} kvádr
+
+```py
+# vytvoření třídy, která popisuje lidi
+# každý člověk má jméno, věk a umí vyrůst
+class Clovek:
+
+	# speciální metoda, která se zavolá, když se objekt vytváří
+	def __init__(self, jmeno, vek):
+		self.jmeno = jmeno
+		self.vek = vek
+
+	# funkce, kterou má každý člověk
+	# po zavolání zvýší jeho věk o 1
+	def vyrost(self):
+		self.vek += 1
+
+# vytvoření objektu (instance třídy Clovek) alice a bob, kteří jsou lidé
+alice = Clovek("Alice Novotná", 20)
+bob = Clovek("Bořek Stavitel", 34)
+
+# zavolání vlastností na objekty
+alice.vyrost()
+bob.vyrost()
+```
+
+1. Přidejte funkci `vyrost_o`, která bere parametr `o` a přidá danému člověku tolik let. [[řešení](/assets/programovani-je-hra/6.1.1.py)]
+2. Přidejte člověku proměnnou `vaha` a funkce `ztloustni` a `zhubni`, které váhu o `1` zvyšují/snižují. [[řešení](/assets/programovani-je-hra/6.1.2.py)]
+3. Vytvořte Processing sketch, kde bude po obrazovce létat míče (vytvořené myší). [[řešení](/assets/programovani-je-hra/6.1.3-1.py)]
+	- hint: vytvořte třídu `Ptak`, nově vytvořené ptáky ukládejte do pole; každé pole má funkci `append(věc)`, která na jeho konec přidá věc
+	- upravte pohyb tak, [aby byl realistický](https://www.youtube.com/watch?v=QbUPfMXXQIY)  ⭐⭐  [[aktuální stav](/assets/programovani-je-hra/6.1.3-2.py)]
+		- hint: inspirujte se [tímhle článkem](https://gamedevelopment.tutsplus.com/tutorials/3-simple-rules-of-flocking-behaviors-alignment-cohesion-and-separation--gamedev-3444)
+
+#### Text
+```py
+def setup():
+    size(400, 400)
+    background(255)
+
+    fill(0)                    # černý text
+    textSize(32)               # velikost textu 32
+    textAlign(CENTER, CENTER)  # vycentrování
+    
+    # vykreslení textu doprostřed obrazovky
+    text('Ahoj!', width / 2, height / 2)
+```
 
 ### Dodatečné materiály
 
