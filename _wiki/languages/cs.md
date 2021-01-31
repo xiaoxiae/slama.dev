@@ -100,6 +100,8 @@ Console.WriteLine("{0}: Hello, " + s2 + "!", s1, s2);  // what if s2 == "{0}"
 
 {% match ### File I/O %}
 
+- if we're dealing with binary I/O, use `FileStream` instead; this is for text
+
 | Action     | Code                                                              |
 | ---        | ---                                                               |
 | reading    | `System.IO.StreamReader f = new System.IO.StreamReader(path);`    |
@@ -246,8 +248,6 @@ if (a is B b) {
 // `b` is not initialized here!
 ```
 
-
-
 ##### `System.Object`
 - inherited by all classes
 - has the following members:
@@ -286,7 +286,7 @@ if (a is B b) {
 
 {% match #### Local variables %}
 - created each time we enter `{`, deleted each time we leave `}`
-	- but... is extremely fast (1 instruction) and can be optimized by the compiler, if a variable is repeatedly created and discarded
+	- but... is extremely fast and can be optimized by the compiler, if a variable is repeatedly created and discarded
 - the same name can't be reused within the same scope, but be careful:
 
 ```cs
@@ -478,8 +478,8 @@ class File {
 - more memory
 	- the reference itself
 	- **heap overhead**
-		1. which type it is (reference to an instance of the class `Type`)
-			- is either {% latex %}4/8B{% endlatex %}
+		1. which type it is (reference to an instance of the class `MethodTable`)
+			- is either {% latex %}4/8B{% endlatex %}, depending on the architecture
 		2. syncblock -- related to threads and locking
 			- always {% latex %}4B{% endlatex %}
 		- padded to nearest {% latex %}8B{% endlatex %}
@@ -709,11 +709,13 @@ Console.WriteLine(nameof(numbers.Add));    // output: Add
 
 ### Heaps and GC
 - behavior of the garbage collector to the two heaps is different
-- real limit is around {% latex %}1.4\ GB{% endlatex %}
+- real limit is around {% latex %}1.4\ GB{% endlatex %} (for 32-bit systems)
 	- `OutOfMemoryException` could happen sooner, since we could have a lot of holes in the given and the new object wouldn't fit in -- **heap fragmentation**
 	- happens easily when resizing (dynamic array, for example), since we're creating a new array of twice the size, that has to co-exist with the old one for a bit
-- **segment** -- reservation (virtual memory); {% latex %}~16\ MB{% endlatex %}
-- **kvantum** -- commit (physical memory); {% latex %}~8\ kB{% endlatex %}
+- **segment** -- reservation (virtual memory); around {% latex %}~16\ MB{% endlatex %}
+	- varies greatly on the architecture and GC configuration!
+- **kvantum** -- commit (physical memory); around {% latex %}~8\ kB{% endlatex %}
+	- varies greatly on the architecture and GC configuration!
 - GC is **generational**
 	- gen 0 -- allocated here
 	- gen 1 -- survives a GC
