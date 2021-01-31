@@ -10,7 +10,7 @@ module Jekyll
         result = "<div class='row'>"
 
         for i in 0..(@parts.length - 1)
-          result = result + "<div class='c#{@parts.length}'>" \
+          result = result + "<div class='photos#{@parts.length}'>" \
           "<a href='#{@parts[i]}'>" \
           "<img src='#{@parts[i].gsub("raw/", "")}'>" \
           "</a>" \
