@@ -25,3 +25,10 @@ lol.
 
 {% match ### Ternary %}
 - `exprIfTrue if condition else exprIfFalse`
+
+{% match ### Classes %}
+```py
+class MyClass:
+	def __init__(self):
+		# constructor stuff
+```
