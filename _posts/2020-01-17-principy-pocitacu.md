@@ -29,7 +29,7 @@ Tato stránka obsahuje moje poznámky z přednášky Pavla Ježka z roku 2019/20
 	- nebyl nikdy fyzicky postaven
 	- měl usnadnit počítání tehdy komplexního systému daní v Británii
 
-#### Ana Lovelace
+#### Ada Lovelace
 - dcera G. G. Byrona
 - finančně Babbage podporovala
 - příběhy o ní jako programátorce (psaní programů, ladění bugů) jsou vesměs nesmysl, ale:
@@ -617,7 +617,7 @@ mov    %ax,-0x1e(%rbp)
 
 ###### Výhody
 - levnější než alternativy
-- velké množství data
+- velké množství dat
 
 ###### Nevýhody
 - náchylné na poškození
@@ -631,7 +631,7 @@ mov    %ax,-0x1e(%rbp)
 
 {% xopp 20-19-01_19-22-10 & CD %}
 
-- používají **LBA** -- linear block adressing (není to už trojice -- lehčí na programování)
+- používají **LBA** -- linear block addressing (není to už trojice -- lehčí na programování)
 - přenosová rychlost je menší ({% latex %}10 MBps{% endlatex %}), přístupová také ({% latex %}100 ms{% endlatex %})
 
 ##### Řadiče pro úložiště
@@ -698,7 +698,7 @@ mov    %ax,-0x1e(%rbp)
 - pozor -- {% latex %}1B{% endlatex %} = 2 znaky
 - 3 sloupečky (tradičně po 16 znacích -- dobře se počítá pozice):
 	1. hex offset (pozice v souboru)
-	2. hex zapis (`AF 1F 3C 14 ...`)
+	2. hex zápis (`AF 1F 3C 14 ...`)
 	3. pokus o interpretaci dat jako text (nezná encoding...)
 
 #### Reprezentace obrazu
@@ -855,5 +855,5 @@ mov    %ax,-0x1e(%rbp)
 			- bývá např. u grafických karet -- počáteční nastavení
 		- **pevný disk** -- mívá boot sector, který je uzpůsobený k načtení do paměti a spuštění
 			- je tu tzv. **bootloader** -- menší prográmek, který hledá na disku zbylá data
-				- dnes většinou načítá **kernel** -- převezme zakladní funkce FS, načte zbytek OS...
+				- dnes většinou načítá **kernel** -- převezme základní funkce FS, načte zbytek OS...
 	3. implementuje funkce pro bootování -- načti sektor, znak z klávesnice, vykresli něco...
