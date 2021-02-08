@@ -1130,7 +1130,7 @@ Mějme {% latex %}C{% endlatex %} lineární kód délky {% latex %}n{% endlatex
 
 **Předpoklad:** chybový vektor {% latex %}e{% endlatex %} je slovo s nejmenší vahou ve své třídě
 - **třída** {% latex %}= \left\{e'\ |\ Pe' = P\tilde{x} = P(x + e) = Px + Pe = Pe\right\}{% endlatex %} (slova se stejným syndromem)
-- **reprezentant** třídy {% latex %}s \in Z_2^k{% endlatex %} je slovo {% latex %}m(s) \in Z_2^n{% endlatex %} t. ž. {% latex %}P m(s) = s{% endlatex %} t. ž. {% latex %}w(m(s)){% endlatex %} je minimální
+- pro syndrom {% latex %}s \in Z_2^k{% endlatex %} je slovo {% latex %}m(s) \in Z_2^n{% endlatex %} t. ž. {% latex %}P m(s) = s{% endlatex %} a {% latex %}w(m(s)){% endlatex %} je minimální tzv. **reprezentant**
 
 **Dekódování:**
 - vezmu {% latex %}s = P\tilde{x}{% endlatex %}
@@ -1356,7 +1356,7 @@ existuje nedobrý graf na {% latex %}n{% endlatex %} vrcholech a {% latex %}r(k,
 sanity check: {% latex %}A_1 \supset A_2 \supset \ldots {% endlatex %}
 </div>
 
-**Důkaz:** sestrojím posloupnost nekonečných množin {% latex %}A_1 = \mathbb{N}, \ldots{% endlatex %} a pro {% latex %}i = 1, 2, \ldots{% endlatex %} opakujeme:
+**Důkaz:** sestrojím posloupnost nekonečných množin {% latex %}A_1 = \mathbb{N}{% endlatex %} a pro {% latex %}i = 1, 2, \ldots{% endlatex %} opakujeme:
 - vybereme {% latex %}v_i \in A_i{% endlatex %}
 - rozdělíme {% latex %}A{% endlatex %} na {% latex %}B_i^1, B_i^2\ldots, B_i^t{% endlatex %} podle toho, jakou barvu má hrana, která množinu spojuje s {% latex %}v_i{% endlatex %}
 	- jelikož {% latex %}A_i{% endlatex %} je nekonečná, tak {% latex %}\exists B_i^j{% endlatex %} pro nějakou barvu, která je také nekonečná
