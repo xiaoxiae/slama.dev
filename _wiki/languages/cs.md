@@ -237,10 +237,10 @@ pet.Name();              // prints Mammal
 - `new` **creates a new record,** `override` **overrides the current one:**
 	- it doesn't matter that a method with the same name already existed
 
-|         | `A` | `M` | `D` | `B` |
-| ---     | --- | --- | --- | --- |
-| `A.WMT` | `A` | `M` | `M` | `M` |
-| `B.WMT` |     |     | `D` | `B` |
+|          | `A` | `M` | `D` | `B` |
+| ---      | --- | --- | --- | --- |
+| `A.Name` | `A` | `M` | `M` | `M` |
+| `D.Name` |     |     | `D` | `B` |
 
 - if `abstract` is used, an entry in VTM is created but no implementation is provided
 	- the entire class has to be `abstract` so it can't be instantiated, since the method has to be overriden
@@ -292,6 +292,7 @@ if (a is B b) {
 		- contains `.Name` and other stuff for reflection
 		- also contains a **virtual method table** (VMT)
 	- `public virtual bool Equals(object o);`
+		- for checking, whether two objects are equal
 	- `public virtual string ToString();`
 		- the string representation of the object
 		- shouldn't be something too complicated (like a giant recursive function)
@@ -309,8 +310,8 @@ if (a is B b) {
 ##### `sealed`
 - prevents inheritance and (likely) allows for some code optimizations
 	- no virtual function calls
-- `sealed class` -- is not inherited
-- `sealed void MyFunction()` -- is not overridable
+- `sealed class A {}` -- is not inheritable
+- `sealed override void m()` -- is not overridable
 
 {% match ### Variable scope %}
 
@@ -651,8 +652,9 @@ static class Program {
 | `private protected`  | limited to the current assembly AND same/derived types. |
 
 - by default:
-	- visibility in **classes** is **private**
-	- visibility in an **interface** is **public**
+	- visibility of classes/interfaces/structs is `internal`
+	- visibility in `class`es is `private`
+	- visibility in `interface`s is `public`
 		- it doesn't make much sense to be private, since it's a public contract
 
 ```cs
@@ -921,3 +923,29 @@ Console.WriteLine(nameof(numbers.Count));  // output: Count
 Console.WriteLine(nameof(numbers.Add));    // output: Add
 ```
 
+#### NUnit tests
+
+```cs
+using System;
+using NUnit.Framework;
+
+public class Tests
+{
+	[SetUp]
+	public void Setup() { /* do something for setup (optional) */ }
+	
+	[Test]
+	public void NameOfTheTest()
+	{
+		Assert.AreEqual("a", "a");
+		Assert.AreNotEqual("a", "b");
+		Assert.IsTrue(true);
+		Assert.IsFalse(false);
+		
+		Assert.Throws<ArgumentException>(() =>
+		{
+			This doesn't throw!
+		});
+	}
+}
+```
