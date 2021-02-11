@@ -436,7 +436,7 @@ bob.vyrost()
 2. Přidejte člověku proměnnou `vaha` a funkce `ztloustni` a `zhubni`, které váhu o `1` zvyšují/snižují. [[řešení](/assets/programovani-je-hra/6.1.2.py)]
 3. Vytvořte Processing sketch, kde bude po obrazovce létat míče (vytvořené myší). [[řešení](/assets/programovani-je-hra/6.1.3-1.py)]
 	- hint: vytvořte třídu `Ptak`, nově vytvořené ptáky ukládejte do pole; každé pole má funkci `append(věc)`, která na jeho konec přidá věc
-	- upravte pohyb tak, [aby byl realistický](https://www.youtube.com/watch?v=QbUPfMXXQIY)  ⭐⭐  [[aktuální stav](/assets/programovani-je-hra/6.1.3-2.py)]
+	- upravte pohyb tak, [aby byl realistický](https://www.youtube.com/watch?v=QbUPfMXXQIY)  ⭐⭐  [[nedokončeno](/assets/programovani-je-hra/6.1.3-2.py)]
 		- hint: inspirujte se [tímhle článkem](https://gamedevelopment.tutsplus.com/tutorials/3-simple-rules-of-flocking-behaviors-alignment-cohesion-and-separation--gamedev-3444)
 
 #### Text
@@ -453,6 +453,44 @@ def setup():
     text('Ahoj!', width / 2, height / 2)
 ```
 
+### 7. hodina (11. 2. 2021)
+1. Naprogramujte hru „Flappy bird“ ⭐ [[aktuální stav](/assets/programovani-je-hra/7.1.1.py)].
+	- přidejte barvy + pozadí + otáčení ptáčka
+	- naprogramujte umělou inteligenci, která hru bude hrát za vás ⭐⭐.
+
+#### knihovny
+- používání kódu (funkcí, proměnných), který naprogramovali ostatní
+- syntax:
+	- naimportování knihovny: `import <jméno knihovny>`
+	- používání věcí z knihovny: `<jméno knihovny>.věc`
+
+##### `math`
+- matematika-related věci
+- funkce:
+	- `math.sin`, `math.cos`, `math.tan`
+	- `math.log`aritmus, `math.factorial`
+	- ...
+- konstanty:
+	- `math.pi`, `math.e`
+
+##### `random`
+- generování náhodných čísel:
+	- `math.randint(a, b)` -- náhodné **celé** číslo od `a` do `b`
+	- `math.random()` -- náhodné **desetinné** číslo od `0` do `1`
+
+#### Docstringy
+- způsob komentování toho, co dělá celá funkce
+- automaticky z něj lze vygenerovat dokumentaci ke knihovně, ve které je
+- pomáhá pokročilejším prostředím 
+
+```py
+def moje_funkce():
+	"""Tahle moje funkce dělá moc cool věci."""
+	# ...
+	# kód funkce
+	# ...
+```
+
 ### Dodatečné materiály
 
 - [Python Tutor](http://www.pythontutor.com/visualize.html) -- vizualizér Python kódu, ze kterého je hezky vidět, co program dělá.
@@ -461,9 +499,11 @@ def setup():
 	- [Processing 3 Reference](https://py.processing.org/reference/) -- dokumentace Processingu, spolu s ukázkovými příklady.
 - [Python 3](https://www.python.org/downloads/) -- webovky jazyka, ve kterém budeme programovat.
 - [Ponořme se do Pythonu](http://diveintopython3.py.cz/index.html) -- dobře napsaná kniha o programování v Pythonu 3, na kterou se můžete podívat, pokud byste se rádi Python učili i ve svém volném čase.
+- [PyCharm]()
 - [Korespondenční Seminář z Programování](http://ksp.mff.cuni.cz/z/) -- skvělý způsob, jak se na zajímavých úlohách naučit programovat a poznat při tom nové kamarády 🙂.
 - [Průvodce labyrintem algoritmů](http://pruvodce.ucw.cz/) -- super příručka pro ty, kteří by se něco rádi dozvěděli o algoritmech a datových strukturách, do hloubky.
 - [Advent Kódu](https://adventofcode.com/) -- stránka, kde na každý den je lehčí a těžší úloha, která se řeší s pomocí programování. Každoročně řeším a velice doporučuji!
+- [The Coding Train](https://thecodingtrain.com/CodingChallenges/) -- videa o programování různých vizualizací v Processingu (v Javascriptu)
 
 {:.center}
 ![Programování v kostce.](/assets/programovani-je-hra/turtles.png)
