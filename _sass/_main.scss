@@ -293,6 +293,15 @@ body {
 	font-family: $serif-font, sans-serif;
 	line-height: $line-height;
 
+	blockquote {
+		p {
+			border-left: 1px solid;
+			padding-left: 15px;
+			margin-left: -15px;
+			font-style: italic;
+		}
+	}
+
 	// fix Jekyll generating p tags inside li
 	li { p { margin-bottom: 0; } }
 
