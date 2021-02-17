@@ -454,11 +454,12 @@ def setup():
 ```
 
 ### 7. hodina (11. 2. 2021)
-1. Naprogramujte hru „Flappy bird“ ⭐ [[aktuální stav](/assets/programovani-je-hra/7.1.1.py)].
+1. Naprogramujte hru „Flappy bird“ ⭐ [[aktuální stav](/assets/programovani-je-hra/7.1.1.py)] [[+kolize](/assets/programovani-je-hra/7.1.2.py)].
 	- přidejte barvy + pozadí + otáčení ptáčka
+	- přidejte náhodné obracení gravitace / postupné zrychlování / postupné užší mezery
 	- naprogramujte umělou inteligenci, která hru bude hrát za vás ⭐⭐.
 
-#### knihovny
+#### Knihovny
 - používání kódu (funkcí, proměnných), který naprogramovali ostatní
 - syntax:
 	- naimportování knihovny: `import <jméno knihovny>`
@@ -491,19 +492,58 @@ def moje_funkce():
 	# ...
 ```
 
-### Dodatečné materiály
+### 8. hodina (18. 2. 2021)
 
+#### `str`ingy
+- proměnné typu `str` v sobě ukládají text
+- věci, které string nejsou, lze na string převést přes funkci `str`
+- string lze přímo z textu vytvořit buďto `'takhle'`, nebo `"takhle"`
+
+```py
+a = "Tohle je hezká věta."       # normální string
+b = "Tohle" + " je " + "další."  # spojování více stringů do jednoho
+c = "5^420 = " + str(5 ** 420)   # spojování a převádění čísel na string
+
+print(a)
+print(b)
+print(c)
+```
+
+#### rekurze
+- funkce, která odkazuje „sama na sebe“
+- dokáže výrazně zjednodušit kód
+
+```py
+def factorial(n):
+	if n == 0:
+		return 1
+	else:
+		# vycházíme z toho, že n * (n - 1)! = n!
+		return n * factorial(n - 1)
+		
+print(factorial(5))
+```
+
+1. Naprogramujte [Sierpińského trojúhelník](https://cs.wikipedia.org/wiki/Sierpińského_trojúhelník)
+2. Naprogramujte [Mengerovu houbu](https://cs.wikipedia.org/wiki/Mengerova_houba) ve 2D.
+
+### Materiály
+
+#### [Python](https://www.python.org/downloads/)
 - [Python Tutor](http://www.pythontutor.com/visualize.html) -- vizualizér Python kódu, ze kterého je hezky vidět, co program dělá.
 - [Repl.it pro Python](https://repl.it/languages/python3) -- prostředí, ve kterém budeme programovat.
 - [Processing 3](https://processing.org/) -- grafické prostředí, ve kterém budeme pracovat.
-	- [Processing 3 Reference](https://py.processing.org/reference/) -- dokumentace Processingu, spolu s ukázkovými příklady.
-- [Python 3](https://www.python.org/downloads/) -- webovky jazyka, ve kterém budeme programovat.
+	- [Processing 3 Reference](https://py.processing.org/reference/) -- dokumentace k Processingu
 - [Ponořme se do Pythonu](http://diveintopython3.py.cz/index.html) -- dobře napsaná kniha o programování v Pythonu 3, na kterou se můžete podívat, pokud byste se rádi Python učili i ve svém volném čase.
-- [PyCharm]()
+- [PyCharm](https://www.jetbrains.com/pycharm/) -- nejlepší Python IDE
+
+#### Programování
+- [Advent Kódu](https://adventofcode.com/) -- stránka, kde je na každý den adventu programovací úloha
+- [The Coding Train](https://thecodingtrain.com/CodingChallenges/) -- videa o programování různých vizualizací v Processingu
+
+#### Algoritmy, datové struktury
 - [Korespondenční Seminář z Programování](http://ksp.mff.cuni.cz/z/) -- skvělý způsob, jak se na zajímavých úlohách naučit programovat a poznat při tom nové kamarády 🙂.
-- [Průvodce labyrintem algoritmů](http://pruvodce.ucw.cz/) -- super příručka pro ty, kteří by se něco rádi dozvěděli o algoritmech a datových strukturách, do hloubky.
-- [Advent Kódu](https://adventofcode.com/) -- stránka, kde na každý den je lehčí a těžší úloha, která se řeší s pomocí programování. Každoročně řeším a velice doporučuji!
-- [The Coding Train](https://thecodingtrain.com/CodingChallenges/) -- videa o programování různých vizualizací v Processingu (v Javascriptu)
+- [Průvodce labyrintem algoritmů](http://pruvodce.ucw.cz/) -- úžasná příručka pro ty, kteří by se něco rádi dozvěděli o algoritmech a datových strukturách.
 
 {:.center}
 ![Programování v kostce.](/assets/programovani-je-hra/turtles.png)
