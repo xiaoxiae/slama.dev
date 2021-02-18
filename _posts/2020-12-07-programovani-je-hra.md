@@ -454,10 +454,7 @@ def setup():
 ```
 
 ### 7. hodina (11. 2. 2021)
-1. Naprogramujte hru „Flappy bird“ ⭐ [[aktuální stav](/assets/programovani-je-hra/7.1.1.py)] [[+kolize](/assets/programovani-je-hra/7.1.2.py)].
-	- přidejte barvy + pozadí + otáčení ptáčka
-	- přidejte náhodné obracení gravitace / postupné zrychlování / postupné užší mezery
-	- naprogramujte umělou inteligenci, která hru bude hrát za vás ⭐⭐.
+1. Naprogramujte hru „Flappy bird“ ⭐ [[aktuální stav](/assets/programovani-je-hra/7.1.1.py)] [[+kolize](/assets/programovani-je-hra/7.1.2.py)] [[+grafika +gravitace](/assets/programovani-je-hra/7.1.3.py)]
 
 #### Knihovny
 - používání kódu (funkcí, proměnných), který naprogramovali ostatní
@@ -508,6 +505,8 @@ print(a)
 print(b)
 print(c)
 ```
+
+### 9. hodina (25. 2. 2021)
 
 #### rekurze
 - funkce, která odkazuje „sama na sebe“
