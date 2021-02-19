@@ -1,8 +1,10 @@
 ---
-title: C#
+language: en
+title: Programování v jazyce C#
+category: "lecture notes"
 ---
 
-{% match ### Strings %}
+### Strings
 - internally an array of chars
 - **immutable** (neither length nor contents)
 	- concatenation creates new strings
@@ -55,7 +57,7 @@ Console.WriteLine("{0}: Hello, " + s2 + "!", s1, s2);
 		- `.Format()` creates a string
 	- the `{}` blocks can be additionaly formatted using `:<format>` and `, <format>`
 
-{% match ### Chars %}
+### Chars
 - `System.Char` == `char` (keyword)
 - 2-byte UTF-16 character
 	- some characters must be at least a string, since some UTF-16 characters can be up to 4 bytes
@@ -64,7 +66,7 @@ Console.WriteLine("{0}: Hello, " + s2 + "!", s1, s2);
 - `\UABCDEFGH` -- unicode code in hex, consumes **exactly eight hex characters**
 	- note that while it does mean a single character, this has to be a string
 
-{% match ### File I/O %}
+### File I/O
 
 - if we're dealing with binary I/O, use `FileStream` instead; this is for text
 
@@ -77,9 +79,9 @@ Console.WriteLine("{0}: Hello, " + s2 + "!", s1, s2);
 | write line | `f.WriteLine(line);`                                              |
 | close      | `f.Dispose();`                                                    |
 
-{% match ### Classes %}
+### Classes
 
-{% match #### Constructor %}
+#### Constructor
 - same syntax as C++, but it's a good idea to add a `public` before it
 - if none is specified, a default one without parameters is created
 	- note that we have to write it explicitly if we want it besides one with parameters!
@@ -152,7 +154,7 @@ class A : Z {
 	- `A(): this(constructor parameters) {}`
 	- the stuff that would be called before `A()` isn't called (so we don't do it twice)
 
-{% match #### Class constructor %}
+#### Class constructor
 - same as a regular constructor but for static variables
 - called before the first time an object of the class is instantiated
 	- if no object is constructed, it is never called
@@ -167,7 +169,7 @@ class A {
 }
 ```
 
-{% match #### Inheritance %}
+#### Inheritance
 ```cs
 class A { }      // some stuff
 class B : A { }  // some stuff + some more stuff
@@ -313,9 +315,9 @@ if (a is B b) {
 - `sealed class A {}` -- is not inheritable
 - `sealed override void m()` -- is not overridable
 
-{% match ### Variable scope %}
+### Variable scope
 
-{% match #### Local variables %}
+#### Local variables
 - created each time we enter `{`, deleted each time we leave `}`
 	- but... is extremely fast and can be optimized by the compiler, if a variable is repeatedly created and discarded
 - the same name can't be reused within the same scope, but be careful:
@@ -334,7 +336,7 @@ if (e == 1) {f = 2;}
 e = f; // error, f is not initialized in all paths
 ```
 
-{% match ### Exceptions %}
+### Exceptions
 - all exceptions must inherit the `System.Exception` class
 	- even the ones from other languages are wrapped in a `SEHException`
 - takes a _long_ time (a lot of things have to be collected), though a `try` block is basically free
@@ -855,9 +857,9 @@ Console.WriteLine("We didn't fail: " + a);
 - **ILSpy** -- open-source .NET assembly browser and decompiler
 - **ilasm** -- generates an executable from a text representation of CIL code
 
-{% match ### Data structures %}
+### Data structures
 
-{% match #### Dictionaries %}
+#### Dictionaries
 - `using System.Collections.Generic;`
 
 | Action   | Code                                                   |
@@ -866,7 +868,7 @@ Console.WriteLine("We didn't fail: " + a);
 | contains | `d.ContainsKey(element);`                              |
 | add      | `d[index] = element;`                                  |
 
-{% match #### Queues %}
+#### Queues
 
 | Action | Code                                         |
 | ---    | ---                                          |

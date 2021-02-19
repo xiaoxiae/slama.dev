@@ -39,8 +39,7 @@
 				{% assign sections_sorted = site.documents | concat: site.pages | sort: 'order' %}
 				{% for p in sections_sorted %}
 					{% if p.title and p.order %}
-						<!-- special wiki treatment ahead! -->
-						{% if p.title == page.title or page.collection == "wiki" and p.collection == "wiki" %}
+						{% if p.title == page.title %}
 							<span class="current-page-item"><a href="{{p.url}}">{{p.title}}</a></span>
 						{% else %}
 							<a href="{{p.url}}">{{p.title}}</a>
