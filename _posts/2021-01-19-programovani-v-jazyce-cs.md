@@ -4,6 +4,11 @@ title: Programování v jazyce C#
 category: "lecture notes"
 ---
 
+- .
+{:toc}
+
+{% lecture_notes_preface Pavla Ježka|2020/2021%}
+
 ### Strings
 - internally an array of chars
 - **immutable** (neither length nor contents)
@@ -512,7 +517,7 @@ class File {
 	- no conversions from/to `bool` (unlike C++)
 
 {:.center}
-![Implicit Conversions.](/assets/wiki/cs/implicit-conversions.svg)
+![Implicit Conversions.](/assets/programovani-v-jazyce-cs/implicit-conversions.svg)
 
 - by default, all numberic constants (without a period) are `int`
 	- we can do `long a = 10;`, it's optimized to not do a conversion

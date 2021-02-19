@@ -7,8 +7,7 @@ category: "lecture notes"
 - .
 {:toc}
 
-### Úvodní informace
-Tato stránka obsahuje moje poznámky z přednášky Martina Kouteckého z roku 2020/2021. Pokud by byla někde chyba/nejasnost, nebo byste rádi někam přidali obrázek/text, tak stránku můžete upravit [pull requestem](https://github.com/xiaoxiae/slama.dev/blob/master/_posts/) (případně mi dejte vědět, např. na mail).
+{% lecture_notes_preface Martina Kouteckého|2020/2021%}
 
 ### 1. přednáška
 
