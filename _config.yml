@@ -1,6 +1,6 @@
 title: "slama.dev"
 description: "Tomáš Sláma's personal website."
-url: "https://slama.dev"
+url: "http://localhost:4000"
 
 baseurl: ""
 markdown: kramdown
@@ -13,22 +13,11 @@ exclude: [
   "ignored/",
   "scripts/",
   "makefile",
-  "_wiki/private",
-  "_wiki/diary",
   "LICENSE.txt",
   "README.md",
 ]
 
-collections:
-  wiki:
-    output: true
-
 defaults:
-  - scope:
-      path: ""
-      type: "wiki"
-    values:
-      layout: "wiki"
   - scope:
       path: ""
       type: "posts"

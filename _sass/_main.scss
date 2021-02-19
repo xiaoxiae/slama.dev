@@ -106,6 +106,18 @@ $monospaced-font: "Fira Code Light";
 	font-style: normal;
 }
 
+
+ul.hfill {
+	display: flex;
+	justify-content: space-between;
+	list-style-type: none;
+	padding-bottom: 0px;
+}
+
+.spacer{
+	padding-bottom: $line-spacing; 
+}
+
 /* WEBSITE-WIDE SETTINGS */
 * {
 	margin:0;
