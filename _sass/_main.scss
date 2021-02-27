@@ -301,6 +301,31 @@ ul.hfill {
 	border: 1px solid;
 }
 
+.ghLeft {
+	max-width: 45%;
+	display: inline-block;
+	margin-left: 20px;
+
+	border: 1px solid;
+	border-radius: 15px;
+	th { border: 0px; }
+}
+
+.ghRight {
+	max-width: 45%;
+	float: right;
+	margin-right: 20px;
+
+	border: 1px solid;
+	border-radius: 15px;
+	th { border: 0px; }
+}
+
+.ghName { text-align: left; }
+.ghDescription {}
+.ghStars {}
+.ghLang { text-align: right; }
+
 body {
 	font-family: $serif-font, sans-serif;
 	line-height: $line-height;

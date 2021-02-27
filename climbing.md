@@ -4,9 +4,8 @@ layout: default
 order: 4
 ---
 
+{:.center}
 This page is dedicated to some of the harder climbs that I've done and am happy with.
-
----
 
 ## [Smíchoff](https://www.lezeckecentrum.cz/cs/), Prague
 Smíchoff is my favourite gym that I've been frequenting for the past 2-odd years, so most of the clips are going to be from here. People are awesome, prices are student-friendly and boulders are frequently changed, so it's the perfect place to be.

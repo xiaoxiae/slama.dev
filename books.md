@@ -4,6 +4,7 @@ layout: default
 order: 1
 ---
 
+{:.center}
 This section covers various kinds of books that I think are worth reading.
 
 ### Fantasy

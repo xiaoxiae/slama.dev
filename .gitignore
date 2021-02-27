@@ -21,5 +21,6 @@ _includes/**/*.xopp*
 # generated
 _includes/cv.html
 _includes/songs.md
+_includes/projects.md
 cv.pdf
 scripts/.*

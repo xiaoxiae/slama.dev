@@ -7,4 +7,6 @@ Jekyll::Hooks.register :site, :after_init do |site|
     |x|
     print "            Images: " + x + "\n"
   }
+
+  print "          Projects: " + `_plugins/projects.py`
 end

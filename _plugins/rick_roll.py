@@ -3,8 +3,6 @@
 import string
 import os
 
-base = os.path.dirname(os.path.realpath(__file__))
-
 rick = """
 We're no strangers to love
 
@@ -216,6 +214,7 @@ songs = """
 
 rick_index = 0
 
+base = os.path.dirname(os.path.realpath(__file__))
 with open(os.path.join(base, "../_includes/songs.md"), "w") as f:
     for char in songs:
         while rick[rick_index] not in string.ascii_lowercase:
