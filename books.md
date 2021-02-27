@@ -33,6 +33,11 @@ This section covers various kinds of books that I think are worth reading.
 
 - **Legion: The Many Lives of Stephen Leeds** [[Wikipedia](https://en.wikipedia.org/wiki/Legion_(novella_series))] by Brandon Sanderson -- a set of three novellas about a man, whose hallucinations (so-called aspects) help him with logic, problem solving, languages and much more. It's quite catchy and has an exciting ending, but definitely I'm more into his fantasy works.
 
+- **The Reckoners** [[Wikipedia](https://en.wikipedia.org/wiki/The_Reckoners)] by Brandon Sanderson -- a set of three novels set in a post-apocalyptic world where random people are transformed into superhumans with various kinds of abilities. The atmosphere is great, but the writing is targeted at a younger audience, which is definitely noticable.
+	1. **Steelheart**
+	2. **Firefight** (yet to read)
+	3. **Calamity** (yet to read)
+
 - **The Kingkiller Chronicle** [[Wikipedia](https://en.wikipedia.org/wiki/The_Kingkiller_Chronicle)] by Patrick Rothfuss -- a thrilling series that I would not recommend anyone to read until the last book in the series is finished (see the controversy for yourself if you're interested).
 	1. **The Name of the Wind**
 	2. **The Wise Man's Fear**
