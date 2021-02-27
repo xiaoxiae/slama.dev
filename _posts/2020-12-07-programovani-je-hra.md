@@ -454,7 +454,7 @@ def setup():
 ```
 
 ### 7. hodina (11. 2. 2021)
-1. Naprogramujte hru „Flappy bird“ ⭐ [[aktuální stav](/assets/programovani-je-hra/7.1.1.py)] [[+kolize](/assets/programovani-je-hra/7.1.2.py)] [[+grafika +gravitace](/assets/programovani-je-hra/7.1.3.py)]
+1. Naprogramujte hru „Flappy bird“ ⭐⭐ [[aktuální stav](/assets/programovani-je-hra/7.1.1.py)] [[+kolize](/assets/programovani-je-hra/7.1.2.py)] [[+grafika +gravitace](/assets/programovani-je-hra/7.1.3.py)]
 
 #### Knihovny
 - používání kódu (funkcí, proměnných), který naprogramovali ostatní
@@ -508,23 +508,31 @@ print(c)
 
 ### 9. hodina (25. 2. 2021)
 
+
 #### rekurze
 - funkce, která odkazuje „sama na sebe“
 - dokáže výrazně zjednodušit kód
 
 ```py
 def factorial(n):
-	if n == 0:
+	if n == 0:    # tzv. "base case" -- místo, kde se rekurze zastaví
 		return 1
 	else:
 		# vycházíme z toho, že n * (n - 1)! = n!
 		return n * factorial(n - 1)
-		
+
 print(factorial(5))
 ```
 
-1. Naprogramujte [Sierpińského trojúhelník](https://cs.wikipedia.org/wiki/Sierpińského_trojúhelník)
-2. Naprogramujte [Mengerovu houbu](https://cs.wikipedia.org/wiki/Mengerova_houba) ve 2D.
+1. Naprogramujte [Fibonacciho čísla](https://en.wikipedia.org/wiki/Fibonacci_number) a porovnejte rychlost:
+	- iterativně (smyčka) [[řešení](/assets/programovani-je-hra/9.1.1.1.py)]
+	- rekurzivně [[řešení](/assets/programovani-je-hra/9.1.1.2.py)]
+2. Naprogramujte [Hanoiské věže](https://en.wikipedia.org/wiki/Tower_of_Hanoi). ⭐ [[řešení](/assets/programovani-je-hra/9.1.2.py)]
+
+---
+
+1. Naprogramujte [Sierpińského trojúhelník](https://cs.wikipedia.org/wiki/Sierpińského_trojúhelník) [[řešení](/assets/programovani-je-hra/9.2.1.py)]
+2. Naprogramujte [Mengerovu houbu](https://cs.wikipedia.org/wiki/Mengerova_houba) ve 2D. [[řešení](/assets/programovani-je-hra/9.2.2.py)]
 
 ### Materiály
 
