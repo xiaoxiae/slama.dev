@@ -59,4 +59,4 @@ This section covers various kinds of books that I think are worth reading.
 
 - [CZ] **Lineární Algebra (nejen) pro informatiky** [[PDF verze 2018](https://www.ms.mff.cuni.cz/~sejkoraji/sbirka/zalohy/skripta_la.pdf)] od Milana Hladíka -- kvalitně zpracovaná (byť dle mého názoru občas ne úplně přístupná) skripta pro Lineární Algebru.
 
-- **Computer Systems: A Programmer's Perspective** [[PDF 2. edice](http://guanzhou.pub/files/Computer%20System_EN.pdf)] -- an in-depth look at how computers actually work. A very comprehensive resource for CS-related courses, namely for those related to computer architecture.
+- **Computer Systems: A Programmer's Perspective** [[PDF 2. ed.](http://guanzhou.pub/files/Computer%20System_EN.pdf)] -- an in-depth look at how computers actually work. A very comprehensive resource for CS-related courses, namely for those related to computer architecture.

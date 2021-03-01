@@ -187,29 +187,6 @@ songs = """
 - Trinity -- Annibale E I Cantori Moderni
 - Turtles -- Happy Together
 - Van Morrison -- Brown Eyed Girl
-
-### Pokáč & Michal Horák
-- Michal Horák - Až mi bude pětašedesát
-- Michal Horák (ft. mrtě dětí) - Je to tak
-- Michal Horák (ft. Pavouk) - Vysokoškolskej song
-- Michal Horák (ft. Pokáč) - Netušim
-- Michal Horák (ft. Vendula Příhodová) - Jak to s náma lásko bude
-- Michal Horák - Hej teto!
-- Michal Horák - Psí balada
-- Michal Horák - Rande
-- Pokáč - Co dělat běhěm karantény
-- Pokáč - Co z tebe bude
-- Pokáč - Farmář Tonda
-- Pokáč (ft. Jakub Ondra) - Hrdinský čin
-- Pokáč (ft. Petra Göbelová) - Láska na vsi
-- Pokáč - Kouření je hnusný zvyk
-- Pokáč - Mám doma kočku
-- Pokáč - Matfyzák na discu
-- Pokáč - Měkké dárky
-- Pokáč - Probuzení
-- Pokáč - Rád chodím na poštu
-- Pokáč - Úplně levej
-- Pokáč - V lese
 """
 
 rick_index = 0
