@@ -60,6 +60,8 @@ category: "lecture notes"
 
 {% math lemma %}Nechť {% latex %}C{% endlatex %} je květ v grafu {% latex %}G{% endlatex %}. Potom párování {% latex %}M{% endlatex %} v {% latex %}G{% endlatex %} je maximální, právě když {% latex %}M \setminus E(C){% endlatex %} je maximální párování v grafu {% latex %}G . C{% endlatex %}, tj. s květem {% latex %}C{% endlatex %} zkontrahovaným do jediného vrcholu.{% endmath %}
 
+TODO: důkaz?
+
 {% math algorithm %}Edmondsův „zahradní“ algoritmus -- Vstupem je graf {% latex %}G{% endlatex %} a jeho libovolné párování {% latex %}M{% endlatex %}, třeba prázdné. Výstupem je párování {% latex %}M'{% endlatex %}, které je alespoň o {% latex %}1{% endlatex %} větší, než {% latex %}M{% endlatex %}, případně {% latex %}M{% endlatex %} pokud bylo maximální.{% endmath %}
 
 - zkonstruujeme maximální možný **Edmondsův les** vzhledem k aktuálnímu {% latex %}M{% endlatex %} tím, že z volných vrcolů pustíme BFS a střídavě přidáváme vrcholy
@@ -74,4 +76,4 @@ category: "lecture notes"
 	- vratí-li nějaké větší párování, tak vhodně zpárujeme {% latex %}C{% endlatex %}
 - neexistuje-li hrana mezi sudými hladinami, pak {% latex %}M' = M{% endlatex %}
 
-TODO: časová složitost
+TODO: časová složitost, důkaz správnosti
