@@ -574,7 +574,7 @@ sys.exit(app.exec_())
 
 ##### `QLabel` [[dokumentace](https://doc.qt.io/qt-5/qlabel.html)]
 - štítek s textem
-- `button.setText("nějaký text")` -- nastavení textu štítku
+- `label.setText("nějaký text")` -- nastavení textu štítku
 
 ##### `QPushButton` [[dokumentace](https://doc.qt.io/qt-5/qpushbutton.html)]
 - tlačítko s textem
@@ -586,18 +586,19 @@ sys.exit(app.exec_())
 - hlavní princip [Event-driven programování](https://en.wikipedia.org/wiki/Event-driven_programming)
 - vykonávání kódu v závislosti na „eventech“ jako kliknutí myši, zmáčknutí klávesy, apod.
 - `signal.connect(funkce)` přiřadí k signálu funkci, která se vykoná, když se signál aktivuje
+	- např. `button.clicked.connect(funkce)` zavolá funkci pokaždé, když zmáčkneme tlačítko
 
 ---
 
-1. naprogramujte Cookie Clicker.
-	- přidejte upgrady -- zmáčknutí vygeneruje více sušenek!
+1. naprogramujte Cookie Clicker. [[řešení](/assets/programovani-je-hra/10.1.1.py)]
+	- přidejte upgrady -- zmáčknutí vygeneruje více sušenek! [[řešení](/assets/programovani-je-hra/10.1.2.py)]
 
 ---
 
 ##### `QLineEdit` [[dokumentace](https://doc.qt.io/qt-5/qlineedit.html)]
 - editovatelné políčko s textem
-- `lineEdit.text()` -- aktuální text políčka
-- `button.setText("nějaký text")` -- nastavení textu políčka
+- `lineEdit.setText("nějaký text")` -- nastavení textu políčka
+- `lineEdit.text()` -- vrátí aktuální text políčka
 - `lineEdit.textChanged` -- signál, který se zavolá, když se text v políčku změní
 
 {:.rightFloatBox}
@@ -611,11 +612,15 @@ x = x[:-1]  # x = Aho
 
 </div>
 
-1. naprogramujte aplikaci s `QLineEdit`em, která:
-	- bude ukazovat aktuální délku do něho zadaného textu.
+1. naprogramujte aplikaci s `QLineEdit`em, která: [[řešení](/assets/programovani-je-hra/10.2.1.py)]
+	- bude ukazovat aktuální délku do něho zadaného textu (přes `QLabel`)
 	- po stisknutí tlačítka přidá na konec textu `lol`
 	- po stisknutí jiného tlačítka z textu ukousne poslední znak.
-
+2. naprogramujte aplikaci s `QLineEdit`em, která ukazuje stav pole (přes `QLabel`) a obsahuje tlačítka:  [[řešení](/assets/programovani-je-hra/10.3.1.py)]
+	- „Ukousni“ -- odstraní poslední prvek pole (pokud má pole prvky)
+	- „Přidej“ -- přidá obsah lineEditu do pole
+	- „Vyčisti“ -- vyprázdní pole
+	- „Obrať“ -- obrátí pole
 
 ### Materiály
 
