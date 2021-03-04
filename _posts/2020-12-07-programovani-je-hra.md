@@ -534,15 +534,100 @@ print(factorial(5))
 1. Naprogramujte [Sierpińského trojúhelník](https://cs.wikipedia.org/wiki/Sierpińského_trojúhelník) [[řešení](/assets/programovani-je-hra/9.2.1.py)]
 2. Naprogramujte [Mengerovu houbu](https://cs.wikipedia.org/wiki/Mengerova_houba) ve 2D. [[řešení](/assets/programovani-je-hra/9.2.2.py)]
 
+### 10. hodina (4. 3. 2021)
+
+#### PyQt5
+- multiplatformní knihovna pro vývoj aplikací
+- instalace příkazem `pip3 install pyqt5`
+
+##### Úvodní příklad
+- následující kód zobrazí jednoduchou aplikaci s textem a tlačítkem
+
+```py
+import sys
+from PyQt5.QtWidgets import *  # import VŠEHO z Pyqt5.QtWidgets
+
+class MyWindow(QWidget):
+    def __init__(self):
+        super().__init__()  # magie
+
+		# vytvoření labelu (nápisu) a buttonu (tlačítka)
+        self.label = QLabel('Ahoj, světe!')
+        self.button = QPushButton('Stiskni mě!')
+
+		# vytvoření vertikálního layoutu, který pokládá věci pod sebe
+        layout = QVBoxLayout()
+        layout.addWidget(self.label)
+        layout.addWidget(self.button)
+
+		# aplikování layoutu
+        self.setLayout(layout)
+
+		# ukázání widgetu
+        self.show()
+
+# magie
+app = QApplication(sys.argv)
+ex = MyWindow()
+sys.exit(app.exec_())
+```
+
+##### `QLabel` [[dokumentace](https://doc.qt.io/qt-5/qlabel.html)]
+- štítek s textem
+- `button.setText("nějaký text")` -- nastavení textu štítku
+
+##### `QPushButton` [[dokumentace](https://doc.qt.io/qt-5/qpushbutton.html)]
+- tlačítko s textem
+- `button.setText("nějaký text")` -- nastavení textu tlačítka
+- `button.clicked` -- signál, který se zavolá, když stiskneme tlačítko (viz. další odstavec)
+- `button.setEnabled(True/False)` -- zapnutí/vypnutí(zešednutí) tlačítka
+
+##### Signál
+- hlavní princip [Event-driven programování](https://en.wikipedia.org/wiki/Event-driven_programming)
+- vykonávání kódu v závislosti na „eventech“ jako kliknutí myši, zmáčknutí klávesy, apod.
+- `signal.connect(funkce)` přiřadí k signálu funkci, která se vykoná, když se signál aktivuje
+
+---
+
+1. naprogramujte Cookie Clicker.
+	- přidejte upgrady -- zmáčknutí vygeneruje více sušenek!
+
+---
+
+##### `QLineEdit` [[dokumentace](https://doc.qt.io/qt-5/qlineedit.html)]
+- editovatelné políčko s textem
+- `lineEdit.text()` -- aktuální text políčka
+- `button.setText("nějaký text")` -- nastavení textu políčka
+- `lineEdit.textChanged` -- signál, který se zavolá, když se text v políčku změní
+
+{:.rightFloatBox}
+<div markdown="1">
+```py
+x = "Ahoj!"
+x = x[:-1]  # x = Ahoj
+x = x[:-1]  # x = Aho
+# ...
+```
+
+</div>
+
+1. naprogramujte aplikaci s `QLineEdit`em, která:
+	- bude ukazovat aktuální délku do něho zadaného textu.
+	- po stisknutí tlačítka přidá na konec textu `lol`
+	- po stisknutí jiného tlačítka z textu ukousne poslední znak.
+
+
 ### Materiály
 
 #### [Python](https://www.python.org/downloads/)
 - [Python Tutor](http://www.pythontutor.com/visualize.html) -- vizualizér Python kódu, ze kterého je hezky vidět, co program dělá.
 - [Repl.it pro Python](https://repl.it/languages/python3) -- prostředí, ve kterém budeme programovat.
 - [Processing 3](https://processing.org/) -- grafické prostředí, ve kterém budeme pracovat.
-	- [Processing 3 Reference](https://py.processing.org/reference/) -- dokumentace k Processingu
+	- [Processing 3 dokumentace](https://py.processing.org/reference/) -- dokumentace k Processingu
 - [Ponořme se do Pythonu](http://diveintopython3.py.cz/index.html) -- dobře napsaná kniha o programování v Pythonu 3, na kterou se můžete podívat, pokud byste se rádi Python učili i ve svém volném čase.
 - [PyCharm](https://www.jetbrains.com/pycharm/) -- nejlepší Python IDE
+- [PyQt5](https://www.riverbankcomputing.com/software/pyqt/) -- knihovna pro Python na vývoj aplikací.
+	- [PyQt5 dokumentace](https://doc.bccnsoft.com/docs/PyQt5/) -- dokumentace k PyQt5
 
 #### Programování
 - [Advent Kódu](https://adventofcode.com/) -- stránka, kde je na každý den adventu programovací úloha
