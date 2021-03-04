@@ -294,9 +294,7 @@ ul.hfill {
 	}
 
 	// ad-hoc fixes of stuff somewhere 
-	p:last-child { margin-bottom : 0pt; }
-	ol:last-child { padding-bottom : 0pt; }
-	ul:last-child { padding-bottom : 0pt; }
+	*:last-child { margin-bottom : 0pt; }
 
 	border: 1px solid;
 }
