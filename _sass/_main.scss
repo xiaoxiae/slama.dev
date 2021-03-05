@@ -369,6 +369,8 @@ body {
 	h5 {padding-bottom: $h5-spacing; font-size: $h5-size;}
 	h6 {padding-bottom: $h6-spacing; font-size: $h6-size;}
 
+	img, svg { max-width: 90%; }
+
 	figure {
 		img, svg {
 			max-width: 90%;

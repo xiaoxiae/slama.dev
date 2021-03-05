@@ -17,7 +17,7 @@ from typing import *
 checksum_file_name = "checksum.json"
 
 # files and folders not to remove
-permanent_files = ["info.php", ".gitkeep", checksum_file_name]
+permanent_files = ["info.php", ".gitkeep", checksum_file_name, "hlenka-helenka.jpg"]
 permanent_folders = ["subdom", "domains"]
 
 
