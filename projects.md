@@ -5,6 +5,6 @@ order: 50
 ---
 
 {:.center}
-The following is a selection from my GitHub projects that I (have worked/am working) on.
+The following is a selection from my [GitHub projects](https://github.com/xiaoxiae) that I (have worked/am working) on.
 
 {% include projects.md %}
