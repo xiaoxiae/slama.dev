@@ -54,6 +54,7 @@ $h6-spacing: 1px;
 
 $list-item-left-padding: 25px;	// so bullets don't stick out the page
 
+$small-screen-threshold: 550px;
 
 /* FONT SETTINGS */
 $serif-font: "Fira Sans Light";
@@ -271,9 +272,10 @@ ul.hfill {
 	padding-bottom: $line-spacing / 2;
 	float: right;
 
-	@media (max-width: 500px) {
+	@media (max-width: $small-screen-threshold) {
 		float: none;
 		margin-bottom: $line-spacing;
+		max-width: 100%;
 	}
 
 	border: 2px solid;
@@ -289,7 +291,7 @@ ul.hfill {
 	padding: $line-spacing / 2;
 	float: right;
 
-	@media (max-width: 500px) {
+	@media (max-width: $small-screen-threshold) {
 		float: none;
 		margin-bottom: $line-spacing;
 	}
@@ -308,6 +310,14 @@ ul.hfill {
 	border: 1px solid;
 	border-radius: 15px;
 	th { border: 0px; }
+
+	@media (max-width: $small-screen-threshold) {
+		max-width: 90%;
+		display: block;
+		float: none;
+		margin-left: auto;
+		margin-right: auto;
+	}
 }
 
 .ghRight {
@@ -318,6 +328,14 @@ ul.hfill {
 	border: 1px solid;
 	border-radius: 15px;
 	th { border: 0px; }
+
+	@media (max-width: $small-screen-threshold) {
+		max-width: 90%;
+		display: block;
+		float: none;
+		margin-left: auto;
+		margin-right: auto;
+	}
 }
 
 .ghName { text-align: left; }
