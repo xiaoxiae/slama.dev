@@ -15,5 +15,7 @@ Tohle je naše hlenka Helenka. Obrázek se aktualizuje každých 30 sekund.
 
 Pro kontext: jedná se o kolonii amoéb, která tím, jak postupně roste, tvoří mezi zdroji jídla nejkratší možná spojení. [Tento TED talk](https://www.ted.com/talks/heather_barnett_what_humans_can_learn_from_semi_intelligent_slime/transcript) moc hezky shrnuje nejpodstatnější informace o hlenkách.
 
+_Update (7. 3. 2021, ráno): první hlenka se bohužel nechytila, zkoušíme teď oživit druhou. Je za sklem, aby nechytila nějakou plíseň a v noci na ní nebude vidět (alespoň prozatím)._
 
+_Update (7. 3. 2021, večer): druhá hlenka se chytila! Prozatím nahoře necháme sklo, ale přes noc světlo pustíme._
 
