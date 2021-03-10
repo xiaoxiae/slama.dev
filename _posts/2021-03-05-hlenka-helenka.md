@@ -19,3 +19,4 @@ _Update (7. 3. 2021, ráno): první hlenka se bohužel nechytila, zkoušíme te�
 
 _Update (7. 3. 2021, večer): druhá hlenka se chytila! Prozatím nahoře necháme sklo, ale přes noc světlo pustíme._
 
+_Update (8. 3. 2021, večer): druhá hlenka umřela! Teda... Kačka říká, že zasporulovala, ale všichni víme, co to znamená. Timelapse jejího ~~krátkého~~ krásného života je [zde](/assets/hlenka-helenka/tribute.mp4), omlouváme se za zamlžené sklíčko._
