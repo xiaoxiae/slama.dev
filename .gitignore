@@ -10,9 +10,10 @@ scripts/login.py
 ignored/
 _drafts/
 
-# Too big to VC (scary binaries)
+# Too big to VC (binaries scary)
 climbing/
 photography/
+assets/hlenka-helenka/tribute.mp4
 
 # xopp, svg
 _includes/**/*.svg
