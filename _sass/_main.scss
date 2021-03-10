@@ -114,6 +114,8 @@ ul.hfill {
 	list-style-type: none;
 	padding-bottom: 0px;
 	padding-left: 0px;
+
+	li:nth-child(2) {white-space: nowrap;}
 }
 
 .spacer{
