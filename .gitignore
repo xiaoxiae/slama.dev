@@ -5,8 +5,10 @@ _site
 .*cache
 __pycache__/
 
+# Static .git
+.site-git
+
 # Private
-scripts/login.py
 ignored/
 _drafts/
 
@@ -24,4 +26,3 @@ _includes/cv.html
 _includes/songs.md
 _includes/projects.md
 cv.pdf
-scripts/.*

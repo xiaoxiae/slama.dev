@@ -9,7 +9,8 @@ all: build upload
 build: $(SVG); bundle exec jekyll build --trace
 serve: $(SVG); bundle exec jekyll serve --trace --drafts
 
-upload: ; _plugins/smart_ftp_upload.py 89.221.213.50 w220316 `secret-tool lookup service "slama.dev"`
+upload:
+	cd _site && git a . && git c -m "automated commit" && git push
 
 clean:
 	rm -r .katex-cache/
