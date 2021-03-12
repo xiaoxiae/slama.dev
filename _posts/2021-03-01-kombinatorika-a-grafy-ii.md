@@ -143,4 +143,5 @@ TODO: obrázek
 {% latex %}3|S| \ge 3 \cdot \mathrm{odd}(G - S){% endlatex %}, tedy TP platí a graf má perfektní párování.
 {% endmath %}
 
-
+### Zdroje/materiály
+- [Poznámky Václava Končického](https://kam.mff.cuni.cz/~koncicky/notes/kag2/pdf) z roku 2019.

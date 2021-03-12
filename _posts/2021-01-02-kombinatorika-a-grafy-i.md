@@ -1428,9 +1428,10 @@ Díky tomuto lemmatu víme, že {% latex %}\exists{% endlatex %} nekonečná ces
 
 ### [Forma zkoušky](/assets/kombinatorika-a-grafy-i/okruhy_kg1.pdf)
 
-### Zdroje
+### Zdroje/materiály
 - [https://research.koutecky.name/db/teaching:kg12021_prednaska](https://research.koutecky.name/db/teaching:kg12021_prednaska) -- stránka cvičení
 	- odkaz na všechny obrázky, zdroje, nahrávky cvičení
+- [Poznámky Václava Končického](https://kam.mff.cuni.cz/~koncicky/notes/kag2/pdf) z roku 2019.
 - [https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols](https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols) -- {% latex %}\LaTeX{% endlatex %}ové matematické symboly
 
 ### Poděkování
