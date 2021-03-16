@@ -143,5 +143,96 @@ TODO: obrázek
 {% latex %}3|S| \ge 3 \cdot \mathrm{odd}(G - S){% endlatex %}, tedy TP platí a graf má perfektní párování.
 {% endmath %}
 
+### 3. přednáška
+
+
+#### Tutte v2.0
+
+{% math lemma %}O kontrahovatelné hraně: Nechť {% latex %}G{% endlatex %} je 3-souvislý různý od {% latex %}K_4{% endlatex %} ({% latex %}|V| \ge 5{% endlatex %}). Potom {% latex %}G{% endlatex %} obsahuje hranu t. ž. {% latex %}G \ e{% endlatex %} je 3-souvislý.{% endmath %}
+
+{% math proof %}Sporem -- nechť {% latex %}G{% endlatex %} je 3-souvislý ale neexistuje žádná hrana. Tedy {% latex %}\forall e \in E: G \ e{% endlatex %} není 3-souvislý.
+
+{% math theorem %}Pomocné: {% latex %}\forall e = \left\{x, y\right\} \exists z_e \in V \setminus \left\{x, y\right\}{% endlatex %} t. ž. {% latex %}\left\{x, y, z_e\right\}{% endlatex %} tvoří vrcholový řez v G, navíc každý z {% latex %}\left\{x, y, z_e\right\}{% endlatex %} má alespoň jednoho souseda v každé komponentě {% latex %}G \setminus \left\{x, y, z_e\right\}{% endlatex %}.
+- počítáme s předpokladem, že žádná hrana není kontrahovatelná!
+{% endmath %}
+
+- (👀) -- {% latex %}S{% endlatex %} minimální vrcholový řez {% latex %}G{% endlatex %}, pak každý vrchol {% latex %}S{% endlatex %} má souseda v každé komponentě {% latex %}G \setminus S{% endlatex %} (když to pro nějaký {% latex %}v{% endlatex %} neplatí, tak {% latex %}S \setminus v{% endlatex %} je pořád řez).
+
+TOOD: obrázek?
+
+{% math proof %}
+Vím, že {% latex %}G \setminus e{% endlatex %} není 3-souvislý, tedy má vrcholový řez velikosti 2. Nechť {% latex %}v_e = {% endlatex %} vrchol vzniklý kontrakcí {% latex %}\left\{x, y\right\} = e{% endlatex %}. Tento řez obsahuje {% latex %}v_e{% endlatex %}, jinak by to byl řez už pro {% latex %}G{% endlatex %}.
+
+Označme řez {% latex %}v_e, z_e{% endlatex %}.
+
+TODO: obrázek?
+
+Po rozkontrahování vidíme, že {% latex %}\forall \left\{x, y, z_e\right\}{% endlatex %} musí mít souseda v každé komponentě (jinak spor s 3-souvislostí). Tedy {% latex %}z_e{% endlatex %} je hledaný vrchol.
+{% endmath %}
+
+Pro důkaz původního lemmatu si zvolím {% latex %}e = \left\{x, y \right\} \in E{% endlatex %} a {% latex %}z_e{% endlatex %} z pomocného tvrzení tak, aby nejmenší komponenta {% latex %}G - z, y, z_e{% endlatex %} byla co nejmenší (co do počtu vrcholů).
+
+TODO: obrázek?
+
+Protože {% latex %}z_e{% endlatex %} má souseda ve všech komponentách, má nějakého souseda {% latex %}u \in C, f = \left\{z_e, u\right\}{% endlatex %} (kde {% latex %}C{% endlatex %} je naše nejmenší komponenta). Pomocné tvrzení pro {% latex %}f{% endlatex %} dá nějaký {% latex %}z_f \in V{% endlatex %} t. ž. {% latex %}\left\{z_e, z_f, u\right\}{% endlatex %} je vrcholový řez {% latex %}G{% endlatex %}.
+
+Nechť {% latex %}D{% endlatex %} je komponenta {% latex %}G - z_e, z_f, u{% endlatex %} neobsahující {% latex %}x, y{% endlatex %} (existuje, protože {% latex %}x, y{% endlatex %} jsou spojené a graf se rozpadne alespoň na 2 komponenty). Tvrdím, že {% latex %}D \subseteq C \setminus \left\{u\right\}{% endlatex %}, protože {% latex %}D{% endlatex %} nemůže obsahovat {% latex %}z_e, z_f, u{% endlatex %} (vrcholy řezu), {% latex %}x, y{% endlatex %} (z definice {% latex %}D{% endlatex %}), ale {% latex %}u{% endlatex %} má souseda, takže v {% latex %}D{% endlatex %} ještě něco zbyde. Tedy {% latex %}|D| < |C|{% endlatex %}, což je spor s minimalitou.
+{% endmath %}
+
+{% math theorem %}Tutteova charakterizace 3-souvislých grafů: Graf {% latex %}G{% endlatex %} je 3-souvislý {% latex %}\iff{% endlatex %} existuje posloupnost {% latex %}K_4 \cong G_0 \cong G_1 \cong \ldots \cong G{% endlatex %} t. ž. {% latex %}\forall i \in [n], G_{i - 1}{% endlatex %} vznikne z {% latex %}G_i{% endlatex %} kontrakcí hrany, navíc {% latex %}G_i{% endlatex %} má všechny vrcholy stupně {% latex %}\ge 3{% endlatex %}{% endmath %}
+
+TODO: obrázek?
+
+{% math proof %} {% latex %}\Rightarrow{% endlatex %} Jednoduchá induktivní aplikace lemma o kontrahovatelné hraně.
+{% latex %}\Leftarrow{% endlatex %} Mějme {% latex %}G_0, \ldots, G_n{% endlatex %} dle předpokladu. Chceme, že {% latex %}G_n \cong G{% endlatex %} je 3-souvislý. Indukcí:
+- {% latex %}K_4{% endlatex %} je 3-souvislý
+- {% latex %}G_{i - 1}{% endlatex %} je 3-souvislý {% latex %}\implies G_i{% endlatex %} je 3-souvislý
+
+Pro spor nechť {% latex %}G_i{% endlatex %} má vrcholový řez velikosti 2, označme ho {% latex %}R{% endlatex %}. Pak každá komponenta {% latex %}G_i - R{% endlatex %} má alespoň 2 vrcholy {% latex %}x, y{% endlatex %} (TODO: obrázek) (osamocený vrchol může sousedit jen s řezem, ale ten je velikosti 2, spor s {% latex %}\forall \mathrm{deg}(v) \ge 3{% endlatex %}).
+
+Potom ani {% latex %}G_{i - 1}{% endlatex %} nebyl 3-souvislý.
+- {% latex %}e = \left\{x, y\right\} \implies G_{i - 1}{% endlatex %} má řez velikosti 1.
+- {% latex %}e{% endlatex %} celá obsažená v komponentě {% latex %}\implies \left\{x, y\right\}{% endlatex %} je stále {% latex %}G_{i - 1}{% endlatex %}
+- {% latex %}e = \left\{z, y\right\}{% endlatex %} pro {% latex %}z{% endlatex %} z nějaké komponenty {% latex %}\implies \left\{zy, x\right\}{% endlatex %} je řez v {% latex %}G_{i - 1}{% endlatex %}
+	- využíváme, že každá komponenta má alespoň {% latex %}2{% endlatex %} vrcholy -- kdyby ne, tak {% latex %}\left\{zy, x\right\}{% endlatex %} nemusí nic odříznout, pokud tam byla jednovrcholová komponenta
+{% endmath %}
+
+#### Minory
+
+{% math definition %}Minor: Nechť {% latex %}H, G{% endlatex %} jsou grafy. Pak {% latex %}H{% endlatex %} je minor {% latex %}G{% endlatex %} (nebo že {% latex %}G {% endlatex %} obsahuje {% latex %}H{% endlatex %} jako minor), značíme {% latex %}H \preceq G{% endlatex %}, pokud {% latex %}H{% endlatex %} lze získat z {% latex %}G{% endlatex %} posloupností mazání vrcholů, mazání hran nebo kontrakcí hran.{% endmath %}
+
+TODO: příklad
+
+- (👀) -- {% latex %}\preceq{% endlatex %} je transitivní (prostě spojím posloupnosti)
+- (👀) -- {% latex %}H{% endlatex %} podgraf {% latex %}G \implies H{% endlatex %} minor {% latex %}G{% endlatex %}
+	- podgraf vzniká přesně mazáním vrcholů a mazáním hran
+- (👀) -- {% latex %}G{% endlatex %} rovinný {% latex %}\implies{% endlatex %} jeho minory jsou také rovinné
+	- pro podgraf očividné, je jen potřeba si rozmyslet kontrakci (že nic topologicky nerozbije)
+
+{% math theorem %}Kuratowského (pro připomenutí): {% latex %}G{% endlatex %} rovinný {% latex %}\iff{% endlatex %} neobsahuje jako dělení {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %}{% endmath %}
+- umíme {% latex %}\implies{% endlatex %}, protože {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} nejsou rovinné a dělením se to rovinným také nestane)
+
+{% math theorem %}Kuratowski 1930, Warner 1937: Následující jsou ekvivalentní:
+1. {% latex %}G{% endlatex %} je rovinný
+2. {% latex %}G{% endlatex %} neobsahuje dělení {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} jako podgraf
+3. {% latex %}G{% endlatex %} neobsahuje dělení {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} jako minor.
+{% endmath %}
+
+- Kuratowski dokázal {% latex %}1\iff 2{% endlatex %}, Wagner {% latex %}1\iff 3{% endlatex %}
+
+{% math proof %}
+- {% latex %}1 \implies 2{% endlatex %} (z prváku)
+- {% latex %}3 \implies 2{% endlatex %} (obměna + „obsahuej dělení jako podgraf“ {% latex %}\implies{% endlatex %} „obsahuje minor“)
+- {% latex %}1 \implies 3{% endlatex %}: vyplývá z pozorování, že je-li rovinný, tak i minor bude rovinný
+- {% latex %}2 \implies 3{% endlatex %} na cvičení.
+- {% latex %}3 \implies 1{% endlatex %}: hlavní důkaz.
+
+Indukcí podle {% latex %}|V(G)|{% endlatex %}, pro {% latex %}|V(G)| \le 4{% endlatex %} ok; předpokládám {% latex %}G{% endlatex %} má alespoň 5 vrcholů a neobsahuje {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} jako minor. Rozeberu případy podle {% latex %}k_v(G){% endlatex %} (vrcholová souvislost {% latex %}G{% endlatex %}).
+0. {% latex %}\implies{% endlatex %} nesouvislý graf, každá komponenta je rovina podle IP
+1. {% latex %}\implies{% endlatex %} artikulačním vrcholem {% latex %}x{% endlatex %} rozpojíme, podle IP nakreslíme (s tím, že {% latex %}x{% endlatex %} bude na vnější stěně -- to umíme tím, že to dáme na kouli a projektujeme na rovinu).
+2. {% latex %}\implies{% endlatex %} na cvičení.
+3. {% latex %}\implies{% endlatex %} TODO: příští přednáška.
+{% endmath %}
+
 ### Zdroje/materiály
 - [Poznámky Václava Končického](https://kam.mff.cuni.cz/~koncicky/notes/kag2/pdf) z roku 2019.
