@@ -38,7 +38,7 @@ Zformulujte Problém batohu pomocı́ celočı́sleného lineárnı́ho prog
 
 #### Prokládání přímkou
 
-Formulujte Prokládánı́ přı́mkou jako úlohu LP. Neboli máme-li {% latex %}n{% endlatex %} bodů {% latex %}(x1 , y1 ), \cdot, (xn , yn ){% endlatex %} v rovině, tak najděte přı́mku {% latex %}\left\{x \in \mathbb{R}: y = ax + b\right\}{% endlatex %}, která minimalizuje součet vertikálnı́ch vzdálenostı́ bodů od výsledné přı́mky. Vertikálnı́ vzdálenost je vzdálenost měřena pouze na ose {% latex %}y{% endlatex %}. Pro jednoduchost předpokládejte, že výsledná přı́mka nenı́ kolmá na osu {% latex %}x{% endlatex %}.
+Formulujte Prokládánı́ přı́mkou jako úlohu LP. Neboli máme-li {% latex %}n{% endlatex %} bodů {% latex %}(x_1 , y_1 ), \ldots, (x_n , y_n ){% endlatex %} v rovině, tak najděte přı́mku {% latex %}\left\{x \in \mathbb{R}: y = ax + b\right\}{% endlatex %}, která minimalizuje součet vertikálnı́ch vzdálenostı́ bodů od výsledné přı́mky. Vertikálnı́ vzdálenost je vzdálenost měřena pouze na ose {% latex %}y{% endlatex %}. Pro jednoduchost předpokládejte, že výsledná přı́mka nenı́ kolmá na osu {% latex %}x{% endlatex %}.
 
 <details>
 	<summary class="code-summary">Zdrojový kód</summary>
