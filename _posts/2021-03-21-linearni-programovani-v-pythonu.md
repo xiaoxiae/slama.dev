@@ -48,6 +48,17 @@ Formulujte Prokládánı́ přı́mkou jako úlohu LP. Neboli máme-li {% l
 </div>
 </details>
 
+#### Obarvitelnost grafu
+
+Nalezněte minimálnı́ {% latex %}k{% endlatex %} takové, že vrcholy grafu {% latex %}G{% endlatex %} lze korektně obarvit {% latex %}k{% endlatex %} barvami.
+
+<details>
+	<summary class="code-summary">Zdrojový kód</summary>
+	<div markdown="1">
+```py
+{% include linearni-programovani-v-pythonu/obarvitelnost.py %}```
+</div>
+</details>
 
 ### Zdroje/materiály
 - [Hands-On Linear Programming: Optimization With Python](https://realpython.com/linear-programming-python/)
