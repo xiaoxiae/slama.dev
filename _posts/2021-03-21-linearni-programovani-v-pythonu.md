@@ -8,9 +8,9 @@ title: Lineární programování v Pythonu
 {:toc}
 
 ### Úvodní informace
-Tato stránka obsahuje náhodné programy ze cvičení/přednášky předmětu Lineární programování a kombinatorická optimalizace. Obsahuje převážně praktické implementace teoretických problémů, které byly na cvičení řešeny.
+Tato stránka obsahuje náhodné programy ze cvičení/přednášky předmětu Lineární programování a kombinatorická optimalizace. Ke spuštění programů je potřeba nainstalovat Pythoní knihovnu `pulp` (přes `pip install pulp`), kterou k řešení problémů používám.
 
-Ke spuštění programů je potřeba nainstalovat Pythoní knihovnu `pulp` (`pip install pulp`).
+Pokud s `pulp`em také vyřešíte nějaký problém, tak budu moc rád za email/pull request, ať tu máme příkladů co možná nejvíce 🙂.
 
 ### Praktické příklady
 
@@ -21,7 +21,7 @@ Pekárna má k dispozici {% latex %}5{% endlatex %} kilo mouky, {% latex %}125
 from pulp import *
 
 # vytvoření modelu
-model = LpProblem(name="bakery-problem", sense=LpMaximize)
+model = LpProblem(name="problem-pekarny", sense=LpMaximize)
 
 # proměnné -- kolik housek a chlebů upečeme
 xc = LpVariable(name="chleby", lowBound=0, cat='Integer')
