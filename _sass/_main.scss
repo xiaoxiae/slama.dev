@@ -190,6 +190,12 @@ ul.hfill {
 	margin-bottom: $line-spacing;
 }
 
+.code-summary {
+	padding-top: $line-spacing / 4;
+	padding-bottom: $line-spacing / 4;
+	border-radius: $code-border-roundness;
+}
+
 .cv {
 	table {
 		tbody tr td:first-child {
@@ -358,6 +364,14 @@ body {
 		}
 	}
 
+	details {
+		padding-bottom: $line-spacing;
+
+		
+		summary { text-align: center; }
+		summary:hover { font-weight: bold; }
+	}
+
 	// fix Jekyll generating p tags inside li
 	li { p { margin-bottom: 0; } }
 
@@ -488,6 +502,11 @@ body {
 		border-color: $light-code-background-color;
 	}
 
+	.code-summary {
+		background-color: darken($light-code-background-color, 8%);
+		border-color: darken($light-code-background-color, 8%);
+	}
+
 	.highlight {
 		.hll { background-color: #ffffcc }
 		.c { color: #408080; font-style: italic } /* Comment */
@@ -589,6 +608,11 @@ body {
 			border-color: $dark-code-background-color;
 		}
 
+		.code-summary {
+			background-color: lighten($dark-code-background-color, 6%);
+			border-color: lighten($dark-code-background-color, 6%);
+		}
+
 		.highlight {
 			// reset the settings from the light theme highlighter
 			* {
@@ -664,7 +688,6 @@ body {
 			.il { color: $toffee } /* Literal.Number.Integer.Long */
 			.gu { color: $gravel; } /* Generic.Subheading & Diff Unified/Comment? */
 			.gd { color: $lime; } /* Generic.Deleted & Diff Deleted */
-			.gi { color: $orange; } /* Generic.Inserted & Diff Inserted */
-		}
+			.gi { color: $orange; } /* Generic.Inserted & Diff Inserted */ }
 	}
 }
