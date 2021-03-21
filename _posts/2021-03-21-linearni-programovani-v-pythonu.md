@@ -60,6 +60,19 @@ Nalezněte minimálnı́ {% latex %}k{% endlatex %} takové, že vrcholy graf
 </div>
 </details>
 
+#### Problém obchodnı́ho cestujı́cı́ho
+Navrhněte celočı́selný program pro Problém obchodnı́ho cestujı́cı́ho, čili pro daný ohodnocený neorientovaný graf {% latex %}G = (V, E, f){% endlatex %}, kde {% latex %}f : E \mapsto \mathbb{R}^+_0{% endlatex %}, chceme najı́t Hamiltonovskou kružnici v {% latex %}G{% endlatex %} s nejmenšı́m ohodnocenı́m.
+
+<details>
+	<summary class="code-summary">Zdrojový kód</summary>
+	<div markdown="1">
+```py
+{% include linearni-programovani-v-pythonu/tsp.py %}```
+</div>
+</details>
+
 ### Zdroje/materiály
 - [Hands-On Linear Programming: Optimization With Python](https://realpython.com/linear-programming-python/)
 - [Dokumentace k PuLPu](https://coin-or.github.io/pulp/)
+- [Data k TSP](https://people.sc.fsu.edu/~jburkardt/datasets/tsp/tsp.html)
+- [Data k batohu](https://people.sc.fsu.edu/~jburkardt/datasets/knapsack_01/knapsack_01.html)
