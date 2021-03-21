@@ -15,7 +15,7 @@ Pokud s `pulp`em také vyřešíte nějaký problém, tak budu moc rád za email
 ### Praktické příklady
 
 #### Problém pekárny
-Pekárna má k dispozici {% latex %}5{% endlatex %} kilo mouky, {% latex %}125{% endlatex %} vajec a půl kila soli. Za jeden chleba zı́ská pekárna {% latex %}20{% endlatex %} korun, za housku {% latex %}2{% endlatex %} koruny, za bagetu {% latex %}10{% endlatex %} korun a za koblihu {% latex %}7{% endlatex %} korun. Pekárna se snažı́ vydělat co nejvı́ce. Jak ale zjistı́ kolik chlebů, housek, baget a koblih má upéci?
+Pekárna má k dispozici {% latex %}5{% endlatex %} kilo mouky, {% latex %}125{% endlatex %} vajec a půl kila soli. Za jeden chleba získá pekárna {% latex %}20{% endlatex %} korun, za housku {% latex %}2{% endlatex %} koruny, za bagetu {% latex %}10{% endlatex %} korun a za koblihu {% latex %}7{% endlatex %} korun. Pekárna se snaží vydělat co nejvíce. Jak ale zjistí kolik chlebů, housek, baget a koblih má upéci?
 
 <details>
 	<summary class="code-summary">Zdrojový kód</summary>
@@ -26,7 +26,7 @@ Pekárna má k dispozici {% latex %}5{% endlatex %} kilo mouky, {% latex %}125
 </details>
 
 #### Problém batohu
-Zformulujte Problém batohu pomocı́ celočı́sleného lineárnı́ho programovánı́. Tedy pro {% latex %}n{% endlatex %} předmětů, kde {% latex %}i{% endlatex %}-tý má nějakou váhu {% latex %}v_i{% endlatex %} a cenu {% latex %}c_i{% endlatex %}, máme batoh s danou nosnostı́ {% latex %}V{% endlatex %} a my se do něj snažı́me naskládat předměty tak, abychom maximalizovali celkovou cenu předmětů v batohu.
+Pro {% latex %}n{% endlatex %} předmětů, kde {% latex %}i{% endlatex %}-tý má nějakou váhu {% latex %}v_i{% endlatex %} a cenu {% latex %}c_i{% endlatex %}, máme batoh s danou nosností {% latex %}V{% endlatex %} a my se do něj snažíme naskládat předměty tak, abychom maximalizovali celkovou cenu předmětů v batohu.
 
 <details>
 	<summary class="code-summary">Zdrojový kód</summary>
@@ -38,7 +38,7 @@ Zformulujte Problém batohu pomocı́ celočı́sleného lineárnı́ho prog
 
 #### Prokládání přímkou
 
-Formulujte Prokládánı́ přı́mkou jako úlohu LP. Neboli máme-li {% latex %}n{% endlatex %} bodů {% latex %}(x_1 , y_1 ), \ldots, (x_n , y_n ){% endlatex %} v rovině, tak najděte přı́mku {% latex %}\left\{x \in \mathbb{R}: y = ax + b\right\}{% endlatex %}, která minimalizuje součet vertikálnı́ch vzdálenostı́ bodů od výsledné přı́mky. Vertikálnı́ vzdálenost je vzdálenost měřena pouze na ose {% latex %}y{% endlatex %}. Pro jednoduchost předpokládejte, že výsledná přı́mka nenı́ kolmá na osu {% latex %}x{% endlatex %}.
+Máme-li {% latex %}n{% endlatex %} bodů {% latex %}(x_1 , y_1 ), \ldots, (x_n , y_n ){% endlatex %} v rovině, tak najděte přímku {% latex %}\left\{x \in \mathbb{R}: y = ax + b\right\}{% endlatex %}, která minimalizuje součet vertikálních vzdáleností bodů od výsledné přímky. Vertikální vzdálenost je vzdálenost měřena pouze na ose {% latex %}y{% endlatex %}. Pro jednoduchost předpokládejte, že výsledná přímka není kolmá na osu {% latex %}x{% endlatex %}.
 
 <details>
 	<summary class="code-summary">Zdrojový kód</summary>
@@ -50,7 +50,7 @@ Formulujte Prokládánı́ přı́mkou jako úlohu LP. Neboli máme-li {% l
 
 #### Obarvitelnost grafu
 
-Nalezněte minimálnı́ {% latex %}k{% endlatex %} takové, že vrcholy grafu {% latex %}G{% endlatex %} lze korektně obarvit {% latex %}k{% endlatex %} barvami.
+Nalezněte minimální {% latex %}k{% endlatex %} takové, že vrcholy grafu {% latex %}G{% endlatex %} lze korektně obarvit {% latex %}k{% endlatex %} barvami.
 
 <details>
 	<summary class="code-summary">Zdrojový kód</summary>
@@ -60,8 +60,8 @@ Nalezněte minimálnı́ {% latex %}k{% endlatex %} takové, že vrcholy graf
 </div>
 </details>
 
-#### Problém obchodnı́ho cestujı́cı́ho
-Navrhněte celočı́selný program pro Problém obchodnı́ho cestujı́cı́ho, čili pro daný ohodnocený neorientovaný graf {% latex %}G = (V, E, f){% endlatex %}, kde {% latex %}f : E \mapsto \mathbb{R}^+_0{% endlatex %}, chceme najı́t Hamiltonovskou kružnici v {% latex %}G{% endlatex %} s nejmenšı́m ohodnocenı́m.
+#### Problém obchodního cestujícího
+Pro daný ohodnocený neorientovaný graf {% latex %}G = (V, E, f){% endlatex %}, kde {% latex %}f : E \mapsto \mathbb{R}^+_0{% endlatex %}, chceme najít Hamiltonovskou kružnici v {% latex %}G{% endlatex %} s nejmenším ohodnocením.
 
 <details>
 	<summary class="code-summary">Zdrojový kód</summary>
@@ -71,8 +71,32 @@ Navrhněte celočı́selný program pro Problém obchodnı́ho cestujı́cı
 </div>
 </details>
 
+#### Bin packing
+Zjistěte, do kolika nejméně krabic lze rozdělit množinu {% latex %}n{% endlatex %} předmětů s vahami {% latex %}w_1, \ldots, w_i{% endlatex %}. Do každého koše lze umístit předměty o celkové váze nejvýše {% latex %}C{% endlatex %}.
+
+<details>
+	<summary class="code-summary">Zdrojový kód</summary>
+	<div markdown="1">
+```py
+{% include linearni-programovani-v-pythonu/bin.py %}```
+</div>
+</details>
+
+#### Partition problem
+Zjistěte, zda množinu {% latex %}n{% endlatex %} předmětů s vahami {% latex %}w_1, \ldots, w_i{% endlatex %} jde rozdělit na dvě části tak, aby součty vah těchto částí byly stejné.
+
+<details>
+	<summary class="code-summary">Zdrojový kód</summary>
+	<div markdown="1">
+```py
+{% include linearni-programovani-v-pythonu/partition.py %}```
+</div>
+</details>
+
 ### Zdroje/materiály
 - [Hands-On Linear Programming: Optimization With Python](https://realpython.com/linear-programming-python/)
 - [Dokumentace k PuLPu](https://coin-or.github.io/pulp/)
-- [Data k TSP](https://people.sc.fsu.edu/~jburkardt/datasets/tsp/tsp.html)
-- [Data k batohu](https://people.sc.fsu.edu/~jburkardt/datasets/knapsack_01/knapsack_01.html)
+- [Datasety obecně](https://people.sc.fsu.edu/~jburkardt/datasets/)
+- [Datasety k TSP](https://people.sc.fsu.edu/~jburkardt/datasets/tsp/tsp.html)
+- [Datasety k batohu](https://people.sc.fsu.edu/~jburkardt/datasets/knapsack_01/knapsack_01.html)
+- [Datasety k partition problému](https://people.sc.fsu.edu/~jburkardt/datasets/partition_problem/partition_problem.html)
