@@ -10,6 +10,8 @@ title: Lineární programování v Pythonu
 ### Úvodní informace
 Tato stránka obsahuje náhodné programy ze cvičení/přednášky předmětu Lineární programování a kombinatorická optimalizace. Obsahuje převážně praktické implementace teoretických problémů, které byly na cvičení řešeny.
 
+Ke spuštění programů je potřeba nainstalovat Pythoní knihovnu `pulp` (`pip install pulp`).
+
 ### Praktické příklady
 
 #### Problém pekárny
