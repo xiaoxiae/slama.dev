@@ -1,7 +1,5 @@
 # Ruby/Jekyll/Python cache files
-*.gem
 _site
-.bundle
 .*cache
 __pycache__/
 

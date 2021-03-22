@@ -6,15 +6,15 @@ SVG  = $(patsubst %.xopp, %.svg, $(XOPP))
 
 all: build upload
 
-build: $(SVG); bundle exec jekyll build --trace
-serve: $(SVG); bundle exec jekyll serve --trace --drafts
+build: $(SVG); jekyll build --trace
+serve: $(SVG); jekyll serve --trace --drafts
 
 upload:
 	cd _site && git a . && git c -m "automated commit" && git push
 
 clean:
 	rm -r .katex-cache/
-	bundle exec jekyll clean --trace
+	jekyll clean --trace
 
 %.svg: %.xopp
 	_plugins/xopp_to_svg.py -f $^
