@@ -93,6 +93,29 @@ Zjistěte, zda množinu {% latex %}n{% endlatex %} předmětů s vahami {% latex
 </div>
 </details>
 
+#### Pekárny a obchody (a)
+V Kocourkově je {% latex %}n{% endlatex %} pekáren a {% latex %}m{% endlatex %} obchodů. Každý den {% latex %}i{% endlatex %}-tá pekárna upeče {% latex %}p_i \in \mathbb{N}{% endlatex %} rohlíků {% latex %}n{% endlatex %} a {% latex %}j{% endlatex %}-tý obchod prodá {% latex %}o_j \in \mathbb{N}{% endlatex %} rohlíků, kde {% latex %}\sum_{i = 1}^{n} p_i = \sum_{j = 1}^{m} o_j{% endlatex %}. Převoz jednoho rohlíku z {% latex %}i{% endlatex %}-té pekárny do {% latex %}j{% endlatex %}-tého obchodu stojí {% latex %}c_{ij}{% endlatex %} korun.
+
+<details>
+	<summary class="code-summary">Zdrojový kód</summary>
+	<div markdown="1">
+```py
+{% include linearni-programovani-v-pythonu/ukol01-a.py %}```
+</div>
+</details>
+
+#### Pekárny a obchody (b)
+Praxe v Kocourkově ukázala, že když {% latex %}i{% endlatex %}-tá pekárna zásobuje {% latex %}j{% endlatex %}-tý obchod, tak musí pro tuto trasu zajistit logistiku, která je stojí {% latex %}l_{ij}{% endlatex %}. Logistiku {% latex %}l_{ij} \ge 0{% endlatex %} je nutné platit pouze tehdy, když {% latex %}i{% endlatex %}-tá pekárna zásobuje {% latex %}j{% endlatex %}-tý obchod nenulovým počtem rohlíků, a její cena nezávisí na počtu převážených rohlíků. I nadále je nutné platit přepravné {% latex %}c_{ij}{% endlatex %}. Zformulujte příslušnou úlohu LP.
+
+<details>
+	<summary class="code-summary">Zdrojový kód</summary>
+	<div markdown="1">
+```py
+{% include linearni-programovani-v-pythonu/ukol01-b.py %}```
+</div>
+</details>
+
+
 ### Zdroje/materiály
 - [Hands-On Linear Programming: Optimization With Python](https://realpython.com/linear-programming-python/)
 - [Dokumentace k PuLPu](https://coin-or.github.io/pulp/)
