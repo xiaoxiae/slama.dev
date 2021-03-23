@@ -231,8 +231,65 @@ Indukcí podle {% latex %}|V(G)|{% endlatex %}, pro {% latex %}|V(G)| \le 4{% en
 0. {% latex %}\implies{% endlatex %} nesouvislý graf, každá komponenta je rovina podle IP
 1. {% latex %}\implies{% endlatex %} artikulačním vrcholem {% latex %}x{% endlatex %} rozpojíme, podle IP nakreslíme (s tím, že {% latex %}x{% endlatex %} bude na vnější stěně -- to umíme tím, že to dáme na kouli a projektujeme na rovinu).
 2. {% latex %}\implies{% endlatex %} na cvičení.
-3. {% latex %}\implies{% endlatex %} TODO: příští přednáška.
+3. (více než) {% latex %}\implies{% endlatex %} příští přednáška.
 {% endmath %}
+
+### 4. přednáška
+Dokazuji: {% latex %}G{% endlatex %} nemá {% latex %}K_5{% endlatex %} a {% latex %}K_{3, 3}{% endlatex %} jako minor {% latex %}\implies{% endlatex %} {% latex %}G{% endlatex %} je rovinný ({% latex %}\iff{% endlatex %} má rovinné nakreslení).
+
+Rozebíráme {% latex %}k_v (G) \ge 3{% endlatex %}. Použijeme LoKH (lemma o kontrahovatelné hraně) -- {% latex %}\exists e = \left\{x, y\right\}{% endlatex %} t. ž. {% latex %}G.e = G'{% endlatex %} je {% latex %}3{% endlatex %}-souvislý.
+- (👀) -- {% latex %}G'{% endlatex %} nemůže obsahovat {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} jako minor (spor s předpokladem) {% latex %}\rightarrow \mathcal{G}' \ldots{% endlatex %} rovinné nakreslení {% latex %}G'{% endlatex %} (z IP existuje)
+
+{% latex %}G'' = G' - v_e{% endlatex %} (vrchol vzniklý kontrakcí {% latex %}e{% endlatex %}) {% latex %} = G - \left\{x, y\right\}{% endlatex %}
+- (👀) -- {% latex %}G''{% endlatex %} bude {% latex %}2{% endlatex %}-souvislý (protože {% latex %}G'{% endlatex %} je {% latex %}3{% endlatex %}-souvislý a {% latex %}G''{% endlatex %} vznikne odebráním vrcholu)
+- taky rovinný (odebráním mi žádný minor nevznikne), {% latex %}\mathcal{G}''{% endlatex %} nakreslení {% latex %}G''{% endlatex %} vzniklé z {% latex %}\mathcal{G}'{% endlatex %} odebráním {% latex %}v_e{% endlatex %}
+
+TODO: obrázek, tady je potřeba
+
+- {% latex %}N(x){% endlatex %} -- sousedi {% latex %}x{% endlatex %}
+- {% latex %}N(y){% endlatex %} -- sousedi {% latex %}y{% endlatex %}
+- {% latex %}N(x) \cup N(y) \setminus \left\{x, y\right\} \subseteq C{% endlatex %} (každý soused {% latex %}x{% endlatex %} kromě {% latex %}y{% endlatex %} je i sousedem {% latex %}v_e{% endlatex %} v {% latex %}G'{% endlatex %}, stejně pro {% latex %}y{% endlatex %}
+
+3 případy (TODO: obrázky):
+1. {% latex %}|N(x) \cap N(y)| \ge 3{% endlatex %} -- nenastane, protože kontrakcí dostanu {% latex %}K_5{% endlatex %}
+2. {% latex %}\exists a_1, a_2 \in N(x) \cap C, \exists b_1, b_2 \in N(y) \cap C{% endlatex %}, na {% latex %}C{% endlatex %} jsou v pořadí {% latex %}a_1, b_1, a_2, b_2{% endlatex %} -- nenastane, protože kontrakcí dostanu {% latex %}K_{3, 3}{% endlatex %}
+3. zbytek -- nenasatane ani (1), ani (2)
+	- označme {% latex %}a_1, \ldots, a_k \in N(x) \cap C{% endlatex %} v pořadí, jak se objevují na {% latex %}C{% endlatex %}
+	- můžu nakreslit všechny hrany {% latex %}xa_1, \ldots xa_k{% endlatex %}
+	- {% latex %}a_1, \ldots, a_k{% endlatex %} rozdělují {% latex %}C{% endlatex %} na vnitřně disjunktní cesty {% latex %}P_1, \ldots P_k{% endlatex %} ({% latex %}k \ge 2{% endlatex %} protože {% latex %}G{% endlatex %} je {% latex %}3{% endlatex %}-souvislý... {% latex %}x{% endlatex %} sousedí s {% latex %}y{% endlatex %} a s {% latex %}\ge 2{% endlatex %} dalšími vrcholy)
+		- chceme: {% latex %}N(y) \setminus \left\{x\right\}{% endlatex %} patří do jediné {% latex %}P_i{% endlatex %} (pro nějaké {% latex %}i{% endlatex %})
+		- TODO: případy přes obrázek
+		- TODO: rozbor případů
+	- {% latex %}y{% endlatex %} tedy nakreslím do té správně stěny a mám hotovo
+
+#### Kreslení grafů na plochy
+{% math definition %}Nechť {% latex %}X \subseteq \mathbb{R}^n, Y \subseteq \mathbb{R}^m{% endlatex %}. Potom homeomorfismus z {% latex %}X{% endlatex %} na {% latex %}Y{% endlatex %} je funkce {% latex %}f: X \mapsto Y{% endlatex %}, která je spojitá, bijekce a {% latex %}f^{-1}{% endlatex %} je spojitá. {% latex %}X, Y{% endlatex %} jsou homeomorfní ({% latex %}X \cong Y{% endlatex %}) pokud mezi nimi existuje homeomorfismus.{% endmath %}
+- něco jako isomorfismus u grafů ({% latex %}X \cong Y{% endlatex %} znamená, že se chovají stejně)
+
+{% math definition %}Plocha: kompaktní (uzavřená, omezená), souvislá (např. oblouková -- každé dva body můžu propojit obloukem), {% latex %}2{% endlatex %}-rozměrná varieta bez hranice (dostatečně malé okolí každého bodu je homeomorfní otevřenému okolí v {% latex %}\mathbb{R}^2{% endlatex %}).{% endmath %}
+- např. sféra v {% latex %}\mathbb{R}^3{% endlatex %} nebo torus v {% latex %}\mathbb{R}^3{% endlatex %}
+
+Operace s plochami (začínám u sféry, TODO: obrázky):
+1. přidání ucha (od hrnku)
+	- vyříznu dva kruhy
+	- vezmu plášť pálce bez dna a vrchu
+	- ohnu a přílepím jej na díry po kruzích
+	- (👀) -- teleport, do kterého když vejdeme, tak na druhé straně vyjdeme opačně („otočeně“)
+2. přidání křížítka (cross-cupu):
+	- (👀) -- teleport, do kterého když vejdeme, tak nás to teleportuje naproti (v rámci toho kruhu)
+
+Pro {% latex %}g \in \left\{0, 1, \ldots\right\}{% endlatex %} nechť {% latex %}\sum_g{% endlatex %} značí plochu zvniklou ze féry přidáním {% latex %}g{% endlatex %} uší, tak říkáme, že {% latex %}\sum g{% endlatex %} je orientovatelná plocha rodu {% latex %}g{% endlatex %}.
+
+Pro {% latex %}g \in \left\{1, 2, \ldots\right\}{% endlatex %} nechť {% latex %}\prod_g{% endlatex %} značí plochu zvniklou ze féry přidáním {% latex %}g{% endlatex %} křížítek, tak říkáme, že {% latex %}\prod g{% endlatex %} je neorientovatelná plocha rodu {% latex %}g{% endlatex %}.
+
+{% math fact %}Každá plocha je homeomorfní právě jedné z posloupností {% latex %}\sum_0, \prod_1, \sum_1, \prod_2,\ldots{% endlatex %} (zde máme skryté tvrzení, že žádné dvě z této posloupností nejsou homeomorfní.{% endmath %}
+
+{% math fact %}Přidám-li ke sféře {% latex %}k \ge 0{% endlatex %} uší a {% latex %}l \ge 1{% endlatex %} křížítek, vznikne plocha homeomorfní \sum_{2k + l} ({% latex %}\approx{% endlatex %} „přidání dvou křížítek je jako přidání ucha,“ **pokud** už tam bylo {% latex %}\ge 1{% endlatex %} křížítko){% endmath %}
+
+- {% latex %}\sum_0 \ldots{% endlatex %} sféra
+- {% latex %}\prod_1 \ldots{% endlatex %} projektivní rovina
+- {% latex %}\sum_1 \ldots{% endlatex %} torus
+- {% latex %}\prod_2 \ldots{% endlatex %} kleinova láhev
 
 ### Zdroje/materiály
 - [Poznámky Václava Končického](https://kam.mff.cuni.cz/~koncicky/notes/kag2/pdf) z roku 2019.
