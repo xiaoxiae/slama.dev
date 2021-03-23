@@ -18,6 +18,8 @@ module Jekyll
           return '<strong>Důkaz:</strong> ' + super.strip
         when "algorithm"
           return '<strong>Algoritmus:</strong> ' + super.strip
+        when "fact"
+          return '<strong>Fakt:</strong> ' + super.strip
         else
           return "ERROR: TAG UNRECOGNIZED"
         end
