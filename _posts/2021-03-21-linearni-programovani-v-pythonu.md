@@ -25,6 +25,14 @@ Pekárna má k dispozici {% latex %}5{% endlatex %} kilo mouky, {% latex %}125{%
 </div>
 </details>
 
+<details>
+	<summary class="code-summary">Výpis</summary>
+	<div markdown="1">
+```
+{% include linearni-programovani-v-pythonu/pekarna.out %}```
+</div>
+</details>
+
 #### Problém batohu
 Pro {% latex %}n{% endlatex %} předmětů, kde {% latex %}i{% endlatex %}-tý má nějakou váhu {% latex %}v_i{% endlatex %} a cenu {% latex %}c_i{% endlatex %}, máme batoh s danou nosností {% latex %}V{% endlatex %} a my se do něj snažíme naskládat předměty tak, abychom maximalizovali celkovou cenu předmětů v batohu.
 
@@ -33,6 +41,14 @@ Pro {% latex %}n{% endlatex %} předmětů, kde {% latex %}i{% endlatex %}-tý 
 	<div markdown="1">
 ```py
 {% include linearni-programovani-v-pythonu/batoh.py %}```
+</div>
+</details>
+
+<details>
+	<summary class="code-summary">Výpis</summary>
+	<div markdown="1">
+```
+{% include linearni-programovani-v-pythonu/batoh.out %}```
 </div>
 </details>
 
@@ -48,6 +64,14 @@ Máme-li {% latex %}n{% endlatex %} bodů {% latex %}(x_1 , y_1 ), \ldots, (x_n
 </div>
 </details>
 
+<details>
+	<summary class="code-summary">Výpis</summary>
+	<div markdown="1">
+```
+{% include linearni-programovani-v-pythonu/prokladani.out %}```
+</div>
+</details>
+
 #### Obarvitelnost grafu
 
 Nalezněte minimální {% latex %}k{% endlatex %} takové, že vrcholy grafu {% latex %}G{% endlatex %} lze korektně obarvit {% latex %}k{% endlatex %} barvami.
@@ -57,6 +81,14 @@ Nalezněte minimální {% latex %}k{% endlatex %} takové, že vrcholy grafu {%
 	<div markdown="1">
 ```py
 {% include linearni-programovani-v-pythonu/obarvitelnost.py %}```
+</div>
+</details>
+
+<details>
+	<summary class="code-summary">Výpis</summary>
+	<div markdown="1">
+```
+{% include linearni-programovani-v-pythonu/obarvitelnost.out %}```
 </div>
 </details>
 
@@ -71,6 +103,14 @@ Pro daný ohodnocený neorientovaný graf {% latex %}G = (V, E, f){% endlatex %}
 </div>
 </details>
 
+<details>
+	<summary class="code-summary">Výpis</summary>
+	<div markdown="1">
+```
+{% include linearni-programovani-v-pythonu/tsp.out %}```
+</div>
+</details>
+
 #### Bin packing
 Zjistěte, do kolika nejméně krabic lze rozdělit množinu {% latex %}n{% endlatex %} předmětů s vahami {% latex %}w_1, \ldots, w_i{% endlatex %}. Do každého koše lze umístit předměty o celkové váze nejvýše {% latex %}C{% endlatex %}.
 
@@ -79,6 +119,14 @@ Zjistěte, do kolika nejméně krabic lze rozdělit množinu {% latex %}n{% endl
 	<div markdown="1">
 ```py
 {% include linearni-programovani-v-pythonu/bin.py %}```
+</div>
+</details>
+
+<details>
+	<summary class="code-summary">Výpis</summary>
+	<div markdown="1">
+```
+{% include linearni-programovani-v-pythonu/bin.out %}```
 </div>
 </details>
 
@@ -93,6 +141,14 @@ Zjistěte, zda množinu {% latex %}n{% endlatex %} předmětů s vahami {% latex
 </div>
 </details>
 
+<details>
+	<summary class="code-summary">Výpis</summary>
+	<div markdown="1">
+```
+{% include linearni-programovani-v-pythonu/partition.out %}```
+</div>
+</details>
+
 #### Pekárny a obchody (a)
 V Kocourkově je {% latex %}n{% endlatex %} pekáren a {% latex %}m{% endlatex %} obchodů. Každý den {% latex %}i{% endlatex %}-tá pekárna upeče {% latex %}p_i \in \mathbb{N}{% endlatex %} rohlíků {% latex %}n{% endlatex %} a {% latex %}j{% endlatex %}-tý obchod prodá {% latex %}o_j \in \mathbb{N}{% endlatex %} rohlíků, kde {% latex %}\sum_{i = 1}^{n} p_i = \sum_{j = 1}^{m} o_j{% endlatex %}. Převoz jednoho rohlíku z {% latex %}i{% endlatex %}-té pekárny do {% latex %}j{% endlatex %}-tého obchodu stojí {% latex %}c_{ij}{% endlatex %} korun.
 
@@ -104,6 +160,14 @@ V Kocourkově je {% latex %}n{% endlatex %} pekáren a {% latex %}m{% endlatex 
 </div>
 </details>
 
+<details>
+	<summary class="code-summary">Výpis</summary>
+	<div markdown="1">
+```
+{% include linearni-programovani-v-pythonu/ukol01-a.out %}```
+</div>
+</details>
+
 #### Pekárny a obchody (b)
 Praxe v Kocourkově ukázala, že když {% latex %}i{% endlatex %}-tá pekárna zásobuje {% latex %}j{% endlatex %}-tý obchod, tak musí pro tuto trasu zajistit logistiku, která je stojí {% latex %}l_{ij}{% endlatex %}. Logistiku {% latex %}l_{ij} \ge 0{% endlatex %} je nutné platit pouze tehdy, když {% latex %}i{% endlatex %}-tá pekárna zásobuje {% latex %}j{% endlatex %}-tý obchod nenulovým počtem rohlíků, a její cena nezávisí na počtu převážených rohlíků. I nadále je nutné platit přepravné {% latex %}c_{ij}{% endlatex %}. Zformulujte příslušnou úlohu LP.
 
@@ -112,6 +176,14 @@ Praxe v Kocourkově ukázala, že když {% latex %}i{% endlatex %}-tá peka
 	<div markdown="1">
 ```py
 {% include linearni-programovani-v-pythonu/ukol01-b.py %}```
+</div>
+</details>
+
+<details>
+	<summary class="code-summary">Výpis</summary>
+	<div markdown="1">
+```
+{% include linearni-programovani-v-pythonu/ukol01-b.out %}```
 </div>
 </details>
 

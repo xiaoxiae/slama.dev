@@ -284,12 +284,14 @@ Pro {% latex %}g \in \left\{1, 2, \ldots\right\}{% endlatex %} nechť {% latex %
 
 {% math fact %}Každá plocha je homeomorfní právě jedné z posloupností {% latex %}\sum_0, \prod_1, \sum_1, \prod_2,\ldots{% endlatex %} (zde máme skryté tvrzení, že žádné dvě z této posloupností nejsou homeomorfní.{% endmath %}
 
-{% math fact %}Přidám-li ke sféře {% latex %}k \ge 0{% endlatex %} uší a {% latex %}l \ge 1{% endlatex %} křížítek, vznikne plocha homeomorfní \sum_{2k + l} ({% latex %}\approx{% endlatex %} „přidání dvou křížítek je jako přidání ucha,“ **pokud** už tam bylo {% latex %}\ge 1{% endlatex %} křížítko){% endmath %}
+{% math fact %}Přidám-li ke sféře {% latex %}k \ge 0{% endlatex %} uší a {% latex %}l \ge 1{% endlatex %} křížítek, vznikne neorientovatelná plocha homeomorfní {% latex %}\prod_{2k + l}{% endlatex %} ({% latex %}\approx{% endlatex %} „přidání dvou křížítek je jako přidání ucha,“ **pokud** už tam bylo {% latex %}\ge 1{% endlatex %} křížítko){% endmath %}
 
 - {% latex %}\sum_0 \ldots{% endlatex %} sféra
 - {% latex %}\prod_1 \ldots{% endlatex %} projektivní rovina
 - {% latex %}\sum_1 \ldots{% endlatex %} torus
 - {% latex %}\prod_2 \ldots{% endlatex %} kleinova láhev
+
+TODO: ten cool pohled ze cvik.
 
 ### Zdroje/materiály
 - [Poznámky Václava Končického](https://kam.mff.cuni.cz/~koncicky/notes/kag2/pdf) z roku 2019.
