@@ -406,6 +406,15 @@ body {
 
 	img, svg { max-width: 90%; }
 
+	iframe {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: $website-size;
+		height: 0.6 * $website-size;
+		margin-bottom: $line-spacing;
+	}
+
 	figure {
 		img, svg {
 			height: auto;
