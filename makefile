@@ -13,7 +13,6 @@ upload:
 	cd _site && git a . && git c -m "automated commit" && git push
 
 clean:
-	rm -r .katex-cache/
 	jekyll clean --trace
 
 %.svg: %.xopp

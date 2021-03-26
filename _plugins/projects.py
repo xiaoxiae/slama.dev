@@ -3,7 +3,9 @@
 import os
 from github import Github
 
-g = Github()
+from secrets import github_token
+
+g = Github(github_token)
 
 projects = [
     ("Florodoro", None, None),

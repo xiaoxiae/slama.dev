@@ -5,7 +5,7 @@ module Jekyll
   module Tags
     class KatexBlock < Liquid::Block
 
-      PATH_TO_JS = "./_plugins/katex.min.js"
+      PATH_TO_JS = "./_plugins/tags/katex.min.js"
 
       def initialize(tag, markup, tokens)
         super
@@ -16,7 +16,7 @@ module Jekyll
       def render(context)
         # generate a hash from the math expression
         @hash = Digest::SHA2.hexdigest super
-        @cache_path = './.katex-cache/' + @hash + @display.to_s
+        @cache_path = './.jekyll-cache/katex-cache/' + @hash + @display.to_s
 
         # use it if it exists
         if(File.exist?(@cache_path))

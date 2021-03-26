@@ -9,8 +9,9 @@ __pycache__/
 # Private
 ignored/
 _drafts/
+**/secrets.py
 
-# Too big to VC (binaries scary)
+# Too big to VC (binaries scary!)
 climbing/
 photography/
 assets/hlenka-helenka/tribute.mp4

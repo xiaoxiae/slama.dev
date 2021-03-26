@@ -11,7 +11,7 @@ import yaml
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 MAX = 10  # out of 100
-CACHE_FOLDER = ".compress_images_cache"
+CACHE_FOLDER = "../.jekyll-cache/compress_images"
 SUB = "Images"
 
 full_size = 0  # total size of images before compression
