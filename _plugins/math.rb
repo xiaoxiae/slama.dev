@@ -7,21 +7,26 @@ module Jekyll
       end
 
       def render(context)
-        case @type.strip
+        parts = @type.split(/\s(?=(?:[^"]|"[^"]*")*$)/)
+
+        tag = parts[0]
+        name = parts[1].nil? ? nil : (parts[1].strip[1..-2])
+
+        case tag
         when "definition"
-          return '<strong>Definice:</strong> ' + super.strip
+          return '<strong>Definice' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + super.strip
         when "lemma"
-          return '<strong>Lemma:</strong> <em>' + super.strip + "</em>"
+          return '<strong>Lemma' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> <em>' + super.strip + "</em>"
         when "theorem"
-          return '<strong>Věta:</strong> <em>' + super.strip + "</em>"
+          return '<strong>Věta' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> <em>' + super.strip + "</em>"
         when "proof"
           return '<strong>Důkaz:</strong> ' + super.strip
         when "algorithm"
-          return '<strong>Algoritmus:</strong> ' + super.strip
+          return '<strong>Algoritmus' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + super.strip
         when "fact"
-          return '<strong>Fakt:</strong> ' + super.strip
+          return '<strong>Fakt' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + super.strip
         else
-          return "ERROR: TAG UNRECOGNIZED"
+          return "ERROR: tag " + tag + " unrecognized"
         end
       end
     end
