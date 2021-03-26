@@ -294,4 +294,5 @@ Pro {% latex %}g \in \left\{1, 2, \ldots\right\}{% endlatex %} nechť {% latex %
 TODO: ten cool pohled ze cvik.
 
 ### Zdroje/materiály
+- [Stránky přednášky](https://research.koutecky.name/db/teaching:kg22021_prednaska).
 - [Poznámky Václava Končického](https://kam.mff.cuni.cz/~koncicky/notes/kag2/pdf) z roku 2019.
