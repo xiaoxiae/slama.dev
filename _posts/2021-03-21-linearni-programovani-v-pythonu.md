@@ -187,6 +187,44 @@ Praxe v Kocourkově ukázala, že když {% latex %}i{% endlatex %}-tá peka
 </div>
 </details>
 
+#### Největší nezávislá množina
+Najděte co možná největší množinu vrcholů grafu takovou, že žádné dva nesdílejí hranu.
+
+<details>
+	<summary class="code-summary">Zdrojový kód</summary>
+	<div markdown="1">
+```py
+{% include linearni-programovani-v-pythonu/max-independent-set.py %}```
+</div>
+</details>
+
+<details>
+	<summary class="code-summary">Výpis</summary>
+	<div markdown="1">
+```
+{% include linearni-programovani-v-pythonu/max-independent-set.out %}```
+</div>
+</details>
+
+#### Nejmenší vrcholové pokrytí
+Najděte co možná nejmenší množinu vrcholů grafu takovou, že všechny hrany grafu obsahují alespoň jeden vrchol z této množiny.
+
+<details>
+	<summary class="code-summary">Zdrojový kód</summary>
+	<div markdown="1">
+```py
+{% include linearni-programovani-v-pythonu/min-vertex-cover.py %}```
+</div>
+</details>
+
+<details>
+	<summary class="code-summary">Výpis</summary>
+	<div markdown="1">
+```
+{% include linearni-programovani-v-pythonu/min-vertex-cover.out %}```
+</div>
+</details>
+
 
 ### Zdroje/materiály
 - [Hands-On Linear Programming: Optimization With Python](https://realpython.com/linear-programming-python/)
