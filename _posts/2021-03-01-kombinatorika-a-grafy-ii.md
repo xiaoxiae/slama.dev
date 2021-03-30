@@ -293,6 +293,96 @@ Pro {% latex %}g \in \left\{1, 2, \ldots\right\}{% endlatex %} nechť {% latex %
 
 TODO: ten cool pohled ze cvik.
 
+
+### 5. přednáška
+{% math definition "nakreslení grafu" %} {% latex %}G = (V, E){% endlatex %} na pllochu {% latex %}\Gamma{% endlatex %} je zobrazení {% latex %}\phi{% endlatex %}t. ž.:
+- každému vrcholu $v \in V$ přiřadí bod {% latex %}\phi(v) \in \Gamma{% endlatex %}
+- každé hrane $e \in E$ přiřadí prostou (neprotínající se) křivku {% latex %}\phi(e) \in \Gamma{% endlatex %} spojující konce {% latex %}\phi(x), \phi(y){% endlatex %}
+- {% latex %}x, y \ni V: x \neq y \implies \phi(x) \neq \phi(y){% endlatex %}
+- {% latex %}e, f \in E: e \neq f \implies \phi(e) \cap \phi(f) = \left\{\phi(x) \mid x \in e \cap f\right\}{% endlatex %}
+- e \in E, x \in V: x \in e \implies \phi(x) \not\in \phi(e)
+{% endmath %}
+
+Tzn. nakreslení, kde se nekříží hrany, atd...
+
+{% math definition "stěna nakreslení" %} je souvislá komponenta {% latex %}\Gamma \setminus \left(\left(\bigcup_{e \in E}^{\phi(e)}\right) \cup \left(\bigcup_{x \in V}^{\phi(x)}\right)\right){% endlatex %}{% endmath %}
+
+{% math definition "buňkové nakreslení" %} je nakreslení, kde každá stěna je homeomorfní otevřenému kruhu v {% latex %}\mathbb{R}^2{% endlatex %}.{% endmath %}
+
+TODO: obrázky toru
+
+{% math reminder %}{% latex %}G = (V, E){% endlatex %} souvislý {% latex %}\implies{% endlatex %} v každém rovinném nakreslení platí {% latex %}|V| - |E| + S = 2{% endlatex %} {% endmath %}
+- využíváme faktu, že rovinné nakreslení {% latex %}G{% endlatex %} je buňkové {% latex %}\iff G{% endlatex %} je souvislé
+
+{% math definition "Eulerova charakteristika plochy" %} charakteristika plochy {% latex %}\Gamma{% endlatex %} je
+
+{% latex display %}
+\begin{aligned}
+\Chi(\Gamma) &= \begin{cases} 2 - g & \Gamma \cong \prod (g \ge 1) \\ 2 - 2g & \Gamma \cong \sum (g \ge 0) \end{cases} \\
+\            &= 2 - \text{\# křížítek} - 2 \cdot \text{\# uší}
+\end{aligned}
+{% endlatex %}
+{% endmath %}
+
+{% math theorem "zobecněná Eulerofa formule" %}Nechť máme nakreslení grafu {% latex %}G = (V, E){% endlatex %} na ploše {% latex %}\Gamma{% endlatex %}, které má {% latex %}S{% endlatex %} stěn. Pak {% latex %}|V| - |E| + |S| \ge \Chi(\Gamma).{% endlatex %}{% endmath %} 
+- pokud nakreslení je buňkové, tak {% latex %}|V| - |E| + S = \Chi(\Gamma){% endlatex %}
+
+{% math proof "rovnosti" %}idea je indukce podle rodu {% latex %}\Gamma{% endlatex %}
+- {% latex %}\Gamma \cong \sum_0{% endlatex %} platí
+
+Mějme nyní buňkové nakreslení {% latex %}G = (V, E){% endlatex %} na {% latex %}\Gamma{% endlatex %}
+	- {% latex %}v(G), e(G), s(G){% endlatex %} značíme počet vrcholů, hran a stěn
+
+Nechť {% latex %}K{% endlatex %} je křížítko na {% latex %}\Gamma{% endlatex %}, {% latex %}x_1, \ldots, x_k{% endlatex %} jsou body {% latex %}K{% endlatex %}, kde hrany {% latex %}G{% endlatex %} kříží {% latex %}K{% endlatex %}
+- (👀) -- {% latex %}k \ge 1{% endlatex %}, jinak stěna obsahující {% latex %}k{% endlatex %} nebyla buňka -- máme předpoklad, že nakreslení je buňkové)
+
+Vytvoříme {% latex %}G'{% endlatex %} přidáním dvou dělících vrcholů na každou hranu křížící {% latex %}K{% endlatex %} těsně vedle {% latex %}x_1, \ldots, x_k{% endlatex %} („před a za křížítkem“). TODO: obrázek
+- děláme to proto, že jedna hrana by mohla procházet křížítkem na více místech a bylo by to pak dost rozbitý
+- {% latex %}v(G') = v(G) + 2k{% endlatex %}
+- {% latex %}e(G') = e(G) + 2k{% endlatex %}
+- {% latex %}s(G') = s(G){% endlatex %}
+- {% latex %}L(G') = L(G){% endlatex %}
+
+Vytvoříme {% latex %}G''{% endlatex %} přidaním cest délky {% latex %}2{% endlatex %} k sousedním vrcholům z předchozího kroku. Vznikne tím kružnice {% latex %}C{% endlatex %} obcházející {% latex %}K{% endlatex %}. TODO: obrázek
+- {% latex %}v(G'') = v(G') + 2k{% endlatex %}
+- {% latex %}e(G'') = e(G') + 4k{% endlatex %}
+- {% latex %}s(G'') = s(G') + 2k{% endlatex %} (každou z {% latex %}k{% endlatex %} stěn dělím na {% latex %}3{% endlatex %} kusy)
+- {% latex %}L(G'') = L(G'){% endlatex %}
+
+Vytvoříme {% latex %}G'''{% endlatex %} odebráním všeho uvnitř {% latex %}C{% endlatex %}. TODO: obrázek
+- {% latex %}v(G''') = v(G''){% endlatex %}
+- {% latex %}e(G''') = e(G'') - k{% endlatex %} ({% latex %}k{% endlatex %} křížících-se hran uvnitř {% latex %}C{% endlatex %})
+- {% latex %}s(G''') = s(G'') - k + 1{% endlatex %} („spojím“ {% latex %}k{% endlatex %} stěn do jedné)
+	- {% latex %}L(G''') = L(G'') + 1{% endlatex %}
+- IP: {% latex display %}L(G''') = \Chi(\sum_{g - 1}) = \Chi(\Gamma) + 1 \ldots \Chi(\Gamma) = L(G''') - 1{% endlatex %}
+
+Tedy {% latex %}\Chi(\Gamma) = L(G''') - 1 = L(G'') = L(G') = L(G){% endlatex %}
+{% endmath %}
+
+{% math consequence %}Každý graf {% latex %}G{% endlatex %} nakreslitelný na plochu {% latex %}\Gamma{% endlatex %} splní {% latex %}|E| \le 3|V| - 3\Chi(\Gamma){% endlatex %}, pokud {% latex %}|V| \ge 4{% endlatex %}
+- každý takový graf má průměrný stupeň {% latex %}\frac{2|E|}{|V|} \le 6 - \frac{6\Chi(\Gamma)}{|V|}{% endlatex %}
+	- na žádnou zafixovanou plochu nelze nakreslit libovolně velký {% latex %}7{% endlatex %}-regulární graf
+	- pro libovolně velký úplňák dokážeme vytvořit plochu, na kterou ho nakreslíme
+{% endmath %}
+
+{% math lemma %}Nechť {% latex %}\Gamma{% endlatex %} je plocha, {% latex %}\Gamma \neq \sum_0{% endlatex %}, nechť {% latex %}G{% endlatex %} je graf nakreslený na {% latex %}\Gamma{% endlatex %}, potom {% latex %}G{% endlatex %} obsahuje vrchol stupňe {% latex %}\le \left\lfloor \frac{5 + \sqrt{49 - 24\Chi(\Gamma)}}{2} \right\rfloor{% endlatex %}{% endmath %}
+
+{% math proof %}Mějme {% latex %}G{% endlatex %} podle předpokladu. Opět značíme {% latex %}v(G), e(G){% endlatex %} jako počet vrcholů a hran. ROzlišíme {% latex %}3{% endlatex %} případy:
+- {% latex %}\Chi(\Gamma) = 1{% endlatex %} (t.j. {% latex %}\Gamma \cong \prod_1{% endlatex %}), dosazením dostáváme průměrný stupeň {% latex %}< 6{% endlatex %} (dosazením do důsledku){% latex %}\implies \exists{% endlatex %} vrchol stupně {% latex %}\le 5{% endlatex %}, což jsme chtěli
+- {% latex %}\Chi(\Gamma) = 0{% endlatex %} (t.j. {% latex %}\Gamma \cong \prod_2{% endlatex %} nebo {% latex %}\Gamma \cong \sum_1{% endlatex %}), průměrný stupeň {% latex %}\le 6 \implies \exists{% endlatex %} vrchol stupně {% latex %}\le 6{% endlatex %}
+- {% latex %}\Chi(\Gamma) < 0 \ldots \delta(G) = {% endlatex %} min. stupeň {% latex %}G{% endlatex %}; víme:
+	- {% latex %}\delta(G) \le 6 - \frac{6 \Chi(\Gamma)}{v(G)}{% endlatex %}
+	- {% latex %}\delta(G) \le v(G) - 1{% endlatex %} (žádný vrchol nemá víc než {% latex %}v(G) - 1{% endlatex %} sousedů)
+	- chceme zjistit max. hodnotu {% latex %}\delta{% endlatex %}, což je řešení dvou rovnic výše; dosazením a vyřešením kvadratické rovnice vyjde přesně to, co dokazujeme
+
+TODO: grafík
+{% endmath %}
+
+{% math consequence "Heawoodova formule, 1890" %} Pokud {% latex %}\Gamma \not\cong \sum_0{% endlatex %}, tak každý graf nakreslitelny na {% latex %}\Gamma{% endlatex %} je nejvýš {% latex %}H(\Gamma) = \left\lfloor \frac{7 + \sqrt{49 - 24 \Chi(\Gamma)}}{2} \right\rfloor{% endlatex %}-obarvitelný{% endmath %}
+- platí i pro stéru: věta o {% latex %}4{% endlatex %}-barvách
+- tento odhad je těsný pro všechny plochy kromě {% latex %}\prod_2{% endlatex %}, dokonce: na každou plochu {% latex %}\Gamma \not\cong \prod_2{% endlatex %} lze kreslit kliku velikosti {% latex %}H(\Gamma){% endlatex %}
+	- (každý graf nakreslitelný na {% latex %}\prod_2{% endlatex %} je dokonce {% latex %}6{% endlatex %}-obarvitelný)
+
 ### Zdroje/materiály
 - [Stránky přednášky](https://research.koutecky.name/db/teaching:kg22021_prednaska).
 - [Poznámky Václava Končického](https://kam.mff.cuni.cz/~koncicky/notes/kag2/pdf) z roku 2019.
