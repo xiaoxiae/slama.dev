@@ -19,6 +19,8 @@ module Jekyll
           return '<strong>Připomenutí' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + super.strip
         when "lemma"
           return '<strong>Lemma' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> <em>' + super.strip + "</em>"
+        when "claim"
+          return '<strong>Tvrzení' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> <em>' + super.strip + "</em>"
         when "theorem"
           return '<strong>Věta' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> <em>' + super.strip + "</em>"
         when "proof"
@@ -29,6 +31,10 @@ module Jekyll
           return '<strong>Fakt' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + super.strip
         when "consequence"
           return '<strong>Důsledek' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + super.strip
+        when "observation"
+          return '<strong>(👀)' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + super.strip
+        when "question"
+          return '<strong>Otázka' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + super.strip
         else
           return "ERROR: tag " + tag + " unrecognized"
         end
