@@ -72,7 +72,7 @@ Máme-li {% latex %}n{% endlatex %} bodů {% latex %}(x_1 , y_1 ), \ldots, (x_n
 </div>
 </details>
 
-#### Obarvitelnost grafu
+#### Vrcholová obarvitelnost grafu
 
 Nalezněte minimální {% latex %}k{% endlatex %} takové, že vrcholy grafu {% latex %}G{% endlatex %} lze korektně obarvit {% latex %}k{% endlatex %} barvami.
 
@@ -89,6 +89,26 @@ Nalezněte minimální {% latex %}k{% endlatex %} takové, že vrcholy grafu {%
 	<div markdown="1">
 ```
 {% include linearni-programovani-v-pythonu/obarvitelnost.out %}```
+</div>
+</details>
+
+#### Hranová obarvitelnost grafu
+
+Nalezněte minimální {% latex %}k{% endlatex %} takové, že hrany grafu {% latex %}G{% endlatex %} lze korektně obarvit {% latex %}k{% endlatex %} barvami.
+
+<details>
+	<summary class="code-summary">Zdrojový kód</summary>
+	<div markdown="1">
+```py
+{% include linearni-programovani-v-pythonu/obarvitelnost2.py %}```
+</div>
+</details>
+
+<details>
+	<summary class="code-summary">Výpis</summary>
+	<div markdown="1">
+```
+{% include linearni-programovani-v-pythonu/obarvitelnost2.out %}```
 </div>
 </details>
 
