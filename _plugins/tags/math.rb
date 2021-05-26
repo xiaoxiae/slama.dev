@@ -24,7 +24,7 @@ module Jekyll
         when "theorem"
           return '<strong>Věta' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> <em>' + super.strip + "</em>"
         when "proof"
-          return '<strong>Důkaz' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong>' + super.strip
+          return '<strong>Důkaz' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + super.strip
         when "algorithm"
           return '<strong>Algoritmus' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + super.strip
         when "fact"
