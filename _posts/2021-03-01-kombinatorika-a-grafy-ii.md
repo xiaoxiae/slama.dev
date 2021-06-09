@@ -162,119 +162,121 @@ Těžší případ: {% latex %}e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2){%
 
 #### Tutte v2.0
 
-{% math lemma "o kontrahovatelné hraně" %} Nechť {% latex %}G{% endlatex %} je 3-souvislý různý od {% latex %}K_4{% endlatex %} ({% latex %}|V| \ge 5{% endlatex %}). Potom {% latex %}G{% endlatex %} obsahuje hranu t. ž. {% latex %}G \ e{% endlatex %} je 3-souvislý.{% endmath %}
+{% math lemma "o kontrahovatelné hraně" %} Nechť {% latex %}G{% endlatex %} je vrcholově {% latex %}3{% endlatex %}-souvislý různý od {% latex %}K_4{% endlatex %} ({% latex %}|V| \ge 5{% endlatex %}). Potom {% latex %}G{% endlatex %} obsahuje hranu t. ž. {% latex %}G \setminus e{% endlatex %} je 3-souvislý.{% endmath %}
 
-{% math proof %}Sporem -- nechť {% latex %}G{% endlatex %} je 3-souvislý ale neexistuje žádná hrana. Tedy {% latex %}\forall e \in E: G \setminus e{% endlatex %} není {% latex %}3{% endlatex %}-souvislý.
+{% math proof %}Sporem -- nechť {% latex %}G{% endlatex %} je 3-souvislý ale neexistuje žádná hrana, která jde zkontrahovat. Tedy {% latex %}\forall e \in E: G \setminus e{% endlatex %} není {% latex %}3{% endlatex %}-souvislý.
 
-{% math theorem %}Pomocné: {% latex %}\forall e = \left\{x, y\right\} \exists z_e \in V \setminus \left\{x, y\right\}{% endlatex %} t. ž. {% latex %}\left\{x, y, z_e\right\}{% endlatex %} tvoří vrcholový řez v G, navíc každý z {% latex %}\left\{x, y, z_e\right\}{% endlatex %} má alespoň jednoho souseda v každé komponentě {% latex %}G \setminus \left\{x, y, z_e\right\}{% endlatex %}.
-- počítáme s předpokladem, že žádná hrana není kontrahovatelná!
-{% endmath %}
+{% math lemma "pomocné" %} {% latex %}\forall e = \left\{x, y\right\} \exists z_e \in V \setminus \left\{x, y\right\}{% endlatex %} t. ž. {% latex %}\left\{x, y, z_e\right\}{% endlatex %} tvoří vrcholový řez v G, navíc každý z {% latex %}\left\{x, y, z_e\right\}{% endlatex %} má alespoň jednoho souseda v každé komponentě {% latex %}G \setminus \left\{x, y, z_e\right\}{% endlatex %}.{% endmath %}
+- přesně popisuje situaci, že kontrakce libovolné hrany nám dá řez velikosti {% latex %}2{% endlatex %}
+- ve skutečnosti **neplatí** (ale dovětek ano) a dokazujeme ho pouze v rámci sporu!
+- (👀 které platí) {% latex %}S{% endlatex %} minimální vrcholový řez {% latex %}G{% endlatex %}, pak každý vrchol {% latex %}S{% endlatex %} má souseda v každé komponentě {% latex %}G \setminus S{% endlatex %} -- když to pro nějaký {% latex %}v{% endlatex %} neplatí, tak {% latex %}S \setminus v{% endlatex %} je pořád řez
 
-- (👀) -- {% latex %}S{% endlatex %} minimální vrcholový řez {% latex %}G{% endlatex %}, pak každý vrchol {% latex %}S{% endlatex %} má souseda v každé komponentě {% latex %}G \setminus S{% endlatex %} (když to pro nějaký {% latex %}v{% endlatex %} neplatí, tak {% latex %}S \setminus v{% endlatex %} je pořád řez).
-
-TOOD: obrázek?
+{% xopp 1 %}
 
 {% math proof %}
-Vím, že {% latex %}G \setminus e{% endlatex %} není 3-souvislý, tedy má vrcholový řez velikosti 2. Nechť {% latex %}v_e = {% endlatex %} vrchol vzniklý kontrakcí {% latex %}\left\{x, y\right\} = e{% endlatex %}. Tento řez obsahuje {% latex %}v_e{% endlatex %}, jinak by to byl řez už pro {% latex %}G{% endlatex %}.
+Vím, že {% latex %}G \setminus e{% endlatex %} není {% latex %}3{% endlatex %}-souvislý, tedy má vrcholový řez velikosti {% latex %}2{% endlatex %}. Nechť {% latex %}v_e{% endlatex %} je vrchol vzniklý kontrakcí {% latex %}e = \left\{x, y\right\}{% endlatex %}. Řez velikosti {% latex %}2{% endlatex %} obsahuje {% latex %}v_e{% endlatex %}, jinak by to byl řez už pro {% latex %}G{% endlatex %} (obsahoval by vrcholy z původního grafu, které nekontrahujeme).
 
-Označme řez {% latex %}v_e, z_e{% endlatex %}.
-
-TODO: obrázek?
-
-Po rozkontrahování vidíme, že {% latex %}\forall \left\{x, y, z_e\right\}{% endlatex %} musí mít souseda v každé komponentě (jinak spor s 3-souvislostí). Tedy {% latex %}z_e{% endlatex %} je hledaný vrchol.
+Označme řez {% latex %}v_e, z_e{% endlatex %}. Po rozkontrahování vidíme, že {% latex %}\forall \left\{x, y, z_e\right\}{% endlatex %} musí mít souseda v každé komponentě (jinak spor s 3-souvislostí). Tedy {% latex %}z_e{% endlatex %} je hledaný vrchol.
 {% endmath %}
+
+{% xopp 2 %}
+
+---
 
 Pro důkaz původního lemmatu si zvolím {% latex %}e = \left\{x, y \right\} \in E{% endlatex %} a {% latex %}z_e{% endlatex %} z pomocného tvrzení tak, aby nejmenší komponenta {% latex %}G - z, y, z_e{% endlatex %} byla co nejmenší (co do počtu vrcholů).
 
-TODO: obrázek?
+{% xopp 3 %}
 
-Protože {% latex %}z_e{% endlatex %} má souseda ve všech komponentách, má nějakého souseda {% latex %}u \in C, f = \left\{z_e, u\right\}{% endlatex %} (kde {% latex %}C{% endlatex %} je naše nejmenší komponenta). Pomocné tvrzení pro {% latex %}f{% endlatex %} dá nějaký {% latex %}z_f \in V{% endlatex %} t. ž. {% latex %}\left\{z_e, z_f, u\right\}{% endlatex %} je vrcholový řez {% latex %}G{% endlatex %}.
+Protože {% latex %}z_e{% endlatex %} má souseda ve všech komponentách, má nějakého souseda {% latex %}u \in C, f = \left\{z_e, u\right\}{% endlatex %} (kde {% latex %}C{% endlatex %} je naše nejmenší komponenta). Pomocné tvrzení pro {% latex %}f{% endlatex %} dá nějaký {% latex %}z_f \in V{% endlatex %} t. ž. {% latex %}\left\{z_e, z_f, u\right\}{% endlatex %} je vrcholový řez {% latex %}G{% endlatex %}. Chceme dokázat, že {% latex %}G - z_e, z_f, u{% endlatex %} má menší komponentu než {% latex %}C{% endlatex %}.
 
-Nechť {% latex %}D{% endlatex %} je komponenta {% latex %}G - z_e, z_f, u{% endlatex %} neobsahující {% latex %}x, y{% endlatex %} (existuje, protože {% latex %}x, y{% endlatex %} jsou spojené a graf se rozpadne alespoň na 2 komponenty). Tvrdím, že {% latex %}D \subseteq C \setminus \left\{u\right\}{% endlatex %}, protože {% latex %}D{% endlatex %} nemůže obsahovat {% latex %}z_e, z_f, u{% endlatex %} (vrcholy řezu), {% latex %}x, y{% endlatex %} (z definice {% latex %}D{% endlatex %}), ale {% latex %}u{% endlatex %} má souseda, takže v {% latex %}D{% endlatex %} ještě něco zbyde. Tedy {% latex %}|D| < |C|{% endlatex %}, což je spor s minimalitou.
+Nechť {% latex %}D{% endlatex %} je komponenta {% latex %}G - z_e, z_f, u{% endlatex %} neobsahující {% latex %}x, y{% endlatex %}. Existuje, protože {% latex %}x, y{% endlatex %} jsou spojené a graf se rozpadne alespoň na {% latex %}2{% endlatex %} komponenty). Tvrdím, že {% latex %}D \subseteq C \setminus \left\{u\right\}{% endlatex %}, protože {% latex %}D{% endlatex %} nemůže obsahovat {% latex %}z_e, z_f, u{% endlatex %} (vrcholy řezu), {% latex %}x, y{% endlatex %} (z definice {% latex %}D{% endlatex %}), ale {% latex %}u{% endlatex %} má souseda v {% latex %}C{% endlatex %} (podle pomocného tvrzení), takže v {% latex %}D{% endlatex %} ještě něco zbyde. Tedy {% latex %}|D| < |C|{% endlatex %}, což je spor s minimalitou.
 {% endmath %}
 
-{% math theorem "Tutteova charakterizace 3-souvislých grafů" %} Graf {% latex %}G{% endlatex %} je 3-souvislý {% latex %}\iff{% endlatex %} existuje posloupnost {% latex %}K_4 \cong G_0 \cong G_1 \cong \ldots \cong G{% endlatex %} t. ž. {% latex %}\forall i \in [n], G_{i - 1}{% endlatex %} vznikne z {% latex %}G_i{% endlatex %} kontrakcí hrany, navíc {% latex %}G_i{% endlatex %} má všechny vrcholy stupně {% latex %}\ge 3{% endlatex %}{% endmath %}
+- netvrdím, že {% latex %}D{% endlatex %} je nejmenší!
 
-TODO: obrázek?
+{% math theorem "Tutteova charakterizace 3-souvislých grafů" %} Graf {% latex %}G{% endlatex %} je 3-souvislý {% latex %}\iff{% endlatex %} existuje posloupnost {% latex %}K_4 \cong G_0 \cong G_1 \cong \ldots \cong G{% endlatex %} t. ž. {% latex %}\forall i \in [n], G_{i - 1}{% endlatex %} vznikne z {% latex %}G_i{% endlatex %} kontrakcí hrany, navíc {% latex %}G_i{% endlatex %} má všechny vrcholy stupně {% latex %}\ge 3{% endlatex %}.{% endmath %}
 
-{% math proof %} {% latex %}\Rightarrow{% endlatex %} Jednoduchá induktivní aplikace lemma o kontrahovatelné hraně.
+{% math proof %} {% latex %}\Rightarrow{% endlatex %} Induktivní aplikace lemmatu o kontrahovatelné hraně.
+
 {% latex %}\Leftarrow{% endlatex %} Mějme {% latex %}G_0, \ldots, G_n{% endlatex %} dle předpokladu. Chceme, že {% latex %}G_n \cong G{% endlatex %} je 3-souvislý. Indukcí:
 - {% latex %}K_4{% endlatex %} je 3-souvislý
 - {% latex %}G_{i - 1}{% endlatex %} je 3-souvislý {% latex %}\implies G_i{% endlatex %} je 3-souvislý
 
-Pro spor nechť {% latex %}G_i{% endlatex %} má vrcholový řez velikosti 2, označme ho {% latex %}R{% endlatex %}. Pak každá komponenta {% latex %}G_i - R{% endlatex %} má alespoň 2 vrcholy {% latex %}x, y{% endlatex %} (TODO: obrázek) (osamocený vrchol může sousedit jen s řezem, ale ten je velikosti 2, spor s {% latex %}\forall \mathrm{deg}(v) \ge 3{% endlatex %}).
+Pro spor nechť {% latex %}G_i{% endlatex %} má vrcholový řez velikosti 2, označme ho {% latex %}R{% endlatex %}. Pak každá komponenta {% latex %}G_i - R{% endlatex %} má alespoň 2 vrcholy {% latex %}x, y{% endlatex %} (osamocený vrchol {% latex %}v{% endlatex %} mohl sousedit jen s řezem, ale ten je velikosti 2, což je spor se stupněm vrcholů {% latex %}\ge 3{% endlatex %} pro {% latex %}v{% endlatex %}).
 
-Potom ani {% latex %}G_{i - 1}{% endlatex %} nebyl 3-souvislý.
+Obměnou ani {% latex %}G_{i - 1}{% endlatex %} nebyl 3-souvislý, rozborem toho, kde vznikla hrana:
 - {% latex %}e = \left\{x, y\right\} \implies G_{i - 1}{% endlatex %} má řez velikosti 1.
-- {% latex %}e{% endlatex %} celá obsažená v komponentě {% latex %}\implies \left\{x, y\right\}{% endlatex %} je stále {% latex %}G_{i - 1}{% endlatex %}
+- {% latex %}e{% endlatex %} celá obsažená v komponentě {% latex %}\implies \left\{x, y\right\}{% endlatex %} je stále řez v {% latex %}G_{i - 1}{% endlatex %}
 - {% latex %}e = \left\{z, y\right\}{% endlatex %} pro {% latex %}z{% endlatex %} z nějaké komponenty {% latex %}\implies \left\{zy, x\right\}{% endlatex %} je řez v {% latex %}G_{i - 1}{% endlatex %}
-	- využíváme, že každá komponenta má alespoň {% latex %}2{% endlatex %} vrcholy -- kdyby ne, tak {% latex %}\left\{zy, x\right\}{% endlatex %} nemusí nic odříznout, pokud tam byla jednovrcholová komponenta
+	- využíváme předchozí pozorování, že každá komponenta má alespoň {% latex %}2{% endlatex %} vrcholy -- kdyby ne, tak {% latex %}\left\{zy, x\right\}{% endlatex %} nemusí nic odříznout, pokud tam byla jednovrcholová komponenta
 {% endmath %}
 
 #### Minory
 
 {% math definition "minor" %} Nechť {% latex %}H, G{% endlatex %} jsou grafy. Pak {% latex %}H{% endlatex %} je minor {% latex %}G{% endlatex %} (nebo že {% latex %}G {% endlatex %} obsahuje {% latex %}H{% endlatex %} jako minor), značíme {% latex %}H \preceq G{% endlatex %}, pokud {% latex %}H{% endlatex %} lze získat z {% latex %}G{% endlatex %} posloupností mazání vrcholů, mazání hran nebo kontrakcí hran.{% endmath %}
 
-TODO: příklad
-
-- (👀) -- {% latex %}\preceq{% endlatex %} je transitivní (prostě spojím posloupnosti)
-- (👀) -- {% latex %}H{% endlatex %} podgraf {% latex %}G \implies H{% endlatex %} minor {% latex %}G{% endlatex %}
+- (👀) {% latex %}\preceq{% endlatex %} je transitivní (prostě spojím posloupnosti operací)
+- (👀) {% latex %}H{% endlatex %} podgraf {% latex %}G \implies H{% endlatex %} minor {% latex %}G{% endlatex %}
 	- podgraf vzniká přesně mazáním vrcholů a mazáním hran
-- (👀) -- {% latex %}G{% endlatex %} rovinný {% latex %}\implies{% endlatex %} jeho minory jsou také rovinné
+- (👀, spíš fakt) {% latex %}G{% endlatex %} rovinný {% latex %}\implies{% endlatex %} jeho minory jsou také rovinné
 	- pro podgraf očividné, je jen potřeba si rozmyslet kontrakci (že nic topologicky nerozbije)
 
-{% math theorem "Kuratowského" %} {% latex %}G{% endlatex %} rovinný {% latex %}\iff{% endlatex %} neobsahuje jako dělení {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %}{% endmath %}
-- umíme {% latex %}\implies{% endlatex %}, protože {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} nejsou rovinné a dělením se to rovinným také nestane)
+{% math theorem "Kuratowského" %} {% latex %}G{% endlatex %} rovinný {% latex %}\iff{% endlatex %} neobsahuje dělení {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %}{% endmath %}
 
-{% math theorem "Kuratowski 1930, Warner 1937" %} Následující jsou ekvivalentní:
+{% math theorem "Kuratowski 1930, Warner 1937" %} Následující jsou ekvivalentní:{% endmath %}
 1. {% latex %}G{% endlatex %} je rovinný
 2. {% latex %}G{% endlatex %} neobsahuje dělení {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} jako podgraf
 3. {% latex %}G{% endlatex %} neobsahuje dělení {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} jako minor.
-{% endmath %}
 
-- Kuratowski dokázal {% latex %}1\iff 2{% endlatex %}, Wagner {% latex %}1\iff 3{% endlatex %}
-
-{% math proof %}
-- {% latex %}1 \implies 2{% endlatex %} (z prváku)
-- {% latex %}3 \implies 2{% endlatex %} (obměna + „obsahuej dělení jako podgraf“ {% latex %}\implies{% endlatex %} „obsahuje minor“)
-- {% latex %}1 \implies 3{% endlatex %}: vyplývá z pozorování, že je-li rovinný, tak i minor bude rovinný
-- {% latex %}2 \implies 3{% endlatex %} na cvičení.
-- {% latex %}3 \implies 1{% endlatex %}: hlavní důkaz.
-
-Indukcí podle {% latex %}|V(G)|{% endlatex %}, pro {% latex %}|V(G)| \le 4{% endlatex %} ok; předpokládám {% latex %}G{% endlatex %} má alespoň 5 vrcholů a neobsahuje {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} jako minor. Rozeberu případy podle {% latex %}k_v(G){% endlatex %} (vrcholová souvislost {% latex %}G{% endlatex %}).
-0. {% latex %}\implies{% endlatex %} nesouvislý graf, každá komponenta je rovina podle IP
-1. {% latex %}\implies{% endlatex %} artikulačním vrcholem {% latex %}x{% endlatex %} rozpojíme, podle IP nakreslíme (s tím, že {% latex %}x{% endlatex %} bude na vnější stěně -- to umíme tím, že to dáme na kouli a projektujeme na rovinu).
-2. {% latex %}\implies{% endlatex %} na cvičení.
-3. (více než) {% latex %}\implies{% endlatex %} příští přednáška.
+{% math proof %} {% latex %}\\{% endlatex %}
+- {% latex %}1 \implies 2{% endlatex %}: z prváku, protože {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} nejsou rovinné
+- {% latex %}3 \implies 2{% endlatex %}: obměna: „obsahuje dělení jako podgraf“ {% latex %}\implies{% endlatex %} „obsahuje dělení jako minor“
+- {% latex %}1 \implies 3{% endlatex %}: je-li rovinný, tak i minor bude rovinný (fakt výše)
+- {% latex %}2 \implies 3{% endlatex %}: TODO: bylo na cvičení
+- {% latex %}3 \implies 1{% endlatex %}: indukcí podle {% latex %}|V(G)|{% endlatex %}
+	- pro {% latex %}|V(G)| \le 4{% endlatex %} vše funguje
+	- předpokládám {% latex %}G{% endlatex %} má alespoň 5 vrcholů a neobsahuje {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} jako minor. Rozeberu případy podle {% latex %}k_v(G){% endlatex %} (vrcholová souvislost {% latex %}G{% endlatex %})
+		- {% latex %}k_v(G) = 0\implies{% endlatex %} nesouvislý graf, použijeme indukci
+		- {% latex %}k_v(G) = 1\implies{% endlatex %} artikulačním vrcholem {% latex %}x{% endlatex %} rozpojíme, podle IP nakreslíme
+			- {% latex %}x{% endlatex %} musí být na vnější stěně, což umíme přes trik s projekcí z koule na rovinu
+		- {% latex %}k_v(G) = 2\implies{% endlatex %}, rozložení podél dvou vrcholů tvořících řez. TODO: víc rozepsat?
 {% endmath %}
 
 ### 4. přednáška
-Dokazuji: {% latex %}G{% endlatex %} nemá {% latex %}K_5{% endlatex %} a {% latex %}K_{3, 3}{% endlatex %} jako minor {% latex %}\implies{% endlatex %} {% latex %}G{% endlatex %} je rovinný ({% latex %}\iff{% endlatex %} má rovinné nakreslení).
+- {% latex %}k_v(G) \ge 3\implies{% endlatex %} použijeme lemma o kontrahovatelné hraně: {% latex %}\exists e = \left\{x, y\right\}{% endlatex %} t. ž. {% latex %}G \setminus e = G'{% endlatex %} je {% latex %}3{% endlatex %}-souvislý
+	- (👀) {% latex %}G'{% endlatex %} nemůže obsahovat {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} jako minor (spor s předpokladem)
+	- {% latex %}\mathcal{G}' \ldots{% endlatex %} rovinné nakreslení {% latex %}G'{% endlatex %} (z IP existuje)
+	- {% latex %}G'' = G' - v_e{% endlatex %} (vrchol vzniklý kontrakcí {% latex %}e{% endlatex %}) {% latex %} = G - \left\{x, y\right\}{% endlatex %}
+		- (👀) {% latex %}G''{% endlatex %} bude {% latex %}2{% endlatex %}-souvislý (protože {% latex %}G'{% endlatex %} je {% latex %}3{% endlatex %}-souvislý a {% latex %}G''{% endlatex %} vznikne odebráním vrcholu)
+		- (👀) taky rovinný (odebráním mi žádný minor nevznikne)
+		- {% latex %}\mathcal{G}''{% endlatex %} nakreslení {% latex %}G''{% endlatex %} vzniklé z {% latex %}\mathcal{G}'{% endlatex %} odebráním {% latex %}v_e{% endlatex %}
 
-Rozebíráme {% latex %}k_v (G) \ge 3{% endlatex %}. Použijeme LoKH (lemma o kontrahovatelné hraně) -- {% latex %}\exists e = \left\{x, y\right\}{% endlatex %} t. ž. {% latex %}G.e = G'{% endlatex %} je {% latex %}3{% endlatex %}-souvislý.
-- (👀) -- {% latex %}G'{% endlatex %} nemůže obsahovat {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} jako minor (spor s předpokladem) {% latex %}\rightarrow \mathcal{G}' \ldots{% endlatex %} rovinné nakreslení {% latex %}G'{% endlatex %} (z IP existuje)
+Označme {% latex %}C{% endlatex %} kružnici ohraničující stěnu {% latex %}\mathcal{G}''{% endlatex %}, v níž ležel (v {% latex %}\mathcal{G}'{% endlatex %} vrchol {% latex %}v_e{% endlatex %}) -- musí to být kružnice, protože v rovinném nakreslení každého {% latex %}2{% endlatex %}-souvislého grafu je každá stěna kružnice.
 
-{% latex %}G'' = G' - v_e{% endlatex %} (vrchol vzniklý kontrakcí {% latex %}e{% endlatex %}) {% latex %} = G - \left\{x, y\right\}{% endlatex %}
-- (👀) -- {% latex %}G''{% endlatex %} bude {% latex %}2{% endlatex %}-souvislý (protože {% latex %}G'{% endlatex %} je {% latex %}3{% endlatex %}-souvislý a {% latex %}G''{% endlatex %} vznikne odebráním vrcholu)
-- taky rovinný (odebráním mi žádný minor nevznikne), {% latex %}\mathcal{G}''{% endlatex %} nakreslení {% latex %}G''{% endlatex %} vzniklé z {% latex %}\mathcal{G}'{% endlatex %} odebráním {% latex %}v_e{% endlatex %}
-
-TODO: obrázek, tady je potřeba
+{% xopp tmp %}
 
 - {% latex %}N(x){% endlatex %} -- sousedi {% latex %}x{% endlatex %}
 - {% latex %}N(y){% endlatex %} -- sousedi {% latex %}y{% endlatex %}
 - {% latex %}N(x) \cup N(y) \setminus \left\{x, y\right\} \subseteq C{% endlatex %} (každý soused {% latex %}x{% endlatex %} kromě {% latex %}y{% endlatex %} je i sousedem {% latex %}v_e{% endlatex %} v {% latex %}G'{% endlatex %}, stejně pro {% latex %}y{% endlatex %}
 
-3 případy (TODO: obrázky):
-1. {% latex %}|N(x) \cap N(y)| \ge 3{% endlatex %} -- nenastane, protože kontrakcí dostanu {% latex %}K_5{% endlatex %}
+3 případy:
+1. {% latex %}|N(x) \cap N(y)| \ge 3{% endlatex %} -- nenastane, protože kontrakcí dostanu {% latex %}K_5{% endlatex %}, což je spor s předpokladem
+
+{% xopp p1 %}
+
 2. {% latex %}\exists a_1, a_2 \in N(x) \cap C, \exists b_1, b_2 \in N(y) \cap C{% endlatex %}, na {% latex %}C{% endlatex %} jsou v pořadí {% latex %}a_1, b_1, a_2, b_2{% endlatex %} -- nenastane, protože kontrakcí dostanu {% latex %}K_{3, 3}{% endlatex %}
+
+{% xopp p2 %}
+
 3. zbytek -- nenasatane ani (1), ani (2)
 	- označme {% latex %}a_1, \ldots, a_k \in N(x) \cap C{% endlatex %} v pořadí, jak se objevují na {% latex %}C{% endlatex %}
 	- můžu nakreslit všechny hrany {% latex %}xa_1, \ldots xa_k{% endlatex %}
 	- {% latex %}a_1, \ldots, a_k{% endlatex %} rozdělují {% latex %}C{% endlatex %} na vnitřně disjunktní cesty {% latex %}P_1, \ldots P_k{% endlatex %} ({% latex %}k \ge 2{% endlatex %} protože {% latex %}G{% endlatex %} je {% latex %}3{% endlatex %}-souvislý... {% latex %}x{% endlatex %} sousedí s {% latex %}y{% endlatex %} a s {% latex %}\ge 2{% endlatex %} dalšími vrcholy)
-		- chceme: {% latex %}N(y) \setminus \left\{x\right\}{% endlatex %} patří do jediné {% latex %}P_i{% endlatex %} (pro nějaké {% latex %}i{% endlatex %})
-		- TODO: případy přes obrázek
-		- TODO: rozbor případů
-	- {% latex %}y{% endlatex %} tedy nakreslím do té správně stěny a mám hotovo
+		- chceme: {% latex %}N(y) \setminus \left\{x\right\}{% endlatex %} patří do jediné {% latex %}P_i{% endlatex %} (pro nějaké {% latex %}i{% endlatex %}), jinak by nastaly předchozí případy
+	- {% latex %}y{% endlatex %} nakreslím do té správně stěny, spojím s {% latex %}b_i{% endlatex %} a mám hotovo
+
+{% xopp p3 %}
+{% xopp p4 %}
 
 #### Kreslení grafů na plochy
 {% math definition %}Nechť {% latex %}X \subseteq \mathbb{R}^n, Y \subseteq \mathbb{R}^m{% endlatex %}. Potom homeomorfismus z {% latex %}X{% endlatex %} na {% latex %}Y{% endlatex %} je funkce {% latex %}f: X \mapsto Y{% endlatex %}, která je spojitá, bijekce a {% latex %}f^{-1}{% endlatex %} je spojitá. {% latex %}X, Y{% endlatex %} jsou homeomorfní ({% latex %}X \cong Y{% endlatex %}) pokud mezi nimi existuje homeomorfismus.{% endmath %}
@@ -282,21 +284,36 @@ TODO: obrázek, tady je potřeba
 
 {% math definition "plocha" %} kompaktní (uzavřená, omezená), souvislá (např. oblouková -- každé dva body můžu propojit obloukem), {% latex %}2{% endlatex %}-rozměrná varieta bez hranice (dostatečně malé okolí každého bodu je homeomorfní otevřenému okolí v {% latex %}\mathbb{R}^2{% endlatex %}).{% endmath %}
 - např. sféra v {% latex %}\mathbb{R}^3{% endlatex %} nebo torus v {% latex %}\mathbb{R}^3{% endlatex %}
+- není to např.
+	- {% latex %}\mathbb{R}^2{% endlatex %}, jelikož není kompaktní (omezená)
+	- čtverec s hranici, jelikož pro každý krajní body není homeomorfní {% latex %}\mathbb{R}^2{% endlatex %}
 
-Operace s plochami (začínám u sféry, TODO: obrázky):
-1. přidání ucha (od hrnku)
+Operace s plochami, přes které umíme všechny zkonstruovat:
+
+
+{:.rightFloatBox}
+<div markdown="1">
+{% xopp o1 %}
+</div>
+- přidání ucha (od hrnku)
 	- vyříznu dva kruhy
 	- vezmu plášť pálce bez dna a vrchu
 	- ohnu a přílepím jej na díry po kruzích
 	- (👀) -- teleport, do kterého když vejdeme, tak na druhé straně vyjdeme opačně („otočeně“)
-2. přidání křížítka (cross-cupu):
-	- (👀) -- teleport, do kterého když vejdeme, tak nás to teleportuje naproti (v rámci toho kruhu)
 
-Pro {% latex %}g \in \left\{0, 1, \ldots\right\}{% endlatex %} nechť {% latex %}\sum_g{% endlatex %} značí plochu zvniklou ze féry přidáním {% latex %}g{% endlatex %} uší, tak říkáme, že {% latex %}\sum g{% endlatex %} je orientovatelná plocha rodu {% latex %}g{% endlatex %}.
+{:.rightFloatBox}
+<div markdown="1">
+{% xopp o2 %}
+</div>
+- přidání křížítka (cross-cupu):
+	- (👀) -- teleport, do kterého když vejdeme, tak nás to přesune naproti
 
-Pro {% latex %}g \in \left\{1, 2, \ldots\right\}{% endlatex %} nechť {% latex %}\prod_g{% endlatex %} značí plochu zvniklou ze féry přidáním {% latex %}g{% endlatex %} křížítek, tak říkáme, že {% latex %}\prod g{% endlatex %} je neorientovatelná plocha rodu {% latex %}g{% endlatex %}.
+Pro {% latex %}g \in \left\{0, 1, \ldots\right\}{% endlatex %} nechť {% latex %}\sum_g{% endlatex %} značí plochu zvniklou ze féry přidáním {% latex %}g{% endlatex %} uší, tak říkáme, že {% latex %}\sum g{% endlatex %} je **orientovatelná plocha** rodu {% latex %}g{% endlatex %}.
 
-{% math fact %}Každá plocha je homeomorfní právě jedné z posloupností {% latex %}\sum_0, \prod_1, \sum_1, \prod_2,\ldots{% endlatex %} (zde máme skryté tvrzení, že žádné dvě z této posloupností nejsou homeomorfní.{% endmath %}
+Pro {% latex %}g \in \left\{1, 2, \ldots\right\}{% endlatex %} nechť {% latex %}\prod_g{% endlatex %} značí plochu zvniklou ze féry přidáním {% latex %}g{% endlatex %} křížítek, tak říkáme, že {% latex %}\prod g{% endlatex %} je **neorientovatelná plocha** rodu {% latex %}g{% endlatex %}.
+
+{% math fact %}Každá plocha je homeomorfní právě jedné z posloupností {% latex %}\sum_0, \prod_1, \sum_1, \prod_2,\ldots{% endlatex %}{% endmath %}
+- máme tu skryté tvrzení, že žádné dvě z této posloupností nejsou homeomorfní.
 
 {% math fact %}Přidám-li ke sféře {% latex %}k \ge 0{% endlatex %} uší a {% latex %}l \ge 1{% endlatex %} křížítek, vznikne neorientovatelná plocha homeomorfní {% latex %}\prod_{2k + l}{% endlatex %} ({% latex %}\approx{% endlatex %} „přidání dvou křížítek je jako přidání ucha,“ **pokud** už tam bylo {% latex %}\ge 1{% endlatex %} křížítko){% endmath %}
 
@@ -304,9 +321,6 @@ Pro {% latex %}g \in \left\{1, 2, \ldots\right\}{% endlatex %} nechť {% latex %
 - {% latex %}\prod_1 \ldots{% endlatex %} projektivní rovina
 - {% latex %}\sum_1 \ldots{% endlatex %} torus
 - {% latex %}\prod_2 \ldots{% endlatex %} kleinova láhev
-
-TODO: ten cool pohled ze cvik.
-
 
 ### 5. přednáška
 {% math definition "nakreslení grafu" %} {% latex %}G = (V, E){% endlatex %} na pllochu {% latex %}\Gamma{% endlatex %} je zobrazení {% latex %}\phi{% endlatex %}t. ž.:
