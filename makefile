@@ -6,6 +6,7 @@ SVG  = $(patsubst %.xopp, %.svg, $(XOPP))
 
 all: build upload
 
+xopp: $(SVG);
 build: $(SVG); jekyll build --trace
 serve: $(SVG); jekyll serve --trace --drafts
 
