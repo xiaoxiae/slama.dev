@@ -8,7 +8,7 @@ all: build upload
 
 xopp: $(SVG);
 build: $(SVG); jekyll build --trace
-serve: $(SVG); jekyll serve --trace --drafts
+serve: $(SVG); jekyll serve --trace --drafts --config _config.yml,_config-local.yml
 
 upload:
 	cd _site && git a . && git c -m "automated commit" && git push
