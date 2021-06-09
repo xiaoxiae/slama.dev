@@ -16,11 +16,10 @@ category: "lecture notes"
 
 {% math definition %}Párování v {% latex %}G = \left(V, E\right){% endlatex %} je {% latex %}M \subseteq E{% endlatex %} t. ž. {% latex %}\forall v \in V \exists \le 1{% endlatex %} hrana {% latex %}e \in M: v \in e{% endlatex %}{% endmath %}
 
-- **maximální** (do inkluze) -- přidání další hrany pro dané párování už není možné
-	- nezajímá nás (v přednášce), prostě hladově přidávejme
+- **maximální** (do inkluze) -- přidání další hrany pro dané párování už není možné; v přednášce nás nezajímá
 - **největší** -- {% latex %}\mathrm{max}(|M|){% endlatex %}
 
-{% math definition "volný vrchol" %} (vzhledem k {% latex %}M{% endlatex %}) -- vrchol, kterého se nedotýká žádná hrana párování{% endmath %}
+{% math definition "volný vrchol" %} (vzhledem k {% latex %}M{% endlatex %}) -- vrchol, kterého se nedotýká žádná hrana párování.{% endmath %}
 
 {% math definition "střídavá cesta" %} (vzdledem k {% latex %}M{% endlatex %}) -- cesta, na které se střídají hrany v párování a hrany mimo párování: {% latex %}u_0, \ldots, u_k{% endlatex %}, kde každá sudá/lichá hrana je v {% latex %}M{% endlatex %}, lichá/sudá není v {% latex %}M{% endlatex %}{% endmath %}
 
@@ -34,11 +33,11 @@ category: "lecture notes"
 {:.center}
 ![](/assets/kombinatorika-a-grafy-ii/alter.svg)
 </div>
-- {% latex %}\Leftarrow{% endlatex %} pokud {% latex %}M{% endlatex %} má VSC, mohu {% latex %}M{% endlatex %} zvětšit prohozením hran
+- {% latex %}\Rightarrow{% endlatex %} pokud {% latex %}M{% endlatex %} má VSC, mohu {% latex %}M{% endlatex %} zvětšit prohozením hran
 
-- {% latex %}\Leftarrow{% endlatex %} nechť {% latex %}M'{% endlatex %} je párování v {% latex %}G{% endlatex %} t. ž {% latex %}|M'| \ge |M|{% endlatex %}
-	- uvažme {% latex %}H = \left(V, M \cup M'\right){% endlatex %}; pak má každý vrchol supeň {% latex %}0, 1{% endlatex %} nebo {% latex %}2{% endlatex %} \implies komponenty souvislosti jsou kružnice sudé délky a cesty
-	- (👀) -- musí existovat komponenta, která má více hran z {% latex %}M'{% endlatex %}
+- {% latex %}\Leftarrow{% endlatex %} pro spor nechť {% latex %}M'{% endlatex %} je párování v {% latex %}G{% endlatex %} t. ž {% latex %}|M'| \ge |M|{% endlatex %}
+	- uvažme {% latex %}H = \left(V, M \cup M'\right){% endlatex %}; pak má každý vrchol stupeň {% latex %}0, 1{% endlatex %} nebo {% latex %}2{% endlatex %} {% latex %}\implies{% endlatex %} komponenty souvislosti jsou kružnice sudé délky a cesty (navíc jsou střídavé)
+	- (👀) -- musí existovat komponenta, která má více hran z {% latex %}M'{% endlatex %} (je větší)
 		- není to kružnice (musela by být lichá a měli bychom máme kolizi ve vrcholu)
 		- je to volná (z definice, vzhledem k {% latex %}M{% endlatex %}) střídavá (jinak by měly stejný počet hran) cesta
 
@@ -58,11 +57,11 @@ category: "lecture notes"
 {:.center}
 ![](/assets/kombinatorika-a-grafy-ii/kontrakce.svg)
 
-{% math lemma %}Nechť {% latex %}C{% endlatex %} je květ v grafu {% latex %}G{% endlatex %}. Potom párování {% latex %}M{% endlatex %} v {% latex %}G{% endlatex %} je maximální, právě když {% latex %}M \setminus E(C){% endlatex %} je maximální párování v grafu {% latex %}G . C{% endlatex %}, tj. s květem {% latex %}C{% endlatex %} zkontrahovaným do jediného vrcholu.{% endmath %}
+{% math lemma %}Nechť {% latex %}C{% endlatex %} je květ v grafu {% latex %}G{% endlatex %}. Potom párování {% latex %}M{% endlatex %} v {% latex %}G{% endlatex %} je maximální, právě když {% latex %}M \setminus E(C){% endlatex %} je maximální párování v grafu {% latex %}G . C{% endlatex %}, tj. s květem {% latex %}C{% endlatex %} zkontrahovaným do jediného vrcholu. Navíc pokud znám VSC pro {% latex %}M . C{% endlatex %}, tak v poly. čase najdu VSC pro {% latex %}M{% endlatex %} v {% latex %}G{% endlatex %}.{% endmath %}
 
-TODO: důkaz?
+TODO: důkaz z textu Matouška!
 
-{% math algorithm "Edmondsův „zahradní“" %} vstupem je graf {% latex %}G{% endlatex %} a jeho libovolné párování {% latex %}M{% endlatex %}, třeba prázdné. Výstupem je párování {% latex %}M'{% endlatex %}, které je alespoň o {% latex %}1{% endlatex %} větší, než {% latex %}M{% endlatex %}, případně {% latex %}M{% endlatex %} pokud bylo maximální.{% endmath %}
+{% math algorithm "Edmondsův „zahradní/blossom“" %} vstupem je graf {% latex %}G{% endlatex %} a jeho libovolné párování {% latex %}M{% endlatex %}, třeba prázdné. Výstupem je párování {% latex %}M'{% endlatex %}, které je alespoň o {% latex %}1{% endlatex %} větší, než {% latex %}M{% endlatex %}, případně {% latex %}M{% endlatex %} pokud bylo maximální.{% endmath %}
 
 - zkonstruujeme maximální možný **Edmondsův les** vzhledem k aktuálnímu {% latex %}M{% endlatex %} tím, že z volných vrcolů pustíme BFS a střídavě přidáváme vrcholy
 	- hranám, které se v lese neobjeví, se říká kompost a nebudou pro nás důležité
@@ -70,17 +69,17 @@ TODO: důkaz?
 {:.center}
 ![](/assets/kombinatorika-a-grafy-ii/les.svg)
 
-- pokud existuje hrana mezi sudými hladinami různých stromů, pak máme volnou střídavou cestu, kterou zalterujeme
-- pokud existuje hrana mezi sudými hladinami jednoho stromu, máme květ {% latex %}C{% endlatex %} -- ten zkontrahujeme a rekurzivně se zavolame
+- pokud existuje hrana mezi (potenciálně různými) sudými hladinami různých stromů, pak máme volnou střídavou cestu, kterou zalterujeme a jsme hotovi (párování je o $1$ větší)
+- pokud existuje hrana mezi (potenciálně různými) sudými hladinami jednoho stromu, máme květ {% latex %}C{% endlatex %} -- ten zkontrahujeme a rekurzivně se zavoláme
 	- vrátí-li {% latex %}M' = M{% endlatex %}, pak nic dalšího neděláme
-	- vratí-li nějaké větší párování, tak vhodně zpárujeme {% latex %}C{% endlatex %}
+	- vratí-li nějaké větší párování, tak z něho zkonstruujeme párování v {% latex %}G{% endlatex %}
 - neexistuje-li hrana mezi sudými hladinami, pak {% latex %}M' = M{% endlatex %}
 
-TODO: časová složitost, důkaz správnosti?
+{% math lemma %}Edmondsův algoritmus spuštěný na {% latex %}G{% endlatex %} a {% latex %}M{% endlatex %} doběhne v čase {% latex %}\mathcal{O}(n \cdot (n + m)){% endlatex %} a najde párování {% latex %}M'{% endlatex %} alespoň o {% latex %}1{% endlatex %} hranu větší než {% latex %}M{% endlatex %}, případně oznámí, že {% latex %}M{% endlatex %} je největší {% latex %}\implies{% endlatex %} nejlepší párování lze nalézt v čase {% latex %}\mathcal{O}(n^2 (n + m)){% endlatex %}.{% endmath %}
 
 ### 2. přednáška
 
-{% math definition "perfektní párování" %}Párování {% latex %}M{% endlatex %} je perfektní, pokud neexistuje v {% latex %}G{% endlatex %} žádný volný vrchol (vůči {% latex %}M{% endlatex %}).{% endmath %}
+{% math definition "perfektní párování" %}Párování {% latex %}M{% endlatex %} je perfektní, pokud neexistuje v {% latex %}G{% endlatex %} žádný volný vrchol.{% endmath %}
 
 #### Tutteova věta
 {% math definition "Tutteova podmínka" %} {% latex %}\forall S \subseteq V: \mathrm{odd}(G - S) \le |S|{% endlatex %}
@@ -89,58 +88,73 @@ TODO: časová složitost, důkaz správnosti?
 {% math theorem "Tutteova věta" %} {% latex %}G{% endlatex %} má perfektní párování {% latex %}\iff{% endlatex %} platí Tutteova podmínka.{% endmath %}
 
 {% math proof %}
-{% latex %}\Rightarrow{% endlatex %} obměna: neplatí TP {% latex %}\implies{% endlatex %} není PP. Nehchť {% latex %}\exists S \subseteq V{% endlatex %} t. ž. {% latex %}\mathrm{odd(G - S)} > |S|{% endlatex %}. V perfektním párování by se alespoň {% latex %}1{% endlatex %} vrchol musel spárovat s {% latex %}S{% endlatex %}. To ale nejde, protože jich v {% latex %}S{% endlatex %} není dostatek.
+{% latex %}\Rightarrow{% endlatex %} obměna: neplatí TP {% latex %}\implies{% endlatex %} není PP. Nehchť {% latex %}\exists S \subseteq V{% endlatex %} t. ž. {% latex %}\mathrm{odd(G - S)} > |S|{% endlatex %}. V perfektním párování se alespoň {% latex %}1{% endlatex %} vrchol z každé liché komponenty musí spárovat s nějakým z {% latex %}S{% endlatex %}, ale těch není dostatek.
 
-{% latex %}\Leftarrow{% endlatex %} nechť {% latex %}G{% endlatex %} splňuje Tutteovu podmínku. {% latex %}|V|{% endlatex %} je sudá (nastavíme množinu prázdnou). Dokážeme, že {% latex %}G{% endlatex %} má PP indukcí podle počtu nehran.
+{% latex %}\Leftarrow{% endlatex %} nechť {% latex %}G{% endlatex %} splňuje Tutteovu podmínku. {% latex %}|V|{% endlatex %} je sudá (nastavíme {% latex %}S{% endlatex %} prázdnou). Dokážeme, že {% latex %}G{% endlatex %} má PP indukcí podle počtu nehran.
 
-- základ: {% latex %}G = K_{2n}{% endlatex %}, ten PP má
-- indukční podmínka: {% latex %}G{% endlatex %} má nehranu a každý graf na {% latex %}V{% endlatex %}s počtem hran alespoň o 1 větší než {% latex %}|E|{% endlatex %} a platí TP, pak má perfektní párování
-
-- (👀) -- přidáním hrany do grafu se neporuší TP ({% latex %}\forall S \subseteq V{% endlatex %} počet lichých komponent {% latex %}G - S{% endlatex %} buď klesne o {% latex %}2{% endlatex %} nebo zůstane stejný).
+- **základ:** {% latex %}G = K_{2n}{% endlatex %}, ten PP má
+- **indukční podmínka:** {% latex %}G{% endlatex %} má nehranu a každý graf na {% latex %}V{% endlatex %}s počtem hran alespoň o 1 větší než {% latex %}|E|{% endlatex %} a platí TP, pak má perfektní párování
 
 {% math definition %}{% latex %}S = \left\{v \in V\ |\ \mathrm{deg}(v) = n - 1\right\} = \left\{v \mid \text{$v$ je spojený se všemi vrcholy} \right\}{% endlatex %}{% endmath %}
 - lehký příklad: každá komponenta {% latex %}G - S{% endlatex %} je lichá klika
-	- v rámci dané kliky vypáruji vše až na jeden vrchol, ten spáruji v rámci {% latex %}S{% endlatex %} ({% latex %}S{% endlatex %} vidí všechny) a zbytek v {% latex %}S{% endlatex %} spáruji spolu
-- alespoň {% latex %}1{% endlatex %} komponenta {% latex %}K{% endlatex %} není klika, tedy {% latex %}\exists x, y{% endlatex %} nesousedi {% latex %}x, y{% endlatex %}
-	- ti mají společného souseda {% latex %}u{% endlatex %} (TODO tvrzení)
-	- jelikož {% latex %}u{% endlatex %} není spojený s {% latex %}S{% endlatex %}, tak je spojený s nějakým vrcholem {% latex %}v{% endlatex %}
+	- v rámci dané kliky vypáruji vše až na jeden vrchol, ten spáruji v rámci {% latex %}S{% endlatex %} ({% latex %}S{% endlatex %} vidí všechny) a zbytek v {% latex %}S{% endlatex %} spáruji spolu (sudé komponenty do parity nepřispívají, liché + {% latex %}1{% endlatex %} z {% latex %}S{% endlatex %} také ne a v {% latex %}S{% endlatex %} tedy zbyde sudý počet vrcholů)
 
 {:.center}
-![](/assets/kombinatorika-a-grafy-ii/xyuv.svg)
+![](/assets/kombinatorika-a-grafy-ii/1.svg)
 
-{% latex %}G_1 = G + e_1{% endlatex %} a {% latex %}G_2 = G + e_2{% endlatex %} díky předchozímu pozorování splňují TP a spolu s IP {% latex %}\implies \exists{% endlatex %} PP {% latex %}M_1, M_2{% endlatex %} v {% latex %}G_1, G_2{% endlatex %}
-- jednoduchý příklad: {% latex %}e_1{% endlatex %} nepatří do {% latex %}M_1 \implies M_1{% endlatex %} je PP pro {% latex %}G{% endlatex %}, analogicky pro {% latex %}G{% endlatex %} (případně přealternuju cyklus, na kterém je)
+- alespoň {% latex %}1{% endlatex %} komponenta {% latex %}K{% endlatex %} není klika, tedy {% latex %}\exists x, y{% endlatex %} nesousedi
+	- ti mají společného souseda {% latex %}u{% endlatex %} (tvrzení, že každý souvislý neúplný graf má třešničku)
+	- jelikož {% latex %}u{% endlatex %} není spojený s {% latex %}S{% endlatex %}, tak je spojený s nějakým vrcholem {% latex %}v{% endlatex %}
 
-Předpokládejme {% latex %}e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2){% endlatex %}. {% latex %}H {% endlatex %} tedy obsahuje „dvoubarevné hrany“ {% latex %}e \in M_1 \cap M_2{% endlatex %} nebo střídavé sudé cykly. Navíc neobsahuje izolované vrcholy a střídavé cesty, protože {% latex %}M_1, M_2{% endlatex %} byly perfektní.
+
+{:.center}
+![](/assets/kombinatorika-a-grafy-ii/2.svg)
+
+- (👀) -- přidáním hrany do grafu se neporuší TP ({% latex %}\forall S \subseteq V{% endlatex %} počet lichých komponent {% latex %}G - S{% endlatex %} buď klesne o {% latex %}2{% endlatex %} nebo zůstane stejný).
+
+Indukujeme dvakrát: {% latex %}G_1 = G + e_1{% endlatex %} a {% latex %}G_2 = G + e_2{% endlatex %} díky předchozímu pozorování splňují TP a spolu s IP {% latex %}\implies \exists{% endlatex %} PP {% latex %}M_1, M_2{% endlatex %} v {% latex %}G_1, G_2{% endlatex %}
+- jednoduchý příklad: {% latex %}e_1 \not\in M_1 \implies M_1{% endlatex %} je PP pro {% latex %}G{% endlatex %}, analogicky pro {% latex %}M_2{% endlatex %}
+
+Těžší případ: {% latex %}e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2){% endlatex %}
+- {% latex %}H {% endlatex %} obsahuje **„dvoubarevné hrany“** {% latex %}e \in M_1 \cap M_2{% endlatex %} nebo **střídavé sudé cykly**
+- {% latex %}H {% endlatex %} neobsahuje **izolované vrcholy** a **střídavé cesty,** protože {% latex %}M_1, M_2{% endlatex %} byly perfektní
+
+{:.center}
+![](/assets/kombinatorika-a-grafy-ii/3.svg)
+
 - jednodušší případ: {% latex %}e_1{% endlatex %} leží v jiné komponentě {% latex %}H{% endlatex %} než {% latex %}e_2{% endlatex %} -- stačí přealternovat hrany tak, aby ani {% latex %}e_1{% endlatex %} ani {% latex %}e_2{% endlatex %} v {% latex %}H{% endlatex %} neležely.
 
 {:.center}
-![](/assets/kombinatorika-a-grafy-ii/easy.svg)
+![](/assets/kombinatorika-a-grafy-ii/4.svg)
 
-- složitější příklad: spojíme {% latex %}uy{% endlatex %} a zbytek patřičně doplníme
+- složitější příklad: {% latex %}e_1{% endlatex %} a {% latex %}e_2{% endlatex %} leží ve stejné komponentě -- vybereme podle obrázku
 
 {:.center}
-![](/assets/kombinatorika-a-grafy-ii/hard.svg)
+![](/assets/kombinatorika-a-grafy-ii/5.svg)
 
 {% endmath %}
 
-{% math theorem "Petersen" %} každý {% latex %}3{% endlatex %}-regulární {% latex %}2{% endlatex %}-souvislý (vrcholově i hranově, pro 2-souvislost) graf má PP.{% endmath %}
+{% math theorem "Petersen" %} každý {% latex %}3{% endlatex %}-regulární {% latex %}2{% endlatex %}-souvislý (vrcholově i hranově, pro 2-souvislost je to to samé; alternativně můžeme říct graf bez mostů a artikulací) graf má PP.{% endmath %}
 
 {% math proof %}Nechť {% latex %}G = (V, E){% endlatex %} je {% latex %}3{% endlatex %}-regulární a {% latex %}2{% endlatex %}-souvislý. Chci ukázat, že {% latex %}G{% endlatex %} splňuje TP. Předpokládejme danou {% latex %}S \subseteq V{% endlatex %}.
 
-1. každá {% latex %}G - S{% endlatex %} je v {% latex %}G{% endlatex %} spojena aspoň dvěma hranami s {% latex %}S{% endlatex %} (je {% latex %}2{% endlatex %}-souvislý...)
+1. každá komponenta {% latex %}G - S{% endlatex %} je v {% latex %}G{% endlatex %} spojena aspoň dvěma hranami s {% latex %}S{% endlatex %}
+	- je {% latex %}2{% endlatex %}-souvislý, nemáme mosty
+
 2. každá lichá komponenta {% latex %}G - S{% endlatex %} je s {% latex %}S{% endlatex %} spojena lichým počtem hran
 	- nechť {% latex %}L{% endlatex %} je lichá komponenta {% latex %}G - S{% endlatex %}; pak:
-{% latex display %}\sum_{x \in V(L)}^{\mathrm{deg}_G(x)} \overset{3-\text{reg.}}{=} \underbrace{3|V(L)|}_{\text{liché}} = \underbrace{2 (\text{\# hran vedoucích uvnitř $L$})}_{\text{sudé}} + \underbrace{1 (\text{\# hran vedoucích uvnitř $L$})}_{\text{liché}}{% endlatex %}
-což je přesně to, co jsem potřeboval (počet hran vedoucích z {% latex %}L{% endlatex %})
+{% latex display %}\sum_{x \in V(L)}^{\mathrm{deg}_G(x)} \overset{3-\text{reg.}}{=} \underbrace{3|V(L)|}_{\text{liché číslo}} = \underbrace{2 (\text{\# hran vedoucích uvnitř $L$})}_{\text{sudé číslo}} + \underbrace{1 (\text{\# hran vedoucích uvnitř $L$})}_{\text{musí být liché}}{% endlatex %}
 
-TODO: obrázek
+- kombinace (1) a (2) říká, že každá lichá komponenta {% latex %}G - S{% endlatex %} je s {% latex %}S{% endlatex %} spojena {% latex %}\ge 3{% endlatex %} hranami; formálně:
+	- {% latex %}p = \text{\# hran mezi $S$ a lichou komponentou $G - S$}{% endlatex %}
+		- {% latex %}p \ge 3 \cdot \mathrm{odd(G - S)}{% endlatex %}
+		- {% latex %}p \le 3 \cdot |S|{% endlatex %} (každý vrchol {% latex %}S{% endlatex %} vysílá ven {% latex %}\le 3{% endlatex %} hrany (z 3-regularity))
 
-{% latex %}p = \text{\# hran mezi $S$ a lichou komponentou $G - S$}{% endlatex %}
-- {% latex %}p \ge 3 \cdot \mathrm{odd(G - S)}{% endlatex %}
-- {% latex %}p \le 3 \cdot |S|{% endlatex %} (každý vrchol {% latex %}S{% endlatex %} vysílá ven {% latex %}\le 3{% endlatex %} hrany (z 3-regularity))
+{:.center}
+![](/assets/kombinatorika-a-grafy-ii/6.svg)
 
 {% latex %}3|S| \ge 3 \cdot \mathrm{odd}(G - S){% endlatex %}, tedy TP platí a graf má perfektní párování.
+
 {% endmath %}
 
 ### 3. přednáška
@@ -150,7 +164,7 @@ TODO: obrázek
 
 {% math lemma "o kontrahovatelné hraně" %} Nechť {% latex %}G{% endlatex %} je 3-souvislý různý od {% latex %}K_4{% endlatex %} ({% latex %}|V| \ge 5{% endlatex %}). Potom {% latex %}G{% endlatex %} obsahuje hranu t. ž. {% latex %}G \ e{% endlatex %} je 3-souvislý.{% endmath %}
 
-{% math proof %}Sporem -- nechť {% latex %}G{% endlatex %} je 3-souvislý ale neexistuje žádná hrana. Tedy {% latex %}\forall e \in E: G \ e{% endlatex %} není 3-souvislý.
+{% math proof %}Sporem -- nechť {% latex %}G{% endlatex %} je 3-souvislý ale neexistuje žádná hrana. Tedy {% latex %}\forall e \in E: G \setminus e{% endlatex %} není {% latex %}3{% endlatex %}-souvislý.
 
 {% math theorem %}Pomocné: {% latex %}\forall e = \left\{x, y\right\} \exists z_e \in V \setminus \left\{x, y\right\}{% endlatex %} t. ž. {% latex %}\left\{x, y, z_e\right\}{% endlatex %} tvoří vrcholový řez v G, navíc každý z {% latex %}\left\{x, y, z_e\right\}{% endlatex %} má alespoň jednoho souseda v každé komponentě {% latex %}G \setminus \left\{x, y, z_e\right\}{% endlatex %}.
 - počítáme s předpokladem, že žádná hrana není kontrahovatelná!
@@ -466,9 +480,10 @@ TODO: obrázek na příklad
 
 {% math theorem "Vizing, 1964" %}Pro každý graf {% latex %}G{% endlatex %} platí, že {% latex %}\Delta \le \Chi'(G) \le \Delta + 1{% endlatex %}{% endmath %} - grafy Vizingovy třídy {% latex %}1{% endlatex %} jsou grafy s {% latex %}\Chi'(G) = \Delta{% endlatex %}, s {% latex %}2{% endlatex %} jsou {% latex %}\Chi'(G) = \Delta + 1{% endlatex %}
 - je NP-úplné rozhodnout, zda daný graf {% latex %}G{% endlatex %} má VIzingovu třídu {% latex %}1{% endlatex %} (i pro grafy s {% latex %}\Delta(G) = 3{% endlatex %})
-- udělal jsem o tom [YouTube video](https://www.youtube.com/watch?v=OZWZpQmGp0g), důkaz tu tedy rozepisovat nebudu
+- důkaz jsem zpracoval do [YouTube videa](https://www.youtube.com/watch?v=OZWZpQmGp0g)
 
-TODO: druhé video
+{% math theorem "Slabá věta o perfektních grafech, 1972" %}{% latex %}G{% endlatex %} je perfektní {% latex %}\iff{% endlatex %} {% latex %}\bar{G}{% endlatex %} je perfektní.{% endmath %}
+- důkaz jsem zpracoval do [YouTube videa](https://www.youtube.com/watch?v=Koc63QhxPgk)
 
 ### 8. přednáška
 TODO
