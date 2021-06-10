@@ -15,6 +15,8 @@ module Jekyll
         case tag
         when "definition"
           return '<strong>Definice' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + super.strip
+        when "definition:"
+          return '<strong>Definice' + (name.nil? ? '' : (' (' + name + ')')) + '</strong> ' + super.strip
         when "reminder"
           return '<strong>Připomenutí' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + super.strip
         when "lemma"
@@ -29,6 +31,8 @@ module Jekyll
           return '<strong>Algoritmus' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + super.strip
         when "fact"
           return '<strong>Fakt' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + super.strip
+        when "example"
+          return '<strong>Příklad' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + super.strip
         when "consequence"
           return '<strong>Důsledek' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + super.strip
         when "observation"

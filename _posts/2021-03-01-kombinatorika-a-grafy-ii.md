@@ -96,7 +96,7 @@ TODO: důkaz z textu Matouška!
 - **indukční podmínka:** {% latex %}G{% endlatex %} má nehranu a každý graf na {% latex %}V{% endlatex %}s počtem hran alespoň o 1 větší než {% latex %}|E|{% endlatex %} a platí TP, pak má perfektní párování
 
 {% math definition %}{% latex %}S = \left\{v \in V\ |\ \mathrm{deg}(v) = n - 1\right\} = \left\{v \mid \text{$v$ je spojený se všemi vrcholy} \right\}{% endlatex %}{% endmath %}
-- lehký příklad: každá komponenta {% latex %}G - S{% endlatex %} je lichá klika
+- lehký případ: každá komponenta {% latex %}G - S{% endlatex %} je lichá klika
 	- v rámci dané kliky vypáruji vše až na jeden vrchol, ten spáruji v rámci {% latex %}S{% endlatex %} ({% latex %}S{% endlatex %} vidí všechny) a zbytek v {% latex %}S{% endlatex %} spáruji spolu (sudé komponenty do parity nepřispívají, liché + {% latex %}1{% endlatex %} z {% latex %}S{% endlatex %} také ne a v {% latex %}S{% endlatex %} tedy zbyde sudý počet vrcholů)
 
 {:.center}
@@ -113,7 +113,7 @@ TODO: důkaz z textu Matouška!
 - (👀) -- přidáním hrany do grafu se neporuší TP ({% latex %}\forall S \subseteq V{% endlatex %} počet lichých komponent {% latex %}G - S{% endlatex %} buď klesne o {% latex %}2{% endlatex %} nebo zůstane stejný).
 
 Indukujeme dvakrát: {% latex %}G_1 = G + e_1{% endlatex %} a {% latex %}G_2 = G + e_2{% endlatex %} díky předchozímu pozorování splňují TP a spolu s IP {% latex %}\implies \exists{% endlatex %} PP {% latex %}M_1, M_2{% endlatex %} v {% latex %}G_1, G_2{% endlatex %}
-- jednoduchý příklad: {% latex %}e_1 \not\in M_1 \implies M_1{% endlatex %} je PP pro {% latex %}G{% endlatex %}, analogicky pro {% latex %}M_2{% endlatex %}
+- jednoduchý případ: {% latex %}e_1 \not\in M_1 \implies M_1{% endlatex %} je PP pro {% latex %}G{% endlatex %}, analogicky pro {% latex %}M_2{% endlatex %}
 
 Těžší případ: {% latex %}e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2){% endlatex %}
 - {% latex %}H {% endlatex %} obsahuje **„dvoubarevné hrany“** {% latex %}e \in M_1 \cap M_2{% endlatex %} nebo **střídavé sudé cykly**
@@ -127,7 +127,7 @@ Těžší případ: {% latex %}e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2){%
 {:.center}
 ![](/assets/kombinatorika-a-grafy-ii/4.svg)
 
-- složitější příklad: {% latex %}e_1{% endlatex %} a {% latex %}e_2{% endlatex %} leží ve stejné komponentě -- vybereme podle obrázku
+- složitější případ: {% latex %}e_1{% endlatex %} a {% latex %}e_2{% endlatex %} leží ve stejné komponentě -- vybereme podle obrázku
 
 {:.center}
 ![](/assets/kombinatorika-a-grafy-ii/5.svg)
@@ -521,14 +521,208 @@ Obrázek případů pro {% latex %}k_V(G) = 2{% endlatex %}:
 - je NP-úplné rozhodnout, zda daný graf {% latex %}G{% endlatex %} má VIzingovu třídu {% latex %}1{% endlatex %} (i pro grafy s {% latex %}\Delta(G) = 3{% endlatex %})
 - důkaz jsem zpracoval do [YouTube videa](https://www.youtube.com/watch?v=OZWZpQmGp0g)
 
+#### Perfektní grafy
+
 {% math theorem "Slabá věta o perfektních grafech, 1972" %}{% latex %}G{% endlatex %} je perfektní {% latex %}\iff{% endlatex %} {% latex %}\bar{G}{% endlatex %} je perfektní.{% endmath %}
 - důkaz jsem zpracoval do [YouTube videa](https://www.youtube.com/watch?v=Koc63QhxPgk)
 
 ### 8. přednáška
-TODO
+
+#### Chordální grafy
+
+{% math definition "chordální graf" %}Graf je chordální, pokud neobsahuje {% latex %}C_k, k \ge 4{% endlatex %} jako in. podgraf.{% endmath %}
+- alternativní pohled vycházející ze jména: každá kružnice má _chordu_ (tětivu)
+
+{% math definition %}Nechť {% latex %}x, y{% endlatex %} dva nesousední vrcholy {% latex %}G{% endlatex %}. {% latex %}R{% endlatex %} je {% latex %}x{\text -}y{% endlatex %}-řez, pokud je to řez takový, že {% latex %}x, y{% endlatex %} patří do různých komponent {% latex %}G \setminus R{% endlatex %}.{% endmath %}
+
+{% math lemma %}{% latex %}G{% endlatex %} je chordální {% latex %}\iff{% endlatex %} pro každé dva nesousední vrcholy {% latex %}x, y \in V, x \neq y{% endlatex %} existuje {% latex %}x{\text -}y{% endlatex %}-řez, který je klika.{% endmath %}
+
+{% math proof %} {% latex %}\Leftarrow{% endlatex %} nechť {% latex %}G{% endlatex %} není chordální, tedy obsahuje indukovanou kružnici {% latex %}C_4{% endlatex %}. Uvážíme-li dva její nesousední vrcholy, tak jakýkoliv řez musí obsahovat vrcholy z horní a dolní cesty mezi {% latex %}x{% endlatex %} a {% latex %}y{% endlatex %}. Ty nesousedí, tedy řez nebude klika.
+
+{% latex %}\Rightarrow{% endlatex %} nechť {% latex %}G{% endlatex %} je chordální, {% latex %}x, y{% endlatex %} nesousední. Nechť {% latex %}R{% endlatex %} je {% latex %}x{\text -}y{% endlatex %}-řez s co nejméně vrcholy. Tvrdím, že {% latex %}R{% endlatex %} tvoří kliku.
+
+Pro spor: {% latex %}R{% endlatex %} není klika {% latex %}\implies{% endlatex %} obsahuje {% latex %}u, v{% endlatex %} nesousedy. Protože {% latex %}R{% endlatex %} je nejmenší, má {% latex %}u{% endlatex %} i {% latex %}v{% endlatex %} sousedy na obou stranách. Jelikož jsou to komponenty souvislosti, tak tam bude existovat cesta. Vezmu nejkratší cesty {% latex %}P_x, P_y{% endlatex %} v komponentách {% latex %}G_x{% endlatex %}, {% latex %}G_y{% endlatex %}. Vrcholy {% latex %}P_x, P_y{% endlatex %} nesousedí (jinak by {% latex %}R{% endlatex %} nebyl řez), {% latex %}P_x-u-P_y-v{% endlatex %} tvoří indukovaný cyklus.
+
+{% xopp another1 %}
+
+{% endmath %}
+
+{% math definition %}Vrchol {% latex %}x{% endlatex %} je v grafu {% latex %}G{% endlatex %} simpliciální, pokud jeho sousedství ({% latex %}N_G(x){% endlatex %} tvoří kliku {% latex %}G{% endlatex %}.{% endmath %}
+
+{% math theorem %}Každý chordální graf (kromě prázdného) obsahuje simpliciální vrchol.{% endmath %}
+- dokážeme pomocí silnějšího tvrzení
+
+{% math theorem %}Každý chordální graf je buď úplný, nebo obsahuje dva nesousední simpliciální vrcholy.{% endmath %}
+
+{% math proof %}indukcí podle {% latex %}|V(G)|{% endlatex %}
+- základ: {% latex %}|V(G)| = 1{% endlatex %} platí
+- pro více vrcholů
+	- {% latex %}G{% endlatex %} je úplný, platí
+	- nebo nechť {% latex %}x, y{% endlatex %} nesousedi v {% latex %}G{% endlatex %} a {% latex %}R{% endlatex %} je {% latex %}x{\text -}y{% endlatex %}-řez tvořící kliku
+		- {% latex %}G_x^+ = \left(\text{komponenta $G \setminus R$ obsahující $x$}\right) \cup R{% endlatex %}, obdobně {% latex %}G_y^+{% endlatex %}
+		- (👀) pokud {% latex %}G{% endlatex %} byl chordální, pak {% latex %}H \le G{% endlatex %} je také chordalní
+		- použijeme IP na {% latex %}G_x^+{% endlatex %}
+			- pokud {% latex %}G_x^+{% endlatex %} klika, vezmi jako {% latex %}s_x{% endlatex %} libovolný vrchol {% latex %}G_x{% endlatex %} (např. {% latex %}x{% endlatex %})
+			- pokud {% latex %}G_x^+{% endlatex %} není klika, má dva simpliciální vrcholy; nejvýše jeden může ležet v {% latex %}R{% endlatex %}, jelikož je to klika a za {% latex %}s_x{% endlatex %} zvolím ten druhý; analogicky pro {% latex %}G_y^+{% endlatex %}
+			- (👀) jelikož {% latex %}R{% endlatex %} je řez, tak se sousedství nezmění: {% latex %}N_{G_x^+}(s_x) = N_{G}(s_x){% endlatex %}
+
+{% xopp another2 %}
+{% endmath %}
+
+{:.rightFloatBox}
+<div markdown="1">
+{:.center}
+![](/assets/kombinatorika-a-grafy-ii/dog.svg)
+</div>
+{% math definition "PES" %} Perfektní eliminační schéma (PES) grafu {% latex %}G{% endlatex %} je pořadí vrcholů {% latex %}v_1, \ldots, v_n{% endlatex %} t. ž. {% latex %}\forall i \in [n]{% endlatex %} platí, že leví sousedé {% latex %}v_i{% endlatex %} ({% latex %}= \left\{v_j \mid j < i, v_jv_i \in E\right\}{% endlatex %}) tvoří kliku.{% endmath %}
+
+{% math theorem %}G je chordální {% latex %}\iff{% endlatex %} G má PES.{% endmath %}
+
+{% math proof %}{% latex %}\Rightarrow{% endlatex %} obměnou nechť {% latex %}G{% endlatex %} není chordální a má tedy indukovanou kružnici velikosti alespoň {% latex %}4{% endlatex %}. Pro spor nechť máme PES. Nejlevější vrchol špatné kružnice v PES nemá souseda na této kružnici, což je spor s definicí PES.
+
+{% latex %}\Leftarrow{% endlatex %} nechť {% latex %}G{% endlatex %} je chordální. Má tedy simpliciální vrchol {% latex %}v_n{% endlatex %}. Jeho sousedé tvoří kliku a {% latex %}G - v_n{% endlatex %} je opět chordální (pozorování výše) a opakujeme, čímž vznikne PES pro {% latex %}G{% endlatex %}.
+{% endmath %}
+
+{% math consequence %}pro daný graf {% latex %}G{% endlatex %} lze v polynomiálním čase rozhodnout, zda je chordální.{% endmath %}
+
+{% math consequence %}chordální grafy jsou perfektní.{% endmath %}
+
+{% math definition %}{% latex %}G{% endlatex %} je hamiltonovský, pokud má kružnici na {% latex %}n{% endlatex %} vrcholech (jako podgraf).{% endmath %}
+
+{% math theorem "Bondyho-Chvátalova" %}Nechť {% latex %}G{% endlatex %} je graf na {% latex %}\ge 3{% endlatex %} vrcholech. Nechť {% latex %}x,y{% endlatex %} jsou nesousedé t. ž. {% latex %}\mathrm{deg}_G(x) + \mathrm{deg}_G(y) \ge n{% endlatex %}. Nechť {% latex %}G^+ = (V, E \cup \left\{xy\right\}){% endlatex %}. Pak {% latex %}G{% endlatex %} je hamiltonovský {% latex %}\iff{% endlatex %} {% latex %}G^+{% endlatex %} je hamiltonovský.{% endmath %}
+
+{% math proof %} {% latex %}\Rightarrow{% endlatex %} jasné
+
+{% latex %}\Leftarrow{% endlatex %} nechť {% latex %}C{% endlatex %} je hamiltonovská kružnice {% latex %}G^+{% endlatex %} a {% latex %}x,y{% endlatex %} vrcholy splňující podmínku.
+- pokud {% latex %}C{% endlatex %} neobsahuje {% latex %}xy{% endlatex %}, pak {% latex %}C{% endlatex %} je hamiltonovská kružnice {% latex %}G{% endlatex %}
+- jinak {% latex %}v_1, \ldots, v_n{% endlatex %} očíslujeme vrcholy {% latex %}C{% endlatex %} a navíc {% latex %}v_1 = x, v_n = y{% endlatex %}
+	- chceme {% latex %}C' := \left(C \setminus \left\{xy, v_iv_{i + 1}\right\}\right) \cup \left\{v_iy, v_{i + 1}x\right\}{% endlatex %} je ham. kružnice v {% latex %}G{% endlatex %}
+	- {% latex %}I_1 := \left\{i \in \left\{2, \ldots, n - 2\right\}\ \text{t. ž. }\left\{x, v_{i + 1}\right\} \in E\right\}{% endlatex %} (vrcholy dobré pro {% latex %}x{% endlatex %})
+		- povoluji vrcholy {% latex %}v_3, \ldots, v_{n-1}{% endlatex %}, viz. indexování
+	- {% latex %}I_2 := \left\{i \in \left\{2, \ldots, n - 2\right\}\ \text{t. ž. }\left\{y, v_i\right\} \in E\right\}{% endlatex %} (vrcholy dobré pro {% latex %}y{% endlatex %})
+		- povoluji vrcholy {% latex %}v_2, \ldots, v_{n - 2}{% endlatex %}, viz. indexování
+	- {% latex %}|I_1 \cup I_2| \le n - 3{% endlatex %}
+	- {% latex %}|I_1| = \mathrm{deg}_G(x) - 1{% endlatex %} (nesmím použít {% latex %}v_2{% endlatex %})
+	- {% latex %}|I_2| = \mathrm{deg}_G(y) - 1{% endlatex %} (nesmím použít {% latex %}v_{n - 1}{% endlatex %})
+	- {% latex %}|I_1| + |I_2| = \mathrm{deg}_G(x) - 1 + \mathrm{deg}_G(y) - 1 \ge n - 2{% endlatex %} (z předpokladu)
+	- {% latex %}|I_1 \cup I_2| \le 3{% endlatex %} ale {% latex %}|I_1 + I_2| \ge n - 2{% endlatex %} znamená, že se překrývají
+
+{% xopp another3 %}
+{% endmath %}
+
+{% math theorem "Divac" %}{% latex %}G{% endlatex %} graf na {% latex %}n \ge 3{% endlatex %} vrcholech s min. stupněm {% latex %}\ge n/2{% endlatex %} je hamiltonovský.{% endmath %}
+
+{% math proof %}Z Bondy-Chvátalovy věty doplníme na {% latex %}K_n{% endlatex %}, který je hamiltonovský.{% endmath %}
 
 ### 9. přednáška
-TODO
+
+#### Tutteův polynom
+
+{% math definition: "multigraf" %} {% latex %}G = (V, E){% endlatex %} kde {% latex %}V{% endlatex %} jsou vrcholy a {% latex %}E{% endlatex %} multimnožina prvků z {% latex %}V \cup \binom{V}{2}{% endlatex %}{% endmath %}
+- odstranění a kontrakce fungují intuitivně -- kontrakce nezahazuje hrany, protože máme multigraf
+
+{% math definition "most" %}hrana {% latex %}e \in E{% endlatex %} je most, v multigrafu {% latex %}G{% endlatex %}, pokud {% latex %}G - e{% endlatex %} má více komponent než {% latex %}G{% endlatex %}{% endmath %}
+- {% latex %}k(G) = k(V, E) = \text{počet komponent}{% endlatex %}
+
+{% math definition: "hodnost/rank" %}{% latex %}E{% endlatex %} je {% latex %}r(E) := |V| - k(G){% endlatex %}{% endmath %}
+- intuice: {% latex %}\sim{% endlatex %} velikost největší „neredundantní“ podmnožiny {% latex %}F \subseteq E{% endlatex %} (t. ž. {% latex %}k(G) = k(V, F){% endlatex %})
+
+{% math proof %}Chceme dokázat, že {% latex %}F{% endlatex %} neobsahuje cykly a že {% latex %}r(E) = r(F){% endlatex %}. Víme, že {% latex %}k(G) = k(V, F){% endlatex %}.
+
+Postupné přidávání hran z {% latex %}F{% endlatex %}
+- snižuje počet komponent, vždy o {% latex %}1{% endlatex %}, tedy {% latex %}k(V, F) = n - |F| = |V| - |F|{% endlatex %}
+- zvyšuje {% latex %}\mathrm{r}{% endlatex %} vždy o {% latex %}1{% endlatex %} (nastává druhý případ z tabulky dole), tedy {% latex %}r(F) = |F|{% endlatex %}
+
+Spojením dostáváme {% latex %}r(F) = |F| = |V| - k(V, F) = |V| - k(G){% endlatex %}.
+{% endmath %}
+
+{% math definition: "nulita" %}{% latex %}E{% endlatex %} je {% latex %}n(E) := |E| - r(E){% endlatex %}{% endmath %}
+- intuice: velikost největší „redundantní“ podmnožiny {% latex %}F \subseteq E{% endlatex %} (t. ž. počet komponent se nezmění po jejím odebrání)
+
+{% math example %}{% latex %}G = (V, \emptyset){% endlatex %}
+- {% latex %}r(\emptyset) = 0{% endlatex %}
+- {% latex %}n(\emptyset) = 0{% endlatex %}
+
+| změna                                   | {% latex %}r(E){% endlatex %}     | {% latex %}n(E){% endlatex %}     |
+| ---                                     | ---                               | ---                               |
+| přidání hrany bez změny počtu komponent | {% latex %}r(E){% endlatex %}     | {% latex %}n(E) + 1{% endlatex %} |
+| přidání hrany se změnou počtu komponent | {% latex %}r(E) + 1{% endlatex %} | {% latex %}n(E){% endlatex %}     |
+
+- přidáním hrany se rank:
+	- nezmění, pokud se nezmění počet komponent
+	- zvětší o {% latex %}1{% endlatex %}, pokud se dvě komponenty spojily
+{% endmath %}
+
+{% math definition: "Tutteův polynom" %}multigrafu {% latex %}G = (V, E){% endlatex %} je polynom proměnných {% latex %}x, y{% endlatex %} definovaný jako {% latex display %}T_G(x, y) := \sum_{F \subseteq E} (x - 1)^{r(E) - r(F)} \cdot (y - 1)^{n(F)}{% endlatex %}{% endmath %}
+
+{% math lemma %}pro {% latex %}G{% endlatex %} souvislý je {% latex %}T_G(1, 1){% endlatex %} počet koster {% latex %}G{% endlatex %}{% endmath %}
+
+{% math proof %}Dosadím do polynomu a získám {% latex %}0^{r(E) - r(F)} 0^{n(F)}{% endlatex %}. Vím, že {% latex %}x^0 \equiv 1{% endlatex %}, tedy výraz bude počet {% latex %}F{% endlatex %} takových, že {% latex %}r(E) = r(F){% endlatex %} a {% latex %}n(F) = 0{% endlatex %}.
+- z předpokladu souvislosti je počet komponent {% latex %}1{% endlatex %}
+	- {% latex %}F{% endlatex %} musí mít také pouze {% latex %}1{% endlatex %}, protože {% latex %}r(E) = r(F){% endlatex %}
+- {% latex %}n(F) = 0{% endlatex %} znamená, že {% latex %}0 = |F| - |V| - 1{% endlatex %}, tedy {% latex %}|F| = |V| - 1{% endlatex %}
+- kombinace počtu hran a souvislosti dává, že je to strom a tedy kostra
+{% endmath %}
+
+{% math lemma %}Nechť {% latex %}G_1 = (V_1, E_1), G_2 = (V_2, G_2){% endlatex %} jsou multigrafy, t. ž. {% latex %}|V_1 \cap V_2| \le 1{% endlatex %}, {% latex %}|E_1 \cap E_2| = 0{% endlatex %} (protínají se nejvýše v jednom vrcholu a v žádné hraně). Definujeme {% latex %}G = (V, E){% endlatex %}, kde {% latex %}V = V_1 \cup V_2{% endlatex %} a {% latex %}E = E_1 \cup E_2{% endlatex %}. Potom {% latex %}T_G(x, y) = T_{G_1}(x, y) \cdot T_{G_2}(x, y){% endlatex %}
+{% endmath %}
+
+{% math proof %}V definici kvantifikuji přes podmnožiny hran. Ty ale můžu vždy rozdělit na disjunktní sjednocení podle {% latex %}E_1{% endlatex %} a {% latex %}E_2{% endlatex %}. Navíc:
+- {% latex %}r(F) = r(F_1) + r(F_2){% endlatex %} (z pohledu jako největší neredundantní množina hran)
+- {% latex %}n(F) = n(F_1) + n(F_2){% endlatex %} (analogicky, opět z intuice)
+
+Pak rozepíšu:
+{% latex display %}
+\begin{aligned}
+	T_G(x, y) &= \sum_{F \subseteq E} (x - 1)^{r(E) - r(F)} (y - 1)^{n(F)} \\
+	          &= \sum_{F_1 \subseteq E_1} \sum_{F_2 \subseteq E_2} (x - 1)^{r(E_1 \cup E_2) - r(F_1 \cup F_2)} (y - 1)^{n(F_1 \cup F_2)} \\
+	          &= \sum_{F_1 \subseteq E_1} \sum_{F_2 \subseteq E_2} (x - 1)^{r(E_1) - r(F_1) + r(E_2) - r(F_2)} (y - 1)^{n(F_1) +n(F_2) } \\
+	          &= \sum_{F_1 \subseteq E_1} \sum_{F_2 \subseteq E_2} (x - 1)^{r(E_1) - r(F_1)} (x - 1)^{r(E_2) - r(F_2)} (y - 1)^{n(F_1)} (y - 1)^{n(F_2)} \\
+	          &= \sum_{F_1 \subseteq E_1} (x - 1)^{r(E_1) - r(F_1)}(y - 1)^{n(F_1)}  \left(\sum_{F_2 \subseteq E_2} (x - 1)^{r(E_2) - r(F_2)} (y - 1)^{n(F_2)}\right) \\
+	          &= T_{G_1}(x, y) \cdot T_{G_2}(x, y) \\
+\end{aligned}
+{% endlatex %}
+{% endmath %}
+
+{% math consequence %}dva grafy se stejným Tutteovým polynomem nemusí být stejné (neobsahuje informaci o počtu komponent či počtu vrcholů).{% endmath %}
+
+{% math theorem %}Nechť {% latex %}G = (V, E){% endlatex %} je multigraf. Potom {% latex %}T_G(x, y){% endlatex %} je jednoznačně určen rekurencemi:
+{% endmath %}
+- {% latex %}E = \emptyset{% endlatex %}: {% latex %}T_G(x, y) = 1{% endlatex %}
+- jinak pro {% latex %}e{% endlatex %}:
+
+| most   | {% latex %}T_G(x, y) = x \cdot T_{G - e}(x, y)= x \cdot T_{G \setminus e}(x, y){% endlatex %}  |
+|        | poslední rovnost: z důsledku výše                                                              |
+| smyčka | {% latex %}T_G(x, y) = y \cdot T_{G - e}(x, y) = y \cdot T_{G \setminus e}(x, y){% endlatex %} |
+|        | poslední rovnost: odstranění smyčky je to stejné jako její kontrakce                           |
+| jindy  | {% latex %}T_G(x, y) = T_{G - e}(x, y) + \cdot T_{G \setminus e}(x, y){% endlatex %}           |
+
+{% math proof %}Pro {% latex %}E = \emptyset{% endlatex %} jasné, všude je {% latex %}0{% endlatex %}. Jinak rozdělíme:
+
+{% latex display %}T_G(x, y) = \underbrace{\sum_{F \subseteq E, e \not\in F} (x - 1)^{r(E) - r(F)} \cdot (y - 1)^{n(F)}}_{s_1} + \underbrace{\sum_{F \subseteq E, e \in F} (x - 1)^{r(E) - r(F)} \cdot (y - 1)^{n(F)}}_{s_2}{% endlatex %}
+
+Stačí dokázat následující:
+1. pokud {% latex %}e{% endlatex %} není most, tak {% latex %}s_1 = T_{G - e}(x, y){% endlatex %}
+	- {% latex %}e{% endlatex %} není most, jeho odebráním se rank nezmění, jen dosadím...
+2. pokud {% latex %}e{% endlatex %} je most, tak {% latex %}s_1 = (x - 1) \cdot T_{G - e}(x, y){% endlatex %}
+	- {% latex %}e{% endlatex %} je most, jeho odebráním se rank zvětší o {% latex %}1{% endlatex %}, zase jen dosadím...
+3. pokud {% latex %}e{% endlatex %} není smyčka, tak {% latex %}s_2 = T_{G \setminus e}(x, y){% endlatex %}
+4. pokud {% latex %}e{% endlatex %} je smyčka, tak {% latex %}s_2 = (y - 1)T_{G \setminus e}(x, y){% endlatex %}
+
+Poté pro větu stačí následující:
+- {% latex %}e{% endlatex %} je most: (2) + (3)
+- {% latex %}e{% endlatex %} je smyčka: (1) + (4)
+- {% latex %}e{% endlatex %} není most ani smyčka: (1) + (3)
+
+{% endmath %}
+
+{% math definition: "chromatický polynom" %}multigrafu {% latex %}G = (V, E){% endlatex %} je funkce {% latex %}\mathrm{ch}_G(b): \mathbb{N}_0 \mapsto \mathbb{N}_0{% endlatex %}, kde pro {% latex %}b \in \mathbb{N}_0{% endlatex %} je {% latex %}\mathrm{ch}_G(b) := {% endlatex %} počet dobrých obarvení (posunutí udělá nové obarvení) {% latex %}G{% endlatex %} pomocí barev {% latex %}\left\{1, \ldots, b\right\}{% endlatex %}.
+{% endmath %}
+- pokud {% latex %}G{% endlatex %} má smyčku, pak {% latex %}\mathrm{ch}_G(b) = 0, \forall b{% endlatex %}
+
+{% math theorem %}Pro každý multigraf {% latex %}G = (V, E){% endlatex %} platí
+{% latex display %}\mathrm{ch}_G(b) = \left(-1\right)^{|V| + k(G)} \cdot b^{k(G)} \cdot T_G(1 - b, 0){% endlatex %}
+{% endmath %}
 
 ### 10. přednáška
 
