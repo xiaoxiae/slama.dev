@@ -745,7 +745,7 @@ Poté pro větu stačí následující:
 - {% latex %}A(x) = c \ldots B(x) = \frac{1}{c}{% endlatex %}
 - {% latex %}A(x) = x \ldots B(x){% endlatex %} není (muselo by být něco jako {% latex %}\frac{1}{x}{% endlatex %})
 - {% latex %}A(x) = 1 - x \ldots B(x) = 1 + x + x^2 + \ldots{% endlatex %}
-	- {% latex %}C(x) = A(x) \cdot B(x) = (1 + x + x^2 + \ldots) + (x + x^2 + x^3 + \ldots){% endlatex %}, kde {% latex %}[x^n]C(x){% endlatex %} bude nulové pro {% latex %}n \ge 1{% endlatex %} (požere se to)
+	- {% latex %}C(x) = A(x) \cdot B(x) = (1 + x + x^2 + \ldots) - (x + x^2 + x^3 + \ldots){% endlatex %}, kde {% latex %}[x^n]C(x){% endlatex %} bude nulové pro {% latex %}n \ge 1{% endlatex %} (požere se to), proto {% latex %}(1 + x + x^2 + \ldots) = \frac{1}{1 - x}{% endlatex %}
 
 {% math lemma %}Nechť {% latex %}A(x) = \sum_{n = 0}^{\infty} a_n x^n{% endlatex %} je FMŘ. Potom {% latex %}\frac{1}{A(x)}{% endlatex %} existuje, právě když {% latex %}a_0 \neq 0{% endlatex %} (a pak je jednoznačně určena).{% endmath %}
 
@@ -761,13 +761,121 @@ Poté pro větu stačí následující:
 {% endlatex %}
 {% endmath %}
 
-TODO: od půlky
+{% math definition "složení" %}{% latex %}A(x) = \sum a_nx^n, B(x) = \sum b_nx^n{% endlatex %} jsou FMŘ. Složení je {% latex %}A(B(x)) = a_0B(x)^0 + a_1B(x)^1 + \ldots{% endlatex %} {% endmath %}. Obecně je problém to zadefinovat, potřeboval bych znát hodnotu součtu, ale jde to, když:
+
+1. {% latex %}A(x){% endlatex %} je polynom ({% latex %}\equiv \exists n_0 \in \mathbb{N}{% endlatex %} t. ž. {% latex %}\forall n \ge n_0: a_n = 0{% endlatex %})
+{% latex display %}a_0 B(x)^0 + a_1B(x)^1 + a_2B(x)^2 + \ldots + \underbrace{a_{n_0}B_(x)^{n_0} + \ldots}_{= 0}{% endlatex %}
+2. {% latex %}b_0 = 0{% endlatex %}
+	- chci ukázat, že součet {% latex %}\left[x^n\right]A(B(x)) = \left[x^n\right]a_0B(x)^0 + \left[x^n\right]a_1B(x)^1 + \ldots{% endlatex %} je konečný
+		- {% latex %}\left[x^0\right]B(x) = b_0 = 0{% endlatex %}
+		- {% latex %}B(x) = x \tilde{B}(x){% endlatex %} pro {% latex %}\tilde{B}(x){% endlatex %} FMŘ
+		- {% latex %}B(x)^k = x^k \tilde{B}(x)^k{% endlatex %}, koeficient u {% latex %}x^{k - 1}, x^{k - 2}, \ldots, x^0{% endlatex %} je nulový, tedy všechny koeficienty {% latex %}\left[x^k\right]{% endlatex %} pro {% latex %}k > n{% endlatex %} jsou nulové
+
+{% math definition: "derivace" %}FMŘ {% latex %}A(x){% endlatex %} značená {% latex %}\frac{d}{dx}A(x) = \sum a_{n + 1}(n + 1)x^n = a_1 + 2a_2x + 3a_3x^3 + \ldots{% endlatex %}{% endmath %}
+
+{% math example %} Můžu mít také FMŘ více proměnných, např. {% latex %}A(x, y) = \sum_{n \ge 0, m \ge 0} a_{n, m} \cdot x^n \cdot y^m \in \mathbb{R}\llbracket x, y \rrbracket{% endlatex %}
+{% endmath %}
+
+#### Obyčejné vyvořující funkce
+Nechť {% latex %}\mathcal{A}{% endlatex %} je množina, jejíž každý prvek {% latex %}\alpha \in \mathcal{A}{% endlatex %} má definovanout velikost {% latex %}|\alpha| \in \mathbb{N}_0{% endlatex %}, předpokládáme že {% latex %}\forall n \in \mathbb{N}_0{% endlatex %} je v {% latex %}\mathcal{A}{% endlatex %} konečně mnoho prvků velikosti {% latex %}n{% endlatex %}.
+- {% latex %}\mathcal{A}_n = \left\{\alpha \in \mathcal{A} \mid |\alpha| = n\right\}, a_n = |\mathcal{A}_n|{% endlatex %}
+
+Porom obyčejná vytvořující funkce pro {% latex %}\mathcal{A}{% endlatex %} je FMŘ {% latex display %}\mathrm{OVF}(\mathcal{A}) = \sum_{n \ge 0} a_n x^n{% endlatex %}
+
+{% math example %} Jídla ({% latex %}\mathcal{J} = \mathcal{P} \cup \mathcal{H}{% endlatex %}):
+- Polévky ({% latex %}\mathcal{P}{% endlatex %})
+	- gulášová: {% latex %}30{% endlatex %}
+	- knedlíčková: {% latex %}35{% endlatex %}
+- Hlavní jídla ({% latex %}\mathcal{H}{% endlatex %})
+	- guláš: {% latex %}100{% endlatex %}
+	- řízek: {% latex %}100{% endlatex %}
+	- smažák: {% latex %}90{% endlatex %}
+
+- {% latex %}P(x) = \mathrm{OVF}(\mathcal{P}) = x^{30} + x^{35} {% endlatex %}
+- {% latex %}H(x) = \mathrm{OVF}(\mathcal{H}) = x^{90} + 2x^{100} {% endlatex %}
+- {% latex %}J(x) = P(x) + H(x){% endlatex %}
+
+---
+
+- (👀) {% latex %}\mathrm{OVF}(\mathcal{A} \cup \mathcal{B}) = \mathrm{OVF}(\mathcal{A}) + \mathrm{OVF}(\mathcal{B}){% endlatex %}
+- (👀) {% latex %}\mathrm{OVF}(\mathcal{A}) \cdot \mathrm{OVF}(\mathcal{B}) = \mathrm{OVF}(\mathcal{A} \times \mathcal{B}){% endlatex %}
+	- {% latex %}P(x) \cdot H(x) = {% endlatex %} kartézský součin dvojic (polívka, hlavní jídlo)
+	- {% latex %}[x^{130}](J(x) \cdot J(x)) = {% endlatex %} počet uspořádaných dvojic jídel, které se sečtou na {% latex %}130{% endlatex %}
+
+{% endmath %}
 
 ### 11. přednáška
-TODO
+#### Exponenciální vytvořující funkce
+Chci dojít k {% latex %}L(x){% endlatex %}, což bude vytvořující funkce pro počet lesů na {% latex %}n{% endlatex %} vrcholech, pomocí {% latex %}S(x){% endlatex %} vytvořující funkce pro počet stromů na {% latex %}n{% endlatex %} vrcholech.
+
+Nechť {% latex %}s_n{% endlatex %} je počet stromů na vrcholech {% latex %}\left\{1, \ldots, n\right\}{% endlatex %}
+{% latex display %}S(x) = \sum_{n \ge 0} s_n \cdot \frac{x^n}{n!} \qquad \in \mathbb{R}\llbracket x \rrbracket{% endlatex %}
+
+Nechť {% latex %}k_n{% endlatex %} je počet kružnic na vrcholech {% latex %}\left\{1, \ldots, n\right\}{% endlatex %}
+{% latex display %}K(x) = \sum_{n \ge 0}  k_n \cdot \frac{x^n}{n!} {% endlatex %}
+
+Definujeme {% latex %}A(x) = S(x) \cdot K(x){% endlatex %} a {% latex %}a_0, a_1, \ldots{% endlatex %} tak, aby {% latex %}A(x) = \sum_{n \ge 0} a_n \cdot \frac{x^n}{n!} {% endlatex %}
+
+Potom platí, že {% latex %}a_n = \sum_{j = 0}^{n} \binom{n}{j} \cdot s_j \cdot k_{n - j}{% endlatex %}, tedy {% latex %}a_n = {% endlatex %} počet grafů na {% latex %}n{% endlatex %} vrcholech mající dvě komponenty souvislosti, z nichž jedna je strom a druhá kružnice:
+{% latex display %}
+\begin{aligned}
+	\left[x^n\right]\left(S(x) \cdot K(x)\right) &= \sum_{j = 0}^{n} \left(\left[x^j\right] S(x)\right) \cdot \left(\left[x^{n - j}\right] K(x)\right) \\
+	&= \sum_{j = 0}^{n} \frac{s_j}{j!} \cdot \frac{k_{n - j}}{(n - j)!} \\
+	&= \sum_{j = 0}^{n} \frac{n!}{j!(n - j)!} \cdot \frac{1}{n!} \cdot s_j k_{n - j} \\
+	&= \frac{1}{n!}\sum_{j = 0}^{n} \binom{n}{j} s_j k_{n - j} \\
+	&= \left[x^n\right] A(x)
+\end{aligned}
+{% endlatex %}
+
+Definujeme {% latex %}B(x) + S(x)^2{% endlatex %} a {% latex %}b_0, b_1, \ldots{% endlatex %} tak, aby {% latex %}B(x) = \sum_{n \ge 0} b_n \cdot \frac{x^n}{n!}{% endlatex %}
+- počet způsobů, jak rozdělit vrcholy na červené a modré a vytvořit strom na každé barvě
+{% latex display %}b_n = \sum_{j = 0}^{n} \binom{n}{j} \cdot s_j \cdot s_{n - j}{% endlatex %}
+
+Dále definujeme hromadu dalších věcí:
+- {% latex %}C(x){% endlatex %} jako {% latex %}c_n = \frac{b_n}{2}{% endlatex %}, abychom měli počet lesů se dvěma komponentami, tedy {% latex %}C(x) = \frac{1}{2} B(x) = \frac{1}{2} S^2(x){% endlatex %}.
+- {% latex %}D(x) = S^k(x){% endlatex %}, tedy {% latex %}d_n{% endlatex %} je počet uspořádaných {% latex %}k{% endlatex %}-tic stromů tvořící rozklad vrcholů
+- {% latex %}E(x) = \frac{S^k(x)}{k!}{% endlatex %}, tedy {% latex %}e_x{% endlatex %} je počet lesů s {% latex %}k{% endlatex %} komponentami
+
+Konečně vyjádříme {% latex display %}L(x) = 1 + S(x) + \frac{S^2(x)}{2!} + \ldots = \sum_{n \ge 0} \frac{S^n(x)}{n!} = \mathrm{exp}(S(x)) = e^{S(x)}{% endlatex %}
+
+---
+
+V následujících definicích a pozorováních je _takovýhle text_ odkaz na to, co si pod tím představovat v rámci minulého příkladu.
+
+{% math definition %}Mějme množinu {% latex %}\mathcal{A}{% endlatex %} (_všechny konečné stromy s očíslovaňými vrcholy_), předpokladejme:
+1. každý prvek {% latex %}\alpha \in \mathcal{A}{% endlatex %} (_nějaký strom_) má množinu vrcholů (_vrcholů_) {% latex %}V(\alpha) \subseteq \mathbb{N}, V(\alpha){% endlatex %} konečná
+2. pro každou konečnou {% latex %}V \subseteq \mathbb{N}{% endlatex %} existuje konečně mnoho {% latex %}\alpha \in \mathcal{A}{% endlatex %} t. ž. {% latex %}V(\alpha) = V{% endlatex %} 
+	- (_existuje konečné množství stromů_)
+3. pro dvě konečné množiny {% latex %}V, W \subseteq \mathbb{N}{% endlatex %} t. ž. {% latex %}|V| = |W|{% endlatex %} platí, že počet {% latex %}\alpha \in \mathcal{A}{% endlatex %} t. ž. {% latex %}V(\alpha) = V{% endlatex %} je stejný jako {% latex %}\alpha \in \mathcal{A}{% endlatex %} t. ž. {% latex %}V(\alpha) = W{% endlatex %} (co do počtu, záleží jen na velikosti množiny vrcholů)
+	- (_dvě stejně velké množiny vrcholů mají stejný počet stromů_)
+
+Potom **exponenciální vytvořující funkce** pro {% latex %}\mathcal{A}{% endlatex %} je {% latex display %}\mathrm{EVF(\mathcal{A}} = \sum_{n \ge 0} a_n \frac{x^n}{n!}{% endlatex %}kde {% latex display %}a_n = \#\ \alpha \in \mathcal{A} \text{ t. ž. } V(\alpha) = \left\{1, \ldots, n\right\}{% endlatex %}
+{% endmath %}
+
+{% math observation %}Nechť {% latex %}A(x){% endlatex %} je {% latex %}\mathrm{EVF(\mathcal{A})}, B(x) = \mathrm{EVF}(\mathcal{B}){% endlatex %}, potom:
+1. pokud {% latex %}\mathcal{A}, \mathcal{B}{% endlatex %} jsou disjunktní (příklad výše), pak {% latex %}A(x) + B(x){% endlatex %} je {% latex %}\mathrm{EVF}(\mathcal{A} \cup \mathcal{B}){% endlatex %}
+	- stejné jako u {% latex %}\mathrm{OFV}{% endlatex %}, protože {% latex %}\left[x^n\right] \left(A(x) + B(x)\right) = \frac{a_n}{n!} + \frac{b_n}{n!} = \frac{a_n + b_n}{n!}{% endlatex %}
+2. {% latex %}A(x) \cdot B(x) = \sum c_n \frac{x^n}{n!}{% endlatex %}, kde {% latex %}c_n{% endlatex %} je počet uspořádaných dvojic {% latex %}\left(\alpha, \beta\right){% endlatex %} t.ž. {% latex %}\alpha \in \mathcal{A}, \beta \in \mathcal{B}, V(\alpha) \cup V(\beta) = \left\{1, \ldots, n\right\}{% endlatex %} (tvoří rozklad)
+3. {% latex %}A^k(x) = \sum d_n \frac{x^n}{n!}{% endlatex %}, kde {% latex %}d_n{% endlatex %} je počet uspořádaných {% latex %}k{% endlatex %}-tic {% latex %}(\alpha_1, \ldots, \alpha_n){% endlatex %}, kde
+{% latex display %}\alpha_1, \ldots, \alpha_n \in \mathcal{A} \text{ t.ž. } V(\alpha_1) \cup \ldots \cup V(\alpha_k) = \left\{1, \ldots, n\right\} \qquad \star{% endlatex %}
+4. pokud {% latex %}V(\alpha) \neq \emptyset, \forall \alpha \in \mathcal{A}{% endlatex %}, pak {% latex display %}\frac{A^k(x)}{k!} = \sum e_n \frac{x^n}{n!}{% endlatex %}kde {% latex %}e_n{% endlatex %} je počet {% latex %}k{% endlatex %}-prvkových množin splňujících {% latex %}\star{% endlatex %}
+5. pokud {% latex %}\forall \alpha \in \mathcal{A}: V(\alpha) \neq \emptyset{% endlatex %}, pak {% latex display %}\mathrm{exp}(\mathcal{A}(x)) = e^{A(x)} = 1 + A(x) + \frac{A^2(x)}{2} + \ldots = \sum_{n \ge 0} f_n \frac{x^n}{n!}{% endlatex %} kde {% latex %}f_n{% endlatex %} je počet množin {% latex %}\left\{\alpha_1, \ldots, \alpha_k\right\} \subseteq \mathcal{A}{% endlatex %}, kde {% latex %}V(\alpha_1) \cup \ldots \cup V(\alpha_{k}) = \left\{1, \ldots, n\right\}{% endlatex %}
+
+{% endmath %}
 
 ### 12. přednáška
-TODO
+
+#### Groupy a Burnside
+{% math definition "akce grupy" %}nechť {% latex %}A{% endlatex %} je množina, nechť {% latex %}\Gamma{% endlatex %} je grupa, {% latex %}1\Gamma{% endlatex %} její neutrální prvek. Potom akce grupy {% latex %}\Gamma{% endlatex %} na množině {% latex %}A{% endlatex %} je binární operace {% latex %}\cdot: \Gamma \times A \mapsto A{% endlatex %} t.ž.
+1. {% latex %}\forall x \in A: 1\Gamma \cdot x = x{% endlatex %}
+2. {% latex %}\forall \gamma, \delta \in \Gamma, \forall x \in A: \gamma \cdot (\delta \cdot x) = (\gamma \delta) \cdot x{% endlatex %}
+	- pozor, {% latex %}\cdot{% endlatex %} a {% latex %}\gamma\delta{% endlatex %} jsou jiné operace
+{% endmath %}
+
+{% math observation %}Pokud {% latex %}\gamma \in \Gamma, \gamma^{-1}{% endlatex %} je inverzní prvek k {% latex %}\gamma{% endlatex %}, potom {% latex %}\forall x, y \in A: \gamma \cdot x = y \iff \gamma^{-1} \cdot y = x{% endlatex %}{% endmath %}
+
+{% math consequence %}{% latex %}\forall p \in \Gamma:{% endlatex %} zobrazení {% latex %}x \mapsto p \cdot x{% endlatex %} je bijekce {% latex %}A \longleftrightarrow A{% endlatex %}{% endmath %}
+
 
 ### 13. přednáška
 TODO
