@@ -959,8 +959,158 @@ Tedy dostáváme, že {% latex display %}A(x) = \frac{1}{4} \left(\left(\frac{1}
 {% endmath %}
 
 ### 13. přednáška
-TODO
 
-### Zdroje/materiály
-- [Stránky přednášky](https://research.koutecky.name/db/teaching:kg22021_prednaska).
+#### Extremální teorie grafů a hypergrafů
+{% math notation %}pro graf {% latex %}H{% endlatex %} označím {% latex %}\mathrm{ex}(n, H){% endlatex %} největší {% latex %}m{% endlatex %} t.ž. existuje graf {% latex %}G{% endlatex %} s {% latex %}n{% endlatex %} vrcholy, {% latex %}m{% endlatex %} hranami a neobsahující {% latex %}H{% endlatex %} jako podgraf.
+{% endmath %}
+- {% latex %}\mathrm{ex}(n, K_3) = |E(K_{\left\lfloor \frac{n}{2} \right\rfloor, \left\lceil \frac{n}{2} \right\rceil})| = \left\lfloor \frac{n}{2} \right\rfloor \cdot \left\lceil \frac{n}{2} \right\rceil \cong n^2{% endlatex %}
+- {% latex %}\mathrm{ex}(n, C_4) = \mathcal{O}(n^{3/2} = \mathcal{O}(n \sqrt{n}){% endlatex %}
+	- viz. poznámky z [Kombinatoriky a Grafů I](/lecture-notes/kombinatorika-a-grafy-i/#grafy-bez-ckc_kck)
+
+{% math definition %}{% latex %}k, n \in \mathbb{N}{% endlatex %}, označme {% latex %}T_k(n){% endlatex %} úplný bipartitní graf na {% latex %}n{% endlatex %} vrcholech, jehož všechny partity mají velikost {% latex %}\left\lfloor \frac{n}{k} \right\rfloor{% endlatex %} nebo {% latex %}\left\lceil \frac{n}{k} \right\rceil{% endlatex %}. Nechť {% latex %}t_k(n) = |E(T_k(n))|{% endlatex %}{% endmath %}
+- {% latex %}k{% endlatex %}-partitní je to samé jako {% latex %}k{% endlatex %}-obarvitelný ({% latex %}\Chi(G){% endlatex %})
+- partity mohou být i prázdné -- {% latex %}k{% endlatex %}-partitní je i {% latex %}k'{% endlatex %}-partitní, pro {% latex %}k' \ge k{% endlatex %}
+- úplný {% latex %}k{% endlatex %}-partitní -- každé {% latex %}2{% endlatex %} partity jsou úplný bipartitní graf
+
+{% math observation %}{% latex %}\forall r \in \mathbb{N}, r \ge 2: \mathrm{ex}(n, K_r) \ge t_{r - 1}(n){% endlatex %}, protože {% latex %}T_{r - 1}(n){% endlatex %} neobsahuje {% latex %}K_r{% endlatex %} (z každé nezávislé množiny si klika vezme {% latex %}\le 1{% endlatex %} vrchol) {% endmath %}
+
+{% math lemma "1" %}Každý {% latex %}k{% endlatex %}-partitní graf na {% latex %}n{% endlatex %} vrcholech má nanejvýš {% latex %}t_{k}(n){% endlatex %} hran.{% endmath %}
+
+{% math proof %}Nechť {% latex %}G = (V, E){% endlatex %} je {% latex %}k{% endlatex %}-partitní, {% latex %}P_1, \ldots, P_k{% endlatex %} jsou jeho partity. Navíc {% latex %}|P_1| \le |P_2| \le \ldots \le |P_k|{% endlatex %}
+- buď {% latex %}|P_k| \le |P_{1}| + 1{% endlatex %}, pak {% latex %}G \cong T_k(n){% endlatex %}
+- jinak pro spor {% latex %}|P_k| \ge |P_1| + 2{% endlatex %}
+	- idea důkazu je ta, že vezmeme vrchol z poslední partity a přesuneme ho do první
+	- nechť {% latex %}x \in P_k{% endlatex %}, nechť {% latex %}\tilde{G}{% endlatex %} je úplný {% latex %}k{% endlatex %}-partitní s partitami {% latex %}P_1 \cup \left\{x\right\}, P_2, P_3, \ldots, P_{k} \setminus \left\{x\right\}{% endlatex %}; potom {% latex %}|E(\tilde{G})| > |E(G)|{% endlatex %}, což je spor:
+		- stupně pro {% latex %}P_2, \ldots, P_k{% endlatex %} se nemění (vrcholy stále vidí {% latex %}x{% endlatex %}, jen je teď jinde)
+		- stupně pro {% latex %}P_1{% endlatex %} klesne o {% latex %}1{% endlatex %} (vrcholy přestanou vidět {% latex %}x{% endlatex %})
+		- stupně pro {% latex %}P_k \setminus \left\{x\right\}{% endlatex %} vzroste o {% latex %}1{% endlatex %} (vrcholy začnou vidět {% latex %}x{% endlatex %})
+		- stupně pro {% latex %}x{% endlatex %} vzroste alespoň o {% latex %}1{% endlatex %} ({% latex %}x{% endlatex %} přestane vidět {% latex %}P_1{% endlatex %} a začne vidět {% latex %}P_k{% endlatex %})
+{% endmath %}
+
+{% math lemma "2" %}Nechť {% latex %}G = (V, E){% endlatex %} je graf neobsahující {% latex %}K_r{% endlatex %} jako podgraf. Potom {% latex %}\exists H = (V, E_H){% endlatex %} {% latex %}(r-1){% endlatex %}-partitní t.ž. {% latex %}\deg_G(x) \le \deg_H(x){% endlatex %} (a tudíž {% latex %}|E(G)| \le |E(H)|{% endlatex %}){% endmath %}
+
+{% math proof %}indukcí podle {% latex %}r{% endlatex %}
+- {% latex %}r = 2 \implies G{% endlatex %} neobsahuje {% latex %}K_2{% endlatex %} a je tedy nemá hrany; {% latex %}G = H{% endlatex %} splňuje tvrzení (celé tvoří jednu partitu)
+- {% latex %}r > 2{% endlatex %}: {% latex %}G{% endlatex %} neobsahuje {% latex %}K_r{% endlatex %}:
+
+Nechť {% latex %}x \in V(G){% endlatex %} je vrchol max. stupně v {% latex %}G{% endlatex %}
+- {% latex %}S = N_G(x){% endlatex %} (sousedství)
+- {% latex %}G_S = G\left[S\right]{% endlatex %} (podgraf indukovaný {% latex %}S{% endlatex %})
+	- {% math observation %}{% latex %}G_S{% endlatex %} neobsahuje {% latex %}k_{r - 1}{% endlatex %}, jinak {% latex %}G\left[S \cup \left\{x\right\}\right]{% endlatex %} obsahuje {% latex %}k_r{% endlatex %}{% endmath %} 
+	- využijeme ip: {% latex %}\exists (r - 2){% endlatex %}-partitní graf {% latex %}H_S = (S, E_{H_{S}}){% endlatex %}
+		- splňuje (dle IP), že {% latex %}\forall y \in s: \deg_{H_S} (y) \ge \deg_{G_S}(y){% endlatex %}
+		- {% latex %}V \setminus S{% endlatex %} zadefinuji jako ({% latex %}(r-1){% endlatex %}.) partitu a vše patřičně spojím, čímž získám {% latex %}H{% endlatex %}
+
+{% xopp lol %}
+
+Ověříme {% latex %}\forall y \in V: \deg_G(x) \le \deg_H(x){% endlatex %}
+1. {% latex %}y \in V \setminus S: \deg_H(y) = |S| = \deg_H(x) = \deg_G(x) \ge \deg_G(y){% endlatex %} ({% latex %}x{% endlatex %} je vrchol s největším stupněm)
+2. {% latex %}y \in S: \deg_H(y) = \deg_{H_S} + |V \setminus S| \overset{\mathrm{IP}}{\ge} \deg_{G_S}(y) + |V \setminus S| \ge \deg_G(y){% endlatex %}
+	- rozdělili jsme to na dva případy podle toho, co vidí uvnitř a co vně {% latex %}S{% endlatex %}
+	- poslední nerovnost plyne z toho, že {% latex %}y{% endlatex %} v {% latex %}G{% endlatex %} vidí sousedy v {% latex %}G_S{% endlatex %} + nanejvýš všechny z {% latex %}V \setminus S{% endlatex %}
+
+{% endmath %}
+
+{% math theorem "Turán, 1941" %}{% latex %}\forall r \ge 2: \mathrm{ex}(n, K_r) = t_{r - 1}(n){% endlatex %}{% endmath %}
+
+{% math proof %} Vezmu {% latex %}G{% endlatex %} nějaký graf bez {% latex %}K_r{% endlatex %}.
+
+- už jsme (v pozorování výše) viděli {% latex %}\mathrm{ex}(n, K_r) \ge t_{r - 1}(n){% endlatex %} (protože {% latex %}T_{r - 1}(n){% endlatex %} neobsahuje {% latex %}K_r{% endlatex %})
+- dle tvrzení (2) {% latex %}\exists (r-1){% endlatex %}-partitní graf {% latex %}H{% endlatex %} t.ž. {% latex %}|E(G) | \le |E(H)|{% endlatex %}
+- dle tvrzení (1) je {% latex %}|E(H)| \le t_{r - 1} (n) \Rightarrow |E(G)| \le t_{r - 1}(n) \Rightarrow \mathrm{ex}(n, K_r) \le t_{r - 1}(n){% endlatex %}
+
+Spojení odhadů dává rovnost.
+{% endmath %}
+
+{% math remark %}{% latex %}t_k(n) = \frac{k-1}{k} \binom{n}{2} + \mathcal{O}(n) = \frac{k - 1}{2k} n^2 + \mathcal{O}(n){% endlatex %}{% endmath %}
+
+---
+
+{% math definition %}pro graf {% latex %}H: \mathrm{ex}_\preceq(n, H){% endlatex %} je maximalní počet hran grafu {% latex %}G{% endlatex %} na {% latex %}N{% endlatex %} vrcholech bez {% latex %}H{% endlatex %} jako minoru.{% endmath %}
+
+{% math observation %}{% latex %}\mathrm{ex}(n, H) \ge \mathrm{ex}_\preceq(n, H){% endlatex %}, protože graf bez {% latex %}H{% endlatex %}-minoru nemá ani {% latex %}H{% endlatex %}-podgraf (obráceně platit nemusí).{% endmath %}
+
+{% math observation %}{% latex %}\mathrm{ex}_\preceq(n, K_3) = n - 1{% endlatex %} (dostávám stromy!){% endmath %}
+
+{% math theorem %}{% latex %}\forall r \ge 3 \exists c_r > 0: \forall n: \mathrm{ex}_\preceq(n, K_r) < c_r \cdot n{% endlatex %}{% endmath %}
+- jinými slovy: každý graf {% latex %}G = (V, E){% endlatex %} s {% latex %}|E| \ge c_r \cdot n{% endlatex %} obsahuje {% latex %}K_r{% endlatex %}-minor
+- ještě jinými slovy: grafy, kterým zakážeme {% latex %}K_r{% endlatex %}-minor mají lineární počet hran (pro nějakou konstantu {% latex %}c_r{% endlatex %} závisející pouze na {% latex %}r{% endlatex %})
+
+{% math proof %}dokážeme pro {% latex %}c_r = 2^{r - 3}{% endlatex %}, indukcí dle {% latex %}r{% endlatex %}
+- základ {% latex %}r = 3{% endlatex %}, což jsou lesy a víme, že platí
+- {% latex %}r > 3{% endlatex %}, sporem
+	- {% latex %}\exists G = (V, E){% endlatex %} neobsahující {% latex %}K_r{% endlatex %}-minor ale {% latex %}|E| \ge c_r \cdot |V|{% endlatex %} a zároveň nejmenší pro {% latex %}|V| + |E|{% endlatex %}
+	- pokud {% latex %}G' = (V', E'){% endlatex %} je vlastní minor {% latex %}G{% endlatex %}, tak {% latex %}|E'| < c_r \cdot |V'|{% endlatex %}, jinak bychom zvolili {% latex %}G'{% endlatex %}
+
+**Pomocné tvrzení:** {% latex %}\forall \left\{x, y\right\} = e \in E{% endlatex %} platí {% latex %}|N(x) \cap N(y)| \ge c_r{% endlatex %}
+
+{% math proof %}Vezmu {% latex %}G' = G.e{% endlatex %}
+- {% latex %}|E| \ge c_r \cdot |V|{% endlatex %} (protože {% latex %}G{% endlatex %} je protipříklad)
+- {% latex %}|E'| < c_r \cdot |V'| = c_r (|V| - 1){% endlatex %} (protože {% latex %}G'{% endlatex %} není protipříklad)
+
+Odečtem nerovností máme {% latex %}|E| - |E'| > c_r{% endlatex %}. Navíc {% latex %}|E| - |E'| = 1 + |N(x) \cap N(y)|{% endlatex %} (zanikají hrany do společných sousedů a navíc hrana {% latex %}e{% endlatex %}), dosazením dostáváme hledanou nerovnost.
+{% endmath %}
+
+K důkazu původního vyberu {% latex %}x \in V(G){% endlatex %}, {% latex %}S = N_G(x), G_S = G\left[S\right]{% endlatex %}.
+- dle pomocného tvrzení {% latex %}\forall y \in S: \deg_{G_S}(y) \ge c_r{% endlatex %}, jelikož všichni sousedé {% latex %}x{% endlatex %} leží v {% latex %}S{% endlatex %}.
+- {% latex %}|E(G_S)| \ge \frac{c_r}{2} \cdot |S| = \frac{2^{r - 3}}{2} |S| = c_{r - 1} |S|{% endlatex %}
+	- dle IP musí {% latex %}G_S{% endlatex %} obsahovat {% latex %}K_{r - 1}{% endlatex %} minor a ten spolu s {% latex %}x{% endlatex %} tvoří v {% latex %}G{% endlatex %} {% latex %}K_r{% endlatex %}-minor, což je spor
+
+{% math reminder %}odhad byl dost hrubý, věta platí dokonce pro {% latex %}c_r = \mathcal{O}(r \cdot \sqrt{\log r}{% endlatex %}{% endmath %}
+{% endmath %}
+
+---
+
+{% math definition %}{% latex %}k{% endlatex %}-uniformní hypergraf je dvojice {% latex %}(V, E){% endlatex %}, kde {% latex %}E \subseteq \binom{V}{k}{% endlatex %}{% endmath %}
+- {% latex %}f(k, n) :={% endlatex %} max. {% latex %}m{% endlatex %} t.ž. {% latex %}\exists{% endlatex %} {% latex %}k{% endlatex %}-uniformní hypergraf {% latex %}H = (V, E){% endlatex %} t.ž. {% latex %}|V| = n, |E| = m{% endlatex %} a {% latex %}E{% endlatex %} je „pronikající systém množin“ (t.j. {% latex %}\forall e, e' \in E: e \cap e' \neq \emptyset{% endlatex %}
+	- je dobré si rozmyslet, že braní všech hran nemusí fungovat (musí se protínat všechny dvojice)!
+
+{:.rightFloatBox}
+<div markdown="1">
+{% xopp slun %}
+</div>
+{% math observation %} rozebereme několik případů:
+- {% latex %}k > n: f(k, n) = 0{% endlatex %}, protože neexistují hyperhrany
+- {% latex %}k \le n < 2k: f(k, n) = \binom{n}{k}{% endlatex %}, protože každé dvě množiny z {% latex %}\binom{V}{k}{% endlatex %} se protínají
+- {% latex %}n \ge 2k: f(k, n) \ge \binom{n - 1}{k - 1}{% endlatex %} -- konstrukce, kde {% latex %}E = \left\{\left\{1\right\} \cup e' \mid e' \in \binom{\left\{2, \ldots, n\right\}}{k - 1}\right\}{% endlatex %}
+	- „slunečnicová“ proto, že vezmeme jeden střed a poté hrany na zbylých vrcholech
+{% endmath %}
+
+{% math theorem "Erdös-Ko-Rado, 196*" %}{% latex %}\forall k, n \in \mathbb{N}: n \ge 2k \implies f(k, n) = \binom{n - 1}{k - 1}{% endlatex %}{% endmath %}
+
+{% math proof %} dokazujeme dva odhady:
+
+- dolní odhad {% latex %}f(k, n) \ge \binom{n - 1}{k - 1}{% endlatex %} ze slunečnicové konstrukce
+- horní odhad {% latex %}f(k, n) \le \binom{n - 1}{k - 1}{% endlatex %}: máme {% latex %}H = (V, E){% endlatex %} {% latex %}k{% endlatex %}-uniformní hypergraf t.ž. {% latex %}E{% endlatex %} je protínající systém množin
+
+{% math definition %}cyklické pořadí {% latex %}\left\{1, \ldots, n\right\}{% endlatex %} je nějaká {% latex %}1{% endlatex %}-cyklová permutace {% latex %}\left\{1, \ldots, n\right\}{% endlatex %}{% endmath %}
+- {% latex %}k{% endlatex %}-intervaly (v tomhle příkladě {% latex %}3{% endlatex %}-intervaly) permutace {% latex %}C = (3, 1, 5, 4, 2, 7, 6, 8){% endlatex %} jsou {% latex %}315, 154, 542, 768, 683, 831{% endlatex %}
+	- pozor, tohle {% latex %}C{% endlatex %} zrovna cyklické pořadí není
+
+{% math observation %}intervalů daného pořadí {% latex %}C{% endlatex %} je {% latex %}n{% endlatex %}{% endmath %}
+
+{% math observation %}cyklických pořadí je {% latex %}(n - 1)!{% endlatex %}
+- můžeme si to představovat jako že začneme s prvkem a poté volíme {% latex %}n - 1{% endlatex %} dalších, kam pokračovat s cyklem, apod.
+{% endmath %}
+
+{% math observation %}pokud {% latex %}e = \left\{a_1, \ldots, a_k\right\}{% endlatex %} je vůči {% latex %}C{% endlatex %} interval, pak {% latex %}\exists \le k - 1{% endlatex %} dalších hran {% latex %}e'{% endlatex %} t.ž. jsou intervaly vůči {% latex %}C{% endlatex %}{% endmath %}
+
+{% math proof %}Může nastat vždy právě jeden z následujících případů, protože z předpokladu je {% latex %}E{% endlatex %} pronikající systém množin (a {% latex %}e'{% endlatex %} s {% latex %}e''{% endlatex %} by byly disjunktní):
+
+{% xopp slunnnn %}
+
+Dvojic je tedy nejvýše {% latex %}r - 1{% endlatex %}.
+{% endmath %}
+
+Důkaz věty bude dvojí počítání {% latex %}(e, C){% endlatex %} t.ž. {% latex %}e \in E, c{% endlatex %} cyklické pořadí a {% latex %}e{% endlatex %} tvoří v {% latex %}C{% endlatex %} interval.
+1. vezmu {% latex %}e{% endlatex %} a chci tvořit cyklické pořadí t.ž. {% latex %}e{% endlatex %} tvoří interval: {% latex %}e{% endlatex %} zpermutuji {% latex %}k!{% endlatex %} způsoby a {% latex %}V \setminus e{% endlatex %} zpermutuji {% latex %}(n - k)!{% endlatex %} způsoby, pro každou hranu, tedy {% latex display %}\# (e, C) = |E| \cdot k! \cdot (n - k)!{% endlatex %}
+2. vezmu {% latex %}C{% endlatex %}: těch je {% latex %}(n - 1)!{% endlatex %}
+	- podle pozorování je {% latex %}e{% endlatex %} tvořících interval nanejvýš {% latex %}k{% endlatex %}, tedy {% latex display %}\# (e, C) \le k \cdot (n - 1)!{% endlatex %}
+
+Spojením dostávám {% latex display %}|E| \le \binom{n - 1}{k - 1}{% endlatex %}
+{% endmath %}
+
+
+### zdroje/materiály
+- [stránky přednášky](https://research.koutecky.name/db/teaching:kg22021_prednaska).
 - [Poznámky Václava Končického](https://kam.mff.cuni.cz/~koncicky/notes/kag2/pdf) z roku 2019.

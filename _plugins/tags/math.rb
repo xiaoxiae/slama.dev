@@ -19,6 +19,10 @@ module Jekyll
           return '<strong>Definice' + (name.nil? ? '' : (' (' + name + ')')) + '</strong> ' + super.strip
         when "reminder"
           return '<strong>Připomenutí' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + super.strip
+        when "remark"
+          return '<strong>Poznámka' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + super.strip
+        when "notation"
+          return '<strong>Značení' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + super.strip
         when "lemma"
           return '<strong>Lemma' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> <em>' + super.strip + "</em>"
         when "claim"
