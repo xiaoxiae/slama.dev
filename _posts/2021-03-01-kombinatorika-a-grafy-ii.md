@@ -41,9 +41,7 @@ category: "lecture notes"
 		- není to kružnice (musela by být lichá a měli bychom máme kolizi ve vrcholu)
 		- je to volná (z definice, vzhledem k {% latex %}M{% endlatex %}) střídavá (jinak by měly stejný počet hran) cesta
 
----
-
-{% math definition "květ" %} lichá „střídavá“ kružnice s vrcholem {% latex %}v_1{% endlatex %}, ke kterému přiléhají dva vrcholy {% latex %}\not\in M{% endlatex %}{% endmath %}
+{% math definition "květ" %} lichá „střídavá“ kružnice s vrcholem {% latex %}v_1{% endlatex %}, ke kterému přiléhají dvě hrany {% latex %}\not\in M{% endlatex %}{% endmath %}
 {% math definition "stonek" %} střídavá cesta z {% latex %}v_1{% endlatex %} (i nulové) délky končící volným vrcholem (dál od květu){% endmath %}
 - {% latex %}v_1{% endlatex %} může (a nemusí) být volný vrchol -- stačí, aby byl volný vzhledem ke květu
 
@@ -52,7 +50,7 @@ category: "lecture notes"
 {:.center}
 ![](/assets/kombinatorika-a-grafy-ii/kytka.svg)
 
-{% math definition %} Nechť {% latex %}G = \left(V, E\right){% endlatex %} je neorientovaný graf a {% latex %}e = \left\{u, v\right\}{% endlatex %} jeho hrana. Zápis {% latex %}G . e{% endlatex %} označuje graf vzniklý z {% latex %}G{% endlatex %} kontrakcí („smrštěním“) hrany {% latex %}e{% endlatex %} do jednoho vrcholu:{% endmath %}
+{% math definition "kontrakce hrany" %} Nechť {% latex %}G = \left(V, E\right){% endlatex %} je neorientovaný graf a {% latex %}e = \left\{u, v\right\}{% endlatex %} jeho hrana. Zápis {% latex %}G . e{% endlatex %} označuje graf vzniklý z {% latex %}G{% endlatex %} kontrakcí („smrštěním“) hrany {% latex %}e{% endlatex %} do jednoho vrcholu:{% endmath %}
 
 {:.center}
 ![](/assets/kombinatorika-a-grafy-ii/kontrakce.svg)
@@ -69,7 +67,7 @@ TODO: důkaz z textu Matouška!
 {:.center}
 ![](/assets/kombinatorika-a-grafy-ii/les.svg)
 
-- pokud existuje hrana mezi (potenciálně různými) sudými hladinami různých stromů, pak máme volnou střídavou cestu, kterou zalterujeme a jsme hotovi (párování je o $1$ větší)
+- pokud existuje hrana mezi (potenciálně různými) sudými hladinami různých stromů, pak máme volnou střídavou cestu, kterou zalterujeme a jsme hotovi (párování je o {% latex %}1{% endlatex %} větší)
 - pokud existuje hrana mezi (potenciálně různými) sudými hladinami jednoho stromu, máme květ {% latex %}C{% endlatex %} -- ten zkontrahujeme a rekurzivně se zavoláme
 	- vrátí-li {% latex %}M' = M{% endlatex %}, pak nic dalšího neděláme
 	- vratí-li nějaké větší párování, tak z něho zkonstruujeme párování v {% latex %}G{% endlatex %}
@@ -83,19 +81,19 @@ TODO: důkaz z textu Matouška!
 
 #### Tutteova věta
 {% math definition "Tutteova podmínka" %} {% latex %}\forall S \subseteq V: \mathrm{odd}(G - S) \le |S|{% endlatex %}
-- kde {% latex %}\mathrm{odd}{% endlatex %} je počet lichých komponent grafu{% endmath %}.
+- {% latex %}\mathrm{odd}{% endlatex %} je počet lichých komponent grafu{% endmath %}.
 
 {% math theorem "Tutteova věta" %} {% latex %}G{% endlatex %} má perfektní párování {% latex %}\iff{% endlatex %} platí Tutteova podmínka.{% endmath %}
 
 {% math proof %}
-{% latex %}\Rightarrow{% endlatex %} obměna: neplatí TP {% latex %}\implies{% endlatex %} není PP. Nehchť {% latex %}\exists S \subseteq V{% endlatex %} t. ž. {% latex %}\mathrm{odd(G - S)} > |S|{% endlatex %}. V perfektním párování se alespoň {% latex %}1{% endlatex %} vrchol z každé liché komponenty musí spárovat s nějakým z {% latex %}S{% endlatex %}, ale těch není dostatek.
+{% latex %}\Rightarrow{% endlatex %} obměna: neplatí TP {% latex %}\implies{% endlatex %} není PP. Nechť {% latex %}\exists S \subseteq V{% endlatex %} t. ž. {% latex %}\mathrm{odd(G - S)} > |S|{% endlatex %}. V perfektním párování se alespoň {% latex %}1{% endlatex %} vrchol z každé liché komponenty musí spárovat s nějakým z {% latex %}S{% endlatex %}, ale těch není dostatek.
 
 {% latex %}\Leftarrow{% endlatex %} nechť {% latex %}G{% endlatex %} splňuje Tutteovu podmínku. {% latex %}|V|{% endlatex %} je sudá (nastavíme {% latex %}S{% endlatex %} prázdnou). Dokážeme, že {% latex %}G{% endlatex %} má PP indukcí podle počtu nehran.
 
 - **základ:** {% latex %}G = K_{2n}{% endlatex %}, ten PP má
 - **indukční podmínka:** {% latex %}G{% endlatex %} má nehranu a každý graf na {% latex %}V{% endlatex %}s počtem hran alespoň o 1 větší než {% latex %}|E|{% endlatex %} a platí TP, pak má perfektní párování
 
-{% math definition %}{% latex %}S = \left\{v \in V\ |\ \mathrm{deg}(v) = n - 1\right\} = \left\{v \mid \text{$v$ je spojený se všemi vrcholy} \right\}{% endlatex %}{% endmath %}
+Nechť {% latex %}S = \left\{v \in V\ |\ \mathrm{deg}(v) = n - 1\right\} = \left\{v \mid \text{$v$ je spojený se všemi vrcholy} \right\}{% endlatex %}
 - lehký případ: každá komponenta {% latex %}G - S{% endlatex %} je lichá klika
 	- v rámci dané kliky vypáruji vše až na jeden vrchol, ten spáruji v rámci {% latex %}S{% endlatex %} ({% latex %}S{% endlatex %} vidí všechny) a zbytek v {% latex %}S{% endlatex %} spáruji spolu (sudé komponenty do parity nepřispívají, liché + {% latex %}1{% endlatex %} z {% latex %}S{% endlatex %} také ne a v {% latex %}S{% endlatex %} tedy zbyde sudý počet vrcholů)
 
@@ -103,8 +101,8 @@ TODO: důkaz z textu Matouška!
 ![](/assets/kombinatorika-a-grafy-ii/1.svg)
 
 - alespoň {% latex %}1{% endlatex %} komponenta {% latex %}K{% endlatex %} není klika, tedy {% latex %}\exists x, y{% endlatex %} nesousedi
-	- ti mají společného souseda {% latex %}u{% endlatex %} (tvrzení, že každý souvislý neúplný graf má třešničku)
-	- jelikož {% latex %}u{% endlatex %} není spojený s {% latex %}S{% endlatex %}, tak je spojený s nějakým vrcholem {% latex %}v{% endlatex %}
+	- ti mají společného souseda {% latex %}u{% endlatex %} (tvrzení o třešničce), který není v {% latex %}S{% endlatex %}
+	- pro {% latex %}u{% endlatex %} existuje vrchol {% latex %}v{% endlatex %}, se kterým **není** spojený (jinak by {% latex %}u{% endlatex %} byl v {% latex %}S{% endlatex %}, což ale víme že není)
 
 
 {:.center}
@@ -113,7 +111,7 @@ TODO: důkaz z textu Matouška!
 - (👀) -- přidáním hrany do grafu se neporuší TP ({% latex %}\forall S \subseteq V{% endlatex %} počet lichých komponent {% latex %}G - S{% endlatex %} buď klesne o {% latex %}2{% endlatex %} nebo zůstane stejný).
 
 Indukujeme dvakrát: {% latex %}G_1 = G + e_1{% endlatex %} a {% latex %}G_2 = G + e_2{% endlatex %} díky předchozímu pozorování splňují TP a spolu s IP {% latex %}\implies \exists{% endlatex %} PP {% latex %}M_1, M_2{% endlatex %} v {% latex %}G_1, G_2{% endlatex %}
-- jednoduchý případ: {% latex %}e_1 \not\in M_1 \implies M_1{% endlatex %} je PP pro {% latex %}G{% endlatex %}, analogicky pro {% latex %}M_2{% endlatex %}
+- jednoduchý případ: {% latex %}e_1 \not\in M_1 \implies M_1{% endlatex %} je PP pro {% latex %}G{% endlatex %}, analogicky pro {% latex %}e_2{% endlatex %} a {% latex %}M_2{% endlatex %}
 
 Těžší případ: {% latex %}e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2){% endlatex %}
 - {% latex %}H {% endlatex %} obsahuje **„dvoubarevné hrany“** {% latex %}e \in M_1 \cap M_2{% endlatex %} nebo **střídavé sudé cykly**
@@ -122,12 +120,12 @@ Těžší případ: {% latex %}e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2){%
 {:.center}
 ![](/assets/kombinatorika-a-grafy-ii/3.svg)
 
-- jednodušší případ: {% latex %}e_1{% endlatex %} leží v jiné komponentě {% latex %}H{% endlatex %} než {% latex %}e_2{% endlatex %} -- stačí přealternovat hrany tak, aby ani {% latex %}e_1{% endlatex %} ani {% latex %}e_2{% endlatex %} v {% latex %}H{% endlatex %} neležely.
+- jednodušší případ těžšího případu: {% latex %}e_1{% endlatex %} leží v jiné komponentě {% latex %}H{% endlatex %} než {% latex %}e_2{% endlatex %} -- stačí přealternovat hrany tak, aby ani {% latex %}e_1{% endlatex %} ani {% latex %}e_2{% endlatex %} v {% latex %}H{% endlatex %} neležely.
 
 {:.center}
 ![](/assets/kombinatorika-a-grafy-ii/4.svg)
 
-- složitější případ: {% latex %}e_1{% endlatex %} a {% latex %}e_2{% endlatex %} leží ve stejné komponentě -- vybereme podle obrázku
+- složitější případ těžšího případu: {% latex %}e_1{% endlatex %} a {% latex %}e_2{% endlatex %} leží ve stejné komponentě -- vybereme podle obrázku
 
 {:.center}
 ![](/assets/kombinatorika-a-grafy-ii/5.svg)
@@ -141,19 +139,19 @@ Těžší případ: {% latex %}e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2){%
 1. každá komponenta {% latex %}G - S{% endlatex %} je v {% latex %}G{% endlatex %} spojena aspoň dvěma hranami s {% latex %}S{% endlatex %}
 	- je {% latex %}2{% endlatex %}-souvislý, nemáme mosty
 
-2. každá lichá komponenta {% latex %}G - S{% endlatex %} je s {% latex %}S{% endlatex %} spojena lichým počtem hran
+2. dokážeme, že každá lichá komponenta {% latex %}G - S{% endlatex %} je s {% latex %}S{% endlatex %} spojena lichým počtem hran:
 	- nechť {% latex %}L{% endlatex %} je lichá komponenta {% latex %}G - S{% endlatex %}; pak:
-{% latex display %}\sum_{x \in V(L)}^{\mathrm{deg}_G(x)} \overset{3-\text{reg.}}{=} \underbrace{3|V(L)|}_{\text{liché číslo}} = \underbrace{2 (\text{\# hran vedoucích uvnitř $L$})}_{\text{sudé číslo}} + \underbrace{1 (\text{\# hran vedoucích uvnitř $L$})}_{\text{musí být liché}}{% endlatex %}
+{% latex display %}\sum_{x \in V(L)}\mathrm{deg}_G(x) \overset{3-\text{reg.}}{=} \underbrace{3|V(L)|}_{\text{liché číslo}} = \underbrace{2 (\text{\# hran vedoucích uvnitř $L$})}_{\text{sudé číslo}} + \underbrace{1 (\text{\# hran vedoucích uvnitř $L$})}_{\text{musí být liché}}{% endlatex %}
 
-- kombinace (1) a (2) říká, že každá lichá komponenta {% latex %}G - S{% endlatex %} je s {% latex %}S{% endlatex %} spojena {% latex %}\ge 3{% endlatex %} hranami; formálně:
-	- {% latex %}p = \text{\# hran mezi $S$ a lichou komponentou $G - S$}{% endlatex %}
-		- {% latex %}p \ge 3 \cdot \mathrm{odd(G - S)}{% endlatex %}
-		- {% latex %}p \le 3 \cdot |S|{% endlatex %} (každý vrchol {% latex %}S{% endlatex %} vysílá ven {% latex %}\le 3{% endlatex %} hrany (z 3-regularity))
+- kombinace (1) a (2) říká, že každá lichá komponenta {% latex %}G - S{% endlatex %} je s {% latex %}S{% endlatex %} spojena {% latex %}\ge 3{% endlatex %} hranami:
+	- {% latex %}p = {% endlatex %} počet hran mezi {% latex %}S{% endlatex %} a lichou komponentou {% latex %}G - S{% endlatex %}
+		- {% latex %}p \ge 3 \cdot \mathrm{odd(G - S)}{% endlatex %} (ukázali jsme výše)
+		- {% latex %}p \le 3 \cdot |S|{% endlatex %} (každý vrchol {% latex %}S{% endlatex %} vysílá ven {% latex %}\le 3{% endlatex %} hrany (z {% latex %}3{% endlatex %}-regularity))
 
 {:.center}
 ![](/assets/kombinatorika-a-grafy-ii/6.svg)
 
-{% latex %}3|S| \ge 3 \cdot \mathrm{odd}(G - S){% endlatex %}, tedy TP platí a graf má perfektní párování.
+{% latex %}|S| \ge \mathrm{odd}(G - S){% endlatex %}, tedy TP platí a graf má perfektní párování.
 
 {% endmath %}
 
@@ -181,13 +179,11 @@ Označme řez {% latex %}v_e, z_e{% endlatex %}. Po rozkontrahování vidíme, �
 
 {% xopp 2 %}
 
----
-
 Pro důkaz původního lemmatu si zvolím {% latex %}e = \left\{x, y \right\} \in E{% endlatex %} a {% latex %}z_e{% endlatex %} z pomocného tvrzení tak, aby nejmenší komponenta {% latex %}G - z, y, z_e{% endlatex %} byla co nejmenší (co do počtu vrcholů).
 
-{% xopp 3 %}
-
 Protože {% latex %}z_e{% endlatex %} má souseda ve všech komponentách, má nějakého souseda {% latex %}u \in C, f = \left\{z_e, u\right\}{% endlatex %} (kde {% latex %}C{% endlatex %} je naše nejmenší komponenta). Pomocné tvrzení pro {% latex %}f{% endlatex %} dá nějaký {% latex %}z_f \in V{% endlatex %} t. ž. {% latex %}\left\{z_e, z_f, u\right\}{% endlatex %} je vrcholový řez {% latex %}G{% endlatex %}. Chceme dokázat, že {% latex %}G - z_e, z_f, u{% endlatex %} má menší komponentu než {% latex %}C{% endlatex %}.
+
+{% xopp 3 %}
 
 Nechť {% latex %}D{% endlatex %} je komponenta {% latex %}G - z_e, z_f, u{% endlatex %} neobsahující {% latex %}x, y{% endlatex %}. Existuje, protože {% latex %}x, y{% endlatex %} jsou spojené a graf se rozpadne alespoň na {% latex %}2{% endlatex %} komponenty). Tvrdím, že {% latex %}D \subseteq C \setminus \left\{u\right\}{% endlatex %}, protože {% latex %}D{% endlatex %} nemůže obsahovat {% latex %}z_e, z_f, u{% endlatex %} (vrcholy řezu), {% latex %}x, y{% endlatex %} (z definice {% latex %}D{% endlatex %}), ale {% latex %}u{% endlatex %} má souseda v {% latex %}C{% endlatex %} (podle pomocného tvrzení), takže v {% latex %}D{% endlatex %} ještě něco zbyde. Tedy {% latex %}|D| < |C|{% endlatex %}, což je spor s minimalitou.
 {% endmath %}
@@ -260,15 +256,15 @@ Označme {% latex %}C{% endlatex %} kružnici ohraničující stěnu {% latex %}
 - {% latex %}N(x) \cup N(y) \setminus \left\{x, y\right\} \subseteq C{% endlatex %} (každý soused {% latex %}x{% endlatex %} kromě {% latex %}y{% endlatex %} je i sousedem {% latex %}v_e{% endlatex %} v {% latex %}G'{% endlatex %}, stejně pro {% latex %}y{% endlatex %}
 
 3 případy:
-1. {% latex %}|N(x) \cap N(y)| \ge 3{% endlatex %} -- nenastane, protože kontrakcí dostanu {% latex %}K_5{% endlatex %}, což je spor s předpokladem
+- {% latex %}|N(x) \cap N(y)| \ge 3{% endlatex %} -- nenastane, protože kontrakcí dostanu {% latex %}K_5{% endlatex %}, což je spor s předpokladem
 
 {% xopp p1 %}
 
-2. {% latex %}\exists a_1, a_2 \in N(x) \cap C, \exists b_1, b_2 \in N(y) \cap C{% endlatex %}, na {% latex %}C{% endlatex %} jsou v pořadí {% latex %}a_1, b_1, a_2, b_2{% endlatex %} -- nenastane, protože kontrakcí dostanu {% latex %}K_{3, 3}{% endlatex %}
+- {% latex %}\exists a_1, a_2 \in N(x) \cap C, \exists b_1, b_2 \in N(y) \cap C{% endlatex %}, na {% latex %}C{% endlatex %} jsou v pořadí {% latex %}a_1, b_1, a_2, b_2{% endlatex %} -- nenastane, protože kontrakcí dostanu {% latex %}K_{3, 3}{% endlatex %}
 
 {% xopp p2 %}
 
-3. zbytek -- nenasatane ani (1), ani (2)
+- zbytek -- nenasatane ani (1), ani (2)
 	- označme {% latex %}a_1, \ldots, a_k \in N(x) \cap C{% endlatex %} v pořadí, jak se objevují na {% latex %}C{% endlatex %}
 	- můžu nakreslit všechny hrany {% latex %}xa_1, \ldots xa_k{% endlatex %}
 	- {% latex %}a_1, \ldots, a_k{% endlatex %} rozdělují {% latex %}C{% endlatex %} na vnitřně disjunktní cesty {% latex %}P_1, \ldots P_k{% endlatex %} ({% latex %}k \ge 2{% endlatex %} protože {% latex %}G{% endlatex %} je {% latex %}3{% endlatex %}-souvislý... {% latex %}x{% endlatex %} sousedí s {% latex %}y{% endlatex %} a s {% latex %}\ge 2{% endlatex %} dalšími vrcholy)
@@ -308,14 +304,14 @@ Operace s plochami, přes které umíme všechny zkonstruovat:
 - přidání křížítka (cross-cupu):
 	- (👀) -- teleport, do kterého když vejdeme, tak nás to přesune naproti
 
-Pro {% latex %}g \in \left\{0, 1, \ldots\right\}{% endlatex %} nechť {% latex %}\sum_g{% endlatex %} značí plochu zvniklou ze féry přidáním {% latex %}g{% endlatex %} uší, tak říkáme, že {% latex %}\sum g{% endlatex %} je **orientovatelná plocha** rodu {% latex %}g{% endlatex %}.
+Pro {% latex %}g \in \left\{0, 1, \ldots\right\}{% endlatex %} nechť {% latex %}\sum_g{% endlatex %} značí plochu zvniklou ze sféry přidáním {% latex %}g{% endlatex %} uší, tak říkáme, že {% latex %}\sum g{% endlatex %} je **orientovatelná plocha** rodu {% latex %}g{% endlatex %}.
 
-Pro {% latex %}g \in \left\{1, 2, \ldots\right\}{% endlatex %} nechť {% latex %}\prod_g{% endlatex %} značí plochu zvniklou ze féry přidáním {% latex %}g{% endlatex %} křížítek, tak říkáme, že {% latex %}\prod g{% endlatex %} je **neorientovatelná plocha** rodu {% latex %}g{% endlatex %}.
+Pro {% latex %}g \in \left\{1, 2, \ldots\right\}{% endlatex %} nechť {% latex %}\prod_g{% endlatex %} značí plochu zvniklou ze sféry přidáním {% latex %}g{% endlatex %} křížítek, tak říkáme, že {% latex %}\prod g{% endlatex %} je **neorientovatelná plocha** rodu {% latex %}g{% endlatex %}.
 
 {% math fact %}Každá plocha je homeomorfní právě jedné z posloupností {% latex %}\sum_0, \prod_1, \sum_1, \prod_2,\ldots{% endlatex %}{% endmath %}
 - máme tu skryté tvrzení, že žádné dvě z této posloupností nejsou homeomorfní.
 
-{% math fact %}Přidám-li ke sféře {% latex %}k \ge 0{% endlatex %} uší a {% latex %}l \ge 1{% endlatex %} křížítek, vznikne neorientovatelná plocha homeomorfní {% latex %}\prod_{2k + l}{% endlatex %} ({% latex %}\approx{% endlatex %} „přidání dvou křížítek je jako přidání ucha,“ **pokud** už tam bylo {% latex %}\ge 1{% endlatex %} křížítko){% endmath %}
+{% math fact %}Přidám-li ke sféře ({% latex %}= \Sigma_0{% endlatex %}) {% latex %}k \ge 0{% endlatex %} uší a {% latex %}l \ge 1{% endlatex %} křížítek, vznikne **neorientovatelná plocha** homeomorfní {% latex %}\prod_{2k + l}{% endlatex %} ({% latex %}\approx{% endlatex %} „přidání dvou křížítek je jako přidání ucha,“ **pokud** už tam bylo {% latex %}\ge 1{% endlatex %} křížítko){% endmath %}
 
 - {% latex %}\sum_0 \ldots{% endlatex %} sféra
 - {% latex %}\prod_1 \ldots{% endlatex %} projektivní rovina
@@ -332,7 +328,7 @@ Pro {% latex %}g \in \left\{1, 2, \ldots\right\}{% endlatex %} nechť {% latex %
 {% endmath %}
 
 {% math definition "stěna nakreslení" %} souvislá komponenta {% latex %}\Gamma \setminus \left(\left(\bigcup_{e \in E}^{\varphi(e)}\right) \cup \left(\bigcup_{x \in V}^{\varphi(x)}\right)\right){% endlatex %}{% endmath %}
-- prostě když odeberu všechna nakreslení hran a vrcholů
+- prostě souvislé komponenty toho, když odeberu všechna nakreslení hran a vrcholů
 
 {% math definition "buňkové nakreslení" %} každá stěna je homeomorfní otevřenému kruhu v {% latex %}\mathbb{R}^2{% endlatex %}.{% endmath %}
 
@@ -352,7 +348,7 @@ Pro {% latex %}g \in \left\{1, 2, \ldots\right\}{% endlatex %} nechť {% latex %
 {% endlatex %}
 {% endmath %}
 
-{% math theorem "zobecněná Eulerova formule" %}Nechť máme nakreslení grafu {% latex %}G = (V, E){% endlatex %} na ploše {% latex %}\Gamma{% endlatex %}, které má {% latex %}S{% endlatex %} stěn. Pak {% latex %}|V| - |E| + |S| \ge \Chi(\Gamma).{% endlatex %}. Pokud je buňkové, tak dokonce {% latex %}|V| - |E| + S = \Chi(\Gamma){% endlatex %}.{% endmath %} 
+{% math theorem "zobecněná Eulerova formule" %}Nechť máme nakreslení grafu {% latex %}G = (V, E){% endlatex %} na ploše {% latex %}\Gamma{% endlatex %}, které má {% latex %}S{% endlatex %} stěn. Pak {% latex %}|V| - |E| + |S| \ge \Chi(\Gamma){% endlatex %}. Pokud je buňkové, tak dokonce {% latex %}|V| - |E| + S = \Chi(\Gamma){% endlatex %}.{% endmath %} 
 
 {% math proof "rovnosti" %}idea je indukce podle rodu {% latex %}\Gamma{% endlatex %}
 - {% latex %}\Gamma \cong \sum_0{% endlatex %} platí
@@ -404,6 +400,7 @@ Tedy {% latex %}\Chi(\Gamma) = L(G''') - 1 = L(G'') = L(G') = L(G){% endlatex %}
 {% endmath %}
 
 {% math consequence %}Každý graf {% latex %}G{% endlatex %} nakreslitelný na plochu {% latex %}\Gamma{% endlatex %} splní {% latex %}|E| \le 3|V| - 3\Chi(\Gamma){% endlatex %}, pokud {% latex %}|V| \ge 4{% endlatex %}
+- důkaz přes to, že předpokládáme, že každá stěna je trojúhelník a dosadíme {% latex %}|S| = \frac{2}{3}|E|{% endlatex %}, jelikož každá stěna je tvořena třemi hranami a zároveň je každá hrana ve dvou stěnách
 - každý takový graf má průměrný stupeň {% latex %}\frac{2|E|}{|V|} \le 6 - \frac{6\Chi(\Gamma)}{|V|}{% endlatex %}
 	- na žádnou zafixovanou plochu nelze nakreslit libovolně velký {% latex %}7{% endlatex %}-regulární graf
 	- pro libovolně velký úplňák dokážeme vytvořit plochu, na kterou ho nakreslíme
