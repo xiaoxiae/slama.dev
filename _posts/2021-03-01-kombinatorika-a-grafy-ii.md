@@ -863,11 +863,9 @@ Potom **exponenciální vytvořující funkce** pro {% latex %}\mathcal{A}{% end
 
 {% endmath %}
 
-### 12. přednáška
-
 #### Groupy a Burnside
-{% math definition "akce grupy" %}nechť {% latex %}A{% endlatex %} je množina, nechť {% latex %}\Gamma{% endlatex %} je grupa, {% latex %}1\Gamma{% endlatex %} její neutrální prvek. Potom akce grupy {% latex %}\Gamma{% endlatex %} na množině {% latex %}A{% endlatex %} je binární operace {% latex %}\cdot: \Gamma \times A \mapsto A{% endlatex %} t.ž.
-1. {% latex %}\forall x \in A: 1\Gamma \cdot x = x{% endlatex %}
+{% math definition "akce grupy" %}nechť {% latex %}A{% endlatex %} je množina, nechť {% latex %}\Gamma{% endlatex %} je grupa, {% latex %}1_\Gamma{% endlatex %} její neutrální prvek. Potom akce grupy {% latex %}\Gamma{% endlatex %} na množině {% latex %}A{% endlatex %} je binární operace {% latex %}\cdot: \Gamma \times A \mapsto A{% endlatex %} t.ž.
+1. {% latex %}\forall x \in A: 1_\Gamma \cdot x = x{% endlatex %}
 2. {% latex %}\forall \gamma, \delta \in \Gamma, \forall x \in A: \gamma \cdot (\delta \cdot x) = (\gamma \delta) \cdot x{% endlatex %}
 	- pozor, {% latex %}\cdot{% endlatex %} a {% latex %}\gamma\delta{% endlatex %} jsou jiné operace
 {% endmath %}
@@ -876,11 +874,92 @@ Potom **exponenciální vytvořující funkce** pro {% latex %}\mathcal{A}{% end
 
 {% math consequence %}{% latex %}\forall p \in \Gamma:{% endlatex %} zobrazení {% latex %}x \mapsto p \cdot x{% endlatex %} je bijekce {% latex %}A \longleftrightarrow A{% endlatex %}{% endmath %}
 
+### 12. přednáška
+{% math definition: "množina pevných bodů" %}{% latex %}\gamma \in \Gamma{% endlatex %}, značená {% latex %}\mathrm{Fix}(\gamma) = \left\{x \in A \mid \gamma x = x\right\}{% endlatex %}{% endmath %}
+
+{% math definition: "stabilizátor" %} prvku {% latex %}x \in A{% endlatex %} je {% latex %}\mathrm{Stab}(x) = \left\{\gamma \in \Gamma \mid \gamma x = x\right\}{% endlatex %}{% endmath %}
+
+{% math observation %}\gamma \in \Gamma, x \in A: \gamma \in \mathrm{Stab}(x) \iff x \in \mathrm{Fix}(\gamma) \iff \gamma x = x{% endmath %}
+
+{% math observation %}{% latex %}\mathrm{Stab}(x){% endlatex %} je podgrupa {% latex %}\Gamma{% endlatex %}
+- {% latex %}1_\Gamma \in \mathrm{Stab}(x){% endlatex %}, protože {% latex %}1_\Gamma x = x{% endlatex %}
+- {% latex %}\gamma \in \mathrm{Stab}(x) \implies \gamma^{-1} \in \mathrm{Stab}(x){% endlatex %} z pozorování {% latex %}\gamma x = y \iff x = \gamma^{-1}y{% endlatex %}
+- {% latex %}\gamma, \delta \in \mathrm{Stab}(x) \implies \gamma x = x, \delta x = x{% endlatex %}, dosazením dostávám {% latex %}\gamma \delta x = x{% endlatex %}
+{% endmath %}
+
+Prvky {% latex %}x, y \in A{% endlatex %} jsou ekvivalentní (značím {% latex %}x \sim_{\Gamma} y{% endlatex %}, pokud {% latex %}\exists \gamma \in \Gamma{% endlatex %} t.ž. {% latex %}\gamma x = y{% endlatex %}
+- (👀) {% latex %}\sim_{\Gamma}{% endlatex %} je to ekvivalence:
+	- reflexivní -- {% latex %}x = 1_\Gamma x{% endlatex %}
+	- symetrická -- {% latex %}\gamma x = y \iff \gamma^{-1}y = x{% endlatex %}
+	- transitivní -- {% latex %}\gamma x = y \land \gamma y = z \implies (\delta \gamma)x = z{% endlatex %}
+
+{% math definition: "orbita" %} obsahující prvek {% latex %}x \in A{% endlatex %} je množina {% latex display %}\left[x\right]_{\Gamma} = \left\{y \in A \mid x \sim_\Gamma y\right\} = \left\{\gamma x \mid \gamma \in \Gamma\right\}{% endlatex %}
+možinu orbit značíme {% latex %}A / \Gamma{% endlatex %}.
+{% endmath %}
+
+{% math example %}Koláčky (mák, tvaroh povidla).
+
+{% latex display %}\mathcal{K} = \left\{\boxed{a{b\atop c} d} \mid a, b, c, d \in \left\{T, M, P\right\}\right\} \qquad |\mathcal{K}| = 3^4 = 81{% endlatex %}
+
+{% latex display %}\Gamma = \left\{\text{otočení o násobky 90$\degree$ mod 360$\degree$}\right\} = \left\{0\degree, 90\degree, 180\degree, 270\degree \right\}{% endlatex %}
+
+- akce odpovídají otočením koláčku.
+- {% latex %}\mathrm{Fix}(90\degree) = \left\{\boxed{a{b\atop b} a} \mid a, b \in \left\{T, M, P\right\}\right\}{% endlatex %}
+- {% latex %}\mathrm{Stab\left(\boxed{M{T\atop P} M}\right)} = \left\{0\degree\right\}{% endlatex %}
+- {% latex %}\left[\boxed{M{T\atop P} M}\right] = \left\{\boxed{M{T\atop P} M}, \boxed{P{M\atop M} T}, \boxed{M{P\atop T} M}, \boxed{T{M\atop M} P}\right\}{% endlatex %}
+{% endmath %}
+
+{% math lemma "o orbitě stabilizátoru" %}Nechť {% latex %}\Gamma{% endlatex %} je konečná grupa s akcí na množině {% latex %}A{% endlatex %}. Potom {% latex display %}\forall x \in A: |\mathrm{Stab(x)}| \cdot |\left[x\right]| = |\Gamma|{% endlatex %} {% endmath %}
+
+{% math theorem "Bursideovo lemma" %}Nechť {% latex %}\Gamma{% endlatex %} je konečná grupa s akcí na {% latex %}A{% endlatex %}
+{% endmath %}
+1. (jednoduchá) pokud {% latex %}A{% endlatex %} je konečná, pak {% latex display %}|A / \Gamma| = \frac{1}{|\Gamma} \sum_{\gamma \in \Gamma} |\mathrm{Fix}(\gamma)|{% endlatex %} {% latex %}={% endlatex %} počet orbit je roven „průměrnému počtu pervných bodů“ 
+2. Nechť každá orbita {% latex %}o \in A / \Gamma{% endlatex %} má přiřazenou váhu {% latex %}w(o){% endlatex %}. Potom {% latex display %}\sum_{o \in A/\Gamma} w(o) = \frac{1}{|\Gamma|} \sum_{\gamma \in \Gamma} \sum_{x \in \mathrm{Fix}(\gamma)} w([x]){% endlatex %}
+
+{% math proof %} {% latex %}(2) \Rightarrow (1){% endlatex %}, když jsou váhy {% latex %}1{% endlatex %}.
+
+{% latex %}(2){% endlatex %} -- dvojím počítáním {% latex %}s := \sum_{\gamma, x} \in \Gamma \times A, \gamma x = x{% endlatex %}
+
+{% latex display %}s = \sum_{\gamma \in \Gamma} \sum_{x \in \mathrm{Fix}(\gamma)} w([x]){% endlatex %}
+
+{% latex display %} \begin{aligned}
+	s &= \sum_{x \in A} \sum_{\gamma \in \mathrm{Stab}(x)} w([x]) \qquad w([x])\text{ závisí pouze na váze orbity}\\
+	  &= \sum_{o \in A / \Gamma} \sum_{x \in o} \sum_{\gamma \in \mathrm{Stab}(x)} w(o) \qquad \text{vnitřní suma závisí na $\mathrm{Stab}(x)$} \\
+	  &= \sum_{o \in A / \Gamma} \sum_{x \in o} |\mathrm{Stab}(x)| w(o) \qquad \text{lemma o orbitě a stabilizátoru} \\
+	  &= \sum_{o \in A / \Gamma} \sum_{x \in o} \frac{|\Gamma|}{|o|} w(o) \qquad \text{obsah sumy závisí na velikosti orbity} \\
+	  &= \sum_{o \in A / \Gamma} |o| \frac{|\Gamma|}{|o|} w(o) \\
+	  &= |\Gamma| \sum_{o \in A / \Gamma} w(o) \\
+\end{aligned} {% endlatex %}
+{% endmath %}
+
+Poté první a druhý způsob dám do rovnosti, vydělím velikostí grupy a hotovo.
+
+{% math example %}
+Koláčky na steroidech: množina koláčků {% latex %}\mathcal{R}{% endlatex %}, v každé části nezáporný počet rozinek, akce jsou stejné.
+
+Pro {% latex %}k \in \mathbb{N}_0, a_k = {% endlatex %} počet orbit, jejichž koláčky mají celkem {% latex %}k{% endlatex %} rozinek. Cíl je získat vzorec pro {% latex %}A(x) = \sum_{n \ge 0} a_n x^n{% endlatex %}
+
+Použijeme obecnější Burnsideovo lemma. Chceme, aby {% latex display %}A(x) = \sum_{o \in A/\Gamma} w(o) = \frac{1}{|\Gamma|} \sum_{\gamma \in \Gamma} \sum_{x \in \mathrm{Fix}(\gamma)} w([x]){% endlatex %}
+
+Váhu orbity s {% latex %}k{% endlatex %} koláčky nastavíme na {% latex %}x^k{% endlatex %}. Pro {% latex %}q \in \mathcal{R}{% endlatex %} označím {% latex %}r(q){% endlatex %} počet rozinek v {% latex %}q{% endlatex %}, {% latex %}w([q]) = x^{r(q)}{% endlatex %}.
+
+| {% latex %}\gamma{% endlatex %}                                   | {% latex %}1_\Gamma{% endlatex %}                       | {% latex %}90\degree{% endlatex %}, {% latex %}270\degree{% endlatex %} | {% latex %}180\degree{% endlatex %}                       |
+| ---                                                               | ---                                                     | ---                                                                     | ---                                                       |
+| {% latex %}\mathrm{Fix}(\gamma){% endlatex %}                     | {% latex %}\mathcal{R}{% endlatex %}                    | všude je stejný počet rozinek                                           | protější strany mají stejný počet rozinek                 |
+| {% latex %}\sum_{q \in \mathrm{Fix}(\gamma)} w([q]){% endlatex %} | {% latex %}\left(\frac{1}{1 - x}\right)^4{% endlatex %} | {% latex %}\frac{1}{1 - x^4}{% endlatex %}                              | {% latex %}\left(\frac{1}{1 - x^2}\right)^2{% endlatex %} |
+
+Vytvořující funkce z tabulky jsme odvodili následně:
+
+{% latex display %}\sum_{q \in \mathrm{Fix}(\gamma) = \mathcal{R}} = \sum_{q \in \mathcal{R}} x^{r(q)} = \sum_{(a, b, c, d) \in \mathbb{N}_0^4} x^{a + b + c + d} = \left(\sum_{a \in \mathbb{N}_0} x^a\right)^4 = \left(\frac{1}{1 - x}\right)^4{% endlatex %}
+{% latex display %}\sum_{q \in \mathrm{Fix}(\gamma) = \left\{(a, a, a, a) \mid a \in \mathbb{N}_0\right\}} = \sum_{a \in \mathbb{N}_0} x^{4a} = \frac{1}{1 - x^4}{% endlatex %}
+{% latex display %}\sum_{q \in \mathrm{Fix}(\gamma) = \left\{(a, b, a, b) \mid a, b \in \mathbb{N}_0\right\}} = \left(\sum_{a \in \mathbb{N}_0} x^{2a}\right) \left(\sum_{b \in \mathbb{N}_0} x^{2b}\right) = \left(\frac{1}{1 - x^2}\right)^2{% endlatex %}
+
+Tedy dostáváme, že {% latex display %}A(x) = \frac{1}{4} \left(\left(\frac{1}{1 - x}\right)^4 + 2 \left(\frac{1}{1-x^4}\right) + \left(\frac{1}{1 - x^2}\right)^2\right){% endlatex %}
+
+{% endmath %}
 
 ### 13. přednáška
 TODO
-
-
 
 ### Zdroje/materiály
 - [Stránky přednášky](https://research.koutecky.name/db/teaching:kg22021_prednaska).
