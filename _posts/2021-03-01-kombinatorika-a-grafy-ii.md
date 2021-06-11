@@ -1085,12 +1085,11 @@ K důkazu původního vyberu {% latex %}x \in V(G){% endlatex %}, {% latex %}S =
 
 {% math definition %}cyklické pořadí {% latex %}\left\{1, \ldots, n\right\}{% endlatex %} je nějaká {% latex %}1{% endlatex %}-cyklová permutace {% latex %}\left\{1, \ldots, n\right\}{% endlatex %}{% endmath %}
 - {% latex %}k{% endlatex %}-intervaly (v tomhle příkladě {% latex %}3{% endlatex %}-intervaly) permutace {% latex %}C = (3, 1, 5, 4, 2, 7, 6, 8){% endlatex %} jsou {% latex %}315, 154, 542, 768, 683, 831{% endlatex %}
-	- pozor, tohle {% latex %}C{% endlatex %} zrovna cyklické pořadí není
 
 {% math observation %}intervalů daného pořadí {% latex %}C{% endlatex %} je {% latex %}n{% endlatex %}{% endmath %}
 
 {% math observation %}cyklických pořadí je {% latex %}(n - 1)!{% endlatex %}
-- můžeme si to představovat jako že začneme s prvkem a poté volíme {% latex %}n - 1{% endlatex %} dalších, kam pokračovat s cyklem, apod.
+- kvůli tomu, že libovolnou permutaci můžu posunout o {% latex %}n{% endlatex %} míst a stále to bude stejný cyklus
 {% endmath %}
 
 {% math observation %}pokud {% latex %}e = \left\{a_1, \ldots, a_k\right\}{% endlatex %} je vůči {% latex %}C{% endlatex %} interval, pak {% latex %}\exists \le k - 1{% endlatex %} dalších hran {% latex %}e'{% endlatex %} t.ž. jsou intervaly vůči {% latex %}C{% endlatex %}{% endmath %}
