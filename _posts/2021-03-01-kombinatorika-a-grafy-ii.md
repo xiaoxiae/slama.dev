@@ -94,7 +94,7 @@ category: "lecture notes"
 - **základ:** {% latex %}G = K_{2n}{% endlatex %}, ten PP má
 - **indukční podmínka:** {% latex %}G{% endlatex %} má nehranu a každý graf na {% latex %}V{% endlatex %}s počtem hran alespoň o 1 větší než {% latex %}|E|{% endlatex %} a platí TP, pak má perfektní párování
 
-Nechť {% latex %}S = \left\{v \in V\ |\ \mathrm{deg}(v) = n - 1\right\} = \left\{v \mid \text{$v$ je spojený se všemi vrcholy} \right\}{% endlatex %}
+Nechť {% latex %}S = \left\{v \in V\ |\ \deg(v) = n - 1\right\} = \left\{v \mid \text{$v$ je spojený se všemi vrcholy} \right\}{% endlatex %}
 - lehký případ: každá komponenta {% latex %}G - S{% endlatex %} je lichá klika
 	- v rámci dané kliky vypáruji vše až na jeden vrchol, ten spáruji v rámci {% latex %}S{% endlatex %} ({% latex %}S{% endlatex %} vidí všechny) a zbytek v {% latex %}S{% endlatex %} spáruji spolu (sudé komponenty do parity nepřispívají, liché + {% latex %}1{% endlatex %} z {% latex %}S{% endlatex %} také ne a v {% latex %}S{% endlatex %} tedy zbyde sudý počet vrcholů)
 
@@ -142,7 +142,7 @@ Těžší případ: {% latex %}e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2){%
 
 2. dokážeme, že každá lichá komponenta {% latex %}G - S{% endlatex %} je s {% latex %}S{% endlatex %} spojena lichým počtem hran:
 	- nechť {% latex %}L{% endlatex %} je lichá komponenta {% latex %}G - S{% endlatex %}; pak:
-{% latex display %}\sum_{x \in V(L)}\mathrm{deg}_G(x) \overset{3-\text{reg.}}{=} \underbrace{3|V(L)|}_{\text{liché číslo}} = \underbrace{2 (\text{\# hran vedoucích uvnitř $L$})}_{\text{sudé číslo}} + \underbrace{1 (\text{\# hran vedoucích uvnitř $L$})}_{\text{musí být liché}}{% endlatex %}
+{% latex display %}\sum_{x \in V(L)}\deg_G(x) \overset{3-\text{reg.}}{=} \underbrace{3|V(L)|}_{\text{liché číslo}} = \underbrace{2 (\text{\# hran vedoucích uvnitř $L$})}_{\text{sudé číslo}} + \underbrace{1 (\text{\# hran vedoucích uvnitř $L$})}_{\text{musí být liché}}{% endlatex %}
 
 - kombinace (1) a (2) říká, že každá lichá komponenta {% latex %}G - S{% endlatex %} je s {% latex %}S{% endlatex %} spojena {% latex %}\ge 3{% endlatex %} hranami:
 	- {% latex %}p = {% endlatex %} počet hran mezi {% latex %}S{% endlatex %} a lichými komponentami {% latex %}G - S{% endlatex %}
@@ -245,8 +245,8 @@ Pak ale {% latex %}G_{i - 1}{% endlatex %} nebyl 3-souvislý, rozborem toho, kde
 
 ### 4. přednáška
 - {% latex %}k_v(G) \ge 3\implies{% endlatex %} použijeme lemma o kontrahovatelné hraně: {% latex %}\exists e = \left\{x, y\right\}{% endlatex %} t. ž. {% latex %}G \setminus e = G'{% endlatex %} je {% latex %}3{% endlatex %}-souvislý
-	- (👀) {% latex %}G'{% endlatex %} nemůže obsahovat {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} jako minor (spor s předpokladem)
-	- {% latex %}\mathcal{G}' \ldots{% endlatex %} rovinné nakreslení {% latex %}G'{% endlatex %} (z IP existuje)
+	- (👀) {% latex %}G'{% endlatex %} nemůže obsahovat {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} jako minor (kontrakcí něčeho, co je nemělo, je nevytvoříme)
+	- {% latex %}\mathcal{G}' \ldots{% endlatex %} rovinné nakreslení {% latex %}G'{% endlatex %} (existuje z IP)
 	- {% latex %}G'' = G' - v_e{% endlatex %} (vrchol vzniklý kontrakcí {% latex %}e{% endlatex %}) {% latex %} = G - \left\{x, y\right\}{% endlatex %}
 		- (👀) {% latex %}G''{% endlatex %} bude {% latex %}2{% endlatex %}-souvislý (protože {% latex %}G'{% endlatex %} je {% latex %}3{% endlatex %}-souvislý a {% latex %}G''{% endlatex %} vznikne odebráním vrcholu)
 		- (👀) taky rovinný (odebráním mi žádný minor nevznikne)
@@ -324,12 +324,12 @@ Pro {% latex %}g \in \left\{1, 2, \ldots\right\}{% endlatex %} nechť {% latex %
 - {% latex %}\prod_2 \ldots{% endlatex %} kleinova láhev
 
 ### 5. přednáška
-{% math definition "nakreslení grafu" %} {% latex %}G = (V, E){% endlatex %} na pllochu {% latex %}\Gamma{% endlatex %} je zobrazení {% latex %}\varphi{% endlatex %} t. ž.:
+{% math definition "nakreslení grafu" %} {% latex %}G = (V, E){% endlatex %} na plochu {% latex %}\Gamma{% endlatex %} je zobrazení {% latex %}\varphi{% endlatex %} t. ž.:
 - každému vrcholu {% latex %}v \in V{% endlatex %} přiřadí bod {% latex %}\varphi(v) \in \Gamma{% endlatex %}
 - každé hraně {% latex %}e \in E{% endlatex %} přiřadí prostou (neprotínající se) křivku {% latex %}\varphi(e) \in \Gamma{% endlatex %} spojující konce {% latex %}\varphi(x), \varphi(y){% endlatex %}
-- {% latex %}x, y \in V: x \neq y \implies \varphi(x) \neq \varphi(y){% endlatex %}
-- {% latex %}e, f \in E: e \neq f \implies \varphi(e) \cap \varphi(f) = \left\{\varphi(x) \mid x \in e \cap f\right\}{% endlatex %}
-- {% latex %}e \in E, x \in V: x \in e \implies \varphi(x) \not\in \varphi(e){% endlatex %}
+- vrcholy se nepřekrývají: {% latex %}x, y \in V: x \neq y \implies \varphi(x) \neq \varphi(y){% endlatex %}
+- hrany se překrývají nejvýše ve sdílených vrcholech: {% latex %}e, f \in E: e \neq f \implies \varphi(e) \cap \varphi(f) = \left\{\varphi(x) \mid x \in e \cap f\right\}{% endlatex %}
+- vrcholy, které neleží na hraně se s ní neprotínají: {% latex %}e \in E, x \in V: x \not\in e \implies \varphi(x) \not\in \varphi(e){% endlatex %}
 {% endmath %}
 
 {% math definition "stěna nakreslení" %} souvislá komponenta {% latex %}\Gamma \setminus \left(\left(\bigcup_{e \in E}^{\varphi(e)}\right) \cup \left(\bigcup_{x \in V}^{\varphi(x)}\right)\right){% endlatex %}{% endmath %}
@@ -353,30 +353,32 @@ Pro {% latex %}g \in \left\{1, 2, \ldots\right\}{% endlatex %} nechť {% latex %
 {% endlatex %}
 {% endmath %}
 
-{% math theorem "zobecněná Eulerova formule" %}Nechť máme nakreslení grafu {% latex %}G = (V, E){% endlatex %} na ploše {% latex %}\Gamma{% endlatex %}, které má {% latex %}S{% endlatex %} stěn. Pak {% latex %}|V| - |E| + |S| \ge \Chi(\Gamma){% endlatex %}. Pokud je buňkové, tak dokonce {% latex %}|V| - |E| + S = \Chi(\Gamma){% endlatex %}.{% endmath %} 
+{% math theorem "zobecněná Eulerova formule" %}Nechť máme nakreslení grafu {% latex %}G = (V, E){% endlatex %} na ploše {% latex %}\Gamma{% endlatex %}, které má {% latex %}S{% endlatex %} stěn. Pak {% latex %}|V| - |E| + |S| \ge \Chi(\Gamma){% endlatex %}. Pokud je buňkové, tak dokonce {% latex %}|V| - |E| + |S| = \Chi(\Gamma){% endlatex %}.{% endmath %} 
 
 {% math proof "rovnosti" %}idea je indukce podle rodu {% latex %}\Gamma{% endlatex %}
-- {% latex %}\Gamma \cong \sum_0{% endlatex %} platí
+- {% latex %}\Gamma \cong \Sigma_0{% endlatex %} platí
 
 {:.rightFloatBox}
 <div markdown="1">
 {% xopp s1 %}
 </div>
-Mějme buňkové nakreslení {% latex %}G = (V, E){% endlatex %} na {% latex %}\Gamma{% endlatex %}
+Mějme buňkové nakreslení {% latex %}G = (V, E){% endlatex %} na {% latex %}\Gamma \cong \Pi_g{% endlatex %}
+- pro {% latex %}\Gamma \cong \Sigma_g{% endlatex %} se dělá analogicky, jen trháme obě ucha a vyjde to
 - {% latex %}v(G), e(G), s(G){% endlatex %} značíme počet vrcholů, hran a stěn
 
 Nechť {% latex %}K{% endlatex %} je křížítko na {% latex %}\Gamma{% endlatex %}, {% latex %}x_1, \ldots, x_k{% endlatex %} jsou body {% latex %}K{% endlatex %} (ne nutně vrcholy grafu), kde hrany {% latex %}G{% endlatex %} kříží {% latex %}K{% endlatex %}
 - (👀) {% latex %}k \ge 1{% endlatex %}, jinak by stěna obsahující {% latex %}K{% endlatex %} nebyla buňka
+- rovněž předpokládám, že vrchol neleží přesně na křížítku, jinak bych ho mohl BUNO posunout
 
 {:.rightFloatBox}
 <div markdown="1">
 {% xopp s2 %}
 </div>
-Vytvoříme {% latex %}G'{% endlatex %} přidáním dvou dělících vrcholů na každou hranu křížící {% latex %}K{% endlatex %} těsně vedle {% latex %}x_1, \ldots, x_k{% endlatex %} („před a za křížítkem“). Děláme to proto, že jedna hrana by mohla procházet křížítkem na více místech a bylo by to pak dost rozbitý
+Vytvoříme {% latex %}G'{% endlatex %} přidáním dvou dělících vrcholů na každou hranu křížící {% latex %}K{% endlatex %} těsně vedle {% latex %}x_1, \ldots, x_k{% endlatex %} („před a za křížítkem“). Děláme to proto, že jedna hrana by mohla procházet křížítkem na více místech a bylo by to pak dost rozbitý.
 - {% latex %}v(G') = v(G) + 2k{% endlatex %}
 - {% latex %}e(G') = e(G) + 2k{% endlatex %}
 - {% latex %}s(G') = s(G){% endlatex %}
-- {% latex %}L(G') = L(G){% endlatex %}
+- tedy: {% latex %}L(G') = L(G){% endlatex %} (kde {% latex %}L{% endlatex %} je levá strana)
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -386,7 +388,7 @@ Vytvoříme {% latex %}G''{% endlatex %} přidaním cest délky {% latex %}2{% e
 - {% latex %}v(G'') = v(G') + 2k{% endlatex %}
 - {% latex %}e(G'') = e(G') + 4k{% endlatex %}
 - {% latex %}s(G'') = s(G') + 2k{% endlatex %} (každou z {% latex %}k{% endlatex %} stěn dělím na {% latex %}3{% endlatex %} kusy)
-- {% latex %}L(G'') = L(G'){% endlatex %}
+- tedy: {% latex %}L(G'') = L(G'){% endlatex %}
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -396,12 +398,12 @@ Vytvoříme {% latex %}G'''{% endlatex %} odebráním všeho uvnitř {% latex %}
 - {% latex %}v(G''') = v(G''){% endlatex %}
 - {% latex %}e(G''') = e(G'') - k{% endlatex %} ({% latex %}k{% endlatex %} křížících-se hran uvnitř {% latex %}C{% endlatex %})
 - {% latex %}s(G''') = s(G'') - k + 1{% endlatex %} („spojím“ {% latex %}k{% endlatex %} stěn do jedné)
-- {% latex %}L(G''') = L(G'') + 1{% endlatex %}
+- tedy: {% latex %}L(G''') = L(G'') + 1{% endlatex %}
 
-{% latex display %}L(G''') = \Chi(\sum_{g - 1}) = \Chi(\Gamma) + 1 \qquad \mid \text{dle IP}{% endlatex %}
-{% latex display %}\Chi(\Gamma) = L(G''') - 1 \qquad \mid \text{z výpočtu}{% endlatex %}
+{% latex display %}L(G''') = \Chi(\Pi_{g - 1}) = \Chi(\Gamma) + 1 \qquad \mid \text{dle IP}{% endlatex %}
+{% latex display %}L(G''') - 1 = L(G'') = L(G') = L(G) \qquad \mid \text{z výpočtu}{% endlatex %}
 
-Tedy {% latex %}\Chi(\Gamma) = L(G''') - 1 = L(G'') = L(G') = L(G){% endlatex %}
+Tedy {% latex display %}\Chi(\Gamma) = L(G){% endlatex %}
 {% endmath %}
 
 {% math consequence %}Každý graf {% latex %}G{% endlatex %} nakreslitelný na plochu {% latex %}\Gamma{% endlatex %} splní {% latex %}|E| \le 3|V| - 3\Chi(\Gamma){% endlatex %}, pokud {% latex %}|V| \ge 4{% endlatex %}
@@ -411,7 +413,7 @@ Tedy {% latex %}\Chi(\Gamma) = L(G''') - 1 = L(G'') = L(G') = L(G){% endlatex %}
 	- pro libovolně velký úplňák dokážeme vytvořit plochu, na kterou ho nakreslíme
 {% endmath %}
 
-{% math lemma %}Nechť {% latex %}\Gamma{% endlatex %} je plocha, {% latex %}\Gamma \neq \sum_0{% endlatex %}, nechť {% latex %}G{% endlatex %} je graf nakreslený na {% latex %}\Gamma{% endlatex %}, potom {% latex %}G{% endlatex %} obsahuje vrchol stupně {% latex %}\le \left\lfloor \frac{5 + \sqrt{49 - 24\Chi(\Gamma)}}{2} \right\rfloor{% endlatex %}{% endmath %}
+{% math lemma %}Nechť {% latex %}\Gamma{% endlatex %} je plocha, {% latex %}\Gamma \neq \Sigma_0{% endlatex %}, nechť {% latex %}G{% endlatex %} je graf nakreslený na {% latex %}\Gamma{% endlatex %}, potom {% latex %}G{% endlatex %} obsahuje vrchol stupně {% latex %}\le \left\lfloor \frac{5 + \sqrt{49 - 24\Chi(\Gamma)}}{2} \right\rfloor{% endlatex %}{% endmath %}
 
 {% math proof %}Mějme {% latex %}G{% endlatex %} podle předpokladu. Opět značíme {% latex %}v(G), e(G){% endlatex %} jako počet vrcholů a hran. ROzlišíme {% latex %}3{% endlatex %} případy:
 - {% latex %}\Chi(\Gamma) = 1{% endlatex %} (t.j. {% latex %}\Gamma \cong \prod_1{% endlatex %}), dosazením do předchozího důsledku dostáváme průměrný stupeň {% latex %}< 6{% endlatex %}, tedy existuje vrchol stupně {% latex %}\le 5{% endlatex %}, což jsme chtěli
@@ -436,8 +438,12 @@ Tedy {% latex %}\Chi(\Gamma) = L(G''') - 1 = L(G'') = L(G') = L(G){% endlatex %}
 - {% latex %}\Delta(G) = {% endlatex %} max. stupeň {% latex %}G = {% endlatex %}, {% latex %}\delta(G) = {% endlatex %} min. stupeň {% latex %}G{% endlatex %}
 
 {% math definition %}{% latex %}G{% endlatex %} je {% latex %}d{% endlatex %}-degenerovaný {% latex %}\equiv{% endlatex %} každý podgraf {% latex %}H{% endlatex %} grafu {% latex %}G{% endlatex %} má {% latex %}\delta(H) \le d{% endlatex %}{% endmath %}
-- {% latex %}\iff \exists{% endlatex %} pořadí vrcholů (eliminační) {% latex %}v_1, \ldots v_n{% endlatex %} t. ž. {% latex %}\forall i: G - \left\{v_1, \ldots, v_i\right\}: \delta(G_i) \le d{% endlatex %} a {% latex %}v_{i - 1}{% endlatex %} má {% latex %}\le d{% endlatex %} sousedů v {% latex %}G_i{% endlatex %}
-	- {% math observation %}{% latex %}G{% endlatex %} je {% latex %}d{% endlatex %}-degenerovnaý {% latex %}\implies \Chi(G) \le d + 1{% endlatex %}{% endmath %} (barvím indukcí v pořadí {% latex %}v_n, v_{n - 1}, \ldots, v_1{% endlatex %})
+- {% latex %}={% endlatex %} každý podgraf má vrchol stupně nejvýše {% latex %}d{% endlatex %}
+- {% latex %}\iff \exists{% endlatex %} pořadí vrcholů (eliminační) {% latex %}v_1, \ldots v_n{% endlatex %} t. ž. {% latex %}\forall i: G_i := G - \left\{v_1, \ldots, v_i\right\}: \delta(G_i) \le d{% endlatex %} a {% latex %}v_{i - 1}{% endlatex %} má {% latex %}\le d{% endlatex %} sousedů v {% latex %}G_i{% endlatex %}
+	- trháme vrcholy v pořadí tak, že každý další odebraný má nejvýše {% latex %}d{% endlatex %} sousedů
+	- {% math observation %}{% latex %}G{% endlatex %} je {% latex %}d{% endlatex %}-degenerovnaý {% latex %}\implies \Chi(G) \le d + 1{% endlatex %}{% endmath %} (barvím indukcí v pořadí {% latex %}v_n, \ldots, v_1{% endlatex %})
+
+![](/assets/kombinatorika-a-grafy-ii/degen.png)
 
 - z minule: pokud {% latex %}G{% endlatex %} je nakreslitelný na {% latex %}\Gamma \implies G{% endlatex %} má vrchol stupně nejvýše {% latex %}H(\Gamma) - 1{% endlatex %} a {% latex %}G - v{% endlatex %} je stále nakreslitelný na {% latex %}\Gamma \implies G{% endlatex %} je {% latex %}\left(H(\Gamma) - 1\right){% endlatex %}-degenerovaný {% latex %}\implies{% endlatex %} je {% latex %}H(\Gamma){% endlatex %} obarvitelný
 
@@ -455,7 +461,7 @@ Tedy {% latex %}\Chi(\Gamma) = L(G''') - 1 = L(G'') = L(G') = L(G){% endlatex %}
 {% math proof %}Tvrdím, že {% latex %}G{% endlatex %} je ({% latex %}\Delta(G) - 1{% endlatex %})-degenerovaný. Volme {% latex %}H{% endlatex %} neprázdný podgraf {% latex %}G{% endlatex %} a dokazujeme, že v {% latex %}H{% endlatex %} existuje {% latex %}v{% endlatex %} stupně {% latex %}\le \Delta(G) - 1{% endlatex %} 
 - pokud {% latex %}H{% endlatex %} obsahuje všechny vrcholy {% latex %}\implies{% endlatex %} platí z předpokladu.
 - jinak {% latex %}\exists e = \left\{x, y\right\} \in G{% endlatex %} t. ž. {% latex %}x \in H{% endlatex %} a {% latex %}y \not\in H{% endlatex %}
-	- {% latex %}\mathrm{deg}_H(x) \le \mathrm{deg}_G(x) - 1 \le \Delta(G) - 1{% endlatex %}
+	- {% latex %}\deg_H(x) \le \deg_G(x) - 1 \le \Delta(G) - 1{% endlatex %}
 {% endmath %}
 
 {% math theorem "Brooks, 1941" %}Nechť {% latex %}G{% endlatex %} je souvislý graf který není úplný a není lichá kružnice. Pak je {% latex %}G \le \Delta(G){% endlatex %}-obarvitelný.{% endmath %}
@@ -468,23 +474,25 @@ Tedy {% latex %}\Chi(\Gamma) = L(G''') - 1 = L(G'') = L(G') = L(G){% endlatex %}
 	- {% latex %}C_{2k}{% endlatex %}: {% latex %}\Chi = 2{% endlatex %}
 	- {% latex %}C_{2k + 1}{% endlatex %}: zakázané
 - {% latex %}\Delta \ge 3{% endlatex %}; označme {% latex %}k_V(G) = {% endlatex %} vrcholová souvislost {% latex %}G{% endlatex %}
-	- {% latex %}k_V(G) = 1{% endlatex %} -- máme artikulaci; vrchol artikulace {% latex %}v{% endlatex %} měl souseda v obou částech grafu, proto {% latex %}\mathrm{deg}_{G_1}(v), \mathrm{deg}_{G_2}(V) < \Delta \implies{% endlatex %} podle lemmatu ({% latex %}G_1{% endlatex %} a {% latex %}G_2{% endlatex %} nejsou regulární) lze {% latex %}G_1{% endlatex %} i {% latex %}G_2{% endlatex %} {% latex %}\Delta{% endlatex %}-obarvit a stačí přepermutovat barvy, aby měl v obou obarveních stejnou
+	- {% latex %}k_V(G) = 1{% endlatex %} -- máme artikulaci; vrchol artikulace {% latex %}v{% endlatex %} měl souseda v obou částech grafu, proto {% latex %}\deg_{G_1}(v), \deg_{G_2}(V) < \Delta \implies{% endlatex %} podle lemmatu ({% latex %}G_1{% endlatex %} a {% latex %}G_2{% endlatex %} nejsou regulární) lze {% latex %}G_1{% endlatex %} i {% latex %}G_2{% endlatex %} {% latex %}\Delta{% endlatex %}-obarvit a stačí přepermutovat barvy, aby měl v obou obarveních stejnou
 	- {% latex %}k_V(G) = 2{% endlatex %}
 		- dobré případy (lze slepit)
 			- {% latex %}b_1(x) = b_1(y){% endlatex %} a {% latex %}b_2(x) = b_2(y){% endlatex %} 
 			- {% latex %}b_1(x) \neq b_1(y){% endlatex %} a {% latex %}b_2(x) \neq b_2(y){% endlatex %} 
 		- těžší případ -- na jedné straně stejné, na druhé různé
 			- {% latex %}b_1(x) = b_1(y){% endlatex %} a {% latex %}b_2(x) \neq b_2(y){% endlatex %} 
-				- pokud {% latex %}\mathrm{deg}_{G_1}(x){% endlatex %} nebo {% latex %}\mathrm{deg}_{G_1}(y) \le \Delta - 2{% endlatex %}, tak po přidání hrany půjde použít lemma a vrcholy budou mít různou barvu a máme dobrý případ
-				- {% latex %}\mathrm{deg}_{G_1}(x) = \mathrm{deg}_{G_1}(y) = \Delta - 1{% endlatex %}
-					- {% latex %}\mathrm{deg}_{G_2}(x) = \mathrm{deg}_{G_2}(y) = 1{% endlatex %}; z předpokladu máme k použití alespoň {% latex %}3{% endlatex %} barvy, přebarvím jimi {% latex %}x{% endlatex %} a {% latex %}y{% endlatex %} a máme dobrý případ
+				- pokud {% latex %}\deg_{G_1}(x){% endlatex %} nebo {% latex %}\deg_{G_1}(y) \le \Delta - 2{% endlatex %}, tak po přidání hrany půjde použít lemma a vrcholy budou mít různou barvu a máme dobrý případ
+					- nemůže se stát, že by např. druhý měl {% latex %}\deg_{G_1} = \Delta{% endlatex %}, protože musí vidět i do druhé komponenty
+				- nebo {% latex %}\deg_{G_1}(x) = \deg_{G_1}(y) = \Delta - 1{% endlatex %}
+					- pak musí {% latex %}\deg_{G_2}(x) = \deg_{G_2}(y) = 1{% endlatex %} (stupeň je celkově {% latex %}\Delta{% endlatex %})
+					- z předpokladu máme k použití alespoň {% latex %}3{% endlatex %} barvy, přebarvím jimi {% latex %}x{% endlatex %} a {% latex %}y{% endlatex %} a máme dobrý případ
 	- {% latex %}k_V(G) \ge 3{% endlatex %} -- použiji lemma o třešničce (souvislý graf, který není klika, obsahuje třešničku)
 		- seřadím vrcholy jako {% latex %}v_1 = x, v_2 = y, \ldots, v_n = z{% endlatex %} tak, aby {% latex %}\forall v_i: 3 \le i \le n - 1{% endlatex %} měl alespoň jednoho souseda napravo a barvím (hladově):
 			- umíme získat jako BFS vrstvy od {% latex %}z{% endlatex %}, kromě {% latex %}x{% endlatex %} a {% latex %}y{% endlatex %}
 			- {% latex %}b(x) = b(y) = 1{% endlatex %}
 			- {% latex %}b(v_3)\ldots{% endlatex %} má {% latex %}\ge 1{% endlatex %} neobarveného souseda {% latex %}\implies{% endlatex %} je nějaká nepoužitá z {% latex %}\Delta{% endlatex %} barev
 			- {% latex %}\ldots{% endlatex %}
-			- {% latex %}b(v_n)\ldots{% endlatex %} všichni sousedé už obarvení, ale dva sousedé ({% latex %}x, y{% endlatex %}) mají stejnou barvu, tedy {% latex %}z{% endlatex %} vidí {% latex %}\le \Delta 1{% endlatex %} barev a jedna je volná
+			- {% latex %}b(v_n)\ldots{% endlatex %} všichni sousedé už obarvení, ale dva sousedé ({% latex %}x, y{% endlatex %}) mají stejnou barvu, tedy {% latex %}z{% endlatex %} vidí {% latex %}\le \Delta - 1{% endlatex %} barev a jedna je volná
 
 ---
 
@@ -507,7 +515,7 @@ Obrázek případů pro {% latex %}k_V(G) = 2{% endlatex %}:
 {% math claim %}{% latex %}G{% endlatex %} nakreslitelný na Kleinovu láhev {% latex %}\implies G{% endlatex %} je {% latex %}6{% endlatex %}-obarvitelný.{% endmath %}
 
 {% math proof %}Z Eulerovy formule plyne, že platí jedno z následujících:
-- {% latex %}\delta(G)\le 5 \implies \exists v: \mathrm{deg}(v) \le 5{% endlatex %}{% endmath %}
+- {% latex %}\delta(G)\le 5 \implies \exists v: \deg(v) \le 5{% endlatex %}{% endmath %}
 	- {% latex %}G - v \ldots{% endlatex %}  obarvím z indukce, přidám {% latex %}v{% endlatex %} a mám volnou barvu
 - {% latex %}G{% endlatex %} je {% latex %}6{% endlatex %}-regulární:
 	- {% latex %}G \cong K_7{% endlatex %} -- nesmí, protože nejde nakreslit (je potřeba si rozmyslet)
@@ -518,8 +526,8 @@ Obrázek případů pro {% latex %}k_V(G) = 2{% endlatex %}:
 
 ### 7. přednáška
 
-{% math theorem "Vizing, 1964" %}Pro každý graf {% latex %}G{% endlatex %} platí, že {% latex %}\Delta \le \Chi'(G) \le \Delta + 1{% endlatex %}{% endmath %}
-- grafy Vizingovy třídy {% latex %}1{% endlatex %} jsou grafy {% latex %}\Chi'(G) = \Delta{% endlatex %}, třídy {% latex %}2{% endlatex %} jsou {% latex %}\Chi'(G) = \Delta + 1{% endlatex %}
+{% math theorem "Vizing, 1964" %}Pro každý graf {% latex %}G{% endlatex %} platí, že {% latex %}\Delta(G) \le \Chi'(G) \le \Delta(G) + 1{% endlatex %}{% endmath %}
+- grafy Vizingovy třídy {% latex %}1{% endlatex %} jsou grafy {% latex %}\Chi'(G) = \Delta(G){% endlatex %}, třídy {% latex %}2{% endlatex %} jsou {% latex %}\Chi'(G) = \Delta(G) + 1{% endlatex %}
 - je NP-úplné rozhodnout, zda daný graf {% latex %}G{% endlatex %} má VIzingovu třídu {% latex %}1{% endlatex %} (i pro grafy s {% latex %}\Delta(G) = 3{% endlatex %})
 - důkaz jsem zpracoval do [YouTube videa](https://www.youtube.com/watch?v=OZWZpQmGp0g)
 
@@ -591,7 +599,7 @@ Pro spor: {% latex %}R{% endlatex %} není klika {% latex %}\implies{% endlatex 
 
 {% math definition %}{% latex %}G{% endlatex %} je hamiltonovský, pokud má kružnici na {% latex %}n{% endlatex %} vrcholech (jako podgraf).{% endmath %}
 
-{% math theorem "Bondyho-Chvátalova" %}Nechť {% latex %}G{% endlatex %} je graf na {% latex %}\ge 3{% endlatex %} vrcholech. Nechť {% latex %}x,y{% endlatex %} jsou nesousedé t. ž. {% latex %}\mathrm{deg}_G(x) + \mathrm{deg}_G(y) \ge n{% endlatex %}. Nechť {% latex %}G^+ = (V, E \cup \left\{xy\right\}){% endlatex %}. Pak {% latex %}G{% endlatex %} je hamiltonovský {% latex %}\iff{% endlatex %} {% latex %}G^+{% endlatex %} je hamiltonovský.{% endmath %}
+{% math theorem "Bondyho-Chvátalova" %}Nechť {% latex %}G{% endlatex %} je graf na {% latex %}\ge 3{% endlatex %} vrcholech. Nechť {% latex %}x,y{% endlatex %} jsou nesousedé t. ž. {% latex %}\deg_G(x) + \deg_G(y) \ge n{% endlatex %}. Nechť {% latex %}G^+ = (V, E \cup \left\{xy\right\}){% endlatex %}. Pak {% latex %}G{% endlatex %} je hamiltonovský {% latex %}\iff{% endlatex %} {% latex %}G^+{% endlatex %} je hamiltonovský.{% endmath %}
 
 {% math proof %} {% latex %}\Rightarrow{% endlatex %} jasné
 
@@ -604,9 +612,9 @@ Pro spor: {% latex %}R{% endlatex %} není klika {% latex %}\implies{% endlatex 
 	- {% latex %}I_2 := \left\{i \in \left\{2, \ldots, n - 2\right\}\ \text{t. ž. }\left\{y, v_i\right\} \in E\right\}{% endlatex %} (vrcholy dobré pro {% latex %}y{% endlatex %})
 		- povoluji vrcholy {% latex %}v_2, \ldots, v_{n - 2}{% endlatex %}, viz. indexování
 	- {% latex %}|I_1 \cup I_2| \le n - 3{% endlatex %}
-	- {% latex %}|I_1| = \mathrm{deg}_G(x) - 1{% endlatex %} (nesmím použít {% latex %}v_2{% endlatex %})
-	- {% latex %}|I_2| = \mathrm{deg}_G(y) - 1{% endlatex %} (nesmím použít {% latex %}v_{n - 1}{% endlatex %})
-	- {% latex %}|I_1| + |I_2| = \mathrm{deg}_G(x) - 1 + \mathrm{deg}_G(y) - 1 \ge n - 2{% endlatex %} (z předpokladu)
+	- {% latex %}|I_1| = \deg_G(x) - 1{% endlatex %} (nesmím použít {% latex %}v_2{% endlatex %})
+	- {% latex %}|I_2| = \deg_G(y) - 1{% endlatex %} (nesmím použít {% latex %}v_{n - 1}{% endlatex %})
+	- {% latex %}|I_1| + |I_2| = \deg_G(x) - 1 + \deg_G(y) - 1 \ge n - 2{% endlatex %} (z předpokladu)
 	- {% latex %}|I_1 \cup I_2| \le 3{% endlatex %} ale {% latex %}|I_1 + I_2| \ge n - 2{% endlatex %} znamená, že se překrývají
 
 {% xopp another3 %}
@@ -1114,4 +1122,4 @@ Spojením dostávám {% latex display %}|E| \le \binom{n - 1}{k - 1}{% endlatex 
 
 ### zdroje/materiály
 - [stránky přednášky](https://research.koutecky.name/db/teaching:kg22021_prednaska).
-- [Poznámky Václava Končického](https://kam.mff.cuni.cz/~koncicky/notes/kag2/pdf) z roku 2019.
+[[-]] [Poznámky Václava Končického](https://kam.mff.cuni.cz/~koncicky/notes/kag2/pdf) z roku 2019.
