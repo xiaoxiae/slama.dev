@@ -12,7 +12,7 @@ I am a student from the Czech Republic, currently getting a bachelor's degree at
 Besides programming, I also like to play the viola, dance, [take photos](/photography/) and [rock climb](climbing/).
 
 This website contains things I feel are interesting enough to put on the internet.
-The language of the blog is English, but some posts might be written in other languages.
+The language of the blog is English, but some posts might be written in other languages (and will be denoted as such).
 Links to the periodically updated ones can be found at the top; the rest can be found below.
 {% for post in site.posts %}
 {% assign currentdate = post.date | date: "%Y" %}
@@ -26,7 +26,7 @@ Links to the periodically updated ones can be found at the top; the rest can be 
 {% endif %}
 {% unless post.hidden %}
 <ul class="hfill">
-	<li><a href="{{ post.url }}">{{ post.title}}</a> {% if post.language or post.category %}[{% if post.language %}{{post.language | upcase}}{% endif%}{% if post.language and post.category %} / {% endif%}{% if post.category %}{{post.category}}{% endif%}] {% endif%}</li>
+	<li>{% if post.language == "cz" %}🇨🇿 {% endif%} <a href="{{ post.url }}">{{ post.title}}</a>{% if post.category %} [{{post.category}}]{% endif%}</li>
 	<li>{{ post.date  | date: "%-d. %-m. %Y"}}</li>
 </ul>
 {% endunless %}
