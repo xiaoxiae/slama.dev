@@ -926,7 +926,7 @@ Prvky {% latex %}x, y \in A{% endlatex %} jsou ekvivalentní (značím {% latex 
 možinu orbit značíme {% latex %}A / \Gamma{% endlatex %}.
 {% endmath %}
 
-{% math example %}Koláčky (mák, tvaroh povidla).
+{% math example %}Koláčky (mák, tvaroh, povidla).
 
 {% latex display %}\mathcal{K} = \left\{\boxed{a{b\atop c} d} \mid a, b, c, d \in \left\{T, M, P\right\}\right\} \qquad |\mathcal{K}| = 3^4 = 81{% endlatex %}
 
@@ -940,26 +940,26 @@ možinu orbit značíme {% latex %}A / \Gamma{% endlatex %}.
 
 {% math lemma "o orbitě stabilizátoru" %}Nechť {% latex %}\Gamma{% endlatex %} je konečná grupa s akcí na množině {% latex %}A{% endlatex %}. Potom {% latex display %}\forall x \in A: |\mathrm{Stab(x)}| \cdot |\left[x\right]| = |\Gamma|{% endlatex %} {% endmath %}
 
-{% math proof %}Nechť množina {% latex %}\mathrm{Map}(x, y){% endlatex %} je množina akcí {% latex %}a{% endlatex %}, pro které {% latex %}a.x = y{% endlatex %}. Pro akce {% latex %}\sigma \in \mathrm{Map}(x, y){% endlatex %} pomocí {% latex %}\sigma a \sigma^{-1}{% endlatex %} lze definovat bijekci mezi {% latex %}\mathrm{Map}(x, x){% endlatex %}. Poté {% latex display %}\forall x \in A, |\Gamma| = \sum_{y \in [x]} |\mathrm{Map}(x, y)| = \sum_{y \in [x]} |\mathrm{Stab}(x)| = |[x]| |\mathrm{Stab}(x)|{% endlatex %}
+{% math proof %}Nechť množina {% latex %}\mathrm{Map}(x, y){% endlatex %} je množina akcí {% latex %}a{% endlatex %}, pro které {% latex %}a \cdot x = y{% endlatex %}. Pro akce {% latex %}\sigma \in \mathrm{Map}(x, y){% endlatex %} pomocí {% latex %}\sigma a \sigma^{-1}{% endlatex %} lze definovat bijekci mezi {% latex %}\mathrm{Map}(x, x){% endlatex %}. Poté {% latex display %}\forall x \in A, |\Gamma| = \sum_{y \in [x]} |\mathrm{Map}(x, y)| = \sum_{y \in [x]} |\mathrm{Stab}(x)| = |[x]| |\mathrm{Stab}(x)|{% endlatex %}
 {% endmath %}
 
-{% math theorem "Bursideovo lemma" %}Nechť {% latex %}\Gamma{% endlatex %} je konečná grupa s akcí na {% latex %}A{% endlatex %}
+{% math theorem "Burnsideovo lemma" %}Nechť {% latex %}\Gamma{% endlatex %} je konečná grupa s akcí na {% latex %}A{% endlatex %}
 {% endmath %}
-1. (jednoduchá) pokud {% latex %}A{% endlatex %} je konečná, pak {% latex display %}|A / \Gamma| = \frac{1}{|\Gamma} \sum_{\gamma \in \Gamma} |\mathrm{Fix}(\gamma)|{% endlatex %} {% latex %}={% endlatex %} počet orbit je roven „průměrnému počtu pervných bodů“ 
+1. (jednoduchá) pokud {% latex %}A{% endlatex %} je konečná, pak {% latex display %}|A / \Gamma| = \frac{1}{|\Gamma|} \sum_{\gamma \in \Gamma} |\mathrm{Fix}(\gamma)|{% endlatex %} {% latex %}={% endlatex %} počet orbit je roven „průměrnému počtu pervných bodů“
 2. Nechť každá orbita {% latex %}o \in A / \Gamma{% endlatex %} má přiřazenou váhu {% latex %}w(o){% endlatex %}. Potom {% latex display %}\sum_{o \in A/\Gamma} w(o) = \frac{1}{|\Gamma|} \sum_{\gamma \in \Gamma} \sum_{x \in \mathrm{Fix}(\gamma)} w([x]){% endlatex %}
 
 {% math proof %} {% latex %}(2) \Rightarrow (1){% endlatex %}, když jsou váhy {% latex %}1{% endlatex %}.
 
-{% latex %}(2){% endlatex %} -- dvojím počítáním {% latex %}s := \sum_{\gamma, x} \in \Gamma \times A, \gamma x = x{% endlatex %}
+{% latex %}(2){% endlatex %} -- dvojím počítáním {% latex %}s := \sum_{\left(\gamma, x\right) \in \Gamma \times A, \gamma x = x} w([x]){% endlatex %}
 
-{% latex display %}s = \sum_{\gamma \in \Gamma} \sum_{x \in \mathrm{Fix}(\gamma)} w([x]){% endlatex %}
+{% latex display %}s = \sum_{\gamma \in \Gamma} \sum_{x \in \mathrm{Fix}(\gamma)} w([x]) \qquad \text{z definice}{% endlatex %}
 
 {% latex display %} \begin{aligned}
-	s &= \sum_{x \in A} \sum_{\gamma \in \mathrm{Stab}(x)} w([x]) \qquad w([x])\text{ závisí pouze na váze orbity}\\
-	  &= \sum_{o \in A / \Gamma} \sum_{x \in o} \sum_{\gamma \in \mathrm{Stab}(x)} w(o) \qquad \text{vnitřní suma závisí na $\mathrm{Stab}(x)$} \\
-	  &= \sum_{o \in A / \Gamma} \sum_{x \in o} |\mathrm{Stab}(x)| w(o) \qquad \text{lemma o orbitě a stabilizátoru} \\
-	  &= \sum_{o \in A / \Gamma} \sum_{x \in o} \frac{|\Gamma|}{|o|} w(o) \qquad \text{obsah sumy závisí na velikosti orbity} \\
-	  &= \sum_{o \in A / \Gamma} |o| \frac{|\Gamma|}{|o|} w(o) \\
+	s &= \sum_{x \in A} \sum_{\gamma \in \mathrm{Stab}(x)} w([x])  \qquad \text{počítání obráceně, přes $\mathrm{Stab}$} \\
+	  &= \sum_{o \in A / \Gamma} \sum_{x \in o} \sum_{\gamma \in \mathrm{Stab}(x)} w(o) \qquad w([x])\text{ závisí pouze na váze orbity}\\
+	  &= \sum_{o \in A / \Gamma} \sum_{x \in o} |\mathrm{Stab}(x)| w(o) \qquad \text{vnitřní suma závisí na $\mathrm{Stab}(x)$} \\
+	  &= \sum_{o \in A / \Gamma} \sum_{x \in o} \frac{|\Gamma|}{|o|} w(o) \qquad \text{lemma o orbitě a stabilizátoru} \\
+	  &= \sum_{o \in A / \Gamma} |o| \frac{|\Gamma|}{|o|} w(o) \qquad \text{obsah sumy závisí na velikosti orbity} \\
 	  &= |\Gamma| \sum_{o \in A / \Gamma} w(o) \\
 \end{aligned} {% endlatex %}
 {% endmath %}
@@ -1094,8 +1094,8 @@ K důkazu původního vyberu {% latex %}x \in V(G){% endlatex %}, {% latex %}S =
 ---
 
 {% math definition %}{% latex %}k{% endlatex %}-uniformní hypergraf je dvojice {% latex %}(V, E){% endlatex %}, kde {% latex %}E \subseteq \binom{V}{k}{% endlatex %}{% endmath %}
-- {% latex %}f(k, n) :={% endlatex %} max. {% latex %}m{% endlatex %} t.ž. {% latex %}\exists{% endlatex %} {% latex %}k{% endlatex %}-uniformní hypergraf {% latex %}H = (V, E){% endlatex %} t.ž. {% latex %}|V| = n, |E| = m{% endlatex %} a {% latex %}E{% endlatex %} je „pronikající systém množin“ (t.j. {% latex %}\forall e, e' \in E: e \cap e' \neq \emptyset{% endlatex %}
-	- je dobré si rozmyslet, že braní všech hran nemusí fungovat (musí se protínat všechny dvojice)!
+- {% latex %}f(k, n) :={% endlatex %} max. {% latex %}m{% endlatex %} t.ž. {% latex %}\exists{% endlatex %} {% latex %}k{% endlatex %}-uniformní hypergraf {% latex %}H = (V, E){% endlatex %} t.ž. {% latex %}|V| = n, |E| = m{% endlatex %} a {% latex %}E{% endlatex %} je „pronikající systém množin“ (t.j. {% latex %}\forall e, e' \in E: e \cap e' \neq \emptyset{% endlatex %})
+	- braní všech hran nemusí fungovat (musí se protínat všechny dvojice)!
 
 {:.rightFloatBox}
 <div markdown="1">
