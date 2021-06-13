@@ -95,7 +95,7 @@ category: "lecture notes"
 - **indukční podmínka:** {% latex %}G{% endlatex %} má nehranu a každý graf na {% latex %}V{% endlatex %}s počtem hran alespoň o 1 větší než {% latex %}|E|{% endlatex %} a platí TP, pak má perfektní párování
 
 Nechť {% latex %}S = \left\{v \in V\ |\ \deg(v) = n - 1\right\} = \left\{v \mid \text{$v$ je spojený se všemi vrcholy} \right\}{% endlatex %}
-- lehký případ: každá komponenta {% latex %}G - S{% endlatex %} je lichá klika
+- lehký případ: každá lichá komponenta {% latex %}G - S{% endlatex %} je klika
 	- v rámci dané kliky vypáruji vše až na jeden vrchol, ten spáruji v rámci {% latex %}S{% endlatex %} ({% latex %}S{% endlatex %} vidí všechny) a zbytek v {% latex %}S{% endlatex %} spáruji spolu (sudé komponenty do parity nepřispívají, liché + {% latex %}1{% endlatex %} z {% latex %}S{% endlatex %} také ne a v {% latex %}S{% endlatex %} tedy zbyde sudý počet vrcholů)
 
 {:.center}
@@ -441,7 +441,7 @@ Tedy {% latex display %}\Chi(\Gamma) = L(G){% endlatex %}
 - {% latex %}={% endlatex %} každý podgraf má vrchol stupně nejvýše {% latex %}d{% endlatex %}
 - {% latex %}\iff \exists{% endlatex %} pořadí vrcholů (eliminační) {% latex %}v_1, \ldots v_n{% endlatex %} t. ž. {% latex %}\forall i: G_i := G - \left\{v_1, \ldots, v_i\right\}: \delta(G_i) \le d{% endlatex %} a {% latex %}v_{i - 1}{% endlatex %} má {% latex %}\le d{% endlatex %} sousedů v {% latex %}G_i{% endlatex %}
 	- trháme vrcholy v pořadí tak, že každý další odebraný má nejvýše {% latex %}d{% endlatex %} sousedů
-	- {% math observation %}{% latex %}G{% endlatex %} je {% latex %}d{% endlatex %}-degenerovnaý {% latex %}\implies \Chi(G) \le d + 1{% endlatex %}{% endmath %} (barvím indukcí v pořadí {% latex %}v_n, \ldots, v_1{% endlatex %})
+	- {% math observation %}{% latex %}G{% endlatex %} je {% latex %}d{% endlatex %}-degenerovaný {% latex %}\implies \Chi(G) \le d + 1{% endlatex %}{% endmath %} (barvím indukcí v pořadí {% latex %}v_n, \ldots, v_1{% endlatex %})
 
 ![](/assets/kombinatorika-a-grafy-ii/degen.png)
 
@@ -744,9 +744,9 @@ Poté pro větu stačí následující:
 	- {% latex %}A(x) + B(x) = (a_0 + b_0) + (a_1 + b_1)x + (a_2 + b_2)x^2 + \ldots{% endlatex %}
 	- {% latex %}A(x) \cdot B(x) = c_0 + c_1x + c_2x^2 + \ldots{% endlatex %}, kde {% latex %}c_n = a_0 b_n + a_1 b_{n - 1} + \ldots + a_{n - 1}b_1 + a_{n} b_0{% endlatex %} (konvoluce)
 
-{% math fact %} {% latex %}\mathbb{R}\llbracket x \rrbracket{% endlatex %} tvoří (komutativní) okruh (máme {% latex %}+, \cdot, 0, 1{% endlatex %}{% endmath %}
+{% math fact %} {% latex %}\mathbb{R}\llbracket x \rrbracket{% endlatex %} tvoří (komutativní) okruh (máme {% latex %}+, \cdot, 0, 1{% endlatex %}){% endmath %}
 - {% latex %}0 = A(x){% endlatex %} s nulovými koeficienty
-- {% latex %}0 = A(x){% endlatex %} s {% latex %}a_0 = 1{% endlatex %} a zbytek nulové koeficienty
+- {% latex %}1 = A(x){% endlatex %} s {% latex %}a_0 = 1{% endlatex %} a zbytek nulové koeficienty
 
 {% math fact %} {% latex %}\mathbb{R}\llbracket x \rrbracket{% endlatex %} tvoří vektorový postor (násobení konstantou je FMŘ pro {% latex %}a_0 = c{% endlatex %}{% endmath %}
 
@@ -774,7 +774,7 @@ Poté pro větu stačí následující:
 {% math definition "složení" %}{% latex %}A(x) = \sum a_nx^n, B(x) = \sum b_nx^n{% endlatex %} jsou FMŘ. Složení je {% latex %}A(B(x)) = a_0B(x)^0 + a_1B(x)^1 + \ldots{% endlatex %} {% endmath %}. Obecně je problém to zadefinovat, potřeboval bych znát hodnotu součtu, ale jde to, když:
 
 1. {% latex %}A(x){% endlatex %} je polynom ({% latex %}\equiv \exists n_0 \in \mathbb{N}{% endlatex %} t. ž. {% latex %}\forall n \ge n_0: a_n = 0{% endlatex %})
-{% latex display %}a_0 B(x)^0 + a_1B(x)^1 + a_2B(x)^2 + \ldots + \underbrace{a_{n_0}B_(x)^{n_0} + \ldots}_{= 0}{% endlatex %}
+{% latex display %}a_0 B(x)^0 + a_1B(x)^1 + a_2B(x)^2 + \ldots + \underbrace{a_{n_0}B(x)^{n_0} + \ldots}_{= 0}{% endlatex %}
 2. {% latex %}b_0 = 0{% endlatex %}
 	- chci ukázat, že součet {% latex %}\left[x^n\right]A(B(x)) = \left[x^n\right]a_0B(x)^0 + \left[x^n\right]a_1B(x)^1 + \ldots{% endlatex %} je konečný
 		- {% latex %}\left[x^0\right]B(x) = b_0 = 0{% endlatex %}
@@ -837,7 +837,7 @@ Potom platí, že {% latex %}a_n = \sum_{j = 0}^{n} \binom{n}{j} \cdot s_j \cdot
 \end{aligned}
 {% endlatex %}
 
-Definujeme {% latex %}B(x) + S(x)^2{% endlatex %} a {% latex %}b_0, b_1, \ldots{% endlatex %} tak, aby {% latex %}B(x) = \sum_{n \ge 0} b_n \cdot \frac{x^n}{n!}{% endlatex %}
+Definujeme {% latex %}B(x) = S(x)^2{% endlatex %} a {% latex %}b_0, b_1, \ldots{% endlatex %} tak, aby {% latex %}B(x) = \sum_{n \ge 0} b_n \cdot \frac{x^n}{n!}{% endlatex %}
 - počet způsobů, jak rozdělit vrcholy na červené a modré a vytvořit strom na každé barvě
 {% latex display %}b_n = \sum_{j = 0}^{n} \binom{n}{j} \cdot s_j \cdot s_{n - j}{% endlatex %}
 
@@ -859,7 +859,7 @@ V následujících definicích a pozorováních je _takovýhle text_ odkaz na to
 3. pro dvě konečné množiny {% latex %}V, W \subseteq \mathbb{N}{% endlatex %} t. ž. {% latex %}|V| = |W|{% endlatex %} platí, že počet {% latex %}\alpha \in \mathcal{A}{% endlatex %} t. ž. {% latex %}V(\alpha) = V{% endlatex %} je stejný jako {% latex %}\alpha \in \mathcal{A}{% endlatex %} t. ž. {% latex %}V(\alpha) = W{% endlatex %} (co do počtu, záleží jen na velikosti množiny vrcholů)
 	- (_dvě stejně velké množiny vrcholů mají stejný počet stromů_)
 
-Potom **exponenciální vytvořující funkce** pro {% latex %}\mathcal{A}{% endlatex %} je {% latex display %}\mathrm{EVF(\mathcal{A}} = \sum_{n \ge 0} a_n \frac{x^n}{n!}{% endlatex %}kde {% latex display %}a_n = \#\ \alpha \in \mathcal{A} \text{ t. ž. } V(\alpha) = \left\{1, \ldots, n\right\}{% endlatex %}
+Potom **exponenciální vytvořující funkce** pro {% latex %}\mathcal{A}{% endlatex %} je {% latex display %}\mathrm{EVF(\mathcal{A})} = \sum_{n \ge 0} a_n \frac{x^n}{n!}{% endlatex %}kde {% latex display %}a_n = \#\ \alpha \in \mathcal{A} \text{ t. ž. } V(\alpha) = \left\{1, \ldots, n\right\}{% endlatex %}
 {% endmath %}
 
 {% math observation %}Nechť {% latex %}A(x){% endlatex %} je {% latex %}\mathrm{EVF(\mathcal{A})}, B(x) = \mathrm{EVF}(\mathcal{B}){% endlatex %}, potom:
@@ -889,7 +889,7 @@ Potom **exponenciální vytvořující funkce** pro {% latex %}\mathcal{A}{% end
 
 {% math definition: "stabilizátor" %} prvku {% latex %}x \in A{% endlatex %} je {% latex %}\mathrm{Stab}(x) = \left\{\gamma \in \Gamma \mid \gamma x = x\right\}{% endlatex %}{% endmath %}
 
-{% math observation %}\gamma \in \Gamma, x \in A: \gamma \in \mathrm{Stab}(x) \iff x \in \mathrm{Fix}(\gamma) \iff \gamma x = x{% endmath %}
+{% math observation %}{% latex %}\gamma \in \Gamma, x \in A: \gamma \in \mathrm{Stab}(x) \iff x \in \mathrm{Fix}(\gamma) \iff \gamma x = x{% endlatex %}{% endmath %}
 
 {% math observation %}{% latex %}\mathrm{Stab}(x){% endlatex %} je podgrupa {% latex %}\Gamma{% endlatex %}
 - {% latex %}1_\Gamma \in \mathrm{Stab}(x){% endlatex %}, protože {% latex %}1_\Gamma x = x{% endlatex %}
@@ -921,6 +921,9 @@ možinu orbit značíme {% latex %}A / \Gamma{% endlatex %}.
 
 {% math lemma "o orbitě stabilizátoru" %}Nechť {% latex %}\Gamma{% endlatex %} je konečná grupa s akcí na množině {% latex %}A{% endlatex %}. Potom {% latex display %}\forall x \in A: |\mathrm{Stab(x)}| \cdot |\left[x\right]| = |\Gamma|{% endlatex %} {% endmath %}
 
+{% math definition %}Nechť množina {% latex %}\mathrm{Map}(x, y){% endlatex %} je množina akcí {% latex %}a{% endlatex %}, pro které {% latex %}a.x = y{% endlatex %}. Pro akce {% latex %}\sigma \in \mathrm{Map}(x, y){% endlatex %} pomocí {% latex %}\sigma a \sigma^{-1}{% endlatex %} lze definovat bijekci mezi {% latex %}\mathrm{Map}(x, x){% endlatex %}. Poté {% latex display %}\forall x \in A, |\Gamma| = \sum_{y \in [x]} |\mathrm{Map}(x, y)| = \sum_{y \in [x]} |\mathrm{Stab}(x)| = |[x]| |\mathrm{Stab}(x)|{% endlatex %}
+{% endmath %}
+
 {% math theorem "Bursideovo lemma" %}Nechť {% latex %}\Gamma{% endlatex %} je konečná grupa s akcí na {% latex %}A{% endlatex %}
 {% endmath %}
 1. (jednoduchá) pokud {% latex %}A{% endlatex %} je konečná, pak {% latex display %}|A / \Gamma| = \frac{1}{|\Gamma} \sum_{\gamma \in \Gamma} |\mathrm{Fix}(\gamma)|{% endlatex %} {% latex %}={% endlatex %} počet orbit je roven „průměrnému počtu pervných bodů“ 
@@ -951,7 +954,7 @@ Pro {% latex %}k \in \mathbb{N}_0, a_k = {% endlatex %} počet orbit, jejichž k
 
 Použijeme obecnější Burnsideovo lemma. Chceme, aby {% latex display %}A(x) = \sum_{o \in A/\Gamma} w(o) = \frac{1}{|\Gamma|} \sum_{\gamma \in \Gamma} \sum_{x \in \mathrm{Fix}(\gamma)} w([x]){% endlatex %}
 
-Váhu orbity s {% latex %}k{% endlatex %} koláčky nastavíme na {% latex %}x^k{% endlatex %}. Pro {% latex %}q \in \mathcal{R}{% endlatex %} označím {% latex %}r(q){% endlatex %} počet rozinek v {% latex %}q{% endlatex %}, {% latex %}w([q]) = x^{r(q)}{% endlatex %}.
+Váhu orbity s {% latex %}k{% endlatex %} rozinkami nastavíme na {% latex %}x^k{% endlatex %}. Pro {% latex %}q \in \mathcal{R}{% endlatex %} označím {% latex %}r(q){% endlatex %} počet rozinek v {% latex %}q{% endlatex %}, {% latex %}w([q]) = x^{r(q)}{% endlatex %}.
 
 | {% latex %}\gamma{% endlatex %}                                   | {% latex %}1_\Gamma{% endlatex %}                       | {% latex %}90\degree{% endlatex %}, {% latex %}270\degree{% endlatex %} | {% latex %}180\degree{% endlatex %}                       |
 | ---                                                               | ---                                                     | ---                                                                     | ---                                                       |
@@ -977,7 +980,7 @@ Tedy dostáváme, že {% latex display %}A(x) = \frac{1}{4} \left(\left(\frac{1}
 - {% latex %}\mathrm{ex}(n, C_4) = \mathcal{O}(n^{3/2} = \mathcal{O}(n \sqrt{n}){% endlatex %}
 	- viz. poznámky z [Kombinatoriky a Grafů I](/lecture-notes/kombinatorika-a-grafy-i/#grafy-bez-ckc_kck)
 
-{% math definition %}{% latex %}k, n \in \mathbb{N}{% endlatex %}, označme {% latex %}T_k(n){% endlatex %} úplný bipartitní graf na {% latex %}n{% endlatex %} vrcholech, jehož všechny partity mají velikost {% latex %}\left\lfloor \frac{n}{k} \right\rfloor{% endlatex %} nebo {% latex %}\left\lceil \frac{n}{k} \right\rceil{% endlatex %}. Nechť {% latex %}t_k(n) = |E(T_k(n))|{% endlatex %}{% endmath %}
+{% math definition %}{% latex %}k, n \in \mathbb{N}{% endlatex %}, označme {% latex %}T_k(n){% endlatex %} úplný {% latex %}k{% endlatex %}-partitní graf na {% latex %}n{% endlatex %} vrcholech, jehož všechny partity mají velikost {% latex %}\left\lfloor \frac{n}{k} \right\rfloor{% endlatex %} nebo {% latex %}\left\lceil \frac{n}{k} \right\rceil{% endlatex %}. Nechť {% latex %}t_k(n) = |E(T_k(n))|{% endlatex %}{% endmath %}
 - {% latex %}k{% endlatex %}-partitní je to samé jako {% latex %}k{% endlatex %}-obarvitelný ({% latex %}\Chi(G){% endlatex %})
 - partity mohou být i prázdné -- {% latex %}k{% endlatex %}-partitní je i {% latex %}k'{% endlatex %}-partitní, pro {% latex %}k' \ge k{% endlatex %}
 - úplný {% latex %}k{% endlatex %}-partitní -- každé {% latex %}2{% endlatex %} partity jsou úplný bipartitní graf
@@ -1119,7 +1122,9 @@ Důkaz věty bude dvojí počítání {% latex %}(e, C){% endlatex %} t.ž. {% l
 Spojením dostávám {% latex display %}|E| \le \binom{n - 1}{k - 1}{% endlatex %}
 {% endmath %}
 
-
 ### zdroje/materiály
 - [stránky přednášky](https://research.koutecky.name/db/teaching:kg22021_prednaska).
 [[-]] [Poznámky Václava Končického](https://kam.mff.cuni.cz/~koncicky/notes/kag2/pdf) z roku 2019.
+
+### Poděkování
+- `@FloyGun` za upozornění na několik překlepů/chyb v důkazech a definicích.
