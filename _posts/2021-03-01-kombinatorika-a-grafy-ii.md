@@ -162,7 +162,7 @@ Těžší případ: {% latex %}e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2){%
 
 #### Tutte v2.0
 
-{% math lemma "o kontrahovatelné hraně" %} Nechť {% latex %}G{% endlatex %} je vrcholově {% latex %}3{% endlatex %}-souvislý různý od {% latex %}K_4{% endlatex %} ({% latex %}|V| \ge 5{% endlatex %}). Potom {% latex %}G{% endlatex %} obsahuje hranu t. ž. {% latex %}G \setminus e{% endlatex %} je 3-souvislý.{% endmath %}
+{% math lemma "o kontrahovatelné hraně = LoKH" %} Nechť {% latex %}G{% endlatex %} je vrcholově {% latex %}3{% endlatex %}-souvislý různý od {% latex %}K_4{% endlatex %} ({% latex %}|V| \ge 5{% endlatex %}). Potom {% latex %}G{% endlatex %} obsahuje hranu t. ž. {% latex %}G \setminus e{% endlatex %} je 3-souvislý.{% endmath %}
 
 {% math proof %}Sporem -- nechť {% latex %}G{% endlatex %} je 3-souvislý ale neexistuje žádná hrana, která jde zkontrahovat. Tedy {% latex %}\forall e \in E: G \setminus e{% endlatex %} není {% latex %}3{% endlatex %}-souvislý.
 
@@ -173,13 +173,16 @@ Těžší případ: {% latex %}e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2){%
 
 {% xopp 1 %}
 
-{% math proof %}
+{% math proof "způsob z přednášky" %}
 Vím, že {% latex %}G \setminus e{% endlatex %} není {% latex %}3{% endlatex %}-souvislý, tedy má vrcholový řez velikosti {% latex %}2{% endlatex %}. Nechť {% latex %}v_e{% endlatex %} je vrchol vzniklý kontrakcí {% latex %}e = \left\{x, y\right\}{% endlatex %}. Řez velikosti {% latex %}2{% endlatex %} obsahuje {% latex %}v_e{% endlatex %}, jinak by to byl řez už pro {% latex %}G{% endlatex %} (obsahoval by vrcholy z původního grafu, které nekontrahujeme).
 
 Označme řez {% latex %}v_e, z_e{% endlatex %}. Po rozkontrahování vidíme, že {% latex %}\forall \left\{x, y, z_e\right\}{% endlatex %} musí mít souseda v každé komponentě (jinak spor s 3-souvislostí). Tedy {% latex %}z_e{% endlatex %} je hledaný vrchol.
 {% endmath %}
 
 {% xopp 2 %}
+
+{% math definition "moje intuice" %}Pokud by neplatilo (existovala by taková hrana), tak máme hranu, přes kterou kontrahujeme. Jelikož pro tu hranu platí, že neexistuje {% latex %}z{% endlatex %}, které spolu s jejími vrcholy tvoří řez, tak bude graf i po kontrakci {% latex %}3{% endlatex %}-souvislý.
+{% endmath %}
 
 Pro důkaz původního lemmatu si zvolím {% latex %}e = \left\{x, y \right\} \in E{% endlatex %} a {% latex %}z_e{% endlatex %} z pomocného tvrzení tak, aby nejmenší komponenta {% latex %}G - z, y, z_e{% endlatex %} byla co nejmenší (co do počtu vrcholů).
 
@@ -485,34 +488,37 @@ Tedy {% latex display %}\Chi(\Gamma) = L(G){% endlatex %}
 - {% latex %}\Delta = 2{% endlatex %}
 	- {% latex %}C_{2k}{% endlatex %}: {% latex %}\Chi = 2{% endlatex %}
 	- {% latex %}C_{2k + 1}{% endlatex %}: zakázané
-- {% latex %}\Delta \ge 3{% endlatex %}; označme {% latex %}k_V(G) = {% endlatex %} vrcholová souvislost {% latex %}G{% endlatex %}
-	- {% latex %}k_V(G) = 1{% endlatex %} -- máme artikulaci; vrchol artikulace {% latex %}v{% endlatex %} měl souseda v obou částech grafu, proto {% latex %}\deg_{G_1}(v), \deg_{G_2}(V) < \Delta \implies{% endlatex %} podle lemmatu ({% latex %}G_1{% endlatex %} a {% latex %}G_2{% endlatex %} nejsou regulární) lze {% latex %}G_1{% endlatex %} i {% latex %}G_2{% endlatex %} {% latex %}\Delta{% endlatex %}-obarvit a stačí přepermutovat barvy, aby měl v obou obarveních stejnou
-	- {% latex %}k_V(G) = 2{% endlatex %}
-		- dobré případy (lze slepit)
-			- {% latex %}b_1(x) = b_1(y){% endlatex %} a {% latex %}b_2(x) = b_2(y){% endlatex %} 
-			- {% latex %}b_1(x) \neq b_1(y){% endlatex %} a {% latex %}b_2(x) \neq b_2(y){% endlatex %} 
-		- těžší případ -- na jedné straně stejné, na druhé různé
-			- {% latex %}b_1(x) = b_1(y){% endlatex %} a {% latex %}b_2(x) \neq b_2(y){% endlatex %} 
-				- pokud {% latex %}\deg_{G_1}(x){% endlatex %} nebo {% latex %}\deg_{G_1}(y) \le \Delta - 2{% endlatex %}, tak po přidání hrany půjde použít lemma a vrcholy budou mít různou barvu a máme dobrý případ
-					- nemůže se stát, že by např. druhý měl {% latex %}\deg_{G_1} = \Delta{% endlatex %}, protože musí vidět i do druhé komponenty
-				- nebo {% latex %}\deg_{G_1}(x) = \deg_{G_1}(y) = \Delta - 1{% endlatex %}
-					- pak musí {% latex %}\deg_{G_2}(x) = \deg_{G_2}(y) = 1{% endlatex %} (stupeň je celkově {% latex %}\Delta{% endlatex %})
-					- z předpokladu máme k použití alespoň {% latex %}3{% endlatex %} barvy, přebarvím jimi {% latex %}x{% endlatex %} a {% latex %}y{% endlatex %} a máme dobrý případ
-	- {% latex %}k_V(G) \ge 3{% endlatex %} -- použiji lemma o třešničce (souvislý graf, který není klika, obsahuje třešničku)
-		- seřadím vrcholy jako {% latex %}v_1 = x, v_2 = y, \ldots, v_n = z{% endlatex %} tak, aby {% latex %}\forall v_i: 3 \le i \le n - 1{% endlatex %} měl alespoň jednoho souseda napravo a barvím (hladově):
-			- umíme získat jako BFS vrstvy od {% latex %}z{% endlatex %}, kromě {% latex %}x{% endlatex %} a {% latex %}y{% endlatex %}
-			- {% latex %}b(x) = b(y) = 1{% endlatex %}
-			- {% latex %}b(v_3)\ldots{% endlatex %} má {% latex %}\ge 1{% endlatex %} neobarveného souseda {% latex %}\implies{% endlatex %} je nějaká nepoužitá z {% latex %}\Delta{% endlatex %} barev
-			- {% latex %}\ldots{% endlatex %}
-			- {% latex %}b(v_n)\ldots{% endlatex %} všichni sousedé už obarvení, ale dva sousedé ({% latex %}x, y{% endlatex %}) mají stejnou barvu, tedy {% latex %}z{% endlatex %} vidí {% latex %}\le \Delta - 1{% endlatex %} barev a jedna je volná
+- {% latex %}\Delta \ge 3{% endlatex %}; označme {% latex %}k_V(G) = {% endlatex %} vrcholová souvislost {% latex %}G{% endlatex %} a opět rozebereme případy
 
----
+1. {% latex %}k_V(G) = 1{% endlatex %}
+	- máme artikulaci, vrchol artikulace {% latex %}v{% endlatex %} měl souseda v obou částech grafu, proto {% latex %}\deg_{G_1}(v), \deg_{G_2}(V) < \Delta \implies{% endlatex %}
+	- podle lemmatu ({% latex %}G_1{% endlatex %} a {% latex %}G_2{% endlatex %} nejsou regulární) lze {% latex %}G_1{% endlatex %} i {% latex %}G_2{% endlatex %} {% latex %}\Delta{% endlatex %}-obarvit a stačí přepermutovat barvy, aby měl v obou obarveních stejnou
 
-Obrázek případů pro {% latex %}k_V(G) = 2{% endlatex %}:
+2. {% latex %}k_V(G) = 2{% endlatex %}
+	- dobré případy (lze slepit)
+		- {% latex %}b_1(x) = b_1(y){% endlatex %} a {% latex %}b_2(x) = b_2(y){% endlatex %} 
+		- {% latex %}b_1(x) \neq b_1(y){% endlatex %} a {% latex %}b_2(x) \neq b_2(y){% endlatex %} 
+	- těžší případ -- na jedné straně stejné, na druhé různé
+		- {% latex %}b_1(x) = b_1(y){% endlatex %} a {% latex %}b_2(x) \neq b_2(y){% endlatex %} 
+			- pokud {% latex %}\deg_{G_1}(x){% endlatex %} nebo {% latex %}\deg_{G_1}(y) \le \Delta - 2{% endlatex %}, tak po přidání hrany půjde použít lemma a vrcholy budou mít různou barvu a máme dobrý případ
+				- nemůže se stát, že by např. druhý měl {% latex %}\deg_{G_1} = \Delta{% endlatex %}, protože musí vidět i do druhé komponenty
+			- nebo {% latex %}\deg_{G_1}(x) = \deg_{G_1}(y) = \Delta - 1{% endlatex %}
+				- pak musí {% latex %}\deg_{G_2}(x) = \deg_{G_2}(y) = 1{% endlatex %} (stupeň je celkově {% latex %}\Delta{% endlatex %})
+				- z předpokladu máme k použití alespoň {% latex %}3{% endlatex %} barvy, přebarvím jimi {% latex %}x{% endlatex %} a {% latex %}y{% endlatex %} a máme dobrý případ
 
 {% xopp cases %}
 
----
+{:start="3"}
+3. {% latex %}k_V(G) \ge 3{% endlatex %} -- použiji lemma o třešničce (souvislý graf, který není klika, obsahuje třešničku)
+	- seřadím vrcholy jako {% latex %}v_1 = x, v_2 = y, \ldots, v_n = z{% endlatex %} tak, aby {% latex %}\forall v_i: 3 \le i \le n - 1{% endlatex %} měl alespoň jednoho souseda napravo a barvím (hladově):
+		- umíme získat jako BFS vrstvy od {% latex %}z{% endlatex %}, kromě {% latex %}x{% endlatex %} a {% latex %}y{% endlatex %}
+		- {% latex %}3{% endlatex %}-souvislost využívám k tomu, že i po odstranění {% latex %}x{% endlatex %} a {% latex %}y{% endlatex %} graf bude stále nějakou kostru mít
+		- {% latex %}b(x) = b(y) = 1{% endlatex %}
+		- {% latex %}b(v_3)\ldots{% endlatex %} má {% latex %}\ge 1{% endlatex %} neobarveného souseda {% latex %}\implies{% endlatex %} je nějaká nepoužitá z {% latex %}\Delta{% endlatex %} barev
+		- {% latex %}\ldots{% endlatex %}
+		- {% latex %}b(v_n)\ldots{% endlatex %} všichni sousedé už obarvení, ale dva sousedé ({% latex %}x, y{% endlatex %}) mají stejnou barvu, tedy {% latex %}z{% endlatex %} vidí {% latex %}\le \Delta - 1{% endlatex %} barev a jedna je volná
+
+{% xopp kooo %}
 
 {% endmath %}
 
@@ -569,7 +575,7 @@ Pro spor: {% latex %}R{% endlatex %} není klika {% latex %}\implies{% endlatex 
 
 {% endmath %}
 
-{% math definition %}Vrchol {% latex %}x{% endlatex %} je v grafu {% latex %}G{% endlatex %} simpliciální, pokud jeho sousedství ({% latex %}N_G(x){% endlatex %} tvoří kliku {% latex %}G{% endlatex %}.{% endmath %}
+{% math definition %}Vrchol {% latex %}x{% endlatex %} je v grafu {% latex %}G{% endlatex %} simpliciální, pokud jeho sousedství {% latex %}N_G(x){% endlatex %} tvoří kliku {% latex %}G{% endlatex %}.{% endmath %}
 
 {% math theorem %}Každý chordální graf (kromě prázdného) obsahuje simpliciální vrchol.{% endmath %}
 - dokážeme pomocí silnějšího tvrzení
@@ -644,7 +650,7 @@ Pro spor: {% latex %}R{% endlatex %} není klika {% latex %}\implies{% endlatex 
 - odstranění a kontrakce fungují intuitivně -- kontrakce nezahazuje hrany, protože máme multigraf
 
 {% math definition "most" %}hrana {% latex %}e \in E{% endlatex %} je most, v multigrafu {% latex %}G{% endlatex %}, pokud {% latex %}G - e{% endlatex %} má více komponent než {% latex %}G{% endlatex %}{% endmath %}
-- {% latex %}k(G) = k(V, E) = \text{počet komponent}{% endlatex %}
+- {% latex %}k(G) = k(V, E) = {% endlatex %} počet komponent
 
 {% math definition: "hodnost/rank" %}{% latex %}E{% endlatex %} je {% latex %}r(E) := |V| - k(G){% endlatex %}{% endmath %}
 - intuice: {% latex %}\sim{% endlatex %} velikost největší „neredundantní“ podmnožiny {% latex %}F \subseteq E{% endlatex %} (t. ž. {% latex %}k(G) = k(V, F){% endlatex %})
@@ -653,26 +659,22 @@ Pro spor: {% latex %}R{% endlatex %} není klika {% latex %}\implies{% endlatex 
 
 Postupné přidávání hran z {% latex %}F{% endlatex %}
 - snižuje počet komponent, vždy o {% latex %}1{% endlatex %}, tedy {% latex %}k(V, F) = n - |F| = |V| - |F|{% endlatex %}
-- zvyšuje {% latex %}\mathrm{r}{% endlatex %} vždy o {% latex %}1{% endlatex %} (nastává druhý případ z tabulky dole), tedy {% latex %}r(F) = |F|{% endlatex %}
+- zvyšuje rank vždy o {% latex %}1{% endlatex %} (nastává druhý případ z tabulky dole), tedy {% latex %}r(F) = |F|{% endlatex %}
 
 Spojením dostáváme {% latex %}r(F) = |F| = |V| - k(V, F) = |V| - k(G){% endlatex %}.
 {% endmath %}
 
 {% math definition: "nulita" %}{% latex %}E{% endlatex %} je {% latex %}n(E) := |E| - r(E){% endlatex %}{% endmath %}
-- intuice: velikost největší „redundantní“ podmnožiny {% latex %}F \subseteq E{% endlatex %} (t. ž. počet komponent se nezmění po jejím odebrání)
+- intuice: velikost největší „redundantní“ podmnožiny {% latex %}F \subseteq E{% endlatex %} (t. ž. počet komponent se nezmění po jejím odebrání) -- to dává smysl, jelikož je to {% latex %}|E| - r(E){% endlatex %} a jelikož rank udává počet těch užitečných, tak nulita těch neužitečných
 
-{% math example %}{% latex %}G = (V, \emptyset){% endlatex %}
-- {% latex %}r(\emptyset) = 0{% endlatex %}
-- {% latex %}n(\emptyset) = 0{% endlatex %}
-
+{% math example %}{% latex %}G = (V, E){% endlatex %}
 | změna                                   | {% latex %}r(E){% endlatex %}     | {% latex %}n(E){% endlatex %}     |
 | ---                                     | ---                               | ---                               |
 | přidání hrany bez změny počtu komponent | {% latex %}r(E){% endlatex %}     | {% latex %}n(E) + 1{% endlatex %} |
 | přidání hrany se změnou počtu komponent | {% latex %}r(E) + 1{% endlatex %} | {% latex %}n(E){% endlatex %}     |
 
-- přidáním hrany se rank:
-	- nezmění, pokud se nezmění počet komponent
-	- zvětší o {% latex %}1{% endlatex %}, pokud se dvě komponenty spojily
+- odpovídá intuici -- hrana, která se přidala ale nezměnila souvislost (byla tedy zbytečná), zvýší nulitu, kdežto užitečná hrana zvýší rank
+
 {% endmath %}
 
 {% math definition: "Tutteův polynom" %}multigrafu {% latex %}G = (V, E){% endlatex %} je polynom proměnných {% latex %}x, y{% endlatex %} definovaný jako {% latex display %}T_G(x, y) := \sum_{F \subseteq E} (x - 1)^{r(E) - r(F)} \cdot (y - 1)^{n(F)}{% endlatex %}{% endmath %}
@@ -706,20 +708,22 @@ Pak rozepíšu:
 {% endlatex %}
 {% endmath %}
 
-{% math consequence %}dva grafy se stejným Tutteovým polynomem nemusí být stejné (neobsahuje informaci o počtu komponent či počtu vrcholů).{% endmath %}
+{% math consequence %}dva grafy se stejným Tutteovým polynomem nemusí být stejné.
+- vyplývá přímo z předpokladu -- že se mohou protínat v nejvýše {% latex %}1{% endlatex %} vrcholu
+- neobsahuje tedy informaci o počtu komponent či počtu vrcholů
+{% endmath %}
 
 {% math theorem %}Nechť {% latex %}G = (V, E){% endlatex %} je multigraf. Potom {% latex %}T_G(x, y){% endlatex %} je jednoznačně určen rekurencemi:
 {% endmath %}
-- {% latex %}E = \emptyset{% endlatex %}: {% latex %}T_G(x, y) = 1{% endlatex %}
-- jinak pro {% latex %}e{% endlatex %}:
 
-| most   | {% latex %}T_G(x, y) = x \cdot T_{G - e}(x, y)= x \cdot T_{G \setminus e}(x, y){% endlatex %}  |
-|        | poslední rovnost: z důsledku výše                                                              |
-| smyčka | {% latex %}T_G(x, y) = y \cdot T_{G - e}(x, y) = y \cdot T_{G \setminus e}(x, y){% endlatex %} |
-|        | poslední rovnost: odstranění smyčky je to stejné jako její kontrakce                           |
-| jindy  | {% latex %}T_G(x, y) = T_{G - e}(x, y) + \cdot T_{G \setminus e}(x, y){% endlatex %}           |
+| {% latex %}E = \emptyset{% endlatex %} | {% latex %}T_G(x, y) = 1{% endlatex %}                                                         |
+| most {% latex %}e{% endlatex %}        | {% latex %}T_G(x, y) = x \cdot T_{G - e}(x, y)= x \cdot T_{G \setminus e}(x, y){% endlatex %}  |
+|                                        | poslední rovnost: z důsledku výše                                                              |
+| smyčka {% latex %}e{% endlatex %}      | {% latex %}T_G(x, y) = y \cdot T_{G - e}(x, y) = y \cdot T_{G \setminus e}(x, y){% endlatex %} |
+|                                        | poslední rovnost: odstranění smyčky je to stejné jako její kontrakce                           |
+| jindy                                  | {% latex %}T_G(x, y) = T_{G - e}(x, y) + \cdot T_{G \setminus e}(x, y){% endlatex %}           |
 
-{% math proof %}Pro {% latex %}E = \emptyset{% endlatex %} jasné, všude je {% latex %}0{% endlatex %}. Jinak rozdělíme:
+{% math proof %}Pro {% latex %}E = \emptyset{% endlatex %} jasné, jinak rozdělíme:
 
 {% latex display %}T_G(x, y) = \underbrace{\sum_{F \subseteq E, e \not\in F} (x - 1)^{r(E) - r(F)} \cdot (y - 1)^{n(F)}}_{s_1} + \underbrace{\sum_{F \subseteq E, e \in F} (x - 1)^{r(E) - r(F)} \cdot (y - 1)^{n(F)}}_{s_2}{% endlatex %}
 
@@ -760,7 +764,7 @@ Poté pro větu stačí následující:
 - {% latex %}0 = A(x){% endlatex %} s nulovými koeficienty
 - {% latex %}1 = A(x){% endlatex %} s {% latex %}a_0 = 1{% endlatex %} a zbytek nulové koeficienty
 
-{% math fact %} {% latex %}\mathbb{R}\llbracket x \rrbracket{% endlatex %} tvoří vektorový postor (násobení konstantou je FMŘ pro {% latex %}a_0 = c{% endlatex %}{% endmath %}
+{% math fact %} {% latex %}\mathbb{R}\llbracket x \rrbracket{% endlatex %} tvoří vektorový postor (násobení konstantou je FMŘ pro {% latex %}a_0 = c{% endlatex %}{% endmath %})
 
 {% math definition "převrácená hodnota" %} FMŘ {% latex %}A(x){% endlatex %} je taková FMŘ, že {% latex %}A(x) \cdot B(x) = 1{% endlatex %}{% endmath %}
 
@@ -799,10 +803,10 @@ Poté pro větu stačí následující:
 {% endmath %}
 
 #### Obyčejné vyvořující funkce
-Nechť {% latex %}\mathcal{A}{% endlatex %} je množina, jejíž každý prvek {% latex %}\alpha \in \mathcal{A}{% endlatex %} má definovanout velikost {% latex %}|\alpha| \in \mathbb{N}_0{% endlatex %}, předpokládáme že {% latex %}\forall n \in \mathbb{N}_0{% endlatex %} je v {% latex %}\mathcal{A}{% endlatex %} konečně mnoho prvků velikosti {% latex %}n{% endlatex %}.
+{% math definition "OVF" %}Nechť {% latex %}\mathcal{A}{% endlatex %} je množina, jejíž každý prvek {% latex %}\alpha \in \mathcal{A}{% endlatex %} má definovanout velikost {% latex %}|\alpha| \in \mathbb{N}_0{% endlatex %}, předpokládáme že {% latex %}\forall n \in \mathbb{N}_0{% endlatex %} je v {% latex %}\mathcal{A}{% endlatex %} konečně mnoho prvků velikosti {% latex %}n{% endlatex %}.
 - {% latex %}\mathcal{A}_n = \left\{\alpha \in \mathcal{A} \mid |\alpha| = n\right\}, a_n = |\mathcal{A}_n|{% endlatex %}
 
-Porom obyčejná vytvořující funkce pro {% latex %}\mathcal{A}{% endlatex %} je FMŘ {% latex display %}\mathrm{OVF}(\mathcal{A}) = \sum_{n \ge 0} a_n x^n{% endlatex %}
+Potom **obyčejná vytvořující funkce** pro {% latex %}\mathcal{A}{% endlatex %} je FMŘ {% latex display %}\mathrm{OVF}(\mathcal{A}) = \sum_{n \ge 0} a_n x^n{% endlatex %}{% endmath %}
 
 {% math example %} Jídla ({% latex %}\mathcal{J} = \mathcal{P} \cup \mathcal{H}{% endlatex %}):
 - Polévky ({% latex %}\mathcal{P}{% endlatex %})
@@ -864,7 +868,7 @@ Konečně vyjádříme {% latex display %}L(x) = 1 + S(x) + \frac{S^2(x)}{2!} + 
 
 V následujících definicích a pozorováních je _takovýhle text_ odkaz na to, co si pod tím představovat v rámci minulého příkladu.
 
-{% math definition %}Mějme množinu {% latex %}\mathcal{A}{% endlatex %} (_všechny konečné stromy s očíslovaňými vrcholy_), předpokladejme:
+{% math definition "EVF" %}Mějme množinu {% latex %}\mathcal{A}{% endlatex %} (_všechny konečné stromy s očíslovaňými vrcholy_), předpokladejme:
 1. každý prvek {% latex %}\alpha \in \mathcal{A}{% endlatex %} (_nějaký strom_) má množinu vrcholů (_vrcholů_) {% latex %}V(\alpha) \subseteq \mathbb{N}, V(\alpha){% endlatex %} konečná
 2. pro každou konečnou {% latex %}V \subseteq \mathbb{N}{% endlatex %} existuje konečně mnoho {% latex %}\alpha \in \mathcal{A}{% endlatex %} t. ž. {% latex %}V(\alpha) = V{% endlatex %} 
 	- (_existuje konečné množství stromů_)
