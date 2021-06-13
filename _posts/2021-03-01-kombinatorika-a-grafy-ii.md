@@ -594,9 +594,9 @@ Pro spor: {% latex %}R{% endlatex %} není klika {% latex %}\implies{% endlatex 
 
 {% math theorem %}G je chordální {% latex %}\iff{% endlatex %} G má PES.{% endmath %}
 
-{% math proof %}{% latex %}\Rightarrow{% endlatex %} obměnou nechť {% latex %}G{% endlatex %} není chordální a má tedy indukovanou kružnici velikosti alespoň {% latex %}4{% endlatex %}. Pro spor nechť máme PES. Nejlevější vrchol špatné kružnice v PES nemá souseda na této kružnici, což je spor s definicí PES.
+{% math proof %}{% latex %}\Leftarrow{% endlatex %} obměnou nechť {% latex %}G{% endlatex %} není chordální a má tedy indukovanou kružnici velikosti alespoň {% latex %}4{% endlatex %}. Pro spor nechť máme PES. Nejlevější vrchol špatné kružnice v PES nemá souseda na této kružnici, což je spor s definicí PES.
 
-{% latex %}\Leftarrow{% endlatex %} nechť {% latex %}G{% endlatex %} je chordální. Má tedy simpliciální vrchol {% latex %}v_n{% endlatex %}. Jeho sousedé tvoří kliku a {% latex %}G - v_n{% endlatex %} je opět chordální (pozorování výše) a opakujeme, čímž vznikne PES pro {% latex %}G{% endlatex %}.
+{% latex %}\Rightarrow{% endlatex %} nechť {% latex %}G{% endlatex %} je chordální. Má tedy simpliciální vrchol {% latex %}v_n{% endlatex %}. Jeho sousedé tvoří kliku a {% latex %}G - v_n{% endlatex %} je opět chordální (indukovaný graf chordálního je opět chordální) a opakujeme, čímž vznikne PES pro {% latex %}G{% endlatex %}.
 {% endmath %}
 
 {% math consequence %}pro daný graf {% latex %}G{% endlatex %} lze v polynomiálním čase rozhodnout, zda je chordální.{% endmath %}
@@ -605,7 +605,7 @@ Pro spor: {% latex %}R{% endlatex %} není klika {% latex %}\implies{% endlatex 
 
 {% math definition %}{% latex %}G{% endlatex %} je hamiltonovský, pokud má kružnici na {% latex %}n{% endlatex %} vrcholech (jako podgraf).{% endmath %}
 
-{% math theorem "Bondyho-Chvátalova" %}Nechť {% latex %}G{% endlatex %} je graf na {% latex %}\ge 3{% endlatex %} vrcholech. Nechť {% latex %}x,y{% endlatex %} jsou nesousedé t. ž. {% latex %}\deg_G(x) + \deg_G(y) \ge n{% endlatex %}. Nechť {% latex %}G^+ = (V, E \cup \left\{xy\right\}){% endlatex %}. Pak {% latex %}G{% endlatex %} je hamiltonovský {% latex %}\iff{% endlatex %} {% latex %}G^+{% endlatex %} je hamiltonovský.{% endmath %}
+{% math theorem "Bondyho-Chvátalova" %}Nechť {% latex %}G{% endlatex %} je graf na {% latex %}n \ge 3{% endlatex %} vrcholech. Nechť {% latex %}x,y{% endlatex %} jsou nesousedé t. ž. {% latex %}\deg_G(x) + \deg_G(y) \ge n{% endlatex %}. Nechť {% latex %}G^+ = (V, E \cup \left\{xy\right\}){% endlatex %}. Pak {% latex %}G{% endlatex %} je hamiltonovský {% latex %}\iff{% endlatex %} {% latex %}G^+{% endlatex %} je hamiltonovský.{% endmath %}
 
 {% math proof %} {% latex %}\Rightarrow{% endlatex %} jasné
 
@@ -617,7 +617,7 @@ Pro spor: {% latex %}R{% endlatex %} není klika {% latex %}\implies{% endlatex 
 		- povoluji vrcholy {% latex %}v_3, \ldots, v_{n-1}{% endlatex %}, viz. indexování
 	- {% latex %}I_2 := \left\{i \in \left\{2, \ldots, n - 2\right\}\ \text{t. ž. }\left\{y, v_i\right\} \in E\right\}{% endlatex %} (vrcholy dobré pro {% latex %}y{% endlatex %})
 		- povoluji vrcholy {% latex %}v_2, \ldots, v_{n - 2}{% endlatex %}, viz. indexování
-	- {% latex %}|I_1 \cup I_2| \le n - 3{% endlatex %}
+	- {% latex %}|I_1 \cup I_2| \le n - 3{% endlatex %} (pozor, indexování je posunuté!
 	- {% latex %}|I_1| = \deg_G(x) - 1{% endlatex %} (nesmím použít {% latex %}v_2{% endlatex %})
 	- {% latex %}|I_2| = \deg_G(y) - 1{% endlatex %} (nesmím použít {% latex %}v_{n - 1}{% endlatex %})
 	- {% latex %}|I_1| + |I_2| = \deg_G(x) - 1 + \deg_G(y) - 1 \ge n - 2{% endlatex %} (z předpokladu)
@@ -641,21 +641,22 @@ Pro spor: {% latex %}R{% endlatex %} není klika {% latex %}\implies{% endlatex 
 - {% latex %}k(G) = k(V, E) = {% endlatex %} počet komponent
 
 {% math definition: "hodnost/rank" %}{% latex %}E{% endlatex %} je {% latex %}r(E) := |V| - k(G){% endlatex %}{% endmath %}
-- intuice: {% latex %}\sim{% endlatex %} velikost největší „neredundantní“ podmnožiny {% latex %}F \subseteq E{% endlatex %} (t. ž. {% latex %}k(G) = k(V, F){% endlatex %})
+- intuice: {% latex %}\sim{% endlatex %} velikost největší „neredundantní“ podmnožiny {% latex %}F \subseteq E{% endlatex %} (t. ž. {% latex %}k(G) = k(F){% endlatex %})
 
-{% math proof %}Chceme dokázat, že {% latex %}F{% endlatex %} neobsahuje cykly a že {% latex %}r(E) = r(F){% endlatex %}. Víme, že {% latex %}k(G) = k(V, F){% endlatex %}.
+{% math proof %}Chceme dokázat, že {% latex %}F{% endlatex %} neobsahuje cykly a že {% latex %}r(E) = r(F){% endlatex %}. Víme, že {% latex %}k(G) = k(F){% endlatex %}.
 
-Postupné přidávání hran z {% latex %}F{% endlatex %}
-- snižuje počet komponent, vždy o {% latex %}1{% endlatex %}, tedy {% latex %}k(V, F) = n - |F| = |V| - |F|{% endlatex %}
+Postupné přidávání hran z {% latex %}F{% endlatex %} (právě tohle zaručuje, že nemáme cykly):
+- snižuje počet komponent, vždy o {% latex %}1{% endlatex %}, tedy {% latex %}k(F) = |V| - |F|{% endlatex %}
 - zvyšuje rank vždy o {% latex %}1{% endlatex %} (nastává druhý případ z tabulky dole), tedy {% latex %}r(F) = |F|{% endlatex %}
 
-Spojením dostáváme {% latex %}r(F) = |F| = |V| - k(V, F) = |V| - k(G){% endlatex %}.
+Spojením dostáváme {% latex %}r(F) = |F| = |V| - k(F) = |V| - k(G) = r(E){% endlatex %}.
 {% endmath %}
 
 {% math definition: "nulita" %}{% latex %}E{% endlatex %} je {% latex %}n(E) := |E| - r(E){% endlatex %}{% endmath %}
 - intuice: velikost největší „redundantní“ podmnožiny {% latex %}F \subseteq E{% endlatex %} (t. ž. počet komponent se nezmění po jejím odebrání) -- to dává smysl, jelikož je to {% latex %}|E| - r(E){% endlatex %} a jelikož rank udává počet těch užitečných, tak nulita těch neužitečných
 
 {% math example %}{% latex %}G = (V, E){% endlatex %}
+
 | změna                                   | {% latex %}r(E){% endlatex %}     | {% latex %}n(E){% endlatex %}     |
 | ---                                     | ---                               | ---                               |
 | přidání hrany bez změny počtu komponent | {% latex %}r(E){% endlatex %}     | {% latex %}n(E) + 1{% endlatex %} |
@@ -709,19 +710,21 @@ Pak rozepíšu:
 |                                        | poslední rovnost: z důsledku výše                                                              |
 | smyčka {% latex %}e{% endlatex %}      | {% latex %}T_G(x, y) = y \cdot T_{G - e}(x, y) = y \cdot T_{G \setminus e}(x, y){% endlatex %} |
 |                                        | poslední rovnost: odstranění smyčky je to stejné jako její kontrakce                           |
-| jindy                                  | {% latex %}T_G(x, y) = T_{G - e}(x, y) + \cdot T_{G \setminus e}(x, y){% endlatex %}           |
+| jindy                                  | {% latex %}T_G(x, y) = T_{G - e}(x, y) + T_{G \setminus e}(x, y){% endlatex %}           |
 
 {% math proof %}Pro {% latex %}E = \emptyset{% endlatex %} jasné, jinak rozdělíme:
 
 {% latex display %}T_G(x, y) = \underbrace{\sum_{F \subseteq E, e \not\in F} (x - 1)^{r(E) - r(F)} \cdot (y - 1)^{n(F)}}_{s_1} + \underbrace{\sum_{F \subseteq E, e \in F} (x - 1)^{r(E) - r(F)} \cdot (y - 1)^{n(F)}}_{s_2}{% endlatex %}
 
-Stačí dokázat následující:
+Stačí dokázat následující (a dosazení do výrazu výše):
 1. pokud {% latex %}e{% endlatex %} není most, tak {% latex %}s_1 = T_{G - e}(x, y){% endlatex %}
-	- {% latex %}e{% endlatex %} není most, jeho odebráním se rank nezmění, jen dosadím...
+	- {% latex %}e{% endlatex %} není most, jeho odebráním se rank nezmění, tedy {% latex %}r(E) = r(E \setminus \left\{x\right\}){% endlatex %}
 2. pokud {% latex %}e{% endlatex %} je most, tak {% latex %}s_1 = (x - 1) \cdot T_{G - e}(x, y){% endlatex %}
-	- {% latex %}e{% endlatex %} je most, jeho odebráním se rank zvětší o {% latex %}1{% endlatex %}, zase jen dosadím...
+	- {% latex %}e{% endlatex %} je most, jeho odebráním se rank zmenší o {% latex %}1{% endlatex %}, tedy {% latex %}r(E) = r(E \setminus \left\{x\right\}) + 1{% endlatex %}
 3. pokud {% latex %}e{% endlatex %} není smyčka, tak {% latex %}s_2 = T_{G \setminus e}(x, y){% endlatex %}
+	- ?
 4. pokud {% latex %}e{% endlatex %} je smyčka, tak {% latex %}s_2 = (y - 1)T_{G \setminus e}(x, y){% endlatex %}
+	- {% latex %}e{% endlatex %} je smyčka, odebráním se nulita zmenší o {% latex %}1{% endlatex %}, tedy {% latex %}{% endlatex %}
 
 Poté pro větu stačí následující:
 - {% latex %}e{% endlatex %} je most: (2) + (3)
@@ -918,14 +921,14 @@ možinu orbit značíme {% latex %}A / \Gamma{% endlatex %}.
 {% latex display %}\Gamma = \left\{\text{otočení o násobky 90$\degree$ mod 360$\degree$}\right\} = \left\{0\degree, 90\degree, 180\degree, 270\degree \right\}{% endlatex %}
 
 - akce odpovídají otočením koláčku.
-- {% latex %}\mathrm{Fix}(90\degree) = \left\{\boxed{a{b\atop b} a} \mid a, b \in \left\{T, M, P\right\}\right\}{% endlatex %}
+- {% latex %}\mathrm{Fix}(180\degree) = \left\{\boxed{a{b\atop b} a} \mid a, b \in \left\{T, M, P\right\}\right\}{% endlatex %}
 - {% latex %}\mathrm{Stab\left(\boxed{M{T\atop P} M}\right)} = \left\{0\degree\right\}{% endlatex %}
 - {% latex %}\left[\boxed{M{T\atop P} M}\right] = \left\{\boxed{M{T\atop P} M}, \boxed{P{M\atop M} T}, \boxed{M{P\atop T} M}, \boxed{T{M\atop M} P}\right\}{% endlatex %}
 {% endmath %}
 
 {% math lemma "o orbitě stabilizátoru" %}Nechť {% latex %}\Gamma{% endlatex %} je konečná grupa s akcí na množině {% latex %}A{% endlatex %}. Potom {% latex display %}\forall x \in A: |\mathrm{Stab(x)}| \cdot |\left[x\right]| = |\Gamma|{% endlatex %} {% endmath %}
 
-{% math definition %}Nechť množina {% latex %}\mathrm{Map}(x, y){% endlatex %} je množina akcí {% latex %}a{% endlatex %}, pro které {% latex %}a.x = y{% endlatex %}. Pro akce {% latex %}\sigma \in \mathrm{Map}(x, y){% endlatex %} pomocí {% latex %}\sigma a \sigma^{-1}{% endlatex %} lze definovat bijekci mezi {% latex %}\mathrm{Map}(x, x){% endlatex %}. Poté {% latex display %}\forall x \in A, |\Gamma| = \sum_{y \in [x]} |\mathrm{Map}(x, y)| = \sum_{y \in [x]} |\mathrm{Stab}(x)| = |[x]| |\mathrm{Stab}(x)|{% endlatex %}
+{% math proof %}Nechť množina {% latex %}\mathrm{Map}(x, y){% endlatex %} je množina akcí {% latex %}a{% endlatex %}, pro které {% latex %}a.x = y{% endlatex %}. Pro akce {% latex %}\sigma \in \mathrm{Map}(x, y){% endlatex %} pomocí {% latex %}\sigma a \sigma^{-1}{% endlatex %} lze definovat bijekci mezi {% latex %}\mathrm{Map}(x, x){% endlatex %}. Poté {% latex display %}\forall x \in A, |\Gamma| = \sum_{y \in [x]} |\mathrm{Map}(x, y)| = \sum_{y \in [x]} |\mathrm{Stab}(x)| = |[x]| |\mathrm{Stab}(x)|{% endlatex %}
 {% endmath %}
 
 {% math theorem "Bursideovo lemma" %}Nechť {% latex %}\Gamma{% endlatex %} je konečná grupa s akcí na {% latex %}A{% endlatex %}
@@ -978,10 +981,10 @@ Tedy dostáváme, že {% latex display %}A(x) = \frac{1}{4} \left(\left(\frac{1}
 ### 13. přednáška
 
 #### Extremální teorie grafů a hypergrafů
-{% math notation %}pro graf {% latex %}H{% endlatex %} označím {% latex %}\mathrm{ex}(n, H){% endlatex %} největší {% latex %}m{% endlatex %} t.ž. existuje graf {% latex %}G{% endlatex %} s {% latex %}n{% endlatex %} vrcholy, {% latex %}m{% endlatex %} hranami a neobsahující {% latex %}H{% endlatex %} jako podgraf.
+{% math definition %}pro graf {% latex %}H{% endlatex %} označím {% latex %}\mathrm{ex}(n, H){% endlatex %} největší {% latex %}m{% endlatex %} t.ž. existuje graf {% latex %}G{% endlatex %} s {% latex %}n{% endlatex %} vrcholy, {% latex %}m{% endlatex %} hranami a neobsahující {% latex %}H{% endlatex %} jako podgraf.
 {% endmath %}
 - {% latex %}\mathrm{ex}(n, K_3) = |E(K_{\left\lfloor \frac{n}{2} \right\rfloor, \left\lceil \frac{n}{2} \right\rceil})| = \left\lfloor \frac{n}{2} \right\rfloor \cdot \left\lceil \frac{n}{2} \right\rceil \cong n^2{% endlatex %}
-- {% latex %}\mathrm{ex}(n, C_4) = \mathcal{O}(n^{3/2} = \mathcal{O}(n \sqrt{n}){% endlatex %}
+- {% latex %}\mathrm{ex}(n, C_4) = \mathcal{O}(n^{3/2}) = \mathcal{O}(n \sqrt{n}){% endlatex %}
 	- viz. poznámky z [Kombinatoriky a Grafů I](/lecture-notes/kombinatorika-a-grafy-i/#grafy-bez-ckc_kck)
 
 {% math definition %}{% latex %}k, n \in \mathbb{N}{% endlatex %}, označme {% latex %}T_k(n){% endlatex %} úplný {% latex %}k{% endlatex %}-partitní graf na {% latex %}n{% endlatex %} vrcholech, jehož všechny partity mají velikost {% latex %}\left\lfloor \frac{n}{k} \right\rfloor{% endlatex %} nebo {% latex %}\left\lceil \frac{n}{k} \right\rceil{% endlatex %}. Nechť {% latex %}t_k(n) = |E(T_k(n))|{% endlatex %}{% endmath %}
@@ -1014,7 +1017,7 @@ Nechť {% latex %}x \in V(G){% endlatex %} je vrchol max. stupně v {% latex %}G
 - {% latex %}S = N_G(x){% endlatex %} (sousedství)
 - {% latex %}G_S = G\left[S\right]{% endlatex %} (podgraf indukovaný {% latex %}S{% endlatex %})
 	- {% math observation %}{% latex %}G_S{% endlatex %} neobsahuje {% latex %}k_{r - 1}{% endlatex %}, jinak {% latex %}G\left[S \cup \left\{x\right\}\right]{% endlatex %} obsahuje {% latex %}k_r{% endlatex %}{% endmath %} 
-	- využijeme ip: {% latex %}\exists (r - 2){% endlatex %}-partitní graf {% latex %}H_S = (S, E_{H_{S}}){% endlatex %}
+	- využijeme IP: {% latex %}\exists (r - 2){% endlatex %}-partitní graf {% latex %}H_S = (S, E_{H_{S}}){% endlatex %}
 		- splňuje (dle IP), že {% latex %}\forall y \in s: \deg_{H_S} (y) \ge \deg_{G_S}(y){% endlatex %}
 		- {% latex %}V \setminus S{% endlatex %} zadefinuji jako ({% latex %}(r-1){% endlatex %}.) partitu a vše patřičně spojím, čímž získám {% latex %}H{% endlatex %}
 
@@ -1056,7 +1059,7 @@ Spojení odhadů dává rovnost.
 {% math proof %}dokážeme pro {% latex %}c_r = 2^{r - 3}{% endlatex %}, indukcí dle {% latex %}r{% endlatex %}
 - základ {% latex %}r = 3{% endlatex %}, což jsou lesy a víme, že platí
 - {% latex %}r > 3{% endlatex %}, sporem
-	- {% latex %}\exists G = (V, E){% endlatex %} neobsahující {% latex %}K_r{% endlatex %}-minor ale {% latex %}|E| \ge c_r \cdot |V|{% endlatex %} a zároveň nejmenší pro {% latex %}|V| + |E|{% endlatex %}
+	- {% latex %}\exists G = (V, E){% endlatex %} neobsahující {% latex %}K_r{% endlatex %}-minor ale {% latex %}|E| \ge c_r \cdot |V|{% endlatex %} a zároveň min. pro {% latex %}|V| + |E|{% endlatex %}
 	- pokud {% latex %}G' = (V', E'){% endlatex %} je vlastní minor {% latex %}G{% endlatex %}, tak {% latex %}|E'| < c_r \cdot |V'|{% endlatex %}, jinak bychom zvolili {% latex %}G'{% endlatex %}
 
 **Pomocné tvrzení:** {% latex %}\forall \left\{x, y\right\} = e \in E{% endlatex %} platí {% latex %}|N(x) \cap N(y)| \ge c_r{% endlatex %}
@@ -1073,7 +1076,7 @@ K důkazu původního vyberu {% latex %}x \in V(G){% endlatex %}, {% latex %}S =
 - {% latex %}|E(G_S)| \ge \frac{c_r}{2} \cdot |S| = \frac{2^{r - 3}}{2} |S| = c_{r - 1} |S|{% endlatex %}
 	- dle IP musí {% latex %}G_S{% endlatex %} obsahovat {% latex %}K_{r - 1}{% endlatex %} minor a ten spolu s {% latex %}x{% endlatex %} tvoří v {% latex %}G{% endlatex %} {% latex %}K_r{% endlatex %}-minor, což je spor
 
-{% math reminder %}odhad byl dost hrubý, věta platí dokonce pro {% latex %}c_r = \mathcal{O}(r \cdot \sqrt{\log r}{% endlatex %}{% endmath %}
+{% math remark %}odhad byl dost hrubý, věta platí dokonce pro {% latex %}c_r = \mathcal{O}(r \cdot \sqrt{\log r}{% endlatex %}){% endmath %}
 {% endmath %}
 
 ---
@@ -1128,7 +1131,7 @@ Spojením dostávám {% latex display %}|E| \le \binom{n - 1}{k - 1}{% endlatex 
 
 ### zdroje/materiály
 - [stránky přednášky](https://research.koutecky.name/db/teaching:kg22021_prednaska).
-[[-]] [Poznámky Václava Končického](https://kam.mff.cuni.cz/~koncicky/notes/kag2/pdf) z roku 2019.
+- [Poznámky Václava Končického](https://kam.mff.cuni.cz/~koncicky/notes/kag2/pdf) z roku 2019.
 
 ### Poděkování
 - `@FloyGun` za upozornění na několik překlepů/chyb v důkazech a definicích.
