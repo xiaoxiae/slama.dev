@@ -806,7 +806,7 @@ Poté pro větu stačí následující:
 {% endmath %}
 
 #### Obyčejné vyvořující funkce
-{% math definition "OVF" %}Nechť {% latex %}\mathcal{A}{% endlatex %} je množina, jejíž každý prvek {% latex %}\alpha \in \mathcal{A}{% endlatex %} má definovanout velikost {% latex %}|\alpha| \in \mathbb{N}_0{% endlatex %}, předpokládáme že {% latex %}\forall n \in \mathbb{N}_0{% endlatex %} je v {% latex %}\mathcal{A}{% endlatex %} konečně mnoho prvků velikosti {% latex %}n{% endlatex %}.
+{% math definition "OVF" %}Nechť {% latex %}\mathcal{A}{% endlatex %} je množina, jejíž každý prvek {% latex %}\alpha \in \mathcal{A}{% endlatex %} má definovanou velikost {% latex %}|\alpha| \in \mathbb{N}_0{% endlatex %}, předpokládáme že {% latex %}\forall n \in \mathbb{N}_0{% endlatex %} je v {% latex %}\mathcal{A}{% endlatex %} konečně mnoho prvků velikosti {% latex %}n{% endlatex %}.
 - {% latex %}\mathcal{A}_n = \left\{\alpha \in \mathcal{A} \mid |\alpha| = n\right\}, a_n = |\mathcal{A}_n|{% endlatex %}
 
 Potom **obyčejná vytvořující funkce** pro {% latex %}\mathcal{A}{% endlatex %} je FMŘ {% latex display %}\mathrm{OVF}(\mathcal{A}) = \sum_{n \ge 0} a_n x^n{% endlatex %}{% endmath %}
@@ -871,7 +871,7 @@ Konečně vyjádříme {% latex display %}L(x) = 1 + S(x) + \frac{S^2(x)}{2!} + 
 
 V následujících definicích a pozorováních je _takovýhle text_ odkaz na to, co si pod tím představovat v rámci minulého příkladu.
 
-{% math definition "EVF" %}Mějme množinu {% latex %}\mathcal{A}{% endlatex %} (_všechny konečné stromy s očíslovaňými vrcholy_), předpokladejme:
+{% math definition "EVF" %}Mějme množinu {% latex %}\mathcal{A}{% endlatex %} (_všechny konečné stromy s očíslovaňými vrcholy_), předpokládejme:
 1. každý prvek {% latex %}\alpha \in \mathcal{A}{% endlatex %} (_nějaký strom_) má množinu vrcholů (_vrcholů_) {% latex %}V(\alpha) \subseteq \mathbb{N}, V(\alpha){% endlatex %} konečná
 2. pro každou konečnou {% latex %}V \subseteq \mathbb{N}{% endlatex %} existuje konečně mnoho {% latex %}\alpha \in \mathcal{A}{% endlatex %} t. ž. {% latex %}V(\alpha) = V{% endlatex %} 
 	- (_existuje konečné množství stromů_)
