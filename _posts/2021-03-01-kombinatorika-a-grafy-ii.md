@@ -95,13 +95,14 @@ category: "lecture notes"
 - **indukční podmínka:** {% latex %}G{% endlatex %} má nehranu a každý graf na {% latex %}V{% endlatex %}s počtem hran alespoň o 1 větší než {% latex %}|E|{% endlatex %} a platí TP, pak má perfektní párování
 
 Nechť {% latex %}S = \left\{v \in V\ |\ \deg(v) = n - 1\right\} = \left\{v \mid \text{$v$ je spojený se všemi vrcholy} \right\}{% endlatex %}
-- lehký případ: každá lichá komponenta {% latex %}G - S{% endlatex %} je klika
-	- v rámci dané kliky vypáruji vše až na jeden vrchol, ten spáruji v rámci {% latex %}S{% endlatex %} ({% latex %}S{% endlatex %} vidí všechny) a zbytek v {% latex %}S{% endlatex %} spáruji spolu (sudé komponenty do parity nepřispívají, liché + {% latex %}1{% endlatex %} z {% latex %}S{% endlatex %} také ne a v {% latex %}S{% endlatex %} tedy zbyde sudý počet vrcholů)
+- lehký případ: každá komponenta {% latex %}G - S{% endlatex %} je klika
+    - sudé kliky spárujeme triviálně
+	- v rámci liché kliky vypáruji vše až na jeden vrchol, ten spáruji v rámci {% latex %}S{% endlatex %} ({% latex %}S{% endlatex %} vidí všechny) a zbytek v {% latex %}S{% endlatex %} spáruji spolu (sudé komponenty do parity nepřispívají, liché + {% latex %}1{% endlatex %} z {% latex %}S{% endlatex %} také ne a v {% latex %}S{% endlatex %} tedy zbyde sudý počet vrcholů)
 
 {:.center}
 ![](/assets/kombinatorika-a-grafy-ii/1.svg)
 
-- alespoň {% latex %}1{% endlatex %} komponenta {% latex %}K{% endlatex %} není klika, tedy {% latex %}\exists x, y{% endlatex %} nesousedi
+- alespoň {% latex %}1{% endlatex %} komponenta {% latex %}K{% endlatex %} není klika, tedy {% latex %}\exists x, y \in K{% endlatex %} nesousední
 	- ti mají společného souseda {% latex %}u{% endlatex %} (tvrzení o třešničce), který není v {% latex %}S{% endlatex %}
 	- pro {% latex %}u{% endlatex %} existuje vrchol {% latex %}v{% endlatex %}, se kterým **není** spojený (jinak by {% latex %}u{% endlatex %} byl v {% latex %}S{% endlatex %}, což ale víme že není)
 
@@ -133,7 +134,7 @@ Těžší případ: {% latex %}e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2){%
 
 {% endmath %}
 
-{% math theorem "Petersen" %} každý {% latex %}3{% endlatex %}-regulární {% latex %}2{% endlatex %}-souvislý (vrcholově i hranově, pro 2-souvislost je to to samé; alternativně můžeme říct graf bez mostů a artikulací) graf má PP.{% endmath %}
+{% math theorem "Petersen" %} každý {% latex %}3{% endlatex %}-regulární {% latex %}2{% endlatex %}-souvislý (vrcholově i hranově, pro 3-regulární grafy je to to samé; alternativně můžeme říct graf bez mostů a artikulací) graf má PP.{% endmath %}
 
 {% math proof %}Nechť {% latex %}G = (V, E){% endlatex %} je {% latex %}3{% endlatex %}-regulární a {% latex %}2{% endlatex %}-souvislý. Chci ukázat, že {% latex %}G{% endlatex %} splňuje TP. Předpokládejme danou {% latex %}S \subseteq V{% endlatex %}.
 
@@ -189,12 +190,12 @@ Protože {% latex %}z_e{% endlatex %} má souseda ve všech komponentách, má n
 
 {% xopp 3 %}
 
-Nechť {% latex %}D{% endlatex %} je komponenta {% latex %}G - z_e, z_f, u{% endlatex %} neobsahující {% latex %}x, y{% endlatex %}. Existuje, protože {% latex %}x, y{% endlatex %} jsou spojené a graf se rozpadne alespoň na {% latex %}2{% endlatex %} komponenty). Tvrdím, že {% latex %}D \subseteq C \setminus \left\{u\right\}{% endlatex %}, protože {% latex %}D{% endlatex %} nemůže obsahovat {% latex %}z_e, z_f, u{% endlatex %} (vrcholy řezu), {% latex %}x, y{% endlatex %} (z definice {% latex %}D{% endlatex %}), ale {% latex %}u{% endlatex %} má nějakého souseda v {% latex %}D{% endlatex %} (podle pomocného tvrzení), takže v {% latex %}D{% endlatex %} ještě něco zbyde. Navíc ho tam mělo {% latex %}u{% endlatex %} i předtím, takže opravdu {% latex %}D \subseteq C \setminus \left\{u\right\}{% endlatex %}. Tedy {% latex %}|D| < |C|{% endlatex %}, což je spor s minimalitou.
+Nechť {% latex %}D{% endlatex %} je komponenta {% latex %}G - z_e, z_f, u{% endlatex %} neobsahující {% latex %}x, y{% endlatex %}. Existuje, protože {% latex %}x, y{% endlatex %} jsou spojené a graf se rozpadne alespoň na {% latex %}2{% endlatex %} komponenty. Tvrdím, že {% latex %}D \subseteq C \setminus \left\{u\right\}{% endlatex %}, protože {% latex %}D{% endlatex %} nemůže obsahovat {% latex %}z_e, z_f, u{% endlatex %} (vrcholy řezu), {% latex %}x, y{% endlatex %} (z definice {% latex %}D{% endlatex %}), ale {% latex %}u{% endlatex %} má nějakého souseda v {% latex %}D{% endlatex %} (podle pomocného tvrzení), takže v {% latex %}D{% endlatex %} ještě něco zbyde. Navíc ho tam mělo {% latex %}u{% endlatex %} i předtím, takže opravdu {% latex %}D \subseteq C \setminus \left\{u\right\}{% endlatex %}. Tedy {% latex %}|D| < |C|{% endlatex %}, což je spor s minimalitou.
 {% endmath %}
 
 - netvrdím, že {% latex %}D{% endlatex %} je nejmenší!
 
-{% math theorem "Tutteova charakterizace 3-souvislých grafů" %} Graf {% latex %}G{% endlatex %} je 3-souvislý {% latex %}\iff{% endlatex %} existuje posloupnost {% latex %}K_4 \cong G_0 \cong G_1 \cong \ldots \cong G{% endlatex %} t. ž. {% latex %}\forall i \in [n], G_{i - 1}{% endlatex %} vznikne z {% latex %}G_i{% endlatex %} kontrakcí hrany, navíc {% latex %}G_i{% endlatex %} má všechny vrcholy stupně {% latex %}\ge 3{% endlatex %}.{% endmath %}
+{% math theorem "Tutteova charakterizace 3-souvislých grafů" %} Graf {% latex %}G{% endlatex %} je 3-souvislý {% latex %}\iff{% endlatex %} existuje posloupnost {% latex %}K_4 \cong G_0,  G_1, \ldots, G_n \cong G{% endlatex %} t. ž. {% latex %}\forall i \in [n], G_{i - 1}{% endlatex %} vznikne z {% latex %}G_i{% endlatex %} kontrakcí hrany, navíc {% latex %}G_i{% endlatex %} má všechny vrcholy stupně {% latex %}\ge 3{% endlatex %}.{% endmath %}
 
 {% math proof %} {% latex %}\Rightarrow{% endlatex %} Induktivní aplikace lemmatu o kontrahovatelné hraně.
 
@@ -230,13 +231,24 @@ Pak ale {% latex %}G_{i - 1}{% endlatex %} nebyl 3-souvislý, rozborem toho, kde
 {% math theorem "Kuratowski 1930, Warner 1937" %} Následující jsou ekvivalentní:{% endmath %}
 1. {% latex %}G{% endlatex %} je rovinný
 2. {% latex %}G{% endlatex %} neobsahuje dělení {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} jako podgraf
-3. {% latex %}G{% endlatex %} neobsahuje dělení {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} jako minor.
+3. {% latex %}G{% endlatex %} neobsahuje {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} jako minor.
 
 {% math proof %} {% latex %}\\{% endlatex %}
 - *{% latex %}1 \implies 2{% endlatex %}: z prváku, protože {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} nejsou rovinné
 - {% latex %}3 \implies 2{% endlatex %}: obměna: „obsahuje dělení jako podgraf“ {% latex %}\implies{% endlatex %} „obsahuje dělení jako minor“
 - {% latex %}1 \implies 3{% endlatex %}: je-li rovinný, tak i minor bude rovinný (fakt výše)
-- *{% latex %}2 \implies 3{% endlatex %}: TODO: bylo na cvičení
+- *{% latex %}2 \implies 3{% endlatex %}: Chceme ukázat, že obsahuje-li graf {% latex %}K_5{% endlatex %} nebo {% latex %}K_{3,3}{% endlatex %} jako minor,
+  obsahuje i dělení nějakého z těchto grafů jako podgraf. Uvažme nejdřív obecně graf {% latex %}G{% endlatex %} obsahující jak podgraf dělení {% latex %}H'{% endlatex %}
+  grafu {% latex %}H{% endlatex %}. {% latex %}H'{% endlatex %} dostaneme z {% latex %}G{% endlatex %} posloupností mazání vrcholů a mazání hran. {% latex %}H{% endlatex %}
+  pak dostaneme z {% latex %}H'{% endlatex %} posloupností operací inverzních k dělení hran, což jsou právě kontrakce hran, při nichž má výsledný vrchol
+  stejný stupeň, jako jeden z kontrahovaných vrcholů (a zároveň nekontrahujeme vrchol stupně 1, což je ale to samé jako mazání). Všimněme si, že tento
+  speciální tvar má mimo jiné každá kontrakce, při níž nevznikne větší stupeň než 3.
+  Co kdyby tedy {% latex %}G{% endlatex %} obsahoval minor {% latex %}K{% endlatex %} a navíc {% latex %}\Delta(K) \leq 3{% endlatex %}? Od {% latex %}G{% endlatex %}
+  ke {% latex %}K{% endlatex %} se můžeme dostat posloupností mazání vrcholů, mazání hran a kontrakcí hran. Všimněme si ale, že nikdy nemusíme použít kontrakci, při které vznikne
+  větší stupeň než 3, protože vzniklý vrchol musí být stejně následně smazán. To můžeme nahlédnout i tak, že v posloupnosti operací se mohou operace libovolně předbíhat
+  (pokud je přitom patřičně pozměníme), a tedy všechny kontrakce si můžeme nechat nakonec. Z předchozích pozorování vidíme, že minory maximálního stupně nejvýše 3 a dělení
+  jako podgrafy jsou generované stejnými typy operací a tedy speciálně obsahuje-li graf {% latex %}K_{3,3}{% endlatex %} jako minor, obsahuje i nějaké jeho dělení jako podgraf.
+  Zbytek důkazu pro {% latex %}K_5{% endlatex %} je lepší s obrázkem a lze najít na https://www.math.uni-hamburg.de/home/diestel/books/graph.theory/preview/Ch4.pdf (Lemma 4.4.2).
 - *{% latex %}3 \implies 1{% endlatex %}: indukcí podle {% latex %}|V(G)|{% endlatex %}
 	- pro {% latex %}|V(G)| \le 4{% endlatex %} vše funguje
 	- předpokládám {% latex %}G{% endlatex %} má alespoň 5 vrcholů a neobsahuje {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} jako minor. Rozeberu případy podle {% latex %}k_v(G){% endlatex %} (vrcholová souvislost {% latex %}G{% endlatex %})
