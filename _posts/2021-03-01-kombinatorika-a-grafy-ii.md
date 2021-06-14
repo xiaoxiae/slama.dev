@@ -21,7 +21,7 @@ category: "lecture notes"
 
 {% math definition "volný vrchol" %} (vzhledem k {% latex %}M{% endlatex %}) -- vrchol, kterého se nedotýká žádná hrana párování.{% endmath %}
 
-{% math definition "střídavá cesta" %} (vzdledem k {% latex %}M{% endlatex %}) -- cesta, na které se střídají hrany v párování a hrany mimo párování: {% latex %}u_0, \ldots, u_k{% endlatex %}, kde každá sudá/lichá hrana je v {% latex %}M{% endlatex %}, lichá/sudá není v {% latex %}M{% endlatex %}{% endmath %}
+{% math definition "střídavá cesta" %} (vzhledem k {% latex %}M{% endlatex %}) -- cesta, na které se střídají hrany v párování a hrany mimo párování: {% latex %}u_0, \ldots, u_k{% endlatex %}, kde každá sudá/lichá hrana je v {% latex %}M{% endlatex %}, lichá/sudá není v {% latex %}M{% endlatex %}{% endmath %}
 
 - **volná** střídavá cesta (VSC) -- krajní vrcholy jsou volné (vůči párování)
 - {% latex %}\implies{% endlatex %} obsahuje lichý počet hran, sudý počet vrcholů
@@ -57,7 +57,7 @@ category: "lecture notes"
 
 {% math lemma %}Nechť {% latex %}C{% endlatex %} je květ v grafu {% latex %}G{% endlatex %}. Potom párování {% latex %}M{% endlatex %} v {% latex %}G{% endlatex %} je maximální, právě když {% latex %}M \setminus E(C){% endlatex %} je maximální párování v grafu {% latex %}G . C{% endlatex %}, tj. s květem {% latex %}C{% endlatex %} zkontrahovaným do jediného vrcholu. Navíc pokud znám VSC pro {% latex %}M . C{% endlatex %}, tak v poly. čase najdu VSC pro {% latex %}M{% endlatex %} v {% latex %}G{% endlatex %}.{% endmath %}
 
-{% math proof %}Tady je [http://www.cs.dartmouth.edu/~ac/Teach/CS105-Winter05/Handouts/tarjan-blossom.pdf](sketchy důkaz), tady je [míň sketchy důkaz](https://stanford.edu/~rezab/classes/cme323/S16/projects_reports/shoemaker_vare.pdf).
+{% math proof %}Tady je [sketchy důkaz](http://www.cs.dartmouth.edu/~ac/Teach/CS105-Winter05/Handouts/tarjan-blossom.pdf), tady je [míň sketchy důkaz](https://stanford.edu/~rezab/classes/cme323/S16/projects_reports/shoemaker_vare.pdf).
 {% endmath %}
 
 {% math algorithm "Edmondsův „zahradní/blossom“" %} vstupem je graf {% latex %}G{% endlatex %} a jeho libovolné párování {% latex %}M{% endlatex %}, třeba prázdné. Výstupem je párování {% latex %}M'{% endlatex %}, které je alespoň o {% latex %}1{% endlatex %} větší, než {% latex %}M{% endlatex %}, případně {% latex %}M{% endlatex %} pokud bylo maximální.{% endmath %}
@@ -159,7 +159,6 @@ Těžší případ: {% latex %}e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2){%
 
 ### 3. přednáška
 
-
 #### Tutte v2.0
 
 {% math lemma "o kontrahovatelné hraně = LoKH" %} Nechť {% latex %}G{% endlatex %} je vrcholově {% latex %}3{% endlatex %}-souvislý různý od {% latex %}K_4{% endlatex %} ({% latex %}|V| \ge 5{% endlatex %}). Potom {% latex %}G{% endlatex %} obsahuje hranu t. ž. {% latex %}G \setminus e{% endlatex %} je 3-souvislý.{% endmath %}
@@ -181,7 +180,7 @@ Označme řez {% latex %}v_e, z_e{% endlatex %}. Po rozkontrahování vidíme, �
 
 {% xopp 2 %}
 
-{% math definition "moje intuice" %}Pokud by neplatilo (existovala by taková hrana), tak máme hranu, přes kterou kontrahujeme. Jelikož pro tu hranu platí, že neexistuje {% latex %}z{% endlatex %}, které spolu s jejími vrcholy tvoří řez, tak bude graf i po kontrakci {% latex %}3{% endlatex %}-souvislý.
+{% math proof "moje intuice" %}Pokud by neplatilo (existovala by taková hrana), tak máme hranu, přes kterou kontrahujeme. Jelikož pro tu hranu platí, že neexistuje {% latex %}z{% endlatex %}, které spolu s jejími vrcholy tvoří řez, tak bude graf i po kontrakci {% latex %}3{% endlatex %}-souvislý.
 {% endmath %}
 
 Pro důkaz původního lemmatu si zvolím {% latex %}e = \left\{x, y \right\} \in E{% endlatex %} a {% latex %}z_e{% endlatex %} z pomocného tvrzení tak, aby nejmenší komponenta {% latex %}G - z, y, z_e{% endlatex %} byla co nejmenší (co do počtu vrcholů).
@@ -190,7 +189,7 @@ Protože {% latex %}z_e{% endlatex %} má souseda ve všech komponentách, má n
 
 {% xopp 3 %}
 
-Nechť {% latex %}D{% endlatex %} je komponenta {% latex %}G - z_e, z_f, u{% endlatex %} neobsahující {% latex %}x, y{% endlatex %}. Existuje, protože {% latex %}x, y{% endlatex %} jsou spojené a graf se rozpadne alespoň na {% latex %}2{% endlatex %} komponenty. Tvrdím, že {% latex %}D \subseteq C \setminus \left\{u\right\}{% endlatex %}, protože {% latex %}D{% endlatex %} nemůže obsahovat {% latex %}z_e, z_f, u{% endlatex %} (vrcholy řezu), {% latex %}x, y{% endlatex %} (z definice {% latex %}D{% endlatex %}), ale {% latex %}u{% endlatex %} má nějakého souseda v {% latex %}D{% endlatex %} (podle pomocného tvrzení), takže v {% latex %}D{% endlatex %} ještě něco zbyde. Navíc ho tam mělo {% latex %}u{% endlatex %} i předtím, takže opravdu {% latex %}D \subseteq C \setminus \left\{u\right\}{% endlatex %}. Tedy {% latex %}|D| < |C|{% endlatex %}, což je spor s minimalitou.
+Nechť {% latex %}D{% endlatex %} je komponenta {% latex %}G - z_e, z_f, u{% endlatex %} neobsahující {% latex %}x, y{% endlatex %}. Existuje, protože {% latex %}x, y{% endlatex %} jsou spojené a graf se rozpadne alespoň na {% latex %}2{% endlatex %} komponenty. Tvrdím, že {% latex %}D \subseteq C \setminus \left\{u\right\}{% endlatex %}, protože {% latex %}D{% endlatex %} nemůže obsahovat {% latex %}z_e, z_f, u{% endlatex %} (vrcholy řezu), {% latex %}x, y{% endlatex %} (z definice {% latex %}D{% endlatex %}), ale {% latex %}u{% endlatex %} má nějakého souseda v {% latex %}D{% endlatex %} (podle pomocného tvrzení, {% latex %}u{% endlatex %} má sousedy ve všech komponentách řezu), takže v {% latex %}D{% endlatex %} ještě něco zbyde. Navíc ho tam mělo {% latex %}u{% endlatex %} i předtím, takže opravdu {% latex %}D \subseteq C \setminus \left\{u\right\}{% endlatex %}. Tedy {% latex %}|D| < |C|{% endlatex %}, což je spor s minimalitou.
 {% endmath %}
 
 - netvrdím, že {% latex %}D{% endlatex %} je nejmenší!
@@ -454,9 +453,12 @@ Tedy {% latex display %}\Chi(\Gamma) = L(G){% endlatex %}
 
 {% math definition %}{% latex %}G{% endlatex %} je {% latex %}d{% endlatex %}-degenerovaný {% latex %}\equiv{% endlatex %} každý podgraf {% latex %}H{% endlatex %} grafu {% latex %}G{% endlatex %} má {% latex %}\delta(H) \le d{% endlatex %}{% endmath %}
 - {% latex %}={% endlatex %} každý podgraf má vrchol stupně nejvýše {% latex %}d{% endlatex %}
-- {% latex %}\iff \exists{% endlatex %} pořadí vrcholů (eliminační) {% latex %}v_1, \ldots v_n{% endlatex %} t. ž. {% latex %}\forall i: G_i := G - \left\{v_1, \ldots, v_i\right\}: \delta(G_i) \le d{% endlatex %} a {% latex %}v_{i - 1}{% endlatex %} má {% latex %}\le d{% endlatex %} sousedů v {% latex %}G_i{% endlatex %}
-	- trháme vrcholy v pořadí tak, že každý další odebraný má nejvýše {% latex %}d{% endlatex %} sousedů
-	- {% math observation %}{% latex %}G{% endlatex %} je {% latex %}d{% endlatex %}-degenerovaný {% latex %}\implies \Chi(G) \le d + 1{% endlatex %}{% endmath %} (barvím indukcí v pořadí {% latex %}v_n, \ldots, v_1{% endlatex %})
+
+{% math definition "eliminační pořadí" %}Alternativní definice {% latex %}d{% endlatex %}-degenerovanosti: graf je {% latex %}d{% endlatex %}-degenerovaný
+{% latex %}\iff \exists{% endlatex %} pořadí vrcholů (eliminační) {% latex %}v_1, \ldots v_n{% endlatex %} t. ž. {% latex %}\forall i: G_i := G - \left\{v_1, \ldots, v_i\right\}: \delta(G_i) \le d{% endlatex %} a {% latex %}v_{i - 1}{% endlatex %} má {% latex %}\le d{% endlatex %} sousedů v {% latex %}G_i{% endlatex %}
+- trháme vrcholy -- každý další odebraný má nejvýše {% latex %}d{% endlatex %} sousedů a graf je stále {% latex %}d{% endlatex %}-degenerovaný
+- {% math observation %}{% latex %}G{% endlatex %} je {% latex %}d{% endlatex %}-degenerovaný {% latex %}\implies \Chi(G) \le d + 1{% endlatex %}{% endmath %} (barvím indukcí v pořadí {% latex %}v_n, \ldots, v_1{% endlatex %})
+{% endmath %}
 
 ![](/assets/kombinatorika-a-grafy-ii/degen.png)
 
@@ -512,7 +514,7 @@ Tedy {% latex display %}\Chi(\Gamma) = L(G){% endlatex %}
 3. {% latex %}k_V(G) \ge 3{% endlatex %} -- použiji lemma o třešničce (souvislý graf, který není klika, obsahuje třešničku)
 	- seřadím vrcholy jako {% latex %}v_1 = x, v_2 = y, \ldots, v_n = z{% endlatex %} tak, aby {% latex %}\forall v_i: 3 \le i \le n - 1{% endlatex %} měl alespoň jednoho souseda napravo a barvím (hladově):
 		- umíme získat jako BFS vrstvy od {% latex %}z{% endlatex %}, kromě {% latex %}x{% endlatex %} a {% latex %}y{% endlatex %}
-		- {% latex %}3{% endlatex %}-souvislost využívám k tomu, že i po odstranění {% latex %}x{% endlatex %} a {% latex %}y{% endlatex %} graf bude stále nějakou kostru mít
+		- {% latex %}3{% endlatex %}-souvislost využívám k tomu, že i po odstranění {% latex %}x{% endlatex %} a {% latex %}y{% endlatex %} graf bude stále nějakou kostru mít a bude tedy stále souvislý
 		- {% latex %}b(x) = b(y) = 1{% endlatex %}
 		- {% latex %}b(v_3)\ldots{% endlatex %} má {% latex %}\ge 1{% endlatex %} neobarveného souseda {% latex %}\implies{% endlatex %} je nějaká nepoužitá z {% latex %}\Delta{% endlatex %} barev
 		- {% latex %}\ldots{% endlatex %}
@@ -524,7 +526,7 @@ Tedy {% latex display %}\Chi(\Gamma) = L(G){% endlatex %}
 
 #### Pár poznámek
 
-**Harwigerova domněnka:** {% latex %}K_t \not\preceq_m G{% endlatex %} (není minor){% latex %} \implies \Chi(G) < t{% endlatex %}
+**Hadwigerova domněnka:** {% latex %}K_t \not\preceq_m G{% endlatex %} (není minor){% latex %} \implies \Chi(G) < t{% endlatex %}
 - {% latex %}t = 4 \ldots{% endlatex %} relativně jednoduché
 - {% latex %}t = 5 \ldots{% endlatex %} zobecnění věty o {% latex %}4{% endlatex %} barvách
 - {% latex %}t = 6 \ldots{% endlatex %} pomocí věty o {% latex %}4{% endlatex %} barvách + hodně práce
@@ -638,7 +640,7 @@ Pro spor: {% latex %}R{% endlatex %} není klika {% latex %}\implies{% endlatex 
 {% xopp another3 %}
 {% endmath %}
 
-{% math theorem "Divac" %}{% latex %}G{% endlatex %} graf na {% latex %}n \ge 3{% endlatex %} vrcholech s min. stupněm {% latex %}\ge n/2{% endlatex %} je hamiltonovský.{% endmath %}
+{% math theorem "Dirac" %}{% latex %}G{% endlatex %} graf na {% latex %}n \ge 3{% endlatex %} vrcholech s min. stupněm {% latex %}\ge n/2{% endlatex %} je hamiltonovský.{% endmath %}
 
 {% math proof %}Z Bondy-Chvátalovy věty doplníme na {% latex %}K_n{% endlatex %}, který je hamiltonovský.{% endmath %}
 
@@ -735,7 +737,7 @@ Stačí dokázat následující (a dosazení do výrazu výše):
 	- {% latex %}e{% endlatex %} je most, jeho odebráním se rank zmenší o {% latex %}1{% endlatex %}, tedy {% latex %}r(E) = r(E \setminus \left\{x\right\}) + 1{% endlatex %}
 3. pokud {% latex %}e{% endlatex %} není smyčka, tak {% latex %}s_2 = T_{G \setminus e}(x, y){% endlatex %}
 	- ?
-4. pokud {% latex %}e{% endlatex %} je smyčka, tak {% latex %}s_2 = (y - 1)T_{G \setminus e}(x, y){% endlatex %}
+4. pokud {% latex %}e{% endlatex %} je smyčka, tak {% latex %}s_2 = (y - 1) \cdot T_{G \setminus e}(x, y){% endlatex %}
 	- {% latex %}e{% endlatex %} je smyčka, odebráním se nulita zmenší o {% latex %}1{% endlatex %}, tedy {% latex %}{% endlatex %}
 
 Poté pro větu stačí následující:
@@ -871,7 +873,7 @@ Konečně vyjádříme {% latex display %}L(x) = 1 + S(x) + \frac{S^2(x)}{2!} + 
 
 V následujících definicích a pozorováních je _takovýhle text_ odkaz na to, co si pod tím představovat v rámci minulého příkladu.
 
-{% math definition "EVF" %}Mějme množinu {% latex %}\mathcal{A}{% endlatex %} (_všechny konečné stromy s očíslovaňými vrcholy_), předpokládejme:
+{% math definition "EVF" %}Mějme množinu {% latex %}\mathcal{A}{% endlatex %} (_všechny konečné stromy s očíslovanými vrcholy_), předpokládejme:
 1. každý prvek {% latex %}\alpha \in \mathcal{A}{% endlatex %} (_nějaký strom_) má množinu vrcholů (_vrcholů_) {% latex %}V(\alpha) \subseteq \mathbb{N}, V(\alpha){% endlatex %} konečná
 2. pro každou konečnou {% latex %}V \subseteq \mathbb{N}{% endlatex %} existuje konečně mnoho {% latex %}\alpha \in \mathcal{A}{% endlatex %} t. ž. {% latex %}V(\alpha) = V{% endlatex %} 
 	- (_existuje konečné množství stromů_)
