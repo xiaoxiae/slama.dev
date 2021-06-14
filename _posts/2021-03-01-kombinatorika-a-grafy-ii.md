@@ -247,7 +247,7 @@ Pak ale {% latex %}G_{i - 1}{% endlatex %} nebyl 3-souvislý, rozborem toho, kde
   větší stupeň než 3, protože vzniklý vrchol musí být stejně následně smazán. To můžeme nahlédnout i tak, že v posloupnosti operací se mohou operace libovolně předbíhat
   (pokud je přitom patřičně pozměníme), a tedy všechny kontrakce si můžeme nechat nakonec. Z předchozích pozorování vidíme, že minory maximálního stupně nejvýše 3 a dělení
   jako podgrafy jsou generované stejnými typy operací a tedy speciálně obsahuje-li graf {% latex %}K_{3,3}{% endlatex %} jako minor, obsahuje i nějaké jeho dělení jako podgraf.
-  Zbytek důkazu pro {% latex %}K_5{% endlatex %} je lepší s obrázkem a lze najít na https://www.math.uni-hamburg.de/home/diestel/books/graph.theory/preview/Ch4.pdf (Lemma 4.4.2).
+  Zbytek důkazu pro {% latex %}K_5{% endlatex %} je lepší s obrázkem a lze najít [na tomhle odkazu](https://www.math.uni-hamburg.de/home/diestel/books/graph.theory/preview/Ch4.pdf) (Lemma 4.4.2).
 - *{% latex %}3 \implies 1{% endlatex %}: indukcí podle {% latex %}|V(G)|{% endlatex %}
 	- pro {% latex %}|V(G)| \le 4{% endlatex %} vše funguje
 	- předpokládám {% latex %}G{% endlatex %} má alespoň 5 vrcholů a neobsahuje {% latex %}K_5{% endlatex %} ani {% latex %}K_{3, 3}{% endlatex %} jako minor. Rozeberu případy podle {% latex %}k_v(G){% endlatex %} (vrcholová souvislost {% latex %}G{% endlatex %})
