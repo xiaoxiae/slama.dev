@@ -1153,3 +1153,4 @@ Spojením dostávám {% latex display %}|E| \le \binom{n - 1}{k - 1}{% endlatex 
 ### Poděkování
 - Eldaru Urmanovi za upozornění na několik překlepů/chyb v důkazech a definicích.
 - Matěji Kripnerovi za důkazy některých tvrzení a opravy překlepů.
+- Kateřině Sulkové za naprosto nesmyslný nápad přejmenovat Burnsideovo lemma na „Rumcajsovo.“
