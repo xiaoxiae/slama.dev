@@ -1039,7 +1039,7 @@ Nechť {% latex %}x \in V(G){% endlatex %} je vrchol max. stupně v {% latex %}G
 
 {% xopp lol %}
 
-Ověříme {% latex %}\forall y \in V: \deg_G(x) \le \deg_H(x){% endlatex %}
+Ověříme {% latex %}\forall x \in V: \deg_G(x) \le \deg_H(x){% endlatex %}
 1. {% latex %}y \in V \setminus S: \deg_H(y) = |S| = \deg_H(x) = \deg_G(x) \ge \deg_G(y){% endlatex %} ({% latex %}x{% endlatex %} je vrchol s největším stupněm)
 2. {% latex %}y \in S: \deg_H(y) = \deg_{H_S} + |V \setminus S| \overset{\mathrm{IP}}{\ge} \deg_{G_S}(y) + |V \setminus S| \ge \deg_G(y){% endlatex %}
 	- rozdělili jsme to na dva případy podle toho, co vidí uvnitř a co vně {% latex %}S{% endlatex %}
@@ -1151,5 +1151,5 @@ Spojením dostávám {% latex display %}|E| \le \binom{n - 1}{k - 1}{% endlatex 
 - [Poznámky Václava Končického](https://kam.mff.cuni.cz/~koncicky/notes/kag2/pdf) z roku 2019.
 
 ### Poděkování
-- `@FloyGun` za upozornění na několik překlepů/chyb v důkazech a definicích.
+- Eldaru Urmanovi za upozornění na několik překlepů/chyb v důkazech a definicích.
 - Matěji Kripnerovi za důkazy některých tvrzení a opravy překlepů.
