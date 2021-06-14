@@ -254,7 +254,7 @@ Pak ale {% latex %}G_{i - 1}{% endlatex %} nebyl 3-souvislý, rozborem toho, kde
 		- {% latex %}k_v(G) = 0\implies{% endlatex %} nesouvislý graf, použijeme indukci
 		- {% latex %}k_v(G) = 1\implies{% endlatex %} artikulačním vrcholem {% latex %}x{% endlatex %} rozpojíme, podle IP nakreslíme
 			- {% latex %}x{% endlatex %} musí být na vnější stěně, což umíme přes trik s projekcí z koule na rovinu
-		- {% latex %}k_v(G) = 2\implies{% endlatex %}, rozložení podél dvou vrcholů tvořících řez
+		- {% latex %}k_v(G) = 2\implies{% endlatex %}, rozložení podél dvou vrcholů tvořících řez, ale opatrně -- musíme si rozmyslet, že můžeme obě části zkontrahovat do hrany mezi vrcholy, aby poté v nakreslení šly spojit
 {% endmath %}
 
 ### 4. přednáška
@@ -1149,3 +1149,4 @@ Spojením dostávám {% latex display %}|E| \le \binom{n - 1}{k - 1}{% endlatex 
 
 ### Poděkování
 - `@FloyGun` za upozornění na několik překlepů/chyb v důkazech a definicích.
+- Matěji Kripnerovi za důkazy některých tvrzení a opravy překlepů.
