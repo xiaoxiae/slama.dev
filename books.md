@@ -52,11 +52,11 @@ This section covers various kinds of books that I think are worth reading.
 
 - **The Martian** [[Wikipedia](https://en.wikipedia.org/wiki/The_Martian_(Weir_novel))] by Andy Weir -- a hilarious novel about an astronaut surviving on Mars, after being left for dead due to an unfortunate series of events. It inspired a [movie](https://en.wikipedia.org/wiki/The_Martian_(film)#Reception), which (while not as good as the book) is also quite entertaining.
 
+- **Project Hail Mary** [[Wikipedia](https://en.wikipedia.org/wiki/Project_Hail_Mary)] by Andy Weir -- another excellent novel by Andy Weir. It has the same feel as the Martian, but I found it to be much more interesting story-wise and would wholeheartedly recommend it to anyone interested in space sci-fi.
+
 ### Maths and Computer Science
 
 {:.book}
 - [CZ] **Průvodce labyrintem algoritmů** [[PDF](http://pruvodce.ucw.cz/static/pruvodce.pdf)] od Martina Mareše -- úžasná příručka (a skripta) pro studium algoritmů a datových struktur. Vřele doporučeno komukoliv, koho alespoň trochu zajímá teoretická informatika.
-
-- [CZ] **Lineární Algebra (nejen) pro informatiky** [[PDF verze 2018](https://www.ms.mff.cuni.cz/~sejkoraji/sbirka/zalohy/skripta_la.pdf)] od Milana Hladíka -- kvalitně zpracovaná (byť dle mého názoru občas ne úplně přístupná) skripta pro Lineární Algebru.
 
 - **Computer Systems: A Programmer's Perspective** [[PDF 2. ed.](http://guanzhou.pub/files/Computer%20System_EN.pdf)] -- an in-depth look at how computers actually work. A very comprehensive resource for CS-related courses, namely for those related to computer architecture.
