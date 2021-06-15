@@ -7,7 +7,7 @@ module Jekyll
       end
 
       def render(context)
-        return "<h3>Úvodní informace</h3><p>Tato stránka obsahuje moje poznámky z přednášky #{@parts[0]} z roku #{@parts[1]}. Pokud by byla někde chyba/nejasnost, nebo byste rádi někam přidali obrázek/text, tak stránku můžete upravit <a href='https://github.com/xiaoxiae/slama.dev/blob/master/_posts/'>pull requestem</a> (případně mi dejte vědět, např. na mail).</p>"
+        return "<h3>Úvodní informace</h3><p>Tato stránka obsahuje moje poznámky z přednášky #{@parts[0]} z akademického roku #{@parts[1]}. Pokud by byla někde chyba/nejasnost, nebo byste rádi někam přidali obrázek/text, tak stránku můžete upravit <a href='https://github.com/xiaoxiae/slama.dev/blob/master/_posts/'>pull requestem</a> (případně mi dejte vědět, např. na mail).</p>"
       end
     end
   end

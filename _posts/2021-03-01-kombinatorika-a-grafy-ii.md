@@ -8,7 +8,7 @@ category: "lecture notes"
 - .
 {:toc}
 
-{% lecture_notes_preface Martina Kouteckého|2021/2022%}
+{% lecture_notes_preface Martina Kouteckého|2020/2021%}
 
 ### 1. přednáška
 
