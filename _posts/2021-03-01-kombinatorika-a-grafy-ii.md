@@ -161,7 +161,7 @@ Těžší případ: {% latex %}e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2){%
 
 #### Tutte v2.0
 
-{% math lemma "o kontrahovatelné hraně = LoKH" %} Nechť {% latex %}G{% endlatex %} je vrcholově {% latex %}3{% endlatex %}-souvislý různý od {% latex %}K_4{% endlatex %} ({% latex %}|V| \ge 5{% endlatex %}). Potom {% latex %}G{% endlatex %} obsahuje hranu t. ž. {% latex %}G \setminus e{% endlatex %} je 3-souvislý.{% endmath %}
+{% math lemma "o kontrahovatelné hraně = LoKH" %} Nechť {% latex %}G{% endlatex %} je vrcholově {% latex %}3{% endlatex %}-souvislý různý od {% latex %}K_4{% endlatex %}. Potom {% latex %}G{% endlatex %} obsahuje hranu t. ž. {% latex %}G \setminus e{% endlatex %} je 3-souvislý.{% endmath %}
 
 {% math proof %}Sporem -- nechť {% latex %}G{% endlatex %} je 3-souvislý ale neexistuje žádná hrana, která jde zkontrahovat. Tedy {% latex %}\forall e \in E: G \setminus e{% endlatex %} není {% latex %}3{% endlatex %}-souvislý.
 
@@ -594,7 +594,7 @@ Pro spor: {% latex %}R{% endlatex %} není klika {% latex %}\Rightarrow{% endlat
 		- použijeme IP na {% latex %}G_x^+{% endlatex %}
 			- pokud {% latex %}G_x^+{% endlatex %} klika, vezmi jako {% latex %}s_x{% endlatex %} libovolný vrchol {% latex %}G_x{% endlatex %} (např. {% latex %}x{% endlatex %})
 			- pokud {% latex %}G_x^+{% endlatex %} není klika, má dva simpliciální vrcholy; nejvýše jeden může ležet v {% latex %}R{% endlatex %}, jelikož je to klika a za {% latex %}s_x{% endlatex %} zvolím ten druhý; analogicky pro {% latex %}G_y^+{% endlatex %}
-			- (👀) jelikož {% latex %}R{% endlatex %} je řez, tak se sousedství nezmění: {% latex %}N_{G_x^+}(s_x) = N_{G}(s_x){% endlatex %}
+			- (👀) jelikož {% latex %}R{% endlatex %} je řez, tak se sousedství nezmění: {% latex %}N_{G_x^+}(s_x) = N_{G}(s_x){% endlatex %} (proto vlastně děláme indukci přes {% latex %}G_x^+{% endlatex %}, né jen přes {% latex %}G_x{% endlatex %}
 
 {% xopp another2 %}
 {% endmath %}
@@ -614,6 +614,8 @@ Pro spor: {% latex %}R{% endlatex %} není klika {% latex %}\Rightarrow{% endlat
 {% endmath %}
 
 {% math consequence %}pro daný graf {% latex %}G{% endlatex %} lze v polynomiálním čase rozhodnout, zda je chordální.{% endmath %}
+
+{% math proof %}Trháme simpliciální vrcholy, které chordální graf musí vždy mít -- ty umíme v polynomiálním čase najít otestováním všech sousedů. Pokud simpliciální vrchol v nějakém bodě nenajdeme, tak graf chordální být nemohl.{% endmath %}
 
 {% math consequence %}chordální grafy jsou perfektní.{% endmath %}
 
@@ -666,6 +668,9 @@ Postupné přidávání hran z {% latex %}F{% endlatex %} (právě tohle zaruču
 - zvyšuje rank vždy o {% latex %}1{% endlatex %} (nastává druhý případ z tabulky dole), tedy {% latex %}r(F) = |F|{% endlatex %}
 
 Spojením dostáváme {% latex %}r(F) = |F| = |V| - k(F) = |V| - k(G) = r(E){% endlatex %}.
+{% endmath %}
+
+{% math proof "alternativní" %}Pokud je rank {% latex %}|V| - 1{% endlatex %}, tak je graf souvislý a přesně to odpovídá počtu hran jeho kostry. Pokud má {% latex %}2{% endlatex %} komponenty souvislosti, tak bude mít {% latex %}|V| - 2{% endlatex %} hran, protože jednu hranu z kostry odebereme a graf tím roztrhneme. Pro více komponent souvislosti opakujeme a tedy {% latex %}r(E) = |V| - k(G){% endlatex %}
 {% endmath %}
 
 {% math definition: "nulita" %}{% latex %}E{% endlatex %} je {% latex %}n(E) := |E| - r(E){% endlatex %}{% endmath %}
@@ -738,9 +743,9 @@ Stačí dokázat následující (a dosazení do výrazu výše):
 2. pokud {% latex %}e{% endlatex %} je most, tak {% latex %}s_1 = (x - 1) \cdot T_{G - e}(x, y){% endlatex %}
 	- {% latex %}e{% endlatex %} je most, jeho odebráním se rank zmenší o {% latex %}1{% endlatex %}, tedy {% latex %}r(E) = r(E \setminus \left\{x\right\}) + 1{% endlatex %}
 3. pokud {% latex %}e{% endlatex %} není smyčka, tak {% latex %}s_2 = T_{G \setminus e}(x, y){% endlatex %}
-	- ?
+	- {% latex %}e{% endlatex %} není smyčka, kontrakce však zachová zbylé hrany (jsme v multigrafu) jako smyčky a nulita se tedy nezmění (jelikož, pokud to chápu správně, se spojením vlastně zmenší jak počet hran, tak vrcholů)
 4. pokud {% latex %}e{% endlatex %} je smyčka, tak {% latex %}s_2 = (y - 1) \cdot T_{G \setminus e}(x, y){% endlatex %}
-	- {% latex %}e{% endlatex %} je smyčka, odebráním se nulita zmenší o {% latex %}1{% endlatex %}, tedy {% latex %}{% endlatex %}
+	- {% latex %}e{% endlatex %} je smyčka, kontrakcí se nulita zmenší o {% latex %}1{% endlatex %}, tedy {% latex %}{% endlatex %}
 
 Poté pro větu stačí následující:
 - {% latex %}e{% endlatex %} je most: (2) + (3)
@@ -802,7 +807,7 @@ Poté pro větu stačí následující:
 	- chci ukázat, že součet {% latex %}\left[x^n\right]A(B(x)) = \left[x^n\right]a_0B(x)^0 + \left[x^n\right]a_1B(x)^1 + \ldots{% endlatex %} je konečný
 		- {% latex %}\left[x^0\right]B(x) = b_0 = 0{% endlatex %}
 		- {% latex %}B(x) = x \tilde{B}(x){% endlatex %} pro {% latex %}\tilde{B}(x){% endlatex %} FMŘ
-		- {% latex %}B(x)^k = x^k \tilde{B}(x)^k{% endlatex %}, koeficient u {% latex %}x^{k - 1}, x^{k - 2}, \ldots, x^0{% endlatex %} je nulový, tedy všechny koeficienty {% latex %}\left[x^k\right]{% endlatex %} pro {% latex %}k > n{% endlatex %} jsou nulové
+		- {% latex %}B(x)^k = x^k \tilde{B}(x)^k{% endlatex %}, koeficient u {% latex %}x^{k - 1}, x^{k - 2}, \ldots, x^0{% endlatex %} je nulový, tedy všechny koeficienty {% latex %}\left[x^k\right] A(B(x)){% endlatex %} pro {% latex %}k > n{% endlatex %} jsou nulové
 
 {% math definition: "derivace" %}FMŘ {% latex %}A(x){% endlatex %} značená {% latex %}\frac{d}{dx}A(x) = \sum a_{n + 1}(n + 1)x^n = a_1 + 2a_2x + 3a_3x^3 + \ldots{% endlatex %}{% endmath %}
 
@@ -889,8 +894,8 @@ Potom **exponenciální vytvořující funkce** pro {% latex %}\mathcal{A}{% end
 1. pokud {% latex %}\mathcal{A}, \mathcal{B}{% endlatex %} jsou disjunktní (příklad výše), pak {% latex %}A(x) + B(x){% endlatex %} je {% latex %}\mathrm{EVF}(\mathcal{A} \cup \mathcal{B}){% endlatex %}
 	- stejné jako u {% latex %}\mathrm{OFV}{% endlatex %}, protože {% latex %}\left[x^n\right] \left(A(x) + B(x)\right) = \frac{a_n}{n!} + \frac{b_n}{n!} = \frac{a_n + b_n}{n!}{% endlatex %}
 2. {% latex %}A(x) \cdot B(x) = \sum c_n \frac{x^n}{n!}{% endlatex %}, kde {% latex %}c_n{% endlatex %} je počet uspořádaných dvojic {% latex %}\left(\alpha, \beta\right){% endlatex %} t.ž. {% latex %}\alpha \in \mathcal{A}, \beta \in \mathcal{B}, V(\alpha) \cup V(\beta) = \left\{1, \ldots, n\right\}{% endlatex %} (tvoří rozklad)
-3. {% latex %}A^k(x) = \sum d_n \frac{x^n}{n!}{% endlatex %}, kde {% latex %}d_n{% endlatex %} je počet uspořádaných {% latex %}k{% endlatex %}-tic {% latex %}(\alpha_1, \ldots, \alpha_n){% endlatex %}, kde
-{% latex display %}\alpha_1, \ldots, \alpha_n \in \mathcal{A} \text{ t.ž. } V(\alpha_1) \cup \ldots \cup V(\alpha_k) = \left\{1, \ldots, n\right\} \qquad \star{% endlatex %}
+3. {% latex %}A^k(x) = \sum d_n \frac{x^n}{n!}{% endlatex %}, kde {% latex %}d_n{% endlatex %} je počet uspořádaných {% latex %}k{% endlatex %}-tic {% latex %}(\alpha_1, \ldots, \alpha_k){% endlatex %}, kde
+{% latex display %}\alpha_1, \ldots, \alpha_k \in \mathcal{A} \text{ t.ž. } V(\alpha_1) \cup \ldots \cup V(\alpha_k) = \left\{1, \ldots, n\right\} \qquad \star{% endlatex %}
 4. pokud {% latex %}V(\alpha) \neq \emptyset, \forall \alpha \in \mathcal{A}{% endlatex %}, pak {% latex display %}\frac{A^k(x)}{k!} = \sum e_n \frac{x^n}{n!}{% endlatex %}kde {% latex %}e_n{% endlatex %} je počet {% latex %}k{% endlatex %}-prvkových množin splňujících {% latex %}\star{% endlatex %}
 5. pokud {% latex %}\forall \alpha \in \mathcal{A}: V(\alpha) \neq \emptyset{% endlatex %}, pak {% latex display %}\mathrm{exp}(\mathcal{A}(x)) = e^{A(x)} = 1 + A(x) + \frac{A^2(x)}{2} + \ldots = \sum_{n \ge 0} f_n \frac{x^n}{n!}{% endlatex %} kde {% latex %}f_n{% endlatex %} je počet množin {% latex %}\left\{\alpha_1, \ldots, \alpha_k\right\} \subseteq \mathcal{A}{% endlatex %}, kde {% latex %}V(\alpha_1) \cup \ldots \cup V(\alpha_{k}) = \left\{1, \ldots, n\right\}{% endlatex %}
 
@@ -920,7 +925,7 @@ Potom **exponenciální vytvořující funkce** pro {% latex %}\mathcal{A}{% end
 - {% latex %}\gamma, \delta \in \mathrm{Stab}(x) \Rightarrow \gamma x = x, \delta x = x{% endlatex %}, dosazením dostávám {% latex %}\gamma \delta x = x{% endlatex %}
 {% endmath %}
 
-Prvky {% latex %}x, y \in A{% endlatex %} jsou ekvivalentní (značím {% latex %}x \sim_{\Gamma} y{% endlatex %}, pokud {% latex %}\exists \gamma \in \Gamma{% endlatex %} t.ž. {% latex %}\gamma x = y{% endlatex %}
+Prvky {% latex %}x, y \in A{% endlatex %} jsou ekvivalentní (značím {% latex %}x \sim_{\Gamma} y{% endlatex %}), pokud {% latex %}\exists \gamma \in \Gamma{% endlatex %} t.ž. {% latex %}\gamma x = y{% endlatex %}
 - (👀) {% latex %}\sim_{\Gamma}{% endlatex %} je to ekvivalence:
 	- reflexivní -- {% latex %}x = 1_\Gamma x{% endlatex %}
 	- symetrická -- {% latex %}\gamma x = y \iff \gamma^{-1}y = x{% endlatex %}
@@ -1008,9 +1013,10 @@ Tedy dostáváme, že {% latex display %}A(x) = \frac{1}{4} \left(\left(\frac{1}
 - partity mohou být i prázdné -- {% latex %}k{% endlatex %}-partitní je i {% latex %}k'{% endlatex %}-partitní, pro {% latex %}k' \ge k{% endlatex %}
 - úplný {% latex %}k{% endlatex %}-partitní -- každé {% latex %}2{% endlatex %} partity jsou úplný bipartitní graf
 
-{% math observation %}{% latex %}\forall r \in \mathbb{N}, r \ge 2: \mathrm{ex}(n, K_r) \ge t_{r - 1}(n){% endlatex %}, protože {% latex %}T_{r - 1}(n){% endlatex %} neobsahuje {% latex %}K_r{% endlatex %} (z každé nezávislé množiny si klika vezme {% latex %}\le 1{% endlatex %} vrchol) {% endmath %}
+{% math observation %}{% latex %}\forall r \in \mathbb{N}, r \ge 2: \mathrm{ex}(n, K_r) \ge t_{r - 1}(n){% endlatex %}, protože {% latex %}T_{r - 1}(n){% endlatex %} neobsahuje {% latex %}K_r{% endlatex %} (z každé partity si klika vezme {% latex %}\le 1{% endlatex %} vrchol, tedy nejvýše {% latex %}r - 1{% endlatex %}) {% endmath %}
 
 {% math lemma "1" %}Každý {% latex %}k{% endlatex %}-partitní graf na {% latex %}n{% endlatex %} vrcholech má nanejvýš {% latex %}t_{k}(n){% endlatex %} hran.{% endmath %}
+- {% latex %}={% endlatex %} {% latex %}t_{k}(n){% endlatex %} jsou mezi {% latex %}k{% endlatex %}-partitními nejlepší
 
 {% math proof %}Nechť {% latex %}G = (V, E){% endlatex %} je {% latex %}k{% endlatex %}-partitní, {% latex %}P_1, \ldots, P_k{% endlatex %} jsou jeho partity. Navíc {% latex %}|P_1| \le |P_2| \le \ldots \le |P_k|{% endlatex %}
 - buď {% latex %}|P_k| \le |P_{1}| + 1{% endlatex %}, pak {% latex %}G \cong T_k(n){% endlatex %}
@@ -1024,6 +1030,7 @@ Tedy dostáváme, že {% latex display %}A(x) = \frac{1}{4} \left(\left(\frac{1}
 {% endmath %}
 
 {% math lemma "2" %}Nechť {% latex %}G = (V, E){% endlatex %} je graf neobsahující {% latex %}K_r{% endlatex %} jako podgraf. Potom {% latex %}\exists H = (V, E_H){% endlatex %} {% latex %}(r-1){% endlatex %}-partitní t.ž. {% latex %}\deg_G(x) \le \deg_H(x){% endlatex %} (a tudíž {% latex %}|E(G)| \le |E(H)|{% endlatex %}){% endmath %}
+- {% latex %}={% endlatex %} pro graf neobsahující {% latex %}K_r{% endlatex %} jako podgraf jsou {% latex %}(r-1){% endlatex %}-partitní nejlepší
 
 {% math proof %}indukcí podle {% latex %}r{% endlatex %}
 - {% latex %}r = 2 \Rightarrow G{% endlatex %} neobsahuje {% latex %}K_2{% endlatex %} a je tedy nemá hrany; {% latex %}G = H{% endlatex %} splňuje tvrzení (celé tvoří jednu partitu)
@@ -1041,7 +1048,7 @@ Nechť {% latex %}x \in V(G){% endlatex %} je vrchol max. stupně v {% latex %}G
 
 Ověříme {% latex %}\forall x \in V: \deg_G(x) \le \deg_H(x){% endlatex %}
 1. {% latex %}y \in V \setminus S: \deg_H(y) = |S| = \deg_H(x) = \deg_G(x) \ge \deg_G(y){% endlatex %} ({% latex %}x{% endlatex %} je vrchol s největším stupněm)
-2. {% latex %}y \in S: \deg_H(y) = \deg_{H_S} + |V \setminus S| \overset{\mathrm{IP}}{\ge} \deg_{G_S}(y) + |V \setminus S| \ge \deg_G(y){% endlatex %}
+2. {% latex %}y \in S: \deg_H(y) = \deg_{H_S}(y) + |V \setminus S| \overset{\mathrm{IP}}{\ge} \deg_{G_S}(y) + |V \setminus S| \ge \deg_G(y){% endlatex %}
 	- rozdělili jsme to na dva případy podle toho, co vidí uvnitř a co vně {% latex %}S{% endlatex %}
 	- poslední nerovnost plyne z toho, že {% latex %}y{% endlatex %} v {% latex %}G{% endlatex %} vidí sousedy v {% latex %}G_S{% endlatex %} + nanejvýš všechny z {% latex %}V \setminus S{% endlatex %}
 
@@ -1146,7 +1153,7 @@ Důkaz věty bude dvojí počítání {% latex %}(e, C){% endlatex %} t.ž. {% l
 Spojením dostávám {% latex display %}|E| \le \binom{n - 1}{k - 1}{% endlatex %}
 {% endmath %}
 
-### zdroje/materiály
+### Zdroje/materiály
 - [stránky přednášky](https://research.koutecky.name/db/teaching:kg22021_prednaska).
 - [Poznámky Václava Končického](https://kam.mff.cuni.cz/~koncicky/notes/kag2/pdf) z roku 2019.
 
