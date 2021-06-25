@@ -9,7 +9,7 @@ order: 0
 I'm Tom and this is my personal website.
 
 I am a student from the Czech Republic, currently getting a bachelor's degree at [MFF UK](https://www.mff.cuni.cz/en).
-Besides programming, I also like to play chess, dance, [take photos](/photography/) and [rock climb](climbing/).
+Besides programming, I also like to [play chess](https://lichess.org/@/xiaoxiae) and various computer games, [take photos](/photography/) and [rock climb](climbing/).
 
 This website contains things I feel are interesting enough to put on the internet.
 The language of the blog is English, but some posts might be written in other languages (and will be denoted as such).
