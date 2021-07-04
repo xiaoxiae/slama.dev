@@ -30,7 +30,7 @@ $navigation-item-spacing: 20px;	// spacing between each of the navigation items
 $code-padding: 3px;	// padding for inline code will be this, and double this for regular code
 $code-border-roundness: 6px;	// roundness of the code border
 
-$title-size: 200%;
+$title-size: 180%;
 $description-size: 125%;
 $footer-size: 80%;
 $toc-size: $footer-size;
@@ -82,31 +82,18 @@ $monospaced-font: "Fira Code Light";
 }
 
 @font-face {
-	font-family: 'Font Awesome 5 Free';
-	src: url('/assets/css/fonts/fa-solid-900.woff2') format('woff2'),
-		url('/assets/css/fonts/fa-solid-900.woff') format('woff'),
-		url('/assets/css/fonts/fa-solid-900.ttf') format('truetype'),
+	font-family: 'Icons Font';
+	src: url('/assets/css/fonts/Icons.woff') format('woff'),
+		url('/assets/css/fonts/Icons.ttf') format('truetype');
 }
 
-.fa {
-	font-family: 'Font Awesome 5 Free';
-	font-weight: 900;
-	font-style: normal;
+.icons {
+	* {
+		font-family: 'Icons Font';
+		font-weight: 900;
+		font-style: normal;
+	}
 }
-
-@font-face {
-	font-family: 'Font Awesome 5 Brands';
-	src: url('/assets/css/fonts/fa-brands-400.woff2') format('woff2'),
-		url('/assets/css/fonts/fa-brands-400.woff') format('woff'),
-		url('/assets/css/fonts/fa-brands-400.ttf') format('truetype');
-}
-
-.fab {
-	font-family: 'Font Awesome 5 Brands';
-	font-weight: 400;
-	font-style: normal;
-}
-
 
 ul.hfill {
 	display: flex;
@@ -156,7 +143,24 @@ ul.hfill {
 }
 
 // highlight the currently selected page
-.current-page-item {font-weight: bold;}
+.current-page-item { font-weight: bold; }
+
+.navbar-icon {
+	visibility: hidden;
+	position: fixed;
+}
+
+@media (max-width: $website-size + $website-padding * 2) {
+	.navbar-icon {
+		visibility: visible;
+		position: static;
+	}
+	.navbar-text {
+		visibility: hidden;
+		position: fixed;
+	}
+}
+
 
 // header formatting (wraps title for the background to go all the way)
 .header {

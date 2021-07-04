@@ -2,6 +2,7 @@
 title: Music
 layout: default
 order: 1
+icon: 
 ---
 
 Here is a list of songs that I listen to on a daily basis. 

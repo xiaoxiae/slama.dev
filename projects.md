@@ -2,6 +2,7 @@
 title: Projects
 layout: default
 order: 50
+icon: 
 ---
 
 {:.center}

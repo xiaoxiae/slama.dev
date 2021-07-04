@@ -2,6 +2,7 @@
 title: Home
 layout: default
 order: 0
+icon: 
 ---
 
 ## Hi everyone!

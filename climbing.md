@@ -2,6 +2,7 @@
 title: Climbing
 layout: default
 order: 4
+icon: 
 ---
 
 {:.center}

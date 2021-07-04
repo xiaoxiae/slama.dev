@@ -2,6 +2,7 @@
 title: Books
 layout: default
 order: 1
+icon: 
 ---
 
 {:.center}

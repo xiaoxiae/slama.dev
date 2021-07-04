@@ -2,6 +2,7 @@
 title: Photography
 layout: default
 order: 5
+icon: 
 ---
 
 Below is a galery of some of the nicer photos that I've taken. All of them had been compressed to around 10% JPG quality to be web-usable. If you'd like the originals, click on the photos.

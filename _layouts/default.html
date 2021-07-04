@@ -39,11 +39,15 @@
 				{% assign sections_sorted = site.documents | concat: site.pages | sort: 'order' %}
 				{% for p in sections_sorted %}
 					{% if p.title and p.order %}
+						<span class="navbar-item">
 						{% if p.title == page.title %}
-							<span class="current-page-item"><a href="{{p.url}}">{{p.title}}</a></span>
+							<span class="current-page-item navbar-text"><a href="{{p.url}}">{{p.title}}</a></span>
+							<span class="current-page-item navbar-icon icons"><a href="{{p.url}}">{{p.icon}}</a></span>
 						{% else %}
-							<a href="{{p.url}}">{{p.title}}</a>
+							<span class="navbar-text"><a href="{{p.url}}">{{p.title}}</a></span>
+							<span class="navbar-icon icons"><a href="{{p.url}}">{{p.icon}}</a></span>
 						{% endif %}
+						</span>
 
 						<!-- don't insert the navigation separator at the very end -->
 						{% unless p == sections_sorted.last %}
