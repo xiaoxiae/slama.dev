@@ -490,6 +490,30 @@ body {
 	color: $light-text-color;
 	background-color: $light-background-color;
 
+	svg, img {
+		.zone {
+			fill-opacity: 0.01;
+		}
+		.zone:hover, .zone:active {
+			fill-opacity: 1;
+			fill: $light-text-color;
+		}
+	}
+
+	mark.climbing {
+		color: $dark-text-color;
+		border: 2px solid $light-text-color;
+		border-radius: $code-border-roundness;
+		padding: $code-padding / 2 $code-padding;
+		background: none;
+	}
+
+	mark.climbing-low-angle { background: #96cdffff; }
+	mark.climbing-vertical { background: #60a3d9ff; }
+	mark.climbing-mild-overhang { background: #0074b7ff; }
+	mark.climbing-severe-overhang { background: #005290ff; }
+	mark.climbing-roof { background: #001b61ff; }
+
 	a {
 		color: $light-link-color;
 		&:hover {color: $light-text-color;}
@@ -593,9 +617,23 @@ body {
 		background-color: $dark-background-color;
 
 		// update image colors appropriately
-		svg, img { filter: invert(100%); }
-		.katex {svg { filter: invert(0%); } }
+		svg, img {
+			filter: invert(100%);
 
+			// we're inverted, it's a bait!
+			.zone {
+				fill-opacity: 0.01;
+			}
+			.zone:hover, .zone:active {
+				fill-opacity: 1;
+				fill: $light-text-color;
+			}
+		}
+
+		mark.climbing { filter: invert(100%); }
+
+		.katex {svg { filter: invert(0%); } }
+		
 		a {
 			color: $dark-link-color;
 			&:hover {color: $dark-text-color;}

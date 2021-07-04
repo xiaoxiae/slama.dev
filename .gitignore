@@ -12,7 +12,8 @@ _drafts/
 **/secrets.py
 
 # Too big to VC (binaries scary!)
-climbing/
+climbing/*.mp4
+climbing/zones/
 photography/
 assets/hlenka-helenka/tribute.mp4
 
