@@ -45,8 +45,8 @@ for name in list(config):
 
         # trim the video
         if "trim" in config[new_name]:
-            start, end = map(float, config[new_name]["trim"].split(","))
-            command = ["ffmpeg", "-y", "-t", str(end), "-i", old_path, "-ss", str(start), "-c", "copy", tmp_path]
+            start, end = config[new_name]["trim"].split(",")
+            command = ["ffmpeg", "-y", "-i", old_path, "-ss", start, "-to", end, tmp_path]
 
             _ = Popen(command, stdout=PIPE, stderr=PIPE).communicate()
             os.remove(old_path)
@@ -127,5 +127,4 @@ with open(CLIMBING_INFO, "w") as f:
 for file in os.listdir(CLIMBING_FOLDER):
     if file.endswith(".mp4"):
         if file not in config:
-            os.remove
-            print(file)
+            os.remove(file)
