@@ -410,13 +410,21 @@ body {
 
 	img, svg { max-width: 90%; }
 
-	iframe {
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		width: $website-size;
-		height: 0.6 * $website-size;
+	// stolen from here: https://stackoverflow.com/questions/38270661/displaying-a-youtube-video-with-iframe-full-width-of-page
+	.youtubeVideoWrapper {
+		position: relative;
+		padding-bottom: 56.25%;
+		/* 16:9 */
+		padding-top: 25px;
+		height: 0;
 		margin-bottom: $line-spacing;
+	}
+	.youtubeVideoWrapper iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
 	}
 
 	figure {

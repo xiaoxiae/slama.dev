@@ -15,4 +15,7 @@ I occasionally create videos about math/computer science that I put up on my [Yo
 
 The most recent video can be viewed here:
 
+
+<div class="youtubeVideoWrapper">
 <iframe src="https://www.youtube.com/embed/Koc63QhxPgk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
