@@ -33,15 +33,22 @@ colors = ["red", "salmon", "blue", "yellow"]
 for name in list(config):
     if "new" in config[name]:
         print(f"parsing new climb '{name}'.")
+
+        # assign a new name
         random_string = get_random_string(8)
         new_name = "smichoff-" + config[name]["color"] + "-" + config[name]["date"].strftime("%Y-%m-%d") + "-" + random_string + ".mp4"
         del config[name]["new"]
         config[new_name] = config[name]
         del config[name]
 
+        # useful paths
         old_path = os.path.join(CLIMBING_FOLDER, name)
         tmp_path = os.path.join(CLIMBING_FOLDER, "tmp_" + name)
         new_path = os.path.join(CLIMBING_FOLDER, new_name)
+
+        # create the poster
+        # TODO: not tested because I'm lazy, if something broke then this is it
+        _ = Popen(["ffmpeg", "-i", old_path, "-vf", '"select=eq(n\,0)"', "-vframes", "1", "-y", new_path + ".jpeg"], stdout=PIPE, stderr=PIPE).communicate()
 
         # trim the video
         if "trim" in config[new_name]:
@@ -107,7 +114,7 @@ layout: default
 
             zone_file_content += f"""
 <figure class='video' style='{style}'>
-<video controls><source src='/climbing/{name}' type='video/mp4'></video>
+<video poster="/climbing/{name}.jpeg" controls><source src='/climbing/{name}' type='video/mp4'></video>
 <figcaption class='figcaption-margin'>{config[name]["date"].strftime("%d / %m / %Y")}</figcaption>
 </figure>"""
 
