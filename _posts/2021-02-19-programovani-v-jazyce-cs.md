@@ -420,7 +420,7 @@ using (type x = new Type()) {
 using type x = new Type();
 ```
 
-- only works with objects that are **disposable** (inherit `IDisposable` {% latex %}\implies{% endlatex %} have a `Dispose` method)
+- only works with objects that are **disposable** (inherit `IDisposable` \(\implies\) have a `Dispose` method)
 
 ### Properties
 
@@ -512,8 +512,8 @@ class File {
 - all of them are perpendicular to one another in the type hierarchy, but there **are conversions**
 	- it is an actual conversion, not like for reference types (just checks in that case)
 	- **implicit** conversions happen automatically, while **explicit** are manual
-		- although a conversion is implicit, it can have data loss (`long` {% latex %}\rightarrow{% endlatex %} `float`)
-	- they are not free, it can sometimes take quite a while (`int` {% latex %}\rightarrow{% endlatex %} `float`)
+		- although a conversion is implicit, it can have data loss (`long` \(\rightarrow\) `float`)
+	- they are not free, it can sometimes take quite a while (`int` \(\rightarrow\) `float`)
 	- no conversions from/to `bool` (unlike C++)
 
 {:.center}
@@ -555,10 +555,10 @@ class File {
 	- the reference to the heap, where the value is
 	- **heap overhead**
 		1. which type it is (reference to an instance of the class `MethodTable`)
-			- is either {% latex %}4/8B{% endlatex %}, depending on the architecture
+			- is either \(4/8B\), depending on the architecture
 		2. syncblock -- related to threads and locking
-			- always {% latex %}4B{% endlatex %}
-		- padded to nearest {% latex %}8B{% endlatex %}
+			- always \(4B\)
+		- padded to nearest \(8B\)
 
 ##### Arrays
 - each new type inherits `System.Array` and is a new .NET type
@@ -764,12 +764,12 @@ Console.WriteLine("We didn't fail: " + a);
 
 ### Heaps and GC
 - **two heaps**; behavior of the garbage collector to the two heaps is different
-- real limit is around {% latex %}1.4\ GB{% endlatex %} (for 32-bit systems)
+- real limit is around \(1.4\ GB\) (for 32-bit systems)
 	- `OutOfMemoryException` could happen sooner, since we could have a lot of holes in the given heap and the new object wouldn't fit in -- **heap fragmentation**
 	- happens easily when resizing (dynamic array, for example), since we're creating a new array of twice the size, that has to co-exist with the old one for a bit
-- **segment** -- reservation (virtual memory); around {% latex %}~16\ MB{% endlatex %}
+- **segment** -- reservation (virtual memory); around \(~16\ MB\)
 	- varies greatly on the architecture and GC configuration!
-- **kvantum** -- commit (physical memory); around {% latex %}~8\ kB{% endlatex %}
+- **kvantum** -- commit (physical memory); around \(~8\ kB\)
 	- varies greatly on the architecture and GC configuration!
 - GC is **generational**
 	- gen 0 -- allocated here
@@ -785,16 +785,16 @@ Console.WriteLine("We didn't fail: " + a);
 	- checking the number of generation collections
 	- forcing a collection of a given generation
 	- should be the **last resort**, since it usually does things well
-- GC {% latex %}\implies{% endlatex %} no memory leaks is **not true** (or, well, to an extent...):
+- GC \(\implies\) no memory leaks is **not true** (or, well, to an extent...):
 	- a global cache used in some classes doesn't get collected, since there is a reference to it
 
 #### Large Object Heap (LOH)
-- if it's larger than {% latex %}85\ 000\ B{% endlatex %}
+- if it's larger than \(85\ 000\ B\)
 - usually reached when the object contains an array
 - no heap compacting (don't move objects when others die)
 
 #### Small Object Heap (SOH)
-- if it's smaller than {% latex %}85\ 000\ B{% endlatex %}
+- if it's smaller than \(85\ 000\ B\)
 
 ### Compilation and runtime-related things
 
@@ -851,7 +851,7 @@ Console.WriteLine("We didn't fail: " + a);
 #### Method inlining
 - compiler optimization that moves the body of the method to where it is called
 - can't always be done (recursive functions)
-- generally happens for smaller ({% latex %}<32\ kB{% endlatex %}) methods that aren't too complicated (no `try/catch`, for example)
+- generally happens for smaller (\(<32\ kB\)) methods that aren't too complicated (no `try/catch`, for example)
 - can be forced/disabled using `[MethodImpl]`
 
 #### Demand loading

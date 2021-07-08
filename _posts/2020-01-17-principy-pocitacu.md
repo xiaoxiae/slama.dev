@@ -36,11 +36,11 @@ category: "lecture notes"
 	2. napadlo ji, že by se mohlo pracovat i s **jinými informacemi než s čísly** (texty, obrazy, hudba...)
 
 ### Kódování informace v počítači
-- pojďme si zakódovat čísla {% latex %}0, 1, 2, \ldots, 1 000 000{% endlatex %}
+- pojďme si zakódovat čísla \(0, 1, 2, \ldots, 1 000 000\)
 
 #### Analogový přenos
-- kódování {% latex %}1 = 1V{% endlatex %}, {% latex %}2 = 2V{% endlatex %} by nešlo, jelikož se musí čekat na bouřku
-	- {% latex %}0 = 0V{% endlatex %}, {% latex %}1 000 000 = 5V{% endlatex %} zní rozumněji
+- kódování \(1 = 1V\), \(2 = 2V\) by nešlo, jelikož se musí čekat na bouřku
+	- \(0 = 0V\), \(1 000 000 = 5V\) zní rozumněji
 - v praxi zní skvěle, ale v realitě řada problémů, jelikož napětí ovlivňuje:
 	- délka vodiče
 	- teplota vodiče
@@ -51,7 +51,7 @@ category: "lecture notes"
 #### Digitální přenos
 - problém je v intervalech, které se překrývají... co je odtáhnout od sebe?
 - pouze _2 hodnoty_ -- logická 1 a logická 0
-- jednotka _bit_ (BInary digiT, značíme {% latex %}b{% endlatex %})
+- jednotka _bit_ (BInary digiT, značíme \(b\))
 - funguje s rozumným šumem (100procentní ale není)
 
 {% xopp 19-07-10_23-10-06 & digitální přenos%}
@@ -95,17 +95,17 @@ category: "lecture notes"
 	- start dohodou, většinou **rising edgem** (dobře se detekuje), poté držen (většinou 1) **start bit**
 		- start (a end) bit je potřeba -- když by to jen vystřelilo, tak by to druhá strana kvůli šumu vůbec nemusela detekovat
 	- se startem (rising edge) se synchronizují hodiny
-		- nejsou perfektní (mají tendenci se rozcházet) -- omezení přenosu na {% latex %}n{% endlatex %} bitů, kde {% latex %}n{% endlatex %} je konstanta (v reálu {% latex %}8b = 1B{% endlatex %})
-			- pozn.: {% latex %}1B{% endlatex %} jsou 2 šestnáctkové znaky
-	- velký overhead... z {% latex %}10b{% endlatex %} je jen {% latex %}8b{% endlatex %} datových... {% latex %}\underbrace{1000}_{\text{clock}} \cdot \underbrace{\frac{8}{10}}_{\text{start + end}} = 800\ bps{% endlatex %}
+		- nejsou perfektní (mají tendenci se rozcházet) -- omezení přenosu na \(n\) bitů, kde \(n\) je konstanta (v reálu \(8b = 1B\))
+			- pozn.: \(1B\) jsou 2 šestnáctkové znaky
+	- velký overhead... z \(10b\) je jen \(8b\) datových... \(\underbrace{1000}_{\text{clock}} \cdot \underbrace{\frac{8}{10}}_{\text{start + end}} = 800\ bps\)
 
 {% xopp 19-18-10_12-16-39 & přenos s idle stavem %}
 
 #### Řešení (2): hodinový signál
-- používá {% latex %}\text{I}^2 \text{C}{% endlatex %}
+- používá \(\text{I}^2 \text{C}\)
 - nový (tzv. referenční) vodič s digitálním (hodinovým) signálem
 - diktuje, kdy lze na datovém vodiči číst
-- zdá se, že je {% latex %}%50{% endlatex %} overhead, jelikož se data mohou detekovat pouze na rising edge
+- zdá se, že je \(%50\) overhead, jelikož se data mohou detekovat pouze na rising edge
 	- většinou ale maximální rychlost není potřeba
 	- když je potřeba, tak lze obejít: detekce na rising i falling
 		- značí se **DDR** (double data rate)
@@ -113,8 +113,8 @@ category: "lecture notes"
 
 #### Řešení (3): průběžná korekce
 - bylo by fajn průběžné synchronizovat na rising edge... co když ale chodí samé nuly (nebo jedničky)?
-- **clock recovery** (obnova hodinového signálu) -- převod dat z {% latex %}8b \rightarrow 10b{% endlatex %}:
-	- 4krát více možností -- vyberou se jen ty „hezké“ (kde se střídají {% latex %}1{% endlatex %} a {% latex %}0{% endlatex %})
+- **clock recovery** (obnova hodinového signálu) -- převod dat z \(8b \rightarrow 10b\):
+	- 4krát více možností -- vyberou se jen ty „hezké“ (kde se střídají \(1\) a \(0\))
 	- kódování/dekódování je prováděno pomocí tabulky
 	- nemusí to nutně být 10, existují i jiné konfigurace
 
@@ -133,17 +133,17 @@ category: "lecture notes"
 	- lze přes to zařízení i napájet -- některá to tak dělají
 
 #### Značení
-- většinou {% latex %}1{% endlatex %} je pravda a {% latex %}0{% endlatex %} nepravda, někdy se ale hodí prohodit:
+- většinou \(1\) je pravda a \(0\) nepravda, někdy se ale hodí prohodit:
 
 {% xopp 19-18-10_11-23-35 & inverzní logika %}
 
 - někdy je také potřeba rozlišovat soustavu, ve které číslo je:
-{% latex display %} 23 = 23_d = 23_{10} = 23_{dec} \\ \$23 = 0x23 = 23h = 23H = 23_{16} = 23_{hex} {% endlatex %}
+\[ 23 = 23_d = 23_{10} = 23_{dec} \\ \$23 = 0x23 = 23h = 23H = 23_{16} = 23_{hex} \]
 
 ### Komunikační protokol
-- dohoda, jak přenos vypadá... {% latex %} \underbrace{\mathrm{den}}_{9b}/\underbrace{\mathrm{měsíc}}_{5b}/\underbrace{\mathrm{rok}}_{7b} = \underbrace{101101010/11010/0010001}_{\text{pa(c)ket}} {% endlatex %}
+- dohoda, jak přenos vypadá... \( \underbrace{\mathrm{den}}_{9b}/\underbrace{\mathrm{měsíc}}_{5b}/\underbrace{\mathrm{rok}}_{7b} = \underbrace{101101010/11010/0010001}_{\text{pa(c)ket}} \)
 
-- problém: starší zařízení mají {% latex %}1B=7b{% endlatex %}
+- problém: starší zařízení mají \(1B=7b\)
 	- řešení: řadič (controller), který přijímá data ze zařízení a zpracovává je
 
 {% xopp 19-18-10_12-42-10 & řadič (controller) %}
@@ -169,16 +169,16 @@ category: "lecture notes"
 2. **one's complement** (jedničkový doplněk) -- u záporných se prohodí 1 a 0
 	- funguje porovnání (kladné x kladné a záporné x záporné) a sčítání
 	- problematické: máme _dvě nuly_
-3. **two's complement** (dvojkový doplňek) -- negace čísla je {% latex %}\mathrm{NOT}\left(\mathrm{ABS}\left(a\right)\right) + 1{% endlatex %}
+3. **two's complement** (dvojkový doplňek) -- negace čísla je \(\mathrm{NOT}\left(\mathrm{ABS}\left(a\right)\right) + 1\)
 	- řeší to problém se dvěma nulami, ale vytváří asymetrii v hodnotách
-	- rozsah je {% latex %}-2^{n - 1}{% endlatex %} až {% latex %}2^{n - 1} - 1{% endlatex %}
+	- rozsah je \(-2^{n - 1}\) až \(2^{n - 1} - 1\)
 
 ### Čísla v Pythonu
 
 #### Implementace
 - jako pole... ukládá si právě tolik cifer, kolik je potřeba (+ padding do bytu)
 - také potřebuje vědět, kolik bytů to číslo má
-	- tím pádem je max. velikost {% latex %}2^{32} - 1{% endlatex %} bitů, což je... dost
+	- tím pádem je max. velikost \(2^{32} - 1\) bitů, což je... dost
 - znamená to, že se operace chovají divně... `~255` je `-256` (`(0)1111110 -> (1)00000001`)
 
 #### Převody mezi soustavami
@@ -198,7 +198,7 @@ category: "lecture notes"
 - pojmy **master** (řídící; řídí komunikaci, dává požadavky) a **slave** (řízený; vykonává požadavky)
 	- v komunikaci vždy 1 master a 1 slave
 	- role se mohou měnit
-	- směr _master {% latex %}\mapsto{% endlatex %} slave_ je **write**, obrácený **read**
+	- směr _master \(\mapsto\) slave_ je **write**, obrácený **read**
 
 {% xopp 19-10-11_13-10-25 & slave/master přenos %}
 
@@ -219,15 +219,15 @@ category: "lecture notes"
 
 {% xopp 19-10-11_13-19-36 & implementace sběrnice %}
 
-- když nevysílá nikdo, je tam díky pull-up rezistoru {% latex %}1{% endlatex %}; když někdo {% latex %}0{% endlatex %}, tak {% latex %}0{% endlatex %}
+- když nevysílá nikdo, je tam díky pull-up rezistoru \(1\); když někdo \(0\), tak \(0\)
 	- rezistor zařídí to, aby stav na lince nebyl plovoucí
 - to, že se to spolu vlastně mlátí budeme řešit až na vyšší úrovni
 
-##### {% latex %}\text{I}^2 \text{C}{% endlatex %} (Inter Integrated Circuit)
+##### \(\text{I}^2 \text{C}\) (Inter Integrated Circuit)
 - je to opravdová sběrnice
 - podporuje **multimaster** -- více zařízení mohou být master najednou
 	- znamená to, že musí detekovat srážky, když chtějí 2 masterové vysílat najednou
-		- ~~doufám, že to~~ funguje tak, že master, který vysílá větší počet {% latex %}0{% endlatex %} vyhrává a ten druhý musí přestat vysílat a počkat
+		- ~~doufám, že to~~ funguje tak, že master, který vysílá větší počet \(0\) vyhrává a ten druhý musí přestat vysílat a počkat
 	- rozdílné od USB (universal serial bus) -- to je single master
 
 {% xopp 19-10-11_13-25-36 & I2C sběrnice %}
@@ -235,23 +235,23 @@ category: "lecture notes"
 - **SDA** = serial data; **SCL** = serial clock 
 - idle stav je vždy vyrušen masterem, který chce navázat komunikaci
 	- rovněž _generuje hodinový signál_
-	- začátek nastává, když nastane {% latex %}0{% endlatex %} na SDA a {% latex %}1{% endlatex %} na SCL (zakázaný stav!)
+	- začátek nastává, když nastane \(0\) na SDA a \(1\) na SCL (zakázaný stav!)
 
 {% xopp 19-10-11_13-27-58 & komunikace v I2C %}
 
-- {% latex %}9{% endlatex %} bit na byte
-	- {% latex %}8{% endlatex %} data (MSb-first)
-	- {% latex %}1{% endlatex %} acknowledgement bit (ack = ano; nak = ne)
-		- pro {% latex %}0{% endlatex %} je ACK, {% latex %}1{% endlatex %} je NAK, jelikož {% latex %}0{% endlatex %} stahuje... pokud tam slave není, tak tam bude {% latex %}1{% endlatex %}
+- \(9\) bit na byte
+	- \(8\) data (MSb-first)
+	- \(1\) acknowledgement bit (ack = ano; nak = ne)
+		- pro \(0\) je ACK, \(1\) je NAK, jelikož \(0\) stahuje... pokud tam slave není, tak tam bude \(1\)
 	- pořadí (při přenosu `B1 A1 B2 A2 B3 A3`) se liší následně:
 		- write: `M/S/M/S/M/S...` (slave neustále potvrzuje že přečetl)
 		- read: `M/S/S/M/S/M...` (slave potvrzuje že posílá a pak začne posílat)
 - pro clock jsou dány standardizované rozsahy, aby to slave ustál
-	- má možnost dělat **clock stretching** -- pokud by nestíhal, tak může hodiny podržet na {% latex %}0{% endlatex %} (hold low)
+	- má možnost dělat **clock stretching** -- pokud by nestíhal, tak může hodiny podržet na \(0\) (hold low)
 
 {% xopp 19-10-11_13-34-38 & struktura přenosu I2C %}
 
-- **management** je obecný pro {% latex %}\text{I}^2 \text{C}{% endlatex %}; zbytek je device-specific
+- **management** je obecný pro \(\text{I}^2 \text{C}\); zbytek je device-specific
 	- 1-7 je adresa, 8 je r/w
 - **payload** -- to, „za co platíme“ (samotná data)
 
@@ -266,75 +266,75 @@ category: "lecture notes"
 
 ### Paměť
 - **paměťový adresový prostor** -- rozsah adres v paměti
-	- pro {% latex %}200B{% endlatex %} bude {% latex %}8b{% endlatex %}
-	- většinou i pro {% latex %}128B{% endlatex %} bude {% latex %}8b{% endlatex %} (se {% latex %}7b{% endlatex %} se nepracuje skvěle)
-	- pro {% latex %}256B{% endlatex %} může být {% latex %}16b{% endlatex %} -- dobře se to scaluje (při upgradu hardwaru)
+	- pro \(200B\) bude \(8b\)
+	- většinou i pro \(128B\) bude \(8b\) (se \(7b\) se nepracuje skvěle)
+	- pro \(256B\) může být \(16b\) -- dobře se to scaluje (při upgradu hardwaru)
 
 #### Jednotky
-- {% latex %}1 kB{% endlatex %} není {% latex %}1000B{% endlatex %} (nepraktické), ale {% latex %}1024B{% endlatex %}
+- \(1 kB\) není \(1000B\) (nepraktické), ale \(1024B\)
 	- používají všichni... až na výrobce pevných disků
-	- dnes se hodí používat jasnější značení {% latex %}1024B = 1 KiB{% endlatex %} (ki-bi-bajt)
+	- dnes se hodí používat jasnější značení \(1024B = 1 KiB\) (ki-bi-bajt)
 
 | paměť                         | adresový prostor             | v reálu                                                                     |
 | ---                           | ---                          | ---                                                                         |
-| {% latex %}1 kB{% endlatex %} | {% latex %}10b{% endlatex %} | {% latex %}16b{% endlatex %} prostor ~ {% latex %}64 kB{% endlatex %} adres |
-| {% latex %}1 MB{% endlatex %} | {% latex %}20b{% endlatex %} | {% latex %}24b{% endlatex %} prostor ~ {% latex %}16 MB{% endlatex %} adres |
-| {% latex %}1 GB{% endlatex %} | {% latex %}30b{% endlatex %} | {% latex %}32b{% endlatex %} prostor ~ {% latex %}4 GB{% endlatex %} adres  |
+| \(1 kB\) | \(10b\) | \(16b\) prostor ~ \(64 kB\) adres |
+| \(1 MB\) | \(20b\) | \(24b\) prostor ~ \(16 MB\) adres |
+| \(1 GB\) | \(30b\) | \(32b\) prostor ~ \(4 GB\) adres  |
 
 #### Typy paměti RAM
 - RAM = random access (memory) -- můžeme přistupovat k libovolné hodnotě a bude to trvat _stejně rychle_
 - zpravidla bývá r/w a **volatile** (po vypnutí ztratí data)
 
 ##### SRAM (static RAM)
-- {% latex %}1b{% endlatex %} = 4 až 6 tranzistorů
+- \(1b\) = 4 až 6 tranzistorů
 - kapacita je malá (řádově MB)
 - všechny přístupy mají trvat stejně dlouho (staví na tom algoritmizace), ale v realitě:
 	- **sekvenční** přístupy jsou rychlejší
 	- **obrácené sekvenční** jsou něco mezi
 	- **náhodné** přístupy jsou pomalejší
-- přístup {% latex %}10{% endlatex %}-{% latex %}100 GBps{% endlatex %}; ~{% latex %}1 ns{% endlatex %}
+- přístup \(10\)-\(100 GBps\); ~\(1 ns\)
 
 ##### DRAM (dynamic random access memory)
-- {% latex %}1b{% endlatex %} = 1 tranzistor a 1 kondenzátor
+- \(1b\) = 1 tranzistor a 1 kondenzátor
 - levnější a větší (řádově GB), ale pomalejší (nabíjí/vybíjí se pomalu)
 - v rámci přístupu pro ni platí (zhruba) to samé jako pro SRAM
 - hodnoty si pamatuje _krátce_ (kondenzátory...)
-	- každou {% latex %}1 ms{% endlatex %} je potřeba refresh (přečteme a zapíšeme)
+	- každou \(1 ms\) je potřeba refresh (přečteme a zapíšeme)
 	- částečně může za pomalý access time (pořád se čte a zapisuje)
-- přístup {% latex %}1{% endlatex %}-{% latex %}10 GBps{% endlatex %}; ~{% latex %}10 ns{% endlatex %}
+- přístup \(1\)-\(10 GBps\); ~\(10 ns\)
 
 #### Co je to ~~jsoucno~~ slovo?
 1. **správná definice** -- jednotka přenosu
-	- pro {% latex %}n{% endlatex %}-bitové zařízení je to {% latex %}n{% endlatex %}-bitové slovo
-	- pro {% latex %}8b{% endlatex %} paměť to např. znamená, že lze vyžádat pouze {% latex %}8b{% endlatex %}
-2. **špatná definice** -- {% latex %}16b{% endlatex %} (dáno historicky)
-	- _double word_ (dword) = {% latex %}32b{% endlatex %}
-	- _quad word_ (qword) = {% latex %}64b{% endlatex %}
+	- pro \(n\)-bitové zařízení je to \(n\)-bitové slovo
+	- pro \(8b\) paměť to např. znamená, že lze vyžádat pouze \(8b\)
+2. **špatná definice** -- \(16b\) (dáno historicky)
+	- _double word_ (dword) = \(32b\)
+	- _quad word_ (qword) = \(64b\)
 
 #### Rozbor PCF8570 SRAM paměti
-- {% latex %}3b{% endlatex %} programovatelná adresa, `1010` vestavěná
-- rychlost přenosu přes {% latex %}\text{I}^2 \text{C}{% endlatex %} je cca. {% latex %}100000Hz \sim 100000 bps{% endlatex %}
-	- {% latex %}\text{I}^2 \text{C}{% endlatex %} overhead je {% latex %}x / \left(3 \cdot 9\right) \rightarrow 3708 Bps{% endlatex %}
-		- na každou transakci ({% latex %}8b{% endlatex %} + ack) přeneseme 3B, z toho jen 1 jsou data
-		- jde to zlepšit -- burst přenos (nezačínáme další přenosy, jen sekvenčně čteme/zapisujeme): {% latex %}\left(x - \left(2 \cdot 9\right)\right) /  9 \rightarrow 11109 Bps{% endlatex %}
+- \(3b\) programovatelná adresa, `1010` vestavěná
+- rychlost přenosu přes \(\text{I}^2 \text{C}\) je cca. \(100000Hz \sim 100000 bps\)
+	- \(\text{I}^2 \text{C}\) overhead je \(x / \left(3 \cdot 9\right) \rightarrow 3708 Bps\)
+		- na každou transakci (\(8b\) + ack) přeneseme 3B, z toho jen 1 jsou data
+		- jde to zlepšit -- burst přenos (nezačínáme další přenosy, jen sekvenčně čteme/zapisujeme): \(\left(x - \left(2 \cdot 9\right)\right) /  9 \rightarrow 11109 Bps\)
 - zápis -- 1 transakce
 - čtení -- 2 transakce (psaní do adresového registru nějakou hodnotu + zápis slova)
 
 {% xopp 19-18-11_11-47-34 & PCF8570 paměť %}
 
 ### Instrukce a architektury
-- **instrukce** -- posloupnost {% latex %}n{% endlatex %} bytů
+- **instrukce** -- posloupnost \(n\) bytů
 - **instrukční sada** (instruction set) -- instrukce podporované daným CPU
 - **strojový kód** -- posloupnost instrukcí  (machine code)
 - **instruction pointer** (IP) -- pozice aktuálně ukazované instrukce
 	- zpravidla ukazuje na první bit (vícebitové) instrukce
-	- je {% latex %}x{% endlatex %}-bitový (logicky stejně jako code memory)
+	- je \(x\)-bitový (logicky stejně jako code memory)
 
 {% xopp 19-24-11_22-40-04 & architektura s instrukcemi %}
 
 - **opcode** (operation code) -- typ instrukce
 	- podle toho se interpretují argumenty
-	- bývá {% latex %}1B{% endlatex %} až {% latex %}2B{% endlatex %}
+	- bývá \(1B\) až \(2B\)
 - **argumenty** -- s čím instrukce pracuje -- hodnota/adresa/...
 
 {% xopp 19-24-11_22-50-13 & struktura instrukcí %}
@@ -396,12 +396,12 @@ category: "lecture notes"
 - implementace odčítání pomocí sčítání
 	1. přepsání na sčítání: `A - B  ->  A + (-B)  ->  A + NOT(B) + 1`
 	2. subtract w/ borrow (**SBB**) -- carry je borrow 
-		- {% latex %}1{% endlatex %} znamená, že si něco potřebuji půjčit z vyššího řádu
+		- \(1\) znamená, že si něco potřebuji půjčit z vyššího řádu
 		- principiálně stejné jako normální sčítání
 		- x86 to takhle dělá
 		- problematické: v HW to není lehké implementovat
 	3. subtract w/ carry (**SBC**) -- carry je _not borrow_
-		- pozor -- nezapomenout na začátku pomocí `SEC` nastavit carry na {% latex %}1{% endlatex %}!
+		- pozor -- nezapomenout na začátku pomocí `SEC` nastavit carry na \(1\)!
 		- snadněji se to HW implementuje
 		- funguje na to hezký matematický trik:
 
@@ -415,9 +415,9 @@ A + NOT(X) + C
 
 #### x86
 - více registrů = více svobody!
-- {% latex %}32b{% endlatex %} slovo + {% latex %}32b{% endlatex %} address space
+- \(32b\) slovo + \(32b\) address space
 - obecné registry (7) -- můžeme s nimi dělat, co chceme
-	-  v rámci zpětné podpory dovolují pracovat s prvními {% latex %}8b{% endlatex %}, {% latex %}16b{% endlatex %}, {% latex %}9{% endlatex %}-{% latex %}16b{% endlatex %}...
+	-  v rámci zpětné podpory dovolují pracovat s prvními \(8b\), \(16b\), \(9\)-\(16b\)...
 	- lehčeji se řeší komplexní výrazy -- `a + b + e - (c + d)`
 		- u 6502 bychom museli pořád ukládat do akumulátoru (a dokonce ještě někam do paměti)
 		- u x86 můžeme použít více registrů
@@ -430,35 +430,35 @@ A + NOT(X) + C
 
 ##### Rychlost operací
 - **GHz** -- jednotka frekvence, ve které se měří rychlosti (moderních) procesorů
-	- 1 takt... {% latex %}1 / x{% endlatex %}
+	- 1 takt... \(1 / x\)
 - dnes už lze za 1 takt zvládnout základní instrukce -- logické, aritmetické...
 	- bavíme se čistě o operacích _na registrech_ -- přístup do paměti je významně pomalejší
-- také záleží na tom, zda nesčítáme {% latex %}64b{% endlatex %} čísla na {% latex %}32b{% endlatex %} architektuře
-	- když ale sčítáme {% latex %}16b{% endlatex %} na {% latex %}32b{% endlatex %}, tak je to také 1 takt
+- také záleží na tom, zda nesčítáme \(64b\) čísla na \(32b\) architektuře
+	- když ale sčítáme \(16b\) na \(32b\), tak je to také 1 takt
 
 #### Čísla v Pythonu, vol. 2
-- bloky paměti jsou vlastně {% latex %}32b{% endlatex %} (ne {% latex %}8b{% endlatex %}), jelikož se očekává, že Python bude běžet (alespoň) na {% latex %}32b{% endlatex %} architektuře
+- bloky paměti jsou vlastně \(32b\) (ne \(8b\)), jelikož se očekává, že Python bude běžet (alespoň) na \(32b\) architektuře
 - kolik zabírá `x = 5` v Pythonu:
-	- {% latex %}+4B{% endlatex %}/{% latex %}8B{% endlatex %} (podle architektury), jelikož vše v Pythonu je objekt
-	- {% latex %}+4B{% endlatex %} samotného zápisu čísla
-	- {% latex %}+4B{% endlatex %} určující, kolik bitů je pro čísla využito
-	- {% latex %}+4B{% endlatex %} určující typ proměnné (číslo)
-	- {% latex %}+4B{% endlatex %} na **reference counting** -- kolik proměnných ukazuje na hodnotu
+	- \(+4B\)/\(8B\) (podle architektury), jelikož vše v Pythonu je objekt
+	- \(+4B\) samotného zápisu čísla
+	- \(+4B\) určující, kolik bitů je pro čísla využito
+	- \(+4B\) určující typ proměnné (číslo)
+	- \(+4B\) na **reference counting** -- kolik proměnných ukazuje na hodnotu
 		- je využíván garbage collectorem, aby vyhazoval z paměti to, co není používáno
 	- musí se s tím provádět hrozně šaškáren, je to proto vážně pomalé (klidně až 100x pomalejší než jazyky jako C#)
 - přičítání _vytvoří nový objekt:_
 	- jelikož jsou `int`y immutable, tak `a = 300; a += 1` vytvoří úplně nový objekt
 		- lze otestovat tím, že na `a` voláme `id(a)` před a po přičtení
-	- trochu záchrana -- čísla od {% latex %}-5{% endlatex %} do {% latex %}256{% endlatex %} jsou optimalizována (uložena někde v tabulce), jelikož se s nimi dost často počítá
+	- trochu záchrana -- čísla od \(-5\) do \(256\) jsou optimalizována (uložena někde v tabulce), jelikož se s nimi dost často počítá
 - má to výhodu -- nemusíme řešit **arithmetic overflow** (přetečení) nebo **underflow** (podtečení)
-- ještě pozor: reálně je v každém bloku uloženo jen {% latex %}30b{% endlatex %} hodnot, jelikož poslední bit je chápán jako carry příznak (Python nevidí do procesoru)
+- ještě pozor: reálně je v každém bloku uloženo jen \(30b\) hodnot, jelikož poslední bit je chápán jako carry příznak (Python nevidí do procesoru)
 
 #### Násobení a dělení
 - trochu těžší instrukce -- bývají pomalejší (je dobré s tím v algoritmech počítat):
 	- násobení -- 10 taktů
 	- dělení -- 10/100 taktů
 
-| operace | x86/x64 | ARM (mobily) | {% latex %}\mu C{% endlatex %} | 6502          |
+| operace | x86/x64 | ARM (mobily) | \(\mu C\) | 6502          |
 | ---     | ---     | ---          | ---                            | ---           |
 | *       | ano     | ano          | možná                          | ne            |
 | //      | ano     | možná        | ne                             | hrozně moc ne |
@@ -538,53 +538,53 @@ mov    %ax,-0x1e(%rbp)
 - problém na operacích s hodně velkými a hodně malými čísly -- přesnost...
 
 #### Floating-point
-- čísla v normalizovaném formátu: {% latex %}\mathrm{sign} \cdot 1.0110101 \cdot 2^{10001001}{% endlatex %}
+- čísla v normalizovaném formátu: \(\mathrm{sign} \cdot 1.0110101 \cdot 2^{10001001}\)
 
 {% xopp 20-19-01_13-29-05 & struktura floating-point čísla %}
 
 - v mantise první 1 ignorujeme (je tam totiž v normalizovaném tvaru vždy)
-- exponent je v _bias_ reprezentaci: mapování {% latex %}\left(-n, n\right) \mapsto \left(0, 2n + 1\right){% endlatex %}
+- exponent je v _bias_ reprezentaci: mapování \(\left(-n, n\right) \mapsto \left(0, 2n + 1\right)\)
 	- převody jsou přičítání/odčítání biasu
 	- hodí se (později uvidíme proč)
 - SW implementace by byla pomalá -- bývá to podporováno v CPU
 	- floating-point registry
 	- stejně pomalejší než celá čísla
 
-| x86/x64 | ARM (mobily) | {% latex %}\mu C{% endlatex %} | 6502 |
+| x86/x64 | ARM (mobily) | \(\mu C\) | 6502 |
 | ---     | ---          | ---                            | ---  |
 | HW      | HW/SW        | SW                             | SW   |
 
 ##### IEEE 754
-- standarta definující {% latex %}32b{% endlatex %} a {% latex %}64b{% endlatex %} floating point čísla
-- pro {% latex %}32b{% endlatex %} (float) je {% latex %}1b/8b/23b{% endlatex %}
-- pro {% latex %}64b{% endlatex %} (double) je {% latex %}1b/11b/52b{% endlatex %}
+- standarta definující \(32b\) a \(64b\) floating point čísla
+- pro \(32b\) (float) je \(1b/8b/23b\)
+- pro \(64b\) (double) je \(1b/11b/52b\)
 	- takhle je to ukládané Pythonu
 
 ##### Ošklivá čísla
-- {% latex %}0.1{% endlatex %} nelze reprezentovat jako floating-point číslo (nekonečný dvojkový zápis)
-	- programovací jazyky zaokrouhlují -- _nikdy floating point čísla neporovnávat,_ používat {% latex %}abs(a - b) < \epsilon{% endlatex %}
+- \(0.1\) nelze reprezentovat jako floating-point číslo (nekonečný dvojkový zápis)
+	- programovací jazyky zaokrouhlují -- _nikdy floating point čísla neporovnávat,_ používat \(abs(a - b) < \epsilon\)
 
 ##### Speciální hodnoty
 - pro nulový exponent je číslo v denormalizovaném tvaru (pro reprezentaci fakt hodně malých čísel)
-- {% latex %}0{% endlatex %} jsou samé nuly (až na znaménko)
+- \(0\) jsou samé nuly (až na znaménko)
 	- proto jsme volili reprezentaci s biasem
 	- znaménko znamená, že máme 2 nuly, standard definuje oboje jako to samé
-- samé {% latex %}1{% endlatex %} v exponentu nabývá podle znaménka a mantisy speciálních hodnot ({% latex %}\infty{% endlatex %}, {% latex %}\mathrm{nan}{% endlatex %}...):
-	- {% latex %}\infty / 2 = \infty{% endlatex %}; {% latex %}\infty + 2 = \infty{% endlatex %}
-	- {% latex %}\infty / \infty = \mathrm{nan}{% endlatex %} (not a number)
-		- cokoliv + {% latex %}\mathrm{nan}{% endlatex %} je {% latex %}\mathrm{nan}{% endlatex %}
-		- existuje více typů {% latex %}\mathrm{nan}{% endlatex %} (podle vzniku)
-	- {% latex %}1.0 / 0{% endlatex %} bývá v normálních jazycích {% latex %}\infty{% endlatex %}, Python ale kontroluje dělení nulou a hodí chybu
+- samé \(1\) v exponentu nabývá podle znaménka a mantisy speciálních hodnot (\(\infty\), \(\mathrm{nan}\)...):
+	- \(\infty / 2 = \infty\); \(\infty + 2 = \infty\)
+	- \(\infty / \infty = \mathrm{nan}\) (not a number)
+		- cokoliv + \(\mathrm{nan}\) je \(\mathrm{nan}\)
+		- existuje více typů \(\mathrm{nan}\) (podle vzniku)
+	- \(1.0 / 0\) bývá v normálních jazycích \(\infty\), Python ale kontroluje dělení nulou a hodí chybu
 
 ### Paměti ROM
 - jsou _non-volatile_ -- hodnoty přežijí vypnutí počítače
 
 | typ                         | write                                 | read                            |
 | ---                         | ---                                   | ---                             |
-| ROM (Read Only Memory)      | {% latex %}1{% endlatex %} (výrobce)  | {% latex %}\infty{% endlatex %} |
-| PROM (Programable ROM)      | {% latex %}1{% endlatex %} (vypálení) | {% latex %}\infty{% endlatex %} |
-| EPROM (Erasable PROM)       | „{% latex %}\infty{% endlatex %}“     | {% latex %}\infty{% endlatex %} |
-| EEPROM (Electrically EPROM) | „{% latex %}\infty{% endlatex %}“     | {% latex %}\infty{% endlatex %} |
+| ROM (Read Only Memory)      | \(1\) (výrobce)  | \(\infty\) |
+| PROM (Programable ROM)      | \(1\) (vypálení) | \(\infty\) |
+| EPROM (Erasable PROM)       | „\(\infty\)“     | \(\infty\) |
+| EEPROM (Electrically EPROM) | „\(\infty\)“     | \(\infty\) |
 
 - EPROM -- problém s mazáním (dělá se to s UV zářením... nepraktické)
 - EEPROM -- všechno tím nahradit nechceme, je pomalejší než RAM
@@ -592,7 +592,7 @@ mov    %ax,-0x1e(%rbp)
 	- omezený počet writů kvůli tomu, že fyzikálně se elektrony připojí do obalu atomů a nejdou pak moc dobře vytlačit
 	- adresovatelné po individuálních bytech
 	- **flash** -- jiná výrobní technologie
-		- dokáže zapsat/vracet velké bloky -- {% latex %}1{% endlatex %}/{% latex %}10 kB{% endlatex %}
+		- dokáže zapsat/vracet velké bloky -- \(1\)/\(10 kB\)
 		- rychlejší na přístup k většímu počtu dat, pomalejší na random přístup
 
 {% xopp 20-19-01_18-52-03 & Harvard počítač (s GPIO) %}
@@ -605,7 +605,7 @@ mov    %ax,-0x1e(%rbp)
 
 ##### HDD
 - jsou **magnetické**
-- **sektor** -- dnes {% latex %}4 kB{% endlatex %} (dříve {% latex %}512B{% endlatex %})
+- **sektor** -- dnes \(4 kB\) (dříve \(512B\))
 - **hlavičky** -- pohybují se všechny najednou
 - disk se otáčí, hlavičky se hýbají do strany -- podle toho přístup k bytům
 - adresa hodnoty je trojice **CHS** (cylinder, head, sector)
@@ -621,17 +621,17 @@ mov    %ax,-0x1e(%rbp)
 ###### Nevýhody
 - náchylné na poškození
 - sekvenční přístup je fajn (disk se otáčí), obráceny je příšerný
-- docela pomalé... {% latex %}10 ms{% endlatex %} sekvenční / {% latex %}0.5 MBs{% endlatex %} obrácený sekvenční
+- docela pomalé... \(10 ms\) sekvenční / \(0.5 MBs\) obrácený sekvenční
 
 ##### CD / DVD / BLURAY
-- jsou **optické** -- pokud se světlo odrazí tak {% latex %}1{% endlatex %}; jinak {% latex %}0{% endlatex %}
+- jsou **optické** -- pokud se světlo odrazí tak \(1\); jinak \(0\)
 - nejsou optimální pro archivační účely -- vrací se do svého původního stavu
 - oproti pevným diskům jsou data ukládána do **spirály** (stejně jako gramofonová deska)
 
 {% xopp 20-19-01_19-22-10 & CD %}
 
 - používají **LBA** -- linear block addressing (není to už trojice -- lehčí na programování)
-- přenosová rychlost je menší ({% latex %}10 MBps{% endlatex %}), přístupová také ({% latex %}100 ms{% endlatex %})
+- přenosová rychlost je menší (\(10 MBps\)), přístupová také (\(100 ms\))
 
 ##### Řadiče pro úložiště
 - registry:
@@ -640,11 +640,11 @@ mov    %ax,-0x1e(%rbp)
 	- **buffer** (pro postupné ukládání dat pro čtení/zápis)
 	- info (počet sektorů, velikost sektoru...)
 - bylo by nepraktické používat pro každé zařízení jiný protokol -- pro všechny se tedy používá **LBA**, jen tam jsou vždy pro příslušná zařízení převody:
-	- pro HDD dochází k mapování LBA {% latex %}\iff{% endlatex %} CHS
+	- pro HDD dochází k mapování LBA \(\iff\) CHS
 	- takhle připojený flash disk je vlastně SSD (Solid State Drive)
 
 ### Adresování, soubory
-- **offset** (v {% latex %}B{% endlatex %}) -- posun od začátku paměti
+- **offset** (v \(B\)) -- posun od začátku paměti
 - **base address** -- odkud začínáme (čteme/píšeme/...)
 
 {% xopp 20-19-01_19-37-02 & struktura paměti %}
@@ -679,9 +679,9 @@ mov    %ax,-0x1e(%rbp)
 - `f.seek(pos)` -- nastavení offsetu od začátku souboru (v bytech)
 	- čtení ho mění
 	- `f.seek(pos, mode)` definuje způsob posunu
-		- {% latex %}0{% endlatex %}: posun od začátku souboru (default)
-		- {% latex %}1{% endlatex %}: posun od aktuální pozice
-		- {% latex %}2{% endlatex %}: posun od konce souboru
+		- \(0\): posun od začátku souboru (default)
+		- \(1\): posun od aktuální pozice
+		- \(2\): posun od konce souboru
 
 ##### Byty 
 - `<str>.encode("<encoding>")` -- `str -> bytes` 
@@ -694,7 +694,7 @@ mov    %ax,-0x1e(%rbp)
 	- na Linuxu:
 		- `xxd <soubor>`; obrácený převod `xxd -r <soubor>` 
 		- `hexdump <soubor> -C`
-- pozor -- {% latex %}1B{% endlatex %} = 2 znaky
+- pozor -- \(1B\) = 2 znaky
 - 3 sloupečky (tradičně po 16 znacích -- dobře se počítá pozice):
 	1. hex offset (pozice v souboru)
 	2. hex zápis (`AF 1F 3C 14 ...`)
@@ -706,16 +706,16 @@ mov    %ax,-0x1e(%rbp)
 
 {% xopp 20-19-01_20-01-26 & obrázek v počítači %}
 
-- indexováno {% latex %}(x, y){% endlatex %}
-	- pozor -- {% latex %}y{% endlatex %} jdoucí dolů _stoupá_, neklesá
+- indexováno \((x, y)\)
+	- pozor -- \(y\) jdoucí dolů _stoupá_, neklesá
 - v paměti bývá uloženo po řádcích
 
 ##### Pixel
-- co sem uložit? fotonů máme od {% latex %}0{% endlatex %} do {% latex %}\infty{% endlatex %}
-	- je třeba (dobře) stanovit meze (analog {% latex %}\rightarrow{% endlatex %} digital) -- mapování intenzit
+- co sem uložit? fotonů máme od \(0\) do \(\infty\)
+	- je třeba (dobře) stanovit meze (analog \(\rightarrow\) digital) -- mapování intenzit
 - **bit depth** (bpp = bitová hloubka) -- kolik dat máme na pixel: 
-	- {% latex %}1b{% endlatex %} -- černobílá
-	- {% latex %}8b{% endlatex %} -- odstíny šedi
+	- \(1b\) -- černobílá
+	- \(8b\) -- odstíny šedi
 	- floating pointy -- větší rozsah (HDR)
 		- problémy: lidské oko to neumí dobře zpracovávat a foťáky to neumí dobře fotit
 - není foton jako foton: frekvence určuje barvu
@@ -725,12 +725,12 @@ mov    %ax,-0x1e(%rbp)
 {% xopp 20-19-01_20-15-41 & čípky v oku %}
 
 - barevná bit depth:
-	- {% latex %}3b{% endlatex %} na pixel -- dost neúsporné (jen jestli je červelá/zelená/modrá) a blbě se rozděluje
-	- {% latex %}4b{% endlatex %} na pixel -- poslední je intenzita (1 násobí vše 2x)
-	- {% latex %}2B{% endlatex %} na pixel -- 5R/5G/5B/1 nic
+	- \(3b\) na pixel -- dost neúsporné (jen jestli je červelá/zelená/modrá) a blbě se rozděluje
+	- \(4b\) na pixel -- poslední je intenzita (1 násobí vše 2x)
+	- \(2B\) na pixel -- 5R/5G/5B/1 nic
 		- někdy ten 1 bývá v zelené složce (oko je na ni citlivější)
-	- {% latex %}3B{% endlatex %} na pixel (true color; 65535 barev)
-		- je to ošklivě nesoudělné; ukládá se většinou do {% latex %}32b{% endlatex %}... co se zbylými {% latex %}8b{% endlatex %}?
+	- \(3B\) na pixel (true color; 65535 barev)
+		- je to ošklivě nesoudělné; ukládá se většinou do \(32b\)... co se zbylými \(8b\)?
 			- plýtvat
 			- vytvořit na alpha kanál určující (ne)průhlednost pixelu (255 je neprůhledné, 0 transparentní)
 
@@ -747,7 +747,7 @@ mov    %ax,-0x1e(%rbp)
 - původně Windows formát
 - relativně jednoduchý
 - data jsou little endian (jak čísla, tak barvy)
-- první {% latex %}2B{% endlatex %} jsou **magic** (signature) znaky
+- první \(2B\) jsou **magic** (signature) znaky
 	- měly by být unikátní pro typy souborů
 	- dány autorem
 	- zajímavost -- exe má `5a 4d`, což je v ASCII `MZ` -- iniciály Marka Zbikowskiho (autor)
@@ -760,16 +760,16 @@ mov    %ax,-0x1e(%rbp)
 	- whitespace (mezera, tabulátor)
 - **grafém** -- nejmenší jednotka psaného jazyka
 - **kódování** (většinou pro celý text) zavádí:
-	1. 1 znak {% latex %}\iff{% endlatex %} 1 kód (číslo) 
-	2. kód {% latex %}\iff{% endlatex %} binární reprezentace
-		- zda bude 1 kód = {% latex %}1B{% endlatex %}, {% latex %}2B{% endlatex %}, proměnlivý...
+	1. 1 znak \(\iff\) 1 kód (číslo) 
+	2. kód \(\iff\) binární reprezentace
+		- zda bude 1 kód = \(1B\), \(2B\), proměnlivý...
 - ukládaní do paměti tak, jak by se text četl (latinka levo-pravo, arabština pravo-levo...)
 - historicky _nemívá metadata_ -- problematické (určovaní kódovaní)
 
 ##### ASCII
 - _American Standard Code for Information Interchange_
 - standardizování v 80. letech
-- {% latex %}7b{% endlatex %} kódování ({% latex %}0{% endlatex %}-{% latex %}127{% endlatex %})
+- \(7b\) kódování (\(0\)-\(127\))
 - číslice i písmena jsou v kódování blízko sebe -- lze je dobře vyčíst, převádět...
 - **extended** -- rozšíření
 	- každá část Evropy (W/M/E) si to rozšířila jinak
@@ -778,28 +778,28 @@ mov    %ax,-0x1e(%rbp)
 
 ##### Unicode
 - standardizace -- všechny jazyky, všechny symboly, ~~žádné problémy~~
-- {% latex %}0{% endlatex %}-{% latex %}127{% endlatex %} -- odpovídají kódům z ASCII
-- {% latex %}128{% endlatex %}-{% latex %}\$FFFF{% endlatex %} -- běžně znaky
+- \(0\)-\(127\) -- odpovídají kódům z ASCII
+- \(128\)-\(\$FFFF\) -- běžně znaky
 - problém -- neurčili binární reprezentaci, takže vznikly různé:
-	- **UTF-32** -- každý znak je {% latex %}4B{% endlatex %}
+	- **UTF-32** -- každý znak je \(4B\)
 		- 2 verze UTF32 LE a UTF32 BE... guláš
 		- paměťově ne moc příjemné
 	- **UCS-2** -- jednoduché (a debilní)
-		- podporuje pevné {% latex %}2B{% endlatex %}... dokážeme reprezentovat pouze znaky v téhle mezi
-	- **UTF-16** - proměnlivá délka znaku ({% latex %}2B{% endlatex %}/{% latex %}4B{% endlatex %})
-		- 4B... **surrogates** (náhradníci): pro určité hodnoty prvních {% latex %}2B{% endlatex %} musí být přečteny druhé {% latex %}2B{% endlatex %}
+		- podporuje pevné \(2B\)... dokážeme reprezentovat pouze znaky v téhle mezi
+	- **UTF-16** - proměnlivá délka znaku (\(2B\)/\(4B\))
+		- 4B... **surrogates** (náhradníci): pro určité hodnoty prvních \(2B\) musí být přečteny druhé \(2B\)
 			- výsledek se dohromady skládá magií
 		- nelze přesně říct, kolik znaků je v souboru s tímhle kódováním uloženo
 		- také varianty LE a BE
-	- **UTF-8** -- {% latex %}1B{% endlatex %}, {% latex %}2B{% endlatex %}, {% latex %}3B{% endlatex %}, {% latex %}4B{% endlatex %} znaky
-		- {% latex %}1B{% endlatex %} -- první bit je {% latex %}0{% endlatex %}
-		- {% latex %}nB{% endlatex %} -- prvních {% latex %}n{% endlatex %} bitů je {% latex %}1{% endlatex %}, ten za tím {% latex %}0{% endlatex %} (pro {% latex %}n = 2{% endlatex %} je to {% latex %}110{% endlatex %})
-			- každý další byt začíná {% latex %}10{% endlatex %} -- lehce lze zjistit, že jsou součástí nějakého znaku
+	- **UTF-8** -- \(1B\), \(2B\), \(3B\), \(4B\) znaky
+		- \(1B\) -- první bit je \(0\)
+		- \(nB\) -- prvních \(n\) bitů je \(1\), ten za tím \(0\) (pro \(n = 2\) je to \(110\))
+			- každý další byt začíná \(10\) -- lehce lze zjistit, že jsou součástí nějakého znaku
 		- neřeší se endianita -- jsou to prostě velká čísla
 		- populární na internetu
 
 ##### Rasterizace
-- string {% latex %}\mapsto{% endlatex %} bitmapa
+- string \(\mapsto\) bitmapa
 - potřebujeme rozeznávat, kdy skočit na další řádek... každý systém to řeší jinak:
 	- původně `CR` (carriage return) + `LF` (line feed) (z psacích strojů)
 		- zachovalo se pro Windows
@@ -817,7 +817,7 @@ mov    %ax,-0x1e(%rbp)
 #### Proximity sensor
 - měří vzdálenost věci před senzorem
 - je komplikované, má hodně senzorů -- jak si vybrat ten správný?
-	- ten v příkladu používá {% latex %}8b{% endlatex %} adresový prostor
+	- ten v příkladu používá \(8b\) adresový prostor
 	- čtení je 1W (implicitní zápis do adresového registru) a 1W (vybraný registr), psaní je 1W a 1R
 
 #### Systémová sběrnice
@@ -841,7 +841,7 @@ mov    %ax,-0x1e(%rbp)
 
 ##### Co dělat po startu?
 - **CPU startup vector** -- odtud procesor začíná vykonávat instrukce
-	- hardkódované v CPU (např. {% latex %}0xFFFFFFF0{% endlatex %})
+	- hardkódované v CPU (např. \(0xFFFFFFF0\))
 		- bývá tam v paměti skok někam, kde se instrukcí vejde více
 - **firmware ROM** -- paměť (non-volatile), kde je uložený program, který po startu dělá:
 	1. test a konfigurace HW
