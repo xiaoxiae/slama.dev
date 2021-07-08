@@ -131,6 +131,6 @@ with open(CLIMBING_INFO, "w") as f:
 
 # remove videos that are not on the list, for good measure
 for file in os.listdir(CLIMBING_FOLDER):
-    if file.endswith(".mp4"):
+    if file.endswith(".mp4") or file.endswith(".jpeg"):
         if file not in config:
-            os.remove(file)
+            os.remove(os.path.join(CLIMBING_FOLDER, file))
