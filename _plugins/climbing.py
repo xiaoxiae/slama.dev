@@ -47,8 +47,7 @@ for name in list(config):
         new_path = os.path.join(CLIMBING_FOLDER, new_name)
 
         # create the poster
-        # TODO: not tested because I'm lazy, if something broke then this is it
-        _ = Popen(["ffmpeg", "-i", old_path, "-vf", '"select=eq(n\,0)"', "-vframes", "1", "-y", new_path + ".jpeg"], stdout=PIPE, stderr=PIPE).communicate()
+        _ = Popen(["ffmpeg", "-i", old_path, "-vf", "select=eq(n\,0)", "-vframes", "1", "-y", new_path + ".jpeg"], stdout=PIPE, stderr=PIPE).communicate()
 
         # trim the video
         if "trim" in config[new_name]:
