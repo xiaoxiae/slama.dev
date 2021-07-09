@@ -11,6 +11,7 @@ module Jekyll
     def generate(site)
       @site = site
       site.pages.each { |post| convert post }
+      site.posts.docs.each { |post| convert post }
     end
 
     private
