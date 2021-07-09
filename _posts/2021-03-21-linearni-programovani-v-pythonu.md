@@ -15,7 +15,7 @@ Pokud s `pulp`em také vyřešíte nějaký problém, tak budu moc rád za email
 ### Praktické příklady
 
 #### Problém pekárny
-Pekárna má k dispozici {% latex %}5{% endlatex %} kilo mouky, {% latex %}125{% endlatex %} vajec a půl kila soli. Za jeden chleba získá pekárna {% latex %}20{% endlatex %} korun, za housku {% latex %}2{% endlatex %} koruny, za bagetu {% latex %}10{% endlatex %} korun a za koblihu {% latex %}7{% endlatex %} korun. Pekárna se snaží vydělat co nejvíce. Jak ale zjistí kolik chlebů, housek, baget a koblih má upéci?
+Pekárna má k dispozici \(5\) kilo mouky, \(125\) vajec a půl kila soli. Za jeden chleba získá pekárna \(20\) korun, za housku \(2\) koruny, za bagetu \(10\) korun a za koblihu \(7\) korun. Pekárna se snaží vydělat co nejvíce. Jak ale zjistí kolik chlebů, housek, baget a koblih má upéci?
 
 <details>
 	<summary class="code-summary">Zdrojový kód</summary>
@@ -34,7 +34,7 @@ Pekárna má k dispozici {% latex %}5{% endlatex %} kilo mouky, {% latex %}125{%
 </details>
 
 #### Problém batohu
-Pro {% latex %}n{% endlatex %} předmětů, kde {% latex %}i{% endlatex %}-tý má nějakou váhu {% latex %}v_i{% endlatex %} a cenu {% latex %}c_i{% endlatex %}, máme batoh s danou nosností {% latex %}V{% endlatex %} a my se do něj snažíme naskládat předměty tak, abychom maximalizovali celkovou cenu předmětů v batohu.
+Pro \(n\) předmětů, kde \(i\)-tý má nějakou váhu \(v_i\) a cenu \(c_i\), máme batoh s danou nosností \(V\) a my se do něj snažíme naskládat předměty tak, abychom maximalizovali celkovou cenu předmětů v batohu.
 
 <details>
 	<summary class="code-summary">Zdrojový kód</summary>
@@ -54,7 +54,7 @@ Pro {% latex %}n{% endlatex %} předmětů, kde {% latex %}i{% endlatex %}-tý 
 
 #### Prokládání přímkou
 
-Máme-li {% latex %}n{% endlatex %} bodů {% latex %}(x_1 , y_1 ), \ldots, (x_n , y_n ){% endlatex %} v rovině, tak najděte přímku {% latex %}\left\{x \in \mathbb{R}: y = ax + b\right\}{% endlatex %}, která minimalizuje součet vertikálních vzdáleností bodů od výsledné přímky. Vertikální vzdálenost je vzdálenost měřena pouze na ose {% latex %}y{% endlatex %}. Pro jednoduchost předpokládejte, že výsledná přímka není kolmá na osu {% latex %}x{% endlatex %}.
+Máme-li \(n\) bodů \((x_1 , y_1 ), \ldots, (x_n , y_n )\) v rovině, tak najděte přímku \(\left\{x \in \mathbb{R}: y = ax + b\right\}\), která minimalizuje součet vertikálních vzdáleností bodů od výsledné přímky. Vertikální vzdálenost je vzdálenost měřena pouze na ose \(y\). Pro jednoduchost předpokládejte, že výsledná přímka není kolmá na osu \(x\).
 
 <details>
 	<summary class="code-summary">Zdrojový kód</summary>
@@ -74,7 +74,7 @@ Máme-li {% latex %}n{% endlatex %} bodů {% latex %}(x_1 , y_1 ), \ldots, (x_n
 
 #### Vrcholová obarvitelnost grafu
 
-Nalezněte minimální {% latex %}k{% endlatex %} takové, že vrcholy grafu {% latex %}G{% endlatex %} lze korektně obarvit {% latex %}k{% endlatex %} barvami.
+Nalezněte minimální \(k\) takové, že vrcholy grafu \(G\) lze korektně obarvit \(k\) barvami.
 
 <details>
 	<summary class="code-summary">Zdrojový kód</summary>
@@ -94,7 +94,7 @@ Nalezněte minimální {% latex %}k{% endlatex %} takové, že vrcholy grafu {%
 
 #### Hranová obarvitelnost grafu
 
-Nalezněte minimální {% latex %}k{% endlatex %} takové, že hrany grafu {% latex %}G{% endlatex %} lze korektně obarvit {% latex %}k{% endlatex %} barvami.
+Nalezněte minimální \(k\) takové, že hrany grafu \(G\) lze korektně obarvit \(k\) barvami.
 
 <details>
 	<summary class="code-summary">Zdrojový kód</summary>
@@ -113,7 +113,7 @@ Nalezněte minimální {% latex %}k{% endlatex %} takové, že hrany grafu {% l
 </details>
 
 #### Problém obchodního cestujícího
-Pro daný ohodnocený neorientovaný graf {% latex %}G = (V, E, f){% endlatex %}, kde {% latex %}f : E \mapsto \mathbb{R}^+_0{% endlatex %}, chceme najít Hamiltonovskou kružnici v {% latex %}G{% endlatex %} s nejmenším ohodnocením.
+Pro daný ohodnocený neorientovaný graf \(G = (V, E, f)\), kde \(f : E \mapsto \mathbb{R}^+_0\), chceme najít Hamiltonovskou kružnici v \(G\) s nejmenším ohodnocením.
 
 <details>
 	<summary class="code-summary">Zdrojový kód</summary>
@@ -132,7 +132,7 @@ Pro daný ohodnocený neorientovaný graf {% latex %}G = (V, E, f){% endlatex %}
 </details>
 
 #### Bin packing
-Zjistěte, do kolika nejméně krabic lze rozdělit množinu {% latex %}n{% endlatex %} předmětů s vahami {% latex %}w_1, \ldots, w_i{% endlatex %}. Do každého koše lze umístit předměty o celkové váze nejvýše {% latex %}C{% endlatex %}.
+Zjistěte, do kolika nejméně krabic lze rozdělit množinu \(n\) předmětů s vahami \(w_1, \ldots, w_i\). Do každého koše lze umístit předměty o celkové váze nejvýše \(C\).
 
 <details>
 	<summary class="code-summary">Zdrojový kód</summary>
@@ -151,7 +151,7 @@ Zjistěte, do kolika nejméně krabic lze rozdělit množinu {% latex %}n{% endl
 </details>
 
 #### Partition problem
-Zjistěte, zda množinu {% latex %}n{% endlatex %} předmětů s vahami {% latex %}w_1, \ldots, w_i{% endlatex %} jde rozdělit na dvě části tak, aby součty vah těchto částí byly stejné.
+Zjistěte, zda množinu \(n\) předmětů s vahami \(w_1, \ldots, w_i\) jde rozdělit na dvě části tak, aby součty vah těchto částí byly stejné.
 
 <details>
 	<summary class="code-summary">Zdrojový kód</summary>
@@ -170,7 +170,7 @@ Zjistěte, zda množinu {% latex %}n{% endlatex %} předmětů s vahami {% latex
 </details>
 
 #### Pekárny a obchody (a)
-V Kocourkově je {% latex %}n{% endlatex %} pekáren a {% latex %}m{% endlatex %} obchodů. Každý den {% latex %}i{% endlatex %}-tá pekárna upeče {% latex %}p_i \in \mathbb{N}{% endlatex %} rohlíků {% latex %}n{% endlatex %} a {% latex %}j{% endlatex %}-tý obchod prodá {% latex %}o_j \in \mathbb{N}{% endlatex %} rohlíků, kde {% latex %}\sum_{i = 1}^{n} p_i = \sum_{j = 1}^{m} o_j{% endlatex %}. Převoz jednoho rohlíku z {% latex %}i{% endlatex %}-té pekárny do {% latex %}j{% endlatex %}-tého obchodu stojí {% latex %}c_{ij}{% endlatex %} korun.
+V Kocourkově je \(n\) pekáren a \(m\) obchodů. Každý den \(i\)-tá pekárna upeče \(p_i \in \mathbb{N}\) rohlíků \(n\) a \(j\)-tý obchod prodá \(o_j \in \mathbb{N}\) rohlíků, kde \(\sum_{i = 1}^{n} p_i = \sum_{j = 1}^{m} o_j\). Převoz jednoho rohlíku z \(i\)-té pekárny do \(j\)-tého obchodu stojí \(c_{ij}\) korun.
 
 <details>
 	<summary class="code-summary">Zdrojový kód</summary>
@@ -189,7 +189,7 @@ V Kocourkově je {% latex %}n{% endlatex %} pekáren a {% latex %}m{% endlatex 
 </details>
 
 #### Pekárny a obchody (b)
-Praxe v Kocourkově ukázala, že když {% latex %}i{% endlatex %}-tá pekárna zásobuje {% latex %}j{% endlatex %}-tý obchod, tak musí pro tuto trasu zajistit logistiku, která je stojí {% latex %}l_{ij}{% endlatex %}. Logistiku {% latex %}l_{ij} \ge 0{% endlatex %} je nutné platit pouze tehdy, když {% latex %}i{% endlatex %}-tá pekárna zásobuje {% latex %}j{% endlatex %}-tý obchod nenulovým počtem rohlíků, a její cena nezávisí na počtu převážených rohlíků. I nadále je nutné platit přepravné {% latex %}c_{ij}{% endlatex %}. Zformulujte příslušnou úlohu LP.
+Praxe v Kocourkově ukázala, že když \(i\)-tá pekárna zásobuje \(j\)-tý obchod, tak musí pro tuto trasu zajistit logistiku, která je stojí \(l_{ij}\). Logistiku \(l_{ij} \ge 0\) je nutné platit pouze tehdy, když \(i\)-tá pekárna zásobuje \(j\)-tý obchod nenulovým počtem rohlíků, a její cena nezávisí na počtu převážených rohlíků. I nadále je nutné platit přepravné \(c_{ij}\). Zformulujte příslušnou úlohu LP.
 
 <details>
 	<summary class="code-summary">Zdrojový kód</summary>

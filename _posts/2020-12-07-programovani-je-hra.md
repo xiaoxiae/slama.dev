@@ -173,11 +173,11 @@ while i < 10:
 	i = i + 1
 ```
 
-1. Máte číselnou proměnnou `a`. Vypište všechna čísla od {% latex %}1{% endlatex %} do `a`. [[řešení](/assets/programovani-je-hra/2.2.1.py)]
+1. Máte číselnou proměnnou `a`. Vypište všechna čísla od \(1\) do `a`. [[řešení](/assets/programovani-je-hra/2.2.1.py)]
 	* Vypište jen sudá čísla. [[řešení](/assets/programovani-je-hra/2.2.1-1.py)]
 2. Máte číselnou proměnnou `a`. Vypište všechna čísla, která dělí `a`. [[řešení](/assets/programovani-je-hra/2.2.2.py)]
 	* Vypište její prvočíselný rozklad. ⭐ [[řešení](/assets/programovani-je-hra/2.2.2-1.py)]
-3. Chceme napsat robota, který bude hádat čísla od {% latex %}1{% endlatex %} do {% latex %}100{% endlatex %}. Uživateli řekne číslo, které hádá, a zeptá se ho, zda je uživatelovo menší, nebo větší. ⭐ [[řešení](/assets/programovani-je-hra/2.2.3.py)]
+3. Chceme napsat robota, který bude hádat čísla od \(1\) do \(100\). Uživateli řekne číslo, které hádá, a zeptá se ho, zda je uživatelovo menší, nebo větší. ⭐ [[řešení](/assets/programovani-je-hra/2.2.3.py)]
 
 #### Pole
 - hodně proměnných za sebou
@@ -298,8 +298,8 @@ def draw():
 	- Přidejte více míčků. ⭐
 
 ##### Operace na canvasu
-- `translate(x, y)`: posuň plátno o {% latex %}(x, y){% endlatex %}
-- `rotate(radians(r))`: otoč plátno o {% latex %}r{% endlatex %} stupňů
+- `translate(x, y)`: posuň plátno o \((x, y)\)
+- `rotate(radians(r))`: otoč plátno o \(r\) stupňů
 - po konci funkce `draw()` se opět resetuje!
 
 ```py
@@ -326,7 +326,7 @@ def draw():  # kód, který se dokola opakuje
 	- mává rukou tam a zpět. [[řešení](/assets/programovani-je-hra/3.3.1-2.py)]
 
 ### 4. hodina (14. 1. 2021)
-1. Naprogramujte vykreslení černobílé {% latex %}8 \times 8{% endlatex %} šachovnice. [[řešení](/assets/programovani-je-hra/4.3.1.py)]
+1. Naprogramujte vykreslení černobílé \(8 \times 8\) šachovnice. [[řešení](/assets/programovani-je-hra/4.3.1.py)]
 
 #### Zmáčknutí klávesy
 
@@ -404,9 +404,9 @@ for x in range(0, 10):
 	- jsou to tzv. instance třídy
 - **dědičnost** -- vytváření tříd, které jsou případy jiných:
 	- každá další třída **dědí** vlastnosti předka a potenciálně přidává nějaké nové
-	- živočich {% latex %}\rightarrow{% endlatex %} obratlovec {% latex %}\rightarrow{% endlatex %} plaz {% latex %}\rightarrow{% endlatex %} krokodýl
-	- dopravní prostředek {% latex %}\rightarrow{% endlatex %} vozidlo {% latex %}\rightarrow{% endlatex %} automobil {% latex %}\rightarrow{% endlatex %} elektromobil
-	- těleso {% latex %}\rightarrow{% endlatex %} rovnoběžnostěn {% latex %}\rightarrow{% endlatex %} kvádr
+	- živočich \(\rightarrow\) obratlovec \(\rightarrow\) plaz \(\rightarrow\) krokodýl
+	- dopravní prostředek \(\rightarrow\) vozidlo \(\rightarrow\) automobil \(\rightarrow\) elektromobil
+	- těleso \(\rightarrow\) rovnoběžnostěn \(\rightarrow\) kvádr
 
 ```py
 # vytvoření třídy, která popisuje lidi
