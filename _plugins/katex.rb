@@ -10,7 +10,7 @@ module Jekyll
 
     def generate(site)
       @site = site
-      site.posts.docs.each { |post| convert post }
+      site.pages.each { |post| convert post }
     end
 
     private
