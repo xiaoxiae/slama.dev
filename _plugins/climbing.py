@@ -106,13 +106,19 @@ layout: default
         videos_in_color = list(reversed(sorted(videos_in_color)))
 
         if len(videos_in_color) != 0:
-            zone_file_content += "#### " + color.capitalize()
+            zone_file_content += "{: .center}\n#### " + color.capitalize()
 
         for i, name in enumerate(videos_in_color):
-            style = f"width:{'48' if (i != len(videos_in_color) - 1 or len(videos_in_color) % 2 == 0) else '100'}%;float:{'left' if i % 2 == 0 else 'right'};"
+            style_class = "climbing-"
+
+            # either an odd number of videos, or even and not the last -- no center
+            if len(videos_in_color) % 2 == 0 or (len(videos_in_color) % 2 == 1 and i != len(videos_in_color) - 1):
+                style_class += 'left' if i % 2 == 0 else 'right'
+            else:
+                style_class += "center"
 
             zone_file_content += f"""
-<figure class='video' style='{style}'>
+<figure class='climbing-video climbing-{color} {style_class}'>
 <video poster="/climbing/{name}.jpeg" controls><source src='/climbing/{name}' type='video/mp4'></video>
 <figcaption class='figcaption-margin'>{config[name]["date"].strftime("%d / %m / %Y")}</figcaption>
 </figure>"""
@@ -131,6 +137,5 @@ with open(CLIMBING_INFO, "w") as f:
 
 # remove videos that are not on the list, for good measure
 for file in os.listdir(CLIMBING_FOLDER):
-    if file.endswith(".mp4") or file.endswith(".jpeg"):
-        if file not in config:
-            os.remove(os.path.join(CLIMBING_FOLDER, file))
+    if (file.endswith(".mp4") and file not in config) or (file.endswith(".jpeg") and file[:-5] not in config):
+        os.remove(os.path.join(CLIMBING_FOLDER, file))

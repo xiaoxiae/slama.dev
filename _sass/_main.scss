@@ -480,12 +480,11 @@ body {
 
 	.no-invert {img { filter: invert(0%); } }
 
-	// figure class for videos
-	.video {
-		border: 2px solid;
+	// figure class for climbing videos
+	.climbing-video {
+		border: 3px solid;
 		display: inline-block;
 		height: 300px;
-		background: black;
 		margin-bottom: 2 * $line-spacing;
 
 		video {
@@ -494,6 +493,30 @@ body {
 			border: none;
 		}
 	}
+
+	.climbing-salmon { background: #ffc1a8ff; }
+	.climbing-blue { background: #087ec4ff; }
+	.climbing-yellow { background: #fce538ff; }
+
+	.climbing-left {
+		width: 48%;
+		float: left;
+
+		@media (max-width: $small-screen-threshold) { width: 100%; }
+	}
+	
+	.climbing-right {
+		width: 48%;
+		float: right;
+
+		@media (max-width: $small-screen-threshold) { width: 100%; }
+	}
+
+	.climbing-center {
+		width: 100%;
+		float: left;
+	}
+
 }
 
 /* LIGHT COLOR THEME */
