@@ -106,7 +106,7 @@ layout: default
         videos_in_color = list(reversed(sorted(videos_in_color)))
 
         if len(videos_in_color) != 0:
-            zone_file_content += "{: .center}\n#### " + color.capitalize()
+            zone_file_content += "\n\n{: .center}\n### " + color.capitalize()
 
         for i, name in enumerate(videos_in_color):
             style_class = "climbing-"
