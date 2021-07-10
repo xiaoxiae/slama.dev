@@ -542,7 +542,7 @@ body {
 		background: none;
 	}
 
-	mark.climbing-low-angle { background: #96cdffff; }
+	mark.climbing-low-angle { background: #96cdffff; color: $light-text-color; }
 	mark.climbing-vertical { background: #60a3d9ff; }
 	mark.climbing-mild-overhang { background: #0074b7ff; }
 	mark.climbing-severe-overhang { background: #005290ff; }
@@ -663,8 +663,6 @@ body {
 				fill: $light-text-color;
 			}
 		}
-
-		mark.climbing { filter: invert(100%); }
 
 		.katex {svg { filter: invert(0%); } }
 		
