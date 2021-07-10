@@ -2,6 +2,7 @@
 language: en
 title: Programování v jazyce C#
 category: "lecture notes"
+pdf: true
 ---
 
 - .

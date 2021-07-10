@@ -2,6 +2,7 @@
 language: cz
 title: Diskrétní Matematika
 category: "lecture notes"
+pdf: true
 ---
 
 - .

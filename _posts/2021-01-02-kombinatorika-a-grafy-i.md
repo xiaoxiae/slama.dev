@@ -2,6 +2,7 @@
 language: cz
 title: Kombinatorika a Grafy I
 category: "lecture notes"
+pdf: true
 ---
 
 - .
