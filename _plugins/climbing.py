@@ -19,6 +19,7 @@ def get_random_string(length: int):
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 CLIMBING_FOLDER = "../climbing/"
+CLIMBING_VIDEOS_FOLDER = os.path.join(CLIMBING_FOLDER, "videos")
 CLIMBING_INFO = os.path.join(CLIMBING_FOLDER, "information.yaml")
 
 config = {}
@@ -42,9 +43,9 @@ for name in list(config):
         del config[name]
 
         # useful paths
-        old_path = os.path.join(CLIMBING_FOLDER, name)
-        tmp_path = os.path.join(CLIMBING_FOLDER, "tmp_" + name)
-        new_path = os.path.join(CLIMBING_FOLDER, new_name)
+        old_path = os.path.join(CLIMBING_VIDEOS_FOLDER, name)
+        tmp_path = os.path.join(CLIMBING_VIDEOS_FOLDER, "tmp_" + name)
+        new_path = os.path.join(CLIMBING_VIDEOS_FOLDER, new_name)
 
         # create the poster
         _ = Popen(["ffmpeg", "-i", old_path, "-vf", "select=eq(n\,0)", "-vframes", "1", "-y", new_path + ".jpeg"], stdout=PIPE, stderr=PIPE).communicate()
@@ -85,8 +86,6 @@ if os.path.exists(zones_folder):
     shutil.rmtree(zones_folder)
 os.mkdir(zones_folder)
 
-print("generating zones.")
-
 for zone in zones:
     zone_file_name = os.path.join(CLIMBING_FOLDER, "zones", str(zone) + ".md")
     zone_file_content = f"""---
@@ -119,7 +118,7 @@ layout: default
 
             zone_file_content += f"""
 <figure class='climbing-video climbing-{color} {style_class}'>
-<video poster="/climbing/{name}.jpeg" controls><source src='/climbing/{name}' type='video/mp4'></video>
+<video poster="/climbing/videos/{name}.jpeg" controls><source src='/climbing/videos/{name}' type='video/mp4'></video>
 <figcaption class='figcaption-margin'>{config[name]["date"].strftime("%d / %m / %Y")}</figcaption>
 </figure>"""
 
@@ -131,6 +130,8 @@ layout: default
 
     with open(zone_file_name, "w") as f:
         f.write(zone_file_content)
+
+print("zones generated.")
 
 with open(CLIMBING_INFO, "w") as f:
     f.write(yaml.dump(config))
