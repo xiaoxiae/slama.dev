@@ -17,6 +17,7 @@ climbing/*.jpeg
 climbing/zones/
 photography/
 assets/hlenka-helenka/tribute.mp4
+assets/*.pdf
 
 # xopp, svg
 _includes/**/*.svg
