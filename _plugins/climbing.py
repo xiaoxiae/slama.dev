@@ -27,7 +27,7 @@ if os.path.exists(CLIMBING_INFO):
         config = yaml.safe_load(f.read())
 
 zones = [1, 2, 3, 4, 5, 6, 7, 8, 9, "all"]
-colors = ["red", "salmon", "blue", "yellow"]
+colors = list(reversed(["red", "salmon", "blue", "yellow"]))
 
 # rename new files
 for name in list(config):
