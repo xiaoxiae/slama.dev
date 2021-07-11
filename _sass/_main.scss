@@ -478,7 +478,7 @@ body {
 		p { margin-bottom: 0;}
 	}
 
-	.no-invert {img { filter: invert(0%); } }
+	.no-invert {* { filter: invert(0%); } }
 
 	// figure class for climbing videos
 	.climbing-video {
