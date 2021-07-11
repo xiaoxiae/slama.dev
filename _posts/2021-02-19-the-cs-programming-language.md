@@ -1,13 +1,12 @@
 ---
-language: en
-title: Programování v jazyce C#
+title: The C# programming language
 category: "lecture notes"
 ---
 
 - .
 {:toc}
 
-{% lecture_notes_preface Pavla Ježka|2020/2021%}
+{% lecture_notes_preface Pavel Ježek|2020/2021|en%}
 
 ### Strings
 - internally an array of chars
