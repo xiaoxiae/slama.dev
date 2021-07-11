@@ -26,7 +26,7 @@ if os.path.exists(CLIMBING_INFO):
     with open(CLIMBING_INFO, "r") as f:
         config = yaml.safe_load(f.read())
 
-zones = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+zones = [1, 2, 3, 4, 5, 6, 7, 8, 9, "all"]
 colors = ["red", "salmon", "blue", "yellow"]
 
 # rename new files
@@ -100,7 +100,7 @@ layout: default
         videos_in_color = []
 
         for name in config:
-            if config[name]["color"] == color and config[name]["zone"] == zone:
+            if config[name]["color"] == color and (config[name]["zone"] == zone or zone == "all"):
                 videos_in_color.append(name)
 
         videos_in_color = list(reversed(sorted(videos_in_color)))
