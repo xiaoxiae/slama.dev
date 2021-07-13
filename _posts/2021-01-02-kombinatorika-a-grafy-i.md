@@ -14,10 +14,12 @@ pdf: true
 
 #### Odhady faktoriálu
 
-**Věta (meh odhad):**
-\[n^{n/2} \le n! \le \left(\frac{n + 1}{2}\right)^n\]
 
-**Důkaz \(\ge\):**
+{% math theorem "meh odhad" %}
+\[n^{n/2} \le n! \le \left(\frac{n + 1}{2}\right)^n\]
+{% endmath %}
+
+{% math proof "\(\ge\)" %}
 \[
 \begin{aligned}
 	\left(n!\right)^2 &= 1 \cdot 2 \cdot 3 \cdot \ldots \cdot n \cdot n \cdot (n - 1) \cdot \ldots \cdot 2 \cdot 1 \\
@@ -36,9 +38,10 @@ Využijeme A-G nerovnost:
 
 Dostáváme:
 \[n! = \prod_{i = 1}^{n} \sqrt{i \cdot (n - i + 1)}\le \left(\frac{n + 1}{2}\right)^n\]
+{% endmath %}
 
-**Důkaz \(\le\):**
 
+{% math proof "\(\le\)" %}
 \(n \le i (n - i + 1), \forall i \in [n]\):
 - \(i = 1\) platí
 - \(i = 2 \rightarrow\)  jeden člen je vždy \(\ge 2\), druhý \(\ge n/2\)
@@ -49,13 +52,15 @@ Dostáváme:
 	n! &\ge n^{n/2}
 \end{aligned}
 \]
+{% endmath %}
 
-**Věta (nice odhad):**
+{% math theorem "nice odhad" %}
 \[
 e\left(\frac{n}{e}\right)^n \le n! \le en \left(\frac{n}{e}\right)^n
 \]
+{% endmath %}
 
-**Důkaz (indukcí):**
+{% math proof "indukcí" %} \( \ \)
 - \(n = 1\): \[1 \le e \cdot 1 \cdot \frac{1}{e}\]
 - \(n - 1 \rightarrow n\):
 \[\begin{aligned} n! = n \left(n - 1\right)! &\le^\mathrm{IP} en \left(n - 1\right) \left(\frac{n - 1}{e}\right)^{n - 1} \\ &= en \left(\frac{n}{e}\right)^n \left(\frac{e}{n}\right)^n \left(n - 1\right) \left(\frac{n - 1}{e}\right)^{n - 1} \\
@@ -73,27 +78,32 @@ Důkaz, toho proč ten výraz \(\le 1\):
 - pozn.: \(a \le b \implies a = b c\) pro \(c \le 1\), proto to vlastně děláme
 - pro dolní mez postupujeme podobně, ale je potřeba indukční krok dokazovat pro
   \(n \rightarrow n+1\), místo \(n-1 \rightarrow n\).
+{% endmath %}
 
-**Věta (Stirlingova formule)** (bez důkazu):
+{% math theorem "Stirlingova formule" %}
 \[n! \cong \sqrt{2 \pi n} \left(\frac{n}{e}\right)^n\]
+{% endmath %}
 
 #### Odhady binomických koeficientů
 
-(👀) pro malé \(k << n \ldots \binom{n}{k} = \frac{n!}{(n - k)! k!} = \frac{n \cdot (n - 1) \cdot \ldots \cdot (n - k + 1)}{k!} \le n^k\)
+{% math observation %}
+pro malé \(k << n \ldots \binom{n}{k} = \frac{n!}{(n - k)! k!} = \frac{n \cdot (n - 1) \cdot \ldots \cdot (n - k + 1)}{k!} \le n^k\)
+{% endmath %}
 
-**Věta (hodně meh odhad):**
+{% math theorem "hodně meh odhad" %}
 \[\frac{2^n}{n + 1} \le \binom{n}{\left\lfloor n/2 \right\rfloor} \le 2^n\]
+{% endmath %}
 
-
-**Důkaz:**
+{% math proof %} \( \ \)
 - součet všech čísel v řádku je \(2^n\), tak jistě to největší nebude větší
 - největší sčítanec je rovněž alespoň tak velký jako průměrný
+{% endmath %}
 
-**Věta (nice odhad):**
+{% math theorem "nice odhad" %}
 \[\frac{2^{2m}}{2 \sqrt{m}} \le \binom{2m}{m} \le \frac{2^{2m}}{\sqrt{2m}}\]
+{% endmath %}
 
-**Důkaz:**
-
+{% math proof %}
 Nejprve jedno kouzlo:
 \[
 P = \frac{1 \cdot 3 \cdot 5 \cdot \ldots \cdot (2m - 1)}{2 \cdot 4 \cdot 6 \cdot \ldots \cdot 2m} = \frac{1 \cdot 3 \cdot 5 \cdot \ldots \cdot (2m - 1)}{2 \cdot 4 \cdot 6 \cdot \ldots \cdot 2m}\frac{2 \cdot 4 \cdot 6 \cdot \ldots \cdot 2m}{2 \cdot 4 \cdot 6 \cdot \ldots \cdot 2m} = \frac{(2m)!}{2^{2m} \left(m!\right)^2} = \frac{\binom{2m}{m}}{2^{2m}}
@@ -121,12 +131,15 @@ Máme tedy:
 \]
 
 Druhá strana analogicky (uvažujeme \(\left(1 - \frac{1}{3^2}\right)\left(1-\frac{1}{5^2}\right)\ldots = \left(\frac{2 \cdot 4}{3^2}\right)\left(\frac{4 \cdot 6}{5^2}\right)\ldots = \frac{1}{2 \left(2m\right) P^2}\)).
+{% endmath %}
 
 ### 2. přednáška
 
 #### Náhodné procházky
 
-**Definice náhodné procházky  (v \(\mathbb{Z}^1\)):** Náhodný proces, v každém kroku se panáček začínající v bodu \(0\) posune ze své aktuální pozice doprava nebo doleva.
+{% math definition "náhodná procházka" %}
+Náhodný proces, v každém kroku se panáček začínající v bodu \(0\) posune ze své aktuální pozice doprava nebo doleva.
+{% endmath %}
 
 - kde bude po \(n\) krocích?
 - \(\lim_{n \to \infty} \ldots\) že se po \(n\) krocích vrátil (někdy v průběhu) do počátku?
@@ -157,16 +170,21 @@ Zadefinujeme si náhodnou veličinu \(X = I_{S_2} + I_{S_4} + \ldots + I_{S_{2n}
 
 #### Generující funkce
 
-**Definice (mocninná řada)** je nekonečná řada tvaru \(a(x) = a_0 + a_1x^1 + a_2x^2 + \ldots,\) kde \(a_0, a_1 \ldots \in \mathbb{R}\).
+{% math definition "mocninná řada" %}
+je nekonečná řada tvaru \(a(x) = a_0 + a_1x^1 + a_2x^2 + \ldots,\) kde \(a_0, a_1 \ldots \in \mathbb{R}\).
+{% endmath %}
 
-**Příklad:** \(a_0 = a_1 = \ldots = 1 \mapsto 1 +x + x^2 + \ldots\)
+{% math example %}
+\(a_0 = a_1 = \ldots = 1 \mapsto 1 +x + x^2 + \ldots\)
 - pro \(|x| < 1\) řada konverguje k \(\frac{1}{1 - x}\), můžeme tedy říct, že \((1, 1, \ldots) \approx \frac{1}{1 - x}\)
+{% endmath %}
 
-**Tvrzení:** \((a_0, a_1, a_2, \ldots)\) reálná čísla. Předpoklad: pro nějaké \(K\) t. ž. \(|a_n| \le K^n\). Poté řada \(a(x)\) pro každé \(x \in \left(-\frac{1}{K}, \frac{1}{K}\right) \) konverguje (dává smysl). Funkce \(a(x)\) je navíc jednoznačně určena hodnotami na okolí \(0\).
+{% math lemma %}
+\((a_0, a_1, a_2, \ldots)\) reálná čísla. Předpoklad: pro nějaké \(K\) t. ž. \(|a_n| \le K^n\). Poté řada \(a(x)\) pro každé \(x \in \left(-\frac{1}{K}, \frac{1}{K}\right) \) konverguje (dává smysl). Funkce \(a(x)\) je navíc jednoznačně určena hodnotami na okolí \(0\).
+{% endmath %}
 
-**Definice (vytvořující/generující funkce):** nechť \(\left(a_0, a_1, \ldots\right)\) je posloupnost reálných čísel. Vytvořující funkce této posloupnosti je mocninná řada \(a(x) = \sum_{i = 0}^{\infty} a_i x^i\).
-
-##### Operace na funkcích
+{% math definition "vytvořující/generující funkce" %}
+nechť \(\left(a_0, a_1, \ldots\right)\) je posloupnost reálných čísel. Vytvořující funkce této posloupnosti je mocninná řada \(a(x) = \sum_{i = 0}^{\infty} a_i x^i\).{% endmath %}
 
 | operace                                      | řada                                                                                                                          | úprava                                               |
 | ---                                          | ---                                                                                                                           | ---                                                  |
@@ -188,12 +206,17 @@ Všechny důkazy jsou jednoduché rozepsání z definice.
 
 #### Zobecněná binomická věta
 
-**Tvrzení:** \(r \in \mathbb{R}, k \in \mathbb{N}\), def. \(\binom{r}{k} = \frac{r \cdot (r - 1) \cdot (r - 2) \cdot  \ldots  \cdot (r - k + 1)}{k!}\)
+{% math lemma %}
+\(r \in \mathbb{R}, k \in \mathbb{N}\), def. \(\binom{r}{k} = \frac{r \cdot (r - 1) \cdot (r - 2) \cdot  \ldots  \cdot (r - k + 1)}{k!}\)
+{% endmath %}
+
 - pro \(r \in \mathbb{N}\) se shoduje s tím, co už známe
 - vyplývá z toho, že funkce \((1 + x)^r\) je vytvořující funkcí posloupnosti \(\left(\binom{r}{0}, \binom{r}{1}, \binom{r}{2}, \ldots\right)\)
-- (👀) pokud \(r\) je záporné celé, pak \(\binom{r}{k} = (-1)^k \binom{-r + k - 1}{k} = (-1)^k \binom{-r + k - 1}{-r - 1}\), tedy \(\frac{1}{(1 - x)^n} = (1 - x)^{-n} = \binom{n - 1}{n - 1} + \binom{n}{n - 1}x + \binom{n + 1}{n - 1}x^2 + \ldots\)
+- {% math observation %}pokud \(r\) je záporné celé, pak \(\binom{r}{k} = (-1)^k \binom{-r + k - 1}{k} = (-1)^k \binom{-r + k - 1}{-r - 1}\), tedy \(\frac{1}{(1 - x)^n} = (1 - x)^{-n} = \binom{n - 1}{n - 1} + \binom{n}{n - 1}x + \binom{n + 1}{n - 1}x^2 + \ldots\){% endmath %}
 
-**Příklad:** V krabici je \(30\) červených, \(40\) žlutých a \(50\) zelených míčků. Kolika způsoby lze vybrat \(70\)?
+{% math example %}
+V krabici je \(30\) červených, \(40\) žlutých a \(50\) zelených míčků. Kolika způsoby lze vybrat \(70\)?
+{% endmath %}
 
 \[
 \begin{aligned}
@@ -214,7 +237,7 @@ Kde poslední rovnost platí, protože:
 ### 3. přednáška
 
 #### Fibonacciho čísla
-**Definice:** \(F_0 = 0, F_1 = 1, F_n = F_{n - 1} + F_{n - 2}, \forall n \ge 2\)
+{% math definition %}\(F_0 = 0, F_1 = 1, F_n = F_{n - 1} + F_{n - 2}, \forall n \ge 2\){% endmath %}
 - \(F(x) = F_0 + F_1x + F_2x^2 + F_3x^3\)
 
 | \(F_0\) | \(F_1\) | \(F_2\)       | \(F_3\)       | \(F_4\)       | Vytvořující funkce                |
@@ -245,20 +268,11 @@ Pro daný koeficient vytvořující funkce tedy máme:
 #### Catalanova čísla
 - \(b_n = \) počet binárních zakořeněných stromů na \(n\) vrcholech
 	- \(b_n = \sum_{k = 0}^{n - 1} b_k \cdot b_{n - k + 1}\), rekurzíme se na obě části
-	- jde si rozmyslet, že \(b(x) = x \cdot b(x) \cdot b(x) + 1\)
+	- jde si rozmyslet[^1], že \(b(x) = x \cdot b(x) \cdot b(x) + 1\)
 		- \(x\) je tam kvůli posunu, aby vycházelo správně indexování (suma nejde do \(n\))
 		- \(1\) je tam kvůli tomu, aby nultý člen správně vycházel
 
-Rekurence pro \(b_n\) vypadá skoro jako konvoluce sama sebe, takže by
-se nám líbilo něco jako \(b(x) = b(x)^2\). Jenže narozdíl od
-konvoluce pronásobujeme jen prvních \(n-1\) prvků. Uvažme
-tedy posloupnost \(0, b_0, b_1, b_2, \ldots\) generovanou funkcí
-\(x b(x)\). Ta je již skoro konvolucí sama sebe -- \(n\)-tý prvek se v sumě požere s nulou.
-Jediná nepřesnost je u \(b_0\), protože podle
-definice konvoluce \(b_0 = 0 \cdot b_0 + b_0 \cdot 0 = 0\), ale my
-víme \(b_0 = 1\). Stačí tedy přičíst jedničku posunutou o
-jedna doprava, čímž dostaneme \(x b(x) = (x b(x))^2 + x\).
-Jinými slovy \(b(x) = x b(x)^2 + 1\).
+[^1]: Rekurence pro \(b_n\) vypadá skoro jako konvoluce sama sebe, takže by se nám líbilo něco jako \(b(x) = b(x)^2\). Jenže narozdíl od konvoluce pronásobujeme jen prvních \(n-1\) prvků. Uvažme tedy posloupnost \(0, b_0, b_1, b_2, \ldots\) generovanou funkcí \(x b(x)\). Ta je již skoro konvolucí sama sebe -- \(n\)-tý prvek se v sumě požere s nulou.  Jediná nepřesnost je u \(b_0\), protože podle definice konvoluce \(b_0 = 0 \cdot b_0 + b_0 \cdot 0 = 0\), ale my víme \(b_0 = 1\). Stačí tedy přičíst jedničku posunutou o jedna doprava, čímž dostaneme \(x b(x) = (x b(x))^2 + x\). Jinými slovy \(b(x) = x b(x)^2 + 1\).
 
 \[
 \begin{aligned}
@@ -291,7 +305,8 @@ by k tomuto schématu šel přidat ještě jeden bod, který by s každým dalš
 spojen dvoubodovou přímkou.
 </div>
 
-**Definice (KPR):** Nechť \(X\) je konečná množina, \(\mathcal{P}\) systém podmnožin množiny \(X\). \(\left(X, \mathcal{P}\right)\) je KPR pokud:
+{% math definition "KPR" %}
+Nechť \(X\) je konečná množina, \(\mathcal{P}\) systém podmnožin množiny \(X\). \(\left(X, \mathcal{P}\right)\) je KPR pokud:{% endmath %}
 1. Existuje \(Č \subseteq X, |Č| = 4\) t. ž. \(\forall P \in \mathcal{P}: |P \cap Č| \le 2\)
 	- „každá přímka obsahuje \(\le 2\) body z \(Č\)“
 2. \(\forall P, Q \in \mathcal{P}, P \neq Q: \exists! x \in X\) t. ž. \(P \cap Q = \left\{x\right\}\)
@@ -302,10 +317,10 @@ spojen dvoubodovou přímkou.
 - \(x \in X\) je bod
 - \(P \in \mathcal{P}\) je přímka
 
-**Příklad (Fanova rovina):**
-
+{% math example "Fanova rovina" %}
 {:.center}
 ![Fanova rovina.](/assets/kombinatorika-a-grafy-i/fanova-rovina.svg)
+{% endmath %}
 
 ##### Počet bodů a přímek
 
@@ -330,15 +345,16 @@ Dokáže se přes to přes rozbor příkladů toho, jak vedou přímky přes \(�
 {:.center}
 ![](/assets/kombinatorika-a-grafy-i/kpr-bijekce.svg)
 
+{% math definition "řád KPR" %}
+řádem \((X, \mathcal{P})\) je \(n = |P| - 1\) pro jakoukoliv \(P \in \mathcal{P}\).{% endmath %}
 
-**Definice (řád KPR):** řádem \((X, \mathcal{P})\) je \(n = |P| - 1\) pro jakoukoliv \(P \in \mathcal{P}\).
-
-**Tvrzení:** nechť \((X, \mathcal{P})\) je KPR řádu \(n\). Pak:
+{% math lemma %}
+nechť \((X, \mathcal{P})\) je KPR řádu \(n\). Pak:{% endmath %}
 1. každým bodem prochází \(n + 1\) přímek 
 2. \(|X| = n^2 + n + 1\)
 3. \(|\mathcal{P}| = n^2 + n + 1\)
 
-**Důkaz:**
+{% math proof %}
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -360,23 +376,26 @@ Poté stačí uvážit následující obrázek a spočítat body/přímky. Dalš
 ![](/assets/kombinatorika-a-grafy-i/kpr-pocet.svg)
 
 Bodů na obrázku je \(\overbrace{1}^{x} + \underbrace{\left(n + 1\right)}_{P_0 \ldots P_n}\overbrace{n}^{\text{body $P_i$, bez $x$}} = n^2 + n + 1\).
+{% endmath %}
 
 #### Dualita KPR
 
 {:.rightFloatBox}
 {% xopp xins %}
 
-**Definice (incidenční graf):** nechť \((X, \mathcal{S})\) je množinový systém (\(\mathcal{S} \subseteq 2^X\)). Jeho incidenční graf je bipartitní graf \[\left(V = X \cup \mathcal{S}, E = \left\{(x, s) \in X \times \mathcal{S}\ |\ x \in s\right\}\right)\]
+{% math definition "incidenční graf" %}
+nechť \((X, \mathcal{S})\) je množinový systém (\(\mathcal{S} \subseteq 2^X\)). Jeho incidenční graf je bipartitní graf \[\left(V = X \cup \mathcal{S}, E = \left\{(x, s) \in X \times \mathcal{S}\ |\ x \in s\right\}\right)\]{% endmath %}
 
-**Definice (duál grafu):** \((Y, \mathcal{T})\) je duál \((X, \mathcal{S})\) pokud \(Y = \mathcal{S}\) a \(\mathcal{T} = \left\{\left\{s \in \mathcal{S}\ |\ x \in s\right\}\ |\ x \in X\right\}\)
+{% math definition "duál grafu" %}
+\((Y, \mathcal{T})\) je duál \((X, \mathcal{S})\) pokud \(Y = \mathcal{S}\) a \(\mathcal{T} = \left\{\left\{s \in \mathcal{S}\ |\ x \in s\right\}\ |\ x \in X\right\}\){% endmath %}
 - (👀) incidenční graf \((Y, \mathcal{T})\) je incidenční graf \((X, \mathcal{S})\) s prohozením stran
 
-**Příklad (duál Fanovy roviny):**
-
+{% math example "duál Fanovy roviny" %}
 {:.center}
 ![Duál Fanovy roviny.](/assets/kombinatorika-a-grafy-i/dual-fanovy-roviny.svg)
+{% endmath %}
 
-**Tvrzení:** duál KPR je KPR.
+{% math theorem %}duál KPR je KPR.{% endmath %}
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -385,15 +404,18 @@ Bodů na obrázku je \(\overbrace{1}^{x} + \underbrace{\left(n + 1\right)}_{P_0 
 3. „každé dva body určují právě \(1\) přímku“
 </div>
 
-**Důkaz:** ověření axiomů v duálním světě:
+{% math proof %}
+ověření axiomů v duálním světě:
 1. \(\exists Č\) čtveřice přímek t. ž. \(\forall x \in X\) leží na nanejvýš \(2\) přímkách z \(Č\)
 	- stejné jako „žádné \(3\) přímky z \(Č\) nemají společný bod“
 	- zvolím \(Č = \left\{ab, cd, ad, bc\right\}\), což funguje (zkusit si rozkreslit)
 2. \(\forall x, y \in X, x \neq y: \exists! P \in \mathcal{P}\) t. ž. jimi prochází právě \(1\) přímka
 	- stejné jako původní axiom o přímkách
 3. analogicky viz. ^
+{% endmath %}
 
-**Důsledek:** \((X, \mathcal{P})\) je řádu \(n \implies |\mathcal{P}| = n^2 + n + 1\)
+{% math consequence %}
+\((X, \mathcal{P})\) je řádu \(n \implies |\mathcal{P}| = n^2 + n + 1\){% endmath %}
 - duál \((Y, \mathcal{T})\) je duál \((X, \mathcal{P})\), ten je stejného řádu a proto je i velikost \(|\mathcal{P}| = n^2 + n + 1\)
 
 #### Konstrukce KPR
@@ -432,19 +454,22 @@ Pro KPR řádu \(p^k\), \(p\) prvočíslo vezmu algebraické těleso \(\mathbb{K
 
 #### Latinské čtverce
 
-**Definice (latinský čtverec)** řádu \(n\) je tabulka \(n \times n\) vyplněná čísly \([n]\), kde v žádném řádku či sloupci se symboly neopakují.
-- (👀) \(A\) je LČ \(\implies\) po následujících operacích je stále:
+{% math definition "latinský čtverec" %}
+řádu \(n\) je tabulka \(n \times n\) vyplněná čísly \([n]\), kde v žádném řádku či sloupci se symboly neopakují.{% endmath %}
+- {% math observation %}\(A\) je LČ \(\implies\) po následujících operacích je stále:{% endmath %}
 	- permutace symbolů
 	- permutace sloupců/řádků
 
-**Definice (ortogonalita)**: LČ \(A, B\) jsou ortogonální, pokud pro každou dvojici symbolů \(a, b \in [n]\) existují indexy \(i, j \in [n]\) t. ž. \((A)_{i, j} = a, (B)_{i, j} = b\).
+{% math definition "ortogonalita" %}
+LČ \(A, B\) jsou ortogonální, pokud pro každou dvojici symbolů \(a, b \in [n]\) existují indexy \(i, j \in [n]\) t. ž. \((A)_{i, j} = a, (B)_{i, j} = b\).{% endmath %}
 - když přeložím čtverce přes sebe, najdu políčko \((i, j)\) obsahující dvojici \((a, b)\)
-- (👀) počet dvojic symbolů \(n^2 = \) počtu políček
+- {% math observation %}počet dvojic symbolů \(n^2 = \) počtu políček{% endmath %}
 	- zobrazení je bijekce
 	- \(\forall (a, b)\) se objeví v OLČ právě jednou
-- (👀) \(A, B\) jsou NOLČ \(\implies\) pokud dělám operace z předchozího pozorování v obou čtvercích, tak ortogonalitu zachovávám, jinak nutně ne
+- {% math observation %}\(A, B\) jsou NOLČ \(\implies\) pokud dělám operace z předchozího pozorování v obou čtvercích, tak ortogonalitu zachovávám, jinak nutně ne{% endmath %}
 
-**Příklad** dvou navzájem ortogonálních latinských čtverců stupně \(n\):
+{% math example %}
+dvou navzájem ortogonálních latinských čtverců stupně \(n\):{% endmath %}
 
 \[
 \begin{matrix}
@@ -460,9 +485,11 @@ Pro KPR řádu \(p^k\), \(p\) prvočíslo vezmu algebraické těleso \(\mathbb{K
 \end{matrix}
 \]
 
-**Lemma:** pro daný řád \(n\) může existovat nejvýše \(n - 1\) NOLČ.
+{% math lemma %}
+pro daný řád \(n\) může existovat nejvýše \(n - 1\) NOLČ.{% endmath %}
 
-**Důkaz:** mějme maximální rodinu NOLČ \(L_1, \ldots, L_m\) a permutujme symboly tak, aby každý první řádek byl \(1, 2, 3, \ldots, n\); uvažme symbol na pozici \((2, 1)\):
+{% math proof %}
+mějme maximální rodinu NOLČ \(L_1, \ldots, L_m\) a permutujme symboly tak, aby každý první řádek byl \(1, 2, 3, \ldots, n\); uvažme symbol na pozici \((2, 1)\):{% endmath %}
 - není \(1\), ta je na pozici \((1, 1)\)
 - není nějaké \(k \in \left\{2, \ldots, n\right\}\) ve dvou čtvercích zároveň
 
@@ -473,9 +500,11 @@ Pro KPR řádu \(p^k\), \(p\) prvočíslo vezmu algebraické těleso \(\mathbb{K
 Pro libovolné dvě pozice (které se liší v řádku a sloupci) existuje čtverec, který na nich má stejné hodnoty.
 </div>
 
-**Tvrzení:** pokud \(L_1, \ldots, L_{n - 1}\) jsou NOLČ, potom \(\forall k, k', k \neq k', \forall l, l', l \neq l' \exists i: \left(L_i\right)_{k, l} = \left(L_i\right)_{k', l'}\)
+{% math lemma %}
+pokud \(L_1, \ldots, L_{n - 1}\) jsou NOLČ, potom \(\forall k, k', k \neq k', \forall l, l', l \neq l' \exists i: \left(L_i\right)_{k, l} = \left(L_i\right)_{k', l'}\){% endmath %}
 
-**Důkaz:** zpermutujeme symboly tak, aby \(\forall i \left(L_i\right)_{k, l} = 1\):
+{% math proof %}
+zpermutujeme symboly tak, aby \(\forall i \left(L_i\right)_{k, l} = 1\):
 
 \[
 \underbrace{\begin{bmatrix} &   &   &   \\ & (1) &   &   \\ &   &   &   \\ &   & ? &   \end{bmatrix}
@@ -491,13 +520,14 @@ Ve sloupci s otazníkem nemůže symbol \(1\) být:
 - v řádku s \((1)\)
 - ve dvou čtvercích na stejném místě
 
-Mám tedy \(n - 1\) možností a musím přijít na \(n - 1\) různých řešení. Jedno z nich tedy vyjde na \(?\).
+Mám tedy \(n - 1\) možností a musím přijít na \(n - 1\) různých řešení. Jedno z nich tedy vyjde na \(?\).{% endmath %}
 
 #### NOLČ \(\iff\) KPR
 
-**Věta:** \(\exists L_1, \ldots, L_{n - 1}\) NOLČ \(\iff \exists KPR\) řádu \(n\).
+{% math theorem %}
+\(\exists L_1, \ldots, L_{n - 1}\) NOLČ \(\iff \exists KPR\) řádu \(n\).{% endmath %}
 
-**Důkaz:** konstrukce \(\Rightarrow\)
+{% math proof "konstrukce \(\Rightarrow\)" %} \( \ \)
 - dány čtverce \(L_1, \ldots, L_{n - 1}\)
 - body: \(r, s, l_1, l_{n - 1}, m_{1, 1}, m_{1, 2}, \ldots, m_{1, n}, \ldots, m_{n, n}\)
 - přímky:
@@ -505,6 +535,7 @@ Mám tedy \(n - 1\) možností a musím přijít na \(n - 1\) různých řešen�
 	- \(\mathrm{II}:\) řádky -- \(\forall i \in [n]: \left\{r, m_{i, 1}, m_{i, 2}, \ldots, m_{i, n}\right\}\)
 	- \(\mathrm{III}:\) sloupce -- \(\forall i \in [n]: \left\{s, m_{1, i}, m_{2, i}, \ldots, m_{n, i}\right\}\)
 	- \(\mathrm{IV}: \underbrace{\forall i \in [n]}_{\text{latinské čtverce}}, \underbrace{\forall j \in [n]}_{\text{symboly}}: \left\{l_i\right\} \cup \left\{m_{k, l}\ \mid\ \left(L_i\right)_{k, l} = j\right\}\)
+{% endmath %}
 
 {:.center}
 ![Latinský čtverec na KPR.](/assets/kombinatorika-a-grafy-i/kpr-to-lat.svg)
@@ -540,7 +571,7 @@ Mám tedy \(n - 1\) možností a musím přijít na \(n - 1\) různých řešen�
 		- stejný sloupec: \(\mathrm{III}\)
 		- jinak: \(\mathrm{IV}\) a existuje, vycházíme z minulého pozorování
 
-**Důkaz:** konstrukce \(\Leftarrow\)
+{% math proof "konstrukce \(\Leftarrow\)" %} \( \ \)
 - dána KPR \((X, \mathcal{P})\), hledáme \(L_1, \ldots, L_{n - 1}\)
 	1. zvolíme libovolně přímku \(I = \left\{r, s, l_1, \ldots, l_{n - 1}\right\}\)
 	2. \(\exists n\) přímek protínající \(r\) -- typ \(\mathrm{II}\) a opět oindexuji body
@@ -553,14 +584,17 @@ Jsou NOLČ, protože:
 
 {:.center}
 ![KPR na latinský čtverec.](/assets/kombinatorika-a-grafy-i/lat-to-kpr.svg)
+{% endmath %}
 
 ### 6. přednáška
 
 #### Počítání dvěma způsoby
 
-**Tvrzení:** počet podmnožin \(X = \left| \binom{X}{k}\right| = \binom{|X|}{k}\)
+{% math lemma %}
+počet podmnožin \(X = \left| \binom{X}{k}\right| = \binom{|X|}{k}\){% endmath %}
 
-**Důkaz:** nechť máme bublinu s tečkami, každá reprezentuje uspořádanou \(k\)-tici prvků z \(X\).
+{% math proof %}
+nechť máme bublinu s tečkami, každá reprezentuje uspořádanou \(k\)-tici prvků z \(X\).{% endmath %}
 - počet teček \(= n (n -1) (n-2) \ldots (n - k + 1) = \frac{n!}{(n - k)!}\) (vyberu \(1.\) prvek, \(2.\) prvek,...)
 - v každé buňce \(k\)-tic (ekvivalenční třídě přes příslušnou relaci) se stejnými prvky je \(k!\) prvků, počet buňek je to, co chceme (neuspořádaná \(k\)-tice)
 
@@ -571,12 +605,14 @@ Jsou NOLČ, protože:
 \end{aligned}
 \]
 
-**Věta (Spernerova):** nechť \((\mathcal{P}, \subseteq)\) je částečné uspořádání, kde \(\mathcal{P}\) je množinový systém. Nechť \(\mathcal{M}\) je největší antiřetězec (\(\forall M_1, M_2 \in \mathcal{M}, M_1 \neq M_2: M_1 \nsubseteq M_2 \land M_2 \nsubseteq M_1\)). Pak \(|\mathcal{M}| \le \binom{n}{\left\lceil \frac{n}{2} \right\rceil}\), kde \(n = |X|\).
+{% math theorem "Spernerova" %}
+nechť \((\mathcal{P}, \subseteq)\) je částečné uspořádání, kde \(\mathcal{P}\) je množinový systém. Nechť \(\mathcal{M}\) je největší antiřetězec (\(\forall M_1, M_2 \in \mathcal{M}, M_1 \neq M_2: M_1 \nsubseteq M_2 \land M_2 \nsubseteq M_1\)). Pak \(|\mathcal{M}| \le \binom{n}{\left\lceil \frac{n}{2} \right\rceil}\), kde \(n = |X|\).{% endmath %}
 
 {:.center}
 ![Sperenerova věta.](/assets/kombinatorika-a-grafy-i/spernerova-veta.svg)
 
-**Pomocné tvrzení:** \(\sum_{M \in \mathcal{M}} \left|M\right|! (n - \left|M\right|)! \le n!\). Přes dvojí počítání počtu permutací na \(X\):
+{% math lemma "pomocné" %}
+\(\sum_{M \in \mathcal{M}} \left|M\right|! (n - \left|M\right|)! \le n!\). Přes dvojí počítání počtu permutací na \(X\):{% endmath %}
 - počet permutací \(= n!\) (očividné)
 - počet permutací \(\ge \sum_{M \in \mathcal{M}} |M|! (n - |M|)! \), protože:
 	- pro každé \(M\) dostanu jinou množinu permutaci
@@ -586,9 +622,9 @@ Jsou NOLČ, protože:
 
 - \(\emptyset \subseteq \left\{x_1\right\} \subseteq \left\{x_1, x_2\right\} \subseteq \ldots \subseteq M \subseteq \ldots \subseteq X\)
 	- zajímá nás, kolik různých řetězců obsahuje \(M\)
-- (👀) každý maximální řetězec obsahuje \(\le 1\ M \in \mathcal{M}\) 
+- {% math observation %}každý maximální řetězec obsahuje \(\le 1\ M \in \mathcal{M}\){% endmath %}
 
-**Důkaz (přes pomocné tvrzení):**
+{% math proof "přes pomocné tvrzení" %}
 \[
 \begin{aligned}
 	\sum_{M \in \mathcal{M}} |M!| (n - |M|)! &\le n! \\
@@ -596,6 +632,7 @@ Jsou NOLČ, protože:
 	\left|\mathcal{M}\right| &\le \binom{n}{\left\lceil \frac{n}{2} \right\rceil}  \\
 \end{aligned}
 \]
+{% endmath %}
 
 #### Grafy bez \(C_k\)
 
@@ -605,12 +642,14 @@ Jsou NOLČ, protože:
 - kolik nejvíce hran má \(G\), když nemá \(C_3\)?
 	- \(\mathcal{O}(n^2)\), uvažme bipartitní graf
 
-**Věta:** graf \(G\) s \(n\) vrcholy bez \(C_4\) má nejvýše \(\frac{1}{2} \left(n^{3/2} + n\right)\) hran.
+{% math theorem %}
+graf \(G\) s \(n\) vrcholy bez \(C_4\) má nejvýše \(\frac{1}{2} \left(n^{3/2} + n\right)\) hran.{% endmath %}
 
 {:.rightFloatBox}
 ![Vidlička.](/assets/kombinatorika-a-grafy-i/vidlicka.svg)
 
-**Důkaz:** dvojí počítání „vidliček“ (cest delky \(2\)):
+{% math proof %}
+dvojí počítání „vidliček“ (cest delky \(2\)):{% endmath %}
 1. pro pevnou dvojici \(\left\{u, u'\right\}\) mám nanejvýš 1 vidličku (dvě by tvořily čtyřcyklus), tedy \(\#\ \text{vidliček}\ \le \binom{n}{2}\)
 2. pro pevný vrchol \(v\) máme \(\#\ \text{vidliček}\ = \binom{d_i}{2}\)
 
@@ -646,13 +685,15 @@ xy = \sum k_i = \sum \left(d_i - 1\right) = 2|E| - n \\
 
 #### Počítání koster
 
-**Věta (Cayleyho formule):** počet koster úplného grafu \(\kappa(n) = n^{n - 2}\).
+{% math theorem "Cayleyho formule" %}
+počet koster úplného grafu \(\kappa(n) = n^{n - 2}\).{% endmath %}
 - pozor, počítám i izomorfní kostry!
 
 {:.rightFloatBox}
 {% xopp kostry %}
 
-**Důkaz:** počítání \((T, r, č)\), kde:
+{% math proof %}
+počítání \((T, r, č)\), kde:{% endmath %}
 - \(T\) je strom na \(n\) vrcholech
 - \(r\) kořen (hrany vedou do kořene, ne z něho)
 - \(č\) očíslování hran (nějaké), \(č: E \mapsto [n - 1]\)
@@ -662,8 +703,8 @@ xy = \sum k_i = \sum \left(d_i - 1\right) = 2|E| - n \\
 	- \(r\) volíme libovolně z \(n\) vrcholů
 	- \(č\) je prostě random očíslovaní na \(n - 1\) hranách
 2. představa: přidávám hrany, až nakonec dojdu k \((T, r, č)\) a jsem v \(k\)-tém kroce:
-	- (👀) nesmím vést hranu uvnitř komponenty (cykly)
-	- (👀) musím vést hranu pouze z kořene dané komponenty (jeden vrchol by měl 2 rodiče)
+	- {% math observation %}nesmím vést hranu uvnitř komponenty (cykly){% endmath %}
+	- {% math observation %}musím vést hranu pouze z kořene dané komponenty (jeden vrchol by měl 2 rodiče){% endmath %}
 
 	1. zvolím, kam šipka povede... \(n\) způsobů
 	2. zvolím komponentu, ze které povede... \(n - k - 1\)
@@ -681,7 +722,8 @@ xy = \sum k_i = \sum \left(d_i - 1\right) = 2|E| - n \\
 
 #### Toky
 
-**Definice (síť)** je čtveřice \((G, z, s, c)\), kde:
+{% math definition "síť" %}
+je čtveřice \((G, z, s, c)\), kde:{% endmath %}
 - \(G\) je orientovaný graf, \(z, s \in V(G)\)
 - \(c: E \mapsto \mathbb{R}_{\ge 0}\)
 
@@ -690,7 +732,9 @@ xy = \sum k_i = \sum \left(d_i - 1\right) = 2|E| - n \\
 1. omezení shora kapacitami
 2. Kirchhoff
 </div>
-**Definice (tok)** v síti je \(f: E \mapsto \mathbb{R}_{\ge 0}\), t. ž.:
+
+{% math definition "tok" %}
+v síti je \(f: E \mapsto \mathbb{R}_{\ge 0}\), t. ž.:{% endmath %}
 1. \(\forall e \in E(G)\) platí \(0 \le f(e) \le c(e)\)
 2. \(\forall v \in V(G), v \not\in \left\{z, s\right\}\) platí \(\sum f(x, v) = \sum f(v, y)\)
 
@@ -699,13 +743,17 @@ xy = \sum k_i = \sum \left(d_i - 1\right) = 2|E| - n \\
 To, co teče ven ze zdroje.
 </div>
 
-**Definice (velikost toku)** \(w(f) = \sum f(z, x) - \sum f(x, z)\) 
+{% math definition "velikost toku" %}
+\(w(f) = \sum f(z, x) - \sum f(x, z)\) {% endmath %}
 
-**Věta:** existuje maximální tok.
+{% math theorem %}
+existuje maximální tok.{% endmath %}
 
-**Nástin důkazu:** Nástin je takový, že množina toků je kompaktní a obsahuje tedy i maximum (nevznikne nám tam nějaká divnost).
+{% math definition "pseudo" %}
+Nástin je takový, že množina toků je kompaktní a obsahuje tedy i maximum (nevznikne nám tam nějaká divnost).{% endmath %}
 
-**Definice (řez)** v síti je množina hran \(R \subseteq E(G)\) taková, že v grafu \((V, E \setminus R)\) neexistuje cesta ze zdroje do stoku.
+{% math definition "řez" %}
+v síti je množina hran \(R \subseteq E(G)\) taková, že v grafu \((V, E \setminus R)\) neexistuje cesta ze zdroje do stoku.{% endmath %}
 - **kapacita** řezu je \(c(R) = \sum_{e \in R} c(e)\), analogicky tok
 - \(S(A, B) = \left\{(x, y) \in E\ |\ x \in A, y \in B\right\}\)
 	- neobsahuje hrany z \(B\) do \(A\)!
@@ -714,11 +762,13 @@ To, co teče ven ze zdroje.
 
 ##### max flow, min cut
 
-**Věta (max flow, min cut):** pro každou síť je maximální tok roven minimálnímu řezu.
+{% math theorem "max flow, min cut" %}
+pro každou síť je maximální tok roven minimálnímu řezu.{% endmath %}
 
-**Lemma:** pro každou \(A \subseteq V\) t. ž. \(z \in A, s \not\in A\) a pro libovolný tok \(f\) platí: \[w(f) = f(A, V \setminus A) - f(V \setminus A, A)\]
+{% math lemma %}
+pro každou \(A \subseteq V\) t. ž. \(z \in A, s \not\in A\) a pro libovolný tok \(f\) platí: \[w(f) = f(A, V \setminus A) - f(V \setminus A, A)\]{% endmath %}
 
-**Důkaz:**
+{% math proof %}
 \[
 \begin{aligned}
 	w(f) &= \sum_{u \in A} \left(\sum_{(u, x) \in E} f(u, x) - \sum_{(x, u) \in E} f(x, u)\right) \qquad //\ \text{pouze definice} \\
@@ -726,20 +776,25 @@ To, co teče ven ze zdroje.
 	&= f(A, V \setminus A) - f(V \setminus A, A) \\
 \end{aligned}
 \]
+{% endmath %}
 
-**Důsledek:** \(w(f) \le c(R)\), protože
-\[w(f) = f(A, V \setminus A) - f(V \setminus A, A) \le f(A, V \setminus A) \le c(A, V \setminus A) \le c(R)\]
+{% math consequence %}
+\(w(f) \le c(R)\), protože
+\[w(f) = f(A, V \setminus A) - f(V \setminus A, A) \le f(A, V \setminus A) \le c(A, V \setminus A) \le c(R)\]{% endmath %}
 
-**Definice (nasycená cesta)** je (neorientovaná) cesta, pokud \(\exists e\) na cestě t. ž. buďto:
+{% math definition "nasycená cesta" %}
+je (neorientovaná) cesta, pokud \(\exists e\) na cestě t. ž. buďto:{% endmath %}
 - vede po směru a \(f(e) = c(e)\)
 - vede proti směru a \(f(e) = 0\)
 
-**Definice (nasycený tok)** je tok takový, že každá (neorientovaná) cesta ze \(z\) do \(s\) je nasycená.
+{% math definition "nasycený tok" %}
+je tok takový, že každá (neorientovaná) cesta ze \(z\) do \(s\) je nasycená.{% endmath %}
 
-**Tvrzení:** \(f\) je maximální \(\iff f\) je nasycený.
+{% math lemma %}
+\(f\) je maximální \(\iff f\) je nasycený.{% endmath %}
 
-**Důkaz:** sporem, že \(f\) maximální je nasycený.
-- předpokládáme maximální \(f\), který není nasycený, tedy existuje nenasycená cesta \(P\)
+{% math proof "maximální je nasycený" %}  \( \ \)
+- sporem, předpokládáme maximální \(f\), který není nasycený, tedy existuje nenasycená cesta \(P\)
 	- \(\varepsilon_1 = min \left\{c(e)-f(e)\ |e \in P \text{ po směru } \right\}\)
 	- \(\varepsilon_2 = min \left\{f(e)\ |e \in P \text{ proti směru } \right\}\)
 	- \(\varepsilon_P = min \left\{\varepsilon_1, \varepsilon_2 \right\} > 0 \), protože \(P\) není nasycená
@@ -749,9 +804,10 @@ To, co teče ven ze zdroje.
 	- \(f'(e) = f(e)\) pro \(e \notin P\)
 \[w(f') = \sum f'(z,x) - f'(x,z) = w(f) + \varepsilon_P\]
 - \(f\) nebyl maximální, spor
+{% endmath %}
 
-**Důkaz:** že \(f\) nasycený je maximální.
-- tak uvážíme množinu vrcholů, do kterých se lze dostat ze \(z\) po nenasycené cestě -- \(A = \left\{v \in V\ |\ \exists\ \text{nenasycená cesta }\right\}\)
+{% math proof "nasycený je maximální" %} \( \ \)
+- uvážíme množinu vrcholů, do kterých se lze dostat ze \(z\) po nenasycené cestě -- \(A = \left\{v \in V\ |\ \exists\ \text{nenasycená cesta }\right\}\)
 	- \(s \notin A\) (jinak \(f\) není nasycený)
 	- \(\forall e \in S(A, V \setminus A)\) platí \(f(e) = c(e)\)
 	- \(\forall e \in S(V \setminus A, A)\) platí \(f(e) = 0\) (jinak bychom nenasycenou cestu mohli prodloužit
@@ -763,28 +819,34 @@ To, co teče ven ze zdroje.
 	&= c(f)
 \end{aligned}
 \]
+{% endmath %}
 
 ##### Ford-Fulkerson
 1. \(f(e) = 0, \forall e \in E\)
 2. dokud \(\exists\) zlepšující cesta \(P\), zlepši tok přes \(P\)
 
-**Tvrzení:** pokud jsou kapacity racionální, pak algoritmus doběhne. Pokud jsou přirozené, dá celočíselný tok.
+{% math lemma %}
+pokud jsou kapacity racionální, pak algoritmus doběhne. Pokud jsou přirozené, dá celočíselný tok.{% endmath %}
 - racionální: pronásobení LCM a důkaz pro přirozené
 - přirozené: každé vylepšení cesty bude celočíselné a udělá to konečněkrát
 
-(👀) Celočíselný tok lze rozdělit na celočíselný součet cest a cyklů.
+{% math observation %}
+Celočíselný tok lze rozdělit na celočíselný součet cest a cyklů.{% endmath %}
 
-**Důkaz:** Plyne z běhu F-F algoritmu. Tok je součtem zlepšujících cest a cyklů.
+{% math proof %}
+Plyne z běhu F-F algoritmu. Tok je součtem zlepšujících cest a cyklů.{% endmath %}
 
 ### 8. přednáška
 
 #### Aplikace toků v sítích
 
-**Věta (Königova):** v bipartitním grafu: velikost maximálního párování \(=\) velikost minimalního vrcholového pokrytí.
+{% math theorem "Königova" %}
+v bipartitním grafu: velikost maximálního párování \(=\) velikost minimalního vrcholového pokrytí.{% endmath %}
 - \(M \subseteq E\) je **párování**, pokud \(\forall e, e' \in M, e \neq e': e \cap e' = \emptyset\) 
 - \(U \subseteq V\) je **vrcholové pokrytí**, pokud \(\forall e \in E \exists u \in U: u \in e\)
 
-**Důkaz:** přes toky, jako na následujícím obrázku na síti kapacit \(1\):
+{% math proof %}
+přes toky, jako na následujícím obrázku na síti kapacit \(1\):{% endmath %}
 
 {:.center}
 ![Königova věta.](/assets/kombinatorika-a-grafy-i/konig.svg)
@@ -807,23 +869,27 @@ Z toku mám maximální párování \(M\) velikosti \(k\), ze kterého sestrojí
 
 Dostáváme tedy, že min. řez je roven nějakému pokrytí, a že min. pokrytí je rovno nějakému řezu, tedy že min. pokrytí je rovno min. řezu.
 
-**Definice:**
+{% math definition %} \( \ \)
 - **množinový systém** na množině \(X\) je \((M_i)_{i \in I}, M_i \subseteq X\)
 - **systém různých reprezentantů** je funkce \(f: I \mapsto X\) splňující:
 	1. \(\forall i \in I: f(i) \in M_i\)
 	2. \(f\) je prostá (jeden prvek \(x \in X\) není reprezentantem dvou \(M\))
-
+{% endmath %}
 
 {:.rightFloatBox}
 <div markdown="1">
 Analogicky pro grafy: bipartitní graf \(G = (L \cup P, E)\) má párování pokrývající \(P\) pokud \(\forall P' \subseteq P: \left|\bigcup_{v \in P'} N(v)\right| \ge |P'|\). \(N\) je sousedství (to, co vrcholy zprava na levé straně „vidí“).
 </div>
-**Hallova věta:** SRR existuje \(\iff \forall J \subseteq I: \left|\bigcup_{i \in J} M_i\right| \ge |J|\).
 
-**Důkaz (SSR \(\Rightarrow\) Hall):** zvolím libovolnou \(J \subseteq I\). \(\forall j \in J \exists p_j \in M_j, p_j = f(j)\), tak že prvky \(p_j\) jsou navzájem různé (\(f\) je prostá).
+{% math theorem "Hallova" %}
+SRR existuje \(\iff \forall J \subseteq I: \left|\bigcup_{i \in J} M_i\right| \ge |J|\).{% endmath %}
+
+{% math proof "SSR \(\Rightarrow\) Hall" %}
+zvolím libovolnou \(J \subseteq I\). \(\forall j \in J \exists p_j \in M_j, p_j = f(j)\), tak že prvky \(p_j\) jsou navzájem různé (\(f\) je prostá).{% endmath %}
 \[|J| = \left|\left\{p_j\ |\ j \in J\right\}\right| \le |\bigcup_{j \in J} M_j|\]
 
-**Důkaz (SSR \(\Leftarrow\) Hall):** opět najdu v grafu (celočíselný, jednotková síť) maximální tok. Najdu minimální řez z hran pouze ze zdroje/do stoku, \(|R| = |R'|\). Uvážím následující obrázek:
+{% math proof "SSR \(\Leftarrow\) Hall" %}
+opět najdu v grafu (celočíselný, jednotková síť) maximální tok. Najdu minimální řez z hran pouze ze zdroje/do stoku, \(|R| = |R'|\). Uvážím následující obrázek:{% endmath %}
 
 {% xopp hall %}
 
@@ -833,7 +899,8 @@ Analogicky pro grafy: bipartitní graf \(G = (L \cup P, E)\) má párování pok
 
 Chceme najít systém různých reprezentantů. Dokážeme to tak, že \(|R'| = |I|\), pak max. tok má velikost \(|I|\) a hrany s tokem \(1\) mi dají SRR.
 
-(👀) hrany z \(J\) vedou pouze do \(B\), protože jinak by existovala \(z-s\) cesta a nejednalo by se o řez, tedy \(\left|\bigcup_{j \in J} M_j\right| \subseteq B\).
+{% math observation %}
+hrany z \(J\) vedou pouze do \(B\), protože jinak by existovala \(z-s\) cesta a nejednalo by se o řez, tedy \(\left|\bigcup_{j \in J} M_j\right| \subseteq B\).{% endmath %}
 
 \[
 \begin{aligned}
@@ -850,14 +917,17 @@ Definuji SRR jako \(f(i) = x \in X\), pokud po hraně \((i, x)\) něco teče.
 
 ### 9. přednáška
 
-**Důsledek:** nechť \(B = (V_1 \cup V_2, E)\) je bipartitní graf, kde \(k_1 = \mathrm{min}\ \underset{v \in V_1}{\deg}\ v, k_2 = \mathrm{max}\ \underset{v \in V_2}{\deg}\ v \) a \(k_1 \ge k_2\), pak je splněna Hallova podmínka.
+{% math consequence %}
+nechť \(B = (V_1 \cup V_2, E)\) je bipartitní graf, kde \(k_1 = \mathrm{min}\ \underset{v \in V_1}{\deg}\ v, k_2 = \mathrm{max}\ \underset{v \in V_2}{\deg}\ v \) a \(k_1 \ge k_2\), pak je splněna Hallova podmínka.{% endmath %}
 
-**Důkaz:** Ověřím Hallovu podmínku (pozor, prohozené strany). Máme-li množinu \(J\) a každá vidí alespoň \(k_1\) hran, pak vidím \(\ge |J| k_1\) hran. Abych pohltil všechny tyto hrany, tak musí napravo být alespoň \(k_2 |N[j]|\) vrcholů. Musí tedy platit:
+{% math proof %}
+Ověřím Hallovu podmínku (pozor, prohozené strany). Máme-li množinu \(J\) a každá vidí alespoň \(k_1\) hran, pak vidím \(\ge |J| k_1\) hran. Abych pohltil všechny tyto hrany, tak musí napravo být alespoň \(k_2 |N[j]|\) vrcholů. Musí tedy platit:{% endmath %}
 \[|J| k_1 \le \#\ \text{hran} \le k_2 |N[J]|\]
 
 Protože \(k_1 \ge k_2\), pak \(|N[j]| \ge |J|\).
 
-**Aplikace:** doplňování latinských obdélníků:
+{% math example %}
+doplňování latinských obdélníků:{% endmath %}
 
 {:.center}
 ![Latinský obdelník.](/assets/kombinatorika-a-grafy-i/lat-rect.svg)
@@ -869,18 +939,20 @@ Máme tedy \(\left(n - k\right)\)-regulární graf, pro který \(\exists\) perfe
 
 #### Míra souvislosti neorientovaných grafu
 
-**Definice**
+{% math definition %} \( \ \)
 - **hranový řez** v grafu \(G\) je \(F \subseteq E\) t. ž. \(G' = (V, E \setminus F)\) je nesouvislý.
 - **vrcholový řez** v grafu \(G\) je \(A \subseteq V\) t. ž. \(G' = (V \setminus A, E \cap \binom{V \setminus A}{2}) = G\left[V \setminus A\right]\) je nesouvislý.
 - **hranová souvislost** \(k_e(G) = \mathrm{min} \left\{|F|\ |\ F \subseteq E \text{ je hranový řez}\right\}\)
 - **vrcholová souvislost** \(k_v(G) = \begin{cases}n - 1 & G \cong K_n \\ \mathrm{min} \left\{|A|\ |\ A \subseteq V \text{ je vrcholový řez}\right\} & \text{jindy} \end{cases}\)
 - \(G\) je **hranově/vrcholově \(k\)-souvislý**, pokud \(k_{e/v}(G) \ge k\)
 	- „potřebuješ useknout alespoň \(k\) hran/vrcholů na to, aby se graf rozpadl“
-	- (👀) je-li \(3\)-souvislý, pak je i \(2\)-souvislý a \(1\)-souvislý
+	- {% math observation %}je-li \(3\)-souvislý, pak je i \(2\)-souvislý a \(1\)-souvislý{% endmath %}
 	- je **kriticky** \(k\)-souvislý, pokud odstranění libovolného vrcholu sníží stupeň souvislosti
 		- stromy jsou hranově \(1\)-souvislé, vrcholově ne (co listy?)
+{% endmath %}
 
-**Lemma:** \(\forall G, \forall e \in E\) platí \(k_e(G) - 1 \le k_e(G - e) \le k_e(G)\)
+{% math lemma %}
+\(\forall G, \forall e \in E\) platí \(k_e(G) - 1 \le k_e(G - e) \le k_e(G)\){% endmath %}
 - zas tak triviální to není, u vrcholové může (odstraněním vrcholu) vzrůst (listy z kružnice)
 - lemma říká, že se hranová souvislost „chová slušně“
 
@@ -889,10 +961,12 @@ Máme tedy \(\left(n - k\right)\)-regulární graf, pro který \(\exists\) perfe
 Tomovo poznámka: V důkazu \(k_e(G) \le k_v(G)\) se tohle lemma nepoužívá (alespoň tak, jak to chápu). Jsem trochu zmatený z toho, proč Martin říkal, že ano.
 </div>
 
-**Důkaz (\(\le\)):** vezmu minimální řez \(F \subseteq E\) v \(G\), \(F' = F \setminus \left\{e\right\}\) jistě musí být řez v \(G - e\); pak:
+{% math proof "\(\le\)" %}
+vezmu minimální řez \(F \subseteq E\) v \(G\), \(F' = F \setminus \left\{e\right\}\) jistě musí být řez v \(G - e\); pak:{% endmath %}
 \[k_e(G - e) \le |F'| \le |F| = k_e(G)\]
 
-**Důkaz (\(\ge\)):** vezmu minimální řez \(B\) v \(G - e\) \(B' = B \cup \left\{e\right\}\) je řezem v \(G\), pak:
+{% math proof "\(\ge\)" %}
+vezmu minimální řez \(B\) v \(G - e\) \(B' = B \cup \left\{e\right\}\) je řezem v \(G\), pak:{% endmath %}
 \[
 \begin{aligned}
 	k_e(G) \le |B'| &= |B| + 1 = k_e(G - e) + 1\\
@@ -900,9 +974,11 @@ Tomovo poznámka: V důkazu \(k_e(G) \le k_v(G)\) se tohle lemma nepoužívá (a
 \end{aligned}
 \]
 
-**Lemma:** \(\forall G, \forall e \in E\) platí \(k_v(G) - 1 \le k_v(G - e) \le k_v(G)\)
+{% math lemma %}
+\(\forall G, \forall e \in E\) platí \(k_v(G) - 1 \le k_v(G - e) \le k_v(G)\){% endmath %}
 
-**Důkaz:** trochu přeformulujeme... pro \(H = G - e: k_v (H + e) \le k_v (H) + 1\):
+{% math proof %}
+trochu přeformulujeme... pro \(H = G - e: k_v (H + e) \le k_v (H) + 1\):{% endmath %}
 
 V \(H\) existuje vrcholový řez \(A \subseteq V(H), k_v(H) = |A|\). Při odebrání \(A\) se \(H\) rozpadne na alespoň \(2\) komponenty. Sledujeme (rozebíráme případy), co se se souvislostí stane, když přidáme do grafu hranu \(e\):
 - alespoň \(1\) konec \(e\) leží v \(A\):
@@ -917,7 +993,8 @@ V \(H\) existuje vrcholový řez \(A \subseteq V(H), k_v(H) = |A|\). Při odebr�
 			- \(|V| = |A| + 2 \implies |A| = |V| - 2 = k_v(H)\)
 			- \(k_v(H + e) \overset{\text{def.}}{\le} |V| - 1 = k_v(H) + 1\)
 
-**Věta:** \(k_v(G) \le k_e(G)\): indukcí podle počtu hran:
+{% math theorem %}
+\(k_v(G) \le k_e(G)\): indukcí podle počtu hran:{% endmath %}
 - pokud \(|E| < |V| - 1\), pak je \(G\) nesouvislý a \(k_v(G) = 0 = k_e(G)\)
 - nechť nadále \(k_e(G) > 0\); vezmu min. hranový řez \(F \subseteq E\) a \(e \in F\); také \(G' = G - e\)
 	- na \(G'\) použiju IP, tedy \(k_v(G') \le k_e(G')\)
@@ -926,10 +1003,11 @@ V \(H\) existuje vrcholový řez \(A \subseteq V(H), k_v(H) = |A|\). Při odebr�
 
 Kde poslední rovnost platí, protože \(F' = F \setminus {e}\) je (z definice) řezem \(G - e\).
 
-**Věta (Ford-Fulkerson):** \(\forall G\), pokud \(k_e(G) \ge t\), pak \(\forall u, v
-\) mezi \(u, v\) existuje alespoň \(t\) hranově disjunktních cest
+{% math theorem "Ford-Fulkerson" %}
+\(\forall G\), pokud \(k_e(G) \ge t\), pak \(\forall u, v \) mezi \(u, v\) existuje alespoň \(t\) hranově disjunktních cest{% endmath %}
 
-**Důkaz (\(\Leftarrow\)):** sporem nechť existuje hranový řez \(F\) a \(|F| < t\). \(G \setminus F\) je rozdělený na více komponent. Vezmi \(u \in C_1, v \in C_2\). Mezi \(u, v\) vedlo \(t\) hranově disjunktních cest. \(F\) nemohl přerušit všechny z nich.
+{% math proof "\(\Leftarrow\)" %}
+sporem nechť existuje hranový řez \(F\) a \(|F| < t\). \(G \setminus F\) je rozdělený na více komponent. Vezmi \(u \in C_1, v \in C_2\). Mezi \(u, v\) vedlo \(t\) hranově disjunktních cest. \(F\) nemohl přerušit všechny z nich.{% endmath %}
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -939,23 +1017,28 @@ Kde poslední rovnost platí, protože \(F' = F \setminus {e}\) je (z definice) 
 	- každou hranu využíváme \(1\)!
 </div>
 
-**Důkaz (\(\Rightarrow\)):** mějme \(k_e(G) \ge t\) a pro \(u, v\) hledám disjunktní cesty. Sestrojím jednotkovou síť, najdu tok z \(u\) do \(v\). Pak vidím, že mám tok alespoň \(t\) (maximální tok je minimální řez) a začnu odčítat cesty.
+{% math proof "\(\Rightarrow\)" %}
+mějme \(k_e(G) \ge t\) a pro \(u, v\) hledám disjunktní cesty. Sestrojím jednotkovou síť, najdu tok z \(u\) do \(v\). Pak vidím, že mám tok alespoň \(t\) (maximální tok je minimální řez) a začnu odčítat cesty.{% endmath %}
 
-**Věta (Mengerova):** \(k_v(G) \ge T \iff \forall u, v \in V \exists t\) vrcholově disjunktních cest
+{% math theorem "Mengerova" %}
+\(k_v(G) \ge T \iff \forall u, v \in V \exists t\) vrcholově disjunktních cest{% endmath %}
 
-**Důkaz (\(\Leftarrow\)):** stejný jako FF, jen nahraď „hrany“ za „vrcholy“.
+{% math proof "\(\Leftarrow\)" %}
+stejný jako FF, jen nahraď „hrany“ za „vrcholy“.{% endmath %}
 
-**Důkaz (\(\Rightarrow\)):** uděláme trik s dělením vrcholů na dva (\(\deg_{\mathrm{in}}, \deg_{\mathrm{out}}\)) a v libovolném řezu nahradíme hrany vedoucí do/z vrcholů za hranu spojující vrcholy. 
+{% math proof "\(\Rightarrow\)" %}
+uděláme trik s dělením vrcholů na dva (\(\deg_{\mathrm{in}}, \deg_{\mathrm{out}}\)) a v libovolném řezu nahradíme hrany vedoucí do/z vrcholů za hranu spojující vrcholy. {% endmath %}
 
 ### 10. přednáška
 
 #### Lepení uší
 
-**Věta:** graf je \(2\)-souvislý právě tehdy, když jej lze vytvořit  z \(K_3\) posloupností:
+{% math theorem %}
+graf je \(2\)-souvislý právě tehdy, když jej lze vytvořit  z \(K_3\) posloupností:{% endmath %}
 - dělení hran
 - přidávání hran
 
-**Důkaz (\(\Rightarrow\)):**
+{% math proof "\(\Rightarrow\)" %} \( \ \)
 - zvolme \(G_0\) libovolně (kružnici mít musí, jinak není \(2\)-souvislý).
 - předpokládejme, že \(G_j, j \le i\) jsou definovány jako výše
 - pokud \(G_i = G\), tak jsme hotovi
@@ -963,23 +1046,26 @@ Kde poslední rovnost platí, protože \(F' = F \setminus {e}\) je (z definice) 
 	- \(\exists e = \left\{v, v'\right\} \in E \setminus E_i\), která se dotýká původního grafu (\(e \cap V_i \neq \emptyset\))
 		- pokud oba vrcholy \(e\) patří do \(V_i\), tak ji přidám (\(G_{i + 1} = G_i + e\))
 		- pokud ne: \(G - v\) musí stále být souvislý (\(G\) je \(2\)-souvislý) -- prostě vezmeme nejkratší cestu zpět do nějakého \(G_j\)
+{% endmath %}
 
 {:.center}
 ![Lepení uší.](/assets/kombinatorika-a-grafy-i/ears.svg)
 
-**Důkaz (\(\Leftarrow\)):** stačí vidět, že nikdy nevznikne artikulace, protože uši lepím mezi \(2\) různé vrcholy.
+{% math proof "\(\Leftarrow\)" %}
+stačí vidět, že nikdy nevznikne artikulace, protože uši lepím mezi \(2\) různé vrcholy.{% endmath %}
 
 #### Samoopravné kódy
 
-**Hammingův kód:** vycházíme z fannovy roviny a o přímkách uvažujeme jako o prvcích \(\mathbb{Z}_2^7\)
+{% math definition "Hammingův kód" %}
+vycházíme z fannovy roviny a o přímkách uvažujeme jako o prvcích \(\mathbb{Z}_2^7\){% endmath %}
 
 \[H = \underbrace{\left\{\text{char. vektory přímek}\right\}}_{P_1 = \left\{1, 2, 4\right\} = (1\ 1\ 0\ 1\ 0\ 0\ 0)} \cup \underbrace{\left\{\text{char. vektory doplňků přímek}\right\}}_{P_1 + (1\ \ldots\ 1) = (0\ 0\ 1\ 0\ 1\ 1\ 1)} \cup \left\{(0\ \ldots\ 0), (1\ \ldots\ 1)\right\}\]
 - \(|H| = 7 + 7 + 2 = 16\)
 - \(c \in H\) je **kódové slovo**
 - \(H\) je **kód**
-- (👀) \(\forall c, c' \in H\) se liší v alespoň třech souřadnicích
+- {% math observation %}\(\forall c, c' \in H\) se liší v alespoň třech souřadnicích{% endmath %}
 	- vychází z KPR, později dokážeme obecně
-- (👀)  \(\forall v \in \mathbb{Z}_2^7 \exists! c \in H\) t. ž. \(d(v, c) \le 1\)
+- {% math observation %}\(\forall v \in \mathbb{Z}_2^7 \exists! c \in H\) t. ž. \(d(v, c) \le 1\){% endmath %}
 	- dostáváme z toho dekódovací pravidlo -- dekóduj na nejbližší slovo!
 
 **Protokol:**
@@ -997,7 +1083,7 @@ Kde poslední rovnost platí, protože \(F' = F \setminus {e}\) je (z definice) 
 
 ---
 
-**Definice:**
+{% math definition %} \( \ \)
 - \(\Sigma \ldots\) abeceda
 	- \(s \in \Sigma^n \ldots\) slovo (vstup)
 - \(C \subseteq \Sigma^n \ldots\) kód
@@ -1012,8 +1098,9 @@ Kde poslední rovnost platí, protože \(F' = F \setminus {e}\) je (z definice) 
 		- \(d = 3 \ldots\) umím opravit \(1\) chybu
 		- \(\Delta(C) \ge 2t + 1\) znamená, že „\(C\) má schopnost opravit \(t\) chyb“
 - kód s vlastnostmi \(n, k, d\) se označuje \((n,k,d)-\) kód
+{% endmath %}
 
-**Příklady kódů:**
+{% math example "kódů" %} \( \ \)
 1. totální kód \(C = \Sigma^n\) (nic se nekóduje)
 	- délka \( = n\)
 	- velikost \(= 2^n \implies k = \log |C| = n\)
@@ -1031,6 +1118,7 @@ Kde poslední rovnost platí, protože \(F' = F \setminus {e}\) je (z definice) 
 	- \(\implies (n,  n - 1, 2)-\)kód
 4. Hammingův kód
 	- \(\implies (7,  4, 3)-\)kód
+{% endmath %}
 
 ### 11. přednáška
 
@@ -1046,7 +1134,8 @@ Maximální dimenze kódu (logaritmus počtu kódových slov), když určím dé
 	- \(A(n, 1) = n\) (triviální kód)
 	- \(A(n, 2) \ge n - 1\) (paritní kód má \(|C| = 2^{n -1}, d = 2\))
 
-(👀) \(\forall d \le n, d \ge 2: A(n, d) \le A(n - 1, d - 1)\)
+{% math observation %}
+\(\forall d \le n, d \ge 2: A(n, d) \le A(n - 1, d - 1)\){% endmath %}
 - po odstranění bitu vzdálenost slov klesne nejvýše o \(1\) (pokud se slova v bytu liší); velikost nového kódu \(|C'| = |C|\) (díky předpokladu funguje, žádná slova se nesloučí)
 
 {:.rightFloatBox}
@@ -1054,24 +1143,30 @@ Maximální dimenze kódu (logaritmus počtu kódových slov), když určím dé
 Není to Simpletonův, ale Singletonův (viz. [Wikipedia](https://en.wikipedia.org/wiki/Singleton_bound)). Byť je ten odhad docela triviální 🙂.
 </div>
 
-**Věta (Singletonův odhad):** \(\forall d \le n\) platí \(A(n, d) \le n - d + 1\)
+{% math theorem "Singletonův odhad" %}
+\(\forall d \le n\) platí \(A(n, d) \le n - d + 1\){% endmath %}
 - \(A(n, d) \le A(n - 1, d - 1) \le \ldots \le A(n - d + 1, 1) = n - d + 1\)
 - rovněž dostávám \(A(n, 2) \le A(n - 1, 1) = n - 1\) a vím, že \(A(n, 2) \ge n - 1\), tedy rovnost
 
-**Tvrzení:** pro každé sudé \(d \le n\) je \(A(n, d) = A(n - 1, d - 1)\)
+{% math lemma %}
+pro každé sudé \(d \le n\) je \(A(n, d) = A(n - 1, d - 1)\){% endmath %}
 
-**Důkaz:** nechť \(C\) je \((n - 1, k, d - 1)\)-kód. Přidáním paritního bitu ke každému slovu vytvořím \((n, k, d)-\)kód, protože slova \(c\) v liché vzdálenosti (speciálně \(d - 1\)) v \(C'\) mají vzdálenost o 1 větší (liší se jejich paritní symboly).
+{% math proof %}
+nechť \(C\) je \((n - 1, k, d - 1)\)-kód. Přidáním paritního bitu ke každému slovu vytvořím \((n, k, d)-\)kód, protože slova \(c\) v liché vzdálenosti (speciálně \(d - 1\)) v \(C'\) mají vzdálenost o 1 větší (liší se jejich paritní symboly).{% endmath %}
 - \(\implies\) nejzajímavější jsou kódy s lichým \(d\) (na sudé lze triviálně rozšířit)
 
 #### Lineární kódy
 
-**Definice:** kód \(C\) nad \(\mathbb{Z}_2^n\) je lineární kód, pokud tvoří vektorový podprostor.
+{% math definition %}
+kód \(C\) nad \(\mathbb{Z}_2^n\) je lineární kód, pokud tvoří vektorový podprostor.{% endmath %}
 - \(\forall c, c' \in C: c + c' \in C\)
 - \(\forall \alpha \in \mathbb{Z}_2: \alpha c \in C\)
 
-(👀) pokud \(C\) je dimenze \(k\), pak má \(2^k\) prvků, ale k jeho popisu stačí nějaká báze \(C \equiv k\) slov t. ž. ostatní dostanu lineárními kombinacemi.
+{% math observation %}
+pokud \(C\) je dimenze \(k\), pak má \(2^k\) prvků, ale k jeho popisu stačí nějaká báze \(C \equiv k\) slov t. ž. ostatní dostanu lineárními kombinacemi.{% endmath %}
 
-**Příklad:** Hammingův kód \(\mathcal{H}\) je lineární a generuje ho **generujicí matice**
+{% math example %}
+Hammingův kód \(\mathcal{H}\) je lineární a generuje ho **generujicí matice**{% endmath %}
 \[
 \begin{matrix}
 	v_1 \\
@@ -1090,7 +1185,8 @@ Není to Simpletonův, ale Singletonův (viz. [Wikipedia](https://en.wikipedia.o
 - \(\left\{v_1, \ldots, v_4\right\}\) je báze \(H\)
 - \(\forall c \in H\ \exists \alpha_1, \ldots, \alpha_4 \in \mathbb{Z}_2\) t. ž. \(c = \sum_{i = 1}^{4} \alpha_i v_i \)
 
-(👀) \(\forall x, y, z \in C: d(x, y) = d(x + z, y + z)\)
+{% math observation %}
+\(\forall x, y, z \in C: d(x, y) = d(x + z, y + z)\){% endmath %}
 - „posunutí nějakým směrem“
 - platí pro všechny kódy, ale hodí se jen u lineárních kódů, protože díky tomu, že tvoří VP je součet také kódové slovo
 - \(x + z, y + z \in C\) (lineární kódy)
@@ -1103,15 +1199,18 @@ Není to Simpletonův, ale Singletonův (viz. [Wikipedia](https://en.wikipedia.o
 	- něco jako skalární součin
 	- nemusí platit, že \(x \neq 0 \implies \langle x, x \rangle \neq 0\) (např. pro \((1\ 1\ 0\ 0)\))
 
-**Definice (duální kód)** \(C\) je ortogonální doplněk \(C^\perp = \left\{x\ |\ \langle x, y \rangle = 0, \forall y \in C\right\}\)
+{% math definition "duální kód" %}
+\(C\) je ortogonální doplněk \(C^\perp = \left\{x\ |\ \langle x, y \rangle = 0, \forall y \in C\right\}\){% endmath %}
 - může být \(C \cap C^\perp \neq \left\{0\right\}\), ale platí \(\dim C + \dim C^\perp = n\)
 
-(👀) \(C^\perp\) je opět vektorový podprostor, je to tedy taky kód
+{% math observation %}
+\(C^\perp\) je opět vektorový podprostor, je to tedy taky kód{% endmath %}
 - má také generující matici \(M\) (tzv. **paritní/kontrolní**)
 - platí \(C = \left\{x\ |\ Mx = 0\right\}\) (z definice naší „ortogonality“)
 	- stačí ověřit ortogonalitu na bázové vektory
 
-(👀) nechť \(G\) je generující matice kódu \(C\)
+{% math observation %}
+nechť \(G\) je generující matice kódu \(C\){% endmath %}
 - \(G\) můžu zgausoeliminovat na \(G'\), která stále generuje \(C\)
 - ke kódování daného slova stačí sečíst příslušné řádky \(G'\), protože se jedná o jediný způsob, jak dostat bity slova
 
@@ -1125,8 +1224,9 @@ Mějme \(C\) lineární kód délky \(n\) nad \(\mathbb{Z}_2^4\). Bylo odesláno
 
 \(P\) je paritní matice kódu \(C\), tzn. \(C = \left\{x\ |\ Px = 0\right\}\).
 
-**Definice (syndrom)** slova \(z\) je \(Pz\), kde \(P\) je paritní matice kódu \(C\).
-- (👀) kódová slova \(\equiv\) slova se syndromem \(0\) (viz. definice \(P\)...)
+{% math definition "syndrom" %}
+slova \(z\) je \(Pz\), kde \(P\) je paritní matice kódu \(C\).{% endmath %}
+- {% math observation %}kódová slova \(\equiv\) slova se syndromem \(0\) (viz. definice \(P\)...){% endmath %}
 
 **Předpoklad:** chybový vektor \(e\) je slovo s nejmenší vahou ve své třídě
 - **třída** \(= \left\{e'\ |\ Pe' = P\tilde{x} = P(x + e) = Px + Pe = Pe\right\}\) (slova se stejným syndromem)
@@ -1138,12 +1238,13 @@ Mějme \(C\) lineární kód délky \(n\) nad \(\mathbb{Z}_2^4\). Bylo odesláno
 - výsledek dekódování \(y = \tilde{x} - m(s) = \tilde{x} - m(P\tilde{x})\)
 	- (👀)  \(y\) má mezi kódovými slovy nejmenší vzdálenost od \(\tilde{x}\)
 
-**Příklad:**
+{% math example %} \( \ \)
 - \(G = \begin{matrix} v_1 \\ v_2 \end{matrix} \begin{pmatrix} 1 & 1 & 1 & 0 & 0 \\ 0 & 0 & 1 & 1 & 1 \end{pmatrix}\)
 - \(k = 2\), máme \(4\) slova \(\left\{v_1, v_2, (0\ \ldots\ 0), v_1 + v_2\right\}\)
 - \(\Delta(C) = 3\) (počet jedniček vektoru báze)
 - jedná se o \((5, 2, 3)-\)kód
 - \(P = \begin{pmatrix} 1 & 1 & 0 & 0 & 0 \\ 0 & 1 & 1 & 1 & 0 \\ 0 & 0 & 0 & 1 & 1 \end{pmatrix}\)
+{% endmath %}
 
 1. \(\tilde{x} = v_1 = (1\ 1\ 1\ 0\ 0)\), \(P\tilde{x} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}\) (nulový syndrom, což je správně)
 2. \(\tilde{x} = (0\ 0\ 1\ 0\ 1)\), \(P\tilde{x} = \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}\) (nějaký syndrom)
@@ -1154,14 +1255,16 @@ Mějme \(C\) lineární kód délky \(n\) nad \(\mathbb{Z}_2^4\). Bylo odesláno
 3. pro \(\tilde{x} = (0\ 1\ 1\ 0\ 1)\) dostáváme váhu syndromu \(2\) a to už neopravíme
 
 ##### Hammingovy kódy
-(👀) nechť \(P\) je kontrolní matice \(C\). Pak \(\Delta(C) = \) maximální \(d\) t. ž. \(\forall d - 1\) sloupců \(P\) je lineárně nezávislých.
+{% math observation %}nechť \(P\) je kontrolní matice \(C\). Pak \(\Delta(C) = \) maximální \(d\) t. ž. \(\forall d - 1\) sloupců \(P\) je lineárně nezávislých.{% endmath %}
 
-**Důkaz:** kódová slova \(\equiv Pc = 0\). Nechť sloupce \(P\) jsou \(p_1, \ldots, p_n\). Pak
+{% math proof %}
+kódová slova \(\equiv Pc = 0\). Nechť sloupce \(P\) jsou \(p_1, \ldots, p_n\). Pak{% endmath %}
 \[\sum_{i = 1}^{n} c_i p_i = 0\]
 
 Pro spor nechť \(\exists x\) t. ž. \(\sum x_i p_i = 0\) (je tedy kódové slovo) a \(w(x) < d \rightarrow\). To je spor, \(\Delta(C) = d\) ale tohle slovo má \(w(x) < d\). To musí nutně znamenat, že \(\forall x: w(x) < d \rightarrow \sum_{i = 1}^{n}x_i p_i \neq 0 \rightarrow\) každých \(\le d - 1\) sloupců je tedy lineárně nezávislých.
 
-**Důsledek:** pokud chci \(d = 3\), potřebuji co největší matici \(P\) t. ž. \(\forall 2\) sloupce jsou lineárně nezávislé. To v \(\mathbb{Z}_2\) znamená, že musí být různé a žádný z nich není nulový.
+{% math consequence %}
+pokud chci \(d = 3\), potřebuji co největší matici \(P\) t. ž. \(\forall 2\) sloupce jsou lineárně nezávislé. To v \(\mathbb{Z}_2\) znamená, že musí být různé a žádný z nich není nulový.{% endmath %}
 
 \[
 P = \underbrace{\begin{pmatrix}
@@ -1177,10 +1280,11 @@ Jedná se o binární zápisy čísel \(1 \ldots 2^{r} - 1\). Nechť \(C\) je ge
 
 Z pozorování (nezávislé sloupce) dostáváme, že \(\Delta(\mathcal{H}_r) = 3\).
 
-**Věta:** pro každé \(r \ge 2\) je \(\mathcal{H}_r \left[2^{r} - 1, 2^r - r - 1, 3\right]\)-kód.
+{% math theorem %}
+pro každé \(r \ge 2\) je \(\mathcal{H}_r \left[2^{r} - 1, 2^r - r - 1, 3\right]\)-kód.{% endmath %}
 
 ### 12. přednáška
-- (👀)  \(G = \left[I_k\ |\ P\right] \implies M = \begin{bmatrix} -P \\ I_{n - k} \end{bmatrix}^T\)
+- {% math observation %}\(G = \left[I_k\ |\ P\right] \implies M = \begin{bmatrix} -P \\ I_{n - k} \end{bmatrix}^T\){% endmath %}
 
 #### Dekódování Hammingova kódu
 - předpoklad: \(e\) má nejvýše \(1\) jedničku
@@ -1191,11 +1295,13 @@ Z pozorování (nezávislé sloupce) dostáváme, že \(\Delta(\mathcal{H}_r) = 
 #### Perfektnost kódu
 Pokud pro \(C\) platí \(\Delta(C) = 2t + 1\), pak pro každé slovo \(x \in \mathbb{Z}^n_2\) je nejvýše jedno kódové slovo ve vzdálenosti \(\le t\) od \(x\). jsou to tedy **symetrické koule** se středem \(x\) a poloměrem \(t\), \(B(x, t) = \left\{z \in \mathbb{Z}_2^n\ |\ d(x, z) \le t\right\}\); jsou pro různá \(x \in C\) disjunktní.
 
-**Věta (Hammingův odhad):** pro binární kód s \(\Delta(C) \ge 2t + 1\) platí \[|C| \le \frac{2^n}{V(n, t)} \]
+{% math theorem "Hammingův odhad" %}
+pro binární kód s \(\Delta(C) \ge 2t + 1\) platí \[|C| \le \frac{2^n}{V(n, t)} \]{% endmath %}
 - \(2^n\) je počet všech slov
 - \(V(n, t)\) je objem kombinatorické koule dimenze \(n\) o poloměru \(t\) \(= \sum_{i = 0}^{t} \binom{n}{i}\) (vždy způsoby, jak si vybrat \(i\) bitů a flipnout je)
 
-**Důkaz:** mám na \(2^n\) prvcích \(|C|\) disjunktních koulí objemu \(V(n, t)\)... koule pokrývají \(|C| \cdot V(n, t)\) prvků, což je \(\le 2^n\) (méně nebo rovno všem prvkům -- nevím, jestli se nepřekrývají) a vydělím.
+{% math proof %}
+mám na \(2^n\) prvcích \(|C|\) disjunktních koulí objemu \(V(n, t)\)... koule pokrývají \(|C| \cdot V(n, t)\) prvků, což je \(\le 2^n\) (méně nebo rovno všem prvkům -- nevím, jestli se nepřekrývají) a vydělím.{% endmath %}
 
 ---
 
@@ -1204,16 +1310,20 @@ Pokud pro \(C\) platí \(\Delta(C) = 2t + 1\), pak pro každé slovo \(x \in \ma
 
 ---
 
-**Definice:** kód \(C\) je perfektní, pokud pro něj platí Hammingův odhad s rovností.
+{% math definition %}
+kód \(C\) je perfektní, pokud pro něj platí Hammingův odhad s rovností.{% endmath %}
 
-**Příklady perfektních kódů:**
+{% math example "perfektních kódů" %} \( \ \)
 - totální (koule o poloměru 1)
 - opakovací kód liché délky 
 - jednoprvkový kód (koule zaplňuje celý prostor)
+{% endmath %}
 
-**Tvrzení:** Hammingův kód je perfektní
+{% math lemma %}
+Hammingův kód je perfektní.{% endmath %}
 
-**Důkaz:** \(\mathcal{H}_r = \left[2^r - 1, 2^r - r - 1, 3\right]\)-kód.
+{% math proof %}
+\(\mathcal{H}_r = \left[2^r - 1, 2^r - r - 1, 3\right]\)-kód.{% endmath %}
 - \(3 = 2t + 1 \implies t = 1, V(n, t) = V(2^r - 1, 1) = 2^r\)
 	- poslední rovnost je počet vektorů lišící se v \(1\) souřadnici, \(+\) střed koule
 
@@ -1229,9 +1339,11 @@ Pokud pro \(C\) platí \(\Delta(C) = 2t + 1\), pak pro každé slovo \(x \in \ma
 - \(c = (c_1, \ldots, c_{2^r - 1})\)
 	- \(c_i = \langle x, y_i \rangle\), kde \(y_i\) jsou binární zápisy čísla \(i\)
 
-**Tvrzení:** Hadamardův kód je \(\left[2^r, r, 2^{r - 1}\right]\)-kód.
+{% math lemma %}
+Hadamardův kód je \(\left[2^r, r, 2^{r - 1}\right]\)-kód.{% endmath %}
 
-(👀) \(\langle x, y_i \rangle\) nenese informaci o \(x_1\), pokud první bit \(y\) je \(0 \implies\) stačí brát \(y_i, i \in \left(2^{r - 1} , 2^r - 1\right)\)
+{% math observation %}
+\(\langle x, y_i \rangle\) nenese informaci o \(x_1\), pokud první bit \(y\) je \(0 \implies\) stačí brát \(y_i, i \in \left(2^{r - 1} , 2^r - 1\right)\){% endmath %}
 - jedná se o **rozšířený Hadamardův kód** \(\left[2^r, r + 1, 2^{r - 1}\right]\)
 
 #### Ramseyova teorie
@@ -1241,28 +1353,32 @@ Pokud pro \(C\) platí \(\Delta(C) = 2t + 1\), pak pro každé slovo \(x \in \ma
 {:.center}
 ![](/assets/kombinatorika-a-grafy-i/ramsey-motivace.svg)
 
-**Věta:** pro každý graf na \(\ge 6\) vrcholech \(\exists\) podrgraf \(E_3\) (prázdný graf) nebo \(K_3\).
+{% math theorem %}
+pro každý graf na \(\ge 6\) vrcholech \(\exists\) podrgraf \(E_3\) (prázdný graf) nebo \(K_3\).{% endmath %}
 - \(\omega(G) \ge 3\) -- velikost maximální kliky
 - \(\alpha(G) \ge 3\) -- velikost maximální nezávislé množiny
 
 {:.rightFloatBox}
 ![](/assets/kombinatorika-a-grafy-i/ramsey-obr.svg)
 
-**Důkaz:** vyberu libovolný vrchol \(u\). Podívám se na vrcholy \(A\), se kterými nesousedí, zbytek nechť je \(B\).
+{% math proof %}
+vyberu libovolný vrchol \(u\). Podívám se na vrcholy \(A\), se kterými nesousedí, zbytek nechť je \(B\).{% endmath %}
 
 1. \(|A| \ge 3, A \supseteq \left\{x, y, z\right\} \)
 	- všichni mezi sebou mají hranu, pak máme \(K_3\)
 	- BUNO \(\exists\) nehrana \(xy\), pak \(\left\{u, x, y\right\}\) tvoří \(E_3\)
 2. symetricky
 
-**Věta (obecnější Ramseyova):** nechť \(G\) má \(\ge \binom{k + l - 2}{k - 1}\) vrcholů \(\implies \omega(G) \ge k\)  nebo \(\alpha(G) \ge l\).
-- (👀) ze symetrie kombinačních  čísel máme symetrii v \(k, l\), protože \(\binom{k + l - 2}{k - 1} = \binom{k + l - 2}{l - 1}\)
+{% math theorem "obecnější Ramseyova" %}
+nechť \(G\) má \(\ge \binom{k + l - 2}{k - 1}\) vrcholů \(\implies \omega(G) \ge k\)  nebo \(\alpha(G) \ge l\).{% endmath %}
+- {% math observation %}ze symetrie kombinačních  čísel máme symetrii v \(k, l\), protože \(\binom{k + l - 2}{k - 1} = \binom{k + l - 2}{l - 1}\){% endmath %}
 
-**Důkaz:** indukcí podle \(k + l\)
+{% math proof %}
+indukcí podle \(k + l\){% endmath %}
 - pro \(k = 1, l = 1\) a \(k = 2, l = 2\) jednoduché (vždy existuje hrana/nehrana)
 - pro \(k, l \ge 2\) a tvrzení platí pro \(k, l - 1\) a \(k-1, l\)
 	- \(n_1 = \binom{k + l - 3}{k - 1}\) a \(n_2 = \binom{k + l - 3}{l - 1 = k - 2}\) (dřívější odhady)
-		- (👀) platí, že \(n = n_1 + n_2\)
+		- {% math observation %}platí, že \(n = n_1 + n_2\){% endmath %}
 
 Zvolím \(u \in G\) libovolně a opět rozdělím graf na nesousedy \(A\) a sousedy \(B\) vrcholu \(u\). Z principu holubníku ([Dirichletův princip](https://mathworld.wolfram.com/DirichletsBoxPrinciple.html)) je \(|A| \ge n_1\) nebo  \(|B| \ge n_2\) (jsou-li ostře menší, tak dají \(n - 2\)).
 1. \(|A| \ge n_1\), použiji indukci na \(A\):
@@ -1272,7 +1388,8 @@ Zvolím \(u \in G\) libovolně a opět rozdělím graf na nesousedy \(A\) a sous
 	- \(\omega(G[B]) \ge k - 1\), pak tato klika spolu s \(u\) dává kliku velikosti \(\ge k\)
 	- \(\alpha(G[B]) \ge l\) a jsem hotov
 
-**Důsledek:** \(\forall k, l \exists r(k, l)\) t. ž. \(\forall G: \omega(G) \ge k\) nebo \(\alpha(G) \ge l\).
+{% math consequence %}
+\(\forall k, l \exists r(k, l)\) t. ž. \(\forall G: \omega(G) \ge k\) nebo \(\alpha(G) \ge l\).{% endmath %}
 - \(r(k, l) = \mathrm{min}\ N\) t. ž. platí \(\forall G\) velikosti \(N\) platí výše uvedené
 - podle věty nahoře máme \(r(k, l) \le \binom{k + l - 2}{k - 1}\)
 
@@ -1283,9 +1400,11 @@ Zvolím \(u \in G\) libovolně a opět rozdělím graf na nesousedy \(A\) a sous
 - \(r(k, 2) = k\)
 - dříve jsme dokázali, že \(r(3, 3) \le 6 \) a z \(C_5\) víme, že \(r(3, 3) > 5\), tedy \(r(3, 3) = 6\)
 
-**Definice \(r(k, k)\)** symetrické Ramseyovo číslo, říká se mu \(r(n) = r(n, n)\). „Jak velký musí být graf, abych tam našel buď \(E_n\) nebo \(K_n\)“.
+{% math definition: %} (\(r(k, k)\)):
+symetrické Ramseyovo číslo, říká se mu \(r(n) = r(n, n)\). „Jak velký musí být graf, abych tam našel buď \(E_n\) nebo \(K_n\)“.{% endmath %}
 
-**Věta:** \(k, n \in \mathbb{N}\) t. ž. \(\binom{n}{k} 2^{1 - \binom{k}{2}} < 1 \implies r(k) > n\).
+{% math theorem %}
+\(k, n \in \mathbb{N}\) t. ž. \(\binom{n}{k} 2^{1 - \binom{k}{2}} < 1 \implies r(k) > n\).{% endmath %}
 
 Co jsou čísla zač? Použijeme odhad:
 - \(\binom{n}{k} \le \frac{n^k}{k!} < \frac{n^k}{2^{k/2 + 1}}\)
@@ -1295,10 +1414,12 @@ Co jsou čísla zač? Použijeme odhad:
 Kde poslední \(=\) platí, protože:
 \[\frac{1}{2^{k/2 + 1}} 2^{1 - k(k - 1)/2} = \frac{1}{2 \cdot 2^{k/2}} \frac{2}{2^{k(k - 1)/2}} = \frac{1}{2^{k/2 (1 + k - 1)}} = \left(\frac{1}{2^{k/2}}\right)^k\]
 
-**Důsledek:** \(\forall k \ge 3: r(k) > 2^{k/2}\)
+{% math consequence %}
+\(\forall k \ge 3: r(k) > 2^{k/2}\){% endmath %}
 - dosadíme \(n = 2^{k/2}\) do předchozího (předchozí je ostrý odhad, takže \(1^k < 1\) funguje)
 
-**Důkaz:** vezmu náhodný graf \(G\) t. ž. každá z \(\binom{n}{2}\) hran má pravděpodobnost \(1/2\), nezávisle na ostatních. Nechť \(K \subseteq V, |K| = k\). \(A_K \ldots\) jev, že \(G[K]\) je klika. \(\Pr[A_K] = \left(\frac{1}{2}\right)^{\binom{k}{2}} = 2^{-\binom{k}{2}}\). Obdobně \(B_K\) jev, že vznikla nezávislá množina a \(C_K \ldots A_K \cup B_K \ldots \Pr[C_K] = 2 \cdot 2^{-\binom{k}{2}} = 2^{1 - \binom{k}{2}}\). \(p \ldots\) pravděpodobnost, že \(\exists K \subseteq V\) t. ž. nastal jev \(C_K\). Je ji těžké určit, protože jevy nejsou nezavislé (množiny se mohou překrývat), nám ale stačí odhad který předpokládá, že jsou jevy nezávislé:
+{% math proof %}
+vezmu náhodný graf \(G\) t. ž. každá z \(\binom{n}{2}\) hran má pravděpodobnost \(1/2\), nezávisle na ostatních. Nechť \(K \subseteq V, |K| = k\). \(A_K \ldots\) jev, že \(G[K]\) je klika. \(\Pr[A_K] = \left(\frac{1}{2}\right)^{\binom{k}{2}} = 2^{-\binom{k}{2}}\). Obdobně \(B_K\) jev, že vznikla nezávislá množina a \(C_K \ldots A_K \cup B_K \ldots \Pr[C_K] = 2 \cdot 2^{-\binom{k}{2}} = 2^{1 - \binom{k}{2}}\). \(p \ldots\) pravděpodobnost, že \(\exists K \subseteq V\) t. ž. nastal jev \(C_K\). Je ji těžké určit, protože jevy nejsou nezavislé (množiny se mohou překrývat), nám ale stačí odhad který předpokládá, že jsou jevy nezávislé:{% endmath %}
 
 \[\Pr[C] \le \sum_{K \in V, |K| = k} \Pr[C_K] = \binom{n}{k} \cdot 2^{1 - \binom{k}{2}} < 1\]
 - předposlední rovnost je z definice -- všechny možné \(K\)-tice
@@ -1306,7 +1427,7 @@ Kde poslední \(=\) platí, protože:
 - máme, že pravděpodobnost, že nějaká \(K\)-prvková množina bude tvořit buďto kliku nebo nezávislou množinu velikosti \(k\) je \(< 1\), tedy pravděpodobnost, že to nenastane je \(> 0\), tedy \(\exists\) nějaký z náhodných grafů, který tohle nesplňuje
 	- pokud pravděpodobnost je nenulová, tak musí existovat nějaké množství grafů, které tenhle jev mají (protože jinak by nerovnost nebyla ostrá)
 
-**Jiný důkaz:**
+{% math proof "alternativní" %}
 Někomu může použití pravděpodobnosti připadat trochu magické.
 Důkaz lze ale přeformulovat explicitněji.
 
@@ -1325,6 +1446,7 @@ graf totiž obsahuje kliku nebo nezávislou množinu velikosti **přesně** \(k\
 Tento součet je tedy horní mezí pro počet dobrých grafů.
 
 A jsme hotovi. Předpoklad věty je totiž po přenásobení ekvivalentní nerovnosti:
+{% endmath %}
 
 \[\binom{n}{k} 2^{\binom{n}{2}-\binom{k}{2}+1} < 2^\binom{n}{2}\]
 
@@ -1340,29 +1462,36 @@ existuje nedobrý graf na \(n\) vrcholech a \(r(k,k) > n\).
 „Pokud mám alespoň \(\ge N\) prvků a dávám je do \(t\) holubníků, pak bude existovat holubník s alespoň \(k\) prvky.“
 </div>
 
-**Věta (princip holubníku):** pro každé \(t, k \in \mathbb{N} \exists N\) t. ž. \(\forall c: [n] \mapsto [t]\) platí, že \(\forall n \ge N \exists A \subseteq [n], |A| = k\), na níž je funkce \(c\) konstantní.
+{% math theorem "princip holubníku" %}
+pro každé \(t, k \in \mathbb{N} \exists N\) t. ž. \(\forall c: [n] \mapsto [t]\) platí, že \(\forall n \ge N \exists A \subseteq [n], |A| = k\), na níž je funkce \(c\) konstantní.{% endmath %}
 
-**Důkaz:** \(N = t (k - 1) + 1\).
+{% math proof %}
+\(N = t (k - 1) + 1\).{% endmath %}
 
-**Věta (nekonečný princip holubníku):** pro každé \(t \in \mathbb{N}\) a každé \(c: \mathbb{N} \mapsto [t]\) existuje nekonečná množina \(A \subseteq \mathbb{N}\), pro níž je funkce \(c\) konstantní.
+{% math theorem "nekonečný princip holubníku" %}
+pro každé \(t \in \mathbb{N}\) a každé \(c: \mathbb{N} \mapsto [t]\) existuje nekonečná množina \(A \subseteq \mathbb{N}\), pro níž je funkce \(c\) konstantní.{% endmath %}
 - z „existuje holubník s hodně holuby“ máme „existuje holubník s nekonečně holuby“
 
-**Důkaz:** rozdělím \(\mathbb{N}\) na \(B_1, \ldots, B_t\), kde \(B_i = \left\{m \in \mathbb{N}\ |\ c(m) = i\right\}\). Protože sjednocením je nekonečná množina pak alespoň jedna musí být nekonečná.
+{% math proof %}
+rozdělím \(\mathbb{N}\) na \(B_1, \ldots, B_t\), kde \(B_i = \left\{m \in \mathbb{N}\ |\ c(m) = i\right\}\). Protože sjednocením je nekonečná množina pak alespoň jedna musí být nekonečná.{% endmath %}
 
-**Věta (nekonečná Ramseyova (vícebarevná) věta):** pro každé \(t \in \mathbb{N}, \forall c: \binom{\mathbb{N}}{2} \mapsto [t] \exists\) nekonečná množina \(A \subseteq \mathbb{N}\), pro níž je funkce \(c\) na hranách \(\binom{A}{2}\) (nekonečný úplný graf) konstantní.
+{% math theorem "nekonečná Ramseyova (vícebarevná) věta" %}
+pro každé \(t \in \mathbb{N}, \forall c: \binom{\mathbb{N}}{2} \mapsto [t] \exists\) nekonečná množina \(A \subseteq \mathbb{N}\), pro níž je funkce \(c\) na hranách \(\binom{A}{2}\) (nekonečný úplný graf) konstantní.{% endmath %}
 
 {:.rightFloatBox}
 <div markdown="1">
 sanity check: \(A_1 \supset A_2 \supset \ldots \)
 </div>
 
-**Důkaz:** sestrojím posloupnost nekonečných množin \(A_1 = \mathbb{N}\) a pro \(i = 1, 2, \ldots\) opakujeme:
+{% math proof %}
+sestrojím posloupnost nekonečných množin \(A_1 = \mathbb{N}\) a pro \(i = 1, 2, \ldots\) opakujeme:{% endmath %}
 - vybereme \(v_i \in A_i\)
 - rozdělíme \(A\) na \(B_i^1, B_i^2\ldots, B_i^t\) podle toho, jakou barvu má hrana, která množinu spojuje s \(v_i\)
 	- jelikož \(A_i\) je nekonečná, tak \(\exists B_i^j\) pro nějakou barvu, která je také nekonečná
 - položme \(A_{i + 1} = B_i^j\)
 
-(👀) posloupnost vrcholů \(v_1, v_2, \ldots\) má vlastnost, že pokud \(i < j\), pak \(\left\{v_i, v_j\right\}\) má barvu \(b_i\)
+{% math observation %}
+posloupnost vrcholů \(v_1, v_2, \ldots\) má vlastnost, že pokud \(i < j\), pak \(\left\{v_i, v_j\right\}\) má barvu \(b_i\){% endmath %}
 - v každém kroku se zanořuju, ale při zanoření už platí, že všichni sousedi jsou k \(v_i\) spojeni hranou dané barvy
 - \(\implies\) barva hrany \(\left\{v_i, v_j\right\}\) závisí pouze na \(i\), ne na \(j\)
 - mám posloupnost barev \(b_1, b_2, b_3, \ldots\)
@@ -1374,25 +1503,27 @@ sanity check: \(A_1 \supset A_2 \supset \ldots \)
 „Pokud \(n \ge N\), tak každé obarvení \(K_n\) \(t\) barvami obsahuje jednobarevný \(K_k\) jako podgraf.“
 </div>
 
-**Věta (Ramseyova vícebarevná věta):** \(\forall t, k \in \mathbb{N}\) (\(t\) počet barev, \(k\) velikost kliky) \(\exists N \in \mathbb{N}\) t. ž. \(\forall c: \binom{[n]}{2} \mapsto [t], \forall n \ge N\) (obarvení \(K_n\) \(t\) barvami) existuje množina \(A \subseteq [n], |A| = k\), pro níž je funkce \(c\) na \(\binom{A}{2}\) konstantní.
+{% math theorem "Ramseyova vícebarevná věta" %}
+\(\forall t, k \in \mathbb{N}\) (\(t\) počet barev, \(k\) velikost kliky) \(\exists N \in \mathbb{N}\) t. ž. \(\forall c: \binom{[n]}{2} \mapsto [t], \forall n \ge N\) (obarvení \(K_n\) \(t\) barvami) existuje množina \(A \subseteq [n], |A| = k\), pro níž je funkce \(c\) na \(\binom{A}{2}\) konstantní.{% endmath %}
 
-
-**Důkaz:** adaptujeme nekonečný na konečný případ -- chtěli bychom posloupnost barev \(b_1, \ldots, b_{tk}\) -- když do toho praštíme holubníkem, tak máme barvu, která je tam \(k\)-krát. 
-- upravím konstrukci množin \(A_i\): beru vždy největší třídu
-	- \(|A_{i + 1}| \ge \frac{|A_i| - 1}{t}\) (max. je větší/roven průměru)
+{% math proof %}
+adaptujeme nekonečný na konečný případ -- chtěli bychom posloupnost barev \(b_1, \ldots, b_{tk}\) -- když do toho praštíme holubníkem, tak máme barvu, která je tam \(k\)-krát. {% endmath %}
+- upravím konstrukci množin \(A_i\): beru vždy největší třídu - \(|A_{i + 1}| \ge \frac{|A_i| - 1}{t}\) (max. je větší/roven průměru)
 	- potřebuji, aby konstrukce běžela alespoň \(tk\) kroků
 	- potřebuji, aby \(|A_{tk}| \ge 1, |A_{tk - 1}| \ge t + 1, \ldots, |A_1| \ge \sum_{i = 0}^{tk} t^i = \frac{t^{tk + 1} - 1}{t - 1}\)
 		- na zkoušce nebude -- jen bychom měli vědět, že se to takhle dá umlátit
 
-**Definice (hypergraf)** je zobecněný graf, kde:
+{% math definition: "hypergraf" %}
+je zobecněný graf, kde:{% endmath %}
 - hrany jsou libovolné množiny (místo dvojic, jako v normálním grafu)
 - **uniformní** hypergraf -- hrany jsou \(p\)-prvkové množiny
 - \(p\) je arita hran (velikost množin), \(t, k\) jsou stejné
 
+{% math theorem "nekonečná Ramseyova věta pro p-tice" %}
+\(\forall p, t \in \mathbb{N}\) a \(\forall c: \binom{\mathbb{N}}{p} \mapsto [t] \exists A \subseteq \mathbb{N}\) nekonečná t. ž. \(c\) je na \(\binom{A}{p}\) konstantní.{% endmath %}
 
-**Věta (nekonečná Ramseyova věta pro \(p\)-tice):** \(\forall p, t \in \mathbb{N}\) a \(\forall c: \binom{\mathbb{N}}{p} \mapsto [t] \exists A \subseteq \mathbb{N}\) nekonečná t. ž. \(c\) je na \(\binom{A}{p}\) konstantní.
-
-**Důkaz:** indukcí podle \(p\), pro \(p=1\) je to nekonečný holubník (pro \(p = 2\) je to Ramsey)
+{% math proof %}
+indukcí podle \(p\), pro \(p=1\) je to nekonečný holubník (pro \(p = 2\) je to Ramsey){% endmath %}
 - IP: věta platí pro \(p - 1\)
 - opět konstruuji nekonečnou posloupnost \(A_i\)
 - v kroku \(i\) vyberu \(v_i \in A_i\), nechť \(A_i' = A_i \setminus \left\{v_i\right\}\)
@@ -1405,25 +1536,31 @@ Pomocné obarvení \((p-1)\)-tic stejnými barvami, jako byla \(p\)-tice s vrcho
 - definuji obarvení \((p - 1)\)-tic \(A_i'\): \(c_i'(Q) = c(Q \cup \left\{v_i\right\})\), \(Q \subseteq A_i'\), \(|Q| = p - 1\)
 - z IP pro \(A_i'\) máme, že \(\exists B_i \subseteq A_i'\), na jejichž \((p-1)\)-ticích je obarvení \(c_i'\) konstantní \( = b_i \in [t]\) a \(A_{i + 1} = B_i\) si vezmu do dalšího kroku
 
-(👀) barva \(p\)-tice \(\left\{v_{i_1}, \ldots, v_{i_p}\right\}\) (vzhledem k vzniklé posloupnosti \(v_1, v_2, \ldots\)), kde \(i_1 < i_2 < i_3 < i_p\) závisí pouze na barvě prvku \(v_{i_1}\)
+{% math observation %}
+barva \(p\)-tice \(\left\{v_{i_1}, \ldots, v_{i_p}\right\}\) (vzhledem k vzniklé posloupnosti \(v_1, v_2, \ldots\)), kde \(i_1 < i_2 < i_3 < i_p\) závisí pouze na barvě prvku \(v_{i_1}\){% endmath %}
 - vyberu z barev nějakou opakující-se nekonečněkrát a vrcholy s příslušnými indexy tvoří \(A\)
 
-**Věta (Ramseyova věta pro \(p\)-tice):** \(\forall p, t, k \in \mathbb{N} \exists N \in \mathbb{N}\) t. ž. \(\forall n \ge N, \forall c: \binom{[n]}{p} \mapsto [t]\ \exists A \subseteq [n], |A| = k\) t. ž. \(c\) je na \(\binom{A}{p}\) konstantní.
+{% math theorem "Ramseyova věta pro \(p\)-tice" %}
+\(\forall p, t, k \in \mathbb{N} \exists N \in \mathbb{N}\) t. ž. \(\forall n \ge N, \forall c: \binom{[n]}{p} \mapsto [t]\ \exists A \subseteq [n], |A| = k\) t. ž. \(c\) je na \(\binom{A}{p}\) konstantní.{% endmath %}
 
-**Důkaz:** mějme \(p, k, t\) z předpokladu věty. Uvážíme \(c_i: \binom{[n]}{p} \mapsto [t]\). To je _dobré_, pokud \(\exists \) \(k\)-prvková jednobarevná podmnožina, jinak je _špatné_. Věta tedy tvrdí, že \(n \ge N\) jsou všechna \(c\) _dobrá_.
+{% math proof %}
+mějme \(p, k, t\) z předpokladu věty. Uvážíme \(c_i: \binom{[n]}{p} \mapsto [t]\). To je _dobré_, pokud \(\exists \) \(k\)-prvková jednobarevná podmnožina, jinak je _špatné_. Věta tedy tvrdí, že \(n \ge N\) jsou všechna \(c\) _dobrá_.{% endmath %}
 
 Sporem: předpokládejme, že pro nekonečně mnoho \(n\) \(\exists\) _špatné_ obarvení.
 
-(👀) Pokud \(S_n\) je množina _špatných_ obarvení a \(S_n\) je neprázdné, pak \(S_{n - 1}\) je neprázdné, protože mám-li _špatné_ obarvení \(p\)-tic nad \(n\), tak mohu zapomenout na \(n\)-tý prvek a tak dostanu _špatné_ obarvení i na \(n - 1\).
+{% math observation %}
+Pokud \(S_n\) je množina _špatných_ obarvení a \(S_n\) je neprázdné, pak \(S_{n - 1}\) je neprázdné, protože mám-li _špatné_ obarvení \(p\)-tic nad \(n\), tak mohu zapomenout na \(n\)-tý prvek a tak dostanu _špatné_ obarvení i na \(n - 1\).{% endmath %}
 - **zůžení** \(z(c)(Q) = c(Q), Q \subseteq [n - 1], |Q| = p\) (prostě odeberu vrchol)
 
 Strukturu _špatných_ obarvení popíšeme stromem, kde hladiny jsou obarvení \(S_n\); platí:
 - všechny hladiny jsou neprázdné (předpoklad pro spor)
 - všechny hladiny jsou konečné (nad \(S_n\) může být only so much obarvení)
 
-**Lemma (Königovo):** nekonečný zakořeněný strom s konečnými stupni obsahuje nekonečnou cestu z kořene.
+{% math lemma "Königovo" %}
+nekonečný zakořeněný strom s konečnými stupni obsahuje nekonečnou cestu z kořene.{% endmath %}
 
-**Důkaz:** pokud máme vrcholy \(v_1, v_2, \ldots, v_{i - 1}\) na cestě, tak \(v_i\) vezmu jako kořen podstromu, který je nekonečný a opakuju.
+{% math proof %}
+pokud máme vrcholy \(v_1, v_2, \ldots, v_{i - 1}\) na cestě, tak \(v_i\) vezmu jako kořen podstromu, který je nekonečný a opakuju.{% endmath %}
 
 Díky tomuto lemmatu víme, že \(\exists\) nekonečná cesta z \(S_0\). Z nekonečné Ramseyovy věty ale víme, že kdyby tomu tak bylo, tak neplatí, protože by existovalo nekonečné obarvení přirozených čísel (podle nekonečné cesty v tomto stromu).
 

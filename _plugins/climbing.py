@@ -19,6 +19,7 @@ def get_random_string(length: int):
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 CLIMBING_FOLDER = "../climbing/"
+CLIMBING_VIDEOS_FOLDER = os.path.join(CLIMBING_FOLDER, "videos")
 CLIMBING_INFO = os.path.join(CLIMBING_FOLDER, "information.yaml")
 
 config = {}
@@ -26,8 +27,8 @@ if os.path.exists(CLIMBING_INFO):
     with open(CLIMBING_INFO, "r") as f:
         config = yaml.safe_load(f.read())
 
-zones = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-colors = ["red", "salmon", "blue", "yellow"]
+zones = [1, 2, 3, 4, 5, 6, 7, 8, 9, "all"]
+colors = list(reversed(["red", "salmon", "blue", "yellow"]))
 
 # rename new files
 for name in list(config):
@@ -42,9 +43,9 @@ for name in list(config):
         del config[name]
 
         # useful paths
-        old_path = os.path.join(CLIMBING_FOLDER, name)
-        tmp_path = os.path.join(CLIMBING_FOLDER, "tmp_" + name)
-        new_path = os.path.join(CLIMBING_FOLDER, new_name)
+        old_path = os.path.join(CLIMBING_VIDEOS_FOLDER, name)
+        tmp_path = os.path.join(CLIMBING_VIDEOS_FOLDER, "tmp_" + name)
+        new_path = os.path.join(CLIMBING_VIDEOS_FOLDER, new_name)
 
         # create the poster
         _ = Popen(["ffmpeg", "-i", old_path, "-vf", "select=eq(n\,0)", "-vframes", "1", "-y", new_path + ".jpeg"], stdout=PIPE, stderr=PIPE).communicate()
@@ -85,8 +86,6 @@ if os.path.exists(zones_folder):
     shutil.rmtree(zones_folder)
 os.mkdir(zones_folder)
 
-print("generating zones.")
-
 for zone in zones:
     zone_file_name = os.path.join(CLIMBING_FOLDER, "zones", str(zone) + ".md")
     zone_file_content = f"""---
@@ -100,20 +99,26 @@ layout: default
         videos_in_color = []
 
         for name in config:
-            if config[name]["color"] == color and config[name]["zone"] == zone:
+            if config[name]["color"] == color and (config[name]["zone"] == zone or zone == "all"):
                 videos_in_color.append(name)
 
         videos_in_color = list(reversed(sorted(videos_in_color)))
 
         if len(videos_in_color) != 0:
-            zone_file_content += "#### " + color.capitalize()
+            zone_file_content += "\n\n{: .center}\n### " + color.capitalize()
 
         for i, name in enumerate(videos_in_color):
-            style = f"width:{'48' if (i != len(videos_in_color) - 1 or len(videos_in_color) % 2 == 0) else '100'}%;float:{'left' if i % 2 == 0 else 'right'};"
+            style_class = "climbing-"
+
+            # either an odd number of videos, or even and not the last -- no center
+            if len(videos_in_color) % 2 == 0 or (len(videos_in_color) % 2 == 1 and i != len(videos_in_color) - 1):
+                style_class += 'left' if i % 2 == 0 else 'right'
+            else:
+                style_class += "center"
 
             zone_file_content += f"""
-<figure class='video' style='{style}'>
-<video poster="/climbing/{name}.jpeg" controls><source src='/climbing/{name}' type='video/mp4'></video>
+<figure class='climbing-video climbing-{color} {style_class}'>
+<video poster="/climbing/videos/{name}.jpeg" controls><source src='/climbing/videos/{name}' type='video/mp4'></video>
 <figcaption class='figcaption-margin'>{config[name]["date"].strftime("%d / %m / %Y")}</figcaption>
 </figure>"""
 
@@ -126,11 +131,12 @@ layout: default
     with open(zone_file_name, "w") as f:
         f.write(zone_file_content)
 
+print("zones generated.")
+
 with open(CLIMBING_INFO, "w") as f:
     f.write(yaml.dump(config))
 
 # remove videos that are not on the list, for good measure
 for file in os.listdir(CLIMBING_FOLDER):
-    if file.endswith(".mp4") or file.endswith(".jpeg"):
-        if file not in config:
-            os.remove(os.path.join(CLIMBING_FOLDER, file))
+    if (file.endswith(".mp4") and file not in config) or (file.endswith(".jpeg") and file[:-5] not in config):
+        os.remove(os.path.join(CLIMBING_FOLDER, file))
