@@ -37,7 +37,7 @@ category: "lecture notes"
 
 - \(\Leftarrow\) pro spor nechť \(M'\) je párování v \(G\) t. ž \(|M'| \ge |M|\)
 	- uvažme \(H = \left(V, M \cup M'\right)\); pak má každý vrchol stupeň \(0, 1\) nebo \(2\) \(\Rightarrow\) komponenty souvislosti jsou kružnice sudé délky a cesty (navíc jsou střídavé)
-	- (👀) -- musí existovat komponenta, která má více hran z \(M'\) (je větší)
+	- {% math observation %}musí existovat komponenta, která má více hran z \(M'\) (je větší){% endmath %}
 		- není to kružnice (musela by být lichá a měli bychom máme kolizi ve vrcholu)
 		- je to volná (z definice, vzhledem k \(M\)) střídavá (jinak by měly stejný počet hran) cesta
 
@@ -110,7 +110,7 @@ Nechť \(S = \left\{v \in V\ |\ \deg(v) = n - 1\right\} = \left\{v \mid \text{$v
 {:.center}
 ![](/assets/kombinatorika-a-grafy-ii/2.svg)
 
-- (👀) -- přidáním hrany do grafu se neporuší TP (\(\forall S \subseteq V\) počet lichých komponent \(G - S\) buď klesne o \(2\) nebo zůstane stejný).
+- {% math observation %}přidáním hrany do grafu se neporuší TP (\(\forall S \subseteq V\) počet lichých komponent \(G - S\) buď klesne o \(2\) nebo zůstane stejný).{% endmath %}
 
 Indukujeme dvakrát: \(G_1 = G + e_1\) a \(G_2 = G + e_2\) díky předchozímu pozorování splňují TP a spolu s IP \(\Rightarrow \exists\) PP \(M_1, M_2\) v \(G_1, G_2\)
 - jednoduchý případ: \(e_1 \not\in M_1 \Rightarrow M_1\) je PP pro \(G\), analogicky pro \(e_2\) a \(M_2\)
@@ -168,7 +168,7 @@ Těžší případ: \(e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2)\)
 {% math lemma "pomocné" %} \(\forall e = \left\{x, y\right\} \exists z_e \in V \setminus \left\{x, y\right\}\) t. ž. \(\left\{x, y, z_e\right\}\) tvoří vrcholový řez v G, navíc každý z \(\left\{x, y, z_e\right\}\) má alespoň jednoho souseda v každé komponentě \(G \setminus \left\{x, y, z_e\right\}\).{% endmath %}
 - přesně popisuje situaci, že kontrakce libovolné hrany nám dá řez velikosti \(2\)
 - ve skutečnosti **neplatí** (ale dovětek ano) a dokazujeme ho pouze v rámci sporu!
-- (👀 které platí) \(S\) minimální vrcholový řez \(G\), pak každý vrchol \(S\) má souseda v každé komponentě \(G \setminus S\) -- když to pro nějaký \(v\) neplatí, tak \(S \setminus v\) je pořád řez
+- {% math observation "které platí" %}\(S\) minimální vrcholový řez \(G\), pak každý vrchol \(S\) má souseda v každé komponentě \(G \setminus S\) -- když to pro nějaký \(v\) neplatí, tak \(S \setminus v\) je pořád řez{% endmath %} 
 
 {% xopp 1 %}
 
@@ -219,10 +219,10 @@ Pak ale \(G_{i - 1}\) nebyl 3-souvislý, rozborem toho, kde vznikla hrana:
 
 {% math definition "minor" %} Nechť \(H, G\) jsou grafy. Pak \(H\) je minor \(G\) (nebo že \(G \) obsahuje \(H\) jako minor), značíme \(H \preceq G\), pokud \(H\) lze získat z \(G\) posloupností mazání vrcholů, mazání hran nebo kontrakcí hran.{% endmath %}
 
-- (👀) \(\preceq\) je transitivní (prostě spojím posloupnosti operací)
-- (👀) \(H\) podgraf \(G \Rightarrow H\) minor \(G\)
+- {% math observation %}\(\preceq\) je transitivní (prostě spojím posloupnosti operací){% endmath %}
+- {% math observation %}\(H\) podgraf \(G \Rightarrow H\) minor \(G\){% endmath %}
 	- podgraf vzniká přesně mazáním vrcholů a mazáním hran
-- (👀, spíš fakt) \(G\) rovinný \(\Rightarrow\) jeho minory jsou také rovinné
+- {% math observation "spíš fakt" %}\(G\) rovinný \(\Rightarrow\) jeho minory jsou také rovinné{% endmath %}
 	- pro podgraf očividné, je jen potřeba si rozmyslet kontrakci (že nic topologicky nerozbije)
 
 {% math theorem "Kuratowského" %} \(G\) rovinný \(\iff\) neobsahuje dělení \(K_5\) ani \(K_{3, 3}\){% endmath %}
@@ -232,22 +232,11 @@ Pak ale \(G_{i - 1}\) nebyl 3-souvislý, rozborem toho, kde vznikla hrana:
 2. \(G\) neobsahuje dělení \(K_5\) ani \(K_{3, 3}\) jako podgraf
 3. \(G\) neobsahuje \(K_5\) ani \(K_{3, 3}\) jako minor.
 
-{% math proof %}
+{% math proof %} \( \ \)
 - *\(1 \Rightarrow 2\): z prváku, protože \(K_5\) ani \(K_{3, 3}\) nejsou rovinné
 - \(3 \Rightarrow 2\): obměna: „obsahuje dělení jako podgraf“ \(\Rightarrow\) „obsahuje dělení jako minor“
 - \(1 \Rightarrow 3\): je-li rovinný, tak i minor bude rovinný (fakt výše)
-- *\(2 \Rightarrow 3\): Chceme ukázat, že obsahuje-li graf \(K_5\) nebo \(K_{3,3}\) jako minor,
-  obsahuje i dělení nějakého z těchto grafů jako podgraf. Uvažme nejdřív obecně graf \(G\) obsahující jak podgraf dělení \(H'\)
-  grafu \(H\). \(H'\) dostaneme z \(G\) posloupností mazání vrcholů a mazání hran. \(H\)
-  pak dostaneme z \(H'\) posloupností operací inverzních k dělení hran, což jsou právě kontrakce hran, při nichž má výsledný vrchol
-  stejný stupeň, jako jeden z kontrahovaných vrcholů (a zároveň nekontrahujeme vrchol stupně 1, což je ale to samé jako mazání). Všimněme si, že tento
-  speciální tvar má mimo jiné každá kontrakce, při níž nevznikne větší stupeň než 3.
-  Co kdyby tedy \(G\) obsahoval minor \(K\) a navíc \(\Delta(K) \leq 3\)? Od \(G\)
-  ke \(K\) se můžeme dostat posloupností mazání vrcholů, mazání hran a kontrakcí hran. Všimněme si ale, že nikdy nemusíme použít kontrakci, při které vznikne
-  větší stupeň než 3, protože vzniklý vrchol musí být stejně následně smazán. To můžeme nahlédnout i tak, že v posloupnosti operací se mohou operace libovolně předbíhat
-  (pokud je přitom patřičně pozměníme), a tedy všechny kontrakce si můžeme nechat nakonec. Z předchozích pozorování vidíme, že minory maximálního stupně nejvýše 3 a dělení
-  jako podgrafy jsou generované stejnými typy operací a tedy speciálně obsahuje-li graf \(K_{3,3}\) jako minor, obsahuje i nějaké jeho dělení jako podgraf.
-  Zbytek důkazu pro \(K_5\) je lepší s obrázkem a lze najít [na tomhle odkazu](https://www.math.uni-hamburg.de/home/diestel/books/graph.theory/preview/Ch4.pdf) (Lemma 4.4.2).
+- *\(2 \Rightarrow 3\): na přednášce nebyl, k přečtení tady[^1] 
 - *\(3 \Rightarrow 1\): indukcí podle \(|V(G)|\)
 	- pro \(|V(G)| \le 4\) vše funguje
 	- předpokládám \(G\) má alespoň 5 vrcholů a neobsahuje \(K_5\) ani \(K_{3, 3}\) jako minor. Rozeberu případy podle \(k_v(G)\) (vrcholová souvislost \(G\))
@@ -257,13 +246,17 @@ Pak ale \(G_{i - 1}\) nebyl 3-souvislý, rozborem toho, kde vznikla hrana:
 		- \(k_v(G) = 2\Rightarrow\), rozložení podél dvou vrcholů tvořících řez, ale opatrně -- musíme si rozmyslet, že můžeme obě části zkontrahovat do hrany mezi vrcholy, aby poté v nakreslení šly spojit
 {% endmath %}
 
+[^1]: Chceme ukázat, že obsahuje-li graf \(K_5\) nebo \(K_{3,3}\) jako minor, obsahuje i dělení nějakého z těchto grafů jako podgraf. Uvažme nejdřív obecně graf \(G\) obsahující jak podgraf dělení \(H'\) grafu \(H\). \(H'\) dostaneme z \(G\) posloupností mazání vrcholů a mazání hran. \(H\) pak dostaneme z \(H'\) posloupností operací inverzních k dělení hran, což jsou právě kontrakce hran, při nichž má výsledný vrchol stejný stupeň, jako jeden z kontrahovaných vrcholů (a zároveň nekontrahujeme vrchol stupně 1, což je ale to samé jako mazání). Všimněme si, že tento speciální tvar má mimo jiné každá kontrakce, při níž nevznikne větší stupeň než 3.  Co kdyby tedy \(G\) obsahoval minor \(K\) a navíc \(\Delta(K) \leq 3\)? Od \(G\) ke \(K\) se můžeme dostat posloupností mazání vrcholů, mazání hran a kontrakcí hran. Všimněme si ale, že nikdy nemusíme použít kontrakci, při které vznikne větší stupeň než 3, protože vzniklý vrchol musí být stejně následně smazán. To můžeme nahlédnout i tak, že v posloupnosti operací se mohou operace libovolně předbíhat (pokud je přitom patřičně pozměníme), a tedy všechny kontrakce si můžeme nechat nakonec. Z předchozích pozorování vidíme, že minory maximálního stupně nejvýše 3 a dělení jako podgrafy jsou generované stejnými typy operací a tedy speciálně obsahuje-li graf \(K_{3,3}\) jako minor, obsahuje i nějaké jeho dělení jako podgraf.  Zbytek důkazu pro \(K_5\) je lepší s obrázkem a lze najít [na tomhle odkazu](https://www.math.uni-hamburg.de/home/diestel/books/graph.theory/preview/Ch4.pdf) (Lemma 4.4.2).
+
+Pokračování v další přednášce...
+
 ### 4. přednáška
 - \(k_v(G) \ge 3\Rightarrow\) použijeme lemma o kontrahovatelné hraně: \(\exists e = \left\{x, y\right\}\) t. ž. \(G \setminus e = G'\) je \(3\)-souvislý
-	- (👀) \(G'\) nemůže obsahovat \(K_5\) ani \(K_{3, 3}\) jako minor (kontrakcí něčeho, co je nemělo, je nevytvoříme)
+	- {% math observation %}\(G'\) nemůže obsahovat \(K_5\) ani \(K_{3, 3}\) jako minor (kontrakcí něčeho, co je nemělo, je nevytvoříme){% endmath %} 
 	- \(\mathcal{G}' \ldots\) rovinné nakreslení \(G'\) (existuje z IP)
 	- \(G'' = G' - v_e\) (vrchol vzniklý kontrakcí \(e\)) \( = G - \left\{x, y\right\}\)
-		- (👀) \(G''\) bude \(2\)-souvislý (protože \(G'\) je \(3\)-souvislý a \(G''\) vznikne odebráním vrcholu)
-		- (👀) taky rovinný (odebráním mi žádný minor nevznikne)
+		- {% math observation %}\(G''\) bude \(2\)-souvislý (protože \(G'\) je \(3\)-souvislý a \(G''\) vznikne odebráním vrcholu){% endmath %}
+		- {% math observation %}taky rovinný (odebráním mi žádný minor nevznikne){% endmath %}
 		- \(\mathcal{G}''\) nakreslení \(G''\) vzniklé z \(\mathcal{G}'\) odebráním \(v_e\)
 
 Označme \(C\) kružnici ohraničující stěnu \(\mathcal{G}''\), v níž ležel (v \(\mathcal{G}'\) vrchol \(v_e\)) -- musí to být kružnice, protože v rovinném nakreslení každého \(2\)-souvislého grafu je každá stěna kružnice.
@@ -314,14 +307,14 @@ Operace s plochami, přes které umíme všechny zkonstruovat:
 	- vyříznu dva kruhy
 	- vezmu plášť pálce bez dna a vrchu
 	- ohnu a přílepím jej na díry po kruzích
-	- (👀) -- teleport, do kterého když vejdeme, tak na druhé straně vyjdeme opačně („otočeně“)
+	- {% math observation %}teleport, do kterého když vejdeme, tak na druhé straně vyjdeme opačně („otočeně“){% endmath %} 
 
 {:.rightFloatBox}
 <div markdown="1">
 {% xopp o2 %}
 </div>
 - přidání křížítka (cross-cupu):
-	- (👀) -- teleport, do kterého když vejdeme, tak nás to přesune naproti
+	- {% math observation %}teleport, do kterého když vejdeme, tak nás to přesune naproti{% endmath %}
 
 Pro \(g \in \left\{0, 1, \ldots\right\}\) nechť \(\sum_g\) značí plochu zvniklou ze sféry přidáním \(g\) uší, tak říkáme, že \(\sum g\) je **orientovatelná plocha** rodu \(g\).
 
@@ -381,7 +374,7 @@ Mějme buňkové nakreslení \(G = (V, E)\) na \(\Gamma \cong \Pi_g\)
 - \(v(G), e(G), s(G)\) značíme počet vrcholů, hran a stěn
 
 Nechť \(K\) je křížítko na \(\Gamma\), \(x_1, \ldots, x_k\) jsou body \(K\) (ne nutně vrcholy grafu), kde hrany \(G\) kříží \(K\)
-- (👀) \(k \ge 1\), jinak by stěna obsahující \(K\) nebyla buňka
+- {% math observation %}\(k \ge 1\), jinak by stěna obsahující \(K\) nebyla buňka{% endmath %}
 - rovněž předpokládám, že vrchol neleží přesně na křížítku, jinak bych ho mohl BUNO posunout
 
 {:.rightFloatBox}
@@ -590,11 +583,11 @@ Pro spor: \(R\) není klika \(\Rightarrow\) obsahuje \(u, v\) nesousedy. Protož
 	- \(G\) je úplný, platí
 	- nebo nechť \(x, y\) nesousedi v \(G\) a \(R\) je \(x{\text -}y\)-řez tvořící kliku
 		- \(G_x^+ = \left(\text{komponenta $G \setminus R$ obsahující $x$}\right) \cup R\), obdobně \(G_y^+\)
-		- (👀) pokud \(G\) byl chordální, pak \(H \le G\) je také chordalní
+		- {% math observation %}pokud \(G\) byl chordální, pak \(H \le G\) je také chordalní{% endmath %}
 		- použijeme IP na \(G_x^+\)
 			- pokud \(G_x^+\) klika, vezmi jako \(s_x\) libovolný vrchol \(G_x\) (např. \(x\))
 			- pokud \(G_x^+\) není klika, má dva simpliciální vrcholy; nejvýše jeden může ležet v \(R\), jelikož je to klika a za \(s_x\) zvolím ten druhý; analogicky pro \(G_y^+\)
-			- (👀) jelikož \(R\) je řez, tak se sousedství nezmění: \(N_{G_x^+}(s_x) = N_{G}(s_x)\) (proto vlastně děláme indukci přes \(G_x^+\), né jen přes \(G_x\)
+			- {% math observation %}jelikož \(R\) je řez, tak se sousedství nezmění: \(N_{G_x^+}(s_x) = N_{G}(s_x)\) (proto vlastně děláme indukci přes \(G_x^+\), né jen přes \(G_x\){% endmath %} 
 
 {% xopp another2 %}
 {% endmath %}
@@ -833,10 +826,8 @@ Potom **obyčejná vytvořující funkce** pro \(\mathcal{A}\) je FMŘ \[\mathrm
 - \(H(x) = \mathrm{OVF}(\mathcal{H}) = x^{90} + 2x^{100} \)
 - \(J(x) = P(x) + H(x)\)
 
----
-
-- (👀) \(\mathrm{OVF}(\mathcal{A} \cup \mathcal{B}) = \mathrm{OVF}(\mathcal{A}) + \mathrm{OVF}(\mathcal{B})\)
-- (👀) \(\mathrm{OVF}(\mathcal{A}) \cdot \mathrm{OVF}(\mathcal{B}) = \mathrm{OVF}(\mathcal{A} \times \mathcal{B})\)
+- {% math observation %}\(\mathrm{OVF}(\mathcal{A} \cup \mathcal{B}) = \mathrm{OVF}(\mathcal{A}) + \mathrm{OVF}(\mathcal{B})\){% endmath %} 
+- {% math observation %}\(\mathrm{OVF}(\mathcal{A}) \cdot \mathrm{OVF}(\mathcal{B}) = \mathrm{OVF}(\mathcal{A} \times \mathcal{B})\){% endmath %}
 	- \(P(x) \cdot H(x) = \) kartézský součin dvojic (polívka, hlavní jídlo)
 	- \([x^{130}](J(x) \cdot J(x)) = \) počet uspořádaných dvojic jídel, které se sečtou na \(130\)
 
@@ -926,7 +917,7 @@ Potom **exponenciální vytvořující funkce** pro \(\mathcal{A}\) je \[\mathrm
 {% endmath %}
 
 Prvky \(x, y \in A\) jsou ekvivalentní (značím \(x \sim_{\Gamma} y\)), pokud \(\exists \gamma \in \Gamma\) t.ž. \(\gamma x = y\)
-- (👀) \(\sim_{\Gamma}\) je to ekvivalence:
+- {% math observation %}\(\sim_{\Gamma}\) je to ekvivalence:{% endmath %}
 	- reflexivní -- \(x = 1_\Gamma x\)
 	- symetrická -- \(\gamma x = y \iff \gamma^{-1}y = x\)
 	- transitivní -- \(\gamma x = y \land \gamma y = z \Rightarrow (\delta \gamma)x = z\)
@@ -1102,8 +1093,6 @@ K důkazu původního vyberu \(x \in V(G)\), \(S = N_G(x), G_S = G\left[S\right]
 
 {% math remark %}odhad byl dost hrubý, věta platí dokonce pro \(c_r = \mathcal{O}(r \cdot \sqrt{\log r}\)){% endmath %}
 {% endmath %}
-
----
 
 {% math definition %}\(k\)-uniformní hypergraf je dvojice \((V, E)\), kde \(E \subseteq \binom{V}{k}\){% endmath %}
 - \(f(k, n) :=\) max. \(m\) t.ž. \(\exists\) \(k\)-uniformní hypergraf \(H = (V, E)\) t.ž. \(|V| = n, |E| = m\) a \(E\) je „pronikající systém množin“ (t.j. \(\forall e, e' \in E: e \cap e' \neq \emptyset\))
