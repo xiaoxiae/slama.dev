@@ -1,0 +1,157 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+$if(colorlinks)$
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+$endif$
+$if(dir)$
+$if(latex-dir-rtl)$
+\PassOptionsToPackage{RTLdocument}{bidi}
+$endif$
+$endif$
+$if(CJKmainfont)$
+\PassOptionsToPackage{space}{xeCJK}
+$endif$
+%
+\documentclass[
+$if(fontsize)$
+  $fontsize$,
+$endif$
+$if(lang)$
+  $babel-lang$,
+$endif$
+$if(papersize)$
+  $papersize$paper,
+$endif$
+$if(beamer)$
+  ignorenonframetext,
+$if(handout)$
+  handout,
+$endif$
+$if(aspectratio)$
+  aspectratio=$aspectratio$,
+$endif$
+$endif$
+$for(classoption)$
+  $classoption$$sep$,
+$endfor$
+]{$documentclass$}
+$if(title)$
+\title{$title$}
+$endif$
+
+\usepackage[czech]{babel}
+\usepackage{a4wide}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{wrapfig}
+\usepackage{svg}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{mathtools}
+\usepackage{mleftright}
+\usepackage{subcaption}
+\usepackage{gensymb}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage[normalem]{ulem}
+\usepackage[bottom]{footmisc}  % forcing footnotes to be at the very bottom
+
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    total={170mm,257mm},
+    right=20mm,
+    left=20mm,
+    top=30mm,
+    bottom=20mm,
+}
+
+
+% ---------------------------------------- KÓD ----------------------------------------
+\usepackage[outputdir=Build]{minted}
+\setminted{
+framesep=2mm,
+linenos,
+autogobble,
+fontsize=\footnotesize
+}
+
+\RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}
+\renewcommand{\figurename}{Listing}
+
+
+% ---------------------------------------- VLNA ----------------------------------------
+\usepackage{luavlna}
+\AtBeginDocument{\singlechars{czech}{AaIiVvOoUuSsZzKk}}
+
+
+% ---------------------------------------- FLOATY ----------------------------------------
+\usepackage{float}
+\floatplacement{figure}{H}
+
+
+% ---------------------------------------- LINKY ----------------------------------------
+\usepackage{hyperref}
+\urlstyle{same}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+    linkcolor=black,%TOC
+}
+
+
+% ---------------------------------------- NADPISY ----------------------------------------
+\titleformat{\section} {\normalfont\fontsize{16}{15}\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection} {\normalfont\fontsize{14}{15}\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection} {\normalfont\fontsize{12}{15}\bfseries}{\thesubsubsection}{1em}{}
+
+% ---------------------------------------- HLAVIČKA ----------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+% Now set the headers
+\fancyhead[LE,RO]{\footnotesize\thepage}
+\fancyhead[LO,RE]{\footnotesize\leftmark}
+\fancyfoot{}
+\fancyfoot[R]{\thepage}
+
+\setcounter{secnumdepth}{0}
+
+% ------------------------------------------------------------------------------------------
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\usepackage{graphicx}
+\usepackage[normalem]{ulem}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{3em}
+        \Huge
+				\textbf{$title$}
+				\\
+				\LARGE
+				\vspace*{0.5em}
+				$category$
+
+        \vfill
+
+        \flushright
+        \normalsize
+				Tomáš Sláma\\
+				$date$\\
+				\vspace*{0.5em}
+				\href{$url$}{$url$}
+    \end{center}
+\end{titlepage}
+
+\newpage
+
+$body$
+
+\end{document}
