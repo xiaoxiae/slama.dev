@@ -307,8 +307,8 @@ ul.hfill {
 		margin-bottom: $line-spacing;
 	}
 
-	// ad-hoc fixes of stuff somewhere 
-	*:last-child { margin-bottom : 0pt; }
+	// no bottom spacing of the last element in the box
+	*:last-child { margin-bottom: 0pt; padding-bottom: 0pt; }
 
 	border: 1px solid;
 }
@@ -407,7 +407,12 @@ body {
 	h5 {padding-bottom: $h5-spacing; font-size: $h5-size;}
 	h6 {padding-bottom: $h6-spacing; font-size: $h6-size;}
 
-	img, svg { max-width: 90%; }
+	img, svg {
+		max-width: 90%;
+
+		margin: 0 auto 0;
+		display: block
+	}
 
 	// stolen from here: https://stackoverflow.com/questions/38270661/displaying-a-youtube-video-with-iframe-full-width-of-page
 	.youtubeVideoWrapper {

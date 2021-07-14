@@ -15,7 +15,7 @@ module Jekyll
       def render(context)
         content =  File.read("_includes/#{context.environments.first["page"]["slug"]}/#{@name}.svg")
 
-        return "<figure>#{content}#{@caption == "" ? "" : "<figcaption>#{@caption}</figcaption>"}</figure>"
+        return "<figure>#{content}#{@caption == 0 or @caption == nil ? "" : "<figcaption>#{@caption}</figcaption>"}</figure>"
       end
     end
   end

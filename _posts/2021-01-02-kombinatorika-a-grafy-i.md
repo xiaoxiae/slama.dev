@@ -317,7 +317,6 @@ Nechť \(X\) je konečná množina, \(\mathcal{P}\) systém podmnožin množiny 
 - \(P \in \mathcal{P}\) je přímka
 
 {% math example "Fanova rovina" %}
-{:.center}
 ![Fanova rovina.](/assets/kombinatorika-a-grafy-i/fanova-rovina.svg)
 {% endmath %}
 
@@ -334,14 +333,12 @@ Dokáže se přes to přes rozbor příkladů toho, jak vedou přímky přes \(�
   obsahovala alespoň 3 body z \(Č\). Podobně ostatní
   nerovnosti.
 
-{:.center}
 ![](/assets/kombinatorika-a-grafy-i/bod-na-primce.svg)
 
 ### 4. přednáška
 
 **Důkaz původního tvrzení:** pro přímky \(P\), \(P'\) a bod \(z\) (který nesdílí) budeme dělat bijekci tak, že budu tvořit přímky z bodu \(z\) na body z \(P\), které budou rovněž protínat body z \(P'\).
 
-{:.center}
 ![](/assets/kombinatorika-a-grafy-i/kpr-bijekce.svg)
 
 {% math definition "řád KPR" %}
@@ -371,7 +368,6 @@ Vezměme libovolné \(x \in X\). Pak \(\exists P \in \mathcal{P}: x \not\in P\),
 
 Poté stačí uvážit následující obrázek a spočítat body/přímky. Další bod už neexistuje, protože kdyby existoval, tak by jím musela procházet přímka z \(x\) a ta by rovněž někde protínala \(P\) (a nesplňovala tak axiomy).
 
-{:.center}
 ![](/assets/kombinatorika-a-grafy-i/kpr-pocet.svg)
 
 Bodů na obrázku je \(\overbrace{1}^{x} + \underbrace{\left(n + 1\right)}_{P_0 \ldots P_n}\overbrace{n}^{\text{body $P_i$, bez $x$}} = n^2 + n + 1\).
@@ -390,7 +386,6 @@ nechť \((X, \mathcal{S})\) je množinový systém (\(\mathcal{S} \subseteq 2^X\
 - (👀) incidenční graf \((Y, \mathcal{T})\) je incidenční graf \((X, \mathcal{S})\) s prohozením stran
 
 {% math example "duál Fanovy roviny" %}
-{:.center}
 ![Duál Fanovy roviny.](/assets/kombinatorika-a-grafy-i/dual-fanovy-roviny.svg)
 {% endmath %}
 
@@ -431,7 +426,6 @@ Pro KPR řádu \(p^k\), \(p\) prvočíslo vezmu algebraické těleso \(\mathbb{K
 	- \(\forall (x, y, t) \in T, \forall \lambda \neq 0: (x, y, t)\) splňuje \(\iff (\lambda x, \lambda y, \lambda t)\) splňuje
 	- \(\forall (a, b, c) \in T, \forall \lambda\) fixuji \((x, y, t) \in T: ax + by + ct = 0 \iff \lambda ax + \lambda by + \lambda ct = 0 \implies\) přímky \(P_{a, b, c} = P_{\lambda a, \lambda b, \lambda c} \implies |\mathcal{P}| = |X|\) a mohu si opět zvolit reprezentanty
 
-{:.center}
 ![](/assets/kombinatorika-a-grafy-i/kpr-alg.svg)
 
 {:.rightFloatBox}
@@ -536,7 +530,6 @@ Mám tedy \(n - 1\) možností a musím přijít na \(n - 1\) různých řešen�
 	- \(\mathrm{IV}: \underbrace{\forall i \in [n]}_{\text{latinské čtverce}}, \underbrace{\forall j \in [n]}_{\text{symboly}}: \left\{l_i\right\} \cup \left\{m_{k, l}\ \mid\ \left(L_i\right)_{k, l} = j\right\}\)
 {% endmath %}
 
-{:.center}
 ![Latinský čtverec na KPR.](/assets/kombinatorika-a-grafy-i/kpr-to-lat.svg)
 
 {:.rightFloatBox}
@@ -581,7 +574,6 @@ Jsou NOLČ, protože:
 - průsečíky \(\mathrm{IV}\) s \(\mathrm{II}, \mathrm{III}\) jsou jednoznačné \(\implies\) čtverce jsou latinské
 - jednoznačnost průniku dvou přímek typu \(\mathrm{IV}\) -- dvě různé přímky typu \(\mathrm{IV}\) odpovídající dvěma různým čtvercům dávají souřadnici, kde se má dvojice symbolů nachází \(\implies\) ortogonalita
 
-{:.center}
 ![KPR na latinský čtverec.](/assets/kombinatorika-a-grafy-i/lat-to-kpr.svg)
 {% endmath %}
 
@@ -607,7 +599,6 @@ nechť máme bublinu s tečkami, každá reprezentuje uspořádanou \(k\)-tici p
 {% math theorem "Spernerova" %}
 nechť \((\mathcal{P}, \subseteq)\) je částečné uspořádání, kde \(\mathcal{P}\) je množinový systém. Nechť \(\mathcal{M}\) je největší antiřetězec (\(\forall M_1, M_2 \in \mathcal{M}, M_1 \neq M_2: M_1 \nsubseteq M_2 \land M_2 \nsubseteq M_1\)). Pak \(|\mathcal{M}| \le \binom{n}{\left\lceil \frac{n}{2} \right\rceil}\), kde \(n = |X|\).{% endmath %}
 
-{:.center}
 ![Sperenerova věta.](/assets/kombinatorika-a-grafy-i/spernerova-veta.svg)
 
 {% math lemma "pomocné" %}
@@ -847,7 +838,6 @@ v bipartitním grafu: velikost maximálního párování \(=\) velikost minimaln
 {% math proof %}
 přes toky, jako na následujícím obrázku na síti kapacit \(1\):{% endmath %}
 
-{:.center}
 ![Königova věta.](/assets/kombinatorika-a-grafy-i/konig.svg)
 
 - \(R\) je minimální \(z-s\) řez
@@ -928,7 +918,6 @@ Protože \(k_1 \ge k_2\), pak \(|N[j]| \ge |J|\).
 {% math example %}
 doplňování latinských obdélníků:{% endmath %}
 
-{:.center}
 ![Latinský obdelník.](/assets/kombinatorika-a-grafy-i/lat-rect.svg)
 
 - stupně: každý sloupec má stupeň \(n - k\) (počet nepoužitých symbolů)
@@ -1047,7 +1036,6 @@ graf je \(2\)-souvislý právě tehdy, když jej lze vytvořit  z \(K_3\) poslou
 		- pokud ne: \(G - v\) musí stále být souvislý (\(G\) je \(2\)-souvislý) -- prostě vezmeme nejkratší cestu zpět do nějakého \(G_j\)
 {% endmath %}
 
-{:.center}
 ![Lepení uší.](/assets/kombinatorika-a-grafy-i/ears.svg)
 
 {% math proof "\(\Leftarrow\)" %}
@@ -1304,7 +1292,6 @@ mám na \(2^n\) prvcích \(|C|\) disjunktních koulí objemu \(V(n, t)\)... koul
 
 ---
 
-{:.center}
 ![](/assets/kombinatorika-a-grafy-i/komb-koule.svg)
 
 ---
@@ -1349,7 +1336,6 @@ Hadamardův kód je \(\left[2^r, r, 2^{r - 1}\right]\)-kód.{% endmath %}
 
 **Motivace:** party o \(6\) lidech::
 
-{:.center}
 ![](/assets/kombinatorika-a-grafy-i/ramsey-motivace.svg)
 
 {% math theorem %}
