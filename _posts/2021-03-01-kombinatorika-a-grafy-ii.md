@@ -31,7 +31,6 @@ pdf: true
 
 {:.rightFloatBox}
 <div markdown="1">
-{:.center}
 ![](/assets/kombinatorika-a-grafy-ii/alter.svg)
 </div>
 - \(\Rightarrow\) pokud \(M\) má VSC, mohu \(M\) zvětšit prohozením hran
@@ -48,12 +47,10 @@ pdf: true
 
 {% math definition "kytka" %} květ + stonek{% endmath %}
 
-{:.center}
 ![](/assets/kombinatorika-a-grafy-ii/kytka.svg)
 
 {% math definition "kontrakce hrany" %} Nechť \(G = \left(V, E\right)\) je neorientovaný graf a \(e = \left\{u, v\right\}\) jeho hrana. Zápis \(G . e\) označuje graf vzniklý z \(G\) kontrakcí („smrštěním“) hrany \(e\) do jednoho vrcholu:{% endmath %}
 
-{:.center}
 ![](/assets/kombinatorika-a-grafy-ii/kontrakce.svg)
 
 {% math lemma %}Nechť \(C\) je květ v grafu \(G\). Potom párování \(M\) v \(G\) je maximální, právě když \(M \setminus E(C)\) je maximální párování v grafu \(G . C\), tj. s květem \(C\) zkontrahovaným do jediného vrcholu. Navíc pokud znám VSC pro \(M . C\), tak v poly. čase najdu VSC pro \(M\) v \(G\).{% endmath %}
@@ -66,7 +63,6 @@ pdf: true
 - zkonstruujeme maximální možný **Edmondsův les** vzhledem k aktuálnímu \(M\) tím, že z volných vrcolů pustíme BFS a střídavě přidáváme vrcholy
 	- hranám, které se v lese neobjeví, se říká kompost a nebudou pro nás důležité
 
-{:.center}
 ![](/assets/kombinatorika-a-grafy-ii/les.svg)
 
 - pokud existuje hrana mezi (potenciálně různými) sudými hladinami různých stromů, pak máme volnou střídavou cestu, kterou zalterujeme a jsme hotovi (párování je o \(1\) větší)
@@ -100,7 +96,6 @@ Nechť \(S = \left\{v \in V\ |\ \deg(v) = n - 1\right\} = \left\{v \mid \text{$v
     - sudé kliky spárujeme triviálně
 	- v rámci liché kliky vypáruji vše až na jeden vrchol, ten spáruji v rámci \(S\) (\(S\) vidí všechny) a zbytek v \(S\) spáruji spolu (sudé komponenty do parity nepřispívají, liché + \(1\) z \(S\) také ne a v \(S\) tedy zbyde sudý počet vrcholů)
 
-{:.center}
 ![](/assets/kombinatorika-a-grafy-ii/1.svg)
 
 - alespoň \(1\) komponenta \(K\) není klika, tedy \(\exists x, y \in K\) nesousední
@@ -108,7 +103,6 @@ Nechť \(S = \left\{v \in V\ |\ \deg(v) = n - 1\right\} = \left\{v \mid \text{$v
 	- pro \(u\) existuje vrchol \(v\), se kterým **není** spojený (jinak by \(u\) byl v \(S\), což ale víme že není)
 
 
-{:.center}
 ![](/assets/kombinatorika-a-grafy-ii/2.svg)
 
 - {% math observation %}přidáním hrany do grafu se neporuší TP (\(\forall S \subseteq V\) počet lichých komponent \(G - S\) buď klesne o \(2\) nebo zůstane stejný).{% endmath %}
@@ -120,17 +114,14 @@ Těžší případ: \(e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2)\)
 - \(H \) obsahuje **„dvoubarevné hrany“** \(e \in M_1 \cap M_2\) nebo **střídavé sudé cykly**
 - \(H \) neobsahuje **izolované vrcholy** a **střídavé cesty,** protože \(M_1, M_2\) byly perfektní
 
-{:.center}
 ![](/assets/kombinatorika-a-grafy-ii/3.svg)
 
 - jednodušší případ těžšího případu: \(e_1\) leží v jiné komponentě \(H\) než \(e_2\) -- stačí přealternovat hrany tak, aby ani \(e_1\) ani \(e_2\) v \(H\) neležely.
 
-{:.center}
 ![](/assets/kombinatorika-a-grafy-ii/4.svg)
 
 - složitější případ těžšího případu: \(e_1\) a \(e_2\) leží ve stejné komponentě -- vybereme podle obrázku
 
-{:.center}
 ![](/assets/kombinatorika-a-grafy-ii/5.svg)
 
 {% endmath %}
@@ -151,7 +142,6 @@ Těžší případ: \(e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2)\)
 		- \(p \ge 3 \cdot \mathrm{odd(G - S)}\) (ukázali jsme výše)
 		- \(p \le 3 \cdot |S|\) (každý vrchol \(S\) vysílá ven \(\le 3\) hrany (z \(3\)-regularity))
 
-{:.center}
 ![](/assets/kombinatorika-a-grafy-ii/6.svg)
 
 \(|S| \ge \mathrm{odd}(G - S)\), tedy TP platí a graf má perfektní párování.
@@ -595,7 +585,6 @@ Pro spor: \(R\) není klika \(\Rightarrow\) obsahuje \(u, v\) nesousedy. Protož
 
 {:.rightFloatBox}
 <div markdown="1">
-{:.center}
 ![](/assets/kombinatorika-a-grafy-ii/dog.svg)
 </div>
 {% math definition "PES" %} Perfektní eliminační schéma (PES) grafu \(G\) je pořadí vrcholů \(v_1, \ldots, v_n\) t. ž. \(\forall i \in [n]\) platí, že leví sousedé \(v_i\) (\(= \left\{v_j \mid j < i, v_jv_i \in E\right\}\)) tvoří kliku.{% endmath %}

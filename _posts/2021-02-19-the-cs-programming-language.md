@@ -516,7 +516,6 @@ class File {
 	- they are not free, it can sometimes take quite a while (`int` \(\rightarrow\) `float`)
 	- no conversions from/to `bool` (unlike C++)
 
-{:.center}
 ![Implicit Conversions.](/assets/programovani-v-jazyce-cs/implicit-conversions.svg)
 
 - by default, all numberic constants (without a period) are `int`
