@@ -1,17 +1,4 @@
 % Options for packages loaded elsewhere
-\PassOptionsToPackage{hyphens}{url}
-$if(colorlinks)$
-\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
-$endif$
-$if(dir)$
-$if(latex-dir-rtl)$
-\PassOptionsToPackage{RTLdocument}{bidi}
-$endif$
-$endif$
-$if(CJKmainfont)$
-\PassOptionsToPackage{space}{xeCJK}
-$endif$
-%
 \documentclass[
 $if(fontsize)$
   $fontsize$,
@@ -47,6 +34,7 @@ $endif$
 \usepackage{amsmath}
 \usepackage{wrapfig}
 \usepackage{svg}
+\usepackage{longtable}
 \usepackage{enumitem}
 \usepackage{booktabs}
 \usepackage{tabularx}

@@ -45,23 +45,33 @@ new_header = "---\n" + "\n".join([f"{k}: {v}" for k, v in header_dictionary.item
 
 substitutions = [
     # xopp tagy
-    (r"{%\s*xopp\s*(.+?)\s*%}", r"\\begin{figure}[H] \\center \\includesvg{../_includes/" + stripped_name + r"/\1}\\end{figure}"),
+    (r"{%\s*xopp\s*(.+?)\s*%}", r"\\begin{figure}[H]\n\\center \\includesvg{../_includes/" + stripped_name + r"/\1}\n\\end{figure}"),
     # TOC
     (r"- \.\n{:toc}", r"\\tableofcontents\n\\newpage"),
     # nadpisy
     (r"^##", r""),
-    # the new YAML header
-    (r"^---((.|\n)*?)^---", new_header),
     # lecture notes preface
-    (r"{%\s+lecture_notes_preface\s+(.+?)\s+\|\s+(.+?)\s+%}", r"# Preface\nThis website contains my lecture notes from a lecture by \1 from the academic year \2. If you find something incorrect/unclear, or would like to contribute either text or an image, feel free to submit a \\url{https://github.com/xiaoxiae/slama.dev/blob/master/\_posts/}{pull request} (or let me know via email)" if "language" not in header_dictionary or header_dictionary["language"] == "en" else r"# Úvodní informace\nTato stránka obsahuje moje poznámky z přednášky \1 z akademického roku \2. Pokud by byla někde chyba/nejasnost, nebo byste rádi někam přidali obrázek/text, tak stránku můžete upravit \\href{https://github.com/xiaoxiae/slama.dev/blob/master/\_posts/}{pull requestem} (případně mi dejte vědět na mail."),
+    (r"{%\s+lecture_notes_preface\s+(.+?)\s*\|\s*(.+?)\s*%}", r"# Preface\nThis website contains my lecture notes from a lecture by \1 from the academic year \2. If you find something incorrect/unclear, or would like to contribute either text or an image, feel free to submit a \\url{https://github.com/xiaoxiae/slama.dev/blob/master/\_posts/}{pull request} (or let me know via email)" if "language" not in header_dictionary or header_dictionary["language"] == "en" else r"# Úvodní informace\nTato stránka obsahuje moje poznámky z přednášky \1 z akademického roku \2. Pokud by byla někde chyba/nejasnost, nebo byste rádi někam přidali obrázek/text, tak stránku můžete upravit \\href{https://github.com/xiaoxiae/slama.dev/blob/master/\_posts/}{pull requestem} (případně mi dejte vědět na mail."),
     # Pandoc is stupid and requires space between paragraph and a list of items
     (r"(^[^-\n](.+?))\n(-|(1\.))", r"\1\n\n\3"),
     # if-else for PDF typesetting
     (r"<!---MARKDOWN-->((.|\n)+?)<!---PDF((.|\n)+?)-->", r"\3"),
+    # relative file paths from absolute ones
+    (r"^!\[(.*?)\]\((.+?)\)", r"![\1](..\2)"),
+    # svg images
+    (r"^!\[(.*?)\]\((.+?).svg\s*\)", r"\\begin{figure}[H]\n\\center \\includesvg{\2}\n\\end{figure}"),
+]
+
+first_substitutions = [
+    # the new YAML header
+    (r"^---((.|\n)*?)^---", new_header),
 ]
 
 for pattern, sub in substitutions:
     contents = re.sub(pattern, sub, contents, flags=re.MULTILINE)
+
+for pattern, sub in first_substitutions:
+    contents = re.sub(pattern, sub, contents, 1, flags=re.MULTILINE)
 
 def replace_math(contents, tag_type, argument, opening, closing):
     tags = {
@@ -81,7 +91,7 @@ def replace_math(contents, tag_type, argument, opening, closing):
         "question": r'**Otázka' + (" (" + argument.replace('\\', '\\\\') + ")" if argument != '' else ":") + r"** \1",
     }
 
-    return re.sub(re.escape(opening) + r"((.|\n)+?)" + re.escape(closing) + r"\s*$", tags[tag_type], contents, 1, flags=re.MULTILINE)
+    return re.sub(re.escape(opening) + r"((.|\n)+?)" + re.escape(closing), tags[tag_type], contents, 1, flags=re.MULTILINE)
 
 stack = []
 for entire_tag, tag_type, _, argument in re.findall(r"({%\s*math\s+(.+?)\s+(\"(.+)\")*\s*%}|{%\s*endmath\s*%})", contents):
@@ -93,8 +103,8 @@ for entire_tag, tag_type, _, argument in re.findall(r"({%\s*math\s+(.+?)\s+(\"(.
     else:
         stack.append((entire_tag, tag_type, argument))
 
-tmp = tempfile.NamedTemporaryFile(mode="w")
-tmp.write(contents)
+with open("pdf.tmp", "w") as f:
+    f.write(contents)
 
 print(f"generating {pdf_name}")
-_ = Popen(["pandoc", "-f", "markdown+tex_math_single_backslash", "-N", "--pdf-engine-opt=-shell-escape", "-i", tmp.name, "-o", pdf_path, "--template=pdf.latex", "--pdf-engine=lualatex"]).communicate()
+_ = Popen(["pandoc", "-f", "markdown+pipe_tables+tex_math_single_backslash ", "-N", "--pdf-engine-opt=-shell-escape", "-i", "pdf.tmp", "-o", pdf_path, "--template=pdf.latex", "--pdf-engine=lualatex"]).communicate()
