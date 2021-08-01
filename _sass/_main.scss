@@ -102,11 +102,14 @@ ul.hfill {
 	padding-bottom: 0px;
 	padding-left: 0px;
 
-	li:nth-child(2) {white-space: nowrap;}
+	li:nth-child(2) {
+		white-space: nowrap;
+		padding-left: $line-spacing;
+	}
 }
 
-.spacer{
-	padding-bottom: $line-spacing; 
+.spacer {
+	padding-bottom: $line-spacing;
 }
 
 /* WEBSITE-WIDE SETTINGS */
@@ -317,6 +320,7 @@ ul.hfill {
 	max-width: 45%;
 	display: inline-block;
 	margin-left: 20px;
+	background: $light-code-background-color;
 
 	border: 1px solid;
 	border-radius: 15px;
@@ -335,6 +339,7 @@ ul.hfill {
 	max-width: 45%;
 	float: right;
 	margin-right: 20px;
+	background: $light-code-background-color;
 
 	border: 1px solid;
 	border-radius: 15px;
@@ -529,6 +534,10 @@ body {
 	color: $light-text-color;
 	background-color: $light-background-color;
 
+	ul.hfill:nth-child(2n) {
+		background: $light-code-background-color;
+	}
+
 	svg, img {
 		.zone {
 			fill-opacity: 0.01;
@@ -654,6 +663,13 @@ body {
 	body {
 		color: $dark-text-color;
 		background-color: $dark-background-color;
+
+		.ghRight { background: lighten($dark-code-background-color, 8%); }
+		.ghLeft { background: lighten($dark-code-background-color, 8%); }
+
+		ul.hfill:nth-child(2n) {
+			background: lighten($dark-code-background-color, 8%);
+		}
 
 		// update image colors appropriately
 		svg, img {
