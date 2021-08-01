@@ -29,4 +29,7 @@ _includes/songs.md
 _includes/projects.md
 _includes/linearni-programovani-v-pythonu
 _plugins/svg-inkscape/*
+_plugins/*.log
+_plugins/*.tmp
+_plugins/*.out
 cv.pdf
