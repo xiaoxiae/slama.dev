@@ -1,5 +1,5 @@
 ---
-title: Photography
+title: Photos
 layout: default
 order: 5
 icon: 

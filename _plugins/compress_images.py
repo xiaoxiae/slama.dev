@@ -46,7 +46,7 @@ if os.path.exists(CACHE_FOLDER):
         config = yaml.safe_load(f.read())
 
 
-for root, dirs, files in os.walk("../photography/"):
+for root, dirs, files in os.walk("../photos/"):
     for name in files:
         # use jpegoptim to optimize raw images
         if name.endswith(("jpg", "jpeg")) and "raw" in root:
