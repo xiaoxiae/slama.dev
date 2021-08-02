@@ -47,9 +47,6 @@ for name in list(config):
         tmp_path = os.path.join(CLIMBING_VIDEOS_FOLDER, "tmp_" + name)
         new_path = os.path.join(CLIMBING_VIDEOS_FOLDER, new_name)
 
-        # create the poster
-        _ = Popen(["ffmpeg", "-i", old_path, "-vf", "select=eq(n\,0)", "-vframes", "1", "-y", new_path + ".jpeg"], stdout=PIPE, stderr=PIPE).communicate()
-
         # trim the video
         if "trim" in config[new_name]:
             start, end = config[new_name]["trim"].split(",")
@@ -74,6 +71,9 @@ for name in list(config):
                 del config[new_name]["encode"]
             if "rotate" in config[new_name]:
                 del config[new_name]["rotate"]
+
+        # create the poster
+        _ = Popen(["ffmpeg", "-i", old_path, "-vf", "select=eq(n\,0)", "-vframes", "1", "-y", new_path + ".jpeg"], stdout=PIPE, stderr=PIPE).communicate()
 
         os.rename(old_path, new_path)
 
