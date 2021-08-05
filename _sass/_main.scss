@@ -7,7 +7,7 @@ $light-text-color: #000;
 $light-link-color: #777;
 $light-background-color: #fff;
 
-$light-header-background-color: lighten($light-text-color, 93%);
+$light-header-background-color: lighten($light-text-color, 90%);
 $light-code-background-color: $light-header-background-color;
 
 $dark-text-color: #fff;
@@ -101,6 +101,8 @@ ul.hfill {
 	list-style-type: none;
 	padding-bottom: 0px;
 	padding-left: 0px;
+
+	margin-bottom: $line-spacing / 5;
 
 	li:nth-child(2) {
 		white-space: nowrap;
@@ -535,7 +537,7 @@ body {
 	background-color: $light-background-color;
 
 	ul.hfill:nth-child(2n) {
-		background: $light-code-background-color;
+		background: lighten($light-code-background-color, 5%);
 	}
 
 	svg, img {
@@ -667,9 +669,7 @@ body {
 		.ghRight { background: lighten($dark-code-background-color, 8%); }
 		.ghLeft { background: lighten($dark-code-background-color, 8%); }
 
-		ul.hfill:nth-child(2n) {
-			background: lighten($dark-code-background-color, 8%);
-		}
+		ul.hfill:nth-child(2n) { background: lighten($dark-code-background-color, 9%); }
 
 		// update image colors appropriately
 		svg, img {
