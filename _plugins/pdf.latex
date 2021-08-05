@@ -33,8 +33,10 @@ $endif$
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{wrapfig}
+\usepackage{framed}
 \usepackage{svg}
 \usepackage{longtable}
+\usepackage{csquotes}
 \usepackage{enumitem}
 \usepackage{booktabs}
 \usepackage{tabularx}
@@ -46,6 +48,8 @@ $endif$
 \usepackage{titlesec}
 \usepackage[normalem]{ulem}
 \usepackage[bottom]{footmisc}  % forcing footnotes to be at the very bottom
+
+\usepackage{emoji}
 
 \usepackage{geometry}
 \geometry{
@@ -59,7 +63,7 @@ $endif$
 
 
 % ---------------------------------------- KÓD ----------------------------------------
-\usepackage[outputdir=Build]{minted}
+\usepackage{minted}
 \setminted{
 framesep=2mm,
 linenos,

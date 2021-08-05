@@ -186,21 +186,21 @@ je nekonečná řada tvaru \(a(x) = a_0 + a_1x^1 + a_2x^2 + \ldots,\) kde \(a_0,
 {% math definition "vytvořující/generující funkce" %}
 nechť \(\left(a_0, a_1, \ldots\right)\) je posloupnost reálných čísel. Vytvořující funkce této posloupnosti je mocninná řada \(a(x) = \sum_{i = 0}^{\infty} a_i x^i\).{% endmath %}
 
-| operace                                      | řada                                                                                                                          | úprava                                               |
-| ---                                          | ---                                                                                                                           | ---                                                  |
-| součet                                       | \(a_0 + b_0, a_1 + b_1, a_2 + b_2, \ldots\)                                                              | \(a(x) + b(x)\)                 |
-| násobek                                      | \(\alpha a_0, \alpha a_1, \alpha a_2, \ldots \)                                                          | \(\alpha a(x)\)                 |
-|                                              |                                                                                                                               |                                                      |
-| posun doprava                                | \(0, a_0, a_1, \ldots \)                                                                                 | \(xa(x)\)               |
-| posun doleva                                 | \(a_1, a_2, a_3, \ldots \)                                                                               | \(\frac{a(x) - a_0}{x}\) |
-|                                              |                                                                                                                               |                                                      |
-| substituce \(\alpha x\) | \(a_0, \alpha a_1, \alpha^2 a_2, \ldots \)                                                               | \(a(\alpha x)\)         |
-| substituce \(x^n\)      | \(a_0, 0, \overset{n - 1}{\ldots}, 0, a_1, 0, \overset{n - 1}{\ldots}, 0, a_2, \ldots \)                 | \(a(x^n)\)              |
-|                                              |                                                                                                                               |                                                      |
-| derivace                                     | \(a_1, 2a_2, 3a_3, \ldots \)                                                                             | \( a'(x)\)               |
-| integrování                                  | \(0, a_1, a_2/2, a_3/3, \ldots \)                                                                        | \( \int_{0}^{x} a(t) dt\)       |
-|                                              |                                                                                                                               |                                                      |
-| konvoluce                                  | \( \sum_{k = 0}^{n} a_k \cdot b_{n - k} \)                                                               | \( a(x) \cdot b(x)\)            |
+| operace                 | řada                                                                                     | úprava                    |
+| ---                     | ---                                                                                      | ---                       |
+| součet                  | \(a_0 + b_0, a_1 + b_1, a_2 + b_2, \ldots\)                                              | \(a(x) + b(x)\)           |
+| násobek                 | \(\alpha a_0, \alpha a_1, \alpha a_2, \ldots \)                                          | \(\alpha a(x)\)           |
+|                         |                                                                                          |                           |
+| posun doprava           | \(0, a_0, a_1, \ldots \)                                                                 | \(xa(x)\)                 |
+| posun doleva            | \(a_1, a_2, a_3, \ldots \)                                                               | \(\frac{a(x) - a_0}{x}\)  |
+|                         |                                                                                          |                           |
+| substituce \(\alpha x\) | \(a_0, \alpha a_1, \alpha^2 a_2, \ldots \)                                               | \(a(\alpha x)\)           |
+| substituce \(x^n\)      | \(a_0, 0, \overset{n - 1}{\ldots}, 0, a_1, 0, \overset{n - 1}{\ldots}, 0, a_2, \ldots \) | \(a(x^n)\)                |
+|                         |                                                                                          |                           |
+| derivace                | \(a_1, 2a_2, 3a_3, \ldots \)                                                             | \( a'(x)\)                |
+| integrování             | \(0, a_1, a_2/2, a_3/3, \ldots \)                                                        | \( \int_{0}^{x} a(t) dt\) |
+|                         |                                                                                          |                           |
+| konvoluce               | \( \sum_{k = 0}^{n} a_k \cdot b_{n - k} \)                                               | \( a(x) \cdot b(x)\)      |
 
 Všechny důkazy jsou jednoduché rozepsání z definice.
 
@@ -240,12 +240,12 @@ Kde poslední rovnost platí, protože:
 {% math definition %}\(F_0 = 0, F_1 = 1, F_n = F_{n - 1} + F_{n - 2}, \forall n \ge 2\){% endmath %}
 - \(F(x) = F_0 + F_1x + F_2x^2 + F_3x^3\)
 
-| \(F_0\) | \(F_1\) | \(F_2\)       | \(F_3\)       | \(F_4\)       | Vytvořující funkce                |
-| ---                          | ---                          | ---                                | ---                                | ---                                | ---                               |
-| \(0\)   | \(1\)   | \(F_0 + F_1\) | \(F_1 + F_2\) | \(F_2 + F_3\) | \(F(x)\)     |
-| \(0\)   | \(0\)   | \(F_1\)       | \(F_2\)       | \(F_3\)       | \(x F(x)\)   |
-| \(0\)   | \(0\)   | \(F_0\)       | \(F_1\)       | \(F_2\)       | \(x^2 F(x)\) |
-| \(0\)   | \(1\)   | \(0\)         | \(0\)         | \(0\)         | \(x\)        |
+| \(F_0\) | \(F_1\) | \(F_2\)       | \(F_3\)       | \(F_4\)       | Vytvořující funkce |
+| ---     | ---     | ---           | ---           | ---           | ---                |
+| \(0\)   | \(1\)   | \(F_0 + F_1\) | \(F_1 + F_2\) | \(F_2 + F_3\) | \(F(x)\)           |
+| \(0\)   | \(0\)   | \(F_1\)       | \(F_2\)       | \(F_3\)       | \(x F(x)\)         |
+| \(0\)   | \(0\)   | \(F_0\)       | \(F_1\)       | \(F_2\)       | \(x^2 F(x)\)       |
+| \(0\)   | \(1\)   | \(0\)         | \(0\)         | \(0\)         | \(x\)              |
 
 Algebraickou úpravou dostáváme:
 \[
@@ -384,7 +384,7 @@ nechť \((X, \mathcal{S})\) je množinový systém (\(\mathcal{S} \subseteq 2^X\
 
 {% math definition "duál grafu" %}
 \((Y, \mathcal{T})\) je duál \((X, \mathcal{S})\) pokud \(Y = \mathcal{S}\) a \(\mathcal{T} = \left\{\left\{s \in \mathcal{S}\ |\ x \in s\right\}\ |\ x \in X\right\}\){% endmath %}
-- (👀) incidenční graf \((Y, \mathcal{T})\) je incidenční graf \((X, \mathcal{S})\) s prohozením stran
+- {% math observation %}incidenční graf \((Y, \mathcal{T})\) je incidenční graf \((X, \mathcal{S})\) s prohozením stran{% endmath %}
 
 {% math example "duál Fanovy roviny" %}
 ![Duál Fanovy roviny.](/assets/kombinatorika-a-grafy-i/dual-fanovy-roviny.svg)
@@ -1224,7 +1224,7 @@ slova \(z\) je \(Pz\), kde \(P\) je paritní matice kódu \(C\).{% endmath %}
 - vezmu \(s = P\tilde{x}\)
 - najdu reprezentanta \(m(s)\)
 - výsledek dekódování \(y = \tilde{x} - m(s) = \tilde{x} - m(P\tilde{x})\)
-	- (👀)  \(y\) má mezi kódovými slovy nejmenší vzdálenost od \(\tilde{x}\)
+	- {% math observation %}\(y\) má mezi kódovými slovy nejmenší vzdálenost od \(\tilde{x}\){% endmath %}
 
 {% math example %} \( \ \)
 - \(G = \begin{matrix} v_1 \\ v_2 \end{matrix} \begin{pmatrix} 1 & 1 & 1 & 0 & 0 \\ 0 & 0 & 1 & 1 & 1 \end{pmatrix}\)
@@ -1556,7 +1556,7 @@ Díky tomuto lemmatu víme, že \(\exists\) nekonečná cesta z \(S_0\). Z nekon
 - [https://research.koutecky.name/db/teaching:kg12021_prednaska](https://research.koutecky.name/db/teaching:kg12021_prednaska) -- stránka cvičení
 	- odkaz na všechny obrázky, zdroje, nahrávky cvičení
 - [Poznámky Václava Končického](https://kam.mff.cuni.cz/~koncicky/notes/kag2/pdf) z roku 2019.
-- [https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols](https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols) -- \(\LaTeX\)ové matematické symboly
+- [https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols](https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols) -- matematické symboly
 
 ### Poděkování
 - Matěji Kripnerovi za řadu PR opravujících chyby a přidávajících dodatečné informace.
