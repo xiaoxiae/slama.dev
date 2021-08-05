@@ -137,9 +137,14 @@ with open(CLIMBING_INFO, "w") as f:
     f.write(yaml.dump(config))
 
 # remove videos that are not on the list, for good measure
-for file in os.listdir(CLIMBING_VIDEOS_FOLDER):
+files = os.listdir(CLIMBING_VIDEOS_FOLDER)
+for file in files:
     if file.endswith(".mp4") and file not in config:
-        os.remove(os.path.join(CLIMBING_VIDEOS_FOLDER, file))
+        print(f"WARNING: leftover file {file}.")
     if file.endswith(".jpeg") and file[:-5] not in config:
-        os.remove(os.path.join(CLIMBING_VIDEOS_FOLDER, file[:-5] + ".jpeg"))
+        print(f"WARNING: leftover poster {file}.")
+
+for file in config:
+    if file not in files:
+        print(f"WARNING: file {file} not found.")
 
