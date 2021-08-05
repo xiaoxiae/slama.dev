@@ -178,7 +178,7 @@ je nekonečná řada tvaru \(a(x) = a_0 + a_1x^1 + a_2x^2 + \ldots,\) kde \(a_0,
 - pro \(|x| < 1\) řada konverguje k \(\frac{1}{1 - x}\), můžeme tedy říct, že \((1, 1, \ldots) \approx \frac{1}{1 - x}\)
 {% endmath %}
 
-{% math lemma %}
+{% math claim %}
 \((a_0, a_1, a_2, \ldots)\) reálná čísla. Předpoklad: pro nějaké \(K\) t. ž. \(|a_n| \le K^n\). Poté řada \(a(x)\) pro každé \(x \in \left(-\frac{1}{K}, \frac{1}{K}\right) \) konverguje (dává smysl). Funkce \(a(x)\) je navíc jednoznačně určena hodnotami na okolí \(0\).
 {% endmath %}
 
@@ -205,7 +205,7 @@ Všechny důkazy jsou jednoduché rozepsání z definice.
 
 #### Zobecněná binomická věta
 
-{% math lemma %}
+{% math claim %}
 \(r \in \mathbb{R}, k \in \mathbb{N}\), def. \(\binom{r}{k} = \frac{r \cdot (r - 1) \cdot (r - 2) \cdot  \ldots  \cdot (r - k + 1)}{k!}\)
 {% endmath %}
 
@@ -344,7 +344,7 @@ Dokáže se přes to přes rozbor příkladů toho, jak vedou přímky přes \(�
 {% math definition "řád KPR" %}
 řádem \((X, \mathcal{P})\) je \(n = |P| - 1\) pro jakoukoliv \(P \in \mathcal{P}\).{% endmath %}
 
-{% math lemma %}
+{% math claim %}
 nechť \((X, \mathcal{P})\) je KPR řádu \(n\). Pak:{% endmath %}
 1. každým bodem prochází \(n + 1\) přímek 
 2. \(|X| = n^2 + n + 1\)
@@ -493,7 +493,7 @@ mějme maximální rodinu NOLČ \(L_1, \ldots, L_m\) a permutujme symboly tak, a
 Pro libovolné dvě pozice (které se liší v řádku a sloupci) existuje čtverec, který na nich má stejné hodnoty.
 </div>
 
-{% math lemma %}
+{% math claim %}
 pokud \(L_1, \ldots, L_{n - 1}\) jsou NOLČ, potom \(\forall k, k', k \neq k', \forall l, l', l \neq l' \exists i: \left(L_i\right)_{k, l} = \left(L_i\right)_{k', l'}\){% endmath %}
 
 {% math proof %}
@@ -581,7 +581,7 @@ Jsou NOLČ, protože:
 
 #### Počítání dvěma způsoby
 
-{% math lemma %}
+{% math claim %}
 počet podmnožin \(X = \left| \binom{X}{k}\right| = \binom{|X|}{k}\){% endmath %}
 
 {% math proof %}
@@ -601,7 +601,7 @@ nechť \((\mathcal{P}, \subseteq)\) je částečné uspořádání, kde \(\mathc
 
 ![Sperenerova věta.](/assets/kombinatorika-a-grafy-i/spernerova-veta.svg)
 
-{% math lemma "pomocné" %}
+{% math claim "pomocné" %}
 \(\sum_{M \in \mathcal{M}} \left|M\right|! (n - \left|M\right|)! \le n!\). Přes dvojí počítání počtu permutací na \(X\):{% endmath %}
 - počet permutací \(= n!\) (očividné)
 - počet permutací \(\ge \sum_{M \in \mathcal{M}} |M|! (n - |M|)! \), protože:
@@ -780,7 +780,7 @@ je (neorientovaná) cesta, pokud \(\exists e\) na cestě t. ž. buďto:{% endmat
 {% math definition "nasycený tok" %}
 je tok takový, že každá (neorientovaná) cesta ze \(z\) do \(s\) je nasycená.{% endmath %}
 
-{% math lemma %}
+{% math claim %}
 \(f\) je maximální \(\iff f\) je nasycený.{% endmath %}
 
 {% math proof "maximální je nasycený" %}  \( \ \)
@@ -815,7 +815,7 @@ je tok takový, že každá (neorientovaná) cesta ze \(z\) do \(s\) je nasycen�
 1. \(f(e) = 0, \forall e \in E\)
 2. dokud \(\exists\) zlepšující cesta \(P\), zlepši tok přes \(P\)
 
-{% math lemma %}
+{% math claim %}
 pokud jsou kapacity racionální, pak algoritmus doběhne. Pokud jsou přirozené, dá celočíselný tok.{% endmath %}
 - racionální: pronásobení LCM a důkaz pro přirozené
 - přirozené: každé vylepšení cesty bude celočíselné a udělá to konečněkrát
@@ -962,7 +962,7 @@ vezmu minimální řez \(B\) v \(G - e\) \(B' = B \cup \left\{e\right\}\) je ře
 \end{aligned}
 \]
 
-{% math lemma %}
+{% math claim %}
 \(\forall G, \forall e \in E\) platí \(k_v(G) - 1 \le k_v(G - e) \le k_v(G)\){% endmath %}
 
 {% math proof %}
@@ -1135,7 +1135,7 @@ Není to Simpletonův, ale Singletonův (viz. [Wikipedia](https://en.wikipedia.o
 - \(A(n, d) \le A(n - 1, d - 1) \le \ldots \le A(n - d + 1, 1) = n - d + 1\)
 - rovněž dostávám \(A(n, 2) \le A(n - 1, 1) = n - 1\) a vím, že \(A(n, 2) \ge n - 1\), tedy rovnost
 
-{% math lemma %}
+{% math claim %}
 pro každé sudé \(d \le n\) je \(A(n, d) = A(n - 1, d - 1)\){% endmath %}
 
 {% math proof %}
@@ -1305,7 +1305,7 @@ kód \(C\) je perfektní, pokud pro něj platí Hammingův odhad s rovností.{% 
 - jednoprvkový kód (koule zaplňuje celý prostor)
 {% endmath %}
 
-{% math lemma %}
+{% math claim %}
 Hammingův kód je perfektní.{% endmath %}
 
 {% math proof %}
@@ -1325,7 +1325,7 @@ Hammingův kód je perfektní.{% endmath %}
 - \(c = (c_1, \ldots, c_{2^r - 1})\)
 	- \(c_i = \langle x, y_i \rangle\), kde \(y_i\) jsou binární zápisy čísla \(i\)
 
-{% math lemma %}
+{% math claim %}
 Hadamardův kód je \(\left[2^r, r, 2^{r - 1}\right]\)-kód.{% endmath %}
 
 {% math observation %}

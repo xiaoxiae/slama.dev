@@ -26,7 +26,7 @@ category: "lecture notes"
 - **volná** střídavá cesta (VSC) -- krajní vrcholy jsou volné (vůči párování)
 - \(\Rightarrow\) obsahuje lichý počet hran, sudý počet vrcholů
 
-{% math lemma %}Nechť \(G = \left(V, E\right)\) je graf, \(M\) párování v \(G\). Pak \(G\) obsahuje VSC (vzhledem k \(M\)), právě když \(M\) není největší párování v \(G\).{% endmath %}
+{% math claim %}Nechť \(G = \left(V, E\right)\) je graf, \(M\) párování v \(G\). Pak \(G\) obsahuje VSC (vzhledem k \(M\)), právě když \(M\) není největší párování v \(G\).{% endmath %}
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -52,7 +52,7 @@ category: "lecture notes"
 
 ![](/assets/kombinatorika-a-grafy-ii/kontrakce.svg)
 
-{% math lemma %}Nechť \(C\) je květ v grafu \(G\). Potom párování \(M\) v \(G\) je maximální, právě když \(M \setminus E(C)\) je maximální párování v grafu \(G . C\), tj. s květem \(C\) zkontrahovaným do jediného vrcholu. Navíc pokud znám VSC pro \(M . C\), tak v poly. čase najdu VSC pro \(M\) v \(G\).{% endmath %}
+{% math claim %}Nechť \(C\) je květ v grafu \(G\). Potom párování \(M\) v \(G\) je maximální, právě když \(M \setminus E(C)\) je maximální párování v grafu \(G . C\), tj. s květem \(C\) zkontrahovaným do jediného vrcholu. Navíc pokud znám VSC pro \(M . C\), tak v poly. čase najdu VSC pro \(M\) v \(G\).{% endmath %}
 
 {% math proof %}Tady je [sketchy důkaz](http://www.cs.dartmouth.edu/~ac/Teach/CS105-Winter05/Handouts/tarjan-blossom.pdf), tady je [míň sketchy důkaz](https://stanford.edu/~rezab/classes/cme323/S16/projects_reports/shoemaker_vare.pdf).
 {% endmath %}
@@ -70,7 +70,7 @@ category: "lecture notes"
 	- vratí-li nějaké větší párování, tak z něho zkonstruujeme párování v \(G\)
 - neexistuje-li hrana mezi sudými hladinami, pak \(M' = M\)
 
-{% math lemma %}Edmondsův algoritmus spuštěný na \(G\) a \(M\) doběhne v čase \(\mathcal{O}(n \cdot (n + m))\) a najde párování \(M'\) alespoň o \(1\) hranu větší než \(M\), případně oznámí, že \(M\) je největší \(\Rightarrow\) nejlepší párování lze nalézt v čase \(\mathcal{O}(n^2 (n + m))\).{% endmath %}
+{% math claim %}Edmondsův algoritmus spuštěný na \(G\) a \(M\) doběhne v čase \(\mathcal{O}(n \cdot (n + m))\) a najde párování \(M'\) alespoň o \(1\) hranu větší než \(M\), případně oznámí, že \(M\) je největší \(\Rightarrow\) nejlepší párování lze nalézt v čase \(\mathcal{O}(n^2 (n + m))\).{% endmath %}
 
 ### 2. přednáška
 
@@ -410,7 +410,7 @@ Tedy \[\Chi(\Gamma) = L(G)\]
 	- pro libovolně velký úplňák dokážeme vytvořit plochu, na kterou ho nakreslíme
 {% endmath %}
 
-{% math lemma %}Nechť \(\Gamma\) je plocha, \(\Gamma \neq \Sigma_0\), nechť \(G\) je graf nakreslený na \(\Gamma\), potom \(G\) obsahuje vrchol stupně \(\le \left\lfloor \frac{5 + \sqrt{49 - 24\Chi(\Gamma)}}{2} \right\rfloor\){% endmath %}
+{% math claim %}Nechť \(\Gamma\) je plocha, \(\Gamma \neq \Sigma_0\), nechť \(G\) je graf nakreslený na \(\Gamma\), potom \(G\) obsahuje vrchol stupně \(\le \left\lfloor \frac{5 + \sqrt{49 - 24\Chi(\Gamma)}}{2} \right\rfloor\){% endmath %}
 
 {% math proof %}Mějme \(G\) podle předpokladu. Opět značíme \(v(G), e(G)\) jako počet vrcholů a hran. ROzlišíme \(3\) případy:
 - \(\Chi(\Gamma) = 1\) (t.j. \(\Gamma \cong \prod_1\)), dosazením do předchozího důsledku dostáváme průměrný stupeň \(< 6\), tedy existuje vrchol stupně \(\le 5\), což jsme chtěli
@@ -548,7 +548,7 @@ Tedy \[\Chi(\Gamma) = L(G)\]
 
 {% math definition %}Nechť \(x, y\) dva nesousední vrcholy \(G\). \(R\) je \(x{\text -}y\)-řez, pokud je to řez takový, že \(x, y\) patří do různých komponent \(G \setminus R\).{% endmath %}
 
-{% math lemma %}\(G\) je chordální \(\iff\) pro každé dva nesousední vrcholy \(x, y \in V, x \neq y\) existuje \(x{\text -}y\)-řez, který je klika.{% endmath %}
+{% math claim %}\(G\) je chordální \(\iff\) pro každé dva nesousední vrcholy \(x, y \in V, x \neq y\) existuje \(x{\text -}y\)-řez, který je klika.{% endmath %}
 
 {% math proof %} \(\Leftarrow\) nechť \(G\) není chordální, tedy obsahuje indukovanou kružnici \(C_4\). Uvážíme-li dva její nesousední vrcholy, tak jakýkoliv řez musí obsahovat vrcholy z horní a dolní cesty mezi \(x\) a \(y\). Ty nesousedí, tedy řez nebude klika.
 
@@ -671,7 +671,7 @@ Spojením dostáváme \(r(F) = |F| = |V| - k(F) = |V| - k(G) = r(E)\).
 
 {% math definition: "Tutteův polynom" %}multigrafu \(G = (V, E)\) je polynom proměnných \(x, y\) definovaný jako \[T_G(x, y) := \sum_{F \subseteq E} (x - 1)^{r(E) - r(F)} \cdot (y - 1)^{n(F)}\]{% endmath %}
 
-{% math lemma %}pro \(G\) souvislý je \(T_G(1, 1)\) počet koster \(G\){% endmath %}
+{% math claim %}pro \(G\) souvislý je \(T_G(1, 1)\) počet koster \(G\){% endmath %}
 
 {% math proof %}Dosadím do polynomu a získám \(0^{r(E) - r(F)} 0^{n(F)}\). Vím, že \(x^0 \equiv 1\), tedy výraz bude počet \(F\) takových, že \(r(E) = r(F)\) a \(n(F) = 0\).
 - z předpokladu souvislosti je počet komponent \(1\)
@@ -680,7 +680,7 @@ Spojením dostáváme \(r(F) = |F| = |V| - k(F) = |V| - k(G) = r(E)\).
 - kombinace počtu hran a souvislosti dává, že je to strom a tedy kostra
 {% endmath %}
 
-{% math lemma %}Nechť \(G_1 = (V_1, E_1), G_2 = (V_2, G_2)\) jsou multigrafy, t. ž. \(|V_1 \cap V_2| \le 1\), \(|E_1 \cap E_2| = 0\) (protínají se nejvýše v jednom vrcholu a v žádné hraně). Definujeme \(G = (V, E)\), kde \(V = V_1 \cup V_2\) a \(E = E_1 \cup E_2\). Potom \(T_G(x, y) = T_{G_1}(x, y) \cdot T_{G_2}(x, y)\)
+{% math claim %}Nechť \(G_1 = (V_1, E_1), G_2 = (V_2, G_2)\) jsou multigrafy, t. ž. \(|V_1 \cap V_2| \le 1\), \(|E_1 \cap E_2| = 0\) (protínají se nejvýše v jednom vrcholu a v žádné hraně). Definujeme \(G = (V, E)\), kde \(V = V_1 \cup V_2\) a \(E = E_1 \cup E_2\). Potom \(T_G(x, y) = T_{G_1}(x, y) \cdot T_{G_2}(x, y)\)
 {% endmath %}
 
 {% math proof %}V definici kvantifikuji přes podmnožiny hran. Ty ale můžu vždy rozdělit na disjunktní sjednocení podle \(E_1\) a \(E_2\). Navíc:
@@ -767,7 +767,7 @@ Poté pro větu stačí následující:
 - \(A(x) = 1 - x \ldots B(x) = 1 + x + x^2 + \ldots\)
 	- \(C(x) = A(x) \cdot B(x) = (1 + x + x^2 + \ldots) - (x + x^2 + x^3 + \ldots)\), kde \([x^n]C(x)\) bude nulové pro \(n \ge 1\) (požere se to), proto \((1 + x + x^2 + \ldots) = \frac{1}{1 - x}\)
 
-{% math lemma %}Nechť \(A(x) = \sum_{n = 0}^{\infty} a_n x^n\) je FMŘ. Potom \(\frac{1}{A(x)}\) existuje, právě když \(a_0 \neq 0\) (a pak je jednoznačně určena).{% endmath %}
+{% math claim %}Nechť \(A(x) = \sum_{n = 0}^{\infty} a_n x^n\) je FMŘ. Potom \(\frac{1}{A(x)}\) existuje, právě když \(a_0 \neq 0\) (a pak je jednoznačně určena).{% endmath %}
 
 {% math proof %}Hledejme inverz. Rozepsáním \(A(x) \cdot B(x) = 1 + 0x + 0x^2 + \ldots\) nám dává soustavu takovýchto rovnic, které mají jednoznačné řešení:
 

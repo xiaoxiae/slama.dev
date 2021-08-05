@@ -313,7 +313,7 @@ Nechť \(V = \left\{v_1, \ldots, v_n\right\}\).
 	- typicky \(d_1 \le d_2 \le \ldots \le d_n\)
 	- \(0 \le d_i < n - 1\)
 
-{% math lemma %}
+{% math claim %}
 \[\sum_{v \in V\left(G\right)} \mathrm{deg}\left(v\right) = 2 \cdot \left|E\left(G\right)\right|\]
 {% endmath %}
 
@@ -374,7 +374,7 @@ v grafu délky \(k\) je (2 pohledy):
 (procházka/walk) v grafu \(G\) je cesta, ve které se mohou vrcholy i hrany opakovat.
 {% endmath %}
 
-{% math lemma %}
+{% math claim %}
 pokud existuje sled z \(x\) do \(y\), pak existuje i cesta.
 {% endmath %}
 - zvolíme nejkratší ze všech sledů... to je cesta; kdyby ne, pak \(\exists\) vrchol, který se tam vyskytuje 2x (tím pádem jde sled zkrátit)
@@ -407,7 +407,7 @@ V souvislém grafu \(G\) je vzdálenost vrcholu \(u, v\) _minimum_ z delek cest 
 - list -- vrchol stromu s \(\mathrm{deg}\left(v\right) = 1\)
 {% endmath %}
 
-{% math lemma %}
+{% math claim %}
 Strom s alespoň 2 vrcholy má alespoň 2 _listy_ (vrcholy, do kterých vede 1 hrana).
 {% endmath %}
 
@@ -417,7 +417,7 @@ uvažme nejdelší cestu. Její krajní vrcholy jsou listy, jelikož:
 - pokud z nich vede cesta někam, kde jsme ještě nebyli, tak není nejdelší
 {% endmath %}
 
-{% math lemma %}
+{% math claim %}
 nechť \(v\) je list grafu \(G\). Pak \(G\) je strom \(\iff G - v\) je strom.
 {% endmath %}
 
@@ -695,7 +695,7 @@ pokud \(G\) nemá lichou kružnici, pak \(\chi\left(G\right) \le 2\).
 graf je souvislý \(\implies\) má kostru \(T\). Nechť \(C\) je 2-obarvení \(T\). Pokud by \(C\) nebylo obarvením \(G\), pak \(\exists\) cesta sudé délky z vrcholu \(u\) do \(v\), jejíž propojením dostáváme lichý cyklus. 
 {% endmath %}
 
-{% math lemma %}
+{% math claim %}
 Je-li T strom s alespoň 2 vrcholy. pak \(\chi\left(T\right) = 2\)
 {% endmath %}
 
