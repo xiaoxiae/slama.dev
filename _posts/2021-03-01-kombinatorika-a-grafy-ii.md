@@ -222,7 +222,7 @@ Pak ale \(G_{i - 1}\) nebyl 3-souvislý, rozborem toho, kde vznikla hrana:
 2. \(G\) neobsahuje dělení \(K_5\) ani \(K_{3, 3}\) jako podgraf
 3. \(G\) neobsahuje \(K_5\) ani \(K_{3, 3}\) jako minor.
 
-{% math proof %} \( \ \)
+{% math proof %}
 - *\(1 \Rightarrow 2\): z prváku, protože \(K_5\) ani \(K_{3, 3}\) nejsou rovinné
 - \(3 \Rightarrow 2\): obměna: „obsahuje dělení jako podgraf“ \(\Rightarrow\) „obsahuje dělení jako minor“
 - \(1 \Rightarrow 3\): je-li rovinný, tak i minor bude rovinný (fakt výše)
