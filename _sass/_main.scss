@@ -99,10 +99,13 @@ ul.hfill {
 	display: flex;
 	justify-content: space-between;
 	list-style-type: none;
-	padding-bottom: 0px;
-	padding-left: 0px;
+	padding-left: $line-spacing / 5;
+	padding-right: $line-spacing / 5;
 
-	margin-bottom: $line-spacing / 5;
+	margin-top: $line-spacing / 10;
+	margin-bottom: $line-spacing / 10;
+	padding-top: $line-spacing / 10;
+	padding-bottom: $line-spacing / 10;
 
 	li:nth-child(2) {
 		white-space: nowrap;
@@ -536,7 +539,7 @@ body {
 	color: $light-text-color;
 	background-color: $light-background-color;
 
-	ul.hfill:nth-child(2n) {
+	ul.hfill:nth-child(2n+1) {
 		background: lighten($light-code-background-color, 5%);
 	}
 
@@ -669,7 +672,7 @@ body {
 		.ghRight { background: lighten($dark-code-background-color, 8%); }
 		.ghLeft { background: lighten($dark-code-background-color, 8%); }
 
-		ul.hfill:nth-child(2n) { background: lighten($dark-code-background-color, 9%); }
+		ul.hfill:nth-child(2n+1) { background: lighten($dark-code-background-color, 9%); }
 
 		// update image colors appropriately
 		svg, img {
