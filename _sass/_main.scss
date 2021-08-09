@@ -1,64 +1,6 @@
 @charset "utf-8";
 
-/* COLORS */
-$website-color: #0066ff;
-
-$light-text-color: #000;
-$light-link-color: #777;
-$light-background-color: #fff;
-
-$light-header-background-color: lighten($light-text-color, 90%);
-$light-code-background-color: $light-header-background-color;
-
-$dark-text-color: #fff;
-$dark-link-color: #adadad;
-$dark-background-color: #333;
-
-
-$dark-header-background-color: darken($dark-text-color, 93%);
-$dark-code-background-color: $dark-header-background-color;
-
-/* SIZES */
-$website-size: 700px;	// width of content of the website
-$website-padding: 25px;	// left/right padding of website content
-
-$header-padding: 10px;		// top/bottom padding of header
-$navigation-padding: 15px;	// top/bottom padding of navbar
-
-$navigation-item-spacing: 20px;	// spacing between each of the navigation items
-
-$code-padding: 3px;	// padding for inline code will be this, and double this for regular code
-$code-border-roundness: 6px;	// roundness of the code border
-
-$title-size: 180%;
-$description-size: 125%;
-$footer-size: 80%;
-$toc-size: $footer-size;
-
-$line-height: 1.4;
-
-$line-spacing: 20px;	// spacing after paragraph
-
-$h2-size: 36px;
-$h3-size: 26px;
-$h4-size: 21px;
-$h5-size: 15px;
-$h6-size: 13px;
-
-$h2-spacing: 8px;
-$h3-spacing: 5px;
-$h4-spacing: 3px;
-$h5-spacing: 2px;
-$h6-spacing: 1px;
-
-
-$list-item-left-padding: 25px;	// so bullets don't stick out the page
-
-$small-screen-threshold: 550px;
-
-/* FONT SETTINGS */
-$serif-font: "Fira Sans Light";
-$monospaced-font: "Fira Code Light";
+@import "variables";
 
 @font-face{
 	font-family: $serif-font;
