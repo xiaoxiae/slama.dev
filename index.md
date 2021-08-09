@@ -3,6 +3,7 @@ title: Home
 layout: default
 order: 0
 icon: 
+css: index
 ---
 
 ## Hi everyone!

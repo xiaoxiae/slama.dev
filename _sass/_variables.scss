@@ -1,8 +1,7 @@
 @charset "utf-8";
 
-/* COLORS */
-$website-color: #0066ff;
 
+/* LIGHT COLORS */
 $light-text-color: #000;
 $light-link-color: #777;
 $light-background-color: #fff;
@@ -10,12 +9,15 @@ $light-background-color: #fff;
 $light-header-background-color: lighten($light-text-color, 90%);
 $light-code-background-color: $light-header-background-color;
 
+
+/* DARK COLORS */
 $dark-text-color: #fff;
 $dark-link-color: #adadad;
 $dark-background-color: #333;
 
 $dark-header-background-color: darken($dark-text-color, 93%);
 $dark-code-background-color: $dark-header-background-color;
+
 
 /* SIZES */
 $website-size: 700px;	// width of content of the website
@@ -29,12 +31,11 @@ $navigation-item-spacing: 20px;	// spacing between each of the navigation items
 $code-padding: 3px;	// padding for inline code will be this, and double this for regular code
 $code-border-roundness: 6px;	// roundness of the code border
 
-$title-size: 180%;
-$description-size: 125%;
-$footer-size: 80%;
-$toc-size: $footer-size;
+$title-size: 180%;	// how much bigger is the title
+$footer-size: 80%;	// how much smaller is the footer
+$toc-size: $footer-size;	// how much smaller is the TOC
 
-$line-height: 1.4;
+$line-height: 1.4;	// increase line height to make text more readable
 
 $line-spacing: 20px;	// spacing after paragraph
 
@@ -50,10 +51,11 @@ $h4-spacing: 3px;
 $h5-spacing: 2px;
 $h6-spacing: 1px;
 
-
 $list-item-left-padding: 25px;	// so bullets don't stick out the page
+								// sort of a hack, I don't know how else to do this
 
-$small-screen-threshold: 550px;
+$small-screen-threshold: 550px;	// if the screen is smaller than this, website changes stuff
+
 
 /* FONT SETTINGS */
 $serif-font: "Fira Sans Light";

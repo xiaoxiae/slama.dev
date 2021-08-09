@@ -1,0 +1,52 @@
+@charset "utf-8";
+
+@import "variables";
+
+
+.ghLeft {
+	max-width: 45%;
+	display: inline-block;
+	margin-left: 20px;
+
+	border: 1px solid;
+	border-radius: 15px;
+	th { border: 0px; }
+
+	@media (max-width: $small-screen-threshold) {
+		max-width: 90%;
+		display: block;
+		float: none;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+.ghRight {
+	max-width: 45%;
+	float: right;
+	margin-right: 20px;
+
+	border: 1px solid;
+	border-radius: 15px;
+	th { border: 0px; }
+
+	@media (max-width: $small-screen-threshold) {
+		max-width: 90%;
+		display: block;
+		float: none;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+.ghName { text-align: left; }
+.ghDescription {}
+.ghStars {}
+.ghLang { text-align: right; }
+
+
+.ghRight,.ghLeft { background: $light-code-background-color; }
+
+@media (prefers-color-scheme: dark) {
+	.ghRight,.ghLeft { background: lighten($dark-code-background-color, 8%); }
+}

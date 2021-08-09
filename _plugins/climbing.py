@@ -91,6 +91,7 @@ for zone in zones:
     zone_file_content = f"""---
 title: Climbing
 layout: default
+css: climbing
 ---
 """
     added = False

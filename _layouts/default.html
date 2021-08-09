@@ -20,6 +20,10 @@
 
 		<!-- CSS STYLESHEETS -->
 		<link rel="stylesheet" href="{{ '/assets/css/main.css' | absolute_url}}">
+		{% if page.css %}
+		{% capture url %}/assets/css/{{ page.css }}.css{% endcapture %}
+		<link rel="stylesheet" href="{{ url | absolute_url}}">
+		{% endif %}
 
 		<!-- KATEX -->
 		<link rel="stylesheet" href="{{ '/assets/css/katex.min.css' | absolute_url}}">
