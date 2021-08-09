@@ -9,7 +9,7 @@ import yaml
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-MAX = 10  # out of 100
+MAX = 5  # out of 100
 CACHE_FOLDER = "../.jekyll-cache/compress_images"
 SUB = "Images"
 

@@ -32,6 +32,8 @@ colors = list(reversed(["red", "salmon", "blue", "yellow"]))
 
 # rename new files
 for name in list(config):
+    old_path = os.path.join(CLIMBING_VIDEOS_FOLDER, name)
+
     if "new" in config[name]:
         print(f"parsing new climb '{name}'.")
 
@@ -42,8 +44,6 @@ for name in list(config):
         config[new_name] = config[name]
         del config[name]
 
-        # useful paths
-        old_path = os.path.join(CLIMBING_VIDEOS_FOLDER, name)
         tmp_path = os.path.join(CLIMBING_VIDEOS_FOLDER, "tmp_" + name)
         new_path = os.path.join(CLIMBING_VIDEOS_FOLDER, new_name)
 
@@ -76,6 +76,14 @@ for name in list(config):
         _ = Popen(["ffmpeg", "-i", old_path, "-vf", "select=eq(n\,0)", "-vframes", "1", "-y", new_path + ".jpeg"], stdout=PIPE, stderr=PIPE).communicate()
 
         os.rename(old_path, new_path)
+
+    if "poster" in config[name]:
+        if "new" not in config[name]:
+            print(f"generating a poster for '{name}'.")
+        _ = Popen(["ffmpeg", "-i", old_path, "-vf", "select=eq(n\,0)", "-vframes", "1", "-y", old_path + ".jpeg"], stdout=PIPE, stderr=PIPE).communicate()
+        _ = Popen(["jpegoptim", "-s", "-m13", old_path + ".jpeg"], stdout=PIPE, stderr=PIPE).communicate()
+        del config[name]["poster"]
+
 
 # sort -- gets sorted by date, due to the name of the climbing files
 config_list = [(file, config[file]) for file in config]
@@ -119,7 +127,7 @@ css: climbing
 
             zone_file_content += f"""
 <figure class='climbing-video climbing-{color} {style_class}'>
-<video poster="/climbing/videos/{name}.jpeg" controls><source src='/climbing/videos/{name}' type='video/mp4'></video>
+<video poster="/climbing/videos/{name}.jpeg" controls preload="none"><source src='/climbing/videos/{name}' type='video/mp4'></video>
 <figcaption class='figcaption-margin'>{config[name]["date"].strftime("%d / %m / %Y")}</figcaption>
 </figure>"""
 

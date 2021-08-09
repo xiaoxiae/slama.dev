@@ -6,7 +6,7 @@ icon: 
 css: photos
 ---
 
-Below is a galery of some of the nicer photos that I've taken. All of them had been compressed to be web-usable. If you'd like to see the originals, simply click on the photos.
+Below is a galery of some of the nicer photos that I've taken. All of them had been compressed (quite agressively) to be web-usable. If you'd like to see the originals, simply click on the photos.
 
 None of the photos are copyrighted in any way, so feel free to use them however you wish 🙂 (crediting me would, however, be greatly appreciated).
 
