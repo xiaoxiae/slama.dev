@@ -9,12 +9,14 @@ from subprocess import Popen, PIPE
 
 import yaml
 
+
 def get_random_string(length: int):
     """Generate a random string."""
     result = ""
     for _ in range(length):
         result += choice(ascii_lowercase)
     return result
+
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
@@ -39,7 +41,15 @@ for name in list(config):
 
         # assign a new name
         random_string = get_random_string(8)
-        new_name = "smichoff-" + config[name]["color"] + "-" + config[name]["date"].strftime("%Y-%m-%d") + "-" + random_string + ".mp4"
+        new_name = (
+            "smichoff-"
+            + config[name]["color"]
+            + "-"
+            + config[name]["date"].strftime("%Y-%m-%d")
+            + "-"
+            + random_string
+            + ".mp4"
+        )
         del config[name]["new"]
         config[new_name] = config[name]
         del config[name]
@@ -50,7 +60,17 @@ for name in list(config):
         # trim the video
         if "trim" in config[new_name]:
             start, end = config[new_name]["trim"].split(",")
-            command = ["ffmpeg", "-y", "-i", old_path, "-ss", start, "-to", end, tmp_path]
+            command = [
+                "ffmpeg",
+                "-y",
+                "-i",
+                old_path,
+                "-ss",
+                start,
+                "-to",
+                end,
+                tmp_path,
+            ]
 
             _ = Popen(command, stdout=PIPE, stderr=PIPE).communicate()
             os.remove(old_path)
@@ -59,9 +79,25 @@ for name in list(config):
 
         # encode/rotate the video
         if "encode" in config[new_name] or "rotate" in config[new_name]:
-            encode_config = [] if "encode" not in config[new_name] else ["-vcodec", "libx264", "-crf", "28"]
-            rotate_config = [] if "rotate" not in config[new_name] else ["-vf", f'transpose={"2" if config[new_name]["rotate"] == "left" else "1"}']
-            command = ["ffmpeg", "-y", "-i", old_path] + encode_config + rotate_config + [tmp_path]
+            encode_config = (
+                []
+                if "encode" not in config[new_name]
+                else ["-vcodec", "libx264", "-crf", "28"]
+            )
+            rotate_config = (
+                []
+                if "rotate" not in config[new_name]
+                else [
+                    "-vf",
+                    f'transpose={"2" if config[new_name]["rotate"] == "left" else "1"}',
+                ]
+            )
+            command = (
+                ["ffmpeg", "-y", "-i", old_path]
+                + encode_config
+                + rotate_config
+                + [tmp_path]
+            )
 
             _ = Popen(command, stdout=PIPE, stderr=PIPE).communicate()
             os.remove(old_path)
@@ -73,15 +109,45 @@ for name in list(config):
                 del config[new_name]["rotate"]
 
         # create the poster
-        _ = Popen(["ffmpeg", "-i", old_path, "-vf", "select=eq(n\,0)", "-vframes", "1", "-y", new_path + ".jpeg"], stdout=PIPE, stderr=PIPE).communicate()
+        _ = Popen(
+            [
+                "ffmpeg",
+                "-i",
+                old_path,
+                "-vf",
+                "select=eq(n\,0)",
+                "-vframes",
+                "1",
+                "-y",
+                new_path + ".jpeg",
+            ],
+            stdout=PIPE,
+            stderr=PIPE,
+        ).communicate()
 
         os.rename(old_path, new_path)
 
-    if "poster" in config[name]:
+    if name in config and "poster" in config[name]:
         if "new" not in config[name]:
             print(f"generating a poster for '{name}'.")
-        _ = Popen(["ffmpeg", "-i", old_path, "-vf", "select=eq(n\,0)", "-vframes", "1", "-y", old_path + ".jpeg"], stdout=PIPE, stderr=PIPE).communicate()
-        _ = Popen(["jpegoptim", "-s", "-m13", old_path + ".jpeg"], stdout=PIPE, stderr=PIPE).communicate()
+        _ = Popen(
+            [
+                "ffmpeg",
+                "-i",
+                old_path,
+                "-vf",
+                "select=eq(n\,0)",
+                "-vframes",
+                "1",
+                "-y",
+                old_path + ".jpeg",
+            ],
+            stdout=PIPE,
+            stderr=PIPE,
+        ).communicate()
+        _ = Popen(
+            ["jpegoptim", "-s", "-m13", old_path + ".jpeg"], stdout=PIPE, stderr=PIPE
+        ).communicate()
         del config[name]["poster"]
 
 
@@ -108,7 +174,9 @@ css: climbing
         videos_in_color = []
 
         for name in config:
-            if config[name]["color"] == color and (config[name]["zone"] == zone or zone == "all"):
+            if config[name]["color"] == color and (
+                config[name]["zone"] == zone or zone == "all"
+            ):
                 videos_in_color.append(name)
 
         videos_in_color = list(reversed(sorted(videos_in_color)))
@@ -120,8 +188,10 @@ css: climbing
             style_class = "climbing-"
 
             # either an odd number of videos, or even and not the last -- no center
-            if len(videos_in_color) % 2 == 0 or (len(videos_in_color) % 2 == 1 and i != len(videos_in_color) - 1):
-                style_class += 'left' if i % 2 == 0 else 'right'
+            if len(videos_in_color) % 2 == 0 or (
+                len(videos_in_color) % 2 == 1 and i != len(videos_in_color) - 1
+            ):
+                style_class += "left" if i % 2 == 0 else "right"
             else:
                 style_class += "center"
 
@@ -135,7 +205,9 @@ css: climbing
 
     # if there are no videos of the climb, add a text about it
     if not added:
-        zone_file_content += "{: .center}\nI haven't recorded any climbs in this zone yet, sorry!"
+        zone_file_content += (
+            "{: .center}\nI haven't recorded any climbs in this zone yet, sorry!"
+        )
 
     with open(zone_file_name, "w") as f:
         f.write(zone_file_content)
@@ -148,12 +220,11 @@ with open(CLIMBING_INFO, "w") as f:
 # remove videos that are not on the list, for good measure
 files = os.listdir(CLIMBING_VIDEOS_FOLDER)
 for file in files:
-    if file.endswith(".mp4") and file not in config:
+    if file.lower().endswith(".mp4") and file not in config:
         print(f"WARNING: leftover file {file}.")
-    if file.endswith(".jpeg") and file[:-5] not in config:
+    if file.lower().endswith(".jpeg") and file[:-5] not in config:
         print(f"WARNING: leftover poster {file}.")
 
 for file in config:
     if file not in files:
         print(f"WARNING: file {file} not found.")
-

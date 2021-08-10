@@ -152,7 +152,7 @@ for i, name in enumerate(arguments.files):
             .decode()
         )
 
-    out_name = name[:-4] + 'svg'
+    out_name = name[:-4] + "svg"
     with open(out_name, "w") as f:
         f.write(out)
         print(f"{name} -> {out_name}")
