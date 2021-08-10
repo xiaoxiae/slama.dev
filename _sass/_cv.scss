@@ -3,37 +3,37 @@
 @import "variables";
 
 .cv {
-	table {
-		tbody tr td:first-child {
-			min-width: 7em;
-			max-width: 7em;
-		}
+    table {
+        border-collapse: collapse;
 
-		border-collapse: collapse;
+        // line between left and right column
+        tr {
+            td { border-left: 1px solid; }
+            td:first-child { border-left: 0 solid; }
+        }
 
-		tr:first-child {
-			// so the right column is always max. size
-			td + td  { width: 100% }
+        tbody tr td:first-child {
+            min-width: 7em;
+            max-width: 7em;
+        }
 
-			// space between border line and 
-			p:first-child { padding-top: $line-spacing / 3; }
-		}
+        tr:first-child {
+            // so the right column is always max. size
+            td + td { width: 100%; }
 
-		// no spacing after last <p> in each table
-		tr:last-child {
-			*:last-child {
-				margin-bottom: 0px;
-				padding-bottom: 0px;
-			}
-		}
+            // space between border line and
+            p:first-child { padding-top: $line-spacing / 3; }
+        }
 
-		// line between left and right column
-		tr {
-			td { border-left: 1px solid; }
-			td:first-child { border-left: 0px solid; }
-		}
+        // no spacing after last <p> in each table
+        tr:last-child {
+            *:last-child {
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+        }
 
-		border-top: 2px solid;
-		border-bottom: 0px solid;
-	}
+        border-top: 2px solid;
+        border-bottom: 0 solid;
+    }
 }

@@ -1,6 +1,5 @@
 @charset "utf-8";
 
-
 /* LIGHT COLORS */
 $light-text-color: #000;
 $light-link-color: #777;
@@ -9,7 +8,6 @@ $light-background-color: #fff;
 $light-header-background-color: lighten($light-text-color, 90%);
 $light-code-background-color: $light-header-background-color;
 
-
 /* DARK COLORS */
 $dark-text-color: #fff;
 $dark-link-color: #adadad;
@@ -17,7 +15,6 @@ $dark-background-color: #333;
 
 $dark-header-background-color: darken($dark-text-color, 93%);
 $dark-code-background-color: $dark-header-background-color;
-
 
 /* SIZES */
 $website-size: 700px;	// width of content of the website
@@ -52,11 +49,11 @@ $h5-spacing: 2px;
 $h6-spacing: 1px;
 
 $list-item-left-padding: 25px;	// so bullets don't stick out the page
-								// sort of a hack, I don't know how else to do this
+// sort of a hack, I don't know how else to do this
 
 $small-screen-threshold: 550px;	// if the screen is smaller than this, website changes stuff
-
 
 /* FONT SETTINGS */
 $serif-font: "Fira Sans Light";
 $monospaced-font: "Fira Code Light";
+$icons-font: "Icons Font";
