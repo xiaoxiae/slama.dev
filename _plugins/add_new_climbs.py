@@ -8,10 +8,6 @@ from datetime import date
 import yaml
 
 
-
-
-
-
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 CLIMBING_FOLDER = "../climbing/"
