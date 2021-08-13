@@ -10,9 +10,9 @@ import yaml
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-CLIMBING_FOLDER = "../climbing/"
+CLIMBING_FOLDER = "."
 CLIMBING_VIDEOS_FOLDER = os.path.join(CLIMBING_FOLDER, "videos")
-CLIMBING_INFO = os.path.join(CLIMBING_FOLDER, "information.yaml")
+CLIMBING_INFO = os.path.join(CLIMBING_FOLDER, "videos.yaml")
 
 config = {}
 if os.path.exists(CLIMBING_INFO):
