@@ -203,4 +203,4 @@ with open(os.path.join(base, "../_includes/songs.md"), "w") as f:
         else:
             f.write(char)
 
-print("Rick-rolled!")
+print("Rick-rolled.")

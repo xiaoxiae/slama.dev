@@ -49,6 +49,6 @@ try:
     with open(os.path.join(base, "../_includes/projects.md"), "w") as f:
         f.write(result)
 
-    print("generated!")
+    print("generated.")
 except requests.exceptions.ConnectionError:
     print("network could not be reached, projects not generated.")

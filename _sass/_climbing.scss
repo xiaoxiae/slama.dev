@@ -15,9 +15,30 @@
     }
 }
 
+.climbing-red { background: #f74d4dff; }
 .climbing-salmon { background: #ffc1a8ff; }
 .climbing-blue { background: #087ec4ff; }
 .climbing-yellow { background: #fce538ff; }
+
+.climbing-red-text {
+    color: $dark-text-color;
+    a { color: $dark-link-color; &:hover { color: $dark-text-color; } }
+}
+
+.climbing-salmon-text {
+    color: $light-text-color;
+    a { color: $light-link-color; &:hover { color: $light-text-color; } }
+}
+
+.climbing-blue-text {
+    color: $dark-text-color;
+    a { color: $dark-link-color; &:hover { color: $dark-text-color; } }
+}
+
+.climbing-yellow-text {
+    color: $light-text-color;
+    a { color: $light-link-color; &:hover { color: $light-text-color; } }
+}
 
 .climbing-left {
     width: 48%;
@@ -38,6 +59,16 @@
     float: left;
 }
 
+.climbing-diary {
+    li { padding-bottom: $line-spacing / 2; }
+}
+
+mark.climbing-diary-record {
+    border: 2px solid $light-text-color;
+    border-radius: $code-border-roundness;
+    padding: $code-padding / 2 $code-padding;
+}
+
 mark.climbing {
     color: $dark-text-color;
     border: 2px solid $light-text-color;
@@ -46,10 +77,7 @@ mark.climbing {
     background: none;
 }
 
-mark.climbing-low-angle {
-    background: #96cdffff;
-    color: $light-text-color;
-}
+mark.climbing-low-angle { background: #96cdffff; color: $light-text-color; }
 mark.climbing-vertical { background: #60a3d9ff; }
 mark.climbing-mild-overhang { background: #0074b7ff; }
 mark.climbing-severe-overhang { background: #005290ff; }
