@@ -37,7 +37,7 @@ for name in list(config):
     old_path = os.path.join(CLIMBING_VIDEOS_FOLDER, name)
 
     if "new" in config[name]:
-        print(f"parsing new climb '{name}'.")
+        print(f"parsing new climb '{name}'.", flush=True)
 
         # assign a new name
         random_string = get_random_string(8)
@@ -129,7 +129,7 @@ for name in list(config):
 
     if name in config and "poster" in config[name]:
         if "new" not in config[name]:
-            print(f"generating a poster for '{name}'.")
+            print(f"generating a poster for '{name}'.", flush=True)
         _ = Popen(
             [
                 "ffmpeg",
@@ -212,7 +212,7 @@ css: climbing
     with open(zone_file_name, "w") as f:
         f.write(zone_file_content)
 
-print("zones generated.")
+print("zones generated.", flush=True)
 
 with open(CLIMBING_INFO, "w") as f:
     f.write(yaml.dump(config))
@@ -221,10 +221,10 @@ with open(CLIMBING_INFO, "w") as f:
 files = os.listdir(CLIMBING_VIDEOS_FOLDER)
 for file in files:
     if file.lower().endswith(".mp4") and file not in config:
-        print(f"WARNING: leftover file {file}.")
+        print(f"WARNING: leftover file {file}.", flush=True)
     if file.lower().endswith(".jpeg") and file[:-5] not in config:
-        print(f"WARNING: leftover poster {file}.")
+        print(f"WARNING: leftover poster {file}.", flush=True)
 
 for file in config:
     if file not in files:
-        print(f"WARNING: file {file} not found.")
+        print(f"WARNING: file {file} not found.", flush=True)

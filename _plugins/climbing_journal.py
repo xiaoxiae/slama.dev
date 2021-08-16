@@ -69,4 +69,4 @@ result += "</div>"
 with open(OUTPUT_PATH, "w") as f:
     f.write(result)
 
-print("journal generated.")
+print("journal generated.", flush=True)

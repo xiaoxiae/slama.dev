@@ -134,7 +134,7 @@ arguments = parser.parse_args()
 for i, name in enumerate(arguments.files):
     # check if the file exists
     if not os.path.exists(name):
-        print(f"'{name}' not found, skipping.")
+        print(f"'{name}' not found, skipping.", flush=True)
         continue
 
     # get the svg from Xournal++, storing it in a temporary file
@@ -155,4 +155,4 @@ for i, name in enumerate(arguments.files):
     out_name = name[:-4] + "svg"
     with open(out_name, "w") as f:
         f.write(out)
-        print(f"{name} -> {out_name}")
+        print(f"{name} -> {out_name}", flush=True)
