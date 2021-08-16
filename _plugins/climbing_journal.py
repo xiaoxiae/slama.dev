@@ -30,10 +30,10 @@ if os.path.exists(CLIMBING_JOURNAL):
         journal = yaml.safe_load(f.read())
 
 result = """
-<div markdown="1" class="climbing diary">
+<div markdown="1" class="climbing-journal">
 """
 
-for entry in sorted(list(journal)):
+for entry in reversed(sorted(list(journal))):
     line = f"- **{entry.strftime('%-d. %-m. %Y')}:** "
 
     for color in ["red", "salmon", "blue", "yellow"]:
