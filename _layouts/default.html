@@ -61,6 +61,10 @@
 				{% endfor %}
 			</div>
 
+			{% unless page.no-heading %}
+				<h2>{{ page.title }}</h2>
+			{% endunless %}
+
 			{{ content }}
 
 			<footer>

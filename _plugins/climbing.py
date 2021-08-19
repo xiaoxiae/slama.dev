@@ -197,7 +197,7 @@ css: climbing
 
             zone_file_content += f"""
 <figure class='climbing-video climbing-{color} {style_class}'>
-<video poster="/climbing/videos/{name}.jpeg" controls preload="metadata"><source src='/climbing/videos/{name}' type='video/mp4'></video>
+<video alt="Me climbing a {color} boulder at Smíchoff, {config[name]["date"].strftime("%d/%m/%Y")}." poster="/climbing/videos/{name}.jpeg" controls preload="metadata"><source src='/climbing/videos/{name}' type='video/mp4'></video>
 <figcaption class='figcaption-margin'>{config[name]["date"].strftime("%d / %m / %Y")}</figcaption>
 </figure>"""
 

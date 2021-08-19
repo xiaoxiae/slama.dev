@@ -3,6 +3,7 @@ title: Music
 layout: default
 order: 1
 icon: 
+no-heading: True
 ---
 
 Here is a list of songs that I listen to on a daily basis. 
@@ -13,7 +14,7 @@ If you feel like the list is missing something that you feel I ought to listen t
 ### Soundtracks (games)
 - **Ori and the Blind Forest** -- a calming set of piano/vocal melodies that are well-suited for studying and programming
 - **Cuphead** -- a rare live-produced game soundtrack featuring various forms of jazz
-- **Shovel Knight** -- if you love [8-bit music](https://en.wikipedia.org/wiki/Chiptune), then you'll really love this one!
+- **Shovel Knight** -- if you love 8-bit music, then you'll really love this one!
 
 ### Miscellaneous
 {% include songs.md %}

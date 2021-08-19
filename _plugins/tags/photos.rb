@@ -9,10 +9,12 @@ module Jekyll
       def render(context)
         result = "<div class='row'>"
 
+
         for i in 0..(@parts.length - 1)
+          @type = @parts[i].split("/")
           result = result + "<div class='photos#{@parts.length}'>" \
-          "<a href='#{@parts[i]}'>" \
-          "<img src='#{@parts[i].gsub("raw/", "")}'>" \
+          "<a aria-label='Link to the uncompressed version of one of my pictures depicting #{@type[0].strip}.' href='#{@parts[i]}'>" \
+          "<img alt='Compressed version of one of my pictures depicting #{@type[0].strip}.' src='#{@parts[i].gsub("raw/", "")}'>" \
           "</a>" \
           "</div>" \
         end
