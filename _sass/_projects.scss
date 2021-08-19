@@ -2,38 +2,32 @@
 
 @import "variables";
 
-.ghLeft {
+.ghLeft,
+.ghRight {
     max-width: 45%;
-    display: inline-block;
-    margin-left: 20px;
     border: 1px solid;
     border-radius: 15px;
     th { border: 0; }
 
+    padding-top: $line-spacing / 3;
+    padding-bottom: $line-spacing / 3;
+
     @media (max-width: $small-screen-threshold) {
-        max-width: 90%;
+        max-width: 100%;
         display: block;
-        float: none;
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 }
 
+.ghLeft {
+    margin-left: 20px;
+    display: inline-block;
+}
+
 .ghRight {
-    max-width: 45%;
     float: right;
     margin-right: 20px;
-    border: 1px solid;
-    border-radius: 15px;
-    th { border: 0; }
-
-    @media (max-width: $small-screen-threshold) {
-        max-width: 90%;
-        display: block;
-        float: none;
-        margin-left: auto;
-        margin-right: auto;
-    }
 }
 
 .ghName { text-align: left; }
