@@ -166,6 +166,7 @@ for zone in zones:
 title: Climbing
 layout: default
 css: climbing
+no-heading: True
 ---
 """
     added = False
