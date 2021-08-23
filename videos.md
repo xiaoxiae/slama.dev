@@ -12,5 +12,6 @@ I occasionally create videos about math/computer science that I put up on my [Yo
 Regarding tooling, I use `sox` and `arecord` to record and process the audio and Kdenlive to cut the video. For music, I use [blue dots sessions](https://app.sessions.blue/) -- a great source of free high quality music under the Creative Commons license.
 
 ## Graph Theory
-- 2021/04/28 \| [Vizing's theorem](https://www.youtube.com/watch?v=OZWZpQmGp0g) -- _A visual proof of Vizing's theorem about graph edge coloring._
+- 2021/04/28 \| [Vizing's theorem](https://www.youtube.com/watch?v=OZWZpQmGp0g) -- _A proof of Vizing's theorem about graph edge coloring._
 - 2021/06/01 \| [Weak Perfect Graph Theorem](https://www.youtube.com/watch?v=Koc63QhxPgk) -- _A proof of the weak perfect graph theorem._
+- 2021/08/23 \| [The Blossom algorithm](https://www.youtube.com/watch?v=3roPs1Bvg1Q) -- _An overview of the Blossom algorithm for maximum graph matching._
