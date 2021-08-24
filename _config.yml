@@ -11,7 +11,11 @@ exclude: [
   "makefile",
   "LICENSE.txt",
   "**/README.md",
+  "**/ignored",
   "README.md",
+  "climbing/journal.yaml",
+  "climbing/videos.yaml",
+  "climbing/add_new_climbs.py",
 ]
 
 defaults:
