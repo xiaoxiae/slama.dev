@@ -21,8 +21,8 @@
 .climbing-yellow { background: #fce538ff; }
 
 .climbing-red-text {
-    color: $dark-text-color;
-    a { color: $dark-link-color; &:hover { color: $dark-text-color; } }
+    color: $light-text-color;
+    a { color: $light-link-color; &:hover { color: $light-text-color; } }
 }
 
 .climbing-salmon-text {
