@@ -77,6 +77,8 @@ Never gonna tell a lie and hurt you
 """.lower()
 
 songs = """
+### Miscellaneous
+
 - America -- A Horse With No Name
 - Beatles -- Come Together
 - Beatles -- Lucy In The Sky With Diamonds
@@ -193,14 +195,24 @@ rick_index = 0
 
 base = os.path.dirname(os.path.realpath(__file__))
 with open(os.path.join(base, "../_includes/songs.md"), "w") as f:
+    ignore_next_line = False
+    previous_char = ""
     for char in songs:
+        if char == "#" and previous_char == "\n":
+            ignore_next_line = True
+
+        if char == "\n":
+            ignore_next_line = False
+
         while rick[rick_index] not in string.ascii_lowercase + "'":
             rick_index += 1
 
-        if char.lower() == rick[rick_index]:
+        if char.lower() == rick[rick_index] and not ignore_next_line:
             f.write(f"`{char}`")
             rick_index += 1
         else:
             f.write(char)
+
+        previous_char = char
 
 print("Rick-rolled.", flush=True)
