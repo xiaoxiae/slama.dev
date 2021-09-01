@@ -7,9 +7,24 @@ from datetime import date
 
 videos = {
     "Graph Theory": [
-        (date(2021, 4, 28), "https://www.youtube.com/watch?v=OZWZpQmGp0g", "Vizing's theorem", "03-"),
-        (date(2021, 6, 1), "https://www.youtube.com/watch?v=Koc63QhxPgk", "Weak Perfect Graph Theorem", "04-"),
-        (date(2021, 8, 23), "https://www.youtube.com/watch?v=3roPs1Bvg1Q", "The Blossom algorithm", "06-"),
+        (
+            date(2021, 4, 28),
+            "https://www.youtube.com/watch?v=OZWZpQmGp0g",
+            "Vizing's theorem",
+            "03-",
+        ),
+        (
+            date(2021, 6, 1),
+            "https://www.youtube.com/watch?v=Koc63QhxPgk",
+            "Weak Perfect Graph Theorem",
+            "04-",
+        ),
+        (
+            date(2021, 8, 23),
+            "https://www.youtube.com/watch?v=3roPs1Bvg1Q",
+            "The Blossom algorithm",
+            "06-",
+        ),
     ]
 }
 
@@ -48,7 +63,12 @@ for category in videos:
 
         # rozlišení
         resolution_paths = [f for f in glob(os.path.join(folder, "export", "*.mp4"))]
-        resolutions = sorted([int(os.path.basename(f).strip(".mp4").strip("p")) for f in resolution_paths])
+        resolutions = sorted(
+            [
+                int(os.path.basename(f).strip(".mp4").strip("p"))
+                for f in resolution_paths
+            ]
+        )
 
         # kopírování videí
         for resolution_path in resolution_paths:
@@ -62,14 +82,22 @@ for category in videos:
         subtitles = glob(os.path.join(folder, "*.srt"))
         if len(subtitles) == 1:
             if not os.path.exists(os.path.join(this_video_folder, subtitle_name)):
-                shutil.copy(subtitles[0], os.path.join(this_video_folder, subtitle_name))
+                shutil.copy(
+                    subtitles[0], os.path.join(this_video_folder, subtitle_name)
+                )
 
-        resolution_links = [f"[{r}p](/videos/{video_slug}/{r}p.mp4)" for r in resolutions]
+        resolution_links = [
+            f"[{r}p](/videos/{video_slug}/{r}p.mp4)" for r in resolutions
+        ]
 
         with open(os.path.join(folder, "DESCRIPTION.md"), "r") as f:
             description = f.read().splitlines()[0]
 
-        subtitle_string = '' if not subtitles else f"[subtitles](/videos/{video_slug}/{subtitle_name})/"
+        subtitle_string = (
+            ""
+            if not subtitles
+            else f"[subtitles](/videos/{video_slug}/{subtitle_name})/"
+        )
         url_string = f"[code]({URL_ROOT + os.path.basename(folder)})"
 
         category_str += f"{date.strftime('%Y/%0m/%0d')} -- **{video}** [[YouTube]({youtube_link})] [{'/'.join(resolution_links)}] [{subtitle_string}{url_string}]\n- _{description}_\n\n"
