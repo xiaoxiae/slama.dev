@@ -1,777 +1,514 @@
 @charset "utf-8";
 
-/* COLORS */
-$website-color: #0066ff;
+@import "variables";
+@import "hacks";
 
-$light-text-color: #000;
-$light-link-color: #777;
-$light-background-color: #fff;
-
-$light-header-background-color: lighten($light-text-color, 93%);
-$light-code-background-color: $light-header-background-color;
-
-$dark-text-color: #fff;
-$dark-link-color: #adadad;
-$dark-background-color: #333;
-
-
-$dark-header-background-color: darken($dark-text-color, 93%);
-$dark-code-background-color: $dark-header-background-color;
-
-/* SIZES */
-$website-size: 700px;	// width of content of the website
-$website-padding: 25px;	// left/right padding of website content
-
-$header-padding: 10px;		// top/bottom padding of header
-$navigation-padding: 15px;	// top/bottom padding of navbar
-
-$navigation-item-spacing: 20px;	// spacing between each of the navigation items
-
-$code-padding: 3px;	// padding for inline code will be this, and double this for regular code
-$code-border-roundness: 6px;	// roundness of the code border
-
-$title-size: 180%;
-$description-size: 125%;
-$footer-size: 80%;
-$toc-size: $footer-size;
-
-$line-height: 1.4;
-
-$line-spacing: 20px;	// spacing after paragraph
-
-$h2-size: 36px;
-$h3-size: 26px;
-$h4-size: 21px;
-$h5-size: 15px;
-$h6-size: 13px;
-
-$h2-spacing: 8px;
-$h3-spacing: 5px;
-$h4-spacing: 3px;
-$h5-spacing: 2px;
-$h6-spacing: 1px;
-
-
-$list-item-left-padding: 25px;	// so bullets don't stick out the page
-
-$small-screen-threshold: 550px;
-
-/* FONT SETTINGS */
-$serif-font: "Fira Sans Light";
-$monospaced-font: "Fira Code Light";
-
-@font-face{
-	font-family: $serif-font;
-	src: local($serif-font),
-		 url("/assets/css/fonts/FiraSans-Light.eot") format("embedded-opentype"),
-		 url("/assets/css/fonts/FiraSans-Light.woff2") format("woff2"),
-		 url("/assets/css/fonts/FiraSans-Light.woff") format("woff"),
-		 url("/assets/css/fonts/FiraSans-Light.ttf") format("truetype");
-	font-weight: 300;
-	font-style: normal;
-}
-
-@font-face{
-	font-family: $monospaced-font;
-	src: local($monospaced-font),
-		 url("/assets/css/fonts/FiraCode-Light.woff2") format("woff2"),
-		 url("/assets/css/fonts/FiraCode-Light.woff") format("woff"),
-		 url("/assets/css/fonts/FiraCode-Light.ttf") format("truetype");
-	font-weight: 400;
-	font-style: normal;
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
 }
 
 @font-face {
-	font-family: 'Icons Font';
-	src: url('/assets/css/fonts/Icons.woff') format('woff'),
-		url('/assets/css/fonts/Icons.ttf') format('truetype');
+    font-family: $serif-font;
+    src:
+        local($serif-font),
+        url("/assets/css/fonts/FiraSans-Light.eot") format("embedded-opentype"),
+        url("/assets/css/fonts/FiraSans-Light.woff2") format("woff2"),
+        url("/assets/css/fonts/FiraSans-Light.woff") format("woff"),
+        url("/assets/css/fonts/FiraSans-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: $monospaced-font;
+    src:
+        local($monospaced-font),
+        url("/assets/css/fonts/FiraCode-Light.woff2") format("woff2"),
+        url("/assets/css/fonts/FiraCode-Light.woff") format("woff"),
+        url("/assets/css/fonts/FiraCode-Light.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: $icons-font;
+    src:
+        url('/assets/css/fonts/Icons.woff') format('woff'),
+        url('/assets/css/fonts/Icons.ttf') format('truetype');
 }
 
 .icons {
-	* {
-		font-family: 'Icons Font';
-		font-weight: 900;
-		font-style: normal;
-	}
+    * {
+        font-family: $icons-font;
+        font-weight: 900;
+        font-style: normal;
+    }
 }
 
-ul.hfill {
-	display: flex;
-	justify-content: space-between;
-	list-style-type: none;
-	padding-bottom: 0px;
-	padding-left: 0px;
-
-	li:nth-child(2) {white-space: nowrap;}
-}
-
-.spacer{
-	padding-bottom: $line-spacing; 
-}
-
-/* WEBSITE-WIDE SETTINGS */
-* {
-	margin:0;
-	padding:0;
-	text-decoration: none;
-}
-
-// restrict content width
+// website content spacing
 .content {
-	max-width: $website-size;
-
-	margin: auto;
-
-	padding-left: $website-padding;
-	padding-right: $website-padding;
-	padding-bottom: $website-padding;
+    max-width: $website-size;
+    margin: auto;
+    padding-left: $website-padding;
+    padding-right: $website-padding;
+    padding-bottom: $website-padding;
 }
 
-// navigation bar formatting
 .navigation {
-	padding: $navigation-padding;
+    padding: $navigation-padding;
+    text-align: center;
 
-	text-align: center;
+    .navigation-separator {
+        margin-left: $navigation-item-spacing / 2;
+        margin-right: $navigation-item-spacing / 2;
 
-	// separator character + spacing
-	.navigation-separator {
-		margin-left: $navigation-item-spacing / 2;
-		margin-right: $navigation-item-spacing / 2;
-
-		&:before {content: "|";}
-	}
+        &::before { content: "|"; }
+    }
 }
 
-// highlight the currently selected page
 .current-page-item { font-weight: bold; }
 
 .navbar-icon {
-	visibility: hidden;
-	position: fixed;
+    visibility: hidden;
+    position: fixed;
 }
 
 @media (max-width: $website-size + $website-padding * 2) {
-	.navbar-icon {
-		visibility: visible;
-		position: static;
-	}
-	.navbar-text {
-		visibility: hidden;
-		position: fixed;
-	}
+    .navbar-icon {
+        visibility: visible;
+        position: static;
+    }
+
+    .navbar-text {
+        visibility: hidden;
+        position: fixed;
+    }
 }
 
-
-// header formatting (wraps title for the background to go all the way)
 .header {
-	padding: $header-padding $website-padding;
-	text-align: center;
+    padding: $header-padding $website-padding;
+    text-align: center;
 
-	// the main text
-	a, h1 {
-		font-size: $title-size;
-		font-family: $monospaced-font, monospace;
-		padding-bottom: 0;
-	}
-
-	p {
-		font-size: $description-size;
-		margin-bottom: 0;
-	}
+    // the main text (slama.dev)
+    a,
+    h1 {
+        font-size: $title-size;
+        font-family: $monospaced-font, monospace;
+        padding-bottom: 0;
+    }
 }
 
-// code highlighting
 .highlighter-rouge {
-	pre {
-		overflow-x: auto;
-		padding: $code-padding;
-	}
+    pre {
+        overflow-x: auto;
+        padding: $code-padding;
+    }
 
-	border-radius: $code-border-roundness;
-
-	padding: $code-padding / 2 $code-padding;
-	margin-bottom: $line-spacing;
+    border-radius: $code-border-roundness;
+    padding: $code-padding / 2 $code-padding;
+    margin-bottom: $line-spacing;
 }
 
 .code-summary {
-	padding-top: $line-spacing / 4;
-	padding-bottom: $line-spacing / 4;
-	border-radius: $code-border-roundness;
+    padding-top: $line-spacing / 4;
+    padding-bottom: $line-spacing / 4;
+    border-radius: $code-border-roundness;
 }
 
-.cv {
-	table {
-		tbody tr td:first-child {
-			min-width: 7em;
-			max-width: 7em;
-		}
+.left { text-align: left; * { margin-left: 0 !important; } }
+.center { text-align: center; }
+.right { text-align: right; * { margin-right: 0 !important; } }
+.none { display: none; }
 
-		border-collapse: collapse;
-
-		tr:first-child {
-			// so the right column is always max. size
-			td + td  { width: 100% }
-
-			// space between border line and 
-			p:first-child { padding-top: $line-spacing / 3; }
-		}
-
-		// no spacing after last <p> in each table
-		tr:last-child {
-			*:last-child {
-				margin-bottom: 0px;
-				padding-bottom: 0px;
-			}
-		}
-
-		// line between left and right column
-		tr {
-			td { border-left: 1px solid; }
-			td:first-child { border-left: 0px solid; }
-		}
-
-		border-top: 2px solid;
-		border-bottom: 0px solid;
-	}
-}
-
-// CSS for aligning text
-.left {text-align: left; * { margin-left: 0 !important; }}
-.center {text-align: center;}
-.right {text-align: right; * {margin-right: 0 !important; }}
-
-.book {
-	> li { padding-bottom: $line-spacing; }
-	> li:last-child { padding-bottom: 0px; }
-}
-
-.row {
-	display: flex;
-
-	* {
-		filter: invert(0%);
-		image-orientation: from-image;
-		width: 100%;
-	}
-}
-
-.row::after {
-	content: "";
-	clear: both;
-	display: table;
-}
-
-.photos1, .photos2, .photos3 { padding: 5px; img {max-width: 100%;}}
-.photos1 { flex: 100%; }
-.photos2 { flex: 50%; }
-.photos3 { flex: 33.33%; }
-
-.footnotes {
-	border-top: 1px solid;
-	padding-top: $line-spacing / 4;
-	ol { li:not(:last-child) { padding-bottom: $line-spacing / 2; } }
-}
-
-// TOC formatting
 #markdown-toc {
-	max-width: 30%;
-	font-size: $toc-size;
-	margin-top: 0px;
-	margin-left: $line-spacing / 2;
-	padding-top: $line-spacing / 2;
-	padding-right: $line-spacing;
-	padding-bottom: $line-spacing / 2;
-	float: right;
+    max-width: 30%;
+    font-size: $toc-size;
+    margin-top: 0;
+    margin-left: $line-spacing / 2;
+    padding-top: $line-spacing / 2;
+    padding-right: $line-spacing;
+    padding-bottom: $line-spacing / 2;
+    float: right;
 
-	@media (max-width: $small-screen-threshold) {
-		float: none;
-		margin-bottom: $line-spacing;
-		max-width: 100%;
-	}
+    @media (max-width: $small-screen-threshold) {
+        float: none;
+        margin-bottom: $line-spacing;
+        max-width: 100%;
+    }
 
-	border: 2px solid;
+    border: 2px solid;
 }
-
-// right floats
-// similar to TOC, TODO: better CSS
-.rightFloatBox {
-	max-width: 30%;
-	font-size: $toc-size;
-	margin-top: 0px;
-	margin-left: $line-spacing / 2;
-	padding: $line-spacing / 2;
-	float: right;
-
-	@media (max-width: $small-screen-threshold) {
-		float: none;
-		margin-bottom: $line-spacing;
-	}
-
-	// no bottom spacing of the last element in the box
-	*:last-child { margin-bottom: 0pt; padding-bottom: 0pt; }
-
-	border: 1px solid;
-}
-
-.ghLeft {
-	max-width: 45%;
-	display: inline-block;
-	margin-left: 20px;
-
-	border: 1px solid;
-	border-radius: 15px;
-	th { border: 0px; }
-
-	@media (max-width: $small-screen-threshold) {
-		max-width: 90%;
-		display: block;
-		float: none;
-		margin-left: auto;
-		margin-right: auto;
-	}
-}
-
-.ghRight {
-	max-width: 45%;
-	float: right;
-	margin-right: 20px;
-
-	border: 1px solid;
-	border-radius: 15px;
-	th { border: 0px; }
-
-	@media (max-width: $small-screen-threshold) {
-		max-width: 90%;
-		display: block;
-		float: none;
-		margin-left: auto;
-		margin-right: auto;
-	}
-}
-
-.ghName { text-align: left; }
-.ghDescription {}
-.ghStars {}
-.ghLang { text-align: right; }
 
 body {
-	font-family: $serif-font, sans-serif;
-	line-height: $line-height;
+    font-family: $serif-font, sans-serif;
+    line-height: $line-height;
+}
 
-	blockquote {
-		p {
-			border-left: 1px solid;
-			padding-left: 15px;
-			margin-left: -15px;
-			font-style: italic;
-		}
-	}
+blockquote {
+    p {
+        border-left: 1px solid;
+        padding-left: 15px;
+        margin-left: -15px;
+        font-style: italic;
+    }
+}
 
-	details {
-		padding-bottom: $line-spacing;
+details {
+    padding-bottom: $line-spacing;
 
-		
-		summary { text-align: center; }
-		summary:hover { font-weight: bold; }
-	}
+    summary { text-align: center; }
+    summary:hover { font-weight: bold; }
+}
 
-	// fix Jekyll generating p tags inside li
-	li { p { margin-bottom: 0; } }
+ul,
+ol {
+    padding-left: $list-item-left-padding;
+    padding-bottom: $line-spacing;
+}
 
-	ul, ol {
-		padding-left: $list-item-left-padding;
-		padding-bottom: $line-spacing;
-	}
+ol,
+ul {
+    p + ul,
+    p + ol { margin-top: 0; }
+}
 
-	// fixes https://blog.lysender.com/2014/09/css-elements-covered-by-a-container-div-not-clickable/
-	.katex-html { 
-		visibility: hidden;
-		* {visibility: visible;}
-	}
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+    margin: 0;
+    padding-bottom: 0;
+}
 
-	ul ul, ol ul, ul ol, ol ol {
-		margin: 0;
-		padding-bottom: 0;
-	}
+p + ul,
+p + ol { margin-top: -$line-spacing / 4 * 3; }
 
-	p + ul, p + ol { margin-top: -$line-spacing / 4 * 3; }
-	ol, ul {p + ul, p + ol {margin-top: 0; }}
+p,
+hr { margin-bottom: $line-spacing; }
 
-	p, hr {margin-bottom: $line-spacing;}
-	
-	h2, h3, h4, h5, h6 {font-variant: small-caps;}
- 
-	h2 {padding-bottom: $h2-spacing; font-size: $h2-size;}
-	h3 {padding-bottom: $h3-spacing; font-size: $h3-size;}
-	h4 {padding-bottom: $h4-spacing; font-size: $h4-size;}
-	h5 {padding-bottom: $h5-spacing; font-size: $h5-size;}
-	h6 {padding-bottom: $h6-spacing; font-size: $h6-size;}
+h2,
+h3,
+h4,
+h5,
+h6 { font-variant: small-caps; }
 
-	img, svg {
-		max-width: 90%;
+h2 { padding-bottom: $h2-spacing; font-size: $h2-size; }
+h3 { padding-bottom: $h3-spacing; font-size: $h3-size; }
+h4 { padding-bottom: $h4-spacing; font-size: $h4-size; }
+h5 { padding-bottom: $h5-spacing; font-size: $h5-size; }
+h6 { padding-bottom: $h6-spacing; font-size: $h6-size; }
 
-		margin: 0 auto 0;
-		display: block
-	}
+img,
+svg {
+    max-width: 90%;
+    margin: 0 auto 0;
+    display: block;
+}
 
-	// stolen from here: https://stackoverflow.com/questions/38270661/displaying-a-youtube-video-with-iframe-full-width-of-page
-	.youtubeVideoWrapper {
-		position: relative;
-		padding-bottom: 56.25%;
-		/* 16:9 */
-		padding-top: 25px;
-		height: 0;
-		margin-bottom: $line-spacing;
-	}
-	.youtubeVideoWrapper iframe {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
+figure {
+    img,
+    svg {
+        height: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-	figure {
-		img, svg {
-			height: auto;
-			display: block;
-			margin-left: auto;
-			margin-right: auto;
-		}
+    figcaption {
+        text-align: center;
+        font-style: italic;
+    }
 
-		figcaption {
-			text-align: center; 
-			font-style: italic;
-		}
+    margin-bottom: $line-spacing;
+}
 
-		margin-bottom: $line-spacing;
-	}
+code {
+    font-family: $monospaced-font, monospace;
 
-	code {
-		font-family: $monospaced-font, monospace;
+    // reduced tab size to 4
+    tab-size: 4;
+    -moz-tab-size: 4;
+}
 
-		// reduced tab size to 4
-		tab-size: 4;
-		-moz-tab-size: 4;
-	}
+article { header { h2 { padding-bottom: 0; } } }
 
-	article { header { h2 { padding-bottom: 0; } } }
+table {
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+    border-collapse: separate;
+    border-spacing: $line-spacing / 2 $line-spacing / 3;
+    .katex { border-spacing: 0; }
 
-	table {
-		border-top: 2px solid;
-		border-bottom: 2px solid;
-	
-		border-collapse: separate; 
+    th { border-bottom: 1px solid; }
 
-		border-spacing: $line-spacing / 2 $line-spacing / 3;
-		.katex {border-spacing: 0;}
+    td,
+    th { padding: 0 $line-spacing / 2; }
 
-		th { border-bottom: 1px solid; }
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: $line-spacing;
+}
 
-		td, th {padding: 0 $line-spacing / 2;}
+footer {
+    font-size: $footer-size;
+    text-align: center;
 
-		margin-left: auto;
-		margin-right: auto;
+    p { margin-bottom: 0; }
+}
 
-		margin-bottom: $line-spacing;
-	}
+.footnotes {
+    border-top: 1px solid;
+    padding-top: $line-spacing / 4;
+    ol { li:not(:last-child) { padding-bottom: $line-spacing / 2; } }
+}
 
-	footer {
-		font-size: $footer-size;
-		text-align: center; 
+.no-invert { * { filter: invert(0%); } }
 
-		p { margin-bottom: 0;}
-	}
+// right floats
+.rightFloatBox {
+    max-width: 30%;
+    font-size: $toc-size;
+    margin-top: 0;
+    margin-left: $line-spacing / 2;
+    padding: $line-spacing / 2;
+    float: right;
 
-	.no-invert {* { filter: invert(0%); } }
+    @media (max-width: $small-screen-threshold) {
+        float: none;
+        margin-bottom: $line-spacing;
+    }
 
-	// figure class for climbing videos
-	.climbing-video {
-		border: 3px solid;
-		display: inline-block;
-		height: 300px;
-		margin-bottom: 2 * $line-spacing;
+    // no bottom spacing of the last element in the box
+    *:last-child { margin-bottom: 0; padding-bottom: 0; }
 
-		video {
-			width:100%;
-			height:100%;
-			border: none;
-		}
-	}
-
-	.climbing-salmon { background: #ffc1a8ff; }
-	.climbing-blue { background: #087ec4ff; }
-	.climbing-yellow { background: #fce538ff; }
-
-	.climbing-left {
-		width: 48%;
-		float: left;
-
-		@media (max-width: $small-screen-threshold) { width: 100%; }
-	}
-	
-	.climbing-right {
-		width: 48%;
-		float: right;
-
-		@media (max-width: $small-screen-threshold) { width: 100%; }
-	}
-
-	.climbing-center {
-		width: 100%;
-		float: left;
-	}
-
+    border: 1px solid;
 }
 
 /* LIGHT COLOR THEME */
 body {
-	color: $light-text-color;
-	background-color: $light-background-color;
+    color: $light-text-color;
+    background-color: $light-background-color;
+}
 
-	svg, img {
-		.zone {
-			fill-opacity: 0.01;
-		}
-		.zone:hover, .zone:active {
-			fill-opacity: 1;
-			fill: $light-text-color;
-		}
-	}
+a {
+    color: $light-link-color;
+    &:hover { color: $light-text-color; }
+}
 
-	mark.climbing {
-		color: $dark-text-color;
-		border: 2px solid $light-text-color;
-		border-radius: $code-border-roundness;
-		padding: $code-padding / 2 $code-padding;
-		background: none;
-	}
+hr {
+    border: 1px solid $light-text-color;
+    background: $light-text-color;
+}
 
-	mark.climbing-low-angle { background: #96cdffff; color: $light-text-color; }
-	mark.climbing-vertical { background: #60a3d9ff; }
-	mark.climbing-mild-overhang { background: #0074b7ff; }
-	mark.climbing-severe-overhang { background: #005290ff; }
-	mark.climbing-roof { background: #001b61ff; }
+.current-page-item,
+.header {
+    a { color: $light-text-color; }
+}
 
-	a {
-		color: $light-link-color;
-		&:hover {color: $light-text-color;}
-	}
+.header {
+    background-color: $light-header-background-color;
+    a { text-shadow: 2px 2px 0.03em lighten($light-link-color, 15%); }
+}
 
-	hr {border: 1px solid $light-text-color;}
+.highlight,
+.highlighter-rouge {
+    background-color: $light-code-background-color;
+    border-color: $light-code-background-color;
+}
 
-	.current-page-item, .header {
-		a {color: $light-text-color;}
-	}
+.code-summary {
+    background-color: darken($light-code-background-color, 8%);
+    border-color: darken($light-code-background-color, 8%);
+}
 
-	.header {
-		background-color: $light-header-background-color;
-		a {text-shadow: 2px 2px 0.03em lighten($light-link-color, 15%);}
-	}
-
-	.highlight, .highlighter-rouge {
-		background-color: $light-code-background-color; 
-		border-color: $light-code-background-color;
-	}
-
-	.code-summary {
-		background-color: darken($light-code-background-color, 8%);
-		border-color: darken($light-code-background-color, 8%);
-	}
-
-	.highlight {
-		.hll { background-color: #ffffcc }
-		.c { color: #408080; font-style: italic } /* Comment */
-		.k { color: #008000; font-weight: bold } /* Keyword */
-		.o { color: #666666 } /* Operator */
-		.ch { color: #408080; font-style: italic } /* Comment.Hashbang */
-		.cm { color: #408080; font-style: italic } /* Comment.Multiline */
-		.cp { color: #bc7a00 } /* Comment.Preproc */
-		.cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
-		.c1 { color: #408080; font-style: italic } /* Comment.Single */
-		.cs { color: #408080; font-style: italic } /* Comment.Special */
-		.gd { color: #a00000 } /* Generic.Deleted */
-		.ge { font-style: italic } /* Generic.Emph */
-		.gh { color: #000080; font-weight: bold } /* Generic.Heading */
-		.gi { color: #00a000 } /* Generic.Inserted */
-		.go { color: #888888 } /* Generic.Output */
-		.gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-		.gs { font-weight: bold } /* Generic.Strong */
-		.gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-		.gt { color: #0044dd } /* Generic.Traceback */
-		.kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-		.kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-		.kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-		.kp { color: #008000 } /* Keyword.Pseudo */
-		.kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-		.kt { color: #b00040 } /* Keyword.Type */
-		.m { color: #666666 } /* Literal.Number */
-		.s { color: #ba2121 } /* Literal.String */
-		.na { color: #7d9029 } /* Name.Attribute */
-		.nb { color: #008000 } /* Name.Builtin */
-		.nc { color: #0000ff; font-weight: bold } /* Name.Class */
-		.no { color: #880000 } /* Name.Constant */
-		.nd { color: #aa22ff } /* Name.Decorator */
-		.ni { color: #999999; font-weight: bold } /* Name.Entity */
-		.ne { color: #d2413a; font-weight: bold } /* Name.Exception */
-		.nf { color: #0000ff } /* Name.Function */
-		.nl { color: #a0a000 } /* Name.Label */
-		.nn { color: #0000ff; font-weight: bold } /* Name.Namespace */
-		.nt { color: #008000; font-weight: bold } /* Name.Tag */
-		.nv { color: #19177c } /* Name.Variable */
-		.ow { color: #aa22ff; font-weight: bold } /* Operator.Word */
-		.w { color: #bbbbbb } /* Text.Whitespace */
-		.mb { color: #666666 } /* Literal.Number.Bin */
-		.mf { color: #666666 } /* Literal.Number.Float */
-		.mh { color: #666666 } /* Literal.Number.Hex */
-		.mi { color: #666666 } /* Literal.Number.Integer */
-		.mo { color: #666666 } /* Literal.Number.Oct */
-		.sa { color: #ba2121 } /* Literal.String.Affix */
-		.sb { color: #ba2121 } /* Literal.String.Backtick */
-		.sc { color: #ba2121 } /* Literal.String.Char */
-		.dl { color: #ba2121 } /* Literal.String.Delimiter */
-		.sd { color: #ba2121; font-style: italic } /* Literal.String.Doc */
-		.s2 { color: #ba2121 } /* Literal.String.Double */
-		.se { color: #bb6622; font-weight: bold } /* Literal.String.Escape */
-		.sh { color: #ba2121 } /* Literal.String.Heredoc */
-		.si { color: #bb6688; font-weight: bold } /* Literal.String.Interpol */
-		.sx { color: #008000 } /* Literal.String.Other */
-		.sr { color: #bb6688 } /* Literal.String.Regex */
-		.s1 { color: #ba2121 } /* Literal.String.Single */
-		.ss { color: #19177c } /* Literal.String.Symbol */
-		.bp { color: #008000 } /* Name.Builtin.Pseudo */
-		.fm { color: #0000ff } /* Name.Function.Magic */
-		.vc { color: #19177c } /* Name.Variable.Class */
-		.vg { color: #19177c } /* Name.Variable.Global */
-		.vi { color: #19177c } /* Name.Variable.Instance */
-		.vm { color: #19177c } /* Name.Variable.Magic */
-		.il { color: #666666 } /* Literal.Number.Integer.Long */
-	}
+.highlight {
+    .bp { color: #008000; } /* Name.Builtin.Pseudo */
+    .c1 { color: #408080; font-style: italic; } /* Comment.Single */
+    .c { color: #408080; font-style: italic; } /* Comment */
+    .ch { color: #408080; font-style: italic; } /* Comment.Hashbang */
+    .cm { color: #408080; font-style: italic; } /* Comment.Multiline */
+    .cp { color: #bc7a00; } /* Comment.Preproc */
+    .cpf { color: #408080; font-style: italic; } /* Comment.PreprocFile */
+    .cs { color: #408080; font-style: italic; } /* Comment.Special */
+    .dl { color: #ba2121; } /* Literal.String.Delimiter */
+    .fm { color: #00f; } /* Name.Function.Magic */
+    .gd { color: #a00000; } /* Generic.Deleted */
+    .ge { font-style: italic; } /* Generic.Emph */
+    .gh { color: #000080; font-weight: bold; } /* Generic.Heading */
+    .gi { color: #00a000; } /* Generic.Inserted */
+    .go { color: #888; } /* Generic.Output */
+    .gp { color: #000080; font-weight: bold; } /* Generic.Prompt */
+    .gs { font-weight: bold; } /* Generic.Strong */
+    .gt { color: #04d; } /* Generic.Traceback */
+    .gu { color: #800080; font-weight: bold; } /* Generic.Subheading */
+    .hll { background-color: #ffc; }
+    .il { color: #666; } /* Literal.Number.Integer.Long */
+    .kc { color: #008000; font-weight: bold; } /* Keyword.Constant */
+    .k { color: #008000; font-weight: bold; } /* Keyword */
+    .kd { color: #008000; font-weight: bold; } /* Keyword.Declaration */
+    .kn { color: #008000; font-weight: bold; } /* Keyword.Namespace */
+    .kp { color: #008000; } /* Keyword.Pseudo */
+    .kr { color: #008000; font-weight: bold; } /* Keyword.Reserved */
+    .kt { color: #b00040; } /* Keyword.Type */
+    .mb { color: #666; } /* Literal.Number.Bin */
+    .m { color: #666; } /* Literal.Number */
+    .mf { color: #666; } /* Literal.Number.Float */
+    .mh { color: #666; } /* Literal.Number.Hex */
+    .mi { color: #666; } /* Literal.Number.Integer */
+    .mo { color: #666; } /* Literal.Number.Oct */
+    .na { color: #7d9029; } /* Name.Attribute */
+    .nb { color: #008000; } /* Name.Builtin */
+    .nc { color: #00f; font-weight: bold; } /* Name.Class */
+    .nd { color: #a2f; } /* Name.Decorator */
+    .ne { color: #d2413a; font-weight: bold; } /* Name.Exception */
+    .nf { color: #00f; } /* Name.Function */
+    .ni { color: #999; font-weight: bold; } /* Name.Entity */
+    .nl { color: #a0a000; } /* Name.Label */
+    .nn { color: #00f; font-weight: bold; } /* Name.Namespace */
+    .no { color: #800; } /* Name.Constant */
+    .nt { color: #008000; font-weight: bold; } /* Name.Tag */
+    .nv { color: #19177c; } /* Name.Variable */
+    .o { color: #666; } /* Operator */
+    .ow { color: #a2f; font-weight: bold; } /* Operator.Word */
+    .s1 { color: #ba2121; } /* Literal.String.Single */
+    .s2 { color: #ba2121; } /* Literal.String.Double */
+    .sa { color: #ba2121; } /* Literal.String.Affix */
+    .sb { color: #ba2121; } /* Literal.String.Backtick */
+    .sc { color: #ba2121; } /* Literal.String.Char */
+    .s { color: #ba2121; } /* Literal.String */
+    .sd { color: #ba2121; font-style: italic; } /* Literal.String.Doc */
+    .se { color: #b62; font-weight: bold; } /* Literal.String.Escape */
+    .sh { color: #ba2121; } /* Literal.String.Heredoc */
+    .si { color: #b68; font-weight: bold; } /* Literal.String.Interpol */
+    .sr { color: #b68; } /* Literal.String.Regex */
+    .ss { color: #19177c; } /* Literal.String.Symbol */
+    .sx { color: #008000; } /* Literal.String.Other */
+    .vc { color: #19177c; } /* Name.Variable.Class */
+    .vg { color: #19177c; } /* Name.Variable.Global */
+    .vi { color: #19177c; } /* Name.Variable.Instance */
+    .vm { color: #19177c; } /* Name.Variable.Magic */
+    .w { color: #bbb; } /* Text.Whitespace */
 }
 
 /* DARK COLOR THEME */
 @media (prefers-color-scheme: dark) {
-	body {
-		color: $dark-text-color;
-		background-color: $dark-background-color;
+    body {
+        color: $dark-text-color;
+        background-color: $dark-background-color;
+    }
 
-		// update image colors appropriately
-		svg, img {
-			filter: invert(100%);
+    // update image colors appropriately
+    svg,
+    img {
+        filter: invert(100%);
+    }
 
-			// we're inverted, it's a bait!
-			.zone {
-				fill-opacity: 0.01;
-			}
-			.zone:hover, .zone:active {
-				fill-opacity: 1;
-				fill: $light-text-color;
-			}
-		}
+    .katex { svg { filter: invert(0%); } }
 
-		.katex {svg { filter: invert(0%); } }
-		
-		a {
-			color: $dark-link-color;
-			&:hover {color: $dark-text-color;}
-		}
+    a {
+        color: $dark-link-color;
+        &:hover { color: $dark-text-color; }
+    }
 
-		hr {border: 1px solid $dark-text-color;}
+    hr {
+        border: 1px solid $dark-text-color;
+        background: $dark-text-color;
+    }
 
-		.current-page-item, .header {
-			a {color: $dark-text-color;}
-		}
+    .current-page-item,
+    .header {
+        a { color: $dark-text-color; }
+    }
 
-		.header {
-			background-color: $dark-header-background-color;
-			a {text-shadow: 2px 2px 0.05em darken($dark-text-color, 25%);}
-		}
+    .header {
+        background-color: $dark-header-background-color;
+        a { text-shadow: 2px 2px 0.05em darken($dark-text-color, 25%); }
+    }
 
-		.highlight, .highlighter-rouge {
-			background-color: $dark-code-background-color;
-			border-color: $dark-code-background-color;
-		}
+    .highlight,
+    .highlighter-rouge {
+        background-color: $dark-code-background-color;
+        border-color: $dark-code-background-color;
+    }
 
-		.code-summary {
-			background-color: lighten($dark-code-background-color, 6%);
-			border-color: lighten($dark-code-background-color, 6%);
-		}
+    .code-summary {
+        background-color: lighten($dark-code-background-color, 6%);
+        border-color: lighten($dark-code-background-color, 6%);
+    }
 
-		.highlight {
-			// reset the settings from the light theme highlighter
-			* {
-				font-style:  normal !important;
-				font-weight: normal !important;
-			}
+    .highlight {
+        $plain: #fafafa;
+        $snow: #fff;
+        $gravel: #857f78;
+        $dirtyblonde: #f4cf86;
+        $taffy: #ff2c4b;
+        $orange: #ffa724;
+        $lime: #aeee00;
+        $toffee: #b88853;
 
-			$plain: #fafafa;
-			$snow: #ffffff;
-			$gravel: #857f78;
-			$dirtyblonde: #f4cf86;
-			$taffy: #ff2c4b;
-			$orange: #ffa724;
-			$lime: #aeee00;
-			$toffee: #b88853;
-
-			.c { color: $gravel } /* Comment */
-			.k { color: $taffy } /* Keyword */
-			.l { color: $toffee } /* Literal */
-			.n { color: $plain } /* Name */
-			.o { color: $plain } /* Operator */
-			.p { color: $plain } /* Punctuation */
-			.cm { color: $gravel } /* Comment.Multiline */
-			.cp { color: $gravel } /* Comment.Preproc */
-			.c1 { color: $gravel } /* Comment.Single */
-			.cs { color: $gravel } /* Comment.Special */
-			.ge { font-style: italic } /* Generic.Emph */
-			.gs { font-weight: bold } /* Generic.Strong */
-			.kc { color: $toffee } /* Keyword.Constant */
-			.kd { color: $toffee } /* Keyword.Declaration */
-			.kn { color: $lime } /* Keyword.Namespace */
-			.kp { color: $toffee } /* Keyword.Pseudo */
-			.kr { color: $toffee } /* Keyword.Reserved */
-			.kt { color: $toffee } /* Keyword.Type */
-			.ld { color: $dirtyblonde } /* Literal.Date */
-			.m { color: $toffee } /* Literal.Number */
-			.s { color: $dirtyblonde } /* Literal.String */
-			.na { color: $orange } /* Name.Attribute */
-			.nb { color: $toffee } /* Name.Builtin */
-			.nc { color: $orange } /* Name.Class */
-			.no { color: $toffee } /* Name.Constant */
-			.nd { color: $lime } /* Name.Decorator */
-			.ni { color: $plain } /* Name.Entity */
-			.ne { color: $orange } /* Name.Exception */
-			.nf { color: $orange } /* Name.Function */
-			.nl { color: $plain } /* Name.Label */
-			.nn { color: $plain } /* Name.Namespace */
-			.nx { color: $orange } /* Name.Other */
-			.py { color: $plain } /* Name.Property */
-			.nt { color: $taffy } /* Name.Tag */
-			.nv { color: $orange } /* Name.Variable */
-			.ow { color: $taffy } /* Operator.Word */
-			.w { color: $plain } /* Text.Whitespace */
-			.mf { color: $toffee } /* Literal.Number.Float */
-			.mh { color: $toffee } /* Literal.Number.Hex */
-			.mi { color: $toffee } /* Literal.Number.Integer */
-			.mo { color: $toffee } /* Literal.Number.Oct */
-			.sb { color: $dirtyblonde } /* Literal.String.Backtick */
-			.sc { color: $dirtyblonde } /* Literal.String.Char */
-			.sd { color: $dirtyblonde } /* Literal.String.Doc */
-			.s2 { color: $dirtyblonde } /* Literal.String.Double */
-			.se { color: $toffee } /* Literal.String.Escape */
-			.sh { color: $dirtyblonde } /* Literal.String.Heredoc */
-			.si { color: $dirtyblonde } /* Literal.String.Interpol */
-			.sx { color: $dirtyblonde } /* Literal.String.Other */
-			.sr { color: $dirtyblonde } /* Literal.String.Regex */
-			.s1 { color: $dirtyblonde } /* Literal.String.Single */
-			.ss { color: $dirtyblonde } /* Literal.String.Symbol */
-			.bp { color: $plain } /* Name.Builtin.Pseudo */
-			.vc { color: $plain } /* Name.Variable.Class */
-			.vg { color: $plain } /* Name.Variable.Global */
-			.vi { color: $plain } /* Name.Variable.Instance */
-			.il { color: $toffee } /* Literal.Number.Integer.Long */
-			.gu { color: $gravel; } /* Generic.Subheading & Diff Unified/Comment? */
-			.gd { color: $lime; } /* Generic.Deleted & Diff Deleted */
-			.gi { color: $orange; } /* Generic.Inserted & Diff Inserted */ }
-	}
+        .c { color: $gravel; } /* Comment */
+        .k { color: $taffy; } /* Keyword */
+        .l { color: $toffee; } /* Literal */
+        .n { color: $plain; } /* Name */
+        .o { color: $plain; } /* Operator */
+        .p { color: $plain; } /* Punctuation */
+        .cm { color: $gravel; } /* Comment.Multiline */
+        .cp { color: $gravel; } /* Comment.Preproc */
+        .c1 { color: $gravel; } /* Comment.Single */
+        .cs { color: $gravel; } /* Comment.Special */
+        .ge { font-style: italic; } /* Generic.Emph */
+        .gs { font-weight: bold; } /* Generic.Strong */
+        .kc { color: $toffee; } /* Keyword.Constant */
+        .kd { color: $toffee; } /* Keyword.Declaration */
+        .kn { color: $lime; } /* Keyword.Namespace */
+        .kp { color: $toffee; } /* Keyword.Pseudo */
+        .kr { color: $toffee; } /* Keyword.Reserved */
+        .kt { color: $toffee; } /* Keyword.Type */
+        .ld { color: $dirtyblonde; } /* Literal.Date */
+        .m { color: $toffee; } /* Literal.Number */
+        .s { color: $dirtyblonde; } /* Literal.String */
+        .na { color: $orange; } /* Name.Attribute */
+        .nb { color: $toffee; } /* Name.Builtin */
+        .nc { color: $orange; } /* Name.Class */
+        .no { color: $toffee; } /* Name.Constant */
+        .nd { color: $lime; } /* Name.Decorator */
+        .ni { color: $plain; } /* Name.Entity */
+        .ne { color: $orange; } /* Name.Exception */
+        .nf { color: $orange; } /* Name.Function */
+        .nl { color: $plain; } /* Name.Label */
+        .nn { color: $plain; } /* Name.Namespace */
+        .nx { color: $orange; } /* Name.Other */
+        .py { color: $plain; } /* Name.Property */
+        .nt { color: $taffy; } /* Name.Tag */
+        .nv { color: $orange; } /* Name.Variable */
+        .ow { color: $taffy; } /* Operator.Word */
+        .w { color: $plain; } /* Text.Whitespace */
+        .mf { color: $toffee; } /* Literal.Number.Float */
+        .mh { color: $toffee; } /* Literal.Number.Hex */
+        .mi { color: $toffee; } /* Literal.Number.Integer */
+        .mo { color: $toffee; } /* Literal.Number.Oct */
+        .sb { color: $dirtyblonde; } /* Literal.String.Backtick */
+        .sc { color: $dirtyblonde; } /* Literal.String.Char */
+        .sd { color: $dirtyblonde; } /* Literal.String.Doc */
+        .s2 { color: $dirtyblonde; } /* Literal.String.Double */
+        .se { color: $toffee; } /* Literal.String.Escape */
+        .sh { color: $dirtyblonde; } /* Literal.String.Heredoc */
+        .si { color: $dirtyblonde; } /* Literal.String.Interpol */
+        .sx { color: $dirtyblonde; } /* Literal.String.Other */
+        .sr { color: $dirtyblonde; } /* Literal.String.Regex */
+        .s1 { color: $dirtyblonde; } /* Literal.String.Single */
+        .ss { color: $dirtyblonde; } /* Literal.String.Symbol */
+        .bp { color: $plain; } /* Name.Builtin.Pseudo */
+        .vc { color: $plain; } /* Name.Variable.Class */
+        .vg { color: $plain; } /* Name.Variable.Global */
+        .vi { color: $plain; } /* Name.Variable.Instance */
+        .il { color: $toffee; } /* Literal.Number.Integer.Long */
+        .gu { color: $gravel; } /* Generic.Subheading & Diff Unified/Comment? */
+        .gd { color: $lime; } /* Generic.Deleted & Diff Deleted */
+        .gi { color: $orange; } /* Generic.Inserted & Diff Inserted */
+    }
 }

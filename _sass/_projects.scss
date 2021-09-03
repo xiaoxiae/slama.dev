@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+@import "variables";
+
+.ghLeft,
+.ghRight {
+    max-width: 45%;
+    border: 1px solid;
+    border-radius: 15px;
+    th { border: 0; }
+
+    padding-top: $line-spacing / 3;
+    padding-bottom: $line-spacing / 3;
+
+    @media (max-width: $small-screen-threshold) {
+        max-width: 100%;
+        display: block;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
+
+.ghLeft {
+    margin-left: 20px;
+    display: inline-block;
+}
+
+.ghRight {
+    float: right;
+    margin-right: 20px;
+}
+
+.ghName { text-align: left; }
+//.ghDescription {}
+//.ghStars {}
+.ghLang { text-align: right; }
+
+.ghRight,
+.ghLeft { background: $light-code-background-color; }
+
+@media (prefers-color-scheme: dark) {
+    .ghRight,
+    .ghLeft { background: lighten($dark-code-background-color, 8%); }
+}

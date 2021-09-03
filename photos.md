@@ -3,13 +3,13 @@ title: Photos
 layout: default
 order: 5
 icon: 
+css: photos
+no-heading: True
 ---
 
-Below is a galery of some of the nicer photos that I've taken. All of them had been compressed to around 10% JPG quality to be web-usable. If you'd like the originals, click on the photos.
+Below is a galery of some of the nicer photos that I've taken. All of them had been compressed (quite agressively) to be web-usable. If you'd like to see the originals, simply click on the photos.
 
 None of the photos are copyrighted in any way, so feel free to use them however you wish 🙂 (crediting me would, however, be greatly appreciated).
-
----
 
 {% photos flowers/raw/1.jpg | flowers/raw/2.jpg %}
 {% photos bees/raw/1.jpg | bees/raw/2.jpg %}

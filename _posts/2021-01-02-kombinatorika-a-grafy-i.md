@@ -60,7 +60,7 @@ e\left(\frac{n}{e}\right)^n \le n! \le en \left(\frac{n}{e}\right)^n
 \]
 {% endmath %}
 
-{% math proof "indukcí" %} \( \ \)
+{% math proof "indukcí" %} 
 - \(n = 1\): \[1 \le e \cdot 1 \cdot \frac{1}{e}\]
 - \(n - 1 \rightarrow n\):
 \[\begin{aligned} n! = n \left(n - 1\right)! &\le^\mathrm{IP} en \left(n - 1\right) \left(\frac{n - 1}{e}\right)^{n - 1} \\ &= en \left(\frac{n}{e}\right)^n \left(\frac{e}{n}\right)^n \left(n - 1\right) \left(\frac{n - 1}{e}\right)^{n - 1} \\
@@ -94,7 +94,7 @@ pro malé \(k << n \ldots \binom{n}{k} = \frac{n!}{(n - k)! k!} = \frac{n \cdot 
 \[\frac{2^n}{n + 1} \le \binom{n}{\left\lfloor n/2 \right\rfloor} \le 2^n\]
 {% endmath %}
 
-{% math proof %} \( \ \)
+{% math proof %} 
 - součet všech čísel v řádku je \(2^n\), tak jistě to největší nebude větší
 - největší sčítanec je rovněž alespoň tak velký jako průměrný
 {% endmath %}
@@ -179,7 +179,7 @@ je nekonečná řada tvaru \(a(x) = a_0 + a_1x^1 + a_2x^2 + \ldots,\) kde \(a_0,
 - pro \(|x| < 1\) řada konverguje k \(\frac{1}{1 - x}\), můžeme tedy říct, že \((1, 1, \ldots) \approx \frac{1}{1 - x}\)
 {% endmath %}
 
-{% math lemma %}
+{% math claim %}
 \((a_0, a_1, a_2, \ldots)\) reálná čísla. Předpoklad: pro nějaké \(K\) t. ž. \(|a_n| \le K^n\). Poté řada \(a(x)\) pro každé \(x \in \left(-\frac{1}{K}, \frac{1}{K}\right) \) konverguje (dává smysl). Funkce \(a(x)\) je navíc jednoznačně určena hodnotami na okolí \(0\).
 {% endmath %}
 
@@ -206,7 +206,7 @@ Všechny důkazy jsou jednoduché rozepsání z definice.
 
 #### Zobecněná binomická věta
 
-{% math lemma %}
+{% math claim %}
 \(r \in \mathbb{R}, k \in \mathbb{N}\), def. \(\binom{r}{k} = \frac{r \cdot (r - 1) \cdot (r - 2) \cdot  \ldots  \cdot (r - k + 1)}{k!}\)
 {% endmath %}
 
@@ -345,7 +345,7 @@ Dokáže se přes to přes rozbor příkladů toho, jak vedou přímky přes \(�
 {% math definition "řád KPR" %}
 řádem \((X, \mathcal{P})\) je \(n = |P| - 1\) pro jakoukoliv \(P \in \mathcal{P}\).{% endmath %}
 
-{% math lemma %}
+{% math claim %}
 nechť \((X, \mathcal{P})\) je KPR řádu \(n\). Pak:{% endmath %}
 1. každým bodem prochází \(n + 1\) přímek 
 2. \(|X| = n^2 + n + 1\)
@@ -494,7 +494,7 @@ mějme maximální rodinu NOLČ \(L_1, \ldots, L_m\) a permutujme symboly tak, a
 Pro libovolné dvě pozice (které se liší v řádku a sloupci) existuje čtverec, který na nich má stejné hodnoty.
 </div>
 
-{% math lemma %}
+{% math claim %}
 pokud \(L_1, \ldots, L_{n - 1}\) jsou NOLČ, potom \(\forall k, k', k \neq k', \forall l, l', l \neq l' \exists i: \left(L_i\right)_{k, l} = \left(L_i\right)_{k', l'}\){% endmath %}
 
 {% math proof %}
@@ -521,7 +521,7 @@ Mám tedy \(n - 1\) možností a musím přijít na \(n - 1\) různých řešen�
 {% math theorem %}
 \(\exists L_1, \ldots, L_{n - 1}\) NOLČ \(\iff \exists KPR\) řádu \(n\).{% endmath %}
 
-{% math proof "konstrukce \(\Rightarrow\)" %} \( \ \)
+{% math proof "konstrukce \(\Rightarrow\)" %} 
 - dány čtverce \(L_1, \ldots, L_{n - 1}\)
 - body: \(r, s, l_1, l_{n - 1}, m_{1, 1}, m_{1, 2}, \ldots, m_{1, n}, \ldots, m_{n, n}\)
 - přímky:
@@ -564,7 +564,7 @@ Mám tedy \(n - 1\) možností a musím přijít na \(n - 1\) různých řešen�
 		- stejný sloupec: \(\mathrm{III}\)
 		- jinak: \(\mathrm{IV}\) a existuje, vycházíme z minulého pozorování
 
-{% math proof "konstrukce \(\Leftarrow\)" %} \( \ \)
+{% math proof "konstrukce \(\Leftarrow\)" %} 
 - dána KPR \((X, \mathcal{P})\), hledáme \(L_1, \ldots, L_{n - 1}\)
 	1. zvolíme libovolně přímku \(I = \left\{r, s, l_1, \ldots, l_{n - 1}\right\}\)
 	2. \(\exists n\) přímek protínající \(r\) -- typ \(\mathrm{II}\) a opět oindexuji body
@@ -582,7 +582,7 @@ Jsou NOLČ, protože:
 
 #### Počítání dvěma způsoby
 
-{% math lemma %}
+{% math claim %}
 počet podmnožin \(X = \left| \binom{X}{k}\right| = \binom{|X|}{k}\){% endmath %}
 
 {% math proof %}
@@ -602,7 +602,7 @@ nechť \((\mathcal{P}, \subseteq)\) je částečné uspořádání, kde \(\mathc
 
 ![Sperenerova věta.](/assets/kombinatorika-a-grafy-i/spernerova-veta.svg)
 
-{% math lemma "pomocné" %}
+{% math claim "pomocné" %}
 \(\sum_{M \in \mathcal{M}} \left|M\right|! (n - \left|M\right|)! \le n!\). Přes dvojí počítání počtu permutací na \(X\):{% endmath %}
 - počet permutací \(= n!\) (očividné)
 - počet permutací \(\ge \sum_{M \in \mathcal{M}} |M|! (n - |M|)! \), protože:
@@ -781,10 +781,10 @@ je (neorientovaná) cesta, pokud \(\exists e\) na cestě t. ž. buďto:{% endmat
 {% math definition "nasycený tok" %}
 je tok takový, že každá (neorientovaná) cesta ze \(z\) do \(s\) je nasycená.{% endmath %}
 
-{% math lemma %}
+{% math claim %}
 \(f\) je maximální \(\iff f\) je nasycený.{% endmath %}
 
-{% math proof "maximální je nasycený" %}  \( \ \)
+{% math proof "maximální je nasycený" %}  
 - sporem, předpokládáme maximální \(f\), který není nasycený, tedy existuje nenasycená cesta \(P\)
 	- \(\varepsilon_1 = min \left\{c(e)-f(e)\ |e \in P \text{ po směru } \right\}\)
 	- \(\varepsilon_2 = min \left\{f(e)\ |e \in P \text{ proti směru } \right\}\)
@@ -797,7 +797,7 @@ je tok takový, že každá (neorientovaná) cesta ze \(z\) do \(s\) je nasycen�
 - \(f\) nebyl maximální, spor
 {% endmath %}
 
-{% math proof "nasycený je maximální" %} \( \ \)
+{% math proof "nasycený je maximální" %} 
 - uvážíme množinu vrcholů, do kterých se lze dostat ze \(z\) po nenasycené cestě -- \(A = \left\{v \in V\ |\ \exists\ \text{nenasycená cesta }\right\}\)
 	- \(s \notin A\) (jinak \(f\) není nasycený)
 	- \(\forall e \in S(A, V \setminus A)\) platí \(f(e) = c(e)\)
@@ -816,7 +816,7 @@ je tok takový, že každá (neorientovaná) cesta ze \(z\) do \(s\) je nasycen�
 1. \(f(e) = 0, \forall e \in E\)
 2. dokud \(\exists\) zlepšující cesta \(P\), zlepši tok přes \(P\)
 
-{% math lemma %}
+{% math claim %}
 pokud jsou kapacity racionální, pak algoritmus doběhne. Pokud jsou přirozené, dá celočíselný tok.{% endmath %}
 - racionální: pronásobení LCM a důkaz pro přirozené
 - přirozené: každé vylepšení cesty bude celočíselné a udělá to konečněkrát
@@ -859,7 +859,7 @@ Z toku mám maximální párování \(M\) velikosti \(k\), ze kterého sestrojí
 
 Dostáváme tedy, že min. řez je roven nějakému pokrytí, a že min. pokrytí je rovno nějakému řezu, tedy že min. pokrytí je rovno min. řezu.
 
-{% math definition %} \( \ \)
+{% math definition %} 
 - **množinový systém** na množině \(X\) je \((M_i)_{i \in I}, M_i \subseteq X\)
 - **systém různých reprezentantů** je funkce \(f: I \mapsto X\) splňující:
 	1. \(\forall i \in I: f(i) \in M_i\)
@@ -928,7 +928,7 @@ Máme tedy \(\left(n - k\right)\)-regulární graf, pro který \(\exists\) perfe
 
 #### Míra souvislosti neorientovaných grafu
 
-{% math definition %} \( \ \)
+{% math definition %} 
 - **hranový řez** v grafu \(G\) je \(F \subseteq E\) t. ž. \(G' = (V, E \setminus F)\) je nesouvislý.
 - **vrcholový řez** v grafu \(G\) je \(A \subseteq V\) t. ž. \(G' = (V \setminus A, E \cap \binom{V \setminus A}{2}) = G\left[V \setminus A\right]\) je nesouvislý.
 - **hranová souvislost** \(k_e(G) = \mathrm{min} \left\{|F|\ |\ F \subseteq E \text{ je hranový řez}\right\}\)
@@ -963,7 +963,7 @@ vezmu minimální řez \(B\) v \(G - e\) \(B' = B \cup \left\{e\right\}\) je ře
 \end{aligned}
 \]
 
-{% math lemma %}
+{% math claim %}
 \(\forall G, \forall e \in E\) platí \(k_v(G) - 1 \le k_v(G - e) \le k_v(G)\){% endmath %}
 
 {% math proof %}
@@ -1027,7 +1027,7 @@ graf je \(2\)-souvislý právě tehdy, když jej lze vytvořit  z \(K_3\) poslou
 - dělení hran
 - přidávání hran
 
-{% math proof "\(\Rightarrow\)" %} \( \ \)
+{% math proof "\(\Rightarrow\)" %} 
 - zvolme \(G_0\) libovolně (kružnici mít musí, jinak není \(2\)-souvislý).
 - předpokládejme, že \(G_j, j \le i\) jsou definovány jako výše
 - pokud \(G_i = G\), tak jsme hotovi
@@ -1071,7 +1071,7 @@ vycházíme z fannovy roviny a o přímkách uvažujeme jako o prvcích \(\mathb
 
 ---
 
-{% math definition %} \( \ \)
+{% math definition %} 
 - \(\Sigma \ldots\) abeceda
 	- \(s \in \Sigma^n \ldots\) slovo (vstup)
 - \(C \subseteq \Sigma^n \ldots\) kód
@@ -1088,7 +1088,7 @@ vycházíme z fannovy roviny a o přímkách uvažujeme jako o prvcích \(\mathb
 - kód s vlastnostmi \(n, k, d\) se označuje \((n,k,d)-\) kód
 {% endmath %}
 
-{% math example "kódů" %} \( \ \)
+{% math example "kódů" %} 
 1. totální kód \(C = \Sigma^n\) (nic se nekóduje)
 	- délka \( = n\)
 	- velikost \(= 2^n \implies k = \log |C| = n\)
@@ -1136,7 +1136,7 @@ Není to Simpletonův, ale Singletonův (viz. [Wikipedia](https://en.wikipedia.o
 - \(A(n, d) \le A(n - 1, d - 1) \le \ldots \le A(n - d + 1, 1) = n - d + 1\)
 - rovněž dostávám \(A(n, 2) \le A(n - 1, 1) = n - 1\) a vím, že \(A(n, 2) \ge n - 1\), tedy rovnost
 
-{% math lemma %}
+{% math claim %}
 pro každé sudé \(d \le n\) je \(A(n, d) = A(n - 1, d - 1)\){% endmath %}
 
 {% math proof %}
@@ -1226,7 +1226,7 @@ slova \(z\) je \(Pz\), kde \(P\) je paritní matice kódu \(C\).{% endmath %}
 - výsledek dekódování \(y = \tilde{x} - m(s) = \tilde{x} - m(P\tilde{x})\)
 	- {% math observation %}\(y\) má mezi kódovými slovy nejmenší vzdálenost od \(\tilde{x}\){% endmath %}
 
-{% math example %} \( \ \)
+{% math example %} 
 - \(G = \begin{matrix} v_1 \\ v_2 \end{matrix} \begin{pmatrix} 1 & 1 & 1 & 0 & 0 \\ 0 & 0 & 1 & 1 & 1 \end{pmatrix}\)
 - \(k = 2\), máme \(4\) slova \(\left\{v_1, v_2, (0\ \ldots\ 0), v_1 + v_2\right\}\)
 - \(\Delta(C) = 3\) (počet jedniček vektoru báze)
@@ -1300,13 +1300,13 @@ mám na \(2^n\) prvcích \(|C|\) disjunktních koulí objemu \(V(n, t)\)... koul
 {% math definition %}
 kód \(C\) je perfektní, pokud pro něj platí Hammingův odhad s rovností.{% endmath %}
 
-{% math example "perfektních kódů" %} \( \ \)
+{% math example "perfektních kódů" %}
 - totální (koule o poloměru 1)
 - opakovací kód liché délky 
 - jednoprvkový kód (koule zaplňuje celý prostor)
 {% endmath %}
 
-{% math lemma %}
+{% math claim %}
 Hammingův kód je perfektní.{% endmath %}
 
 {% math proof %}
@@ -1326,7 +1326,7 @@ Hammingův kód je perfektní.{% endmath %}
 - \(c = (c_1, \ldots, c_{2^r - 1})\)
 	- \(c_i = \langle x, y_i \rangle\), kde \(y_i\) jsou binární zápisy čísla \(i\)
 
-{% math lemma %}
+{% math claim %}
 Hadamardův kód je \(\left[2^r, r, 2^{r - 1}\right]\)-kód.{% endmath %}
 
 {% math observation %}

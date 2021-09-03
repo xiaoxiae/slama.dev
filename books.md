@@ -3,6 +3,8 @@ title: Books
 layout: default
 order: 1
 icon: 
+css: books
+no-heading: True
 ---
 
 {:.center}

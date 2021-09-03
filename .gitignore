@@ -17,7 +17,11 @@ climbing/**/*.jpeg
 climbing/zones/
 photos/
 assets/hlenka-helenka/tribute.mp4
+<<<<<<< HEAD
 assets/*.pdf
+=======
+videos/
+>>>>>>> master
 
 # xopp, svg
 _includes/**/*.svg
@@ -27,9 +31,14 @@ _includes/**/*.xopp*
 _includes/cv.html
 _includes/songs.md
 _includes/projects.md
+_includes/videos.md
 _includes/linearni-programovani-v-pythonu
+<<<<<<< HEAD
 _plugins/svg-inkscape/*
 _plugins/*.log
 _plugins/*.tmp
 _plugins/*.out
+=======
+_includes/diary.md
+>>>>>>> master
 cv.pdf

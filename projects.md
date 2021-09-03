@@ -3,6 +3,8 @@ title: Projects
 layout: default
 order: 50
 icon: 
+css: projects
+no-heading: True
 ---
 
 {:.center}

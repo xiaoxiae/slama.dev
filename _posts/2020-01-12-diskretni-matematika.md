@@ -109,7 +109,7 @@ pro \(\left(X, \le\right)\) ČUM:
 pro \(\left(X, \le\right)\) konečnou ČUM: \(\alpha \omega \ge \left|X\right|\)
 {% endmath %}
 
-{% math proof %} \( \ \)
+{% math proof %}
 - \(M_1 := \left\{a \in X \mid a\ \text{je minimální v}\ \le\right\}\)
 - \(X_1 := X \setminus M_1\)
 - pokračujeme a vyjde nám, že \(\forall i: \left|M_i\right|  \le \alpha\) (všechny totiž musí být nezávislé); rovněž \(\exists a_k \in M_k, a_{k - 1} \in M_{k - 1} \ldots\) řetězec \(\implies k \le \omega\)
@@ -192,14 +192,14 @@ budeme počítat dvěma způsoby:
 #### Binomická věta
 \[\forall n \in \mathbb{N}, \forall a, b \in \mathbb{R}: \left(a + b\right)^n = \sum_{k = 0}^{n} \binom{n}{k} a^{n - k}b^k\]
 
-{% math proof %} \( \ \)
+{% math proof %}
 - pro \(0\) funguje
 - jedná se o _součty součinů_, které si ze závorek vybírají \(a\) nebo \(b\)
 	- \(a^{n - k}b^k\) -- musí jich být \(n\)
 	- \(\binom{n}{k}\) -- kolika způsoby si lze z \(n\) závorek vybrat k znaků
 {% endmath %}
 
-{% math remark %} \( \ \)
+{% math remark %}
 - \(\left(1 + 1\right)^n = 2^n = \sum_{k = 0}^{n}\binom{n}{k}\) -- součet řady Pascalova trojúhelníka
 - \(\left(1 - 1\right)^n = 0 = \sum_{k = 0}^{n}\binom{n}{k} \left(-1\right)^k\) -- počet podmnožin sudé velikosti je roven počtu podmnožin velikosti liché
 {% endmath %}
@@ -225,7 +225,7 @@ budeme počítat dvěma způsoby:
 \]
 {% endmath %}
 
-{% math proof "rozumného" %} \( \ \)
+{% math proof "rozumného" %}
 - \(n! = \sqrt{\left(n!\right)^2} = \sqrt{1 \cdot 2 \cdot \ldots \cdot n \cdot 1 \cdot 2 \cdot \ldots \cdot n} = \sqrt{1 \cdot n} \cdot \sqrt{2 \cdot \left(n - 1\right)} \cdot \ldots \cdot \sqrt{n \cdot 1}\)
 	- \(\sqrt{i \left(n - i + 1 \right)} \le^{\mathrm{AG}} \frac{i + n - i + 1}{2} = \left(\frac{n + 1}{2}\right)^n\) (je jich \(n\))
 	- \(\sqrt{i \left(n - i + 1\right)} \ge \sqrt{n}^n\)... vevnitř je vždy alespoň \(n\)
@@ -314,7 +314,7 @@ Nechť \(V = \left\{v_1, \ldots, v_n\right\}\).
 	- typicky \(d_1 \le d_2 \le \ldots \le d_n\)
 	- \(0 \le d_i < n - 1\)
 
-{% math lemma %}
+{% math claim %}
 \[\sum_{v \in V\left(G\right)} \mathrm{deg}\left(v\right) = 2 \cdot \left|E\left(G\right)\right|\]
 {% endmath %}
 
@@ -329,7 +329,7 @@ nechť \(K\) je \(\left\{\left(v, e\right) \mid e \in E\left(G\right) \land v \i
 nechť \(d_1 \le d_2 \le \ldots \le d_n\) posloupnost přirozených čísel. Pak \(d_1', d_2', \ldots d_{n - 1}' \) vznikne smazáním posledního prvku a odečtením \(1\) od \(d_n\) předchozích. Pak \(d_1 \le d_2 \le \ldots d_n\) je skórem grafu, když \(d_1', d_2', \ldots d_{n - 1}' \) je skórem grafu.
 {% endmath %}
 
-{% math proof %} \( \ \)
+{% math proof %}
 - \(\Rightarrow\)... víme, že \(d_1', d_2', \ldots d_{n - 1}' \) je skórem grafu, stačí tedy přilepit vrchol a propojit ho patřičnými hranamy k existujícímu grafu:
 	- \(V\left(G\right) = \left\{v_1', \ldots, v_{n - 1}', v_n\right\}\)
 	- \(E\left(G\right) = E\left(G'\right) \cup \left\{\left\{v'i, v_n\right\} \mid n - d_n \le i \le n - 1\right\}\)
@@ -375,7 +375,7 @@ v grafu délky \(k\) je (2 pohledy):
 (procházka/walk) v grafu \(G\) je cesta, ve které se mohou vrcholy i hrany opakovat.
 {% endmath %}
 
-{% math lemma %}
+{% math claim %}
 pokud existuje sled z \(x\) do \(y\), pak existuje i cesta.
 {% endmath %}
 - zvolíme nejkratší ze všech sledů... to je cesta; kdyby ne, pak \(\exists\) vrchol, který se tam vyskytuje 2x (tím pádem jde sled zkrátit)
@@ -402,13 +402,13 @@ V souvislém grafu \(G\) je vzdálenost vrcholu \(u, v\) _minimum_ z delek cest 
 - kontrakce hrany \( G/e := \left(\left(V \setminus \left\{x, y\right\}\right) \cup \left\{z\right\}, \\ \left\{e \in E \mid e \cap \left\{x, y\right\} \neq \emptyset\right\} \cup \left\{\left(e \setminus \left\{x, y\right\}\right) \cup \left\{z\right\} \mid e \in E \land \left|e \cup \left\{x, y\right\}\right| = 1\right\}\right) \)
 
 #### Stromy
-{% math definition "strom les, list" %} \( \ \)
+{% math definition "strom les, list" %}
 - strom je _souvislý acyklický graf_
 - les je _acyklický graf_ (soubor stromů)
 - list -- vrchol stromu s \(\mathrm{deg}\left(v\right) = 1\)
 {% endmath %}
 
-{% math lemma %}
+{% math claim %}
 Strom s alespoň 2 vrcholy má alespoň 2 _listy_ (vrcholy, do kterých vede 1 hrana).
 {% endmath %}
 
@@ -418,7 +418,7 @@ uvažme nejdelší cestu. Její krajní vrcholy jsou listy, jelikož:
 - pokud z nich vede cesta někam, kde jsme ještě nebyli, tak není nejdelší
 {% endmath %}
 
-{% math lemma %}
+{% math claim %}
 nechť \(v\) je list grafu \(G\). Pak \(G\) je strom \(\iff G - v\) je strom.
 {% endmath %}
 
@@ -513,13 +513,13 @@ je \(\left(V, E\right)\), kde \(E \subseteq V^2 \setminus \Delta_V\) (lze u mult
 - hodí se rozlišovat vstupní (\(\mathrm{deg}^{\mathrm{in}}\)) a výstupní (\(\mathrm{deg}^{\mathrm{out}}\)) stupně
 {% endmath %}
 
-{% math definition "podkladový graf" %} \( \ \)
+{% math definition "podkladový graf" %}
 - u orientovaného zapomeneme orientaci
 - u multigrafu zrušíme opakování hran
 {% endmath %}
 
 
-{% math definition "souvislost" %} \( \ \)
+{% math definition "souvislost" %}
 - _slabá_ -- dosažitelnost v podkladovém
 - _silná_ -- \(\forall u, v \in V \exists\) cesta z  do \(v\)
 {% endmath %}
@@ -531,7 +531,7 @@ pro _vyvážený_ orientovaný multigraf \(G\) je ekvivalentní:
 3. \(G\) je silně souvislý
 {% endmath %}
 
-{% math proof %} \( \ \)
+{% math proof %}
 - \(3 \implies 1\) již víme (podkladový je obecnější)
 - \(2 \implies 3\) tahem se dostaneme kdekoliv potřebujeme
 - \(1 \implies 2\) stejné jako důkaz u neorientovaného
@@ -647,7 +647,7 @@ fixujeme \(v\), indukce podle \(e\):
 pro maximálné rovinný graf \(G\) s \(v \ge 3\) jsou všechny jeho stěny trojúhelníky.
 {% endmath %}
 
-{% math definition %} \( \ \)
+{% math definition %}
 1. každý maximální graf je souvislý (pokud ne, tak lze nesouvislé komponenty spojit)
 2. kdyby existovala stěna s hranicí \(C_n\) pro \(n > 3\), pak můžeme v rámci stěny přidat hranu
 3. strana, jejíž hranice není kružnice neexistuje (mohli bychom přidat stěnu)
@@ -666,7 +666,7 @@ Každá stěna je trojúhelník (\(3f\)) a patří právě do dvou stěn (\(/ 2\
 {% math theorem %}
 v každém rovinném grafu existuje vrchol t. ž. \(\mathrm{deg}\left(v\right) \le 5\){% endmath %}
 
-{% math proof %} \( \ \)
+{% math proof %}
 - pro počet vrcholů \(\le 2\) triviální
 - pro ostatní: \(e \le 3v - 6 \implies\) průměrný stupeň \(< 6\)
 	- \(2e \le 6v - 12 \implies 2e < 6v \implies \frac{2e}{v} < 6\) (\(2e\) je součet všech stupňů)
@@ -703,7 +703,7 @@ pokud \(G\) nemá lichou kružnici, pak \(\chi\left(G\right) \le 2\).
 graf je souvislý \(\implies\) má kostru \(T\). Nechť \(C\) je 2-obarvení \(T\). Pokud by \(C\) nebylo obarvením \(G\), pak \(\exists\) cesta sudé délky z vrcholu \(u\) do \(v\), jejíž propojením dostáváme lichý cyklus. 
 {% endmath %}
 
-{% math lemma %}
+{% math claim %}
 Je-li T strom s alespoň 2 vrcholy. pak \(\chi\left(T\right) = 2\)
 {% endmath %}
 
@@ -715,7 +715,7 @@ zakořeníme a barvíme po vrstvách.
 každý rovinný graf je 5-obarvitelný.
 {% endmath %}
 
-{% math proof %} \( \ \)
+{% math proof %}
 - pro \(\left|V\right| \le 5\) lze triviálně (prostě přiřadíme všechny barvy)
 - indukcí: uvažme \(v \in V\left(G\right)\) s maximálním stupněm
 	- pro \(\mathrm{deg}(v) \le 4\)... indukcí přiřadíme vrcholu zbylou barvu

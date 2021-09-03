@@ -1,8 +1,8 @@
 # Climbing
 Adding a new climbing video works as follows:
 1. record it (duh...)
-2. add it to this folder
-3. add information about it to `information.yaml` in the following format:
+2. add it to the `videos/` folder
+3. run `../_plugins/add_new_climbs.py` and edit the new entries accordingly
 
 ```yaml
 DJI_0051.MP4:

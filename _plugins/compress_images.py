@@ -9,7 +9,7 @@ import yaml
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-MAX = 10  # out of 100
+MAX = 5  # out of 100
 CACHE_FOLDER = "../.jekyll-cache/compress_images"
 SUB = "Images"
 
@@ -31,7 +31,7 @@ def get_file_hashsum(file_name: str):
 
 def execute_shell_command(command: List[str]):
     result = Popen(command, stdout=PIPE, stderr=PIPE).communicate()
-    print([f for f in result if f != b""][0].decode().strip())
+    print([f for f in result if f != b""][0].decode().strip(), flush=True)
 
 
 def format_to_mb(size: int) -> str:
@@ -91,7 +91,7 @@ with open(CACHE_FOLDER, "w") as f:
     f.write(yaml.dump(new_config))
 
 if something_changed:
-    print(f"size before: {format_to_mb(full_size)} MB")
-    print(f"size after: {format_to_mb(reduced_size)} MB")
+    print(f"size before: {format_to_mb(full_size)} MB", flush=True)
+    print(f"size after: {format_to_mb(reduced_size)} MB", flush=True)
 else:
-    print("no changes.")
+    print("no changes.", flush=True)

@@ -12,7 +12,7 @@ pdf: true
 
 ### Zjednodušené schéma počítače
 
-{: style="max-width: 50%" :} 
+{: style="max-width: 50%" :}
 {% xopp 19-07-10_22-58-36 & Harvardská architektura %}
 
 - vymyšlena na univerzitě v Harvardu

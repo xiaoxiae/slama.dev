@@ -3,6 +3,8 @@ title: Home
 layout: default
 order: 0
 icon: 
+css: index
+no-heading: True
 ---
 
 ## Hi everyone!
@@ -32,3 +34,5 @@ Links to the periodically updated ones can be found at the top; the rest can be 
 </ul>
 {% endunless %}
 {% endfor %}
+
+<div class="spacer"></div>
