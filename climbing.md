@@ -33,6 +33,6 @@ Alternatively, there is also a page containing [all of the climbs](/climbing/zon
 ### Climbing Diary
 The following contains my climbing diary -- how many new/old boulders have I done (and links to them). It also serves as a convenient way to view the most recently sent boulders.
 
-The format is as follows: **date:** <mark class="climbing-diary-record climbing-red climbing-red-text">repeats/new sends - [<a>video</a>, <a>links</a>]</mark> <mark class="climbing-diary-record climbing-blue climbing-blue-text">other colors...</mark> -- note.
+The format for each color is as follows: <mark class="climbing-diary-record climbing-red climbing-red-text">repeats/<span class="underline">new sends</span> [<a>video</a>, <a>links</a>]</mark>.
 
 {% include diary.md %}

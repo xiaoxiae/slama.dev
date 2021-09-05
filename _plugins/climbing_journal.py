@@ -43,7 +43,18 @@ for entry in reversed(sorted(list(journal))):
                 entry_videos.append(video)
 
         if color in journal[entry]:
-            line += f"<mark class='climbing-diary-record climbing-{color} climbing-{color}-text'>{journal[entry][color]}"
+            color_dict = journal[entry][color]
+            old_count = 0 if "old" not in color_dict else color_dict["old"]
+            new_count = 0 if "new" not in color_dict else color_dict["new"]
+
+            if old_count == 0:
+                count = f"<span class='underline'>{new_count}</span>"
+            elif new_count == 0:
+                count = f"{old_count}"
+            else:
+                count = f"{old_count}/<span class='underline'>{new_count}</span>"
+
+            line += f"<mark class='climbing-diary-record climbing-{color} climbing-{color}-text'>{count}"
 
             if len(entry_videos) != 0:
                 line += (
