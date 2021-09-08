@@ -73,6 +73,9 @@ for entry in reversed(sorted(list(journal))):
     if "note" in journal[entry]:
         line += "-- " + journal[entry]["note"]
 
+    if "rebuilt" in journal[entry]:
+        line += "\n\n<hr class='hr-text' data-content='new boulders'>"
+
     result += line + "\n"
 
 result += "</div>"
