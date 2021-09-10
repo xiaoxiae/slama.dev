@@ -103,11 +103,11 @@ img {
     border: 0;
     text-align: center;
     height: 1.5em;
-    background: $dark-background-color;
-    color: $dark-link-color;
+    background: $light-background-color;
+    color: $light-link-color;
 
     &::before {
-        background: $dark-link-color;
+        background: $light-link-color;
         content: '';
         // use the linear-gradient for the fading effect
         // use a solid background color for a solid bar
@@ -124,11 +124,21 @@ img {
         display: inline-block;
         padding: 0 0.5em;
         line-height: 1.5em;
-        background-color: $dark-background-color;
+        background-color: $light-background-color;
     }
 
     margin-bottom: $line-spacing / 4;
 
     // YUCK!
     margin-top: - $line-spacing - $line-spacing / 2 + $line-spacing / 4;
+}
+
+@media (prefers-color-scheme: dark) {
+    .hr-text {
+        background: $dark-background-color;
+        color: $dark-link-color;
+
+        &::before { background: $dark-link-color; }
+        &::after { background-color: $dark-background-color; }
+    }
 }
