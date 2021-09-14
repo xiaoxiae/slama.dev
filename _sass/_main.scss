@@ -47,16 +47,16 @@
     padding: $navigation-padding / 2;
     margin-bottom: $navigation-padding;
 
-	li {
-		display:inline-block;
-		float: center;
-		margin-right: 15px;
-	}
+    li {
+        display: inline-block;
+        float: center;
+        margin-right: 15px;
+    }
 
-	ul, ol { padding-bottom: 0px; }
+    ul,
+    ol { padding-bottom: 0; }
 
-	background-color: $light-nav-background-color;
-
+    background-color: $light-nav-background-color;
     text-align: center;
 
     .navigation-separator {
@@ -424,9 +424,9 @@ hr {
         border-color: lighten($dark-code-background-color, 6%);
     }
 
-	.navigation {
-		background-color: $dark-nav-background-color;
-	}
+    .navigation {
+        background-color: $dark-nav-background-color;
+    }
 
     .highlight {
         $plain: #fafafa;

@@ -2,7 +2,7 @@
 
 /* LIGHT COLORS */
 $light-text-color: #000;
-$light-link-color: #777;
+$light-link-color: #aaa;
 $light-background-color: #fff;
 
 $light-header-background-color: lighten($light-text-color, 85%);
@@ -11,7 +11,7 @@ $light-code-background-color: $light-header-background-color;
 
 /* DARK COLORS */
 $dark-text-color: #fff;
-$dark-link-color: #adadad;
+$dark-link-color: #888;
 $dark-background-color: #333;
 
 $dark-header-background-color: darken($dark-text-color, 94%);
