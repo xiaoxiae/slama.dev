@@ -5,7 +5,8 @@ $light-text-color: #000;
 $light-link-color: #777;
 $light-background-color: #fff;
 
-$light-header-background-color: lighten($light-text-color, 90%);
+$light-header-background-color: lighten($light-text-color, 85%);
+$light-nav-background-color: lighten($light-text-color, 94%);
 $light-code-background-color: $light-header-background-color;
 
 /* DARK COLORS */
@@ -13,7 +14,8 @@ $dark-text-color: #fff;
 $dark-link-color: #adadad;
 $dark-background-color: #333;
 
-$dark-header-background-color: darken($dark-text-color, 93%);
+$dark-header-background-color: darken($dark-text-color, 94%);
+$dark-nav-background-color: darken($dark-text-color, 85%);
 $dark-code-background-color: $dark-header-background-color;
 
 /* SIZES */

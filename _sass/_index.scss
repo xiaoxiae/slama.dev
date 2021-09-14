@@ -23,8 +23,8 @@ ul.hfill {
     padding-bottom: $line-spacing;
 }
 
-ul.hfill:nth-child(2n+1) { background: lighten($light-code-background-color, 5%); }
+ul.hfill:nth-child(2n) { background-color: $light-nav-background-color; }
 
 @media (prefers-color-scheme: dark) {
-    ul.hfill:nth-child(2n+1) { background: lighten($dark-code-background-color, 9%); }
+    ul.hfill:nth-child(2n) { background-color: $dark-nav-background-color; }
 }

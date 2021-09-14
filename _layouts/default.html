@@ -37,30 +37,27 @@
 			<h1><a href="/">{{ site.title }}</a></h1>
 		</div>
 
-		<div class="content">
-			<!-- navigation bar -->
-			<div class="navigation">
-				{% assign sections_sorted = site.documents | concat: site.pages | sort: 'order' %}
-				{% for p in sections_sorted %}
-					{% if p.title and p.order %}
-						<span class="navbar-item">
-						{% if p.title == page.title %}
-							<span class="current-page-item navbar-text"><a href="{{p.url}}">{{p.title}}</a></span>
-							<span class="current-page-item navbar-icon icons"><a href="{{p.url}}">{{p.icon}}</a></span>
-						{% else %}
-							<span class="navbar-text"><a href="{{p.url}}">{{p.title}}</a></span>
-							<span class="navbar-icon icons"><a href="{{p.url}}">{{p.icon}}</a></span>
-						{% endif %}
-						</span>
-
-						<!-- don't insert the navigation separator at the very end -->
-						{% unless p == sections_sorted.last %}
-							<span class="navigation-separator"></span>
-						{% endunless %}
+		<!-- navigation bar -->
+		<div class="navigation">
+			<ul>
+			{% assign sections_sorted = site.documents | concat: site.pages | sort: 'order' %}
+			{% for p in sections_sorted %}
+				{% if p.title and p.order %}
+					<li>
+					<span class="navbar-item">
+					{% if p.title == page.title %}
+						<span class="current-page-item navbar-text"><a href="{{p.url}}">{{p.title}}</a></span>
+					{% else %}
+						<span class="navbar-text"><a href="{{p.url}}">{{p.title}}</a></span>
 					{% endif %}
-				{% endfor %}
-			</div>
+					</span>
+					</li>
+				{% endif %}
+			{% endfor %}
+			</ul>
+		</div>
 
+		<div class="content">
 			{% unless page.no-heading %}
 				<h2>{{ page.title }}</h2>
 			{% endunless %}

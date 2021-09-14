@@ -34,21 +34,6 @@
     font-display: swap;
 }
 
-@font-face {
-    font-family: $icons-font;
-    src:
-        url('/assets/css/fonts/Icons.woff') format('woff'),
-        url('/assets/css/fonts/Icons.ttf') format('truetype');
-}
-
-.icons {
-    * {
-        font-family: $icons-font;
-        font-weight: 900;
-        font-style: normal;
-    }
-}
-
 // website content spacing
 .content {
     max-width: $website-size;
@@ -59,35 +44,30 @@
 }
 
 .navigation {
-    padding: $navigation-padding;
+    padding: $navigation-padding / 2;
+    margin-bottom: $navigation-padding;
+
+	li {
+		display:inline-block;
+		float: center;
+		margin-right: 15px;
+	}
+
+	ul, ol { padding-bottom: 0px; }
+
+	background-color: $light-nav-background-color;
+
     text-align: center;
 
     .navigation-separator {
         margin-left: $navigation-item-spacing / 2;
         margin-right: $navigation-item-spacing / 2;
 
-        &::before { content: "|"; }
+        &::before { content: " "; }
     }
 }
 
 .current-page-item { font-weight: bold; }
-
-.navbar-icon {
-    visibility: hidden;
-    position: fixed;
-}
-
-@media (max-width: $website-size + $website-padding * 2) {
-    .navbar-icon {
-        visibility: visible;
-        position: static;
-    }
-
-    .navbar-text {
-        visibility: hidden;
-        position: fixed;
-    }
-}
 
 .header {
     padding: $header-padding $website-padding;
@@ -443,6 +423,10 @@ hr {
         background-color: lighten($dark-code-background-color, 6%);
         border-color: lighten($dark-code-background-color, 6%);
     }
+
+	.navigation {
+		background-color: $dark-nav-background-color;
+	}
 
     .highlight {
         $plain: #fafafa;
