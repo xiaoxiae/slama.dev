@@ -280,7 +280,11 @@ body {
 
 a {
     color: $light-link-color;
-    &:hover { color: $light-text-color; }
+
+    &:hover {
+        transition: 0.2s ease-in-out;
+        color: $light-text-color;
+    }
 }
 
 hr {

@@ -91,6 +91,7 @@ img {
 
     .zone:hover,
     .zone:active {
+        transition: 0.2s ease-in-out;
         fill-opacity: 1;
         fill: $light-text-color;
     }
