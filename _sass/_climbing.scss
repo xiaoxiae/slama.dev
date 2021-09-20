@@ -27,17 +27,17 @@
 
 .climbing-salmon-text {
     color: $light-text-color;
-    a { color: $light-link-color; &:hover { color: $light-text-color; } }
+    a { color: $dark-link-color; &:hover { color: $dark-text-color; } }
 }
 
 .climbing-blue-text {
     color: $dark-text-color;
-    a { color: $dark-link-color; &:hover { color: $dark-text-color; } }
+    a { color: $light-link-color; &:hover { color: $light-text-color; } }
 }
 
 .climbing-yellow-text {
     color: $light-text-color;
-    a { color: $light-link-color; &:hover { color: $light-text-color; } }
+    a { color: $dark-link-color; &:hover { color: $dark-text-color; } }
 }
 
 .climbing-left {
@@ -60,7 +60,10 @@
 }
 
 .climbing-journal {
-    li { padding-bottom: $line-spacing / 2; }
+    li {
+        padding-bottom: $line-spacing / 2;
+        p { padding-bottom: $line-spacing / 4; }
+    }
 }
 
 mark.climbing-diary-record {

@@ -30,11 +30,12 @@ if os.path.exists(CLIMBING_JOURNAL):
         journal = yaml.safe_load(f.read())
 
 result = """
-<div markdown="1" class="climbing-journal">
+<div class="climbing-journal">
+<ul>
 """
 
 for entry in reversed(sorted(list(journal))):
-    line = f"- **{entry.strftime('%-d. %-m. %Y')}:** "
+    line = f"\n<li><p><strong>{entry.strftime('%-d. %-m. %Y')}:</strong> "
 
     for color in ["red", "salmon", "blue", "yellow"]:
         entry_videos = []
@@ -68,17 +69,21 @@ for entry in reversed(sorted(list(journal))):
                     + "]"
                 )
 
-            line += "</mark> "
+            line += "</mark>"
+
+    line += "</p>"
 
     if "note" in journal[entry]:
-        line += "-- " + journal[entry]["note"]
+        line += "<p>" + journal[entry]["note"] + "</p>"
+
+    line += "</li>"
 
     if "rebuilt" in journal[entry]:
-        line += "\n\n<hr class='hr-text' data-content='new boulders'>"
+        line += "</ul><hr class='hr-text' data-content='new boulders'><ul>"
 
     result += line + "\n"
 
-result += "</div>"
+result += "</ul></div>"
 
 with open(OUTPUT_PATH, "w") as f:
     f.write(result)
