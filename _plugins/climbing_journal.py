@@ -69,7 +69,7 @@ for entry in reversed(sorted(list(journal))):
                     + "]"
                 )
 
-            line += "</mark>"
+            line += "</mark> "
 
     line += "</p>"
 
