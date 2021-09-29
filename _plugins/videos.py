@@ -8,10 +8,10 @@ from datetime import date
 videos = {
     "Graph Theory": [
         (
-            date(2021, 4, 28),
-            "https://www.youtube.com/watch?v=OZWZpQmGp0g",
-            "Vizing's theorem",
-            "03-",
+            date(2021, 8, 23),
+            "https://www.youtube.com/watch?v=3roPs1Bvg1Q",
+            "The Blossom algorithm",
+            "06-",
         ),
         (
             date(2021, 6, 1),
@@ -20,10 +20,10 @@ videos = {
             "04-",
         ),
         (
-            date(2021, 8, 23),
-            "https://www.youtube.com/watch?v=3roPs1Bvg1Q",
-            "The Blossom algorithm",
-            "06-",
+            date(2021, 4, 28),
+            "https://www.youtube.com/watch?v=OZWZpQmGp0g",
+            "Vizing's theorem",
+            "03-",
         ),
     ]
 }
