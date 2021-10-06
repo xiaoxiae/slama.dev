@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.9899495"
-     inkscape:cx="360.62446"
-     inkscape:cy="384.36304"
+     inkscape:zoom="6.2005758"
+     inkscape:cx="365.77248"
+     inkscape:cy="433.75004"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -38,7 +38,7 @@
      fit-margin-bottom="0"
      inkscape:window-width="1920"
      inkscape:window-height="1080"
-     inkscape:window-x="1920"
+     inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
@@ -4339,19 +4339,19 @@
        cx="1548.9034"
        cy="494.22635"
        r="2.3835227"
-       style="fill:#999999;stroke:#999999;stroke-width:1.94411;stroke-opacity:1"
+       style="fill:#000000;fill-opacity:1;stroke:#010101;stroke-width:1.94411;stroke-opacity:1"
        id="circle1431" />
     <circle
        cx="1557.2816"
        cy="507.30093"
        r="2.4070559"
-       style="fill:#999999;stroke:#999999;stroke-width:1.94411;stroke-opacity:1"
+       style="fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:1.94411;stroke-opacity:1"
        id="circle1433" />
     <circle
        cx="1535.8507"
        cy="522.51733"
        r="2.4188223"
-       style="fill:#999999;stroke:#999999;stroke-width:1.94411;stroke-opacity:1"
+       style="fill:#000000;stroke:#000000;stroke-width:1.94411;stroke-opacity:1;fill-opacity:1"
        id="circle1435" />
     <circle
        cx="1546.7485"
@@ -4363,19 +4363,19 @@
        cx="1555.3507"
        cy="525.31927"
        r="2.5129545"
-       style="fill:#999999;stroke:#999999;stroke-width:1.94411;stroke-opacity:1"
+       style="fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:1.94411;stroke-opacity:1"
        id="circle1439" />
     <circle
        cx="1571.3906"
        cy="517.34082"
        r="2.4188223"
-       style="fill:#999999;stroke:#999999;stroke-width:1.94411;stroke-opacity:1"
+       style="fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:1.94411;stroke-opacity:1"
        id="circle1441" />
     <circle
        cx="1586.1716"
        cy="516.83069"
        r="2.3952894"
-       style="fill:#010101;fill-opacity:1;stroke:#000000;stroke-width:1.94411;stroke-opacity:1"
+       style="fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:1.94411;stroke-opacity:1"
        id="circle1443" />
     <circle
        cx="1584.0684"
@@ -4393,7 +4393,7 @@
        cx="1611.4097"
        cy="500.51578"
        r="2.8071177"
-       style="fill:#999999;stroke:#999999;stroke-width:1.94411;stroke-opacity:1"
+       style="fill:#000001;fill-opacity:1;stroke:#010101;stroke-width:1.94411;stroke-opacity:1"
        id="circle1449" />
     <circle
        cx="1627.1425"
@@ -4435,19 +4435,19 @@
        cx="1600.0267"
        cy="528.82764"
        r="2.5129545"
-       style="fill:#999999;stroke:#999999;stroke-width:1.94411;stroke-opacity:1"
+       style="fill:#000000;stroke:#020202;stroke-width:1.94411;stroke-opacity:1;fill-opacity:1"
        id="circle1463" />
     <circle
        cx="1582.8342"
        cy="531.80853"
        r="2.889483"
-       style="fill:#999999;stroke:#999999;stroke-width:1.94411;stroke-opacity:1"
+       style="fill:#000000;stroke:#020202;stroke-width:1.94411;stroke-opacity:1;fill-opacity:1"
        id="circle1465" />
     <circle
        cx="1575.0314"
        cy="543.08685"
        r="3.1012805"
-       style="fill:#999999;stroke:#999999;stroke-width:1.94411;stroke-opacity:1"
+       style="fill:#000000;stroke:#020202;stroke-width:1.94411;stroke-opacity:1;fill-opacity:1"
        id="circle1467" />
     <circle
        cx="1560.6139"

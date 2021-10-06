@@ -9,7 +9,7 @@ That's why I came up with the concept of a productivitree. Here is mine:
 
 ![](/assets/productivitree.svg)
 
-The idea is simple: for each productive hour, you may fill in a single dot. That's it.
+The idea is simple: for each productive hour, I fill in a single gray dot, the color depending on the type of activity I did (education-related dots are blue, others are black).
 
 Although this might not be a groundbreaking discovery in the field of procrastination, I wanted to share this anyway, since some people might find it useful/interesting.
 
@@ -17,8 +17,3 @@ Although this might not be a groundbreaking discovery in the field of procrastin
 The above image was generated using **weighted stippling**, which is a technique where a given image is converted into a set of points of varying thickness (see [this paper](https://mrl.cs.nyu.edu/~ajsecord/npar2002/npar2002_ajsecord_preprint.pdf) if you're interested in the math behind it).
 
 I used the [StippleGen](https://www.evilmadscientist.com/2012/stipplegen-weighted-voronoi-stippling-and-tsp-paths-in-processing/) program when generating my image. It should run on any major operating system and has a pretty straightforward UI, exporting directly to SVG.
-
-### Improvements
-A possible improvement to this technique could be assigning different dot colors depending on the type of activity. This could produce neat colorful diagrams, as well as nicely visualize what productive things you spend time on.
-
-It could also be interesting (and relatively easy to implement) to track when the dots were added and creating a timelapse of filling in the entire tree.
