@@ -35,22 +35,23 @@ colors = list(reversed(["red", "salmon", "blue", "yellow"]))
 # rename new files
 for name in list(config):
     old_path = os.path.join(CLIMBING_VIDEOS_FOLDER, name)
+    co = "convert_only" in config[name]
 
-    if "new" in config[name]:
+    if "new" in config[name] or co:
         print(f"parsing new climb '{name}'.", flush=True)
 
         # assign a new name
         random_string = get_random_string(8)
         new_name = (
             "smichoff-"
-            + config[name]["color"]
-            + "-"
-            + config[name]["date"].strftime("%Y-%m-%d")
-            + "-"
+            + ("" if "color" not in config[name] else (config[name]["color"] + "-"))
+            + ("" if "date" not in config[name] else config[name]["date"].strftime("%Y-%m-%d") + "-")
             + random_string
             + ".mp4"
         )
-        del config[name]["new"]
+
+        if "new" in config[name]:
+            del config[name]["new"]
         config[new_name] = config[name]
         del config[name]
 
@@ -108,24 +109,29 @@ for name in list(config):
             if "rotate" in config[new_name]:
                 del config[new_name]["rotate"]
 
-        # create the poster
-        _ = Popen(
-            [
-                "ffmpeg",
-                "-i",
-                old_path,
-                "-vf",
-                "select=eq(n\,0)",
-                "-vframes",
-                "1",
-                "-y",
-                new_path + ".jpeg",
-            ],
-            stdout=PIPE,
-            stderr=PIPE,
-        ).communicate()
+        if not co:
+            # create the poster
+            _ = Popen(
+                [
+                    "ffmpeg",
+                    "-i",
+                    old_path,
+                    "-vf",
+                    "select=eq(n\,0)",
+                    "-vframes",
+                    "1",
+                    "-y",
+                    new_path + ".jpeg",
+                ],
+                stdout=PIPE,
+                stderr=PIPE,
+            ).communicate()
 
         os.rename(old_path, new_path)
+
+        if co:
+            del config[new_name]
+
 
     if name in config and "poster" in config[name]:
         if "new" not in config[name]:
