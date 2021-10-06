@@ -96,11 +96,11 @@ for category in videos:
         subtitle_string = (
             ""
             if not subtitles
-            else f"[subtitles](/videos/{video_slug}/{subtitle_name})/"
+            else f"[subtitles](/videos/{video_slug}/{subtitle_name}), "
         )
         url_string = f"[code]({URL_ROOT + os.path.basename(folder)})"
 
-        category_str += f"{date.strftime('%Y/%0m/%0d')} -- **{video}** [[YouTube]({youtube_link})] [{'/'.join(resolution_links)}] [{subtitle_string}{url_string}]\n- _{description}_\n\n"
+        category_str += f"{date.strftime('%Y/%0m/%0d')} -- **{video}** [[YouTube]({youtube_link})] [{', '.join(resolution_links)}] [{subtitle_string}{url_string}]\n- _{description}_\n\n"
 
     result += category_str
 

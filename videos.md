@@ -12,6 +12,6 @@ Regarding tooling, I use `sox` and `arecord` to record and process the audio and
 
 I also use **Vector Magic** to convert bitmap images to vectors for neat visualization of bitmap images (namely authors of proofs and algorithms I cover in the videos).
 
-The rest of this page contains a list of all the videos by category, along with links to their YouTube, source code, subtitles and exports in various resolutions.
+The rest of this page contains a list of all the videos by category, along with links to their YouTube, source code, subtitles and downloads in various resolutions (h264-encoded).
 
 {% include videos.md %}
