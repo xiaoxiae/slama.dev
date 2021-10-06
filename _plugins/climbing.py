@@ -45,7 +45,11 @@ for name in list(config):
         new_name = (
             "smichoff-"
             + ("" if "color" not in config[name] else (config[name]["color"] + "-"))
-            + ("" if "date" not in config[name] else config[name]["date"].strftime("%Y-%m-%d") + "-")
+            + (
+                ""
+                if "date" not in config[name]
+                else config[name]["date"].strftime("%Y-%m-%d") + "-"
+            )
             + random_string
             + ".mp4"
         )
@@ -131,7 +135,6 @@ for name in list(config):
 
         if co:
             del config[new_name]
-
 
     if name in config and "poster" in config[name]:
         if "new" not in config[name]:
