@@ -8,6 +8,12 @@ from datetime import date
 videos = {
     "Graph Theory": [
         (
+            date(2021, 10, 6),
+            "https://www.youtube.com/watch?v=g-QyzzPM4rU",
+            "Cayley's Formula",
+            "07-",
+        ),
+        (
             date(2021, 8, 23),
             "https://www.youtube.com/watch?v=3roPs1Bvg1Q",
             "The Blossom algorithm",
