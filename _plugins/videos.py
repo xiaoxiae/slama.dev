@@ -37,7 +37,7 @@ videos = {
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 ROOT = "../ignored/videos/"
-OUT = "../ignored/videos.md"
+OUT = "../_includes/videos.md"
 VIDEO_FOLDER = "../videos/"
 URL_ROOT = "https://github.com/xiaoxiae/videos/tree/master/"
 
