@@ -32,7 +32,7 @@ arguments = parser.parse_args()
 
 FILE = "../assets/productivitree.svg"
 
-AVAILABLE_COLOR = "#999999"
+AVAILABLE_COLOR = "#e6e6e6"
 
 EDUCATION_COLOR = "#0000ff"
 OTHER_COLOR = "#000000"
