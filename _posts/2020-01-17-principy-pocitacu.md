@@ -469,7 +469,7 @@ A + NOT(X) + C
 	- pozor na signed čísla -- `SHL` funguje jen pro menší čísla a `SHR` nefunguje vůbec (vytváří nuly)
 		- je potřeba `SAR` (kopíruje MSb), ale pořád to není ono (`-5 // 2 = -3`)
 
-#### Tomášova odbočka (příklady instrukcí)
+#### Tomášovo odbočka (příklady instrukcí)
 - v rámci přípravy na zkoušku je naprosto super si zkusit generovat z Cčkových zdrojáku assembler:
 	- na Linuxu `gcc -g -c soubor.c; objdump -S soubor.o;` dělá přesně tohle
 	- pozn.: není to Intel syntax -- pro ten je třeba k `objdump` přidat `-d` a `--disassembler-options=intel`
@@ -657,7 +657,7 @@ mov    %ax,-0x1e(%rbp)
 	- obecně: volné sektory
 - **OS** -- abstrakce nad disky
 	- stejné API pro čtení, psaní, práce s metadaty...
-	- používají všechny programy -- `open()` volá (*C*éčkovou funkci, která volá) systémovou funkci
+	- používají všechny programy -- `open()` volá (_C_éčkovou funkci, která volá) systémovou funkci
 
 #### V Pythonu
 
