@@ -2,7 +2,7 @@
 
 /* LIGHT COLORS */
 $light-text-color: #000;
-$light-link-color: #aaa;
+$light-link-color: #2E77FF;
 $light-background-color: #fff;
 
 $light-header-background-color: lighten($light-text-color, 85%);
@@ -11,7 +11,7 @@ $light-code-background-color: $light-header-background-color;
 
 /* DARK COLORS */
 $dark-text-color: #fff;
-$dark-link-color: #888;
+$dark-link-color: #7EABFF;
 $dark-background-color: #333;
 
 $dark-header-background-color: darken($dark-text-color, 94%);
@@ -23,7 +23,7 @@ $website-size: 700px;	// width of content of the website
 $website-padding: 25px;	// left/right padding of website content
 
 $header-padding: 10px;		// top/bottom padding of header
-$navigation-padding: 15px;	// top/bottom padding of navbar
+$navigation-padding: 20px;	// top/bottom padding of navbar
 
 $navigation-item-spacing: 20px;	// spacing between each of the navigation items
 

@@ -40,12 +40,14 @@
     margin: auto;
     padding-left: $website-padding;
     padding-right: $website-padding;
-    padding-bottom: $website-padding;
+}
+
+.content-background {
+    background-color: $light-background-color;
 }
 
 .navigation {
     padding: $navigation-padding / 2;
-    margin-bottom: $navigation-padding;
 
     li {
         display: inline-block;
@@ -67,13 +69,18 @@
     }
 }
 
+.navigation-background {
+    background-color: $light-background-color;
+
+    padding-bottom: $navigation-padding;
+}
+
 .current-page-item { font-weight: bold; }
 
 .header {
     padding: $header-padding $website-padding;
     text-align: center;
 
-    // the main text (slama.dev)
     a,
     h1 {
         font-size: $title-size;
@@ -244,7 +251,11 @@ footer {
     font-size: $footer-size;
     text-align: center;
 
+    padding: $header-padding $website-padding;
+
     p { margin-bottom: 0; }
+
+    background-color: $light-header-background-color;
 }
 
 .footnotes {
@@ -278,7 +289,7 @@ footer {
 /* LIGHT COLOR THEME */
 body {
     color: $light-text-color;
-    background-color: $light-background-color;
+    background-color: $light-header-background-color;
 }
 
 a {
@@ -302,7 +313,6 @@ hr {
 
 .header {
     background-color: $light-header-background-color;
-    a { text-shadow: 2px 2px 0.03em lighten($light-link-color, 15%); }
 }
 
 .highlight,
@@ -389,7 +399,7 @@ hr {
 @media (prefers-color-scheme: dark) {
     body {
         color: $dark-text-color;
-        background-color: $dark-background-color;
+        background-color: $dark-header-background-color;
     }
 
     // update image colors appropriately
@@ -417,7 +427,6 @@ hr {
 
     .header {
         background-color: $dark-header-background-color;
-        a { text-shadow: 2px 2px 0.05em darken($dark-text-color, 25%); }
     }
 
     .highlight,
@@ -434,6 +443,18 @@ hr {
     .navigation {
         background-color: $dark-nav-background-color;
     }
+
+	.navigation-background {
+		background-color: $dark-background-color;
+	}
+
+    footer {
+        background-color: $dark-header-background-color;
+    }
+
+	.content-background {
+		background-color: $dark-background-color;
+	}
 
     .highlight {
         $plain: #fafafa;
