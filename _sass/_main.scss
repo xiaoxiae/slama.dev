@@ -71,7 +71,6 @@
 
 .navigation-background {
     background-color: $light-background-color;
-
     padding-bottom: $navigation-padding;
 }
 
@@ -250,7 +249,6 @@ table {
 footer {
     font-size: $footer-size;
     text-align: center;
-
     padding: $header-padding $website-padding;
 
     p { margin-bottom: 0; }
@@ -444,17 +442,17 @@ hr {
         background-color: $dark-nav-background-color;
     }
 
-	.navigation-background {
-		background-color: $dark-background-color;
-	}
+    .navigation-background {
+        background-color: $dark-background-color;
+    }
 
     footer {
         background-color: $dark-header-background-color;
     }
 
-	.content-background {
-		background-color: $dark-background-color;
-	}
+    .content-background {
+        background-color: $dark-background-color;
+    }
 
     .highlight {
         $plain: #fafafa;
