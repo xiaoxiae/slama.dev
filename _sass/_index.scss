@@ -24,27 +24,27 @@ ul.hfill {
 }
 
 .portrait {
-	filter: brightness(110%);
+    filter: brightness(110%);
 
-	@media (prefers-color-scheme: light) {
-		filter: brightness(140%);
-	}
-	img {
-		float: right !important;
-		width: 250px;
-		margin-left: $line-spacing / 4;
-		margin-bottom: $line-spacing / 4;
+    @media (prefers-color-scheme: light) {
+        filter: brightness(140%);
+    }
 
-		filter: drop-shadow(0 0 0.1rem $dark-header-background-color);
+    img {
+        float: right !important;
+        width: 250px;
+        margin-left: $line-spacing / 4;
+        margin-bottom: $line-spacing / 4;
+        filter: drop-shadow(0 0 0.1rem $dark-header-background-color);
 
-		@media (prefers-color-scheme: light) {
-			filter: drop-shadow(0 0 0.1rem $dark-nav-background-color);
-		}
+        @media (prefers-color-scheme: light) {
+            filter: drop-shadow(0 0 0.1rem $dark-nav-background-color);
+        }
 
-		@media (max-width: $small-screen-threshold / 1.05) {
-			display: none;
-		}
-	}
+        @media (max-width: $small-screen-threshold / 1.05) {
+            display: none;
+        }
+    }
 }
 
 ul.hfill:nth-child(2n) { background-color: $light-nav-background-color; }
