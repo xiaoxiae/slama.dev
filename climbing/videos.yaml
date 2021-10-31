@@ -1,3 +1,43 @@
+DJI_0075.MP4:
+  color: blue
+  date: 2021-10-31
+  encode: null
+  new: null
+  rotate: left
+  trim: 6,35
+  zone: 1
+DJI_0077.MP4:
+  color: salmon
+  date: 2021-10-31
+  encode: null
+  new: null
+  rotate: left
+  trim: 6.5,38.5
+  zone: 2
+DJI_0088.MP4:
+  color: blue
+  date: 2021-10-31
+  encode: null
+  new: null
+  rotate: left
+  trim: 13.5,37.5
+  zone: 1
+DJI_0089.MP4:
+  color: salmon
+  date: 2021-10-31
+  encode: null
+  new: null
+  rotate: left
+  trim: 4.5,37.5
+  zone: 1
+DJI_0090.MP4:
+  color: salmon
+  date: 2021-10-31
+  encode: null
+  new: null
+  rotate: left
+  trim: 7.5,38
+  zone: 1
 smichoff-blue-2020-09-07-fcmjshmc.mp4:
   color: blue
   date: 2020-09-07
