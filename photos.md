@@ -14,11 +14,11 @@ None of the photos are copyrighted in any way, so feel free to use them however 
 {% photos flowers/raw/1.jpg | flowers/raw/2.jpg %}
 {% photos bees/raw/1.jpg | bees/raw/2.jpg %}
 {% photos places/raw/1.jpg | places/raw/2.jpg %}
-{% photos other/raw/1.jpeg | other/raw/2.jpg %}
+{% photos prague/raw/1.jpg | prague/raw/2.jpg %}
+{% photos prague/raw/3.jpg | prague/raw/4.jpg %}
 {% photos panoramas/raw/1.jpg | panoramas/raw/2.jpg %}
 {% photos panoramas/raw/3.jpeg %}
 {% photos panoramas/raw/4.jpeg %}
-{% photos panoramas/raw/5.jpeg %}
 {% photos winter/raw/1.jpeg %}
 {% photos winter/raw/2.jpeg | winter/raw/3.jpeg %}
 {% photos winter/raw/4.jpg | winter/raw/5.jpg %}

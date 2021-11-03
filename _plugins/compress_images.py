@@ -2,6 +2,7 @@
 
 import os
 import hashlib
+from PIL import Image
 from typing import *
 from subprocess import Popen, PIPE
 
@@ -48,16 +49,32 @@ for root, dirs, files in os.walk("../photos/"):
         # use cwebp to convert raw images to webp
         if name.endswith(("jpg", "jpeg")) and "raw" in root:
             path = os.path.join(root, name)
+
             reduced_path = os.path.join(root, "..")
             reduced_name = os.path.join(
                 reduced_path, os.path.splitext(name)[0] + ".webp"
             )
 
-            # first command is to create a low-res version of the default image
             if path not in config or config[path] != get_file_hashsum(path):
                 print(f"converting '{path}'... ", flush=True, end="")
+
+                im = Image.open(path)
+                width, height = im.size
+                new_width = 1000
+                new_height = int(height * (new_width / width))
+
                 execute_shell_command(
-                    ["cwebp", "-size", "50", path, "-o", reduced_name]
+                    [
+                        "cwebp",
+                        "-q",
+                        "50",
+                        "-resize",
+                        str(new_width),
+                        str(new_height),
+                        path,
+                        "-o",
+                        reduced_name,
+                    ]
                 )
                 print("done.", flush=True)
 
