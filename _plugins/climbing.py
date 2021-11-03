@@ -2,6 +2,7 @@
 
 import os
 import shutil
+from PIL import Image
 from random import choice
 from string import ascii_lowercase, digits
 from typing import *
@@ -143,8 +144,23 @@ for name in list(config):
             stderr=PIPE,
         ).communicate()
 
+        im = Image.open(poster_jpeg)
+        width, height = im.size
+        new_width = 720
+        new_height = int(height * (new_width / width))
+
         _ = Popen(
-            ["cwebp", "-q", "10", poster_jpeg, "-o", poster_webp],
+            [
+                "cwebp",
+                "-q",
+                "5",
+                "-resize",
+                str(new_width),
+                str(new_height),
+                poster_jpeg,
+                "-o",
+                poster_webp,
+            ],
             stdout=PIPE,
             stderr=PIPE,
         ).communicate()
