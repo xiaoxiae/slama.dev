@@ -19,10 +19,9 @@ None of the photos are copyrighted in any way, so feel free to use them however 
 {% photos panoramas/raw/1.jpg | panoramas/raw/2.jpg %}
 {% photos panoramas/raw/3.jpeg %}
 {% photos panoramas/raw/4.jpeg %}
-{% photos winter/raw/1.jpeg %}
 {% photos winter/raw/2.jpeg | winter/raw/3.jpeg %}
 {% photos winter/raw/4.jpg | winter/raw/5.jpg %}
-{% photos christmas/raw/1.jpg | christmas/raw/2.jpg | christmas/raw/3.jpg %}
-{% photos christmas/raw/4.jpg | christmas/raw/5.jpg %}
+{% photos winter/raw/1.jpeg %}
+{% photos christmas/raw/2.jpg | christmas/raw/3.jpg %}
 {% photos fire/raw/2.jpg | fire/raw/3.jpg %}
 {% photos fire/raw/1.jpg %}
