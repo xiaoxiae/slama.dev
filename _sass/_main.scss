@@ -92,6 +92,10 @@
     text-decoration: underline;
 }
 
+pre.highlight {
+    overflow: auto;
+}
+
 .highlighter-rouge {
     pre {
         padding: $code-padding;
