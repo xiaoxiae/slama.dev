@@ -132,7 +132,7 @@ for name in list(config):
             [
                 "ffmpeg",
                 "-i",
-                old_path,
+                new_path,
                 "-vf",
                 "select=eq(n\,0)",
                 "-vframes",
