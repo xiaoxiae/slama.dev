@@ -117,6 +117,21 @@ pre.highlight {
 .right { text-align: right; * { margin-right: 0 !important; } }
 .none { display: none; }
 
+.maximized-image {
+    img {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+.spaced-list {
+    margin-top: 0;
+
+    li {
+        margin-bottom: $line-spacing;
+    }
+}
+
 #markdown-toc {
     max-width: 30%;
     font-size: $toc-size;
