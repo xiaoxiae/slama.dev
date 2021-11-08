@@ -17,7 +17,7 @@ The difficulty of boulders are as follows (left being the easiest, right being t
 
 {: .no-invert}
 <figure>
-<img src="smichoff-grading.svg">
+<img src="smichoff-grading.webm">
 </figure>
 
 ### Videos
