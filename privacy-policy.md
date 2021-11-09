@@ -7,7 +7,7 @@ no-heading: True
 {: .center}
 _This Privacy Policy describes the policies and procedures on the collection, use and disclosure of your information when you use this website and tells you about your privacy rights and how the law protects you._
 
-I don't use your personal data. I mean... why would I? This is a personal blog, what would I even do with them? However, since all cool modern websites have them, I must too, so here is a filled-in template.
+I don't use your personal data. I mean... why would I? This is a personal blog, what would I even do with it? However, since all cool modern websites have them, I must too, so here is a filled-in template.
 
 ## Definitions
 Since I don't really have anything to talk about in this section but the template includes it, here are some definitions that I think are useful. Feel free to thank me later.
