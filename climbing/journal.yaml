@@ -243,3 +243,15 @@
   salmon:
     old: 3
     new: 1
+2021-11-10:
+  note: As I said, both the yellow in the 45 and the salmon one (which I sadly forgot to record) went down. Now I'm not really sure what to work on, everything else seems quite impossible...
+  blue:
+    old: 2
+  yellow:
+    new: 1
+    old: 2
+  salmon:
+    new: 1
+    old: 1
+  red:
+    old: 1
