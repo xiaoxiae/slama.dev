@@ -30,7 +30,7 @@ Alternatively, there is also a page containing [all of the climbs](/climbing/zon
 {% include smichoff-map.svg %}
 </figure>
 
-### Climbing Diary
+### Diary
 The following contains my climbing diary -- how many new/old boulders have I done (and links to them). It also serves as a convenient way to view the most recently sent boulders.
 
 The format for each color is as follows: <mark class="climbing-diary-record climbing-red climbing-red-text">repeats/<span class="underline">new sends</span> [<a>video</a>, <a>links</a>]</mark>.

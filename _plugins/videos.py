@@ -44,7 +44,7 @@ URL_ROOT = "https://github.com/xiaoxiae/videos/tree/master/"
 result = ""
 
 for category in videos:
-    category_str = f"## {category}\n"
+    category_str = f"### {category}\n"
 
     for date, youtube_link, video, folder_prefix in videos[category]:
         match = glob(os.path.join(ROOT, folder_prefix + "*"))
