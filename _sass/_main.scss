@@ -279,6 +279,14 @@ footer {
 
 .no-invert { * { filter: invert(0%); } }
 
+.inverse-invert {
+    * { filter: invert(100%); }
+
+    @media (prefers-color-scheme: dark) {
+        * { filter: invert(0%); }
+    }
+}
+
 // right floats
 .rightFloatBox {
     max-width: 30%;
