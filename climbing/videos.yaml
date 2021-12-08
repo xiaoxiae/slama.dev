@@ -210,6 +210,10 @@ smichoff-blue-2021-11-30-hkkcufuk.mp4:
   color: blue
   date: 2021-12-02
   zone: 3
+smichoff-blue-2021-11-30-ycpkychu.mp4:
+  color: blue
+  date: 2021-12-02
+  zone: 8
 smichoff-blue-2021-12-02-nxrbwecj.mp4:
   color: blue
   date: 2021-12-02
@@ -218,10 +222,6 @@ smichoff-blue-2021-12-02-wknrkhoo.mp4:
   color: blue
   date: 2021-12-02
   zone: 3
-smichoff-blue-2021-11-30-ycpkychu.mp4:
-  color: blue
-  date: 2021-12-02
-  zone: 8
 smichoff-blue-2021-12-02-ypufcsmp.mp4:
   color: blue
   date: 2021-12-02
@@ -670,3 +670,7 @@ smichoff-yellow-2021-11-14-jjpgaprm.mp4:
   color: yellow
   date: 2021-11-14
   zone: 5
+smichoff-yellow-2021-12-08-pcrdbigg.mp4:
+  color: yellow
+  date: 2021-12-08
+  zone: 3
