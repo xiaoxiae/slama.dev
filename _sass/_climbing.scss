@@ -44,22 +44,25 @@ $dark-link-color: #888;
 }
 
 .climbing-left {
-    width: 48%;
     float: left;
-
-    @media (max-width: $small-screen-threshold) { width: 100%; }
 }
 
 .climbing-right {
-    width: 48%;
     float: right;
+}
 
-    @media (max-width: $small-screen-threshold) { width: 100%; }
+.climbing-left,.climbing-right {
+    width: 48%;
+
+    @media (max-width: $small-screen-threshold) {
+        width: 100%;
+        float: none;
+    }
 }
 
 .climbing-center {
+    float: none;
     width: 100%;
-    float: left;
 }
 
 .climbing-journal {
