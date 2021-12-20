@@ -337,3 +337,11 @@
     new: 1
   yellow:
     new: 2
+2021-12-18:
+  note: The last blue is tough. I found a cheeky beta that is very dynamic and skips the hardest moves, but is very low-percentage. Will try to do it next time.
+  salmon:
+    old: 1
+  blue:
+    old: 2
+  red:
+    old: 2
