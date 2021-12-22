@@ -37,7 +37,24 @@ result = """
 for entry in reversed(sorted(list(journal))):
     line = f"\n<li><p><strong>{entry.strftime('%-d. %-m. %Y')}:</strong> "
 
-    for color in ["red", "salmon", "blue", "yellow"]:
+    colors = ["red", "salmon", "blue", "yellow"]
+
+    location_colors = {
+        "jungle": ["green", "blue", "red"],
+        "boulder-bar": [],
+        "bigwall": [],
+    }
+
+    # location is Smíchoff by default, which has no postfix
+    location = ""
+
+    if "location" in journal[entry]:
+        location_stub = journal[entry]["location"].lower().replace(" ", "-")
+        location = "-" + location_stub
+
+        colors = location_colors[location_stub]
+
+    for color in colors:
         entry_videos = []
         for video in videos:
             if videos[video]["date"] == entry and videos[video]["color"] == color:
@@ -45,6 +62,7 @@ for entry in reversed(sorted(list(journal))):
 
         if color in journal[entry]:
             color_dict = journal[entry][color]
+
             old_count = 0 if "old" not in color_dict else color_dict["old"]
             new_count = 0 if "new" not in color_dict else color_dict["new"]
 
@@ -55,7 +73,7 @@ for entry in reversed(sorted(list(journal))):
             else:
                 count = f"{old_count}/<span class='underline'>{new_count}</span>"
 
-            line += f"<mark class='climbing-diary-record climbing-{color} climbing-{color}-text'>{count}"
+            line += f"<mark class='climbing-diary-record climbing-{color}{location} climbing-{color}{location}-text'>{count}"
 
             if len(entry_videos) != 0:
                 line += (
@@ -70,6 +88,11 @@ for entry in reversed(sorted(list(journal))):
                 )
 
             line += "</mark> "
+
+    if location != "":
+        location_stub = "smichoff"
+
+    line += f"(at <img class='climbing-location-logo' src='/climbing/location-logos/{location_stub}.svg'/>)"
 
     line += "</p>"
 

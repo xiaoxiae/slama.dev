@@ -207,6 +207,7 @@
     old: 1
   note: I did the salmon in the 45 (it was actually pretty easy, just pumpy) and one more on the island. Then I again projected the new yellows.
 2021-10-26:
+  location: BigWall
   note: I started doing sport climbing! This session was spent at Big Wall and was bad, because I'm not very good at sport climbing. I'll still try to do a sports climbing session once in a while to improve my endurance, which at this point is quite lacking.
 2021-10-28:
   note: Second sport climbing session, this time at Smíchoff. I did some 7's and an onsight of 8, which I'm pretty happy about. I then finished up with some bouldering, getting closer to climbing the new yellows.
@@ -317,6 +318,7 @@
   yellow:
     new: 1
 2021-12-11:
+  location: Boulder Bar
   note: Went to Boulder bar with a few friends. It was a pretty nice change, but I'm eager to go back to Smíchoff soon. Coincidentally, Adam Ondra was just visiting Prague and was at the boulder bar. It was very humbling and inspiring seeing him flash all my red projects... still a long way to go.
 2021-12-14:
   rebuilt:
@@ -337,7 +339,7 @@
     new: 1
   yellow:
     new: 2
-2021-12-18:
+2021-12-20:
   note: The last blue is tough. I found a cheeky beta that is very dynamic and skips the hardest moves, but is very low-percentage. Will try to do it next time.
   salmon:
     old: 1
@@ -345,3 +347,12 @@
     old: 2
   red:
     old: 2
+2021-12-22:
+  location: Jungle
+  note: Went to Jungle Letňany today and it was quite refreshing! Their comp section was quite exciting but difficult, I did two blue ones, but I know I can do better than that.
+  red:
+    new: 4
+  blue:
+    new: 7
+  green:
+    new: 3

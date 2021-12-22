@@ -23,22 +23,24 @@ $dark-link-color: #888;
 .climbing-blue { background: #087ec4ff; }
 .climbing-yellow { background: #fce538ff; }
 
-.climbing-red-text {
+.climbing-red-jungle { background: #f74d4dff; }
+.climbing-blue-jungle { background: #087ec4ff; }
+.climbing-green-jungle { background: #008000ff; }
+
+.climbing-location-logo,.climbing-location-logo-middle {
+    display: inline;
+    height: 0.96em;
+    vertical-align: baseline;
+}
+
+.climbing-location-logo-middle { vertical-align: middle; }
+
+.climbing-red-text,.climbing-blue-text,.climbing-red-jungle-text,.climbing-blue-jungle-text,.climbing-green-jungle-text {
     color: $light-text-color;
     a { color: $light-link-color; &:hover { color: $light-text-color; } }
 }
 
-.climbing-salmon-text {
-    color: $light-text-color;
-    a { color: $dark-link-color; &:hover { color: $dark-text-color; } }
-}
-
-.climbing-blue-text {
-    color: $dark-text-color;
-    a { color: $light-link-color; &:hover { color: $light-text-color; } }
-}
-
-.climbing-yellow-text {
+.climbing-salmon-text,.climbing-yellow-text {
     color: $light-text-color;
     a { color: $dark-link-color; &:hover { color: $dark-text-color; } }
 }
@@ -132,12 +134,12 @@ img {
         content: attr(data-content);
         position: relative;
         display: inline-block;
-        padding: 0 0.5em;
+        padding: 0 1em;
         line-height: 1.5em;
         background-color: $light-background-color;
     }
 
-    margin-bottom: $line-spacing / 4;
+    margin-bottom: $line-spacing / 2;
 
     // YUCK!
     margin-top: - $line-spacing - $line-spacing / 2 + $line-spacing / 4;
