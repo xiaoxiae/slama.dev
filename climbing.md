@@ -35,7 +35,12 @@ The following contains my climbing diary -- how many new/old boulders have I don
 
 Since there there are some other locations that I visit from time to time (mostly thanks to some of my friends), here is the list of icons that you might see in the journal entries:
 
-| <img class='climbing-location-logo-middle' src='/climbing/location-logos/smichoff.svg'/> \| [Smíchoff](https://www.lezeckecentrum.cz/cs/) | <img class='climbing-location-logo-middle' src='/climbing/location-logos/bigwall.svg'/> \| [BigWall](https://www.big-wall.cz/) | <img class='climbing-location-logo-middle' src='/climbing/location-logos/jungle.svg'/> \| [Jungle Letňany](https://www.jungleletnany.cz/) | <img class='climbing-location-logo-middle' src='/climbing/location-logos/boulder-bar.svg'/> \| [Boulder Bar](https://www.boulder.cz/) |
+| Icon                                                                                        | Location                                        |
+| ---                                                                                         | ---                                             |
+| <img class='climbing-location-logo-middle' src='/climbing/location-logos/smichoff.svg'/>    | [Smíchoff](https://www.lezeckecentrum.cz/cs/)   |
+| <img class='climbing-location-logo-middle' src='/climbing/location-logos/bigwall.svg'/>     | [BigWall](https://www.big-wall.cz/)             |
+| <img class='climbing-location-logo-middle' src='/climbing/location-logos/jungle.svg'/>      | [Jungle Letňany](https://www.jungleletnany.cz/) |
+| <img class='climbing-location-logo-middle' src='/climbing/location-logos/boulder-bar.svg'/> | [Boulder Bar](https://www.boulder.cz/)          |
 
 The format for each color is as follows: <mark class="climbing-diary-record climbing-red climbing-red-text">repeats/<span class="underline">new sends</span> [<a>video</a>, <a>links</a>]</mark> (at <img class='climbing-location-logo' src='/climbing/location-logos/smichoff.svg'/>).
 

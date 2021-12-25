@@ -89,7 +89,7 @@ for entry in reversed(sorted(list(journal))):
 
             line += "</mark> "
 
-    if location != "":
+    if location == "":
         location_stub = "smichoff"
 
     line += f"(at <img class='climbing-location-logo' src='/climbing/location-logos/{location_stub}.svg'/>)"
