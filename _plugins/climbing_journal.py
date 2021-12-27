@@ -43,10 +43,14 @@ for entry in reversed(sorted(list(journal))):
         "jungle": ["green", "blue", "red"],
         "boulder-bar": [],
         "bigwall": [],
+        "třináctka": [f"V{i}" for i in range(4, 11)],
     }
 
-    # location is Smíchoff by default, which has no postfix
+    # v-graded climbing gyms will have the same color
+    v_grading = set(["třináctka"])
+
     location = ""
+    location_stub = ""
 
     if "location" in journal[entry]:
         location_stub = journal[entry]["location"].lower().replace(" ", "-")
@@ -73,7 +77,10 @@ for entry in reversed(sorted(list(journal))):
             else:
                 count = f"{old_count}/<span class='underline'>{new_count}</span>"
 
-            line += f"<mark class='climbing-diary-record climbing-{color}{location} climbing-{color}{location}-text'>{count}"
+            if location_stub in v_grading:
+                line += f"<mark class='climbing-diary-record climbing-{color}{location}'><strong>{color}:</strong> {count}"
+            else:
+                line += f"<mark class='climbing-diary-record climbing-{color}{location} climbing-{color}{location}-text'>{count}"
 
             if len(entry_videos) != 0:
                 line += (
@@ -90,7 +97,7 @@ for entry in reversed(sorted(list(journal))):
             line += "</mark> "
 
     if location == "":
-        location_stub = "smichoff"
+        location_stub = "smíchoff"
 
     line += f"(at <img class='climbing-location-logo' src='/climbing/location-logos/{location_stub}.svg'/>)"
 
