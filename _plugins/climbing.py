@@ -192,8 +192,10 @@ no-heading: True
         videos_in_color = []
 
         for name in config:
-            if config[name]["color"] == color and (
-                config[name]["zone"] == zone or zone == "all"
+            if (
+                "color" in config[name]
+                and config[name]["color"] == color
+                and (config[name]["zone"] == zone or zone == "all")
             ):
                 videos_in_color.append(name)
 

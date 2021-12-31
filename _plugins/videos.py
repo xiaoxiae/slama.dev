@@ -5,6 +5,13 @@ import os
 import shutil
 from datetime import date
 
+OTHER_CATEGORY_NAME = "Other"
+
+ROOT = "../ignored/videos/"
+OUT = "../_includes/videos.md"
+VIDEO_FOLDER = "../videos/"
+URL_ROOT = "https://github.com/xiaoxiae/videos/tree/master/"
+
 videos = {
     "Graph Theory": [
         (
@@ -31,19 +38,24 @@ videos = {
             "Vizing's theorem",
             "03-",
         ),
-    ]
+    ],
+    OTHER_CATEGORY_NAME: [
+        (
+            date(2021, 12, 31),
+            "https://www.youtube.com/watch?v=KlaEp6ydVhA",
+            "Bathroom Tile Programming",
+            "09-",
+        ),
+    ],
 }
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-ROOT = "../ignored/videos/"
-OUT = "../_includes/videos.md"
-VIDEO_FOLDER = "../videos/"
-URL_ROOT = "https://github.com/xiaoxiae/videos/tree/master/"
-
 result = ""
 
-for category in videos:
+# ensure that the category "other" is the last one
+# not pretty, but it works :P
+for category in [v for v in videos if v != OTHER_CATEGORY_NAME] + [OTHER_CATEGORY_NAME]:
     category_str = f"### {category}\n"
 
     for date, youtube_link, video, folder_prefix in videos[category]:
