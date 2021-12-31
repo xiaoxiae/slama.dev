@@ -61,6 +61,10 @@ $endif$
     bottom=20mm,
 }
 
+\makeatletter
+\def\maxwidth#1{\ifdim\Gin@nat@width>#1 #1\else\Gin@nat@width\fi}
+\makeatother
+
 
 % ---------------------------------------- KÓD ----------------------------------------
 \usepackage{minted}

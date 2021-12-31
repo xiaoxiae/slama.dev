@@ -40,13 +40,16 @@ for line in header.splitlines():
     header_dictionary[a] = b
 
 # extract date from path and put it to dictionary
-match = re.search(r'\d{4}-\d{2}-\d{2}', path.split("/")[-1])
-date = datetime.strptime(match.group(), '%Y-%m-%d').date()
+match = re.search(r"\d{4}-\d{2}-\d{2}", path.split("/")[-1])
+date = datetime.strptime(match.group(), "%Y-%m-%d").date()
 header_dictionary["date"] = '"' + date.strftime("%-d. %-m. %Y") + '"'
 header_dictionary["url"] = f"https://slama.dev/{stripped_name}"
 
 # create new header
-new_header = "---\n" + "\n".join([f"{k}: {v}" for k, v in header_dictionary.items()]) + "\n---\n"
+new_header = (
+    "---\n" + "\n".join([f"{k}: {v}" for k, v in header_dictionary.items()]) + "\n---\n"
+)
+
 
 def floatBox(x):
     markdown = x.group(1).strip()
@@ -54,7 +57,19 @@ def floatBox(x):
     with open("tmp", "w") as f:
         f.write(markdown)
 
-    _ = Popen(["pandoc", "-f", "markdown+pipe_tables+tex_math_single_backslash ", "-N", "--pdf-engine-opt=-shell-escape", "-i", "tmp", "-o", "tmp.latex"]).communicate()
+    _ = Popen(
+        [
+            "pandoc",
+            "-f",
+            "markdown+pipe_tables+tex_math_single_backslash ",
+            "-N",
+            "--pdf-engine-opt=-shell-escape",
+            "-i",
+            "tmp",
+            "-o",
+            "tmp.latex",
+        ]
+    ).communicate()
 
     with open("tmp.latex", "r") as f:
         contents = f.read()
@@ -63,6 +78,7 @@ def floatBox(x):
     os.remove("tmp.latex")
 
     return contents.strip().replace("\n\n", "\n")
+
 
 def language(string_function, match):
     """Minted and Markdown have different names for different languages..."""
@@ -74,9 +90,13 @@ def language(string_function, match):
 
     return string_function(lang, match.group(2))
 
+
 substitutions = [
     ## code with language
-    (r"```(.+?)\n((.|\n)+?)```", partial(language, lambda x, y: f"\\begin{{minted}}{{{x}}}\n{y}\end{{minted}}")),
+    (
+        r"```(.+?)\n((.|\n)+?)```",
+        partial(language, lambda x, y: f"\\begin{{minted}}{{{x}}}\n{y}\end{{minted}}"),
+    ),
     # code without language
     (r"```\n((.|\n)+?)```", r"\\begin{minted}{text}\n\1\\end{minted}"),
     # inline code
@@ -86,15 +106,36 @@ substitutions = [
     # markdown
     (r"<div\s*markdown=\"1\">((.|\n)*?)<\/div>", floatBox),
     # float boxes
-    (r"{:\s*.rightFloatBox\s*}\n((.|\n)+?)\n\n", r"\\begin{wrapfigure}{r}{0.25\\textwidth}\n\\begin{framed}\n\1 \\end{framed}\n\\end{wrapfigure}\n"),
+    (r"{:\s*.rightFloatBox\s*}\n((.|\n)+?)\n\n", r""),
+    # TODO: bylo by fajn je nějak použít...
+    # (r"{:\s*.rightFloatBox\s*}\n((.|\n)+?)\n\n", r"\\begin{center}\n\\begin{framed}\n\1 \\end{framed}\n\\end{center}\n"),
+    # (r"{:\s*.rightFloatBox\s*}\n((.|\n)+?)\n\n", r"\\begin{wrapfigure}{r}{0.25\\textwidth}\n\\begin{framed}\n\1 \\end{framed}\n\\end{wrapfigure}\n"),
     # xopp tags
-    (r"{%\s*xopp\s*(.+?)\s*%}", r"\\begin{figure}[H]\n\\center \\includesvg{../_includes/" + stripped_name + r"/\1}\n\\end{figure}"),
+    (
+        r"{%\s*xopp\s*(.+?)\s*%}",
+        lambda x: r"\\begin{figure}[H]\n\\center \\includesvg{../_includes/"
+        + stripped_name
+        + r"/"
+        + x.group(1).split("&")[0]
+        + r"}\n"
+        + (
+            ""
+            if len(x.group(1).split("&")) == 1
+            else r"\\caption{" + x.group(1).split("&")[1] + r"}\n"
+        )
+        + r"\\end{figure}",
+    ),
     # TOC
     (r"- \.\n{:toc}", r"\\tableofcontents\n\\newpage"),
     # headings
     (r"^##", r""),
     # lecture notes preface
-    (r"{%\s+lecture_notes_preface\s+(.+?)\s*\|\s*(.+?)\s*%}", r"# Preface\nThis website contains my lecture notes from a lecture by \1 from the academic year \2. If you find something incorrect/unclear, or would like to contribute either text or an image, feel free to submit a \\url{https://github.com/xiaoxiae/slama.dev/blob/master/\_posts/}{pull request} (or let me know via email)" if "language" not in header_dictionary or header_dictionary["language"] == "en" else r"# Úvodní informace\nTato stránka obsahuje moje poznámky z přednášky \1 z akademického roku \2. Pokud by byla někde chyba/nejasnost, nebo byste rádi někam přidali obrázek/text, tak stránku můžete upravit \\href{https://github.com/xiaoxiae/slama.dev/blob/master/\_posts/}{pull requestem} (případně mi dejte vědět na mail."),
+    (
+        r"{%\s+lecture_notes_preface\s+(.+?)\s*\|\s*(.+?)\s*%}",
+        r"# Preface\nThis website contains my lecture notes from a lecture by \1 from the academic year \2. If you find something incorrect/unclear, or would like to contribute either text or an image, feel free to submit a \\url{https://github.com/xiaoxiae/slama.dev/blob/master/\_posts/}{pull request} (or let me know via email)"
+        if "language" not in header_dictionary or header_dictionary["language"] == "en"
+        else r"# Úvodní informace\nTato stránka obsahuje moje poznámky z přednášky \1 z akademického roku \2. Pokud by byla někde chyba/nejasnost, nebo byste rádi někam přidali obrázek/text, tak stránku můžete upravit \\href{https://github.com/xiaoxiae/slama.dev/blob/master/\_posts/}{pull requestem} (případně mi dejte vědět na mail.",
+    ),
     # Pandoc is stupid and requires space between paragraph and a list of items for it to work
     (r"(^[^-\n](.+?))\n(-|(1\.))", r"\1\n\n\3"),
     # if-else for PDF/MD-specific typesetting
@@ -102,7 +143,10 @@ substitutions = [
     # relative file paths from absolute ones
     (r"^!\[(.*?)\]\((.+?)\)", r"![\1](..\2)"),
     # svg images
-    (r"^!\[(.*?)\]\((.+?).svg\s*\)", r"\\begin{figure}[H]\n\\center \\includesvg{\2}\n\\end{figure}"),
+    (
+        r"^!\[(.*?)\]\((.+?).svg\s*\)",
+        r"\\begin{figure}[H]\n\\center \\includesvg{\2}\n\\end{figure}",
+    ),
     # pandoc generates this when converting a standalone list; a bit of a hack but whatever
     (r"\\def\\labelenumi{\\arabic{enumi}\.}", ""),
 ]
@@ -119,28 +163,69 @@ for pattern, sub in substitutions:
 for pattern, sub in first_substitutions:
     contents = re.sub(pattern, sub, contents, 1, flags=re.MULTILINE)
 
+
 def replace_math(contents, tag_type, argument, opening, closing):
     tags = {
-        "definition": r'**Definice' + (" (" + argument.replace('\\', '\\\\') + ")" if argument != '' else ":") + r"** \1",
-        "definition:": r'**Definice' + (" (" + argument.replace('\\', '\\\\') + ")" if argument != '' else "") + r"** \1",
-        "reminder": r'**Připomenutí' + (" (" + argument.replace('\\', '\\\\') + ")" if argument != '' else ":") + r"** \1",
-        "remark": r'**Poznámka' + (" (" + argument.replace('\\', '\\\\') + ")" if argument != '' else ":") + r"** \1",
-        "notation": r'**Značení' + (" (" + argument.replace('\\', '\\\\') + ")" if argument != '' else ":") + r"** \1",
-        "lemma": r'**Tvrzení' + (" (" + argument.replace('\\', '\\\\') + ")" if argument != '' else ":") + r"** \1",
-        "theorem": r'**Věta' + (" (" + argument.replace('\\', '\\\\') + ")" if argument != '' else ":") + r"** \1",
-        "proof": r'**Důkaz' + (" (" + argument.replace('\\', '\\\\') + ")" if argument != '' else ":") + r"** \1",
-        "algorithm": r'**Algoritmus' + (" (" + argument.replace('\\', '\\\\') + ")" if argument != '' else ":") + r"** \1",
-        "fact": r'**Fakt' + (" (" + argument.replace('\\', '\\\\') + ")" if argument != '' else ":") + r"** \1",
-        "example": r'**Příklad' + (" (" + argument.replace('\\', '\\\\') + ")" if argument != '' else ":") + r"** \1",
-        "consequence": r'**Důsledek' + (" (" + argument.replace('\\', '\\\\') + ")" if argument != '' else ":") + r"** \1",
-        "observation": r'**(👀)' + (" (" + argument.replace('\\', '\\\\') + ")" if argument != '' else ":") + r"** \1",
-        "question": r'**Otázka' + (" (" + argument.replace('\\', '\\\\') + ")" if argument != '' else ":") + r"** \1",
+        "definition": r"**Definice"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
+        "definition:": r"**Definice"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else "")
+        + r"** \1",
+        "reminder": r"**Připomenutí"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
+        "remark": r"**Poznámka"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
+        "notation": r"**Značení"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
+        "lemma": r"**Lemma"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
+        "claim": r"**Tvrzení"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
+        "theorem": r"**Věta"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
+        "proof": r"**Důkaz"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
+        "algorithm": r"**Algoritmus"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
+        "fact": r"**Fakt"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
+        "example": r"**Příklad"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
+        "consequence": r"**Důsledek"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
+        "observation": r"**(👀)"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
+        "question": r"**Otázka"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
     }
 
-    return re.sub(re.escape(opening) + r"((.|\n)+?)" + re.escape(closing), tags[tag_type], contents, 1, flags=re.MULTILINE)
+    return re.sub(
+        re.escape(opening) + r"((.|\n)+?)" + re.escape(closing),
+        tags[tag_type],
+        contents,
+        1,
+        flags=re.MULTILINE,
+    )
+
 
 stack = []
-for entire_tag, tag_type, _, argument in re.findall(r"({%\s*math\s+(.+?)\s+(\"(.+)\")*\s*%}|{%\s*endmath\s*%})", contents):
+for entire_tag, tag_type, _, argument in re.findall(
+    r"({%\s*math\s+(.+?)\s+(\"(.+)\")*\s*%}|{%\s*endmath\s*%})", contents
+):
 
     # closing tag
     if tag_type == "":
@@ -155,14 +240,51 @@ with open("emoji.json") as f:
 
 for char in list(contents):
     if char in emojis:
-        contents = contents.replace(char, f"\\emoji{{{emojis[char]['name'].replace(' ', '-')}}}")
+        contents = contents.replace(
+            char, f"\\emoji{{{emojis[char]['name'].replace(' ', '-')}}}"
+        )
 
 with open("pdf.tmp", "w") as f:
     f.write(contents)
 
 print(f"generating {pdf_name}")
-_ = Popen(["pandoc", "-f", "markdown+pipe_tables+tex_math_single_backslash ", "-N", "--listings", "pdf.tmp", "-o", tex_name, "--template=pdf.latex", "--pdf-engine=lualatex"], stdin=PIPE, stdout=PIPE, stderr=PIPE).communicate()
-_ = Popen(["latexmk", "-pdf", "-shell-escape", "-pdflatex=lualatex", tex_name], stdin=PIPE, stdout=PIPE, sterr=PIPE).communicate()
+
+p = Popen(
+    [
+        "pandoc",
+        "-f",
+        "markdown+pipe_tables+tex_math_single_backslash ",
+        "-N",
+        "--listings",
+        "pdf.tmp",
+        "-o",
+        tex_name,
+        "--template=pdf.latex",
+        "--pdf-engine=lualatex",
+    ],
+    stdin=PIPE,
+    stdout=PIPE,
+    stderr=PIPE,
+)
+result = p.communicate()
+if p.returncode:
+    print("ERROR during converting form Markdown to LaTeX:")
+    for line in result[1]:
+        print(f"| {line}")
+    quit()
+
+p = Popen(
+    ["latexmk", "-pdf", "-shell-escape", "-pdflatex=lualatex", tex_name],
+    stdin=PIPE,
+    stdout=PIPE,
+    stderr=PIPE,
+)
+result = p.communicate()
+if p.returncode:
+    print("ERROR during generating a PDF:")
+    for line in result[1].decode().splitlines():
+        print(f"| {line}")
+    quit()
 
 os.rename(pdf_name, pdf_path)
 
@@ -176,5 +298,5 @@ for file in glob.glob(stripped_name + ".*"):
 for file in glob.glob("_minted*"):
     shutil.rmtree(file)
 
-if os.path.exists("svg-inkscape"):
-    shutil.rmtree("svg-inkscape")
+# if os.path.exists("svg-inkscape"):
+#    shutil.rmtree("svg-inkscape")
