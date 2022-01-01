@@ -2,7 +2,7 @@
 css: tiles
 ---
 
-This post is a follow-up to the [video I released](TODO) on [my YouTube channel](TODO) about bathroom tile programming. It contains a few other problems that didn't make it into the video (so it wouldn't be too long), but are interesting to try to solve on your own.
+This post is a follow-up to the [video I released](https://www.youtube.com/watch?v=KlaEp6ydVhA) on [my YouTube channel](https://www.youtube.com/channel/UC_IaBSHmisYbiYlv32EeNkQ) about bathroom tile programming. It contains a few other problems that didn't make it into the video (so it wouldn't be too long), but are interesting to try to solve on your own.
 
 If you have any other interesting problems to share (or you think some of the solutions I have could be improved/are not correct), please let me know 🙂.
 
