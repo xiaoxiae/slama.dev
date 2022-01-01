@@ -378,4 +378,14 @@
     new: 4
   yellow:
     new: 3
-
+2022-01-01:
+  note: Managed to do the hard salmon and two of the three leftover yellows. Only one remains, but I've got a feeling that it will be very difficult...
+  red:
+    new: 1
+  salmon:
+    new: 1
+  blue:
+    old: 1
+  yellow:
+    old: 1
+    new: 2
