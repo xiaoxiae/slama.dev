@@ -397,3 +397,13 @@
     old: 1
   yellow:
     old: 1
+2022-01-05:
+  note: The session not bad! I managed to do the last blue (and boulder) from the previous build, and found a functional beta for the yellow that I previously thought would be too hard in zone 8.
+  red:
+    old: 4
+  salmon:
+    old: 1
+  blue:
+    new: 1
+  yellow:
+    old: 3
