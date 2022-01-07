@@ -43,6 +43,7 @@ for entry in reversed(sorted(list(journal))):
         "jungle": ["green", "blue", "red"],
         "boulder-bar": [],
         "bigwall": [],
+        "lokalblok": [],
         "třináctka": [f"V{i}" for i in range(4, 11)],
     }
 
