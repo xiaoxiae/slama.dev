@@ -13,8 +13,8 @@ module Jekyll
         for i in 0..(@parts.length - 1)
           @type = @parts[i].split("/")
           result = result + "<div class='photos#{@parts.length}'>" \
-          "<a aria-label='Link to the uncompressed version of one of my pictures depicting #{@type[0].strip}.' href='#{@parts[i]}'>" \
-          "<img alt='Compressed version of one of my pictures depicting #{@type[0].strip}.' src='#{@parts[i].gsub("raw/", "")}'>" \
+          "<a aria-label='Link to the uncompressed version of a picture of #{@type[0].strip}.' href='#{@parts[i]}'>" \
+          "<img alt='Compressed version of a picture of #{@type[0].strip}.' src='#{@parts[i].gsub("raw/", "").gsub(".jpg", ".webp").gsub(".jpeg", ".webp")}'>" \
           "</a>" \
           "</div>" \
         end

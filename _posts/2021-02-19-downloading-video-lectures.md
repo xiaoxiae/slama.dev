@@ -23,10 +23,10 @@ ffmpeg -i "<URL of the .m3u8 file>" <output file name>.mp4
 ```
 
 #### YouTube (and [a few others](https://ytdl-org.github.io/youtube-dl/supportedsites.html))
-The steps above don't work on YouTube, because it uses its own methods for displaying the video in your browser. Luckily, you can use [`youtube-dl`](https://github.com/ytdl-org/youtube-dl):
+The steps above don't work on YouTube, because it uses its own methods for displaying the video in your browser. Luckily, you can use [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) (formally `youtube-dl`):
 
 ```bash
-youtube-dl "<URL of the YouTube video>"
+yt-dlp "<URL of the YouTube video>"
 ```
 
 #### Microsoft Stream

@@ -37,40 +37,41 @@
 			<h1><a href="/">{{ site.title }}</a></h1>
 		</div>
 
-		<div class="content">
-			<!-- navigation bar -->
+		<!-- navigation bar -->
+		<div class="navigation-background">
 			<div class="navigation">
+				<ul>
 				{% assign sections_sorted = site.documents | concat: site.pages | sort: 'order' %}
 				{% for p in sections_sorted %}
 					{% if p.title and p.order %}
+						<li>
 						<span class="navbar-item">
 						{% if p.title == page.title %}
 							<span class="current-page-item navbar-text"><a href="{{p.url}}">{{p.title}}</a></span>
-							<span class="current-page-item navbar-icon icons"><a href="{{p.url}}">{{p.icon}}</a></span>
 						{% else %}
 							<span class="navbar-text"><a href="{{p.url}}">{{p.title}}</a></span>
-							<span class="navbar-icon icons"><a href="{{p.url}}">{{p.icon}}</a></span>
 						{% endif %}
 						</span>
-
-						<!-- don't insert the navigation separator at the very end -->
-						{% unless p == sections_sorted.last %}
-							<span class="navigation-separator"></span>
-						{% endunless %}
+						</li>
 					{% endif %}
 				{% endfor %}
+				</ul>
 			</div>
-
-			{% unless page.no-heading %}
-				<h2>{{ page.title }}</h2>
-			{% endunless %}
-
-			{{ content }}
-
-			<footer>
-				<p>Maintained by Tomáš Sláma.<br>
-				<a href="https://github.com/xiaoxiae/slama.dev">source code</a> | <a href="/assets/rsa_pub.txt">RSA</a></p>
-			</footer>
 		</div>
+
+		<div class="content-background">
+			<div class="content">
+				{% unless page.no-heading %}
+					<h2>{{ page.title }}</h2>
+				{% endunless %}
+
+				{{ content }}
+			</div>
+		</div>
+
+		<footer>
+			<p>Maintained by Tomáš Sláma.<br>
+			<a href="https://github.com/xiaoxiae/slama.dev">source code</a> | <a href="/assets/rsa_pub.txt">RSA</a> | <a href="/feed.xml">RSS feed</a> | <a href="/privacy-policy/">privacy policy</a></p>
+		</footer>
 	</body>
 </html>

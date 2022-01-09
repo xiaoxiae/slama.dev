@@ -36,9 +36,9 @@
 .ghLang { text-align: right; }
 
 .ghRight,
-.ghLeft { background: $light-code-background-color; }
+.ghLeft { background: $light-nav-background-color; }
 
 @media (prefers-color-scheme: dark) {
     .ghRight,
-    .ghLeft { background: lighten($dark-code-background-color, 8%); }
+    .ghLeft { background: $dark-nav-background-color; }
 }

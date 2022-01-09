@@ -31,11 +31,11 @@ module Jekyll
         when "notation"
           return '<strong>Značení' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + contents
         when "lemma"
-          return '<strong>Lemma' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> <em>' + contents + "</em>"
+          return '<strong>Lemma' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> <em>' + contents
         when "claim"
-          return '<strong>Tvrzení' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> <em>' + contents + "</em>"
+          return '<strong>Tvrzení' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> <em>' + contents
         when "theorem"
-          return '<strong>Věta' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> <em>' + contents + "</em>"
+          return '<strong>Věta' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> <em>' + contents
         when "proof"
           return '<strong>Důkaz' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + contents
         when "algorithm"

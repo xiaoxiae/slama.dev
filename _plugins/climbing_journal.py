@@ -30,20 +30,58 @@ if os.path.exists(CLIMBING_JOURNAL):
         journal = yaml.safe_load(f.read())
 
 result = """
-<div markdown="1" class="climbing-journal">
+<div class="climbing-journal">
+<ul>
 """
 
 for entry in reversed(sorted(list(journal))):
-    line = f"- **{entry.strftime('%-d. %-m. %Y')}:** "
+    line = f"\n<li><p><strong>{entry.strftime('%-d. %-m. %Y')}:</strong> "
 
-    for color in ["red", "salmon", "blue", "yellow"]:
+    colors = ["red", "salmon", "blue", "yellow"]
+
+    location_colors = {
+        "jungle": ["green", "blue", "red"],
+        "boulder-bar": [],
+        "bigwall": [],
+        "lokalblok": [],
+        "třináctka": [f"V{i}" for i in range(4, 11)],
+    }
+
+    # v-graded climbing gyms will have the same color
+    v_grading = set(["třináctka"])
+
+    location = ""
+    location_stub = ""
+
+    if "location" in journal[entry]:
+        location_stub = journal[entry]["location"].lower().replace(" ", "-")
+        location = "-" + location_stub
+
+        colors = location_colors[location_stub]
+
+    for color in colors:
         entry_videos = []
         for video in videos:
             if videos[video]["date"] == entry and videos[video]["color"] == color:
                 entry_videos.append(video)
 
         if color in journal[entry]:
-            line += f"<mark class='climbing-diary-record climbing-{color} climbing-{color}-text'>{journal[entry][color]}"
+            color_dict = journal[entry][color]
+
+            old_count = 0 if "old" not in color_dict else color_dict["old"]
+            new_count = 0 if "new" not in color_dict else color_dict["new"]
+
+            if old_count == 0:
+                count = f"<span class='underline'>{new_count}</span>"
+            elif new_count == 0:
+                count = f"{old_count}"
+            else:
+                count = f"{old_count}/<span class='underline'>{new_count}</span>"
+
+            if location_stub in v_grading:
+                line += f"<mark class='climbing-diary-record climbing-{color}{location}'><strong>{color}:</strong> {count}"
+            else:
+                line += f"<mark class='climbing-diary-record climbing-{color}{location} climbing-{color}{location}-text'>{count}"
 
             if len(entry_videos) != 0:
                 line += (
@@ -59,12 +97,24 @@ for entry in reversed(sorted(list(journal))):
 
             line += "</mark> "
 
+    if location == "":
+        location_stub = "smíchoff"
+
+    line += f"(at <img class='climbing-location-logo' src='/climbing/location-logos/{location_stub}.svg'/>)"
+
+    line += "</p>"
+
     if "note" in journal[entry]:
-        line += "-- " + journal[entry]["note"]
+        line += "<p>" + journal[entry]["note"] + "</p>"
+
+    line += "</li>"
+
+    if "rebuilt" in journal[entry]:
+        line += "</ul><hr class='hr-text' data-content='new boulders'><ul>"
 
     result += line + "\n"
 
-result += "</div>"
+result += "</ul></div>"
 
 with open(OUTPUT_PATH, "w") as f:
     f.write(result)

@@ -14,7 +14,7 @@ try:
         ("Florodoro", None, None),
         ("Donjun", None, None),
         ("Grafatko", "Grafátko", None),
-        ("Vimvaldi", None, None),
+        ("Voronoi", None, None),
         ("Robotics-Simplified-Website", "Robotics Simplified", "HTML"),
         ("PurePursuitAlgorithm", "Pure Pursuit", None),
         ("CV", "CV generator", None),

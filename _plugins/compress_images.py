@@ -2,6 +2,7 @@
 
 import os
 import hashlib
+from PIL import Image
 from typing import *
 from subprocess import Popen, PIPE
 
@@ -9,9 +10,7 @@ import yaml
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-MAX = 5  # out of 100
 CACHE_FOLDER = "../.jekyll-cache/compress_images"
-SUB = "Images"
 
 full_size = 0  # total size of images before compression
 reduced_size = 0  # total size of images before compression
@@ -31,7 +30,6 @@ def get_file_hashsum(file_name: str):
 
 def execute_shell_command(command: List[str]):
     result = Popen(command, stdout=PIPE, stderr=PIPE).communicate()
-    print([f for f in result if f != b""][0].decode().strip(), flush=True)
 
 
 def format_to_mb(size: int) -> str:
@@ -48,41 +46,43 @@ if os.path.exists(CACHE_FOLDER):
 
 for root, dirs, files in os.walk("../photos/"):
     for name in files:
-        # use jpegoptim to optimize raw images
+        # use cwebp to convert raw images to webp
         if name.endswith(("jpg", "jpeg")) and "raw" in root:
             path = os.path.join(root, name)
+
             reduced_path = os.path.join(root, "..")
-            reduced_name = os.path.join(reduced_path, name)
+            reduced_name = os.path.join(
+                reduced_path, os.path.splitext(name)[0] + ".webp"
+            )
 
-            # first command is to create a low-res version of the default image
-            # second command is to strip the metadata from the pictures
-            commands = [
-                ["jpegoptim", "-s", path],
-                ["jpegoptim", "-s", f"-m{MAX}", path, "-d", reduced_path, "-o"],
-            ]
+            if path not in config or config[path] != get_file_hashsum(path):
+                print(f"converting '{path}'... ", flush=True, end="")
 
-            # strip metadata
-            force_low_res = False  # to possibly force-create a new low-res version
-            if path not in config or config[path][1] != get_file_hashsum(path):
-                execute_shell_command(commands[0])
-                new_config[path] = [100, get_file_hashsum(path)]
-                force_low_res = True
+                im = Image.open(path)
+                width, height = im.size
+                new_width = 1000
+                new_height = int(height * (new_width / width))
+
+                execute_shell_command(
+                    [
+                        "cwebp",
+                        "-q",
+                        "50",
+                        "-resize",
+                        str(new_width),
+                        str(new_height),
+                        path,
+                        "-o",
+                        reduced_name,
+                    ]
+                )
+                print("done.", flush=True)
+
+                new_config[path] = get_file_hashsum(path)
+
                 something_changed = True
             else:
                 new_config[path] = config[path]
-
-            # create low-res image
-            if (
-                not os.path.exists(reduced_name)
-                or reduced_name not in config
-                or config[reduced_name] != [MAX, get_file_hashsum(reduced_name)]
-                or force_low_res
-            ):
-                execute_shell_command(commands[1])
-                new_config[reduced_name] = [MAX, get_file_hashsum(reduced_name)]
-                something_changed = True
-            else:
-                new_config[reduced_name] = config[reduced_name]
 
             full_size += os.path.getsize(path)
             reduced_size += os.path.getsize(reduced_name)

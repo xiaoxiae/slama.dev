@@ -15,6 +15,8 @@ pdf: true
 
 #### Největší párování
 
+- TLDR celé této části jsem zpracoval do [YouTube videa](https://www.youtube.com/watch?v=3roPs1Bvg1Q)
+
 {% math definition %}Párování v \(G = \left(V, E\right)\) je \(M \subseteq E\) t. ž. \(\forall v \in V \exists \le 1\) hrana \(e \in M: v \in e\){% endmath %}
 
 - **maximální** (do inkluze) -- přidání další hrany pro dané párování už není možné; v přednášce nás nezajímá

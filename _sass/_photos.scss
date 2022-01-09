@@ -28,3 +28,5 @@
 .photos1 { flex: 100%; }
 .photos2 { flex: 50%; }
 .photos3 { flex: 33.33%; }
+
+div.row:last-of-type { padding-bottom: $line-spacing; }

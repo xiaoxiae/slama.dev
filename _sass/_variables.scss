@@ -2,26 +2,28 @@
 
 /* LIGHT COLORS */
 $light-text-color: #000;
-$light-link-color: #777;
+$light-link-color: #2e77ff;
 $light-background-color: #fff;
 
-$light-header-background-color: lighten($light-text-color, 90%);
+$light-header-background-color: lighten($light-text-color, 85%);
+$light-nav-background-color: lighten($light-text-color, 94%);
 $light-code-background-color: $light-header-background-color;
 
 /* DARK COLORS */
 $dark-text-color: #fff;
-$dark-link-color: #adadad;
+$dark-link-color: #7eabff;
 $dark-background-color: #333;
 
-$dark-header-background-color: darken($dark-text-color, 93%);
+$dark-header-background-color: darken($dark-text-color, 94%);
+$dark-nav-background-color: darken($dark-text-color, 85%);
 $dark-code-background-color: $dark-header-background-color;
 
 /* SIZES */
 $website-size: 700px;	// width of content of the website
 $website-padding: 25px;	// left/right padding of website content
 
-$header-padding: 10px;		// top/bottom padding of header
-$navigation-padding: 15px;	// top/bottom padding of navbar
+$header-padding: 15px;		// top/bottom padding of header
+$navigation-padding: 20px;	// top/bottom padding of navbar
 
 $navigation-item-spacing: 20px;	// spacing between each of the navigation items
 

@@ -16,6 +16,7 @@ exclude: [
   "climbing/journal.yaml",
   "climbing/videos.yaml",
   "climbing/add_new_climbs.py",
+  "assets/productivincrement.py"
 ]
 
 defaults:

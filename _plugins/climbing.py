@@ -2,6 +2,7 @@
 
 import os
 import shutil
+from PIL import Image
 from random import choice
 from string import ascii_lowercase, digits
 from typing import *
@@ -39,27 +40,32 @@ for name in list(config):
     if "new" in config[name]:
         print(f"parsing new climb '{name}'.", flush=True)
 
-        # assign a new name
+        # assign a new (random) name
         random_string = get_random_string(8)
         new_name = (
             "smichoff-"
-            + config[name]["color"]
-            + "-"
-            + config[name]["date"].strftime("%Y-%m-%d")
-            + "-"
+            + ("" if "color" not in config[name] else (config[name]["color"] + "-"))
+            + (
+                ""
+                if "date" not in config[name]
+                else config[name]["date"].strftime("%Y-%m-%d") + "-"
+            )
             + random_string
             + ".mp4"
         )
+
+        # not new anymore
         del config[name]["new"]
         config[new_name] = config[name]
         del config[name]
 
+        name = new_name
+
         tmp_path = os.path.join(CLIMBING_VIDEOS_FOLDER, "tmp_" + name)
-        new_path = os.path.join(CLIMBING_VIDEOS_FOLDER, new_name)
 
         # trim the video
-        if "trim" in config[new_name]:
-            start, end = config[new_name]["trim"].split(",")
+        if "trim" in config[name]:
+            start, end = config[name]["trim"].split(",")
             command = [
                 "ffmpeg",
                 "-y",
@@ -75,21 +81,21 @@ for name in list(config):
             _ = Popen(command, stdout=PIPE, stderr=PIPE).communicate()
             os.remove(old_path)
             os.rename(tmp_path, old_path)
-            del config[new_name]["trim"]
+            del config[name]["trim"]
 
         # encode/rotate the video
-        if "encode" in config[new_name] or "rotate" in config[new_name]:
+        if "encode" in config[name] or "rotate" in config[name]:
             encode_config = (
                 []
-                if "encode" not in config[new_name]
+                if "encode" not in config[name]
                 else ["-vcodec", "libx264", "-crf", "28"]
             )
             rotate_config = (
                 []
-                if "rotate" not in config[new_name]
+                if "rotate" not in config[name]
                 else [
                     "-vf",
-                    f'transpose={"2" if config[new_name]["rotate"] == "left" else "1"}',
+                    f'transpose={"2" if config[name]["rotate"] == "left" else "1"}',
                 ]
             )
             command = (
@@ -103,53 +109,63 @@ for name in list(config):
             os.remove(old_path)
             os.rename(tmp_path, old_path)
 
-            if "encode" in config[new_name]:
-                del config[new_name]["encode"]
-            if "rotate" in config[new_name]:
-                del config[new_name]["rotate"]
+            if "encode" in config[name]:
+                del config[name]["encode"]
+            if "rotate" in config[name]:
+                del config[name]["rotate"]
 
-        # create the poster
-        _ = Popen(
-            [
-                "ffmpeg",
-                "-i",
-                old_path,
-                "-vf",
-                "select=eq(n\,0)",
-                "-vframes",
-                "1",
-                "-y",
-                new_path + ".jpeg",
-            ],
-            stdout=PIPE,
-            stderr=PIPE,
-        ).communicate()
-
+        new_path = os.path.join(CLIMBING_VIDEOS_FOLDER, name)
         os.rename(old_path, new_path)
 
-    if name in config and "poster" in config[name]:
-        if "new" not in config[name]:
-            print(f"generating a poster for '{name}'.", flush=True)
+    # generate a poster, if it doesn't exist
+    poster_jpeg = os.path.join(
+        CLIMBING_VIDEOS_FOLDER, os.path.splitext(name)[0] + ".jpeg"
+    )
+    poster_webp = os.path.join(
+        CLIMBING_VIDEOS_FOLDER, os.path.splitext(name)[0] + ".webp"
+    )
+
+    if not os.path.exists(poster_webp):
+        print(f"generating a poster for '{name}'.", flush=True)
+
         _ = Popen(
             [
                 "ffmpeg",
                 "-i",
-                old_path,
+                new_path,
                 "-vf",
                 "select=eq(n\,0)",
                 "-vframes",
                 "1",
                 "-y",
-                old_path + ".jpeg",
+                poster_jpeg,
             ],
             stdout=PIPE,
             stderr=PIPE,
         ).communicate()
-        _ = Popen(
-            ["jpegoptim", "-s", "-m13", old_path + ".jpeg"], stdout=PIPE, stderr=PIPE
-        ).communicate()
-        del config[name]["poster"]
 
+        im = Image.open(poster_jpeg)
+        width, height = im.size
+        new_width = 720
+        new_height = int(height * (new_width / width))
+
+        _ = Popen(
+            [
+                "cwebp",
+                "-q",
+                "5",
+                "-resize",
+                str(new_width),
+                str(new_height),
+                poster_jpeg,
+                "-o",
+                poster_webp,
+            ],
+            stdout=PIPE,
+            stderr=PIPE,
+        ).communicate()
+
+        _ = Popen(["rm", poster_jpeg], stdout=PIPE, stderr=PIPE).communicate()
 
 # sort -- gets sorted by date, due to the name of the climbing files
 config_list = [(file, config[file]) for file in config]
@@ -170,13 +186,16 @@ no-heading: True
 ---
 """
     added = False
+    total = 0
 
     for color in colors:
         videos_in_color = []
 
         for name in config:
-            if config[name]["color"] == color and (
-                config[name]["zone"] == zone or zone == "all"
+            if (
+                "color" in config[name]
+                and config[name]["color"] == color
+                and (config[name]["zone"] == zone or zone == "all")
             ):
                 videos_in_color.append(name)
 
@@ -198,11 +217,18 @@ no-heading: True
 
             zone_file_content += f"""
 <figure class='climbing-video climbing-{color} {style_class}'>
-<video alt="Me climbing a {color} boulder at Smíchoff, {config[name]["date"].strftime("%d/%m/%Y")}." poster="/climbing/videos/{name}.jpeg" controls preload="metadata"><source src='/climbing/videos/{name}' type='video/mp4'></video>
+<video alt="Me climbing a {color} boulder at Smíchoff, {config[name]["date"].strftime("%d/%m/%Y")}." poster="/climbing/videos/{os.path.splitext(name)[0] + '.webp'}" controls preload="none"><source src='/climbing/videos/{name}' type='video/mp4'></video>
 <figcaption class='figcaption-margin'>{config[name]["date"].strftime("%d / %m / %Y")}</figcaption>
 </figure>"""
 
             added = True
+            total += 1
+
+        # THIS IS SUPER IMPORTANT!
+        # I don't know how to make it so that floats don't intersect the footer,
+        # but putting anything below fixes it
+        if len(videos_in_color) != 0:
+            zone_file_content += f"<p class='right'>Total climbs: {total}</p>"
 
     # if there are no videos of the climb, add a text about it
     if not added:

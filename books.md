@@ -28,23 +28,19 @@ This section covers various kinds of books that I think are worth reading.
 	6. **The Bands of Mourning**
 	7. **The Lost Metal** (to be released)
 
-- **Skyward** [[Wikipedia](https://en.wikipedia.org/wiki/Skyward_(novel))] by Brandon Sanderson -- as a huge fan of Sanderson's fictional work, I was not sure about him pulling off a good space opera, but I was very, very wrong. The series is a breath of fresh air in the midst of all of his fantasy worlds (at least to someone who's practically been binging all of Sanderson's work) and I can't recommend it enough.
+- **Skyward** [[Wikipedia](https://en.wikipedia.org/wiki/Skyward_(novel))] by Brandon Sanderson -- as a huge fan of Sanderson's fictional work, I was not sure about him pulling off a good space opera, but I was very, very wrong. The series is a breath of fresh air in the midst of all of his fantasy worlds (at least to someone who's practically been binging all of Sanderson's work) and I can't recommend it enough (despite Nowhere, which I felt was a bit too strange for my taste).
 	1. **Skyward**
 	2. **Starsight**
-	3. **Nowhere** (to be released)
+	3. **Nowhere**
 
 - **The Rithmatist** [[Wikipedia](https://en.wikipedia.org/wiki/The_Rithmatist)] by Brandon Sanderson -- an excellent young adult fantasy novel. Although the target audience is children (which is reflected mostly in character behavior and development), I still loved discovering the unique magic system that Sanderson created.
 
-- **Legion: The Many Lives of Stephen Leeds** [[Wikipedia](https://en.wikipedia.org/wiki/Legion_(novella_series))] by Brandon Sanderson -- a set of three novellas about a man, whose hallucinations (so-called aspects) help him with logic, problem solving, languages and much more. It's quite catchy and has an exciting ending, but definitely I'm more into his fantasy works.
+- **Legion: The Many Lives of Stephen Leeds** [[Wikipedia](https://en.wikipedia.org/wiki/Legion_(novella_series))] by Brandon Sanderson -- a set of three novellas about a man, whose hallucinations (the so-called aspects) help him with logic, problem solving, languages and much more. It's a great premise with quite an exciting ending, but definitely I'm more into his fantasy works.
 
 - **The Reckoners** [[Wikipedia](https://en.wikipedia.org/wiki/The_Reckoners)] by Brandon Sanderson -- a set of three novels set in a post-apocalyptic world where random people are transformed into superhumans with various kinds of abilities. The atmosphere is great, but the writing is targeted at a younger audience, which is definitely noticable.
 	1. **Steelheart**
 	2. **Firefight**
 	3. **Calamity**
-
-- **The Kingkiller Chronicle** [[Wikipedia](https://en.wikipedia.org/wiki/The_Kingkiller_Chronicle)] by Patrick Rothfuss -- a thrilling series that I would not recommend anyone to read until the last book in the series is finished (see the controversy for yourself if you're interested).
-	1. **The Name of the Wind**
-	2. **The Wise Man's Fear**
 
 - **Metro 2033** [[Wikipedia](https://en.wikipedia.org/wiki/Metro_2033)] by Dimitry Glukhovsky -- a post-apocalyptic novel about people surviving a nuclear world war inside the Moscow metro. I really appreciated that there was a healthy mix of both action-packed passages and slower, more philosophical ones. Definitely worth the read, but the other books in the series are not as good (in my opinion).
 
@@ -55,7 +51,7 @@ This section covers various kinds of books that I think are worth reading.
 
 - **The Martian** [[Wikipedia](https://en.wikipedia.org/wiki/The_Martian_(Weir_novel))] by Andy Weir -- a hilarious novel about an astronaut surviving on Mars, after being left for dead due to an unfortunate series of events. It inspired a [movie](https://en.wikipedia.org/wiki/The_Martian_(film)#Reception), which (while not as good as the book) is also quite entertaining.
 
-- **Project Hail Mary** [[Wikipedia](https://en.wikipedia.org/wiki/Project_Hail_Mary)] by Andy Weir -- another excellent novel by Andy Weir. It has the same feel as the Martian, but I found it to be much more interesting story-wise and would wholeheartedly recommend it to anyone interested in space sci-fi.
+- **Project Hail Mary** [[Wikipedia](https://en.wikipedia.org/wiki/Project_Hail_Mary)] by Andy Weir -- another excellent novel by Andy Weir. It has exactly the same feel as the Martian, but I found it to be much more interesting story-wise and would wholeheartedly recommend it to anyone interested in space sci-fi.
 
 ### Maths and Computer Science
 

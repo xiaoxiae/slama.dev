@@ -2,6 +2,9 @@
 
 @import "variables";
 
+$light-link-color: #aaa;
+$dark-link-color: #888;
+
 .climbing-video {
     border: 3px solid;
     display: inline-block;
@@ -20,47 +23,63 @@
 .climbing-blue { background: #087ec4ff; }
 .climbing-yellow { background: #fce538ff; }
 
-.climbing-red-text {
+.climbing-red-jungle { background: #f74d4dff; }
+.climbing-blue-jungle { background: #087ec4ff; }
+.climbing-green-jungle { background: #008000ff; }
+
+.climbing-V5-třináctka  { background: #bbbbbb; }
+.climbing-V6-třináctka  { background: #aeaeae; }
+.climbing-V7-třináctka  { background: #a2a2a2; }
+.climbing-V8-třináctka  { background: #969696; }
+.climbing-V9-třináctka  { background: #8a8a8a; }
+.climbing-V10-třináctka { background: #7e7e7e; }
+.climbing-V11-třináctka { background: #727272; }
+
+.climbing-location-logo,.climbing-location-logo-middle {
+    display: inline;
+    height: 0.96em;
+    vertical-align: baseline;
+}
+
+.climbing-location-logo-middle { vertical-align: middle; }
+
+.climbing-red-text,.climbing-blue-text,.climbing-red-jungle-text,.climbing-blue-jungle-text,.climbing-green-jungle-text {
     color: $light-text-color;
     a { color: $light-link-color; &:hover { color: $light-text-color; } }
 }
 
-.climbing-salmon-text {
+.climbing-salmon-text,.climbing-yellow-text {
     color: $light-text-color;
-    a { color: $light-link-color; &:hover { color: $light-text-color; } }
-}
-
-.climbing-blue-text {
-    color: $dark-text-color;
     a { color: $dark-link-color; &:hover { color: $dark-text-color; } }
 }
 
-.climbing-yellow-text {
-    color: $light-text-color;
-    a { color: $light-link-color; &:hover { color: $light-text-color; } }
-}
-
 .climbing-left {
-    width: 48%;
     float: left;
-
-    @media (max-width: $small-screen-threshold) { width: 100%; }
 }
 
 .climbing-right {
-    width: 48%;
     float: right;
+}
 
-    @media (max-width: $small-screen-threshold) { width: 100%; }
+.climbing-left,.climbing-right {
+    width: 48%;
+
+    @media (max-width: $small-screen-threshold) {
+        width: 100%;
+        float: none;
+    }
 }
 
 .climbing-center {
+    float: none;
     width: 100%;
-    float: left;
 }
 
 .climbing-journal {
-    li { padding-bottom: $line-spacing / 2; }
+    li {
+        padding-bottom: $line-spacing / 2;
+        p { padding-bottom: $line-spacing / 4; }
+    }
 }
 
 mark.climbing-diary-record {
@@ -91,7 +110,55 @@ img {
 
     .zone:hover,
     .zone:active {
+        transition: 0.2s ease-in-out;
         fill-opacity: 1;
         fill: $light-text-color;
+    }
+}
+
+.hr-text {
+    line-height: 1em;
+    position: relative;
+    outline: 0;
+    border: 0;
+    text-align: center;
+    height: 1.5em;
+    background: $light-background-color;
+    color: $light-link-color;
+
+    &::before {
+        background: $light-link-color;
+        content: '';
+        // use the linear-gradient for the fading effect
+        // use a solid background color for a solid bar
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        height: 1px;
+    }
+
+    &::after {
+        content: attr(data-content);
+        position: relative;
+        display: inline-block;
+        padding: 0 1em;
+        line-height: 1.5em;
+        background-color: $light-background-color;
+    }
+
+    margin-bottom: $line-spacing / 2;
+
+    // YUCK!
+    margin-top: - $line-spacing - $line-spacing / 2 + $line-spacing / 4;
+}
+
+@media (prefers-color-scheme: dark) {
+    .hr-text {
+        background: $dark-background-color;
+        color: $dark-link-color;
+
+        &::before { background: $dark-link-color; }
+        &::after { background-color: $dark-background-color; }
     }
 }

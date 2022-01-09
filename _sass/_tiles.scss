@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+@import "variables";
+
+details {
+    summary { text-align: left; }
+}
+
+details[open] {
+    padding-bottom: 0;
+    summary { margin-bottom: $line-spacing; }
+}

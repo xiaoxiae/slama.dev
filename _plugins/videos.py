@@ -5,13 +5,26 @@ import os
 import shutil
 from datetime import date
 
+OTHER_CATEGORY_NAME = "Other"
+
+ROOT = "../ignored/videos/"
+OUT = "../_includes/videos.md"
+VIDEO_FOLDER = "../videos/"
+URL_ROOT = "https://github.com/xiaoxiae/videos/tree/master/"
+
 videos = {
     "Graph Theory": [
         (
-            date(2021, 4, 28),
-            "https://www.youtube.com/watch?v=OZWZpQmGp0g",
-            "Vizing's theorem",
-            "03-",
+            date(2021, 10, 6),
+            "https://www.youtube.com/watch?v=g-QyzzPM4rU",
+            "Cayley's Formula",
+            "07-",
+        ),
+        (
+            date(2021, 8, 23),
+            "https://www.youtube.com/watch?v=3roPs1Bvg1Q",
+            "The Blossom algorithm",
+            "06-",
         ),
         (
             date(2021, 6, 1),
@@ -20,25 +33,30 @@ videos = {
             "04-",
         ),
         (
-            date(2021, 8, 23),
-            "https://www.youtube.com/watch?v=3roPs1Bvg1Q",
-            "The Blossom algorithm",
-            "06-",
+            date(2021, 4, 28),
+            "https://www.youtube.com/watch?v=OZWZpQmGp0g",
+            "Vizing's theorem",
+            "03-",
         ),
-    ]
+    ],
+    OTHER_CATEGORY_NAME: [
+        (
+            date(2021, 12, 31),
+            "https://www.youtube.com/watch?v=KlaEp6ydVhA",
+            "Bathroom Tile Programming",
+            "09-",
+        ),
+    ],
 }
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-ROOT = "../ignored/videos/"
-OUT = "../ignored/videos.md"
-VIDEO_FOLDER = "../videos/"
-URL_ROOT = "https://github.com/xiaoxiae/videos/tree/master/"
-
 result = ""
 
-for category in videos:
-    category_str = f"## {category}\n"
+# ensure that the category "other" is the last one
+# not pretty, but it works :P
+for category in [v for v in videos if v != OTHER_CATEGORY_NAME] + [OTHER_CATEGORY_NAME]:
+    category_str = f"### {category}\n"
 
     for date, youtube_link, video, folder_prefix in videos[category]:
         match = glob(os.path.join(ROOT, folder_prefix + "*"))
@@ -96,11 +114,11 @@ for category in videos:
         subtitle_string = (
             ""
             if not subtitles
-            else f"[subtitles](/videos/{video_slug}/{subtitle_name})/"
+            else f"[subtitles](/videos/{video_slug}/{subtitle_name}), "
         )
         url_string = f"[code]({URL_ROOT + os.path.basename(folder)})"
 
-        category_str += f"{date.strftime('%Y/%0m/%0d')} -- **{video}** [[YouTube]({youtube_link})] [{'/'.join(resolution_links)}] [{subtitle_string}{url_string}]\n- _{description}_\n\n"
+        category_str += f"{date.strftime('%Y/%0m/%0d')} -- **{video}** [[YouTube]({youtube_link})] [{', '.join(resolution_links)}] [{subtitle_string}{url_string}]\n- _{description}_\n\n"
 
     result += category_str
 

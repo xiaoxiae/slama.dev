@@ -423,7 +423,7 @@ class Clovek:
 	def vyrost(self):
 		self.vek += 1
 
-# vytvoření objektu (instance třídy Clovek) alice a bob, kteří jsou lidé
+# vytvoření objektů alice a bob, kteří jsou lidé
 alice = Clovek("Alice Novotná", 20)
 bob = Clovek("Bořek Stavitel", 34)
 
