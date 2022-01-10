@@ -1335,7 +1335,7 @@ Hadamardův kód je \(\left[2^r, r, 2^{r - 1}\right]\)-kód.{% endmath %}
 
 #### Ramseyova teorie
 
-**Motivace:** party o \(6\) lidech::
+**Motivace:** party o \(6\) lidech:
 
 ![](/assets/kombinatorika-a-grafy-i/ramsey-motivace.svg)
 

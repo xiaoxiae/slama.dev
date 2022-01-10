@@ -1,7 +1,6 @@
 ---
 title: The C# programming language
 category: "lecture notes"
-pdf: true
 ---
 
 - .

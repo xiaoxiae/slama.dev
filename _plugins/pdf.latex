@@ -26,7 +26,13 @@ $if(title)$
 \title{$title$}
 $endif$
 
-\usepackage[czech]{babel}
+$if(language)$
+  %yeah, it's a hack but I will never write in anything other than english and czech
+  \usepackage[czech]{babel}
+$else$
+  \usepackage[english]{babel}
+$endif$
+
 \usepackage{a4wide}
 \usepackage{fancyhdr}
 \usepackage{amssymb}
@@ -105,13 +111,6 @@ fontsize=\footnotesize
 \titleformat{\subsubsection} {\normalfont\fontsize{12}{15}\bfseries}{\thesubsubsection}{1em}{}
 
 % ---------------------------------------- HLAVIČKA ----------------------------------------
-\pagestyle{fancy}
-\fancyhf{}
-% Now set the headers
-\fancyhead[LE,RO]{\footnotesize\thepage}
-\fancyhead[LO,RE]{\footnotesize\leftmark}
-\fancyfoot{}
-\fancyfoot[R]{\thepage}
 
 \setcounter{secnumdepth}{0}
 
@@ -120,7 +119,15 @@ fontsize=\footnotesize
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
-\usepackage{graphicx}
+% things missing from KaTeX
+\newcommand{\Chi}{\mathrm{X}}
+\newcommand{\Alpha}{\mathrm{A}}
+
+% for llbracket and rrbracket
+\usepackage{stmaryrd}
+
+\usepackage[export]{adjustbox} % also loads graphicx
+
 \usepackage[normalem]{ulem}
 
 \begin{document}
@@ -141,8 +148,14 @@ fontsize=\footnotesize
         \normalsize
 				Tomáš Sláma\\
 				$date$\\
-				\vspace*{0.5em}
-				\href{$url$}{$url$}
+				\vspace*{1.5em}
+        \centering
+$if(language)$
+  %yeah, it's a hack but I will never write in anything other than english and czech
+  {\it Toto PDF bylo automaticky vygenerováno z webové stránky \href{$url$}{$url$}, která je preferovaný způsob jak dokument číst. Za případné chyby způsobené převodem se omlouvám.}
+$else$
+  {\it This PDF was automatically generated from the website \href{$url$}{$url$}, which is the prefered way of viewing this document. Please excuse any conversion-related mistakes.}
+$endif$
     \end{center}
 \end{titlepage}
 
