@@ -2,5 +2,5 @@
 layout: default
 ---
 
-<p>{{ page.date | date: "%-d. %-m. %Y"}}{% if page.category %}; {{page.category}}{% endif%}</p>
+<p>{{ page.date | date: "%-d. %-m. %Y"}}{% if page.category %}; {{page.category}}{% endif%}{% if page.pdf %}; available as a [<a href="/assets/{{page.url | split: "/" | last}}.pdf">PDF</a>]{% endif%}</p>
 {{ content }}

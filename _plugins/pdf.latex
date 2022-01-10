@@ -1,0 +1,166 @@
+% Options for packages loaded elsewhere
+\documentclass[
+$if(fontsize)$
+  $fontsize$,
+$endif$
+$if(lang)$
+  $babel-lang$,
+$endif$
+$if(papersize)$
+  $papersize$paper,
+$endif$
+$if(beamer)$
+  ignorenonframetext,
+$if(handout)$
+  handout,
+$endif$
+$if(aspectratio)$
+  aspectratio=$aspectratio$,
+$endif$
+$endif$
+$for(classoption)$
+  $classoption$$sep$,
+$endfor$
+]{$documentclass$}
+$if(title)$
+\title{$title$}
+$endif$
+
+$if(language)$
+  %yeah, it's a hack but I will never write in anything other than english and czech
+  \usepackage[czech]{babel}
+$else$
+  \usepackage[english]{babel}
+$endif$
+
+\usepackage{a4wide}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{wrapfig}
+\usepackage{framed}
+\usepackage{svg}
+\usepackage{longtable}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{mathtools}
+\usepackage{mleftright}
+\usepackage{subcaption}
+\usepackage{gensymb}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage[normalem]{ulem}
+\usepackage[bottom]{footmisc}  % forcing footnotes to be at the very bottom
+
+\usepackage{emoji}
+
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    total={170mm,257mm},
+    right=20mm,
+    left=20mm,
+    top=30mm,
+    bottom=20mm,
+}
+
+\makeatletter
+\def\maxwidth#1{\ifdim\Gin@nat@width>#1 #1\else\Gin@nat@width\fi}
+\makeatother
+
+
+% ---------------------------------------- KÓD ----------------------------------------
+\usepackage{minted}
+\setminted{
+framesep=2mm,
+linenos,
+autogobble,
+fontsize=\footnotesize
+}
+
+\RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}
+\renewcommand{\figurename}{Listing}
+
+
+% ---------------------------------------- VLNA ----------------------------------------
+\usepackage{luavlna}
+\AtBeginDocument{\singlechars{czech}{AaIiVvOoUuSsZzKk}}
+
+
+% ---------------------------------------- FLOATY ----------------------------------------
+\usepackage{float}
+\floatplacement{figure}{H}
+
+
+% ---------------------------------------- LINKY ----------------------------------------
+\usepackage{hyperref}
+\urlstyle{same}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+    linkcolor=black,%TOC
+}
+
+
+% ---------------------------------------- NADPISY ----------------------------------------
+\titleformat{\section} {\normalfont\fontsize{16}{15}\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection} {\normalfont\fontsize{14}{15}\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection} {\normalfont\fontsize{12}{15}\bfseries}{\thesubsubsection}{1em}{}
+
+% ---------------------------------------- HLAVIČKA ----------------------------------------
+
+\setcounter{secnumdepth}{0}
+
+% ------------------------------------------------------------------------------------------
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% things missing from KaTeX
+\newcommand{\Chi}{\mathrm{X}}
+\newcommand{\Alpha}{\mathrm{A}}
+
+% for llbracket and rrbracket
+\usepackage{stmaryrd}
+
+\usepackage[export]{adjustbox} % also loads graphicx
+
+\usepackage[normalem]{ulem}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{3em}
+        \Huge
+				\textbf{$title$}
+				\\
+				\LARGE
+				\vspace*{0.5em}
+				$category$
+
+        \vfill
+
+        \flushright
+        \normalsize
+				Tomáš Sláma\\
+				$date$\\
+				\vspace*{1.5em}
+        \centering
+$if(language)$
+  %yeah, it's a hack but I will never write in anything other than english and czech
+  {\it Toto PDF bylo automaticky vygenerováno z webové stránky \href{$url$}{$url$}, která je preferovaný způsob jak dokument číst. Za případné chyby způsobené převodem se omlouvám.}
+$else$
+  {\it This PDF was automatically generated from the website \href{$url$}{$url$}, which is the prefered way of viewing this document. Please excuse any conversion-related mistakes.}
+$endif$
+    \end{center}
+\end{titlepage}
+
+\newpage
+
+$body$
+
+\end{document}

@@ -1,7 +1,8 @@
 ---
 language: cz
 title: Kombinatorika a Grafy II
-category: "lecture notes"
+category: "poznámky z přednášky"
+pdf: true
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 language: cz
 title: Principy Počítačů
-category: "lecture notes"
+category: "poznámky z přednášky"
+pdf: true
 ---
 
 - .

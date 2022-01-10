@@ -9,7 +9,6 @@ from subprocess import Popen, PIPE
 import yaml
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
-
 CACHE_FOLDER = "../.jekyll-cache/compress_images"
 
 full_size = 0  # total size of images before compression
@@ -41,7 +40,7 @@ config = {}
 new_config = {}
 if os.path.exists(CACHE_FOLDER):
     with open(CACHE_FOLDER, "r") as f:
-        config = yaml.safe_load(f.read())
+        config = yaml.safe_load(f.read()) or {}
 
 
 for root, dirs, files in os.walk("../photos/"):
