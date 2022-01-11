@@ -706,4 +706,66 @@ TODO: obrázek
 
 {% math lemma %}\(\overline{\mathcal{q}} = \frac{1}{H_g} \cdot \mathcal{q}\) je přípustné řešení duálního LP{% endmath %}
 
-{% math proof %}chceme dokázat, že \(\sum_{e \in S_j} \overline{\mathcal{q}_e} \le c_j\){% endmath %}
+{% math proof %}chceme dokázat, že \(\sum_{e \in S_j} \overline{\mathcal{q}_e} \le c_j\)
+- nechť \(S_j = \left\{e_1, \ldots, e_k\right\}\)
+	- očíslujeme tak, že \(e_k\) je první pokrytý, \(e_{k-1}\) druhý, až \(e_1\) poslední
+
+{% math observation %} \(\mathcal{q}_{e_i} \le \frac{c_j}{i}\)
+- v \(i\)-tém kroku ještě nejsou pokryté prvky \(1, \ldots, i\)
+- z definice vybíráme nejlevnější možnou množinu
+{% endmath %}
+
+TODO: zbytek tohohle důkaz
+
+{% endmath %}
+
+#### Maximální nezávislá množina
+- _Vstup:_ graf \(G = (V, E)\)
+- _Výstup:_ \(I \subseteq V\) nezávislá množina, maximální **vzhledem k inkluzi**
+	- největší moc dobře řešit nejde (ani aproximovat)
+
+Nás zajímá najít rychlý paralelní algoritmus:
+- operací chceme udělat řádově \(\mathcal{O}\left(\log n\right)\)
+- k dispozici máme řádově \(n\) procesorů (každý graf/hrana má jeden)
+- povolujeme procesorům najednou šahat na data a najednou měnit data **na stejnou věc**
+
+{% math algorithm "rychlý paralelní" %}
+1. \(I = \emptyset\)
+2. dokud \(V \neq \emptyset\)
+	1. \(\forall v \in E\) pokud je stupeň \(0\), pak přidáme do \(I\) a vymažeme z \(V\)
+	2. \(\forall v \in E\) označ \(v\) (přidej do \(S\)) s pravděpodobností \(\frac{1}{2 d_v}\) (nezávisle)
+	3. \(\forall u, v \in E\) pokud \(u\) i \(v\) jsou označené, odeber značku nižčího stupně
+	4. přidej označené vrcholy do \(I\) a odeber je z \(V\)
+{% endmath %}
+
+{% math definition %}vrchol je **dobrý**, jestliže má \(\ge \frac{d_v}{3}\) sousedů stupně \(\le d_v\)
+- má velkou pravděpodobnost, že ho vybereme, protože má hodně sousedů malého stupně
+- analogicky špatný vrchol (není dobrý) a dobrá/špatná hrana (obsahuje/neobsahuje dobrý vrchol)
+{% endmath %}
+
+{% math lemma %}alespoň polovina hran je dobrá.{% endmath %}
+
+{% math proof %}hrany zorientujeme od menšího k většímu stupni (rovnost řešíme libovolně)
+- \(v\) špatný \(\implies d_v^{\mathrm{in}} < \frac{d_v}{3}\)
+	- z definice -- vstupující jsou stejného menšího stupně, takže by jinak byl dobrý
+	- tedy \(\ge \frac{2 d_v}{3}\) vstupuje a platí \(d_v^{\mathrm{in}} \le \frac{1}{2} d_v^{\mathrm{out}}\)
+
+Nyní počítáme
+\[
+\begin{aligned}
+	|\text{špatné hrany}| &\le \sum_{v\ \text{špatný}} d_v^{\mathrm{in}} &\qquad //\text{špatná hrana jde do špatného vrcholu} \\
+	&\le \sum_{v\ \text{špatný}} \frac{1}{2} d_v^{\mathrm{out}} &\qquad //\text{nerovnost výše} \\
+	&\le \frac{1}{2}|E| &\qquad //\text{posčítáním přes všechny vrcholy platí}
+\end{aligned}
+\]
+{% endmath %}
+
+{:.rightFloatBox}
+<div markdown="1">
+Pravděpodobnost, že dobrý vrchol buďto označím nebo odstraním je nějaká konstanta.
+</div>
+
+{% math lemma %}existuje \(\alpha > 0\) t. ž. \(\forall v\) dobrý platí \[\mathrm{Pr}\left[v \in S \cup N(S)\right] \ge \alpha\]
+{% endmath %}
+
+TODO: dodělat drobný výpočet na konci
