@@ -13,9 +13,13 @@ category: "poznámky z přednášky"
 
 {% math definition "Optimalizační problém" %} je \(\mathcal{I}, \mathcal{F}, f, g\)
 - \(\mathcal{I} \ldots\) množina všech vstupů/instancí
+	- _množina všech ohodnocených grafů_
 - \(\forall I \in \mathcal{I}: \mathcal{F}(I) \ldots\) množina přípustných řešení
+	- _pro daný ohodnocený graf všechny kostry_
 - \(\forall I \in \mathcal{I}, A \in \mathcal{F}(I): f(I, A) \ldots \) účelová funkce
+	- _součet hran na kostře_
 - \(g \ldots\) bit (zda chceme maximalizovat nebo minimalizovat
+	- _maximalizujeme_
 {% endmath %}
 
 {% math definition "NP-Optimalizační problém" %}je \(\mathcal{I}, \mathcal{F}, f, g\), pro které platí stejné věci jako pro normální optimalizační problémy, ale navíc
@@ -50,7 +54,7 @@ Pro minimalizační zajišťujeme, že naše je vždy dostatečně malé (ne vě
 2. navštívíme všechny vrcholy (například přes DFS), čímž dostaneme tah přes všechny vrcholy
 3. zkrátíme ji na cyklus tak, že vynecháme opakující-se vrcholy
 
-{% math theorem %}Algoritmus je \(2\)-aproximační.{% endmath %}
+{% math theorem %}algoritmus je \(2\)-aproximační.{% endmath %}
 
 {% math proof %}Kostra je nejvýše tak velká, jako optimální řešení a tenhle algoritmus je lepší než \(2\) kostry (díky trojúhelníkové nerovnosti a symetrii -- procházíme i tam i zpět){% endmath %}
 
@@ -62,7 +66,7 @@ Pro minimalizační zajišťujeme, že naše je vždy dostatečně malé (ne vě
 	- vždy existuje, jelikož máme úplný graf a vrcholů s lichým stupňem je sudý počet (všech je sudý)
 3. zkrátíme na cyklus \(T \cup M\)
 
-{% math theorem %}Algoritmus je \(3/2\)-aproximační.{% endmath %}
+{% math theorem %}algoritmus je \(3/2\)-aproximační.{% endmath %}
 
 {% math proof %}\[\mathrm{ALG} \le d(T) + d(M) \le \mathrm{OPT} + \frac{1}{2}\mathrm{OPT}\]
 
@@ -169,7 +173,7 @@ Nechť \(A_i\) jev, že v prvních \(i\) iteracích jsme nevybrali hranu z \(C\)
 \[
 \begin{aligned}
 	\mathrm{Pr}[A_{n - 2}] & \ge \left(1 - \frac{2}{n}\right) \left(1 - \frac{2}{n -1}\right) \ldots \left(1 - \frac{2}{3}\right)  \\
-	&= \frac{n - 2}{n} \frac{n - 3}{n - 1} \frac{n - 4}{n - 2} \ldots \frac{2}{4} \frac{1}{3}
+	&= \frac{n - 2}{n} \frac{n - 3}{n - 1} \frac{n - 4}{n - 2} \ldots \frac{2}{4} \frac{1}{3} \\
 	&= \frac{2}{n \cdot (n - 1)} = \frac{1}{\binom{n}{2}}
 \end{aligned}
 \]
@@ -214,8 +218,10 @@ Spojením dostáváme \(\mathrm{ALG} = T + p_j \le 2 \cdot \mathrm{OPT}\)
 {% math theorem "silnější odhad" %}Hladový rozvrhovací algoritmus je \(\left(2 - \frac{1}{m}\right)\)-aproximační.{% endmath %}
 
 {% math proof %}
-- \(\frac{1}{m} \sum_{k = 1}^{n} p_k \le \mathrm{OPT}\) (lépe, než rovnoměrně všechny úlohy rozvrhnout nemůžeme)
-- \(\sum_{k = 1}^{n} p_k \ge m \cdot T + p_j\) (součet všech úloh je alespoň viz obrázek)
+- \(\frac{1}{m} \sum_{k = 1}^{n} p_k \le \mathrm{OPT}\)
+	- lépe, než rovnoměrně všechny úlohy rozvrhnout nemůžeme
+- \(\sum_{k = 1}^{n} p_k \ge m \cdot T + p_j\)
+	- součet všech úloh je alespoň součet před \(T + \) posledí úloha (vynéchám „ocásky“)
 
 Kombinací nerovností dostávám \(T + \frac{p_j}{m} \le \mathrm{OPT}\).
 
@@ -264,7 +270,7 @@ Prostě přesouváme stroje, které končí nejpozději někam, aby začínaly d
 
 {% math proof %}Jelikož ji přesouváme na stroj s minimální délkou, tak by musel existovat nějaký s ještě menší, což by byl spor s tím, jak algoritmus funguje (dáváme na nejmenší).{% endmath %}
 
-{% math consequence %}Algoritmus je polynomiální.{% endmath %}
+{% math consequence %}algoritmus je polynomiální.{% endmath %}
 
 {% math theorem "silnější odhad pro lokální algoritmus" %}algoritmus je \(\left(2 - \frac{1}{m}\right)\)-aproximační.{% endmath %}
 
@@ -347,14 +353,14 @@ BUNO předpokládejme, že \(p_n\) určuje délku rozvrhu (kdyby ne tak na dalš
 
 {% math observation %}hladový algoritmus nemá aproximační poměr \(\le \mathcal{O}(\sqrt{m})\):
 
-TODO: obrázek
+{% xopp bad_path %}
 
 - \(s_1 \mapsto t_1\): délka \(\mathcal{O}(k)\)
 	- abychom zvolili tuto cestu, musejí mít ostatní alespoň \(\mathcal{O}(k)\) hran, celkově jich tedy musí být řádově \(\mathcal{O}(k^2)\)
 
 {% endmath %}
 
-{% math theorem %}Hladový algoritmus s \(c = 1\) je \(\mathcal{O}\sqrt{m}\)-aproximační.{% endmath %}
+{% math theorem %}Hladový algoritmus s \(c = 1\) je \(\mathcal{O}\left(\sqrt{m}\right)\)-aproximační.{% endmath %}
 
 {% math proof %} BUNO optimum \(\ge 1\) (jinak bychom hned skončili)
 - pak \(|I| = \mathrm{ALG} \ge 1\) (také nějakou najdeme)
@@ -371,7 +377,7 @@ Nechť \(I^*, \left\{P_i^* \mid i \in I^*\right\}\) je optimum. Počítejme cest
 Tedy počet krátkých cest \(P_i^* \le |I| \left(\sqrt{m} + 1\right)\)
 - \(1\) -- náš algoritmus a optimum vybrali stejnou cestu
 - \(\sqrt{m}\) -- krátká cesta v našem řešení zablokuje nejvýše \(\sqrt{m}\) ostatních krátkých
-\[\mathrm{OPT} = |I^*| \le \sqrt{m} + |I| \left(\sqrt{m} + 1\right) \le \mathcal{O}(\sqrt{m}) |I| = \mathcal{O}(\sqrt{m}) \mathrm{ALG} \]
+\[\mathrm{OPT} = |I^*| \le \underbrace{\sqrt{m}}_{dlouhé} + \underbrace{|I| \left(\sqrt{m} + 1\right)}_{krátké} \le \mathcal{O}(\sqrt{m}) |I| = \mathcal{O}(\sqrt{m}) \mathrm{ALG} \]
 
 {% endmath %}
 
@@ -395,7 +401,7 @@ Tedy počet krátkých cest \(P_i^* \le |I| \left(\sqrt{m} + 1\right)\)
 
 {% math consequence %}algoritmus je polynomiální.{% endmath %}
 
-{% math theorem %}Hladový algoritmus je \(\mathcal{O}m^{\frac{1}{c + 1}}\)-aproximační.{% endmath %}
+{% math theorem %}Hladový algoritmus je \(\mathcal{O}\left(\beta\right)\)-aproximační.{% endmath %}
 
 {% math proof %} BUNO optimum \(\ge 1\) (jinak bychom hned skončili)
 - pak \(|I| = \mathrm{ALG} \ge 1\) (také nějakou najdeme)
@@ -403,12 +409,12 @@ Tedy počet krátkých cest \(P_i^* \le |I| \left(\sqrt{m} + 1\right)\)
 - \(i \in I \ldots\ \) vše ok
 - \(i \not\in I \ldots\ \) na konci algoritmu je \(d(P_i^*) \ge \beta^c\) (jinak by ji algoritmus použil)
 
-Nejprve zesdola odhadneme \(d(E)\):
+Nejprve zesdola odhadneme \(d(E)\) na konci algoritmu:
 - \(\beta^c (|OPT| - |I|)\): dolní odhad na délku cest, které algoritmus nespojil ale optimální ano
 	- každá cesta má na konci delku alespoň \(\beta^c\) a je jich alespoň \(|\mathrm{OPT}| - |I|\)
 - \(c \cdot d(E) \ge \beta^c (|\mathrm{OPT}| - |I|)\): každou hranu můžeme použít \(c\)-krát
 
-Poté odhadneme \(d(E)\) zeshora:
+Poté odhadneme \(d(E)\) zeshora (opět na konci algoritmu):
 - na začátku \(d(E) = m\) (délky hran jsou jednotkové)
 - po výběru \(P_i \ldots\ d(P_i) \le \beta^c \cdot \beta = \beta^{c + 1}\)
 - na konci \(d(E) \le m + |I| \beta^{c + 1} \le \left(|I| + 1\right) \beta^{c + 1}\)
@@ -443,12 +449,13 @@ Předpokládáme:
 - žádný literál se v klauzuli neopakuje
 - nejvýše jeden z \(x_i, \overline{x}_i\) se vyskytuje v klauzuli
 
-{% math algorithm "RAND SAT" %}
+#### RAND-SAT
+{% math algorithm "RAND-SAT" %}
 1. vybereme nezávisle náhodně všechny literály (\(p = 1/2\))
 2. profit?
 {% endmath %}
 
-{% math theorem %}RAND SAT je \(2\)-aproximační algoritmus.{% endmath %}
+{% math theorem %}RAND-SAT je \(2\)-aproximační algoritmus.{% endmath %}
 
 {% math proof %}pro každou klauzuli zavedeme indikátorovou proměnnou \(Y_j\).
 - pravděpodobnost, že \(C_j\) není splňená je \(\frac{1}{2^k}\)
@@ -465,7 +472,8 @@ Díky tomu, že \(k \ge 1\) máme \(\mathbb{E}\left[Y_j\right] = \mathrm{Pr}\lef
 Předchozí algoritmus měl problémy s krátkými klauzulemi, jelikož je menší šance, že nějakou splní. Zkusíme to napravit tím, že jim budeme dávat preferenci.
 </div>
 
-{% math algorithm "BIASED SAT" %}
+#### BIASED-SAT
+{% math algorithm "BIASED-SAT" %}
 - předpoklad: \(\forall i: \sum_{j: C_j = x_i} w_j \ge \sum_{j: C_j = \overline{x}_i}\)
 	- pokud nevychází, tak literál všude znegujeme
 
@@ -473,7 +481,7 @@ Předchozí algoritmus měl problémy s krátkými klauzulemi, jelikož je menš
 	- true: \(p > \frac{1}{2}\), jinak false; hodnotu \(p\) najdeme později
 {% endmath %}
 
-{% math theorem %}BIASED SAT je \(\left(\phi = \frac{\sqrt{5} - 1}{2}\right)\)-aproximační algoritmus.{% endmath %}
+{% math theorem %}BIASED-SAT je \(\left(\phi = \frac{\sqrt{5} - 1}{2}\right)\)-aproximační algoritmus.{% endmath %}
 
 Uvažme \(C_j\) (a opět indikátorové veličiny \(Y_j\)):
 - kladný literál: \(Y_j = p\)
@@ -497,6 +505,7 @@ Nechť \(U\) množina klauzulí bez záporných jednotkových.
 \end{aligned}
 \]
 
+#### LP-SAT
 {% math algorithm "LP-SAT" %}
 1. pro každou proměnnou si pořídíme binární proměnnou \(y_i\), pro každou klauzuli binární proměnnou \(z_j\)
 2. postavíme lineární program s těmito proměnnými
@@ -513,7 +522,7 @@ Nechť \(U\) množina klauzulí bez záporných jednotkových.
 
 {% math fact "B" %}pokud je funkce na \(\left[0, 1\right]\) konkávní a \(f(0) = a, f(1) = a + b\), pak \[\forall x \in \left[0, 1\right]: f(x) \ge a + bx\]{% endmath %}
 
-TODO: rightlofatbox obrázek
+{% xopp aplusb %}
 
 {% math fact "C" %}\(\left(1 - \frac{1}{n}\right)^n \le \frac{1}{e}\){% endmath %}
 
@@ -546,5 +555,155 @@ Pro fakt \(B\) jsme pozorovali, že \(a = f(0) = 0\) a také že druhá derivace
 	&= \left(1 - \frac{1}{e}\right) \mathrm{OPT}\\
 \end{aligned}
 \]
-
 {% endmath %}
+
+#### BEST-SAT
+{% math algorithm "BEST-SAT" %}
+1. při přizazení s pravděpodobností \(1/2\) použijeme RAND-SAT, jinak použijeme BEST-SAT
+2. wtf?
+{% endmath %}
+
+{% math theorem %}BEST-SAT je \(\frac{3}{4}\)-aproximační.{% endmath %}
+
+{% math proof %} chceme dokázat, že \( \mathrm{Pr}\left[C_j\ \text{je splněná}\right] \ge \frac{3}{4} z^*_j \).
+
+Podívejme se, s jakou pravděpodobností splní klauzuli algoritmy:
+- RAND-SAT: \(1 - \frac{1}{2^k}\) (alespoň jedna musí být splněná a volíme s \(p = 1\))
+- LP-SAT: \(\left[1 - \left(1 - \frac{1}{k}\right)^{k}\right] z_j^*\) (formulka z minulého důkazu těsně před odhadem)
+
+| \(k_j\) | RAND-SAT                              | LP-SAT                                       | BEST-SAT                                                              |
+| ---     | ---                                   | ---                                          | ---                                                                   |
+| \(1\)   | \(\frac{1}{2} \ge \frac{1}{2} z_j^*\) | \(1 \cdot z_j^*\)                            | \(\frac{1}{2} \frac{1}{2} + \frac{1}{2} z_j^* \ge \frac{3}{4} z_j^*\) |
+| \(2\)   | \(\ge \frac{3}{4} z_j^*\)             | \(\frac{3}{4} \cdot z_j^*\)                  | \(\ge \frac{3}{4} z_j^*\)                                             |
+| \(3\)   | \(\ge \frac{7}{8} z_j^*\)             | \(\left(1 - \frac{1}{e}\right) \cdot z_j^*\) | \(> \frac{3}{4} z_j^*\)                                               |
+{% endmath %}
+
+##### Derandomizace metodou podmíněných pravděpodobností
+TODO?
+
+### Pokrývací problémy
+
+#### Vrcholové pokrytí
+- _Vstup:_ graf \(G\), ceny vrcholů \(c_v \ge 0\)
+- _Výstup:_ \(W \subseteq V\) tak, že \(\forall e \in E: e \cap W \neq 0\)
+- _Cíl:_ minimalizovat \(c(W) = \sum_{v \in W} c_v\)
+
+{% math algorithm "LP relaxace" %}
+1. vytvoř celočíselný lineární program:
+	- proměnné jsou binární podle vrcholů, které vybíráme
+	- podmínky jsou \(\forall (u, v) \in E: x_u + x_v \ge 1\) (chceme pokrýt všechny hrany)
+	- minimalizujeme \(\sum_{v \in V} x_v c_v\)
+2. zrelaxuj lineární program (proměnné jsou teď reálné)
+3. použij ho při řešení -- zvol \(v\) když \(x_v \ge \frac{1}{2}\)
+	- dává správné řešení, jelikož pro splnění podmínek je vždy alespoň jeden z \((x_u, x_v) \ge \frac{1}{2}\)
+{% endmath %}
+
+{% math theorem %}algoritmus je \(2\)-aproximační.{% endmath %}
+
+{% math proof %}proměnné jsme z \(\ge \frac{1}{2}\) zaokrlouhlovali na \(1\), čímž jsme řešení max. zdvojnásobili.{% endmath %}
+
+#### Množinové pokrytí
+- _Vstup:_ množiny \(S_1, \ldots, S_n \subseteq \left\{1, \ldots, n\right\}\), ceny \(c_1, \ldots, c_m \ge 0\)
+- _Výstup:_ \(I \subseteq \left\{1, \ldots, m\right\}\) t. ž. \(\bigcup_{i \in I} S_i = \left\{1, \ldots, n\right\}\)
+- _Cíl:_ minimalizovat \(\sum_{i \in I} c_i\)
+
+Pro rozbor budeme potřebovat ještě dva parametry:
+- \(g = \max_{j = 1}^{m} |S_j| \le n\) (velikost největší množiny)
+- \(f = \max_{e = 1}^{n} |\left\{j \mid e \in S_j\right\}| \)(v kolika nejvíce množinách je nějaký prvek)
+
+{% math observation %}vrcholové pokrytí je množinové pokrytí s \(f \le 2\){% endmath %}
+
+{:.rightFloatBox}
+<div markdown="1">
+Program pro vrcholové pokrytí:
+- proměnné jsou binární podle vrcholů, které vybíráme
+- podmínky jsou \(\forall (u, v) \in E: x_u + x_v \ge 1\) (chceme pokrýt všechny hrany)
+- minimalizujeme \(\sum_{v \in V} x_v c_v\)
+</div>
+
+##### \(f\)-aproximační algoritmy
+
+{% math algorithm "LP relaxace" %}
+1. vytvoř celočíselný lineární program:
+	- proměnné jsou \(x_1, \ldots, x_m \ge 0\) podle **množin**
+	- podmínky jsou \(\forall e \in \left\{1, \ldots, n\right\}: \sum_{j \mid e \in S_i}^{x_j} \ge 1\) (chceme pokrýt všechny **prvky** univerza)
+	- minimalizujeme \(\sum_{i \in \left\{1, \ldots, m\right\}} x_i c_i\)
+2. zrelaxuj lineární program (proměnné jsou teď reálné)
+3. použij ho při řešení -- zvol \(v\) když \(x_v \ge \frac{1}{f}\)
+	- dává správné řešení -- argument je stejný jako u vrcholového pokrytí
+{% endmath %}
+
+{% math theorem %}algoritmus je \(f\)-aproximační.{% endmath %}
+
+{% math proof %}proměnné opět zvětšuji z \(\frac{1}{f}\) na \(1\), řešení tedy zhorším nejvýše \(f\)-krát.{% endmath %}
+
+{:.rightFloatBox}
+<div markdown="1">
+**Význam primáru (sběratel):** jak můžu nejlevněji nakoupit balíčky známek tak, abych měl všechny známky.
+
+**Význam duálu (procejce):** kolik můžu nejvíce účtovat za každou známku, aby byl sběratel ochotný balíčky koupit.
+</div>
+
+{% math observation %}duál programu vypadá následně:
+- proměnné jsou \(y_1, \ldots, y_n \ge 0\) pro každý **prvek**
+- podmínky jsou \(\forall e \in \left\{1, \ldots, m\right\}: \sum_{e \in S_j} y_e \le c_j\)
+- maximalizujeme \(\sum_{e \in S_j} y_e\)
+{% endmath %}
+
+{% math observation %}podmínky komplementarity:
+- \(\forall j: x^*_j = 0 \lor \sum y_e = c_j\)
+	- pokud by prodejce na obálce vydělal, tak ji sběratel nekoupí
+	- pokud prodejce na známce nevydělává, tak ji sběratel koupí
+- \(\forall e: y^*_e = 0 \lor \sum_{j \mid e \in S_j} x_j = 1\)
+	- pokud prodejce prodává známku zdarma, tak jí sběratel nakoupí trochu více
+	- pokud prodejce známku zdarma neprodává, tak jí sběratel nekoupí víc než potřeba
+{% endmath %}
+
+{% math algorithm "primárně-duální algoritmus" %}
+1. \(y_1, \ldots, y_n = 0; I = \emptyset, E = \emptyset\)
+2. dokud existuje nepokryté \(e \not\in E\), tak zvyšíme \(y_e\) „co nejvíce“:
+	- \(\delta = \min_{j \mid e \in S_j} \left(c_j - \sum_{e \in S_j} y_e\right)\)
+		- zvyšujeme tak, abychom splnili tu nejpřísnější duální podmínku
+	- \(y_e = y_e + \delta\)
+	- \(\forall j: e \in S_j \) a \(\sum_{e \in S_j} y_e = c_j\) přidám \(j\) do pokrytí (\(I = I \cup \left\{j\right\}\)) a \(E = E \cup S_j\)
+		- do algoritmu přidáme ty množiny, které jsme splnili ostře
+{% endmath %}
+
+{% math observation %}po přidání do algoritmu se \(y_e\) prvku nezmění (ostře splníme nějakou rovnost){% endmath %}
+
+{% math theorem %}algoritmus je \(f\)-aproximační.{% endmath %}
+
+{% math proof %}
+\[
+\begin{aligned}
+	\mathrm{ALG} &= \sum_{j \in I} c_j & // \text{definice} \\
+	&= \sum_{j \in I} \sum_{e \in S_j} y_e & // \text{definice} \\
+	&\le \sum_{e = 1}^{n} f \cdot y_e & // \text{prohození sumy + definice $f$} \\
+	&\le f \cdot \mathrm{OPT} & // \text{hodnota duálního řešení} \\
+\end{aligned}
+\]
+{% endmath %}
+
+##### \(g\)-aproximační algoritmy
+{% math algorithm "hladový" %}
+1. \(I = \emptyset, E = \emptyset, \mathcal{q}_e = 0\)
+	- \(\mathcal{q}\) je vektor indexovaný množinami, pomůže nám při analýze algoritmu
+2. opakovaně ber „nejlepší“ množinu: přidáme množinu s minimálním \(\left(p_j = \frac{c_j}{|S_j \setminus E}|\right)\)
+	- \(p_j\) odpovídá tomu, kolik zaplatíme za pokrytí nového prvku
+	- \(\forall e \in S_j \setminus E: \mathcal{q}_e = p_j\) (uložíme cenu nově pokrytých prvků)
+	- \(I = I \cup \left\{j\right\}, E = E \cup S_j\)
+{% endmath %}
+
+{% math theorem %}algoritmus je \(\left(H_g \approx \ln g \le \ln n\right)\)-aproximační{% endmath %}
+
+{% math observation %}algoritmus nemůže být lepší{% endmath %}
+
+TODO: obrázek
+
+{% math observation %}\(\mathrm{ALG} = \sum_{e = 1}^{n} \mathcal{q}_e\)
+- vyplývá z toho, že jsme cenu \(p_j\) při přidávání rozdělili do \(\mathcal{q}_e\)
+{% endmath %} 
+
+{% math lemma %}\(\overline{\mathcal{q}} = \frac{1}{H_g} \cdot \mathcal{q}\) je přípustné řešení duálního LP{% endmath %}
+
+{% math proof %}chceme dokázat, že \(\sum_{e \in S_j} \overline{\mathcal{q}_e} \le c_j\){% endmath %}
