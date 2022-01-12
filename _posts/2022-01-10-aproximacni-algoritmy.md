@@ -474,7 +474,7 @@ Předchozí algoritmus měl problémy s krátkými klauzulemi, jelikož je menš
 
 #### BIASED-SAT
 {% math algorithm "BIASED-SAT" %}
-- předpoklad: \(\forall i: \sum_{j: C_j = x_i} w_j \ge \sum_{j: C_j = \overline{x}_i}\)
+- předpoklad: \(\forall i: \sum_{j: C_j = x_i} w_j \ge \sum_{j: C_j = \overline{x}_i} w_j\)
 	- pokud nevychází, tak literál všude znegujeme
 
 1. vybereme nezávisle náhodně všechny literály
@@ -530,10 +530,10 @@ Nechť \(U\) množina klauzulí bez záporných jednotkových.
 
 \[
 \begin{aligned}
-	\mathrm{Pr}\left[C_j\ \text{není splněná}\right] &= \overbrace{\prod_{i: x_i \in C_j} (1 - y^*_i)}^{\text{kladné}} \overbrace{\prod_{i: \overline{x}_i \in C_j} y^*_i}^{\text{záporné}} \\
-	&\overset{A}{=} \left[\frac{1}{k_j} \left(\sum_{i: x_i \in C_j} (1 - y^*_i) + \sum_{i: \overline{x}_i \in C_j} y^*_i\right)\right]^{k_j} \\
-	&= \left[1 - \frac{1}{k_j} \left(\sum_{i: x_i \in C_j} y^*_i + \sum_{i: \overline{x}_i \in C_j} (1 - y^*_i)\right)\right]^{k_j} \\
-	&\le \left(1 - \frac{z_j^*}{k_j}\right)^k_j
+	\mathrm{Pr}\left[C_j\ \text{není splněná}\right] &= \overbrace{\prod_{i: x_i \in C_j} (1 - y^*_i)}^{\text{kladné}} \overbrace{\prod_{i: \overline{x}_i \in C_j} y^*_i}^{\text{záporné}} & \\
+	&\overset{A}{=} \left[\frac{1}{k_j} \left(\sum_{i: x_i \in C_j} (1 - y^*_i) + \sum_{i: \overline{x}_i \in C_j} y^*_i\right)\right]^{k_j} & \\
+	&= \left[1 - \frac{1}{k_j} \left(\sum_{i: x_i \in C_j} y^*_i + \sum_{i: \overline{x}_i \in C_j} (1 - y^*_i)\right)\right]^{k_j} & \\
+	&\le \left(1 - \frac{z_j^*}{k_j}\right)^{k_j} \qquad & //\text{definice LP}
 \end{aligned}
 \]
 
