@@ -202,6 +202,9 @@ for pattern, sub in first_substitutions:
 
 
 def replace_math(contents, tag_type, argument, opening, closing):
+    # TODO: this doesn't match web
+    # there should be no if argument != "" else : here
+    # it should just be : or not :
     tags = {
         "definition": r"**Definice"
         + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
