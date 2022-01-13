@@ -411,7 +411,7 @@ Nechť \(I^*, \left\{P_i^* \mid i \in I^*\right\}\) je optimum. Počítejme cest
 Tedy počet krátkých cest \(P_i^* \le |I| \left(\sqrt{m} + 1\right)\)
 - \(1\) -- náš algoritmus a optimum vybrali stejnou cestu
 - \(\sqrt{m}\) -- krátká cesta v našem řešení zablokuje nejvýše \(\sqrt{m}\) ostatních krátkých
-\[\mathrm{OPT} = |I^*| \le \underbrace{\sqrt{m}}_{dlouhé} + \underbrace{|I| \left(\sqrt{m} + 1\right)}_{krátké} \le \mathcal{O}(\sqrt{m}) |I| = \mathcal{O}(\sqrt{m}) \mathrm{ALG} \]
+\[\mathrm{OPT} = |I^*| \le \underbrace{\sqrt{m}}_{\text{dlouhé}} + \underbrace{|I| \left(\sqrt{m} + 1\right)}_{\text{krátké}} \le \mathcal{O}(\sqrt{m}) |I| = \mathcal{O}(\sqrt{m}) \mathrm{ALG} \]
 
 {% endmath %}
 
