@@ -119,7 +119,7 @@ Pro připomenutí:
 </div>
 
 {% math proof %} počítáme \(A_{i, j} = \mathrm{Pr}\left[\text{porovnáme $i$-tý a $j$-tý prvek}\right]\)
-- zavedeme indikátorové veličiny \(X_{i, j} = \begin{cases}1 & A_{i, j} \text{nastane} \\ 0 & \text{jinak}\end{cases}\)
+- zavedeme indikátorové veličiny \(X_{i, j} = \begin{cases}1 & A_{i, j}\ \text{nastane} \\ 0 & \text{jinak}\end{cases}\)
 
 {% math lemma %}nechť \(i < j\). Pak \(\mathrm{Pr}\left[A_{i, j}\right] = \frac{2}{j - i + 1}\){% endmath %}
 
@@ -443,7 +443,7 @@ Opět si rozmyslíme to, když cesta je v našem algoritmu a když není:
 Nyní nejprve zesdola odhadneme \(d(E)\) na konci algoritmu:
 - \(\beta^c (|OPT| - |I|)\): dolní odhad na délku cest, které algoritmus nespojil ale optimální ano
 	- každá cesta má na konci delku alespoň \(\beta^c\) a je jich alespoň \(|\mathrm{OPT}| - |I|\)
-- \(c \cdot d(E) \ge \beta^c (|\mathrm{OPT}| - |I|)\): každou hranu můžeme použít \(c\)-krát
+- \(d(E) \ge \beta^c (|\mathrm{OPT}| - |I|) / c\): každou hranu můžeme použít \(c\)-krát
 
 Poté odhadneme \(d(E)\) zeshora (opět na konci algoritmu):
 - na začátku \(d(E) = m\) (délky hran jsou jednotkové)
@@ -520,7 +520,7 @@ Uvažme \(C_j\) (a opět indikátorové veličiny \(Y_j\)):
 - \(k_j \ge 2\): \(Y_j = 1 - p^a (1 - p)^b \overset{p > \frac{1}{2}}{\ge} 1-p^{a + b} \overset{k_j \ge 2}{\ge} 1 - p^2\)
 	- \(a\) je počet kladných a \(b\) počet záporných literálů
 
-Po vyřešení \(p = 1 - p^2\) dostáváme \(p = \phi = \frac{\sqrt{5} - 1}{2}\)!
+Po vyřešení \(p = 1 - p^2\) dostáváme \(p = \phi = \frac{\sqrt{5} - 1}{2}\).
 
 Nechť \(U\) množina klauzulí bez záporných jednotkových.
 
@@ -738,9 +738,8 @@ Program pro vrcholové pokrytí:
 
 {% math lemma %}\(\overline{q} = \frac{1}{H_g} \cdot q\) je přípustné řešení duálního LP{% endmath %}
 
-{% math proof %}chceme dokázat, že \(\sum_{e \in S_j} \overline{q_e} \le c_j\)
-- nechť \(S_j = \left\{e_1, \ldots, e_k\right\}\)
-	- očíslujeme tak, že \(e_k\) je první pokrytý, \(e_{k-1}\) druhý, až \(e_1\) poslední
+{% math proof %}chceme dokázat, že \(\sum_{e \in S_j} \overline{q}_e \le c_j\) (přímo podmínka v duálu). Nechť \(S_j = \left\{e_1, \ldots, e_k\right\}\)
+- očíslujeme tak, že \(e_k\) je první pokrytý, \(e_{k-1}\) druhý, až \(e_1\) poslední
 
 {% math observation %} \(q_{e_i} \le \frac{c_j}{i}\)
 - v \(i\)-tém kroku ještě nejsou pokryté prvky \(1, \ldots, i\)
@@ -1038,7 +1037,7 @@ Součtem pro všechny množiny a dostáním opačného jevu dostáváme hledanou
 	- \(\mathrm{det}(C)\ldots\ \) příspěvek PP je \(\pm 2^{w(M)} = \pm \prod_{uv \in M} 2^{w(uv)}\)
 		- z definice determinantu (permutace nějakých indexů matice)
 3. najdeme \(W\) tak, že \(2^W\) je maximální číslo tvaru \(2^{\alpha}\) dělící \(\mathrm{det}(C)\)
-	- zajímá nás **poslední index, kde má determinant jedničku**, jelikož to odpovídá unikátnímu PP (všechny PP jsou ve tvaru \(0b1\underbrace{0000}_{w(uv)}\)
+	- zajímá nás **poslední index, kde má determinant jedničku**, jelikož to odpovídá unikátnímu PP (všechny PP jsou ve tvaru \(0b1\underbrace{0000}_{w(uv)}\))
 4. pro \(uv \in E\) spočítáme \(d = \mathrm{det}(C^{uv})\)
 	- jestliže \(2^{W - w(uv)}\) je max. číslo tvaru \(2^{\alpha}\) dělící \(d\), pak přidáme \(uv\) do \(M\)
 		- odpovídá tomu, zda párování přežilo odstranění hrany -- pokud ne, tak ho přidáme
