@@ -458,7 +458,7 @@ Po spojení nerovnic dostáváme:
 - _Vstup:_ \(C_1 \land \ldots \land C_m\), každá klauzule je disjunkcí \(k_j \ge 1\) literálů
 	- každá \(C_j\) má váhu \(w_j\) (\(= 1\) by default)
 - _Výstup:_ ohodnocení \(a \in \left\{0, 1\right\}^n\) (libovolné, i nesplnitelné!)
-- _Cíl:_ maximalizovat \sum w_i
+- _Cíl:_ maximalizovat \(\sum w_i\)
 
 {% math remark %}
 - MAX-3SAT: \(k_j \le 3\): NP těžké
@@ -598,7 +598,7 @@ Podívejme se, s jakou pravděpodobností splní klauzuli algoritmy:
 | ---     | ---                                   | ---                                          | ---                                                                   |
 | \(1\)   | \(\frac{1}{2} \ge \frac{1}{2} z_j^*\) | \(1 \cdot z_j^*\)                            | \(\frac{1}{2} \frac{1}{2} + \frac{1}{2} z_j^* \ge \frac{3}{4} z_j^*\) |
 | \(2\)   | \(\ge \frac{3}{4} z_j^*\)             | \(\frac{3}{4} \cdot z_j^*\)                  | \(\ge \frac{3}{4} z_j^*\)                                             |
-| \(3\)   | \(\ge \frac{7}{8} z_j^*\)             | \(\left(1 - \frac{1}{e}\right) \cdot z_j^*\) | \(> \frac{3}{4} z_j^*\)                                               |
+| \(\ge3\)   | \(\ge \frac{7}{8} z_j^*\)             | \(\ge\left(1 - \frac{1}{e}\right) \cdot z_j^*\) | \(> \frac{3}{4} z_j^*\)                                               |
 {% endmath %}
 
 ##### Derandomizace metodou podmíněných pravděpodobností
@@ -664,7 +664,7 @@ Program pro vrcholové pokrytí:
 <div markdown="1">
 **Význam primáru (sběratel):** jak můžu nejlevněji nakoupit balíčky známek tak, abych měl všechny známky.
 
-**Význam duálu (procejce):** kolik můžu nejvíce účtovat za každou známku, aby byl sběratel ochotný balíčky koupit.
+**Význam duálu (procejce):** kolik můžu nejvíce účtovat za každou známku, aby byl obchod ochotný kupovat známky a tvořit z nich balíčky.
 </div>
 
 {% math observation %}duál programu vypadá následně:
@@ -752,7 +752,7 @@ Nyní dostáváme
 
 Nás zajímá najít rychlý paralelní algoritmus:
 - operací chceme udělat řádově \(\mathcal{O}\left(\log n\right)\)
-- k dispozici máme řádově \(n\) procesorů (každý graf/hrana má jeden)
+- k dispozici máme řádově \(m\) procesorů (každý vrchol/hrana má jeden)
 - povolujeme procesorům najednou šahat na data a najednou měnit data **na stejnou věc**
 
 {% math algorithm "rychlý paralelní" %}
@@ -766,7 +766,7 @@ Nás zajímá najít rychlý paralelní algoritmus:
 {% endmath %}
 
 {% math definition %}vrchol je **dobrý**, jestliže má \(\ge \frac{d_v}{3}\) sousedů stupně \(\le d_v\)
-- má velkou pravděpodobnost, že ho vybereme, protože má hodně sousedů malého stupně
+- má velkou pravděpodobnost, že ho vyřešíme výběrem souseda, protože má hodně sousedů malého stupně
 - analogicky špatný vrchol a dobrá (obsahuje dobrý vrchol) a špatná hrana
 {% endmath %}
 
@@ -818,13 +818,15 @@ Pro libovolný vrchol \(v\) platí následující (jen pozor, v \(\mathrm{Pr}\) 
 
 TODO: tohle dodělat (že to nakonec vyjde logaritmicky, protože dobrých vrcholů odstraňuju konstantní část)
 
+TODO: derandomizace pomocí 2-nezávislých proměnných
+
 ### Hashovací funkce
 
 {:.rightFloatBox}
 <div markdown="1">
-**Univerzalita:** pro dva rozdílné prvky máme pro náhodnou hashovací funkci z rodiny omezenou pravděpodobnost, že se namatchují na stejnou hodnotu.
+**2-Univerzalita:** pro dva rozdílné prvky máme pro náhodnou hashovací funkci z rodiny omezenou pravděpodobnost, že se namatchují na stejnou hodnotu.
 
-**Silná univerzalita:** zahashované hodnoty \(x_1, x_2\) tvoří dvě náhodné po dvou nezávislé veličiny. Takže kromě toho, že jsou univerzální (když zafixuju jeden, tak se tím druhým trefím s pravděpodobností \(\frac{1}{n}\) to platí i pro libovolnou dvojici, na kterou prvky mapuju.
+**Silná 2-univerzalita:** zahashované hodnoty \(x_1, x_2\) tvoří dvě náhodné po dvou nezávislé veličiny. Takže kromě toho, že jsou univerzální (když zafixuju jeden, tak se tím druhým trefím s pravděpodobností \(\frac{1}{n}\) to platí i pro libovolnou dvojici, na kterou prvky mapuju.
 </div>
 {% math definition %}nechť \(M, |M| = m, N, |N| = n, H \subseteq \left\{f \mid f : M \mapsto N\right\}\)
 - systém \(H\) je \(2\)-univerzální, jestliže
@@ -885,14 +887,14 @@ Zvolíme \(n \in \left[s, 2s\right], H, h \in H\) náhodně uniformně:
 {% math lemma %}taková \(h \in H\) existuje{% endmath %}
 
 {% math proof %} \(\mathbb{E}\left[|C|\right] \overset{2-\text{univ}}{=} \binom{S}{2} \frac{1}{n} \overset{n \ge s}{=} \binom{n}{2} \cdot \frac{1}{n} \le \frac{n}{2}\){% endmath %}
-- jelikož je průměrný počet kolizí \(\le \frac{n}{2}\), tak musí existovat nějaká, která je \(\le \frac{n}{2}\)
+- jelikož je průměrný počet kolizí \(\le \frac{n}{2}\), tak musí existovat hodně takových, že \(\le \frac{n}{2}\)
 
 {% math lemma %}taková \(h_i \in H_i\) existuje{% endmath %}
 
 - vybereme \(h_i \in H_i\) tak, že má \(0\) kolizí
 
 {% math proof %} \(\mathbb{E}\left[|C_{n_i}|\right] = \binom{n_i}{2} \cdot \frac{1}{n_i^2} \le \frac{1}{2}\){% endmath %}
-- jelikož je průměrný počet kolizí \(\le \frac{1}{2}\), tak musí existovat nějaká, která je \(0\)
+- jelikož je průměrný počet kolizí \(\le \frac{1}{2}\), tak musí existovat hodně takových, že \(0\)
 {% endmath %}
 
 {% math observation %}\(|C| = \sum_{i = 1}^{n} \binom{n_i}{2} =	\sum \frac{n_i^2}{2} - \sum \frac{n_i}{2}\)
@@ -982,7 +984,7 @@ Prvky \(a_i\) budou hrany v grafu a množiny \(S_j\) budou perfektní párován�
 Chceme nějak zvolit váhy a ukázat, že nám nějak jednoznačně identifikují nějakou z množin (tedy perfektních párování).
 </div>
 
-{% math theorem %}Nechť máme systém množin \(S_1, \ldots, S_n \subseteq \left\{a_1, \ldots, a_m\right\}\) s náhodně zvolenými vahami \(w(a_1), \ldots, w(a_m) \in R\). Pak \[\mathrm{Pr}\left[\exists\ \text{jedinná}\ S_j\ \text{s minimální}\ w(S_j)\right] \ge 1 - \frac{m}{r}\]
+{% math theorem %}Nechť máme systém množin \(S_1, \ldots, S_n \subseteq \left\{a_1, \ldots, a_m\right\}\) s náhodně zvolenými vahami \(w(a_1), \ldots, w(a_m) \in R\). Pak \[\mathrm{Pr}\left[\exists\ \text{právě jedinná}\ S_j\ \text{s minimální}\ w(S_j)\right] \ge 1 - \frac{m}{r}\]
 {% endmath %}
 
 {% math proof %}\(A_i \ldots\ \) jev, že existují \(S_k, S_l\) tak, ze \(w(S_k) = w(S_l) = \min_j w(S_j)\) a \(a_i \not\in S_k, a_i \in S_l\)
