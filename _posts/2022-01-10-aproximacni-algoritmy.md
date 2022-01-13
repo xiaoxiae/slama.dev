@@ -30,7 +30,9 @@ category: "poznámky z přednášky"
 
 {:.rightFloatBox}
 <div markdown="1">
-Pro minimalizační zajišťujeme, že naše je vždy dostatečně malé (ne větší než \(R \cdot \mathrm{OPT}\). Pro maximalizační zajišťujeme, že je vždy dost velké (ne menší než \(\mathrm{OPT} / R\)).
+Pro minimalizační zajišťujeme, že naše je vždy dostatečně malé.
+
+Pro maximalizační zajišťujeme, že je vždy dostatečně velké.
 </div>
 
 {% math definition %}Algoritmus \(A\) je \(R\)-aproximační alg., pokud:
@@ -132,7 +134,31 @@ Pro připomenutí:
 {% endmath %}
 
 ### Konflikty v distribuovaných systémech
-TODO: ze skript
+- \(n\) procesorů se snaží o přístup k jednomu zdroji
+- přímá komunikace není možná
+- v každém cylku může každý procesor požadovat přístup
+	- povede se pouze, když o něho žádá jeden
+
+{% math algorithm %}
+1. v každém cylku zkus s pravděpodobností \(p\) přistoupit ke zdroji
+2. opakuj, dokud se ti to nepovede
+{% endmath %}
+
+{% math theorem %}algoritmus s \(p = \frac{1}{n}\) s pravděpodobností alespoň \(1 - \frac{1}{n}\) uspěje po \(t = 2 en \ln n\) cyklech.{% endmath %}
+
+{% math proof %}
+Modifikujme algoritmus, aby zkoušel přistupovat i po té, co ho získal (lehčí počítání, které pouze zhorší pravděpodobnost úspěchu).
+
+Nechť \(A_{i, r}\) je jev, že \(i\)-tý proces upěl v \(r\)-tém cyklu. Pak
+\[\mathrm{Pr}\left[A_{i, r}\right] = p \cdot \left(1 - p\right)^{n - 1} = \frac{1}{n} \left(1 - \frac{1}{n}\right)^{n - 1} \ge \frac{1}{en}\]
+
+Nyní počítáme \(F_{i, t}\) které říká, že \(i\)-tý proces neuspěje v žádném z \(t = 2 en \ln n\) cyklů:
+\[\mathrm{Pr}\left[F_{i, t}\right] = \prod_{r = 1}^{t} \left(1 - A_{i, r}\right) \le \left(1 - \frac{1}{en}\right)^t = \left(\left(1 - \frac{1}{en}\right)^{en}\right)^{\frac{t}{en}} \le n^{-2}\]
+
+To, že neexistuje proces, který neuspěje, odhadneme jako
+\[\mathrm{Pr}\left[\bigcup_{i = 1}^{n} F_{i, t}\right] \le \sum_{i = 1}^{n} \mathrm{Pr}\left[F_{i, t}\right] \le n \cdot n^{-2} = n^{-1} = \frac{1}{n}\]
+{% endmath %}
+
 
 ### Globální minimální řez
 - _Vstup:_ neorientovaný graf \((V, E)\)
@@ -275,7 +301,7 @@ Prostě přesouváme stroje, které končí nejpozději někam, aby začínaly d
 
 {% math theorem "silnější odhad pro lokální algoritmus" %}algoritmus je \(\left(2 - \frac{1}{m}\right)\)-aproximační.{% endmath %}
 
-#### LPT (largest processing time)
+#### Largest Processing Time (LPT)
 {% math algorithm "LPT" %}
 1. úlohy uspořádáme tak, že \(p_1 \ge p_2 \ge \ldots \ge p_n\)
 2. použijeme hladový algoritmus
@@ -322,7 +348,7 @@ BUNO předpokládejme, že \(p_n\) určuje délku rozvrhu (kdyby ne tak na dalš
 
 {% math theorem %}Je NP těžké najít \(R\)-aproximační algoritmus pro \(R \le 3/2\){% endmath %}
 
-{% math proof %}Je NP těžké rozhodnout, zda \(\mathrm{OPT} = 2\), jelikož to můžeme přímočaře převést na problém, kde dělím množinu na dvě časti se stejným součtem.{% endmath %}
+{% math proof %}Je NP těžké rozhodnout, zda \(\mathrm{OPT} = 2\), jelikož pomocí něho můžeme přímočaře vyřešit problém dělení množiny na dvě časti se stejným součtem (nastavíme velikost košů na tenhle součet), což je NP těžké.{% endmath %}
 
 {% math theorem %}Existuje asymptotické aproximační schéma, t. j. \[(\forall \varepsilon) (\exists \mathrm{ALG}) (\forall I) \mathrm{ALG}(I) \le (1 + \varepsilon)\mathrm{OPT}(I) + 1\]{% endmath %}
 
