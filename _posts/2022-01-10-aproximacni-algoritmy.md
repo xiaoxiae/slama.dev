@@ -12,7 +12,7 @@ pdf: true
 
 ### Základní definice
 
-{% math definition "Optimalizační problém" %} je \(\mathcal{I}, \mathcal{F}, f, g\)
+{% math definition: "Optimalizační problém" %} je \(\mathcal{I}, \mathcal{F}, f, g\)
 - \(\mathcal{I} \ldots\) množina všech vstupů/instancí
 	- _množina všech ohodnocených grafů_
 - \(\forall I \in \mathcal{I}: \mathcal{F}(I) \ldots\) množina přípustných řešení
@@ -23,7 +23,7 @@ pdf: true
 	- _maximalizujeme_
 {% endmath %}
 
-{% math definition "NP-Optimalizační problém" %}je \(\mathcal{I}, \mathcal{F}, f, g\), pro které platí stejné věci jako pro normální optimalizační problémy, ale navíc
+{% math definition: "NP-Optimalizační problém" %}je \(\mathcal{I}, \mathcal{F}, f, g\), pro které platí stejné věci jako pro normální optimalizační problémy, ale navíc
 - délka přípustných řešení \(\le \mathrm{poly}(|I|)\).
 - jazyk dvojic \((I, A), I \in \mathcal{I}, A \in \mathcal{F}(I)\) je v \(P\) (rychle umíme ověřit, zda je řešení přípustné)
 - \(f\) počitatelná v polynomiálním čase
@@ -36,7 +36,7 @@ Pro minimalizační zajišťujeme, že naše je vždy dostatečně malé.
 Pro maximalizační zajišťujeme, že je vždy dostatečně velké.
 </div>
 
-{% math definition %}Algoritmus \(A\) je \(R\)-aproximační alg., pokud:
+{% math definition %}algoritmus \(A\) je \(R\)-aproximační alg., pokud:
 - v polynomiálním čase v \(|I|\) na vstupu \(I\) najde \(A \in \mathcal{F}(I)\)
 - pro minimalizační problém: \(\forall I: f(A) \le R \cdot \mathrm{OPT}(I)\)
 - pro maximalizační problém: \(\forall I: f(A) \ge \mathrm{OPT}(I) / R\)
@@ -73,7 +73,7 @@ Pro maximalizační zajišťujeme, že je vždy dostatečně velké.
 
 {% math theorem %}algoritmus je \(2\)-aproximační.{% endmath %}
 
-{% math proof %}Kostra je nejvýše tak velká, jako optimální řešení a tenhle algoritmus je lepší než \(2\) kostry (díky trojúhelníkové nerovnosti a symetrii -- procházíme i tam i zpět){% endmath %}
+{% math proof %}kostra je nejvýše tak velká, jako optimální řešení a tenhle algoritmus je lepší než \(2\) kostry (díky trojúhelníkové nerovnosti a symetrii -- procházíme i tam i zpět){% endmath %}
 
 #### Christofidesův algoritmus
 {% math observation %}brát hrany dvakrát je plýtvání -- pospojujeme liché vrcholy přes minimální párování, abychom nemuseli chodit tam a zpět{% endmath %}
@@ -109,7 +109,7 @@ Alespoň jeden z párování v cylku bude \(\le \frac{1}{2} \mathrm{OPT}\), jeli
 5. vystoupíme \(A, p, B\)
 {% endmath %}
 
-{% math theorem %}Quicksort má průměrnou časovou složitost \(n \cdot \log n\).{% endmath %}
+{% math theorem %}quicksort má průměrnou časovou složitost \(n \cdot \log n\).{% endmath %}
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -121,9 +121,9 @@ Pro připomenutí:
 {% math proof %} počítáme \(A_{i, j} = \mathrm{Pr}\left[\text{porovnáme $i$-tý a $j$-tý prvek}\right]\)
 - zavedeme indikátorové veličiny \(X_{i, j} = \begin{cases}1 & A_{i, j} \text{nastane} \\ 0 & \text{jinak}\end{cases}\)
 
-{% math lemma %}Nechť \(i < j\). Pak \(\mathrm{Pr}\left[A_{i, j}\right] = \frac{2}{j - i + 1}\){% endmath %}
+{% math lemma %}nechť \(i < j\). Pak \(\mathrm{Pr}\left[A_{i, j}\right] = \frac{2}{j - i + 1}\){% endmath %}
 
-{% math proof %}To, že se dva prvky porovnají musí znamentat, že jeden z jich byl pivot, ale žádný mezi nimi pivot nebyl (jelikož by je to rozdělilo). Musíme tedy vybrat právě jeden z těchto dvou z intervalu \(\left[i, j\right]\), kde je celkově \(j - i + 1\) čísel.{% endmath %}
+{% math proof %}to, že se dva prvky porovnají musí znamentat, že jeden z jich byl pivot, ale žádný mezi nimi pivot nebyl (jelikož by je to rozdělilo). Musíme tedy vybrat právě jeden z těchto dvou z intervalu \(\left[i, j\right]\), kde je celkově \(j - i + 1\) čísel.{% endmath %}
 
 Sečtením přes všechny dvojice \(i < j\) dostaváme následující:
 \[
@@ -192,14 +192,13 @@ To, že neexistuje proces, který neuspěje, odhadneme jako
 - umíme ho implementovat rychle (řádově \(\mathcal{O}(n^2 \cdot \log n)\))
 - opravdu produkuje řez, protože vrcholy mezi výslednými komponentami danými vrcholy nemizí
 
-{% math lemma %}Multigraf s \(n\) vrcholy a min. řezem velikosti \(k\) má alespoň \(kn/2\) hran.{% endmath %}
+{% math lemma %}multigraf s \(n\) vrcholy a min. řezem velikosti \(k\) má alespoň \(kn/2\) hran.{% endmath %}
 
 {% math proof %}\(\forall v\), hrany incidentní s \(v\) tvoří řez, proto musí platit \(\forall v: d_v \ge k\). Dosazením dostáváme \[|E| = \frac{1}{2} \sum_{v} d_v \ge \frac{1}{2} nk \]{% endmath %}
 
-{% math theorem %}Pravděpodobnost, že najdeme daný minimální řez \(C\) je alespoň \(\binom{n}{2}^{-1} = \frac{2}{n \cdot (n - 1)}\).{% endmath %}
+{% math theorem %}pravděpodobnost, že najdeme daný minimální řez \(C\) je alespoň \(\binom{n}{2}^{-1} = \frac{2}{n \cdot (n - 1)}\).{% endmath %}
 
-{% math proof %}
-Nechť \(A_i\) jev, že v prvních \(i\) iteracích jsme nevybrali hranu z \(C\).
+{% math proof %}nechť \(A_i\) jev, že v prvních \(i\) iteracích jsme nevybrali hranu z \(C\).
 
 - \(\mathrm{Pr}[A_0] = 1\) (žádnou jsme ještě nevybrali)
 - \(\mathrm{Pr}[A_1] \ge 1 - \frac{k}{nk / 2} = 1 - \frac{2}{n}\)
@@ -215,14 +214,14 @@ Nechť \(A_i\) jev, že v prvních \(i\) iteracích jsme nevybrali hranu z \(C\)
 \]
 {% endmath %}
 
-{% math consequence %}Každý graf \(G\) má \(\le \binom{n}{2}\) globálních minimálních řezů.{% endmath %}
+{% math consequence %}každý graf \(G\) má \(\le \binom{n}{2}\) globálních minimálních řezů.{% endmath %}
 - jeden takový je například cyklus \(k = 2\) -- ten má opravdu řádově tolik řezů
 
-{% math proof %}Každý běh algoritmu vystoupí právě jeden řez. Kdyby jich bylo více, tak nám pravděpodobnost nevychází (jevy jsou disjunktní).{% endmath %}
+{% math proof %}každý běh algoritmu vystoupí právě jeden řez. Kdyby jich bylo více, tak nám pravděpodobnost nevychází (jevy jsou disjunktní).{% endmath %}
 
 {% math observation %}Pro \(n^2\) opakování algoritmu výše dostáváme nejmenší řez s pravděpodobností \(\ge \frac{1}{2}\){% endmath %}
 
-{% math remark %}Algoritmus můžeme vylepšit tak, že části, ve kterých se nejvíce dělají chyby (konkrétně ty pozdější) opakujeme vícekrát (a vezmeme minimum).{% endmath %}
+{% math remark %}algoritmus můžeme vylepšit tak, že části, ve kterých se nejvíce dělají chyby (konkrétně ty pozdější) opakujeme vícekrát (a vezmeme minimum).{% endmath %}
 
 ### Rozvrhování
 - _Vstup:_ \(m\) strojů, \(n\) úloh, každá o délce \(p_i\)
@@ -237,7 +236,7 @@ Nechť \(A_i\) jev, že v prvních \(i\) iteracích jsme nevybrali hranu z \(C\)
 
 {% math theorem "slabší odhad" %}hladový rozvrhovací algoritmus je \(2\)-aproximační.{% endmath %}
 
-{% math proof %}obrázkem:
+{% math proof %}
 
 {% xopp rozvrh %}
 
@@ -302,7 +301,7 @@ Prostě přesouváme stroje, které končí nejpozději někam, aby začínaly d
 
 {% math observation %}Každou úlohu přesuneme nejvýše jednou.{% endmath %}
 
-{% math proof %}Jelikož ji přesouváme na stroj s minimální délkou, tak by musel existovat nějaký s ještě menší, což by byl spor s tím, jak algoritmus funguje (dáváme na nejmenší).{% endmath %}
+{% math proof %}jelikož ji přesouváme na stroj s minimální délkou, tak by musel existovat nějaký s ještě menší, což by byl spor s tím, jak algoritmus funguje (dáváme na nejmenší).{% endmath %}
 
 {% math consequence %}algoritmus je polynomiální.{% endmath %}
 
@@ -364,7 +363,7 @@ BUNO předpokládejme, že \(p_n\) určuje délku rozvrhu (kdyby ne tak na dalš
 - zahrnuje jak best fit, tak first fit
 {% endmath %}
 
-{% math theorem %}Každý any fit algoritmus má aproximační poměr \(\le 2\).{% endmath %}
+{% math theorem %}každý any fit algoritmus má aproximační poměr \(\le 2\).{% endmath %}
 
 {% math proof %}Pro \(\mathrm{OPT} = 1\) triviální. Jinak nechť \(B_i = \sum_{j \in I_i} a_j\). Musí platit, že \((\forall i, j, i \neq j) B_i + B_j > 1\) (jinak spor s během algoritmu). Posčítáním pro všechny dvojice dostáváme \[\frac{m}{2} < \sum_{i = 1}^{m} B_i = \sum_{j = 1}^{n} a_j \le \mathrm{OPT}\]
 {% endmath %}
@@ -779,6 +778,11 @@ Nás zajímá najít rychlý paralelní algoritmus:
 		- sousedy množiny \(S\) značíme \(N(S)\)
 {% endmath %}
 
+{:.rightFloatBox}
+<div markdown="1">
+Chceme, aby se graf v každé iteraci zmenšil o nějakou část a iterací bylo tedy logaritmicky. Uděláme to počítání toho, že máme hodně dobrých hran a že jich hodně zmizí.
+</div>
+
 {% math definition %}vrchol je **dobrý**, jestliže má \(\ge \frac{d_v}{3}\) sousedů stupně \(\le d_v\)
 - má velkou pravděpodobnost, že ho vyřešíme výběrem souseda, protože má hodně sousedů malého stupně
 - analogicky špatný vrchol a dobrá (obsahuje dobrý vrchol) a špatná hrana
@@ -788,22 +792,25 @@ Nás zajímá najít rychlý paralelní algoritmus:
 
 {% math proof %}hrany zorientujeme od menšího k většímu stupni (rovnost řešíme libovolně)
 - \(v\) špatný \(\implies d_v^{\mathrm{in}} < \frac{d_v}{3}\)
-	- z definice -- vstupující jsou stejného menšího stupně, takže by jinak byl dobrý
-	- tedy \(\ge \frac{2 d_v}{3}\) vstupuje a platí \(d_v^{\mathrm{in}} \le \frac{1}{2} d_v^{\mathrm{out}}\)
+	- z definice -- vstupující jsou stejného nebo menšího stupně, takže jich má málo, jinak by byl dobrý
+	- \(> \frac{2 d_v}{3}\) vstupuje a platí \(d_v^{\mathrm{in}} \le \frac{1}{2} d_v^{\mathrm{out}}\)
+
+{% xopp spatny %}
 
 Nyní počítáme
 \[
 \begin{aligned}
 	|\text{špatné hrany}| &\le \sum_{v\ \text{špatný}} d_v^{\mathrm{in}} &\qquad //\text{špatná hrana jde do špatného vrcholu} \\
 	&\le \sum_{v\ \text{špatný}} \frac{1}{2} d_v^{\mathrm{out}} &\qquad //\text{nerovnost výše} \\
-	&\le \frac{1}{2}|E| &\qquad //\text{posčítáním přes všechny vrcholy platí}
+	&\le \sum_{v \in E} \frac{1}{2} d_v^{\mathrm{out}} \\
+	&\le \frac{1}{2}|E|
 \end{aligned}
 \]
 {% endmath %}
 
 {:.rightFloatBox}
 <div markdown="1">
-Pravděpodobnost, že dobrý vrchol odstraním (buď označením toho vrcholu samotného nebo nějakého jeho souseda) je nějaká konstanta.
+Pravděpodobnost, že dobrý vrchol odstraním (buď označením toho vrcholu samotného nebo nějakého jeho souseda) je \(\alpha > 0\).
 </div>
 
 {% math lemma %}existuje \(\alpha > 0\) t. ž. \(\forall v\) **dobrý** platí \[\mathrm{Pr}\left[v \in S \cup N(S)\right] \ge \alpha\]
@@ -813,7 +820,7 @@ Pravděpodobnost, že dobrý vrchol odstraním (buď označením toho vrcholu sa
 Pro dobrý vrchol \(v\) platí následující:
 \[
 \begin{aligned}
-	\mathrm{Pr}\left[v\ \text{má souseda označeného v kroku 2}\right] &\ge 1 - \prod_{w \in N(v)} \overbrace{\left(1 - \frac{1}{2d_w}\right)}^{\text{neoznačíme souseda}} \\
+	\mathrm{Pr}\left[v\ \text{má souseda označeného v kroku 2}\right] &\ge 1 - \overbrace{\prod_{w \in N(v)} \left(1 - \frac{1}{2d_w}\right)}^{\text{neoznačíme žádného souseda}} \\
 	& \ge 1 - \left(1 - \frac{1}{2d_v}\right)^{\frac{d_v}{3}} \qquad // \text{lemma výše}\\
 	& = \text{konstanta} \\
 \end{aligned}
@@ -822,15 +829,22 @@ Pro dobrý vrchol \(v\) platí následující:
 Pro libovolný vrchol \(v\) platí následující (jen pozor, v \(\mathrm{Pr}\) používáme podmíněně, že \(v\) byl označený):
 \[
 \begin{aligned}
-	\mathrm{Pr}\left[\text{odstraníme značku u}\ v\right] &= \mathrm{Pr}\left[\exists u \in N(v): d_u \ge d_w \land u\ \text{byl označený}\right] \\
+	\mathrm{Pr}\left[\text{odstraníme značku}\right] &= \mathrm{Pr}\left[\text{je označený soused s větším stupněm}\right] \\
+	&= \mathrm{Pr}\left[\exists u \in N(v): d_u \ge d_w \land u\ \text{byl označený}\right] \\
 	&\le \sum_{u \in N(v) \mid d_u \ge d_v} \mathrm{Pr}\left[u\ \text{byl označený}\right] \\
-	&\le \sum_{w \in N(v)} d_w \cdot \frac{1}{2d_w} \le \frac{1}{2}
+	&\le \sum_{w \in N(v)} d_w \cdot \frac{1}{2d_w} \\
+	&\le \frac{1}{2}
 \end{aligned}
 \]
-
 {% endmath %}
 
-TODO: tohle dodělat (že to nakonec vyjde logaritmicky, protože dobrých vrcholů odstraňuju konstantní část)
+{% math theorem %}očekávaný počet fází algoritmu je \(\le \mathcal{O}(\log n)\){% endmath %}
+
+{% math proof %}nechť \(M_i = \) počet hran po \(i\) fázích. Platí, že \(\mathbb{E}\left[|M_{i + 1}|\right] \le \left(1 - \frac{\alpha}{2}\right) \mathbb{E}\left[|M_i|\right]\)
+- podle lemmatu je \(\ge M_i / 2\) hran dobrých a dobrá hrana je odebrána s \(p = \alpha\)
+
+Tedy po logaritmicky mnoho krocích (v \(m\) nebo \(n\)) odstraníme všechny hrany pravděpodobností alespoň \(\frac{1}{2}\).
+{% endmath %}
 
 TODO: derandomizace pomocí 2-nezávislých proměnných
 
@@ -899,14 +913,12 @@ Zvolíme \(n \in \left[s, 2s\right], H, h \in H\) náhodně uniformně:
 - vybereme \(h \in H\) tak, že má \(\le n\) kolizí
 	- kolize \(C = \left\{\left\{x, y\right\} \mid x, y \in M, x \neq y, h(x) = h(y)\right\}\)
 
-{% math lemma %}taková \(h \in H\) existuje{% endmath %}
+{% math lemma %}existuje \(h \in H\) s počtem kolizí \(\le n\).{% endmath %}
 
-{% math proof %} \(\mathbb{E}\left[|C|\right] \overset{2-\text{univ}}{=} \binom{S}{2} \frac{1}{n} \overset{n \ge s}{=} \binom{n}{2} \cdot \frac{1}{n} \le \frac{n}{2}\){% endmath %}
+{% math proof %} \(\mathbb{E}\left[|C|\right] \overset{2-\text{univ}}{=} \binom{s}{2} \frac{1}{n} \overset{s \le n}{\le} \binom{n}{2} \cdot \frac{1}{n} \le \frac{n}{2}\){% endmath %}
 - jelikož je průměrný počet kolizí \(\le \frac{n}{2}\), tak musí existovat hodně takových, že \(\le \frac{n}{2}\)
 
-{% math lemma %}taková \(h_i \in H_i\) existuje{% endmath %}
-
-- vybereme \(h_i \in H_i\) tak, že má \(0\) kolizí
+{% math lemma %}existuje \(h_i \in H\) s počtem kolizí \(0\).{% endmath %}
 
 {% math proof %} \(\mathbb{E}\left[|C_{n_i}|\right] = \binom{n_i}{2} \cdot \frac{1}{n_i^2} \le \frac{1}{2}\){% endmath %}
 - jelikož je průměrný počet kolizí \(\le \frac{1}{2}\), tak musí existovat hodně takových, že \(0\)
@@ -959,7 +971,7 @@ Budeme používat trochu divný vstup:
 - _Vstup:_ matice polynomů proměnných, determinant určuje náš polynom
 - _Výstup:_ ANO, jestliže je polynom identicky nulový, jinak NE
 
-{% math lemma %}nechť \(P(x_1, \ldots, x_n)\) je nenulový polynom nad \(K\) stupně \(\le d_i\) a \(S \subseteq K\) konečná. Nechť \(x_1, \ldots, x_n \in S\) unif. náhodně. Pak \[\mathrm{Pr}_{\vec{x}} \left[P(\vec{x}) = 0\right] \le \frac{d}{|S|}\]
+{% math lemma %}nechť \(P(x_1, \ldots, x_n)\) je **nenulový** polynom nad \(K\) stupně \(\le d_i\) a \(S \subseteq K\) konečná. Nechť \(x_1, \ldots, x_n \in S\) unif. náhodně. Pak \[\mathrm{Pr}_{\vec{x}} \left[P(\vec{x}) = 0\right] \le \frac{d}{|S|}\]
 - \(n = 1 \ldots\ \) polynom má nejvýše \(d\) kořenů, ať zvolíme \(s\) jakkoliv
 - je to dost šikovné, protože podle \(|S|\) si volíme přesnost algoritmu (pro \(|S| \ge 2d\) máme \(\ge \frac{1}{2}\))
 {% endmath %}
@@ -999,25 +1011,25 @@ Prvky \(a_i\) budou hrany v grafu a množiny \(S_j\) budou perfektní párován�
 Chceme nějak zvolit váhy a ukázat, že nám nějak jednoznačně identifikují nějakou z množin (tedy perfektních párování).
 </div>
 
-{% math theorem %}Nechť máme systém množin \(S_1, \ldots, S_n \subseteq \left\{a_1, \ldots, a_m\right\}\) s náhodně zvolenými vahami \(w(a_1), \ldots, w(a_m) \in R\). Pak \[\mathrm{Pr}\left[\exists\ \text{právě jedinná}\ S_j\ \text{s minimální}\ w(S_j)\right] \ge 1 - \frac{m}{r}\]
+{% math theorem %}Nechť máme systém množin \(S_1, \ldots, S_n \subseteq \left\{a_1, \ldots, a_m\right\}\) s náhodně zvolenými vahami \(w(a_1), \ldots, w(a_m) \in R, |R| = r\). Pak \[\mathrm{Pr}\left[\exists\ \text{právě jedinná}\ S_j\ \text{s minimální}\ w(S_j)\right] \ge 1 - \frac{m}{r}\]
+- pro naše použití budeme chtít \(r = 2m\)
 {% endmath %}
 
 {% math proof %}\(A_i \ldots\ \) jev, že existují \(S_k, S_l\) tak, ze \(w(S_k) = w(S_l) = \min_j w(S_j)\) a \(a_i \not\in S_k, a_i \in S_l\)
 - existují dvě minimální množiny, které se liší v prvku \(i\) (špatný jev)
 - když nenastane žádný s jevů \(A_i\), pak máme vyhráno, jelikož dvě minimální neexistují
-	- máme systém množin -- nestane se, že by dvě stejnoprvkové množiny měly stejnou váhu
 
-Ukážeme, že \(\mathrm{Pr}\left[A_i\right] \le \frac{1}{r}\)
-
-\(S_1, \ldots, S_n\) rozdělím na 
+Ukážeme, že \(\mathrm{Pr}\left[A_i\right] \le \frac{1}{r}\). \(S_1, \ldots, S_n\) rozdělíme na dvě množiny podle \(i\):
 - \(\mathcal{S}_0 = \left\{j \mid a_i \not\in S_j\right\}\)
 - \(\mathcal{S}_1 = \left\{j \mid a_i \in S_j\right\}\)
 
-Pokud \(A_i\) nastane, pak platí 
+Pokud \(A_i\) nastane, pak platí
 - pro \(S_k\): \(k \in \mathcal{S}_0, w(S_k) = \min_{j \in \mathcal{S}_0} w(S_j)\)
 - pro \(S_l\): \(l \in \mathcal{S}_1, w(S_l) = \min_{j \in \mathcal{S}_1} w(S_j)\)
 
 Pak (když zafixujeme všechny váhy a vybíráme váhu \(a_i\)) platí \[\mathrm{Pr}_{w(a_i) \in R}\left[w(S_k) = w(S_l) \mid w(a_i'), i' \neq i\ \text{vybrána}\right] \le \frac{1}{r}\]
+
+Součtem pro všechny množiny a dostáním opačného jevu dostáváme hledanou nerovnost.
 {% endmath %}
 
 {% math algorithm "rychlý paralelní algoritmus pro PP" %}
@@ -1027,8 +1039,12 @@ Pak (když zafixujeme všechny váhy a vybíráme váhu \(a_i\)) platí \[\mathr
 		- z definice determinantu (permutace nějakých indexů matice)
 3. najdeme \(W\) tak, že \(2^W\) je maximální číslo tvaru \(2^{\alpha}\) dělící \(\mathrm{det}(C)\)
 	- zajímá nás **poslední index, kde má determinant jedničku**, jelikož to odpovídá unikátnímu PP (všechny PP jsou ve tvaru \(0b1\underbrace{0000}_{w(uv)}\)
-4. pro \(uv \in E\) spočítáme \(d = \mathcal{\mathrm{det}(C^{uv})}\)
+4. pro \(uv \in E\) spočítáme \(d = \mathrm{det}(C^{uv})\)
 	- jestliže \(2^{W - w(uv)}\) je max. číslo tvaru \(2^{\alpha}\) dělící \(d\), pak přidáme \(uv\) do \(M\)
 		- odpovídá tomu, zda párování přežilo odstranění hrany -- pokud ne, tak ho přidáme
 6. zkontrolujeme, že \(M\) je PP (mohli jsme vygenerovat nesmysl)
 {% endmath %}
+
+### Odkazy
+- [Webová stránka předmětu](https://iuuk.mff.cuni.cz/~sgall/vyuka/BCALG/)
+- [Odkaz na skripta](https://iuuk.mff.cuni.cz/~sgall/vyuka/BCALG/bcalg.pdf) (pozor, jsou vcelku nedopsaná)
