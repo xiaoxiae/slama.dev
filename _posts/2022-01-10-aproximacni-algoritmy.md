@@ -626,7 +626,7 @@ Neformálně: postupně plníme klauzule tak, že náhodně vybíráme pravděpo
 {% math proof %}proměnné jsme z \(\ge \frac{1}{2}\) zaokrlouhlovali na \(1\), čímž jsme řešení max. zdvojnásobili.{% endmath %}
 
 #### Množinové pokrytí
-- _Vstup:_ množiny \(S_1, \ldots, S_n \subseteq \left\{1, \ldots, n\right\}\), ceny \(c_1, \ldots, c_m \ge 0\)
+- _Vstup:_ množiny \(S_1, \ldots, S_m \subseteq \left\{1, \ldots, n\right\}\), ceny \(c_1, \ldots, c_m \ge 0\)
 - _Výstup:_ \(I \subseteq \left\{1, \ldots, m\right\}\) t. ž. \(\bigcup_{i \in I} S_i = \left\{1, \ldots, n\right\}\)
 - _Cíl:_ minimalizovat \(\sum_{i \in I} c_i\)
 
@@ -649,7 +649,7 @@ Program pro vrcholové pokrytí:
 {% math algorithm "LP relaxace" %}
 1. vytvoř celočíselný lineární program:
 	- proměnné jsou \(x_1, \ldots, x_m \ge 0\) podle **množin**
-	- podmínky jsou \(\forall e \in \left\{1, \ldots, n\right\}: \sum_{j \mid e \in S_i} x_j \ge 1\) (chceme pokrýt všechny **prvky** univerza)
+	- podmínky jsou \(\forall e \in \left\{1, \ldots, n\right\}: \sum_{j \mid e \in S_i} x_j \ge 1\) (chceme pokrýt všechny prvky univerza)
 	- minimalizujeme \(\sum_{i \in \left\{1, \ldots, m\right\}} x_i c_i\)
 2. zrelaxuj lineární program (proměnné jsou teď reálné)
 3. použij ho při řešení -- zvol \(v\) když \(x_v \ge \frac{1}{f}\)
@@ -767,7 +767,7 @@ Nás zajímá najít rychlý paralelní algoritmus:
 
 {% math definition %}vrchol je **dobrý**, jestliže má \(\ge \frac{d_v}{3}\) sousedů stupně \(\le d_v\)
 - má velkou pravděpodobnost, že ho vybereme, protože má hodně sousedů malého stupně
-- analogicky špatný vrchol a dobrá/špatná hrana
+- analogicky špatný vrchol a dobrá (obsahuje dobrý vrchol) a špatná hrana
 {% endmath %}
 
 {% math lemma %}alespoň polovina hran je dobrá.{% endmath %}
@@ -829,7 +829,7 @@ TODO: tohle dodělat (že to nakonec vyjde logaritmicky, protože dobrých vrcho
 {% math definition %}nechť \(M, |M| = m, N, |N| = n, H \subseteq \left\{f \mid f : M \mapsto N\right\}\)
 - systém \(H\) je \(2\)-univerzální, jestliže
 \[\left(\forall x_1, x_2 \in M, x_1 \neq x_2\right)\\
-\mathrm{Pr}_{h \in H} \left[h(x_1) = h(x_2)\right] \le \frac{1}{n}\]
+\mathrm{Pr}_{h \in H} \left[h(x_1) = h(x_2)\right] \le 1 / n\]
 
 - systém \(H\) je **silně** \(2\)-univerzální, jestliže
 \[\left(\forall x_1, x_2 \in M, x_1 \neq x_2\right) \left(\forall y_1, y_2 \in N\right)\\
@@ -861,18 +861,21 @@ Zvolíme \(n \in \left[s, 2s\right], H, h \in H\) náhodně uniformně:
 
 {% math lemma %}pokud \(n = \mathcal{O}(s)\), tak průměrná doba operace je \(\mathcal{O}(1)\){% endmath %}
 
-{% math proof %}(\(\forall x \in S) \mathbb{E}\left[n_{h(x)}\right] = \mathcal{O}(1)\)
+{% math proof %}chceme (\(\forall x \in S)\ \mathbb{E}\left[n_{h(x)}\right] = \mathcal{O}(1)\). Budeme počítat počet kolizí na jeden prvek:
 - nechť \(X_y = \begin{cases} 1 & h(y) = h(x) \\ 0 & \text{jinak} \end{cases}\)
-- jelikož \((\forall x, y, x \neq y)\ h(x), h(y)\) jsou nezávislé, tak \(\mathbb{E}\left[X_y\right] = \frac{1}{n}\)
-- pak \(\mathbb{E}\left[n_{h(x)}\right] = 1 + \sum_{y \neq x} \mathbb{E}\left[X_y\right] = 1 + \frac{s - 1}{n} = \mathcal{O}(1)\)
+- jelikož \((\forall x, y, x \neq y)\ h(x), h(y)\) jsou nezávislé, tak \(\mathbb{E}\left[X_y\right] = \frac{1}{n}\):
+
+\[\mathbb{E}\left[n_{h(x)}\right] = \overset{\text{prvek}\ x}{1} + \overbrace{\sum_{y \neq x} \mathbb{E}\left[X_y\right]}^{\#\ \text{kolizí} = \text{délka}\ n_{h(x)}} = 1 + \frac{s - 1}{n} = \mathcal{O}(1)\]
 {% endmath %}
 
 #### Statický slovník
 {% math example "statický slovník" %} \(S\) je dáno předem
 - vytvoříme datastrukturu v polynomiálním čase
 - chceme, aby operace vyhledání běžela v **maximálním** čase \(\mathcal{O}\left(1\right)\)
-	- to jsme předtím neměli -- seznam mohl být dlouhý
+	- to jsme předtím neměli -- seznam mohl být dlouhý a maximální počet operací velký
 - použijeme tabulky dvě:
+	- hashujeme dvakrát -- jednou pro index do první tabulky, ta určí funkci pro druhé hashování
+	- v první budeme chtít \(\le n\) kolizí, ve druhé \(= 0\)
 
 {% xopp static %}
 
@@ -881,14 +884,14 @@ Zvolíme \(n \in \left[s, 2s\right], H, h \in H\) náhodně uniformně:
 
 {% math lemma %}taková \(h \in H\) existuje{% endmath %}
 
-{% math proof %} \(\mathbb{E}\left[|C|\right] \overset{2-\text{univ}}{=} \binom{S}{2} \frac{1}{n} \overset{n \ge s}{=} \binom{n}{2} \cdot \frac{1}{n} < \frac{n}{2}\){% endmath %}
+{% math proof %} \(\mathbb{E}\left[|C|\right] \overset{2-\text{univ}}{=} \binom{S}{2} \frac{1}{n} \overset{n \ge s}{=} \binom{n}{2} \cdot \frac{1}{n} \le \frac{n}{2}\){% endmath %}
 - jelikož je průměrný počet kolizí \(\le \frac{n}{2}\), tak musí existovat nějaká, která je \(\le \frac{n}{2}\)
 
 {% math lemma %}taková \(h_i \in H_i\) existuje{% endmath %}
 
 - vybereme \(h_i \in H_i\) tak, že má \(0\) kolizí
 
-{% math proof %} \(\mathbb{E}\left[|C_{n_i}|\right] = \binom{n_i}{2} \cdot \frac{1}{n_i^2} < \frac{1}{2}\){% endmath %}
+{% math proof %} \(\mathbb{E}\left[|C_{n_i}|\right] = \binom{n_i}{2} \cdot \frac{1}{n_i^2} \le \frac{1}{2}\){% endmath %}
 - jelikož je průměrný počet kolizí \(\le \frac{1}{2}\), tak musí existovat nějaká, která je \(0\)
 {% endmath %}
 
@@ -910,11 +913,11 @@ Výpočtem dostáváme \(\sum n_i^2 \le 2 |C| + \sum n_i \le 2s + s = \mathcal{O
 
 {% math lemma %}nechť \(\vec{a} \in K^n, \vec{a} \neq 0\) a \(\vec{x} \in \left\{0, 1\right\}^n\) uniformně náhodný. Pak \[\mathrm{Pr}_{\vec{x}} \left[\vec{a}^T \cdot \vec{x} \neq 0\right] \ge \frac{1}{2}\]{% endmath %}
 
-{% math proof %}uvažme poslední nenulovou souřadnici \(\vec{a}_k\). Ta má hodnotu \(0\) nebo \(\vec{a}_k\), podle vybraného bitu. \(0\) bude tedy právě tehdy, když součet předchozích vyšel \(a_k\) (a opakujeme s \(k-1, k-2, \ldots\)).{% endmath %}
+{% math proof %}uvažme poslední nenulovou souřadnici \(\vec{a}_k\). Ta má hodnotu \(0\) nebo \(\vec{a}_k\), podle vybraného bitu. \(0\) bude tedy právě tehdy, když součet předchozích vyšel \(a_k\) (a opakujeme s \(k-1, \ldots\)).{% endmath %}
 
 {% math theorem %}existuje pravděpodobnostní algoritmus s jednostrannou chybou pro testování maticového násobení v čase \(\mathcal{O}\left(n^2\right)\)
 - když platí, tak vždy řekne že platí
-- když neplatí, tak se netrefí s nějakou pravděpodobností
+- když neplatí, tak se netrefí s nějakou pravděpodobností (konkrétně \(\ge \frac{1}{2}\))
 {% endmath %}
 
 {% math algorithm %}
@@ -925,47 +928,90 @@ Výpočtem dostáváme \(\sum n_i^2 \le 2 |C| + \sum n_i \le 2s + s = \mathcal{O
 {% math observation %}algoritmus trvá \(\mathcal{O}(n^2)\) kroků{% endmath %}
 
 {% math observation %}algoritmus řekne ano \(\iff \left(A \cdot B - C\right) \cdot \vec{x} = D \cdot \vec{x} = \vec{0}\)
-- \(D\) je nenulová matice (jelikož \(A \cdot B \neq C\), má tedy nenulový řádek
-- podle lemmatu platí \(\mathrm{Pr}_{\vec{x}} \left[D \cdot \vec{x} \neq 0\right] \ge \frac{1}{2}\)
+- \(D\) je nenulová matice (jelikož \(A \cdot B \neq C\)), má tedy **nenulový řádek**
+	- podle lemmatu platí \(\mathrm{Pr}_{\vec{x}} \left[D \cdot \vec{x} \neq 0\right] \ge \frac{1}{2}\)
 {% endmath %}
 
-#### Nulovost polynomů (PIT)
+#### Nulovost polynomů (Polynomial Identity Testing)
 - nezajímá nás, jestli je identicky nulový, ale zda je nulový **v tělese**, ve kterém pracujeme
 - uvažujeme více proměnných
 	- \(d \ldots\ \) celkový stupeň (t. j. součet stupňů v nějakém nenulovém monomu)
 - převeditelné na to, zda je výrok tautologie (jdou na sebe převést) \(\implies\) NP těžké
 
+Budeme používat trochu divný vstup:
 - _Vstup:_ matice polynomů proměnných, determinant určuje náš polynom
 - _Výstup:_ ANO, jestliže je polynom identicky nulový, jinak NE
 
 {% math lemma %}nechť \(P(x_1, \ldots, x_n)\) je nenulový polynom nad \(K\) stupně \(\le d_i\) a \(S \subseteq K\) konečná. Nechť \(x_1, \ldots, x_n \in S\) unif. náhodně. Pak \[\mathrm{Pr}_{\vec{x}} \left[P(\vec{x}) = 0\right] \le \frac{d}{|S|}\]
 - \(n = 1 \ldots\ \) polynom má nejvýše \(d\) kořenů, ať zvolíme \(s\) jakkoliv
+- je to dost šikovné, protože podle \(|S|\) si volíme přesnost algoritmu (pro \(|S| \ge 2d\) máme \(\ge \frac{1}{2}\))
 {% endmath %}
 
-{% math proof %}pro \(n =1\) platí. Nyní indukcí podle \(n\):
-- \(P(\vec{x}) = x_1^k \cdot A(x_2, \ldots, x_n) + \overbrace{B(\vec{x})}^{\text{stupeň $x$ je $< k$}}\)
+{% math proof %}pro \(n =1\) platí. Nyní indukcí podle \(n\). Rozdělíme polynom na \(A\) a \(B\), kde stupeň v \(B\) je ostře menší \(k\). To umíme tím, že vytkneme nějakou proměnnou:
+- \(P(\vec{x}) = x_1^k \cdot A(x_2, \ldots, x_n) + B(\vec{x})\)
 	- \(A\) je identicky nulový (podle IP) s pravděpodobností \(\le \frac{d - k}{|S|}\)
 	- chci dokázat, že \(\mathrm{Pr}\left[P(\vec{x}) = 0 \mid A(x_2, \ldots, x_n) \neq 0\right] \le \frac{k}{|S|}\)
+		- při konkrétních hodnotách \(x_2, \ldots, x_n\) se mi polynom vyhodnotí na nějaké číslo a zbytek polynomu \(P(\vec{x})\) bude \(\alpha x_1^k + \beta\), což nebude mít více než \(k\) kořenů
 {% endmath %}
 
-TODO: WTF
+Nyní si uvědomíme, že \[\mathrm{Pr}\left[P(\vec{x}) = 0\right] \le \alpha + \beta \le \frac{d - k}{|S|} + \frac{k}{|S|} = \frac{d}{|S|}\]
 
 ### Perfektní párování
 Nechť \((U, V, E)\) je bipartitní graf, \(n = |U| = |V|\). Pak Edmondsova matice grafu je \(n \times n\) matice \(B\) s
 \[B_{u, v} = \begin{cases} x_{u, v} & uv \in E \\ 0 & uv \not\in E \end{cases}\]
 - za každou hranu bude v matici jedna proměnná
 
-{% math observation %}\(\det(B\) je polynom, jehož monomy vzájemně jednoznačně odpovídají perfektním párovaním.
+{% math observation %}\(\det(B)\) je polynom, jehož monomy vzájemně jednoznačně odpovídají perfektním párovaním.
 - sčítáme součin permutace matice a když se zrovna trefíme do párovaní, tak máme monom
 {% endmath %}
 
-#### Existence
 {% math algorithm "test existence PP" %}
 1. zvolme uniformně náhodně nezávisle \(x_{u, v} \in \left\{1, \ldots, 2n\right\}\)
 	- \(2n\) kvůli tomu, aby nám vyšlo NE správně s pravděpodobností \(\ge \frac{1}{2}\)
 2. spočítáme determinant
 	- pokud je nenulový, párování určitě existuje
-	- pokud je nulový, tak párování asi neexistuje (správně s pravděpodobností \(\ge \frac{1}{2}\)
+	- pokud je nulový, tak párování neexistuje s pravděpodobností \(\ge \frac{1}{2}\)
 {% endmath %}
 
-TODO: tady jsem skončil (u odbočky)
+#### Izolující lemma
+
+{:.rightFloatBox}
+<div markdown="1">
+Prvky \(a_i\) budou hrany v grafu a množiny \(S_j\) budou perfektní párování.
+
+Chceme nějak zvolit váhy a ukázat, že nám nějak jednoznačně identifikují nějakou z množin (tedy perfektních párování).
+</div>
+
+{% math theorem %}Nechť máme systém množin \(S_1, \ldots, S_n \subseteq \left\{a_1, \ldots, a_m\right\}\) s náhodně zvolenými vahami \(w(a_1), \ldots, w(a_m) \in R\). Pak \[\mathrm{Pr}\left[\exists\ \text{jedinná}\ S_j\ \text{s minimální}\ w(S_j)\right] \ge 1 - \frac{m}{r}\]
+{% endmath %}
+
+{% math proof %}\(A_i \ldots\ \) jev, že existují \(S_k, S_l\) tak, ze \(w(S_k) = w(S_l) = \min_j w(S_j)\) a \(a_i \not\in S_k, a_i \in S_l\)
+- existují dvě minimální množiny, které se liší v prvku \(i\) (špatný jev)
+- když nenastane žádný s jevů \(A_i\), pak máme vyhráno, jelikož dvě minimální neexistují
+	- máme systém množin -- nestane se, že by dvě stejnoprvkové množiny měly stejnou váhu
+
+Ukážeme, že \(\mathrm{Pr}\left[A_i\right] \le \frac{1}{r}\)
+
+\(S_1, \ldots, S_n\) rozdělím na 
+- \(\mathcal{S}_0 = \left\{j \mid a_i \not\in S_j\right\}\)
+- \(\mathcal{S}_1 = \left\{j \mid a_i \in S_j\right\}\)
+
+Pokud \(A_i\) nastane, pak platí 
+- pro \(S_k\): \(k \in \mathcal{S}_0, w(S_k) = \min_{j \in \mathcal{S}_0} w(S_j)\)
+- pro \(S_l\): \(l \in \mathcal{S}_1, w(S_l) = \min_{j \in \mathcal{S}_1} w(S_j)\)
+
+Pak (když zafixujeme všechny váhy a vybíráme váhu \(a_i\)) platí \[\mathrm{Pr}_{w(a_i) \in R}\left[w(S_k) = w(S_l) \mid w(a_i'), i' \neq i\ \text{vybrána}\right] \le \frac{1}{r}\]
+{% endmath %}
+
+{% math algorithm "rychlý paralelní algoritmus pro PP" %}
+1. zvolíme rovnoměrně náhodně váhy \(w(uv) \in \left\{1, \ldots, 2m\right\}\) pro každou hranu
+2. zasubstituujeme do Edmondsovy matice následně: \(x_{uv} = 2^{w(uv)}\)
+	- \(\mathrm{det}(C)\ldots\ \) příspěvek PP je \(\pm 2^{w(M)} = \pm \prod_{uv \in M} 2^{w(uv)}\)
+		- z definice determinantu (permutace nějakých indexů matice)
+3. najdeme \(W\) tak, že \(2^W\) je maximální číslo tvaru \(2^{\alpha}\) dělící \(\mathrm{det}(C)\)
+	- zajímá nás **poslední index, kde má determinant jedničku**, jelikož to odpovídá unikátnímu PP (všechny PP jsou ve tvaru \(0b1\underbrace{0000}_{w(uv)}\)
+4. pro \(uv \in E\) spočítáme \(d = \mathcal{\mathrm{det}(C^{uv})}\)
+	- jestliže \(2^{W - w(uv)}\) je max. číslo tvaru \(2^{\alpha}\) dělící \(d\), pak přidáme \(uv\) do \(M\)
+		- odpovídá tomu, zda párování přežilo odstranění hrany -- pokud ne, tak ho přidáme
+6. zkontrolujeme, že \(M\) je PP (mohli jsme vygenerovat nesmysl)
+{% endmath %}
