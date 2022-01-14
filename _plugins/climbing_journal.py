@@ -105,7 +105,9 @@ for entry in reversed(sorted(list(journal))):
     line += "</p>"
 
     if "note" in journal[entry]:
-        line += "<p>" + journal[entry]["note"] + "</p>"
+        # the replace is a bit of a hack.
+        # I should probably do proper conversion, but I don't really use anything else
+        line += "<p>" + journal[entry]["note"].replace("--", "–") + "</p>"
 
     line += "</li>"
 
