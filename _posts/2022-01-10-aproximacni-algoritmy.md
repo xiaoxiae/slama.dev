@@ -545,7 +545,7 @@ Nechť \(U\) množina klauzulí bez záporných jednotkových.
 	- pro každou klauzuli chceme \(z_j \le \sum_{\text{kladné}} y_i + \sum_{\text{záporné}} (1 - y_i)\)
 	- maximalizujeme \(\sum z_j\)
 3. zrelaxujeme program a vyřešíme ho (dostaneme optimum \(y^*, z^*\))
-4. nastavíme proměnné \(x_i\) na ture s pravděpodobností \(y_i^*\)
+4. nastavíme proměnné \(x_i\) na true s pravděpodobností \(y_i^*\)
 {% endmath %}
 
 {% math theorem %}LP-SAT je \(\left(1 - \frac{1}{e}\right)\)-aproximační algoritmus.{% endmath %}
@@ -720,9 +720,10 @@ Program pro vrcholové pokrytí:
 {% math algorithm "hladový" %}
 1. \(I = \emptyset, E = \emptyset, q_e = 0\)
 	- \(q\) je vektor indexovaný prvky, pomůže nám při analýze algoritmu
+		- odpovídá ceně za pokrytí daného prvku
 2. opakovaně ber „nejlepší“ množinu: přidáme množinu s minimálním \(\left(p_j = \frac{c_j}{|S_j \setminus E|}\right)\)
 	- \(p_j\) odpovídá tomu, kolik zaplatíme za pokrytí nového prvku
-	- \(\forall e \in S_j \setminus E: q_e = p_j\) (uložíme cenu nově pokrytých prvků mezi to, kolik jich bylo)
+	- \(\forall e \in S_j \setminus E: q_e = p_j\) (uložíme cenu nově pokrytých prvků)
 	- \(I = I \cup \left\{j\right\}, E = E \cup S_j\) (přidáme tuto množinu a pokryté prvky)
 {% endmath %}
 
@@ -793,6 +794,7 @@ Chceme, aby se graf v každé iteraci zmenšil o nějakou část a iterací bylo
 - \(v\) špatný \(\implies d_v^{\mathrm{in}} < \frac{d_v}{3}\)
 	- z definice -- vstupující jsou stejného nebo menšího stupně, takže jich má málo, jinak by byl dobrý
 	- \(> \frac{2 d_v}{3}\) vstupuje a platí \(d_v^{\mathrm{in}} \le \frac{1}{2} d_v^{\mathrm{out}}\)
+		- „za každou špatnou hranu nejvýše dvě dobré“
 
 {% xopp spatny %}
 
@@ -807,12 +809,15 @@ Nyní počítáme
 \]
 {% endmath %}
 
+Tedy dobrých je \(\ge \frac{1}{2}\).
+
 {:.rightFloatBox}
 <div markdown="1">
 Pravděpodobnost, že dobrý vrchol odstraním (buď označením toho vrcholu samotného nebo nějakého jeho souseda) je \(\alpha > 0\).
 </div>
 
 {% math lemma %}existuje \(\alpha > 0\) t. ž. \(\forall v\) **dobrý** platí \[\mathrm{Pr}\left[v \in S \cup N(S)\right] \ge \alpha\]
+- přímo z toho plyne to, co chceme, jelikož dobré hrany jsou pouze u dobrých vrcholů
 {% endmath %}
 
 {% math proof %}
@@ -825,7 +830,7 @@ Pro dobrý vrchol \(v\) platí následující:
 \end{aligned}
 \]
 
-Pro libovolný vrchol \(v\) platí následující (jen pozor, v \(\mathrm{Pr}\) používáme podmíněně, že \(v\) byl označený):
+Může být špatné, když by se hodně ze sousedů dobrého vrcholu odstranilo. To dokážeme, že se nestane tím, že ukážeme, že u libovolného vrcholu \(v\) odstraníme značku s \(\le\) konstantní pravděpodobností (jen pozor, v \(\mathrm{Pr}\) používáme podmíněně, že \(v\) byl označený):
 \[
 \begin{aligned}
 	\mathrm{Pr}\left[\text{odstraníme značku}\right] &= \mathrm{Pr}\left[\text{je označený soused s větším stupněm}\right] \\
@@ -836,6 +841,8 @@ Pro libovolný vrchol \(v\) platí následující (jen pozor, v \(\mathrm{Pr}\) 
 \end{aligned}
 \]
 {% endmath %}
+
+Nikde v důkazu nepočítáme s pravděpodobností označení dobrého vrcholu, což nepotřebujeme.
 
 {% math theorem %}očekávaný počet fází algoritmu je \(\le \mathcal{O}(\log n)\){% endmath %}
 
@@ -914,12 +921,12 @@ Zvolíme \(n \in \left[s, 2s\right], H, h \in H\) náhodně uniformně:
 
 {% math lemma %}existuje \(h \in H\) s počtem kolizí \(\le n\).{% endmath %}
 
-{% math proof %} \(\mathbb{E}\left[|C|\right] \overset{2-\text{univ}}{=} \binom{s}{2} \frac{1}{n} \overset{s \le n}{\le} \binom{n}{2} \cdot \frac{1}{n} \le \frac{n}{2}\){% endmath %}
+{% math proof %} \(\mathbb{E}\left[|C|\right] \overset{2-\text{univ}}{\le} \binom{s}{2} \frac{1}{n} \overset{s \le n}{\le} \binom{n}{2} \cdot \frac{1}{n} \le \frac{n}{2}\){% endmath %}
 - jelikož je průměrný počet kolizí \(\le \frac{n}{2}\), tak musí existovat hodně takových, že \(\le \frac{n}{2}\)
 
 {% math lemma %}existuje \(h_i \in H\) s počtem kolizí \(0\).{% endmath %}
 
-{% math proof %} \(\mathbb{E}\left[|C_{n_i}|\right] = \binom{n_i}{2} \cdot \frac{1}{n_i^2} \le \frac{1}{2}\){% endmath %}
+{% math proof %} \(\mathbb{E}\left[|C_{n_i}|\right] \le \binom{n_i}{2} \cdot \frac{1}{n_i^2} \le \frac{1}{2}\){% endmath %}
 - jelikož je průměrný počet kolizí \(\le \frac{1}{2}\), tak musí existovat hodně takových, že \(0\)
 {% endmath %}
 
@@ -1043,6 +1050,8 @@ Součtem pro všechny množiny a dostáním opačného jevu dostáváme hledanou
 		- odpovídá tomu, zda párování přežilo odstranění hrany -- pokud ne, tak ho přidáme
 6. zkontrolujeme, že \(M\) je PP (mohli jsme vygenerovat nesmysl)
 {% endmath %}
+
+TODO: algoritmus pro obecné grafy přes Tutteho matici
 
 ### Odkazy
 - [Webová stránka předmětu](https://iuuk.mff.cuni.cz/~sgall/vyuka/BCALG/)
