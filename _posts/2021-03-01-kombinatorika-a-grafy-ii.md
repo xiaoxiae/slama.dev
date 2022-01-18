@@ -31,10 +31,20 @@ pdf: true
 
 {% math claim %}Nechť \(G = \left(V, E\right)\) je graf, \(M\) párování v \(G\). Pak \(G\) obsahuje VSC (vzhledem k \(M\)), právě když \(M\) není největší párování v \(G\).{% endmath %}
 
+
+<!---MARKDOWN-->
+
 {:.rightFloatBox}
 <div markdown="1">
 ![](/assets/kombinatorika-a-grafy-ii/alter.svg)
 </div>
+
+<!---PDF
+\begin{wrapfigure}{R}{0.2\textwidth} 
+\centering
+\fbox{\includesvg{../assets/kombinatorika-a-grafy-ii/alter.svg}}
+\end{wrapfigure}
+-->
 - \(\Rightarrow\) pokud \(M\) má VSC, mohu \(M\) zvětšit prohozením hran
 
 - \(\Leftarrow\) pro spor nechť \(M'\) je párování v \(G\) t. ž \(|M'| \ge |M|\)
@@ -195,10 +205,14 @@ Nechť \(D\) je komponenta \(G - z_e, z_f, u\) neobsahující \(x, y\). Existuje
 - \(K_4\) je 3-souvislý
 - \(G_{i - 1}\) je 3-souvislý \(\Rightarrow G_i\) je 3-souvislý
 
+<!---MARKDOWN-->
+
 {:.rightFloatBox}
-<div markdown="1">
 {% xopp 4 %}
-</div>
+
+<!---PDF
+-->
+
 Obměnou nechť \(G_i\) má vrcholový řez velikosti 2, označme ho \(R = \left\{x,y\right\}\). Pak každá komponenta \(G_i - R\) má alespoň 2 vrcholy (osamocený vrchol \(z\) mohl sousedit jen s řezem, ale ten je velikosti 2, což je spor se stupněm vrcholů \(\ge 3\) pro \(v\)).
 
 Pak ale \(G_{i - 1}\) nebyl 3-souvislý, rozborem toho, kde vznikla hrana:
@@ -292,20 +306,28 @@ Označme \(C\) kružnici ohraničující stěnu \(\mathcal{G}''\), v níž leže
 Operace s plochami, přes které umíme všechny zkonstruovat:
 
 
+<!---MARKDOWN-->
+
 {:.rightFloatBox}
-<div markdown="1">
 {% xopp o1 %}
-</div>
+
+<!---PDF
+-->
+
 - přidání ucha (od hrnku)
 	- vyříznu dva kruhy
 	- vezmu plášť pálce bez dna a vrchu
 	- ohnu a přílepím jej na díry po kruzích
 	- {% math observation %}teleport, do kterého když vejdeme, tak na druhé straně vyjdeme opačně („otočeně“){% endmath %} 
 
+<!---MARKDOWN-->
+
 {:.rightFloatBox}
-<div markdown="1">
 {% xopp o2 %}
-</div>
+
+<!---PDF
+-->
+
 - přidání křížítka (cross-cupu):
 	- {% math observation %}teleport, do kterého když vejdeme, tak nás to přesune naproti{% endmath %}
 
@@ -358,10 +380,14 @@ Pro \(g \in \left\{1, 2, \ldots\right\}\) nechť \(\prod_g\) značí plochu zvni
 {% math proof "rovnosti" %}idea je indukce podle rodu \(\Gamma\)
 - \(\Gamma \cong \Sigma_0\) platí
 
+<!---MARKDOWN-->
+
 {:.rightFloatBox}
-<div markdown="1">
 {% xopp s1 %}
-</div>
+
+<!---PDF
+-->
+
 Mějme buňkové nakreslení \(G = (V, E)\) na \(\Gamma \cong \Pi_g\)
 - pro \(\Gamma \cong \Sigma_g\) se dělá analogicky, jen trháme obě ucha a vyjde to
 - \(v(G), e(G), s(G)\) značíme počet vrcholů, hran a stěn
@@ -370,30 +396,42 @@ Nechť \(K\) je křížítko na \(\Gamma\), \(x_1, \ldots, x_k\) jsou body \(K\)
 - {% math observation %}\(k \ge 1\), jinak by stěna obsahující \(K\) nebyla buňka{% endmath %}
 - rovněž předpokládám, že vrchol neleží přesně na křížítku, jinak bych ho mohl BUNO posunout
 
+<!---MARKDOWN-->
+
 {:.rightFloatBox}
-<div markdown="1">
 {% xopp s2 %}
-</div>
+
+<!---PDF
+-->
+
 Vytvoříme \(G'\) přidáním dvou dělících vrcholů na každou hranu křížící \(K\) těsně vedle \(x_1, \ldots, x_k\) („před a za křížítkem“). Děláme to proto, že jedna hrana by mohla procházet křížítkem na více místech a bylo by to pak dost rozbitý.
 - \(v(G') = v(G) + 2k\)
 - \(e(G') = e(G) + 2k\)
 - \(s(G') = s(G)\)
 - tedy: \(L(G') = L(G)\) (kde \(L\) je levá strana)
 
+<!---MARKDOWN-->
+
 {:.rightFloatBox}
-<div markdown="1">
 {% xopp s3 %}
-</div>
+
+<!---PDF
+-->
+
 Vytvoříme \(G''\) přidaním cest délky \(2\) k sousedním vrcholům z předchozího kroku. Vznikne tím kružnice \(C\) obcházející \(K\).
 - \(v(G'') = v(G') + 2k\)
 - \(e(G'') = e(G') + 4k\)
 - \(s(G'') = s(G') + 2k\) (každou z \(k\) stěn dělím na \(3\) kusy)
 - tedy: \(L(G'') = L(G')\)
 
+<!---MARKDOWN-->
+
 {:.rightFloatBox}
-<div markdown="1">
 {% xopp s4 %}
-</div>
+
+<!---PDF
+-->
+
 Vytvoříme \(G'''\) odebráním všeho uvnitř \(C\).
 - \(v(G''') = v(G'')\)
 - \(e(G''') = e(G'') - k\) (\(k\) křížících-se hran uvnitř \(C\))
@@ -415,7 +453,7 @@ Tedy \[\Chi(\Gamma) = L(G)\]
 
 {% math claim %}Nechť \(\Gamma\) je plocha, \(\Gamma \neq \Sigma_0\), nechť \(G\) je graf nakreslený na \(\Gamma\), potom \(G\) obsahuje vrchol stupně \(\le \left\lfloor \frac{5 + \sqrt{49 - 24\Chi(\Gamma)}}{2} \right\rfloor\){% endmath %}
 
-{% math proof %}Mějme \(G\) podle předpokladu. Opět značíme \(v(G), e(G)\) jako počet vrcholů a hran. ROzlišíme \(3\) případy:
+{% math proof %}Mějme \(G\) podle předpokladu. Opět značíme \(v(G), e(G)\) jako počet vrcholů a hran. Rozlišíme \(3\) případy:
 - \(\Chi(\Gamma) = 1\) (t.j. \(\Gamma \cong \prod_1\)), dosazením do předchozího důsledku dostáváme průměrný stupeň \(< 6\), tedy existuje vrchol stupně \(\le 5\), což jsme chtěli
 - \(\Chi(\Gamma) = 0\) (t.j. \(\Gamma \cong \prod_2\) nebo \(\Gamma \cong \sum_1\)), průměrný stupeň \(\le 6 \Rightarrow \exists\) vrchol stupně \(\le 6\)
 - \(\Chi(\Gamma) < 0 \ldots \delta(G) = \) min. stupeň \(G\); víme:
@@ -457,10 +495,14 @@ Tedy \[\Chi(\Gamma) = L(G)\]
 {% math lemma %}\(G\) souvislý graf a \(\delta(G) < \Delta(G)\), pak \(\Chi(G) \le \Delta(G)\){% endmath %}
 - když nás zajímá předchozí otázka, tak se stačí zaměřit na nějaký regulární graf
 
+<!---MARKDOWN-->
+
 {:.rightFloatBox}
-<div markdown="1">
 {% xopp a1 %}
-</div>
+
+<!---PDF
+-->
+
 {% math proof %}Tvrdím, že \(G\) je (\(\Delta(G) - 1\))-degenerovaný. Volme \(H\) neprázdný podgraf \(G\) a dokazujeme, že v \(H\) existuje \(v\) stupně \(\le \Delta(G) - 1\) 
 - pokud \(H\) obsahuje všechny vrcholy \(\Rightarrow\) předpoklad
 - jinak \(\exists e = \left\{x, y\right\} \in G\) t. ž. \(x \in H\) a \(y \not\in H\)
@@ -585,10 +627,19 @@ Pro spor: \(R\) není klika \(\Rightarrow\) obsahuje \(u, v\) nesousedy. Protož
 {% xopp another2 %}
 {% endmath %}
 
+<!---MARKDOWN-->
+
 {:.rightFloatBox}
 <div markdown="1">
 ![](/assets/kombinatorika-a-grafy-ii/dog.svg)
 </div>
+
+<!---PDF
+\begin{wrapfigure}{R}{0.2\textwidth} 
+\centering
+\fbox{\includesvg{../assets/kombinatorika-a-grafy-ii/dog.svg}}
+\end{wrapfigure}
+-->
 {% math definition "PES" %} Perfektní eliminační schéma (PES) grafu \(G\) je pořadí vrcholů \(v_1, \ldots, v_n\) t. ž. \(\forall i \in [n]\) platí, že leví sousedé \(v_i\) (\(= \left\{v_j \mid j < i, v_jv_i \in E\right\}\)) tvoří kliku.{% endmath %}
 
 {% math theorem %}G je chordální \(\iff\) G má PES.{% endmath %}
@@ -1090,10 +1141,15 @@ K důkazu původního vyberu \(x \in V(G)\), \(S = N_G(x), G_S = G\left[S\right]
 - \(f(k, n) :=\) max. \(m\) t.ž. \(\exists\) \(k\)-uniformní hypergraf \(H = (V, E)\) t.ž. \(|V| = n, |E| = m\) a \(E\) je „pronikající systém množin“ (t.j. \(\forall e, e' \in E: e \cap e' \neq \emptyset\))
 	- braní všech hran nemusí fungovat (musí se protínat všechny dvojice)!
 
+
+<!---MARKDOWN-->
+
 {:.rightFloatBox}
-<div markdown="1">
 {% xopp slun %}
-</div>
+
+<!---PDF
+-->
+
 {% math observation %} rozebereme několik případů:
 - \(k > n: f(k, n) = 0\), protože neexistují hyperhrany
 - \(k \le n < 2k: f(k, n) = \binom{n}{k}\), protože každé dvě množiny z \(\binom{V}{k}\) se protínají

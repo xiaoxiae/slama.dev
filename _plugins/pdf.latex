@@ -130,6 +130,8 @@ fontsize=\footnotesize
 
 \usepackage[normalem]{ulem}
 
+\renewcommand*{\thefootnote}{\normalsize [\arabic{footnote}]}
+
 \begin{document}
 
 \begin{titlepage}

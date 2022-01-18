@@ -83,7 +83,20 @@ new_header = (
 )
 
 
-def floatBox(x):
+def rightfloatbox(x, counter=[1]):
+    text = x.group(1).strip()
+
+    result = (
+        r"\begin{wrapfigure}{r}{0.025\textwidth} \hfill \footnotemark"
+        + r" \end{wrapfigure} \footnotetext"
+        + f"{{{text}}}"
+    )
+    counter[0] += 1
+
+    return result
+
+
+def markdownDiv(x):
     markdown = x.group(1).strip()
 
     with open("tmp", "w") as f:
@@ -152,12 +165,10 @@ substitutions = [
     # csquotes
     (r"„(.+?)“", r"\\enquote{\1}"),
     # markdown
-    (r"<div\s*markdown=\"1\">((.|\n)*?)<\/div>", floatBox),
-    # float boxes
-    (r"{:\s*.rightFloatBox\s*}\n((.|\n)+?)\n\n", r""),
-    # TODO: bylo by fajn je nějak použít...
+    (r"<div\s*markdown=\"1\">((.|\n)*?)<\/div>", markdownDiv),
+    # float boxes\\begin{minipage}{\\textwidth} \\end{minipage}
     # (r"{:\s*.rightFloatBox\s*}\n((.|\n)+?)\n\n", r"\\begin{center}\n\\begin{framed}\n\1 \\end{framed}\n\\end{center}\n"),
-    # (r"{:\s*.rightFloatBox\s*}\n((.|\n)+?)\n\n", r"\\begin{wrapfigure}{r}{0.25\\textwidth}\n\\begin{framed}\n\1 \\end{framed}\n\\end{wrapfigure}\n"),
+    (r"{:\s*.rightFloatBox\s*}\n((.|\n)+?)\n\n", rightfloatbox),
     # TOC
     (r"- \.\n{:toc}", r"\\tableofcontents\n\\newpage"),
     # headings

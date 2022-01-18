@@ -307,8 +307,8 @@ spojen dvoubodovou přímkou.
 
 {% math definition "KPR" %}
 Nechť \(X\) je konečná množina, \(\mathcal{P}\) systém podmnožin množiny \(X\). \(\left(X, \mathcal{P}\right)\) je KPR pokud:{% endmath %}
-1. Existuje \(Č \subseteq X, |Č| = 4\) t. ž. \(\forall P \in \mathcal{P}: |P \cap Č| \le 2\)
-	- „každá přímka obsahuje \(\le 2\) body z \(Č\)“
+1. Existuje \(\mathcal{C} \subseteq X, |\mathcal{C}| = 4\) t. ž. \(\forall P \in \mathcal{P}: |P \cap \mathcal{C}| \le 2\)
+	- „každá přímka obsahuje \(\le 2\) body z \(\mathcal{C}\)“
 2. \(\forall P, Q \in \mathcal{P}, P \neq Q: \exists! x \in X\) t. ž. \(P \cap Q = \left\{x\right\}\)
 	- „každé dvě přímky se protínají právě v \(1\) bodě“
 3. \(\forall x, y \in X, x \neq y \exists! P \in \mathcal{P}\) t. ž. \(x, y \in \mathcal{P}\)
@@ -327,11 +327,11 @@ Nechť \(X\) je konečná množina, \(\mathcal{P}\) systém podmnožin množiny 
 
 **Pomocné tvrzení:** \(\forall P, P' \in \mathcal{P} \exists z \in X\), které neleží ani na jedné z nich.
 
-Dokáže se přes to přes rozbor příkladů toho, jak vedou přímky přes \(Č\):
-- pokud nevedou přes všechny body z \(Č\), pak máme vyhráno
+Dokáže se přes to přes rozbor příkladů toho, jak vedou přímky přes \(\mathcal{C}\):
+- pokud nevedou přes všechny body z \(\mathcal{C}\), pak máme vyhráno
 - pokud vedou, tak existují dvě další přímky \(P_1\) a \(P_2\) vedoucí kolmo na naše přímky, jejich průnik je hledaný bod; původní přímky jím vést nemohou, protože pak by dvě přímky sdílely 2 body, což nelze
 - \(P_1 \neq P\), protože pak by \(P\)
-  obsahovala alespoň 3 body z \(Č\). Podobně ostatní
+  obsahovala alespoň 3 body z \(\mathcal{C}\). Podobně ostatní
   nerovnosti.
 
 ![](/assets/kombinatorika-a-grafy-i/bod-na-primce.svg)
@@ -365,7 +365,7 @@ jejích bodů.
 2. viz. níže.
 3. vychází z duality (viz. další kapitola).
 
-Vezměme libovolné \(x \in X\). Pak \(\exists P \in \mathcal{P}: x \not\in P\), protože vezmeme-li body \(a, b, c \in Č\), pak přímky \(ab\) a \(ac\) nemohou mít další společný bod než \(a\) (došlo by ke sporu s některým z axiomů).
+Vezměme libovolné \(x \in X\). Pak \(\exists P \in \mathcal{P}: x \not\in P\), protože vezmeme-li body \(a, b, c \in \mathcal{C}\), pak přímky \(ab\) a \(ac\) nemohou mít další společný bod než \(a\) (došlo by ke sporu s některým z axiomů).
 
 Poté stačí uvážit následující obrázek a spočítat body/přímky. Další bod už neexistuje, protože kdyby existoval, tak by jím musela procházet přímka z \(x\) a ta by rovněž někde protínala \(P\) (a nesplňovala tak axiomy).
 
@@ -376,8 +376,17 @@ Bodů na obrázku je \(\overbrace{1}^{x} + \underbrace{\left(n + 1\right)}_{P_0 
 
 #### Dualita KPR
 
+<!---MARKDOWN-->
+
 {:.rightFloatBox}
 {% xopp xins %}
+
+<!---PDF
+\begin{wrapfigure}{R}{0.2\textwidth} 
+\centering
+\fbox{\includesvg{../_includes/kombinatorika-a-grafy-i/xins}}
+\end{wrapfigure}
+-->
 
 {% math definition "incidenční graf" %}
 nechť \((X, \mathcal{S})\) je množinový systém (\(\mathcal{S} \subseteq 2^X\)). Jeho incidenční graf je bipartitní graf \[\left(V = X \cup \mathcal{S}, E = \left\{(x, s) \in X \times \mathcal{S}\ |\ x \in s\right\}\right)\]{% endmath %}
@@ -394,16 +403,16 @@ nechť \((X, \mathcal{S})\) je množinový systém (\(\mathcal{S} \subseteq 2^X\
 
 {:.rightFloatBox}
 <div markdown="1">
-1. „každá přímka obsahuje \(\le 2\) body z \(Č\)“
+1. „každá přímka obsahuje \(\le 2\) body z \(\mathcal{C}\)“
 2. „každé dvě přímky se protínají právě v \(1\) bodě“
 3. „každé dva body určují právě \(1\) přímku“
 </div>
 
 {% math proof %}
 ověření axiomů v duálním světě:
-1. \(\exists Č\) čtveřice přímek t. ž. \(\forall x \in X\) leží na nanejvýš \(2\) přímkách z \(Č\)
-	- stejné jako „žádné \(3\) přímky z \(Č\) nemají společný bod“
-	- zvolím \(Č = \left\{ab, cd, ad, bc\right\}\), což funguje (zkusit si rozkreslit)
+1. \(\exists \mathcal{C}\) čtveřice přímek t. ž. \(\forall x \in X\) leží na nanejvýš \(2\) přímkách z \(\mathcal{C}\)
+	- stejné jako „žádné \(3\) přímky z \(\mathcal{C}\) nemají společný bod“
+	- zvolím \(\mathcal{C} = \left\{ab, cd, ad, bc\right\}\), což funguje (zkusit si rozkreslit)
 2. \(\forall x, y \in X, x \neq y: \exists! P \in \mathcal{P}\) t. ž. jimi prochází právě \(1\) přímka
 	- stejné jako původní axiom o přímkách
 3. analogicky viz. ^
@@ -431,13 +440,13 @@ Pro KPR řádu \(p^k\), \(p\) prvočíslo vezmu algebraické těleso \(\mathbb{K
 
 {:.rightFloatBox}
 <div markdown="1">
-1. „každá přímka obsahuje \(\le 2\) body z \(Č\)“
+1. „každá přímka obsahuje \(\le 2\) body z \(\mathcal{C}\)“
 2. „každé dvě přímky se protínají právě v \(1\) bodě“
 3. „každé dva body určují právě \(1\) přímku“
 </div>
 
 **Ověření axiomů:**
-1. \(Č = \left\{(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 1)\right\}\)
+1. \(\mathcal{C} = \left\{(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 1)\right\}\)
 	- jsou po třech lineárně nezávislé, proto \((1)\) platí
 2. dvojice přímek \((a_1, b_1, c_1)\) a \((a_2, b_2, c_2)\) určují jeden bod:
 	- jsou lineárně nezávislé a dimenze jádra následující matice je tedy \(1\) a určují jeden bod (až na \(\alpha\)-násobek, což je definice bodů)
@@ -535,13 +544,13 @@ Mám tedy \(n - 1\) možností a musím přijít na \(n - 1\) různých řešen�
 
 {:.rightFloatBox}
 <div markdown="1">
-1. „každá přímka obsahuje \(\le 2\) body z \(Č\)“
+1. „každá přímka obsahuje \(\le 2\) body z \(\mathcal{C}\)“
 2. „každé dvě přímky se protínají právě v \(1\) bodě“
 3. „každé dva body určují právě \(1\) přímku“
 </div>
 
 **Ověření axiomů:**
-1. \(Č = \left\{r, s, m_{1, 1}, m_{2, 2}\right\}\)
+1. \(\mathcal{C} = \left\{r, s, m_{1, 1}, m_{2, 2}\right\}\)
 2. mezi:
 	- \(I, II \rightarrow r\)
 	- \(I, III \rightarrow s\)
@@ -636,8 +645,17 @@ nechť \((\mathcal{P}, \subseteq)\) je částečné uspořádání, kde \(\mathc
 {% math theorem %}
 graf \(G\) s \(n\) vrcholy bez \(C_4\) má nejvýše \(\frac{1}{2} \left(n^{3/2} + n\right)\) hran.{% endmath %}
 
+<!---MARKDOWN-->
+
 {:.rightFloatBox}
-![Vidlička.](/assets/kombinatorika-a-grafy-i/vidlicka.svg)
+![](/assets/kombinatorika-a-grafy-i/vidlicka.svg)
+
+<!---PDF
+\begin{wrapfigure}{R}{0.2\textwidth} 
+\centering
+\fbox{\includesvg{../assets/kombinatorika-a-grafy-i/vidlicka}}
+\end{wrapfigure}
+-->
 
 {% math proof %}
 dvojí počítání „vidliček“ (cest delky \(2\)):{% endmath %}
@@ -678,16 +696,16 @@ xy = \sum k_i = \sum \left(d_i - 1\right) = 2|E| - n \\
 
 {% math theorem "Cayleyho formule" %}
 počet koster úplného grafu \(\kappa(n) = n^{n - 2}\).{% endmath %}
+- udělal jsem o tomhle důkazu [krátké video](https://www.youtube.com/watch?v=g-QyzzPM4rU), pokud máte rádi grafičtější důkazy
 - pozor, počítám i izomorfní kostry!
-
-{:.rightFloatBox}
-{% xopp kostry %}
 
 {% math proof %}
 počítání \((T, r, č)\), kde:{% endmath %}
 - \(T\) je strom na \(n\) vrcholech
 - \(r\) kořen (hrany vedou do kořene, ne z něho)
 - \(č\) očíslování hran (nějaké), \(č: E \mapsto [n - 1]\)
+
+{% xopp kostry %}
 
 1. \(\#(T, r, č) = \kappa(n) \cdot n \cdot \left(n - 1\right)!\)
 	- \(T\) je to, co hledáme
@@ -1344,8 +1362,17 @@ pro každý graf na \(\ge 6\) vrcholech \(\exists\) podrgraf \(E_3\) (prázdný 
 - \(\omega(G) \ge 3\) -- velikost maximální kliky
 - \(\alpha(G) \ge 3\) -- velikost maximální nezávislé množiny
 
+<!---MARKDOWN-->
+
 {:.rightFloatBox}
 ![](/assets/kombinatorika-a-grafy-i/ramsey-obr.svg)
+
+<!---PDF
+\begin{wrapfigure}{R}{0.2\textwidth} 
+\centering
+\fbox{\includesvg{../assets/kombinatorika-a-grafy-i/ramsey-obr}}
+\end{wrapfigure}
+-->
 
 {% math proof %}
 vyberu libovolný vrchol \(u\). Podívám se na vrcholy \(A\), se kterými nesousedí, zbytek nechť je \(B\).{% endmath %}
@@ -1526,7 +1553,7 @@ Pomocné obarvení \((p-1)\)-tic stejnými barvami, jako byla \(p\)-tice s vrcho
 barva \(p\)-tice \(\left\{v_{i_1}, \ldots, v_{i_p}\right\}\) (vzhledem k vzniklé posloupnosti \(v_1, v_2, \ldots\)), kde \(i_1 < i_2 < i_3 < i_p\) závisí pouze na barvě prvku \(v_{i_1}\){% endmath %}
 - vyberu z barev nějakou opakující-se nekonečněkrát a vrcholy s příslušnými indexy tvoří \(A\)
 
-{% math theorem "Ramseyova věta pro \(p\)-tice" %}
+{% math theorem "Ramseyova věta pro p-tice" %}
 \(\forall p, t, k \in \mathbb{N} \exists N \in \mathbb{N}\) t. ž. \(\forall n \ge N, \forall c: \binom{[n]}{p} \mapsto [t]\ \exists A \subseteq [n], |A| = k\) t. ž. \(c\) je na \(\binom{A}{p}\) konstantní.{% endmath %}
 
 {% math proof %}
