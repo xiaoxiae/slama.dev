@@ -482,7 +482,7 @@ class File {
 }
 ```
 
-### CLI Type System
+### CIL Type System
 - compared to C++, we can't choose whether something is a value or a reference -- it is determined by its type
 
 #### Value types
