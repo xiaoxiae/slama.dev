@@ -17,24 +17,28 @@ videos = {
         (
             date(2021, 10, 6),
             "https://www.youtube.com/watch?v=g-QyzzPM4rU",
+            "https://odysee.com/@TomasSlama:0/cayley's-formula:e",
             "Cayley's Formula",
             "07-",
         ),
         (
             date(2021, 8, 23),
             "https://www.youtube.com/watch?v=3roPs1Bvg1Q",
+            "https://odysee.com/@TomasSlama:0/the-blossom-algorithm:3",
             "The Blossom algorithm",
             "06-",
         ),
         (
             date(2021, 6, 1),
             "https://www.youtube.com/watch?v=Koc63QhxPgk",
+            "https://odysee.com/@TomasSlama:0/weak-perfect-graph-theorem:3",
             "Weak Perfect Graph Theorem",
             "04-",
         ),
         (
             date(2021, 4, 28),
             "https://www.youtube.com/watch?v=OZWZpQmGp0g",
+            "https://odysee.com/@TomasSlama:0/vizing's-theorem:8",
             "Vizing's theorem",
             "03-",
         ),
@@ -43,6 +47,7 @@ videos = {
         (
             date(2021, 12, 31),
             "https://www.youtube.com/watch?v=KlaEp6ydVhA",
+            "https://odysee.com/@TomasSlama:0/bathroom-tile-programming:0",
             "Bathroom Tile Programming",
             "09-",
         ),
@@ -58,7 +63,7 @@ result = ""
 for category in [v for v in videos if v != OTHER_CATEGORY_NAME] + [OTHER_CATEGORY_NAME]:
     category_str = f"### {category}\n"
 
-    for date, youtube_link, video, folder_prefix in videos[category]:
+    for date, youtube_link, odysee_link, video, folder_prefix in videos[category]:
         match = glob(os.path.join(ROOT, folder_prefix + "*"))
 
         if len(match) == 0:
@@ -111,14 +116,9 @@ for category in [v for v in videos if v != OTHER_CATEGORY_NAME] + [OTHER_CATEGOR
         with open(os.path.join(folder, "DESCRIPTION.md"), "r") as f:
             description = f.read().splitlines()[0]
 
-        subtitle_string = (
-            ""
-            if not subtitles
-            else f"[subtitles](/videos/{video_slug}/{subtitle_name}), "
-        )
         url_string = f"[code]({URL_ROOT + os.path.basename(folder)})"
 
-        category_str += f"{date.strftime('%Y/%0m/%0d')} -- **{video}** [[YouTube]({youtube_link})] [{', '.join(resolution_links)}] [{subtitle_string}{url_string}]\n- _{description}_\n\n"
+        category_str += f"{date.strftime('%Y/%0m/%0d')} -- **{video}** [[Odysee]({odysee_link})] [[YouTube]({youtube_link})] [{', '.join(resolution_links)}] [{url_string}]\n- _{description}_\n\n"
 
     result += category_str
 
