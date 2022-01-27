@@ -110,55 +110,7 @@ img {
 
     .zone:hover,
     .zone:active {
-        transition: 0.2s ease-in-out;
         fill-opacity: 1;
         fill: $light-text-color;
-    }
-}
-
-.hr-text {
-    line-height: 1em;
-    position: relative;
-    outline: 0;
-    border: 0;
-    text-align: center;
-    height: 1.5em;
-    background: $light-background-color;
-    color: $light-link-color;
-
-    &::before {
-        background: $light-link-color;
-        content: '';
-        // use the linear-gradient for the fading effect
-        // use a solid background color for a solid bar
-        position: absolute;
-        left: 0;
-        top: 50%;
-        width: 100%;
-        height: 1px;
-    }
-
-    &::after {
-        content: attr(data-content);
-        position: relative;
-        display: inline-block;
-        padding: 0 1em;
-        line-height: 1.5em;
-        background-color: $light-background-color;
-    }
-
-    margin-bottom: $line-spacing / 2;
-
-    // YUCK!
-    margin-top: - $line-spacing - $line-spacing / 2 + $line-spacing / 4;
-}
-
-@media (prefers-color-scheme: dark) {
-    .hr-text {
-        background: $dark-background-color;
-        color: $dark-link-color;
-
-        &::before { background: $dark-link-color; }
-        &::after { background-color: $dark-background-color; }
     }
 }
