@@ -98,7 +98,7 @@ Nechť \(X\) je abeceda a \(\le\) uspořadání na \(X\). Pak definujeme lexikog
 
 #### Dlouhý a široký
 {% math definition "(anti)řetězec" %}
-pro \(\left(X, \le\right)\) ČUM: 
+pro \(\left(X, \le\right)\) ČUM (částečně uspořádaná množina): 
 - \(A \subseteq X\) je _řetězec_ \(\forall a, b \in A\) jsou porovnatelné
 	- \(\omega\left(X, \le\right) :=\) délka nejdelšího řetězce
 - \(A \subseteq X\) je _antiřetězec_ \(\equiv\) žádné 2 prvky nejsou porovnatelné (nezávislá množina)
@@ -117,11 +117,11 @@ pro \(\left(X, \le\right)\) konečnou ČUM: \(\alpha \omega \ge \left|X\right|\)
 {% endmath %}
 
 {% math theorem "Erdős-Szekeres" %}
-nechť \(x_1, \ldots, x_{n^2 + 1}\) jsou navzájem různé. Pak existuje buď rostoucí nebo neklesající posloupnost délky alespoň \(n + 1\).
+nechť \(x_1, \ldots, x_{n^2 + 1}\) jsou navzájem různé. Pak existuje buď rostoucí nebo nerostoucí posloupnost délky alespoň \(n + 1\).
 {% endmath %}
 
 {% math proof %}
-Na \(\left\{1, \ldots, n + 1\right\}\) definujme uspořádání \(i < j \iff i < j \land x_i < x_j\). Rostoucí odpovídají řetězcům, klesající antiřetězcům.
+Na \(\left\{1, \ldots, n^2 + 1\right\}\) definujme uspořádání \(i < j \iff i < j \land x_i < x_j\). Rostoucí odpovídají řetězcům, nerostoucí antiřetězcům.
 {% endmath %}
 
 #### Segway do kombinatorického počítání
@@ -175,9 +175,9 @@ Počet bijekcí mezi \(X\) a \(X\) (permutací) \(= n \cdot \left(n - 1\right) \
 
 {% math proof %}
 budeme počítat dvěma způsoby: 
-- \# uspořádaných \(k\)-tic různých prvků z \(X\) je stejný jako:
+- \# (počet) uspořádaných \(k\)-tic různých prvků z \(X\) je stejný jako:
 	- \# prostých funkcí z \(\left\{1, \ldots, k\right\} \mapsto X\), kterých je \(n \cdot \left(n - 1\right) \cdot \ldots \cdot \left(n - k + 1\right)\)
-	- \# \(k\)-prvkových množin \( \cdot k!\) (zpermutováním)... \(\left|\binom{X}{k}\right| \cdot k!\)
+	- \# \(k\)-prvkových množin \( \cdot\ k!\) (zpermutováním)... \(\left|\binom{X}{k}\right| \cdot k!\)
 {% endmath %}
 
 #### Vlastnosti kombinačních čísel:
@@ -193,9 +193,8 @@ budeme počítat dvěma způsoby:
 \[\forall n \in \mathbb{N}, \forall a, b \in \mathbb{R}: \left(a + b\right)^n = \sum_{k = 0}^{n} \binom{n}{k} a^{n - k}b^k\]
 
 {% math proof %}
-- pro \(0\) funguje
 - jedná se o _součty součinů_, které si ze závorek vybírají \(a\) nebo \(b\)
-	- \(a^{n - k}b^k\) -- musí jich být \(n\)
+	- \(a^{n - k}b^k\) -- celkově jich musí být \(n\)
 	- \(\binom{n}{k}\) -- kolika způsoby si lze z \(n\) závorek vybrat k znaků
 {% endmath %}
 
@@ -205,7 +204,7 @@ budeme počítat dvěma způsoby:
 {% endmath %}
 
 #### Odhady pro faktoriál
-- hloupý: \(2^{n - 1} \le n! \le n^n\)
+- triviální: \(2^{n - 1} \le n! \le n^n\)
 - rozumný: \(n^{n / 2} \le n! \le \left(\frac{n + 1}{2}\right)^n\)
 - wtf: \(e \cdot \left(\frac{n}{e}\right)^n \le n! \le en \cdot \left(\frac{n}{e}\right)^n\)
 
@@ -227,8 +226,8 @@ budeme počítat dvěma způsoby:
 
 {% math proof "rozumného" %}
 - \(n! = \sqrt{\left(n!\right)^2} = \sqrt{1 \cdot 2 \cdot \ldots \cdot n \cdot 1 \cdot 2 \cdot \ldots \cdot n} = \sqrt{1 \cdot n} \cdot \sqrt{2 \cdot \left(n - 1\right)} \cdot \ldots \cdot \sqrt{n \cdot 1}\)
-	- \(\sqrt{i \left(n - i + 1 \right)} \le^{\mathrm{AG}} \frac{i + n - i + 1}{2} = \left(\frac{n + 1}{2}\right)^n\) (je jich \(n\))
-	- \(\sqrt{i \left(n - i + 1\right)} \ge \sqrt{n}^n\)... vevnitř je vždy alespoň \(n\)
+	- horní: \(\sqrt{i \left(n - i + 1 \right)} \le^{\mathrm{AG}} \frac{i + n - i + 1}{2} \implies n! \le \left(\frac{n + 1}{2}\right)^n\) (je jich \(n\))
+	- dolní: \(\sqrt{i \left(n - i + 1\right)} \ge \sqrt{n} \implies n! \ge \sqrt{n}^n\) (vevnitř je vždy alespoň \(n\))
 {% endmath %}
 
 {% math proof "wtf" %}Indukce:
@@ -263,7 +262,7 @@ Také lze zapsat jako
 kolikrát se prvek \(x\) nachází nalevo a napravo:
 - nalevo: 1 (ve sjednocení je jednou právě)
 - napravo:
-	- předpokládejme, že se vyskytne v \(j\) množinách -- vyskytuje se tedy v každé \(k\)-tici... (\(k \le j\))
+	- předpokládejme, že se vyskytne v \(j\) množinách -- vyskytuje se tedy v každé \(k\)-tici z těchto \(j\) množin (\(k \le j\))
 	- existuje \(\binom{j}{k}\) \(k\)-prvkových podmnožin \(j\)-prvkové množiny (a ve vzorci se znaménka střídají), lze počet výskytů vyjádřit následovně:
 \[j - \binom{j}{2} + \binom{j}{3} - \ldots + \left(-1\right)^{j - 1}\binom{j}{j} = 1\]
 {% endmath %}
@@ -275,7 +274,7 @@ graf je _uspořádaná dvojice_ množin \(\left(V, E\right)\), kde \(V\) je _kon
 - \(v \in e\) pro \(e \in E\)... vrchol leží v/na hraně
 {% endmath %}
 
-#### Odrudy
+#### Odrůdy
 - **úplný** \(K_n \equiv \left(\left[n\right], \binom{V}{2}\right)\)
 	- opak je **diskrétní**
 - **úplný bipartitní** \(K_{m, n}\):
@@ -330,15 +329,16 @@ nechť \(d_1 \le d_2 \le \ldots \le d_n\) posloupnost přirozených čísel. Pak
 {% endmath %}
 
 {% math proof %}
-- \(\Rightarrow\)... víme, že \(d_1', d_2', \ldots d_{n - 1}' \) je skórem grafu, stačí tedy přilepit vrchol a propojit ho patřičnými hranamy k existujícímu grafu:
+- \(\Rightarrow\): víme, že \(d_1', d_2', \ldots d_{n - 1}' \) je skórem grafu, stačí tedy přilepit vrchol a propojit ho patřičnými hranamy k existujícímu grafu:
 	- \(V\left(G\right) = \left\{v_1', \ldots, v_{n - 1}', v_n\right\}\)
 	- \(E\left(G\right) = E\left(G'\right) \cup \left\{\left\{v'i, v_n\right\} \mid n - d_n \le i \le n - 1\right\}\)
 	- pozor! opačně nefunguje, jelikož nemáme jistotu, že odebíráme od těch zprava
-- \(\Leftarrow\)...
-	- Nechť \(\mathcal{G} := \left\{G\ \text{na}\ \left\{v_1, \ldots, v_n\right\}, \mid \forall i: \mathrm{deg}_G\left(v_i\right) = d_i\right\}\)
-		- = všechny možné grafy se správným tím skórem
+- \(\Leftarrow\):
+	- nechť \(\mathcal{G} := \left\{G\ \text{na}\ \left\{v_1, \ldots, v_n\right\}, \mid \forall i: \mathrm{deg}_G\left(v_i\right) = d_i\right\}\)
+		- = všechny možné grafy s tímhle skórem
 	- lemma: \(\exists\ G \in \mathcal{G}: \forall j, n - d_n \le j < n: \left\{v_j, v_n\right\} \in E\left(G\right)\) 
-		- nechť \(j\left(G\right) := \mathrm{max}\left\{j \mid \left\{v_j, v_n\right\} \not\in E\left(G\right)\right\}\) (první díra zprava)
+		- tedy existuje graf, od kterého můžeme odtrhnout poslední vrchol (ten s největším stupněm) a dostaneme správné skóre
+	- nechť \(j\left(G\right) := \mathrm{max}\left\{j \mid \left\{v_j, v_n\right\} \not\in E\left(G\right)\right\}\) (první díra zprava)
 
 {% xopp score_1 %}
  
@@ -471,10 +471,10 @@ následující tvrzení jsou ekvivalentní:
 - acykličnost sedí
 - kdyby nebyl souvislý, tak přidání nevytvoří cyklus
 
-\(5 \implies 1\) -- indukcí podle počtu vrcholů: 
+\(5 \implies 1\) -- indukcí podle počtu vrcholů:
 - existuje vrchol, který je list
 - koukneme na skóre: \(\sum_{i = 1}^{n} d_i = 2 \cdot \left|E\left(G\right)\right| = 2n - 2\)
-	- \(d_i \ge 1\) (souvislost) a alespoň 1 je 1 (kdyby ne, tak \(d_i > 1\), což je ale alespoň \(2n\)... máme list, jehož odtržením máme podle IP strom, a po přilepení je to také strom
+	- \(d_i \ge 1\) (souvislost) a alespoň 1 je 1 (kdyby ne, tak \(d_i > 1\), což je v součtu alespoň \(2n\)) a máme tedy list; jeho odtržením máme podle IP (graf má po odtržení stupeň \(2(n-1)-2\)) strom, a po přilepení je to opět strom
 {% endmath %}
 
 #### Kostra, sled, tahy
@@ -559,7 +559,7 @@ je \(f: \left[0, 1\right] \mapsto \mathbb{R}^2\) spojitá a prostá.
 
 {% math definition: "rovinné nakreslení" %}
 multigrafu \(\left(V, E, K\right)\) je \(\nu: V \mapsto \mathbb{R}^2\) a \(\left\{C_e \mid e \in E\right\}\) množina oblouků/topologických kružnic t. ž.:
-1. \(\forall e \in E: K\left(e\right) = \left\{u, v\right\}\): \(C_e\) je oblouk s koncy \(\left\{\nu\left(u\right), \nu\left(v\right)\right\}\)
+1. \(\forall e \in E: K\left(e\right) = \left\{u, v\right\}\): \(C_e\) je oblouk s konci \(\left\{\nu\left(u\right), \nu\left(v\right)\right\}\)
 	- za každou hranu existuje oblouk
 2. \(\forall e \in E: K\left(e\right) = u\): \(C_e\) je kružnice obsahující \(\nu\left(u\right)\)
 	- smyčky
@@ -717,10 +717,10 @@ každý rovinný graf je 5-obarvitelný.
 
 {% math proof %}
 - pro \(\left|V\right| \le 5\) lze triviálně (prostě přiřadíme všechny barvy)
-- indukcí: uvažme \(v \in V\left(G\right)\) s maximálním stupněm
-	- pro \(\mathrm{deg}(v) \le 4\)... indukcí přiřadíme vrcholu zbylou barvu
+- indukcí podle počtu vrcholů: uvažme \(v \in V\left(G\right)\) s minimálním stupněm -- ten odtrhneme, graf podle IP obarvíme a rozebereme případy:
+	- pro \(\mathrm{deg}(v) \le 4\)... indukcí přiřadíme vrcholu zbylou barvu, jelikož sousedé zabrali nejvýše \(4\)
 	- \(\mathrm{deg}(v) > 5\) nenastane (vztah \(e = 3v - 6\))
-	- pro \(\mathrm{deg}(v) = 5\): uvažme zeleno-červený podgaf vycházející z vrcholu \(a\)... pro ten mohou nastat dva případy:
+	- pro \(\mathrm{deg}(v) = 5\): pokud jsou nějaké barvy stejné, tak obarvíme zbylou; jinak uvažme zeleno-červený podgaf vycházející z vrcholu \(a\)... pro ten mohou nastat dva případy:
 		1. pokud \(c\) nepatří do podgrafu, tak prohodíme _všechny barvy v podgrafu_ a jedné se tím na problematickém vrcholu zbavíme
 		2. pokud patří, tak uděláme totéž s vrcholy \(b\) a \(d\); oba případy najednou nastat nemohou, jelikož by se křížily v hraně (nelze -- poruší rovinnost) nebo ve vrcholu (nelze, ten už má barvu)
 
@@ -830,14 +830,14 @@ nechť \(X\) je náhodná _nezáporná_ veličina, která má střední hodnotu,
 vycházíme ze střední hodnoty; iterujeme přes všechna \(a \in R\)
 \[
 \begin{aligned}
-	\mathbb{E}\left[x\right] &= \sum_{a} P\left[x = a\right] \cdot a \\ 
-	&\ge \sum_{a \ge k} P\left[x = a\right] \cdot a  \\
-	&\ge \sum_{a \ge k} P\left[x = a\right] \cdot k \\
+	\mathbb{E}\left[x\right] &= \sum_{a} P\left[x = a\right] \cdot a \qquad // \text{definice}\\
+	&\ge \sum_{a \ge k} P\left[x = a\right] \cdot a  \qquad // \text{iterujeme přes více hodnot}\\
+	&\ge \sum_{a \ge k} P\left[x = a\right] \cdot k \qquad //k \ge a\\
 	&= k \cdot \sum_{a \ge k} P\left[x = a\right] \\
 	&= k \cdot P\left[x \ge k\right]
 \end{aligned}
 \]
-- dalšími úpravami (viz. začátek předešlých) a dosazením \(k := t \cdot \mathbb{E}\left[x\right]\) dostáváme nerovnost
+- dosazením \(k := t \cdot \mathbb{E}\left[x\right]\) dostáváme Markovovu nerovnost
 {% endmath %}
 
 {% math definition "variance = rozptyl" %}
