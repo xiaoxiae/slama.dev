@@ -3,6 +3,7 @@ language: cz
 title: Aproximační Algoritmy
 category: "poznámky z přednášky"
 pdf: true
+redirect_from: /lecture-notes/aproximacni-algoritmy/
 ---
 
 - .

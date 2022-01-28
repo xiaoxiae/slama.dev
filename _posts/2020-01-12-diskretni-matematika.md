@@ -3,6 +3,7 @@ language: cz
 title: Diskrétní Matematika
 category: "poznámky z přednášky"
 pdf: true
+redirect_from: /lecture-notes/diskretni-matematika/
 ---
 
 - .

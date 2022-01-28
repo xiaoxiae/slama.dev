@@ -3,6 +3,7 @@ language: cz
 title: Kombinatorika a Grafy II
 category: "poznámky z přednášky"
 pdf: true
+redirect_from: /lecture-notes/kombinatorika-a-grafy-ii/
 ---
 
 

@@ -3,6 +3,7 @@ language: cz
 title: Principy Počítačů
 category: "poznámky z přednášky"
 pdf: true
+redirect_from: /lecture-notes/principy-pocitacu/
 ---
 
 - .
