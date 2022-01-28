@@ -1,4 +1,4 @@
-.PHONY:  all clean build upload serve
+.PHONY:  all clean build upload serve permissions
 .SILENT:
 
 XOPP = $(shell find _includes/ -type f -name '*.xopp')
@@ -7,7 +7,7 @@ SVG  = $(patsubst %.xopp, %.svg, $(XOPP))
 all: build upload
 
 xopp: $(SVG);
-build: $(SVG); ! ps -aux | grep "ruby.*jekyll" | grep -v grep -q && jekyll build --trace || (echo "ERROR: Jekyll seems to be running already." && exit 1)
+build: permissions $(SVG); ! ps -aux | grep "ruby.*jekyll" | grep -v grep -q && jekyll build --trace || (echo "ERROR: Jekyll seems to be running already." && exit 1)
 serve: $(SVG); ! ps -aux | grep "ruby.*jekyll" | grep -v grep -q && jekyll serve --trace --drafts --config _config.yml,_config-local.yml || (echo "ERROR: Jekyll seems to be running already." && exit 1)
 
 upload:
@@ -15,6 +15,9 @@ upload:
 
 clean:
 	jekyll clean --trace
+
+permissions:
+	chmod +x _plugins/*.py
 
 %.svg: %.xopp
 	_plugins/xopp_to_svg.py -f $^
