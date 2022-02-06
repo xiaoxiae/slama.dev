@@ -847,9 +847,9 @@ Console.WriteLine("We didn't fail: " + a);
 - produced using `dotnet publish`
 
 #### Method inlining
-- compiler optimization that moves the body of the method to where it is called
+- JIT compiler optimization that moves the body of the method to where it is called
 - can't always be done (recursive functions)
-- generally happens for smaller (\(<32\ kB\)) methods that aren't too complicated (no `try/catch`, for example)
+- generally happens for smaller (\(<32\ B\) of machine code) methods that aren't too complicated (no `try/catch`, for example)
 - can be forced/disabled using `[MethodImpl]`
 
 #### Demand loading
