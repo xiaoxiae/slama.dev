@@ -1,396 +1,492 @@
 2021-08-13:
   blue:
     new: 3
+  note: Today's gravity felt pretty good!
   yellow:
     new: 1
-  note: Today's gravity felt pretty good!
 2021-08-16:
+  note: I had my second Covid shot on Friday and was out for the entire weekend, so
+    it was surprising that I managed to do the yellow one and make progress on a few
+    blue ones!
   red:
     new: 4
   yellow:
     new: 1
-  note: I had my second Covid shot on Friday and was out for the entire weekend, so it was surprising that I managed to do the yellow one and make progress on a few blue ones!
 2021-08-17:
+  blue:
+    new: 1
+  note: Today was a pretty tired day, considering the climbing I did yesterday. At
+    least I finished the blue one I made progress on yesterday and tried a few new
+    yellow ones to do.
   red:
     old: 1
   salmon:
     old: 1
   yellow:
     old: 1
-  blue:
-    new: 1
-  note: Today was a pretty tired day, considering the climbing I did yesterday. At least I finished the blue one I made progress on yesterday and tried a few new yellow ones to do.
 2021-08-20:
-  red:
-    old: 1
   blue:
     new: 5
-  note: It seems that the rest day really worked, I managed to do 5 new blue ones and real progress on a new blue and a yellow, both of which will hopefully go next session.
-2021-08-23:
-  yellow:
-    old: 1
-    new: 1
-  salmon:
-    old: 1
-  note: First session with new shoes (Skwamas). The yellow was surprisingly not bad. Also, I made progress on two other yellows that seem pretty difficult, but will probably go after a few attempts.
-2021-09-01:
-  yellow:
-    old: 1
-    new: 1
-  salmon:
-    old: 1
+  note: It seems that the rest day really worked, I managed to do 5 new blue ones
+    and real progress on a new blue and a yellow, both of which will hopefully go
+    next session.
   red:
     old: 1
-  note: The entire session was spent on the last two yellows in zone 9 that I haven't yet done. The first one went after about 20 tries and I managed to make all individual moves on the second one, so today was quite a success!
-2021-09-02:
-  yellow:
-    new: 2
+2021-08-23:
+  note: First session with new shoes (Skwamas). The yellow was surprisingly not bad.
+    Also, I made progress on two other yellows that seem pretty difficult, but will
+    probably go after a few attempts.
   salmon:
     old: 1
+  yellow:
+    new: 1
+    old: 1
+2021-09-01:
+  note: The entire session was spent on the last two yellows in zone 9 that I haven't
+    yet done. The first one went after about 20 tries and I managed to make all individual
+    moves on the second one, so today was quite a success!
+  red:
+    old: 1
+  salmon:
+    old: 1
+  yellow:
+    new: 1
+    old: 1
+2021-09-02:
+  note: I completely forgot about those two yellows, because I felt pretty weak when
+    I first tried them. Today was quite different though, as both of them went in
+    only a couple of tries!
   red:
     old: 4
-  note: I completely forgot about those two yellows, because I felt pretty weak when I first tried them. Today was quite different though, as both of them went in only a couple of tries!
+  salmon:
+    old: 1
+  yellow:
+    new: 2
 2021-09-04:
-  yellow:
-    old: 1
-  salmon:
-    old: 1
-    new: 1
+  note: Today was not good. I felt tired, but at least still managed to do the crimpy
+    salmon that I struggled with. Also, I made many more tries on the last yellow
+    one in the pool, but no dice -- at least I got the beta down!.
   red:
     old: 1
-  note: Today was not good. I felt tired, but at least still managed to do the crimpy salmon that I struggled with. Also, I made many more tries on the last yellow one in the pool, but no dice -- at least I got the beta down!.
+  salmon:
+    new: 1
+    old: 1
+  yellow:
+    old: 1
 2021-09-06:
-  yellow:
-    old: 2
   blue:
     old: 1
-  note: Today was worse. I felt much more tired and wrongly assumed that there will be new boulders today, which there weren't. I made some good attempts on the last yellow on the pool and the hard blue in the ball, at least.
+  note: Today was worse. I felt much more tired and wrongly assumed that there will
+    be new boulders today, which there weren't. I made some good attempts on the last
+    yellow on the pool and the hard blue in the ball, at least.
+  yellow:
+    old: 2
 2021-09-07:
-  rebuilt:
-  yellow:
+  blue:
+    new: 1
+  note: Most of the new boulders were built. I did quite a few of them, but I'm recording
+    only the ones that weren't changed. None of them were recorded because of this,
+    but will be in the next few sessions.
+  rebuilt: null
+  red:
     new: 2
   salmon:
     new: 4
-  blue:
-    new: 1
-  red:
+  yellow:
     new: 2
-  note: Most of the new boulders were built. I did quite a few of them, but I'm recording only the ones that weren't changed. None of them were recorded because of this, but will be in the next few sessions.
 2021-09-08:
-  yellow:
-    new: 1
-  salmon:
-    new: 2
   blue:
     new: 2
+  note: The new boulders should be finalized at this point. I still have yet to do
+    two the last two new yellows, but they're very tough. The camera died halfway
+    through the session, so they will be recorded in the next few sessions.
   red:
     new: 3
-  note: The new boulders should be finalized at this point. I still have yet to do two the last two new yellows, but they're very tough. The camera died halfway through the session, so they will be recorded in the next few sessions.
-2021-09-19:
+  salmon:
+    new: 2
   yellow:
     new: 1
-  salmon:
-    old: 2
+2021-09-19:
   blue:
     new: 2
-  note: Although I took a break for more than 10 days and it definitely feels like it, I found a very nice beta for the new yellow that I sent, which is super nice. I also did two new blues and filmed some salmons that I missed last session (because my battery died).
-2021-09-24:
-  rebuilt:
+  note: Although I took a break for more than 10 days and it definitely feels like
+    it, I found a very nice beta for the new yellow that I sent, which is super nice.
+    I also did two new blues and filmed some salmons that I missed last session (because
+    my battery died).
+  salmon:
+    old: 2
   yellow:
     new: 1
+2021-09-24:
+  blue:
+    new: 3
+  note: The new boulders feel harder than the previous batch (namely the yellows).
+    I still feel a bit sick (had sore throat and fever 2 days ago), but I still managed
+    to do some salmons, blues and even a yellow. Next time should feel much better.
+  rebuilt: null
+  red:
+    new: 3
   salmon:
     new: 4
-  blue:
-    new: 3
-  red:
-    new: 3
-  note: The new boulders feel harder than the previous batch (namely the yellows). I still feel a bit sick (had sore throat and fever 2 days ago), but I still managed to do some salmons, blues and even a yellow. Next time should feel much better.
-2021-09-26:
   yellow:
-    new: 2
-    old: 1
+    new: 1
+2021-09-26:
+  blue:
+    new: 1
+  note: The two easier yellows from the new boulders went down, along with the last
+    blue (super nice coordination move, weird end) and the last salmon too. I also
+    managed to repeat the yellow one that I haven't filmed yet. Now to start projecting
+    the other yellows, which are just brutal...
+  red:
+    old: 2
   salmon:
     new: 1
     old: 1
-  blue:
-    new: 1
-  red:
-    old: 2
-  note: The two easier yellows from the new boulders went down, along with the last blue (super nice coordination move, weird end) and the last salmon too. I also managed to repeat the yellow one that I haven't filmed yet. Now to start projecting the other yellows, which are just brutal...
-2021-09-28:
   yellow:
-    old: 6
+    new: 2
+    old: 1
+2021-09-28:
+  blue:
+    old: 5
+  note: I felt pretty weak again today, so I just climbed some boulders that I've
+    climbed already. Besides that, I managed one new salmon with a really weird beta
+    and real progress on the hard blue in the overhang.
+  red:
+    old: 4
   salmon:
     new: 1
     old: 3
-  blue:
-    old: 5
-  red:
-    old: 4
-  note: I felt pretty weak again today, so I just climbed some boulders that I've climbed already. Besides that, I managed one new salmon with a really weird beta and real progress on the hard blue in the overhang.
+  yellow:
+    old: 6
 2021-09-30:
+  blue:
+    old: 1
+  note: I made more progress on the blue in the overhang, which I've managed to piece
+    together for the first time today. I also tried the easiest yellow I haven't climbed
+    yet and made a few good attempts too, it will hopefully go soon.
+  red:
+    old: 1
   yellow:
     old: 1
-  blue:
-    old: 1
-  red:
-    old: 1
-  note: I made more progress on the blue in the overhang, which I've managed to piece together for the first time today. I also tried the easiest yellow I haven't climbed yet and made a few good attempts too, it will hopefully go soon.
 2021-10-06:
-  rebuilt:
   blue:
     new: 3
+  note: In the new rebuild, all of the blues (besides one) feel very easy, same as
+    the salmon ones (again, besides one). However, the yellows feel completely impossible.
+    I'll try to finish the two easy blues that I haven't done next session, and will
+    begin working on the yellows after that.
+  rebuilt: null
   red:
     new: 4
   salmon:
     new: 4
-  note: In the new rebuild, all of the blues (besides one) feel very easy, same as the salmon ones (again, besides one). However, the yellows feel completely impossible. I'll try to finish the two easy blues that I haven't done next session, and will begin working on the yellows after that.
 2021-10-08:
   blue:
     new: 2
     old: 2
+  note: I finished the two easy blues that I mentioned last session and the weird
+    salmon one. The rest of the session was spent on working on the two yellows that
+    actually seem very doable.
   salmon:
     new: 1
     old: 1
-  note: I finished the two easy blues that I mentioned last session and the weird salmon one. The rest of the session was spent on working on the two yellows that actually seem very doable.
 2021-10-10:
   blue:
     old: 5
+  note: One of the doable yellows from the new rebuild went today, the other will
+    go next session (found a new beta that works well). The third one is really hard,
+    but seems doable (eventually, given enough pinch strength and skin).
+  red:
+    old: 2
   salmon:
     old: 2
   yellow:
     new: 1
-  red:
-    old: 2
-  note: One of the doable yellows from the new rebuild went today, the other will go next session (found a new beta that works well). The third one is really hard, but seems doable (eventually, given enough pinch strength and skin).
 2021-10-12:
   blue:
     old: 2
+  note: The other doable did not go down this session, but I got extremely close and
+    am pretty confident that I can climb it (either next session or the one after
+    that).
+  red:
+    old: 2
   salmon:
     old: 3
   yellow:
     old: 1
-  red:
-    old: 2
-  note: The other doable did not go down this session, but I got extremely close and am pretty confident that I can climb it (either next session or the one after that).
 2021-10-18:
   blue:
     old: 3
+  note: I took a bit of a break, but it was worth, since I managed to send two new
+    yellows! I also previewed some new boulders for the boulder challenge on Wednesday,
+    I'm quite interested to see how well I do.
   salmon:
     old: 3
   yellow:
+    new: 2
     old: 1
-    new: 2
-  note: I took a bit of a break, but it was worth, since I managed to send two new yellows! I also previewed some new boulders for the boulder challenge on Wednesday, I'm quite interested to see how well I do.
 2021-10-20:
-  red:
-    old: 4
-    new: 5
   blue:
-    old: 5
     new: 3
-  salmon:
+    old: 5
+  note: I attended the boulder challenge! It was quite difficult and not really what
+    I'm used to (climbing a lot of boulders), but I managed to came 5th. If I had
+    more endurance, I'm pretty confident I could have made the podium. Next time :).
+  red:
+    new: 5
     old: 4
+  salmon:
     new: 2
+    old: 4
   yellow:
     old: 2
-  note: I attended the boulder challenge! It was quite difficult and not really what I'm used to (climbing a lot of boulders), but I managed to came 5th. If I had more endurance, I'm pretty confident I could have made the podium. Next time :).
 2021-10-22:
+  note: I just projected some of the new yellows.
   red:
     new: 1
-  note: I just projected some of the new yellows.
 2021-10-24:
   blue:
     old: 2
+  note: I did the salmon in the 45 (it was actually pretty easy, just pumpy) and one
+    more on the island. Then I again projected the new yellows.
   salmon:
     new: 2
     old: 1
-  note: I did the salmon in the 45 (it was actually pretty easy, just pumpy) and one more on the island. Then I again projected the new yellows.
 2021-10-26:
   location: BigWall
-  note: I started doing sport climbing! This session was spent at Big Wall and was bad, because I'm not very good at sport climbing. I'll still try to do a sports climbing session once in a while to improve my endurance, which at this point is quite lacking.
+  note: I started doing sport climbing! This session was spent at Big Wall and was
+    bad, because I'm not very good at sport climbing. I'll still try to do a sports
+    climbing session once in a while to improve my endurance, which at this point
+    is quite lacking.
 2021-10-28:
-  note: Second sport climbing session, this time at Smíchoff. I did some 7's and an onsight of 8, which I'm pretty happy about. I then finished up with some bouldering, getting closer to climbing the new yellows.
+  note: "Second sport climbing session, this time at Sm\xEDchoff. I did some 7's and\
+    \ an onsight of 8, which I'm pretty happy about. I then finished up with some\
+    \ bouldering, getting closer to climbing the new yellows."
 2021-10-30:
-  note: I projected the yellow in the 45 (almost got the top sequence done) and the one on the island (literally fell while matching the top hold). I'm very confident in finishing the one on the island next session, and linking the one in 45.
+  note: I projected the yellow in the 45 (almost got the top sequence done) and the
+    one on the island (literally fell while matching the top hold). I'm very confident
+    in finishing the one on the island next session, and linking the one in 45.
 2021-11-02:
-  note: The new routes all seem pretty easy. I'm honestly not sure whether I'm getting stronger or the climbs are getting easier. Of the three remaining yellows, I think the jumpy and the traverse one will go, but the volumy one seems completely impossible.
-  rebuilt:
-  red:
-    new: 5
   blue:
     new: 4
-  yellow:
-    new: 3
+  note: The new routes all seem pretty easy. I'm honestly not sure whether I'm getting
+    stronger or the climbs are getting easier. Of the three remaining yellows, I think
+    the jumpy and the traverse one will go, but the volumy one seems completely impossible.
+  rebuilt: null
+  red:
+    new: 5
   salmon:
     new: 1
     old: 1
+  yellow:
+    new: 3
 2021-11-05:
-  note: I finished the yellow that I messed up last time (fell from the top). Also finished the slamon ones that weren't yet built last session (except one, which has a weird beta). The yellow in the 45 seemed pretty doable today, I'll try to link it next session.
-  red:
-    old: 1
   blue:
     new: 1
-  yellow:
-    new: 1
+  note: I finished the yellow that I messed up last time (fell from the top). Also
+    finished the slamon ones that weren't yet built last session (except one, which
+    has a weird beta). The yellow in the 45 seemed pretty doable today, I'll try to
+    link it next session.
+  red:
+    old: 1
   salmon:
     new: 3
+  yellow:
+    new: 1
 2021-11-08:
-  note: I spent the session trying the last salmon, which is actually pretty hard. I'll get it next time, I've got the beta down (but didn't have the strength to link it). I also figured out better beta for the one in 45 and managed to link it, I'm very confident in sending it next time.
   blue:
     old: 4
+  note: I spent the session trying the last salmon, which is actually pretty hard.
+    I'll get it next time, I've got the beta down (but didn't have the strength to
+    link it). I also figured out better beta for the one in 45 and managed to link
+    it, I'm very confident in sending it next time.
+  salmon:
+    new: 1
+    old: 3
   yellow:
     old: 1
-  salmon:
-    old: 3
-    new: 1
 2021-11-10:
-  note: As I said, both the yellow in the 45 and the salmon one (which I sadly forgot to record) went down. Now I'm not really sure what to work on, everything else seems quite impossible...
   blue:
     old: 2
-  yellow:
-    new: 1
-    old: 2
+  note: As I said, both the yellow in the 45 and the salmon one (which I sadly forgot
+    to record) went down. Now I'm not really sure what to work on, everything else
+    seems quite impossible...
+  red:
+    old: 1
   salmon:
     new: 1
     old: 1
-  red:
-    old: 1
+  yellow:
+    new: 1
+    old: 2
 2021-11-14:
-  note: I found an awesome new beta for the yellow jump from the last build and managed to do it today. Now I really don't know what to work on. Luckily, there will be new boulders on Monday.
   blue:
     old: 2
+  note: I found an awesome new beta for the yellow jump from the last build and managed
+    to do it today. Now I really don't know what to work on. Luckily, there will be
+    new boulders on Monday.
+  salmon:
+    old: 3
   yellow:
     new: 1
     old: 1
-  salmon:
-    old: 3
 2021-11-17:
-  note: There was a rebuilt on Monday and a boulder challenge today. It went surprisingly well -- I climbed all of the new boulders that were easier than yellows (which I'm very happy about, since my endurance is quite poor), and three of the new yellows, ending in the 2nd place, only a few points after the insanely strong Lukáš Mokroluský. There are two other hard yellows that I think I can finish next session, and a new long-term project yellow.
-  rebuilt:
+  blue:
+    new: 4
+    old: 6
+  note: "There was a rebuilt on Monday and a boulder challenge today. It went surprisingly\
+    \ well -- I climbed all of the new boulders that were easier than yellows (which\
+    \ I'm very happy about, since my endurance is quite poor), and three of the new\
+    \ yellows, ending in the 2nd place, only a few points after the insanely strong\
+    \ Luk\xE1\u0161 Mokrolusk\xFD. There are two other hard yellows that I think I\
+    \ can finish next session, and a new long-term project yellow."
+  rebuilt: null
   red:
+    new: 5
     old: 5
+  salmon:
     new: 5
+    old: 6
   yellow:
-    old: 4
     new: 3
-  salmon:
-    old: 6
-    new: 5
-  blue:
-    old: 6
-    new: 4
+    old: 4
 2021-11-30:
-  note: The new routes are quite a bit harder than the previous set. Nevertheless, it went pretty well, considering that I had a bit of a break from climbing (although I did miss one journal entry from a week ago because nothing interesting happened).
-  rebuilt:
+  blue:
+    new: 4
+  note: The new routes are quite a bit harder than the previous set. Nevertheless,
+    it went pretty well, considering that I had a bit of a break from climbing (although
+    I did miss one journal entry from a week ago because nothing interesting happened).
+  rebuilt: null
   red:
     new: 5
   salmon:
     new: 3
-  blue:
-    new: 4
 2021-12-02:
-  note: Pretty good session. I made some real progress on the easiest yellow, which should hopefully go down next session. There is one salmon and one blue remaning, but both are very hard (maybe like a yellow).
-  salmon:
-    new: 1
-    old: 1
   blue:
     new: 1
     old: 2
-2021-12-04:
-  note: Not great, not terrible. I didn't manage to do any of the boulders that I set out to, but they'll go next time.
+  note: Pretty good session. I made some real progress on the easiest yellow, which
+    should hopefully go down next session. There is one salmon and one blue remaning,
+    but both are very hard (maybe like a yellow).
   salmon:
+    new: 1
     old: 1
+2021-12-04:
   blue:
     old: 4
+  note: Not great, not terrible. I didn't manage to do any of the boulders that I
+    set out to, but they'll go next time.
   red:
     old: 2
-2021-12-06:
-  note: Bad session. I don't even know what I climbed and felt super weak the entire time.
-2021-12-08:
-  note: A little better than the previous one. I managed to climb one of the yellows from the last setting with an alternative beta -- the send attempt looked a bit sketchy, but it felt much more stable than jumping.
   salmon:
-    old: 3
+    old: 1
+2021-12-06:
+  note: Bad session. I don't even know what I climbed and felt super weak the entire
+    time.
+2021-12-08:
   blue:
     old: 3
+  note: A little better than the previous one. I managed to climb one of the yellows
+    from the last setting with an alternative beta -- the send attempt looked a bit
+    sketchy, but it felt much more stable than jumping.
   red:
+    old: 3
+  salmon:
     old: 3
   yellow:
     new: 1
 2021-12-11:
   location: Boulder Bar
-  note: Went to Boulder bar with a few friends. It was a pretty nice change, but I'm eager to go back to Smíchoff soon. Coincidentally, Adam Ondra was just visiting Prague and was at the boulder bar. It was very humbling and inspiring seeing him flash all my red projects... still a long way to go.
+  note: "Went to Boulder bar with a few friends. It was a pretty nice change, but\
+    \ I'm eager to go back to Sm\xEDchoff soon. Coincidentally, Adam Ondra was just\
+    \ visiting Prague and was at the boulder bar. It was very humbling and inspiring\
+    \ seeing him flash all my red projects... still a long way to go."
 2021-12-14:
-  rebuilt:
-  note: Decent session. Managed to get all new salmons and almost all blues (one is quite hard). Also, one of the remaining yellows will definitely go. This, however, cannot be said for the last red that I haven't yet done, since it's as hard as a blue.
-  salmon:
-    new: 4
   blue:
     new: 3
+  note: Decent session. Managed to get all new salmons and almost all blues (one is
+    quite hard). Also, one of the remaining yellows will definitely go. This, however,
+    cannot be said for the last red that I haven't yet done, since it's as hard as
+    a blue.
+  rebuilt: null
   red:
     new: 5
+  salmon:
+    new: 4
   yellow:
     new: 1
 2021-12-18:
-  note: Climbed more than I thought I would! I finished all of the new yellows, so only one blue remains (I finished the tough red too). Besides this, I managed to do the salmon double dyno from the set before this one, which was a nice surprise.
-  salmon:
-    new: 1
+  note: Climbed more than I thought I would! I finished all of the new yellows, so
+    only one blue remains (I finished the tough red too). Besides this, I managed
+    to do the salmon double dyno from the set before this one, which was a nice surprise.
   red:
+    new: 1
+  salmon:
     new: 1
   yellow:
     new: 2
 2021-12-20:
-  note: The last blue is tough. I found a cheeky beta that is very dynamic and skips the hardest moves, but is very low-percentage. Will try to do it next time.
-  salmon:
-    old: 1
   blue:
     old: 2
+  note: The last blue is tough. I found a cheeky beta that is very dynamic and skips
+    the hardest moves, but is very low-percentage. Will try to do it next time.
   red:
     old: 2
+  salmon:
+    old: 1
 2021-12-22:
-  location: Jungle
-  note: Went to Jungle Letňany today and it was quite refreshing! Their comp section was quite exciting but difficult, I did two blue ones, but I know I can do better than that.
-  red:
-    new: 4
   blue:
     new: 7
   green:
     new: 3
+  location: Jungle
+  note: "Went to Jungle Let\u0148any today and it was quite refreshing! Their comp\
+    \ section was quite exciting but difficult, I did two blue ones, but I know I\
+    \ can do better than that."
+  red:
+    new: 4
 2021-12-27:
-  location: Třináctka
-  note: Tried another new location called Třináctka (thanks, Lucas!). It was quite nice, but definitely not as good (and cheap) as Smíchoff, nor as high-quality as Jungle (namely its competitive section).
   V10:
     new: 1
-  V7:
-    new: 12
-  V6:
-    new: 2
   V5:
     new: 1
+  V6:
+    new: 2
+  V7:
+    new: 12
+  location: "T\u0159in\xE1ctka"
+  note: "Tried another new location called T\u0159in\xE1ctka (thanks, Lucas!). It\
+    \ was quite nice, but definitely not as good (and cheap) as Sm\xEDchoff, nor as\
+    \ high-quality as Jungle (namely its competitive section)."
 2021-12-30:
-  rebuilt:
-  note: New boulders! The blues were not too hard and neither most of the salmons (besides one, which is a yellow). I also did half of the new yellows and figured out beta for the remaining 3, so they will hopefully go down on Saturday.
+  blue:
+    new: 4
+  note: New boulders! The blues were not too hard and neither most of the salmons
+    (besides one, which is a yellow). I also did half of the new yellows and figured
+    out beta for the remaining 3, so they will hopefully go down on Saturday.
+  rebuilt: null
   red:
     new: 4
   salmon:
-    new: 4
-  blue:
     new: 4
   yellow:
     new: 3
 2022-01-01:
-  note: Managed to do the hard salmon and two of the three leftover yellows. Only one remains, but I've got a feeling that it will be very difficult...
+  blue:
+    old: 1
+  note: Managed to do the hard salmon and two of the three leftover yellows. Only
+    one remains, but I've got a feeling that it will be very difficult...
   red:
     new: 1
   salmon:
     new: 1
-  blue:
-    old: 1
   yellow:
-    old: 1
     new: 2
+    old: 1
 2022-01-03:
-  note: I climbed very poorly. However, I did manage to improve on the remainig yellow one and discover a very nice beta break on the last blue from the previous rebuild, which will go down  next time (it is very, very powerful).
+  note: I climbed very poorly. However, I did manage to improve on the remainig yellow
+    one and discover a very nice beta break on the last blue from the previous rebuild,
+    which will go down  next time (it is very, very powerful).
   red:
     old: 1
   salmon:
@@ -398,104 +494,134 @@
   yellow:
     old: 1
 2022-01-05:
-  note: The session not bad! I managed to do the last blue (and boulder) from the previous build, and found a functional beta for the yellow that I previously thought would be too hard in zone 8.
+  blue:
+    new: 1
+  note: The session not bad! I managed to do the last blue (and boulder) from the
+    previous build, and found a functional beta for the yellow that I previously thought
+    would be too hard in zone 8.
   red:
     old: 4
   salmon:
     old: 1
-  blue:
-    new: 1
   yellow:
     old: 3
 2022-01-06:
-  note: Went climbing with a few of my friends (tried sport climbing too), so I didn't climb too hard. No new routes, just some repeats.
+  blue:
+    old: 2
+  note: Went climbing with a few of my friends (tried sport climbing too), so I didn't
+    climb too hard. No new routes, just some repeats.
   red:
     old: 1
   salmon:
-    old: 2
-  blue:
     old: 2
   yellow:
     old: 4
 2022-01-07:
-  note: An interesting climbing gym. The type of climbing is quite oldschool (so not my cup of tea), but still a nice change of pace.
   location: LokalBlok
+  note: An interesting climbing gym. The type of climbing is quite oldschool (so not
+    my cup of tea), but still a nice change of pace.
 2022-01-12:
-  rebuilt:
-  note: The new climbs are all quite easy (like a grade easier than they should be) -- most videos are flash attempts. However, the remaining two yellows will be a bit tough -- one should go down next session, but the other seems quite impossible (when Danny says it's hard, it's likely impossible).
+  blue:
+    new: 6
+  note: The new climbs are all quite easy (like a grade easier than they should be)
+    -- most videos are flash attempts. However, the remaining two yellows will be
+    a bit tough -- one should go down next session, but the other seems quite impossible
+    (when Danny says it's hard, it's likely impossible).
+  rebuilt: null
   red:
     new: 5
   salmon:
     new: 6
-  blue:
-    new: 6
   yellow:
     new: 4
 2022-01-14:
-  note: One of the last yellows went down. It wasn't the one I thought it would be, though -- I skipped the crux on the impossible yellow because I'm tall. I think the other one will be doable, but it's much harder than I anticipated -- the top is very much not free.
+  blue:
+    old: 4
+  note: One of the last yellows went down. It wasn't the one I thought it would be,
+    though -- I skipped the crux on the impossible yellow because I'm tall. I think
+    the other one will be doable, but it's much harder than I anticipated -- the top
+    is very much not free.
+  red:
+    old: 1
+  salmon:
+    old: 2
   yellow:
     new: 1
     old: 2
-  salmon:
-    old: 2
-  blue:
-    old: 4
-  red:
-    old: 1
 2022-01-16:
-  note: I practiced the last remaining yellow from the previous set, but sadly managed to pull something in my shoulder (since the crux move is a huge shoulder press). I'll refrain from trying this one for a bit.
-  red:
-    old: 4
   blue:
     old: 5
+  note: I practiced the last remaining yellow from the previous set, but sadly managed
+    to pull something in my shoulder (since the crux move is a huge shoulder press).
+    I'll refrain from trying this one for a bit.
+  red:
+    old: 4
   salmon:
     old: 4
   yellow:
     old: 5
 2022-01-18:
-  note: The shoulder felt a bit sore, so I'm not up to 100% of my power. Unsurprisingly, the last remaning yellow from the previous set didn't go down, despite a few attempts. I did manage to link the yellow in the overhang, which was a bit surprising, but linking it will be tough and, since they're taking it down in a few days, likely undoable.
-  red:
-    old: 3
   blue:
     old: 6
+  note: The shoulder felt a bit sore, so I'm not up to 100% of my power. Unsurprisingly,
+    the last remaning yellow from the previous set didn't go down, despite a few attempts.
+    I did manage to link the yellow in the overhang, which was a bit surprising, but
+    linking it will be tough and, since they're taking it down in a few days, likely
+    undoable.
+  red:
+    old: 3
   salmon:
     old: 3
   yellow:
     old: 2
 2022-01-22:
-  location: Jungle
-  note: The Jungle comp section kicked my ass. It was mostly my fault, since I didn't warm up properly, got pumped and climbed poorly. I still managed to climb some new routes!
-  red:
-    new: 1
   blue:
     new: 5
     old: 1
-2022-02-01:
-  note: First session after going through Covid. I felt pretty okay, but my technique was a bit off and my strength/endurance was worse than before. Luckily, most of the new routes are relatively easy (besides the new yellows, all of which are quite difficult).
-  rebuilt:
+  location: Jungle
+  note: The Jungle comp section kicked my ass. It was mostly my fault, since I didn't
+    warm up properly, got pumped and climbed poorly. I still managed to climb some
+    new routes!
   red:
-    new: 4
+    new: 1
+2022-02-01:
   blue:
     new: 5
+  note: First session after going through Covid. I felt pretty okay, but my technique
+    was a bit off and my strength/endurance was worse than before. Luckily, most of
+    the new routes are relatively easy (besides the new yellows, all of which are
+    quite difficult).
+  rebuilt: null
+  red:
+    new: 4
   salmon:
     new: 5
 2022-02-03:
-  note: Second session after going through Covid. I felt pretty weak, but still managed to climb one of the three yellows from the new set and the last unclimbed blue (lost the video though, will need to re-record it next session). I'm confident that one of the remaning two will go, but the other one seems insane.
-  red:
-    old: 2
   blue:
     new: 1
     old: 3
+  note: Second session after going through Covid. I felt pretty weak, but still managed
+    to climb one of the three yellows from the new set and the last unclimbed blue
+    (lost the video though, will need to re-record it next session). I'm confident
+    that one of the remaning two will go, but the other one seems insane.
+  red:
+    old: 2
   salmon:
     old: 3
   yellow:
     new: 1
 2022-02-08:
-  rebuilt:
-  note: New boulders! I felt decently strong, so I managed to all of the new salmons and blues (besides one, which will be made easier so there is no point in climbing it now). The new yellows will be tough, but I think that at least two should go (in time). I also forgot the tripod, so I'll have to record them next time -- however, I just found out that the smaller tripod that I got with the camera will actually be much better for recording, as it is much more compact and probably stable enough.
-  red:
-    new: 5
   blue:
     new: 3
+  note: New boulders! I felt decently strong, so I managed to all of the new salmons
+    and blues (besides one, which will be made easier so there is no point in climbing
+    it now). The new yellows will be tough, but I think that at least two should go
+    (in time). I also forgot the tripod, so I'll have to record them next time --
+    however, I just found out that the smaller tripod that I got with the camera will
+    actually be much better for recording, as it is much more compact and probably
+    stable enough.
+  rebuilt: null
+  red:
+    new: 5
   salmon:
     new: 4
