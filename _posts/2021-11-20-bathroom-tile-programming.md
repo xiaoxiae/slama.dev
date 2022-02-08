@@ -22,7 +22,7 @@ The idea is to count, how many parentheses we've seen so far and store it in the
 {: .inverse-invert}
 ![](/assets/bathroom-tile-programming/parentheses.png)
 
-If we wanted to make the tileset a little more concise, we could exchange the red color (that is mostly there for clarity) with a zero, yielding the following:
+If we wanted to make the tileset a little more concise, we could exchange the <span class="azure-red"></span> color (that is mostly there for clarity) with a zero, yielding the following:
 
 {: .inverse-invert}
 ![](/assets/bathroom-tile-programming/parentheses_minimal.png)
