@@ -10,6 +10,7 @@ try:
 
     g = Github(github_token)
 
+    # (GitHub name, override display name, override language)
     projects = [
         ("Florodoro", None, None),
         ("Donjun", None, None),
@@ -18,7 +19,7 @@ try:
         ("Robotics-Simplified-Website", "Robotics Simplified", "HTML"),
         ("PurePursuitAlgorithm", "Pure Pursuit", None),
         ("CV", "CV generator", None),
-        ("mytar.c", "GNU TAR", None),
+        ("Smichoff-Trophy", "Smíchoff Trophy", "Fusion 360"),
     ]
 
     result = ""
