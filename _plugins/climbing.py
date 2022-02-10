@@ -127,6 +127,7 @@ for name in list(config):
 
     if not os.path.exists(poster_webp):
         print(f"generating a poster for '{name}'.", flush=True)
+        new_path = os.path.join(CLIMBING_VIDEOS_FOLDER, name)
 
         _ = Popen(
             [
