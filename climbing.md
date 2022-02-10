@@ -44,6 +44,6 @@ Since there there are some other locations that I visit from time to time (mostl
 | <img class='climbing-location-logo-middle' src='/climbing/location-logos/třináctka.svg'/>   | [Třináctka](http://stenastodulky.cz/)              |
 | <img class='climbing-location-logo-middle' src='/climbing/location-logos/lokalblok.svg'/>   | [LokalBlok](http://www.lokalblok.cz/lezecka-stena) |
 
-The format for each color is as follows: <mark class="climbing-diary-record climbing-red climbing-red-text">repeats/<span class="underline">new sends</span> [<a>video</a>, <a>links</a>]</mark> (at <img class='climbing-location-logo' src='/climbing/location-logos/smíchoff.svg'/>).
+The format for each difficulty is <mark class="climbing-diary-record climbing-yellow climbing-yellow-text">repeats/<span class="underline">new sends</span> [<a>video</a> <a>links</a>]</mark>.
 
 {% include diary.md %}

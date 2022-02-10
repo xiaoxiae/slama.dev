@@ -34,8 +34,10 @@ result = """
 <ul>
 """
 
+previous_date = None
+
 for entry in reversed(sorted(list(journal))):
-    line = f"\n<li><p><strong>{entry.strftime('%-d. %-m. %Y')}:</strong> "
+    line = f"\n<li><p><strong>{entry.strftime('%-d. %-m. %Y')}</strong>"
 
     colors = ["red", "salmon", "blue", "yellow"]
 
@@ -58,6 +60,11 @@ for entry in reversed(sorted(list(journal))):
         location = "-" + location_stub
 
         colors = location_colors[location_stub]
+
+    if location == "":
+        location_stub = "smíchoff"
+
+    line += f" (at <img class='climbing-location-logo' src='/climbing/location-logos/{location_stub}.svg'/>): "
 
     for color in colors:
         entry_videos = []
@@ -96,11 +103,6 @@ for entry in reversed(sorted(list(journal))):
                 )
 
             line += "</mark> "
-
-    if location == "":
-        location_stub = "smíchoff"
-
-    line += f"(at <img class='climbing-location-logo' src='/climbing/location-logos/{location_stub}.svg'/>)"
 
     line += "</p>"
 
