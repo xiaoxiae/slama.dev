@@ -226,6 +226,7 @@
     new: 2
     old: 1
 2021-10-20:
+  rebuilt:
   blue:
     new: 3
     old: 5
@@ -242,8 +243,6 @@
     old: 2
 2021-10-22:
   note: I just projected some of the new yellows.
-  red:
-    new: 1
 2021-10-24:
   blue:
     old: 2
