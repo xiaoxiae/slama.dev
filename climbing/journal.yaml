@@ -226,13 +226,13 @@
     new: 2
     old: 1
 2021-10-20:
-  rebuilt:
   blue:
     new: 3
     old: 5
   note: I attended the boulder challenge! It was quite difficult and not really what
     I'm used to (climbing a lot of boulders), but I managed to came 5th. If I had
     more endurance, I'm pretty confident I could have made the podium. Next time :).
+  rebuilt: null
   red:
     new: 5
     old: 4
@@ -624,3 +624,12 @@
     new: 5
   salmon:
     new: 4
+2022-02-11:
+  blue:
+    old: 6
+  note: I haven't been able to send either of the blue rebuilt boulders, nor the new
+    yellows (although some progress has been made).
+  red:
+    old: 3
+  salmon:
+    old: 4
