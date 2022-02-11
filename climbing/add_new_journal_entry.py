@@ -36,9 +36,9 @@ if arguments.rebuilt:
     entry["rebuilt"] = None
 
 if date.today() in config and not arguments.force:
-    print("Today's entry exists only reformatting. Use '-f' to overwrite.")
+    print("Today's entry exists. Use '-f' to overwrite.")
 else:
     config[date.today()] = entry
 
-with open(JOURNAL_PATH, "w") as f:
-    f.write(yaml.dump(config))
+    with open(JOURNAL_PATH, "w") as f:
+        f.write(yaml.dump(config))
