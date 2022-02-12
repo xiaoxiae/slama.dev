@@ -1,13 +1,6 @@
 #!/usr/bin/env python3
 
 import os
-import shutil
-from random import choice
-from string import ascii_lowercase, digits
-from typing import *
-from subprocess import Popen, PIPE
-from datetime import date
-
 import yaml
 
 
@@ -123,4 +116,7 @@ result += "</ul></div>"
 with open(OUTPUT_PATH, "w") as f:
     f.write(result)
 
-print("journal generated.", flush=True)
+with open(CLIMBING_JOURNAL, "w") as f:
+    f.write(yaml.dump(journal))
+
+print("journal generated (and reformatted).", flush=True)
