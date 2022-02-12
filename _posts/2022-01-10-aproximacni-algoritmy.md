@@ -239,6 +239,8 @@ To, že neexistuje proces, který neuspěje, odhadneme jako
 
 {% math proof %}
 
+uvažme následující diagram:
+
 {% xopp rozvrh %}
 
 Z obrázku vyplývá:
