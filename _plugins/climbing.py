@@ -4,8 +4,7 @@ import os
 import shutil
 from PIL import Image
 from random import choice
-from string import ascii_lowercase, digits
-from typing import *
+from string import ascii_lowercase
 from subprocess import Popen, PIPE
 
 import yaml
@@ -32,6 +31,12 @@ if os.path.exists(CLIMBING_INFO):
 
 zones = [1, 2, 3, 4, 5, 6, 7, 8, 9, "all"]
 colors = list(reversed(["red", "salmon", "blue", "yellow"]))
+
+for name in list(config):
+    for attribute in config[name]:
+        if config[name][attribute] == "TODO":
+            print("ERROR: the videos.yaml file contains TODOs, not regenerating.")
+            quit()
 
 # rename new files
 for name in list(config):
