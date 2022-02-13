@@ -466,7 +466,7 @@ Po spojení nerovnic dostáváme:
 {% endmath %}
 
 ### Splnitelnost (MAX-SAT)
-- _Vstup:_ \(C_1 \land \ldots \land C_m\), každá klauzule je disjunkcí \(k_j \ge 1\) literálů
+- _Vstup:_ \(C_1 \land \ldots \land C_n\), každá klauzule je disjunkcí \(k_j \ge 1\) literálů
 	- každá \(C_j\) má váhu \(w_j\) (\(= 1\) by default)
 - _Výstup:_ ohodnocení \(a \in \left\{0, 1\right\}^n\)
 - _Cíl:_ maximalizovat \(\sum w_i\) (pro \(w_j = 1\) je to počet splněných klauzulí)
