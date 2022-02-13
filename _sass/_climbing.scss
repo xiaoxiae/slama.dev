@@ -123,10 +123,10 @@ img {
     text-align: center;
     height: 1.5em;
     background: $light-background-color;
-    color: $light-link-color;
+    color: $light-text-color;
 
     &::before {
-        background: $light-link-color;
+        background: $light-text-color;
         content: '';
         // use the linear-gradient for the fading effect
         // use a solid background color for a solid bar
@@ -155,9 +155,9 @@ img {
 @media (prefers-color-scheme: dark) {
     .hr-text {
         background: $dark-background-color;
-        color: $dark-link-color;
+        color: $dark-text-color;
 
-        &::before { background: $dark-link-color; }
+        &::before { background: $dark-text-color; }
         &::after { background-color: $dark-background-color; }
     }
 }

@@ -107,7 +107,7 @@ for entry in reversed(sorted(list(journal))):
     line += "</li>"
 
     if "rebuilt" in journal[entry]:
-        line += "</ul><hr class='hr-text' data-content='new boulders'><ul>"
+        line += f"</ul><hr class='hr-text' data-content='new boulders (zone {journal[entry]['rebuilt']})'><ul>\n"
 
     result += line + "\n"
 
