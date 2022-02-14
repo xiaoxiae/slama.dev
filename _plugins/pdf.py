@@ -66,7 +66,16 @@ if (
 header = re.match("---((.|\n)*?)---", contents).group().strip("---").strip()
 header_dictionary = {}
 for line in header.splitlines():
-    a, b = line.split(":")
+    # there can be attributes with multiple values, like
+    # redirect_from:
+    # - one url
+    # - another url
+    parts = line.split(":")
+
+    if len(parts) != 2:
+        continue
+
+    a, b = parts
     a = a.strip()
     b = b.strip()
     header_dictionary[a] = b
