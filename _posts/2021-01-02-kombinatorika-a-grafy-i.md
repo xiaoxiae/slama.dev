@@ -1,9 +1,12 @@
 ---
 language: cz
 title: Kombinatorika a Grafy I
-category: "poznámky z přednášky"
+category: "poznamky z prednasky"
+category_noslug: "poznámky z přednášky"
 pdf: true
-redirect_from: /lecture-notes/kombinatorika-a-grafy-i/
+redirect_from:
+ - /lecture-notes/kombinatorika-a-grafy-i/
+ - /poznámky-z-přednášky/kombinatorika-a-grafy-i/
 ---
 
 - .

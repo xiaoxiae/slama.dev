@@ -1,9 +1,12 @@
 ---
 language: cz
 title: Diskrétní Matematika
-category: "poznámky z přednášky"
+category: "poznamky z prednasky"
+category_noslug: "poznámky z přednášky"
 pdf: true
-redirect_from: /lecture-notes/diskretni-matematika/
+redirect_from:
+ - /lecture-notes/diskretni-matematika/
+ - /poznámky-z-přednášky/diskretni-matematika/
 ---
 
 - .

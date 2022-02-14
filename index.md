@@ -33,7 +33,7 @@ Links to the periodically updated ones can be found at the top; the rest can be 
 {% endif %}
 {% unless post.hidden %}
 <ul class="hfill">
-	<li>{% if post.language == "cz" %}🇨🇿 {% endif%} <a href="{{ post.url }}">{{ post.title}}</a>{% if post.category %} [{{post.category}}]{% endif%}{% if post.pdf %} [<a href="/assets/{{post.url | split: "/" | last}}.pdf">PDF</a>]{% endif%}</li>
+	<li>{% if post.language == "cz" %}🇨🇿 {% endif%} <a href="{{ post.url }}">{{ post.title}}</a>{% if post.category_noslug %} [{{post.category_noslug}}]{% elsif post.category%} [{{post.category}}]{% endif%}{% if post.pdf %} [<a href="/assets/{{post.url | split: "/" | last}}.pdf">PDF</a>]{% endif%}</li>
 	<li>{{ post.date  | date: "%-d. %-m. %Y"}}</li>
 </ul>
 {% endunless %}

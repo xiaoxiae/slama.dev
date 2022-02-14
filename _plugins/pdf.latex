@@ -142,7 +142,11 @@ fontsize=\footnotesize
 				\\
 				\LARGE
 				\vspace*{0.5em}
+				$if(category_noslug)$
+				$category_noslug$
+				$else$
 				$category$
+				$endif$
 
         \vfill
 
