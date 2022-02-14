@@ -245,10 +245,10 @@ no-heading: True
     with open(zone_file_name, "w") as f:
         f.write(zone_file_content)
 
-print("zones generated.", flush=True)
-
 with open(CLIMBING_INFO, "w") as f:
     f.write(yaml.dump(config))
+
+print("climbing videos generated (and reformatted).", flush=True)
 
 # remove videos that are not on the list, for good measure
 files = os.listdir(CLIMBING_VIDEOS_FOLDER)
@@ -258,6 +258,7 @@ for file in files:
     if file.lower().endswith(".jpeg") and file[:-5] not in config:
         print(f"WARNING: leftover poster {file}.", flush=True)
 
+# list files that were not found
 for file in config:
     if file not in files:
         print(f"WARNING: file {file} not found.", flush=True)
