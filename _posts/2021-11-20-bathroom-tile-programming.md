@@ -1,5 +1,6 @@
 ---
 css: tiles
+category: YouTube
 ---
 
 This post is a follow-up to the [video I released](https://www.youtube.com/watch?v=KlaEp6ydVhA) on [my YouTube channel](https://www.youtube.com/channel/UC_IaBSHmisYbiYlv32EeNkQ) about bathroom tile programming. It contains a few other problems that didn't make it into the video (so it wouldn't be too long), but are interesting to try to solve on your own.
