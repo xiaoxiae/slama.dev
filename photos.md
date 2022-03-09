@@ -2,7 +2,6 @@
 title: Photos
 layout: default
 order: 5
-icon: 
 css: photos
 no-heading: True
 ---

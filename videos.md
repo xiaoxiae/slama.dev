@@ -2,7 +2,6 @@
 title: Videos
 layout: default
 order: 100
-icon: 
 no-heading: True
 ---
 

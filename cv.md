@@ -2,7 +2,6 @@
 title: CV
 layout: default
 order: 3
-icon: 
 css: cv
 no-heading: True
 ---

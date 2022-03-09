@@ -2,7 +2,6 @@
 title: Climbing
 layout: default
 order: 4
-icon: 
 css: climbing
 no-heading: True
 ---
