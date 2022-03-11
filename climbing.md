@@ -12,17 +12,7 @@ This page is dedicated to my climbing life.
 ## [Smíchoff](https://www.lezeckecentrum.cz/cs/), Prague
 Smíchoff is the only gym in Prague that I frequent, since it is (in my opinion) the best one, so the vast majority of the clips are going to be from here. People are nice, prices are student-friendly and boulders are frequently changed, so it's a perfect place to be.
 
-The difficulty of boulders are as follows (left being the easiest, right being the hardest):
-
-{: .no-invert}
-<figure>
-<img src="smichoff-grading.webm">
-</figure>
-
-### Videos
-The videos are split into various sections, mostly for practical reasons (easier to find a send when you know where it is located). To see the videos from the given section, simply click on it. Additionally, colors denote the type of overhang for the section of the gym: <mark class="climbing climbing-low-angle">low-angle</mark>, <mark class="climbing climbing-vertical">vertical</mark>, <mark class="climbing climbing-mild-overhang">mild overhang</mark>, <mark class="climbing climbing-severe-overhang">severe overhang</mark> and <mark class="climbing climbing-roof">roof</mark>.
-
-Alternatively, there is also a page containing [all of the climbs](/climbing/zones/all).
+The following is a map of the entire bouldering section, separated into sections, with one being rebuilt every two weeks.
 
 {: .no-invert}
 <figure>
@@ -43,6 +33,6 @@ Since there there are some other locations that I visit from time to time (mostl
 | <img class='climbing-location-logo-middle' src='/climbing/location-logos/třináctka.svg'/>   | [Třináctka](http://stenastodulky.cz/)              |
 | <img class='climbing-location-logo-middle' src='/climbing/location-logos/lokalblok.svg'/>   | [LokalBlok](http://www.lokalblok.cz/lezecka-stena) |
 
-The format for each difficulty is <mark class="climbing-diary-record climbing-yellow climbing-yellow-text">repeats/<span class="underline">new sends</span> [<a>video</a> <a>links</a>]</mark>.
+The format for each difficulty is <mark class="climbing-diary-record climbing-yellow climbing-yellow-text">repeats/<span class="underline">new sends</span> [<a>video</a> <a>links</a>]</mark>, left-to-right from easy to hard.
 
 {% include diary.md %}

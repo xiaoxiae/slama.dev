@@ -29,7 +29,7 @@ if os.path.exists(CLIMBING_INFO):
     with open(CLIMBING_INFO, "r") as f:
         config = yaml.safe_load(f.read())
 
-zones = [1, 2, 3, 4, 5, "all"]
+zones = [1, 2, 3, 4, 5]
 colors = list(reversed(["red", "salmon", "blue", "yellow"]))
 
 for name in list(config):
@@ -201,7 +201,7 @@ no-heading: True
             if (
                 "color" in config[name]
                 and config[name]["color"] == color
-                and (config[name]["zone"] == zone or zone == "all")
+                and (config[name]["zone"] == zone)
             ):
                 videos_in_color.append(name)
 
