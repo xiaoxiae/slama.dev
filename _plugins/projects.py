@@ -12,20 +12,20 @@ try:
 
     # (GitHub name, override display name, override language)
     projects = [
-        ("Florodoro", None, None),
-        ("Donjun", None, None),
-        ("Grafatko", "Grafátko", None),
-        ("Voronoi", None, None),
-        ("Robotics-Simplified-Website", "Robotics Simplified", "HTML"),
-        ("PurePursuitAlgorithm", "Pure Pursuit", None),
-        ("CV", "CV generator", None),
-        ("Smichoff-Trophy", "Smíchoff Trophy", "Fusion 360"),
+        ("climber-apps", "Clis", None, "Fusion 360, Python"),
+        ("climber-apps", "Cled", None, "C# (Unity)"),
+        (None, "Florodoro", None, "Python (PyQt5)"),
+        (None, "Donjun", None, None),
+        (None, "Grafatko", "Grafátko", "Python (PyQt5)"),
+        (None, "Voronoi", None, None),
+        (None, "CV", "CV generator", "Python, LaTeX"),
+        (None, "Smichoff-Trophy", "Smíchoff Trophy", "Fusion 360"),
     ]
 
     result = ""
     i = 0
-    for project, name, language in projects:
-        repo = g.get_repo(f"xiaoxiae/{project}")
+    for owner, project, name, language in projects:
+        repo = g.get_repo(f"{owner or 'xiaoxiae'}/{project}")
 
         result += f"""<table class="gh{'Right' if i % 2 == 1 else 'Left'}">
         <thead>
@@ -38,7 +38,7 @@ try:
             <td class="ghDescription" colspan="2">{repo.description}</td>
           </tr>
           <tr>
-            <td class="ghStars">{repo.stargazers_count} ⭐</td>
+            <td class="ghStars"></td>
             <td class="ghLang">{language or repo.language}</td>
           </tr>
         </tbody>

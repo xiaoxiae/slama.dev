@@ -7,6 +7,6 @@ no-heading: True
 ---
 
 {:.center}
-The following is a selection from my [GitHub projects](https://github.com/xiaoxiae) that I (have worked/am working) on.
+The following is a selection from my [open-source](https://github.com/xiaoxiae) projects that I (have worked/am working) on.
 
 {% include projects.md %}

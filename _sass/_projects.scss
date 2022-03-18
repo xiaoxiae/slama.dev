@@ -12,22 +12,37 @@
     padding-top: $line-spacing / 3;
     padding-bottom: $line-spacing / 3;
 
-    @media (max-width: $small-screen-threshold) {
+    @media (max-width: $website-size + $website-padding * 2) {
         max-width: 100%;
+        width: 100%;
+
+        padding: $line-spacing / 2 $line-spacing / 4;
+
+        * {
+            display: block;
+        }
+
         display: block;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
     }
 }
 
 .ghLeft {
     margin-left: 20px;
     display: inline-block;
+
+    @media (max-width: $website-size + $website-padding * 2) {
+        margin-left: 0;
+    }
 }
 
 .ghRight {
     float: right;
     margin-right: 20px;
+
+    @media (max-width: $website-size + $website-padding * 2) {
+        margin-right: 0;
+        float: none;
+    }
 }
 
 .ghName { text-align: left; }
