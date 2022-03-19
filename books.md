@@ -9,6 +9,8 @@ no-heading: True
 {:.center}
 This section covers various kinds of books that I think are worth reading.
 
+_Note that I've read each one as an Audiobook, either from Audible or using other means. If you're interested in listening to any of them but are unable to (can't find/purchase it due to Audible being picky about the country you're from), let me know and I'll gladly help._
+
 ### Fantasy
 
 {:.book}
@@ -27,21 +29,21 @@ This section covers various kinds of books that I think are worth reading.
 	6. **The Bands of Mourning**
 	7. **The Lost Metal** (to be released)
 
-- **Skyward** [[Wikipedia](https://en.wikipedia.org/wiki/Skyward_(novel))] by Brandon Sanderson -- as a huge fan of Sanderson's fictional work, I was not sure about him pulling off a good space opera, but I was very, very wrong. The series is a breath of fresh air in the midst of all of his fantasy worlds (at least to someone who's practically been binging all of Sanderson's work) and I can't recommend it enough (despite Nowhere, which I felt was a bit too strange for my taste).
+- **Skyward** [[Wikipedia](https://en.wikipedia.org/wiki/Skyward_(novel))] by Brandon Sanderson -- as a huge fan of Sanderson's fictional work, I was not sure about him pulling off a good space opera, but I was wrong. The series is a breath of fresh air in the midst of all of his fantasy worlds (at least to someone who's been binging all of Sanderson's work).
 	1. **Skyward**
 	2. **Starsight**
 	3. **Nowhere**
 
 - **The Rithmatist** [[Wikipedia](https://en.wikipedia.org/wiki/The_Rithmatist)] by Brandon Sanderson -- an excellent young adult fantasy novel. Although the target audience is children (which is reflected mostly in character behavior and development), I still loved discovering the unique magic system that Sanderson created.
 
-- **Legion: The Many Lives of Stephen Leeds** [[Wikipedia](https://en.wikipedia.org/wiki/Legion_(novella_series))] by Brandon Sanderson -- a set of three novellas about a man, whose hallucinations (the so-called aspects) help him with logic, problem solving, languages and much more. It's a great premise with quite an exciting ending, but definitely I'm more into his fantasy works.
+- **Legion: The Many Lives of Stephen Leeds** [[Wikipedia](https://en.wikipedia.org/wiki/Legion_(novella_series))] by Brandon Sanderson -- a set of three novellas about a man, whose hallucinations (the so-called aspects) help him with logic, problem solving, languages and much more. It's a great premise with quite an exciting ending, but I'm definitely more into his fantasy works.
 
-- **The Reckoners** [[Wikipedia](https://en.wikipedia.org/wiki/The_Reckoners)] by Brandon Sanderson -- a set of three novels set in a post-apocalyptic world where random people are transformed into superhumans with various kinds of abilities. The atmosphere is great, but the writing is targeted at a younger audience, which is definitely noticable.
+- **The Reckoners** [[Wikipedia](https://en.wikipedia.org/wiki/The_Reckoners)] by Brandon Sanderson -- a set of three novels set in a post-apocalyptic world where random people are transformed into superhumans with various kinds of abilities. The atmosphere is great, but the writing is targeted at a younger audience, which is noticable.
 	1. **Steelheart**
 	2. **Firefight**
 	3. **Calamity**
 
-- **Metro 2033** [[Wikipedia](https://en.wikipedia.org/wiki/Metro_2033)] by Dimitry Glukhovsky -- a post-apocalyptic novel about people surviving a nuclear world war inside the Moscow metro. I really appreciated that there was a healthy mix of both action-packed passages and slower, more philosophical ones. Definitely worth the read, but the other books in the series are not as good (in my opinion).
+- **Metro 2033** [[Wikipedia](https://en.wikipedia.org/wiki/Metro_2033)] by Dimitry Glukhovsky -- a post-apocalyptic novel about people surviving a nuclear world war inside the Moscow metro. I really appreciated that there was a healthy mix of both action-packed passages and slower, more philosophical ones. Definitely worth the read, but the other books in the series are, in my opinion, not as good.
 
 ### Comedy
 
