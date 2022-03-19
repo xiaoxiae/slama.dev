@@ -3,6 +3,7 @@ language: cz
 title: Diskrétní a spojitá optimalizace
 category: "poznamky z prednasky"
 category_noslug: "poznámky z přednášky"
+pdf: true
 redirect_from:
  - /lecture-notes/diskretni-a-spojita-optimalizace/
  - /poznámky-z-přednášky/diskretni-a-spojita-optimalizace/
