@@ -46,4 +46,4 @@ Links to the periodically updated ones can be found at the top; the rest can be 
 Also, I'll just leave this here for the time being.
 
 {:.no-invert}
-![](assets/putin.png)
+![](assets/putin.jpg)
