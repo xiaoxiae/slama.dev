@@ -172,5 +172,83 @@ Postup pro \(B-B\) hrany je tedy ten, že zkontrahujeme \(C\), rekurzivně vyře
 
 {% math consequence "Tutte [47]" %}\(G\) má perfektní párování \(\iff \forall A \subset V: \mathrm{lc}(G \setminus A) \le |A|\){% endmath %}
 
+{% math theorem "Edmonds-Gallai dekompozice" %}\(G\) graf, \(G = (V, E)\), \(B \subseteq V\) vrcholů nepokrytých nějakým maximálním párovaním. Nechť \(A \subseteq V \setminus B\) sousedé vrcholů z \(B\), \(C = V \setminus \left(B \cup A\right)\). Pak
+1. každá komponenta \(G \setminus \left(A \cup C\right)\) je kritická (\(\forall v \in K: K \setminus \left\{v\right\}\) má PP)
+	- \(G\) kritický \(\iff\) \(G\) lze zkonstruovat z liché kružnice lepením lichých uší
+2. každé maximální párování \(M\) splňuje:
+	- \(e \in M, e \cap A \neq \emptyset \implies |e \cap A| = 1\) a \(e\) vede do \(B\)
+		- tohle nezamezuje, že by dvě hrany z \(A\) nevedly do jedné z \(B\)
+	- do každé komponenty \(B\) vede \(\le 1\) hrana \(M\)
+
+{% xopp dekompozice %}
+{% endmath %}
+
+{% math proof %}Uvažme poslední alternující les v Edmondsově algoritmu.
+
+{% xopp strom %}
+
+Každá hrana s koncem v \(A\) vede do \(B\) (s tím, že vrcholy v \(B\) jsou (pseudo)vrcholy vzniklé operací kontrakce. Defekt \(\mathrm{def}(M)\) je počet komponent v tomto lese.
+
+Nepokryté vrcholy žádným maximálním párováním:
+- ne v \(A\), jelikož všechny musí být pokryté každým maximálním párováním
+- ne mimo \(A \cup B\), protože tam je PP
+
+Takové vrcholy tedy mohou být pouze v \(B\), čímž jsme dokázali (1).
+
+Část (2) rovněž plyne z Edmondsova algoritmu.
+{% endmath %}
+
+### ?
+
+Nechť \(G = (V, E)\) rovinný, \(w : E \mapsto \mathbb{Q}\)
+1. **maximální PP** -- najdi \(M\) PP t.ž. \(w(E)\) je maximální
+	- polynomiální (pro všechny grafy)
+2. **maximální hranový řez** -- najdi \(E'\) hranový řez t.ž. \(w(E')\) je maximální
+	- obecně je NP-těžný, pro grafy na 2D plochách polynomiální
+
+{% math definition "determinant" %}nechť \(A\) je reálná matice. Pak determinant je \[\mathrm{Det}(A) = \sum_{\pi} (-1)^{\mathrm{sign}(\pi)} \overbrace{\prod_{i = 1}^{n} A_{i, \pi(i)}}^{\text{transverzála}}\]
+- polynomiální, jde řešit přes Gaussovu eliminaci
+{% endmath %}
+
+{% math definition "permanent" %}nechť \(A\) je reálná matice. Pak permanent je \[\mathrm{Per}(A) = \sum_{\pi} \prod_{i=1}^{n} A_{i, \pi(i)}\]
+- \(\#P\)-complete (alespoň tak těžký jako \(NP\)-úplný), neumíme nic lepšího
+{% endmath %}
+
+{% math example %}\(G = (V_1, V_2, E\) bipartitní graf, \(A^{|V_1| \times |V_2|}\) \(0-1\) matice podle toho, jaké obsahuje hrany. Pak \(\mathrm{Per}(A)\) je počet perfektních párování \(G\).{% endmath %}
+
+#### Generující funkce, které se hodí
+
+\[\mathcal{P}(G, x, w) = \sum_{P\ \text{perf. pár.}} x^{w(P)}\]
+\[\mathcal{E}(G, x, w) = \sum_{E'\ \text{sudá}} x^{w(E')}\]
+\[\varphi(G, x, w) = \sum_{C\ \text{hranový řez}} x^{w(C)}\]
+
+{% math theorem %}\(G\) rovinný. Pak \[\varphi(G) \equiv \mathcal{E}(G^*) \equiv \mathcal{P}(G_\Delta^*)\]
+kde symbolem \(\equiv\) rozumíme vzhledem k vypočítatelnosti a \(G_\Delta\) následující operaci:
+
+{% xopp delta %}
+
+Rovněž předpokládáme \(w(e) \in \mathbb{Z}, |w(e)| \le |V(G)|^{c} \) pro \(c\) konstantu.
+{% endmath %}
+
+{% math theorem "Kasteleyn" %}Když \(G\) rovinný, pak \(\mathcal{P}(G, x, w)\) lze spočítat v polynomiálním čase.
+{% endmath %}
+
+{% math consequence %}
+- umíme spočítat jak maximální párování, tak jejich počet (a počet všech ostatních párování s danými vahami)
+- max. řez, max. perf. párování jsou pro rovinné grafy polynomiální
+{% endmath %}
+
+{% math proof "naznačení" %} pro \(D\) orientaci \(G\), \(M_0\) fixní PP definujeme „determinantní verzi“ \(\mathcal{P}\) následně: \[\mathcal{P(G, D, M_0, x, w)} = \sum_{P\ \text{perf. pár.}} \mathrm{sign}(D, M_0, P) x^{w(P)}\]
+kde \[\mathrm{sign}(D, M_0, P) = (-1)^{\#\ \text{$D$-sudých cyklů $M_0\ \Delta\ P$}}\]
+- \(D\)-sudý je, když v \(D\) má sudý počet hran orientovaných jedním směrem; nezáleží na tom, jakou stranou jdeme, jelikož symetrická diference perfektních párování tvoří jen sudé cykly
+
+Postup důkazu:
+- \(\mathcal{P}(G, D, M_0, x, w\) lze pro obecné grafy spočítat variantou Gaussovské eliminace (Pfaffion)
+- Existuje orientace \(D^K\), že všechna znaménka \(\mathrm{sign}(D^K, M_0, P)\) jsou stejná, tedy \[\mathcal{P}(G, D^K, M_0, *, w) = \pm \mathcal{P}(G, x, w)\]
+- Tuhle \(D^K\) lze zkonstruovat v polynomiálním čase.
+{% endmath %}
+
+{% math reminder %}pro další plochy je to trochu komplikovanější, ale jde to dělat podobně.{% endmath %}
+
 ### Poděkování
-- Davidu Kubkovi za zápisky, ze kterých jsem poznámky vytvářel
+- Davidu Kubkovi za zápisky, ze kterých jsem čast z poznámek vytvářel
