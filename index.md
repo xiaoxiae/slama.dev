@@ -6,10 +6,6 @@ css: index
 no-heading: True
 ---
 
-<div class="no-invert portrait">
-	<img src="/assets/portrait.webp" alt="portrait">
-</div>
-
 ## Hi everyone!
 
 I'm Tom and this is my personal website.
