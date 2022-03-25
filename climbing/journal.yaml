@@ -748,3 +748,27 @@
     new: 4
   yellow:
     new: 1
+2022-03-23:
+  blue:
+    new: 2
+    old: 7
+  note: Competed in the Boulder Challenge today and won! I'm very happy with my performance,
+    not being able to climb only 3 yellows and 1 blue (that is as hard as a yellow).
+    Note that I'm counting the ones that I did on Monday as new if they were changed
+    between then and today.
+  red:
+    old: 9
+  salmon:
+    new: 4
+    old: 6
+  yellow:
+    old: 6
+2022-03-25:
+  blue:
+    old: 4
+  note: Went to climb early in the morning (6:30!) so my performance was not the best.
+    Despite this, I managed to record almost all of the new routes I climbed already.
+  red:
+    old: 1
+  salmon:
+    old: 5
