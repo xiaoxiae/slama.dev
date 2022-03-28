@@ -36,9 +36,6 @@ for entry in reversed(sorted(list(journal))):
 
     location_colors = {
         "jungle": ["green", "blue", "red"],
-        "boulder-bar": [],
-        "bigwall": [],
-        "lokalblok": [],
         "třináctka": [f"V{i}" for i in range(4, 11)],
     }
 
@@ -52,7 +49,11 @@ for entry in reversed(sorted(list(journal))):
         location_stub = journal[entry]["location"].lower().replace(" ", "-")
         location = "-" + location_stub
 
-        colors = location_colors[location_stub]
+        colors = (
+            {}
+            if location_stub not in location_colors
+            else location_colors[location_stub]
+        )
 
     if location == "":
         location_stub = "smíchoff"
