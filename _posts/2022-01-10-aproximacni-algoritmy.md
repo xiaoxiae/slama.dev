@@ -84,8 +84,9 @@ Pro maximalizační zajišťujeme, že je vždy dostatečně velké.
 
 1. najdeme minimální kostru \(T\)
 2. najdeme minimální perfektní párování \(M\) na vrcholech s lichými stupni v \(T\)
-	- vždy existuje, jelikož máme úplný graf a vrcholů s lichým stupňem je sudý počet (všech je sudý)
+	- vždy existuje, jelikož máme úplný graf a vrcholů s lichým stupňem je sudý počet
 3. zkrátíme na cyklus \(T \cup M\)
+	- děláme je tak, že vybereme dvě hrany incidentní s vrcholem a nahradíme je za jednu
 
 {% math theorem %}algoritmus je \(3/2\)-aproximační.{% endmath %}
 
@@ -95,10 +96,11 @@ Důkaz \(d(M) \le \frac{1}{2}\mathrm{OPT}\) uděláme obrázkem:
 
 {% xopp christof %}
 
-Alespoň jeden z párování v cylku bude \(\le \frac{1}{2} \mathrm{OPT}\), jelikož celý cyklus je jen zkrácené optimální řešení.
+Alespoň jeden z párování v cylku bude \(\le \frac{1}{2} \mathrm{OPT}\), jelikož celý cyklus je lepší optimální řešení.
 {% endmath %}
 
 {% math remark %}
+- v realitě se algoritmus chová výrazně lépe, například až k faktoru \(1.1\)
 - dnes umíme \((\frac{3}{2} - \varepsilon)\)-aproximaci
 - TSP v rovině: existuje \((1 + \varepsilon)\)-aproximační schéma (ale stále je \(\mathrm{NP}\) těžký)
 {% endmath %}

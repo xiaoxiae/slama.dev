@@ -17,6 +17,7 @@ redirect_from:
 
 {% lecture_notes_preface Martina Loebla a Milana Hladíka|2021/2022%}
 
+TODO: dělení na diskrétní a spojitou část
 
 ### Základní definice
 
@@ -243,12 +244,62 @@ kde \[\mathrm{sign}(D, M_0, P) = (-1)^{\#\ \text{$D$-sudých cyklů $M_0\ \Delta
 - \(D\)-sudý je, když v \(D\) má sudý počet hran orientovaných jedním směrem; nezáleží na tom, jakou stranou jdeme, jelikož symetrická diference perfektních párování tvoří jen sudé cykly
 
 Postup důkazu:
-- \(\mathcal{P}(G, D, M_0, x, w\) lze pro obecné grafy spočítat variantou Gaussovské eliminace (Pfaffion)
+- \(\mathcal{P}(G, D, M_0, x, w)\) lze pro obecné grafy spočítat variantou Gaussovské eliminace (Pfaffion)
 - Existuje orientace \(D^K\), že všechna znaménka \(\mathrm{sign}(D^K, M_0, P)\) jsou stejná, tedy \[\mathcal{P}(G, D^K, M_0, *, w) = \pm \mathcal{P}(G, x, w)\]
 - Tuhle \(D^K\) lze zkonstruovat v polynomiálním čase.
 {% endmath %}
 
 {% math reminder %}pro další plochy je to trochu komplikovanější, ale jde to dělat podobně.{% endmath %}
+
+### Pošťáci a cestující
+{% math definition %} \(G = (V, E)\) graf silniční sítě, \(l : E \mapsto \mathbb{Q}^+\):
+- problém **čínského pošťáka:** najdi trasu minimální délky, která projde všechny _hrany_ a vrátí se do výchozího vrcholu (eulerovský tah)
+	- polynomiální
+- problém **obchodního cestujícího:** najdi trasu minimální délky, která projde všechny _vrcholy_ a vrátí se do výchozího vrcholu (hamiltonovskou kružnici)
+	- NP-úplný
+{% endmath %}
+
+{% math problem "čínského pošťáka" %}
+1. \(G = (V, E)\) má **všechny stupně sudé** \( \implies \) řešení je uzavřený eulerovský tah
+	- {% math observation %}když \(H = (W, F)\) má všechny stupně sudé a \(F \neq \emptyset\) je neprázdná, pak \(F\) má cyklus; odstraněním cyklu má opět všechny stupně sudé; opakováním dostaneme disjunktní sjednocení cyklů, což jde do eulerovského tahu udělat trivialně{% endmath %}
+2. nechť \(T = \left\{v \mid \mathrm{deg}_G(v)\ \text{lichý}\right\}\)
+
+{% math observation %}\(|T|\) je sudé (počet vrcholů lichého stupně je sudý){% endmath %}
+{% math definition %}\(E' \subseteq E\) je \(T\)-join, jestli graf \(G_T = (V, E')\) splňuje \[\left(\forall v \in V\right) \left(\mathrm{deg}_{G_T} (v)\ \text{lichý} \iff v \in T\right)\]{% endmath %}
+
+{% math theorem %}nechť \(E' \subseteq E\) je množina hran min. trasy čínského pošťáka, které se projdou více než jednou. Pak
+1. se projdou \(2\)-krát
+2. \(E'\) je min. \(T\)-join (kde \(T\) je výše definovaná množina){% endmath %}
+{% endmath %}
+
+{% math proof %}
+{% math observation %}nechť \(G'\) vznikne z \(G\) dodáním násobných hran, násobnost je podle počtu procházení minimální trasou \(P\). Potom \(G'\) má všechny stupně sudé.{% endmath %}
+- \(F = E(G') - E(G)\) jsou dodané hrany
+- \(F\) nemá násobné hrany, protože pak bychom je mohli (po dvou) vynechat
+
+Z pozorování plyne (1), jelikož \(F\) spolu s původními hranami dává \(2\) průchody.
+
+Navíc jelikož \(E(G') = E(G) \cup F\) je \(T\)-join, jelikož přesné splňuje definici (stupně budou liché v \(G'\), protože musí být sudé po přidaní do \(G\)). Navíc \(E(G) \cup \overline{F}\) rozhodně nebude lepší než minimální cesta čínského pošťáka a tedy naše \(F\).
+{% endmath %}
+
+{% math algorithm "čínský pošťák" %}
+1. najdi minimální \(T\)-join
+	- použij konstrukci (modifikovanou) Fischera z minulé přednášky (\(G \mapsto G_\Delta\)), o čemž víme, že je polynomiální
+	- _(alternativně)_ uvažme pomocný graf \(H = \left(T, \binom{T}{2}\right)\) a váha \(w : \binom{T}{2} \mapsto \mathbb{Q}^+\), kde \(w(\left\{u, v\right\}) = \) délka nejkratší cesty mezi \(u, v\) v \(G\)
+		- nechť \(M\) je min. PP v \(H\)
+		- nechť \(F = \bigcup_{e \in M} P_e\), kde \(P_e\) je nejkratší cesta v \(G\) spojující vrcholy \(e\)
+2. přidej zbylé hrany
+3. profit?
+{% endmath %}
+
+{% math problem "obchodního cestujícího" %} předpokládáme
+- \(G = K_n\) (pro neexistující hrany nastavíme váhu na nekonečno)
+- nezáporné délky
+- trojúhelníková nerovnost \(\left(\forall u, v, w \in V\right) l(u, v) + l(v, w) \ge l(u, w)\)
+{% endmath %}
+
+#### Christofidesova heuristika
+- viz moje [poznámky z aproximačních algoritmů](https://slama.dev/poznamky-z-prednasky/aproximacni-algoritmy#christofides%C5%AFv-algoritmus)
 
 ### Poděkování
 - Davidu Kubkovi za zápisky, ze kterých jsem čast z poznámek vytvářel

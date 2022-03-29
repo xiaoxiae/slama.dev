@@ -259,6 +259,9 @@ def replace_math(contents, tag_type, argument, opening, closing):
         "fact": r"**Fakt"
         + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
         + r"** \1",
+        "problem": r"**Problém"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
         "example": r"**Příklad"
         + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
         + r"** \1",

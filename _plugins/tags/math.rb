@@ -42,6 +42,8 @@ module Jekyll
           return '<strong>Algoritmus' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + contents
         when "fact"
           return '<strong>Fakt' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + contents
+        when "problem"
+          return '<strong>Problém' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + contents
         when "example"
           return '<strong>Příklad' + (name.nil? ? '' : (' (' + name + ')')) + ':</strong> ' + contents
         when "consequence"
