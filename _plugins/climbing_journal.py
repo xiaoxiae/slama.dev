@@ -36,6 +36,7 @@ for entry in reversed(sorted(list(journal))):
 
     location_colors = {
         "jungle": ["green", "blue", "red"],
+        "boulder-bar": ["green", "blue", "red"],
         "třináctka": [f"V{i}" for i in range(4, 11)],
     }
 
@@ -80,9 +81,9 @@ for entry in reversed(sorted(list(journal))):
                 count = f"{old_count}/<span class='underline'>{new_count}</span>"
 
             if location_stub in v_grading:
-                line += f"<mark class='climbing-diary-record climbing-{color}{location}'><strong>{color}:</strong> {count}"
+                line += f"<mark class='climbing-diary-record climbing-{color}{location.replace(' ', '-')}'><strong>{color}:</strong> {count}"
             else:
-                line += f"<mark class='climbing-diary-record climbing-{color}{location} climbing-{color}{location}-text'>{count}"
+                line += f"<mark class='climbing-diary-record climbing-{color}{location.replace(' ', '-')} climbing-{color}{location.replace(' ', '-')}-text'>{count}"
 
             if len(entry_videos) != 0:
                 line += (

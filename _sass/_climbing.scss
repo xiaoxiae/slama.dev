@@ -27,6 +27,10 @@ $dark-link-color: #888;
 .climbing-blue-jungle { background: #087ec4ff; }
 .climbing-green-jungle { background: #008000ff; }
 
+.climbing-red-boulder-bar { background: #f74d4dff; }
+.climbing-blue-boulder-bar { background: #087ec4ff; }
+.climbing-green-boulder-bar { background: #008000ff; }
+
 .climbing-V5-třináctka  { background: #bbbbbb; }
 .climbing-V6-třináctka  { background: #aeaeae; }
 .climbing-V7-třináctka  { background: #a2a2a2; }
@@ -43,7 +47,7 @@ $dark-link-color: #888;
 
 .climbing-location-logo-middle { vertical-align: middle; }
 
-.climbing-red-text,.climbing-blue-text,.climbing-red-jungle-text,.climbing-blue-jungle-text,.climbing-green-jungle-text {
+.climbing-red-text,.climbing-blue-text,.climbing-red-jungle-text,.climbing-blue-jungle-text,.climbing-green-jungle-text,.climbing-red-boulder-bar-text,.climbing-blue-boulder-bar-text,.climbing-green-boulder-bar-text {
     color: $light-text-color;
     a { color: $light-link-color; &:hover { color: $light-text-color; } }
 }
