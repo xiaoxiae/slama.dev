@@ -23,7 +23,11 @@ $dark-link-color: #888;
 .climbing-blue { background: #087ec4ff; }
 .climbing-yellow { background: #fce538ff; }
 
-.climbing-other { background: #bbbbbb; }
+.climbing-other { background: #cccccc; }
+.climbing-other-text {
+    color: $light-text-color;
+    a { color: $light-link-color; &:hover { color: $light-text-color; } }
+}
 
 .climbing-red-jungle { background: #f74d4dff; }
 .climbing-blue-jungle { background: #087ec4ff; }

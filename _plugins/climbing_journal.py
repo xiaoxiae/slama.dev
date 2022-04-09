@@ -81,7 +81,7 @@ for entry in reversed(sorted(list(journal))):
                 count = f"{old_count}/<span class='underline'>{new_count}</span>"
 
             if color == "other":
-                line += f"<mark class='climbing-diary-record climbing-{color}'>other: {count}"
+                line += f"<mark class='climbing-diary-record climbing-{color} climbing-{color}-text'>other: {count}"
             elif location_stub in v_grading:
                 line += f"<mark class='climbing-diary-record climbing-{color}{location.replace(' ', '-')}'><strong>{color}:</strong> {count}"
             else:
@@ -92,7 +92,7 @@ for entry in reversed(sorted(list(journal))):
                     " ["
                     + ", ".join(
                         [
-                            f"<a href='/climbing/videos/{name}'>{i + 1}</a>"
+                            f"<a href='/climbing/videos/{name}'>{i + 1}{'↯' if 'flash' in videos[name] and videos[name]['flash'] else ''}</a>"
                             for i, name in enumerate(entry_videos)
                         ]
                     )

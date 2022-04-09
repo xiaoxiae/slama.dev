@@ -379,6 +379,7 @@ smichoff-blue-2022-04-04-hqmpxmgn.mp4:
   date: 2022-03-29
   zone: 2
 smichoff-blue-2022-04-05-bdwxtvkd.mp4:
+  flash: true
   color: blue
   date: 2022-04-05
   zone: 3
@@ -827,12 +828,14 @@ smichoff-salmon-2022-03-25-ydmnzspv.mp4:
   date: 2022-03-25
   zone: 2
 smichoff-salmon-2022-04-05-nqmoktxh.mp4:
+  flash: true
   color: salmon
   date: 2022-04-05
   zone: 3
 smichoff-salmon-2022-04-05-qakrmxwu.mp4:
   color: salmon
   date: 2022-04-05
+  flash: true
   zone: 3
 smichoff-salmon-2022-04-08-cugefnbe.mp4:
   color: salmon
@@ -1136,5 +1139,6 @@ smichoff-yellow-2022-04-04-fjucvwxe.mp4:
   zone: 2
 smichoff-yellow-2022-04-05-guqpuzhy.mp4:
   color: yellow
+  flash: true
   date: 2022-04-05
   zone: 3

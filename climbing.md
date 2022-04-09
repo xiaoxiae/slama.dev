@@ -34,6 +34,6 @@ Since there there are some other locations that I visit from time to time (mostl
 | <img class='climbing-location-logo-middle' src='/climbing/location-logos/lokalblok.svg'/>   | [LokalBlok](http://www.lokalblok.cz/lezecka-stena) |
 | <img class='climbing-location-logo-middle' src='/climbing/location-logos/mandala.svg'/>     | [Mandala](https://boulderhalle-dresden.de/)        |
 
-The format for each difficulty is <mark class="climbing-diary-record climbing-yellow climbing-yellow-text">repeats/<span class="underline">new sends</span> [<a>video</a> <a>links</a>]</mark>, left-to-right from easy to hard.
+The format for each difficulty is <mark class="climbing-diary-record climbing-other climbing-other-text">repeats/<span class="underline">new sends</span> [<a>video</a> <a>links</a>]</mark>, left-to-right from easy to hard. Additionally, climbs marked with the ↯ symbol mean that they were flashed.
 
 {% include diary.md %}
