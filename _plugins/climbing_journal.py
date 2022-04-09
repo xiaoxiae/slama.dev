@@ -61,7 +61,7 @@ for entry in reversed(sorted(list(journal))):
 
     line += f" (at <img class='climbing-location-logo' src='/climbing/location-logos/{location_stub}.svg'/>): "
 
-    for color in colors:
+    for color in list(colors) + ["other"]:
         entry_videos = []
         for video in videos:
             if videos[video]["date"] == entry and videos[video]["color"] == color:
@@ -80,7 +80,9 @@ for entry in reversed(sorted(list(journal))):
             else:
                 count = f"{old_count}/<span class='underline'>{new_count}</span>"
 
-            if location_stub in v_grading:
+            if color == "other":
+                line += f"<mark class='climbing-diary-record climbing-{color}'>other: {count}"
+            elif location_stub in v_grading:
                 line += f"<mark class='climbing-diary-record climbing-{color}{location.replace(' ', '-')}'><strong>{color}:</strong> {count}"
             else:
                 line += f"<mark class='climbing-diary-record climbing-{color}{location.replace(' ', '-')} climbing-{color}{location.replace(' ', '-')}-text'>{count}"
