@@ -35,8 +35,12 @@ colors = list(reversed(["red", "salmon", "blue", "yellow"]))
 for name in list(config):
     for attribute in config[name]:
         if config[name][attribute] == "TODO":
-            print("ERROR: the videos.yaml file contains TODOs, not regenerating.")
+            print("ERROR: the videos.yaml file contains TODOs, not generating.")
             quit()
+
+    if not os.path.exists(os.path.join(CLIMBING_VIDEOS_FOLDER, name)):
+        print(f"ERROR: nonexistent video '{name}', not generating.")
+        quit()
 
 # rename new files
 for name in list(config):
