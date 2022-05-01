@@ -33,7 +33,7 @@ def execute_shell_command(command: List[str]):
 
 def format_to_mb(size: int) -> str:
     """Format to megabytes."""
-    return round(size / (1024 ** 2), 2)
+    return round(size / (1024**2), 2)
 
 
 config = {}
