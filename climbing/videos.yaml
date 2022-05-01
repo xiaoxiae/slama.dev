@@ -425,6 +425,15 @@ smichoff-blue-2022-04-18-zgpfqfea.mp4:
   color: blue
   date: 2022-04-18
   zone: 1
+smichoff-blue-2022-04-27-hhknzlon.mp4:
+  color: blue
+  date: 2022-04-27
+  zone: 1
+smichoff-blue-2022-04-27-uvtzyjqj.mp4:
+  color: blue
+  date: 2022-04-27
+  flash: true
+  zone: 1
 smichoff-other-2022-04-08-xvguoyax.mp4:
   color: other
   date: 2022-04-08
@@ -884,6 +893,10 @@ smichoff-salmon-2022-04-18-pvhsvnjk.mp4:
 smichoff-salmon-2022-04-18-zevyymxh.mp4:
   color: salmon
   date: 2022-04-18
+  zone: 1
+smichoff-salmon-2022-04-27-mesrhugj.mp4:
+  color: salmon
+  date: 2022-04-27
   zone: 1
 smichoff-yellow-2020-08-31-ozljeuiv.mp4:
   color: yellow
