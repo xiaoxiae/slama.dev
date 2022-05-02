@@ -873,3 +873,13 @@
     new: 3
   yellow:
     old: 1
+2022-04-30:
+  blue:
+    old: 1
+  note: Had a fun session. Managed to do one of the yellows, which is neat - 3 more
+    to go!
+  salmon:
+    old: 2
+  yellow:
+    new: 1
+    old: 1
