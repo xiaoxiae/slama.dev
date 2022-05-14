@@ -2,23 +2,6 @@
 
 @import "variables";
 
-ul.hfill {
-    display: flex;
-    justify-content: space-between;
-    list-style-type: none;
-    padding-left: $line-spacing / 5;
-    padding-right: $line-spacing / 5;
-    margin-top: $line-spacing / 10;
-    margin-bottom: $line-spacing / 10;
-    padding-top: $line-spacing / 10;
-    padding-bottom: $line-spacing / 10;
-
-    li:nth-child(2) {
-        white-space: nowrap;
-        padding-left: $line-spacing;
-    }
-}
-
 .spacer {
     padding-bottom: $line-spacing;
 }
