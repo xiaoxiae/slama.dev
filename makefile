@@ -1,10 +1,12 @@
-.PHONY:  all clean build upload serve permissions
+.PHONY:  all install clean build upload serve permissions
 .SILENT:
 
 XOPP = $(shell find _includes/ -type f -name '*.xopp')
 SVG  = $(patsubst %.xopp, %.svg, $(XOPP))
 
 all: build upload
+
+install: ; bundle install
 
 xopp: $(SVG);
 build: permissions $(SVG); ! ps -aux | grep "ruby.*jekyll" | grep -v grep -q && bundle exec jekyll build --trace || (echo "ERROR: Jekyll seems to be running already." && exit 1)
