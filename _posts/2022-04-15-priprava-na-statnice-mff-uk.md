@@ -153,16 +153,17 @@ Z následujících 7 jsou 1-3 povinné a z 4-7 je třeba vybrat dvě témata (ta
 		{% stlink Využití pravděpodobnosti při návrhu algoritmů. | /poznamky-z-prednasky/aproximacni-algoritmy/#rand-sat | /poznamky-z-prednasky/aproximacni-algoritmy/#nulovost-polynom%C5%AF-polynomial-identity-testing %}
 	{% endsttopic %}
 	{% sttopic Pokročilé Algoritmy a datové struktury | ADS 1 a 2 [[Průvodce](/assets/priprava-na-statnice-mff-uk/pruvodce.pdf)] 🃏, Grafové algoritmy %}
-		<li> Výpočetní model RAM.
-		<li> Dynamické programování.
-		<li> Komponenty silné souvislosti orientovaných grafů.
-		<li> Maximální toky: algoritmy, aplikace.
-		<li> Toky a cesty v celočíselně ohodnocených grafech.
-		<li> Vyhledávání v textu.
-		<li> Diskrétní Fourierova transformace a její aplikace.
-		<li> Aproximační algoritmy a schémata.
-		<li> Paralelní algoritmy v hradlových a komparátorových sítích.
+		{% stlink Výpočetní model RAM. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s2.5 %}
+		{% stlink Dynamické programování. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s12 %}
+		{% stlink Komponenty silné souvislosti orientovaných grafů. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s5.9 %}
+		{% stlink Maximální toky: algoritmy, aplikace. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s14 %}
+		{% stlink Toky a cesty v celočíselně ohodnocených grafech. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s14 %}
+		{% stlink Vyhledávání v textu. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s13 %}
+		{% stlink Diskrétní Fourierova transformace a její aplikace. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s17 %}
+		{% stlink Aproximační algoritmy a schémata. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s19.6 %}
+		{% stlink Paralelní algoritmy v hradlových a komparátorových sítích. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s15 %}
 	{% endsttopic %}
+	<hr>
 	{% sttopic ❌ Geometrie ❌ | Základy KVG %}
 		<li> Základní věty o konvexních množinách (Hellyho, Radonova, o oddělování).
 		<li> Minkowského věta o mřížkách.
