@@ -133,18 +133,24 @@ Z následujících 7 jsou 1-3 povinné a z 4-7 je třeba vybrat dvě témata (ta
 		<li> Základy fungování protokolů HTTP, FTP a SMTP.
 	{% endsttopic %}
 	{% sttopic Diferenciální a integrální počet ve více rozměrech  | Matalýza 2 [[skripta](/assets/priprava-na-statnice-mff-uk/ma2.pdf)] 🃏 %}
-		<li> Riemannův integrál.
-		<li> Extrémy funkcí více proměnných.
-		<li> Metrický prostor, otevřené a uzavřené množiny, kompaktnost.
+		{% stlink Riemannův integrál. | /assets/priprava-na-statnice-mff-uk/ma2.pdf#section.8 | /assets/priprava-na-statnice-mff-uk/ma2.pdf#section.9 %}
+		{% stlink Extrémy funkcí více proměnných. | /assets/priprava-na-statnice-mff-uk/ma2.pdf#section.5 %}
+		{% stlink Metrický prostor, otevřené a uzavřené množiny, kompaktnost. | /assets/priprava-na-statnice-mff-uk/ma2.pdf#section.1 | /assets/priprava-na-statnice-mff-uk/ma2.pdf#section.3 %}
 	{% endsttopic %}
-	{% sttopic Optimalizace | Linprog, Optimalizace %}
-		<li> Mnohostěny, Minkowského-Weylova věta.
-		<li> Základy lineárního programování, věty o dualitě, metody řešení.
-		<li> Edmondsův algoritmus.
-		<li> Celočíselné programování.
-		<li> Aproximační algoritmy pro kombinatorické problémy (splnitelnost, nezávislé množiny, množinové pokrytí, rozvrhování).
-		<li> Použití lineárního programování pro aproximační algoritmy.
-		<li> Využití pravděpodobnosti při návrhu algoritmů.
+	{% sttopic Optimalizace | Linprog [[skripta](/assets/priprava-na-statnice-mff-uk/linprog.pdf)] 🃏, Diskrétní a Spojitá optimalizace  🃏 %}
+		{% stlink Mnohostěny, Minkowského-Weylova věta. | /assets/priprava-na-statnice-mff-uk/linprog.pdf#section.4 | /assets/priprava-na-statnice-mff-uk/linprog.pdf#page=12 %}
+		{% stlink Základy lineárního programování, věty o dualitě, metody řešení. | /assets/priprava-na-statnice-mff-uk/linprog.pdf#section.2 | /assets/priprava-na-statnice-mff-uk/linprog.pdf#subsection.7.1 | /assets/priprava-na-statnice-mff-uk/linprog.pdf#section.5 %}
+		{% stlink Edmondsův algoritmus. | /poznamky-z-prednasky/kombinatorika-a-grafy-ii/#nejv%C4%9Bt%C5%A1%C3%AD-p%C3%A1rov%C3%A1n%C3%AD %}
+		{% stlink Celočíselné programování. | /assets/priprava-na-statnice-mff-uk/linprog.pdf#page=4 %}
+		<li> Aproximační algoritmy pro kombinatorické problémy:
+		<ul>
+			{% stlink splnitelnost | /poznamky-z-prednasky/aproximacni-algoritmy/#splnitelnost-max-sat %}
+			{% stlink nezávislé množiny | /poznamky-z-prednasky/aproximacni-algoritmy/#splnitelnost-max-sat %}
+			{% stlink množinové pokrytí | /poznamky-z-prednasky/aproximacni-algoritmy/#pokrývací-problémy %}
+			{% stlink rozvrhování | /poznamky-z-prednasky/aproximacni-algoritmy/#rozvrhov%C3%A1n%C3%AD %}
+		</ul>
+		{% stlink Použití lineárního programování pro aproximační algoritmy. | /poznamky-z-prednasky/aproximacni-algoritmy/#lp-sat | /poznamky-z-prednasky/aproximacni-algoritmy/#pokrývací-problémy %}
+		{% stlink Využití pravděpodobnosti při návrhu algoritmů. | /poznamky-z-prednasky/aproximacni-algoritmy/#rand-sat | /poznamky-z-prednasky/aproximacni-algoritmy/#nulovost-polynom%C5%AF-polynomial-identity-testing %}
 	{% endsttopic %}
 	{% sttopic Pokročilé Algoritmy a datové struktury | ADS 1 a 2 [[Průvodce](/assets/priprava-na-statnice-mff-uk/pruvodce.pdf)] 🃏, Grafové algoritmy %}
 		<li> Výpočetní model RAM.
