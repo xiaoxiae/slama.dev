@@ -103,8 +103,8 @@ U řady předmětů jsou rovněž k dispozici kartičky (🃏) z [tohoto Anki ba
 		<li> Implementace základních prvků objektových jazyků.
 		<li> Nativní a interpretovaný běh, řízení překladu a sestavení programu.
 	{% endsttopic %}
-	{% sttopic Architektura počítačů a operačních systémů | Principy počítačů [[poznámky](/poznamky-z-prednasky/principy-pocitacu/)] 🃏, Počítačové systémy, Sítě 🃏, Linux %}
-		<li> Základní architektura počítače, reprezentace dat a programů.
+	{% sttopic Architektura počítačů a operačních systémů | Principy počítačů [[poznámky](/poznamky-z-prednasky/principy-pocitacu/)] 🃏, Počítačové systémy, Sítě [[slidy](/assets/priprava-na-statnice-mff-uk/past/site.pdf)] 🃏, Linux %}
+		{% stlink Základní architektura počítače, reprezentace dat a programů. | /poznamky-z-prednasky/principy-pocitacu/#zjednodu%C5%A1en%C3%A9-sch%C3%A9ma-po%C4%8D%C3%ADta%C4%8De | /poznamky-z-prednasky/principy-pocitacu/#k%C3%B3dov%C3%A1n%C3%AD-informace-v-po%C4%8D%C3%ADta%C4%8Di %}
 		<li> Instrukční sada jako rozhraní hardware a software, vazba na prvky vyšších programovacích jazyků.
 		<li> Podpora pro běh operačního systému.
 		<li> Rozhraní periferních zařízení a jejich obsluha.
@@ -123,7 +123,7 @@ Z následujících 7 jsou 1-3 povinné a z 4-7 je třeba vybrat dvě témata (ta
 		{% stlink Ramseyovy věty. | https://slama.dev/poznamky-z-prednasky/kombinatorika-a-grafy-i/#ramseyovy-barevn%C3%A9nekone%C4%8Dn%C3%A9-v%C4%9Bty %}
 		{% stlink Samoopravné kódy. | https://slama.dev/poznamky-z-prednasky/kombinatorika-a-grafy-i/#samoopravn%C3%A9-k%C3%B3dy %}
 	{% endsttopic %}
-	{% sttopic Základy sítí | Sítě 🃏 %}
+	{% sttopic Základy sítí | Sítě [[slidy](/assets/priprava-na-statnice-mff-uk/past/site.pdf)] 🃏 %}
 		<li> Taxonomie počítačových sítí.
 		<li> Architektura ISO/OSI.
 		<li> Přehled síťového modelu TCP/IP.
