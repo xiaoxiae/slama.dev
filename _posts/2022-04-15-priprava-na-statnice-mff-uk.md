@@ -93,17 +93,17 @@ U řady předmětů jsou rovněž k dispozici kartičky (🃏) z [tohoto Anki ba
 		{% stlink Toky v sítích. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s14  %}
 		{% stlink Euklidův algoritmus. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s1.3  %}
 	{% endsttopic %}
-	{% sttopic Programovací jazyky | Programko, Principy počítačů [[poznámky](/poznamky-z-prednasky/principy-pocitacu/)] 🃏, C# [[poznámky](/lecture-notes/the-cs-programming-language/)] %}
+	{% sttopic Programovací jazyky | Programko [[poznámky](/assets/priprava-na-statnice-mff-uk/prog2.pdf), [C#](/lecture-notes/the-cs-programming-language/)], Neprocko, Principy poč. [[poznámky](/poznamky-z-prednasky/principy-pocitacu/)] 🃏 %}
 		<li> Koncepty pro abstrakci, zapouzdření a polymorfizmus.
-		<li> Primitivní a objektové typy a jejich reprezentace.
-		<li> Generické typy a funkcionální prvky.
-		<li> Práce s prostředky a mechanizmy pro ošetření chyb.
-		<li> Životní cyklus objektů a správa paměti.
+		{% stlink Primitivní a objektové typy a jejich reprezentace. | /lecture-notes/the-cs-programming-language/#cil-type-system %}
+		{% stlink Generické typy a funkcionální prvky. | /assets/priprava-na-statnice-mff-uk/prog2.pdf#page=20 %}
+		{% stlink Práce s prostředky a mechanizmy pro ošetření chyb. | /lecture-notes/the-cs-programming-language/#exceptions %}
+		{% stlink Životní cyklus objektů a správa paměti. | /lecture-notes/the-cs-programming-language/#heaps-and-gc %}
 		<li> Vlákna a podpora synchronizace.
 		<li> Implementace základních prvků objektových jazyků.
 		<li> Nativní a interpretovaný běh, řízení překladu a sestavení programu.
 	{% endsttopic %}
-	{% sttopic Architektura počítačů a operačních systémů | Principy počítačů [[poznámky](/poznamky-z-prednasky/principy-pocitacu/)] 🃏, Počítačové systémy, Sítě [[slidy](/assets/priprava-na-statnice-mff-uk/past/site.pdf)] 🃏, Linux %}
+	{% sttopic Architektura počítačů a operačních systémů | Principy poč. [[poznámky](/poznamky-z-prednasky/principy-pocitacu/)] 🃏, Poč. systémy, Sítě [[slidy](/assets/priprava-na-statnice-mff-uk/past/site.pdf)] 🃏, Linux %}
 		{% stlink Základní architektura počítače, reprezentace dat a programů. | /poznamky-z-prednasky/principy-pocitacu/#zjednodu%C5%A1en%C3%A9-sch%C3%A9ma-po%C4%8D%C3%ADta%C4%8De | /poznamky-z-prednasky/principy-pocitacu/#k%C3%B3dov%C3%A1n%C3%AD-informace-v-po%C4%8D%C3%ADta%C4%8Di %}
 		<li> Instrukční sada jako rozhraní hardware a software, vazba na prvky vyšších programovacích jazyků.
 		<li> Podpora pro běh operačního systému.
