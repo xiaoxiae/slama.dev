@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+@import "variables";
+
+.sttopics {
+	> li {
+		padding-bottom: $line-spacing;
+	}
+}

@@ -1,6 +1,7 @@
 ---
 language: cz
 title: Příprava na státnice (MFF UK)
+css: statnice
 ---
 
 - .

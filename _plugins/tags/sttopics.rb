@@ -6,7 +6,7 @@ module Jekyll
       end
 
       def render(context)
-        return "<ol>#{super.strip}</ol>"
+        return "<ol class='sttopics'>#{super.strip}</ol>"
       end
     end
   end
