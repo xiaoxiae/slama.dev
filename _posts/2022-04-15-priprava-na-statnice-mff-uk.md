@@ -87,7 +87,7 @@ U řady předmětů jsou rovněž k dispozici kartičky (🃏) z [tohoto Anki ba
 		{% stlink Binární haldy. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s4.2 %}
 		{% stlink Hešování s přihrádkami a s otevřenou adresací. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s11.3 %}
 		{% stlink Třídící algoritmy. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s3  %}
-		{% stlink DFS, BFS a jejich aplikace. | http://localhost:4000/assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s5 %}
+		{% stlink DFS, BFS a jejich aplikace. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s5 %}
 		{% stlink Nejkratší cesty. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s6 %}
 		{% stlink Minimální kostry. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s7 %}
 		{% stlink Toky v sítích. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s14  %}
@@ -107,7 +107,7 @@ U řady předmětů jsou rovněž k dispozici kartičky (🃏) z [tohoto Anki ba
 		{% stlink Základní architektura počítače, reprezentace dat a programů. | /poznamky-z-prednasky/principy-pocitacu/#zjednodu%C5%A1en%C3%A9-sch%C3%A9ma-po%C4%8D%C3%ADta%C4%8De | /poznamky-z-prednasky/principy-pocitacu/#k%C3%B3dov%C3%A1n%C3%AD-informace-v-po%C4%8D%C3%ADta%C4%8Di %}
 		<li> Instrukční sada jako rozhraní hardware a software, vazba na prvky vyšších programovacích jazyků.
 		<li> Podpora pro běh operačního systému.
-		<li> Rozhraní periferních zařízení a jejich obsluha.
+		{% stlink Rozhraní periferních zařízení a jejich obsluha. | /poznamky-z-prednasky/principy-pocitacu/#otro%C4%8Dina %}
 		<li> Základní abstrakce, rozhraní a mechanizmy OS pro běh programů, sdílení prostředků a vstup/výstup.
 		<li> Paralelismus, vlákna a rozhraní pro jejich správu, synchronizace vláken.
 	{% endsttopic %}
@@ -118,10 +118,10 @@ Z následujících 7 jsou 1-3 povinné a z 4-7 je třeba vybrat dvě témata (ta
 
 {% sttopics %}
 	{% sttopic Kombinatorika | Kombagra 1 [[poznámky](/poznamky-z-prednasky/kombinatorika-a-grafy-i/)] a 2 [[poznámky](/poznamky-z-prednasky/kombinatorika-a-grafy-ii/)] %}
-		{% stlink Vytvořující funkce. | https://slama.dev/poznamky-z-prednasky/kombinatorika-a-grafy-i/#generuj%C3%ADc%C3%AD-funkce %}
-		{% stlink Odhady faktoriálů a kombinačních čísel. | https://slama.dev/poznamky-z-prednasky/kombinatorika-a-grafy-i/#odhady-faktori%C3%A1lu %}
-		{% stlink Ramseyovy věty. | https://slama.dev/poznamky-z-prednasky/kombinatorika-a-grafy-i/#ramseyovy-barevn%C3%A9nekone%C4%8Dn%C3%A9-v%C4%9Bty %}
-		{% stlink Samoopravné kódy. | https://slama.dev/poznamky-z-prednasky/kombinatorika-a-grafy-i/#samoopravn%C3%A9-k%C3%B3dy %}
+		{% stlink Vytvořující funkce. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#generuj%C3%ADc%C3%AD-funkce %}
+		{% stlink Odhady faktoriálů a kombinačních čísel. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#odhady-faktori%C3%A1lu %}
+		{% stlink Ramseyovy věty. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#ramseyovy-barevn%C3%A9nekone%C4%8Dn%C3%A9-v%C4%9Bty %}
+		{% stlink Samoopravné kódy. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#samoopravn%C3%A9-k%C3%B3dy %}
 	{% endsttopic %}
 	{% sttopic Základy sítí | Sítě [[slidy](/assets/priprava-na-statnice-mff-uk/past/site.pdf)] 🃏 %}
 		<li> Taxonomie počítačových sítí.
