@@ -9,21 +9,22 @@ css: statnice
 
 Tento článek obsahuje mou přípravu na státní zkoušky z **Obecné informatiky** pro akademický rok **2021/2022** (tj. nová akreditace).
 
-ANKI kartičky: [https://github.com/xiaoxiae/AnkiMFF](https://github.com/xiaoxiae/AnkiMFF)
+U každé časti tématu je jeden a více odkazů (🔗) na zdroje, ze kterých se jde učit.
+U řady předmětů jsou rovněž k dispozici kartičky (🃏) z [tohoto Anki balíčku](https://github.com/xiaoxiae/AnkiMFF), které mohou být dobré k opakování.
 
 ### Obecná
 
 #### Matematika
 
 {% sttopics %}
-	{% sttopic Základy diferenciálního a integrálního počtu | Matalýza 1 [[PDF](/assets/priprava-na-statnice-mff-uk/ma1.pdf)] %}
+	{% sttopic Základy diferenciálního a integrálního počtu | Matalýza 1 [[skripta](/assets/priprava-na-statnice-mff-uk/ma1.pdf)] 🃏 %}
 		{% stlink Posloupnosti reálných čísel a jejich vlastnosti. | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.2 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.3 %}
 		{% stlink Reálné funkce jedné reálné proměnné. | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.4 %}
 		{% stlink Spojitost, limita funkce v bodě. | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.5 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.6 %}
 		{% stlink Derivace: definice a základní pravidla, průběhy, Taylorův polynom se zbytkem.  | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.7 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.8 %}
 		{% stlink Primitivní funkce: definice, jednoznačnost, existence, metody výpočtu. | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.9 %}
 	{% endsttopic %}
-	{% sttopic Algebra a lineární algebra | Lingebra 1 a 2 [[PDF]([[/assets/priprava-na-statnice-mff-uk/la.pdf]])] %}
+	{% sttopic Algebra a lineární algebra | Lingebra 1 a 2 [[skripta](/assets/priprava-na-statnice-mff-uk/la.pdf)] 🃏 %}
 		{% stlink Grupy a podgrupy, tělesa. | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.4 %}
 		{% stlink Vektorové prostory a podprostory. | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.5 %}
 		{% stlink Skalární součin, norma. | /assets/priprava-na-statnice-mff-uk/la.pdf#section.8.1 %}
@@ -33,7 +34,7 @@ ANKI kartičky: [https://github.com/xiaoxiae/AnkiMFF](https://github.com/xiaoxia
 		{% stlink Vlastní čísla a vlastní vektory matice. | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.10 %}
 		{% stlink Charakteristický polynom, vztah vlastních čísel s kořeny polynomů. | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.12 %}
 	{% endsttopic %}
-	{% sttopic Diskrétní matematika | Diskrétka [[Web](/poznamky-z-prednasky/diskretni-matematika/)], Kombagra 1 [[Web](/poznamky-z-prednasky/kombinatorika-a-grafy-i/)] %}
+	{% sttopic Diskrétní matematika | Diskrétka [[poznámky](/poznamky-z-prednasky/diskretni-matematika/)] 🃏, Kombagra 1 [[poznámky](/poznamky-z-prednasky/kombinatorika-a-grafy-i/)] 🃏 %}
 		{% stlink Relace, vlastnosti binárních relací. | /poznamky-z-prednasky/diskretni-matematika/#relace %}
 		{% stlink Ekvivalence a rozkladové třídy. | /poznamky-z-prednasky/diskretni-matematika/#ekvivalence %}
 		{% stlink Částečná uspořádání. | /poznamky-z-prednasky/diskretni-matematika/#uspořádání %}
@@ -43,7 +44,7 @@ ANKI kartičky: [https://github.com/xiaoxiae/AnkiMFF](https://github.com/xiaoxia
 		{% stlink Princip inkluze a exkluze. | /poznamky-z-prednasky/diskretni-matematika/#princip-inkluzeexkluze %}
 		{% stlink Hallova věta o systému různých reprezentantů, párování v bipartitním grafu. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#aplikace-tok%C5%AF-v-s%C3%ADt%C3%ADch %}
 	{% endsttopic %}
-	{% sttopic Teorie grafů | Diskrétka [[Web](/poznamky-z-prednasky/diskretni-matematika/)], Kombagra 1 [[Web](/poznamky-z-prednasky/kombinatorika-a-grafy-i/)] %}
+	{% sttopic Teorie grafů | Diskrétka [[poznámky](/poznamky-z-prednasky/diskretni-matematika/)] 🃏, Kombagra 1 [[poznámky](/poznamky-z-prednasky/kombinatorika-a-grafy-i/)] 🃏 %}
 		{% stlink Základní pojmy, základní příklady grafů. | /poznamky-z-prednasky/diskretni-matematika/#grafy %}
 		{% stlink Souvislost grafů, komponenty souvislosti. | /poznamky-z-prednasky/diskretni-matematika/#rozšiřování-grafů %}
 		{% stlink Stromy, jejich vlastnosti, ekvivalentní charakteristiky stromů. | /poznamky-z-prednasky/diskretni-matematika/#stromy %}
@@ -53,7 +54,7 @@ ANKI kartičky: [https://github.com/xiaoxiae/AnkiMFF](https://github.com/xiaoxia
 		{% stlink Orientované grafy, silná a slabá souvislost. | /poznamky-z-prednasky/diskretni-matematika/#rozšiřování-grafů  %}
 		{% stlink Toky v sítích. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#7-přednáška  %}
 	{% endsttopic %}
-	{% sttopic Pravděpodobnost a statistika | Diskrétka [[Web](/poznamky-z-prednasky/diskretni-matematika/)], Past 1 [[PDF](/assets/priprava-na-statnice-mff-uk/past/slides.pdf)] [[Cheatsheet](/assets/priprava-na-statnice-mff-uk/past/cheatsheet.pdf)] %}
+	{% sttopic Pravděpodobnost a statistika | Diskrétka [[poznámky](/poznamky-z-prednasky/diskretni-matematika/)] 🃏, Past [[slidy](/assets/priprava-na-statnice-mff-uk/past/slides.pdf), [cheatsheet](/assets/priprava-na-statnice-mff-uk/past/cheatsheet.pdf)] 🃏 %}
 		<li> Náhodné jevy, podmíněná pravděpodobnost, nezávislost náhodných jevů, Bayesův vzorec, aplikace.
 		<li> Náhodné veličiny, střední hodnota, rozdělení náhodných veličin, geometrické, binomické a normální rozdělení.
 		<li> Lineární kombinace náhodných veličin, linearita střední hodnoty.
@@ -61,7 +62,7 @@ ANKI kartičky: [https://github.com/xiaoxiae/AnkiMFF](https://github.com/xiaoxia
 		<li> Intervaly spolehlivosti
 		<li> Testování hypotéz
 	{% endsttopic %}
-	{% sttopic Logika | Výpal %}
+	{% sttopic Logika | Výpal [[slidy](/assets/priprava-na-statnice-mff-uk/vypal.pdf)] 🃏 %}
 		<li> Syntaxe - jazyk, otevřená a uzavřená formule.
 		<li> Normální tvary výrokových formulí, prenexní tvary formulí predikátové logiky, převody na normální tvary, použití pro algoritmy (SAT, rezoluce).
 		<li> Sémantika, pravdivost, lživost, nezávislost formule vzhledem k teorii, splnitelnost, tautologie, důsledek, pojem modelu teorie, extenze teorií.
@@ -71,28 +72,28 @@ ANKI kartičky: [https://github.com/xiaoxiae/AnkiMFF](https://github.com/xiaoxia
 #### Informatika
 
 {% sttopics %}
-	{% sttopic Automaty a jazyky | Autogramy [[PDF](/assets/priprava-na-statnice-mff-uk/autogramy.pdf)] %}
-		<li> Regulární jazyky, konečné automaty (deterministické, nedeterministické).
-		<li> Kleeneho věta, iterační lemma, regulární gramatiky.
-		<li> Bezkontextové jazyky, zásobníkové automaty, bezkontextové gramatiky.
+	{% sttopic Automaty a jazyky | Autogramy [[skripta](/assets/priprava-na-statnice-mff-uk/autogramy/skripta.pdf), [slidy](/assets/priprava-na-statnice-mff-uk/autogramy/slidy.pdf)] 🃏 %}
+		{% stlink Regulární jazyky, konečné automaty (deterministické, nedeterministické). | /assets/priprava-na-statnice-mff-uk/autogramy/skripta.pdf#page=2 %}
+		{% stlink Kleeneho věta, iterační lemma, regulární gramatiky. | /assets/priprava-na-statnice-mff-uk/autogramy/skripta.pdf#page=15 | /assets/priprava-na-statnice-mff-uk/autogramy/skripta.pdf#page=6 | /assets/priprava-na-statnice-mff-uk/autogramy/skripta.pdf#page=20 %}
+		{% stlink Bezkontextové jazyky, zásobníkové automaty, bezkontextové gramatiky. | /assets/priprava-na-statnice-mff-uk/autogramy/skripta.pdf#page=19 | /assets/priprava-na-statnice-mff-uk/autogramy/skripta.pdf#page=24 %}
 		<li> Turingův stroj, gramatika typu 0, diagonální jazyk, univerzální jazyk.
 		<li> Chomského hierarchie.
 	{% endsttopic %}
-	{% sttopic Algoritmy a datové stuktury | ADS 1 a 2 [[PDF](/assets/priprava-na-statnice-mff-uk/pruvodce.pdf)] %}
-		<li> Časová a prostorová složitost algoritmů, asymptotická notace.
-		<li> Třídy složitosti P a NP, NP-těžkost a NP-úplnost.
-		<li> Algoritmy "rozděl a panuj", výpočet časové složitosti těchto algoritmů, příklady.
-		<li> Binarní vyhledávací stromy, AVL stromy.
-		<li> Binární haldy.
-		<li> Hešování s přihrádkami a s otevřenou adresací.
-		<li> Třídící algoritmy.
-		<li> DFS, BFS a jejich aplikace.
-		<li> Nejkratší cesty.
-		<li> Minimální kostry.
-		<li> Toky v sítích.
-		<li> Euklidův algoritmus.
+	{% sttopic Algoritmy a datové stuktury | ADS 1 a 2 [[Průvodce](/assets/priprava-na-statnice-mff-uk/pruvodce.pdf)] 🃏 %}
+		{% stlink Časová a prostorová složitost algoritmů, asymptotická notace. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s2  %}
+		{% stlink Třídy složitosti P a NP, NP-těžkost a NP-úplnost. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s19.3 %}
+		{% stlink Algoritmy "rozděl a panuj", výpočet časové složitosti těchto algoritmů, příklady. |  /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s10 %}
+		{% stlink Binarní vyhledávací stromy, AVL stromy. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s8 %}
+		{% stlink Binární haldy. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s4.2 %}
+		{% stlink Hešování s přihrádkami a s otevřenou adresací. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s11.3 %}
+		{% stlink Třídící algoritmy. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s3  %}
+		{% stlink DFS, BFS a jejich aplikace. | http://localhost:4000/assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s5 %}
+		{% stlink Nejkratší cesty. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s6 %}
+		{% stlink Minimální kostry. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s7 %}
+		{% stlink Toky v sítích. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s14  %}
+		{% stlink Euklidův algoritmus. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s1.3  %}
 	{% endsttopic %}
-	{% sttopic Programovací jazyky | Programko 1 a 2, Principy počítačů [[Web](/poznamky-z-prednasky/principy-pocitacu/)], C# [[Web](/lecture-notes/the-cs-programming-language/)] %}
+	{% sttopic Programovací jazyky | Programko, Principy počítačů [[poznámky](/poznamky-z-prednasky/principy-pocitacu/)] 🃏, C# [[poznámky](/lecture-notes/the-cs-programming-language/)] %}
 		<li> Koncepty pro abstrakci, zapouzdření a polymorfizmus.
 		<li> Primitivní a objektové typy a jejich reprezentace.
 		<li> Generické typy a funkcionální prvky.
@@ -102,7 +103,7 @@ ANKI kartičky: [https://github.com/xiaoxiae/AnkiMFF](https://github.com/xiaoxia
 		<li> Implementace základních prvků objektových jazyků.
 		<li> Nativní a interpretovaný běh, řízení překladu a sestavení programu.
 	{% endsttopic %}
-	{% sttopic Architektura počítačů a operačních systémů | Principy počítačů [[Web](/poznamky-z-prednasky/principy-pocitacu/)], Počítačové systémy, Úvod do sítí, Linux %}
+	{% sttopic Architektura počítačů a operačních systémů | Principy počítačů [[poznámky](/poznamky-z-prednasky/principy-pocitacu/)] 🃏, Počítačové systémy, Sítě 🃏, Linux %}
 		<li> Základní architektura počítače, reprezentace dat a programů.
 		<li> Instrukční sada jako rozhraní hardware a software, vazba na prvky vyšších programovacích jazyků.
 		<li> Podpora pro běh operačního systému.
@@ -116,13 +117,13 @@ ANKI kartičky: [https://github.com/xiaoxiae/AnkiMFF](https://github.com/xiaoxia
 Z následujících 7 jsou 1-3 povinné a z 4-7 je třeba vybrat dvě témata (ta moje jsou 4, 5).
 
 {% sttopics %}
-	{% sttopic Kombinatorika | Kombagra 1 [[Web](/poznamky-z-prednasky/kombinatorika-a-grafy-i/)] a 2 [[Web](/poznamky-z-prednasky/kombinatorika-a-grafy-ii/)] %}
+	{% sttopic Kombinatorika | Kombagra 1 [[poznámky](/poznamky-z-prednasky/kombinatorika-a-grafy-i/)] a 2 [[poznámky](/poznamky-z-prednasky/kombinatorika-a-grafy-ii/)] %}
 		{% stlink Vytvořující funkce. | https://slama.dev/poznamky-z-prednasky/kombinatorika-a-grafy-i/#generuj%C3%ADc%C3%AD-funkce %}
 		{% stlink Odhady faktoriálů a kombinačních čísel. | https://slama.dev/poznamky-z-prednasky/kombinatorika-a-grafy-i/#odhady-faktori%C3%A1lu %}
 		{% stlink Ramseyovy věty. | https://slama.dev/poznamky-z-prednasky/kombinatorika-a-grafy-i/#ramseyovy-barevn%C3%A9nekone%C4%8Dn%C3%A9-v%C4%9Bty %}
 		{% stlink Samoopravné kódy. | https://slama.dev/poznamky-z-prednasky/kombinatorika-a-grafy-i/#samoopravn%C3%A9-k%C3%B3dy %}
 	{% endsttopic %}
-	{% sttopic Základy sítí | Úvod do sítí %}
+	{% sttopic Základy sítí | Sítě 🃏 %}
 		<li> Taxonomie počítačových sítí.
 		<li> Architektura ISO/OSI.
 		<li> Přehled síťového modelu TCP/IP.
@@ -131,7 +132,7 @@ Z následujících 7 jsou 1-3 povinné a z 4-7 je třeba vybrat dvě témata (ta
 		<li> Architektura klient/server.
 		<li> Základy fungování protokolů HTTP, FTP a SMTP.
 	{% endsttopic %}
-	{% sttopic Diferenciální a integrální počet ve více rozměrech  | Matalýza 2 [[PDF](/assets/priprava-na-statnice-mff-uk/ma2.pdf)] %}
+	{% sttopic Diferenciální a integrální počet ve více rozměrech  | Matalýza 2 [[skripta](/assets/priprava-na-statnice-mff-uk/ma2.pdf)] 🃏 %}
 		<li> Riemannův integrál.
 		<li> Extrémy funkcí více proměnných.
 		<li> Metrický prostor, otevřené a uzavřené množiny, kompaktnost.
@@ -145,7 +146,7 @@ Z následujících 7 jsou 1-3 povinné a z 4-7 je třeba vybrat dvě témata (ta
 		<li> Použití lineárního programování pro aproximační algoritmy.
 		<li> Využití pravděpodobnosti při návrhu algoritmů.
 	{% endsttopic %}
-	{% sttopic Pokročilé Algoritmy a datové struktury | ADS 1 a 2 [[PDF](/assets/priprava-na-statnice-mff-uk/pruvodce.pdf)], Grafové algoritmy %}
+	{% sttopic Pokročilé Algoritmy a datové struktury | ADS 1 a 2 [[Průvodce](/assets/priprava-na-statnice-mff-uk/pruvodce.pdf)] 🃏, Grafové algoritmy %}
 		<li> Výpočetní model RAM.
 		<li> Dynamické programování.
 		<li> Komponenty silné souvislosti orientovaných grafů.
