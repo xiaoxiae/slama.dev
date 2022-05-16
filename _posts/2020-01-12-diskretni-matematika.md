@@ -184,7 +184,7 @@ budeme počítat dvěma způsoby:
 	- \# \(k\)-prvkových množin \( \cdot\ k!\) (zpermutováním)... \(\left|\binom{X}{k}\right| \cdot k!\)
 {% endmath %}
 
-#### Vlastnosti kombinačních čísel:
+#### Vlastnosti kombinačních čísel
 - počet prázdných podmnožin \(= 1 =\) počet „plných“ podmnožin: \(\binom{n}{0} = 1 = \binom{n}{n}\)
 - počet 1-prvkových podmnožin\( = n = \)počet podmnožin, kde 1 prvek chybí: \(\binom{n}{1} = n = \binom{n}{n - 1}\)
 - generalizace předchozích dvou vzorečků... počítání doplňků: \(\binom{n}{k} = \binom{n}{n - k}\)
