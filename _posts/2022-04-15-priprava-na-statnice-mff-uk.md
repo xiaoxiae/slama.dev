@@ -13,14 +13,14 @@ Tento článek obsahuje mou přípravu na státní zkoušky z **Obecné informat
 #### Matematika
 
 {% sttopics %}
-	{% sttopic Základy diferenciálního a integrálního počtu | [Matalýza 1]() %}
-		<li> Posloupnosti reálných čísel a jejich vlastnosti.
-		<li> Reálné funkce jedné reálné proměnné.
-		<li> Spojitost, limita funkce v bodě.
-		<li> Derivace: definice a základní pravidla, průběhy funkcí, Taylorův polynom se zbytkem.
-		<li> Primitivní funkce: definice, jednoznačnost, existence, metody výpočtu.
+	{% sttopic Základy diferenciálního a integrálního počtu | [Matalýza 1]() [[PDF](/assets/priprava-na-statnice-mff-uk/ma1.pdf)] %}
+		{% stlink Posloupnosti reálných čísel a jejich vlastnosti. | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.2 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.3 %}
+		{% stlink Reálné funkce jedné reálné proměnné. | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.4 %}
+		{% stlink Spojitost, limita funkce v bodě. | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.5 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.6 %}
+		{% stlink Derivace: definice a základní pravidla, průběhy, Taylorův polynom se zbytkem.  | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.7 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.8 %}
+		{% stlink Primitivní funkce: definice, jednoznačnost, existence, metody výpočtu. | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.9 %}
 	{% endsttopic %}
-	{% sttopic Algebra a lineární algebra | [Lingebra 1](), [Lingebra 2]() %}
+	{% sttopic Algebra a lineární algebra | [Lingebra 1]() [[PDF](/assets/priprava-na-statnice-mff-uk/la.pdf)], [Lingebra 2]() [[PDF](/assets/priprava-na-statnice-mff-uk/la.pdf)] %}
 		<li> Grupy a podgrupy, tělesa.
 		<li> Vektorové prostory a podprostory.
 		<li> Skalární součin, norma.
@@ -126,7 +126,7 @@ Z následujících 7 jsou 1-3 povinné a z 4-7 je třeba vybrat dvě témata.
 		<li> Architektura klient/server.
 		<li> Základy fungování protokolů HTTP, FTP a SMTP.
 	{% endsttopic %}
-	{% sttopic Diferenciální a integrální počet ve více rozměrech  | [Matalýza 2]() %}
+	{% sttopic Diferenciální a integrální počet ve více rozměrech  | [Matalýza 2]() [[PDF](/assets/priprava-na-statnice-mff-uk/ma2.pdf)] %}
 		<li> Riemannův integrál.
 		<li> Extrémy funkcí více proměnných.
 		<li> Metrický prostor, otevřené a uzavřené množiny, kompaktnost.
