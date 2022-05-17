@@ -103,9 +103,9 @@ U řady předmětů jsou rovněž k dispozici kartičky (🃏) z [tohoto Anki ba
 		<li> Implementace základních prvků objektových jazyků.
 		<li> Nativní a interpretovaný běh, řízení překladu a sestavení programu.
 	{% endsttopic %}
-	{% sttopic Architektura počítačů a operačních systémů | Principy poč. [[poznámky](/poznamky-z-prednasky/principy-pocitacu/)] 🃏, Poč. systémy, Sítě [[slidy](/assets/priprava-na-statnice-mff-uk/past/site.pdf)] 🃏, Linux %}
+	{% sttopic Architektura počítačů a OS | Principy poč. [[poznámky](/poznamky-z-prednasky/principy-pocitacu/)] 🃏, Poč. systémy [[slidy](/assets/priprava-na-statnice-mff-uk/past/ps.pdf)], Sítě [[slidy](/assets/priprava-na-statnice-mff-uk/past/site.pdf)] 🃏 %}
 		{% stlink Základní architektura počítače, reprezentace dat a programů. | /poznamky-z-prednasky/principy-pocitacu/#zjednodu%C5%A1en%C3%A9-sch%C3%A9ma-po%C4%8D%C3%ADta%C4%8De | /poznamky-z-prednasky/principy-pocitacu/#k%C3%B3dov%C3%A1n%C3%AD-informace-v-po%C4%8D%C3%ADta%C4%8Di %}
-		<li> Instrukční sada jako rozhraní hardware a software, vazba na prvky vyšších programovacích jazyků.
+		{% stlink Instrukční sada jako rozhraní hardware a software, vazba na prvky vyšších programovacích jazyků. | /poznamky-z-prednasky/principy-pocitacu/#instrukce-a-architektury %}
 		<li> Podpora pro běh operačního systému.
 		{% stlink Rozhraní periferních zařízení a jejich obsluha. | /poznamky-z-prednasky/principy-pocitacu/#otro%C4%8Dina %}
 		<li> Základní abstrakce, rozhraní a mechanizmy OS pro běh programů, sdílení prostředků a vstup/výstup.
@@ -137,7 +137,7 @@ Z následujících 7 jsou 1-3 povinné a z 4-7 je třeba vybrat dvě témata (ta
 		{% stlink Extrémy funkcí více proměnných. | /assets/priprava-na-statnice-mff-uk/ma2.pdf#section.5 %}
 		{% stlink Metrický prostor, otevřené a uzavřené množiny, kompaktnost. | /assets/priprava-na-statnice-mff-uk/ma2.pdf#section.1 | /assets/priprava-na-statnice-mff-uk/ma2.pdf#section.3 %}
 	{% endsttopic %}
-	{% sttopic Optimalizace | Linprog [[skripta](/assets/priprava-na-statnice-mff-uk/linprog.pdf)] 🃏, Diskrétní a Spojitá optimalizace  🃏 %}
+	{% sttopic Optimalizace | Linprog [[skripta](/assets/priprava-na-statnice-mff-uk/linprog.pdf)] 🃏, Aproximační algoritmy [[poznámky](/poznamky-z-prednasky/aproximacni-algoritmy/)] 🃏 %}
 		{% stlink Mnohostěny, Minkowského-Weylova věta. | /assets/priprava-na-statnice-mff-uk/linprog.pdf#section.4 | /assets/priprava-na-statnice-mff-uk/linprog.pdf#page=12 %}
 		{% stlink Základy lineárního programování, věty o dualitě, metody řešení. | /assets/priprava-na-statnice-mff-uk/linprog.pdf#section.2 | /assets/priprava-na-statnice-mff-uk/linprog.pdf#subsection.7.1 | /assets/priprava-na-statnice-mff-uk/linprog.pdf#section.5 %}
 		{% stlink Edmondsův algoritmus. | /poznamky-z-prednasky/kombinatorika-a-grafy-ii/#nejv%C4%9Bt%C5%A1%C3%AD-p%C3%A1rov%C3%A1n%C3%AD %}
