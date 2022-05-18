@@ -433,11 +433,11 @@ nechť \(v\) je list grafu \(G\). Pak \(G\) je strom \(\iff G - v\) je strom.
 
 {% math theorem "charakteristika stromu" %}
 následující tvrzení jsou ekvivalentní:
-1. \(G\) je souvislý a acyklický (standardní)
-2. mezi každými vrcholem \(x, y\) vede _právě 1 cesta_ (jsou jednoznačně souvislé)
-3. \(G\) je souvislý a \(\forall e \in E\left(G\right): G - e\) souvislý není (je minimálně souvislý)
-4. \(G\) je acyklický a \(\forall e \in \binom{V\left(G\right)}{2} \setminus E\left(G\right): G + e\) obsahuje cyklus (je maximálné acyklický... přidáním libovolné hrany se vytvoří cyklus)
-5. \(G\) je souvislý a \(\left|E\left(G\right)\right| = \left|V\left(G\right)\right| - 1\) (Eulerova formule)
+1. **standardní:** \(G\) je souvislý a acyklický
+2. **jednoznačná souvislost:** mezi každými vrcholem \(x, y\) vede _právě 1 cesta_
+3. **minimální souvislost:** \(G\) je souvislý a \(\forall e \in E\left(G\right): G - e\) souvislý není
+4. **maximální acykličnost:** \(G\) je acyklický a \(\forall e \in \binom{V\left(G\right)}{2} \setminus E\left(G\right): G + e\) obsahuje cyklus
+5. **Eulerova formule:** \(G\) je souvislý a \(\left|E\left(G\right)\right| = \left|V\left(G\right)\right| - 1\)
 {% endmath %}
 
 {% math proof %}
@@ -562,14 +562,14 @@ je \(f: \left[0, 1\right] \mapsto \mathbb{R}^2\) spojitá a prostá.
 {% endmath %}
 
 {% math definition: "rovinné nakreslení" %}
-multigrafu \(\left(V, E, K\right)\) je \(\nu: V \mapsto \mathbb{R}^2\) a \(\left\{C_e \mid e \in E\right\}\) množina oblouků/topologických kružnic t. ž.:
-1. \(\forall e \in E: K\left(e\right) = \left\{u, v\right\}\): \(C_e\) je oblouk s konci \(\left\{\nu\left(u\right), \nu\left(v\right)\right\}\)
+multigrafu \(\left(V, E, K\right)\) je \(\nu: V \mapsto \mathbb{R}^2\) a \(\left\{C_e \mid e \in E\right\}\) množina oblouků/kružnic t. ž.:
+1. \((\forall e \in E)\ K\left(e\right) = \left\{u, v\right\} \implies C_e\) je oblouk s konci \(\left\{\nu\left(u\right), \nu\left(v\right)\right\}\)
 	- za každou hranu existuje oblouk
-2. \(\forall e \in E: K\left(e\right) = u\): \(C_e\) je kružnice obsahující \(\nu\left(u\right)\)
+2. \((\forall e \in E)\ K\left(e\right) = u \implies C_e\) je kružnice obsahující \(\nu\left(u\right)\)
 	- smyčky
-3. \(\forall e, f\) různé \(\in E: C_e \cap C_f = \nu\left[K\left(e\right) \cap K\left(f\right)\right]\)
+3. \((\forall e, f\) různé \(\in E) \implies C_e \cap C_f = \nu\left[K\left(e\right) \cap K\left(f\right)\right]\)
 	- průniky jsou jen vrcholy
-4. \(\forall v \in V, \forall e \in E: \nu\left(v\right) \in C_e \implies v \in K\left(e\right)\)
+4. \((\forall v \in V, \forall e \in E)\ \nu\left(v\right) \in C_e \implies v \in K\left(e\right)\)
 	- protíná-li kružnice vrchol, pak je vrchol na té hraně
 {% endmath %}
 
@@ -577,7 +577,7 @@ multigrafu \(\left(V, E, K\right)\) je \(\nu: V \mapsto \mathbb{R}^2\) a \(\left
 Graf je _rovinný_, pokud existuje nějaké jeho rovinné nakreslení.
 - cesta je rovinná
 - kružnice je rovinná
-- strom je rovinný... indukcí (přidáváním listů), jelikož vždy se lze posunout alespoň o kousek dále
+- strom je rovinný (přidáváním listů -- vždy je „zoomovat“ a pokládat tam listy)
 {% endmath %}
 
 {% math definition "topologický graf" %}graf nakreslený do roviny.{% endmath %}
@@ -593,17 +593,16 @@ Nechť \(T\) je topologická kružnice v \(\mathbb{R}^2\). Pak \(\mathbb{R}^2 \s
 Po rovinném nakreslení \(K_4\) je zřejmé, že z každé stěny jsou dosažitelné právě 3 vrcholy -- \(K_5\) proto rovinná být nemůže.
 {% endmath %}
 
-{% math definition "křížící číslo" %}min. počet křížení.{% endmath %}
+{% math definition: "křížící číslo" %} je min. počet křížení.{% endmath %}
 
-{% math definition "stěny nakreslení" %}
-komponenty obloukové souvislosti \(\mathbb{R}^2 \setminus \left(\left\{\nu\left(v\right) \mid v \in V \right\} \bigcup_{e \in E} C(e)\right)\) 
+{% math definition: "stěny nakreslení" %} jsou komponenty obloukové souvislosti: \[\mathbb{R}^2 \setminus \left(\left\{\nu\left(v\right) \mid v \in V \right\} \bigcup_{e \in E} C(e)\right)\]
 {% endmath %}
 
 {% xopp komponenty %}
 
-- nechová se jako izomorfismus!
-
+{% math remark %}nechová se jako izomorfismus!
 {% xopp komponenty2 %}
+{% endmath %}
 
 {% math theorem %}
 hranice každé stěny souvislého grafu je nakreslením uzavřeného sledu, který každou hranu obsahuje nejvýše dvakrát.
@@ -611,8 +610,9 @@ hranice každé stěny souvislého grafu je nakreslením uzavřeného sledu, kte
 
 {% math proof %}
 indukce podle počtu hran (počet vrcholů je pevný):
-1. pro strom: počet hran = počet vrcholů - 1; nakreslení má právě 1 stěnu; sled je DFS
-2. pro \(\left|E\right| > \left|V\right| - 1\): obsahuje kružnici... nechť \(e = \left\{u, v\right\}\) leží na kružnici; rozdělíme ji na 2 sledy
+1. pro strom: počet hran = počet vrcholů \(- 1\); nakreslení má právě 1 stěnu; sled je DFS
+2. pro \(\left|E\right| > \left|V\right| - 1\): obsahuje kružnici... nechť \(e = \left\{u, v\right\}\) leží na kružnici
+	- rozdělíme ji na 2 sledy
 {% endmath %}
 
 {% math theorem %}
@@ -621,7 +621,7 @@ indukce podle počtu hran (počet vrcholů je pevný):
 
 {% math proof %}
 uděláme _stereografickou projekci_... jedná se o bijekci
-- pozor! je potřeba ji natočit tak, ať se netrefíme do grafu
+- je potřeba si dát pozor a natočit ji tak, ať se netrefíme někam do grafu
 
 {% xopp sfera %}
 {% endmath %}
@@ -686,11 +686,10 @@ počítání dvěma způsoby: \(e \ge 4f / 2\) (každá hrana patří do dvou st
 
 #### Barvení
 {% math definition: "obarvení" %}
-grafu \(G\) \(k\) barvami je funkce \(C: V\left(G\right) \mapsto \left\{1, \ldots, k\right\}\) t. ž. \(\forall u, v \in V\left(G\right): \left\{u, v\right\} \in E\left(G\right) \implies C\left(u\right) \neq C\left(v\right)\){% endmath %}
+grafu \(k\) barvami je funkce \(C: V\left(G\right) \mapsto \left\{1, \ldots, k\right\}\) t. ž. \(\forall u, v \in V\left(G\right): \left\{u, v\right\} \in E\left(G\right) \implies C\left(u\right) \neq C\left(v\right)\){% endmath %}
 
-{% math definition: "barevnost" %}
-(chromatické číslo \(\chi\left(G\right)\)) je nejmenší \(k\) t. ž. existuje obarvení grafu \(G\) \(k\) barvami.
-- motivace: přidělování bez konfliktů
+{% math definition: "barevnost/chromatické číslo" %}
+ \(\chi\left(G\right)\) je nejmenší \(k\) t. ž. existuje obarvení grafu \(k\) barvami
 - \(\chi\left(P_n\right) = 2\) (pro \(n > 0\))
 - \(\chi\left(C_n\right) = \begin{cases} 2 & n\ \text{sudé} \\ 3 & n\ \text{liché} \end{cases}\)
 - \(\chi\left(K_n\right) = n\)
@@ -722,7 +721,7 @@ každý rovinný graf je 5-obarvitelný.
 {% math proof %}
 - pro \(\left|V\right| \le 5\) lze triviálně (prostě přiřadíme všechny barvy)
 - indukcí podle počtu vrcholů: uvažme \(v \in V\left(G\right)\) s minimálním stupněm -- ten odtrhneme, graf podle IP obarvíme a rozebereme případy:
-	- pro \(\mathrm{deg}(v) \le 4\)... indukcí přiřadíme vrcholu zbylou barvu, jelikož sousedé zabrali nejvýše \(4\)
+	- „každý podgraf \(d\)-degenerovaného grafu obsahuje vrchol stupně menšího než \(d\)“
 	- \(\mathrm{deg}(v) > 5\) nenastane (vztah \(e = 3v - 6\))
 	- pro \(\mathrm{deg}(v) = 5\): pokud jsou nějaké barvy stejné, tak obarvíme zbylou; jinak uvažme zeleno-červený podgaf vycházející z vrcholu \(a\)... pro ten mohou nastat dva případy:
 		1. pokud \(c\) nepatří do podgrafu, tak prohodíme _všechny barvy v podgrafu_ a jedné se tím na problematickém vrcholu zbavíme
