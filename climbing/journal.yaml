@@ -886,6 +886,33 @@
 2022-05-03:
   note: Not really sure what I did, I think that I just climbed random stuff for fun.
 2022-05-05:
-  note: I had a pretty bad session and managed to sprain my ankle, so yey! I'll add
-    all of the videos from new routes the next time I go climbing.
+  blue:
+    new: 1
+  note: I had a pretty bad session, because I managed to sprain my ankle, so yey!
   rebuilt: 4
+  red:
+    new: 4
+  salmon:
+    new: 4
+2022-05-17:
+  blue:
+    new: 4
+  note: "The first Sm\xEDchoff session with the sprained ankle. Managed to climb some\
+    \ blues and salmons, but still felt pretty bad."
+  rebuilt: 2
+  red:
+    new: 3
+  salmon:
+    new: 2
+2022-05-19:
+  blue:
+    new: 3
+    old: 1
+  note: "The second Sm\xEDchoff session with the sprained ankle. Felt pretty okay,\
+    \ managed to climb the rest of non-yellows from the last set (except two, had\
+    \ no strength left)."
+  red:
+    new: 1
+  salmon:
+    new: 1
+    old: 1
