@@ -32,10 +32,10 @@ redirect_from:
 #### Funkce
 {% math definition "funkce" %}relace \(f\) mezi \(X, Y\) je funkce (zobrazení) \(\ \equiv \forall x \in X \ \exists!\ y \in Y: x f y\)
 
-- speciální druh relace, ve kterém se z \(X\) zobrazuje „jen jednou“	
+- speciální druh relace, ve kterém se prvek z \(X\) zobrazuje na ten z \(Y\) právě jednou na
 - značíme \(f: X \mapsto Y\) nebo \(f\left(x\right) = y\)<br>
 
-- **prostá:** \(\forall x, x' \in X, x \neq x': f\left(x\right) \neq f\left(x'\right)\)
+- **prostá:** \(\forall x, x' \in X, x \neq x': f\left(x\right) \neq f\left(x'\right)\) (dvě různé \(x\) se nezobrazí na stejné \(y\))
 - **na:** \( \forall y \in Y\ \exists x \in X: f\left(x\right) = y\)
 	- na každé \(y\) se něco zobrazí (klidně vícekrát!)
 - **bijekce:** \(\forall y \in Y\ \exists!\ x \in X: f\left(x\right) = y\)
@@ -75,7 +75,7 @@ Nechť \(R\) je ekvivalence na \(X\). Potom:
 {% math definition "uspořádání" %}Relace \(R\) na \(X\) je uspořádání \(\ \equiv\ R\) je **reflexivní, antisymetrická** a **tranzitivní.**
 
 - **lineární** \(\le\): \(\forall x, y \in X: x \le y \lor y \le x\) (všechny \(x, y\) jsou porovnatelné)
-- **částečné** = ne lineární
+- **částečné:** ne lineární
 - **ostré**: pokud \(\le\) je uspořádání, pak \(x < y \equiv x \le y \land x \neq y\) je ostré uspořádání
 - \(\ge\ :=\ \le^{-1}\) je také uspořádání (to samé platí pro ostré)
 {% endmath %}
@@ -87,12 +87,11 @@ Uvažme uspořadání \(\left(\left\{1, 2, 3\right\}, \subseteq\right)\). Jeho H
 {% xopp hasse %}
 
 - spojujeme **bezprostřední předky**, tj.: neexistuje \(t \in X\) mezi \(x, y\) takové, že \(x < t < y\)<br>
-- \(x\) je **minimální** (maximální) prvek \(\ \equiv \nexists\ y: y < x\)
+- \(x\) je **minimální** prvek \(\ \equiv \nexists\ y: y < x\) (analogicky maximální)
 	- tzn. _neexistuje menší_
-- \(x\) je **nejmenší** (největší) prvek \(\ \equiv \forall y: x \le y\)
+- \(x\) je **nejmenší** prvek \(\ \equiv \forall y: x \le y\) (analogicky největší)
 	- tzn. _je menší než všechny ostatní_
 	- silnější kritérium než minimální, jelikož musí se všemi být porovnatelný
-	- nejmenší je rovněž minimální
 
 {% math definition "lexikografické uspořádání" %}
 Nechť \(X\) je abeceda a \(\le\) uspořadání na \(X\). Pak definujeme lexikografické uspořádání \(\left(X^2, \le_{LEX}\right)\) následně: \[\left(a, b\right) \le_{LEX} \left(a', b'\right) \equiv \left(a < a'\right) \lor \left(a = a' \land b \le b'\right)\]
