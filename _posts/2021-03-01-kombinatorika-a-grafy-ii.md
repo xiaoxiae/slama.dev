@@ -26,9 +26,9 @@ redirect_from:
 - **maximální** (do inkluze) -- přidání další hrany pro dané párování už není možné; v přednášce nás nezajímá
 - **největší** -- \(\mathrm{max}(|M|)\)
 
-{% math definition "volný vrchol" %} (vzhledem k \(M\)) -- vrchol, kterého se nedotýká žádná hrana párování.{% endmath %}
+{% math definition: "volný vrchol" %} (vzhledem k \(M\)) je vrchol, kterého se nedotýká žádná hrana párování.{% endmath %}
 
-{% math definition "střídavá cesta" %} (vzhledem k \(M\)) -- cesta, na které se střídají hrany v párování a hrany mimo párování: \(u_0, \ldots, u_k\), kde každá sudá/lichá hrana je v \(M\), lichá/sudá není v \(M\){% endmath %}
+{% math definition: "střídavá cesta" %} (vzhledem k \(M\)) je cesta, na které se střídají hrany v párování a hrany mimo párování: \(u_0, \ldots, u_k\), kde každá sudá/lichá hrana je v \(M\), lichá/sudá není v \(M\){% endmath %}
 
 - **volná** střídavá cesta (VSC) -- krajní vrcholy jsou volné (vůči párování)
 - \(\Rightarrow\) obsahuje lichý počet hran, sudý počet vrcholů
@@ -88,6 +88,8 @@ redirect_from:
 - neexistuje-li hrana mezi sudými hladinami, pak \(M' = M\)
 
 {% math claim %}Edmondsův algoritmus spuštěný na \(G\) a \(M\) doběhne v čase \(\mathcal{O}(n \cdot (n + m))\) a najde párování \(M'\) alespoň o \(1\) hranu větší než \(M\), případně oznámí, že \(M\) je největší \(\Rightarrow\) nejlepší párování lze nalézt v čase \(\mathcal{O}(n^2 (n + m))\).{% endmath %}
+
+{% math proof %}nejvýše \(n\)-krát se vždy zrekurzíme s tím, že při každém rekurzení prohledáme celý graf (\(\mathcal{O}(n + m)\)). Tohle celé opakujeme nejvýše dokud nejsou všechny vrcholy zpárované, tedy \(n\)-krát.  {% endmath %}
 
 ### 2. přednáška
 

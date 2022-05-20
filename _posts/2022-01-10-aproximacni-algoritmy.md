@@ -262,7 +262,7 @@ Spojením dostáváme \(\mathrm{ALG} = T + p_j \le 2 \cdot \mathrm{OPT}\)
 - \(\frac{1}{m} \sum_{k = 1}^{n} p_k \le \mathrm{OPT}\)
 	- lépe, než rovnoměrně všechny úlohy rozvrhnout nemůžeme
 - \(\sum_{k = 1}^{n} p_k \ge m \cdot T + p_j\)
-	- součet všech úloh je alespoň součet před \(T + \) posledí úloha (vynéchám „ocásky“)
+	- součet všech úloh je alespoň součet před \(T\) + posledí úloha (vynechám „ocásky“)
 
 Kombinací nerovností dostávám \(T + \frac{p_j}{m} \le \mathrm{OPT}\).
 
