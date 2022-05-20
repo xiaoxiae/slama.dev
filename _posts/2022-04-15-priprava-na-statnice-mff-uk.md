@@ -45,7 +45,7 @@ Symbol políčka 🟩/🟧 ignorujte -- jedná se o mé značení znalosti proch
 		{% stlink Permutace a jejich základní vlastnosti. | /poznamky-z-prednasky/diskretni-matematika/#segway-do-kombinatorického-počítání %}
 		{% stlink Kombinační čísla, binomická věta. | /poznamky-z-prednasky/diskretni-matematika/#kombinatorika %}
 		{% stlink 🟩 Princip inkluze a exkluze. | /poznamky-z-prednasky/diskretni-matematika/#princip-inkluzeexkluze %}
-		{% stlink Hallova věta o systému různých reprezentantů, párování v bipartitním grafu. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#aplikace-tok%C5%AF-v-s%C3%ADt%C3%ADch %}
+		{% stlink 🟧 Hallova věta o systému různých reprezentantů, párování v bipartitním grafu. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#aplikace-tok%C5%AF-v-s%C3%ADt%C3%ADch %}
 	{% endsttopic %}
 	{% sttopic Teorie grafů | Diskrétka [[poznámky](/poznamky-z-prednasky/diskretni-matematika/)] 🃏, Kombagra 1 [[poznámky](/poznamky-z-prednasky/kombinatorika-a-grafy-i/)] 🃏 %}
 		{% stlink 🟩 Základní pojmy, základní příklady grafů. | /poznamky-z-prednasky/diskretni-matematika/#grafy %}
@@ -109,7 +109,7 @@ Symbol políčka 🟩/🟧 ignorujte -- jedná se o mé značení znalosti proch
 		{% stlink Generické typy a funkcionální prvky. | /assets/priprava-na-statnice-mff-uk/prog2.pdf#page=20 %}
 		{% stlink Práce s prostředky a mechanizmy pro ošetření chyb. | /lecture-notes/the-cs-programming-language/#exceptions %}
 		{% stlink Životní cyklus objektů a správa paměti. | /lecture-notes/the-cs-programming-language/#heaps-and-gc %}
-		<li> Vlákna a podpora synchronizace.
+		{% stlink Vlákna a podpora synchronizace. | /assets/priprava-na-statnice-mff-uk/ps.pdf#page=112 %}
 		<li> Implementace základních prvků objektových jazyků.
 		<li> Nativní a interpretovaný běh, řízení překladu a sestavení programu.
 	{% endsttopic %}
