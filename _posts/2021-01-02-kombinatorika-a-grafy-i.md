@@ -886,11 +886,11 @@ Nyní pro \(W\) minimální vrcholové pokrytí najdeme řez \(R\):
 
 ##### Systém reprezentantů
 
-{% math definition %} 
-- **množinový systém** na množině \(X\) je posloupnost \((M_i)_{i \in I}, M_i \subseteq X\)
+{% math definition %}
+- **množinový systém** na množině \(X\) jsou množiny \(M_i, i \in I\) t. ž. \(M_i \subseteq X\)
 - **systém různých reprezentantů** (SRR) je funkce \(f: I \mapsto X\) splňující:
-	1. \(\forall i \in I: f(i) \in M_i\) (z každé množiny bere reprezentanta)
-	2. \(f\) je prostá (stejného reprezentanta nikdy nebere dvakrát)
+	1. \(\forall i \in I: f(i) \in M_i\) (z každé množiny volí reprezentanta)
+	2. \(f\) je prostá (stejného reprezentanta nikdy nevolí dvakrát)
 {% endmath %}
 
 {:.rightFloatBox}
