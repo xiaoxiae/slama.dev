@@ -3,7 +3,7 @@ language: cz
 title: Kombinatorika a Grafy I
 category: "poznamky z prednasky"
 category_noslug: "poznámky z přednášky"
-pdf: false
+pdf: true
 redirect_from:
  - /lecture-notes/kombinatorika-a-grafy-i/
  - /poznámky-z-přednášky/kombinatorika-a-grafy-i/
@@ -785,7 +785,7 @@ pro každou \(A \subseteq V\) t. ž. \(z \in A, s \not\in A\) a pro libovolný t
 \[
 \begin{aligned}
 	w(f) &= \sum_{u \in A} \left(\sum_{(u, x) \in E} f(u, x) - \sum_{(x, u) \in E} f(x, u)\right) \qquad //\ \text{pouze definice} \\
-	&= \sum_{u \in A, v \not\in A} f(u, v) - \sum_{u \not\in A, v \in A} f(v, u) \qquad //\ \text{hrany uvnitř A přispějí jednou $+$ a jednou $-$} \\
+	&= \sum_{u \in A, v \not\in A} f(u, v) - \sum_{u \not\in A, v \in A} f(v, u) \qquad //\ \text{hrany $\in$ A přispějí jednou $+$ a jednou $-$} \\
 	&= f(A, V \setminus A) - f(V \setminus A, A) \\
 \end{aligned}
 \]
@@ -853,8 +853,10 @@ Plyne z běhu F-F algoritmu. Tok je součtem zlepšujících cest a cyklů.{% en
 
 #### Aplikace toků v sítích
 
+##### Párování v bipartitním grafu
+
 {% math theorem "Königova" %}
-v bipartitním grafu: velikost maximálního párování \(=\) velikost minimalního vrcholového pokrytí.{% endmath %}
+v bipartitním grafu je velikost maximálního párování rovna velikosti minimalního vrcholového pokrytí.{% endmath %}
 - \(M \subseteq E\) je **párování**, pokud \(\forall e, e' \in M, e \neq e': e \cap e' = \emptyset\) 
 - \(U \subseteq V\) je **vrcholové pokrytí**, pokud \(\forall e \in E \exists u \in U: u \in e\)
 
@@ -865,27 +867,30 @@ přes toky, jako na následujícím obrázku na síti kapacit \(1\):{% endmath %
 
 - \(R\) je minimální \(z-s\) řez
 - \(C\) je minimální vrcholové pokrytí
-- \(f\) je maximální tok
-	- hrany v původním grafu jsou maximální párování
+- \(f\) je maximální tok (hrany v původním grafu jsou maximální párování)
 - \(L, P =\) levá a pravá část grafu (bez zdroje a stoku)
 
-Z toku mám maximální párování \(M\) velikosti \(k\), ze kterého sestrojím minimální řez \(R\).
+Z toku získávám minimální \(z-s\) řez \(R\). Ten upravíme na minimální řez \(R'\) tak, aby neobsahoval hrany původního grafu. To jde, protože hranu původního grafu mohu vyměnit za tu ze zdroje/stoku, protože ta je jediný způsob, jak se dostat do hrany z původního vrcholu.
 
-\(R\) je minimální \(z-s\) řez. Ten upravíme na minimální řez \(R'\), aby neobsahoval hrany původního grafu. To jde, protože hranu původního grafu mohu vyměnit za tu ze zdroje/stoku, protože ta je jediný způsob, jak se dostat do hrany z původního vrcholu.
+Tento řez určuje velikost minimálního vrcholového pokrytí (pokud by tomu tak nebylo, tak nemáme minimální řez).
+
+Nyní chceme ukázat, že velikost \(R'\) je rovná velikosti nějakého vrcholového pokrytí, a že velikost min. pokrytí je rovna velikosti nějakému řezu, což k důkazu věty stačí.
+
+Najdeme vrcholové pokrytí stejně veliké jako \(R'\):
 - \(W = \left\{u \in L\ |\ (z, u) \in R'\right\} \cup \left\{v \in P\ |\ (v, s) \in R'\right\}\)
 	- je vrcholové pokrytí, v původním grafu by jinak existovala \(z-s\) cesta a nejednalo se o řez
 
-\(W\) je minimální vrcholové pokrytí \(G\):
+Nyní pro \(W\) minimální vrcholové pokrytí najdeme řez \(R\):
 - \(R = \left\{(z, u)\ |\ u \in W \cap L\right\} \cup \left\{(u, s)\ |\ u \in W \cap P\right\} \)
 	- je řez (pro spor by existovala cesta, kterou by \(W\) nepokryl)
 
-Dostáváme tedy, že min. řez je roven nějakému pokrytí, a že min. pokrytí je rovno nějakému řezu, tedy že min. pokrytí je rovno min. řezu.
+##### Systém reprezentantů
 
 {% math definition %} 
-- **množinový systém** na množině \(X\) je \((M_i)_{i \in I}, M_i \subseteq X\)
-- **systém různých reprezentantů** je funkce \(f: I \mapsto X\) splňující:
-	1. \(\forall i \in I: f(i) \in M_i\)
-	2. \(f\) je prostá (jeden prvek \(x \in X\) není reprezentantem dvou \(M\))
+- **množinový systém** na množině \(X\) je posloupnost \((M_i)_{i \in I}, M_i \subseteq X\)
+- **systém různých reprezentantů** (SRR) je funkce \(f: I \mapsto X\) splňující:
+	1. \(\forall i \in I: f(i) \in M_i\) (z každé množiny bere reprezentanta)
+	2. \(f\) je prostá (stejného reprezentanta nikdy nebere dvakrát)
 {% endmath %}
 
 {:.rightFloatBox}
@@ -894,11 +899,12 @@ Analogicky pro grafy: bipartitní graf \(G = (L \cup P, E)\) má párování pok
 </div>
 
 {% math theorem "Hallova" %}
-SRR existuje \(\iff \forall J \subseteq I: \left|\bigcup_{i \in J} M_i\right| \ge |J|\).{% endmath %}
+SRR \(\ \exists\iff \forall J \subseteq I: \left|\bigcup_{i \in J} M_i\right| \ge |J|\).{% endmath %}
 
 {% math proof "SSR \(\Rightarrow\) Hall" %}
-zvolím libovolnou \(J \subseteq I\). \(\forall j \in J \exists p_j \in M_j, p_j = f(j)\), tak že prvky \(p_j\) jsou navzájem různé (\(f\) je prostá).{% endmath %}
-\[|J| = \left|\left\{p_j\ |\ j \in J\right\}\right| \le |\bigcup_{j \in J} M_j|\]
+zvolím libovolnou \(J \subseteq I\). Pak platí, že \(\forall j \in J\ \exists p_j \in M_j, p_j = f(j)\), tak že prvky \(p_j\) jsou navzájem různé (\(f\) je prostá). V tom případě ale
+\[|J| = \left|\left\{p_j\ |\ j \in J\right\}\right| \le \left|\bigcup_{j \in J} M_j\right|\]
+{% endmath %}
 
 {% math proof "SSR \(\Leftarrow\) Hall" %}
 opět najdu v grafu (celočíselný, jednotková síť) maximální tok. Najdu minimální řez z hran pouze ze zdroje/do stoku, \(|R| = |R'|\). Uvážím následující obrázek:{% endmath %}
@@ -930,7 +936,8 @@ Definuji SRR jako \(f(i) = x \in X\), pokud po hraně \((i, x)\) něco teče.
 ### 9. přednáška
 
 {% math consequence %}
-nechť \(B = (V_1 \cup V_2, E)\) je bipartitní graf, kde \(k_1 = \mathrm{min}\ \underset{v \in V_1}{\deg}\ v, k_2 = \mathrm{max}\ \underset{v \in V_2}{\deg}\ v \) a \(k_1 \ge k_2\), pak je splněna Hallova podmínka.{% endmath %}
+nechť \(B = (V_1 \cup V_2, E)\) je bipartitní graf, kde \[k_1 = \mathrm{min}\ \underset{v \in V_1}{\deg}\ v,\ \ k_2 = \mathrm{max}\ \underset{v \in V_2}{\deg}\ v\ \ \text{a}\ \ k_1 \ge k_2\]
+pak je splněna Hallova podmínka.{% endmath %}
 
 {% math proof %}
 Ověřím Hallovu podmínku (pozor, prohozené strany). Máme-li množinu \(J\) a každá vidí alespoň \(k_1\) hran, pak vidím \(\ge |J| k_1\) hran. Abych pohltil všechny tyto hrany, tak musí napravo být alespoň \(k_2 |N[j]|\) vrcholů. Musí tedy platit:{% endmath %}
