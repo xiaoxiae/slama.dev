@@ -106,13 +106,14 @@ Symbol políčka 🟩/🟧 ignorujte -- jedná se o mé značení znalosti proch
 		<li> Implementace základních prvků objektových jazyků.
 		<li> Nativní a interpretovaný běh, řízení překladu a sestavení programu.
 	{% endsttopic %}
-	{% sttopic Arch. počítačů a OS | Principy poč. [[poznámky](/poznamky-z-prednasky/principy-pocitacu/)] 🃏, Poč. systémy [[slidy](/assets/priprava-na-statnice-mff-uk/past/ps.pdf)], Sítě [[slidy](/assets/priprava-na-statnice-mff-uk/past/site.pdf)] 🃏 %}
-		{% stlink Základní architektura počítače, reprezentace dat a programů. | /poznamky-z-prednasky/principy-pocitacu/#zjednodu%C5%A1en%C3%A9-sch%C3%A9ma-po%C4%8D%C3%ADta%C4%8De | /poznamky-z-prednasky/principy-pocitacu/#k%C3%B3dov%C3%A1n%C3%AD-informace-v-po%C4%8D%C3%ADta%C4%8Di %}
-		{% stlink Instrukční sada jako rozhraní hardware a software, vazba na prvky vyšších programovacích jazyků. | /poznamky-z-prednasky/principy-pocitacu/#instrukce-a-architektury %}
-		<li> Podpora pro běh operačního systému.
-		{% stlink Rozhraní periferních zařízení a jejich obsluha. | /poznamky-z-prednasky/principy-pocitacu/#otro%C4%8Dina %}
-		<li> Základní abstrakce, rozhraní a mechanizmy OS pro běh programů, sdílení prostředků a vstup/výstup.
-		<li> Paralelismus, vlákna a rozhraní pro jejich správu, synchronizace vláken.
+	{% sttopic Architektura počítačů a OS | Principy poč. [[poznámky](/poznamky-z-prednasky/principy-pocitacu/)] 🃏, Poč. systémy [[slidy](/assets/priprava-na-statnice-mff-uk/ps.pdf)] %}
+		{% stlink Základní architektura počítače. | /poznamky-z-prednasky/principy-pocitacu/#zjednodu%C5%A1en%C3%A9-sch%C3%A9ma-po%C4%8D%C3%ADta%C4%8De | /assets/priprava-na-statnice-mff-uk/ps.pdf#page=24 %}
+		{% stlink Reprezentace dat a programů. | /poznamky-z-prednasky/principy-pocitacu/#k%C3%B3dov%C3%A1n%C3%AD-informace-v-po%C4%8D%C3%ADta%C4%8Di | /assets/priprava-na-statnice-mff-uk/ps.pdf#page=60 %}
+		{% stlink Instrukční sada, vazba na vyšší programovací jazyky. | /assets/priprava-na-statnice-mff-uk/ps.pdf#page=29 %}
+		{% stlink Podpora pro běh operačního systému. | /assets/priprava-na-statnice-mff-uk/ps.pdf#page=97  %}
+		{% stlink Rozhraní periferních zařízení a jejich obsluha. | /poznamky-z-prednasky/principy-pocitacu/#otro%C4%8Dina | /assets/priprava-na-statnice-mff-uk/ps.pdf#page=105  %}
+		{% stlink Základní abstrakce, rozhraní a mechanizmy OS pro běh programů, sdílení prostředků a vstup/výstup. | /assets/priprava-na-statnice-mff-uk/ps.pdf#page=97  %}
+		{% stlink Paralelismus, vlákna a rozhraní pro jejich správu, synchronizace vláken. | /assets/priprava-na-statnice-mff-uk/ps.pdf#page=112 %}
 	{% endsttopic %}
 {% endsttopics %}
 
