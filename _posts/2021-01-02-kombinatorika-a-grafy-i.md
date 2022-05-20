@@ -3,7 +3,7 @@ language: cz
 title: Kombinatorika a Grafy I
 category: "poznamky z prednasky"
 category_noslug: "poznámky z přednášky"
-pdf: true
+pdf: false
 redirect_from:
  - /lecture-notes/kombinatorika-a-grafy-i/
  - /poznámky-z-přednášky/kombinatorika-a-grafy-i/
@@ -957,15 +957,15 @@ Máme tedy \(\left(n - k\right)\)-regulární graf, pro který \(\exists\) perfe
 - **vrcholová souvislost** \(k_v(G) = \begin{cases}n - 1 & G \cong K_n \\ \mathrm{min} \left\{|A|\ |\ A \subseteq V \text{ je vrcholový řez}\right\} & \text{jindy} \end{cases}\)
 - \(G\) je **hranově/vrcholově \(k\)-souvislý**, pokud \(k_{e/v}(G) \ge k\)
 	- „potřebuješ useknout alespoň \(k\) hran/vrcholů na to, aby se graf rozpadl“
-	- {% math observation %}je-li \(3\)-souvislý, pak je i \(2\)-souvislý a \(1\)-souvislý{% endmath %}
+		- {% math observation %}je-li \(3\)-souvislý, pak je i \(2\)-souvislý a \(1\)-souvislý{% endmath %}
 	- je **kriticky** \(k\)-souvislý, pokud odstranění libovolného vrcholu sníží stupeň souvislosti
-		- stromy jsou hranově \(1\)-souvislé, vrcholově ne (co listy?)
+		- stromy jsou hranově \(1\)-souvislé, vrcholově ne (listy)
 {% endmath %}
 
 {% math lemma %}
 \(\forall G, \forall e \in E\) platí \(k_e(G) - 1 \le k_e(G - e) \le k_e(G)\){% endmath %}
-- zas tak triviální to není, u vrcholové může (odstraněním vrcholu) vzrůst (listy z kružnice)
 - lemma říká, že se hranová souvislost „chová slušně“
+- zas tak triviální to není, u vrcholové může (odstraněním vrcholu) vzrůst (list na kružnici)
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -1014,25 +1014,17 @@ V \(H\) existuje vrcholový řez \(A \subseteq V(H), k_v(H) = |A|\). Při odebr�
 
 Kde poslední rovnost platí, protože \(F' = F \setminus {e}\) je (z definice) řezem \(G - e\).
 
-{% math theorem "Ford-Fulkerson" %}
-\(\forall G\), pokud \(k_e(G) \ge t\), pak \(\forall u, v \) mezi \(u, v\) existuje alespoň \(t\) hranově disjunktních cest{% endmath %}
+{% math theorem "Mengerova hranová" %}
+\(k_e(G) \ge t \iff\) mezi \(\ \forall u, v\ \exists \ge t\) hranově disjunktních cest.{% endmath %}
 
 {% math proof "\(\Leftarrow\)" %}
 sporem nechť existuje hranový řez \(F\) a \(|F| < t\). \(G \setminus F\) je rozdělený na více komponent. Vezmi \(u \in C_1, v \in C_2\). Mezi \(u, v\) vedlo \(t\) hranově disjunktních cest. \(F\) nemohl přerušit všechny z nich.{% endmath %}
 
-{:.rightFloatBox}
-<div markdown="1">
-- oboustraně zorientuji hrany
-- nastavím kapacity na \(1\)
-- vynuluji \(a \overset{1}{\underset{1}{\longleftrightarrow}} b\)
-	- každou hranu využíváme \(1\)!
-</div>
-
 {% math proof "\(\Rightarrow\)" %}
 mějme \(k_e(G) \ge t\) a pro \(u, v\) hledám disjunktní cesty. Sestrojím jednotkovou síť, najdu tok z \(u\) do \(v\). Pak vidím, že mám tok alespoň \(t\) (maximální tok je minimální řez) a začnu odčítat cesty.{% endmath %}
 
-{% math theorem "Mengerova" %}
-\(k_v(G) \ge T \iff \forall u, v \in V \exists t\) vrcholově disjunktních cest{% endmath %}
+{% math theorem "Mengerova vrcholová" %}
+\(k_v(G) \ge t \iff\) mezi \(\ \forall u, v\ \exists \ge t\) vrcholově disjunktních cest.{% endmath %}
 
 {% math proof "\(\Leftarrow\)" %}
 stejný jako FF, jen nahraď „hrany“ za „vrcholy“.{% endmath %}
