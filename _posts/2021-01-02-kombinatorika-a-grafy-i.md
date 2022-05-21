@@ -1526,32 +1526,42 @@ je zobecněný graf, kde:{% endmath %}
 - **uniformní** hypergraf -- hrany jsou \(p\)-prvkové množiny
 - \(p\) je arita hran (velikost množin), \(t, k\) jsou stejné
 
+{:.rightFloatBox}
+<div markdown="1">
+Stejné jako nekonečná věta, ale máme hypergraf.
+</div>
+
 {% math theorem "nekonečná Ramseyova věta pro p-tice" %}
 \(\forall p, t \in \mathbb{N}\) a \(\forall c: \binom{\mathbb{N}}{p} \mapsto [t] \exists A \subseteq \mathbb{N}\) nekonečná t. ž. \(c\) je na \(\binom{A}{p}\) konstantní.{% endmath %}
 
-{% math proof %}
-indukcí podle \(p\), pro \(p=1\) je to nekonečný holubník (pro \(p = 2\) je to Ramsey){% endmath %}
+{% math proof %} indukcí podle \(p\)
+- pro \(p=1\) je to nekonečný holubník, pro \(p = 2\) je to Ramseyova nekonečná{% endmath %}
 - IP: věta platí pro \(p - 1\)
 - opět konstruuji nekonečnou posloupnost \(A_i\)
 - v kroku \(i\) vyberu \(v_i \in A_i\), nechť \(A_i' = A_i \setminus \left\{v_i\right\}\)
 
 {:.rightFloatBox}
 <div markdown="1">
-Pomocné obarvení \((p-1)\)-tic stejnými barvami, jako byla \(p\)-tice s vrcholem \(v_i\).
+Pomocné obarvení \((p-1)\)-tic -- každá má barvu, kterou měla v \(p\)-tici s vrcholem \(v_i\) (abychom využili IP).
 </div>
 
 - definuji obarvení \((p - 1)\)-tic \(A_i'\): \(c_i'(Q) = c(Q \cup \left\{v_i\right\})\), \(Q \subseteq A_i'\), \(|Q| = p - 1\)
 - z IP pro \(A_i'\) máme, že \(\exists B_i \subseteq A_i'\), na jejichž \((p-1)\)-ticích je obarvení \(c_i'\) konstantní \( = b_i \in [t]\) a \(A_{i + 1} = B_i\) si vezmu do dalšího kroku
 
 {% math observation %}
-barva \(p\)-tice \(\left\{v_{i_1}, \ldots, v_{i_p}\right\}\) (vzhledem k vzniklé posloupnosti \(v_1, v_2, \ldots\)), kde \(i_1 < i_2 < i_3 < i_p\) závisí pouze na barvě prvku \(v_{i_1}\){% endmath %}
+barva \(p\)-tice \(\left\{v_{i_1}, \ldots, v_{i_p}\right\}\) (vzhledem k vzniklé posloupnosti \(v_1, v_2, \ldots\)), kde \(i_1 < i_2 < i_3 < i_p\) závisí pouze na barvě prvku \(v_{i_1}\) (stejný argument jako u věty výše){% endmath %}
 - vyberu z barev nějakou opakující-se [nekonečněkrát](https://www.youtube.com/watch?v=tLN3cZbFBxg) a vrcholy s příslušnými indexy tvoří \(A\)
+
+{:.rightFloatBox}
+<div markdown="1">
+Stejné jako nekonečná věta, ale máme fixní velikost kliky a konečně mnoho vrcholů.
+</div>
 
 {% math theorem "Ramseyova věta pro p-tice" %}
 \(\forall p, t, k \in \mathbb{N} \exists N \in \mathbb{N}\) t. ž. \(\forall n \ge N, \forall c: \binom{[n]}{p} \mapsto [t]\ \exists A \subseteq [n], |A| = k\) t. ž. \(c\) je na \(\binom{A}{p}\) konstantní.{% endmath %}
 
 {% math proof %}
-mějme \(p, k, t\) z předpokladu věty. Uvážíme \(c_i: \binom{[n]}{p} \mapsto [t]\). To je _dobré_, pokud \(\exists \) \(k\)-prvková jednobarevná podmnožina, jinak je _špatné_. Věta tedy tvrdí, že \(n \ge N\) jsou všechna \(c\) _dobrá_.{% endmath %}
+mějme \(p, k, t\) z předpokladu. Uvažme \(c_i: \binom{[n]}{p} \mapsto [t]\). To je _dobré_, pokud \(\exists \) \(k\)-prvková jednobarevná podmnožina, jinak je _špatné_. Věta tedy tvrdí, že \(n \ge N\) jsou všechna \(c\) _dobrá_.{% endmath %}
 
 Sporem: předpokládejme, že pro nekonečně mnoho \(n\) \(\exists\) _špatné_ obarvení.
 
@@ -1564,10 +1574,7 @@ Strukturu _špatných_ obarvení popíšeme stromem, kde hladiny jsou obarvení 
 - všechny hladiny jsou konečné (nad \(S_n\) může být only so much obarvení)
 
 {% math lemma "Königovo" %}
-nekonečný zakořeněný strom s konečnými stupni obsahuje nekonečnou cestu z kořene.{% endmath %}
-
-{% math proof %}
-pokud máme vrcholy \(v_1, v_2, \ldots, v_{i - 1}\) na cestě, tak \(v_i\) vezmu jako kořen podstromu, který je nekonečný a opakuju.{% endmath %}
+nekonečný strom s konečnými stupni má nekonečnou cestu z kořene.{% endmath %}
 
 Díky tomuto lemmatu víme, že \(\exists\) nekonečná cesta z \(S_0\). Z nekonečné Ramseyovy věty ale víme, že kdyby tomu tak bylo, tak neplatí, protože by existovalo nekonečné obarvení přirozených čísel (podle nekonečné cesty v tomto stromu).
 
@@ -1575,7 +1582,6 @@ Díky tomuto lemmatu víme, že \(\exists\) nekonečná cesta z \(S_0\). Z nekon
 
 ### Zdroje/materiály
 - [https://research.koutecky.name/db/teaching:kg12021_prednaska](https://research.koutecky.name/db/teaching:kg12021_prednaska) -- stránka cvičení
-	- odkaz na všechny obrázky, zdroje, nahrávky cvičení
 - [Poznámky Václava Končického](https://kam.mff.cuni.cz/~koncicky/notes/kag2/pdf) z roku 2019.
 - [https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols](https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols) -- matematické symboly
 
