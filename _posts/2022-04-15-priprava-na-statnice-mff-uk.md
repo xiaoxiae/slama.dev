@@ -21,11 +21,12 @@ Symbol políčka 🟩/🟧 ignorujte -- jedná se o mé značení znalosti proch
 
 {% sttopics %}
 	{% sttopic Základy diferenciálního a integrálního počtu | Matalýza 1 [[skripta](/assets/priprava-na-statnice-mff-uk/ma1.pdf)] 🃏 %}
-		{% stlink Posloupnosti reálných čísel a jejich vlastnosti. | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.2 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.3 %}
-		{% stlink Reálné funkce jedné reálné proměnné. | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.4 %}
-		{% stlink Spojitost, limita funkce v bodě. | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.5 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.6 %}
-		{% stlink Derivace: definice a základní pravidla, průběhy, Taylorův polynom se zbytkem.  | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.7 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.8 %}
-		{% stlink Primitivní funkce: definice, jednoznačnost, existence, metody výpočtu. | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.9 %}
+		{% stlink 🟩 Posloupnosti reálných čísel a jejich vlastnosti (limity, podposloupnosti, monotónní podposloupnost, dva policajti, Bolzan-Weierstrass, hromadný bod). | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.2 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.3 %}
+		{% stlink 🟩 Reálné funkce jedné reálné proměnné. | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.4 %}
+		{% stlink 🟧 Spojitost, limita funkce v bodě (standardní, Heineho). | /assets/priprava-na-statnice-mff-uk/ma1.pdf#page=17 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.6 %}
+		{% stlink Derivace: definice a základní pravidla, průběhy.  | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.7 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.8 %}
+		{% stlink Taylorův polynom se zbytkem. | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.9 %}
+		{% stlink Primitivní funkce: definice, jednoznačnost, existence, metody výpočtu. | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.10 %}
 	{% endsttopic %}
 	{% sttopic Algebra a lineární algebra | Lingebra 1 a 2 [[skripta](/assets/priprava-na-statnice-mff-uk/la.pdf)] 🃏 %}
 		{% stlink Grupy a podgrupy, tělesa. | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.4 %}
@@ -40,12 +41,12 @@ Symbol políčka 🟩/🟧 ignorujte -- jedná se o mé značení znalosti proch
 	{% sttopic Diskrétní matematika | Diskrétka [[poznámky](/poznamky-z-prednasky/diskretni-matematika/)] 🃏, Kombagra 1 [[poznámky](/poznamky-z-prednasky/kombinatorika-a-grafy-i/)] 🃏 %}
 		{% stlink 🟩 Relace, vlastnosti binárních relací. | /poznamky-z-prednasky/diskretni-matematika/#relace %}
 		{% stlink 🟩 Ekvivalence a rozkladové třídy. | /poznamky-z-prednasky/diskretni-matematika/#ekvivalence %}
-		{% stlink 🟩 Částečná uspořádání. | /poznamky-z-prednasky/diskretni-matematika/#uspořádání %}
+		{% stlink 🟩 Částečná uspořádání (definice, dlouhý a široký). | /poznamky-z-prednasky/diskretni-matematika/#uspořádání %}
 		{% stlink 🟩 Funkce, typy funkcí. | /poznamky-z-prednasky/diskretni-matematika/#funkce %}
-		{% stlink Permutace a jejich základní vlastnosti. | /poznamky-z-prednasky/diskretni-matematika/#segway-do-kombinatorického-počítání %}
-		{% stlink Kombinační čísla, binomická věta. | /poznamky-z-prednasky/diskretni-matematika/#kombinatorika %}
+		{% stlink 🟩 Permutace a jejich základní vlastnosti. | /poznamky-z-prednasky/diskretni-matematika/#segway-do-kombinatorického-počítání %}
+		{% stlink 🟩 Kombinační čísla, binomická věta. | /poznamky-z-prednasky/diskretni-matematika/#kombinatorika %}
 		{% stlink 🟩 Princip inkluze a exkluze. | /poznamky-z-prednasky/diskretni-matematika/#princip-inkluzeexkluze %}
-		{% stlink 🟧 Hallova věta o systému různých reprezentantů, párování v bipartitním grafu. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#aplikace-tok%C5%AF-v-s%C3%ADt%C3%ADch %}
+		{% stlink 🟧 🟩 Hallova věta o systému různých reprezentantů, párování v bipartitním grafu. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#aplikace-tok%C5%AF-v-s%C3%ADt%C3%ADch %}
 	{% endsttopic %}
 	{% sttopic Teorie grafů | Diskrétka [[poznámky](/poznamky-z-prednasky/diskretni-matematika/)] 🃏, Kombagra 1 [[poznámky](/poznamky-z-prednasky/kombinatorika-a-grafy-i/)] 🃏 %}
 		{% stlink 🟩 Základní pojmy, základní příklady grafů. | /poznamky-z-prednasky/diskretni-matematika/#grafy %}
@@ -53,7 +54,7 @@ Symbol políčka 🟩/🟧 ignorujte -- jedná se o mé značení znalosti proch
 		{% stlink 🟩 Stromy, jejich vlastnosti, ekvivalentní charakteristiky stromů. | /poznamky-z-prednasky/diskretni-matematika/#stromy %}
 		{% stlink 🟩 Rovinné grafy, Eulerova formule a maximální počet hran rovinného grafu. | /poznamky-z-prednasky/diskretni-matematika/#rovinné-nakreslení-grafu %}
 		{% stlink 🟩 Barevnost grafů, klikovost grafů. | /poznamky-z-prednasky/diskretni-matematika/#barvení | /poznamky-z-prednasky/diskretni-matematika/#degenerovanost-klikovost-dualita %}
-		{% stlink 🟧 Hranová a vrcholová souvislost grafů, Mengerova věta. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#míra-souvislosti-neorientovaných-grafu  %}
+		{% stlink 🟧 🟧 Hranová a vrcholová souvislost grafů, Mengerovy věty. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#míra-souvislosti-neorientovaných-grafu  %}
 		{% stlink 🟩 Orientované grafy, silná a slabá souvislost. | /poznamky-z-prednasky/diskretni-matematika/#rozšiřování-grafů  %}
 		{% stlink 🟧 Toky v sítích (min-flow/max-cut). | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#7-přednáška | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s14  %}
 	{% endsttopic %}
@@ -93,13 +94,13 @@ Symbol políčka 🟩/🟧 ignorujte -- jedná se o mé značení znalosti proch
 		{% stlink 🟩 Časová a prostorová složitost algoritmů, asymptotická notace. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s2  %}
 		{% stlink 🟩 Třídy složitosti P a NP, NP-těžkost a NP-úplnost. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s19.3 | /assets/priprava-na-statnice-mff-uk/pvnp.png %}
 		{% stlink 🟩 Algoritmy "rozděl a panuj", výpočet časové složitosti těchto algoritmů, příklady. |  /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s10 %}
-		{% stlink 🟩 Binarní vyhledávací stromy, AVL stromy. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s8 %}
+		{% stlink 🟩 🟩 Binarní vyhledávací stromy, AVL stromy. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s8 %}
 		{% stlink 🟩 Binární haldy. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s4.2 %}
-		{% stlink 🟩 Hešování s přihrádkami a s otevřenou adresací. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s11.3 %}
-		{% stlink 🟩 Třídící algoritmy. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s3  %}
+		{% stlink 🟩 🟧 Hešování s přihrádkami a s otevřenou adresací. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s11.3 %}
+		{% stlink 🟩 Třídící algoritmy (+ důkaz minimání složitosti). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s3  %}
 		{% stlink 🟩 DFS, BFS a jejich aplikace. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s5 | https://stackoverflow.com/questions/20429310/why-is-depth-first-search-claimed-to-be-space-efficient %}
-		{% stlink 🟩 Nejkratší cesty. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s6 %}
-		{% stlink 🟩 Minimální kostry. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s7 %}
+		{% stlink 🟩 🟩 🟩 Nejkratší cesty (Dijkstra, BF, FW). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s6 %}
+		{% stlink 🟩 🟩 🟩 Minimální kostry (Jarník, Borůvka, Kruskal). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s7 %}
 		{% stlink 🟩 🟧 Toky v sítích (FF, Diniz). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s14 | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#7-přednáška  %}
 		{% stlink 🟩 Euklidův algoritmus. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s1.3  %}
 	{% endsttopic %}
@@ -131,7 +132,7 @@ Z následujících 7 jsou 1-3 povinné a z 4-7 je třeba vybrat dvě témata (ta
 	{% sttopic Kombinatorika | Kombagra 1 [[poznámky](/poznamky-z-prednasky/kombinatorika-a-grafy-i/)] 🃏 a 2 [[poznámky](/poznamky-z-prednasky/kombinatorika-a-grafy-ii/)] 🃏 %}
 		{% stlink Vytvořující funkce. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#generuj%C3%ADc%C3%AD-funkce %}
 		{% stlink 🟩 🟧 Odhady faktoriálů a kombinačních čísel. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#odhady-faktori%C3%A1lu | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#odhady-binomických-koeficientů %}
-		{% stlink 🟩 Ramseyovy věty. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#ramseyovy-barevn%C3%A9nekone%C4%8Dn%C3%A9-v%C4%9Bty %}
+		{% stlink 🟩 🟩 Ramseyovy věty (konečné, nekonečné). | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#ramseyovy-barevn%C3%A9nekone%C4%8Dn%C3%A9-v%C4%9Bty %}
 		{% stlink 🟧 Samoopravné kódy. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#samoopravn%C3%A9-k%C3%B3dy %}
 	{% endsttopic %}
 	{% sttopic Základy sítí | Sítě [[slidy](/assets/priprava-na-statnice-mff-uk/site.pdf)] 🃏 %}
@@ -168,10 +169,10 @@ Z následujících 7 jsou 1-3 povinné a z 4-7 je třeba vybrat dvě témata (ta
 		{% stlink 🟩 Dynamické programování. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s12 %}
 		{% stlink 🟩 Komponenty silné souvislosti orientovaných grafů. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s5.9 %}
 		{% stlink 🟩 🟧 🟧 Toky v sítích (FF, Diniz, Goldberg). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s14 | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#7-přednáška %}
-		{% stlink 🟩 🟧 🟩 Vyhledávání v textu (KMP, RK, AC). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s13 %}
+		{% stlink 🟩 🟩 🟩 Vyhledávání v textu (KMP, AC, RK). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s13 %}
 		{% stlink 🟧 Diskrétní Fourierova transformace a její aplikace. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s17 | /assets/priprava-na-statnice-mff-uk/fft.py %}
 		{% stlink 🟩 🟧 Aproximační algoritmy a schémata (cestující, batoh). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s19.6 | /poznamky-z-prednasky/aproximacni-algoritmy/#metrický-tsp %}
-		{% stlink 🟩 Paralelní algoritmy v hradlových a komparátorových sítích. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s15 %}
+		{% stlink 🟩 🟩 🟩 Paralelní algoritmy v hradlových a komparátorových sítích (\(+\), \(\times\), bitonic). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s15 %}
 	{% endsttopic %}{% endsttopics %} <hr><div class="stignored"> {% sttopics %}
 	{% sttopic ❌ Geometrie ❌ | Základy KVG %}
 		<li> Základní věty o konvexních množinách (Hellyho, Radonova, o oddělování).
