@@ -172,8 +172,7 @@ Z následujících 7 jsou 1-3 povinné a z 4-7 je třeba vybrat dvě témata (ta
 		{% stlink 🟧 Diskrétní Fourierova transformace a její aplikace. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s17 | /assets/priprava-na-statnice-mff-uk/fft.py %}
 		{% stlink 🟧 Aproximační algoritmy a schémata. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s19.6 %}
 		{% stlink 🟩 Paralelní algoritmy v hradlových a komparátorových sítích. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s15 %}
-	{% endsttopic %}
-	<hr>
+	{% endsttopic %}{% endsttopics %} <hr><div class="stignored"> {% sttopics %}
 	{% sttopic ❌ Geometrie ❌ | Základy KVG %}
 		<li> Základní věty o konvexních množinách (Hellyho, Radonova, o oddělování).
 		<li> Minkowského věta o mřížkách.
@@ -192,3 +191,4 @@ Z následujících 7 jsou 1-3 povinné a z 4-7 je třeba vybrat dvě témata (ta
 		<li> Axiom výběru (Zermelova věta, Zornovo lemma).
 	{% endsttopic %}
 {% endsttopics %}
+</div>
