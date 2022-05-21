@@ -3,7 +3,7 @@ language: cz
 title: Kombinatorika a Grafy I
 category: "poznamky z prednasky"
 category_noslug: "poznámky z přednášky"
-pdf: false
+pdf: true
 redirect_from:
  - /lecture-notes/kombinatorika-a-grafy-i/
  - /poznámky-z-přednášky/kombinatorika-a-grafy-i/
