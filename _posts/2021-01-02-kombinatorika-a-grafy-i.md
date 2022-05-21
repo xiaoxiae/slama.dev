@@ -1066,15 +1066,16 @@ stačí vidět, že nikdy nevznikne artikulace, protože uši lepím mezi \(2\) 
 #### Samoopravné kódy
 
 {% math definition "Hammingův kód" %}
-vycházíme z fannovy roviny a o přímkách uvažujeme jako o prvcích \(\mathbb{Z}_2^7\){% endmath %}
+vycházíme z Fanovy roviny a o přímkách uvažujeme jako o prvcích \(\mathbb{Z}_2^7\){% endmath %}
 
 \[H = \underbrace{\left\{\text{char. vektory přímek}\right\}}_{P_1 = \left\{1, 2, 4\right\} = (1\ 1\ 0\ 1\ 0\ 0\ 0)} \cup \underbrace{\left\{\text{char. vektory doplňků přímek}\right\}}_{P_1 + (1\ \ldots\ 1) = (0\ 0\ 1\ 0\ 1\ 1\ 1)} \cup \left\{(0\ \ldots\ 0), (1\ \ldots\ 1)\right\}\]
+
 - \(|H| = 7 + 7 + 2 = 16\)
 - \(c \in H\) je **kódové slovo**
 - \(H\) je **kód**
 - {% math observation %}\(\forall c, c' \in H\) se liší v alespoň třech souřadnicích{% endmath %}
 	- vychází z KPR, později dokážeme obecně
-- {% math observation %}\(\forall v \in \mathbb{Z}_2^7 \exists! c \in H\) t. ž. \(d(v, c) \le 1\){% endmath %}
+- {% math observation %}\(\forall v \in \mathbb{Z}_2^7\ \exists! c \in H\) t. ž. \(d(v, c) \le 1\){% endmath %}
 	- dostáváme z toho dekódovací pravidlo -- dekóduj na nejbližší slovo!
 
 **Protokol:**
@@ -1084,13 +1085,15 @@ vycházíme z fannovy roviny a o přímkách uvažujeme jako o prvcích \(\mathb
 	- nějak rozumně očísluj kódová slova!
 4. profit?
 
-**Výsledek:**
-- zpráva je o \(7/4\) delší
-- \(\Pr\left[\text{jeden blok se správně rozkóduje}\right] = \overbrace{(1 - p)^7}^{\text{vše ok}} + \overbrace{7p(1 - p)^6}^{\text{jeden špatně}} = (1-p)^6(1 + 6p)\)
-- \(\Pr\left[\text{celá zpráva se správně dekóduje}\right] = \left((1-p)^6(1 + 6p)\right)^{n/4}\)
-	- pro \(n = 100, p = 0.01\) vyjde \(95\%\), což je nice!
+**Výsledek:** zpráva je o \(7/4\) delší, ale pro \(p\) šanci otočení bitu získáváme následující:
 
----
+\[
+\begin{aligned}
+	\Pr\left[\text{jeden blok se správně rozkóduje}\right] &= \overbrace{(1 - p)^7}^{\text{vše ok}} + \overbrace{7p(1 - p)^6}^{\text{jeden špatně}} = (1-p)^6(1 + 6p) \\
+	\Pr\left[\text{celá zpráva se správně dekóduje}\right] &= \left((1-p)^6(1 + 6p)\right)^{n/4}
+\end{aligned}
+\]
+- pro \(n = 100, p = 0.01\) vyjde \(95\%\), což je nice!
 
 {% math definition %} 
 - \(\Sigma \ldots\) abeceda
@@ -1098,7 +1101,7 @@ vycházíme z fannovy roviny a o přímkách uvažujeme jako o prvcích \(\mathb
 - \(C \subseteq \Sigma^n \ldots\) kód
 	- \(c \in C \ldots\) kódové slovo (naše special slova)
 	- \(|C| \ldots\) velikost kódu (počet kódových slov)
-	- \(n \ldots\) délka kódu (kolikaznakové slova máme)
+	- \(n \ldots\) délka kódu (kolikaznaková slova máme)
 	- \(k = \log |C| \ldots\) dimenze kódu (bude se hodit později)
 - pro \(x, y \in \Sigma^n: d_H (x, y) = d(x, y)\ldots\)  počet souřadnic, ve kterých se liší
 	- \(d = \Delta(C) = \underset{x, y \in C}{\mathrm{min}}\ d(x, y) \ldots\) (min.) vzdálenost \(C\)
@@ -1109,15 +1112,15 @@ vycházíme z fannovy roviny a o přímkách uvažujeme jako o prvcích \(\mathb
 - kód s vlastnostmi \(n, k, d\) se označuje \((n,k,d)-\) kód
 {% endmath %}
 
-{% math example "kódů" %} 
+{% math example "kódy" %} 
 1. totální kód \(C = \Sigma^n\) (nic se nekóduje)
 	- délka \( = n\)
 	- velikost \(= 2^n \implies k = \log |C| = n\)
 	- \(\Delta(C) = 1\)
 	- \(\implies (n, n, 1)-\)kód
-2. opakovací kód délky \(n\) (pozor, \(n\) je délka slova)
+2. opakovací kód délky \(n\) (\(n\)-krát opakujeme \(0\) nebo \(1\))
 	- délka \(= n\)
-	- velikost \(= 2 \implies k = 1\)
+	- velikost \(= 2\) (samé nuly/jedničky) \(\implies k = 1\)
 	- \(\Delta(C) = n\)
 	- \(\implies (n, 1, n)-\)kód
 3. paritní kód \(C \subseteq \Sigma^n\) t. ž. \(x \in C: \sum_{x_i} = 0\) (počet jedniček je sudý)
@@ -1132,14 +1135,7 @@ vycházíme z fannovy roviny a o přímkách uvažujeme jako o prvcích \(\mathb
 ### 11. přednáška
 
 #### Jak nejefektivněji můžeme kódovat?
-
-{:.rightFloatBox}
-<div markdown="1">
-Maximální dimenze kódu (logaritmus počtu kódových slov), když určím délku a vzdálenost.
-</div>
-
-- \(A(n, d) = \underset{C}{\mathrm{max}} \log |C|\)
-	- \(C\) jsou binární kódy délky \(n\) s min. vzdáleností \(\ge d\)
+- \(A(n, d) = \underset{C}{\mathrm{max}} \log |C|\) pro \(C\) binární kódy délky \(n\) s min. vzdáleností \(d\)
 	- \(A(n, 1) = n\) (triviální kód)
 	- \(A(n, 2) \ge n - 1\) (paritní kód má \(|C| = 2^{n -1}, d = 2\))
 
@@ -1147,22 +1143,17 @@ Maximální dimenze kódu (logaritmus počtu kódových slov), když určím dé
 \(\forall d \le n, d \ge 2: A(n, d) \le A(n - 1, d - 1)\){% endmath %}
 - po odstranění bitu vzdálenost slov klesne nejvýše o \(1\) (pokud se slova v bytu liší); velikost nového kódu \(|C'| = |C|\) (díky předpokladu funguje, žádná slova se nesloučí)
 
-{:.rightFloatBox}
-<div markdown="1">
-Není to Simpletonův, ale Singletonův (viz. [Wikipedia](https://en.wikipedia.org/wiki/Singleton_bound)). Byť je ten odhad docela triviální 🙂.
-</div>
-
-{% math theorem "Singletonův odhad" %}
+{% math consequence "Singletonův odhad" %}
 \(\forall d \le n\) platí \(A(n, d) \le n - d + 1\){% endmath %}
-- \(A(n, d) \le A(n - 1, d - 1) \le \ldots \le A(n - d + 1, 1) = n - d + 1\)
-- rovněž dostávám \(A(n, 2) \le A(n - 1, 1) = n - 1\) a vím, že \(A(n, 2) \ge n - 1\), tedy rovnost
+- mohu použít k důkazu druhé nerovnosti u \(A(n, 2)\)
 
 {% math claim %}
 pro každé sudé \(d \le n\) je \(A(n, d) = A(n - 1, d - 1)\){% endmath %}
 
 {% math proof %}
-nechť \(C\) je \((n - 1, k, d - 1)\)-kód. Přidáním paritního bitu ke každému slovu vytvořím \((n, k, d)-\)kód, protože slova \(c\) v liché vzdálenosti (speciálně \(d - 1\)) v \(C'\) mají vzdálenost o 1 větší (liší se jejich paritní symboly).{% endmath %}
-- \(\implies\) nejzajímavější jsou kódy s lichým \(d\) (na sudé lze triviálně rozšířit)
+nechť \(C\) je \((n - 1, k, d - 1)\)-kód. Přidáním paritního bitu ke každému slovu vytvořím \((n, k, d)-\)kód, jelikož slova vzdálená lichým číslem (jmenovitě o \(d-1\)) mají různou paritu a proto je od sebe o \(1\) vzdálím.{% endmath %}
+
+{% math consequence %}nejzajímavější jsou kódy s lichým \(d\) (na sudé lze triviálně rozšířit){% endmath %}
 
 #### Lineární kódy
 
@@ -1172,10 +1163,10 @@ kód \(C\) nad \(\mathbb{Z}_2^n\) je lineární kód, pokud tvoří vektorový p
 - \(\forall \alpha \in \mathbb{Z}_2: \alpha c \in C\)
 
 {% math observation %}
-pokud \(C\) je dimenze \(k\), pak má \(2^k\) prvků, ale k jeho popisu stačí nějaká báze \(C \equiv k\) slov t. ž. ostatní dostanu lineárními kombinacemi.{% endmath %}
+pokud \(C\) je dimenze \(k\), pak má \(2^k\) prvků, ale k jeho popisu stačí nějaká báze \(C, |C| = k\) (ostatní dostanu lineárními kombinacemi).{% endmath %}
 
-{% math example %}
-Hammingův kód \(\mathcal{H}\) je lineární a generuje ho **generujicí matice**{% endmath %}
+{% math observation %}
+Hammingův kód \(\mathcal{H}\) je lineární a generuje ho jeho **generujicí matice**{% endmath %}
 \[
 \begin{matrix}
 	v_1 \\
@@ -1190,7 +1181,6 @@ Hammingův kód \(\mathcal{H}\) je lineární a generuje ho **generujicí matice
 	0 & 0 & 0 & 1 & 1 & 0 & 1
 \end{pmatrix}\]
 
-- generující matice kódu \(H\)
 - \(\left\{v_1, \ldots, v_4\right\}\) je báze \(H\)
 - \(\forall c \in H\ \exists \alpha_1, \ldots, \alpha_4 \in \mathbb{Z}_2\) t. ž. \(c = \sum_{i = 1}^{4} \alpha_i v_i \)
 
@@ -1202,11 +1192,10 @@ Hammingův kód \(\mathcal{H}\) je lineární a generuje ho **generujicí matice
 	- \(d(x, y) = d(0, y - x)\)
 	- \(\Delta(C) = \underset{x, y \in C}{\mathrm{min}}\ d(0, y - x) \implies \underset{x \in C}{\mathrm{min}}\ d(0, x)\), což je počet nenulových souřadnic
 
----
-
-- \(\langle x, y \rangle = \sum_{i = 1}^{n} x_i \cdot y_i\)
-	- něco jako skalární součin
+- \(\langle x, y \rangle = \sum_{i = 1}^{n} x_i \cdot y_i\) (skalární součin, ale jsme v \(\mathbb{Z}_2\), takže modulíme)
 	- nemusí platit, že \(x \neq 0 \implies \langle x, x \rangle \neq 0\) (např. pro \((1\ 1\ 0\ 0)\))
+
+##### Duální kódy
 
 {% math definition "duální kód" %}
 \(C\) je ortogonální doplněk \(C^\perp = \left\{x\ |\ \langle x, y \rangle = 0, \forall y \in C\right\}\){% endmath %}
@@ -1255,8 +1244,8 @@ slova \(z\) je \(Pz\), kde \(P\) je paritní matice kódu \(C\).{% endmath %}
 - \(P = \begin{pmatrix} 1 & 1 & 0 & 0 & 0 \\ 0 & 1 & 1 & 1 & 0 \\ 0 & 0 & 0 & 1 & 1 \end{pmatrix}\)
 {% endmath %}
 
-1. \(\tilde{x} = v_1 = (1\ 1\ 1\ 0\ 0)\), \(P\tilde{x} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}\) (nulový syndrom, což je správně)
-2. \(\tilde{x} = (0\ 0\ 1\ 0\ 1)\), \(P\tilde{x} = \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}\) (nějaký syndrom)
+1. \(\tilde{x} = v_1 = (1\ 1\ 1\ 0\ 0)\), \(P\tilde{x} = (0 \ 0 \ 0)^T\) (nulový syndrom, což je správně)
+2. \(\tilde{x} = (0\ 0\ 1\ 0\ 1)\), \(P\tilde{x} = (0 \ 1 \ 1)^T\) (nějaký syndrom)
 	- podíváme se do tabulky syndromů (vybruteforcená)
 	- dostaneme ze syndromu reprezentanta \(m(s) = (0\ 0\ 0\ 1\ 0)\)
 	- spočítáme \(x = \tilde{x} - e = (0\ 0\ 1\ 1\ 1)\)
@@ -1386,28 +1375,30 @@ vyberu libovolný vrchol \(u\). Podívám se na vrcholy \(A\), se kterými nesou
 2. symetricky
 
 {% math theorem "obecnější Ramseyova" %}
-nechť \(G\) má \(\ge \binom{k + l - 2}{k - 1}\) vrcholů \(\implies \omega(G) \ge k\)  nebo \(\alpha(G) \ge l\).{% endmath %}
+nechť \(G\) má \(\ge \binom{k + l - 2}{k - 1}\) vrcholů. Pak \(\omega(G) \ge k\)  nebo \(\alpha(G) \ge l\).{% endmath %}
 - {% math observation %}ze symetrie kombinačních  čísel máme symetrii v \(k, l\), protože \(\binom{k + l - 2}{k - 1} = \binom{k + l - 2}{l - 1}\){% endmath %}
 
 {% math proof %}
 indukcí podle \(k + l\){% endmath %}
 - pro \(k = 1, l = 1\) a \(k = 2, l = 2\) jednoduché (vždy existuje hrana/nehrana)
-- pro \(k, l \ge 2\) a tvrzení platí pro \(k, l - 1\) a \(k-1, l\)
-	- \(n_1 = \binom{k + l - 3}{k - 1}\) a \(n_2 = \binom{k + l - 3}{l - 1 = k - 2}\) (dřívější odhady)
-		- {% math observation %}platí, že \(n = n_1 + n_2\){% endmath %}
+- nechť \(k, l \ge 2\) a tvrzení platí pro \(k, l - 1\) a \(k-1, l\)
+	- \(n_1 = \binom{k + l - 3}{k - 1}\) a \(n_2 = \binom{k + l - 3}{l - 1}\)
 
-Zvolím \(u \in G\) libovolně a opět rozdělím graf na nesousedy \(A\) a sousedy \(B\) vrcholu \(u\). Z principu holubníku ([Dirichletův princip](https://mathworld.wolfram.com/DirichletsBoxPrinciple.html)) je \(|A| \ge n_1\) nebo  \(|B| \ge n_2\) (jsou-li ostře menší, tak dají \(n - 2\)).
-1. \(|A| \ge n_1\), použiji indukci na \(A\):
+Zvolím \(u \in G\) libovolně a opět rozdělím graf na nesousedy \(A\) a sousedy \(B\) vrcholu \(u\). Z principu holubníku je \(|A| \ge n_1\) nebo  \(|B| \ge n_2\) (jsou-li obě množiny ostře menší, tak jejich součet dá nejvýše \(n - 2\), ale sousedů + nesousedů \(u\) je právě \(n - 1\))
+1. \(|A| \ge n_1\), použijeme IP na \(A\):
 	- \(\omega(G[A]) \ge k\) a jsem hotov
 	- \(\alpha(G[A]) \ge l - 1\), pak tato nezávislá množina spolu s \(u\) dává nezávislou mnozinu velikosti \(\ge l\)
-2. analogicky: \(|B| \ge n_2\), použiji indukci na \(B\):
+2. analogicky: \(|B| \ge n_2\), použijeme IP na \(B\):
 	- \(\omega(G[B]) \ge k - 1\), pak tato klika spolu s \(u\) dává kliku velikosti \(\ge k\)
 	- \(\alpha(G[B]) \ge l\) a jsem hotov
 
 {% math consequence %}
-\(\forall k, l \exists r(k, l)\) t. ž. \(\forall G: \omega(G) \ge k\) nebo \(\alpha(G) \ge l\).{% endmath %}
-- \(r(k, l) = \mathrm{min}\ N\) t. ž. platí \(\forall G\) velikosti \(N\) platí výše uvedené
-- podle věty nahoře máme \(r(k, l) \le \binom{k + l - 2}{k - 1}\)
+\(\forall k, l\ \exists r(k, l)\) t. ž. \(\forall G: \omega(G) \ge k\) nebo \(\alpha(G) \ge l\).{% endmath %}
+
+{% math definition: "Ramseyovo číslo" %}\(r(k, l) = \mathrm{min}\ n\) t. ž. \(\forall G\) o \(n\) vrcholech platí nerovnost výše
+- „Jak velký musí být graf, abych tam našel buď \(E_k\) nebo \(K_l\)“.
+- triviálně platí, že \(r(k, l) \le \binom{k + l - 2}{k - 1}\) (vrcholů může na podmínku stačit méně)
+{% endmath %}
 
 **Pár hodnot:**
 - \(r(1, l) = 1\)
@@ -1416,8 +1407,7 @@ Zvolím \(u \in G\) libovolně a opět rozdělím graf na nesousedy \(A\) a sous
 - \(r(k, 2) = k\)
 - dříve jsme dokázali, že \(r(3, 3) \le 6 \) a z \(C_5\) víme, že \(r(3, 3) > 5\), tedy \(r(3, 3) = 6\)
 
-{% math definition: %} (\(r(k, k)\)):
-symetrické Ramseyovo číslo, říká se mu \(r(n) = r(n, n)\). „Jak velký musí být graf, abych tam našel buď \(E_n\) nebo \(K_n\)“.{% endmath %}
+{% math definition: "symetrické Ramseyovo číslo" %} \(r(n) = r(n, n)\){% endmath %}
 
 {% math theorem %}
 \(k, n \in \mathbb{N}\) t. ž. \(\binom{n}{k} 2^{1 - \binom{k}{2}} < 1 \implies r(k) > n\).{% endmath %}
@@ -1427,7 +1417,7 @@ Co jsou čísla zač? Použijeme odhad:
 
 \[\binom{n}{k}2^{1 - \binom{k}{2}} < \frac{n^k}{2^{k/2 + 1}} 2^{1 - k(k - 1) / 2} = \left(\frac{n}{2^{k / 2}}\right)^k\]
 
-Kde poslední \(=\) platí, protože:
+Kde poslední rovnost platí, protože:
 \[\frac{1}{2^{k/2 + 1}} 2^{1 - k(k - 1)/2} = \frac{1}{2 \cdot 2^{k/2}} \frac{2}{2^{k(k - 1)/2}} = \frac{1}{2^{k/2 (1 + k - 1)}} = \left(\frac{1}{2^{k/2}}\right)^k\]
 
 {% math consequence %}
@@ -1475,11 +1465,11 @@ existuje nedobrý graf na \(n\) vrcholech a \(r(k,k) > n\).
 
 {:.rightFloatBox}
 <div markdown="1">
-„Pokud mám alespoň \(\ge N\) prvků a dávám je do \(t\) holubníků, pak bude existovat holubník s alespoň \(k\) prvky.“
+Pokud mám \(t\) holubníků a chci, aby existoval holubník s alespoň \(k\) prvky, tak na to potřebuji alespoň \(n \ge N = t(k - 1) + 1\) prvků.
 </div>
 
 {% math theorem "princip holubníku" %}
-pro každé \(t, k \in \mathbb{N} \exists N\) t. ž. \(\forall c: [n] \mapsto [t]\) platí, že \(\forall n \ge N \exists A \subseteq [n], |A| = k\), na níž je funkce \(c\) konstantní.{% endmath %}
+pro každé \(t, k \in \mathbb{N}\ \exists N\) t. ž. \(\forall c: [n] \mapsto [t]\) platí, že \(\forall n \ge N\ \exists A \subseteq [n], |A| = k\), na níž je funkce \(c\) konstantní.{% endmath %}
 
 {% math proof %}
 \(N = t (k - 1) + 1\).{% endmath %}
@@ -1491,16 +1481,16 @@ pro každé \(t \in \mathbb{N}\) a každé \(c: \mathbb{N} \mapsto [t]\) existuj
 {% math proof %}
 rozdělím \(\mathbb{N}\) na \(B_1, \ldots, B_t\), kde \(B_i = \left\{m \in \mathbb{N}\ |\ c(m) = i\right\}\). Protože sjednocením je nekonečná množina pak alespoň jedna musí být nekonečná.{% endmath %}
 
-{% math theorem "nekonečná Ramseyova (vícebarevná) věta" %}
-pro každé \(t \in \mathbb{N}, \forall c: \binom{\mathbb{N}}{2} \mapsto [t] \exists\) nekonečná množina \(A \subseteq \mathbb{N}\), pro níž je funkce \(c\) na hranách \(\binom{A}{2}\) (nekonečný úplný graf) konstantní.{% endmath %}
-
 {:.rightFloatBox}
 <div markdown="1">
-sanity check: \(A_1 \supset A_2 \supset \ldots \)
+Na každém nekonečném úplném grafu existuje nekonečná klika s jednobarevnými hranami.
 </div>
 
+{% math theorem "nekonečná Ramseyova (vícebarevná) věta" %}
+\(\forall t \in \mathbb{N}, \forall c: \binom{\mathbb{N}}{2} \mapsto [t]\ \exists\) nekonečná množina \(A \subseteq \mathbb{N}\), pro níž je funkce \(c\) na hranách \(\binom{A}{2}\) konstantní.{% endmath %}
+
 {% math proof %}
-sestrojím posloupnost nekonečných množin \(A_1 = \mathbb{N}\) a pro \(i = 1, 2, \ldots\) opakujeme:{% endmath %}
+sestrojíme posloupnost nekonečných množin \(A_1 = \mathbb{N}\); pro \(i = 1, 2, \ldots\) opakujeme:{% endmath %}
 - vybereme \(v_i \in A_i\)
 - rozdělíme \(A\) na \(B_i^1, B_i^2\ldots, B_i^t\) podle toho, jakou barvu má hrana, která množinu spojuje s \(v_i\)
 	- jelikož \(A_i\) je nekonečná, tak \(\exists B_i^j\) pro nějakou barvu, která je také nekonečná
@@ -1508,26 +1498,27 @@ sestrojím posloupnost nekonečných množin \(A_1 = \mathbb{N}\) a pro \(i = 1,
 
 {% math observation %}
 posloupnost vrcholů \(v_1, v_2, \ldots\) má vlastnost, že pokud \(i < j\), pak \(\left\{v_i, v_j\right\}\) má barvu \(b_i\){% endmath %}
-- v každém kroku se zanořuju, ale při zanoření už platí, že všichni sousedi jsou k \(v_i\) spojeni hranou dané barvy
-- \(\implies\) barva hrany \(\left\{v_i, v_j\right\}\) závisí pouze na \(i\), ne na \(j\)
-- mám posloupnost barev \(b_1, b_2, b_3, \ldots\)
-	- je nekonečná, ale opakuje se tu konečně mnoho hodnot
-	- aplikuji nekonečný holubník \(\implies \exists j \in [t]\) opakující-se nekonečněkrát a takové vrcholy vyberu, jednota barev vychází z pozorování
+- to, že \(v_j\) přežil zanoření se mohlo stát pouze tak, že s \(v_i\) byl spojen barvou \(b_i\)
+
+{% math observation %} posloupnost barev \(b_1, b_2, b_3, \ldots\) je nekonečná, ale opakuje se tu konečně mnoho hodnot
+- aplikuji nekonečný holubník \(\implies \exists j \in [t]\) opakující-se [nekonečněkrát](https://www.youtube.com/watch?v=tLN3cZbFBxg) a takové vrcholy tvoří hledanou nekonečnou kliku (viz pozorování výše)
+{% endmath %}
+
+(\(t\) počet barev, \(k\) velikost kliky)
 
 {:.rightFloatBox}
 <div markdown="1">
-„Pokud \(n \ge N\), tak každé obarvení \(K_n\) \(t\) barvami obsahuje jednobarevný \(K_k\) jako podgraf.“
+Stejné jako nekonečná věta, ale omezíme se na konečně velkou kliku a hledáme \(N\), pro které \(\forall G\) s počtem vrcholů \(n \ge N\) bude obsahovat jednobarevnou kliku (opět v rámci hran) velikosti \(k\).
 </div>
 
 {% math theorem "Ramseyova vícebarevná věta" %}
-\(\forall t, k \in \mathbb{N}\) (\(t\) počet barev, \(k\) velikost kliky) \(\exists N \in \mathbb{N}\) t. ž. \(\forall c: \binom{[n]}{2} \mapsto [t], \forall n \ge N\) (obarvení \(K_n\) \(t\) barvami) existuje množina \(A \subseteq [n], |A| = k\), pro níž je funkce \(c\) na \(\binom{A}{2}\) konstantní.{% endmath %}
+\(\forall t, k \in \mathbb{N} \exists N \in \mathbb{N}\) t. ž. \(\forall c: \binom{[n]}{2} \mapsto [t], \forall n \ge N\) existuje množina \(A \subseteq [n], |A| = k\), pro níž je funkce \(c\) na hranách \(\binom{A}{2}\) konstantní.{% endmath %}
 
 {% math proof %}
 adaptujeme nekonečný na konečný případ -- chtěli bychom posloupnost barev \(b_1, \ldots, b_{tk}\) -- když do toho praštíme holubníkem, tak máme barvu, která je tam \(k\)-krát. {% endmath %}
-- upravím konstrukci množin \(A_i\): beru vždy největší třídu - \(|A_{i + 1}| \ge \frac{|A_i| - 1}{t}\) (max. je větší/roven průměru)
-	- potřebuji, aby konstrukce běžela alespoň \(tk\) kroků
-	- potřebuji, aby \(|A_{tk}| \ge 1, |A_{tk - 1}| \ge t + 1, \ldots, |A_1| \ge \sum_{i = 0}^{tk} t^i = \frac{t^{tk + 1} - 1}{t - 1}\)
-		- na zkoušce nebude -- jen bychom měli vědět, že se to takhle dá umlátit
+- upravíme konstrukci množin \(A_i\) (bereme vždy největší)
+	- \(|A_{i + 1}| \ge \frac{|A_i| - 1}{t}\) (max. je větší/roven průměru)
+	- jde dokázat, že potřebujeme, aby konstrukce běžela alespoň \(tk\) kroků: \[|A_{tk}| \ge 1, |A_{tk - 1}| \ge t + 1, \ldots, |A_1| \ge \sum_{i = 0}^{tk} t^i = \frac{t^{tk + 1} - 1}{t - 1}\]
 
 {% math definition: "hypergraf" %}
 je zobecněný graf, kde:{% endmath %}
@@ -1554,7 +1545,7 @@ Pomocné obarvení \((p-1)\)-tic stejnými barvami, jako byla \(p\)-tice s vrcho
 
 {% math observation %}
 barva \(p\)-tice \(\left\{v_{i_1}, \ldots, v_{i_p}\right\}\) (vzhledem k vzniklé posloupnosti \(v_1, v_2, \ldots\)), kde \(i_1 < i_2 < i_3 < i_p\) závisí pouze na barvě prvku \(v_{i_1}\){% endmath %}
-- vyberu z barev nějakou opakující-se nekonečněkrát a vrcholy s příslušnými indexy tvoří \(A\)
+- vyberu z barev nějakou opakující-se [nekonečněkrát](https://www.youtube.com/watch?v=tLN3cZbFBxg) a vrcholy s příslušnými indexy tvoří \(A\)
 
 {% math theorem "Ramseyova věta pro p-tice" %}
 \(\forall p, t, k \in \mathbb{N} \exists N \in \mathbb{N}\) t. ž. \(\forall n \ge N, \forall c: \binom{[n]}{p} \mapsto [t]\ \exists A \subseteq [n], |A| = k\) t. ž. \(c\) je na \(\binom{A}{p}\) konstantní.{% endmath %}
