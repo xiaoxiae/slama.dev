@@ -190,7 +190,7 @@ budeme počítat dvěma způsoby:
 - počet podmnožin dané množiny: \(\sum_{k=0}^{n} \binom{n}{k} = 2^n\)
 	- vlastně \(n\)-bitové číslo -- patří/nepatří
 \[\binom{n}{k} = \binom{n - 1}{k} + \binom{n - 1}{k - 1}\]
-- \(k\)-prvkové množiny obsahující/neobsahující \(n\)... když obsahují, tak máme zbylých \(k\) míst; když ne, tak \(k - 1\) (samotné \(n\) jedno zabírá)
+- \(k\)-prvkové množiny obsahující/neobsahující nějaký fixní prvek... pokud ho neobsahují, tak máme \(k\) míst na ostatní prvky; jinak máme \(k - 1\) míst (prvek jedno místo jinak zabírá)
 
 #### Binomická věta
 \[\forall n \in \mathbb{N}, \forall a, b \in \mathbb{R}: \left(a + b\right)^n = \sum_{k = 0}^{n} \binom{n}{k} a^{n - k}b^k\]
