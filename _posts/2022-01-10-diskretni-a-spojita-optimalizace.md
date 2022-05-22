@@ -12,19 +12,21 @@ redirect_from:
 - .
 {:toc}
 
-{:.center}
-**Poznámky jsou aktuálně rozpracované, dokončené budou až o zkouškovém.**
-
 {% lecture_notes_preface Martina Loebla a Milana Hladíka|2021/2022%}
 
-TODO: dělení na diskrétní a spojitou část
+### Diskrétní optimalizace
 
-### Základní definice
+#### Matroidy
+
+{:.rightFloatBox}
+<div markdown="1">
+Při definici matroidu je dobré si predstavit graf -- \(\mathcal{X}\) je tu množina hran a \(S\) všechny acyklické podgrafy.
+</div>
 
 {% math definition "matroid" %}je dvojice \((X, \mathcal{S})\), kde \(X\) je konečná množina, \(\mathcal{S} \subseteq 2^X\) splňující
-1. \(\emptyset \not \in \mathcal{S}\)
+1. \(\emptyset \in \mathcal{S}\)
 2. **dědičnost**: \((\forall A \in \mathcal{S}) A' \subseteq A \implies A' \in \mathcal{S}\)
-3.  **výměnný axiom**: \((\forall U, V \in \mathcal{S}) |U| > |V| \implies (\exists u \in U \setminus V) V \cup \left\{u\right\} \in \mathcal{S}\)
+3.  **výměnný axiom**: \((\forall U, V \in \mathcal{S})\ |U| > |V| \implies (\exists u \in U \setminus V) V \cup \left\{u\right\} \in \mathcal{S}\)
 	- \((3'):\) \(A \subseteq X \implies\) všechny maximální (\(\subseteq\)) podmnožiny \(A\) v \(\mathcal{S}\) mají stejnou velikost
 
 Prvkům \(\mathcal{S}\) říkáme **nezávislé množiny**.
@@ -48,7 +50,7 @@ Prvkům \(\mathcal{S}\) říkáme **nezávislé množiny**.
 	- nechť \(M\) je matice nad tělesem \(\mathbb{F}\) s řádky \(C\)
 	- \(\mathcal{V}_M = (C, \mathcal{S})\), kde
 		- \(A \in \mathcal{S} \iff A \in C\) a \(A\) je lineárně nezávislé v \(\mathbb{F}\)
-		- to, že je to matroid vyplívá ze Steinitzovy věty
+		- to, že je to matroid vyplývá ze Steinitzovy věty
 2. **grafový matroid**:
 	- mějme graf \(G = (V, E)\)
 	- \(\mathcal{M}_G = (E, \mathcal{S})\), kde
@@ -58,27 +60,80 @@ Prvkům \(\mathcal{S}\) říkáme **nezávislé množiny**.
 		- \((3):\) počítání přes to, kolik hran je v komponentách souvislosti
 {% endmath %}
 
-{% math observation %}matroidy jsou _přesně_ **dědičné systémy**, kde lze definovat **řádová funkce**{% endmath %}
+##### Řádové funkce
 
-{% math definition "řádová funkc " %}mějme systém podmnožin \((\mathcal{Z}, \mathcal{M}), \mathcal{M} \subseteq 2^{\mathcal{Z}}\) a \(A \subseteq \mathcal{Z}\). Pak řádovou funkci \(r: 2^{\mathcal{Z}} \mapsto \mathbb{N}\) definujeme jako **velikost maximální podmnožiny patřící do** \(\mathcal{M}\):
+{:.rightFloatBox}
+<div markdown="1">
+V řeči grafů chceme pro libovolnou množinu hran (prvků podmnožin) vrátit největší acyklický podgraf (prvek matroidu).
+</div>
+
+{% math definition "řádová funkce" %}mějme systém podmnožin \((\mathcal{Z}, \mathcal{M}), \mathcal{M} \subseteq 2^{\mathcal{Z}}\) a \(A \subseteq \mathcal{Z}\). Pak řádovou funkci \(r: 2^{\mathcal{Z}} \mapsto \mathbb{N}\) definujeme jako **velikost maximální podmnožiny patřící do** \(\mathcal{M}\):
 
 \[r(A) = \max \left\{|X| \mid X \in 2^A \land X \in \mathcal{M}\right\}\]
 {% endmath %}
 
-{% math theorem "charakteristika řádové funkce" %}funkce \(r : 2^X \mapsto N\) je řádová funkce nějakého matroidu nad \(X\) \(\iff\) platí:
-1. \(r(\emptyset) = 0\)
-2. \(r(Y) \le r(Y \cup \left\{y\right\}) \le r(Y) + 1\)
-3. \(r(Y \cup \left\{y\right\}) = r(Y \cup \left\{z\right\}) = r(Y) \implies r(Y) = r(Y \cup \left\{y ,z\right\})\)
+{% math theorem "charakteristika řádové funkce" %}funkce \(r : 2^X \mapsto N\) je řádová funkce nějakého matroidu nad \(X\) právě tehdy, když platí:
+- \((\mathrm{R1})\): \(r(\emptyset) = 0\)
+- \((\mathrm{R2})\): \(r(Y) \le r(Y \cup \left\{y\right\}) \le r(Y) + 1\)
+- \((\mathrm{R3})\): \(r(Y \cup \left\{y\right\}) = r(Y \cup \left\{z\right\}) = r(Y) \implies r(Y) = r(Y \cup \left\{y ,z\right\})\)
 {% endmath %}
 
-{% math proof %} \(\implies\):
+{% math proof "\(\Rightarrow\)" %} ukážeme přímo:
 
-1. max. nezávislá podmnožina \(\emptyset\) je \(\emptyset\) a \(|\emptyset| = \emptyset\)
-2. z definice řádové funkce a dědičnosti matroidu
-3. TODO
+- \((\mathrm{R1})\): max. nezávislá podmnožina \(\emptyset\) je \(\emptyset\) a \(|\emptyset| = \emptyset\)
+- \((\mathrm{R2})\): z definice řádové funkce a dědičnosti matroidu
+- \((\mathrm{R3})\): TODO
 {% endmath %}
 
-#### Grafová odbočka
+{% math proof "\(\Leftarrow\)" %} 
+konstruujeme matroid s řádovou funkcí \(r\).
+Definujme \[X, \mathcal{S}\quad\text{t.ž.}\quad A \in \mathcal{S} \iff |A| = r(A)\]
+
+Ukážeme, že \(\left(X, \mathcal{S}\right)\) je matroid:
+1. \(\emptyset \in \mathcal{S}\) (triviálně)
+2. pro spor předpokládejme, že dědičnost neplatí
+	- existuje tedy \(A \in \mathcal{S}, B \subseteq A\) t.ž. \(B \not\in \mathcal{S}\) ale \(|B| > r(B)\)
+\[\begin{aligned}
+	r(A) &\le r(B) + |A \setminus B| & \quad \text{R2} \\
+	&< |B| + |A \setminus B| \\
+	&= |A| \implies A \not\in \mathcal{S} & ↯ \\
+\end{aligned}\]
+1. pro spor předpokládejme, že \(\exists U, V \in \mathcal{S}\) t.ž. \(|U| > |V|\) ale \(\forall x \in U \setminus V: V \cup \left\{x\right\} \not\in \mathcal{S}\)
+	- přes \(\mathrm{R3}\) získáváme \((\forall x, y \in U \setminus V)\):
+\[\begin{aligned}
+r(V) &= r(V \cup \left\{x\right\}) = r(V \cup \left\{y\right\}) \\
+&\Rightarrow r(V \cup \left\{x, y\right\}) & \mathrm{R3}\\
+&\Rightarrow r(V \cup (U \setminus V)) \\
+\end{aligned}\]
+
+Tedy
+\[|V| = r(V) = r(\underbrace{V \cup (U \setminus V)}_{U \cup V}) \overset{\mathrm{R2}}{\ge} r(U) = |U| ↯\]
+{% endmath %}
+
+{% math theorem "řádová funkce a submodularita" %} \(r : 2^X \mapsto \mathbb{N}\) je řádová funkce \(\iff\)
+- \((\mathrm{R1'}): \forall Y \in X: 0 \le r(Y) \le |Y|\)
+- \((\mathrm{R2'}\ \text{-- monotonie}): \Z \subseteq Y \subseteq X \implies R(Z) \le R(Y)\)
+- \((\mathrm{R3'}\ \text{-- submodularita}): r(Y \cup Z) + r(Y \cap Z) \le r(Y) + r(Z)\)
+{% endmath %}
+
+{% math proof %}TODO{% endmath %}
+
+{% math observation %}matroidy jsou systémy podmnožiny, kde řádová funkce je **monotonní** a **submodulární**.{% endmath %}
+
+{% math definition "marginální hodnota" %}
+Mějme množinu \(X\) a funkce \(f: 2^X \mapsto \mathbb{N} \). Pak \(\forall x \in X\) definujeme \(\Delta f_x : 2^X \mapsto \mathbb{Z}\) tak, že
+\[T \subseteq X \implies \Delta f_x (T) = f(T \cup \left\{x\right\}) f(T)\]
+- funkce určuje, „jak si cením přidání \(x\), když už mám \(T\)“
+{% endmath %}
+
+{% math theorem "marginální hodnota a submodularita" %} \(f: 2^X \mapsto \mathbb{N}\) je submodulární \(\iff \forall x \in X: \Delta f_x\) je nerostoucí
+- nerostoucí myslíme následně: \(T' \subseteq T, x \not\in T \implies \Delta f_x(T') \ge \Delta f_x(T)\)
+	- dává to smysl -- při odebrání věci nechceme, aby ohodnocení stoupalo
+{% endmath %}
+
+{% math proof %}TODO{% endmath %}
+
+##### Grafy a matroidy
 
 {% math algorithm "hladový" %}je-li dán souvislý graf \(G = (V, E)\) a váhová funkce \(w : E \mapsto \mathbb{Q}^+\), pak **MST** (minimum spanning tree) lze najít hladovým algoritmem (bereme vždy nejlehčí kterou můžeme přidat) v polynomiálním čase.{% endmath %}
 
@@ -86,10 +141,7 @@ Prvkům \(\mathcal{S}\) říkáme **nezávislé množiny**.
 
 {% math definition: "matice incidence" %} grafu \(G = (V, E)\) je matice \(I_G \in \mathbb{F}_2^{|V| \times |E|}\) t.ž. \[\left(I_G\right)_{v,e}=\begin{cases} 1 & v \in e \\ 0 & \text{jinak} \end{cases}\]{% endmath %}
 
----
 ![](/assets/diskretni-a-spojita-optimalizace/incidence-matrix.svg)
-
----
 
 {% math definition "jádro matice incidence" %}pro matici incidence \(I_G\) definujeme jádro jako
 \[\mathrm{Ker}_{\mathbb{F}_2} I_G = \left\{\mathbf{x} \in \mathbb{F}_2^{|E|} \mid I_G \mathbf{x} = \mathbf{0}\right\}\]
@@ -102,9 +154,57 @@ Prvkům \(\mathcal{S}\) říkáme **nezávislé množiny**.
 {% math observation "prostor cyklů" %}jádro matice můžeme ekvivalentně vyjádřit jako \[\mathrm{Ker}_{\mathbb{F}_2} I_G = \left\{x \in \mathbb{F}_2^{|E|} \mid x = \mathcal{X}_{E'}\ \text{pro}\ E'\ \text{sudou}\right\}\]{% endmath %}
 Tuto množinu rovněž nazýváme **prostor cyklů.**
 
-TODO: hodně přednášek
+##### Operace na matroidech
 
-### Perfektní párování
+{:.rightFloatBox}
+<div markdown="1">
+Mazání hran v grafu.
+</div>
+
+**Mazání** -- pro matroid \(\mathcal{M} = (X, \mathcal{S})\) a \(Y \subseteq X\):
+\[\mathcal{M} - Y = (X - Y, \left\{A - Y \mid A \in \mathcal{S}\right\})\]
+je opět matroid.
+
+**Součet** -- pro matroidy \(\mathcal{M_1} = (X_1, \mathcal{S}_1), \mathcal{M_2} = (X_2, \mathcal{S}_2), X_1 \cap X_2 = \emptyset\)
+\[\mathcal{M}_1 + \mathcal{M}_2 = (X = X_1 \cup X_2, \left\{A \in X \mid A \cap X_1 \in \mathcal{S}_1 \land A \cap X_2 \in \mathcal{S}_2\right\})\]
+
+{:.rightFloatBox}
+<div markdown="1">
+Příklad je matroid bipartitního grafu, který vznikne součtem obou stran.
+</div>
+
+**Partition matroid** -- nechť \(X_1, \ldots, X_n\) jsou disjunktní množiny a \(\mathcal{S}_i = \left\{A \subseteq X_i \mid |A| \le 1\right\}\). Pak \(\sum_{i} (X_i, \mathcal{S}_i)\) je partiční matroid.
+
+{:.rightFloatBox}
+<div markdown="1">
+Podobně jako mazání, ale chová se dost jinak (viz kontrakce/mazání hran v grafu). Na mostech se ale chová stejně.
+</div>
+
+**Kontrakce** -- nechť \(\mathcal{M} = (X, \mathcal{S})\) je matroid, \(A \subseteq X\) a \(J \in \mathcal{S}\) je max. nezávislá množina v \(A\). Pak
+\[\mathcal{M} \setminus A = \left((X - A), \left\{Z \subseteq X \mid Z \cup J \in \mathcal{S} \right\}\right)\]
+
+{% math theorem "kontrakce matroidu je matroid" %} nechť \(\mathcal{M} = (X, \mathcal{S})\) je matroid a \(A \subseteq X\). Pak \(M \setminus A\) je matroid s řádovou funkcí
+\[Z \subseteq X \setminus A \implies r'(Z) = r(Z \cup A) - r(A)\]
+{% endmath %}
+
+{% math proof %}TODO{% endmath %}
+
+{% math theorem "Edmondsova MiniMaxová" %}nechť \(\mathcal{M}_1 = \left(X, \mathcal{S}_1\right)\) a \(\mathcal{M_2} = \left(X_2, \mathcal{S_2}\right)\) jsou matroidy. Pak
+\[\max \left\{|Y| \mid Y \in \mathcal{S_1} \cap \mathcal{S}_2\right\} = \min_{A \subseteq X} r_1(A) + r_2(X - A)\]
+{% endmath %}
+
+{% math proof %}TODO{% endmath %}
+
+{% math theorem "sjednocení matroidů je matroid)" %} sjednocení matroidů (i pro nedisjunktní \(X_i\)) je matroid s řádovou funkcí \[r(U) = \min_{T \subseteq TODO} \left\{|U - T| + r_1(T \cap X_1) + \ldots + r_k(T \cap X_k)\right\}\]
+{% endmath %}
+
+##### Dualita matroidu
+
+{% math definition "duální matroid" %}{% endmath %}
+
+##### Hladový algoritmus
+
+#### Perfektní párování
 {% math definition "párování" %}\(G = (V, E)\) graf; \(M \subseteq E\) párovaní, jestliže \(e, e' \in M \implies e=e'\) nebo \(e \cap e' = \emptyset\).{% endmath %}
 
 {% math definition: "maximální párování" %} pokud \(|M|\) je maximální (co do velikosti).{% endmath %}
@@ -126,8 +226,7 @@ TODO: hodně přednášek
 {% math proof %}
 - \(\Leftarrow\) pokud má zlepšující cestu, tak párování můžeme zlepšit a není tedy maximální
 - \(\Rightarrow\) pokud \(G\) není maximální tak existuje párování \(M'\) t. ž. \(M' > |M|\)
-	- uvažme graf \(M \Delta M'\) -- stupně mají vrcholy nejvýše dva, komponenty jsou tedy buď alternující cykly nebo cesty
-	- díky tomu, že nám jedna hrana přebývá, tak alespoň jedna komponenta je cesta
+	- uvažme graf \(M \Delta M'\) -- stupně mají vrcholy nejvýše dva, komponenty jsou tedy buď alternující cykly nebo cesty -- díky tomu, že nám jedna hrana přebývá, tak alespoň jedna komponenta je cesta
 {% endmath %}
 
 {% math observation %} \(G = (V, E), A \subseteq V\). Pak v libovolném párování musí být liché komponenty \(G \setminus A\) pokryté pouze z \(A\) a tedy
@@ -135,7 +234,7 @@ TODO: hodně přednášek
 Kde \(\mathrm{lc}\) značí počet lichých komponent grafu.
 {% endmath %}
 
-{% math observation %} \(g = (V, E)\). Pak max. velikost párování \[\le \min_{A \subseteq V} \frac{1}{2} \left(|V| - \mathrm{lc}(G \setminus A) + |A|\right)\]{% endmath %}
+{% math observation %} \(g = (V, E)\). Pak \[\max |\text{párování}|\le \min_{A \subseteq V} \frac{1}{2} \left(|V| - \mathrm{lc}(G \setminus A) + |A|\right)\]{% endmath %}
 
 {% math theorem "Tutte-Berge" %}Pro výše uvedené pozorování \(\max = \min\){% endmath %}
 
@@ -199,7 +298,7 @@ Takové vrcholy tedy mohou být pouze v \(B\), čímž jsme dokázali (1).
 Část (2) rovněž plyne z Edmondsova algoritmu.
 {% endmath %}
 
-### ?
+#### Generující funkce magic
 
 Nechť \(G = (V, E)\) rovinný, \(w : E \mapsto \mathbb{Q}\)
 1. **maximální PP** -- najdi \(M\) PP t.ž. \(w(E)\) je maximální
@@ -215,9 +314,7 @@ Nechť \(G = (V, E)\) rovinný, \(w : E \mapsto \mathbb{Q}\)
 - \(\#P\)-complete (alespoň tak těžký jako \(NP\)-úplný), neumíme nic lepšího
 {% endmath %}
 
-{% math example %}\(G = (V_1, V_2, E\) bipartitní graf, \(A^{|V_1| \times |V_2|}\) \(0-1\) matice podle toho, jaké obsahuje hrany. Pak \(\mathrm{Per}(A)\) je počet perfektních párování \(G\).{% endmath %}
-
-#### Generující funkce, které se hodí
+{% math example %}\(G = (V_1, V_2, E)\) bipartitní graf, \(A^{|V_1| \times |V_2|}\) \(0-1\) matice podle toho, jaké obsahuje hrany. Pak \(\mathrm{Per}(A)\) je počet perfektních párování \(G\).{% endmath %}
 
 \[\mathcal{P}(G, x, w) = \sum_{P\ \text{perf. pár.}} x^{w(P)}\]
 \[\mathcal{E}(G, x, w) = \sum_{E'\ \text{sudá}} x^{w(E')}\]
@@ -244,14 +341,14 @@ kde \[\mathrm{sign}(D, M_0, P) = (-1)^{\#\ \text{$D$-sudých cyklů $M_0\ \Delta
 - \(D\)-sudý je, když v \(D\) má sudý počet hran orientovaných jedním směrem; nezáleží na tom, jakou stranou jdeme, jelikož symetrická diference perfektních párování tvoří jen sudé cykly
 
 Postup důkazu:
-- \(\mathcal{P}(G, D, M_0, x, w)\) lze pro obecné grafy spočítat variantou Gaussovské eliminace (Pfaffion)
+- \(\mathcal{P}(G, D, M_0, x, w)\) lze pro obecné grafy spočítat variantou Gaussovské eliminace (Pfaffaon)
 - Existuje orientace \(D^K\), že všechna znaménka \(\mathrm{sign}(D^K, M_0, P)\) jsou stejná, tedy \[\mathcal{P}(G, D^K, M_0, *, w) = \pm \mathcal{P}(G, x, w)\]
 - Tuhle \(D^K\) lze zkonstruovat v polynomiálním čase.
 {% endmath %}
 
 {% math reminder %}pro další plochy je to trochu komplikovanější, ale jde to dělat podobně.{% endmath %}
 
-### Pošťáci a cestující
+#### Pošťáci a cestující
 {% math definition %} \(G = (V, E)\) graf silniční sítě, \(l : E \mapsto \mathbb{Q}^+\):
 - problém **čínského pošťáka:** najdi trasu minimální délky, která projde všechny _hrany_ a vrátí se do výchozího vrcholu (eulerovský tah)
 	- polynomiální
@@ -298,8 +395,9 @@ Navíc jelikož \(E(G') = E(G) \cup F\) je \(T\)-join, jelikož přesné splňuj
 - trojúhelníková nerovnost \(\left(\forall u, v, w \in V\right) l(u, v) + l(v, w) \ge l(u, w)\)
 {% endmath %}
 
-#### Christofidesova heuristika
-- viz moje [poznámky z aproximačních algoritmů](https://slama.dev/poznamky-z-prednasky/aproximacni-algoritmy#christofides%C5%AFv-algoritmus)
+{% math algorithm "Christofidesova heuristika" %} viz moje [poznámky z aproximačních algoritmů](https://slama.dev/poznamky-z-prednasky/aproximacni-algoritmy#christofides%C5%AFv-algoritmus){% endmath %}
+
+### [Spojitá optimalizace](/assets/diskretni-a-spojita-optimalizace/spojita.pdf)
 
 ### Poděkování
-- Davidu Kubkovi za zápisky, ze kterých jsem čast z poznámek vytvářel
+- Davidu Kubkovi za zápisky, ze kterých jsem čast z poznámek vytvářel.
