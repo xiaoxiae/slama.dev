@@ -114,7 +114,7 @@ Tedy
 
 {% math theorem "řádová funkce a submodularita" %} \(r : 2^X \mapsto \mathbb{N}\) je řádová funkce \(\iff\)
 - \((\mathrm{R1'}): \forall Y \in X: 0 \le r(Y) \le |Y|\)
-- \((\mathrm{R2'}\ \text{-- monotonie}): \Z \subseteq Y \subseteq X \implies R(Z) \le R(Y)\)
+- \((\mathrm{R2'}\ \text{-- monotonie}): Z \subseteq Y \subseteq X \implies R(Z) \le R(Y)\)
 - \((\mathrm{R3'}\ \text{-- submodularita}): r(Y \cup Z) + r(Y \cap Z) \le r(Y) + r(Z)\)
 {% endmath %}
 
