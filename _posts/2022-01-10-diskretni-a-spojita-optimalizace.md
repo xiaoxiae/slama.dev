@@ -29,7 +29,9 @@ Při definici matroidu je dobré si predstavit graf -- \(\mathcal{X}\) je tu mno
 3.  **výměnný axiom**: \((\forall U, V \in \mathcal{S})\ |U| > |V| \implies (\exists u \in U \setminus V) V \cup \left\{u\right\} \in \mathcal{S}\)
 	- \((3'):\) \(A \subseteq X \implies\) všechny maximální (\(\subseteq\)) podmnožiny \(A\) v \(\mathcal{S}\) mají stejnou velikost
 
-Prvkům \(\mathcal{S}\) říkáme **nezávislé množiny**.
+- prvkům \(\mathcal{S}\) říkáme **nezávislé množiny**
+- největším nezávislým množinám (do inkluze) říkáme **báze**
+
 {% endmath %}
 
 {% math lemma "stejná definice" %}Axiomy \((1, 2, 3)\) a \((1, 2, 3')\) definují stejný objekt.{% endmath %}
@@ -67,9 +69,9 @@ Prvkům \(\mathcal{S}\) říkáme **nezávislé množiny**.
 V řeči grafů chceme pro libovolnou množinu hran (prvků podmnožin) vrátit největší acyklický podgraf (prvek matroidu).
 </div>
 
-{% math definition "řádová funkce" %}mějme systém podmnožin \((\mathcal{Z}, \mathcal{M}), \mathcal{M} \subseteq 2^{\mathcal{Z}}\) a \(A \subseteq \mathcal{Z}\). Pak řádovou funkci \(r: 2^{\mathcal{Z}} \mapsto \mathbb{N}\) definujeme jako **velikost maximální podmnožiny patřící do** \(\mathcal{M}\):
+{% math definition "řádová funkce" %}mějme systém podmnožin \((X, \mathcal{S}), \mathcal{S} \subseteq 2^{X}\) a \(A \subseteq X\). Pak řádovou funkci \(r: 2^{X} \mapsto \mathbb{N}\) definujeme jako **velikost maximální podmnožiny patřící do** \(\mathcal{S}\):
 
-\[r(A) = \max \left\{|X| \mid X \in 2^A \land X \in \mathcal{M}\right\}\]
+\[r(A) = \max \left\{|X| \mid X \in 2^A \land X \in \mathcal{S}\right\}\]
 {% endmath %}
 
 {% math theorem "charakteristika řádové funkce" %}funkce \(r : 2^X \mapsto N\) je řádová funkce nějakého matroidu nad \(X\) právě tehdy, když platí:
@@ -154,6 +156,29 @@ Mějme množinu \(X\) a funkce \(f: 2^X \mapsto \mathbb{N} \). Pak \(\forall x \
 {% math observation "prostor cyklů" %}jádro matice můžeme ekvivalentně vyjádřit jako \[\mathrm{Ker}_{\mathbb{F}_2} I_G = \left\{x \in \mathbb{F}_2^{|E|} \mid x = \mathcal{X}_{E'}\ \text{pro}\ E'\ \text{sudou}\right\}\]{% endmath %}
 Tuto množinu rovněž nazýváme **prostor cyklů.**
 
+##### Hladový algoritmus
+
+{% math definition "úloha kombinatorické optimalizace" %}je dán možinový systém \((X, \mathcal{S})\) a váhová funkce \(w : X \mapsto \mathbb{Q}\). **Úloha kombinatorické optimalizace** je najít \(A \in \mathcal{S}\) t.ž. \[w(A) = \sum_{v \in A} w(v) = w^T \chi_A\] je minimální. \(\chi_A\) je charakteristický vektor \(A\), který je \(1\) pro \(v \in A\) a \(0\) jindy.{% endmath %}
+
+{% math example %}
+1. maximální párování v \(G\)
+2. minimální Hamiltonovská kružnice
+3. minimální hranový řez
+{% endmath %}
+
+{% math algorithm "hladový" %} nechť že \(w_1 \ge \ldots \ge w_n\) a \(m = \max \left\{i \in X \mid w_i \ge 0\right\}\); pak:
+1. nastav \(J = \emptyset\)
+2. pro \(i = \left\{1, \ldots, n\right\}\)
+	- je-li \(J \cup \left\{i\right\} \in \mathcal{S}\), pak \(i\) přidej do \(J\)
+3. vrať \(J\)
+{% endmath %}
+
+{% math observation %}pro výše uvedené příklady nemusí algoritmus vrátit optimální řešení.{% endmath %}
+
+{% math theorem "hladový algoritmus na matroidech" %}nechť \((X, \mathcal{S})\) je dědičný množinový systém a \(\emptyset \in \mathcal{S}\). Pak hladový algoritmus vyřeší správně úlohu kombinatorické optimalizace pro **každou funkci** \(w \iff (X, \mathcal{S})\) je matroid.{% endmath %}
+
+{% math proof %}TODO{% endmath %}
+
 ##### Operace na matroidech
 
 {:.rightFloatBox}
@@ -200,9 +225,44 @@ Podobně jako mazání, ale chová se dost jinak (viz kontrakce/mazání hran v 
 
 ##### Dualita matroidu
 
-{% math definition "duální matroid" %}{% endmath %}
 
-##### Hladový algoritmus
+{:.rightFloatBox}
+<div markdown="1">
+Tady pozor na to, že definujeme báze a né nezávislé množiny (divil jsem se, jak může duál obsahovat \(\emptyset\)).
+</div>
+
+{% math definition "duální matroid" %}nechť \(\mathcal{M} = \left(X, \mathcal{S}\right)\) je matroid. Definujeme duální matroid jako \(\mathcal{M}^* = (X, \mathcal{S}^*)\) t.ž. \(B^*\) je báze \(\mathcal{M}^* \iff (X - B^*)\) je báze \(\mathcal{M}\).
+{% endmath %}
+
+{% math theorem "duální matroid je matroid" %}nechť \(\mathcal{M}\) je matroid. Pak \(\mathcal{M}^*\) je také matroid a navíc platí \[r^*(A) = |A| - r(X) + r(X - A)\]
+{% endmath %}
+
+{% math proof %} stačí dokázat \(3'\), jelikož \(1\) a \(2\) platí triviálně z toho, že jsme definovali pouze báze.
+
+TODO: zbytek...
+{% endmath %}
+
+{% math definition "Cobáze, conezávislost" %}nechť \(\mathcal{M}\) je matroid a \(\mathcal{M}^*\) jeho duální matroid. Pak \(Y \subseteq X\) je
+- **cobáze**, pokud je báze v \(M^*\)
+- **conezávislá**, pokud je nezávislá v \(M^*\){% endmath %}
+
+![](/assets/diskretni-a-spojita-optimalizace/baze-dualita.svg)
+
+{:.rightFloatBox}
+<div markdown="1">
+U grafů jsou to opravdu kružnice.
+</div>
+
+{% math definition "kružnice" %}nechť \(\mathcal{M}\) je matroid. Pak \(Y \subseteq X\) je kružnice, je-li minimální (\(\subseteq\)) **závislá** množina.{% endmath %}
+
+{% math theorem %}\(Y \subseteq X\) je cokružnice (kružnice v duálu) \(\iff Y\) je min (\(\subseteq\)) protínající **každou bázi**.{% endmath %}
+
+
+{% math proof %}
+![](/assets/diskretni-a-spojita-optimalizace/baze-dukaz.svg)
+{% endmath %}
+
+{% math consequence %}nechť \(G\) graf souvislý. Pak cokružnice \(\mathcal{M}_G\) jsou přesně **minimální hranové řezy**. {% endmath %}
 
 #### Perfektní párování
 {% math definition "párování" %}\(G = (V, E)\) graf; \(M \subseteq E\) párovaní, jestliže \(e, e' \in M \implies e=e'\) nebo \(e \cap e' = \emptyset\).{% endmath %}
@@ -229,14 +289,14 @@ Podobně jako mazání, ale chová se dost jinak (viz kontrakce/mazání hran v 
 	- uvažme graf \(M \Delta M'\) -- stupně mají vrcholy nejvýše dva, komponenty jsou tedy buď alternující cykly nebo cesty -- díky tomu, že nám jedna hrana přebývá, tak alespoň jedna komponenta je cesta
 {% endmath %}
 
-{% math observation %} \(G = (V, E), A \subseteq V\). Pak v libovolném párování musí být liché komponenty \(G \setminus A\) pokryté pouze z \(A\) a tedy
+{% math observation %} \(G = (V, E), A \subseteq V\). Pak v libovolném párování \(M\) musí být liché komponenty \(G \setminus A\) pokryté pouze z \(A\) a tedy
 \[\mathrm{def}(M) \ge \mathrm{lc}(G \setminus A) - |A|\]
 Kde \(\mathrm{lc}\) značí počet lichých komponent grafu.
 {% endmath %}
 
-{% math observation %} \(g = (V, E)\). Pak \[\max |\text{párování}|\le \min_{A \subseteq V} \frac{1}{2} \left(|V| - \mathrm{lc}(G \setminus A) + |A|\right)\]{% endmath %}
+{% math observation %} \(g = (V, E)\). Pak \[\max_{M} |\text{párování}\ M| = \min_{M} \frac{1}{2} \left(|V| - \mathrm{def}(M)\right) \le \min_{A \subseteq V} \frac{1}{2} \left(|V| - \mathrm{lc}(G \setminus A) + |A|\right)\]{% endmath %}
 
-{% math theorem "Tutte-Berge" %}Pro výše uvedené pozorování \(\max = \min\){% endmath %}
+{% math theorem "Tutte-Berge" %}Pro výše uvedené pozorování platí rovnost.{% endmath %}
 
 {% math proof %} stačí najít párování \(M\) t.ž. platí rovnost.
 
@@ -273,7 +333,7 @@ Postup pro \(B-B\) hrany je tedy ten, že zkontrahujeme \(C\), rekurzivně vyře
 {% math consequence "Tutte [47]" %}\(G\) má perfektní párování \(\iff \forall A \subset V: \mathrm{lc}(G \setminus A) \le |A|\){% endmath %}
 
 {% math theorem "Edmonds-Gallai dekompozice" %}\(G\) graf, \(G = (V, E)\), \(B \subseteq V\) vrcholů nepokrytých nějakým maximálním párovaním. Nechť \(A \subseteq V \setminus B\) sousedé vrcholů z \(B\), \(C = V \setminus \left(B \cup A\right)\). Pak
-1. každá komponenta \(G \setminus \left(A \cup C\right)\) je kritická (\(\forall v \in K: K \setminus \left\{v\right\}\) má PP)
+1. každá komponenta \(G \setminus \left(A \cup C\right)\) je kritická (\(\forall v \in K: K \setminus \left\{v\right\}\) má perfektní párování)
 	- \(G\) kritický \(\iff\) \(G\) lze zkonstruovat z liché kružnice lepením lichých uší
 2. každé maximální párování \(M\) splňuje:
 	- \(e \in M, e \cap A \neq \emptyset \implies |e \cap A| = 1\) a \(e\) vede do \(B\)
@@ -291,7 +351,7 @@ Každá hrana s koncem v \(A\) vede do \(B\) (s tím, že vrcholy v \(B\) jsou (
 
 Nepokryté vrcholy žádným maximálním párováním:
 - ne v \(A\), jelikož všechny musí být pokryté každým maximálním párováním
-- ne mimo \(A \cup B\), protože tam je PP
+- ne mimo \(A \cup B\), protože tam je perfektní párování
 
 Takové vrcholy tedy mohou být pouze v \(B\), čímž jsme dokázali (1).
 
@@ -300,8 +360,8 @@ Takové vrcholy tedy mohou být pouze v \(B\), čímž jsme dokázali (1).
 
 #### Generující funkce magic
 
-Nechť \(G = (V, E)\) rovinný, \(w : E \mapsto \mathbb{Q}\)
-1. **maximální PP** -- najdi \(M\) PP t.ž. \(w(E)\) je maximální
+Nechť \(G = (V, E)\) rovinný, \(w : E \mapsto \mathbb{Q}\) váhová funkce
+1. **maximální perfektní párování** -- najdi \(M\) perfektní párování t.ž. \(w(E)\) je maximální
 	- polynomiální (pro všechny grafy)
 2. **maximální hranový řez** -- najdi \(E'\) hranový řez t.ž. \(w(E')\) je maximální
 	- obecně je NP-těžný, pro grafy na 2D plochách polynomiální
@@ -314,7 +374,7 @@ Nechť \(G = (V, E)\) rovinný, \(w : E \mapsto \mathbb{Q}\)
 - \(\#P\)-complete (alespoň tak těžký jako \(NP\)-úplný), neumíme nic lepšího
 {% endmath %}
 
-{% math example %}\(G = (V_1, V_2, E)\) bipartitní graf, \(A^{|V_1| \times |V_2|}\) \(0-1\) matice podle toho, jaké obsahuje hrany. Pak \(\mathrm{Per}(A)\) je počet perfektních párování \(G\).{% endmath %}
+{% math example %}\(G = (V_1, V_2, E)\) bipartitní graf, \(A^{|V_1| \times |V_2|}\) \(0/1\) matice podle toho, jaké obsahuje hrany. Pak \(\mathrm{Per}(A)\) je počet perfektních párování \(G\).{% endmath %}
 
 \[\mathcal{P}(G, x, w) = \sum_{P\ \text{perf. pár.}} x^{w(P)}\]
 \[\mathcal{E}(G, x, w) = \sum_{E'\ \text{sudá}} x^{w(E')}\]
@@ -336,7 +396,7 @@ Rovněž předpokládáme \(w(e) \in \mathbb{Z}, |w(e)| \le |V(G)|^{c} \) pro \(
 - max. řez, max. perf. párování jsou pro rovinné grafy polynomiální
 {% endmath %}
 
-{% math proof "naznačení" %} pro \(D\) orientaci \(G\), \(M_0\) fixní PP definujeme „determinantní verzi“ \(\mathcal{P}\) následně: \[\mathcal{P(G, D, M_0, x, w)} = \sum_{P\ \text{perf. pár.}} \mathrm{sign}(D, M_0, P) x^{w(P)}\]
+{% math proof "naznačení" %} pro \(D\) orientaci \(G\), \(M_0\) fixní perfektní párování definujeme „determinantní verzi“ \(\mathcal{P}\) následně: \[\mathcal{P(G, D, M_0, x, w)} = \sum_{P\ \text{perf. pár.}} \mathrm{sign}(D, M_0, P) x^{w(P)}\]
 kde \[\mathrm{sign}(D, M_0, P) = (-1)^{\#\ \text{$D$-sudých cyklů $M_0\ \Delta\ P$}}\]
 - \(D\)-sudý je, když v \(D\) má sudý počet hran orientovaných jedním směrem; nezáleží na tom, jakou stranou jdeme, jelikož symetrická diference perfektních párování tvoří jen sudé cykly
 
@@ -349,7 +409,7 @@ Postup důkazu:
 {% math reminder %}pro další plochy je to trochu komplikovanější, ale jde to dělat podobně.{% endmath %}
 
 #### Pošťáci a cestující
-{% math definition %} \(G = (V, E)\) graf silniční sítě, \(l : E \mapsto \mathbb{Q}^+\):
+{% math definition %} \(G = (V, E)\) graf silniční sítě, \(l : E \mapsto \mathbb{Q}^+\) váhová funkce:
 - problém **čínského pošťáka:** najdi trasu minimální délky, která projde všechny _hrany_ a vrátí se do výchozího vrcholu (eulerovský tah)
 	- polynomiální
 - problém **obchodního cestujícího:** najdi trasu minimální délky, která projde všechny _vrcholy_ a vrátí se do výchozího vrcholu (hamiltonovskou kružnici)
@@ -362,7 +422,8 @@ Postup důkazu:
 2. nechť \(T = \left\{v \mid \mathrm{deg}_G(v)\ \text{lichý}\right\}\)
 
 {% math observation %}\(|T|\) je sudé (počet vrcholů lichého stupně je sudý){% endmath %}
-{% math definition %}\(E' \subseteq E\) je \(T\)-join, jestli graf \(G_T = (V, E')\) splňuje \[\left(\forall v \in V\right) \left(\mathrm{deg}_{G_T} (v)\ \text{lichý} \iff v \in T\right)\]{% endmath %}
+
+{% math definition "T-join" %}\(E' \subseteq E\) je \(T\)-join, jestli graf \(G_T = (V, E')\) splňuje \[\left(\forall v \in V\right) \left(\mathrm{deg}_{G_T} (v)\ \text{lichý} \iff v \in T\right)\]{% endmath %}
 
 {% math theorem %}nechť \(E' \subseteq E\) je množina hran min. trasy čínského pošťáka, které se projdou více než jednou. Pak
 1. se projdou \(2\)-krát
@@ -383,7 +444,7 @@ Navíc jelikož \(E(G') = E(G) \cup F\) je \(T\)-join, jelikož přesné splňuj
 1. najdi minimální \(T\)-join
 	- použij konstrukci (modifikovanou) Fischera z minulé přednášky (\(G \mapsto G_\Delta\)), o čemž víme, že je polynomiální
 	- _(alternativně)_ uvažme pomocný graf \(H = \left(T, \binom{T}{2}\right)\) a váha \(w : \binom{T}{2} \mapsto \mathbb{Q}^+\), kde \(w(\left\{u, v\right\}) = \) délka nejkratší cesty mezi \(u, v\) v \(G\)
-		- nechť \(M\) je min. PP v \(H\)
+		- nechť \(M\) je min. perfektní párování v \(H\)
 		- nechť \(F = \bigcup_{e \in M} P_e\), kde \(P_e\) je nejkratší cesta v \(G\) spojující vrcholy \(e\)
 2. přidej zbylé hrany
 3. profit?
