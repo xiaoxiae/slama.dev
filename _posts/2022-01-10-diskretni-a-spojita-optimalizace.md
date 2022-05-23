@@ -146,6 +146,7 @@ r(V) &= r(V \cup \left\{x\right\}) = r(V \cup \left\{y\right\}) \\
 - \(A\) -- maximální nezávislá množina v \(Y \cap Z\)
 - \(A_Y\) -- maximální nezávislá množina v \(Y\) t.ž. \(A \subseteq A_Y\) (nějaká taková existuje)
 - \(A_Z\) -- maximální nezávislá množina v \(Y\) t.ž. \(A \subseteq A_Z\) (nějaká taková existuje)
+
 ![](/assets/diskretni-a-spojita-optimalizace/sub-proof-1.svg)
 
 Máme \[\begin{aligned}
@@ -156,7 +157,9 @@ Máme \[\begin{aligned}
 K důkazu tvrzení zbývá ukázat, že \(|A_Y \cup A_Z| \ge r(Y \cup Z)\).
 
 {% math observation %}\(A_Y\) nemůže být rozšířené víče než \(A_Z \setminus Y\) prvky na nezávislou množinu v \(Y \cup Z\){% endmath %}
+
 ![](/assets/diskretni-a-spojita-optimalizace/sub-proof-2.svg)
+
 - pro spor předpokládejme, že \(W \subseteq Z \setminus Y\) maximální, \(A_Y \cup W\) je nezávislá a \(|W| > |A_Z \setminus Y|\); pak ale \(|W \cup A| > |A_Z|\), což je spor s maximalitou \(A_Z\)
 
 Nyní můžeme dokončit důkaz:
@@ -231,7 +234,52 @@ Mějme množinu \(X\) a funkce \(f: 2^X \mapsto \mathbb{N} \). Pak \(\forall x \
 
 {% math theorem "hladový algoritmus na matroidech" %}nechť \((X, \mathcal{S})\) je dědičný množinový systém a \(\emptyset \in \mathcal{S}\). Pak hladový algoritmus vyřeší správně úlohu kombinatorické optimalizace pro **každou funkci** \(w \iff (X, \mathcal{S})\) je matroid.{% endmath %}
 
-{% math proof %}TODO{% endmath %}
+{% math proof "\(\Rightarrow\)" %}obměnou: nechť \((X, \mathcal{S})\) není matroid \(\implies\) HA nefunguje. Zkonstruujeme \(w : X \mapsto \mathbb{Q}\), na které algoritmus selže.
+
+Jelikož \((X, \mathcal{S})\) není matroid, tak neplatí \(3, 3'\) a tedy \(\exists U, V \in \mathcal{S}, |U| > |V|\) a \(U, V\) jsou max. nezávislé množiny. Pak definujeme \(w\) následně (pro \(b, a \in \mathbb{Q}, b > a > 0\)):
+
+![](/assets/diskretni-a-spojita-optimalizace/ha-spor.svg)
+
+V takovém případě hladový algoritmus najde \(U\), ikdyž \(V\) je menší.
+{% endmath %}
+
+{% math proof "\(\Leftarrow\)" %} nejprve dokážeme pomocné lemma.
+
+{% math lemma %}mějme \(w_1 \ge \ldots \ge w_n\), \(m \le n\) maximální t.ž. \(w_m > 0\), množiny \(T_i \subseteq \left\{0, 1\right\}^i\) a \(z'\) je **charakteristický vektor výsledku HA** (rozumíme tím, že je to \(0/1\) vektor podle toho, které prvky HA vybral). Pak \(\forall i\) platí \[z'(T_i) = \sum_{i \in T_i} z'_i = r(T_i)\]
+{% endmath %}
+
+{% math proof %}
+Ukážeme, že HA najde v každém kroku největší nezávislou množinu z uvažovaných prvků.
+
+Pro spor nechť \(\exists i\) t.ž. \(z'(T_i) < r(T_i)\).
+Vezměme nejmenší takové \(i\):
+
+![](/assets/diskretni-a-spojita-optimalizace/ha-nespor.svg)
+
+Platí, že \(z'(T_{i - 1}) = r(T_{i - 1})\) (jelikož \(i\) je nejmenší protipříklad). Pokud HA další prvek přidá, tak je vše v pořádku a \(z'(T_{i}) = r(T_{i})\) platí. Jinak to znamená, že \(z'(T_{i})\) je co do inkluze maximální množina v \(T_i\), což je spor s \(3'\).
+
+{% endmath %}
+
+Nyní k původnímu důkazu: označíme \(z^*\) charakteristický vektor optima. Pak
+
+\[\begin{aligned}
+	w^T z^* &= \sum w_i \cdot z^*_i \\
+	&= \sum w_i (z^*(T_i) - z^*(T_{i - 1})) & \qquad T_0 = \emptyset, * \\
+	&= \sum \underbrace{(w_i - w_{i + 1})}_{\ge 0} z^* (T_i) + \underbrace{w_m}_{> 0} z^*(T_m) & ** \\
+	&\le \sum (w_i - w_{i + 1}) r (T_i)_i + w_m r(T_m) \\
+	&= \sum (w_i - w_{i + 1}) z' (T_i)_i + w_m z'(T_m) & \text{lemma výše} \\
+	&= w^T z' \\
+\end{aligned}\]
+
+\(*\) rovnost \(z_i^* = z_i^*(T_i) - z_i^*(T_{i - 1})\) platí, protože \(z_i^*(T_i)\) se zvýší právě tehdy, když charakteristický vektor získá novou \(1\) (konkrétně tu na pozici \(z_i^*\)).
+
+\(**\) tohle vypadá magicky, ale dává to smysl -- \(z^*(T_i)\) v jednom cyklu smyčky přičítáme a ve druhém odčítáme, tak jsme to jen posunuli do \(w_i - w_{i + 1}\), navíc také započteme poslední část součtu, na který se nedostane.
+
+Jelikož navíc triviálně \(w^T z* \ge w^T z'\) (je to optimum), tak věta platí.
+{% endmath %}
+
+{% math consequence "lineární programy" %}nechť \((X, \mathcal{S})\) je matroid a \(w \in \mathbb{Q}^X\). Pak HA vyřeší následující lineární program \[\max \sum_{i \in X} w_i z_i\] za podmínek \(z(A) \le r(A), z \ge 0\) pro \(\forall A \subseteq X\)
+{% endmath %}
 
 ##### Operace na matroidech
 
