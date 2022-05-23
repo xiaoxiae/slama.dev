@@ -1,10 +1,17 @@
-.PHONY:  all install clean build upload serve permissions
+.PHONY:  all install clean build upload serve permissions stash unstash
 .SILENT:
 
 XOPP = $(shell find _includes/ -type f -name '*.xopp')
 SVG  = $(patsubst %.xopp, %.svg, $(XOPP))
 
-all: build upload
+
+all: stash build upload unstash
+
+stash:
+	git stash --include-untracked
+
+unstash:
+	git stash pop
 
 install: ; bundle install
 
