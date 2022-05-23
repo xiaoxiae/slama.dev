@@ -23,10 +23,10 @@ redirect_from:
 1. \(\emptyset \in \mathcal{S}\)
 2. **dědičnost**: \((\forall A \in \mathcal{S}) A' \subseteq A \implies A' \in \mathcal{S}\)
 3.  **výměnný axiom**: \((\forall U, V \in \mathcal{S})\ |U| > |V| \implies (\exists u \in U \setminus V) V \cup \left\{u\right\} \in \mathcal{S}\)
-	- \((3'):\) \(A \subseteq X \implies\) všechny největší (\(\subseteq\)) podmnožiny \(A\) v \(\mathcal{S}\) mají stejnou velikost
+	- \((3'):\) \(A \subseteq X \implies\) všechny maximální (\(\subseteq\)) podmnožiny \(A\) v \(\mathcal{S}\) mají stejnou velikost
 
 - prvkům \(\mathcal{S}\) říkáme **nezávislé množiny**
-- největším nezávislým množinám (co do inkluze) říkáme **báze**
+- **maximálním** nezávislým množinám (co do inkluze) říkáme **báze**
 {% endmath %}
 
 {% math remark %}
@@ -38,12 +38,12 @@ Pak podmínka dědičnosti říká, že acyklické podgrafy jsou rovněž acykli
 
 {% math proof %}\((3) \implies (3')\) sporem:
 
-- nechť platí \((3)\) ale existuje \(A \subseteq X\) t. ž. pro nějaké \(U, V \subseteq \mathcal{S}\) platí \(U, V \subseteq A\) a zároveň \(U, V\) maximální je \(|U| > |V|\).
-- díky \((3)\) \((\exists u \in U \setminus V)\) t. ž. \(V \cup \left\{u\right\} \in \mathcal{S} \) a navíc \(V \cup \left\{u\right\} \subseteq\), což je spor s maximalitou \(V\).
+- nechť platí \((3)\) ale existuje \(A \subseteq X\) t. ž. pro nějaké \(U, V \subseteq \mathcal{S}\) platí \(U, V \subseteq A\), \(U, V\) jsou do inkluze maximální ale \(|U| > |V|\)
+- díky \((3)\) \((\exists u \in U \setminus V)\) t. ž. \(V \cup \left\{u\right\} \in \mathcal{S}\), což je spor s maximalitou \(V\).
 {% endmath %}
 
 {% math proof %}\((3') \implies (3)\) sporem:
-- nechť \(U, V \in \mathcal{S}\) a \(|U| > |V|\) a \(V\) je maximální
+- nechť \(U, V \in \mathcal{S}\) a \(|U| > |V|\) a \(V\) je maximální (negace výměnného axiomu)
 - definujme \(A = U \cup V \subseteq X\); pak \(V\) je maximální ale \(|U| > |V|\), což je spor
 {% endmath %}
 
@@ -111,20 +111,20 @@ V řeči grafů chceme pro libovolnou množinu hran (prvků podmnožin) vrátit 
 
 - pokud \(|B| = |\tilde{B}|\), pak platí \(\mathrm{R3}\)
 - jinak \(B \subsetneq \tilde{B}\), BUNO například \(y \in \tilde{B}\)
-	- pak \(B \cup \left\{y\right\}\) je nezávislá a \(r(Y) < r(Y \cup \left\{y\right\})\), což je spor s předpokladem
+	- \(B \cup \left\{y\right\}\) je nezávislá a \(r(Y) < r(Y \cup \left\{y\right\})\) a předpoklad implikace v \(\mathrm{R3}\) neplatí
 {% endmath %}
 
 {% math proof "\(\Leftarrow\)" %} 
 konstruujeme matroid s řádovou funkcí \(r\).
-Definujme \[X, \mathcal{S}\quad\text{t.ž.}\quad A \in \mathcal{S} \iff |A| = r(A)\]
+Matroid definujme jako \[\mathcal{M} = \left(X, \mathcal{S}\right)\quad\text{t.ž.}\quad A \in \mathcal{S} \iff |A| = r(A)\]
 
 Ukážeme, že \(\left(X, \mathcal{S}\right)\) je matroid:
 1. \(\emptyset \in \mathcal{S}\) (triviálně)
 2. pro spor předpokládejme, že dědičnost neplatí
-	- existuje tedy \(A \in \mathcal{S}, B \subseteq A\) t.ž. \(B \not\in \mathcal{S}\) ale \(|B| > r(B)\)
+	- existuje tedy \(A \in \mathcal{S}, A' \subseteq A\) ale \(|A'| > r(A')\) (menší nemůže být z definice řádové funkce, jelikož je pro množinu definována jako velikost nějaké její podmnožiny)
 \[\begin{aligned}
-	r(A) &\le r(B) + |A \setminus B| & \quad \text{R2} \\
-	&< |B| + |A \setminus B| \\
+	r(A) &\le r(A') + |A \setminus A'| & \quad \text{R2} \\
+	&< |A'| + |A \setminus A'| \\
 	&= |A| \implies A \not\in \mathcal{S} & ↯ \\
 \end{aligned}\]
 1. pro spor předpokládejme, že \(\exists U, V \in \mathcal{S}\) t.ž. \(|U| > |V|\) ale \(\forall x \in U \setminus V: V \cup \left\{x\right\} \not\in \mathcal{S}\)
@@ -132,11 +132,8 @@ Ukážeme, že \(\left(X, \mathcal{S}\right)\) je matroid:
 \[\begin{aligned}
 r(V) &= r(V \cup \left\{x\right\}) = r(V \cup \left\{y\right\}) \\
 &\Rightarrow r(V \cup \left\{x, y\right\}) & \mathrm{R3}\\
-&\Rightarrow r(V \cup (U \setminus V)) \\
+&\Rightarrow r(V \cup (U \setminus V)) = r(U \cup V) \ge r(U) = |U| ↯ \\
 \end{aligned}\]
-
-Tedy
-\[|V| = r(V) = r(\underbrace{V \cup (U \setminus V)}_{U \cup V}) \overset{\mathrm{R2}}{\ge} r(U) = |U| ↯\]
 {% endmath %}
 
 {% math theorem "řádová funkce a submodularita" %} \(r : 2^X \mapsto \mathbb{N}\) je řádová funkce \(\iff\)
@@ -178,8 +175,20 @@ Nyní můžeme dokončit důkaz:
 	- uvažme max. nz. mn. \(A\) v \(Z\) a \(B\) v \(Y\) t.ž. \(A \subseteq B\) (výměnný axiom); pak \[r(Z) = |A| \le |B| = r(Y)\]
 {% endmath %}
 
-{% math proof "matroid \(\Leftarrow\) R123'" %}TODO{% endmath %}
-
+{% math proof "matroid \(\Leftarrow\) R1', R2', R3'" %}ukážeme \(\mathrm{R1, R2, R3}\)
+- \((\mathrm{R1})\): dokazujeme \(r(\emptyset) = 0\)
+	- nechť pro spor \(r(\emptyset) > 0\); pak \(|\emptyset| \ge r(\emptyset) > 0\), což je spor
+- \((\mathrm{R2})\): dokazujeme \(r(Y) \le r(Y \cup \left\{y\right\}) \le r(Y) + 1\)
+	- mějme \(Y \subseteq X\), \(y \in X\) a \(y \not\in Y\) (jinak platí triviálně)
+		- první nerovnost (z monotonie): \[Y  \subseteq Y \cup \left\{y\right\} \implies r(Y) \le r(Y \cup \left\{y\right\})\]
+		- druhá nerovnost (ze submodularity): \[r(Y \cup \left\{y\right\}) + \overbrace{r(\underbrace{Y \cap \left\{y\right\}}_{\emptyset})}^{0} \le r(Y) + r(\left\{y\right\}) \le r(Y) + 1\]
+- \((\mathrm{R3})\): dokazujeme \(r(Y \cup \left\{y\right\}) = r(Y \cup \left\{z\right\}) = r(Y) \implies r(Y) = r(Y \cup \left\{y ,z\right\})\)
+	- z monotonie dostáváme první část: \(Y \subseteq Y \cup \left\{y, z\right\} \implies r(Y) \le r(Y \cup \left\{y, z\right\})\)
+	- nyní použijeme submodularitu na \(A = Y \cup \left\{y\right\}, B = Y \cup \left\{z\right\}\)
+		- předpokládáme, že \(y \neq z\) a že \(x, y \not\in Y\), jinak platí triválně \[r(\underbrace{Y \cup \left\{y, z\right\}}_{A \cup B}) + r(\underbrace{Y}_{A \cap B}) \le r(\underbrace{Y \cup \left\{y\right\}}_{A}) + r(\underbrace{Y \cup \left\{z\right\}}_{B})\]
+		- pokud tedy platí \(r(Y) \cup \left\{y\right\} = r(Y \cup \left\{z\right\}) = r(Y)\), tak dostáváme druhou část:
+\[r(Y \cup \left\{y, z\right\}) \le r(Y)\]
+{% endmath %}
 
 {% math observation %}matroidy jsou systémy podmnožiny, kde řádová funkce je **monotonní** a **submodulární**.{% endmath %}
 
@@ -277,7 +286,7 @@ A tedy
 
 {% math proof "\(\ge\)" %}TODO: tenhle důkaz je naprosto brutální{% endmath %}
 
-{% math theorem "sjednocení matroidů je matroid)" %} sjednocení matroidů (i pro nedisjunktní \(X_i\)) je matroid s řádovou funkcí \[r(U) = \min_{T \subseteq TODO} \left\{|U - T| + r_1(T \cap X_1) + \ldots + r_k(T \cap X_k)\right\}\]
+{% math theorem "sjednocení matroidů je matroid)" %} sjednocení matroidů (i pro nedisjunktní \(X_i\)) je matroid s řádovou funkcí \[r(U) = \min_{T} \left\{|U - T| + r_1(T \cap X_1) + \ldots + r_k(T \cap X_k)\right\}\]
 {% endmath %}
 
 {% math consequence "obraz matroidu je matroid" %}mějme matroid \(\mathcal{M}' = (X', \mathcal{S}')\) a funkci \(f: X' \implies X\). Definujme \[\mathcal{S} = \left\{f[I] \mid I \in \mathcal{S}'\right\}\]
@@ -371,8 +380,7 @@ Najdeme algoritmem (Edmonds), který najde maximální párování
 	- zastavíme se, když:
 		- existuje \(w \not\in T, \{v, w\} \in E\) a \(w\) je nepokrytý -- pak jsme našli alternující cestu
 		- neexistuje \(w\)
-			1. všechny zbývající hrany z \(B\)-vrcholů vedou do \(A\)-vrcholů -- poté když uvážíme \(G \setminus A\), tak liché komponenty vedou pouze do \(A\) vrcholů ale \(B\) je o jedna více (máme \(r\)), tedy \(|B| = |A| + 1\) a \(G\) nemá perfektní párování a **našli jsme defektní vrchol**
-			2. pokud je graf bipartitní, tak nemáme žádné \(B-B\) hrany
+			- pokud je graf bipartitní, tak nemáme žádné \(B-B\) hrany a všechny zbývající hrany z \(B\)-vrcholů vedou do \(A\)-vrcholů -- poté když uvážíme \(G \setminus A\), tak liché komponenty vedou pouze do \(A\) vrcholů ale \(B\) je o jedna více (máme \(r\)), tedy \(|B| = |A| + 1\) a \(G\) nemá perfektní párování a **našli jsme defektní vrchol**
 
 TODO: obrázek?
 
