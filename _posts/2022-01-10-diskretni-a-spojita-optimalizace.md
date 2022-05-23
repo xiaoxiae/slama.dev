@@ -125,18 +125,18 @@ Ukážeme, že \(\left(X, \mathcal{S}\right)\) je matroid:
 \[\begin{aligned}
 	r(A) &\le r(A') + |A \setminus A'| & \quad \text{R2} \\
 	&< |A'| + |A \setminus A'| \\
-	&= |A| \implies A \not\in \mathcal{S} & ↯ \\
+	&= |A| \implies A \not\in \mathcal{S} & ↯
 \end{aligned}\]
 1. pro spor předpokládejme, že \(\exists U, V \in \mathcal{S}\) t.ž. \(|U| > |V|\) ale \(\forall x \in U \setminus V: V \cup \left\{x\right\} \not\in \mathcal{S}\)
 	- přes \(\mathrm{R3}\) získáváme \((\forall x, y \in U \setminus V)\):
 \[\begin{aligned}
 r(V) &= r(V \cup \left\{x\right\}) = r(V \cup \left\{y\right\}) \\
 &\Rightarrow r(V \cup \left\{x, y\right\}) & \mathrm{R3}\\
-&\Rightarrow r(V \cup (U \setminus V)) = r(U \cup V) \ge r(U) = |U| ↯ \\
+&\Rightarrow r(V \cup (U \setminus V)) = r(U \cup V) \ge r(U) = |U| ↯
 \end{aligned}\]
 {% endmath %}
 
-{% math theorem "řádová funkce a submodularita" %} \(r : 2^X \mapsto \mathbb{N}\) je řádová funkce \(\iff\)
+{% math theorem "řádová funkce a submodularita" %} \(r : 2^X \mapsto \mathbb{N}\) je řádová funkce matroidu \(\iff\)
 - \((\mathrm{R1'}): \forall Y \in X: 0 \le r(Y) \le |Y|\)
 - \((\mathrm{R2'}\ \text{-- monotonie}): Z \subseteq Y \subseteq X \implies r(Z) \le r(Y)\)
 - \((\mathrm{R3'}\ \text{-- submodularita}): r(Y \cup Z) + r(Y \cap Z) \le r(Y) + r(Z)\)
@@ -151,7 +151,7 @@ r(V) &= r(V \cup \left\{x\right\}) = r(V \cup \left\{y\right\}) \\
 Máme \[\begin{aligned}
 	r(Y) + r(Z) &= |A_Y| + |A_Z| & \quad \text{definice} \\
 	            &= |A_Y \cap A_Z| + |A_Y \cup A_Z| & \quad \text{inkluze/exkluze} \\
-	            &\ge r(Y \cap Z) + |A_Y \cup A_Z| & \quad A \subseteq A_Y \cap A_Z \\
+	            &\ge r(Y \cap Z) + |A_Y \cup A_Z| & \quad A \subseteq A_Y \cap A_Z
 \end{aligned}\]
 K důkazu tvrzení zbývá ukázat, že \(|A_Y \cup A_Z| \ge r(Y \cup Z)\).
 
@@ -278,7 +278,7 @@ Příklad je matroid bipartitního grafu, který vznikne součtem obou stran.
 {% math proof "\(\le\)" %}Nechť \(J \in \mathcal{S}_1 \cap \mathcal{S}_2\). Pak \(\forall A \subseteq X\)
 \[\begin{aligned}
 	J \cap A &\in \mathcal{S}_1 \implies |J \cap A| \le r_1(A) \\
-	J \cap (X \setminus A) &\in \mathcal{S}_2 \implies |J \cap (X \setminus A)| \le r_2(X \setminus A) \\
+	J \cap (X \setminus A) &\in \mathcal{S}_2 \implies |J \cap (X \setminus A)| \le r_2(X \setminus A)
 \end{aligned}\]
 A tedy
 \[|J| = |J \cap A| + |J \cap (X \setminus A) \le r_1(A) + r_2(X \setminus A)\]
@@ -306,16 +306,28 @@ Tady pozor na to, že definujeme báze a né nezávislé množiny (divil jsem se
 {% math theorem "duální matroid je matroid" %}nechť \(\mathcal{M}\) je matroid. Pak \(\mathcal{M}^*\) je také matroid a navíc platí \[r^*(A) = |A| - r(X) + r(X - A)\]
 {% endmath %}
 
-{% math proof %} stačí dokázat \(3'\), jelikož \(1\) a \(2\) platí triviálně z toho, že jsme definovali pouze báze.
+![](/assets/diskretni-a-spojita-optimalizace/baze-dualita.svg)
 
-TODO: zbytek...
+{% math proof %} stačí dokázat \(3'\) (pro dané \(A\) mají všechny nezávislé množiny stejnou velikost), jelikož \(1\) a \(2\) platí triviálně z toho, že jsme definovali pouze báze. Uvažme libovolné \(A\) a následující obrázek
+
+![](/assets/diskretni-a-spojita-optimalizace/dualita-proof.svg)
+
+Nechť \(B\) je báze \(\mathcal{M}\) t.ž. \(Z \subseteq B\) a \(B \subseteq X - J\)
+- \(B\) existuje, protože \(r(X) = r(X - J)\) (z definice duálu, jelikož i kdybychom rozšířili \(J\) na bázi duálu \(B^*\), tak stejně bude platit \(r(X - B^*) = r(X)\))
+
+Jestli existuje \(x \in (A - J) - B\), pak \(r(X - (J \cup \left\{x\right\})) = r(X)\)
+a \(J \cup \left\{x\right\} \in \mathcal{S}^*\) a \(J\) není maximální (opět z definice duality jako výše).
+
+Platí tedy \(J = A - B\) a rovněž platí \(Z = B - A\) (jinak můžeme rozšířit, což je spor) a tedy \[\begin{aligned}
+	r^*(A) = |J| &= |A| - |B \cap A| \\
+	    &= |A| - |B| + |Z| \\
+	    &= |A| - r(X) + r(X - A)
+\end{aligned}\]
 {% endmath %}
 
 {% math definition "Cobáze, conezávislost" %}nechť \(\mathcal{M}\) je matroid a \(\mathcal{M}^*\) jeho duální matroid. Pak \(Y \subseteq X\) je
 - **cobáze**, pokud je báze v \(M^*\)
 - **conezávislá**, pokud je nezávislá v \(M^*\){% endmath %}
-
-![](/assets/diskretni-a-spojita-optimalizace/baze-dualita.svg)
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -327,18 +339,28 @@ U grafů jsou to opravdu kružnice.
 {% math theorem %}\(Y \subseteq X\) je cokružnice (kružnice v duálu) \(\iff Y\) je min (\(\subseteq\)) protínající **každou bázi**.{% endmath %}
 
 
-{% math proof %}
-![](/assets/diskretni-a-spojita-optimalizace/baze-dukaz.svg)
+{% math proof "\(\Rightarrow\)" %}sporem nechť \(Y \subseteq X\) je cokružnice ale \(\exists B\) báze \(\mathcal{M}\) t.ž. \(Y \cap B = \emptyset\). Pak \(Y \subseteq X - B\) ale z definice je \(X - B\) báze \(\mathcal{M}^*\), což je spor se závislostí \(Y\) v \(\mathcal{M^*}\)
+{% endmath %}
+
+{% math proof "\(\Leftarrow\)" %}opět sporem nechť \(Y\) je minimální množina (do inkluze) protínající každou bázi, ale není cokružnice. Rozebereme případy toho, co může být (chceme, aby byla minimálně nezávislá):
+- \(Y\) je nezávislá v \(M^*\) (a tedy \(r(X) = r(X - Y)\))
+	- pak existuje báze \(B \subseteq X - Y\) v \(\mathcal{M}\), což je spor s tím, že protíná každou bázi
+- \(\exists y \in Y\) t.ž. \(Y \setminus \left\{y\right\}\) je závislá v \(M^*\):
+	- \((Y \setminus \left\{y\right\}) \not\in \mathcal{S}^*\)
+	- \(r(X) > r(X - (Y \setminus \left\{y\right\}))\)
+	- \(Y \setminus \left\{y\right\}\) protíná každou bázi, což je spor s minimalitou
 {% endmath %}
 
 {% math consequence %}nechť \(G\) graf souvislý. Pak cokružnice \(\mathcal{M}_G\) jsou přesně **minimální hranové řezy**. {% endmath %}
 
 #### Perfektní párování
-{% math definition "párování" %}\(G = (V, E)\) graf; \(M \subseteq E\) párovaní, jestliže \(e, e' \in M \implies e=e'\) nebo \(e \cap e' = \emptyset\).{% endmath %}
+{% math remark %}o tomto tématu jsem vytvořil [YouTube video](https://www.youtube.com/watch?v=3roPs1Bvg1Q), které algoritmus shrnuje.{% endmath %}
 
-{% math definition: "maximální párování" %} pokud \(|M|\) je maximální (co do velikosti).{% endmath %}
+{% math definition "párování" %}\(G = (V, E)\) graf. Pak \(M \subseteq E\) je párovaní, jestliže \(\forall e \neq e' \in M\) platí \(e \cap e' = \emptyset\).{% endmath %}
 
-{% math observation %}neplatí, že maximální do velikosti je maximální do inkluze (můžeme si hrany vybrat špatně){% endmath %}
+{% math definition: "největší párování" %} pokud \(|M|\) je maximální.{% endmath %}
+
+{% math observation %}je rozdíl mezi maximálním párováním (počítá se do inkluze) a největším (počítá se do velikosti), jelikož si hrany můžeme hladově vybrat špatně.{% endmath %}
 
 {% math definition "perfektní párování" %}pokud \(|M| = |V| / 2\){% endmath %}
 
@@ -358,12 +380,14 @@ U grafů jsou to opravdu kružnice.
 	- uvažme graf \(M \Delta M'\) -- stupně mají vrcholy nejvýše dva, komponenty jsou tedy buď alternující cykly nebo cesty -- díky tomu, že nám jedna hrana přebývá, tak alespoň jedna komponenta je cesta
 {% endmath %}
 
-{% math observation %} \(G = (V, E), A \subseteq V\). Pak v libovolném párování \(M\) musí být liché komponenty \(G \setminus A\) pokryté pouze z \(A\) a tedy
+{% math observation %} \(G = (V, E), A \subseteq V\). Pak v libovolném párování \(M\) musí být liché komponenty \(G \setminus A\) pokryté pouze z \(A\) (i v nejlepším zpárování v nich zbyde alespoň jeden volný vrchol) a tedy
 \[\mathrm{def}(M) \ge \mathrm{lc}(G \setminus A) - |A|\]
 Kde \(\mathrm{lc}\) značí počet lichých komponent grafu.
 {% endmath %}
 
-{% math observation %} \(g = (V, E)\). Pak \[\max_{M} |\text{párování}\ M| = \min_{M} \frac{1}{2} \left(|V| - \mathrm{def}(M)\right) \le \min_{A \subseteq V} \frac{1}{2} \left(|V| - \mathrm{lc}(G \setminus A) + |A|\right)\]{% endmath %}
+{% math observation %} \(G = (V, E)\). Pak \[\max_{\text{párování}\ M} |M| = \min_{\text{párování}\ M} \frac{1}{2} \left(|V| - \mathrm{def}(M)\right) \le \min_{A \subseteq V} \frac{1}{2} \left(|V| - \mathrm{lc}(G \setminus A) + |A|\right)\]
+kde první nerovnost plyne z úvahy, že největší párování minimalizuje defekt a druhá z dosazení pozorování výše.
+{% endmath %}
 
 {% math theorem "Tutte-Berge" %}Pro výše uvedené pozorování platí rovnost.{% endmath %}
 
@@ -382,18 +406,14 @@ Najdeme algoritmem (Edmonds), který najde maximální párování
 		- neexistuje \(w\)
 			- pokud je graf bipartitní, tak nemáme žádné \(B-B\) hrany a všechny zbývající hrany z \(B\)-vrcholů vedou do \(A\)-vrcholů -- poté když uvážíme \(G \setminus A\), tak liché komponenty vedou pouze do \(A\) vrcholů ale \(B\) je o jedna více (máme \(r\)), tedy \(|B| = |A| + 1\) a \(G\) nemá perfektní párování a **našli jsme defektní vrchol**
 
-TODO: obrázek?
-
 Pro **bipartitní grafy** můžeme algoritmus výše opakovat (opakovaně stavíme stromy z vrcholů, které nejsou v párování), najít všechny defektní vrcholy a věta výše platí (máme množinu defektních vrcholů a párování splňující rovnost).
 
 Pro **nebipartitní grafy** může existovat hrana mezi \(B-B\) vrcholy (lichá kružnice).
 
-{% math observation %}\(C\) lichá kružnice v \(G\), \(G'\) vznikne kontrakcí \(C\) do jednoho (pseudo)vrcholu, \(M'\) je párování v \(G'\). Potom existuje párování \(M\) v \(G\), že počet \(M'\)-nepokrytých vrcholů je stejný jako počet \(M\)-nepokrytých.
+{% math observation %}nechť \(C\) lichá kružnice v \(G\), \(G'\) vznikne kontrakcí \(C\) do jednoho (pseudo)vrcholu a \(M'\) je párování v \(G'\). Potom existuje párování \(M\) v \(G\), že počet \(M'\)-nepokrytých vrcholů je stejný jako počet \(M\)-nepokrytých.
 {% endmath %}
 
-TODO: obrázek
-
-Podgrafy \(G\) reprezentované pseudovycholy mají lichý počet vrcholů (chceme opět dostat \(M\) a \(A\), abychom větu dokázali). To platí, protože pseudovrcholy vzinkly kontrakcí liché kružnice na vrchol a tedy přišly o sudý počet vrcholů.
+Podgrafy \(G\) reprezentované pseudovycholy mají lichý počet vrcholů (chceme opět dostat \(M\) a \(A\), abychom větu dokázali). To platí, protože pseudovrcholy vznikly kontrakcí liché kružnice na vrchol a tedy přišly o sudý počet vrcholů.
 
 Postup pro \(B-B\) hrany je tedy ten, že zkontrahujeme \(C\), rekurzivně vyřešíme párování a odkontrahujeme.
 {% endmath %}
