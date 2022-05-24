@@ -51,8 +51,8 @@ Pak podmínka dědičnosti říká, že acyklické podgrafy jsou rovněž acykli
 1. **vektorový matroid**:
 	- nechť \(M\) je matice nad tělesem \(\mathbb{F}\) s řádky \(C\)
 	- \(\mathcal{V}_M = (C, \mathcal{S})\), kde
-		- \(A \in \mathcal{S} \iff A \in C\) a \(A\) je lineárně nezávislé v \(\mathbb{F}\)
-		- to, že je to matroid vyplývá ze Steinitzovy věty
+		- \(A \in \mathcal{S} \iff A \subseteq C\) je lineárně nezávislá v \(\mathbb{F}\)
+		- 3' vyplývá přímo ze Steinitzovy věty o výměně, zbytek přímo z definice
 2. **grafový matroid**:
 	- mějme graf \(G = (V, E)\)
 	- \(\mathcal{M}_G = (E, \mathcal{S})\), kde
@@ -60,6 +60,10 @@ Pak podmínka dědičnosti říká, že acyklické podgrafy jsou rovněž acykli
 		- \((1):\) \(\emptyset \in \mathcal{S}\)
 		- \((2):\) podmnožina acyklické je rovněž acyklická
 		- \((3):\) počítání přes to, kolik hran je v komponentách souvislosti
+3. **Fanova rovina**:
+	- za \(X\) uvážíme body Fanovy roviny a za báze trojprvkové množiny bodů neležící na jedné přímce (v rámci Fanovy roviny -- kružnice uprostřed je také přímka)
+
+![](/assets/diskretni-a-spojita-optimalizace/fano.svg)
 {% endmath %}
 
 ##### Grafy a matroidy
@@ -106,12 +110,10 @@ V řeči grafů chceme pro libovolnou množinu hran (prvků podmnožin) vrátit 
 - \((\mathrm{R1})\): max. nezávislá podmnožina \(\emptyset\) je \(\emptyset\) a \(|\emptyset| = \emptyset\)
 - \((\mathrm{R2})\): z definice řádové funkce a dědičnosti matroidu
 - \((\mathrm{R3})\): nechť \(B\) je max. nez. podmn. \(Y\) a \(\tilde{B}\) je max. nez. podmn. \(Y \cup \left\{y, z\right\}\) t.ž. \(B \subseteq \tilde{B}\)
-
-![](/assets/diskretni-a-spojita-optimalizace/charakteristika-proof.svg)
-
-- pokud \(|B| = |\tilde{B}|\), pak platí \(\mathrm{R3}\)
-- jinak \(B \subsetneq \tilde{B}\), BUNO například \(y \in \tilde{B}\)
-	- \(B \cup \left\{y\right\}\) je nezávislá a \(r(Y) < r(Y \cup \left\{y\right\})\) a předpoklad implikace v \(\mathrm{R3}\) neplatí
+   ![](/assets/diskretni-a-spojita-optimalizace/charakteristika-proof.svg)
+   - pokud \(|B| = |\tilde{B}|\), pak platí \(\mathrm{R3}\)
+   - jinak \(B \subsetneq \tilde{B}\), BUNO například \(y \in \tilde{B}\)
+      - \(B \cup \left\{y\right\}\) je nezávislá a \(r(Y) < r(Y \cup \left\{y\right\})\) a předpoklad implikace v \(\mathrm{R3}\) neplatí
 {% endmath %}
 
 {% math proof "\(\Leftarrow\)" %} 
@@ -135,7 +137,7 @@ r(V) &= r(V \cup \left\{x\right\}) = r(V \cup \left\{y\right\}) \\
 &\Rightarrow r(V \cup (U \setminus V)) = r(U \cup V) \ge r(U) = |U| & ↯
 \end{aligned}\]
 
-{% math remark "Tomovo alternativní důkaz 2" %}díky R2 víme, že odebráním prvku z \(A\) se může \(r(A)\) buď o 1 snížit, nebo zůstat stejný. Zůstat stejný být však nemůže (z definice řádové funkce), musí se tedy o \(1\) snížit a v tom případě je rovněž v \(\mathcal{S}\).
+{% math remark "alternativní znění důkazu 2" %}díky R2 víme, že odebráním prvku z \(A\) se může \(r(A)\) buď o 1 snížit, nebo zůstat stejný. Zůstat stejný být však nemůže (z definice řádové funkce), musí se tedy o \(1\) snížit a v tom případě je rovněž v \(\mathcal{S}\).
 {% endmath %}
 
 {% endmath %}
@@ -150,11 +152,8 @@ r(V) &= r(V \cup \left\{x\right\}) = r(V \cup \left\{y\right\}) \\
 - \((\mathrm{R1'})\): mějme \(Y \subseteq X\)
 	- \(r(Y) \ge 0\) (funkce je definována na \(\mathbb{N}\))
 	- \(r(Y) \le |Y|\) (max. nezávislá množina je z definice menší než její množina)
-- \((\mathrm{R2'})\): mějme \(Z \subseteq Y \subseteq X\)
-	- uvažme max. nz. mn. \(A\) v \(Z\) a \(B\) v \(Y\) t.ž. \(A \subseteq B\) (výměnný axiom); pak \[r(Z) = |A| \le |B| = r(Y)\]
+- \((\mathrm{R2'})\): přímo vylývá z R2 (\(r(A) \le r(A \cup \left\{x\right\})\))
 {% endmath %}
-
-{% math remark "Tomovo alternativní důkaz R2'" %} mělo by přímo vylývat z R2 (\(r(A) \le r(A \cup \left\{x\right\})\)){% endmath %}
 
 {% math proof "\(\Rightarrow\) R3'" %}
 - \(A\) -- maximální nezávislá množina v \(Y \cap Z\)
@@ -225,8 +224,6 @@ To je skoro submodularita!
 {% math proof "\(\Rightarrow\)" %}platí přímo z definice submodularity (prostě tam dosadíme){% endmath %}
 
 {% math proof "\(\Leftarrow\)" %}dokazujeme \(* \implies\) submodularita. Chceme \[f(Y) + f(Z) \ge f(Y \cup Z) + f(Y \cap Z)\]
-
-Dokazujeme dle indukcí podle \(|Y \Delta Z|\) (symetrická diference množin):
 
 TODO: ošklivej důkaz
 {% endmath %}
@@ -327,6 +324,8 @@ Podobné jako mazání, ale chová se dost jinak (viz kontrakce/mazání hran v 
 ![](/assets/diskretni-a-spojita-optimalizace/sumcontex.svg)
 {% endmath %}
 
+**Sjednocení** -- zobecnění součtu. Definice je stejná, ale nepředpokládáme různé \(X_1, X_2\).
+
 **Partition matroid** -- nechť \(X_1, \ldots, X_n\) jsou disjunktní množiny a \(\mathcal{S}_i = \left\{A \subseteq X_i \mid |A| \le 1\right\}\). Pak \(\sum_{i} (X_i, \mathcal{S}_i)\) je partiční matroid.
 
 {% math theorem "kontrakce matroidu je matroid" %} nechť \(\mathcal{M} = (X, \mathcal{S})\) je matroid a \(A \subseteq X\). Pak \(\mathcal{M} \setminus A\) je matroid s řádovou funkcí
@@ -343,7 +342,7 @@ Podobné jako mazání, ale chová se dost jinak (viz kontrakce/mazání hran v 
 \(B \cup J\) je max. nezávislá podmnožina \(Z \cup A\) v \(\mathcal{M}\) a tedy \[\begin{aligned}
    	|B| + |J| &= r(Z \cup A) \\
    	|B| &= r(Z \cup A) - |J|  \\
-   	r'(Z) &= r(Z \cup A) - r(A)
+   	r'(Z) &= \underbrace{r(Z \cup A) - r(A)}_{\text{určený jednoznačně}}
    \end{aligned}\]
 {% endmath %}
 
@@ -357,13 +356,10 @@ Podobné jako mazání, ale chová se dost jinak (viz kontrakce/mazání hran v 
 	J \cap (X \setminus A) &\in \mathcal{S}_2 \implies |J \cap (X \setminus A)| \le r_2(X \setminus A)
 \end{aligned}\]
 A tedy
-\[|J| = |J \cap A| + |J \cap (X \setminus A) \le r_1(A) + r_2(X \setminus A)\]
+\[|J| = |J \cap A| + |J \cap (X \setminus A) | \le r_1(A) + r_2(X \setminus A)\]
 {% endmath %}
 
-{% math proof "\(\ge\)" %}TODO: tenhle důkaz je naprosto brutální{% endmath %}
-
-{% math theorem "sjednocení matroidů je matroid)" %} sjednocení matroidů (i pro nedisjunktní \(X_i\)) je matroid s řádovou funkcí \[r(U) = \min_{T} \left\{|U - T| + r_1(T \cap X_1) + \ldots + r_k(T \cap X_k)\right\}\]
-{% endmath %}
+{% math proof "\(\ge\)" %}TODO, tenhle důkaz je naprosto brutální{% endmath %}
 
 {% math consequence "obraz matroidu je matroid" %}mějme matroid \(\mathcal{M}' = (X', \mathcal{S}')\) a funkci \(f: X' \implies X\). Definujme \[\mathcal{S} = \left\{f[I] \mid I \in \mathcal{S}'\right\}\]
 Potom \((X, \mathcal{S})\) je také matroid a navíc platí \[U \subseteq X \implies r(U) = \min_{T \subseteq U} \left\{|U - T| + r'(f^{-1} (T))\right\}\]{% endmath %}
@@ -371,6 +367,9 @@ Potom \((X, \mathcal{S})\) je také matroid a navíc platí \[U \subseteq X \imp
 ![](/assets/diskretni-a-spojita-optimalizace/matroid-obraz.svg)
 
 {% math remark %}tvrzení by platilo triviálně, pokud by se jednalo o prostou funkci (tedy pouze přejmenování prvků matriodu). Zajímavé je to, že některé prvky se mohou zobrazit na jiné a nezávislé množiny se tak zmenší, ale struktura matroidu se zachová.
+{% endmath %}
+
+{% math theorem "sjednocení matroidů je matroid)" %} sjednocení matroidů (i pro nedisjunktní \(X_i\)) je matroid s řádovou funkcí \[r(U) = \min_{T} \left\{|U - T| + r_1(T \cap X) + \ldots + r_k(T \cap X_k)\right\}\]
 {% endmath %}
 
 ##### Dualita matroidu
@@ -400,7 +399,7 @@ Duální matroid grafového matroidu je matroid množin hran, které když odebe
 Nechť \(B\) je báze \(\mathcal{M}\) t.ž. \(Z \subseteq B\) a \(B \subseteq X - J\) (existuje, protože \(r(X) = r(X - J)\))
 
 Jestli existuje \(x \in (A - J) - B\), pak \(r(X - (J \cup \left\{x\right\})) = r(X)\) a \(J \cup \left\{x\right\} \in \mathcal{S}^*\) a \(J\) není maximální, díky čemuž \(J = A - B\). Rovněž platí \(Z = B - A\) (jinak můžeme rozšířit, což je spor) a tedy \[\begin{aligned}
-	r^*(A) = |J| &= |A \setminus B| \\
+	r^*(A) = |J| &= |A - B| \\
 	             &= |A| - |B \cap A| \\
 	             &= |A| - |B \cap (B - Z)| \\
 	    &= |A| - |B| + |Z| \\
@@ -463,12 +462,12 @@ V grafu jsou to kružnice.
 	- uvažme graf \(M \Delta M'\) -- stupně mají vrcholy nejvýše dva, komponenty jsou tedy buď alternující cykly nebo cesty -- díky tomu, že nám jedna hrana přebývá, tak alespoň jedna komponenta je cesta
 {% endmath %}
 
-{% math observation %} \(G = (V, E), A \subseteq V\). Pak v libovolném párování \(M\) musí být liché komponenty \(G \setminus A\) pokryté pouze z \(A\) (i v nejlepším zpárování v nich zbyde alespoň jeden volný vrchol) a tedy
-\[\mathrm{def}(M) \ge \mathrm{lc}(G \setminus A) - |A|\]
+{% math observation %} \(G = (V, E), A \subseteq V\). Pak v libovolném párování \(M\) musí být liché komponenty \(G - A\) pokryté pouze z \(A\) (i v nejlepším zpárování v nich zbyde alespoň jeden volný vrchol) a tedy
+\[\mathrm{def}(M) \ge \mathrm{lc}(G - A) - |A|\]
 Kde \(\mathrm{lc}\) značí počet lichých komponent grafu.
 {% endmath %}
 
-{% math observation %} \(G = (V, E)\). Pak \[\max_{\text{párování}\ M} |M| = \min_{\text{párování}\ M} \frac{1}{2} \left(|V| - \mathrm{def}(M)\right) \le \min_{A \subseteq V} \frac{1}{2} \left(|V| - \mathrm{lc}(G \setminus A) + |A|\right)\]
+{% math observation %} \(G = (V, E)\). Pak \[\max_{\text{párování}\ M} |M| = \min_{\text{párování}\ M} \frac{1}{2} \left(|V| - \mathrm{def}(M)\right) \le \min_{A \subseteq V} \frac{1}{2} \left(|V| - \mathrm{lc}(G - A) + |A|\right)\]
 kde první nerovnost plyne z úvahy, že největší párování minimalizuje defekt a druhá z dosazení pozorování výše.
 {% endmath %}
 
@@ -487,7 +486,7 @@ Najdeme algoritmem (Edmonds), který najde maximální párování
 	- zastavíme se, když:
 		- existuje \(w \not\in T, \{v, w\} \in E\) a \(w\) je nepokrytý -- pak jsme našli alternující cestu
 		- neexistuje \(w\)
-			- pokud je graf bipartitní, tak nemáme žádné \(B-B\) hrany a všechny zbývající hrany z \(B\)-vrcholů vedou do \(A\)-vrcholů -- poté když uvážíme \(G \setminus A\), tak liché komponenty vedou pouze do \(A\) vrcholů ale \(B\) je o jedna více (máme \(r\)), tedy \(|B| = |A| + 1\) a \(G\) nemá perfektní párování a **našli jsme defektní vrchol**
+			- pokud je graf bipartitní, tak nemáme žádné \(B-B\) hrany a všechny zbývající hrany z \(B\)-vrcholů vedou do \(A\)-vrcholů -- poté když uvážíme \(G - A\), tak liché komponenty vedou pouze do \(A\) vrcholů ale \(B\) je o jedna více (máme \(r\)), tedy \(|B| = |A| + 1\) a \(G\) nemá perfektní párování a **našli jsme defektní vrchol**
 
 Pro **bipartitní grafy** můžeme algoritmus výše opakovat (opakovaně stavíme stromy z vrcholů, které nejsou v párování), najít všechny defektní vrcholy a věta výše platí (máme množinu defektních vrcholů a párování splňující rovnost).
 
@@ -506,12 +505,12 @@ Postup pro \(B-B\) hrany je tedy ten, že zkontrahujeme \(C\), vyřešíme páro
 \(A\) může být i prázdné (eliminuje grafy s lichým počtem vrcholů).
 </div>
 
-{% math consequence "Tutte" %}\(G\) má perfektní párování právě tehdy, když \[\forall A \subseteq V: \mathrm{lc}(G \setminus A) \le |A|\]{% endmath %}
+{% math consequence "Tutte" %}\(G\) má perfektní párování právě tehdy, když \[\forall A \subseteq V: \mathrm{lc}(G - A) \le |A|\]{% endmath %}
 
 {% math proof %}vychází přímo z Tutte-Berge dosazením \(|M| = |V|/2\) (jedná se  o perfektní párování).{% endmath %}
 
-{% math theorem "Edmonds-Gallai dekompozice" %}\(G\) graf, \(G = (V, E)\), \(B \subseteq V\) vrcholů nepokrytých nějakým maximálním párovaním. Nechť \(A \subseteq V \setminus B\) sousedé vrcholů z \(B\), \(C = V \setminus \left(B \cup A\right)\). Pak
-1. každá komponenta \(G \setminus \left(A \cup C\right)\) je kritická (\(\forall v \in K: K \setminus \left\{v\right\}\) má perfektní párování)
+{% math theorem "Edmonds-Gallai dekompozice" %}\(G\) graf, \(G = (V, E)\), \(B \subseteq V\) vrcholů nepokrytých nějakým maximálním párovaním. Nechť \(A \subseteq V - B\) sousedé vrcholů z \(B\), \(C = V - \left(B \cup A\right)\). Pak
+1. každá komponenta \(G - \left(A \cup C\right)\) je kritická (\(\forall v \in K: K - \left\{v\right\}\) má perfektní párování)
 	- \(G\) kritický \(\iff\) \(G\) lze zkonstruovat z liché kružnice lepením lichých uší
 2. každé maximální párování \(M\) splňuje:
 	- \(e \in M, e \cap A \neq \emptyset \implies |e \cap A| = 1\) a \(e\) vede do \(B\)
