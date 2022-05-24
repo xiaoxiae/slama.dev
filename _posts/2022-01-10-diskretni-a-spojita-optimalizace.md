@@ -323,23 +323,31 @@ Podobné jako mazání, ale chová se dost jinak (viz kontrakce/mazání hran v 
 **Součet** -- pro matroidy \(\mathcal{M_1} = (X_1, \mathcal{S}_1), \mathcal{M_2} = (X_2, \mathcal{S}_2), X_1 \cap X_2 = \emptyset\)
 \[\mathcal{M}_1 + \mathcal{M}_2 = (X = X_1 \cup X_2, \left\{A \in X \mid A \cap X_1 \in \mathcal{S}_1 \land A \cap X_2 \in \mathcal{S}_2\right\})\]
 
-{:.rightFloatBox}
-<div markdown="1">
-Příklad je matroid bipartitního grafu, který vznikne součtem obou stran.
-</div>
+{% math example "součet a kontrakce v grafovém matroidu" %}
+![](/assets/diskretni-a-spojita-optimalizace/sumcontex.svg)
+{% endmath %}
 
 **Partition matroid** -- nechť \(X_1, \ldots, X_n\) jsou disjunktní množiny a \(\mathcal{S}_i = \left\{A \subseteq X_i \mid |A| \le 1\right\}\). Pak \(\sum_{i} (X_i, \mathcal{S}_i)\) je partiční matroid.
 
-{% math theorem "kontrakce matroidu je matroid" %} nechť \(\mathcal{M} = (X, \mathcal{S})\) je matroid a \(A \subseteq X\). Pak \(M \setminus A\) je matroid s řádovou funkcí
-\[Z \subseteq X \setminus A \implies r'(Z) = r(Z \cup A) - r(A)\]
+{% math theorem "kontrakce matroidu je matroid" %} nechť \(\mathcal{M} = (X, \mathcal{S})\) je matroid a \(A \subseteq X\). Pak \(\mathcal{M} \setminus A\) je matroid s řádovou funkcí
+\[r'(Z) = r(Z \cup A) - r(A)\]
 {% endmath %}
 
 {% math proof %}nechť \(J\) je max. nz. mn v \(A\) (viz definice kontrakce); ověříme axiomy
 1. \(\emptyset \in \mathcal{S} \iff \emptyset \cup J = J \in \mathcal{S}\), platí
 2. mějme \(Y \in \mathcal{S}'\) a \(Y' \subseteq Y\). Z definice víme \(Y \in \mathcal{S}' \implies Y \cup J \in \mathcal{S}\). Díky tomu, že \(Y' \cup J \subseteq Y \cup J \in \mathcal{S}\), tak rovněž \(Y' \cup J \in \mathcal{S}\) (definice matroidu) a tedy \(Y' \in \mathcal{S}'\)
+3. nechť \(Z \subseteq X \setminus A\), \(B \subseteq Z\) je max. nez. mn. v \(\mathcal{M} \setminus A\) a \(J\) max. nez. mn. v \(A\)
+
+![](/assets/diskretni-a-spojita-optimalizace/contproof.svg)
+
+\(B \cup J\) je max. nezávislá podmnožina \(Z \cup A\) v \(\mathcal{M}\) a tedy \[\begin{aligned}
+   	|B| + |J| &= r(Z \cup A) \\
+   	|B| &= r(Z \cup A) - |J|  \\
+   	r'(Z) &= r(Z \cup A) - r(A)
+   \end{aligned}\]
 {% endmath %}
 
-{% math theorem "Edmondsova MiniMaxová o průniku matroidů" %}nechť \(\mathcal{M}_1 = \left(X, \mathcal{S}_1\right)\) a \(\mathcal{M_2} = \left(X_{1!}, \mathcal{S_2}\right)\) jsou matroidy. Pak
+{% math theorem "Edmondsova MiniMaxová o průniku matroidů" %}nechť \(\mathcal{M}_1 = \left(X, \mathcal{S}_1\right)\) a \(\mathcal{M_2} = \left(X_{1}, \mathcal{S_2}\right)\) jsou matroidy. Pak
 \[\max \left\{|Y| \mid Y \in \mathcal{S_1} \cap \mathcal{S}_2\right\} = \min_{A \subseteq X} r_1(A) + r_2(X \setminus A)\]
 {% endmath %}
 
@@ -600,9 +608,7 @@ Je to taková množina vrcholů a hran, na kterou když se omezíme, tak všechn
 
 {% math definition "T-join" %}\(E' \subseteq E\) je \(T\)-join (pro množinu vrcholů \(T\)), pokud \(G_T = (V, E')\) platí \[\left(\forall v \in V\right) \left(\mathrm{deg}_{G_T} (v)\ \text{lichý} \iff v \in T\right)\]{% endmath %}
 
-{% math theorem %}nechť \(E' \subseteq E\) je množina hran min. trasy čínského pošťáka, které se projdou více než jednou. Pak
-- se projdou právě \(2\)-krát
-- \(E'\) je min. \(T\)-join (kde \(T\) je výše definovaná množina){% endmath %}
+{% math theorem %}nechť \(E' \subseteq E\) je množina hran min. trasy čínského pošťáka, které se projdou více než jednou. Pak se projdou **právě \(2\)-krát** a \(E'\) je **min. \(T\)-join** (kde \(T\) je výše definovaná množina).{% endmath %}
 {% endmath %}
 
 {% math proof %}
