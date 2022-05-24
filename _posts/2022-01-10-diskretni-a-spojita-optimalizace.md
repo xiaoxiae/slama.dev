@@ -367,14 +367,18 @@ Potom \((X, \mathcal{S})\) je také matroid a navíc platí \[U \subseteq X \imp
 
 ##### Dualita matroidu
 
-
 {:.rightFloatBox}
 <div markdown="1">
-Tady pozor na to, že definujeme báze a né nezávislé množiny (divil jsem se, že duál neobsahuje \(\emptyset\)).
+Duální matroid grafového matroidu je matroid množin hran, které když odebereme tak graf zůstane spojitý.
 </div>
 
-{% math definition "duální matroid" %}nechť \(\mathcal{M} = \left(X, \mathcal{S}\right)\) je matroid. Definujeme duální matroid jako \(\mathcal{M}^* = (X, \mathcal{S}^*)\) t.ž. \(B^*\) je báze \(\mathcal{M}^* \iff (X - B^*)\) je báze \(\mathcal{M}\).
+{% math definition "duální matroid" %}nechť \(\mathcal{M} = \left(X, \mathcal{S}\right)\) je matroid. Definujeme duální matroid jako \(\mathcal{M}^* = (X, \mathcal{S}^*)\) t.ž. \(B^*\) je báze \(\mathcal{M}^* \iff (X - B^*)\) je báze \(\mathcal{M}\) (s tím, že \(\mathcal{S}^*\) jsou všechny podmnožiny bází).
 {% endmath %}
+
+{% math observation %}nechť \(\mathcal{M}\) je matroid, \(\mathcal{M}^*\) jeho duál a \(A \subseteq X\). Pak \[r(X) = r(X \setminus A) \ \iff \ A \in \mathcal{S}^*\]
+{% endmath %}
+
+{% math proof %}\(A\) můžeme rozšířit na bázi \(B^*\) duálu, přičemž bude stále platit \(r(X - B^*) = r(X)\), protože \(X - B^*\) je báze \(\mathcal{M}\). Tohle můžeme dělat ikdyž jsme další větu ještě nedokázali, jelikož pro \(\mathcal{M}^*\) platí axiomy 1 a 2 matroidu, jelikož jsme ho definovali jako báze.{% endmath %}
 
 {% math theorem "duální matroid je matroid" %}nechť \(\mathcal{M}\) je matroid. Pak \(\mathcal{M}^*\) je také matroid a navíc platí \[r^*(A) = |A| - r(X) + r(X - A)\]
 {% endmath %}
@@ -385,14 +389,12 @@ Tady pozor na to, že definujeme báze a né nezávislé množiny (divil jsem se
 
 ![](/assets/diskretni-a-spojita-optimalizace/dualita-proof.svg)
 
-Nechť \(B\) je báze \(\mathcal{M}\) t.ž. \(Z \subseteq B\) a \(B \subseteq X - J\)
-- \(B\) existuje, protože \(r(X) = r(X - J)\) (z definice duálu, jelikož i kdybychom rozšířili \(J\) na bázi duálu \(B^*\), tak stejně bude platit \(r(X - B^*) = r(X)\))
+Nechť \(B\) je báze \(\mathcal{M}\) t.ž. \(Z \subseteq B\) a \(B \subseteq X - J\) (existuje, protože \(r(X) = r(X - J)\))
 
-Jestli existuje \(x \in (A - J) - B\), pak \(r(X - (J \cup \left\{x\right\})) = r(X)\)
-a \(J \cup \left\{x\right\} \in \mathcal{S}^*\) a \(J\) není maximální (opět z definice duality jako výše).
-
-Platí tedy \(J = A - B\) a rovněž platí \(Z = B - A\) (jinak můžeme rozšířit, což je spor) a tedy \[\begin{aligned}
-	r^*(A) = |J| &= |A| - |B \cap A| \\
+Jestli existuje \(x \in (A - J) - B\), pak \(r(X - (J \cup \left\{x\right\})) = r(X)\) a \(J \cup \left\{x\right\} \in \mathcal{S}^*\) a \(J\) není maximální, díky čemuž \(J = A - B\). Rovněž platí \(Z = B - A\) (jinak můžeme rozšířit, což je spor) a tedy \[\begin{aligned}
+	r^*(A) = |J| &= |A \setminus B| \\
+	             &= |A| - |B \cap A| \\
+	             &= |A| - |B \cap (B - Z)| \\
 	    &= |A| - |B| + |Z| \\
 	    &= |A| - r(X) + r(X - A)
 \end{aligned}\]
@@ -404,7 +406,7 @@ Platí tedy \(J = A - B\) a rovněž platí \(Z = B - A\) (jinak můžeme rozš�
 
 {:.rightFloatBox}
 <div markdown="1">
-U grafů jsou to opravdu kružnice.
+V grafu jsou to kružnice.
 </div>
 
 {% math definition "kružnice" %}nechť \(\mathcal{M}\) je matroid. Pak \(Y \subseteq X\) je kružnice, je-li minimální (\(\subseteq\)) **závislá** množina.{% endmath %}
@@ -418,7 +420,7 @@ U grafů jsou to opravdu kružnice.
 {% math proof "\(\Leftarrow\)" %}opět sporem nechť \(Y\) je minimální množina (do inkluze) protínající každou bázi, ale není cokružnice. Rozebereme případy toho, co může být (chceme, aby byla minimálně nezávislá):
 - \(Y\) je nezávislá v \(M^*\) (a tedy \(r(X) = r(X - Y)\))
 	- pak existuje báze \(B \subseteq X - Y\) v \(\mathcal{M}\), což je spor s tím, že protíná každou bázi
-- \(\exists y \in Y\) t.ž. \(Y \setminus \left\{y\right\}\) je závislá v \(M^*\):
+- \(Y\) není minimálně nezávislá (tedy \(\exists y \in Y\) t.ž. \(Y \setminus \left\{y\right\}\) je závislá v \(M^*\)):
 	- \((Y \setminus \left\{y\right\}) \not\in \mathcal{S}^*\)
 	- \(r(X) > r(X - (Y \setminus \left\{y\right\}))\)
 	- \(Y \setminus \left\{y\right\}\) protíná každou bázi, což je spor s minimalitou
@@ -488,10 +490,17 @@ Pro **nebipartitní grafy** může existovat hrana mezi \(B-B\) vrcholy (lichá 
 
 Podgrafy \(G\) reprezentované pseudovycholy mají lichý počet vrcholů (chceme opět dostat \(M\) a \(A\), abychom větu dokázali). To platí, protože pseudovrcholy vznikly kontrakcí liché kružnice na vrchol a tedy přišly o sudý počet vrcholů.
 
-Postup pro \(B-B\) hrany je tedy ten, že zkontrahujeme \(C\), rekurzivně vyřešíme párování a odkontrahujeme.
+Postup pro \(B-B\) hrany je tedy ten, že zkontrahujeme \(C\), vyřešíme párování a odkontrahujeme.
 {% endmath %}
 
-{% math consequence "Tutte [47]" %}\(G\) má perfektní párování \(\iff \forall A \subset V: \mathrm{lc}(G \setminus A) \le |A|\){% endmath %}
+{:.rightFloatBox}
+<div markdown="1">
+\(A\) může být i prázdné (eliminuje grafy s lichým počtem vrcholů).
+</div>
+
+{% math consequence "Tutte" %}\(G\) má perfektní párování právě tehdy, když \[\forall A \subseteq V: \mathrm{lc}(G \setminus A) \le |A|\]{% endmath %}
+
+{% math proof %}vychází přímo z Tutte-Berge dosazením \(|M| = |V|/2\) (jedná se  o perfektní párování).{% endmath %}
 
 {% math theorem "Edmonds-Gallai dekompozice" %}\(G\) graf, \(G = (V, E)\), \(B \subseteq V\) vrcholů nepokrytých nějakým maximálním párovaním. Nechť \(A \subseteq V \setminus B\) sousedé vrcholů z \(B\), \(C = V \setminus \left(B \cup A\right)\). Pak
 1. každá komponenta \(G \setminus \left(A \cup C\right)\) je kritická (\(\forall v \in K: K \setminus \left\{v\right\}\) má perfektní párování)
@@ -582,13 +591,18 @@ Postup důkazu:
 	- {% math observation %}když \(H = (W, F)\) má všechny stupně sudé a \(F \neq \emptyset\) je neprázdná, pak \(F\) má cyklus; odstraněním cyklu má opět všechny stupně sudé; opakováním dostaneme disjunktní sjednocení cyklů, což jde do eulerovského tahu udělat trivialně{% endmath %}
 2. nechť \(T = \left\{v \mid \mathrm{deg}_G(v)\ \text{lichý}\right\}\)
 
-{% math observation %}\(|T|\) je sudé (počet vrcholů lichého stupně je sudý){% endmath %}
+{% math observation %}\(|T|\) je sudé (součet stupňů je sudý){% endmath %}
 
-{% math definition "T-join" %}\(E' \subseteq E\) je \(T\)-join, jestli graf \(G_T = (V, E')\) splňuje \[\left(\forall v \in V\right) \left(\mathrm{deg}_{G_T} (v)\ \text{lichý} \iff v \in T\right)\]{% endmath %}
+{:.rightFloatBox}
+<div markdown="1">
+Je to taková množina vrcholů a hran, na kterou když se omezíme, tak všechny stupně vrcholů v \(T\) jsou liché a ostatní jsou sudé.
+</div>
+
+{% math definition "T-join" %}\(E' \subseteq E\) je \(T\)-join (pro množinu vrcholů \(T\)), pokud \(G_T = (V, E')\) platí \[\left(\forall v \in V\right) \left(\mathrm{deg}_{G_T} (v)\ \text{lichý} \iff v \in T\right)\]{% endmath %}
 
 {% math theorem %}nechť \(E' \subseteq E\) je množina hran min. trasy čínského pošťáka, které se projdou více než jednou. Pak
-1. se projdou \(2\)-krát
-2. \(E'\) je min. \(T\)-join (kde \(T\) je výše definovaná množina){% endmath %}
+- se projdou právě \(2\)-krát
+- \(E'\) je min. \(T\)-join (kde \(T\) je výše definovaná množina){% endmath %}
 {% endmath %}
 
 {% math proof %}
