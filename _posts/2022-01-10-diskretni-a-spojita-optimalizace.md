@@ -127,13 +127,17 @@ Ukážeme, že \(\left(X, \mathcal{S}\right)\) je matroid:
 	&< |A'| + |A \setminus A'| \\
 	&= |A| \implies A \not\in \mathcal{S} & ↯
 \end{aligned}\]
-1. pro spor předpokládejme, že \(\exists U, V \in \mathcal{S}\) t.ž. \(|U| > |V|\) ale \(\forall x \in U \setminus V: V \cup \left\{x\right\} \not\in \mathcal{S}\)
+3. pro spor předpokládejme, že \(\exists U, V \in \mathcal{S}\) t.ž. \(|U| > |V|\) ale \(\forall x \in U \setminus V: V \cup \left\{x\right\} \not\in \mathcal{S}\)
 	- přes \(\mathrm{R3}\) získáváme \((\forall x, y \in U \setminus V)\):
 \[\begin{aligned}
 r(V) &= r(V \cup \left\{x\right\}) = r(V \cup \left\{y\right\}) \\
-&\Rightarrow r(V \cup \left\{x, y\right\}) & \mathrm{R3}\\
-&\Rightarrow r(V \cup (U \setminus V)) = r(U \cup V) \ge r(U) = |U| ↯
+&\Rightarrow r(V \cup \left\{x, y\right\}) & \quad \mathrm{R3}\\
+&\Rightarrow r(V \cup (U \setminus V)) = r(U \cup V) \ge r(U) = |U| & ↯
 \end{aligned}\]
+
+{% math remark "Tomovo alternativní důkaz 2" %}díky R2 víme, že odebráním prvku z \(A\) se může \(r(A)\) buď o 1 snížit, nebo zůstat stejný. Zůstat stejný být však nemůže (z definice řádové funkce), musí se tedy o \(1\) snížit a v tom případě je rovněž v \(\mathcal{S}\).
+{% endmath %}
+
 {% endmath %}
 
 {% math theorem "řádová funkce a submodularita" %} \(r : 2^X \mapsto \mathbb{N}\) je řádová funkce matroidu \(\iff\)
@@ -142,7 +146,17 @@ r(V) &= r(V \cup \left\{x\right\}) = r(V \cup \left\{y\right\}) \\
 - \((\mathrm{R3'}\ \text{-- submodularita}): r(Y \cup Z) + r(Y \cap Z) \le r(Y) + r(Z)\)
 {% endmath %}
 
-{% math proof "\(\Rightarrow\) submodularita" %}
+{% math proof "\(\Rightarrow\) R1' a R2'" %}
+- \((\mathrm{R1'})\): mějme \(Y \subseteq X\)
+	- \(r(Y) \ge 0\) (funkce je definována na \(\mathbb{N}\))
+	- \(r(Y) \le |Y|\) (max. nezávislá množina je z definice menší než její množina)
+- \((\mathrm{R2'})\): mějme \(Z \subseteq Y \subseteq X\)
+	- uvažme max. nz. mn. \(A\) v \(Z\) a \(B\) v \(Y\) t.ž. \(A \subseteq B\) (výměnný axiom); pak \[r(Z) = |A| \le |B| = r(Y)\]
+{% endmath %}
+
+{% math remark "Tomovo alternativní důkaz R2'" %} mělo by přímo vylývat z R2 (\(r(A) \le r(A \cup \left\{x\right\})\)){% endmath %}
+
+{% math proof "\(\Rightarrow\) R3'" %}
 - \(A\) -- maximální nezávislá množina v \(Y \cap Z\)
 - \(A_Y\) -- maximální nezávislá množina v \(Y\) t.ž. \(A \subseteq A_Y\) (nějaká taková existuje)
 - \(A_Z\) -- maximální nezávislá množina v \(Y\) t.ž. \(A \subseteq A_Z\) (nějaká taková existuje)
@@ -167,15 +181,6 @@ Nyní můžeme dokončit důkaz:
 	r(Y \cup Z) &\le |A_Y| + |A_Z \setminus Y| \\
 	& \le |A_Y \cup A_Z|
 \end{aligned}\]
-{% endmath %}
-
-
-{% math proof "\(\Rightarrow\) R1' a R2'" %}
-- \((\mathrm{R1'})\): mějme \(Y \subseteq X\)
-	- \(r(Y) \ge 0\) (funkce je definována na \(\mathbb{N}\))
-	- \(r(Y) \le |Y|\) (max. nezávislá množina je z definice menší než její množina)
-- \((\mathrm{R2'})\): mějme \(Z \subseteq Y \subseteq X\)
-	- uvažme max. nz. mn. \(A\) v \(Z\) a \(B\) v \(Y\) t.ž. \(A \subseteq B\) (výměnný axiom); pak \[r(Z) = |A| \le |B| = r(Y)\]
 {% endmath %}
 
 {% math proof "matroid \(\Leftarrow\) R1', R2', R3'" %}ukážeme \(\mathrm{R1, R2, R3}\)
@@ -208,10 +213,25 @@ Mějme množinu \(X\) a funkce \(f: 2^X \mapsto \mathbb{N} \). Pak \(\forall x \
 
 {% math theorem "marginální hodnota a submodularita" %} \(f: 2^X \mapsto \mathbb{N}\) je submodulární \(\iff \forall x \in X: \Delta f_x\) je nerostoucí
 - nerostoucí myslíme následně: \(T' \subseteq T, x \not\in T \implies \Delta f_x(T') \ge \Delta f_x(T)\)
-	- dává to smysl -- při odebrání věci nechceme, aby ohodnocení stoupalo
+	- menším množinám záleží (oproti větším) víc na přidání prvku, který nemají
 {% endmath %}
 
-{% math proof %}TODO{% endmath %}
+{% math proof %}Je-li \(f\) nerostoucí, pak \(\forall U, y, z\) platí \[\underbrace{f(U \cup \left\{y, z\right\}) - f(U \cup \left\{y\right\})}_{\Delta f_z(U \cup \left\{y\right\})} \le \underbrace{f(U \cup \left\{z\right\}) - f(U)}_{\Delta f_z(U)}\]
+
+Tedy \(f\) je nerostoucí \(\iff \forall U \subseteq X\) a \(y, z \in X \setminus U\) platí \[f(\underbrace{U \cup \left\{y\right\}}_{A}) + f(\underbrace{U \cup \left\{z\right\}}_{B}) \ge f(\underbrace{U \cup \left\{y, z\right\}}_{A \cup B}) + f(\underbrace{U}_{A \cap B}) \qquad *\]
+
+To je skoro submodularita!
+
+{% math proof "\(\Rightarrow\)" %}platí přímo z definice submodularity (prostě tam dosadíme){% endmath %}
+
+{% math proof "\(\Leftarrow\)" %}dokazujeme \(* \implies\) submodularita. Chceme \[f(Y) + f(Z) \ge f(Y \cup Z) + f(Y \cap Z)\]
+
+Dokazujeme dle indukcí podle \(|Y \Delta Z|\) (symetrická diference množin):
+
+TODO: ošklivej důkaz
+{% endmath %}
+
+{% endmath %}
 
 ##### Hladový algoritmus
 
@@ -245,7 +265,7 @@ V takovém případě hladový algoritmus najde \(U\), ikdyž \(V\) je menší.
 
 {% math proof "\(\Leftarrow\)" %} nejprve dokážeme pomocné lemma.
 
-{% math lemma %}mějme \(w_1 \ge \ldots \ge w_n\), \(m \le n\) maximální t.ž. \(w_m > 0\), množiny \(T_i \subseteq \left\{0, 1\right\}^i\) a \(z'\) je **charakteristický vektor výsledku HA** (rozumíme tím, že je to \(0/1\) vektor podle toho, které prvky HA vybral). Pak \(\forall i\) platí \[z'(T_i) = \sum_{i \in T_i} z'_i = r(T_i)\]
+{% math lemma %}mějme \(w_1 \ge \ldots \ge w_n\), \(m \le n\) maximální t.ž. \(w_m > 0\), množiny \(T_i \subseteq \left\{0, 1\right\}^i\) a \(z'\) je **charakteristický vektor výsledku HA** (rozumíme tím, že je to \(0/1\) vektor podle toho, které prvky HA vybral s tím, že jsou setřízené podle \(w\)). Pak \(\forall i\) platí \[z'(T_i) = \sum_{i \in T_i} z'_i = r(T_i)\]
 {% endmath %}
 
 {% math proof %}
@@ -339,6 +359,11 @@ A tedy
 
 {% math consequence "obraz matroidu je matroid" %}mějme matroid \(\mathcal{M}' = (X', \mathcal{S}')\) a funkci \(f: X' \implies X\). Definujme \[\mathcal{S} = \left\{f[I] \mid I \in \mathcal{S}'\right\}\]
 Potom \((X, \mathcal{S})\) je také matroid a navíc platí \[U \subseteq X \implies r(U) = \min_{T \subseteq U} \left\{|U - T| + r'(f^{-1} (T))\right\}\]{% endmath %}
+
+![](/assets/diskretni-a-spojita-optimalizace/matroid-obraz.svg)
+
+{% math remark %}tvrzení by platilo triviálně, pokud by se jednalo o prostou funkci (tedy pouze přejmenování prvků matriodu). Zajímavé je to, že některé prvky se mohou zobrazit na jiné a nezávislé množiny se tak zmenší, ale struktura matroidu se zachová.
+{% endmath %}
 
 ##### Dualita matroidu
 
