@@ -331,11 +331,29 @@ p = Popen(
     stdout=PIPE,
     stderr=PIPE,
 )
+
+def cleanup():
+    if os.path.exists(TEMP_LATEX_PATH):
+        os.remove(TEMP_LATEX_PATH)
+
+    for file in glob.glob(stripped_name + ".*"):
+        os.remove(file)
+
+    for file in glob.glob("_minted*"):
+        shutil.rmtree(file)
+
+    if os.path.exists("svg-inkscape"):
+        shutil.rmtree("svg-inkscape")
+
+with open(CACHE_FOLDER, "w") as f:
+    f.write(yaml.dump(config))
+
 result = p.communicate()
 if p.returncode:
     print("ERROR during converting form Markdown to LaTeX:")
     for line in result[1]:
         print(f"| {line}")
+    cleanup()
     quit()
 
 p = Popen(
@@ -349,24 +367,11 @@ if p.returncode:
     print("ERROR during generating a PDF:")
     for line in result[1].decode().splitlines():
         print(f"| {line}")
+    cleanup()
     quit()
 
 os.rename(pdf_name, pdf_path)
 
-# cleanup
-if os.path.exists(TEMP_LATEX_PATH):
-    os.remove(TEMP_LATEX_PATH)
-
-for file in glob.glob(stripped_name + ".*"):
-    os.remove(file)
-
-for file in glob.glob("_minted*"):
-    shutil.rmtree(file)
-
-if os.path.exists("svg-inkscape"):
-    shutil.rmtree("svg-inkscape")
-
-with open(CACHE_FOLDER, "w") as f:
-    f.write(yaml.dump(config))
+cleanup()
 
 print(f" generated.", flush=True)
