@@ -5,7 +5,7 @@ XOPP = $(shell find _includes/ -type f -name '*.xopp')
 SVG  = $(patsubst %.xopp, %.svg, $(XOPP))
 
 
-all: stash build upload unstash
+all: build upload
 
 stash:
 	git stash --include-untracked
