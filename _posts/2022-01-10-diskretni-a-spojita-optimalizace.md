@@ -68,8 +68,6 @@ Pak podmínka dědičnosti říká, že acyklické podgrafy jsou rovněž acykli
 
 ##### Grafy a matroidy
 
-{% math algorithm "hladový" %}je-li dán souvislý graf \(G = (V, E)\) a váhová funkce \(w : E \mapsto \mathbb{Q}^+\), pak **MST** (minimum spanning tree) lze najít hladovým algoritmem (bereme vždy nejlehčí kterou můžeme přidat) v polynomiálním čase.{% endmath %}
-
 {% math definition "sudá podmnožina hran" %} podmnožina hran \(E' \subseteq E\) je sudá, právě když \(H = (V, E')\) má pouze sudé stupně.{% endmath %}
 
 {% math definition: "matice incidence" %} grafu \(G = (V, E)\) je matice \(I_G \in \mathbb{F}_2^{|V| \times |E|}\) t.ž. \[\left(I_G\right)_{v,e}=\begin{cases} 1 & v \in e \\ 0 & \text{jinak} \end{cases}\]{% endmath %}
@@ -99,7 +97,7 @@ V řeči grafů chceme pro libovolnou množinu hran (prvků podmnožin) vrátit 
 \[r(A) = \max \left\{|X| \mid X \in 2^A \land X \in \mathcal{S}\right\}\]
 {% endmath %}
 
-{% math theorem "charakteristika řádové funkce" %}funkce \(r : 2^X \mapsto N\) je řádová funkce nějakého matroidu nad \(X\) právě tehdy, když platí:
+{% math theorem "řádová funkce matroidu" %}funkce \(r : 2^X \mapsto N\) je řádová funkce nějakého matroidu nad \(X\) právě tehdy, když platí:
 - \((\mathrm{R1})\): \(r(\emptyset) = 0\)
 - \((\mathrm{R2})\): \(r(Y) \le r(Y \cup \left\{y\right\}) \le r(Y) + 1\)
 - \((\mathrm{R3})\): \(r(Y \cup \left\{y\right\}) = r(Y \cup \left\{z\right\}) = r(Y) \implies r(Y) = r(Y \cup \left\{y ,z\right\})\)
@@ -110,10 +108,12 @@ V řeči grafů chceme pro libovolnou množinu hran (prvků podmnožin) vrátit 
 - \((\mathrm{R1})\): max. nezávislá podmnožina \(\emptyset\) je \(\emptyset\) a \(|\emptyset| = \emptyset\)
 - \((\mathrm{R2})\): z definice řádové funkce a dědičnosti matroidu
 - \((\mathrm{R3})\): nechť \(B\) je max. nez. podmn. \(Y\) a \(\tilde{B}\) je max. nez. podmn. \(Y \cup \left\{y, z\right\}\) t.ž. \(B \subseteq \tilde{B}\)
-   ![](/assets/diskretni-a-spojita-optimalizace/charakteristika-proof.svg)
-   - pokud \(|B| = |\tilde{B}|\), pak platí \(\mathrm{R3}\)
-   - jinak \(B \subsetneq \tilde{B}\), BUNO například \(y \in \tilde{B}\)
-      - \(B \cup \left\{y\right\}\) je nezávislá a \(r(Y) < r(Y \cup \left\{y\right\})\) a předpoklad implikace v \(\mathrm{R3}\) neplatí
+
+![](/assets/diskretni-a-spojita-optimalizace/charakteristika-proof.svg)
+
+Pokud \(|B| = |\tilde{B}|\), pak platí \(\mathrm{R3}\)
+- jinak \(B \subsetneq \tilde{B}\), BUNO například \(y \in \tilde{B}\)
+   - \(B \cup \left\{y\right\}\) je nezávislá a \(r(Y) < r(Y \cup \left\{y\right\})\) a předpoklad implikace v \(\mathrm{R3}\) neplatí
 {% endmath %}
 
 {% math proof "\(\Leftarrow\)" %} 
@@ -247,6 +247,8 @@ TODO: ošklivej důkaz
 3. vrať \(J\)
 {% endmath %}
 
+{% math observation %}algoritmus je polynomiální (pro rozumné předpoklady na reprezentaci matroidu).{% endmath %}
+
 {% math observation %}pro výše uvedené příklady nemusí algoritmus vrátit optimální řešení.{% endmath %}
 
 {% math theorem "hladový algoritmus na matroidech" %}nechť \((X, \mathcal{S})\) je dědičný množinový systém a \(\emptyset \in \mathcal{S}\). Pak hladový algoritmus vyřeší správně úlohu kombinatorické optimalizace pro **každou funkci** \(w \iff (X, \mathcal{S})\) je matroid.{% endmath %}
@@ -257,7 +259,7 @@ Jelikož \((X, \mathcal{S})\) není matroid, tak neplatí \(3, 3'\) a tedy \(\ex
 
 ![](/assets/diskretni-a-spojita-optimalizace/ha-spor.svg)
 
-V takovém případě hladový algoritmus najde \(U\), ikdyž \(V\) je menší.
+V takovém případě hladový algoritmus najde \(U\), ikdyž \(V\) je větší.
 {% endmath %}
 
 {% math proof "\(\Leftarrow\)" %} nejprve dokážeme pomocné lemma.
@@ -373,7 +375,7 @@ Potom \((X, \mathcal{S})\) je také matroid a navíc pro \(U \subseteq T\) plat�
 
 ![](/assets/diskretni-a-spojita-optimalizace/matroid-obraz.svg)
 
-{% math remark %}tvrzení by platilo triviálně, pokud by se jednalo o prostou funkci (tedy pouze přejmenování prvků matriodu). Zajímavé je to, že některé prvky se mohou zobrazit na jiné a nezávislé množiny se tak zmenší, ale struktura matroidu se zachová.
+{% math remark %}tvrzení by platilo triviálně, pokud by se jednalo o prostou funkci (tedy pouze přejmenování prvků matriodu). Zajímavé je to, že některé prvky se mohou zobrazit na jiné a nezávislé množiny se tak zmenší, ale matroidnost se zachová.
 {% endmath %}
 
 ##### Dualita matroidu
@@ -444,7 +446,7 @@ V grafu jsou to kružnice.
 #### Perfektní párování
 {% math remark %}o tomto tématu jsem vytvořil [YouTube video](https://www.youtube.com/watch?v=3roPs1Bvg1Q), které algoritmus shrnuje.{% endmath %}
 
-{% math definition "párování" %}\(G = (V, E)\) graf. Pak \(M \subseteq E\) je párovaní, jestliže \(\forall e \neq e' \in M\) platí \(e \cap e' = \emptyset\).{% endmath %}
+{% math definition "párování" %}nechť \(G = (V, E)\) graf. Pak \(M \subseteq E\) je párovaní \(\iff \forall e \neq e' \in M\) platí \(e \cap e' = \emptyset\).{% endmath %}
 
 {% math definition: "největší párování" %} pokud \(|M|\) je maximální.{% endmath %}
 
@@ -452,7 +454,7 @@ V grafu jsou to kružnice.
 
 {% math definition "perfektní párování" %}pokud \(|M| = |V| / 2\){% endmath %}
 
-{% math definition "pokrytí" %}vrchol je \(M\)-pokrytý, pokud je v nějaké hraně z párování, jinak je \(M\)-nepokrytý.{% endmath %}
+{% math definition "pokrytí" %}vrchol je \(M\)-pokrytý, pokud je v nějaké hraně z párování.{% endmath %}
 
 {% math definition: "defekt" %} \(\mathrm{def}(M)\) je počet \(M\)-nepokrytých vrcholů{% endmath %}
 
