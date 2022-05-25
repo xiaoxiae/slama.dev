@@ -117,7 +117,7 @@ V řeči grafů chceme pro libovolnou množinu hran (prvků podmnožin) vrátit 
 {% endmath %}
 
 {% math proof "\(\Leftarrow\)" %} 
-konstruujeme matroid s řádovou funkcí \(r\).
+z \(X\) konstruujeme matroid s řádovou funkcí \(r\).
 Matroid definujme jako \[\mathcal{M} = \left(X, \mathcal{S}\right)\quad\text{t.ž.}\quad A \in \mathcal{S} \iff |A| = r(A)\]
 
 Ukážeme, že \(\left(X, \mathcal{S}\right)\) je matroid:
@@ -232,7 +232,7 @@ TODO: ošklivej důkaz
 
 ##### Hladový algoritmus
 
-{% math definition "úloha kombinatorické optimalizace" %}je dán možinový systém \((X, \mathcal{S})\) a váhová funkce \(w : X \mapsto \mathbb{Q}\). **Úloha kombinatorické optimalizace** je najít \(A \in \mathcal{S}\) t.ž. \[w(A) = \sum_{v \in A} w(v) = w^T \chi_A\] je minimální. \(\chi_A\) je charakteristický vektor \(A\), který je \(1\) pro \(v \in A\) a \(0\) jindy.{% endmath %}
+{% math definition "úloha kombinatorické optimalizace" %}je dán možinový systém \((X, \mathcal{S})\) a váhová funkce \(w : X \mapsto \mathbb{Q}\). **Úloha kombinatorické optimalizace** je najít \(A \in \mathcal{S}\) t.ž. \[w(A) = \sum_{v \in A} w(v) = w^T \chi_A\] je **maximální** (\(\chi_A\) je charakteristický vektor \(A\), který je \(1\) pro \(v \in A\) a \(0\) jindy).{% endmath %}
 
 {% math example %}
 1. maximální párování v \(G\)
@@ -290,15 +290,31 @@ Nyní k původnímu důkazu: označíme \(z^*\) charakteristický vektor optima.
 
 \(*\) rovnost \(z_i^* = z_i^*(T_i) - z_i^*(T_{i - 1})\) platí, protože \(z_i^*(T_i)\) se zvýší právě tehdy, když charakteristický vektor získá novou \(1\) (konkrétně tu na pozici \(z_i^*\)).
 
-\(**\) tohle vypadá magicky, ale dává to smysl -- \(z^*(T_i)\) v jednom cyklu smyčky přičítáme a ve druhém odčítáme, tak jsme to jen posunuli do \(w_i - w_{i + 1}\), navíc také započteme poslední část součtu, na který se nedostane.
+\(**\) tohle vypadá magicky, ale dává to smysl -- \(z^*(T_i)\) v jednom cyklu smyčky přičítáme a ve druhém odčítáme, tak jsme to jen posunuli do \(w_i - w_{i + 1}\), navíc také započteme poslední část součtu, na který se nedostane. Navíc právě v tomhle kroku používáme **předpoklad setřízenosti.**
 
 Jelikož navíc triviálně \(w^T z* \ge w^T z'\) (je to optimum), tak věta platí.
 {% endmath %}
+
+{% math consequence "grafy" %}poštvání HA na grafový matroid vrátí maximální (minimální pro \(-w\)) kostru. Poštvání na duál vrátí maximální množinu hran, kterou když odstraníme tak graf zůstane souvislý.{% endmath %}
 
 {% math consequence "lineární programy" %}nechť \((X, \mathcal{S})\) je matroid a \(w \in \mathbb{Q}^X\). Pak HA vyřeší následující lineární program \[\max \sum_{i \in X} w_i z_i\] za podmínek \(z(A) \le r(A), z \ge 0\) pro \(\forall A \subseteq X\)
 {% endmath %}
 
 ##### Operace na matroidech
+
+**Součet** -- pro matroidy \(\mathcal{M_1} = (X_1, \mathcal{S}_1), \mathcal{M_2} = (X_2, \mathcal{S}_2), X_1 \cap X_2 = \emptyset\)
+\[\mathcal{M}_1 + \mathcal{M}_2 = (X = X_1 \cup X_2, \left\{A \in X \mid A \cap X_1 \in \mathcal{S}_1 \land A \cap X_2 \in \mathcal{S}_2\right\})\]
+
+{% math example "součet a kontrakce v grafovém matroidu" %}
+![](/assets/diskretni-a-spojita-optimalizace/sumcontex.svg)
+{% endmath %}
+
+**Sjednocení** -- zobecnění součtu. Definice je stejná, ale nepředpokládáme různé \(X_1, X_2\).
+
+{% math theorem "sjednocení matroidů je matroid)" %} sjednocení matroidů je matroid s řádovou funkcí \[r(U) = \min_{T \subseteq U} \left\{|U - T| + r_1(T \cap X_1) + \ldots + r_k(T \cap X_k)\right\}\]{% endmath %}
+
+{% math proof "náznak" %}matroidy zdisjunktníme (\(X'_i = X_i 
+\times \left\{i\right\}\)), sečteme a pak zobrazíme.{% endmath %}
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -316,17 +332,6 @@ Podobné jako mazání, ale chová se dost jinak (viz kontrakce/mazání hran v 
 
 **Kontrakce** -- nechť \(\mathcal{M} = (X, \mathcal{S})\) je matroid, \(A \subseteq X\) a \(J \in \mathcal{S}\) je max. nezávislá množina v \(A\). Pak
 \[\mathcal{M} \setminus A = \left(X - A, \left\{Z \subseteq X \mid Z \cup J \in \mathcal{S} \right\}\right)\]
-
-**Součet** -- pro matroidy \(\mathcal{M_1} = (X_1, \mathcal{S}_1), \mathcal{M_2} = (X_2, \mathcal{S}_2), X_1 \cap X_2 = \emptyset\)
-\[\mathcal{M}_1 + \mathcal{M}_2 = (X = X_1 \cup X_2, \left\{A \in X \mid A \cap X_1 \in \mathcal{S}_1 \land A \cap X_2 \in \mathcal{S}_2\right\})\]
-
-{% math example "součet a kontrakce v grafovém matroidu" %}
-![](/assets/diskretni-a-spojita-optimalizace/sumcontex.svg)
-{% endmath %}
-
-**Sjednocení** -- zobecnění součtu. Definice je stejná, ale nepředpokládáme různé \(X_1, X_2\).
-
-**Partition matroid** -- nechť \(X_1, \ldots, X_n\) jsou disjunktní množiny a \(\mathcal{S}_i = \left\{A \subseteq X_i \mid |A| \le 1\right\}\). Pak \(\sum_{i} (X_i, \mathcal{S}_i)\) je partiční matroid.
 
 {% math theorem "kontrakce matroidu je matroid" %} nechť \(\mathcal{M} = (X, \mathcal{S})\) je matroid a \(A \subseteq X\). Pak \(\mathcal{M} \setminus A\) je matroid s řádovou funkcí
 \[r'(Z) = r(Z \cup A) - r(A)\]
@@ -346,6 +351,8 @@ Podobné jako mazání, ale chová se dost jinak (viz kontrakce/mazání hran v 
    \end{aligned}\]
 {% endmath %}
 
+**Partition matroid** -- nechť \(X_1, \ldots, X_n\) jsou disjunktní množiny a \(\mathcal{S}_i = \left\{A \subseteq X_i \mid |A| \le 1\right\}\). Pak \(\sum_{i} (X_i, \mathcal{S}_i)\) je partiční matroid.
+
 {% math theorem "Edmondsova MiniMaxová o průniku matroidů" %}nechť \(\mathcal{M}_1 = \left(X, \mathcal{S}_1\right)\) a \(\mathcal{M_2} = \left(X_{1}, \mathcal{S_2}\right)\) jsou matroidy. Pak
 \[\max \left\{|Y| \mid Y \in \mathcal{S_1} \cap \mathcal{S}_2\right\} = \min_{A \subseteq X} r_1(A) + r_2(X \setminus A)\]
 {% endmath %}
@@ -362,14 +369,11 @@ A tedy
 {% math proof "\(\ge\)" %}TODO, tenhle důkaz je naprosto brutální{% endmath %}
 
 {% math consequence "obraz matroidu je matroid" %}mějme matroid \(\mathcal{M}' = (X', \mathcal{S}')\) a funkci \(f: X' \implies X\). Definujme \[\mathcal{S} = \left\{f[I] \mid I \in \mathcal{S}'\right\}\]
-Potom \((X, \mathcal{S})\) je také matroid a navíc platí \[U \subseteq X \implies r(U) = \min_{T \subseteq U} \left\{|U - T| + r'(f^{-1} (T))\right\}\]{% endmath %}
+Potom \((X, \mathcal{S})\) je také matroid a navíc pro \(U \subseteq T\) platí \[r(U) = \min_{T \subseteq U} \left\{|U - T| + r'(f^{-1} (T))\right\}\]{% endmath %}
 
 ![](/assets/diskretni-a-spojita-optimalizace/matroid-obraz.svg)
 
 {% math remark %}tvrzení by platilo triviálně, pokud by se jednalo o prostou funkci (tedy pouze přejmenování prvků matriodu). Zajímavé je to, že některé prvky se mohou zobrazit na jiné a nezávislé množiny se tak zmenší, ale struktura matroidu se zachová.
-{% endmath %}
-
-{% math theorem "sjednocení matroidů je matroid)" %} sjednocení matroidů (i pro nedisjunktní \(X_i\)) je matroid s řádovou funkcí \[r(U) = \min_{T} \left\{|U - T| + r_1(T \cap X) + \ldots + r_k(T \cap X_k)\right\}\]
 {% endmath %}
 
 ##### Dualita matroidu
@@ -407,6 +411,8 @@ Jestli existuje \(x \in (A - J) - B\), pak \(r(X - (J \cup \left\{x\right\})) = 
 \end{aligned}\]
 {% endmath %}
 
+{% math remark %}Matroid může být [duální sám sobě](https://en.wikipedia.org/wiki/Dual_matroid#Self-dual_matroids) (v tom smyslu, že \(\mathcal{M}_1\) a \(\mathcal{M}_2\) jsou izomorfní).{% endmath %}
+
 {% math definition "Cobáze, conezávislost" %}nechť \(\mathcal{M}\) je matroid a \(\mathcal{M}^*\) jeho duální matroid. Pak \(Y \subseteq X\) je
 - **cobáze**, pokud je báze v \(M^*\)
 - **conezávislá**, pokud je nezávislá v \(M^*\){% endmath %}
@@ -421,7 +427,7 @@ V grafu jsou to kružnice.
 {% math theorem %}\(Y \subseteq X\) je cokružnice (kružnice v duálu) \(\iff Y\) je min (\(\subseteq\)) protínající **každou bázi**.{% endmath %}
 
 
-{% math proof "\(\Rightarrow\)" %}sporem nechť \(Y \subseteq X\) je cokružnice ale \(\exists B\) báze \(\mathcal{M}\) t.ž. \(Y \cap B = \emptyset\). Pak \(Y \subseteq X - B\) ale z definice je \(X - B\) báze \(\mathcal{M}^*\), což je spor se závislostí \(Y\) v \(\mathcal{M^*}\)
+{% math proof "\(\Rightarrow\)" %}sporem nechť \(Y \subseteq X\) je cokružnice ale \(\exists B\) báze \(\mathcal{M}\) t.ž. \(Y \cap B = \emptyset\). Pak \(Y \subseteq X - B\) ale z definice je \(X - B\) báze \(\mathcal{M}^*\), což je spor se závislostí \(Y\) v \(\mathcal{M^*}\). Navíc kružnice je do inkluze minimální, takže minimalitu splňujeme taky.
 {% endmath %}
 
 {% math proof "\(\Leftarrow\)" %}opět sporem nechť \(Y\) je minimální množina (do inkluze) protínající každou bázi, ale není cokružnice. Rozebereme případy toho, co může být (chceme, aby byla minimálně nezávislá):
@@ -442,7 +448,7 @@ V grafu jsou to kružnice.
 
 {% math definition: "největší párování" %} pokud \(|M|\) je maximální.{% endmath %}
 
-{% math observation %}je rozdíl mezi maximálním párováním (počítá se do inkluze) a největším (počítá se do velikosti), jelikož si hrany můžeme hladově vybrat špatně.{% endmath %}
+{% math observation %}je rozdíl mezi maximálním párováním (počítá se do inkluze) a největším (počítá se do velikosti), jelikož si hrany můžeme hladově vybrat špatně (viz lichá cesta).{% endmath %}
 
 {% math definition "perfektní párování" %}pokud \(|M| = |V| / 2\){% endmath %}
 
