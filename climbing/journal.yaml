@@ -917,11 +917,11 @@
     new: 1
     old: 1
 2022-05-23:
-  location: Jungle
   blue:
     new: 3
   green:
     new: 2
+  location: Jungle
 2022-05-25:
   blue:
     old: 1
