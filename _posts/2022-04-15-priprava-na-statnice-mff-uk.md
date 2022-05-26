@@ -136,13 +136,13 @@ Z následujících 7 jsou 1-3 povinné a z 4-7 je třeba vybrat dvě témata (ta
 		{% stlink 🟧 Samoopravné kódy. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#samoopravn%C3%A9-k%C3%B3dy %}
 	{% endsttopic %}
 	{% sttopic Základy sítí | Sítě [[slidy](/assets/priprava-na-statnice-mff-uk/site.pdf)] 🃏 %}
-		<li> Taxonomie počítačových sítí.
-		<li> Architektura ISO/OSI.
-		<li> Přehled síťového modelu TCP/IP.
-		<li> Směrování.
-		<li> Koncept adresy, portu, socketu.
-		<li> Architektura klient/server.
-		<li> Základy fungování protokolů HTTP, FTP a SMTP.
+		<li> 🟧 Taxonomie počítačových sítí.
+		<li> 🟩 Architektura ISO/OSI.
+		<li> 🟩 Přehled síťového modelu TCP/IP.
+		<li> 🟧 Směrování.
+		<li> 🟩 Koncept adresy, portu, socketu.
+		<li> 🟩 Architektura klient/server.
+		<li> 🟩 Základy fungování protokolů HTTP, FTP a SMTP.
 	{% endsttopic %}
 	{% sttopic Diferenciální a integrální počet ve více rozměrech  | Matalýza 2 [[skripta](/assets/priprava-na-statnice-mff-uk/ma2.pdf)] 🃏 %}
 		{% stlink Riemannův integrál. | /assets/priprava-na-statnice-mff-uk/ma2.pdf#section.8 | /assets/priprava-na-statnice-mff-uk/ma2.pdf#section.9 %}
