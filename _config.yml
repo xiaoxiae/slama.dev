@@ -15,7 +15,7 @@ exclude: [
   "README.md",
   "climbing/journal.yaml",
   "climbing/videos.yaml",
-  "climbing/add_new_climbs.py",
+  "climbing/*.py",
   "assets/productivincrement.py"
 ]
 
