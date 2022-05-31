@@ -9,7 +9,7 @@ Tohle je naše hlenka Helenka.
 {:.center .no-invert}
 ![Obrázek hlenky.](/assets/hlenka-helenka-still.jpg)
 
-Pro kontext: jedná se o kolonii amoéb, která tím, jak postupně roste, tvoří mezi zdroji jídla nejkratší možná spojení. [Tento TED talk](https://www.ted.com/talks/heather_barnett_what_humans_can_learn_from_semi_intelligent_slime/transcript) moc hezky shrnuje nejpodstatnější informace o hlenkách.
+Jedná se o kolonii amoéb, která tím, jak postupně roste, tvoří mezi zdroji jídla nejkratší možná spojení. [Tento TED talk](https://www.ted.com/talks/heather_barnett_what_humans_can_learn_from_semi_intelligent_slime/transcript) moc hezky shrnuje nejpodstatnější informace o hlenkách.
 
 _Update (10. 3. 2021): do té doby, než se rozhodneme, co udělat s další hlenkou (jak upravit prostředí, aby nedělala spory, dařilo se jí a byla dobře vidět) je výše pouze statický obrázek toho, když hlenka vypadala nejlépe._
 
