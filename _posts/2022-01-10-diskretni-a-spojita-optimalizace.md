@@ -650,8 +650,10 @@ Navíc jelikož \(E(G') = E(G) \cup F\) je \(T\)-join, jelikož přesné splňuj
 Má [pěkná skripta](/assets/diskretni-a-spojita-optimalizace/spojita.pdf).
 
 ### Zkouška
+Na obou částech jsem si vytáhl okruh, o kterém jsem napsal co vím a pak jsem to se zkoušejícím probíral.
 
 #### Diskrétní část
+
 **Zkušební okruhy:**
 1. Matroidy: základní definice, příklady.
 2. Řádová funkce a submodularita.
