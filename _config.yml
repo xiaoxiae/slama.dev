@@ -16,6 +16,7 @@ exclude: [
   "climbing/journal.yaml",
   "climbing/videos.yaml",
   "climbing/*.py",
+  "*.xopp",
   "assets/productivincrement.py"
 ]
 
