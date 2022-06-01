@@ -7,13 +7,11 @@ css: statnice
 - .
 {:toc}
 
-Tento článek obsahuje mou přípravu na státní zkoušky z **Obecné informatiky** pro akademický rok **2021/2022** (tj. nová akreditace).
+Tento článek obsahuje mou přípravu na státní zkoušky z **Obecné informatiky** pro akademický rok **2021/2022** (tj. nová akreditace). Podrobné informace o všech specializacích (ze 24. května 2022) jsou k dispozici v [tomto PDF](/assets/priprava-na-statnice-mff-uk/pozadavky.pdf) (případně pouze pro Obecnou informatiku v [tomto PDF](/assets/priprava-na-statnice-mff-uk/pozadavky-obecna.pdf)).
 
-U každé časti tématu je jeden a více odkazů (🔗) na zdroje, ze kterých se téma učím.
-U předmětů jsou vždy odkazy na zdroje (ať už poznámky, slidy či skripta).
-Pokud je u předmětu symbol kartičky (🃏), tak je zahrnut v [tomto Anki balíčku](https://github.com/xiaoxiae/AnkiMFF), ze kterého může být dobré si předmět zopakovat.
-
-Symbol políčka 🟩/🟧 ignorujte -- jedná se o mé značení znalosti procházených témat.
+U každé časti tématu je jeden nebo více odkazů (🔗) na zdroje, ze kterých je možné se téma učit.
+U celých předmětů jsou vždy odkazy na zdroje (ať už se jedná poznámky, slidy či skripta).
+Pokud je u předmětu symbol kartičky (🃏), tak je zahrnut v [tomto Anki balíčku](https://github.com/xiaoxiae/AnkiMFF), ze kterého může být dobré si celý předmět zopakovat.
 
 ### Obecná
 
@@ -21,42 +19,134 @@ Symbol políčka 🟩/🟧 ignorujte -- jedná se o mé značení znalosti proch
 
 {% sttopics %}
 	{% sttopic Základy diferenciálního a integrálního počtu | Matalýza 1 [[skripta](/assets/priprava-na-statnice-mff-uk/ma1.pdf)] 🃏 %}
-		{% stlink 🟩 Posloupnosti reálných čísel a jejich vlastnosti (limity, podposloupnosti, monotónní podposloupnost, dva policajti, Bolzan-Weierstrass, hromadný bod). | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.2 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.3 %}
-		{% stlink 🟩 Reálné funkce jedné reálné proměnné. | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.4 %}
-		{% stlink 🟧 Spojitost, limita funkce v bodě (standardní, Heineho). | /assets/priprava-na-statnice-mff-uk/ma1.pdf#page=17 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.6 %}
-		{% stlink Derivace: definice a základní pravidla, průběhy.  | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.7 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.8 %}
-		{% stlink Taylorův polynom se zbytkem. | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.9 %}
-		{% stlink Primitivní funkce: definice, jednoznačnost, existence, metody výpočtu. | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.10 %}
+		{% stlink Reálná čísla | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.1 %}
+		<ul>
+			<li> odmocnina ze dvou je iracionální
+			<li> \(R\) je nespočetná množina
+		</ul>
+		{% stlink Posloupnosti reálných čísel a jejich limity | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.2 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.3 %}
+		<ul>
+			<li> definice, aritmetika limit
+			<li> věta o dvou policajtech, limity a uspořádání
+		</ul>
+		{% stlink Řady | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.2 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.3 %}
+		<ul>
+			<li> definice částečného součtu a součtu
+			<li> geometrická řada, harmonická řada
+		</ul>
+		{% stlink Reálné funkce jedné reálné proměnné. | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.4 %}
+		<ul>
+			{% stlink limita funkce v bodě | /assets/priprava-na-statnice-mff-uk/ma1.pdf#page=16 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.6 %}
+			<ul>
+				<li> definice, aritmetika limit
+				<li> vztah s uspořádáním
+				<li> limita složené funkce
+			</ul>
+			{% stlink funkce spojité na intervalu | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.6 %}
+			<ul>
+				<li> nabývání mezihodnot
+				<li> nabývání maxima
+			</ul>
+		</ul>
+		{% stlink Derivace a její aplikace  | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.7 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.8 | https://en.wikipedia.org/wiki/Weierstrass_function %}
+		<ul>
+			<li> definice a základní pravidla pro výpočet
+			<li> l’Hospitalovo pravidlo
+			<li> vyšetření průběhu funkcí: extrémy, monotonie a konvexita/konkavita
+			{% stlink Taylorův polynom se zbytkem | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.9 | https://brilliant.org/wiki/taylor-series-error-bounds/ %}
+		</ul>
+		{% stlink Integrály a jejich aplikace | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.10 %}
+		<ul>
+			<li> primitivní funkce: definice a metody výpočtu (substituce, per-partes)
+			<li> Riemannův integrál: definice, souvislost s primitivní funkcí (Newtonovým integrálem)
+			<li> aplikace
+			<ul>
+				<li> odhady součtu řad (konečných i nekonečných)
+				<li> obsahy rovinných útvarů
+				<li> objemy a povrchy rotačních útvarů v prostoru
+				<li> délka křivky
+			</ul>
+		</ul>
 	{% endsttopic %}
 	{% sttopic Algebra a lineární algebra | Lingebra 1 a 2 [[skripta](/assets/priprava-na-statnice-mff-uk/la.pdf)] 🃏 %}
-		{% stlink Grupy a podgrupy, tělesa. | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.4 %}
+		{% stlink Grupy a podgrupy (definice, příklady, komutativita) | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.4 %}
+		{% stlink Tělesa (definice, charakteristika tělesa, konečná tělesa) | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.4 %}
 		{% stlink Vektorové prostory a podprostory. | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.5 %}
+		<ul>
+			<li> vlastnosti a základní pojmy (lineární kombinace, lineární obal, generátory, lineární závislost a nezávislost, báze, dimenze, souřadnice) a jejich použití
+			<li> praktická dovednost testování lineární závislosti a nezávislosti, nalezení báze, určení dimenze atp.
+			<li> skalární součin a jeho vlastnosti
+			<li> norma a vztah se skalárním součinem, příklady
+			<li> kolmost, ortonormální báze, její vlastnosti a použití (nalezení souřadnic a projekce)
+		</ul>
 		{% stlink Skalární součin, norma. | /assets/priprava-na-statnice-mff-uk/la.pdf#section.8.1 %}
 		{% stlink Kolmost, ortonormální báze. | /assets/priprava-na-statnice-mff-uk/la.pdf#section.8.2 | /assets/priprava-na-statnice-mff-uk/la.pdf#section.8.3 | /assets/priprava-na-statnice-mff-uk/la.pdf#section.8.4 %}
-		{% stlink Soustavy lineárních rovnic, Gaussova a Gaussova-Jordanova eliminace. | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.2 %}
-		{% stlink Matice a operace s maticemi, hodnost matice. | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.3 | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.9 | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.11 %}
-		{% stlink Vlastní čísla a vlastní vektory matice. | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.10 %}
-		{% stlink Charakteristický polynom, vztah vlastních čísel s kořeny polynomů. | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.12 %}
+		{% stlink Soustavy lineárních rovnic a množina řešení. | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.2 %}
+		<ul>
+			<li> metody řešení, Gaussova a Gaussova-Jordanova eliminace, odstupňovaný tvar matice a jeho jednoznačnost (bez důkazu)
+		</ul>
+		{% stlink Matice a operace s maticemi (součet, součin, transpozice) | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.3 | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.9 | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.11 %}
+		<ul>
+			<li> interpretace součinu matic pomocí skládání lineárních zobrazení
+			<li> hodnost matice a její transpozice
+			{% stlink vlastní čísla a vlastní vektory matice a jejich geometrický význam a vlastnosti, vícenásobná vlastní čísla, spektrální poloměr | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.10 %}
+			{% stlink charakteristický polynom, vztah vlastních čísel s kořeny polynomů | /assets/priprava-na-statnice-mff-uk/la.pdf#chapter.12 %}
+		</ul>
 	{% endsttopic %}
 	{% sttopic Diskrétní matematika | Diskrétka [[poznámky](/poznamky-z-prednasky/diskretni-matematika/)] 🃏, Kombagra 1 [[poznámky](/poznamky-z-prednasky/kombinatorika-a-grafy-i/)] 🃏 %}
-		{% stlink 🟩 Relace, vlastnosti binárních relací. | /poznamky-z-prednasky/diskretni-matematika/#relace %}
-		{% stlink 🟩 Ekvivalence a rozkladové třídy. | /poznamky-z-prednasky/diskretni-matematika/#ekvivalence %}
-		{% stlink 🟩 Částečná uspořádání (definice, dlouhý a široký). | /poznamky-z-prednasky/diskretni-matematika/#uspořádání %}
-		{% stlink 🟩 Funkce, typy funkcí. | /poznamky-z-prednasky/diskretni-matematika/#funkce %}
-		{% stlink 🟩 Permutace a jejich základní vlastnosti. | /poznamky-z-prednasky/diskretni-matematika/#segway-do-kombinatorického-počítání %}
-		{% stlink 🟩 Kombinační čísla, binomická věta. | /poznamky-z-prednasky/diskretni-matematika/#kombinatorika %}
-		{% stlink 🟩 Princip inkluze a exkluze. | /poznamky-z-prednasky/diskretni-matematika/#princip-inkluzeexkluze %}
-		{% stlink 🟧 🟩 Hallova věta o systému různých reprezentantů, párování v bipartitním grafu. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#aplikace-tok%C5%AF-v-s%C3%ADt%C3%ADch %}
+		{% stlink Relace. | /poznamky-z-prednasky/diskretni-matematika/#relace %}
+		<ul>
+			<li> vlastnosti binárních relací (reflexivita, symetrie, antisymetrie, tranzitivita)
+		</ul>
+		{% stlink Ekvivalence a rozkladové třídy. | /poznamky-z-prednasky/diskretni-matematika/#ekvivalence %}
+		{% stlink Částečná uspořádání. | /poznamky-z-prednasky/diskretni-matematika/#uspořádání %}
+		<ul>
+			<li> základní pojmy
+			<li> výška a šířka částečně uspořádané množiny, jejich vztah (o dlouhém a širokém)
+		</ul>
+		{% stlink Funkce. | /poznamky-z-prednasky/diskretni-matematika/#funkce %}
+		<ul>
+			<li> typy funkcí (prostá, na, bijekce)
+			<li> počty různých typů funkcí mezi dvěma konečnými množinami
+		</ul>
+		{% stlink Permutace a jejich základní vlastnosti (počet a pevný bod). | /poznamky-z-prednasky/diskretni-matematika/#segway-do-kombinatorického-počítání %}
+		{% stlink Kombinační čísla a vztahy mezi nimi, binomická věta a její aplikace. | /poznamky-z-prednasky/diskretni-matematika/#kombinatorika %}
+		{% stlink Princip inkluze a exkluze. | /poznamky-z-prednasky/diskretni-matematika/#princip-inkluzeexkluze %}
+		<ul>
+			<li> obecná formulace (a důkaz)
+			<li> použití (problém šatnářky, Eulerova funkce pro počet dělitelů, počet surjekcí)
+		</ul>
+		{% stlink Hallova věta o systému různých reprezentantů, vztah k párování v bipartitním grafu. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#aplikace-tok%C5%AF-v-s%C3%ADt%C3%ADch %}
+		<ul>
+			<li> princip důkazu a algoritmické aspekty (polynomiální algoritmus pro nalezení SRR)
+		</ul>
 	{% endsttopic %}
 	{% sttopic Teorie grafů | Diskrétka [[poznámky](/poznamky-z-prednasky/diskretni-matematika/)] 🃏, Kombagra 1 [[poznámky](/poznamky-z-prednasky/kombinatorika-a-grafy-i/)] 🃏 %}
-		{% stlink 🟩 Základní pojmy, základní příklady grafů. | /poznamky-z-prednasky/diskretni-matematika/#grafy %}
-		{% stlink 🟩 Souvislost grafů, komponenty souvislosti. | /poznamky-z-prednasky/diskretni-matematika/#rozšiřování-grafů %}
-		{% stlink 🟩 Stromy, jejich vlastnosti, ekvivalentní charakteristiky stromů. | /poznamky-z-prednasky/diskretni-matematika/#stromy %}
-		{% stlink 🟩 Rovinné grafy, Eulerova formule a maximální počet hran rovinného grafu. | /poznamky-z-prednasky/diskretni-matematika/#rovinné-nakreslení-grafu %}
-		{% stlink 🟩 Barevnost grafů, klikovost grafů. | /poznamky-z-prednasky/diskretni-matematika/#barvení | /poznamky-z-prednasky/diskretni-matematika/#degenerovanost-klikovost-dualita %}
-		{% stlink 🟧 🟧 Hranová a vrcholová souvislost grafů, Mengerovy věty. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#míra-souvislosti-neorientovaných-grafu  %}
-		{% stlink 🟩 Orientované grafy, silná a slabá souvislost. | /poznamky-z-prednasky/diskretni-matematika/#rozšiřování-grafů  %}
-		{% stlink 🟧 Toky v sítích (min-flow/max-cut). | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#7-přednáška | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s14  %}
+		{% stlink Základní pojmy, základní příklady grafů. | /poznamky-z-prednasky/diskretni-matematika/#grafy %}
+		{% stlink Souvislost grafů, komponenty souvislosti, vzdálenost v grafu. | /poznamky-z-prednasky/diskretni-matematika/#rozšiřování-grafů %}
+		{% stlink Stromy. | /poznamky-z-prednasky/diskretni-matematika/#stromy %}
+		<ul>
+			<li> definice a základní vlastnosti (existence listů, počet hran stromu)
+			<li> ekvivalentní charakteristiky stromů
+		</ul>
+		{% stlink Rovinné grafy. | /poznamky-z-prednasky/diskretni-matematika/#rovinné-nakreslení-grafu %}
+		<ul>
+			<li> definice a základní pojmy (rovinný graf a rovinné nakreslení grafu, stěny)
+			<li> Eulerova formule a maximální počet hran rovinného grafu (důkaz a použití)
+		</ul>
+		{% stlink Barevnost grafů, klikovost grafů. | /poznamky-z-prednasky/diskretni-matematika/#barvení | /poznamky-z-prednasky/diskretni-matematika/#degenerovanost-klikovost-dualita %}
+		<ul>
+			<li> definice dobrého obarvení
+			<li> vztah barevnosti a klikovosti grafu
+		</ul>
+		{% stlink Hranová a vrcholová souvislost grafů, Mengerovy věty. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#míra-souvislosti-neorientovaných-grafu  %}
+		{% stlink Orientované grafy, silná a slabá souvislost. | /poznamky-z-prednasky/diskretni-matematika/#rozšiřování-grafů  %}
+		{% stlink Toky v sítích. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#7-přednáška | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s14  %}
+		<ul>
+			<li> definice sítě a toku v ní
+			<li> existence maximálního toku (bez důkazu)
+			<li> princip hledání maximálního toku v síti s celočíselnými kapacitami (například pomocí Ford-Fulkersonova algoritmu)
+		</ul>
 	{% endsttopic %}
 	{% sttopic Pravděpodobnost a statistika | Diskrétka [[poznámky](/poznamky-z-prednasky/diskretni-matematika/)] 🃏, Past [[slidy](/assets/priprava-na-statnice-mff-uk/past/slides.pdf), [cheatsheet](/assets/priprava-na-statnice-mff-uk/past/cheatsheet.pdf)] 🃏 %}
 		<li> Náhodné jevy, podmíněná pravděpodobnost, nezávislost náhodných jevů
@@ -83,28 +173,86 @@ Symbol políčka 🟩/🟧 ignorujte -- jedná se o mé značení znalosti proch
 
 {% sttopics %}
 	{% sttopic Automaty a jazyky | Autogramy [[skripta](/assets/priprava-na-statnice-mff-uk/autogramy/skripta.pdf), [slidy](/assets/priprava-na-statnice-mff-uk/autogramy/slidy.pdf)] 🃏 %}
-		{% stlink 🟩 Regulární jazyky, konečné automaty (deterministické, nedeterministické). | /assets/priprava-na-statnice-mff-uk/autogramy/skripta.pdf#page=2 %}
-		{% stlink 🟧 Kleeneho věta, iterační lemma, regulární gramatiky. | /assets/priprava-na-statnice-mff-uk/autogramy/skripta.pdf#page=15 | /assets/priprava-na-statnice-mff-uk/autogramy/skripta.pdf#page=6 | /assets/priprava-na-statnice-mff-uk/autogramy/skripta.pdf#page=20 %}
+		<li> Regulární jazyky.
+		<ul>
+			<li> regulární gramatiky
+			<li> konečný automat, jazyk přijímaný konečným automatem
+			<li> deterministický a nedeterministický automat, lambda přechody
+			<li> regulární výrazy
+			<li> Kleeneho věta
+			<li> iterační (pumping) lemma pro konečné automaty
+		</ul>
 		{% stlink Uzávěrové vlastnosti | /assets/priprava-na-statnice-mff-uk/autogramy/slidy.pdf#page=203 %}
-		{% stlink Bezkontextové jazyky, zásobníkové automaty, bezkontextové gramatiky. | /assets/priprava-na-statnice-mff-uk/autogramy/skripta.pdf#page=19 | /assets/priprava-na-statnice-mff-uk/autogramy/slidy.pdf#page=141 | /assets/priprava-na-statnice-mff-uk/autogramy/skripta.pdf#page=24 %}
-		{% stlink Turingův stroj, gramatika typu 0, diagonální jazyk, univerzální jazyk. | /assets/priprava-na-statnice-mff-uk/autogramy/slidy.pdf#page=214 | /assets/priprava-na-statnice-mff-uk/autogramy/slidy.pdf#page=248 | /assets/priprava-na-statnice-mff-uk/autogramy/slidy.pdf#page=252  %}
-		{% stlink Chomského hierarchie. | /assets/priprava-na-statnice-mff-uk/autogramy/slidy.pdf#page=113 | /assets/priprava-na-statnice-mff-uk/autogramy/slidy.pdf#page=187 %}
+		<li> Bezkontextové jazyky.
+		<ul>
+			<li> bezkontextové gramatiky, jazyk generovaný gramatikou
+			<li> zásobníkový automat, třída jazyků přijímaných zásobníkovými automaty
+		</ul>
+		<li> Turingův stroj.
+		<ul>
+			<li> gramatika typu 0
+			<li> diagonální jazyk
+			<li> univerzální jazyk
+		</ul>
+		<li> Chomského hierarchie.
+		<ul>
+			<li> určení ekvivalence či inkluze tříd jazyků generovaných výše uvedenými automaty a gramatikami
+			<li> schopnost zařazení konkrétního jazyka do Chomského hierarchie (zpravidla sestrojení odpovídajícího automatu či gramatiky a důkaz iteračním lemmatem, že jazyk není v nižší třídě)
+		</ul>
 	{% endsttopic %}
-	{% sttopic Algoritmy a datové stuktury | ADS 1 a 2 [[Průvodce](/assets/priprava-na-statnice-mff-uk/pruvodce.pdf)] 🃏 %}
-		{% stlink 🟩 Časová a prostorová složitost algoritmů, asymptotická notace. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s2  %}
-		{% stlink 🟩 Třídy složitosti P a NP, NP-těžkost a NP-úplnost. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s19.3 | /assets/priprava-na-statnice-mff-uk/pvnp.png %}
-		{% stlink 🟩 Algoritmy "rozděl a panuj", výpočet časové složitosti těchto algoritmů, příklady. |  /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s10 %}
-		{% stlink 🟩 🟩 Binarní vyhledávací stromy, AVL stromy. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s8 %}
-		{% stlink 🟩 Binární haldy. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s4.2 %}
-		{% stlink 🟩 🟧 Hešování s přihrádkami a s otevřenou adresací. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s11.3 %}
-		{% stlink 🟩 Třídící algoritmy (+ důkaz minimání složitosti). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s3  %}
-		{% stlink 🟩 DFS, BFS a jejich aplikace. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s5 | https://stackoverflow.com/questions/20429310/why-is-depth-first-search-claimed-to-be-space-efficient %}
-		{% stlink 🟩 🟩 🟩 Nejkratší cesty (Dijkstra, BF, FW). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s6 %}
-		{% stlink 🟩 🟩 🟩 Minimální kostry (Jarník, Borůvka, Kruskal). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s7 %}
-		{% stlink 🟩 🟧 Toky v sítích (FF, Diniz). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s14 | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#7-přednáška  %}
-		{% stlink 🟩 Euklidův algoritmus. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s1.3  %}
+	{% sttopic Algoritmy a datové stuktury | ADS 1 a 2 [[Průvodce](/assets/priprava-na-statnice-mff-uk/pruvodce.pdf), [GA](/assets/priprava-na-statnice-mff-uk/ga.pdf)] 🃏 %}
+		{% stlink Časová a prostorová složitost algoritmů. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s2  %}
+		<ul>
+			<li> čas a prostor výpočtu pro konkrétní vstup
+			<li> časová a prostorová složitost algoritmu
+			<li> měření velikosti dat
+			<li> složitost v nejlepším, nejhorším a průměrném případě
+			<li> asymptotická notace
+		</ul>
+		{% stlink Třídy složitosti. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s19.3 | /assets/priprava-na-statnice-mff-uk/pvnp.png %}
+		<ul>
+			<li> třídy P a NP
+			<li> převoditelnost problémů, NP-těžkost a NP-úplnost
+			<li> příklady NP-úplných problémů a převodů mezi nimi
+		</ul>
+		{% stlink Metoda "rozděl a panuj". |  /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s10 %}
+		<ul>
+			<li> princip rekurzivního dělení problému na podproblémy
+			<li> výpočet složitosti pomocí rekurentních rovnic
+			<li> Master theorem (kuchařková věta)
+			<li> aplikace
+			<ul>
+				<li> Mergesort
+				<li> násobení dlouhých čísel
+				<li> Strassenův algoritmus
+			</ul>
+		</ul>
+		{% stlink Binarní vyhledávací stromy. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s8 %}
+		<ul>
+			<li> definice vyhledávacího stromu
+			<li> operace s nevyvažovanými stromy
+			<li> AVL stromy (definice)
+		</ul>
+		{% stlink Binární haldy. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s4.2 %}
+		{% stlink Hešování s přihrádkami a s otevřenou adresací. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s11.3 %}
+		{% stlink Třídící algoritmy. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s3  %}
+		<ul>
+			<li> primitivní třídicí algoritmy (Bubblesort, Insertsort)
+			<li> třídění haldou (Heapsort)
+			<li> Quicksort
+			<li> dolní odhad složitosti porovnávacích třídicích algoritmů
+			<li> přihrádkové třídění čísel a řetězců
+		</ul>
+		{% stlink Grafové algoritmy. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s5 | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s6| /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s7 %}
+		<ul>
+			{% stlink DFS, BFS a jejich aplikace. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s5 | https://stackoverflow.com/questions/20429310/why-is-depth-first-search-claimed-to-be-space-efficient %}
+			{% stlink Nejkratší cesty (Dijkstra, BF). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s6 %}
+			{% stlink Minimální kostry (Jarník, Borůvka). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s7 %}
+			{% stlink Toky v sítích (FF). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s14 | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#7-přednáška  %}
+		</ul>
+		{% stlink Euklidův algoritmus. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s1.3  %}
 	{% endsttopic %}
-	{% sttopic Programovací jazyky | Programko [[poznámky](/assets/priprava-na-statnice-mff-uk/prog2.pdf), [C#](/lecture-notes/the-cs-programming-language/)], Neprocko, Principy poč. [[poznámky](/poznamky-z-prednasky/principy-pocitacu/)] 🃏 %}
+	{% sttopic Programovací jazyky | Programko [[poznámky](/assets/priprava-na-statnice-mff-uk/prog2.pdf)], Java/C#/C++ [[C# poznámky](/lecture-notes/the-cs-programming-language/)] %}
 		<li> Koncepty pro abstrakci, zapouzdření a polymorfizmus.
 		{% stlink Primitivní a objektové typy a jejich reprezentace. | /lecture-notes/the-cs-programming-language/#cil-type-system %}
 		{% stlink Generické typy a funkcionální prvky. | /assets/priprava-na-statnice-mff-uk/prog2.pdf#page=20 %}
@@ -116,64 +264,191 @@ Symbol políčka 🟩/🟧 ignorujte -- jedná se o mé značení znalosti proch
 	{% endsttopic %}
 	{% sttopic Architektura počítačů a OS | Principy poč. [[poznámky](/poznamky-z-prednasky/principy-pocitacu/)] 🃏, Poč. systémy [[slidy](/assets/priprava-na-statnice-mff-uk/ps.pdf)] %}
 		{% stlink Základní architektura počítače. | /poznamky-z-prednasky/principy-pocitacu/#zjednodu%C5%A1en%C3%A9-sch%C3%A9ma-po%C4%8D%C3%ADta%C4%8De | /assets/priprava-na-statnice-mff-uk/ps.pdf#page=24 %}
+		<ul>
+			<li> reprezentace a přístup k datům v paměti, adresa, adresový prostor
+			<li> ukládání jednoduchých a složených datových typů
+			<li> základní aritmetické a logické operace
+		</ul>
 		{% stlink Reprezentace dat a programů. | /poznamky-z-prednasky/principy-pocitacu/#k%C3%B3dov%C3%A1n%C3%AD-informace-v-po%C4%8D%C3%ADta%C4%8Di | /assets/priprava-na-statnice-mff-uk/ps.pdf#page=60 %}
 		{% stlink Instrukční sada, vazba na vyšší programovací jazyky. | /assets/priprava-na-statnice-mff-uk/ps.pdf#page=29 %}
+		<ul>
+			<li> Implementovat běžné programové konstrukce vyšších jazyků (přiřazení, podmínka, cyklus, volání funkce) pomocí instrukcí procesoru
+			<li> Zapsat běžnou konstrukci vyššího jazyka (přiřazení, podmínka, cyklus, volání funkce), která odpovídá zadané sekvenci (vysvětlených) instrukcí procesoru
+		</ul>
 		{% stlink Podpora pro běh operačního systému. | /assets/priprava-na-statnice-mff-uk/ps.pdf#page=97  %}
+		<ul>
+			<li> privilegovaný a neprivilegovaný režim procesoru
+			<li> jádro operačního systému
+		</ul>
 		{% stlink Rozhraní periferních zařízení a jejich obsluha. | /poznamky-z-prednasky/principy-pocitacu/#otro%C4%8Dina | /assets/priprava-na-statnice-mff-uk/ps.pdf#page=105  %}
+		<ul>
+			<li> Popsat roli řadiče zařízení při programem řízené obsluze zařízení (PIO), pro zadané adresy a funkce vstupních a výstupních portů implementovat programem řízenou obsluhu zadaného zařízení (myš, disk)
+			<li> Popsat roli přerušení při programem řízené obsluze zařízení (PIO), na úrovni vykonávání instrukcí popsat reakci procesoru (hardware) a operačního systému (software) na žádost o přerušení
+		</ul>
 		{% stlink Základní abstrakce, rozhraní a mechanizmy OS pro běh programů, sdílení prostředků a vstup/výstup. | /assets/priprava-na-statnice-mff-uk/ps.pdf#page=97  %}
+		<ul>
+			<li> neprivilegované (uživatelské) procesy
+			<li> sdílení procesoru
+			<ul>
+				<li> procesy, vlákna, kontext procesu a vlákna
+				<li> přepínání kontextu, kooperativní a preemptivní multitasking
+				<li> plánování běhu procesů a vláken, stavy vlákna
+			</ul>
+			<li> sdílení paměti
+			<ul>
+				<li> Vysvětlit rozdíl mezi virtuální a fyzickou adresou a identifikovat, zda se v zadaném kontextu či fragmentu kódu používá virtuální nebo fyzická adresa
+				<li> Na zadaném příkladu identifikovat a vysvětlit význam komponent virtuální a fyzické adresy (číslo stránky, číslo rámce, offset)
+				<li> Pro konkrétní adresy a obsah jednoúrovňové stránkovací tabulky řešit úlohy překladu adres
+				<li> Vysvětlit roli virtuálních adresových prostorů v ochraně paměti procesů a vláken
+			</ul>
+			<li> sdílení úložného prostoru
+			<ul>
+				<li> soubory, analogie s adresovým prostorem
+				<li> abstrakce a rozhraní pro práci se soubory
+			</ul>
+		</ul>
 		{% stlink Paralelismus, vlákna a rozhraní pro jejich správu, synchronizace vláken. | /assets/priprava-na-statnice-mff-uk/ps.pdf#page=112 %}
+		<ul>
+			<li> časově závislé chyby (race conditions)
+			<li> kritická sekce, vzájemné vyloučení
+			<li> základní sychronizační primitiva, jejich rozhraní a použití
+			<ul>
+				<li> zámky
+				<li> aktivní a pasivní čekání
+			</ul>
+		</ul>
 	{% endsttopic %}
 {% endsttopics %}
 
 ### Specifická
-Z následujících 7 jsou 1-3 povinné a z 4-7 je třeba vybrat dvě témata (ta moje jsou 4, 5).
+Z následujících témat je třeba si vybrat **jedno** z 1-3 a **dvě** z 4-7.
 
 {% sttopics %}
 	{% sttopic Kombinatorika | Kombagra 1 [[poznámky](/poznamky-z-prednasky/kombinatorika-a-grafy-i/)] 🃏 a 2 [[poznámky](/poznamky-z-prednasky/kombinatorika-a-grafy-ii/)] 🃏 %}
 		{% stlink Vytvořující funkce. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#generuj%C3%ADc%C3%AD-funkce %}
-		{% stlink 🟩 🟧 Odhady faktoriálů a kombinačních čísel. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#odhady-faktori%C3%A1lu | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#odhady-binomických-koeficientů %}
-		{% stlink 🟩 🟩 Ramseyovy věty (konečné, nekonečné). | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#ramseyovy-barevn%C3%A9nekone%C4%8Dn%C3%A9-v%C4%9Bty %}
-		{% stlink 🟧 Samoopravné kódy. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#samoopravn%C3%A9-k%C3%B3dy %}
-	{% endsttopic %}
+		<ul>
+			<li> použití vytvořujících funkcí k řešení lineárních rekurencí
+			<li> zobecněná binomická věta (formulace)
+			<li> Catalanova čísla (příklad kombinatorické interpretace, odvození vzorce)
+		</ul>
+		{% stlink Odhady faktoriálů a kombinačních čísel. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#odhady-faktori%C3%A1lu | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#odhady-binomických-koeficientů %}
+		<ul>
+			<li> \((n/e)^n \le n! \le n(n/e)^n\)
+			<li> \((n/k)^k \le \binom{n}{k} \le (en/k)^k\)
+			<li> \(2^{2m}/(2  \sqrt{m}) \le \binom{2m}{m} \le 2^{2m} / \sqrt{2m}\)
+		</ul>
+		{% stlink Ramseyova teorie. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#ramseyovy-barevn%C3%A9nekone%C4%8Dn%C3%A9-v%C4%9Bty %}
+		<ul>
+			<li> Ramseyova věta (formulace konečné a nekonečné verze pro p-tice, důkaz verze p=2 pro 2 barvy)
+			<li> Ramseyova čísla (definice, pro 2 barvy horní odhad z důkazu Ramseyovy věty a dolní odhad pravděpodobnostní konstrukcí)
+		</ul>
+		{% stlink Extremální kombinatorika | /poznamky-z-prednasky/kombinatorika-a-grafy-ii/#extrem%C3%A1ln%C3%AD-teorie-graf%C5%AF-a-hypergraf%C5%AF %}
+		<ul>
+			<li> obecné povědomí co extremální kombinatorika studuje
+			<li> Turánova věta (formulace, Turánovy grafy)
+			<li> Erdös-Ko-Radoova věta (formulace)
+		</ul>
+		{% stlink Samoopravné kódy. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#samoopravn%C3%A9-k%C3%B3dy %}
+		<ul>
+			<li> přehled o používané terminologii
+			<li> vzdálenost kódu a její vztah k počtu opravitelných a detekovatelných chyb
+			<li> Hammingův odhad (formulace a důkaz)
+			<li> perfektní kódy (definice a příklady, Hammingův kód bez přesné konstrukce)
+		</ul>{% endsttopic %}{% endsttopics %}<hr><div class="stignored"> {% sttopics 2 %}
 	{% sttopic Základy sítí | Sítě [[slidy](/assets/priprava-na-statnice-mff-uk/site.pdf)] 🃏 %}
-		<li> 🟧 Taxonomie počítačových sítí.
-		<li> 🟩 Architektura ISO/OSI.
-		<li> 🟩 Přehled síťového modelu TCP/IP.
-		<li> 🟧 Směrování.
-		<li> 🟩 Koncept adresy, portu, socketu.
-		<li> 🟩 Architektura klient/server.
-		<li> 🟩 Základy fungování protokolů HTTP, FTP a SMTP.
+		<li> Taxonomie počítačových sítí.
+		<li> Architektura ISO/OSI.
+		<li> Přehled síťového modelu TCP/IP.
+		<li> Směrování.
+		<li> Koncept adresy, portu, socketu.
+		<li> Architektura klient/server.
+		<li> Základy fungování protokolů HTTP, FTP a SMTP.
 	{% endsttopic %}
 	{% sttopic Diferenciální a integrální počet ve více rozměrech  | Matalýza 2 [[skripta](/assets/priprava-na-statnice-mff-uk/ma2.pdf)] 🃏 %}
-		{% stlink Riemannův integrál. | /assets/priprava-na-statnice-mff-uk/ma2.pdf#section.8 | /assets/priprava-na-statnice-mff-uk/ma2.pdf#section.9 %}
-		{% stlink Extrémy funkcí více proměnných. | /assets/priprava-na-statnice-mff-uk/ma2.pdf#section.5 %}
-		{% stlink Metrický prostor, otevřené a uzavřené množiny, kompaktnost. | /assets/priprava-na-statnice-mff-uk/ma2.pdf#section.1 | /assets/priprava-na-statnice-mff-uk/ma2.pdf#section.3 %}
-	{% endsttopic %}
-	{% sttopic Optimalizace | Linprog [[skripta](/assets/priprava-na-statnice-mff-uk/linprog.pdf)] 🃏, Aprox. alg. [[poznámky](/poznamky-z-prednasky/aproximacni-algoritmy/)] 🃏, Kombagra 2 [[poznámky](/poznamky-z-prednasky/kombinatorika-a-grafy-ii/)] 🃏 %}
-		{% stlink Mnohostěny, Minkowského-Weylova věta. | /assets/priprava-na-statnice-mff-uk/linprog.pdf#section.4 | /assets/priprava-na-statnice-mff-uk/linprog.pdf#page=12 %}
-		{% stlink Základy lineárního programování, věty o dualitě, metody řešení. | /assets/priprava-na-statnice-mff-uk/linprog.pdf#section.2 | /assets/priprava-na-statnice-mff-uk/linprog.pdf#subsection.7.1 | /assets/priprava-na-statnice-mff-uk/linprog.pdf#section.5 %}
-		{% stlink 🟩 Edmondsův algoritmus. | /poznamky-z-prednasky/kombinatorika-a-grafy-ii/#nejv%C4%9Bt%C5%A1%C3%AD-p%C3%A1rov%C3%A1n%C3%AD | https://www.youtube.com/watch?v=3roPs1Bvg1Q %}
+		<li> Riemannův integrál.
+		<li> Extrémy funkcí více proměnných.
+		<li> Metrický prostor, otevřené a uzavřené množiny, kompaktnost.
+	{% endsttopic %}{% endsttopics %}</div><hr>{% sttopics 4 %}
+	{% sttopic Optimalizace | LP [[skripta](/assets/priprava-na-statnice-mff-uk/linprog.pdf)] 🃏, APX [[pozn.](/poznamky-z-prednasky/aproximacni-algoritmy/)] 🃏, Kombagra 2 [[pozn.](/poznamky-z-prednasky/kombinatorika-a-grafy-ii/)] 🃏, DSPO [[pozn.](/poznamky-z-prednasky/diskretni-a-spojita-optimalizace/)] %}
+		{% stlink Základy lineárního a celočíselného programování. | /assets/priprava-na-statnice-mff-uk/linprog.pdf#section.2 | /assets/priprava-na-statnice-mff-uk/linprog.pdf#subsection.7.1 | /assets/priprava-na-statnice-mff-uk/linprog.pdf#section.5 %}
+		<ul>
+			<li> dualita lineárního programování, Farkasovo lemma
+			<li> simplexová metoda, pivotovací pravidla
+		</ul>
+		{% stlink Kombinatorická geometrie | /assets/priprava-na-statnice-mff-uk/linprog.pdf#section.4 | /assets/priprava-na-statnice-mff-uk/linprog.pdf#page=12 %}
+		<ul>
+			<li> konvexní obal objektů
+			<li> mnohostěny
+			<li> Minkowski-Weylova věta
+		</ul>
+		{% stlink Edmondsův algoritmus. | /poznamky-z-prednasky/kombinatorika-a-grafy-ii/#nejv%C4%9Bt%C5%A1%C3%AD-p%C3%A1rov%C3%A1n%C3%AD | https://www.youtube.com/watch?v=3roPs1Bvg1Q %}
+		<ul>
+			<li> Základy matematického programování
+		</ul>
 		{% stlink Celočíselné programování. | /assets/priprava-na-statnice-mff-uk/linprog.pdf#page=4 %}
+		<ul>
+			<li> metoda řezů
+		</ul>
+		{% stlink Matroidy. | /poznamky-z-prednasky/diskretni-a-spojita-optimalizace/ %}
+		<ul>
+			<li> řádová funkce, existence a submodularita
+			<li> hladový algoritmus
+		</ul>
 		{% stlink Aproximační algoritmy pro kombinatorické problémy: | /poznamky-z-prednasky/aproximacni-algoritmy/ %}
 		<ul>
-			{% stlink 🟩 splnitelnost | /lecture-notes/best-sat/ %}
+			<li> definice: aproximační poměr, aproximační schéma
+			{% stlink splnitelnost | /lecture-notes/best-sat/ %}
 			{% stlink nezávislé množiny | /poznamky-z-prednasky/aproximacni-algoritmy/#maximální-nezávislá-množina %}
 			{% stlink množinové pokrytí | /poznamky-z-prednasky/aproximacni-algoritmy/#pokrývací-problémy %}
-			{% stlink 🟩 rozvrhování | /poznamky-z-prednasky/aproximacni-algoritmy/#rozvrhov%C3%A1n%C3%AD %}
+			{% stlink rozvrhování | /poznamky-z-prednasky/aproximacni-algoritmy/#rozvrhov%C3%A1n%C3%AD %}
 		</ul>
-		{% stlink 🟧 Použití lineárního programování pro aproximační algoritmy. | /poznamky-z-prednasky/aproximacni-algoritmy/#lp-sat | /poznamky-z-prednasky/aproximacni-algoritmy/#pokrývací-problémy %}
-		{% stlink 🟧 Využití pravděpodobnosti při návrhu algoritmů. | /lecture-notes/best-sat/  | /poznamky-z-prednasky/aproximacni-algoritmy/#nulovost-polynom%C5%AF-polynomial-identity-testing %}
+		<li> Použití lineárního programování pro aproximační algoritmy.
+		<ul>
+			{% stlink algoritmy pro splnitelnost (MAXSAT, pravděpodobnostní zaokrouhlování) | /poznamky-z-prednasky/aproximacni-algoritmy/#lp-sat %}
+			{% stlink vrcholové a množinové pokrytí (deterministické zaokrouhlování, primárně-duální algoritmus) | /poznamky-z-prednasky/aproximacni-algoritmy/#pokrývací-problémy %}
+		</ul>
+		<li> Využití pravděpodobnosti při návrhu algoritmů.
+		<ul>
+			<li> minimální globální řez v grafu
+			<li> hashování a jeho využítí pro slovník s konstantním časem vyhledávání
+			{% stlink pravděpodobnostní testování maticových a polynomiálních identit | /poznamky-z-prednasky/aproximacni-algoritmy/#nulovost-polynom%C5%AF-polynomial-identity-testing %}
+			<li> paralelní algoritmus pro hledání maximální nezávislé množiny
+			<li> paralelní algoritmy pro hledání párování (bipartitní grafy)
+		</ul>
 	{% endsttopic %}
-	{% sttopic Pokročilé Algoritmy a datové struktury | ADS 1 a 2 [[Průvodce](/assets/priprava-na-statnice-mff-uk/pruvodce.pdf)] 🃏, Aprox. alg. [[poznámky](/poznamky-z-prednasky/aproximacni-algoritmy/)] 🃏 %}
-		{% stlink 🟩 Výpočetní model RAM. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s2.5 %}
-		{% stlink 🟩 Dynamické programování. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s12 %}
-		{% stlink 🟩 Komponenty silné souvislosti orientovaných grafů. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s5.9 %}
-		{% stlink 🟩 🟧 🟧 Toky v sítích (FF, Diniz, Goldberg). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s14 | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#7-přednáška %}
-		{% stlink 🟩 🟩 🟩 Vyhledávání v textu (KMP, AC, RK). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s13 %}
-		{% stlink 🟧 Diskrétní Fourierova transformace a její aplikace. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s17 | /assets/priprava-na-statnice-mff-uk/fft.py %}
-		{% stlink 🟩 🟧 Aproximační algoritmy a schémata (cestující, batoh). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s19.6 | /poznamky-z-prednasky/aproximacni-algoritmy/#metrický-tsp %}
-		{% stlink 🟩 🟩 🟩 Paralelní algoritmy v hradlových a komparátorových sítích (\(+\), \(\times\), bitonic). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s15 %}
-	{% endsttopic %}{% endsttopics %} <hr><div class="stignored"> {% sttopics %}
+	{% sttopic Pokročilé ADS | ADS 1 a 2 [[Průvodce](/assets/priprava-na-statnice-mff-uk/pruvodce.pdf), [GA](/assets/priprava-na-statnice-mff-uk/ga.pdf)] 🃏, APX [[poznámky](/poznamky-z-prednasky/aproximacni-algoritmy/)] 🃏, Algebra 1 [[skripta](/assets/priprava-na-statnice-mff-uk/algebra.pdf)] %}
+		{% stlink Dynamické programování. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s12 %}
+		<ul>
+			<li> princip dynamického programování (řešení podproblémů od nejmenších k největším)
+			<li> aplikace: nejdelší rostoucí podposloupnost, editační vzdálenost
+		</ul>
+		{% stlink Výpočetní model RAM. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s2.5 %}
+		{% stlink Komponenty silné souvislosti orientovaných grafů. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s5.9 %}
+		<ul>
+			<li> tranzitivní uzávěr
+			<li> komponenty silné souvislosti orientovaných grafů
+			<li> toky v sítích (Dinicův a Goldbergův algoritmus)
+		</ul>
+		{% stlink Toky v sítích (FF, Diniz, Goldberg). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s14 | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#7-přednáška %}
+		{% stlink Vyhledávání v textu (KMP, AC). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s13 %}
+		<ul>
+			<li> algoritmy Knuth-Morris-Pratt a Aho-Corasicková
+		</ul>
+		{% stlink Diskrétní Fourierova transformace, aplikace. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s17 | /assets/priprava-na-statnice-mff-uk/fft.py %}
+		<ul>
+			<li> diskrétní Fourierova transformace a její aplikace
+			<li> výpočet Fourierovy transformace algoritmem FFT
+		</ul>
+		{% stlink RSA (šifrování, dešifrování a generování klíčů) | /assets/priprava-na-statnice-mff-uk/algebra.pdf#subsection.2.2 %}
+		{% stlink Aproximační algoritmy a schémata (cestující, batoh). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s19.6 | /poznamky-z-prednasky/aproximacni-algoritmy/#metrický-tsp %}
+		<ul>
+			<li> poměrová a relativní chyba
+			<li> aproximační schémata
+			<li> příklady: obchodní cestující, batoh
+		</ul>
+		{% stlink Paralelní třidění pomocí komparátorových sítí. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s15 %}
+		<li> Červeno-černé stromy a jejich vyvažování
+	{% endsttopic %}{% endsttopics %} <hr><div class="stignored"> {% sttopics 6 %}
 	{% sttopic ❌ Geometrie ❌ | Základy KVG %}
 		<li> Základní věty o konvexních množinách (Hellyho, Radonova, o oddělování).
 		<li> Minkowského věta o mřížkách.
@@ -193,3 +468,6 @@ Z následujících 7 jsou 1-3 povinné a z 4-7 je třeba vybrat dvě témata (ta
 	{% endsttopic %}
 {% endsttopics %}
 </div>
+
+### Poděkování
+- **shrekofspeed** (Discord) za upozornění na [požadavky](/assets/priprava-na-statnice-mff-uk/pozadavky.pdf) a na Medvědovo [Grafové Algoritmy](/assets/priprava-na-statnice-mff-uk/ga.pdf)

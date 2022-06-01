@@ -3,10 +3,15 @@ module Jekyll
     class StatniceTopics < Liquid::Block
       def initialize(tag, name, tokens)
         super
+        @parts = name.split("|")
       end
 
       def render(context)
-        return "<ol class='sttopics'>#{super.strip}</ol>"
+        if @parts.length != 0
+          return "<ol class='sttopics' start='#{@parts[0].strip}'>#{super.strip}</ol>"
+        else
+          return "<ol class='sttopics'>#{super.strip}</ol>"
+        end
       end
     end
   end
