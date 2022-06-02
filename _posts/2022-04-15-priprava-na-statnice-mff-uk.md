@@ -7,7 +7,8 @@ css: statnice
 - .
 {:toc}
 
-Tento článek obsahuje mou přípravu na státní zkoušky z **Obecné informatiky** pro akademický rok **2021/2022** (tj. nová akreditace). Podrobné informace o všech specializacích (ze 24. května 2022) jsou k dispozici v [tomto PDF](/assets/priprava-na-statnice-mff-uk/pozadavky.pdf) (případně pouze pro Obecnou informatiku v [tomto PDF](/assets/priprava-na-statnice-mff-uk/pozadavky-obecna.pdf)).
+Tento článek obsahuje mou přípravu na státní zkoušky z **Obecné informatiky** pro akademický rok **2021/2022** (tj. nová akreditace).
+Podrobné informace o všech specializacích (ze 24. května 2022) jsou k dispozici v [tomto PDF](/assets/priprava-na-statnice-mff-uk/pozadavky.pdf) (případně pouze pro Obecnou informatiku v [tomto PDF](/assets/priprava-na-statnice-mff-uk/pozadavky-obecna.pdf)).
 
 U každé časti tématu je jeden nebo více odkazů (🔗) na zdroje, ze kterých je možné se téma učit.
 U celých předmětů jsou vždy odkazy na zdroje (ať už se jedná poznámky, slidy či skripta).
@@ -22,7 +23,7 @@ Pokud je u předmětu symbol kartičky (🃏), tak je zahrnut v [tomto Anki bal�
 		{% stlink Reálná čísla | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.1 %}
 		<ul>
 			<li> odmocnina ze dvou je iracionální
-			<li> \(R\) je nespočetná množina
+			<li> \(\mathbb{R}\) je nespočetná množina
 		</ul>
 		{% stlink Posloupnosti reálných čísel a jejich limity | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.2 | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.3 %}
 		<ul>
@@ -102,7 +103,7 @@ Pokud je u předmětu symbol kartičky (🃏), tak je zahrnut v [tomto Anki bal�
 		{% stlink Částečná uspořádání. | /poznamky-z-prednasky/diskretni-matematika/#uspořádání %}
 		<ul>
 			<li> základní pojmy
-			<li> výška a šířka částečně uspořádané množiny, jejich vztah (o dlouhém a širokém)
+			{% stlink výška a šířka částečně uspořádané množiny, věta o dlouhém a širokém | /poznamky-z-prednasky/diskretni-matematika/#dlouh%C3%BD-a-%C5%A1irok%C3%BD %}
 		</ul>
 		{% stlink Funkce. | /poznamky-z-prednasky/diskretni-matematika/#funkce %}
 		<ul>
@@ -425,7 +426,7 @@ Z následujících témat je třeba si vybrat **jedno** z 1-3 a **dvě** z 4-7.
 		{% stlink Výpočetní model RAM. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s2.5 %}
 		{% stlink Komponenty silné souvislosti orientovaných grafů. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s5.9 %}
 		<ul>
-			<li> tranzitivní uzávěr
+			<li> tranzitivní uzávěr (Floyd-Warshal)
 			<li> komponenty silné souvislosti orientovaných grafů
 			<li> toky v sítích (Dinicův a Goldbergův algoritmus)
 		</ul>

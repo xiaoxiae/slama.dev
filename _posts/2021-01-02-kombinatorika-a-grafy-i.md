@@ -1024,7 +1024,7 @@ V \(H\) existuje vrcholový řez \(A \subseteq V(H), k_v(H) = |A|\). Při odebr�
 Kde poslední rovnost platí, protože \(F' = F \setminus {e}\) je (z definice) řezem \(G - e\).
 
 {% math theorem "Mengerova hranová" %}
-\(k_e(G) \ge t \iff\) mezi \(\ \forall u, v\ \exists \ge t\) hranově disjunktních cest.{% endmath %}
+\(k_e(G) = t \iff\) mezi \(\ \forall u, v\ \exists \ge t\) hranově disjunktních cest.{% endmath %}
 
 {% math proof "\(\Leftarrow\)" %}
 sporem nechť existuje hranový řez \(F\) a \(|F| < t\). \(G \setminus F\) je rozdělený na více komponent. Vezmi \(u \in C_1, v \in C_2\). Mezi \(u, v\) vedlo \(t\) hranově disjunktních cest. \(F\) nemohl přerušit všechny z nich.{% endmath %}
@@ -1033,7 +1033,7 @@ sporem nechť existuje hranový řez \(F\) a \(|F| < t\). \(G \setminus F\) je r
 mějme \(k_e(G) \ge t\) a pro \(u, v\) hledám disjunktní cesty. Sestrojím jednotkovou síť, najdu tok z \(u\) do \(v\). Pak vidím, že mám tok alespoň \(t\) (maximální tok je minimální řez) a začnu odčítat cesty.{% endmath %}
 
 {% math theorem "Mengerova vrcholová" %}
-\(k_v(G) \ge t \iff\) mezi \(\ \forall u, v\ \exists \ge t\) vrcholově disjunktních cest.{% endmath %}
+\(k_v(G) = t \iff\) mezi \(\ \forall u, v\ \exists \ge t\) vrcholově disjunktních cest (vyjma \(u, v\)).{% endmath %}
 
 {% math proof "\(\Leftarrow\)" %}
 stejný jako FF, jen nahraď „hrany“ za „vrcholy“.{% endmath %}
