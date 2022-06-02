@@ -7,8 +7,21 @@ css: statnice
 - .
 {:toc}
 
+{: .center}
+_<strong>DŮLEŽITÉ UPOZORNĚNÍ:</strong> pokud jste článek četli před 2.6.2022, tak u témat specifických pro obecnou informatiku bylo napsáno, že je třeba vybrat pouze jedno z prvních tří témat. <strong>Tomu tak není</strong> -- dokument byl 1.6.2022 upraven (přes to, že by podle dokumentu neměly úpravy v rozmezí měsíce před státnicemi přidávat požadavky)._
+
 Tento článek obsahuje mou přípravu na státní zkoušky z **Obecné informatiky** pro akademický rok **2021/2022** (tj. nová akreditace).
-Podrobné informace o všech specializacích (ze 24. května 2022) jsou k dispozici v [tomto PDF](/assets/priprava-na-statnice-mff-uk/pozadavky.pdf) (případně pouze pro Obecnou informatiku v [tomto PDF](/assets/priprava-na-statnice-mff-uk/pozadavky-obecna.pdf)).
+Podrobné informace o všech specializacích jsou k dispozici v [tomto PDF](https://www.mff.cuni.cz/cs/studenti/bakalarske-studium/statni-zaverecne-zkousky/bakalarske-statni-zkousky-studijniho-programu-informatika/detailni-pozadavky.pdf) (informace na této stránce jsou z 1.6.2022 updatu tohoto dokumentu).
+
+{: .center}
+Pro obecnou informatiku jsou relevantní následující termíny:
+
+| Datum     | Akce                                                  |
+| ---       | ---                                                   |
+| 14.6.2022 | **informatická** část zkoušek (+ otázky specializace) |
+| 17.6.2022 | obahoba s **posterem**                                |
+| 21.6.2022 | matematická část zkoušek                              |
+| 23.6.2022 | obahoba s **prezentací**                              |
 
 U každé časti tématu je jeden nebo více odkazů (🔗) na zdroje, ze kterých je možné se téma učit.
 U celých předmětů jsou vždy odkazy na zdroje (ať už se jedná poznámky, slidy či skripta).
@@ -322,7 +335,7 @@ Pokud je u předmětu symbol kartičky (🃏), tak je zahrnut v [tomto Anki bal�
 {% endsttopics %}
 
 ### Specifická
-Z následujících témat je třeba si vybrat **jedno** z 1-3 a **dvě** z 4-7.
+Z následujících témat je třeba umět **všechna** z 1-3 a **dvě** z 4-7 (vybírá se v SISu).
 
 {% sttopics %}
 	{% sttopic Kombinatorika | Kombagra 1 [[poznámky](/poznamky-z-prednasky/kombinatorika-a-grafy-i/)] 🃏 a 2 [[poznámky](/poznamky-z-prednasky/kombinatorika-a-grafy-ii/)] 🃏 %}
@@ -355,7 +368,7 @@ Z následujících témat je třeba si vybrat **jedno** z 1-3 a **dvě** z 4-7.
 			<li> vzdálenost kódu a její vztah k počtu opravitelných a detekovatelných chyb
 			<li> Hammingův odhad (formulace a důkaz)
 			<li> perfektní kódy (definice a příklady, Hammingův kód bez přesné konstrukce)
-		</ul>{% endsttopic %}{% endsttopics %}<hr><div class="stignored"> {% sttopics 2 %}
+		</ul>{% endsttopic %}
 	{% sttopic Základy sítí | Sítě [[slidy](/assets/priprava-na-statnice-mff-uk/site.pdf)] 🃏 %}
 		<li> Taxonomie počítačových sítí.
 		<li> Architektura ISO/OSI.
@@ -369,7 +382,7 @@ Z následujících témat je třeba si vybrat **jedno** z 1-3 a **dvě** z 4-7.
 		<li> Riemannův integrál.
 		<li> Extrémy funkcí více proměnných.
 		<li> Metrický prostor, otevřené a uzavřené množiny, kompaktnost.
-	{% endsttopic %}{% endsttopics %}</div><hr>{% sttopics 4 %}
+	{% endsttopic %}
 	{% sttopic Optimalizace | LP [[skripta](/assets/priprava-na-statnice-mff-uk/linprog.pdf)] 🃏, APX [[pozn.](/poznamky-z-prednasky/aproximacni-algoritmy/)] 🃏, Kombagra 2 [[pozn.](/poznamky-z-prednasky/kombinatorika-a-grafy-ii/)] 🃏, DSPO [[pozn.](/poznamky-z-prednasky/diskretni-a-spojita-optimalizace/)] %}
 		{% stlink Základy lineárního a celočíselného programování. | /assets/priprava-na-statnice-mff-uk/linprog.pdf#section.2 | /assets/priprava-na-statnice-mff-uk/linprog.pdf#subsection.7.1 | /assets/priprava-na-statnice-mff-uk/linprog.pdf#section.5 %}
 		<ul>
@@ -471,4 +484,4 @@ Z následujících témat je třeba si vybrat **jedno** z 1-3 a **dvě** z 4-7.
 </div>
 
 ### Poděkování
-- **shrekofspeed** (Discord) za upozornění na [požadavky](/assets/priprava-na-statnice-mff-uk/pozadavky.pdf) a na Medvědovo [Grafové Algoritmy](/assets/priprava-na-statnice-mff-uk/ga.pdf)
+- **shrekofspeed** (Discord) za upozornění na [požadavky](https://www.mff.cuni.cz/cs/studenti/bakalarske-studium/statni-zaverecne-zkousky/bakalarske-statni-zkousky-studijniho-programu-informatika/detailni-pozadavky.pdf) a na Medvědovo [Grafové Algoritmy](/assets/priprava-na-statnice-mff-uk/ga.pdf)
