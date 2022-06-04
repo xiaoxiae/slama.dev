@@ -1152,6 +1152,7 @@ vycházíme z Fanovy roviny a o přímkách uvažujeme jako o prvcích \(\mathbb
 ### 11. přednáška
 
 #### Jak nejefektivněji můžeme kódovat?
+
 - \(A(n, d) = \underset{C}{\mathrm{max}} \log |C|\) pro \(C\) binární kódy délky \(n\) s min. vzdáleností \(d\)
 	- \(A(n, 1) = n\) (triviální kód)
 	- \(A(n, 2) \ge n - 1\) (paritní kód má \(|C| = 2^{n -1}, d = 2\))
@@ -1308,12 +1309,14 @@ pro každé \(r \ge 2\) je \(\mathcal{H}_r \left[2^{r} - 1, 2^r - r - 1, 3\right
 	- pozorování: syndrom \(M \tilde{x} = Me\) je \(y_i \equiv\) binární zápis \(i \iff\) došlo k chybě na pozici \(i\)
 
 #### Perfektnost kódu
-Pokud pro \(C\) platí \(\Delta(C) = 2t + 1\), pak pro každé slovo \(x \in \mathbb{Z}^n_2\) je nejvýše jedno kódové slovo ve vzdálenosti \(\le t\) od \(x\). jsou to tedy **symetrické koule** se středem \(x\) a poloměrem \(t\), \(B(x, t) = \left\{z \in \mathbb{Z}_2^n\ |\ d(x, z) \le t\right\}\); jsou pro různá \(x \in C\) disjunktní.
+Pokud pro \(C\) platí \(\Delta(C) = 2t + 1\), pak pro libovolné slovo \(x \in \mathbb{Z}^n_2\) je nejvýše jedno kódové slovo ve vzdálenosti \(\le t\) od \(x\) (pozorování výše). Kódová slova tedy indukují **navzájem disjunktní symetrické koule** dimenze \(n\) se středem \(x\) a poloměrem \(t\): \[B(x, n, t) = \left\{z \in \mathbb{Z}_2^n\ |\ d(x, z) \le t\right\}\]
+
+Jelikož disjunktní koule mohou pokrýt nejvýše všech \(2^n\) slov, tak dostáváme následující pozorování na počet kódových slov:
 
 {% math theorem "Hammingův odhad" %}
-pro binární kód s \(\Delta(C) \ge 2t + 1\) platí \[|C| \le \frac{2^n}{V(n, t)} \]{% endmath %}
-- \(2^n\) je počet všech slov
-- \(V(n, t)\) je objem kombinatorické koule dimenze \(n\) o poloměru \(t\) \(= \sum_{i = 0}^{t} \binom{n}{i}\) (vždy způsoby, jak si vybrat \(i\) bitů a flipnout je)
+pro binární kód s \(\Delta(C) \ge 2t + 1\) platí \[|C| \le A(n, d) \le \frac{2^n}{V(n, t)} \]{% endmath %}
+- \(V(n, t) = \sum_{i = 0}^{t} \binom{n}{i}\) je objem kombinatorické koule dimenze \(n\) o poloměru \(t\)
+	- způsoby, jak si vybrat \(i\) bitů a flipnout je
 
 {% math proof %}
 mám na \(2^n\) prvcích \(|C|\) disjunktních koulí objemu \(V(n, t)\)... koule pokrývají \(|C| \cdot V(n, t)\) prvků, což je \(\le 2^n\) (méně nebo rovno všem prvkům -- nevím, jestli se nepřekrývají) a vydělím.{% endmath %}
