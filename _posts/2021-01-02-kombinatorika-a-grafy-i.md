@@ -208,17 +208,29 @@ nechť \(\left(a_0, a_1, \ldots\right)\) je posloupnost reálných čísel. Vytv
 |                         |                                                                                          |                           |
 | konvoluce               | \( \sum_{k = 0}^{n} a_k \cdot b_{n - k} \)                                               | \( a(x) \cdot b(x)\)      |
 
-Všechny důkazy jsou jednoduché rozepsání z definice.
+Zde je několik příkladů řad a výrazů, kterým odpovídají (hodí se v důkazech): \[
+\begin{aligned}
+	\sum_{n=0}^{\infty} x^n &= (1, 1, 1, 1, \ldots) &= \frac{1}{1 - x} \\
+	\sum_{n=0}^{\infty} (ax)^n &= (a^0, a^1, a^2, a^3, \ldots) &= \frac{1}{1 - ax} \\
+	\sum_{n=0}^{\infty} (x^2)^n &= (1, 0, 1, 0, \ldots) &= \frac{1}{1 - x^2} \\
+	\sum_{n=0}^{\infty} (-1)^n x^n &= (1, -1, 1, -1\ldots) &= \frac{1}{1 + x} \\
+\end{aligned}
+\]
 
 #### Zobecněná binomická věta
 
-{% math claim %}
-\(r \in \mathbb{R}, k \in \mathbb{N}\), def. \(\binom{r}{k} = \frac{r \cdot (r - 1) \cdot (r - 2) \cdot  \ldots  \cdot (r - k + 1)}{k!}\)
-{% endmath %}
+Chceme binomickou větu zobecnit i pro reálné exponenty. K tomu potřebujeme definici kombinačního čísla, která se s reálnými kamarádí. Uděláme následující:
+\[r \in \mathbb{R}, k \in \mathbb{N} \qquad \binom{r}{k} = \frac{r \cdot (r - 1) \cdot (r - 2) \cdot  \ldots  \cdot (r - k + 1)}{k!}\]
 
 - pro \(r \in \mathbb{N}\) se shoduje s tím, co už známe
-- vyplývá z toho, že funkce \((1 + x)^r\) je vytvořující funkcí posloupnosti \(\left(\binom{r}{0}, \binom{r}{1}, \binom{r}{2}, \ldots\right)\)
-- {% math observation %}pokud \(r\) je záporné celé, pak \(\binom{r}{k} = (-1)^k \binom{-r + k - 1}{k} = (-1)^k \binom{-r + k - 1}{-r - 1}\), tedy \(\frac{1}{(1 - x)^n} = (1 - x)^{-n} = \binom{n - 1}{n - 1} + \binom{n}{n - 1}x + \binom{n + 1}{n - 1}x^2 + \ldots\){% endmath %}
+- pro \(r \in \mathbb{R}\) opět máme klesající součin \(k\) prvků, ale hodnoty jsou reálné
+
+{% math theorem "ZBV" %}nechť \(x, y, r \in \mathbb{R}\) a \(|x| > |y|\) (kvůli konvergenci). Pak ZBV je následující výraz: \[(x+y)^r = \sum_{k = 0}^{\infty} \binom{r}{k} x^{r-k}y^k\]{% endmath %}
+
+{% math example %}
+- pro \(y = 1\) (a prohozením \(x\) a \(y\))  dostáváme \[(1 + x)^r = \left(\binom{r}{0}, \binom{r}{1}, \binom{r}{2}, \ldots\right)\]
+- speciálně pro \(r = \frac{1}{2}\) dostáváme \[\sqrt{1+x} = 1 + \frac{1}{2}x - \frac{1}{8} x^2 + \frac{1}{16} x^3 + \ldots\]
+{% endmath %}
 
 {% math example %}
 V krabici je \(30\) červených, \(40\) žlutých a \(50\) zelených míčků. Kolika způsoby lze vybrat \(70\)?
@@ -244,22 +256,23 @@ Kde poslední rovnost platí, protože:
 
 #### Fibonacciho čísla
 {% math definition %}\(F_0 = 0, F_1 = 1, F_n = F_{n - 1} + F_{n - 2}, \forall n \ge 2\){% endmath %}
-- \(F(x) = F_0 + F_1x + F_2x^2 + F_3x^3\)
+- Fibonacciho mocninnou řadou rozumíme \(F(x) = F_0 + F_1x + F_2x^2 + F_3x^3 + \ldots\)
 
-| \(F_0\) | \(F_1\) | \(F_2\)       | \(F_3\)       | \(F_4\)       | Vytvořující funkce |
-| ---     | ---     | ---           | ---           | ---           | ---                |
-| \(0\)   | \(1\)   | \(F_0 + F_1\) | \(F_1 + F_2\) | \(F_2 + F_3\) | \(F(x)\)           |
-| \(0\)   | \(0\)   | \(F_1\)       | \(F_2\)       | \(F_3\)       | \(x F(x)\)         |
-| \(0\)   | \(0\)   | \(F_0\)       | \(F_1\)       | \(F_2\)       | \(x^2 F(x)\)       |
-| \(0\)   | \(1\)   | \(0\)         | \(0\)         | \(0\)         | \(x\)              |
+| Funkce/pozice | 0              | 1              | 2              | 3              | 4              |
+| ---           | ---            | ---            | ---            | ---            | ---            |
+| \(x F(x)\)    | \(0\)          | \(F_0\)        | \(F_1\)        | \(F_2\)        | \(F_3\)        |
+| \(x^2 F(x)\)  | \(0\)          | \(0\)          | \(F_0\)        | \(F_1\)        | \(F_2\)        |
+| \(x\)         | \(0\)          | \(1\)          | \(0\)          | \(0\)          | \(0\)          |
+|               | \(\Downarrow\) | \(\Downarrow\) | \(\Downarrow\) | \(\Downarrow\) | \(\Downarrow\) |
+| \(F(x)\)      | \(F_0\)    | \(F_1\)    | \(F_2\)  | \(F_3\)  | \(F_4\)  |
 
-Algebraickou úpravou dostáváme:
+Z funkcí výše vidíme, že \(F(x) = x + xF(x) + x^2F(x)\). Algebraickou úpravou dostáváme:
 \[
 \begin{aligned}
 	F(x) &= \frac{x}{1 - x - x^2} \\
 	&= \frac{x}{\left(1 - \frac{1 + \sqrt{5}}{2}x\right)\left(1 - \frac{1 - \sqrt{5}}{2}x\right)} \qquad //\ \text{algebra}\\
 	&= \frac{\frac{1}{\sqrt{5}}}{1 - \frac{1 + \sqrt{5}}{2}x} - \frac{\frac{1}{\sqrt{5}}}{1 - \frac{1 - \sqrt{5}}{2}x}  \qquad //\ \text{parciální zlomky }\\
-	&= \frac{1}{\sqrt{5}}\left(\frac{1}{1 - \frac{1 + \sqrt{5}}{2}x} - \frac{1}{1 - \frac{1 - \sqrt{5}}{2}x}\right) \qquad //\ \text{tvary $\frac{\pm 1}{1 - \lambda_{1, 2} x}$}\\
+	&= \frac{1}{\sqrt{5}}\left(\frac{1}{1 - \frac{1 + \sqrt{5}}{2}x} - \frac{1}{1 - \frac{1 - \sqrt{5}}{2}x}\right) \qquad //\ \text{tvary $\frac{\pm 1}{1 - ax}$}\\
 \end{aligned}
 \]
 
@@ -283,9 +296,9 @@ Pro daný koeficient vytvořující funkce tedy máme:
 \[
 \begin{aligned}
 	b(x) &= x \cdot b(x)^2 + 1 \\
-	b(x)_{1, 2} &= \frac{1 \pm \sqrt{1 - 4x}}{2x} \qquad //\ \text{ten s $+$ nedává smysl, diverguje}\\
+	b(x)_{1, 2} &= \frac{1 \pm \sqrt{1 - 4x}}{2x} \qquad //\ \text{$+$ nedává smysl, diverguje}^*\\
 	\\
-	b(x) &= \frac{1 - 1 - \sum_{k = 1}^{\infty}(-4)^k \binom{1/2}{k} x^k }{2x} \qquad //\ \sqrt{1 - 4k} \overset{\text{ZBV}}{=} \sum_{k = 0}^{\infty} (-4)^k \binom{1/2}{k} x^k\\
+	b(x) &= \frac{1 - 1 - \sum_{k = 1}^{\infty}(-4)^k \binom{1/2}{k} x^k }{2x} \qquad //\ \sqrt{1 - 4k} \overset{\text{z. binom. v.}}{=} \sum_{k = 0}^{\infty} (-4)^k \binom{1/2}{k} x^k\\
 	&= -\frac{1}{2} \sum_{k = 1}^{\infty} (-4)^k \binom{1/2}{k} x^{k - 1}\\
 	\\
 	b_n &= -\frac{1}{2} (-4)^{n + 1} \binom{1/2}{n + 1}\qquad //\ \text{konkrétní koeficient}\\
@@ -298,6 +311,8 @@ Pro daný koeficient vytvořující funkce tedy máme:
 	&= \frac{1}{n + 1} \binom{2n}{n} \\
 \end{aligned}
 \]
+
+\(*\): divergencí myslíme v rámci toho tvrzení o slušně vychovaných vytvořujících funkcí: funkce \(\frac{1 + \sqrt{1 - 4x}}{2x}\) na okolí \(0\) konverguje zleva a zprava k jiným hodnotám
 
 #### Konečné projektivní roviny
 
