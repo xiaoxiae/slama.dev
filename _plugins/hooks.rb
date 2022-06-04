@@ -22,6 +22,8 @@ Jekyll::Hooks.register :site, :after_init do |site|
   }
 
   print "          Projects: " + `_plugins/projects.py`
+
+  print "                CV: " + `git submodule foreach git pull`
   print "                CV: " + `_plugins/cv/cv.py --pdf -c`
   print "                CV: " + `_plugins/cv/cv.py --html -o _includes/cv`
 end
