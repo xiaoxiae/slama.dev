@@ -517,7 +517,7 @@ Tedy \[\Chi(\Gamma) = L(G)\]
 
 {% math theorem "Brooks, 1941" %}Nechť \(G\) je souvislý graf který není úplný a není lichá kružnice. Pak \[\Chi(G) \le \Delta(G)\]{% endmath %}
 
-{% math proof %}nechť \(\Chi = \Chi(G), \Delta = \Delta(G)\) a navíc předpokládám, že \(G\) je \(\Delta\)-regulární (jinak viz. předchozí lemma.
+{% math proof %}nechť \(\Chi = \Chi(G), \Delta = \Delta(G)\) a navíc předpokládám, že \(G\) je \(\Delta\)-regulární (jinak viz předchozí lemma.
 
 - \(\Delta = 1\)
 	- \(K_2\): zakázané
@@ -674,9 +674,9 @@ Pro spor: \(R\) není klika \(\Rightarrow\) obsahuje \(u, v\) nesousedy. Protož
 - jinak \(v_1, \ldots, v_n\) očíslujeme vrcholy \(C\) a navíc \(v_1 = x, v_n = y\)
 	- chceme \(C' := \left(C \setminus \left\{xy, v_iv_{i + 1}\right\}\right) \cup \left\{v_iy, v_{i + 1}x\right\}\) je ham. kružnice v \(G\)
 	- \(I_1 := \left\{i \in \left\{2, \ldots, n - 2\right\}\ \text{t. ž. }\left\{x, v_{i + 1}\right\} \in E\right\}\) (vrcholy dobré pro \(x\))
-		- povoluji vrcholy \(v_3, \ldots, v_{n-1}\), viz. indexování
+		- povoluji vrcholy \(v_3, \ldots, v_{n-1}\), viz indexování
 	- \(I_2 := \left\{i \in \left\{2, \ldots, n - 2\right\}\ \text{t. ž. }\left\{y, v_i\right\} \in E\right\}\) (vrcholy dobré pro \(y\))
-		- povoluji vrcholy \(v_2, \ldots, v_{n - 2}\), viz. indexování
+		- povoluji vrcholy \(v_2, \ldots, v_{n - 2}\), viz indexování
 	- \(|I_1 \cup I_2| \le n - 3\) (pozor, indexování je posunuté!
 	- \(|I_1| = \deg_G(x) - 1\) (nesmím použít \(v_2\))
 	- \(|I_2| = \deg_G(y) - 1\) (nesmím použít \(v_{n - 1}\))
@@ -1041,22 +1041,24 @@ Tedy dostáváme, že \[A(x) = \frac{1}{4} \left(\left(\frac{1}{1 - x}\right)^4 
 
 ### 13. přednáška
 
-#### Extremální teorie grafů a hypergrafů
+#### Extremální teorie
 {% math definition %}pro graf \(H\) označím \(\mathrm{ex}(n, H)\) největší \(m\) t.ž. existuje graf \(G\) s \(n\) vrcholy, \(m\) hranami a neobsahující \(H\) jako podgraf.
 {% endmath %}
 - \(\mathrm{ex}(n, K_3) = |E(K_{\left\lfloor \frac{n}{2} \right\rfloor, \left\lceil \frac{n}{2} \right\rceil})| = \left\lfloor \frac{n}{2} \right\rfloor \cdot \left\lceil \frac{n}{2} \right\rceil \cong n^2\)
 - \(\mathrm{ex}(n, C_4) = \mathcal{O}(n^{3/2}) = \mathcal{O}(n \sqrt{n})\)
-	- viz. poznámky z [Kombinatoriky a Grafů I](/lecture-notes/kombinatorika-a-grafy-i/#grafy-bez-ckc_kck)
+	- viz poznámky z [Kombinatoriky a Grafů I](/lecture-notes/kombinatorika-a-grafy-i/#grafy-bez-ckc_kck)
 
 {% math definition %}\(k, n \in \mathbb{N}\), označme \(T_k(n)\) úplný \(k\)-partitní graf na \(n\) vrcholech, jehož všechny partity mají velikost \(\left\lfloor \frac{n}{k} \right\rfloor\) nebo \(\left\lceil \frac{n}{k} \right\rceil\). Nechť \(t_k(n) = |E(T_k(n))|\){% endmath %}
-- \(k\)-partitní je to samé jako \(k\)-obarvitelný (\(\Chi(G)\))
-- partity mohou být i prázdné -- \(k\)-partitní je i \(k'\)-partitní, pro \(k' \ge k\)
-- úplný \(k\)-partitní -- každé \(2\) partity jsou úplný bipartitní graf
+- úplný \(k\)-partitní znamená, že každé \(2\) partity jsou úplný bipartitní graf
+- {% math observation %}\(k\)-partitní je to samé jako \(k\)-obarvitelný (\(\Chi(G)\)){% endmath %}
+- partity mohou být i prázdné (\(k\)-partitní je i \(k'\)-partitní, pro \(k' \ge k\))
+
+![](/assets/kombinatorika-a-grafy-ii/turan.svg)
 
 {% math observation %}\(\forall r \in \mathbb{N}, r \ge 2: \mathrm{ex}(n, K_r) \ge t_{r - 1}(n)\), protože \(T_{r - 1}(n)\) neobsahuje \(K_r\) (z každé partity si klika vezme \(\le 1\) vrchol, tedy nejvýše \(r - 1\)) {% endmath %}
 
 {% math lemma "1" %}Každý \(k\)-partitní graf na \(n\) vrcholech má nanejvýš \(t_{k}(n)\) hran.{% endmath %}
-- \(=\) \(t_{k}(n)\) jsou mezi \(k\)-partitními nejlepší
+- \(t_{k}(n)\) jsou mezi \(k\)-partitními nejlepší
 
 {% math proof %}Nechť \(G = (V, E)\) je \(k\)-partitní, \(P_1, \ldots, P_k\) jsou jeho partity. Navíc \(|P_1| \le |P_2| \le \ldots \le |P_k|\)
 - buď \(|P_k| \le |P_{1}| + 1\), pak \(G \cong T_k(n)\)
@@ -1107,7 +1109,7 @@ Spojení odhadů dává rovnost.
 
 {% math remark %}\(t_k(n) = \frac{k-1}{k} \binom{n}{2} + \mathcal{O}(n) = \frac{k - 1}{2k} n^2 + \mathcal{O}(n)\){% endmath %}
 
----
+##### Pro minory
 
 {% math definition %}pro graf \(H: \mathrm{ex}_\preceq(n, H)\) je maximalní počet hran grafu \(G\) na \(n\) vrcholech bez \(H\) jako minoru.{% endmath %}
 
@@ -1143,25 +1145,20 @@ K důkazu původního vyberu \(x \in V(G)\), \(S = N_G(x), G_S = G\left[S\right]
 {% math remark %}odhad byl dost hrubý, věta platí dokonce pro \(c_r = \mathcal{O}(r \cdot \sqrt{\log r}\)){% endmath %}
 {% endmath %}
 
+#### Pronikající systémy množin
+
 {% math definition %}\(k\)-uniformní hypergraf je dvojice \((V, E)\), kde \(E \subseteq \binom{V}{k}\){% endmath %}
 - \(f(k, n) :=\) max. \(m\) t.ž. \(\exists\) \(k\)-uniformní hypergraf \(H = (V, E)\) t.ž. \(|V| = n, |E| = m\) a \(E\) je „pronikající systém množin“ (t.j. \(\forall e, e' \in E: e \cap e' \neq \emptyset\))
-	- braní všech hran nemusí fungovat (musí se protínat všechny dvojice)!
-
-
-<!---MARKDOWN-->
-
-{:.rightFloatBox}
-{% xopp slun %}
-
-<!---PDF
--->
+	- braní všech hran nemusí fungovat (musí se protínat všechny dvojice)
 
 {% math observation %} rozebereme několik případů:
 - \(k > n: f(k, n) = 0\), protože neexistují hyperhrany
 - \(k \le n < 2k: f(k, n) = \binom{n}{k}\), protože každé dvě množiny z \(\binom{V}{k}\) se protínají
 - \(n \ge 2k: f(k, n) \ge \binom{n - 1}{k - 1}\) -- konstrukce, kde \(E = \left\{\left\{1\right\} \cup e' \mid e' \in \binom{\left\{2, \ldots, n\right\}}{k - 1}\right\}\)
-	- „slunečnicová“ proto, že vezmeme jeden střed a poté hrany na zbylých vrcholech
+	- jedná se o tzv. „slunečnicovou konstrukci“ (viz tvar)
 {% endmath %}
+
+![](/assets/kombinatorika-a-grafy-ii/slunecnice.svg)
 
 {% math theorem "Erdös-Ko-Rado, 196*" %}\(\forall k, n \in \mathbb{N}: n \ge 2k \Rightarrow f(k, n) = \binom{n - 1}{k - 1}\){% endmath %}
 
