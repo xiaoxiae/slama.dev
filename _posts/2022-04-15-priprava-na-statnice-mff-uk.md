@@ -267,14 +267,75 @@ Pokud je u předmětu symbol kartičky (🃏), tak je zahrnut v [tomto Anki bal�
 		{% stlink Euklidův algoritmus. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s1.3  %}
 	{% endsttopic %}
 	{% sttopic Programovací jazyky | Programko [[poznámky](/assets/priprava-na-statnice-mff-uk/prog2.pdf)], Java/C#/C++ [[C# poznámky](/lecture-notes/the-cs-programming-language/)] %}
-		<li> Koncepty pro abstrakci, zapouzdření a polymorfizmus.
-		{% stlink Primitivní a objektové typy a jejich reprezentace. | /lecture-notes/the-cs-programming-language/#cil-type-system %}
-		{% stlink Generické typy a funkcionální prvky. | /assets/priprava-na-statnice-mff-uk/prog2.pdf#page=20 %}
-		{% stlink Práce s prostředky a mechanizmy pro ošetření chyb. | /lecture-notes/the-cs-programming-language/#exceptions %}
-		{% stlink Životní cyklus objektů a správa paměti. | /lecture-notes/the-cs-programming-language/#heaps-and-gc %}
-		{% stlink Vlákna a podpora synchronizace. | /assets/priprava-na-statnice-mff-uk/ps.pdf#page=112 %}
-		<li> Implementace základních prvků objektových jazyků.
-		<li> Nativní a interpretovaný běh, řízení překladu a sestavení programu.
+	<li> Koncepty pro abstrakci, zapouzdření a polymorfismus.
+		<ul>
+		<li> související konstrukty programovacích jazyků
+			<ul>
+			<li> třídy, rozhraní, metody, datové položky, dědičnost, viditelnost
+			</ul>
+		<li> (dynamický) polymorfismus, statické a dynamické typování
+		<li> jednoduchá dědičnost
+			<ul>
+			<li> virtuální a nevirtuální metody v C++ ~~a C#~~
+			<li> ~~defaultní metody v Javě~~
+			</ul>
+		<li> ~~vícenásobná dědičnost a její problémy~~
+			<ul>
+			<li> ~~vícenásobná a virtuální dědičnost v C++~~
+			<li> ~~interfaces v Javě a C++~~
+			</ul>
+		<li> implementace rozhraní (interface)
+		</ul>
+	<li> Primitivní a objektové typy a jejich reprezentace.
+		<ul>
+		<li> číselné a výčtové typy
+		<li> ~~ukazatele a reference v C++~~
+		<li> hodnotové a referenční typy v C#
+		<li> imutabilní typy a boxing/unboxing v C# ~~a Javě~~
+		</ul>
+	<li> Generické typy a funkcionální prvky (procedurálních programovacích jazyků).
+		<ul>
+		<li> ~~šablony (templates) a statický polymorfismus v C++~~
+		<li> generické typy v Javě a C# (bez omezení typových parametrů)
+		<li> typy reprezentující funkce v ~~C++~~, C#, ~~nebo Javě~~
+		<li> lambda funkce a funkcionální rozhraní
+		</ul>
+	<li> Manipulace se zdroji a mechanizmy pro ošetření chyb.
+		<ul>
+		<li> správa životního cyklu zdrojů v případě výskytu chyb
+			<ul>
+			<li> ~~RAII v C++~~, using v C#, ~~try-with-resources v Javě~~
+			</ul>
+		<li> konstrukce pro obsluhu a propagaci výjimek
+		</ul>
+	<li> Životní cyklus objektů a správa paměti.
+		<ul>
+		<li> alokace (alokace statická, na zásobníku, na haldě)
+		<li> inicializace (konstruktory, volání zděděných konstruktorů)
+		<li> destrukce (destruktory, finalizátory)
+		<li> explicitní uvolňování objektů, reference counting, garbage collector
+		</ul>
+	<li> Vlákna a podpora synchronizace.
+		<ul>
+		<li> reprezentace vláken v programovacích jazycích
+		<li> specifikace funkce vykonávané vláknem a základní operace na vlákny
+		<li> časově závislé chyby a mechanizmy pro synchronizaci vláken
+		</ul>
+	<li> Implementace základních prvků objektových jazyků.
+		<ul>
+		<li> základní objektové koncepty v konkrétním jazyce (~~Java~~, ~~C++~~, C#)
+		<li> implementace a interní reprezentace primitivních typů
+		<li> implementace a interní reprezentace složených typů a objektů
+		<li> implementace dynamického polymorfismu (tabulka virtuálních metod)
+		</ul>
+	<li> Nativní a interpretovaný běh, řízení překladu a sestavení programu.
+		<ul>
+		<li> reprezentace programu, bytecode, interpret jazyka
+		<li> just-in-time (JIT) a ahead-of-time (AOT) překlad
+		<li> proces sestavení programu, oddělený překlad, linkování
+		<li> staticky a dynamicky linkované knihovny
+		<li> běhové prostředí procesu a vazba na operační systém
+		</ul>
 	{% endsttopic %}
 	{% sttopic Architektura počítačů a OS | Principy poč. [[poznámky](/poznamky-z-prednasky/principy-pocitacu/)] 🃏, Poč. systémy [[slidy](/assets/priprava-na-statnice-mff-uk/ps.pdf)] %}
 		{% stlink Základní architektura počítače. | /poznamky-z-prednasky/principy-pocitacu/#zjednodu%C5%A1en%C3%A9-sch%C3%A9ma-po%C4%8D%C3%ADta%C4%8De | /assets/priprava-na-statnice-mff-uk/ps.pdf#page=24 %}

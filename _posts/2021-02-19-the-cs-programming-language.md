@@ -110,44 +110,60 @@ class A {
 ```
 
 - everything in C# inherits `: object == System.Object` (if not inheriting anything)
-- when inheriting, the constructor of the predecessor is called like this:
+
+When inheriting, the constructor of the predecessor is called like this:
 
 ```cs
-class A : Z {
-	int x = something;
+class B : A {
+	int x = stuff;
 	
-	A () {stuff}
+	B () {
+		stuff2
+	}
 }
 
 // is equivalent to (for each constructor!)
 // note that stuff can be arbitrary code
 
-class A : Z {
-	A () {
-		int x = something;
+class B : A {
+	B () {
+		int x = stuff;
 		
-		// constructor of Z (without parameters)
+		// constructor of A (without parameters)
 		
-		stuff
+		stuff2
 	}
 }
 ```
 
-- if no constructor without parameters exist, the code wouldn't compile; in this case (or if we just want to call a different one), we can do this:
+If no constructor without parameters exist (for example when a class contains one with parameters, which makes the one without parameters not generate) and we inherit the class without calling it, it won't compile:
 
 ```cs
-class A : Z {
-	A () : base(/*parameters for constructor of Z*/) {stuff}
+// THIS WON'T COMPILE!
+
+class A {
+	public A(int x) { }
+}
+
+class B : A {
+}
+```
+
+We have to do this instead:
+
+```cs
+class A : B {
+	A () : base(/*parameters for constructor of B*/) {stuff}
 }
 
 // is equivalent to (for each constructor!)
 // note that stuff can be arbitrary code
 
-class A : Z {
+class A : B {
 	A () {
 		int x = something;
 		
-		// constructor of Z (with the appropriate parameters)
+		// constructor of B (with the appropriate parameters)
 		
 		stuff
 	}
@@ -158,7 +174,7 @@ class A : Z {
 	- `A(): this(constructor parameters) {}`
 	- the stuff that would be called before `A()` isn't called (so we don't do it twice)
 
-#### Class constructor
+#### Static/class constructor
 - same as a regular constructor but for static variables
 - called before the first time an object of the class is instantiated
 	- if no object is constructed, it is never called
@@ -172,6 +188,12 @@ class A {
 	static A() { }
 }
 ```
+
+#### Destructors/finalizers
+- same name as the class, but prepended with a tilde (`~`)
+- has no return type and no parameters
+- cannot be defined in structures
+- called when the object is **destroyed** (by the GC)
 
 #### Inheritance
 ```cs
@@ -188,8 +210,7 @@ a = new B();   // is also fine
 	- if none is specified, `System.Object == object` is used automatically
 
 ##### Virtual/abstract/new methods
-- **member hiding** (same name, higher priority)
-- it sometimes make sense to implement a function differently in a child 
+- it sometimes makes sense to implement a function differently in a child... **member hiding**
 	- if we're looking at `B` like it's `A`, the `A` implementation would be called (if it's not virtual)
 	- a warning is issued -- did we really want to do this?
 		- what if we called the method from some other method in `A`?
@@ -276,12 +297,11 @@ if (b != null) {
 }
 
 // is almost equivalent to (since C# 7.0)
+// only difference is that `b` is not initialized after
 
 if (a is B b) {
 	// do stuff with `B b`
 }
-
-// `b` is not initialized here!
 ```
 
 ##### `System.Object`
@@ -314,16 +334,42 @@ if (a is B b) {
 		- better to implement it ourselves in this case
 
 ##### `sealed`
-- prevents inheritance and (likely) allows for some code optimizations
+- prevents inheritance and allows for some code optimizations
 	- no virtual function calls
 - `sealed class A {}` -- is not inheritable
 - `sealed override void m()` -- is not overridable
+
+#### Generic classes
+- useful when we have a lot of similar classes that differ by types
+- can be used for `struct`s and `interface`s too
+
+```
+class FixedStack<T> {
+	T[] a;
+	int num;
+	
+	public FixedStack(int maxSize) {
+		a = new T[maxSize];
+	}
+	
+	public void push(T val) {
+		a[num] = val;
+		num += 1;
+	}
+	
+	public T pop() {
+		num -= 1;
+		T ret = a[num];
+		return ret;
+	}
+}
+```
 
 ### Variable scope
 
 #### Local variables
 - created each time we enter `{`, deleted each time we leave `}`
-	- but... is extremely fast and can be optimized by the compiler, if a variable is repeatedly created and discarded
+	- but is still extremely fast and highly optimized by the compiler
 - the same name can't be reused within the same scope, but be careful:
 
 ```cs
@@ -352,10 +398,10 @@ e = f; // error, f is not initialized in all paths
 
 | Property/Function | Meaning                             |
 | ---               | ---                                 |
-| e.Message         | `string` error message              |
-| e.StackTrace      | `string` trace of method call stack |
-| e.Source          | `string` app/object that threw it   |
-| e.ToString()      | `string` the formatted exception    |
+| `e.Message`       | `string` error message              |
+| `e.StackTrace`    | `string` trace of method call stack |
+| `e.Source`        | `string` app/object that threw it   |
+| `e.ToString()`    | `string` the formatted exception    |
 
 #### Syntax
 ```cs
@@ -412,19 +458,20 @@ try {
 using (type x = new Type()) {
 	// some code
 }
+```
 
-// is also equivalent to (since C# 8.0)
-// the `Dispose` is called when the variable goes out of scope
+- is also equivalent to (since C# 8.0, with `Dispose` being called when `x` goes out of scope)
 
+```cs
 using type x = new Type();
 ```
 
-- only works with objects that are **disposable** (inherit `IDisposable` \(\implies\) have a `Dispose` method)
+- only works with objects that inherit `IDisposable` \(\implies\) have a `Dispose` method
 
 ### Properties
 
 ```cs
-int Property {
+T Property {
 	get { /* stuff to do */ }
 	set { /* stuff to do (with a variable `value`) */ }
 }
@@ -433,8 +480,8 @@ int Property {
 - syntactic sugar for defining a `T get()` and `void set(T value)` methods
 	- must be used with `=`, although it does generate methods `get_*` and `set_*` (so don't name other methods like that)
 - is nice when we want to let the programmer know that we're just setting/getting something (although it may do something more complex)
-	- it's generally a good idea to not make it too slow, since the programmer expects it to be instant
--  when doing assemblies, properties make it so we don't need to rebuild code that uses it, since the API stays the same
+	- it's generally a good idea to not make it too slow, since the syntax looks instant
+-  when doing assemblies, properties make it so we don't need to rebuild code that uses it, since the API stays the same (which can be desirable)
 - interfaces can also contain them (not the implementation, just that it has to have one)
 
 #### Auto-implemented
@@ -444,6 +491,10 @@ int Property {
 - we can also set default values: `int X { get; set; } = 12;`
 - we can also explicitly set the accessibility of the functions: `public int Length { get; private set; }`
 	- `public` affects `get`, since it doesn't have an explicit modifier, but not `set`, because it has one
+
+#### Read-only
+- `set` can be omitted, which makes the property read-only
+- this means it can only be changed in the constructor and nowhere else
 
 #### Instantiating objects with properties
 ```cs
@@ -482,19 +533,17 @@ class File {
 }
 ```
 
-### CIL Type System
-- compared to C++, we can't choose whether something is a value or a reference -- it is determined by its type
+### Type System
+- we can't choose whether something is a value or a reference -- it is determined by its type
 
 #### Value types
-- variable is always the **value**
-- assigning value **copies it**
-- allocated **in-place** (with exceptions)
+- variable is always passed by **value** (assigning **copies it over**)
+- usually allocated in-place on the **stack** (with exceptions, like when a part of a class)
 - contains:
 	- `struct`ures
 	- simple types (`int`, `char`)
 	- `Nullable`s (it's just a struct)
 	- enumerations
-- `new` is also used, but it **doesn't allocate anything** -- it just calls the constructor
 	- is weird, since it's completely different to references that are allocated
 - **can implement interfaces**, but boxing happens when we assign to `I var`
 	- watch out for passing stuctures to function and doing something to them, since they will be boxed and nothing will change...
@@ -507,27 +556,26 @@ class File {
 	- `bool` is only `true/false`, so it isn't defined too (implementation detail)
 - `decimal` -- exponent is decimal, so numbers like `0.1` are precies
 	- the downside is that it is much slower
-	- note that they are **not normalized**, so `decimal b = 1.000M;` will print the zeroes
 - all of them are perpendicular to one another in the type hierarchy, but there **are conversions**
 	- it is an actual conversion, not like for reference types (just checks in that case)
 	- **implicit** conversions happen automatically, while **explicit** are manual
 		- although a conversion is implicit, it can have data loss (`long` \(\rightarrow\) `float`)
-	- they are not free, it can sometimes take quite a while (`int` \(\rightarrow\) `float`)
-	- no conversions from/to `bool` (unlike C++)
+	- they are **not free,** it can sometimes take quite a while (`int` \(\rightarrow\) `float`)
+	- no conversions from/to `bool`
 
 ![Implicit Conversions.](/assets/programovani-v-jazyce-cs/implicit-conversions.svg)
 
-- by default, all numberic constants (without a period) are `int`
-	- we can do `long a = 10;`, it's optimized to not do a conversion
-	- we sometimes want to call a specific method with constants and it has overrides:
+- by default, all numeric constants (without a period) are `int`
+	- however, we can do `long a = 10;`, it's optimized to not do a conversion
+	- when a specific constant type is desired, we can use the following suffixes:
 		- unsigned int/long: `u`
 		- long, unsigned long: `l`
 		- unsigned long: `ul`
 - by default, all decimal number constants are `double`
-	- we **can't do** `float f = 2.5;`; do `2.5f`
-	- we can (and should) also do
-		- `d` for `double d = a / 2d;`
-		- `m` for `decimal m = a / 2m;`
+	- we **can't do** `float f = 2.5;` (but must do `2.5f`)
+	- other suffixes include
+		- `d` for `double`
+		- `m` for `decimal`
 - when designing APIs, it might be a good idea to do `Int32` instead of `int`, so programmers from other languages now exactly what we mean
 
 ##### Nullable types
@@ -536,14 +584,12 @@ class File {
 - `bool?`'s `null` value is "i don't know" so we can use `|` and `&` and get results we expect
 
 #### Reference types
-- variable is always the **reference**
-- assigning reference **creates a new reference to it**
-- the actual value is allocated on managed **heaps**
+- variable is always passed by **reference** (assigning **creates a new reference to it**)
+- the variable data is allocated and stored on managed **heaps**
 - can only ever be assigned a reference to the heap
-- can contain a `null`
+- can be `null`
 	- actually, since C# 8.0, we can toggle this behavior and forbid it to contain a `null`
-		- only gives warnings, since the compiler can miss paths where it's not `null`
-		- this makes it so we can make objects it `Nullable` using `?`
+	- only gives warnings, since the compiler can't always determine that it's not from static analysis (although we can specify to treat certain warnings as errors)
 - contains:
 	- `class`es
 	- `interface`s
@@ -582,26 +628,20 @@ class File {
 	- nicer to memory
 	- `int[,] a = new int[2, 3]`
 
-#### Pointers
-- dangerous, won't be discussed too much in the first semester
-- is never checked -- can be pointed **anywhere** (actually)
-- isn't tracked by the garbage collector, so it can delete the instance without us knowing... the solution is **tracking references** (see `ref` section)
-
 #### (un)boxing
 - crossing the bounday between a reference type and a value type
 - `object o = 5;` creates a new object on the heap where the reference points to
 - is immutable for simple value types, because... how would we modify it?
 
 ### Structures
-- only makes sense when we want the value semantics
+- only makes sense when we want the value semantics but more complex behavior
 	- `Vector`, `Color`, `Complex` structures, for example
 - **no inheritance,** since the variable is always the value -- assigning to variables would be broken (and is one of the main reasons for inheritance), which means:
 	- no `abstract`, no `virtual` methods -- all user-defined structures are essentially sealed
 - as opposed to a class, a structure **always has an empty constructor without parameters**
-	- even if we define some other one
-	- this means that we can't create one, since it's always there
-- if they're a part of a class/struct, the constructor is called automatically
-- if they're on a stack, they can't be accessed until they are initialized
+	- we **can't** define one, since it's always there
+	- is preserved when we define another one
+- if they're a part of a class/struct, the constructor is called automatically when initialized
 
 ```cs
 using System;
@@ -690,7 +730,9 @@ class A {
 - `x?.m()` will call the method if `x` isn't `null`
 - `x?.f` will get the field value, if `x` isn't `null`
 
-### `ref`
+### References
+
+#### `ref`
 - a **tracking reference**
 - address is passed and automatically de-referenced
 - can point to heap/stack/static data
@@ -708,11 +750,11 @@ void f() {
 
 - calling a method on an object is just a shortcut for doing `Class.function(ref this, <other parameters>)`
 
-### `out`
+#### `out`
 - an alternative to `ref`
 - useful for returning/setting multiple things in a function
 - the CIL code is exactly the same, but the compiler checks, whether each `out` parameter has been assigned to (since the caller wouldn't know about the state of the variable)
-	- we can't not assign the parameters (we have to at least assign dummy values)
+	- we must assign the parameters (at least dummy values)
 
 ```cs
 void Read(out int first, out int next) {
@@ -720,7 +762,7 @@ void Read(out int first, out int next) {
 	next = Console.Read();
 }
 
-void f() {
+void Main() {
 	int first, next;
 	Read(out first, out next);
 }
@@ -752,15 +794,23 @@ Console.WriteLine("We didn't fail: " + a);
 ### Interfaces
 - a **contract** -- we can assign any `class` that implements an interface to variables with an interface (when we only require the functionality of the given interface)
 	- we can do the same for a `struct`, but it involves boxing
-- **can't be instantiated**, since it has no code
+
+```cs
+interface Shape {
+	double Perimeter();
+	double Area();
+}
+```
+
+- **can't be instantiated** (it has no code)
 - not entirely an abstract class
 	- classes/interface can implement multiple interfaces
 	- classes can inherit only a single class
-	- interfaces can't have code
-- note that each interface „inherits“ `System.Object`, since all objects inherit it too
-	- not literally, it's _#justcompilerthings_
+	- interfaces can't have code, abstract classes can
 
-### Heaps and GC
+### Implementation details
+
+#### Heaps and garbage collection
 - **two heaps**; behavior of the garbage collector to the two heaps is different
 - real limit is around \(1.4\ GB\) (for 32-bit systems)
 	- `OutOfMemoryException` could happen sooner, since we could have a lot of holes in the given heap and the new object wouldn't fit in -- **heap fragmentation**
@@ -783,18 +833,19 @@ Console.WriteLine("We didn't fail: " + a);
 	- checking the number of generation collections
 	- forcing a collection of a given generation
 	- should be the **last resort**, since it usually does things well
-- GC \(\implies\) no memory leaks is **not true** (or, well, to an extent...):
-	- a global cache used in some classes doesn't get collected, since there is a reference to it
+- GC \(\implies\) no memory leaks is **not true** (to an extent...):
+	- when a global cache used in classes doesn't get collected
+	- when objects subscribe to events and don't unsubscribe
+	- when an anonymous method references an attribute from an object
 
-#### Large Object Heap (LOH)
+##### Large Object Heap (LOH)
 - if it's larger than \(85\ 000\ B\)
 - usually reached when the object contains an array
 - no heap compacting (don't move objects when others die)
 
-#### Small Object Heap (SOH)
+##### Small Object Heap (SOH)
 - if it's smaller than \(85\ 000\ B\)
 
-### Compilation and runtime-related things
 
 #### CIL
 - **common intermediate language**
@@ -816,7 +867,7 @@ Console.WriteLine("We didn't fail: " + a);
 - also **takes care of optimizations,** since optimizing CIL code doesn't make much sense
 	- means that they can't be overly aggressive
 
-##### AOT
+#### AOT
 - **ahead-of-time** -- before it's needed
 - `ngen.exe` -- pre-JITting code
 - more intensive optimizations
