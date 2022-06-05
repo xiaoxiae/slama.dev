@@ -200,13 +200,13 @@ nechť \(\left(a_0, a_1, \ldots\right)\) je posloupnost reálných čísel. Vytv
 | posun doprava           | \(0, a_0, a_1, \ldots \)                                                                 | \(xa(x)\)                 |
 | posun doleva            | \(a_1, a_2, a_3, \ldots \)                                                               | \(\frac{a(x) - a_0}{x}\)  |
 |                         |                                                                                          |                           |
-| substituce \(\alpha x\) | \(a_0, \alpha a_1, \alpha^2 a_2, \ldots \)                                               | \(a(\alpha x)\)           |
+| substituce \(\alpha x\) | \(\alpha^0 a_0, \alpha^1 a_1, \alpha^2 a_2, \ldots \)                                             | \(a(\alpha x)\)           |
 | substituce \(x^n\)      | \(a_0, 0, \overset{n - 1}{\ldots}, 0, a_1, 0, \overset{n - 1}{\ldots}, 0, a_2, \ldots \) | \(a(x^n)\)                |
 |                         |                                                                                          |                           |
 | derivace                | \(a_1, 2a_2, 3a_3, \ldots \)                                                             | \( a'(x)\)                |
 | integrování             | \(0, a_1, a_2/2, a_3/3, \ldots \)                                                        | \( \int_{0}^{x} a(t) dt\) |
 |                         |                                                                                          |                           |
-| konvoluce               | \( \sum_{k = 0}^{n} a_k \cdot b_{n - k} \)                                               | \( a(x) \cdot b(x)\)      |
+| konvoluce               | \(a_n = \sum_{k = 0}^{n} a_k \cdot b_{n - k} \)                                          | \( a(x) \cdot b(x)\)      |
 
 Zde je několik příkladů řad a výrazů, kterým odpovídají (hodí se v důkazech): \[
 \begin{aligned}
@@ -1116,11 +1116,11 @@ vycházíme z Fanovy roviny a o přímkách uvažujeme jako o prvcích \(\mathbb
 - \(\Sigma \ldots\) abeceda
 	- \(s \in \Sigma^n \ldots\) slovo (vstup)
 - \(C \subseteq \Sigma^n \ldots\) kód
-	- \(c \in C \ldots\) kódové slovo (naše special slova)
+	- \(c \in C \ldots\) kódové slovo (naše spešl slova)
 	- \(|C| \ldots\) velikost kódu (počet kódových slov)
 	- \(n \ldots\) délka kódu (kolikaznaková slova máme)
 	- \(k = \log |C| \ldots\) dimenze kódu (bude se hodit později)
-- pro \(x, y \in \Sigma^n: d_H (x, y) = d(x, y)\ldots\)  počet souřadnic, ve kterých se liší
+- pro \(x, y \in \Sigma^n: d(x, y)\ldots\)  počet souřadnic, ve kterých se liší
 	- \(d = \Delta(C) = \underset{x, y \in C}{\mathrm{min}}\ d(x, y) \ldots\) (min.) vzdálenost \(C\)
 		- \(d = 1 \ldots\) nepoznám chybu
 		- \(d = 2 \ldots\) poznám, že došlo k chybě
@@ -1133,17 +1133,17 @@ vycházíme z Fanovy roviny a o přímkách uvažujeme jako o prvcích \(\mathbb
 1. totální kód \(C = \Sigma^n\) (nic se nekóduje)
 	- délka \( = n\)
 	- velikost \(= 2^n \implies k = \log |C| = n\)
-	- \(\Delta(C) = 1\)
+	- \(d = 1\)
 	- \(\implies (n, n, 1)-\)kód
 2. opakovací kód délky \(n\) (\(n\)-krát opakujeme \(0\) nebo \(1\))
 	- délka \(= n\)
 	- velikost \(= 2\) (samé nuly/jedničky) \(\implies k = 1\)
-	- \(\Delta(C) = n\)
+	- \(d = n\)
 	- \(\implies (n, 1, n)-\)kód
 3. paritní kód \(C \subseteq \Sigma^n\) t. ž. \(x \in C: \sum_{x_i} = 0\) (počet jedniček je sudý)
 	- délka \(= n\)
 	- velikost \(= 2^{n - 1} \implies k = n - 1\)
-	- \(\Delta(C) = 2\), protože změna bitů mění paritu
+	- \(d = 2\), protože změna bitů mění paritu
 	- \(\implies (n,  n - 1, 2)-\)kód
 4. Hammingův kód
 	- \(\implies (7,  4, 3)-\)kód
@@ -1159,7 +1159,8 @@ vycházíme z Fanovy roviny a o přímkách uvažujeme jako o prvcích \(\mathbb
 
 {% math observation %}
 \(\forall d \le n, d \ge 2: A(n, d) \le A(n - 1, d - 1)\){% endmath %}
-- po odstranění bitu vzdálenost slov klesne nejvýše o \(1\) (pokud se slova v bytu liší); velikost nového kódu \(|C'| = |C|\) (díky předpokladu funguje, žádná slova se nesloučí)
+- po odstranění bitu vzdálenost slov klesne nejvýše o \(1\) (pokud se slova v bytu liší); velikost nového kódu \(|C'| = |C|\)
+	- funguje pouze díky předpokladu -- pro \(d \ge 2\) se žádná slova nesloučí (pro \(d=1\) už ano)
 
 {% math consequence "Singletonův odhad" %}
 \(\forall d \le n\) platí \(A(n, d) \le n - d + 1\){% endmath %}
@@ -1394,8 +1395,20 @@ vyberu libovolný vrchol \(u\). Podívám se na vrcholy \(A\), se kterými nesou
 	- BUNO \(\exists\) nehrana \(xy\), pak \(\left\{u, x, y\right\}\) tvoří \(E_3\)
 2. symetricky
 
-{% math theorem "obecnější Ramseyova" %}
-nechť \(G\) má \(\ge \binom{k + l - 2}{k - 1}\) vrcholů. Pak \(\omega(G) \ge k\)  nebo \(\alpha(G) \ge l\).{% endmath %}
+{% math definition: "Ramseyovo číslo" %}\(r(k, l) = \mathrm{min}\ n\) t. ž. \(\forall G\) o \(n\) vrcholech obsahuje buď \(K_k\) nebo \(E_l\)
+- „Kolik vrcholů musí mít graf, abych tam vždy našel buď \(K_k\) nebo \(E_l\)“.
+{% endmath %}
+
+**Pár hodnot:**
+- \(r(1, l) = 1\)
+- \(r(k, 1) = 1\)
+- \(r(2, l) = l\)
+- \(r(k, 2) = k\)
+- dříve jsme dokázali, že \(r(3, 3) \le 6 \) a z \(C_5\) víme, že \(r(3, 3) > 5\), tedy \(r(3, 3) = 6\)
+
+{% math definition: "symetrické Ramseyovo číslo" %} \(r(n) = r(n, n)\){% endmath %}
+
+{% math theorem "obecnější Ramseyova" %}\(r(k, l) \le \binom{k + l - 2}{k - 1}\){% endmath %}
 - {% math observation %}ze symetrie kombinačních  čísel máme symetrii v \(k, l\), protože \(\binom{k + l - 2}{k - 1} = \binom{k + l - 2}{l - 1}\){% endmath %}
 
 {% math proof %}
@@ -1414,20 +1427,6 @@ Zvolím \(u \in G\) libovolně a opět rozdělím graf na nesousedy \(A\) a sous
 
 {% math consequence %}
 \(\forall k, l\ \exists r(k, l)\) t. ž. \(\forall G: \omega(G) \ge k\) nebo \(\alpha(G) \ge l\).{% endmath %}
-
-{% math definition: "Ramseyovo číslo" %}\(r(k, l) = \mathrm{min}\ n\) t. ž. \(\forall G\) o \(n\) vrcholech platí nerovnost výše
-- „Jak velký musí být graf, abych tam našel buď \(E_k\) nebo \(K_l\)“.
-- triviálně platí, že \(r(k, l) \le \binom{k + l - 2}{k - 1}\) (vrcholů může na podmínku stačit méně)
-{% endmath %}
-
-**Pár hodnot:**
-- \(r(1, l) = 1\)
-- \(r(k, 1) = 1\)
-- \(r(2, l) = l\)
-- \(r(k, 2) = k\)
-- dříve jsme dokázali, že \(r(3, 3) \le 6 \) a z \(C_5\) víme, že \(r(3, 3) > 5\), tedy \(r(3, 3) = 6\)
-
-{% math definition: "symetrické Ramseyovo číslo" %} \(r(n) = r(n, n)\){% endmath %}
 
 {% math theorem %}
 \(k, n \in \mathbb{N}\) t. ž. \(\binom{n}{k} 2^{1 - \binom{k}{2}} < 1 \implies r(k) > n\).{% endmath %}
@@ -1453,9 +1452,9 @@ vezmu náhodný graf \(G\) t. ž. každá z \(\binom{n}{2}\) hran má pravděpod
 - máme, že pravděpodobnost, že nějaká \(K\)-prvková množina bude tvořit buďto kliku nebo nezávislou množinu velikosti \(k\) je \(< 1\), tedy pravděpodobnost, že to nenastane je \(> 0\), tedy \(\exists\) nějaký z náhodných grafů, který tohle nesplňuje
 	- pokud pravděpodobnost je nenulová, tak musí existovat nějaké množství grafů, které tenhle jev mají (protože jinak by nerovnost nebyla ostrá)
 
+Někomu může použití pravděpodobnosti připadat trochu magické. Umíme i explicitní.
+
 {% math proof "alternativní" %}
-Někomu může použití pravděpodobnosti připadat trochu magické.
-Důkaz lze ale přeformulovat explicitněji.
 
 Uvažme všechny grafy na \(n\) vrcholech. Těch je \(2^{\binom{n}{2}}\).
 Kolik z nich obsahuje kliku nebo nezávislou množinu velikosti alespoň \(k\)? Tedy,
@@ -1481,7 +1480,8 @@ existuje nedobrý graf na \(n\) vrcholech a \(r(k,k) > n\).
 
 ### 13. přednáška
 
-#### Ramseyovy věty
+#### Ramseyovy vícebarevně věty
+Chceme zobecnit Ramseyovu větu tak, že vyžadujeme stejnobarevné (pro konstantní počet barev) kliky/nezávislé množiny (pro konečné/nekonečné grafy).
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -1506,7 +1506,7 @@ rozdělím \(\mathbb{N}\) na \(B_1, \ldots, B_t\), kde \(B_i = \left\{m \in \mat
 Na každém nekonečném úplném grafu existuje nekonečná klika s jednobarevnými hranami.
 </div>
 
-{% math theorem "nekonečná Ramseyova (vícebarevná) věta" %}
+{% math theorem "nekonečná Ramseyova (vícebarevná)" %}
 \(\forall t \in \mathbb{N}, \forall c: \binom{\mathbb{N}}{2} \mapsto [t]\ \exists\) nekonečná množina \(A \subseteq \mathbb{N}\), pro níž je funkce \(c\) na hranách \(\binom{A}{2}\) konstantní.{% endmath %}
 
 {% math proof %}
@@ -1531,7 +1531,7 @@ posloupnost vrcholů \(v_1, v_2, \ldots\) má vlastnost, že pokud \(i < j\), pa
 Stejné jako nekonečná věta, ale omezíme se na konečně velkou kliku a hledáme \(N\), pro které \(\forall G\) s počtem vrcholů \(n \ge N\) bude obsahovat jednobarevnou kliku (opět v rámci hran) velikosti \(k\).
 </div>
 
-{% math theorem "Ramseyova vícebarevná věta" %}
+{% math theorem "Ramseyova (vícebarevná)" %}
 \(\forall t, k \in \mathbb{N} \exists N \in \mathbb{N}\) t. ž. \(\forall c: \binom{[n]}{2} \mapsto [t], \forall n \ge N\) existuje množina \(A \subseteq [n], |A| = k\), pro níž je funkce \(c\) na hranách \(\binom{A}{2}\) konstantní.{% endmath %}
 
 {% math proof %}
@@ -1551,7 +1551,7 @@ je zobecněný graf, kde:{% endmath %}
 Stejné jako nekonečná věta, ale máme hypergraf.
 </div>
 
-{% math theorem "nekonečná Ramseyova věta pro p-tice" %}
+{% math theorem "nekonečná Ramseyova (vícebarevná) pro p-tice" %}
 \(\forall p, t \in \mathbb{N}\) a \(\forall c: \binom{\mathbb{N}}{p} \mapsto [t] \exists A \subseteq \mathbb{N}\) nekonečná t. ž. \(c\) je na \(\binom{A}{p}\) konstantní.{% endmath %}
 
 {% math proof %} indukcí podle \(p\)
@@ -1577,7 +1577,7 @@ barva \(p\)-tice \(\left\{v_{i_1}, \ldots, v_{i_p}\right\}\) (vzhledem k vznikl�
 Stejné jako nekonečná věta, ale máme fixní velikost kliky a konečně mnoho vrcholů.
 </div>
 
-{% math theorem "Ramseyova věta pro p-tice" %}
+{% math theorem "Ramseyova (vícebarevná) pro p-tice" %}
 \(\forall p, t, k \in \mathbb{N} \exists N \in \mathbb{N}\) t. ž. \(\forall n \ge N, \forall c: \binom{[n]}{p} \mapsto [t]\ \exists A \subseteq [n], |A| = k\) t. ž. \(c\) je na \(\binom{A}{p}\) konstantní.{% endmath %}
 
 {% math proof %}
