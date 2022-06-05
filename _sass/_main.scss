@@ -9,6 +9,11 @@
     text-decoration: none;
 }
 
+// globally disabling text decoration is the dumbest thing ever, but I'm in too deep
+del {
+    text-decoration: line-through;
+}
+
 @font-face {
     font-family: $serif-font;
     src:
