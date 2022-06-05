@@ -414,7 +414,7 @@ Z následujících témat je třeba umět **všechna** z 1-3 a **dvě** z 4-7 (v
 		</ul>
 		{% stlink Ramseyova teorie. | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#ramseyovy-barevn%C3%A9nekone%C4%8Dn%C3%A9-v%C4%9Bty %}
 		<ul>
-			<li> Ramseyova věta (formulace konečné a nekonečné verze pro p-tice, důkaz verze p=2 pro 2 barvy)
+			<li> Ramseyova věta (formulace konečné a nekonečné verze pro p-tice, důkaz verze \(p=2\) pro 2 barvy)
 			<li> Ramseyova čísla (definice, pro 2 barvy horní odhad z důkazu Ramseyovy věty a dolní odhad pravděpodobnostní konstrukcí)
 		</ul>
 		{% stlink Extremální kombinatorika | /poznamky-z-prednasky/kombinatorika-a-grafy-ii/#extrem%C3%A1ln%C3%AD-teorie-graf%C5%AF-a-hypergraf%C5%AF %}
