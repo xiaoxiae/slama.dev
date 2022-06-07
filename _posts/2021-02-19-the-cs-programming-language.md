@@ -633,6 +633,58 @@ class File {
 - `object o = 5;` creates a new object on the heap where the reference points to
 - is immutable for simple value types, because... how would we modify it?
 
+### Functional elements
+
+#### Local functions
+- a function defined locally
+- can access parameters and local variables
+
+```cs
+static void Main(string[] args) {
+	WriteLine("hello");
+	
+	double arg(int n) {
+		return double.Parse(args[n]);
+	}
+	
+	double d = arg(0);
+	double e = arg(1);
+	WriteLine(d + e);
+}
+```
+
+#### Delegates
+- value representing function or method
+- defined using the `delegate` keyword
+
+```cs
+using System;
+
+static class Program {
+	public delegate bool Condition(int i);
+	
+	public static void TestNumbers(Condition condition) {
+		for (int i = 0; i < 10; i++) {
+			if (condition(i))
+				Console.WriteLine(i);
+		}
+	}
+
+	public bool IsEven(int i) => i % 2 == 0;
+	public bool IsOdd(int i) => i % 2 == 1;
+
+	static void Main(string[] args) {
+		TestNumbers(IsEven);
+	}
+}
+```
+
+- they can also be generic: `delegate bool Condition<T>(T t)`
+
+#### Lambda funtions
+- functions defined using an expression: `parameters => expression`
+- can be converted into a delegate -- `IsEven` above would be `i => i % 2 == 0`
+
 ### Structures
 - only makes sense when we want the value semantics but more complex behavior
 	- `Vector`, `Color`, `Complex` structures, for example
@@ -982,3 +1034,6 @@ public class Tests
 | pop    | `q.Dequeue(element);`                        |
 | size   | `q.Count;`                                   |
 | peek   | `q.Peek();`                                  |
+
+### Acknowledgements
+- Adam Dingle, whose [Programming 2 notes](/assets/priprava-na-statnice-mff-uk/prog2.pdf) I've shamelessly copied (for certain examples)
