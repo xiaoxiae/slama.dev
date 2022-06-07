@@ -663,16 +663,18 @@ static class Program {
         Console.WriteLine(b.a2.num);  // is also ok
 
         A a;
-        // Console.WriteLine(a.num);  // is not ok
+        Console.WriteLine(a.num);  // is NOT OK
+                                   // we haven't called the constructor
 
         a.num = 5;
         Console.WriteLine(a.num);  // is ok
 
-        // A a2 = a;  // is not ok, the entire struct has not been initialized
+        A a2 = a;  // is still NOT OK
+                   // the entire struct must be initialized
 
         a.num2 = 5;
 
-        A a2 = a;  // is now ok
+        A a3 = a;  // is ok
     }
 }
 ```
@@ -680,10 +682,6 @@ static class Program {
 - careful with putting them in `List<S>` (or some other structure) and making them mutable -- if we attempt to do something like `myList[i].IncreaseByOne()`, it will just modify the returned copy and not do anything
 	- this **doesn't happen with arrays**, since they're not using an indexer
 	- it's generally a good idea to make structures immutable, because users will use it like this
-
-### `readonly`
-- used to set fields **not assignable**, except in the **constructor**
-- can also be used in autoimplemented properties (`int X { get; } = 5;`)
 
 ### Visibility
 
@@ -718,6 +716,10 @@ class A {
 }
 ```
 
+### `readonly`
+- used to set fields **not assignable**, except in the **constructor**
+- can also be used in autoimplemented properties (`int X { get; } = 5;`)
+
 ### `=>`
 - syntactic sugar for:
 	- when a non-`void` method returns something
@@ -729,6 +731,14 @@ class A {
 - `x ??= y` will be assigned if `y` isn't `null`
 - `x?.m()` will call the method if `x` isn't `null`
 - `x?.f` will get the field value, if `x` isn't `null`
+
+#### Arithmetic overflows
+```cs
+checked {
+	// kód
+}
+```
+- is not controlled when functions are called from this block (how could it, when they're probably already translated...)
 
 ### References
 
@@ -772,12 +782,16 @@ void Main() {
 
 ```cs
 int a;
-if (tryParse(something, out a)) { Console.WriteLine("We failed: " + a); }
+if (tryParse(something, out a))
+	Console.WriteLine("We failed: " + a);
+
 Console.WriteLine("We didn't fail: " + a);
 
 // is the same as
 
-if (tryParse(something, out int a)) { Console.WriteLine("We failed: " + a); }
+if (tryParse(something, out int a))
+	Console.WriteLine("We failed: " + a);
+
 Console.WriteLine("We didn't fail: " + a);
 ```
 
@@ -789,7 +803,7 @@ Console.WriteLine("We didn't fail: " + a);
 	- `var z = null`
 - the declaration is a comment -- it's unwise to write `var` everywhere:
 	- `var name = GetName();` -- what does it return?
-	- `var d = new List<int>();` --  what if I want to change List to a HashSet later?
+	- `var d = new List<int>();` --  what if I want to change List to a HashSet later (and interface would thus be better to use)?
 
 ### Interfaces
 - a **contract** -- we can assign any `class` that implements an interface to variables with an interface (when we only require the functionality of the given interface)
@@ -820,9 +834,8 @@ interface Shape {
 - **kvantum** -- commit (physical memory); around \(~8\ kB\)
 	- varies greatly on the architecture and GC configuration!
 - GC is **generational**
-	- gen 0 -- allocated here
-	- gen 1 -- survives a GC
-	- gen 2 -- survives another GC
+	- gen 0 -- allocated just now
+	- gen \(n\) -- survived \(n\) garbage collections
 	- GC of a given generation checks the generation and all above
 	- the next generations are checked only if the previous ones didn't free too much memory
 	- **ephemeral segment** -- the current newest segment of the garbage collector
@@ -845,7 +858,9 @@ interface Shape {
 
 ##### Small Object Heap (SOH)
 - if it's smaller than \(85\ 000\ B\)
+- yes heap compacting (move after the end of garbage collection)
 
+### Terms to know
 
 #### CIL
 - **common intermediate language**
@@ -853,6 +868,11 @@ interface Shape {
 - intermediate language binary instruction set for the CLI specification
 - executed by CLI-compatible runtime like **CLR**
 - object-oriented, stack-based, typically JITted into native code
+
+#### CLR
+- run-time environment for the .NET framework
+- responsible for running .NET programs, regardless of the language
+- contains things like **GC** and **JIT compiler**
 
 #### GAC
 - **global assembly cache** -- stores assemblies to be shared by computer applications
@@ -866,6 +886,9 @@ interface Shape {
 	- can mess benchmarks up -- make sure we're testing when the method has already been JITted
 - also **takes care of optimizations,** since optimizing CIL code doesn't make much sense
 	- means that they can't be overly aggressive
+- does **method inlining** (moves body of the method to where it's called)
+	- can't always be done (recursive functions)
+	- generally happens for smaller (\(<32\ B\) of machine code) methods that aren't too complicated (no `try/catch`, for example)
 
 #### AOT
 - **ahead-of-time** -- before it's needed
@@ -873,11 +896,6 @@ interface Shape {
 - more intensive optimizations
 - JITting can still happen when it's needed, though
 - will be an important feature in .NET 5
-
-#### CLR
-- run-time environment for the .NET framework
-- responsible for running .NET programs, regardless of the language
-- contains things like **GC** and **JIT compiler**
 
 #### BCL
 - **base class library**
@@ -887,77 +905,15 @@ interface Shape {
 - **BCL + CLR**
 
 #### Tiered compilation
-- fast-running JIT generating bad code / slow-running JIT generating good code
-- bad code is JITted for the first run of a method
-- after a number of calls, better code is JITted
-	- can run in a separate thread and replace the bad code later
-	- makes benchmarking more difficult
-
-#### Self-contained `.exe`
-- executable containing the program and all needed assemblies
-- produced using `dotnet publish`
-
-#### Method inlining
-- JIT compiler optimization that moves the body of the method to where it is called
-- can't always be done (recursive functions)
-- generally happens for smaller (\(<32\ B\) of machine code) methods that aren't too complicated (no `try/catch`, for example)
-- can be forced/disabled using `[MethodImpl]`
-
-#### Demand loading
-- assemblies are used and loaded into memory only when it's necessary
-- it it's missing, then the program won't crash, unless it's explicitly used
-
-#### (De)compiling
-- **ILSpy** -- open-source .NET assembly browser and decompiler
-- **ilasm** -- generates an executable from a text representation of CIL code
-
-### Data structures
-
-#### Dictionaries
-- `using System.Collections.Generic;`
-
-| Action   | Code                                                   |
-| ---      | ---                                                    |
-| create   | `Dictionary<int, int> d = new Dictionary<int, int>();` |
-| contains | `d.ContainsKey(element);`                              |
-| add      | `d[index] = element;`                                  |
-
-#### Queues
-
-| Action | Code                                         |
-| ---    | ---                                          |
-| create | `Queue<string> q = new Queue<string>();`     |
-| add    | `q.Enqueue(element);`                        |
-| pop    | `q.Dequeue(element);`                        |
-| size   | `q.Count;`                                   |
-| peek   | `q.Peek();`                                  |
-
-### Miscellaneous
-
-#### NuGet
-- package manager
-
-#### BenchmarkDotNet
-- benchmarks
-
-#### `prg.exe.config` (XML)
-- configures .NET (garbage collection settings,...)
-	- **server** mode doesn't do garbage collection as frequently, to be faster
-	- **client** mode collects a lot (could be up to 30%)
+- multiple compilations of the same method that can be swapped
+	- initially quickly JITted but kinda slow
+	- JITted properly after a number of calls to the method
 
 #### CLS
 - common language specification
 - what a language must do in order to be .NET-compliant
 - specifies things like minimum types:
 	- `sbyte`, `ushort` are not compliant, so making them parameters of a function called from some other DLL might not be the best idea; on the other hand, implementation details are quite fine
-
-#### Arithmetic overflows
-```cs
-checked {
-	// kód
-}
-```
-- is not controlled when functions are called from this block (how could it, when they're probably already translated...)
 
 #### `typeof(Class)`
 - return the `Type` instance of the class
@@ -1005,3 +961,24 @@ public class Tests
 	}
 }
 ```
+
+### Data structures
+
+#### Dictionaries
+- `using System.Collections.Generic;`
+
+| Action   | Code                                                   |
+| ---      | ---                                                    |
+| create   | `Dictionary<int, int> d = new Dictionary<int, int>();` |
+| contains | `d.ContainsKey(element);`                              |
+| add      | `d[index] = element;`                                  |
+
+#### Queues
+
+| Action | Code                                         |
+| ---    | ---                                          |
+| create | `Queue<string> q = new Queue<string>();`     |
+| add    | `q.Enqueue(element);`                        |
+| pop    | `q.Dequeue(element);`                        |
+| size   | `q.Count;`                                   |
+| peek   | `q.Peek();`                                  |
