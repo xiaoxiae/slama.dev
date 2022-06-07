@@ -102,7 +102,7 @@ redirect_from:
 	- se startem (rising edge) se synchronizují hodiny
 		- nejsou perfektní (mají tendenci se rozcházet) -- omezení přenosu na \(n\) bitů, kde \(n\) je konstanta (v reálu \(8b = 1B\))
 			- pozn.: \(1B\) jsou 2 šestnáctkové znaky
-	- velký overhead... z \(10b\) je jen \(8b\) datových... \(\underbrace{1000}_{\text{clock}} \cdot \underbrace{\frac{8}{10}}_{\text{start + end}} = 800\ bps\)
+	- velký overhead... z \(10b\) je jen \(8b\) datových... \(\underbrace{1000}_{\text{clock}} \cdot \underbrace{8/10}_{\text{start + end}} = 800\ bps\)
 
 {% xopp 19-18-10_12-16-39 & přenos s idle stavem %}
 
@@ -110,7 +110,7 @@ redirect_from:
 - používá \(\text{I}^2 \text{C}\)
 - nový (tzv. referenční) vodič s digitálním (hodinovým) signálem
 - diktuje, kdy lze na datovém vodiči číst
-- zdá se, že je \(%50\) overhead, jelikož se data mohou detekovat pouze na rising edge
+- zdá se, že je \(50 \%\) overhead, jelikož se data mohou detekovat pouze na rising edge
 	- většinou ale maximální rychlost není potřeba
 	- když je potřeba, tak lze obejít: detekce na rising i falling
 		- značí se **DDR** (double data rate)
@@ -142,11 +142,11 @@ redirect_from:
 
 {% xopp 19-18-10_11-23-35 & inverzní logika %}
 
-- někdy je také potřeba rozlišovat soustavu, ve které číslo je:
-\[ 23 = 23_d = 23_{10} = 23_{dec} \\ \$23 = 0x23 = 23h = 23H = 23_{16} = 23_{hex} \]
+- někdy je také potřeba rozlišovat soustav, ve kterém číslo je:
+\[\text{desítková}\ldots 23 = 23_d = 23_{10} = 23_{dec}\] \[\text{šestnáctková}\ldots \$23 = 0x23 = 23h = 23H = 23_{16} = 23_{hex}\]
 
 ### Komunikační protokol
-- dohoda, jak přenos vypadá... \( \underbrace{\mathrm{den}}_{9b}/\underbrace{\mathrm{měsíc}}_{5b}/\underbrace{\mathrm{rok}}_{7b} = \underbrace{101101010/11010/0010001}_{\text{pa(c)ket}} \)
+- dohoda, jak přenos vypadá... \[ \underbrace{\mathrm{den}}_{9b}/\underbrace{\mathrm{měsíc}}_{5b}/\underbrace{\mathrm{rok}}_{7b} = \underbrace{101101010/11010/0010001}_{\text{pa(c)ket}} \]
 
 - problém: starší zařízení mají \(1B=7b\)
 	- řešení: řadič (controller), který přijímá data ze zařízení a zpracovává je
@@ -160,23 +160,26 @@ redirect_from:
 
 #### Operace
 - binární:
-	- `OR` -- `|` -- alespoň jedno
-	- `AND` -- `&` -- oboje
-	- `XOR` -- `^` -- právě jedno
-	- `SHL` a `SHR` -- `<<` a `>>` -- **posouvá k MSb, ne doleva/doprava**
+	- `OR`: `|` -- alespoň jedno
+	- `AND`: `&` -- oboje
+	- `XOR`: `^` -- právě jedno
+	- `SHL` a `SHR`: `<<` a `>>` -- **posouvá k MSb, ne doleva/doprava**
 		- `ROL`, `ROR` (_bit rotation_) -- jako posun, ale cyklí čísla; opět k MSb
 - unární:
-	- `NOT` -- `~` -- opak
+	- `NOT`: `~` -- opak
 
-#### Záporná čísla v počítači
+#### Záporná čísla
+Řada způsobů, jak to dělat (špatně):
+
 1. jako celá čísla, ale první bit je znaménko
 	- docela k ničemu -- žádné normální bitové operace na to nefungují (sčítání, odčítání, porovnání...)
 2. **one's complement** (jedničkový doplněk) -- u záporných se prohodí 1 a 0
 	- funguje porovnání (kladné x kladné a záporné x záporné) a sčítání
 	- problematické: máme _dvě nuly_
-3. **two's complement** (dvojkový doplňek) -- negace čísla je \(\mathrm{NOT}\left(\mathrm{ABS}\left(a\right)\right) + 1\)
-	- řeší to problém se dvěma nulami, ale vytváří asymetrii v hodnotách
-	- rozsah je \(-2^{n - 1}\) až \(2^{n - 1} - 1\)
+3. **two's complement** (dvojkový doplňek) -- MSb je znaménkový bit, záporných je o **1 víc**
+	- negace čísla je **flipnutí všech bitů** a **přičtení jedničky**
+	- řeší to problém se dvěma nulami (negace dá jedničky a přičtení overflowne zpět na \(0\))
+	- rozsah je \(-2^{n - 1}\) až \(2^{n - 1} - 1\) (asymetrické...)
 
 ### Čísla v Pythonu
 
@@ -191,13 +194,13 @@ redirect_from:
 - převody: `int(str, base)`, `hex(num)`, `bin(num)`, `oct(num)`
 
 ### Převody mezi datovými typy
-- **truncation** -- useknutí cifer, které se do menšího datového typu nevejdou
-	- přesně u signed intů nemusí fungovat... může se např. změnit znaménko
-- extension:
+- **truncation**: useknutí cifer, které se do menšího datového typu nevejdou
+	- z definice nemusí dobře fungovat (máme méně čísel), může se dokonce změnit znaménko
+- **extension**:
 	- **zero** extension -- doplnění nul na prázdná místa po zvětšení datového typu
 		- nedává smysl u signed intů
 	- **signed** extension -- doplnění o MSb
-		- dává smysl u signed intů, ale _ne u unsigned!_
+		- dává smysl u signed intů, ale **ne u unsigned!**
 
 ### Otročina
 - pojmy **master** (řídící; řídí komunikaci, dává požadavky) a **slave** (řízený; vykonává požadavky)
@@ -231,8 +234,7 @@ redirect_from:
 ##### \(\text{I}^2 \text{C}\) (Inter Integrated Circuit)
 - je to opravdová sběrnice
 - podporuje **multimaster** -- více zařízení mohou být master najednou
-	- znamená to, že musí detekovat srážky, když chtějí 2 masterové vysílat najednou
-		- ~~doufám, že to~~ funguje tak, že master, který vysílá větší počet \(0\) vyhrává a ten druhý musí přestat vysílat a počkat
+	- že musí se detekovat srážky, když chtějí 2 masterové vysílat najednou
 	- rozdílné od USB (universal serial bus) -- to je single master
 
 {% xopp 19-10-11_13-25-36 & I2C sběrnice %}
@@ -248,9 +250,9 @@ redirect_from:
 	- \(8\) data (MSb-first)
 	- \(1\) acknowledgement bit (ack = ano; nak = ne)
 		- pro \(0\) je ACK, \(1\) je NAK, jelikož \(0\) stahuje... pokud tam slave není, tak tam bude \(1\)
-	- pořadí (při přenosu `B1 A1 B2 A2 B3 A3`) se liší následně:
+	- pořadí při přenosu vypadá následně:
 		- write: `M/S/M/S/M/S...` (slave neustále potvrzuje že přečetl)
-		- read: `M/S/S/M/S/M...` (slave potvrzuje že posílá a pak začne posílat)
+		- read: `M/S/S/M/S/S/M...` (slave potvrzuje že posílá a pak začne posílat)
 - pro clock jsou dány standardizované rozsahy, aby to slave ustál
 	- má možnost dělat **clock stretching** -- pokud by nestíhal, tak může hodiny podržet na \(0\) (hold low)
 
@@ -265,7 +267,7 @@ redirect_from:
 	- přijímáme světlo (analogový signál)
 - **bus interface** -- řídí zařízení, komunikuje,...
 	- pro vyrábění k jiné sběrnici stačí nahradit pouze tohle
-- adresa je _pevně daná_... na sběrnici může být pouze jedno
+- adresa je _pevně daná_... na sběrnici může být pouze jedna
 - zařízení má 2 registry (read only, write only)
 	- znamená to, že _nemusíme rozlišovat_, ze kterého registru číst a do kterého psát
 
@@ -354,12 +356,12 @@ redirect_from:
 
 {% xopp 19-24-11_22-54-12 & endianita %}
 
-#### Harvard x von Neumann
+#### Harvard \(\times\) von Neumann
 
-|         | Harvard                                  | von Neumann                        |
-| ---     | ---                                      | ---                                |
-| paměť   | data + kód jsou na rozdílných sběrnicích | data + kód jsou na stejné sběrnici |
-| využití | mikročipy                                | počítače                           |
+|         | Harvard                                    | von Neumann                          |
+| ---     | ---                                        | ---                                  |
+| paměť   | data + kód jsou na _rozdílných sběrnicích_ | data + kód jsou na _stejné sběrnici_ |
+| využití | mikročipy                                  | počítače                             |
 
 {% xopp 19-24-11_22-56-28 %}
 
@@ -463,10 +465,10 @@ A + NOT(X) + C
 	- násobení -- 10 taktů
 	- dělení -- 10/100 taktů
 
-| operace | x86/x64 | ARM (mobily) | \(\mu C\) | 6502          |
-| ---     | ---     | ---          | ---                            | ---           |
-| *       | ano     | ano          | možná                          | ne            |
-| //      | ano     | možná        | ne                             | hrozně moc ne |
+| operace | x86/x64 | ARM (mobily) | \(\mu C\) | 6502 |
+| ---     | ---     | ---          | ---       | ---  |
+| *       | ano     | ano          | možná     | ne   |
+| //      | ano     | možná        | ne        | lmao |
 
 - je potřeba to na architekturách, které to nemají, softwarově implementovat
 	- `SHL` je násobení 2 je `SHL`; dělení 2 je `SHR`
@@ -480,25 +482,25 @@ A + NOT(X) + C
 	- pozn.: není to Intel syntax -- pro ten je třeba k `objdump` přidat `-d` a `--disassembler-options=intel`
 
 ```nasm
-// int a = 5;
+#      int a = 5;
 movl   $0x5,-0x14(%rbp)
 
-// int b = a + 5;
+#      int b = a + 5;
 mov    -0x14(%rbp),%eax
 add    $0x5,%eax
 mov    %eax,-0x10(%rbp)
 
-// int c = ~a;
+#      int c = ~a;
 mov    -0x14(%rbp),%eax
 not    %eax
 mov    %eax,-0xc(%rbp)
 
-// int d = a * b;
+#      int d = a * b;
 mov    -0x14(%rbp),%eax
 imul   -0x10(%rbp),%eax
 mov    %eax,-0x8(%rbp)
 
-// int e = a - (b + c) - d;
+#      int e = a - (b + c) - d;
 mov    -0x10(%rbp),%edx
 mov    -0xc(%rbp),%eax
 add    %eax,%edx
@@ -508,7 +510,7 @@ sub    -0x8(%rbp),%eax
 mov    %eax,-0x4(%rbp)
 mov    $0x0,%eax
 
-// int f = a | (b & c) ^ d & e;
+#      int f = a | (b & c) ^ d & e;
 mov    -0x18(%rbp),%eax
 and    -0x14(%rbp),%eax
 mov    %eax,%edx
@@ -518,7 +520,7 @@ xor    %edx,%eax
 or     -0x1c(%rbp),%eax
 mov    %eax,-0x8(%rbp)
 
-// int g = e << 10 + f >> 10;
+#      int g = e << 10 + f >> 10;
 mov    -0x8(%rbp),%eax
 add    $0xa,%eax
 mov    -0xc(%rbp),%edx
@@ -529,7 +531,7 @@ sar    $0xa,%eax
 mov    %eax,-0x4(%rbp)
 mov    $0x0,%eax
 
-// short g = f;
+#      short g = f;
 mov    -0x8(%rbp),%eax
 mov    %ax,-0x1e(%rbp)
 ```
@@ -567,7 +569,7 @@ mov    %ax,-0x1e(%rbp)
 
 ##### Ošklivá čísla
 - \(0.1\) nelze reprezentovat jako floating-point číslo (nekonečný dvojkový zápis)
-	- programovací jazyky zaokrouhlují -- _nikdy floating point čísla neporovnávat,_ používat \(abs(a - b) < \epsilon\)
+	- programovací jazyky zaokrouhlují -- _nikdy floating point čísla neporovnávat,_ používat \(abs(a - b) < \varepsilon\)
 
 ##### Speciální hodnoty
 - pro nulový exponent je číslo v denormalizovaném tvaru (pro reprezentaci fakt hodně malých čísel)
@@ -593,7 +595,7 @@ mov    %ax,-0x1e(%rbp)
 
 - EPROM -- problém s mazáním (dělá se to s UV zářením... nepraktické)
 - EEPROM -- všechno tím nahradit nechceme, je pomalejší než RAM
-	- také jim lze říkat **NVRAM** (non-volatile RAM)
+	- také jim lze říkat NVRAM (non-volatile RAM)
 	- omezený počet writů kvůli tomu, že fyzikálně se elektrony připojí do obalu atomů a nejdou pak moc dobře vytlačit
 	- adresovatelné po individuálních bytech
 	- **flash** -- jiná výrobní technologie
@@ -606,7 +608,6 @@ mov    %ax,-0x1e(%rbp)
 	- `DIR` registry určuje směr pinů, `IN` a `OUT` jsou hodnoty na vstupu/výstupu
 
 #### Permanentní datové úložiště
-- hodilo by se -- konfigurace (když umře napájení...)
 
 ##### HDD
 - jsou **magnetické**
@@ -662,7 +663,7 @@ mov    %ax,-0x1e(%rbp)
 	- obecně: volné sektory
 - **OS** -- abstrakce nad disky
 	- stejné API pro čtení, psaní, práce s metadaty...
-	- používají všechny programy -- `open()` volá (_C_éčkovou funkci, která volá) systémovou funkci
+	- používají všechny programy -- `open()` volá (_C_-čkovou funkci, která volá) systémovou funkci
 
 #### V Pythonu
 
@@ -818,12 +819,6 @@ mov    %ax,-0x1e(%rbp)
 - **memory controller** -- middle man mezi pamětí a CPU
 	- řeší refresh u DRAM
 	- maskuje to, že máme 1GB a 512MB paměť -- linearizuje to pro CPU
-
-#### Proximity sensor
-- měří vzdálenost věci před senzorem
-- je komplikované, má hodně senzorů -- jak si vybrat ten správný?
-	- ten v příkladu používá \(8b\) adresový prostor
-	- čtení je 1W (implicitní zápis do adresového registru) a 1W (vybraný registr), psaní je 1W a 1R
 
 #### Systémová sběrnice
 - **PCIe**
