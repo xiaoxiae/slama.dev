@@ -164,13 +164,44 @@ Pokud je u předmětu symbol kartičky (🃏), tak je zahrnut v [tomto Anki bal�
 		<li> Testování hypotéz.
 	{% endsttopic %}
 	{% sttopic Logika | Výpal [[slidy](/assets/priprava-na-statnice-mff-uk/vypal.pdf)] 🃏 %}
-		<li> Syntaxe - jazyk, otevřená a uzavřená formule.
-		<li> Normální tvary výrokových formulí.
-		<li> Prenexní tvary formulí predikátové logiky.
-		<li> Převody na normální tvary, použití pro algoritmy (SAT, rezoluce).
-		<li> Sémantika, pravdivost, lživost.
-		<li> Nezávislost formule vzhledem k teorii, splnitelnost, tautologie.
-		<li> Důsledek, pojem modelu teorie, extenze teorií.
+		<li> Syntaxe
+		<ul>
+			<li> znalost a práce se základními pojmy syntaxe výrokové a predikátové logiky (jazyk, otevřená a uzavřená formule, instance formule, apod.)
+			<li> normální tvary výrokových formulí
+			<ul>
+				<li> prenexní tvary formulí predikátové logiky
+				<li> znalost základních normálních tvarů (CNF, DNF, PNF)
+				<li> převody na normální tvary
+				<li> použití pro algoritmy (SAT, rezoluce)
+			</ul>
+		</ul>
+		<li> Sémantika
+		<ul>
+			<li> pojem modelu teorie
+			<li> pravdivost, lživost, nezávislost formule vzhledem k teorii
+			<li> splnitelnost, tautologie, důsledek
+			<li> analýza výrokových teorií nad konečně mnoha prvovýroky
+		</ul>
+		<li> Extenze teorií
+		<ul>
+			<li> schopnost porovnat sílu teorií
+			<li> konzervativnost, skolemizace
+		</ul>
+		<li> Dokazatelnost:
+		<ul>
+			<li> pojem formálního důkazu, zamítnutí
+			<li> schopnost práce v některém z formálních dokazovacích systémů (např. tablo metoda, rezoluce, Hilbertovský kalkul)
+		</ul>
+		<li> Věty o kompaktnosti a úplnosti výrokové a predikátové logiky
+		<ul>
+			<li> znění a porozumění významu
+			<li> použití na příkladech, důsledky
+		</ul>
+		{% stlink Rozhodnutelnost | /assets/priprava-na-statnice-mff-uk/autogramy/vypal.pdf#page=273 %}
+		<ul>
+			<li> pojem kompletnosti a její kritéria, význam pro rozhodnutelnost
+			<li> příklady rozhodnutelných a nerozhodnutelných teorií
+		</ul>
 	{% endsttopic %}
 {% endsttopics %}
 
