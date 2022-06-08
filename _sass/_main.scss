@@ -166,7 +166,13 @@ blockquote {
         border-left: 1px solid;
         padding-left: 15px;
         margin-left: -15px;
-        font-style: italic;
+        padding-bottom: $line-spacing / 2;
+        margin-bottom: 0px;
+    }
+
+    p:last-child {
+        padding-bottom: 0;
+        margin-bottom: $line-spacing * 1.5;
     }
 }
 
