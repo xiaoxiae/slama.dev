@@ -20,6 +20,7 @@ assets/hlenka-helenka/tribute.mp4
 assets/priprava-na-statnice-mff-uk/*
 videos/
 *.xcf
+_plugins/svgcleaner/
 
 # xopp, svg
 _includes/**/*.svg

@@ -10,60 +10,12 @@ from tempfile import NamedTemporaryFile  # for reading Xournal++ output
 from typing import *
 
 
-def crop_svg(contents: str, margin: float = 3) -> None:
-    """Crop the specified .svg file.
-    TODO: add support for cropping files that include text."""
-    # set the default values for the coordinates we're trying to find
-    inf = float("inf")
-    min_x, min_y, max_x, max_y = inf, inf, -inf, -inf
-
-    lines = contents.splitlines()
-    paths_skipped = 0
-    i = 0
-
-    while i < len(lines):
-        line = lines[i]
-
-        if line.startswith(r"<path"):
-            # skip the first two path tags
-            if paths_skipped != 2:
-                lines.pop(i)
-                paths_skipped += 1
-                continue
-
-            path = search(r'<path(.+?)d="(.+?)"', line)
-            coordinate_parts = path.group(2).strip().split(" ")
-
-            # get only the coordinate numbers
-            coordinates = [float(c) for c in coordinate_parts if not c.isalpha()]
-
-            # check for min/max
-            for x, y in zip(coordinates[::2], coordinates[1::2]):
-                min_x, max_x = min(min_x, x), max(max_x, x)
-                min_y, max_y = min(min_y, y), max(max_y, y)
-
-        i += 1
-
-    # adjust for margins
-    min_x -= margin
-    min_y -= margin
-    max_x += margin
-    max_y += margin
-
-    # add/update svg values
-    substitutions = (
-        (r'<svg(.*)width="(.+?)pt', f'<svg\\1width="{max_x - min_x}pt'),  # width
-        (r'<svg(.*)height="(.+?)pt', f'<svg\\1height="{max_y - min_y}pt'),  # height
-        (r"<svg(.+)>", f'<svg\\1 x="{min_x}" y="{min_y}">'),  # min x and y
-        (
-            r'<svg(.*)viewBox="(.*?)"(.*)>',
-            f'<svg\\1viewBox="{min_x} {min_y} {max_x - min_x} {max_y - min_y}"\\3>',
-        ),  # viewbox
-    )
-
-    contents = "\n".join(lines)
-    for pattern, replacement in substitutions:
-        contents = sub(pattern, replacement, contents)
+def crop_svg(contents: str) -> None:
+    """Crop the specified .svg file."""
+    # I wanted to match anything, including the newline, but was lazy to do it properly
+    # this is extremely brittle but I'm to lazy to do it properly
+    contents = sub("<clipPath([^á]*?)</clipPath>", "", contents)
+    contents = sub("<path([^á]*?)\/>", "", contents, count=4)
 
     return contents
 
@@ -91,9 +43,9 @@ def get_argument_parser() -> argparse.ArgumentParser:
         "-c",
         "--compress",
         dest="compress",
-        action="store_false",
+        action="store_true",
         default=True,
-        help="whether not to compress the SVG using Scour (on by default)",
+        help="whether not to compress the SVG (on by default)",
     )
 
     # either convert all files or only specific files
@@ -138,21 +90,23 @@ for i, name in enumerate(arguments.files):
         continue
 
     # get the svg from Xournal++, storing it in a temporary file
-    tmp = NamedTemporaryFile(mode="w+", suffix=".svg")
-    Popen(["xournalpp", f"--create-img={tmp.name}", name], stderr=DEVNULL).communicate()
+    tmp = NamedTemporaryFile(mode="w+", suffix=".pdf")
+    Popen(["xournalpp", f"--create-pdf={tmp.name}", name], stderr=DEVNULL).communicate()
+
+    tmp2 = NamedTemporaryFile(mode="w+", suffix=".svg")
+    Popen(["inkscape", f"--export-filename={tmp2.name}", tmp.name], stderr=DEVNULL).communicate()
 
     # crop the SVG
-    cropped_svg = crop_svg(tmp.read())
-
-    # possibly use scour to compress the SVG; else just output
-    if arguments.compress:
-        out = (
-            Popen(["scour"], stdin=PIPE, stdout=PIPE, stderr=DEVNULL)
-            .communicate(input=cropped_svg.encode())[0]
-            .decode()
-        )
+    cropped_svg = crop_svg(tmp2.read())
 
     out_name = name[:-4] + "svg"
     with open(out_name, "w") as f:
-        f.write(out)
-        print(f"{name} -> {out_name}", flush=True)
+        f.write(cropped_svg)
+
+    Popen(["inkscape", f"--export-filename={out_name}", "--export-area-drawing", out_name], stderr=DEVNULL).communicate()
+
+    if arguments.compress:
+        Popen(["_plugins/svgcleaner/svgcleaner", out_name, out_name], stdin=PIPE, stdout=PIPE, stderr=PIPE).communicate()
+
+    print(f"{name} -> {out_name}", flush=True)
+
