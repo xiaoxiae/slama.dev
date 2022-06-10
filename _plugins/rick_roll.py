@@ -74,9 +74,32 @@ Never gonna run around and desert you
 Never gonna make you cry
 Never gonna say goodbye
 Never gonna tell a lie and hurt you
-""".lower()
+"""
 
 songs = """
+### Soundtracks (games)
+- **Ori and the (Blind Forest / Will of the Wisps)** -- a calming set of piano/vocal melodies that are well-suited for studying and programming
+- **Cuphead** -- a rare live-produced game soundtrack featuring various forms of jazz and swing
+
+### Cool
+- boy pablo -- Feeling Lonely.opus
+- Castlecomer -- Fire Alarm.opus
+- DANSU -- DON'T YOU GIVE UP.opus
+- Generation Why -- Conan Gray.opus
+- HONNE -- Me & You ◑.opus
+- Kids In America -- Summer of Love.opus
+- Last Dinosaurs -- Apollo.opus
+- Last Dinosaurs -- Flying.opus
+- Last Dinosaurs -- FMU.opus
+- Last Dinosaurs -- Italo Disco.opus
+- Maniac -- Conan Gray.opus
+- Metamodernity.opus
+- Signals -- Paraesthesia.opus
+- The Griswolds -- NICE TO MEET YA!.opus
+- Tourism -- City Never Sleeps.opus
+- Wallows -- Scrawny.opus
+- Wallows -- These Days.opus
+
 ### Miscellaneous
 
 - America -- A Horse With No Name
@@ -191,28 +214,34 @@ songs = """
 - Van Morrison -- Brown Eyed Girl
 """
 
-rick_index = 0
+rick = rick.lower().strip()
+rickdex = 0
 
 base = os.path.dirname(os.path.realpath(__file__))
+
+result = ""
+previous_char = ""
+ignore_this_line = False  # ignore headings
+
+for char in songs:
+    if char == "#" and previous_char == "\n":
+        ignore_this_line = True
+
+    if char == "\n":
+        ignore_this_line = False
+
+    while rick[rickdex] not in string.ascii_lowercase + "'":
+        rickdex += 1
+
+    if char.lower() == rick[rickdex] and not ignore_this_line:
+        result += f"`{char}`"
+        rickdex += 1
+    else:
+        result += char
+
+    previous_char = char
+
 with open(os.path.join(base, "../_includes/songs.md"), "w") as f:
-    ignore_next_line = False
-    previous_char = ""
-    for char in songs:
-        if char == "#" and previous_char == "\n":
-            ignore_next_line = True
-
-        if char == "\n":
-            ignore_next_line = False
-
-        while rick[rick_index] not in string.ascii_lowercase + "'":
-            rick_index += 1
-
-        if char.lower() == rick[rick_index] and not ignore_next_line:
-            f.write(f"`{char}`")
-            rick_index += 1
-        else:
-            f.write(char)
-
-        previous_char = char
+    f.write(result.replace("``", ""))
 
 print("Rick-rolled.", flush=True)
