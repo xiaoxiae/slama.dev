@@ -517,7 +517,7 @@ Z následujících témat je třeba umět **všechna** z 1-3 a **dvě** z 4-7 (v
 		{% stlink Dynamické programování. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s12 %}
 		<ul>
 			<li> princip dynamického programování (řešení podproblémů od nejmenších k největším)
-			<li> aplikace: nejdelší rostoucí podposloupnost, editační vzdálenost
+			{% stlink aplikace: nejdelší rostoucí podposloupnost, editační vzdálenost | /assets/priprava-na-statnice-mff-uk/lis.py | /assets/priprava-na-statnice-mff-uk/edit.py %}
 		</ul>
 		{% stlink Výpočetní model RAM. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s2.5 %}
 		{% stlink Komponenty silné souvislosti orientovaných grafů. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s5.9 %}
@@ -527,7 +527,7 @@ Z následujících témat je třeba umět **všechna** z 1-3 a **dvě** z 4-7 (v
 			<li> toky v sítích (Dinicův a Goldbergův algoritmus)
 		</ul>
 		{% stlink Toky v sítích (FF, Diniz, Goldberg). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s14 | /poznamky-z-prednasky/kombinatorika-a-grafy-i/#7-přednáška %}
-		{% stlink Vyhledávání v textu (KMP, AC). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s13 %}
+		{% stlink Vyhledávání v textu (KMP, AC). | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s13 | /assets/priprava-na-statnice-mff-uk/kmp.py  %}
 		<ul>
 			<li> algoritmy Knuth-Morris-Pratt a Aho-Corasicková
 		</ul>
