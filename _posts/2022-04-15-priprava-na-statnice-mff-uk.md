@@ -192,7 +192,7 @@ Pokud je u předmětu symbol kartičky (🃏), tak je zahrnut v [tomto Anki bal�
 			<li> pojem formálního důkazu, zamítnutí
 			<li> schopnost práce v některém z formálních dokazovacích systémů (např. tablo metoda, rezoluce, Hilbertovský kalkul)
 		</ul>
-		<li> Věty o kompaktnosti a úplnosti výrokové a predikátové logiky
+		{% stlink Věty o kompaktnosti a úplnosti výrokové a predikátové logiky | /assets/priprava-na-statnice-mff-uk/autogramy/vypal.pdf#page=85 | /assets/priprava-na-statnice-mff-uk/autogramy/vypal.pdf#page=81 | /assets/priprava-na-statnice-mff-uk/autogramy/vypal.pdf#page=79 %}
 		<ul>
 			<li> znění a porozumění významu
 			<li> použití na příkladech, důsledky
