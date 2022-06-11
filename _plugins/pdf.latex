@@ -154,13 +154,14 @@ fontsize=\footnotesize
         \normalsize
 				Tomáš Sláma\\
 				$date$\\
-				\vspace*{1.5em}
+				\vspace*{1.8em}
         \centering
 $if(language)$
-  %yeah, it's a hack but I will never write in anything other than english and czech
-  {\it Toto PDF bylo automaticky vygenerováno z webové stránky \href{$url$}{$url$}, která je preferovaný způsob jak dokument číst. Za případné chyby způsobené převodem se omlouvám.}
+  % yeah, it's a hack, but I will never write in anything other than english and czech
+  % fight me
+	{\it Toto PDF bylo automaticky vygenerováno (\today) z webové stránky \\ \vspace*{0.7em}{\large\href{$url$}{$url$},}\\ \vspace*{0.7em}která je preferovaný způsob jak dokument číst. Za případné chyby způsobené převodem se omlouvám.}
 $else$
-  {\it This PDF was automatically generated from the website \href{$url$}{$url$}, which is the prefered way of viewing this document. Please excuse any conversion-related mistakes.}
+	{\it This PDF was automatically generated (\today) from the website \\ \vspace*{0.7em}{\large\href{$url$}{$url$},}\\ \vspace*{0.7em}which is the prefered way of viewing this document. Please excuse any conversion-related mistakes.}
 $endif$
     \end{center}
 \end{titlepage}
