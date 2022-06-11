@@ -1,4 +1,4 @@
-.PHONY:  all install clean build upload serve permissions stash unstash
+.PHONY:  all setup clean build upload serve permissions stash unstash
 .SILENT:
 
 XOPP = $(shell find _includes/ -type f -name '*.xopp')
@@ -13,7 +13,7 @@ stash:
 unstash:
 	git stash pop
 
-install: ; bundle install
+setup: permissions; bundle install
 
 xopp: $(SVG);
 build: permissions $(SVG); ! ps -aux | grep "ruby.*jekyll" | grep -v grep -q && bundle exec jekyll build --trace || (echo "ERROR: Jekyll seems to be running already." && exit 1)
@@ -27,6 +27,7 @@ clean:
 
 permissions:
 	chmod +x _plugins/*.py
+	chmod +x _plugins/svgcleaner/svgcleaner
 
 %.svg: %.xopp
 	_plugins/xopp_to_svg.py -f $^
