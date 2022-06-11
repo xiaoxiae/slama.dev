@@ -93,7 +93,6 @@ songs = """
 - Last Dinosaurs -- FMU.opus
 - Last Dinosaurs -- Italo Disco.opus
 - Maniac -- Conan Gray.opus
-- Metamodernity.opus
 - Signals -- Paraesthesia.opus
 - The Griswolds -- NICE TO MEET YA!.opus
 - Tourism -- City Never Sleeps.opus
