@@ -2,5 +2,5 @@
 layout: default
 ---
 
-<p>{{ page.date | date: "%-d. %-m. %Y"}}{% if page.category_noslug %}; {{page.category_noslug}}{% elsif page.category%}; {{page.category}}{% endif%}{% if page.pdf %}{% if page.language == "cz" %}; dostupné v [<a href="/assets/{{page.url | split: "/" | last}}.pdf">PDF</a>]{% else%}; available in [<a href="/assets/{{page.url | split: "/" | last}}.pdf">PDF</a>]{% endif%}{% endif%}</p>
+<p>{{ page.date | date: "%-d. %-m. %Y"}}{% if page.category_noslug %}; {{page.category_noslug}}{% elsif page.category%}; {{page.category}}{% endif%}{% if page.pdf or page.pdf-nogenerate %}{% if page.language == "cz" %}; dostupné v [<a href="/assets/{{page.url | split: "/" | last}}.pdf">PDF</a>]{% else%}; available in [<a href="/assets/{{page.url | split: "/" | last}}.pdf">PDF</a>]{% endif%}{% endif%}</p>
 {{ content }}
