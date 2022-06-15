@@ -153,15 +153,48 @@ Pokud je u předmětu symbol kartičky (🃏), tak je zahrnut v [tomto Anki bal�
 			<li> princip hledání maximálního toku v síti s celočíselnými kapacitami (například pomocí Ford-Fulkersonova algoritmu)
 		</ul>
 	{% endsttopic %}
-	{% sttopic Pravděpodobnost a statistika | Diskrétka [[poznámky](/poznamky-z-prednasky/diskretni-matematika/)] 🃏, Past [[slidy](/assets/priprava-na-statnice-mff-uk/past/slides.pdf), [cheatsheet](/assets/priprava-na-statnice-mff-uk/past/cheatsheet.pdf)] 🃏 %}
-		<li> Náhodné jevy, podmíněná pravděpodobnost, nezávislost náhodných jevů
-		<li> Bayesův vzorec, aplikace.
-		<li> Náhodné veličiny, střední hodnota, rozdělení náhodných veličin.
-		<li> Geometrické, binomické a normální rozdělení.
-		<li> Lineární kombinace náhodných veličin, linearita střední hodnoty.
-		<li> Bodové odhady.
-		<li> Intervaly spolehlivosti.
-		<li> Testování hypotéz.
+	{% sttopic Pravděpodobnost a statistika | Diskrétka [[poznámky](/poznamky-z-prednasky/diskretni-matematika/)] 🃏, Past [[slidy](/assets/priprava-na-statnice-mff-uk/past/slides.pdf), [cheatsheet](/assets/priprava-na-statnice-mff-uk/past/cheatsheet.pdf), [příklady](/assets/priprava-na-statnice-mff-uk/past/examples.pdf)] 🃏 %}
+		<li> Pravděpodobnostní prostor, náhodné jevy, pravděpodobnost
+			<ul>
+			<li> definice těchto pojmů, příklady
+			<li> základní pravidla pro počítání s pravděpodobností
+			<li> nezávislost náhodných jevů, podmíněná pravděpodobnost
+			<li> Bayesův vzorec
+			</ul>
+		<li> Náhodné veličiny a jejich rozdělení
+			<ul>
+			<li> diskrétní i spojitý případ
+			<li> popis pomocí distribuční funkce a pomocí pravděpodobnostní funkce/hustoty
+			<li> střední hodnota
+				<ul>
+				<li> linearita střední hodnoty
+				<li> střední hodnota součinu nezávislých veličin
+				<li> Markovova nerovnost
+				</ul>
+			<li> rozptyl
+				<ul>
+				<li> definice
+				<li> vzorec pro rozptyl součtu (závislých či nezávislých veličin)
+				</ul>
+			<li> práce s konkrétními rozděleními: geometrické, binomické, Poissonovo, normální, exponenciální
+			</ul>
+		<li> Limitní věty
+			<ul>
+			<li> zákon velkých čísel
+			<li> centrální limitní věta
+			</ul>
+		<li> Bodové odhady
+			<ul>
+			<li> alespoň jedna metoda pro jejich tvorbu
+			<li> vlastnosti
+			</ul>
+		<li> Intervalové odhady: metoda založená na aproximaci normálním rozdělením
+		<li> Testování hypotéz
+			<ul>
+			<li> základní přístup
+			<li> chyby 1. a 2. druhu
+			<li> hladina významnosti
+			</ul>
 	{% endsttopic %}
 	{% sttopic Logika | Výpal [[slidy](/assets/priprava-na-statnice-mff-uk/vypal.pdf)] 🃏 %}
 		<li> Syntaxe
@@ -218,7 +251,7 @@ Pokud je u předmětu symbol kartičky (🃏), tak je zahrnut v [tomto Anki bal�
 			<li> Kleeneho věta
 			<li> iterační (pumping) lemma pro konečné automaty
 		</ul>
-		{% stlink Uzávěrové vlastnosti | /assets/priprava-na-statnice-mff-uk/autogramy/slidy.pdf#page=203 %}
+		<li> Uzávěrové vlastnosti
 		<li> Bezkontextové jazyky.
 		<ul>
 			<li> bezkontextové gramatiky, jazyk generovaný gramatikou
