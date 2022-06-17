@@ -1,0 +1,16 @@
+edge chromatic number: 3
+edge (0, 1): color 3
+edge (0, 4): color 0
+edge (0, 5): color 1
+edge (1, 2): color 2
+edge (1, 6): color 0
+edge (2, 3): color 0
+edge (2, 7): color 1
+edge (3, 4): color 1
+edge (3, 8): color 3
+edge (4, 9): color 2
+edge (5, 7): color 2
+edge (5, 8): color 0
+edge (6, 8): color 1
+edge (6, 9): color 3
+edge (7, 9): color 0
