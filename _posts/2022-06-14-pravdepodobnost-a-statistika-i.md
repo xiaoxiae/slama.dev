@@ -8,7 +8,7 @@ category_noslug: "poznámky z přednášky"
 - .
 {:toc}
 
-**Upozornění:** _Poznámky jsem vytvořil ke přípravě na státnice, takže jsou povrchní (obsahují pouze definice, tvrzení a příklady, žádné důkazy a málo obsahu ke konci semestru). Ke studiu na zkoušku se můžou hodit, ale neučil bych se pouze z nich._
+**Upozornění:** _Poznámky jsem vytvořil ke přípravě na státnice, takže jsou povrchní (obsahují pouze definice, tvrzení a příklady, žádné důkazy a velmi málo obsahu z konce semestru). Ke studiu na zkoušku se můžou hodit, ale rozhodně bych se neučil pouze z nich._
 
 {% lecture_notes_preface Roberta Šámala | 2020/2021 %}
 
