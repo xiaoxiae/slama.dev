@@ -500,24 +500,26 @@ Z následujících témat je třeba umět **všechna** z 1-3 a **dvě** z 4-7 (v
 		<li> Metrický prostor, otevřené a uzavřené množiny, kompaktnost.
 	{% endsttopic %}
 	{% sttopic Optimalizace | LP [[skripta](/assets/priprava-na-statnice-mff-uk/linprog.pdf)] 🃏, APX [[pozn.](/poznamky-z-prednasky/aproximacni-algoritmy/)] 🃏, Kombagra 2 [[pozn.](/poznamky-z-prednasky/kombinatorika-a-grafy-ii/)] 🃏, DSPO [[pozn.](/poznamky-z-prednasky/diskretni-a-spojita-optimalizace/)] %}
-		{% stlink Základy lineárního a celočíselného programování. | /assets/priprava-na-statnice-mff-uk/linprog.pdf#section.2 | /assets/priprava-na-statnice-mff-uk/linprog.pdf#subsection.7.1 | /assets/priprava-na-statnice-mff-uk/linprog.pdf#section.5 %}
+		<li> Základy lineárního a celočíselného programování.
 		<ul>
 			<li> dualita lineárního programování, Farkasovo lemma
 			<li> simplexová metoda, pivotovací pravidla
 		</ul>
-		{% stlink Kombinatorická geometrie | /assets/priprava-na-statnice-mff-uk/linprog.pdf#section.4 | /assets/priprava-na-statnice-mff-uk/linprog.pdf#page=12 %}
+		<li> Kombinatorická geometrie
 		<ul>
 			<li> konvexní obal objektů
 			<li> mnohostěny
 			<li> Minkowski-Weylova věta
 		</ul>
 		{% stlink Edmondsův algoritmus. | /poznamky-z-prednasky/kombinatorika-a-grafy-ii/#nejv%C4%9Bt%C5%A1%C3%AD-p%C3%A1rov%C3%A1n%C3%AD | https://www.youtube.com/watch?v=3roPs1Bvg1Q %}
+		<li> Základy matematického programování
+			<ul>
+			<li>unimodularita, Königovo lemma, toky v sítích, souvislost s dualitou LP
+			<li>vážené maximální párování v bipartitních grafech a jeho primárně-duální algoritmus
+			</ul>
+		<li> Celočíselné programování.
 		<ul>
-			<li> Základy matematického programování
-		</ul>
-		{% stlink Celočíselné programování. | /assets/priprava-na-statnice-mff-uk/linprog.pdf#page=4 %}
-		<ul>
-			<li> metoda řezů
+			{% stlink metoda řezů | https://en.wikipedia.org/wiki/Cutting-plane_method %}
 		</ul>
 		{% stlink Matroidy. | /poznamky-z-prednasky/diskretni-a-spojita-optimalizace/ %}
 		<ul>
@@ -539,11 +541,11 @@ Z následujících témat je třeba umět **všechna** z 1-3 a **dvě** z 4-7 (v
 		</ul>
 		<li> Využití pravděpodobnosti při návrhu algoritmů.
 		<ul>
-			<li> minimální globální řez v grafu
-			<li> hashování a jeho využítí pro slovník s konstantním časem vyhledávání
+			{% stlink minimální globální řez v grafu | /poznamky-z-prednasky/aproximacni-algoritmy/#glob%C3%A1ln%C3%AD-minim%C3%A1ln%C3%AD-%C5%99ez %}
+			{% stlink hashování a jeho využítí pro slovník s konstantním časem vyhledávání | /poznamky-z-prednasky/aproximacni-algoritmy/#hashovac%C3%AD-funkce %}
 			{% stlink pravděpodobnostní testování maticových a polynomiálních identit | /poznamky-z-prednasky/aproximacni-algoritmy/#nulovost-polynom%C5%AF-polynomial-identity-testing %}
-			<li> paralelní algoritmus pro hledání maximální nezávislé množiny
-			<li> paralelní algoritmy pro hledání párování (bipartitní grafy)
+			{% stlink paralelní algoritmus pro hledání maximální nezávislé množiny | /poznamky-z-prednasky/aproximacni-algoritmy/#maxim%C3%A1ln%C3%AD-nez%C3%A1visl%C3%A1-mno%C5%BEina %}
+			{% stlink paralelní algoritmy pro hledání párování (bipartitní grafy) | /poznamky-z-prednasky/aproximacni-algoritmy/#perfektn%C3%AD-p%C3%A1rov%C3%A1n%C3%AD %}
 		</ul>
 	{% endsttopic %}
 	{% sttopic Pokročilé ADS | ADS 1 a 2 [[Průvodce](/assets/priprava-na-statnice-mff-uk/pruvodce.pdf), [GA](/assets/priprava-na-statnice-mff-uk/ga.pdf)] 🃏, APX [[poznámky](/poznamky-z-prednasky/aproximacni-algoritmy/)] 🃏, Algebra 1 [[skripta](/assets/priprava-na-statnice-mff-uk/algebra.pdf)] %}
