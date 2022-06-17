@@ -9,6 +9,18 @@ no-heading: True
 {:.center}
 This page is dedicated to my climbing life.
 
+<figure>
+	<div class="row">
+		<img style="flex:38.4%; max-width: 38.4%;" src="/climbing/photos/2022-06-15-2.jpg">
+		<img style="flex:57.6%; max-width: 57.6%;" src="/climbing/photos/2022-06-15-1.jpg">
+	</div>
+	<div class="row">
+		<img style="flex:66.47%; max-width: 66.47%;" src="/climbing/photos/2022-06-15-3.jpg">
+		<img style="flex:29.53%; max-width: 29.53%;" src="/climbing/photos/2022-06-15-4.jpg">
+	</div>
+	<figcaption>Několik fotek ze Smíchoffské Boulder challenge (15. 6. 2022).<br>© KAREA foto</figcaption>
+</figure>
+
 ## [Smíchoff](https://www.lezeckecentrum.cz/cs/), Prague
 Smíchoff is the only gym in Prague that I frequent, since it is (in my opinion) the best one, so the vast majority of the clips are going to be from here. People are nice, prices are student-friendly and boulders are frequently changed, so it's a perfect place to be.
 

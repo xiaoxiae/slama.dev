@@ -5,6 +5,23 @@
 $light-link-color: #aaa;
 $dark-link-color: #888;
 
+// a row of photos
+.row {
+    display: flex;
+
+    // don't invert them!
+    // also respect the orientation
+    * {
+        filter: invert(0%);
+        image-orientation: from-image;
+        width: 100%;
+    }
+
+    padding-bottom: $line-spacing / 2;
+}
+
+.row:last-of-type { padding-bottom: $line-spacing; }
+
 .climbing-video {
     border: 3px solid;
     display: inline-block;
