@@ -109,7 +109,7 @@ pro \(\left(X, \le\right)\) ČUM (částečně uspořádaná množina):
 {% endmath %}
 
 {% math theorem "o dlouhém a širokém" %}
-pro \(\left(X, \le\right)\) konečnou ČUM: \(\alpha \omega \ge \left|X\right|\)
+pro \(\left(X, \le\right)\) konečnou ČUM: \(\left|X\right| \le \alpha \omega\)
 {% endmath %}
 
 {% math proof %}
@@ -127,7 +127,7 @@ nechť \(x_1, \ldots, x_{n^2 + 1}\) jsou navzájem různé. Pak existuje buď ro
 Na \(\left\{1, \ldots, n^2 + 1\right\}\) definujme uspořádání \(i < j \iff i < j \land x_i < x_j\). Rostoucí odpovídají řetězcům, nerostoucí antiřetězcům.
 {% endmath %}
 
-#### Segway do kombinatorického počítání
+#### Počítání funkcí
 {% math theorem %}
 je-li \(A\) \(a\)-prvkové a \(B\) \(b\)-prvkové, pak počet \(f: A \mapsto B = b^a\)
 {% endmath %}
@@ -160,10 +160,14 @@ Důkaz: 1. prvek z \(a\) má \(b\) možností, druhý \(b - 1\), ...
 - \(\left\{1, \ldots, k\right\}\) -- uspořádání \(k\)-tice
 - \(\mathbb{N} \mapsto X\) -- nekonečné posloupnosti prvků z \(X\)
 
-Počet k-tic různých prvků z \(X\)... \(f: \left\{1, \ldots, k\right\} \mapsto X\) je \[n \cdot \left(n - 1\right) \cdot \left(n - 2\right) \cdot \ldots \cdot \left(n - k - 1\right)\]
+Počet \(k\)-tic různých prvků z \(X\)... \(f: \left\{1, \ldots, k\right\} \mapsto X\) je \[n \cdot \left(n - 1\right) \cdot \left(n - 2\right) \cdot \ldots \cdot \left(n - k - 1\right)\]
 - \(n = \left|X\right|\) (stejné jako počítání prostých funkcí)
 
+{% math theorem %}
 Počet bijekcí mezi \(X\) a \(X\) (permutací) \(= n \cdot \left(n - 1\right) \cdot \ldots \cdot 1 := n!\) (faktoriál)
+{% endmath %}
+
+{% math definition: "pevný bod" %}permutace \(p\) je prvek \(x : p(x) = x\) (zobrazí se sám na sebe).{% endmath %}
 
 ### Kombinatorika
 - pár definic na rozjezd:

@@ -173,15 +173,15 @@ To, že neexistuje proces, který neuspěje, odhadneme jako
 
 ### Globální minimální řez
 - _Vstup:_ neorientovaný graf \((V, E)\)
-- _Výstup:_ \(F \subseteq E\) tak, že \(V, E \setminus F\) není souvislý
+- _Výstup:_ řez \(F \subseteq E\)
 - _Cíl:_ minimalizovat \(|F|\)
 
 #### Přímočarý algoritmus
 {% math algorithm %}
 1. převedeme graf na ohodnocený s jednotkovými cenami
-2. zafixujeme \(s\)
-3. pro všechna \(t\) najdeme minimalní řez
-4. vrátíme minimální, který jsme našli
+2. zafixujeme vrchol \(s\)
+3. pro všechny ostatní vrcholy \(t\) najdeme minimalní \(s-t\) řez
+4. vrátíme minimum
 {% endmath %}
 
 - umíme vyřešit řádové v \(\mathcal{O}(n^3)\)
@@ -198,9 +198,8 @@ To, že neexistuje proces, který neuspěje, odhadneme jako
 - umíme ho implementovat rychle (řádově \(\mathcal{O}(n^2 \cdot \log n)\))
 - opravdu produkuje řez, protože vrcholy mezi výslednými komponentami danými vrcholy nemizí
 
-{% math lemma %}multigraf s \(n\) vrcholy a min. řezem velikosti \(k\) má alespoň \(kn/2\) hran.{% endmath %}
-
-{% math proof %}\(\forall v\), hrany incidentní s \(v\) tvoří řez, proto musí platit \(\forall v: d_v \ge k\). Dosazením dostáváme \[|E| = \frac{1}{2} \sum_{v} d_v \ge \frac{1}{2} nk \]{% endmath %}
+{% math observation %}multigraf s \(n\) vrcholy a min. řezem velikosti \(k\) má alespoň \(nk/2\) hran.{% endmath %}
+- každý vrchol sám o sobě tvoří řez, pak stačí přes všechny posčítat...
 
 {% math theorem %}pravděpodobnost, že najdeme daný minimální řez \(C\) je alespoň \(\binom{n}{2}^{-1} = \frac{2}{n \cdot (n - 1)}\).{% endmath %}
 
@@ -208,7 +207,7 @@ To, že neexistuje proces, který neuspěje, odhadneme jako
 
 - \(\mathrm{Pr}[A_0] = 1\) (žádnou jsme ještě nevybrali)
 - \(\mathrm{Pr}[A_1] \ge 1 - \frac{k}{nk / 2} = 1 - \frac{2}{n}\)
-- \(\mathrm{Pr}[A_2 \mid A_1] \ge 1 - \frac{2}{n - 1}\)
+- \(\mathrm{Pr}[A_2 \mid A_1] \ge 1 - \frac{k}{(n-1)k/2} =  1 - \frac{2}{n - 1}\)
 - \(\mathrm{Pr}[A_2] = \mathrm{Pr}[A_2 \mid A_1] \cdot \mathrm{Pr}\left[A_1\right] \), z čehož vyplývá:
 
 \[
@@ -618,8 +617,7 @@ Podívejme se, s jakou pravděpodobností splní klauzuli algoritmy:
 | \(\ge3\)   | \(\ge \frac{7}{8} z_j^*\)             | \(\ge\left(1 - \frac{1}{e}\right) \cdot z_j^*\) | \(> \frac{3}{4} z_j^*\)                                               |
 {% endmath %}
 
-##### Derandomizace metodou podmíněných pravděpodobností
-Neformálně: postupně plníme klauzule tak, že náhodně vybíráme pravděpodobnosti. Jelikož počet splnění určuje to, jak hodnoty vybereme, tak je můžeme vybírat (_podmíněně_ se rozhodujeme, jak to dopadne, když \(x_i = 0\) nebo \(x_i = 1\) a vybereme si to lepší). Aproximační poměr si neshoršíme, jelikož vždy vybírám větší z pravděpodobností.
+{% math remark "derandomizace metodou podmíněných pravděpodobností" %}postupně plníme klauzule tak, že náhodně vybíráme pravděpodobnosti. Jelikož počet splnění určuje to, jak hodnoty vybereme, tak je můžeme vybírat (_podmíněně_ se rozhodujeme, jak to dopadne, když \(x_i = 0\) nebo \(x_i = 1\) a vybereme si to lepší). Aproximační poměr si neshoršíme, jelikož vždy vybírám větší z pravděpodobností.{% endmath %}
 
 ### Pokrývací problémy
 
@@ -643,13 +641,19 @@ Neformálně: postupně plníme klauzule tak, že náhodně vybíráme pravděpo
 {% math proof %}proměnné jsme z \(\ge \frac{1}{2}\) zaokrlouhlovali na \(1\), čímž jsme řešení max. zdvojnásobili.{% endmath %}
 
 #### Množinové pokrytí
+
+{:.rightFloatBox}
+<div markdown="1">
+Máme množiny, které mají nějaké ceny. Chceme je vybrat tak, aby jejich sjednocení obsahovalo všechny prvky a aby cena byla minimální.
+</div>
+
 - _Vstup:_ množiny \(S_1, \ldots, S_m \subseteq \left\{1, \ldots, n\right\}\), ceny \(c_1, \ldots, c_m \ge 0\)
 - _Výstup:_ \(I \subseteq \left\{1, \ldots, m\right\}\) t. ž. \(\bigcup_{i \in I} S_i = \left\{1, \ldots, n\right\}\)
 - _Cíl:_ minimalizovat \(\sum_{i \in I} c_i\)
 
 Pro rozbor budeme potřebovat ještě dva parametry:
-- \(f = \max_{e = 1}^{n} |\left\{j \mid e \in S_j\right\}|\ \)(v kolika nejvíce množinách je nějaký prvek)
-- \(g = \max_{j = 1}^{m} |S_j| \le n\ \) (velikost největší množiny)
+- **v kolika nejvíce množinách je nějaký prvek** \(f = \max_{e = 1}^{n} |\left\{j \mid e \in S_j\right\}|\ \)
+- **velikost největší množiny** \(g = \max_{j = 1}^{m} |S_j| \le n\ \)
 
 {% math observation %}vrcholové pokrytí je množinové pokrytí s \(f \le 2\){% endmath %}
 
@@ -859,8 +863,6 @@ Nikde v důkazu nepočítáme s pravděpodobností označení dobrého vrcholu, 
 
 Tedy po logaritmicky mnoho krocích (v \(m\) nebo \(n\)) odstraníme všechny hrany pravděpodobností alespoň \(\frac{1}{2}\).
 {% endmath %}
-
-TODO: derandomizace pomocí 2-nezávislých proměnných
 
 ### Hashovací funkce
 
