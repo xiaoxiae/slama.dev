@@ -24,7 +24,7 @@ Množině \(\Omega\) říkáme prostor elementárních jevů.
 
 {% math definition: "pravděpodobnost" %} je funkce \(P : \mathcal{F} \mapsto \left[0, 1\right]\) se nazývá pravděpodobnost, pokud
 - \(P(\emptyset) = 0, P(\Omega) = 1\) a
-- \(P\left(\bigcup_{i = 1}^{\infty} A_i\right) = \sum_{i = 1}^{\infty} P(A_i)\) pro libovolnou posloupnost po dvou disjunktních jevů \(A_1, A_2, \ldots \in \mathcal{F}\){% endmath %}
+- \(P\left(\bigcup_{i = 1}^{\infty} A_i\right) = \sum_{i = 1}^{\infty} P(A_i)\) pro libovolnou posloupnost **po dvou** disjunktních jevů \(A_1, A_2, \ldots \in \mathcal{F}\){% endmath %}
 
 {% math definition: "pravděpodobnostní prostor" %} je trojice \(\left(\Omega, \mathcal{F}, P\right)\) taková, že
 - \(\Omega \neq \emptyset\) je libovolná množina (prostor elementárních jevů),
@@ -115,6 +115,7 @@ pokud součet dává smysl.
 {% endmath %}
 
 {% math definition: "rozptyl/variance" %}n.v. nazveme \[var(X) = \mathbb{E}\left(\left(X - \mathbb{E}X\right)^2\right)\]{% endmath %}
+- má intuitivní význam -- jedná se o očekávanou vzdálenost (\(^2\)) od střední hodnoty
 
 {% math definition: "směrodatná odchylka" %} je \[\sqrt{var(x)}\]{% endmath %}
 
@@ -133,7 +134,7 @@ Přehled parametrů známých rozdělení:
 #### Sdružené rozdělení
 {% math definition %}pro diskrétní n.v. \(X, Y\) definujeme jejich sdruženou pravděpodobnostní funkci (joint pmf) \(p_{X, Y} : \mathbb{R}^2 \mapsto \left[0, 1\right]\) jako \[p_{X, Y} (x, y) = P(\left\{\omega \in \Omega : X(\omega) = x \land Y(\omega) = y\right\})\]{% endmath %}
 
-{% math observation %}z \(p_{X, Y}\) (**sdružené**) jde \(p_X, p_Y\) (**marginální**) zjistit, jednoduše, zpětně ne vždy.{% endmath %}
+{% math observation %}z \(p_{X, Y}\) (**sdruženého**) jde \(p_X, p_Y\) (**marginální**) zjistit, jednoduše, zpětně ne vždy.{% endmath %}
 
 {% math definition "nezávislé náhodné veličiny" %} veličiny \(X, Y\) jsou nezávislé, pokud \(\forall x, y \in \mathbb{R}\) platí \[P(X = x, Y = y) = P(X = x) P(Y = y)\]
 neboli

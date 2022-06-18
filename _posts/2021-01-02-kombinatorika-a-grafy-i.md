@@ -1408,7 +1408,7 @@ vyberu libovolný vrchol \(u\). Podívám se na vrcholy \(A\), se kterými nesou
 
 {% math definition: "symetrické Ramseyovo číslo" %} \(r(n) = r(n, n)\){% endmath %}
 
-{% math theorem "obecnější Ramseyova" %}\(r(k, l) \le \binom{k + l - 2}{k - 1}\){% endmath %}
+{% math theorem "Ramseyova" %}\(r(k, l) \le \binom{k + l - 2}{k - 1}\){% endmath %}
 - {% math observation %}ze symetrie kombinačních  čísel máme symetrii v \(k, l\), protože \(\binom{k + l - 2}{k - 1} = \binom{k + l - 2}{l - 1}\){% endmath %}
 
 {% math proof %}
