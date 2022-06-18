@@ -980,7 +980,7 @@ Máme tedy \(\left(n - k\right)\)-regulární graf, pro který \(\exists\) perfe
 - **hranová souvislost** \(k_e(G) = \mathrm{min} \left\{|F|\ |\ F \subseteq E \text{ je hranový řez}\right\}\)
 - **vrcholová souvislost** \(k_v(G) = \begin{cases}n - 1 & G \cong K_n \\ \mathrm{min} \left\{|A|\ |\ A \subseteq V \text{ je vrcholový řez}\right\} & \text{jindy} \end{cases}\)
 - \(G\) je **hranově/vrcholově \(k\)-souvislý**, pokud \(k_{e/v}(G) \ge k\)
-	- „potřebuješ useknout alespoň \(k\) hran/vrcholů na to, aby se graf rozpadl“
+	- „potřebujeme useknout **alespoň** \(k\) hran/vrcholů na to, aby se graf rozpadl“
 		- {% math observation %}je-li \(3\)-souvislý, pak je i \(2\)-souvislý a \(1\)-souvislý{% endmath %}
 	- je **kriticky** \(k\)-souvislý, pokud odstranění libovolného vrcholu sníží stupeň souvislosti
 		- stromy jsou hranově \(1\)-souvislé, vrcholově ne (listy)
@@ -1167,10 +1167,10 @@ vycházíme z Fanovy roviny a o přímkách uvažujeme jako o prvcích \(\mathbb
 - mohu použít k důkazu druhé nerovnosti u \(A(n, 2)\)
 
 {% math claim %}
-pro každé sudé \(d \le n\) je \(A(n, d) = A(n - 1, d - 1)\){% endmath %}
+pro každé liché \(d \le n\) je \(A(n, d) = A(n + 1, d + 1)\){% endmath %}
 
 {% math proof %}
-nechť \(C\) je \((n - 1, k, d - 1)\)-kód. Přidáním paritního bitu ke každému slovu vytvořím \((n, k, d)-\)kód, jelikož slova vzdálená lichým číslem (jmenovitě o \(d-1\)) mají různou paritu a proto je od sebe o \(1\) vzdálím.{% endmath %}
+nechť \(C\) je \((n, k, d)\)-kód. Přidáním paritního bitu ke každému slovu vytvořím \((n + 1, k, d + 1)-\)kód, jelikož slova vzdálená lichým číslem (jmenovitě \(d\)) mají různou paritu a proto je od sebe o \(1\) vzdálím.{% endmath %}
 
 {% math consequence %}nejzajímavější jsou kódy s lichým \(d\) (na sudé lze triviálně rozšířit){% endmath %}
 
