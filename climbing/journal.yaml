@@ -752,7 +752,7 @@
   blue:
     new: 2
     old: 7
-  note: Competed in the Boulder Challenge today and won! I'm very happy with my performance,
+  note: Competed in the Smíchoff boulder challenge today and won! I'm very happy with my performance,
     not being able to climb only 3 yellows and 1 blue (that is as hard as a yellow).
     Note that I'm counting the ones that I did on Monday as new if they were changed
     between then and today.
@@ -942,3 +942,8 @@
     new: 4
   yellow:
     new: 1
+2022-06-15:
+  yellow:
+    new: 4
+  note: I won another Smíchoff boulder challenge! I only missed 2 yellows from the new setting (one of which is literally impossible), so I'm pretty happy!
+  rebuilt: 1
