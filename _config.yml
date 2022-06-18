@@ -32,6 +32,3 @@ permalink: /:slugified_categories/:title/
 plugins:
 - jekyll-redirect-from
 - jektex
-
-jektex:
-  silent: true
