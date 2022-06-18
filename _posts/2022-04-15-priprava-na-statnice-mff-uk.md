@@ -494,10 +494,23 @@ Z následujících témat je třeba umět **všechna** z 1-3 a **dvě** z 4-7 (v
 		<li> Architektura klient/server.
 		<li> Základy fungování protokolů HTTP, FTP a SMTP.
 	{% endsttopic %}
-	{% sttopic Diferenciální a integrální počet ve více rozměrech  | Matalýza 2 [[skripta](/assets/priprava-na-statnice-mff-uk/ma2.pdf)] 🃏 %}
-		<li> Riemannův integrál.
-		<li> Extrémy funkcí více proměnných.
-		<li> Metrický prostor, otevřené a uzavřené množiny, kompaktnost.
+	{% sttopic Diferenciální a integrální počet ve více rozměrech  | Matalýza 2 [[poznámky Pultr](/assets/priprava-na-statnice-mff-uk/ma2.pdf), [poznámky Klazar]([poznámky Pultr](/assets/priprava-na-statnice-mff-uk/ma2.pdf))] 🃏 %}
+		<li> Riemannův integrál jedno- i vícerozměrný
+		<li> Funkce více proměnných
+			<ul>
+			<li> parciální derivace: definice a výpočet
+			<li> výpočet extrémů pomocí paricálních derivací
+			<li> existence extrémů pro funkce několika reálných proměnných
+			<li> vázané extrémy: výpočet pomocí Lagrangeových multiplikátorů
+			</ul>
+		<li> Metrický prostor
+			<ul>
+			<li> definice a základní příklady
+			<li> otevřené a uzavřené množiny: definice, příklady
+			<li> spojitost funkce na metrickém prostoru
+			<li> kompaktnost: definice a důsledky pro extrémy funkcí více proměnných
+			<li> stejnoměrná spojitost
+			</ul>
 	{% endsttopic %}
 	{% sttopic Optimalizace | LP [[skripta](/assets/priprava-na-statnice-mff-uk/linprog.pdf)] 🃏, APX [[pozn.](/poznamky-z-prednasky/aproximacni-algoritmy/)] 🃏, Kombagra 2 [[pozn.](/poznamky-z-prednasky/kombinatorika-a-grafy-ii/)] 🃏, DSPO [[pozn.](/poznamky-z-prednasky/diskretni-a-spojita-optimalizace/)] %}
 		<li> Základy lineárního a celočíselného programování.
