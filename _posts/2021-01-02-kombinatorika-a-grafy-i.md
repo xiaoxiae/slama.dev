@@ -286,7 +286,7 @@ Pro daný koeficient vytvořující funkce tedy máme:
 
 #### Catalanova čísla
 - \(b_n = \) počet binárních zakořeněných stromů na \(n\) vrcholech
-	- \(b_n = \sum_{k = 0}^{n - 1} b_k \cdot b_{n - k + 1}\), rekurzíme se na obě části
+	- \(b_n = \sum_{k = 0}^{n - 1} b_k \cdot b_{n - k - 1}\), rekurzíme se na obě části
 	- jde si rozmyslet[^1], že \(b(x) = x \cdot b(x) \cdot b(x) + 1\)
 		- \(x\) je tam kvůli posunu, aby vycházelo správně indexování (suma nejde do \(n\))
 		- \(1\) je tam kvůli tomu, aby nultý člen správně vycházel
