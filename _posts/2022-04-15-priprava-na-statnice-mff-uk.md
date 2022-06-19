@@ -23,7 +23,7 @@ Pokud je u předmětu symbol kartičky (🃏), tak je zahrnut v [tomto Anki bal�
 #### Matematika
 
 {% sttopics %}
-	{% sttopic Základy diferenciálního a integrálního počtu | Matalýza 1 [[skripta](/assets/priprava-na-statnice-mff-uk/ma1.pdf)] 🃏 %}
+	{% sttopic Matalýza | Matalýza 1 [[skripta](/assets/priprava-na-statnice-mff-uk/ma1.pdf), [derivace](/assets/priprava-na-statnice-mff-uk/ma-derivate.pdf), [integrály](/assets/priprava-na-statnice-mff-uk/ma-integrate.pdf), [limity](/assets/priprava-na-statnice-mff-uk/ma-limits.pdf)] 🃏 %}
 		{% stlink Reálná čísla | /assets/priprava-na-statnice-mff-uk/ma1.pdf#chapter.1 %}
 		<ul>
 			<li> odmocnina ze dvou je iracionální
@@ -153,7 +153,7 @@ Pokud je u předmětu symbol kartičky (🃏), tak je zahrnut v [tomto Anki bal�
 			<li> princip hledání maximálního toku v síti s celočíselnými kapacitami (například pomocí Ford-Fulkersonova algoritmu)
 		</ul>
 	{% endsttopic %}
-	{% sttopic Pravděpodobnost a statistika | Diskrétka [[poznámky](/poznamky-z-prednasky/diskretni-matematika/)] 🃏, Past [[slidy](/assets/priprava-na-statnice-mff-uk/past/slides.pdf), [cheatsheet](/assets/priprava-na-statnice-mff-uk/past/cheatsheet.pdf), [příklady](/assets/priprava-na-statnice-mff-uk/past/examples.pdf)] 🃏 %}
+	{% sttopic Past | Diskrétka [[poznámky](/poznamky-z-prednasky/diskretni-matematika/)] 🃏, Past [[slidy](/assets/priprava-na-statnice-mff-uk/past/slides.pdf), [cheatsheet](/assets/priprava-na-statnice-mff-uk/past/cheatsheet.pdf), [příklady](/assets/priprava-na-statnice-mff-uk/past/examples.pdf)] 🃏 %}
 		<li> Pravděpodobnostní prostor, náhodné jevy, pravděpodobnost
 			<ul>
 			<li> definice těchto pojmů, příklady
@@ -494,7 +494,7 @@ Z následujících témat je třeba umět **všechna** z 1-3 a **dvě** z 4-7 (v
 		<li> Architektura klient/server.
 		<li> Základy fungování protokolů HTTP, FTP a SMTP.
 	{% endsttopic %}
-	{% sttopic Diferenciální a integrální počet ve více rozměrech  | Matalýza 2 [[poznámky Pultr](/assets/priprava-na-statnice-mff-uk/ma2.pdf), [poznámky Klazar]([poznámky Pultr](/assets/priprava-na-statnice-mff-uk/ma2.pdf))] 🃏 %}
+	{% sttopic Matalýza 2  | Matalýza 2 [[poznámky Pultr](/assets/priprava-na-statnice-mff-uk/ma2.pdf), [poznámky Klazar]([poznámky Pultr](/assets/priprava-na-statnice-mff-uk/ma2.pdf))] 🃏 %}
 		<li> Riemannův integrál jedno- i vícerozměrný
 		<li> Funkce více proměnných
 			<ul>
