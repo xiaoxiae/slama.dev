@@ -29,6 +29,9 @@ defaults:
 
 permalink: /:slugified_categories/:title/
 
+jektex:
+  silent: true
+
 plugins:
 - jekyll-redirect-from
 - jektex
