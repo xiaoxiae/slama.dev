@@ -512,11 +512,11 @@ Z následujících témat je třeba umět **všechna** z 1-3 a **dvě** z 4-7 (v
 			<li> stejnoměrná spojitost
 			</ul>
 	{% endsttopic %}
-	{% sttopic Optimalizace | LP [[skripta](/assets/priprava-na-statnice-mff-uk/linprog.pdf)] 🃏, APX [[pozn.](/poznamky-z-prednasky/aproximacni-algoritmy/)] 🃏, Kombagra 2 [[pozn.](/poznamky-z-prednasky/kombinatorika-a-grafy-ii/)] 🃏, DSPO [[pozn.](/poznamky-z-prednasky/diskretni-a-spojita-optimalizace/)] %}
+	{% sttopic Optimalizace | LP [[skripta](/assets/priprava-na-statnice-mff-uk/lp.pdf)] 🃏, APX [[pozn.](/poznamky-z-prednasky/aproximacni-algoritmy/)] 🃏, Kombagra 2 [[pozn.](/poznamky-z-prednasky/kombinatorika-a-grafy-ii/)] 🃏, DSPO [[pozn.](/poznamky-z-prednasky/diskretni-a-spojita-optimalizace/)] %}
 		<li> Základy lineárního a celočíselného programování.
 		<ul>
 			<li> dualita lineárního programování, Farkasovo lemma
-			<li> simplexová metoda, pivotovací pravidla
+			{% stlink simplexová metoda, pivotovací pravidla | /assets/priprava-na-statnice-mff-uk/lp-simplex.pdf %}
 		</ul>
 		<li> Kombinatorická geometrie
 		<ul>
