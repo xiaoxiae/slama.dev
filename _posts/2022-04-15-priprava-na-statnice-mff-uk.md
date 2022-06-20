@@ -196,7 +196,7 @@ Pokud je u předmětu symbol kartičky (🃏), tak je zahrnut v [tomto Anki bal�
 			<li> hladina významnosti
 			</ul>
 	{% endsttopic %}
-	{% sttopic Logika | Výpal [[slidy](/assets/priprava-na-statnice-mff-uk/vypal.pdf)] 🃏 %}
+	{% sttopic Logika | Výpal [[slidy CZ](/assets/priprava-na-statnice-mff-uk/vypal-cz.pdf), [slidy EN](/assets/priprava-na-statnice-mff-uk/vypal-en.pdf)] 🃏 %}
 		<li> Syntaxe
 		<ul>
 			<li> znalost a práce se základními pojmy syntaxe výrokové a predikátové logiky (jazyk, otevřená a uzavřená formule, instance formule, apod.)
