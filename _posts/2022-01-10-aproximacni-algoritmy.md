@@ -782,11 +782,11 @@ Nás zajímá najít rychlý paralelní algoritmus:
 {% math algorithm "rychlý paralelní" %}
 1. \(I = \emptyset\)
 2. dokud \(V \neq \emptyset\), tak každý následující krok děláme paralelně:
-	1. \(\forall v \in E\) pokud je stupeň \(0\), pak přidáme do \(I\) a vymažeme z \(V\)
-	2. \(\forall v \in E\) označ \(v\) (přidej do \(S\)) s pravděpodobností \(\frac{1}{2 d_v}\) (nezávisle)
-	3. \(\forall u, v \in E\) pokud \(u\) i \(v\) jsou označené, odeber značku nižšího stupně
+	- \(\forall v \in E\) pokud je stupeň \(0\), pak přidáme do \(I\) a vymažeme z \(V\)
+	- \(\forall v \in E\) označ \(v\) (přidej do \(S\)) s pravděpodobností \(\frac{1}{2 d_v}\) (nezávisle)
+	- \(\forall u, v \in E\) pokud \(u\) i \(v\) jsou označené, odeber značku nižšího stupně
 		- nižší stupeň proto, abychom odebírali hran co nejvíce
-	4. přidej označené vrcholy do \(I\) a odeber je **a jejich sousedy** (a odpovídající hrany) z \(V\)
+	- přidej označené vrcholy do \(I\) a odeber je **a jejich sousedy** (a odpovídající hrany) z \(V\)
 		- sousedy množiny \(S\) značíme \(N(S)\)
 {% endmath %}
 
