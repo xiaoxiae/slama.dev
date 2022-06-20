@@ -661,13 +661,19 @@ pro maximálné rovinný graf \(G\) s \(v \ge 3\) jsou všechny jeho stěny troj
 {% endmath %}
 
 {% math theorem %}
-Nechť \(G\) je maximálně rovinný s \(v \ge 3\) vrcholy. Pak \(e = 3f / 2\).
+Nechť \(G\) je maximálně rovinný s \(v \ge 3\) vrcholy. Pak \(e = \frac{3}{2} f\).
 {% endmath %}
 
 {% math proof %}
-Každá stěna je trojúhelník (\(3f\)) a patří právě do dvou stěn (\(/ 2\))... počítání dvěma způsoby.
-- pozn.: můžeme dosadit do Eulerova vzorce (jelikož je zajisté souvislý) a dostaneme \(v + \frac{2}{3} e = e + 2 \implies e = 3v - 6\)
-	- je z toho přímo vidět, že \(K_5\) není rovinná
+každá stěna vytváří tři hrany, ze kterých každá patří právě do dvou stěn.
+{% endmath %}
+
+{% math theorem "počet hran rovinného grafu" %}pro počet hran rovinného grafu platí\[e \le 3v - 6\]
+Pro maximálně rovinný platí rovnost.
+{% endmath %}
+
+{% math proof %}
+Dosazení pozorování výše do Eulerova vzorce (není-li graf maximálně rovinný, pak \(e \le \frac{3}{2}f\), jelikož některé stěny budou mít větší počet hran).
 {% endmath %}
 
 {% math theorem %}
@@ -680,11 +686,11 @@ v každém rovinném grafu existuje vrchol t. ž. \(\mathrm{deg}\left(v\right) \
 {% endmath %}
 
 {% math theorem %}
-Nechť \(G\) je maximálně rovinný vez trojúhelníků. Pak \(e \le 2v - 4\).
+Nechť \(G\) je maximálně rovinný bez trojúhelníků. Pak \(e \le 2v - 4\).
 {% endmath %}
 
 {% math proof %}
-počítání dvěma způsoby: \(e \ge 4f / 2\) (každá hrana patří do dvou stěn, které jsou tvořeny \(\ge\) 4 hranami. Dosazením do Eulera dostaneme nerovnost.
+stejná úvaha jako výše, jen každá stěna vytváří \(4\) hrany.
 {% endmath %}
 
 #### Barvení
