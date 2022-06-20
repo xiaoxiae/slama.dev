@@ -97,7 +97,7 @@ V řeči grafů chceme pro libovolnou množinu hran (prvků podmnožin) vrátit 
 \[r(A) = \max \left\{|X| \mid X \in 2^A \land X \in \mathcal{S}\right\}\]
 {% endmath %}
 
-{% math theorem "řádová funkce matroidu" %}funkce \(r : 2^X \mapsto N\) je řádová funkce nějakého matroidu nad \(X\) právě tehdy, když platí:
+{% math theorem "řádová funkce matroidu" %}funkce \(r : 2^X \mapsto \mathbb{N}\) je řádová funkce nějakého matroidu nad \(X\) právě tehdy, když platí:
 - \((\mathrm{R1})\): \(r(\emptyset) = 0\)
 - \((\mathrm{R2})\): \(r(Y) \le r(Y \cup \left\{y\right\}) \le r(Y) + 1\)
 - \((\mathrm{R3})\): \(r(Y \cup \left\{y\right\}) = r(Y \cup \left\{z\right\}) = r(Y) \implies r(Y) = r(Y \cup \left\{y ,z\right\})\)
