@@ -10,10 +10,10 @@ module Jekyll
         total = ""
 
         for a in @parts.slice(1, @parts.length) do
-          total += " [🔗](#{a.strip})"
+          total += "<a href='#{a.strip}'> 🔗</a>"
         end
 
-        return "<li><ul class='hfill'> <li>#{@parts[0].strip}</li> <li markdown='1'>#{total}</li> </ul></li>"
+        return "<li><ul class='hfill'> <li>#{@parts[0].strip}</li> <li> #{total} </li> </ul></li>"
       end
     end
   end

@@ -7,7 +7,7 @@ module Jekyll
       end
 
       def render(context)
-        return "<li><ul class='hfill'> <li><strong>#{@parts[0].strip}</strong></li> <li markdown='1'>#{@parts[1].strip}</li></ul> <ul>#{super.strip}</ul></li>"
+        return "<li><ul class='hfill'> <li><strong>#{@parts[0].strip}</strong></li> <li>#{@parts[1].strip}</li></ul><ul>#{super.strip}</ul></li> "
       end
     end
   end
