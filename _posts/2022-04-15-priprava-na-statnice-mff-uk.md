@@ -7,10 +7,6 @@ css: statnice
 - .
 {:toc}
 
-_<strong>UPOZORNĚNÍ (7.6.2022):</strong> zdá se, že termíny vyvěšené na nástěnce <strong>platily pouze pro starou akreditaci.</strong> Všichni, kteří jsou aktuálně přihlášeni na státnice, by již termín (zoušky i obhajoby) měli mít zapsaný, termíny proto odstraňuji._
-
-_<strong>UPOZORNĚNÍ (2.6.2022):</strong> pokud jste článek četli před 2.6.2022, tak u témat specifických pro obecnou informatiku bylo napsáno, že je třeba vybrat pouze jedno z prvních tří témat. <strong>Tomu tak není</strong> -- dokument byl 1.6.2022 upraven (přes to, že by podle dokumentu neměly úpravy v rozmezí měsíce před státnicemi přidávat požadavky)._
-
 Tento článek obsahuje mou přípravu na státní zkoušky z **Obecné informatiky** pro akademický rok **2021/2022** (tj. nová akreditace).
 Podrobné informace o všech specializacích jsou k dispozici v [tomto PDF](https://www.mff.cuni.cz/cs/studenti/bakalarske-studium/statni-zaverecne-zkousky/bakalarske-statni-zkousky-studijniho-programu-informatika/detailni-pozadavky.pdf) (informace na této stránce jsou z 1.6.2022 updatu tohoto dokumentu).
 
