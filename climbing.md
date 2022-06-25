@@ -18,7 +18,7 @@ This page is dedicated to my climbing life.
 		<img style="flex:66.47%; max-width: 66.47%;" src="/climbing/photos/2022-06-15-3.jpg">
 		<img style="flex:29.53%; max-width: 29.53%;" src="/climbing/photos/2022-06-15-4.jpg">
 	</div>
-	<figcaption>Několik fotek ze Smíchoffské Boulder challenge (15. 6. 2022).<br>© KAREA foto</figcaption>
+	<figcaption>Několik fotek ze Smíchoffské Boulder challenge (15. 6. 2022).<br>© <a href="https://instagram.com/kareafoto">KAREA foto</a></figcaption>
 </figure>
 
 ## [Smíchoff](https://www.lezeckecentrum.cz/cs/), Prague
