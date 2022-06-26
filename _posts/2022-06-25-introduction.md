@@ -4,29 +4,28 @@ category: "manim"
 css: manim
 ---
 
-_Over the course of this year, I created a well-received "Introduction to Manim" series for [KSP](https://ksp.mff.cuni.cz/) (Czech CS-oriented correspondence seminar), so it made sense to make it more accessible by translating it to English and publishing it here._
+_Over the course of this year, I created a well-received "Introduction to Manim" series for [KSP](https://ksp.mff.cuni.cz/) (Czech CS-oriented correspondence seminar), so it made sense to make it more accessible by translating it to English and publish it here._
 
 ---
 
 Animations are better than pictures, be it when presenting interesting ideas or visualizing algorithms.
 That is why it's convenient to know how to create them, ideally programmatically.
-This is the main motivation behind **Manim** -- a Python library created by Grant Sanderson ([3b1b](https://www.youtube.com/c/3blue1brown)), which this multipart series aims to cover.
+This is the main motivation behind learning **Manim** -- a Python library created by Grant Sanderson ([3b1b](https://www.youtube.com/c/3blue1brown)), which this multipart series aims to cover.
 
 ### Preface
 To follow the series, basic knowledge of Python is required.
 It is also useful to know the basics of \(\TeX\), which we'll use to typeset math and text, but it is not required.
 You will also need to [install Manim](https://docs.manim.community/en/stable/installation.html) if you wish to try the example code yourself.
 
-Each part contain a number of exercies for the reader to implement, which use the covered concepts.
+Each part of the series contain a number of exercises for the reader to implement, which use the covered concepts.
 The author's solutions are always provided (you are, however, highly encouraged to try to implement them first).
 
-The classes/methods discussed in the series are accompanied by links to the [official Manim documentation](https://docs.manim.community/en/stable/index.html), which contains a more comprehensive description and the source code.
+The classes/methods discussed in the series are accompanied by the links to their pages on the [official Manim documentation](https://docs.manim.community/en/stable/index.html), which contains a more comprehensive description and the source code.
 
 
 ### First animations
-The basic building block of Manim are **scenes**.
-They are Python classes inheriting the {% manim_doc `Scene` reference/manim.scene.scene.Scene.html %} class.
-Each of the scenes must include the {% manim_doc `construct` reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.construct %} method, which contains information about how the scene looks like (creating shapes, moving them, changing, color and size, etc.).
+The basic building block of Manim are **scenes**, which are Python classes inheriting the {% manim_doc `Scene` reference/manim.scene.scene.Scene.html %} class.
+Each of the scenes must implement the {% manim_doc `construct` reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.construct %} method, which contains information about how the scene looks like (creating shapes, moving them, changing, color and size, etc.).
 
 Here is an example of a simple scene that creates a red square and then a blue circle.
 
@@ -47,7 +46,7 @@ class Intro(Scene):
         self.play(FadeOut(square), FadeOut(circle), run_time=2)
 ```
 
-To render the video, we will use `manim <file name> -pqm` where
+To render the video, we will use the `manim <file name> -pqm` command, where
 - `-p` is the preview flag, telling Manim that we want to immediately view the result and
 - `-qm` sets the quality to `m`edium (others being `l`ow, `h`igh and 4`k`),
 
@@ -56,8 +55,8 @@ yielding the following video:
 {% manim_video 1-Intro %}
 
 The method {% manim_doc `self.play` reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.play %} always expects a **non-zero** number of animations that it plays at the same time.
-We're calling it with the {% manim_doc `Write` reference/manim.animation.creation.Write.html %} and {% manim_doc `FadeOut` reference/manim.animation.fading.FadeOut.html %} animations above, which in turn create and hide objects passed to them.
-The optional parameter `run_time` sets the animation duration (in seconds), defaulting to 1 second if not passed.
+We're calling it with the {% manim_doc `Write` reference/manim.animation.creation.Write.html %} and {% manim_doc `FadeOut` reference/manim.animation.fading.FadeOut.html %} animations above, which create and hide objects passed to them.
+The optional parameter `run_time` sets the animation duration (in seconds), defaulting to \(1\) if nothing is passed.
 
 There are also a number of builtin constants used (`LEFT`, `RIGHT`, `RED`, `BLUE`).
 These are constants that Manim uses to make the code more readable, a comprehensive list can be found {% manim_doc here reference/manim.constants.html %}.
@@ -77,7 +76,7 @@ For moving to the side, once can simply do `obj.shift(LEFT + UP * 1.5)`, instead
 Besides creating and hiding objects, we'd like to animate their attributes like color, position and orientation.
 The {% manim_doc `shift` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.shift %} function does move the object, but it doesn't do so visually.
 
-This can be done in a number of ways, the arguably most elegant being the {% manim_doc `animate` tutorials/quickstart.html#using-animate-syntax-to-animate-methods %} syntax, which can be used via the magic `animate` word after the object:
+This can be done in a number of ways, arguably the most elegant being the {% manim_doc `animate` tutorials/quickstart.html#using-animate-syntax-to-animate-methods %} syntax, which can be used via the magic `animate` word after the object:
 
 ```py
 from manim import *
@@ -240,6 +239,10 @@ class TextAndMath(Scene):
 
         self.play(FadeOut(formula), FadeOut(text))
 ```
+
+{% manim_video 1-TextAndMath %}
+
+An alternative to using the {% manim_doc `Tex` reference/manim.mobject.text.tex_mobject.Tex.html %} class is the {% manim_doc `Text` reference/manim.mobject.text.text_mobject.Text.html %} class, which internally doesn't use \(\TeX\) and thus renders a(n arguably) worse-looking text, but is easier to work with when dealing with non-english characters.
 
 ### Exercises
 
