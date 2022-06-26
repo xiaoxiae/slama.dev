@@ -1,6 +1,6 @@
 ---
 category: "Vim"
-excerpt: "In this post, we'll talk about how history of changes is implemented in Vim (compared to other editors), how to make it persistent, why the `<u>` + `<C-r>` combination isn't doing it justice and what are some plugins you can use to improve your workflow!"
+category_icon: /assets/category-icons/vim.svg
 ---
 
 - .

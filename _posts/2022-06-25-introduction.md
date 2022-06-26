@@ -1,6 +1,7 @@
 ---
 title: Manim – Introduction
 category: "manim"
+category_icon: /assets/category-icons/manim.svg
 css: manim
 ---
 

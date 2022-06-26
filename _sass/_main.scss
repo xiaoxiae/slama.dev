@@ -298,6 +298,13 @@ footer {
     }
 }
 
+.category-icon {
+    display: inline;
+    height: 1em;
+    vertical-align: middle;
+    filter: invert(0%) !important;
+}
+
 // right floats
 .rightFloatBox {
     max-width: 30%;
