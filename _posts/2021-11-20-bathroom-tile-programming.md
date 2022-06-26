@@ -21,12 +21,12 @@ A simple solution that has the time complexity \(\mathcal{O}(n)\) can be found i
 The idea is to count, how many parentheses we've seen so far and store it in the columns of the tiling as a binary number. When we see a one, we increment -- if the previous bit was 0, we put 1 to the right and don't carry. If it was a 1, we put 0 and do carry (see the diagram above). Same goes for decrementing:
 
 {: .inverse-invert}
-![](/assets/bathroom-tile-programming/parentheses.png)
+![](/assets/bathroom-tile-programming/parentheses.webp)
 
 If we wanted to make the tileset a little more concise, we could exchange the <span class="azure-red"></span> color (that is mostly there for clarity) with a zero, yielding the following:
 
 {: .inverse-invert}
-![](/assets/bathroom-tile-programming/parentheses_minimal.png)
+![](/assets/bathroom-tile-programming/parentheses_minimal.webp)
 </div>
 </details>
 
@@ -52,7 +52,7 @@ We also must not forgot to accept a single 1, for which we include a special til
 
 
 {: .inverse-invert}
-![](/assets/bathroom-tile-programming/power_of_two.png)
+![](/assets/bathroom-tile-programming/power_of_two.webp)
 
 The time complexity is \(\mathcal{O}(\log n)\).
 </div>
@@ -64,7 +64,7 @@ The time complexity is \(\mathcal{O}(\log n)\).
 The idea behind the solution is to connect the first and last character and move the rest of the string to the next level. The side colors are there for the odd-size blocks end up in the middle (if the length of the palindrome is odd).
 
 {: .inverse-invert}
-![](/assets/bathroom-tile-programming/palindrome.png)
+![](/assets/bathroom-tile-programming/palindrome.webp)
 </div>
 
 The time complexity is \(\mathcal{O}(n)\).
@@ -77,7 +77,7 @@ The time complexity is \(\mathcal{O}(n)\).
 The solution is based on long division, only difference being that we don't write the result anywhere but simply calculate the remainder. There are a lot of tiles that each correspond to what carry we currently have and what the next input number is.
 
 {: .inverse-invert}
-![](/assets/bathroom-tile-programming/divisible.png)
+![](/assets/bathroom-tile-programming/divisible.webp)
 
 The time complexity is \(\mathcal{O}(1)\).
 </div>

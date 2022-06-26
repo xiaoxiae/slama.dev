@@ -8,7 +8,7 @@ module Jekyll
 
       def render(context)
         return "<figure>
-  <video poster='/assets/manim/#{@name.strip}.jpg' controls preload='none'>
+  <video poster='/assets/manim/#{@name.strip}.webp' controls preload='none'>
     <source src='/assets/manim/#{@name.strip}.mp4' type='video/mp4'>
   </video>
 </figure>"

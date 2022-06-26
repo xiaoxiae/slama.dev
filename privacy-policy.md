@@ -32,4 +32,4 @@ I pinky promise not to share the fact that I don't have any of your personal dat
 #### Changes to this privacy policy
 
 {: .maximized-image}
-![By clicking anywhere, scrolling, or closing this notification, you agree to be legally bound by the witch Sycorax within a cloven pine.](/assets/gdpr.png)
+![By clicking anywhere, scrolling, or closing this notification, you agree to be legally bound by the witch Sycorax within a cloven pine.](/assets/gdpr.webp)

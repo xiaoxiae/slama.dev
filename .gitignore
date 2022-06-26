@@ -16,9 +16,13 @@ climbing/**/*.mp4
 climbing/**/*.jpeg
 climbing/zones/
 photos/
+
 assets/hlenka-helenka/tribute.mp4
 assets/priprava-na-statnice-mff-uk/*
 assets/manim/*
+assets/**/*.pdf
+assets/**/*.webp
+
 videos/
 *.xcf
 _plugins/svgcleaner/
@@ -34,7 +38,6 @@ _includes/songs.md
 _includes/projects.md
 _includes/videos.md
 _includes/diary.md
-assets/*.pdf
 cv.pdf
 
 # frequently changing

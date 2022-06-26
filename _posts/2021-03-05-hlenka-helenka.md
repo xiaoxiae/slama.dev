@@ -7,7 +7,7 @@ layout: default
 Tohle je naše hlenka Helenka.
 
 {:.center .no-invert}
-![Obrázek hlenky.](/assets/hlenka-helenka-still.jpg)
+![Obrázek hlenky.](/assets/hlenka-helenka-still.webp)
 
 Jedná se o kolonii amoéb, která tím, jak postupně roste, tvoří mezi zdroji jídla nejkratší možná spojení. [Tento TED talk](https://www.ted.com/talks/heather_barnett_what_humans_can_learn_from_semi_intelligent_slime/transcript) moc hezky shrnuje nejpodstatnější informace o hlenkách.
 
