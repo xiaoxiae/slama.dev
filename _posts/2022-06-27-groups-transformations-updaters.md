@@ -826,7 +826,7 @@ class PathExample(Scene):
         )
 ```
 
-We're also using the {% manim_doc `flip` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.flip %} function to flip an object in the given axis.
+We're also using the {% manim_doc `flip` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.flip %} function, which flips an object in the given axis (defaulting to flipping left-right), and the {% manim_doc `copy` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.copy %} function, which copies an object.
 
 {% manim_solution %}
 from manim import *
