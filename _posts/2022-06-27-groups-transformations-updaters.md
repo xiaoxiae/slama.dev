@@ -5,6 +5,9 @@ category_icon: /assets/category-icons/manim.svg
 css: manim
 ---
 
+- .
+{:toc}
+
 In this part of the series, we'll learn a number of useful functions and classes when working with groups of objects.
 We'll also learn how to transform objects into others, how updaters work and a few geometry-related things.
 
@@ -43,7 +46,7 @@ class VGroupExample(Scene):
 {% manim_video 2-VGroupExample %}
 
 The {% manim_doc `VGroup` reference/manim.mobject.types.vectorized_mobject.VGroup.html %} class additionally contains functions for arranging objects.
-The simplest to use is the {% manim_doc `arrange` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.arrange %} function which arranges object such that they are next to one another, in the order they were passed to the constructor.
+The simplest to use is the {% manim_doc `arrange` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.arrange %} function which arranges object such that they are next to one another, in the order they were passed to the constructor (left to right).
 
 ```py
 from manim import *
@@ -65,11 +68,12 @@ class ArrangeExample(Scene):
 
         self.play(FadeIn(circles))
 
+        # left-to-right arrangement
         self.play(circles.animate.arrange())
 
         # specify the direction of arrangement and spacing between the objects
-        self.play(circles.animate.arrange(direction=DOWN, buff=0.1))
-        self.play(circles.animate.arrange(buff=0.4))
+        self.play(circles.animate.arrange(direction=DOWN, buff=0.3))
+        self.play(circles.animate.arrange(direction=LEFT + DOWN, buff=0.1))
 ```
 
 {% manim_video 2-ArrangeExample %}
@@ -77,7 +81,7 @@ class ArrangeExample(Scene):
 The `buff` parameter determines the spacing between the objects and can be used in most of the functions that involve positioning objects next to one another, such as the {% manim_doc `next_to` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.next_to %} function that we've seen already.
 The `direction` parameter determines the direction in which the objects are arranged.
 
-A more general version of the {% manim_doc `arrange` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.arrange %} function is the {% manim_doc `arrange_in_grid` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.arrange_in_grid %} function, which (as the name suggests) arranges the objects of the group in a grid.
+A more general version of the {% manim_doc `arrange` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.arrange %} function is the {% manim_doc `arrange_in_grid` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.arrange_in_grid %} function, which (as the name suggests) arranges the objects of the group in a grid. By default, it attempts to make the grid as square as possible.
 
 ```py
 from manim import *
@@ -99,6 +103,7 @@ class ArrangeInGridExample(Scene):
 
         self.play(FadeIn(circles))
 
+        # square grid (or as close as possible)
         self.play(circles.animate.arrange_in_grid())
 
         # different parameters for rows and columns
@@ -110,7 +115,7 @@ class ArrangeInGridExample(Scene):
 
 
 ### Adding and removing elements
-To add objects to the scene instantly (without animating), we can use the {% manim_doc `bring_to_front` reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.bring_to_front %} (or alternatively {% manim_doc `add` reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.add %}, which is the same functions) and {% manim_doc `bring_to_back` reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.bring_to_back %}  functions.
+To add objects to the scene instantly (without animating), we can use the {% manim_doc `bring_to_front` reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.bring_to_front %} (or alternatively {% manim_doc `add` reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.add %}, which is the same) and {% manim_doc `bring_to_back` reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.bring_to_back %}  functions.
 To remove them, we can use the {% manim_doc `remove` reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.remove %} function.
 
 ```py
@@ -154,7 +159,7 @@ class AddRemoveExample(Scene):
 {% manim_video 2-AddRemoveExample %}
 
 We'll cover the scene functionality in-depth in one of the upcoming parts in the series.
-For now, it's sufficient to know that the scene objects have a determined order in which they are rendered, which is determined primarily by their `z` coordinate (yes, even the 2D objects have a `z` coordinate) and secondarily by the order they were added to the scene (newer objects on top, older on the bottom).
+For now, it's sufficient to know that the scene objects have a set order in which they are rendered, which is determined primarily by their `z_index` (something different than their \(z\) coordinate) and secondarily by the order they were added to the scene (newer objects on top, older on the bottom).
 
 ```py
 from manim import *
@@ -187,7 +192,7 @@ class ZIndexExample(Scene):
 
 ### Overlapping animations
 We've seen how to start animations concurrently, but it is often prettier to run them with a certain overlap (especially when there is a lot of them), which makes them look smoother.
-To achieve this, we'll use the {% manim_doc `AnimationGroup` reference/manim.animation.composition.AnimationGroup.html %} object with a `lag_ratio` parameter, which determins the part of a given animation when the next one is started.
+To achieve this, we'll use the {% manim_doc `AnimationGroup` reference/manim.animation.composition.AnimationGroup.html %} object with a `lag_ratio` parameter, which determines the part of a given animation when the next one is started.
 
 ```py
 from manim import *
@@ -297,7 +302,7 @@ class AttentionExample(Scene):
 {% manim_video 2-AttentionExample %}
 
 The {% manim_doc `Flash` reference/manim.animation.indication.Flash.html %}, {% manim_doc `Indicate` reference/manim.animation.indication.Indicate.html %} and {% manim_doc `Circumscribe` reference/manim.animation.indication.Circumscribe.html %} animations have a useful optional `color` parameter, which changes the default color from yellow to whatever you prefer.
-Also, notice that we used an optional `shift` parameter for {% manim_doc `FadeIn` reference/manim.animation.fading.FadeIn.html#manim.animation.fading.FadeIn %} and {% manim_doc `FadeIn` reference/manim.animation.fading.FadeOut.html#manim.animation.fading.FadeOut %}
+Also, notice that we used an optional `shift` parameter for {% manim_doc `FadeIn` reference/manim.animation.fading.FadeIn.html#manim.animation.fading.FadeIn %} and {% manim_doc `FadeOut` reference/manim.animation.fading.FadeOut.html#manim.animation.fading.FadeOut %}.
 
 ### Transformations
 Manim can animate the transformation of one object to another in a number of different ways.
@@ -463,7 +468,7 @@ class BecomeUpdaterExample(Scene):
 
 {% manim_video 2-BecomeUpdaterExample %}
 
-Besides the new {% manim_doc `become` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.become %} function, the code also contains the {% manim_doc `get_center` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.get_center %} function, which returns a [NumPy array](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html) with the \([x, y, z]\) coordinates of the object (in our case the circle).
+Besides the new {% manim_doc `become` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.become %} function, the code also contains the {% manim_doc `get_center` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.get_center %} function, which returns a [NumPy array](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html) with the \((x, y, z)\) coordinates of the object (in our case the circle).
 
 ### Tasks
 
@@ -825,6 +830,8 @@ class PathExample(Scene):
             path3.animate.flip(LEFT),
         )
 ```
+
+{% manim_video 2-PathExample %}
 
 We're also using the {% manim_doc `flip` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.flip %} function, which flips an object in the given axis (defaulting to flipping left-right), and the {% manim_doc `copy` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.copy %} function, which copies an object.
 

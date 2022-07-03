@@ -7,10 +7,11 @@ css: manim
 
 _Over the course of this year, I created a well-received "Introduction to Manim" series for [KSP](https://ksp.mff.cuni.cz/) (Czech CS-oriented correspondence seminar), so it made sense to make it more accessible by translating it to English and publish it here._
 
----
+- .
+{:toc}
 
 Animations are better than pictures, be it when presenting interesting ideas or visualizing algorithms.
-That is why it's convenient to know how to create them, ideally programmatically.
+That is why it's useful to know how to create them, ideally programmatically.
 This is the main motivation behind learning **Manim** -- a Python library created by Grant Sanderson ([3b1b](https://www.youtube.com/c/3blue1brown)), which this multipart series aims to cover.
 
 ### Preface
@@ -70,8 +71,7 @@ square = Square(color=RED)
 square.shift(LEFT * 2)
 ```
 
-Since the direction constants are NumPy vectors, they can be added and multiplied by constants with ease.
-For moving to the side, once can simply do `obj.shift(LEFT + UP * 1.5)`, instead of having to use successive calls (`obj.shift(LEFT).shift(UP * 1.5)`).
+Since the direction constants are [NumPy arrays](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html), they can be added and multiplied by constants with ease -- to move to the side and slightly up, we can simply do `obj.shift(LEFT + UP * 1.5)`.
 
 ### `animate` syntax
 Besides creating and hiding objects, we'd like to animate their attributes like color, position and orientation.
