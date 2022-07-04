@@ -48,4 +48,6 @@ Since there there are some other locations that I visit from time to time (mostl
 
 The format for each difficulty is <mark class="climbing-diary-record climbing-other climbing-other-text">repeats/<span class="underline">new sends</span> [<a>video</a> <a>links</a>]</mark>, left-to-right from easy to hard. Additionally, climbs marked with the ↯ symbol mean that they were flashed.
 
+_**Update** (4.7.2022): I've been feeling quite burnt-out and unsatisfied with my level of climbing for a while now and have mostly been recording videos out of inertia. I'm going to stop doing so for a while and just focus on climbing well, until I feel better and have the motivation to continue._
+
 {% include diary.md %}
