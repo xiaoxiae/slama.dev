@@ -958,11 +958,21 @@
 2022-07-04:
   blue:
     new: 3
-  note: Today was a surprisingly good day! I ticked of quite a few of the new yellows, all of the new blues and am looking forward to finishing some harder routes that I've missed in the previous settings.
+  note: Today was a surprisingly good day! I ticked of quite a few of the new yellows,
+    all of the new blues and am looking forward to finishing some harder routes that
+    I've missed in the previous settings.
   red:
-    old: 2
     new: 1
+    old: 2
   salmon:
     new: 1
   yellow:
     new: 3
+2022-07-06:
+  blue:
+    new: 1
+    old: 1
+  note: A fun session with my SO. Managed to send one of the blues from the previous
+    setting and made progress on others with some cheeky beta.
+  red:
+    old: 2
