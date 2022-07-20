@@ -1,8 +1,9 @@
 ---
-title: Manim [2] – Groups, Transforms, Updaters
+title: Manim – Groups, Transforms, Updaters
 category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim
+category_part: 2
 ---
 
 [Part 1](/manim/introduction/), **→ Part 2 ←**, [Part 3](/manim/camera-and-graphs/), [Part 4](/manim/3d-and-the-other-graphs/)

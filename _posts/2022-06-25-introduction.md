@@ -1,8 +1,9 @@
 ---
-title: Manim [1] – Introduction
+title: Manim – Introduction
 category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim
+category_part: 1
 ---
 
 **→ Part 1 ←**, [Part 2](/manim/groups-transformations-updaters/), [Part 3](/manim/camera-and-graphs/), [Part 4](/manim/3d-and-the-other-graphs/)

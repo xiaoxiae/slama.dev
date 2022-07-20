@@ -1,8 +1,9 @@
 ---
-title: Manim [4] – 3D and the Other Graphs
+title: Manim – 3D and the Other Graphs
 category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim
+category_part: 4
 ---
 
 [Part 1](/manim/introduction/), [Part 2](/manim/groups-transformations-updaters/), [Part 3](/manim/camera-and-graphs/), **→ Part 4 ←**

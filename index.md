@@ -32,7 +32,7 @@ Links to the periodically updated ones can be found at the top; the rest can be 
 	{% if post.language == "cz" %}🇨🇿 {% endif%}
 	<a href="{{ post.url }}">{{ post.title}}</a>
 	{% if post.category_noslug %} [{{post.category_noslug}}{% if post.category_icon %} <img class='category-icon' src='{{post.category_icon}}'/>{% endif %}]
-	{% elsif post.category%} [{{post.category}}{% if post.category_icon %} <img class='category-icon' src='{{post.category_icon}}'/>{% endif %}]{% endif %}
+	{% elsif post.category%} [{{post.category}}{% if post.category_icon %} <img class='category-icon' src='{{post.category_icon}}'/>{% endif %}{% if post.category_part %}, part {{post.category_part}}{% endif %}]{% endif %}
 	{% if post.pdf or post.pdf-nogenerate %} [<a href="/assets/{{post.url | split: "/" | last}}.pdf">PDF</a>]{% endif %}
 	</li>
 	<li>{{ post.date  | date: "%-d. %-m. %Y"}}</li>
