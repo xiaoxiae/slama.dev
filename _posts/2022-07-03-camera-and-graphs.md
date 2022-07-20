@@ -4,9 +4,11 @@ category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim
 category_part: 3
+redirect_from:
+- /manim/3/
 ---
 
-[Part 1](/manim/introduction/), [Part 2](/manim/groups-transformations-updaters/), **→ Part 3 ←**, [Part 4](/manim/3d-and-the-other-graphs/)
+[Part 1](/manim/1/), [Part 2](/manim/2/), **→ Part 3 ←**, [Part 4](/manim/4/)
 
 - .
 {:toc}
