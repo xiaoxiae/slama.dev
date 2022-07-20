@@ -1,9 +1,11 @@
 ---
-title: Manim – Groups, Transforms, Updaters
+title: Manim [2] – Groups, Transforms, Updaters
 category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim
 ---
+
+[Part 1](/manim/introduction/), **→ Part 2 ←**, [Part 3](/manim/camera-and-graphs/), [Part 4](/manim/3d-and-the-other-graphs/)
 
 - .
 {:toc}
@@ -206,8 +208,8 @@ class AnimationGroupExample(Scene):
 
         VGroup(c1, c2, c3).arrange(buff=1)
 
-        # each animation starts in the middle of the previous one
-        self.play(AnimationGroup(Write(c1), Write(c2), Write(c3), lag_ratio=0.5))
+        # each animation starts in the quarter of the previous one
+        self.play(AnimationGroup(Write(c1), Write(c2), Write(c3), lag_ratio=0.25))
 
         # each animation starts after the first tenth of the previous one
         self.play(AnimationGroup(FadeOut(c1), FadeOut(c2), FadeOut(c3), lag_ratio=0.1))
@@ -665,7 +667,7 @@ Here is the text input that I used to generate the maze, if you wish to use it.
 #         ####         ############   ####  #######   #
 #        #####          ############          ###     #
 #         ###            ##########                   #
-#######################################################}
+#######################################################
 ```
 
 {% manim_solution %}

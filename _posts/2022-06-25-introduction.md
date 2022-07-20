@@ -1,9 +1,11 @@
 ---
-title: Manim – Introduction
+title: Manim [1] – Introduction
 category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim
 ---
+
+**→ Part 1 ←**, [Part 2](/manim/groups-transformations-updaters/), [Part 3](/manim/camera-and-graphs/), [Part 4](/manim/3d-and-the-other-graphs/)
 
 _Over the course of this year, I created a well-received "Introduction to Manim" series for [KSP](https://ksp.mff.cuni.cz/) (Czech CS-oriented correspondence seminar), so it made sense to make it more accessible by translating it to English and publish it here._
 
@@ -121,6 +123,7 @@ As you can see from the code, the animations can be chained to change a number o
 We've seen that the {% manim_doc `shift` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.shift %} function moves an object in the given direction.
 Sometimes, however, it might be more convenient to move it in relation to other objects in the scene.
 
+#### `next_to`
 For moving one object next to another, we'll use the {% manim_doc `next_to` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.next_to %} function:
 
 ```py
@@ -149,6 +152,7 @@ class NextTo(Scene):
 
 {% manim_video 1-NextTo %}
 
+#### `move_to`
 For moving one object on top of another, we'll use the {% manim_doc `move_to` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.move_to %} function:
 
 ```py
@@ -181,6 +185,7 @@ class MoveTo(Scene):
 
 {% manim_video 1-MoveTo %}
 
+#### `align_to`
 For moving one object on the "same level" as another, we'll use the {% manim_doc `align_to` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.align_to %} function:
 
 ```py

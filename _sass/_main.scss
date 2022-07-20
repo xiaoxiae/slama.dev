@@ -142,10 +142,16 @@ pre.highlight {
     font-size: $toc-size;
     margin-top: 0;
     margin-left: $line-spacing / 2;
+    margin-bottom: $line-spacing / 2;
     padding-top: $line-spacing / 2;
     padding-right: $line-spacing;
     padding-bottom: $line-spacing / 2;
     float: right;
+    background-color: darken($light-background-color, 6%);
+
+    @media (prefers-color-scheme: dark) {
+        background-color: darken($dark-background-color, 6%);
+    }
 
     @media (max-width: $small-screen-threshold) {
         float: none;
@@ -154,6 +160,7 @@ pre.highlight {
     }
 
     border: 2px solid;
+    border-radius: $code-border-roundness;
 }
 
 body {
@@ -355,6 +362,7 @@ hr {
 
 .highlight,
 .highlighter-rouge {
+    clear: both;
     background-color: $light-code-background-color;
     border-color: $light-code-background-color;
 }
