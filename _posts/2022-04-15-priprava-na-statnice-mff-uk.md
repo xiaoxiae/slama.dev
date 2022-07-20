@@ -327,35 +327,35 @@ Pokud je u předmětu symbol kartičky (🃏), tak je zahrnut v [tomto Anki bal�
 		<li> (dynamický) polymorfismus, statické a dynamické typování </li>
 		<li> jednoduchá dědičnost </li>
 			<ul>
-			<li> virtuální a nevirtuální metody v C++ ~~a C#~~ </li>
-			<li> ~~defaultní metody v Javě~~ </li>
+			<li> virtuální a nevirtuální metody v C++ <del>a C#</del> </li>
+			<li> <del>defaultní metody v Javě</del> </li>
 			</ul>
-		<li> ~~vícenásobná dědičnost a její problémy~~ </li>
+		<li> <del>vícenásobná dědičnost a její problémy</del> </li>
 			<ul>
-			<li> ~~vícenásobná a virtuální dědičnost v C++~~ </li>
-			<li> ~~interfaces v Javě a C++~~ </li>
+			<li> <del>vícenásobná a virtuální dědičnost v C++</del> </li>
+			<li> <del>interfaces v Javě a C++</del> </li>
 			</ul>
 		<li> implementace rozhraní (interface) </li>
 		</ul>
 	<li> Primitivní a objektové typy a jejich reprezentace. </li>
 		<ul>
 		<li> číselné a výčtové typy </li>
-		<li> ~~ukazatele a reference v C++~~ </li>
+		<li> <del>ukazatele a reference v C++</del> </li>
 		<li> hodnotové a referenční typy v C# </li>
-		<li> imutabilní typy a boxing/unboxing v C# ~~a Javě~~ </li>
+		<li> imutabilní typy a boxing/unboxing v C# <del>a Javě</del> </li>
 		</ul>
 	<li> Generické typy a funkcionální prvky (procedurálních programovacích jazyků). </li>
 		<ul>
-		<li> ~~šablony (templates) a statický polymorfismus v C++~~ </li>
+		<li> <del>šablony (templates) a statický polymorfismus v C++</del> </li>
 		<li> generické typy v Javě a C# (bez omezení typových parametrů) </li>
-		<li> typy reprezentující funkce v ~~C++~~, C#, ~~nebo Javě~~ </li>
+		<li> typy reprezentující funkce v <del>C++</del>, C#, <del>nebo Javě</del> </li>
 		<li> lambda funkce a funkcionální rozhraní </li>
 		</ul>
 	<li> Manipulace se zdroji a mechanizmy pro ošetření chyb. </li>
 		<ul>
 		<li> správa životního cyklu zdrojů v případě výskytu chyb </li>
 			<ul>
-			<li> ~~RAII v C++~~, using v C#, ~~try-with-resources v Javě~~ </li>
+			<li> <del>RAII v C++</del>, using v C#, <del>try-with-resources v Javě</del> </li>
 			</ul>
 		<li> konstrukce pro obsluhu a propagaci výjimek </li>
 		</ul>
@@ -374,7 +374,7 @@ Pokud je u předmětu symbol kartičky (🃏), tak je zahrnut v [tomto Anki bal�
 		</ul>
 	<li> Implementace základních prvků objektových jazyků. </li>
 		<ul>
-		<li> základní objektové koncepty v konkrétním jazyce (~~Java~~, ~~C++~~, C#) </li>
+		<li> základní objektové koncepty v konkrétním jazyce (<del>Java</del>, <del>C++</del>, C#) </li>
 		<li> implementace a interní reprezentace primitivních typů </li>
 		<li> implementace a interní reprezentace složených typů a objektů </li>
 		<li> implementace dynamického polymorfismu (tabulka virtuálních metod) </li>
