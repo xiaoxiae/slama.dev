@@ -252,11 +252,11 @@
     new: 2
     old: 1
 2021-10-26:
-  location: BigWall
   note: I started doing sport climbing! This session was spent at Big Wall and was
     bad, because I'm not very good at sport climbing. I'll still try to do a sports
     climbing session once in a while to improve my endurance, which at this point
     is quite lacking.
+  wall: BigWall
 2021-10-28:
   note: "Second sport climbing session, this time at Sm\xEDchoff. I did some 7's and\
     \ an onsight of 8, which I'm pretty happy about. I then finished up with some\
@@ -395,11 +395,11 @@
   yellow:
     new: 1
 2021-12-11:
-  location: Boulder Bar
   note: "Went to Boulder bar with a few friends. It was a pretty nice change, but\
     \ I'm eager to go back to Sm\xEDchoff soon. Coincidentally, Adam Ondra was just\
     \ visiting Prague and was at the boulder bar. It was very humbling and inspiring\
     \ seeing him flash all my red projects... still a long way to go."
+  wall: Boulder Bar
 2021-12-14:
   blue:
     new: 3
@@ -438,12 +438,12 @@
     new: 7
   green:
     new: 3
-  location: Jungle
   note: "Went to Jungle Let\u0148any today and it was quite refreshing! Their comp\
     \ section was quite exciting but difficult, I did two blue ones, but I know I\
     \ can do better than that."
   red:
     new: 4
+  wall: Jungle
 2021-12-27:
   V10:
     new: 1
@@ -453,10 +453,10 @@
     new: 2
   V7:
     new: 12
-  location: "T\u0159in\xE1ctka"
-  note: "Tried another new location called T\u0159in\xE1ctka (thanks, Lucas!). It\
-    \ was quite nice, but definitely not as good (and cheap) as Sm\xEDchoff, nor as\
-    \ high-quality as Jungle (namely its competitive section)."
+  note: "Tried another new wall called T\u0159in\xE1ctka (thanks, Lucas!). It was\
+    \ quite nice, but definitely not as good (and cheap) as Sm\xEDchoff, nor as high-quality\
+    \ as Jungle (namely its competitive section)."
+  wall: "T\u0159in\xE1ctka"
 2021-12-30:
   blue:
     new: 4
@@ -516,9 +516,9 @@
   yellow:
     old: 4
 2022-01-07:
-  location: LokalBlok
   note: An interesting climbing gym. The type of climbing is quite oldschool (so not
     my cup of tea), but still a nice change of pace.
+  wall: LokalBlok
 2022-01-12:
   blue:
     new: 6
@@ -577,12 +577,12 @@
   blue:
     new: 5
     old: 1
-  location: Jungle
   note: The Jungle comp section kicked my ass. It was mostly my fault, since I didn't
     warm up properly, got pumped and climbed poorly. I still managed to climb some
     new routes!
   red:
     new: 1
+  wall: Jungle
 2022-02-01:
   blue:
     new: 5
@@ -770,18 +770,20 @@
     best. Despite this, I managed to record almost all of the new routes I climbed
     already.
 
-    _Update: I went climbing for the second time in the evening, finishing up the
-    easier yellow from the last set._'
+    <em>Update: I went climbing for the second time in the evening, finishing up the
+    easier yellow from the last set.</em>'
   red:
     old: 1
   salmon:
     old: 5
+  yellow:
+    new: 1
 2022-03-27:
-  location: Mandala
   note: Went to Mandala in Dresen today and it was absolutely great! There was a competition
     yesterday so I had a chance of trying both the qualification and the finals boulders
     -- they were tough but I did manage to get 80/100 on one of the final ones (not
     trying the other two for too long), which I'm quite proud of.
+  wall: Mandala
 2022-03-29:
   blue:
     old: 1
@@ -794,12 +796,12 @@
     new: 5
   green:
     new: 1
-  location: Boulder Bar
   note: Went to Boulder Bar with a friend to do a moonboarding session, only to find
     out that there was a youth bouldering competition and that the moonboard is inaccessible.
     The session was still a lot of fun despite this :).
   red:
     new: 2
+  wall: Boulder Bar
 2022-04-03:
   note: I figured out a functional beta for one of the two yellows from the previous
     setting after about an hour, so I didn't have the strength to do it. Next time!
@@ -921,7 +923,7 @@
     new: 3
   green:
     new: 2
-  location: Jungle
+  wall: Jungle
 2022-05-25:
   blue:
     old: 1
@@ -993,3 +995,26 @@
     (not sure about the others).
   salmon:
     new: 1
+2022-07-28:
+  blue:
+    new: 3
+    old: 2
+  note: Again felt pretty weak, but managed to climb most of the new routes (besides
+    yellows, which are again stupidly difficult).
+  rebuilt: 3
+  red:
+    new: 6
+  salmon:
+    new: 3
+2022-08-02:
+  location: <a href='https://goo.gl/maps/jdzpbqzK97CS7Dyu8'>Brela</a>, Croatia
+  note: First day of my trip to Croatia, managed to redpoint a few easier routes that
+    I've climbed before, but also top roped a difficult one which I'm pretty stoked
+    about.
+  routes:
+    Another Route:
+    - 5b
+    - redpoint
+    Birdie:
+    - 6c+
+    - top rope

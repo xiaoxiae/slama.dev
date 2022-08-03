@@ -24,17 +24,26 @@ if os.path.exists(CLIMBING_JOURNAL):
 
 result = """
 <div class="climbing-journal">
-<ul>
 """
 
-previous_date = None
+current_year = None
 
 for entry in reversed(sorted(list(journal))):
-    line = f"\n<li><p><strong>{entry.strftime('%-d. %-m. %Y')}</strong>"
+    line = ""
+
+    if current_year != entry.year:
+        if current_year is None:
+            line += f"<h3>{entry.year}</h3> <ul>"
+        else:
+            line += f"</ul><h3>{entry.year}</h3><ul>"
+
+        current_year = entry.year
+
+    line += f"\n<li><p><strong>{entry.strftime('%-d. %-m. %Y')}</strong>"
 
     colors = ["red", "salmon", "blue", "yellow"]
 
-    location_colors = {
+    wall_colors = {
         "jungle": ["green", "blue", "red"],
         "boulder-bar": ["green", "blue", "red"],
         "třináctka": [f"V{i}" for i in range(4, 11)],
@@ -43,23 +52,37 @@ for entry in reversed(sorted(list(journal))):
     # v-graded climbing gyms will have the same color
     v_grading = set(["třináctka"])
 
-    location = ""
-    location_stub = ""
+    wall = ""
+    wall_stub = ""
 
-    if "location" in journal[entry]:
-        location_stub = journal[entry]["location"].lower().replace(" ", "-")
-        location = "-" + location_stub
+    if "wall" in journal[entry]:
+        wall_stub = journal[entry]["wall"].lower().replace(" ", "-")
+        wall = "-" + wall_stub
 
         colors = (
             {}
-            if location_stub not in location_colors
-            else location_colors[location_stub]
+            if wall_stub not in wall_colors
+            else wall_colors[wall_stub]
         )
 
-    if location == "":
-        location_stub = "smíchoff"
+    # locations have no colors since they are not walls; they get treated differently
+    if "location" in journal[entry]:
+        location = journal[entry]["location"]
 
-    line += f" (at <img class='climbing-location-logo' src='/climbing/location-logos/{location_stub}.svg'/>): "
+        line += f" ({location}): "
+
+    else:
+        if wall == "":
+            wall_stub = "smíchoff"
+
+        line += f" (at <img class='climbing-wall-logo' src='/climbing/wall-logos/{wall_stub}.svg'/>): "
+
+    if "routes" in journal[entry]:
+        # sort by difficulty, since most are lexicographic
+        # if it breaks I'll fix it later
+        for route in sorted(journal[entry]["routes"], key=lambda x: journal[entry]["routes"][x][0]):
+            difficulty, status = journal[entry]["routes"][route]
+            line += f"<mark class='climbing-diary-record climbing-other climbing-other-text'>{route} ({difficulty}, {status})</mark> "
 
     for color in list(colors) + ["other"]:
         entry_videos = []
@@ -82,10 +105,10 @@ for entry in reversed(sorted(list(journal))):
 
             if color == "other":
                 line += f"<mark class='climbing-diary-record climbing-{color} climbing-{color}-text'>other: {count}"
-            elif location_stub in v_grading:
-                line += f"<mark class='climbing-diary-record climbing-{color}{location.replace(' ', '-')}'><strong>{color}:</strong> {count}"
+            elif wall_stub in v_grading:
+                line += f"<mark class='climbing-diary-record climbing-{color}{wall.replace(' ', '-')}'><strong>{color}:</strong> {count}"
             else:
-                line += f"<mark class='climbing-diary-record climbing-{color}{location.replace(' ', '-')} climbing-{color}{location.replace(' ', '-')}-text'>{count}"
+                line += f"<mark class='climbing-diary-record climbing-{color}{wall.replace(' ', '-')} climbing-{color}{wall.replace(' ', '-')}-text'>{count}"
 
             if len(entry_videos) != 0:
                 line += (
