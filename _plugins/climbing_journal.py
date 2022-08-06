@@ -33,9 +33,9 @@ for entry in reversed(sorted(list(journal))):
 
     if current_year != entry.year:
         if current_year is None:
-            line += f"<h3>{entry.year}</h3> <ul>"
+            line += f"<details open class='climbing-year-details'><summary><h3>{entry.year}</h3></summary> <ul>"
         else:
-            line += f"</ul><h3>{entry.year}</h3><ul>"
+            line += f"</ul></details> <details open class='climbing-year-details'><summary><h3>{entry.year}</h3></summary> <ul>"
 
         current_year = entry.year
 
@@ -69,20 +69,18 @@ for entry in reversed(sorted(list(journal))):
     if "location" in journal[entry]:
         location = journal[entry]["location"]
 
-        line += f" ({location}): "
+        line += f" ({location})"
+
+        if "guide" in journal[entry]:
+            line += f" [<a href='/climbing/guides/{journal[entry]['guide']}'>guide</a>]"
+
+        line += f": "
 
     else:
         if wall == "":
             wall_stub = "smíchoff"
 
         line += f" (at <img class='climbing-wall-logo' src='/climbing/wall-logos/{wall_stub}.svg'/>): "
-
-    if "routes" in journal[entry]:
-        # sort by difficulty, since most are lexicographic
-        # if it breaks I'll fix it later
-        for route in sorted(journal[entry]["routes"], key=lambda x: journal[entry]["routes"][x][0]):
-            difficulty, status = journal[entry]["routes"][route]
-            line += f"<mark class='climbing-diary-record climbing-other climbing-other-text'>{route} ({difficulty}, {status})</mark> "
 
     for color in list(colors) + ["other"]:
         entry_videos = []
@@ -125,6 +123,12 @@ for entry in reversed(sorted(list(journal))):
             line += "</mark> "
 
     line += "</p>"
+
+    if "routes" in journal[entry]:
+        line += f"<ul class='climbing-routes-list'>"
+        for name, (difficulty, status) in journal[entry]["routes"]:
+            line += f"<li><mark class='climbing-diary-record climbing-other climbing-other-text'>{name} ({difficulty}, {status})</mark></li>"
+        line += f"</ul>"
 
     if "note" in journal[entry]:
         # the replace is a bit of a hack.

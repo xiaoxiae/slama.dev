@@ -35,6 +35,10 @@ $dark-link-color: #888;
     }
 }
 
+ul.climbing-routes-list {
+    li { padding-bottom: $line-spacing / 4; }
+}
+
 .climbing-red { background: #f74d4dff; }
 .climbing-salmon { background: #ffc1a8ff; }
 .climbing-blue { background: #087ec4ff; }
@@ -71,8 +75,15 @@ $dark-link-color: #888;
 .climbing-wall-logo-middle { vertical-align: middle; }
 
 .climbing-red-text,.climbing-blue-text,.climbing-red-jungle-text,.climbing-blue-jungle-text,.climbing-green-jungle-text,.climbing-red-boulder-bar-text,.climbing-blue-boulder-bar-text,.climbing-green-boulder-bar-text {
-    color: $light-text-color;
-    a { color: $light-link-color; &:hover { color: $light-text-color; } }
+    color: $dark-text-color;
+    a { color: $light-link-color; &:hover { color: $dark-text-color; } }
+}
+
+.climbing-year-details {
+    summary {
+        text-align: left;
+        display: inline;
+    }
 }
 
 .climbing-salmon-text,.climbing-yellow-text {
