@@ -15,7 +15,18 @@ Pokud s `pulp`em také vyřešíte nějaký problém, tak budu moc rád za email
 ### Praktické příklady
 
 #### Problém pekárny
-Pekárna má k dispozici \(5\) kilo mouky, \(125\) vajec a půl kila soli. Za jeden chleba získá pekárna \(20\) korun, za housku \(2\) koruny, za bagetu \(10\) korun a za koblihu \(7\) korun. Pekárna se snaží vydělat co nejvíce. Jak ale zjistí kolik chlebů, housek, baget a koblih má upéci?
+Pekárna má k dispozici \(5000\ \mathrm{g}\) mouky, \(125\) vajec a \(500\ \mathrm{g}\) soli.
+Může z nich péct chleby, housky, bagety a koblihy s tím, že každé pečivo vyžaduje jiné množství surovin; konkrétně
+
+|       | chléb               | houska              | bageta              | kobliha             |
+| ---   | --:                 | --:                 | --:                 | --:                 |
+| mouka | \(500\ \mathrm{g}\) | \(150\ \mathrm{g}\) | \(230\ \mathrm{g}\) | \(100\ \mathrm{g}\) |
+| vejce | \(10\ \mathrm{ks}\) | \(2\ \mathrm{ks}\)  | \(7\ \mathrm{ks}\)  | \(1\ \mathrm{ks}\)  |
+| sůl   | \(50\ \mathrm{g}\)  | \(10\ \mathrm{g}\)  | \(15\ \mathrm{g}\)  |                     |
+
+Za jeden chleba získá pekárna \(20\ \mathrm{Kč}\), za housku \(2\ \mathrm{Kč}\), za bagetu \(10\ \mathrm{Kč}\) a za koblihu \(7\ \mathrm{Kč}\).
+
+Pekárna se snaží vydělat co nejvíce -- kolik chlebů, housek, baget a koblih má ze surovin upéci?
 
 <details>
 	<summary class="code-summary">Zdrojový kód</summary>
