@@ -132,8 +132,8 @@ for entry in reversed(sorted(list(journal))):
 
     if "note" in journal[entry]:
         # the replace is a bit of a hack.
-        # I should probably do proper conversion, but I don't really use anything else
-        line += "<p>" + journal[entry]["note"].replace("--", "–") + "</p>"
+        # I should probably do proper conversion, but I don't really use anything special
+        line += "<p>" + journal[entry]["note"].replace("--", "–").replace(":)", "🙂") + "</p>"
 
     line += "</li>"
 

@@ -1062,3 +1062,29 @@
   - - No pain no gain
     - - 5c+
       - redpoint
+2022-08-06:
+  guide: brela.pdf
+  location: <a href='https://goo.gl/maps/jdzpbqzK97CS7Dyu8'>Brela</a>, Croatia
+  note: The routes were pretty and relaxing, I'm quite happy :).
+  routes:
+  - - Dodo
+    - - 5b
+      - onsight
+  - - Thyimianriss
+    - - 5c
+      - onsight
+  - - Max
+    - - 5c
+      - onsight
+2022-08-14:
+  blue:
+    new: 6
+  note: Felt pretty happy with my climbing today. I'm not as strong as I'd like to
+    be but still managed to climb a few difficult routes.
+  rebuilt: 1
+  red:
+    new: 5
+  salmon:
+    new: 2
+  yellow:
+    new: 4
