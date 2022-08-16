@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+@import "variables";
+
+.video-thumbnail {
+    float: right;
+    margin-left: $line-spacing / 2;
+
+    border: 1px solid $light-text-color;
+    @media (prefers-color-scheme: dark) {
+        border: 1px solid $dark-text-color;
+    }
+
+    filter: invert(0%);
+    height: 3em;
+}
+

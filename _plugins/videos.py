@@ -46,6 +46,12 @@ videos = {
             "Bathroom Tile Programming",
             "09-",
         ),
+        (
+            date(2022, 8, 16),
+            "https://www.youtube.com/watch?v=OV82ab-C85w",
+            "The Remarkable BEST-SAT Algorithm",
+            "10-",
+        ),
     ],
 }
 
@@ -56,9 +62,9 @@ result = ""
 # ensure that the category "other" is the last one
 # not pretty, but it works :P
 for category in [v for v in videos if v != OTHER_CATEGORY_NAME] + [OTHER_CATEGORY_NAME]:
-    category_str = f"### {category}\n"
+    category_str = f"### {category}\n\n"
 
-    for date, youtube_link, video, folder_prefix in videos[category]:
+    for date, youtube_link, video, folder_prefix in reversed(sorted(videos[category])):
         match = glob(os.path.join(ROOT, folder_prefix + "*"))
 
         if len(match) == 0:
@@ -104,6 +110,15 @@ for category in [v for v in videos if v != OTHER_CATEGORY_NAME] + [OTHER_CATEGOR
                     subtitles[0], os.path.join(this_video_folder, subtitle_name)
                 )
 
+        # kopírování thumbnailů
+        thumbnail_name = "thumbnail.png"
+        thumbnails = glob(os.path.join(folder, "export", "thumbnail.png"))
+        if len(thumbnails) == 1:
+            if not os.path.exists(os.path.join(this_video_folder, thumbnail_name)):
+                shutil.copy(
+                    thumbnails[0], os.path.join(this_video_folder, thumbnail_name)
+                )
+
         resolution_links = [
             f"[{r}p](/videos/{video_slug}/{r}p.mp4)" for r in resolutions
         ]
@@ -113,7 +128,10 @@ for category in [v for v in videos if v != OTHER_CATEGORY_NAME] + [OTHER_CATEGOR
 
         url_string = f"[code]({URL_ROOT + os.path.basename(folder)})"
 
-        category_str += f"{date.strftime('%Y/%0m/%0d')} -- **{video}** [[YouTube]({youtube_link})] [{', '.join(resolution_links)}] [{url_string}]\n- _{description}_\n\n"
+        if len(thumbnails) == 1:
+            category_str += f"\n[![Thumbnail for the '{video}' video](/videos/{video_slug}/thumbnail.png){{: .video-thumbnail}}]({youtube_link})\n"
+
+        category_str += f"{date.strftime('%Y/%0m/%0d')} -- **{video}** [[YouTube]({youtube_link})] [{'/'.join(resolution_links)}]\n- _{description}_\n\n"
 
     result += category_str
 
