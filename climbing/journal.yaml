@@ -1088,3 +1088,14 @@
     new: 2
   yellow:
     new: 4
+2022-08-17:
+  blue:
+    old: 2
+  note: Stoked about sending one of the two remaining hard yellows (and two hard salmons)!
+  red:
+    old: 2
+  salmon:
+    new: 2
+  yellow:
+    new: 1
+    old: 1
