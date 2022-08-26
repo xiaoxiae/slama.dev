@@ -1099,3 +1099,39 @@
   yellow:
     new: 1
     old: 1
+2022-08-22:
+  blue:
+    new: 4
+    old: 1
+  note: New set is not too bad except some of the yellows and one salmon. I hope most
+    of them will go next time.
+  rebuilt: 4
+  red:
+    new: 4
+  salmon:
+    new: 3
+  yellow:
+    new: 3
+    old: 1
+2022-08-24:
+  blue:
+    old: 1
+  note: Only managed to send the remaining salmon, but made some real progress on
+    two of the hard yellows!
+  red:
+    old: 2
+  salmon:
+    new: 1
+    old: 1
+2022-08-26:
+  blue:
+    old: 1
+  note: Today was a pretty strong day! I managed to send two of the remaining three
+    yellows from the new set and a whole bunch of other routes.
+  red:
+    old: 6
+  salmon:
+    old: 2
+  yellow:
+    new: 2
+    old: 2
