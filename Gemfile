@@ -3,6 +3,7 @@
 source "https://rubygems.org"
 
 gem "jekyll"
+gem "jektex"
 gem "webrick"
 gem "jekyll-redirect-from"
 
