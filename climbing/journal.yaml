@@ -1135,3 +1135,22 @@
   yellow:
     new: 2
     old: 2
+2022-09-05:
+  blue:
+    new: 2
+  note: Cool albeit very difficult new routes.
+  rebuilt: 2
+  red:
+    new: 4
+  salmon:
+    new: 1
+  yellow:
+    new: 1
+2022-09-08:
+  blue:
+    new: 1
+    old: 1
+  note: Sent some more salmons and made good progress on the yellows, but I'll need
+    to get much stronger to send any of them.
+  salmon:
+    new: 4
