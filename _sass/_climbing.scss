@@ -43,28 +43,19 @@ ul.climbing-routes-list {
 .climbing-salmon { background: #ffc1a8ff; }
 .climbing-blue { background: #087ec4ff; }
 .climbing-yellow { background: #fce538ff; }
-
+.climbing-green { background: #008000ff; }
 .climbing-other { background: #cccccc; }
-.climbing-other-text {
-    color: $light-text-color;
-    a { color: $light-link-color; &:hover { color: $light-text-color; } }
-}
 
-.climbing-red-jungle { background: #f74d4dff; }
-.climbing-blue-jungle { background: #087ec4ff; }
-.climbing-green-jungle { background: #008000ff; }
-
-.climbing-red-boulder-bar { background: #f74d4dff; }
-.climbing-blue-boulder-bar { background: #087ec4ff; }
-.climbing-green-boulder-bar { background: #008000ff; }
-
-.climbing-V5-třináctka  { background: #bbbbbb; }
-.climbing-V6-třináctka  { background: #aeaeae; }
-.climbing-V7-třináctka  { background: #a2a2a2; }
-.climbing-V8-třináctka  { background: #969696; }
-.climbing-V9-třináctka  { background: #8a8a8a; }
-.climbing-V10-třináctka { background: #7e7e7e; }
-.climbing-V11-třináctka { background: #727272; }
+.climbing-V2  { background: #eee; }
+.climbing-V3  { background: #ddd; }
+.climbing-V4  { background: #ccc; }
+.climbing-V5  { background: #bbb; }
+.climbing-V6  { background: #aeaeae; }
+.climbing-V7  { background: #a2a2a2; }
+.climbing-V8  { background: #969696; }
+.climbing-V9  { background: #8a8a8a; }
+.climbing-V10 { background: #7e7e7e; }
+.climbing-V11 { background: #727272; }
 
 .climbing-wall-logo,.climbing-wall-logo-middle {
     display: inline;
@@ -74,9 +65,19 @@ ul.climbing-routes-list {
 
 .climbing-wall-logo-middle { vertical-align: middle; }
 
-.climbing-red-text,.climbing-blue-text,.climbing-red-jungle-text,.climbing-blue-jungle-text,.climbing-green-jungle-text,.climbing-red-boulder-bar-text,.climbing-blue-boulder-bar-text,.climbing-green-boulder-bar-text {
+.climbing-red-text,.climbing-blue-text,.climbing-green-text {
     color: $dark-text-color;
     a { color: $light-link-color; &:hover { color: $dark-text-color; } }
+}
+
+.climbing-salmon-text,.climbing-yellow-text {
+    color: $light-text-color;
+    a { color: $dark-link-color; &:hover { color: $dark-text-color; } }
+}
+
+.climbing-other-text {
+    color: $light-text-color;
+    a { color: $light-link-color; &:hover { color: $light-text-color; } }
 }
 
 .climbing-year-details {
@@ -86,10 +87,6 @@ ul.climbing-routes-list {
     }
 }
 
-.climbing-salmon-text,.climbing-yellow-text {
-    color: $light-text-color;
-    a { color: $dark-link-color; &:hover { color: $dark-text-color; } }
-}
 
 .climbing-left {
     float: left;

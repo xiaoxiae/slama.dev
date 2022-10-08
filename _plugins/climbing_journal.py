@@ -27,6 +27,22 @@ result = """
 """
 
 current_year = None
+current_month = None
+
+month_mapping = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+]
 
 for entry in reversed(sorted(list(journal))):
     line = ""
@@ -39,18 +55,23 @@ for entry in reversed(sorted(list(journal))):
 
         current_year = entry.year
 
+    if current_month != entry.month:
+        line += f"</ul><h4>{month_mapping[entry.month - 1]}</h4><ul>"
+
+        current_month = entry.month
+
     line += f"\n<li><p><strong>{entry.strftime('%-d. %-m. %Y')}</strong>"
 
-    colors = ["red", "salmon", "blue", "yellow"]
+    v_colors = [f"V{i}" for i in range(2, 11)]
+    v_grading_gyms = set(["třináctka"])
 
     wall_colors = {
+        "smíchoff": ["red", "salmon", "blue", "yellow"],
         "jungle": ["green", "blue", "red"],
+        "boulderhaus": ["red", "blue"],
         "boulder-bar": ["green", "blue", "red"],
-        "třináctka": [f"V{i}" for i in range(4, 11)],
+        "třináctka": v_colors,
     }
-
-    # v-graded climbing gyms will have the same color
-    v_grading = set(["třináctka"])
 
     wall = ""
     wall_stub = ""
@@ -58,12 +79,6 @@ for entry in reversed(sorted(list(journal))):
     if "wall" in journal[entry]:
         wall_stub = journal[entry]["wall"].lower().replace(" ", "-")
         wall = "-" + wall_stub
-
-        colors = (
-            {}
-            if wall_stub not in wall_colors
-            else wall_colors[wall_stub]
-        )
 
     # locations have no colors since they are not walls; they get treated differently
     if "location" in journal[entry]:
@@ -80,47 +95,69 @@ for entry in reversed(sorted(list(journal))):
         if wall == "":
             wall_stub = "smíchoff"
 
-        line += f" (at <img class='climbing-wall-logo' src='/climbing/wall-logos/{wall_stub}.svg'/>): "
+        colors = (
+            {}
+            if wall_stub not in wall_colors
+            else wall_colors[wall_stub]
+        )
 
-    for color in list(colors) + ["other"]:
+        line += f" (at <img class='climbing-wall-logo' src='/climbing/wall-logos/{wall_stub}.svg'/>"
+
+        if "rebuilt" in journal[entry]:
+            line += f", <strong>zone {journal[entry]['rebuilt']} rebuilt</strong>"
+
+        line += "): "
+
+    def format_color(color, kilter=False):
+        line = ""
+
         entry_videos = []
         for video in videos:
             if videos[video]["date"] == entry and videos[video]["color"] == color:
                 entry_videos.append(video)
 
-        if color in journal[entry]:
-            color_dict = journal[entry][color]
+        color_dict = journal[entry][color] if not kilter else journal[entry]["kilter"][color]
 
-            old_count = 0 if "old" not in color_dict else color_dict["old"]
-            new_count = 0 if "new" not in color_dict else color_dict["new"]
+        old_count = 0 if "old" not in color_dict else color_dict["old"]
+        new_count = 0 if "new" not in color_dict else color_dict["new"]
 
-            if old_count == 0:
-                count = f"<span class='underline'>{new_count}</span>"
-            elif new_count == 0:
-                count = f"{old_count}"
-            else:
-                count = f"{old_count}/<span class='underline'>{new_count}</span>"
+        if old_count == 0:
+            count = f"<span class='underline'>{new_count}</span>"
+        elif new_count == 0:
+            count = f"{old_count}"
+        else:
+            count = f"{old_count}/<span class='underline'>{new_count}</span>"
 
-            if color == "other":
-                line += f"<mark class='climbing-diary-record climbing-{color} climbing-{color}-text'>other: {count}"
-            elif wall_stub in v_grading:
-                line += f"<mark class='climbing-diary-record climbing-{color}{wall.replace(' ', '-')}'><strong>{color}:</strong> {count}"
-            else:
-                line += f"<mark class='climbing-diary-record climbing-{color}{wall.replace(' ', '-')} climbing-{color}{wall.replace(' ', '-')}-text'>{count}"
+        if color == "other":
+            line += f"<mark class='climbing-diary-record climbing-other climbing-other-text'>other: {count}"
+        elif (wall_stub in v_grading_gyms) or kilter:
+            line += f"<mark class='climbing-diary-record climbing-{color}'><strong>{color}:</strong> {count}"
+        else:
+            line += f"<mark class='climbing-diary-record climbing-{color} climbing-{color}-text'>{count}"
 
-            if len(entry_videos) != 0:
-                line += (
-                    " ["
-                    + ", ".join(
-                        [
-                            f"<a href='/climbing/videos/{name}'>{i + 1}{'↯' if 'flash' in videos[name] and videos[name]['flash'] else ''}</a>"
-                            for i, name in enumerate(entry_videos)
-                        ]
-                    )
-                    + "]"
+        if len(entry_videos) != 0:
+            line += (
+                " ["
+                + ", ".join(
+                    [
+                        f"<a href='/climbing/videos/{name}'>{i + 1}{'↯' if 'flash' in videos[name] and videos[name]['flash'] else ''}</a>"
+                        for i, name in enumerate(entry_videos)
+                    ]
                 )
+                + "]"
+            )
 
-            line += "</mark> "
+        return line + "</mark> "
+
+    for color in list(colors) + ["other"]:
+        if color in journal[entry]:
+            line += format_color(color)
+
+    if "kilter" in journal[entry]:
+        line += "/ <strong>Kilter: </strong>"
+        for color in journal[entry]["kilter"]:
+            line += format_color(color, kilter=True)
+
 
     line += "</p>"
 
@@ -137,12 +174,9 @@ for entry in reversed(sorted(list(journal))):
 
     line += "</li>"
 
-    if "rebuilt" in journal[entry]:
-        line += f"</ul><hr class='hr-text' data-content='new boulders (zone {journal[entry]['rebuilt']})'><ul>\n"
-
     result += line + "\n"
 
-result += "</ul></div>"
+result += "</ul>"
 
 with open(OUTPUT_PATH, "w") as f:
     f.write(result)

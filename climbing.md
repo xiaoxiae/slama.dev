@@ -18,7 +18,7 @@ This page is dedicated to my climbing life.
 		<img style="flex:66.47%; max-width: 66.47%;" src="/climbing/photos/2022-06-15-3.webp">
 		<img style="flex:29.53%; max-width: 29.53%;" src="/climbing/photos/2022-06-15-4.webp">
 	</div>
-	<figcaption>Několik fotek ze Smíchoffské Boulder challenge (15. 6. 2022).<br>© <a href="https://instagram.com/kareafoto">KAREA foto</a></figcaption>
+	<figcaption>A few photos from Smíchoff's Boulder challenge (15. 6. 2022).<br>© <a href="https://instagram.com/kareafoto">KAREA foto</a></figcaption>
 </figure>
 
 ## [Smíchoff](https://www.lezeckecentrum.cz/cs/), Prague
@@ -39,6 +39,7 @@ Since there there are some other walls that I visit from time to time (mostly th
 | Icon                                                                                        | Wall                                               |
 | :-:                                                                                         | :-:                                                |
 | <img class='climbing-wall-logo-middle' src='/climbing/wall-logos/smíchoff.svg'/>            | [Smíchoff](https://www.lezeckecentrum.cz/cs/)      |
+| <img class='climbing-wall-logo-middle' src='/climbing/wall-logos/boulderhaus.svg'/>         | [Boulderhaus](https://www.boulderhaus.net/)        |
 | <img class='climbing-wall-logo-middle' src='/climbing/wall-logos/bigwall.svg'/>             | [BigWall](https://www.big-wall.cz/)                |
 | <img class='climbing-wall-logo-middle' src='/climbing/wall-logos/jungle.svg'/>              | [Jungle Letňany](https://www.jungleletnany.cz/)    |
 | <img class='climbing-wall-logo-middle' src='/climbing/wall-logos/boulder-bar.svg'/>         | [Boulder Bar](https://www.boulder.cz/)             |
@@ -46,9 +47,9 @@ Since there there are some other walls that I visit from time to time (mostly th
 | <img class='climbing-wall-logo-middle' src='/climbing/wall-logos/lokalblok.svg'/>           | [LokalBlok](http://www.lokalblok.cz/lezecka-stena) |
 | <img class='climbing-wall-logo-middle' src='/climbing/wall-logos/mandala.svg'/>             | [Mandala](https://boulderhalle-dresden.de/)        |
 
-The format for bouldering is <mark class="climbing-diary-record climbing-other climbing-other-text">repeats/<span class="underline">new sends</span> [<a>video</a> <a>links</a>]</mark>, left-to-right from easy to hard. Additionally, climbs marked with the ↯ symbol mean that they were flash sends.
+The format for bouldering is <mark class="climbing-diary-record climbing-other climbing-other-text">repeats/<span class="underline">new sends</span> [video links]</mark>, left-to-right from easy to hard. Additionally, climbs marked with the ↯ symbol mean that they were flash sends.
 
-The format for sport climbing (which there isn't a whole lot of at the moment but soon will be) is <mark class="climbing-diary-record climbing-other climbing-other-text">Name (difficulty, style)</mark>, left-to-right from when it was climbed.
+The format for sport climbing is <mark class="climbing-diary-record climbing-other climbing-other-text">Name (difficulty, style)</mark>, left-to-right from when it was climbed.
 
 _**Update** (4.7.2022): I've been feeling quite burnt-out and unsatisfied with my level of climbing for a while now and have mostly been recording videos out of inertia. I'm going to stop doing so for a while and just focus on climbing well, until I feel better and have the motivation to continue._
 

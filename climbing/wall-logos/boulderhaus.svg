@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="192.72215pt"
+   height="188.976pt"
+   viewBox="0 0 192.72216 188.976"
+   version="1.2"
+   id="svg75"
+   sodipodi:docname="boulderhaus.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview77"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="pt"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="2.1926629"
+     inkscape:cx="71.146367"
+     inkscape:cy="109.68398"
+     inkscape:window-width="1920"
+     inkscape:window-height="1080"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="surface1211"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1" />
+  <defs
+     id="defs32">
+    <clipPath
+       id="clip1">
+      <path
+         d="M 0,0 H 141.30859 V 87 H 0 Z m 0,0"
+         id="path2" />
+    </clipPath>
+    <clipPath
+       id="clip2">
+      <path
+         d="m 15,101 h 3 v 22.32813 h -3 z m 0,0"
+         id="path5" />
+    </clipPath>
+    <clipPath
+       id="clip3">
+      <path
+         d="m 68,101 h 3 v 22.32813 h -3 z m 0,0"
+         id="path8" />
+    </clipPath>
+    <clipPath
+       id="clip4">
+      <path
+         d="m 91,101 h 6 v 22.32813 h -6 z m 0,0"
+         id="path11" />
+    </clipPath>
+    <clipPath
+       id="clip5">
+      <path
+         d="m 116,101 h 15 v 22.32813 h -15 z m 0,0"
+         id="path14" />
+    </clipPath>
+    <clipPath
+       id="clip6">
+      <path
+         d="m 50,106 h 15 v 17.32813 H 50 Z m 0,0"
+         id="path17" />
+    </clipPath>
+    <clipPath
+       id="clip7">
+      <path
+         d="m 37,101 h 13 v 22.32813 H 37 Z m 0,0"
+         id="path20" />
+    </clipPath>
+    <clipPath
+       id="clip8">
+      <path
+         d="m 20,106 h 15 v 17.32813 H 20 Z m 0,0"
+         id="path23" />
+    </clipPath>
+    <clipPath
+       id="clip9">
+      <path
+         d="m 98,106 h 16 v 17.32813 H 98 Z m 0,0"
+         id="path26" />
+    </clipPath>
+    <clipPath
+       id="clip10">
+      <path
+         d="m 74,101 h 16 v 22.32813 H 74 Z m 0,0"
+         id="path29" />
+    </clipPath>
+  </defs>
+  <g
+     id="surface1211"
+     transform="translate(-94.998744,188.60495)">
+    <path
+       id="path7776"
+       style="fill:#000000;stroke-width:1.49347"
+       d="M 244.79074 -188.60495 C 234.77307 -187.8987 224.75544 -187.19789 214.738 -186.48825 C 210.05376 -175.9424 205.37383 -165.39438 200.69162 -154.84763 C 182.92211 -158.41147 165.06873 -161.55248 147.21163 -164.70309 C 145.30722 -171.40518 141.93872 -177.54869 138.96456 -183.81931 C 127.85681 -183.89441 116.68615 -185.02491 105.61593 -184.37155 C 101.9832 -183.64464 100.68666 -179.83015 101.38546 -176.561 C 98.78804 -117.86783 96.27247 -59.164723 94.998744 -0.4252625 C 103.33565 1.0458401 111.81182 0.040575187 120.21163 -0.028289844 C 133.52604 -26.036113 146.22317 -52.405676 161.36788 -77.421845 C 173.33376 -82.626936 186.01079 -86.063419 197.66525 -91.992645 C 200.25319 -93.175357 205.47683 -94.815285 206.07052 -90.49411 C 215.71515 -66.403018 223.10845 -41.480473 232.01437 -17.121552 C 237.49086 -1.946004 237.45157 -4.5602704 251.17453 -4.8124695 C 264.16738 -35.294606 273.42322 -67.313409 287.72091 -97.266083 C 275.84746 -124.81264 264.78471 -152.73592 252.45187 -180.06491 C 250.51798 -183.31645 248.25434 -186.93499 244.79074 -188.60495 z " />
+  </g>
+</svg>
