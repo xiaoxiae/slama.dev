@@ -11,14 +11,14 @@ This page is dedicated to my climbing life.
 
 <figure>
 	<div class="row">
-		<img style="flex:38.4%; max-width: 38.4%;" src="/climbing/photos/2022-06-15-2.webp">
-		<img style="flex:57.6%; max-width: 57.6%;" src="/climbing/photos/2022-06-15-1.webp">
+		<img style="flex:38.4%; max-width: 38.4%;" src="/climbing/photos/2022-06-15-2.webp" alt="A photo from Smíchoff's Boulder Challenge">
+		<img style="flex:57.6%; max-width: 57.6%;" src="/climbing/photos/2022-06-15-1.webp" alt="A photo from Smíchoff's Boulder Challenge">
 	</div>
 	<div class="row">
-		<img style="flex:66.47%; max-width: 66.47%;" src="/climbing/photos/2022-06-15-3.webp">
-		<img style="flex:29.53%; max-width: 29.53%;" src="/climbing/photos/2022-06-15-4.webp">
+		<img style="flex:66.47%; max-width: 66.47%;" src="/climbing/photos/2022-06-15-3.webp" alt="A photo from Smíchoff's Boulder Challenge">
+		<img style="flex:29.53%; max-width: 29.53%;" src="/climbing/photos/2022-06-15-4.webp" alt="A photo from Smíchoff's Boulder Challenge">
 	</div>
-	<figcaption>A few photos from Smíchoff's Boulder challenge (15. 6. 2022).<br>© <a href="https://instagram.com/kareafoto">KAREA foto</a></figcaption>
+	<figcaption>A few photos from Smíchoff's Boulder Challenge (15. 6. 2022).<br>© <a href="https://instagram.com/kareafoto">KAREA foto</a></figcaption>
 </figure>
 
 ## [Smíchoff](https://www.lezeckecentrum.cz/cs/), Prague
@@ -38,16 +38,16 @@ The following contains my climbing diary -- how many new/old boulders have I don
 
 Since there there are some other walls that I visit from time to time (mostly thanks to some of my friends), here is the list of icons that you might see in the journal entries:
 
-| Icon                                                                                | Wall                                               | Location       |
-| :-:                                                                                 | :-:                                                | --:            |
-| <img class='climbing-wall-logo-middle' src='/climbing/wall-logos/boulderhaus.svg'/> | [Boulderhaus](https://www.boulderhaus.net/)        | Heidelberg, DE |
-| <img class='climbing-wall-logo-middle' src='/climbing/wall-logos/smíchoff.svg'/>    | [Smíchoff](https://www.lezeckecentrum.cz/cs/)      | Prague, CZ     |
-| <img class='climbing-wall-logo-middle' src='/climbing/wall-logos/bigwall.svg'/>     | [BigWall](https://www.big-wall.cz/)                | Prague, CZ     |
-| <img class='climbing-wall-logo-middle' src='/climbing/wall-logos/jungle.svg'/>      | [Jungle Letňany](https://www.jungleletnany.cz/)    | Prague, CZ     |
-| <img class='climbing-wall-logo-middle' src='/climbing/wall-logos/boulder-bar.svg'/> | [Boulder Bar](https://www.boulder.cz/)             | Prague, CZ     |
-| <img class='climbing-wall-logo-middle' src='/climbing/wall-logos/třináctka.svg'/>   | [Třináctka](http://stenastodulky.cz/)              | Prague, CZ     |
-| <img class='climbing-wall-logo-middle' src='/climbing/wall-logos/lokalblok.svg'/>   | [LokalBlok](http://www.lokalblok.cz/lezecka-stena) | Prague, CZ     |
-| <img class='climbing-wall-logo-middle' src='/climbing/wall-logos/mandala.svg'/>     | [Mandala](https://boulderhalle-dresden.de/)        | Dresen, DE     |
+| Icon                                                                                                            | Wall                                               | Location       |
+| :-:                                                                                                             | :-:                                                | --:            |
+| <img alt='Boulderhaus wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/boulderhaus.svg'/> | [Boulderhaus](https://www.boulderhaus.net/)        | Heidelberg, DE |
+| <img alt='Smíchoff wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/smíchoff.svg'/>       | [Smíchoff](https://www.lezeckecentrum.cz/cs/)      | Prague, CZ     |
+| <img alt='BigWall wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/bigwall.svg'/>         | [BigWall](https://www.big-wall.cz/)                | Prague, CZ     |
+| <img alt='Jungle Letňany wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/jungle.svg'/>   | [Jungle Letňany](https://www.jungleletnany.cz/)    | Prague, CZ     |
+| <img alt='Boulder Bar wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/boulder-bar.svg'/> | [Boulder Bar](https://www.boulder.cz/)             | Prague, CZ     |
+| <img alt='Třináctka wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/třináctka.svg'/>     | [Třináctka](http://stenastodulky.cz/)              | Prague, CZ     |
+| <img alt='LokalBlok wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/lokalblok.svg'/>     | [LokalBlok](http://www.lokalblok.cz/lezecka-stena) | Prague, CZ     |
+| <img alt='Mandalawall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/mandala.svg'/>          | [Mandala](https://boulderhalle-dresden.de/)        | Dresen, DE     |
 
 The format for bouldering is <mark class="climbing-diary-record climbing-other climbing-other-text">repeats/<span class="underline">new sends</span> [video links]</mark>, left-to-right from easy to hard. Videos marked with the ↯ symbol are flash sends while 🠕 are redpoints.
 

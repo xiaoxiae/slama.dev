@@ -252,8 +252,12 @@ Ke zkoušce byla povolena A4 s libovolnými poznamkami, tady jsou moje (dostupn�
 
 ---
 
-{% include pravdepodobnost-a-statistika-i/1.svg %}
+<figure>
+  <img src="/assets/pravdepodobnost-a-statistika-i/tahak/1.svg"/>
+</figure>
 
-{% include pravdepodobnost-a-statistika-i/2.svg %}
+<figure>
+  <img src="/assets/pravdepodobnost-a-statistika-i/tahak/2.svg"/>
+</figure>
 
 ---

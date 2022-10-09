@@ -77,8 +77,8 @@ for entry in reversed(sorted(list(journal))):
     wall_stub = ""
 
     if "wall" in journal[entry]:
-        wall_stub = journal[entry]["wall"].lower().replace(" ", "-")
-        wall = "-" + wall_stub
+        wall = journal[entry]["wall"]
+        wall_stub = wall.lower().replace(" ", "-")
 
     # locations have no colors since they are not walls; they get treated differently
     if "location" in journal[entry]:
@@ -101,7 +101,7 @@ for entry in reversed(sorted(list(journal))):
             else wall_colors[wall_stub]
         )
 
-        line += f" (at <img class='climbing-wall-logo' src='/climbing/wall-logos/{wall_stub}.svg'/>"
+        line += f" (at <img class='climbing-wall-logo' src='/climbing/wall-logos/{wall_stub}.svg' alt='Logo of the {wall} climbing wall.'/>"
 
         if "rebuilt" in journal[entry]:
             line += f", <strong>zone {journal[entry]['rebuilt']} rebuilt</strong>"
