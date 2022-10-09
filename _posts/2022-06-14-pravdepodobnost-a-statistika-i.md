@@ -38,7 +38,7 @@ Množině \(\Omega\) říkáme prostor elementárních jevů.
 {% endmath %}
 
 <figure>
-  <img src="/assets/pravdepodobnost-a-statistika-i/psp.png"/>
+  <img src="/assets/pravdepodobnost-a-statistika-i/psp.webp"/>
   <figcaption>Znázornění konečného prostoru s uniformní pravděpodobností. dvojice hodů kostkou jsou elementární jevy (\(\in \Omega\)), vyznačené množiny jsou měřené jevy (\(\in \mathcal{F}\)).</figcaption>
 </figure>
 
@@ -64,7 +64,7 @@ Věta řeší problém, kdy máme jev \(H\) (hypotézu), který chceme spočíta
 {% endmath %}
 
 {: .inverse-invert}
-![Ilustrace Bayesovy věty.](/assets/pravdepodobnost-a-statistika-i/bayes.png)
+![Ilustrace Bayesovy věty.](/assets/pravdepodobnost-a-statistika-i/bayes.webp)
 
 {% math remark %}3b1b udělal o Bayesově větě [pěkné video](https://www.youtube.com/watch?v=HZGCoVF3YvM), ze kterého jsem vykradl obrázek výše.{% endmath %}
 {% math example %}{% endmath %}

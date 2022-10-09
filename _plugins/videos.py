@@ -3,6 +3,7 @@
 from glob import glob
 import os
 import shutil
+from PIL import Image
 from datetime import date
 
 OTHER_CATEGORY_NAME = "Other"
@@ -101,23 +102,14 @@ for category in [v for v in videos if v != OTHER_CATEGORY_NAME] + [OTHER_CATEGOR
             if not os.path.exists(os.path.join(this_video_folder, filename)):
                 shutil.copy(resolution_path, os.path.join(this_video_folder, filename))
 
-        # kopírování titulků
-        subtitle_name = "subtitles.srt"
-        subtitles = glob(os.path.join(folder, "*.srt"))
-        if len(subtitles) == 1:
-            if not os.path.exists(os.path.join(this_video_folder, subtitle_name)):
-                shutil.copy(
-                    subtitles[0], os.path.join(this_video_folder, subtitle_name)
-                )
-
         # kopírování thumbnailů
-        thumbnail_name = "thumbnail.png"
+        thumbnail_name = "thumbnail.webp"
         thumbnails = glob(os.path.join(folder, "export", "thumbnail.png"))
         if len(thumbnails) == 1:
             if not os.path.exists(os.path.join(this_video_folder, thumbnail_name)):
-                shutil.copy(
-                    thumbnails[0], os.path.join(this_video_folder, thumbnail_name)
-                )
+                image = Image.open(thumbnails[0])
+                image.thumbnail((1280, 720))
+                image.save(os.path.join(this_video_folder, thumbnail_name))
 
         resolution_links = [
             f"[{r}p](/videos/{video_slug}/{r}p.mp4)" for r in resolutions
@@ -126,10 +118,8 @@ for category in [v for v in videos if v != OTHER_CATEGORY_NAME] + [OTHER_CATEGOR
         with open(os.path.join(folder, "DESCRIPTION.md"), "r") as f:
             description = f.read().splitlines()[0]
 
-        url_string = f"[code]({URL_ROOT + os.path.basename(folder)})"
-
         if len(thumbnails) == 1:
-            category_str += f"\n[![Thumbnail for the '{video}' video](/videos/{video_slug}/thumbnail.png){{: .video-thumbnail}}]({youtube_link})\n"
+            category_str += f"\n[![Thumbnail for the '{video}' video](/videos/{video_slug}/thumbnail.webp){{: .video-thumbnail}}]({youtube_link})\n"
 
         category_str += f"{date.strftime('%Y/%0m/%0d')} -- **{video}** [[YouTube]({youtube_link})] [{'/'.join(resolution_links)}]\n- _{description}_\n\n"
 

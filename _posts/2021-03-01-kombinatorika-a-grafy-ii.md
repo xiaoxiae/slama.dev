@@ -490,7 +490,7 @@ Tedy \[\Chi(\Gamma) = L(G)\]
 - {% math observation %}\(G\) je \(d\)-degenerovaný \(\Rightarrow \Chi(G) \le d + 1\){% endmath %} (barvím indukcí v pořadí \(v_n, \ldots, v_1\))
 {% endmath %}
 
-![](/assets/kombinatorika-a-grafy-ii/degen.png)
+![](/assets/kombinatorika-a-grafy-ii/degen.webp)
 
 - z minule: pokud \(G\) je nakreslitelný na \(\Gamma \Rightarrow G\) má vrchol stupně nejvýše \(H(\Gamma) - 1\) a \(G - v\) je stále nakreslitelný na \(\Gamma \Rightarrow G\) je \(\left(H(\Gamma) - 1\right)\)-degenerovaný \(\Rightarrow\) je \(H(\Gamma)\) obarvitelný
 

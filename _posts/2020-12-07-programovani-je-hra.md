@@ -642,4 +642,4 @@ x = x[:-1]  # x = Aho
 - [Korespondenční Seminář z Programování](http://ksp.mff.cuni.cz/z/) -- skvělý způsob, jak se na zajímavých úlohách naučit programovat a poznat při tom nové kamarády 🙂.
 - [Průvodce labyrintem algoritmů](http://pruvodce.ucw.cz/) -- úžasná příručka pro ty, kteří by se něco rádi dozvěděli o algoritmech a datových strukturách.
 
-![Programování v kostce.](/assets/programovani-je-hra/turtles.png)
+![Programování v kostce.](/assets/programovani-je-hra/turtles.webp)

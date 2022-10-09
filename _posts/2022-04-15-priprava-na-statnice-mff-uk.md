@@ -274,7 +274,7 @@ Pokud je u předmětu symbol kartičky (🃏), tak je zahrnut v [tomto Anki bal�
 			<li> složitost v nejlepším, nejhorším a průměrném případě </li>
 			<li> asymptotická notace </li>
 		</ul></li>
-		{% stlink Třídy složitosti. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s19.3 | /assets/priprava-na-statnice-mff-uk/pvnp.png %}
+		{% stlink Třídy složitosti. | /assets/priprava-na-statnice-mff-uk/pruvodce.pdf#s19.3 | /assets/priprava-na-statnice-mff-uk/pvnp.webp %}
 		<li style='list-style-type: none;'><ul>
 			<li> třídy P a NP </li>
 			<li> převoditelnost problémů, NP-těžkost a NP-úplnost </li>

@@ -374,7 +374,7 @@ Below is the (almost) complete list of curves that are frequently used in animat
 There also exists a [wonderful website](https://easings.net/) which contains a number of these functions, including an interactive visualisation of their progress, if you want to experiment with them outside of Manim.
 
 {: .inverse-invert}
-![A list of Manim easing curves](/assets/manim/3-RateFunctionList.png)
+![A list of Manim easing curves](/assets/manim/3-RateFunctionList.webp)
 
 ### Tasks
 
