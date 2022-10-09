@@ -83,7 +83,12 @@ ul.climbing-routes-list {
 .climbing-year-details {
     summary {
         text-align: left;
-        display: inline;
+
+
+        h3 {
+            display: inline;
+            vertical-align: middle;
+        }
     }
 }
 
