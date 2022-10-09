@@ -112,7 +112,7 @@ ul.climbing-routes-list {
 
 .climbing-journal {
     li {
-        padding-bottom: $line-spacing / 2;
+        padding-bottom: $line-spacing / 1.25;
         p { padding-bottom: $line-spacing / 4; }
     }
 }
@@ -195,4 +195,28 @@ img {
         &::before { background: $dark-text-color; }
         &::after { background-color: $dark-background-color; }
     }
+}
+
+ul.hfill:nth-child(2n) {
+    background-color: $light-nav-background-color;
+}
+
+ul.hfill {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    padding-left: 0;
+
+    li {
+        padding-bottom: $line-spacing / 6;
+    }
+}
+
+p.climbing-note {
+    font-size: 90%;
+    font-style: italic;
+}
+
+span.emoji {
+    font-style: normal;
 }

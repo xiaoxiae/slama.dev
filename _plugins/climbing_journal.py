@@ -60,7 +60,7 @@ for entry in reversed(sorted(list(journal))):
 
         current_month = entry.month
 
-    line += f"\n<li><p><strong>{entry.strftime('%-d. %-m. %Y')}</strong>"
+    line += f"\n<li><ul class='hfill'><li><strong>{entry.strftime('%-d. %-m. %Y')}</strong>"
 
     v_colors = [f"V{i}" for i in range(2, 11)]
     v_grading_gyms = set(["třináctka"])
@@ -89,7 +89,7 @@ for entry in reversed(sorted(list(journal))):
         if "guide" in journal[entry]:
             line += f" [<a href='/climbing/guides/{journal[entry]['guide']}'>guide</a>]"
 
-        line += f": "
+        line += f"</li> <li>"
 
     else:
         if wall == "":
@@ -106,7 +106,7 @@ for entry in reversed(sorted(list(journal))):
         if "rebuilt" in journal[entry]:
             line += f", <strong>zone {journal[entry]['rebuilt']} rebuilt</strong>"
 
-        line += "): "
+        line += ")</li> <li>"
 
     def format_color(color, kilter=False):
         line = ""
@@ -140,7 +140,7 @@ for entry in reversed(sorted(list(journal))):
                 " ["
                 + ", ".join(
                     [
-                        f"<a href='/climbing/videos/{name}'>{i + 1}{'↯' if 'flash' in videos[name] and videos[name]['flash'] else ''}</a>"
+                        f"<a href='/climbing/videos/{name}'>{'↯' if 'flash' in videos[name] and videos[name]['flash'] else '🠕'}</a>"
                         for i, name in enumerate(entry_videos)
                     ]
                 )
@@ -159,7 +159,7 @@ for entry in reversed(sorted(list(journal))):
             line += format_color(color, kilter=True)
 
 
-    line += "</p>"
+    line += "</li></ul>"
 
     if "routes" in journal[entry]:
         line += f"<ul class='climbing-routes-list'>"
@@ -170,7 +170,7 @@ for entry in reversed(sorted(list(journal))):
     if "note" in journal[entry]:
         # the replace is a bit of a hack.
         # I should probably do proper conversion, but I don't really use anything special
-        line += "<p>" + journal[entry]["note"].replace("--", "–").replace(":)", "🙂") + "</p>"
+        line += "<p class='climbing-note'>" + journal[entry]["note"].replace("--", "–").replace(":)", "<span class='emoji'>🙂</span>") + "</p>"
 
     line += "</li>"
 

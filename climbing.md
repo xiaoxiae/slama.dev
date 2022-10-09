@@ -47,10 +47,8 @@ Since there there are some other walls that I visit from time to time (mostly th
 | <img class='climbing-wall-logo-middle' src='/climbing/wall-logos/lokalblok.svg'/>           | [LokalBlok](http://www.lokalblok.cz/lezecka-stena) |
 | <img class='climbing-wall-logo-middle' src='/climbing/wall-logos/mandala.svg'/>             | [Mandala](https://boulderhalle-dresden.de/)        |
 
-The format for bouldering is <mark class="climbing-diary-record climbing-other climbing-other-text">repeats/<span class="underline">new sends</span> [video links]</mark>, left-to-right from easy to hard. Additionally, climbs marked with the ↯ symbol mean that they were flash sends.
+The format for bouldering is <mark class="climbing-diary-record climbing-other climbing-other-text">repeats/<span class="underline">new sends</span> [video links]</mark>, left-to-right from easy to hard. Videos marked with the ↯ symbol are flash sends while 🠕 are redpoints.
 
 The format for sport climbing is <mark class="climbing-diary-record climbing-other climbing-other-text">Name (difficulty, style)</mark>, left-to-right from when it was climbed.
-
-_**Update** (4.7.2022): I've been feeling quite burnt-out and unsatisfied with my level of climbing for a while now and have mostly been recording videos out of inertia. I'm going to stop doing so for a while and just focus on climbing well, until I feel better and have the motivation to continue._
 
 {% include diary.md %}
