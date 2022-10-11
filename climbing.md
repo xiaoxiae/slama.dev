@@ -21,6 +21,12 @@ This page is dedicated to my climbing life.
 	<figcaption>A few photos from Smíchoff's Boulder Challenge (15. 6. 2022).<br>© <a href="https://instagram.com/kareafoto">KAREA foto</a></figcaption>
 </figure>
 
+## [Boulderhaus](https://www.boulderhaus.net/), Heidelberg
+Since moving to Heidelberg for my Master's degree, Boulderhaus is the gym that I frequent.
+The setting is quite oldschool (compared to the walls in Prague that I frequented), mostly difficult moves and hard positions as opposed to dynamics.
+
+The map is TBA (soon!).
+
 ## [Smíchoff](https://www.lezeckecentrum.cz/cs/), Prague
 Smíchoff is the only gym in Prague that I frequent, since it is (in my opinion) the best one, so the vast majority of the clips are going to be from here.
 People are nice, prices are student-friendly and boulders are frequently changed, so it's a perfect place to be.
@@ -33,7 +39,7 @@ Each section can be clicked on to see the videos of its boulder sends.
 {% include smichoff-map.svg %}
 </figure>
 
-### Diary
+## Diary
 The following contains my climbing diary -- how many new/old boulders have I done (and links to them). It also serves as a convenient way to view the most recently sent boulders.
 
 Since there there are some other walls that I visit from time to time (mostly thanks to some of my friends), here is the list of icons that you might see in the journal entries:
@@ -49,7 +55,7 @@ Since there there are some other walls that I visit from time to time (mostly th
 | <img alt='LokalBlok wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/lokalblok.svg'/>     | [LokalBlok](http://www.lokalblok.cz/lezecka-stena) | Prague, CZ     |
 | <img alt='Mandalawall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/mandala.svg'/>          | [Mandala](https://boulderhalle-dresden.de/)        | Dresen, DE     |
 
-The format for bouldering is <mark class="climbing-diary-record climbing-other climbing-other-text">repeats/<span class="underline">new sends</span> [video links]</mark>, left-to-right from easy to hard. Videos marked with the ↯ symbol are flash sends while 🠕 are redpoints.
+The format for bouldering is <mark class="climbing-diary-record climbing-black climbing-black-text">repeats/<span class="underline">new sends</span> [video links]</mark>, left-to-right from easy to hard. Videos marked with the ↯ symbol are flash sends while 🠕 are redpoints.
 
 The format for sport climbing is <mark class="climbing-diary-record climbing-other climbing-other-text">Name (difficulty, style)</mark>, left-to-right from when it was climbed.
 

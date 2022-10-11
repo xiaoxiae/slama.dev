@@ -39,11 +39,12 @@ ul.climbing-routes-list {
     li { padding-bottom: $line-spacing / 4; }
 }
 
-.climbing-red { background: #f74d4dff; }
-.climbing-salmon { background: #ffc1a8ff; }
-.climbing-blue { background: #087ec4ff; }
-.climbing-yellow { background: #fce538ff; }
+.climbing-red { background: #d00; }
+.climbing-salmon { background: #ffc1a8; }
+.climbing-blue { background: #087ec4; }
+.climbing-yellow { background: #efd510; }
 .climbing-green { background: #008000ff; }
+.climbing-black { background: #000; }
 .climbing-other { background: #cccccc; }
 
 .climbing-V2  { background: #eee; }
@@ -65,7 +66,7 @@ ul.climbing-routes-list {
 
 .climbing-wall-logo-middle { vertical-align: middle; }
 
-.climbing-red-text,.climbing-blue-text,.climbing-green-text {
+.climbing-red-text,.climbing-blue-text,.climbing-green-text,.climbing-black-text {
     color: $dark-text-color;
     a { color: $light-link-color; &:hover { color: $dark-text-color; } }
 }

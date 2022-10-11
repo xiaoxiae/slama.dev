@@ -68,7 +68,7 @@ for entry in reversed(sorted(list(journal))):
     wall_colors = {
         "smíchoff": ["red", "salmon", "blue", "yellow"],
         "jungle": ["green", "blue", "red"],
-        "boulderhaus": ["red", "blue"],
+        "boulderhaus": ["green", "blue", "red", "black"],
         "boulder-bar": ["green", "blue", "red"],
         "třináctka": v_colors,
     }
@@ -127,6 +127,8 @@ for entry in reversed(sorted(list(journal))):
             count = f"{old_count}"
         else:
             count = f"{old_count}/<span class='underline'>{new_count}</span>"
+
+        count = "<strong>" + count + "</strong>"
 
         if color == "other":
             line += f"<mark class='climbing-diary-record climbing-other climbing-other-text'>other: {count}"
