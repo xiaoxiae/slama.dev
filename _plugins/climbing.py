@@ -6,6 +6,7 @@ from PIL import Image
 from random import choice
 from string import ascii_lowercase
 from subprocess import Popen, PIPE
+from unidecode import unidecode
 
 import yaml
 
@@ -49,10 +50,16 @@ for name in list(config):
     if "new" in config[name]:
         print(f"parsing new climb '{name}'.", flush=True)
 
+        wall = ""
+        if "wall" in config[name]:
+            wall_stub = unidecode(config[name]["wall"]).lower().replace(" ", "-")
+        else:
+            wall_stub = "smichoff"
+
         # assign a new (random) name
         random_string = get_random_string(8)
         new_name = (
-            "smichoff-"
+            f"{wall_stub}-"
             + ("" if "color" not in config[name] else (config[name]["color"] + "-"))
             + (
                 ""
@@ -204,8 +211,9 @@ no-heading: True
         for name in config:
             if (
                 "color" in config[name]
+                and "zone" in config[name]
                 and config[name]["color"] == color
-                and (config[name]["zone"] == zone)
+                and config[name]["zone"] == zone
             ):
                 videos_in_color.append(name)
 

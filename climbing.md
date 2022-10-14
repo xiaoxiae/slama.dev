@@ -47,11 +47,11 @@ Since there there are some other walls that I visit from time to time (mostly th
 | Icon                                                                                                            | Wall                                               | Location       |
 | :-:                                                                                                             | :-:                                                | --:            |
 | <img alt='Boulderhaus wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/boulderhaus.svg'/> | [Boulderhaus](https://www.boulderhaus.net/)        | Heidelberg, DE |
-| <img alt='Smíchoff wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/smíchoff.svg'/>       | [Smíchoff](https://www.lezeckecentrum.cz/cs/)      | Prague, CZ     |
+| <img alt='Smíchoff wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/smichoff.svg'/>       | [Smíchoff](https://www.lezeckecentrum.cz/cs/)      | Prague, CZ     |
 | <img alt='BigWall wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/bigwall.svg'/>         | [BigWall](https://www.big-wall.cz/)                | Prague, CZ     |
 | <img alt='Jungle Letňany wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/jungle.svg'/>   | [Jungle Letňany](https://www.jungleletnany.cz/)    | Prague, CZ     |
 | <img alt='Boulder Bar wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/boulder-bar.svg'/> | [Boulder Bar](https://www.boulder.cz/)             | Prague, CZ     |
-| <img alt='Třináctka wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/třináctka.svg'/>     | [Třináctka](http://stenastodulky.cz/)              | Prague, CZ     |
+| <img alt='Třináctka wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/trinactka.svg'/>     | [Třináctka](http://stenastodulky.cz/)              | Prague, CZ     |
 | <img alt='LokalBlok wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/lokalblok.svg'/>     | [LokalBlok](http://www.lokalblok.cz/lezecka-stena) | Prague, CZ     |
 | <img alt='Mandalawall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/mandala.svg'/>          | [Mandala](https://boulderhalle-dresden.de/)        | Dresen, DE     |
 

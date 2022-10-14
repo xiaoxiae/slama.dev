@@ -1232,3 +1232,17 @@
   red:
     old: 2
   wall: Boulderhaus
+2022-10-13:
+  black:
+    new: 1
+  blue:
+    new: 3
+    old: 1
+  note: I sent the black that I fell from the top of, along with some neat new reds.
+    I also managed to figure out the beta of one really hard black that I'll work
+    on next time, it felt absolutely amazing to link it all together and it definitely
+    feels doable on a strong day.
+  red:
+    new: 4
+    old: 2
+  wall: Boulderhaus

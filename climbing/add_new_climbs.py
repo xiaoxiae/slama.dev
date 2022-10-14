@@ -26,11 +26,11 @@ for file in files:
         config[file] = {
             "color": "TODO",
             "date": date.today(),
-            "zone": "TODO",
             "new": None,
             "rotate": "left",
             "encode": None,
             "trim": "TODO",
+            "wall": "Boulderhaus",
         }
 
 with open(CLIMBING_INFO, "w") as f:

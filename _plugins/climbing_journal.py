@@ -2,6 +2,7 @@
 
 import os
 import yaml
+from unidecode import unidecode
 
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
@@ -65,12 +66,13 @@ for entry in reversed(sorted(list(journal))):
     v_colors = [f"V{i}" for i in range(2, 11)]
     v_grading_gyms = set(["třináctka"])
 
+    # keep sorted by difficulty! (left easiest, right hardest)
     wall_colors = {
-        "smíchoff": ["red", "salmon", "blue", "yellow"],
+        "smichoff": ["red", "salmon", "blue", "yellow"],
         "jungle": ["green", "blue", "red"],
         "boulderhaus": ["green", "blue", "red", "black"],
         "boulder-bar": ["green", "blue", "red"],
-        "třináctka": v_colors,
+        "trinactka": v_colors,
     }
 
     wall = ""
@@ -78,7 +80,7 @@ for entry in reversed(sorted(list(journal))):
 
     if "wall" in journal[entry]:
         wall = journal[entry]["wall"]
-        wall_stub = wall.lower().replace(" ", "-")
+        wall_stub = unidecode(wall).lower().replace(" ", "-")
 
     # locations have no colors since they are not walls; they get treated differently
     if "location" in journal[entry]:
@@ -93,7 +95,8 @@ for entry in reversed(sorted(list(journal))):
 
     else:
         if wall == "":
-            wall_stub = "smíchoff"
+            wall = "Smíchoff"
+            wall_stub = "smichoff"
 
         colors = (
             {}
@@ -142,7 +145,7 @@ for entry in reversed(sorted(list(journal))):
                 " ["
                 + ", ".join(
                     [
-                        f"<a href='/climbing/videos/{name}'>{'↯' if 'flash' in videos[name] and videos[name]['flash'] else '🠕'}</a>"
+                        f"<a href='/climbing/videos/{name}'>{'↯' if 'flash' in videos[name] and videos[name]['flash'] else '↑'}</a>"
                         for i, name in enumerate(entry_videos)
                     ]
                 )
