@@ -1,7 +1,12 @@
 ---
 language: cz
 title: Příprava na státnice (MFF UK)
+category: "vzdelani"
+category_noslug: "vzdělání"
+category_icon: /assets/category-icons/mff.webp
 css: statnice
+redirect_from:
+- /priprava-na-statnice-mff-uk/
 ---
 
 - .

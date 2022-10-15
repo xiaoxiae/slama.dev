@@ -1,6 +1,9 @@
 ---
 title: The C# programming language
-category: "lecture notes"
+category: "notes"
+category_icon: /assets/category-icons/mff.webp
+redirect_from:
+- /lecture-notes/the-cs-programming-language/
 ---
 
 - .

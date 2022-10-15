@@ -1,12 +1,14 @@
 ---
 language: cz
 title: Aproximační Algoritmy
-category: "poznamky z prednasky"
-category_noslug: "poznámky z přednášky"
+category: "poznamky"
+category_noslug: "poznámky"
+category_icon: /assets/category-icons/mff.webp
 pdf: true
 redirect_from:
  - /lecture-notes/aproximacni-algoritmy/
  - /poznámky-z-přednášky/aproximacni-algoritmy/
+ - /poznamky-z-prednasky/aproximacni-algoritmy/
 ---
 
 - .

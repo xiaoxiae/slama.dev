@@ -84,7 +84,15 @@ for line in header.splitlines():
 match = re.search(r"\d{4}-\d{2}-\d{2}", path.split("/")[-1])
 date = datetime.strptime(match.group(), "%Y-%m-%d").date()
 header_dictionary["date"] = '"' + date.strftime("%-d. %-m. %Y") + '"'
-header_dictionary["url"] = f"https://slama.dev/{stripped_name}"
+
+category_str = ""
+
+if "category" in header_dictionary:
+    category_str = header_dictionary["category"].strip('"') + "/"
+elif "category_noslug" in header_dictionary:
+    category_str = header_dictionary["category_noslug"].strip('"') + "/"
+
+header_dictionary["url"] = f"https://slama.dev/{category_str}{stripped_name}"
 
 # create new header
 new_header = (

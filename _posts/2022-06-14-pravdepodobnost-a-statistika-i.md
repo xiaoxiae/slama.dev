@@ -1,8 +1,10 @@
 ---
 language: cz
 title: Pravděpodobnost a Statistika I
-category: "poznamky z prednasky"
-category_noslug: "poznámky z přednášky"
+category: "poznamky"
+category_noslug: "poznámky"
+redirect_from:
+ - /poznamky-z-prednasky/pravdepodobnost-a-statistika-i/
 ---
 
 - .

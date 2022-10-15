@@ -1,9 +1,11 @@
 ---
 language: cz
 title: Matematická Analýza II
-category: "poznamky z prednasky"
-category_noslug: "poznámky z přednášky"
+category: "poznamky"
+category_noslug: "poznámky"
 pdf-nogenerate: true
+redirect_from:
+ - /poznamky-z-prednasky/pravdepodobnost-a-statistika-i/
 ---
 
 Tato stránka obsahuje odkaz na poznámky z přednášky Aleše Pultra z akademického roku 2020/2021, které vznikly na podnět Viktora Soukupa ve spolupráci se mnou a Lukášem Salakem. Jejich zdrojový kód je volně dostupný v [tomto GitHub repozitáři](https://github.com/3O11/ma2-poznamky). Pokud by byla někde chyba/nejasnost, nebo byste rádi někam přidali obrázek/text, tak neváhejte vytvořit pull request.

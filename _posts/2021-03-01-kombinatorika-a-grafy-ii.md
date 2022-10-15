@@ -1,12 +1,14 @@
 ---
 language: cz
 title: Kombinatorika a Grafy II
-category: "poznamky z prednasky"
-category_noslug: "poznámky z přednášky"
+category: "poznamky"
+category_noslug: "poznámky"
+category_icon: /assets/category-icons/mff.webp
 pdf: true
 redirect_from:
  - /lecture-notes/kombinatorika-a-grafy-ii/
  - /poznámky-z-přednášky/kombinatorika-a-grafy-ii/
+ - /poznamky-z-prednasky/kombinatorika-a-grafy-ii/
 ---
 
 
@@ -179,7 +181,7 @@ Těžší případ: \(e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2)\)
 - ve skutečnosti **neplatí** (ale dovětek ano) a dokazujeme ho pouze v rámci sporu!
 - {% math observation "které platí" %}\(S\) minimální vrcholový řez \(G\), pak každý vrchol \(S\) má souseda v každé komponentě \(G \setminus S\) -- když to pro nějaký \(v\) neplatí, tak \(S \setminus v\) je pořád řez{% endmath %} 
 
-{% xopp 1 %}
+{% xopp img1 %}
 
 {% math proof "způsob z přednášky" %}
 Vím, že \(G \setminus e\) není \(3\)-souvislý, tedy má vrcholový řez velikosti \(2\). Nechť \(v_e\) je vrchol vzniklý kontrakcí \(e = \left\{x, y\right\}\). Řez velikosti \(2\) obsahuje \(v_e\), jinak by to byl řez už pro \(G\) (obsahoval by vrcholy z původního grafu, které nekontrahujeme).
@@ -187,7 +189,7 @@ Vím, že \(G \setminus e\) není \(3\)-souvislý, tedy má vrcholový řez veli
 Označme řez \(v_e, z_e\). Po rozkontrahování vidíme, že \(\forall \left\{x, y, z_e\right\}\) musí mít souseda v každé komponentě (jinak spor s 3-souvislostí). Tedy \(z_e\) je hledaný vrchol.
 {% endmath %}
 
-{% xopp 2 %}
+{% xopp img2 %}
 
 {% math proof "moje intuice" %}Pokud by neplatilo (existovala by taková hrana), tak máme hranu, přes kterou kontrahujeme. Jelikož pro tu hranu platí, že neexistuje \(z\), které spolu s jejími vrcholy tvoří řez, tak bude graf i po kontrakci \(3\)-souvislý.
 {% endmath %}
@@ -196,7 +198,7 @@ Pro důkaz původního lemmatu si zvolím \(e = \left\{x, y \right\} \in E\) a \
 
 Protože \(z_e\) má souseda ve všech komponentách, má nějakého souseda \(u \in C, f = \left\{z_e, u\right\}\) (kde \(C\) je naše nejmenší komponenta). Pomocné tvrzení pro \(f\) dá nějaký \(z_f \in V\) t. ž. \(\left\{z_e, z_f, u\right\}\) je vrcholový řez \(G\). Chceme dokázat, že \(G - z_e, z_f, u\) má menší komponentu než \(C\).
 
-{% xopp 3 %}
+{% xopp img3 %}
 
 Nechť \(D\) je komponenta \(G - z_e, z_f, u\) neobsahující \(x, y\). Existuje, protože \(x, y\) jsou spojené a graf se rozpadne alespoň na \(2\) komponenty. Tvrdím, že \(D \subseteq C \setminus \left\{u\right\}\), protože \(D\) nemůže obsahovat \(z_e, z_f, u\) (vrcholy řezu), \(x, y\) (z definice \(D\)), ale \(u\) má nějakého souseda v \(D\) (podle pomocného tvrzení, \(u\) má sousedy ve všech komponentách řezu), takže v \(D\) ještě něco zbyde. Navíc ho tam mělo \(u\) i předtím, takže opravdu \(D \subseteq C \setminus \left\{u\right\}\). Tedy \(|D| < |C|\), což je spor s minimalitou.
 {% endmath %}
@@ -214,7 +216,7 @@ Nechť \(D\) je komponenta \(G - z_e, z_f, u\) neobsahující \(x, y\). Existuje
 <!---MARKDOWN-->
 
 {:.rightFloatBox}
-{% xopp 4 %}
+{% xopp img4 %}
 
 <!---PDF
 -->
@@ -490,7 +492,13 @@ Tedy \[\Chi(\Gamma) = L(G)\]
 - {% math observation %}\(G\) je \(d\)-degenerovaný \(\Rightarrow \Chi(G) \le d + 1\){% endmath %} (barvím indukcí v pořadí \(v_n, \ldots, v_1\))
 {% endmath %}
 
+<!---MARKDOWN-->
+
 ![](/assets/kombinatorika-a-grafy-ii/degen.webp)
+
+<!---PDF
+![](/assets/kombinatorika-a-grafy-ii/degen.png)
+-->
 
 - z minule: pokud \(G\) je nakreslitelný na \(\Gamma \Rightarrow G\) má vrchol stupně nejvýše \(H(\Gamma) - 1\) a \(G - v\) je stále nakreslitelný na \(\Gamma \Rightarrow G\) je \(\left(H(\Gamma) - 1\right)\)-degenerovaný \(\Rightarrow\) je \(H(\Gamma)\) obarvitelný
 
