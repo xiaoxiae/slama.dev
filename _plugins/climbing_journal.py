@@ -145,7 +145,7 @@ for entry in reversed(sorted(list(journal))):
                 " ["
                 + ", ".join(
                     [
-                        f"<a href='/climbing/videos/{name}'>{'↯' if 'flash' in videos[name] and videos[name]['flash'] else '↑'}</a>"
+                        f"<strong><a href='/climbing/videos/{name}'>{'F' if 'flash' in videos[name] and videos[name]['flash'] else 'A' if 'attempts' not in videos[name] else videos[name]['attempts']}</a></strong>"
                         for i, name in enumerate(entry_videos)
                     ]
                 )
@@ -175,7 +175,7 @@ for entry in reversed(sorted(list(journal))):
     if "note" in journal[entry]:
         # the replace is a bit of a hack.
         # I should probably do proper conversion, but I don't really use anything special
-        line += "<p class='climbing-note'>" + journal[entry]["note"].replace("--", "–").replace(":)", "<span class='emoji'>🙂</span>") + "</p>"
+        line += "<p class='climbing-note'>" + journal[entry]["note"].replace("--", "–").replace(":)", "<span class='emoji'>🙂</span>").replace(":(", "<span class='emoji'>☹️</span>") + "</p>"
 
     line += "</li>"
 

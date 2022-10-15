@@ -22,7 +22,6 @@ if os.path.exists(CLIMBING_INFO):
 files = os.listdir(CLIMBING_VIDEOS_FOLDER)
 for file in files:
     if file.lower().endswith(".mp4") and file not in config:
-        print(f"adding new file {file}.")
         config[file] = {
             "color": "TODO",
             "date": date.today(),
@@ -32,6 +31,19 @@ for file in files:
             "trim": "TODO",
             "wall": "Boulderhaus",
         }
+
+        kilter = file.lower().startswith("kilter")
+
+        # hacky since the DJI camera is usually turned upside down this way
+        if "dji" not in file.lower():
+            del config[file]["rotate"]
+
+        # a little hacky but very functional
+        if kilter:
+            del config[file]["wall"]
+            config[file]["kilter"] = True
+
+        print(f"adding new {'' if not kilter else 'Kilter '}file {file}.")
 
 with open(CLIMBING_INFO, "w") as f:
     f.write(yaml.dump(config))

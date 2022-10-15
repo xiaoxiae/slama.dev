@@ -1037,7 +1037,7 @@
   routes:
   - - No pain no gain
     - - 5c+
-      - onsight, resting
+      - onsight with resting
   - - Sabinaka
     - - 5a
       - onsight
@@ -1245,4 +1245,18 @@
   red:
     new: 4
     old: 2
+  wall: Boulderhaus
+2022-10-15:
+  blue:
+    old: 2
+  kilter:
+    V5:
+      new: 2
+    V6:
+      new: 3
+  note: Despite feeling pretty good, I didn't manage do send the black from the previous
+    session, although falling twice from the top :(. That was a bit upsetting so I
+    spent the rest of the session Kilter boarding, which was fun (not a lot of hard
+    sends but some fun moves)! I'll try to do a proper Kilter board session in a few
+    days.
   wall: Boulderhaus

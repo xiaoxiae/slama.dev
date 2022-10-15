@@ -68,17 +68,15 @@ ul.climbing-routes-list {
 
 .climbing-red-text,.climbing-blue-text,.climbing-green-text,.climbing-black-text {
     color: $dark-text-color;
-    a { color: $light-link-color; &:hover { color: $dark-text-color; } }
 }
 
+.climbing-V2, .climbing-V3, .climbing-V4, .climbing-V5, .climbing-V6, .climbing-V7, .climbing-V8, .climbing-V9, .climbing-V10, .climbing-V11,
 .climbing-salmon-text,.climbing-yellow-text {
     color: $light-text-color;
-    a { color: $dark-link-color; &:hover { color: $dark-text-color; } }
 }
 
 .climbing-other-text {
     color: $light-text-color;
-    a { color: $light-link-color; &:hover { color: $light-text-color; } }
 }
 
 .climbing-year-details {
