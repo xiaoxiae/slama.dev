@@ -12,26 +12,22 @@ _drafts/
 **/secrets.py
 
 # Too big to VC (binaries scary!)
-climbing/**/*.mp4
-climbing/**/*.jpeg
-climbing/zones/
-climbing/guides/
-photos/
-
-assets/hlenka-helenka/tribute.mp4
-assets/priprava-na-statnice-mff-uk/*
-assets/manim/*
-assets/**/*.pdf
-assets/**/*.webp
-
-videos/
-*.xcf
 _plugins/svgcleaner/
+**/*.pdf
+**/*.webp
+**/*.png
+**/*.mp4
+**/*.jpeg
+**/*.xcf
+**/*.xopp*
+photos/
+videos/
+fonts/
+
+# Even you, SVG
+*.svg
 
 # xopp, svg
-_includes/**/*.svg
-!_includes/smichoff-map.svg
-_includes/**/*.xopp*
 
 # generated
 _includes/cv.html
@@ -39,6 +35,8 @@ _includes/songs.md
 _includes/projects.md
 _includes/videos.md
 _includes/diary.md
+climbing/zones/
+climbing/guides/
 cv.pdf
 
 # frequently changing
