@@ -119,19 +119,30 @@ for entry in reversed(sorted(list(journal))):
             if videos[video]["date"] == entry and videos[video]["color"] == color:
                 entry_videos.append(video)
 
-        color_dict = journal[entry][color] if not kilter else journal[entry]["kilter"][color]
+        # for adding fail videos
+        if kilter:
+            color_dict = journal[entry]["kilter"][color]
+        else:
+            color_dict = {} if color not in journal[entry] else journal[entry][color]
 
         old_count = 0 if "old" not in color_dict else color_dict["old"]
         new_count = 0 if "new" not in color_dict else color_dict["new"]
 
-        if old_count == 0:
+        if old_count == 0 and new_count == 0:
+            # if there are no videos and no sends for the color, don't add it
+            if len(entry_videos) == 0:
+                return ""
+
+            count = ""
+        elif old_count == 0:
             count = f"<span class='underline'>{new_count}</span>"
         elif new_count == 0:
             count = f"{old_count}"
         else:
             count = f"{old_count}/<span class='underline'>{new_count}</span>"
 
-        count = "<strong>" + count + "</strong>"
+        if count != "":
+            count = "<strong>" + count + "</strong>"
 
         if color == "other":
             line += f"<mark class='climbing-diary-record climbing-other climbing-other-text'>other: {count}"
@@ -145,7 +156,7 @@ for entry in reversed(sorted(list(journal))):
                 " ["
                 + ", ".join(
                     [
-                        f"<strong><a href='/climbing/videos/{name}'>{'F' if 'flash' in videos[name] and videos[name]['flash'] else 'A' if 'attempts' not in videos[name] else videos[name]['attempts']}</a></strong>"
+                        f"<a class='climbing-link' href='/climbing/videos/{name}'>{videos[name]['label'] if 'label' in videos[name] else 'F' if 'flash' in videos[name] and videos[name]['flash'] else 'A' if 'attempts' not in videos[name] else videos[name]['attempts']}</a>"
                         for i, name in enumerate(entry_videos)
                     ]
                 )
@@ -155,8 +166,7 @@ for entry in reversed(sorted(list(journal))):
         return line + "</mark> "
 
     for color in list(colors) + ["other"]:
-        if color in journal[entry]:
-            line += format_color(color)
+        line += format_color(color)
 
     if "kilter" in journal[entry]:
         line += "/ <strong>Kilter: </strong>"
