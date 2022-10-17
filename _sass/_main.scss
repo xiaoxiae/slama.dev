@@ -339,7 +339,7 @@ body {
 }
 
 a {
-    color: $light-link-color;
+    color: $light-text-color;
 
     &:hover {
         color: $light-text-color;
@@ -439,6 +439,11 @@ hr {
     .vi { color: #19177c; } /* Name.Variable.Instance */
     .vm { color: #19177c; } /* Name.Variable.Magic */
     .w { color: #bbb; } /* Text.Whitespace */
+}
+
+a.secret {
+    color: $light-text-color;
+    &:hover { color: $light-text-color; }
 }
 
 /* DARK COLOR THEME */
@@ -572,5 +577,10 @@ hr {
         .gu { color: $gravel; } /* Generic.Subheading & Diff Unified/Comment? */
         .gd { color: $lime; } /* Generic.Deleted & Diff Deleted */
         .gi { color: $orange; } /* Generic.Inserted & Diff Inserted */
+    }
+
+    a.secret {
+        color: $dark-text-color;
+        &:hover { color: $dark-text-color; }
     }
 }

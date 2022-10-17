@@ -15,7 +15,7 @@ Besides programming, I also like to play computer games, [take photos](/photos/)
 
 This website contains things I feel are interesting enough to put on the internet.
 The language of the blog is English, but some posts might be written in other languages (and will be denoted as such).
-Links to the periodically updated ones can be found at the top; the rest can be found below.
+Links to the sections of the website can be found at the top, links to the posts can be found below.
 {% for post in site.posts %}
 {% assign currentdate = post.date | date: "%Y" %}
 {% if currentdate != date %}
