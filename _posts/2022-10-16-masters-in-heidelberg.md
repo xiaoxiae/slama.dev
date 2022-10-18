@@ -185,6 +185,8 @@ Heidelberg is made for travel by bike -- it has great infrastructure (bike lanes
 
 Even if you don't live in Heidelberg, it might still be a good idea to get it since you can leave it at the train/tram station when traveling to/from Heidelberg, which saves quite a lot of time in the long run and is healthy!
 
+For traveling to specific campus buildings, there are some very useful maps for each campus part ([Altstadt](/assets/masters-in-heidelberg/altstadt.pdf), [Bergheim](/assets/masters-in-heidelberg/bergheim.pdf) and [Im Neuenheimer Feld](/assets/masters-in-heidelberg/im-neuenheimer-feld.pdf)).
+
 
 ### Eating
 
