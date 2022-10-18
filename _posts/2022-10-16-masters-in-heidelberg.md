@@ -15,6 +15,7 @@ If you find yourself in a similar position (or are considering placing yourself 
 
 _Note: this post is ever-expanding. If you've also experienced some issues with education in Heidelberg (or Germany, for that matter), please let me know and I'll add it here._
 
+
 ### Enrolment
 
 #### Application
@@ -22,17 +23,18 @@ _Note: this post is ever-expanding. If you've also experienced some issues with 
 This step of the enrolment process is quite straightforward -- given your degree of interest (say [Computer Science](https://www.uni-heidelberg.de/en/study/all-subjects/applied-computer-science/data-and-computer-science-master)), you need to find the required documents to send by post to the admission's office.
 For me, this included
 - a filled-in **application**,
-- a certificate of **English profficiency** (at least B2)[^german]
+- a certificate of **English proficiency** (at least B2)[^german]
 - a transcript of **completed study requirements** (I haven't received my degree at a time),
 - a certified copy of a **high-school diploma** and
 - a copy of my **ID** (or a VISA, if you're not a European citizen).
 
-[^german]: If it's a German master's degree, you'll need a certificate of German profficiency instead.
+[^german]: If it's a German master's degree, you'll need a certificate of German proficiency instead.
 
 Once the admissions are opened (for us this was May/June 2022), the specific list will be at the respective degree's website.
 You might have to do a little bit of digging and translating, though (the study requirements might be in German even if the degree isn't).
 
 Sending the documents by post is best done by private carriers such as [UPS](https://www.ups.com/us/en/global.page) instead of the post, because they're faster, more liable and will notify you when the documents arrived, in exchange for being a little more costly (~€30 from the Czech Republic).
+
 
 #### Immatriculation
 
@@ -63,6 +65,7 @@ You should definitely check out the overview of the [most important services](ht
 
 [^fee]: This again depends on if you're an EU citizen (in which case the fee is quite large) or you are an EU citizen (the fee is pretty small, I payed ~€170). In any case, the payment can take a little while to confirm (at least when paying from Revolut), so don't panic.
 
+
 ### Money
 If Euros aren't your nation's currency (which was the case for me as we use Czech Korunas), there is a chance that paying using your bank's card will include additional fees or unfavorable conversion rates.
 If that is the case, it might be advisable to either
@@ -70,15 +73,107 @@ If that is the case, it might be advisable to either
 - use services such as [Revolut](https://www.revolut.com/) that facilitate currency conversions without additional fees.
 
 I've chosen the Revolut path and it has been working well so far -- the app is easy to use, the money easy to track and the card has been working fine without any issues.
-If you'd like to try it too, **let someone who already has Revolut know[^noone]** since they could invite you through Revolut's referal programme and receive some money for free.
+If you'd like to try it too, **let someone who already has Revolut know[^noone]** since they could invite you through Revolut's referral programme and receive some money for free.
 
 [^noone]: If you don't know anyone and would like to help me out, let me know.
 
-
 Most places in Heidelberg accept cards so you don't need to have a lot of cash on-hand.
 
+
 ### Housing
-TODO: write about how fucked it is
+It's fucked up.
+
+Your best bet is to start **really** early and try to apply for housing in Heidelberg's dorms (either public or private).
+If they're full, going in person and making sad eyes reportedly works, although I haven't tried.
+You should also try to periodically scour [wg-gesucht](wg-gesucht.de/), which is targeted at student housing, and [immobilienscout24](https://www.immobilienscout24.de/), which is the largest property renting and purchase website in Germany.
+
+The text we usually sent, along with a **SCHUFA certificate** (which we got from [immobilienscout24](https://www.immobilienscout24.de/) but you can actually get for free if you do some due diligence and are not as pressed for time as we were) is the following, both in English and in German:
+
+<!---MARKDOWN-->
+
+<details>
+	<summary class="code-summary">English</summary>
+	<div markdown="1">
+> Greetings,
+> 
+> me and my girlfriend (both 22 years old) are starting our Master's degrees in Heidelberg and would be interested in the apartment. I will be studying Computer Science and she will be studying Cancer Biology. Since the semester starts quite soon, we'd like to move in as soon as possible, but the date is very much flexible.
+> 
+> We're both from the Czech Republic and have been together for 8 years now. We're quiet and not very outgoing, mostly focusing on our studies and hobbies (rock climbing, dance). We don't smoke and have no pets.
+> 
+> In terms of financing, we are fortunate to have the financial support of both of our parents, along with having a sizable amount of savings.
+> 
+> If you think we'd be the right fit for the apartment, please let me know either through the website or by email (tomas@slama.dev) or phone (my phone number).
+> 
+> Have a nice day and thank you in advance!
+> 
+> Sincerely
+> T. Sláma
+</div>
+</details>
+
+<!---PDF
+
+> Greetings,
+> 
+> me and my girlfriend (both 22 years old) are starting our Master's degrees in Heidelberg and would be interested in the apartment. I will be studying Computer Science and she will be studying Cancer Biology. Since the semester starts quite soon, we'd like to move in as soon as possible, but the date is very much flexible.
+> 
+> We're both from the Czech Republic and have been together for 8 years now. We're quiet and not very outgoing, mostly focusing on our studies and hobbies (rock climbing, dance). We don't smoke and have no pets.
+> 
+> In terms of financing, we are fortunate to have the financial support of both of our parents, along with having a sizable amount of savings.
+> 
+> If you think we'd be the right fit for the apartment, please let me know either through the website or by email (tomas@slama.dev) or phone (+420 774 068 605).
+> 
+> Have a nice day and thank you in advance!
+> 
+> Sincerely
+> T. Sláma
+-->
+
+<!---MARKDOWN-->
+<!---PDF
+---
+-->
+
+<!---MARKDOWN-->
+<details>
+	<summary class="code-summary">German</summary>
+	<div markdown="1">
+> Schöne Grüße,
+> 
+> ich und meine Freundin (beide 22 Jahre alt) beginnen unser Masterstudium in Heidelberg und hätten Interesse an der Wohnung. Ich werde Informatik studieren und sie wird Krebsbiologie studieren. Da das Semester ziemlich bald beginnt, würden wir gerne so schnell wie möglich einziehen, aber der Termin ist sehr flexibel.
+> 
+> Wir kommen beide aus Tschechien und sind jetzt seit 8 Jahren zusammen. Wir sind ruhig und nicht sehr kontaktfreudig und konzentrieren uns hauptsächlich auf unser Studium und unsere Hobbys (Klettern, Tanzen). Wir rauchen nicht und haben keine Haustiere.
+> 
+> In Bezug auf die Finanzierung haben wir das Glück, die finanzielle Unterstützung unserer beiden Eltern zu haben, zusammen mit einer beträchtlichen Summe an Ersparnissen.
+> 
+> Wenn Sie der Meinung sind, dass wir für die Wohnung geeignet sind, lassen Sie es mich bitte entweder über die Website oder per E-Mail (tomas@slama.dev) oder Telefon (+420 774 068 605) wissen.
+> 
+> Schönen Tag noch und danke im Voraus!
+> 
+> Aufrichtig
+> T. Sláma
+</div>
+</details>
+
+<!---PDF
+
+> Schöne Grüße,
+> 
+> ich und meine Freundin (beide 22 Jahre alt) beginnen unser Masterstudium in Heidelberg und hätten Interesse an der Wohnung. Ich werde Informatik studieren und sie wird Krebsbiologie studieren. Da das Semester ziemlich bald beginnt, würden wir gerne so schnell wie möglich einziehen, aber der Termin ist sehr flexibel.
+> 
+> Wir kommen beide aus Tschechien und sind jetzt seit 8 Jahren zusammen. Wir sind ruhig und nicht sehr kontaktfreudig und konzentrieren uns hauptsächlich auf unser Studium und unsere Hobbys (Klettern, Tanzen). Wir rauchen nicht und haben keine Haustiere.
+> 
+> In Bezug auf die Finanzierung haben wir das Glück, die finanzielle Unterstützung unserer beiden Eltern zu haben, zusammen mit einer beträchtlichen Summe an Ersparnissen.
+> 
+> Wenn Sie der Meinung sind, dass wir für die Wohnung geeignet sind, lassen Sie es mich bitte entweder über die Website oder per E-Mail (tomas@slama.dev) oder Telefon (my phone number) wissen.
+> 
+> Schönen Tag noch und danke im Voraus!
+> 
+> Aufrichtig
+> T. Sláma
+
+-->
+
 
 ### Travel
 This depends a lot on where you live but it might be a good idea to purchase the [Semester Ticket](https://www.uni-heidelberg.de/en/study/management-of-studies/tuition-fees/semester-ticket-for-public-transportation), which allows you to use pretty much[^noice] any public transport in the [Rhein-Neckar region](/assets/masters-in-heidelberg/rhein-neckar-region.webp), which includes Heidelberg, Mannheim and the surrounding towns.
@@ -90,11 +185,22 @@ Heidelberg is made for travel by bike -- it has great infrastructure (bike lanes
 
 Even if you don't live in Heidelberg, it might still be a good idea to get it since you can leave it at the train/tram station when traveling to/from Heidelberg, which saves quite a lot of time in the long run and is healthy!
 
+
 ### Eating
 
-TODO: about mensas
+Most Mensas in Heidelberg, as opposed to the ones I'm used to from Czech Republic, are priced **by weight,** not per meal.
+They also operate in the form of a buffet, which is great because you can easily regulate how much (and of what) you eat.
+The prices are very good (~€0.95 per 100g) and the food is excellent, so it's a very good idea to eat there.
+
+My favorite is the [Zeughaus Mensa](https://www.studentenwerk.uni-heidelberg.de/en/node/342) near the new university, which always has excellent food, along with a café (also with student prices).
+The best thing is that it closes pretty late (9 PM) and is also open on Saturday, so you can really minimize the amount you cook, if you're not into that or don't have the facilities at home.
 
 
 ### Education
 
-TODO: haven't done a lot of that yet lmao
+The structure of your degree varies drastically from degree to degree.
+Some programmes (Cancer Biology) have a relatively predetermined schedule, while others (Computer Science) are more open.
+
+One thing that is a constant in all of this is [LSF](https://lsf.uni-heidelberg.de/), which is the central platform for organizing your education in Heidelberg.
+After reading through the handbook for your respective Master's degree, you should find the courses you'd like to sign up for in `Veranstaltungen > Vorlesungsverzeichnis`.
+For each course, there is usually a sign-up link, leading to one of the many platforms used ([Müesli](muesli.mathi.uni-heidelberg.de/), [Moodle](https://moodle.uni-heidelberg.de/login/index.php), [Mampf](https://mampf.uni-heidelberg.de), etc.).
