@@ -25,8 +25,7 @@ $dark-link-color: #888;
 .climbing-video {
     border: 3px solid;
     display: inline-block;
-    height: 300px;
-    margin-bottom: 2 * $line-spacing;
+    margin-bottom: $line-spacing;
 
     video {
         width: 100%;
@@ -101,7 +100,6 @@ ul.climbing-routes-list {
     }
 }
 
-
 .climbing-left {
     float: left;
 }
@@ -110,18 +108,14 @@ ul.climbing-routes-list {
     float: right;
 }
 
-.climbing-left,.climbing-right {
+.climbing-left,.climbing-right,.climbing-center {
     width: 48%;
+    max-width: 48%;
 
     @media (max-width: $small-screen-threshold) {
         width: 100%;
         float: none;
     }
-}
-
-.climbing-center {
-    float: none;
-    width: 100%;
 }
 
 .climbing-journal {

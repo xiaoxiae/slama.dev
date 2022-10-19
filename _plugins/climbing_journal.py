@@ -165,11 +165,20 @@ for entry in reversed(sorted(list(journal))):
 
         return line + "</mark> "
 
+    some_color_added = False
     for color in list(colors) + ["other"]:
-        line += format_color(color)
+        formatted_color = format_color(color)
+
+        line += formatted_color
+
+        if formatted_color.strip() != "":
+            some_color_added = True
 
     if "kilter" in journal[entry]:
-        line += "/ <strong>Kilter: </strong>"
+        if some_color_added:
+            line += "/ "
+
+        line += "<strong>Kilter: </strong>"
         for color in journal[entry]["kilter"]:
             line += format_color(color, kilter=True)
 

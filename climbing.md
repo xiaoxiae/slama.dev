@@ -23,9 +23,15 @@ This page is dedicated to my climbing life.
 
 ## [Boulderhaus](https://www.boulderhaus.net/), Heidelberg
 Since moving to Heidelberg for my Master's degree, Boulderhaus is the gym that I frequent.
-The setting is quite oldschool (compared to the walls in Prague that I frequented), mostly difficult moves and hard positions as opposed to dynamics.
+The setting is quite old-school (compared to the walls in Prague that I frequented), mostly difficult moves and hard positions as opposed to dynamics.
 
-## [Kilter board](), Anywhere
+## Kilter board
+The Kilter board has been a bit of an obsession of mine ever since moving to Heidelberg.
+The holds are much more pleasant compared to other boards (like Moonboard) and the app is quite simple to use.
+
+Here are links to sections with all sends given certain grades, along with the number of sends:
+
+{% include kilter.md %}
 
 ## [Smíchoff](https://www.lezeckecentrum.cz/cs/), Prague
 Smíchoff was the only gym in Prague that I frequented, since it is (in my opinion) the best one, so the vast majority of the clips in previous entries are going to be from here.
