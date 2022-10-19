@@ -241,7 +241,7 @@ no-heading: True
     # I don't know how to make it so that floats don't intersect the footer,
     # but putting anything below fixes it
     if len(videos_in_color) != 0:
-        grade_file_content += f"<p class='right'>Total sends: {total}</p>"
+        grade_file_content += f"<p>Total sends: {total}</p>"
 
     if total != 0:
         with open(grade_file_name, "w") as f:
