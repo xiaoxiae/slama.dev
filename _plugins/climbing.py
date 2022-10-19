@@ -30,7 +30,6 @@ if os.path.exists(CLIMBING_INFO):
     with open(CLIMBING_INFO, "r") as f:
         config = yaml.safe_load(f.read())
 
-zones = [1, 2, 3, 4, 5]
 colors = list(reversed(["red", "salmon", "blue", "yellow"]))
 
 for name in list(config):
@@ -53,6 +52,8 @@ for name in list(config):
         wall = ""
         if "wall" in config[name]:
             wall_stub = unidecode(config[name]["wall"]).lower().replace(" ", "-")
+        elif "kilter" in config[name] and config[name]["kilter"]:
+            wall_stub = "kilter"
         else:
             wall_stub = "smichoff"
 
@@ -186,76 +187,6 @@ for name in list(config):
 
 # sort -- gets sorted by date, due to the name of the climbing files
 config_list = [(file, config[file]) for file in config]
-
-# clear old zones
-zones_folder = os.path.join(CLIMBING_FOLDER, "zones")
-if os.path.exists(zones_folder):
-    shutil.rmtree(zones_folder)
-os.mkdir(zones_folder)
-
-for zone in zones:
-    zone_file_name = os.path.join(CLIMBING_FOLDER, "zones", str(zone) + ".md")
-    zone_file_content = f"""---
-title: Climbing
-layout: default
-css: climbing
-no-heading: True
----
-"""
-    added = False
-    total = 0
-
-    for color in colors:
-        videos_in_color = []
-
-        for name in config:
-            if (
-                "color" in config[name]
-                and "zone" in config[name]
-                and config[name]["color"] == color
-                and config[name]["zone"] == zone
-            ):
-                videos_in_color.append(name)
-
-        videos_in_color = list(reversed(sorted(videos_in_color)))
-
-        if len(videos_in_color) != 0:
-            zone_file_content += "\n\n{: .center}\n### " + color.capitalize()
-
-        for i, name in enumerate(videos_in_color):
-            style_class = "climbing-"
-
-            # either an odd number of videos, or even and not the last -- no center
-            if len(videos_in_color) % 2 == 0 or (
-                len(videos_in_color) % 2 == 1 and i != len(videos_in_color) - 1
-            ):
-                style_class += "left" if i % 2 == 0 else "right"
-            else:
-                style_class += "center"
-
-            zone_file_content += f"""
-<figure class='climbing-video climbing-{color} {style_class}'>
-<video poster="/climbing/videos/{os.path.splitext(name)[0] + '.webp'}" controls preload="none"><source src='/climbing/videos/{name}' type='video/mp4'></video>
-<figcaption class='figcaption-margin'>{config[name]["date"].strftime("%d / %m / %Y")}</figcaption>
-</figure>"""
-
-            added = True
-            total += 1
-
-        # THIS IS SUPER IMPORTANT!
-        # I don't know how to make it so that floats don't intersect the footer,
-        # but putting anything below fixes it
-        if len(videos_in_color) != 0:
-            zone_file_content += f"<p class='right'>Total climbs: {total}</p>"
-
-    # if there are no videos of the climb, add a text about it
-    if not added:
-        zone_file_content += (
-            "{: .center}\nI haven't recorded any climbs in this zone yet, sorry!"
-        )
-
-    with open(zone_file_name, "w") as f:
-        f.write(zone_file_content)
 
 with open(CLIMBING_INFO, "w") as f:
     f.write(yaml.dump(config))

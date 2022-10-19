@@ -25,19 +25,11 @@ This page is dedicated to my climbing life.
 Since moving to Heidelberg for my Master's degree, Boulderhaus is the gym that I frequent.
 The setting is quite oldschool (compared to the walls in Prague that I frequented), mostly difficult moves and hard positions as opposed to dynamics.
 
-The map is TBA (soon!).
+## [Kilter board](), Anywhere
 
 ## [Smíchoff](https://www.lezeckecentrum.cz/cs/), Prague
-Smíchoff is the only gym in Prague that I frequent, since it is (in my opinion) the best one, so the vast majority of the clips are going to be from here.
+Smíchoff was the only gym in Prague that I frequented, since it is (in my opinion) the best one, so the vast majority of the clips in previous entries are going to be from here.
 People are nice, prices are student-friendly and boulders are frequently changed, so it's a perfect place to be.
-
-The following is a map of the entire bouldering section, separated into sections, with one being rebuilt every two weeks. 
-Each section can be clicked on to see the videos of its boulder sends.
-
-{: .no-invert}
-<figure>
-{% include smichoff-map.svg %}
-</figure>
 
 ## Diary
 The following contains my climbing diary -- how many new/old boulders have I done (and links to them). It also serves as a convenient way to view the most recently sent boulders.

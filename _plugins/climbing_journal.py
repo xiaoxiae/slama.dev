@@ -107,7 +107,7 @@ for entry in reversed(sorted(list(journal))):
         line += f" (at <img class='climbing-wall-logo' src='/climbing/wall-logos/{wall_stub}.svg' alt='Logo of the {wall} climbing wall.'/>"
 
         if "rebuilt" in journal[entry]:
-            line += f", <strong>zone {journal[entry]['rebuilt']} rebuilt</strong>"
+            line += f", <strong>new boulders</strong>"
 
         line += ")</li> <li>"
 

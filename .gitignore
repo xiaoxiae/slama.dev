@@ -27,17 +27,9 @@ fonts/
 # Even you, SVG
 *.svg
 
-# xopp, svg
-
 # generated
 _includes/cv.html
 _includes/songs.md
 _includes/projects.md
 _includes/videos.md
 _includes/diary.md
-climbing/zones/
-climbing/guides/
-cv.pdf
-
-# frequently changing
-assets/productivitree.svg
