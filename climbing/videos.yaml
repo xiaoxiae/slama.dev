@@ -40,6 +40,11 @@ boulderhaus-red-2022-10-16-kiwotrgb.mp4:
   color: red
   date: 2022-10-16
   wall: Boulderhaus
+boulderhaus-red-2022-10-20-igdhmzvh.mp4:
+  attempts: 2
+  color: red
+  date: 2022-10-20
+  wall: Boulderhaus
 kilter-V5-2022-10-15-ecryibhx.mp4:
   color: V5
   date: 2022-10-15
@@ -104,6 +109,11 @@ kilter-V8-2022-10-18-rjxuhewr.mp4:
   color: V8
   date: 2022-10-18
   flash: true
+  kilter: true
+kilter-V8-2022-10-20-swyueyvc.mp4:
+  attempts: 2
+  color: V8
+  date: 2022-10-20
   kilter: true
 smichoff-blue-2020-09-07-fcmjshmc.mp4:
   color: blue
