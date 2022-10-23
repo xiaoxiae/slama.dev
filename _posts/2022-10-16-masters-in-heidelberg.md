@@ -19,9 +19,16 @@ _Note: this post is ever-expanding. If you've also experienced some issues with 
 ### Enrolment
 
 #### Application
+This step of the enrolment process can be either tedious (in the case of [Cancer Biology](https://www.uni-heidelberg.de/en/study/all-subjects/molecular-biosciences/molecular-biosciences-master)) or very straightforward (in the case of [Data and Computer Science](https://www.uni-heidelberg.de/en/study/all-subjects/applied-computer-science/data-and-computer-science-master)), depending entirely on your major.
 
-This step of the enrolment process is quite straightforward -- given your degree of interest (say [Computer Science](https://www.uni-heidelberg.de/en/study/all-subjects/applied-computer-science/data-and-computer-science-master)), you need to find the required documents to send by post to the admission's office.
-For me, this included
+In the former case, you have to
+1. send in your CV and a motivation letter and, if chosen,
+2. attend an interview with a presentation you prepared[^interview]
+
+[^interview]: Interviewers are Faculty members from German Cancer Research Center (DKFZ) since this institute is closely connected with the major. The interview started with a 5-minute presentation given by the student. The topic could be the bachelor thesis or any other scientific project you did. After the presentation, the interviewer asked questions about the project presented, some fundamental knowledge of molecular biology, and motivation to study at Heidelberg University.
+
+In the latter case, there was no interview so you could skip directly to sending the application documents (required by both).
+This includes (but is not limited to):
 - a filled-in **application**,
 - a certificate of **English proficiency** (at least B2)[^german]
 - a transcript of **completed study requirements** (I haven't received my degree at a time),
@@ -30,7 +37,7 @@ For me, this included
 
 [^german]: If it's a German master's degree, you'll need a certificate of German proficiency instead.
 
-Once the admissions are opened (for us this was May/June 2022), the specific list will be at the respective degree's website.
+Once the admissions are opened (for us this was ~March 2022), the specific list will be at the respective degree's website.
 You might have to do a little bit of digging and translating, though (the study requirements might be in German even if the degree isn't).
 
 Sending the documents by post is best done by private carriers such as [UPS](https://www.ups.com/us/en/global.page) instead of the post, because they're faster, more liable and will notify you when the documents arrived, in exchange for being a little more costly (~€30 from the Czech Republic).
@@ -201,8 +208,8 @@ The best thing is that it closes pretty late (9 PM) and is also open on Saturday
 ### Education
 
 The structure of your degree varies drastically from degree to degree.
-Some programmes (Cancer Biology) have a relatively predetermined schedule, while others (Computer Science) are more open.
+Some programmes have a relatively predetermined schedule, while others are more open.
 
 One thing that is a constant in all of this is [LSF](https://lsf.uni-heidelberg.de/), which is the central platform for organizing your education in Heidelberg.
-After reading through the handbook for your respective Master's degree, you should find the courses you'd like to sign up for in `Veranstaltungen > Vorlesungsverzeichnis`.
-For each course, there is usually a sign-up link, leading to one of the many platforms used ([Müesli](muesli.mathi.uni-heidelberg.de/), [Moodle](https://moodle.uni-heidelberg.de/login/index.php), [Mampf](https://mampf.uni-heidelberg.de), etc.).
+After reading through the handbook for your respective Master's degree, you should find the courses you'd like to sign up for in the course catalogue.
+For each course, there is usually a sign-up link, leading to one of the many e-learning platforms used ([Müsli](https://muesli.mathi.uni-heidelberg.de/), [Moodle](https://moodle.uni-heidelberg.de/login/index.php), [Mampf](https://mampf.uni-heidelberg.de), etc.).
