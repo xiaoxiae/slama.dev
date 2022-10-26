@@ -1311,3 +1311,24 @@
   red:
     new: 5
   wall: Boulderhaus
+2022-10-25:
+  black:
+    old: 1
+  blue:
+    old: 2
+  kilter:
+    V5:
+      new: 3
+    V6:
+      new: 3
+    V7:
+      new: 3
+    V8:
+      new: 1
+  note: A very nice Kilter board session! Sent some nice V6s, V7s and a V8 (that I
+    had absolutely no chance at a few sessions ago) relatively easily, with really
+    good attempts on some other difficult routes that should hopefully go down next
+    session!
+  red:
+    old: 2
+  wall: Boulderhaus
