@@ -174,6 +174,11 @@ kilter-V7-2022-10-25-wbppyucn.mp4:
   date: 2022-10-25
   flash: true
   kilter: true
+kilter-V7-2022-10-27-wbdjgdgq.mp4:
+  color: V7
+  date: 2022-10-27
+  flash: true
+  kilter: true
 kilter-V8-2022-10-18-rjxuhewr.mp4:
   color: V8
   date: 2022-10-18
@@ -188,6 +193,21 @@ kilter-V8-2022-10-25-nbhhataz.mp4:
   attempts: 3
   color: V8
   date: 2022-10-25
+  kilter: true
+kilter-V8-2022-10-27-foctyurh.mp4:
+  attempts: 5
+  color: V8
+  date: 2022-10-27
+  kilter: true
+kilter-V8-2022-10-27-ilftughp.mp4:
+  attempts: 3
+  color: V8
+  date: 2022-10-27
+  kilter: true
+kilter-V8-2022-10-27-zyslcxzg.mp4:
+  attempts: 3
+  color: V8
+  date: 2022-10-27
   kilter: true
 smichoff-blue-2020-09-07-fcmjshmc.mp4:
   color: blue

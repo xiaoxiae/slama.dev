@@ -1301,13 +1301,13 @@
   wall: Boulderhaus
 2022-10-22:
   black:
-    new: 1
+    new: 2
   blue:
     new: 4
   note: New routes were pretty fun! There was one easy dyno, some harder crimpy stuff
-    and one coordination move. After doing the easiest black of the new ones, I don't
-    think that I want to try the other two because one hurts my fingers and the other
-    is insane -- Kilter next time!
+    and one coordination move. I also managed to do the hard black from a few sessions
+    ago! After doing the easiest black of the new ones, I don't think that I want
+    to try the other two because one hurts my fingers and the other is insane!
   red:
     new: 5
   wall: Boulderhaus
@@ -1331,4 +1331,20 @@
     session!
   red:
     old: 2
+  wall: Boulderhaus
+2022-10-27:
+  blue:
+    new: 3
+  kilter:
+    V6:
+      new: 2
+    V7:
+      new: 1
+    V8:
+      new: 4
+  note: Another pretty good session. The goal of doing a V9 seems to be quite a bit
+    more difficult since the jump between V8 and V9 is quite large. Nevertheless,
+    I tried a few V9s and V10s and I think that some will go down in a few sessions.
+  red:
+    new: 2
   wall: Boulderhaus
