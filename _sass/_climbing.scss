@@ -217,6 +217,15 @@ ul.hfill {
     li {
         padding-bottom: $line-spacing / 6;
     }
+
+    @media (max-width: $small-screen-threshold) {
+        li:nth-child(2n) {
+            padding-top: $line-spacing / 4;
+        }
+
+        display: block;
+        padding-bottom: $line-spacing / 4;
+    }
 }
 
 p.climbing-note {
