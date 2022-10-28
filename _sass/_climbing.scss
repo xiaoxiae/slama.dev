@@ -220,11 +220,12 @@ ul.hfill {
 
     @media (max-width: $small-screen-threshold) {
         li:nth-child(2n) {
-            padding-top: $line-spacing / 4;
+            padding-top: $line-spacing / 5;
+            line-height: $line-height * 1.3;
         }
 
         display: block;
-        padding-bottom: $line-spacing / 4;
+        padding-bottom: $line-spacing / 5;
     }
 }
 
