@@ -108,7 +108,7 @@ for category in [v for v in videos if v != OTHER_CATEGORY_NAME] + [OTHER_CATEGOR
         if len(thumbnails) == 1:
             if not os.path.exists(os.path.join(this_video_folder, thumbnail_name)):
                 image = Image.open(thumbnails[0])
-                image.thumbnail((1280, 720))
+                image.thumbnail((640, 360))
                 image.save(os.path.join(this_video_folder, thumbnail_name))
 
         resolution_links = [
