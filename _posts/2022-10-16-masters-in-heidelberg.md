@@ -11,9 +11,9 @@ pdf: true
 I, along with my <a class='secret' href='/assets/kacka.webp'>lovely girlfriend</a>, recently moved to Heidelberg to pursue our respective master's degrees (Computer Science and Cancer Biology).
 While Heidelberg is a beautiful city with great sights, interesting people and a [pretty good bouldering gym](https://www.boulderhaus.net/), the process of becoming a European international student can be quite challenging.
 
-If you find yourself in a similar position (or are considering placing yourself in it), I hope this post will be useful to you, since it covers a number of the things I struggled with during the enrolment process and beyond.
+If you find yourself in a similar position (or are considering placing yourself in it), I hope this post will be useful to you, since it covers a number of the things we struggled with during the enrolment process and beyond.
 
-_Note: this post is ever-expanding. If you've also experienced some issues with education in Heidelberg (or Germany, for that matter), please let me know and I'll add it here._
+_Note: this post is ever-expanding. If you've also experienced some issues with education in Heidelberg, or have some experiences you'd like to share, please let me know and I'll add them here._
 
 
 ### Enrolment
@@ -37,21 +37,21 @@ This includes (but is not limited to):
 
 [^german]: If it's a German master's degree, you'll need a certificate of German proficiency instead.
 
-Once the admissions are opened (for us this was ~March 2022), the specific list will be at the respective degree's website.
+Once the admissions are opened (~March 2022 for our programmes), the specific list will be at the respective degree's website.
 You might have to do a little bit of digging and translating, though (the study requirements might be in German even if the degree isn't).
 
-Sending the documents by post is best done by private carriers such as [UPS](https://www.ups.com/us/en/global.page) instead of the post, because they're faster, more liable and will notify you when the documents arrived, in exchange for being a little more costly (~€30 from the Czech Republic).
+Sending the documents by post is best done by private carriers such as [UPS](https://www.ups.com/us/en/global.page) instead of the post, because they're faster, more liable and will notify you when the documents arrived, albeit a little more costly (~€30 from the Czech Republic).
 
 
 #### Immatriculation
 
 Once you have been accepted and have received your letter of admission, you will know what other documents the university requires to finish your enrolment.
-This can vary quite drastically between the degrees, what was required of me was
+This can vary quite drastically between the degrees, what was required for Computer Science was
 - a filled-in **application for immatriculation**[^address],
 - a **university diploma** or a **final transcript** of my home university,
 - a **passport-size photo** (35mm \(\times\) 45mm),
 - **proof of health insurance**[^insurance],
-- **proof of finance** (which is just [this document](/assets/masters-in-heidelberg/proof-of-finance.pdf)) and
+- **proof of finance** ([this document](/assets/masters-in-heidelberg/proof-of-finance.pdf)) and
 - a copy of my **ID** (again, or a VISA for non-EU citizens).
 
 [^address]: If you don't have a German address, just write something like _Documents will be picked up in person_ in the "Temporary residence in Germany" section and pick them up when you arrive in Heidelberg, else they will send them by post and it could take a **very** long time (much longer than the start of classes).
@@ -61,25 +61,26 @@ This can vary quite drastically between the degrees, what was required of me was
 After everything has been sent, you'll need to wait a bit (say a week) and then pick up your documents (ID, Matriculation documents, etc.) from [this building](https://goo.gl/maps/LtnHGVDei4EtHR719).
 At this point, there are some more steps, such as
 - activating your student ID,
-- checking your [email](https://sogo02.urz.uni-heidelberg.de/SOGo/),
-- setting up Eduroam[^eduroam] and,
 - paying the student fee[^fee],
-
-[^eduroam]: The simplest way is using the [Configuration Assistant Tool](https://cat.eduroam.org).
+- setting up [Eduroam](https://www.urz.uni-heidelberg.de/en/service-catalogue/network/wi-fi-via-eduroam),
+- browsing [IT services](https://www.urz.uni-heidelberg.de/en/support/it-for-all-target-groups/it-for-students) such as [VPN](https://www.urz.uni-heidelberg.de/en/service-catalogue/network/vpn-virtual-private-network) or [printing](https://www.urz.uni-heidelberg.de/en/service-catalogue/printing/public-printers-and-copiers) and
+- checking your [email](https://sogo02.urz.uni-heidelberg.de/SOGo/),
 
 but they are well-described in the documents you receive so I won't cover them here.
-You should definitely check out the overview of the [most important services](https://urz.uni-heidelberg.de/en/newhere), which has a nice overview of services you're entitled to as a student.
 
-[^fee]: This again depends on if you're an EU citizen (in which case the fee is quite large) or you are an EU citizen (the fee is pretty small, I payed ~€170). In any case, the payment can take a little while to confirm (at least when paying from Revolut), so don't panic.
+[^fee]: This again depends on whether you're a citizen of EU (the fee is pretty small, we payed ~€170) or not (the fee is substantial large).
+In any case, the payment can take a little while to confirm (at least when paying from Revolut), so don't panic.
 
 
 ### Money
-If Euros aren't your nation's currency (which was the case for me as we use Czech Korunas), there is a chance that paying using your bank's card will include additional fees or unfavorable conversion rates.
+If Euros aren't your nation's currency (which was the case for me as we use Czech Korunas), there is a chance that paying using your bank's card will include additional fees and unfavorable conversion rates of your central bank.
 If that is the case, it might be advisable to either
 - set-up an account at a German bank or
-- use services such as [Revolut](https://www.revolut.com/) that facilitate currency conversions without additional fees.
+- use a service like [Revolut](https://www.revolut.com/) that facilitate currency conversions without additional fees[^revolut].
 
-I've chosen the Revolut path and it has been working well so far -- the app is easy to use, the money easy to track and the card has been working fine without any issues.
+[^revolut]: As of 11/2022, Revolut allows free monthly conversions of around €1000, if you don't have a premium account. This will most likely be enough for you, depending on your housing and lifestyle (for us it's plenty).
+
+I've chosen to use Revolut and it has been working well so far -- the app is easy to use, the money easy to track and the card has been working fine without any issues.
 If you'd like to try it too, **let someone who already has Revolut know[^noone]** since they could invite you through Revolut's referral programme and receive some money for free.
 
 [^noone]: If you don't know anyone and would like to help me out, let me know.
@@ -90,9 +91,9 @@ Most places in Heidelberg accept cards so you don't need to have a lot of cash o
 ### Housing
 It's fucked up.
 
-Your best bet is to start **really** early and try to apply for housing in Heidelberg's dorms (either public or private).
+Your best bet is to start **really** early and try to apply for housing in Heidelberg's dorms (via [student union](https://stw.uni-heidelberg.de/en/) or privately-owned).
 If they're full, going in person and making sad eyes reportedly works, although I haven't tried.
-You should also try to periodically scour [wg-gesucht](wg-gesucht.de/), which is targeted at student housing, and [immobilienscout24](https://www.immobilienscout24.de/), which is the largest property renting and purchase website in Germany.
+You should also try to periodically scour [wg-gesucht](https://wg-gesucht.de/), which is targeted at student housing, and [immobilienscout24](https://www.immobilienscout24.de/), which is the largest property renting and purchase website in Germany.
 
 The text we usually sent, along with a **SCHUFA certificate** (which we got from [immobilienscout24](https://www.immobilienscout24.de/) but you can actually get for free if you do some due diligence and are not as pressed for time as we were) is the following, both in English and in German:
 
@@ -128,7 +129,7 @@ The text we usually sent, along with a **SCHUFA certificate** (which we got from
 > 
 > In terms of financing, we are fortunate to have the financial support of both of our parents, along with having a sizable amount of savings.
 > 
-> If you think we'd be the right fit for the apartment, please let me know either through the website or by email (tomas@slama.dev) or phone (+420 774 068 605).
+> If you think we'd be the right fit for the apartment, please let me know either through the website or by email (tomas@slama.dev) or phone (my phone number).
 > 
 > Have a nice day and thank you in advance!
 > 
@@ -187,10 +188,11 @@ This depends a lot on where you live but it might be a good idea to purchase the
 
 [^noice]: This excludes high-speed trains (like ICE).
 
-Also, if you get the chance to, **get a bike**.
+Also, if you can, travel by bike.
 Heidelberg is made for travel by bike -- it has great infrastructure (bike lanes and racks everywhere), cars are used to them and it is arguably the fastest way to travel here since the public transport always has delays.
 
-Even if you don't live in Heidelberg, it might still be a good idea to get it since you can leave it at the train/tram station when traveling to/from Heidelberg, which saves quite a lot of time in the long run and is healthy!
+If you don't own a bike, use a bike-sharing service like [nextbike](https://www.vrnnextbike.de/en/heidelberg/), which allows up to 30 minutes of free travel _per rental_ (for students).
+This is likely more than enough time to travel from/to any campus/mensa during your daily schedule.
 
 For traveling to specific campus buildings, there are some very useful maps for each campus part ([Altstadt](/assets/masters-in-heidelberg/altstadt.pdf), [Bergheim](/assets/masters-in-heidelberg/bergheim.pdf) and [Im Neuenheimer Feld](/assets/masters-in-heidelberg/im-neuenheimer-feld.pdf)).
 
