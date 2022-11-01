@@ -22,9 +22,11 @@ if os.path.exists(CLIMBING_INFO):
 files = os.listdir(CLIMBING_VIDEOS_FOLDER)
 for file in files:
     if file.lower().endswith(".mp4") and file not in config:
+        full_path = os.path.join(CLIMBING_VIDEOS_FOLDER, file)
+
         config[file] = {
             "color": "TODO",
-            "date": date.today(),
+            "date": date.fromtimestamp(os.path.getmtime(full_path)),
             "new": None,
             "rotate": "left",
             "encode": None,
