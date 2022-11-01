@@ -156,7 +156,7 @@ for entry in reversed(sorted(list(journal))):
                 " ["
                 + ", ".join(
                     [
-                        f"<a class='climbing-link' href='/climbing/videos/{name}'>{videos[name]['label'] if 'label' in videos[name] else 'F' if 'flash' in videos[name] and videos[name]['flash'] else 'A' if 'attempts' not in videos[name] else videos[name]['attempts']}</a>"
+                        f"<a class='climbing-link' href='/climbing/videos/{name}'>{videos[name]['label'] if 'label' in videos[name] else 'F' if 'flash' in videos[name] and videos[name]['flash'] else 'A'}</a>"
                         for i, name in enumerate(entry_videos)
                     ]
                 )

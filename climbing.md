@@ -54,7 +54,7 @@ Since there there are some other walls that I visit from time to time (mostly th
 | <img alt='Mandalawall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/mandala.svg'/>          | [Mandala](https://boulderhalle-dresden.de/)        | Dresen, DE     |
 
 The format for **bouldering** is <mark class="climbing-diary-record climbing-black climbing-black-text">old sends/<span class="underline">new sends</span> [<a>video links</a>]</mark>, left-to-right from easy to hard.
-Videos marked <mark class="climbing-diary-record climbing-other climbing-other-text"><a>F</a></mark> are flash sends, videos marked <mark class="climbing-diary-record climbing-other climbing-other-text"><a>A</a></mark> are just general ascents and videos with a number (<mark class="climbing-diary-record climbing-other climbing-other-text"><a>3</a></mark>) determine the number of attempts.
+Videos marked <mark class="climbing-diary-record climbing-other climbing-other-text"><a>F</a></mark> are flash sends while videos marked <mark class="climbing-diary-record climbing-other climbing-other-text"><a>A</a></mark> are just regular non-flash ascents.
 
 The format for **sport climbing** is <mark class="climbing-diary-record climbing-other climbing-other-text">Name (difficulty, type)</mark>, top-to-bottom from when it was climbed during the given day. The difficulty is in whichever norm the guide is, with the type being either _onsight_ (climb without having seen the route), _redpoint_ (climb with some prior attempts) or _top rope_ (climb with the rope in the anchor).
 
