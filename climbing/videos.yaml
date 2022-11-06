@@ -23,6 +23,10 @@ boulderhaus-black-2022-10-23-imutlbch.mp4:
   color: black
   date: 2022-10-23
   wall: Boulderhaus
+boulderhaus-black-2022-11-05-dorhpjwx.mp4:
+  color: black
+  date: 2022-11-05
+  wall: Boulderhaus
 boulderhaus-red-2022-10-13-acxehokt.mp4:
   color: red
   date: 2022-10-13
@@ -198,6 +202,10 @@ kilter-V7-2022-10-27-wbdjgdgq.mp4:
 kilter-V7-2022-11-03-fsukpljb.mp4:
   color: V7
   date: 2022-11-03
+  kilter: true
+kilter-V7-2022-11-05-dmodvfyr.mp4:
+  color: V7
+  date: 2022-11-05
   kilter: true
 kilter-V8-2022-10-18-rjxuhewr.mp4:
   color: V8
