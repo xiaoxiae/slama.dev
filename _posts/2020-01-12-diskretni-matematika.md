@@ -367,7 +367,7 @@ Graf \(H\) je _podgrafem_ grafu \(G \left(H \subseteq G\right) \equiv V\left(H\r
 {% endmath %}
 
 {% math definition "indukovaný podgraf" %}
-Graf \(H\) je _indukovaným podgrafem_ grafu \(G \left(H \subseteq G\right) \equiv V\left(H\right) \subseteq V\left(G\right) \land E\left(H\right) = E\left(G\right) \cup \binom{V\left(H\right)}{2}\).
+Graf \(H\) je _indukovaným podgrafem_ grafu \(G \left(H \subseteq G\right) \equiv V\left(H\right) \subseteq V\left(G\right) \land E\left(H\right) = E\left(G\right) \cap \binom{V\left(H\right)}{2}\).
 - vznik tak, že z grafu odebíráme pouze vrcholy (a s nimi spojené hrany)
 {% endmath %}
 
