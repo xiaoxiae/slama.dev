@@ -110,7 +110,7 @@ pokud součet dává smysl.
 
 {% math theorem "LOTUS" %}pokud \(X\) je n.v. a \(g\) reálná funkce, tak \[\mathbb{E}(g(X)) = \sum_{x \in \mathrm{Im}(X)} g(x) P(X = x)\]{% endmath %}
 
-{% math lemma "vlastnosti \(\mathbb{E}\)" %}nechť \(X, Y\) jsou diskrétní n.v. a \(a, b \in \mathbb{R}\); pak
+{% math lemma "vlastnosti střední hodnoty" %}nechť \(X, Y\) jsou diskrétní n.v. a \(a, b \in \mathbb{R}\); pak
 - pokud \(P(X \ge 0) = 1\) a \(\mathbb{E}(X) = 0\), tak \(P(X = 0) = 1\)
 - pokud \(\mathbb{E}(X) \ge 0\), tak \(P(X \ge 0) > 0\)
 - \(\mathbb{E}(aX + bY) = a\mathbb{E}(X) + b\mathbb{E}(Y)\) (linearita střední hodnoty)
