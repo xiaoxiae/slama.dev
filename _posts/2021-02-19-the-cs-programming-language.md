@@ -11,6 +11,8 @@ redirect_from:
 
 {% lecture_notes_preface Pavel Ježek|2020/2021|en%}
 
+Besides this, they have been slightly extended by some C#-specific questions for my [Bachelor's state exam](https://slama.dev/vzdelani/priprava-na-statnice-mff-uk/) that were not covered in the lecture, namely generics and functional elements.
+
 ### Strings
 - internally an array of chars
 - **immutable** (neither length nor contents)
