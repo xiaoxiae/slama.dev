@@ -10,11 +10,11 @@ no-heading: True
 
 I'm Tom and this is my personal website.
 
-I am a student from the Czech Republic, currently getting a bachelor's degree at [MFF UK](https://www.mff.cuni.cz/en).
-Besides programming, I also like to play computer games, [take photos](/photos/) and [rock climb](climbing/).
+I am a Czech student, currently getting a masters's degree at the [Heidelberg University](https://www.uni-heidelberg.de/en) in Germany.
+Besides programming, I like to play computer games, [take photos](/photos/), [make videos](/videos/) and [rock climb](climbing/).
 
 This website contains things I feel are interesting enough to put on the internet.
-The language of the blog is English, but some posts might be written in other languages (and will be denoted as such).
+The language is English, but some posts might be written in other languages (and will be denoted as such).
 Links to the sections of the website can be found at the top, links to the posts can be found below.
 {% for post in site.posts %}
 {% assign currentdate = post.date | date: "%Y" %}
