@@ -29,7 +29,7 @@ The setting is quite old-school (compared to the walls in Prague that I frequent
 The Kilter board has been a bit of an obsession of mine ever since moving to Heidelberg.
 The holds are much more pleasant compared to other boards (like Moonboard) and the app is quite simple to use.
 
-Here are links to sections with all sends given certain grades, along with the number of sends:
+Here are links to sections with all sends given certain grades, along with the number of videos:
 
 {% include kilter.md %}
 
