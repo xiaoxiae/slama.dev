@@ -13,8 +13,8 @@ OUT = "../_includes/videos.md"
 VIDEO_FOLDER = "../videos/"
 URL_ROOT = "https://github.com/xiaoxiae/videos/tree/master/"
 
-videos = {
-    "Graph Theory": [
+videos = [
+    ("Graph Theory", [
         (
             date(2021, 10, 6),
             "https://www.youtube.com/watch?v=g-QyzzPM4rU",
@@ -39,8 +39,8 @@ videos = {
             "Vizing's theorem",
             "03-",
         ),
-    ],
-    OTHER_CATEGORY_NAME: [
+    ]),
+    (OTHER_CATEGORY_NAME, [
         (
             date(2021, 12, 31),
             "https://www.youtube.com/watch?v=KlaEp6ydVhA",
@@ -53,8 +53,16 @@ videos = {
             "The Remarkable BEST-SAT Algorithm",
             "10-",
         ),
-    ],
-}
+    ]),
+    ("Shorts", [
+        (
+            date(2022, 11, 14),
+            "https://www.youtube.com/shorts/JY0_ApbZYkQ",
+            "Encoding Numbers using Dots and Parentheses",
+            "13-",
+        ),
+    ]),
+]
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
@@ -62,10 +70,10 @@ result = ""
 
 # ensure that the category "other" is the last one
 # not pretty, but it works :P
-for category in [v for v in videos if v != OTHER_CATEGORY_NAME] + [OTHER_CATEGORY_NAME]:
+for category, video_contents in videos:
     category_str = f"### {category}\n\n"
 
-    for date, youtube_link, video, folder_prefix in reversed(sorted(videos[category])):
+    for date, youtube_link, video, folder_prefix in reversed(sorted(video_contents)):
         match = glob(os.path.join(ROOT, folder_prefix + "*"))
 
         if len(match) == 0:
@@ -85,6 +93,8 @@ for category in [v for v in videos if v != OTHER_CATEGORY_NAME] + [OTHER_CATEGOR
 
         if not os.path.exists(this_video_folder):
             os.mkdir(this_video_folder)
+
+        is_short = os.path.exists(os.path.join(folder, ".short"))
 
         # rozlišení
         resolution_paths = [f for f in glob(os.path.join(folder, "export", "*.mp4"))]
@@ -108,7 +118,13 @@ for category in [v for v in videos if v != OTHER_CATEGORY_NAME] + [OTHER_CATEGOR
         if len(thumbnails) == 1:
             if not os.path.exists(os.path.join(this_video_folder, thumbnail_name)):
                 image = Image.open(thumbnails[0])
-                image.thumbnail((640, 360))
+
+                if is_short:
+                    size = (640, 360)
+                else:
+                    size = (360, 640)
+
+                image.thumbnail(size)
                 image.save(os.path.join(this_video_folder, thumbnail_name))
 
         resolution_links = [
@@ -116,7 +132,12 @@ for category in [v for v in videos if v != OTHER_CATEGORY_NAME] + [OTHER_CATEGOR
         ]
 
         with open(os.path.join(folder, "DESCRIPTION.md"), "r") as f:
-            description = f.read().splitlines()[0]
+            contents = f.read()
+
+            if not is_short:
+                description = contents.splitlines()[0]
+            else:
+                description = contents.splitlines()[1]
 
         if len(thumbnails) == 1:
             category_str += f"\n[![Thumbnail for the '{video}' video](/videos/{video_slug}/thumbnail.webp){{: .video-thumbnail}}]({youtube_link})\n"
