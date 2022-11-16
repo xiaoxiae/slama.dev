@@ -1393,3 +1393,12 @@
   red:
     new: 6
   wall: Boulderhaus
+2022-11-15:
+  kilter:
+    V6:
+      new: 1
+  note: A pretty weak sesson, not much more to say :).
+  red:
+    new: 1
+    old: 2
+  wall: Boulderhaus
