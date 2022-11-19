@@ -61,6 +61,12 @@ videos = [
             "Encoding Numbers using Dots and Parentheses",
             "13-",
         ),
+        (
+            date(2022, 11, 16),
+            "https://youtube.com/shorts/X9pN7XZFbyE",
+            "What does this weird C program do?",
+            "14-",
+        ),
     ]),
 ]
 
@@ -84,7 +90,7 @@ for category, video_contents in videos:
 
         folder = match[0]
 
-        video_slug = video.lower().replace("'", "").replace(" ", "-")
+        video_slug = video.lower().replace("'", "").replace(" ", "-").replace("?", "")
 
         if not os.path.exists(VIDEO_FOLDER):
             os.mkdir(VIDEO_FOLDER)
