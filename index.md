@@ -10,7 +10,7 @@ no-heading: True
 
 I'm Tom and this is my personal website.
 
-I am a Czech student, currently getting a masters's degree at the [Heidelberg University](https://www.uni-heidelberg.de/en) in Germany.
+I am a Czech student, currently getting a master's degree at the [Heidelberg University](https://www.uni-heidelberg.de/en) in Germany.
 Besides programming, I like to play computer games, [take photos](/photos/), [make videos](/videos/) and [rock climb](climbing/).
 
 This website contains things I feel are interesting enough to put on the internet.
