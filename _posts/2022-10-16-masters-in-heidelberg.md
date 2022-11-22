@@ -155,7 +155,7 @@ The text we usually sent, along with a **SCHUFA certificate** (which you can eit
 > 
 > In Bezug auf die Finanzierung haben wir das Glück, die finanzielle Unterstützung unserer beiden Eltern zu haben, zusammen mit einer beträchtlichen Summe an Ersparnissen.
 > 
-> Wenn Sie der Meinung sind, dass wir für die Wohnung geeignet sind, lassen Sie es mich bitte entweder über die Website oder per E-Mail (tomas@slama.dev) oder Telefon (+420 774 068 605) wissen.
+> Wenn Sie der Meinung sind, dass wir für die Wohnung geeignet sind, lassen Sie es mich bitte entweder über die Website oder per E-Mail (tomas@slama.dev) oder Telefon (Meine Telefonnummer) wissen.
 > 
 > Schönen Tag noch und danke im Voraus!
 > 
@@ -174,7 +174,7 @@ The text we usually sent, along with a **SCHUFA certificate** (which you can eit
 > 
 > In Bezug auf die Finanzierung haben wir das Glück, die finanzielle Unterstützung unserer beiden Eltern zu haben, zusammen mit einer beträchtlichen Summe an Ersparnissen.
 > 
-> Wenn Sie der Meinung sind, dass wir für die Wohnung geeignet sind, lassen Sie es mich bitte entweder über die Website oder per E-Mail (tomas@slama.dev) oder Telefon (my phone number) wissen.
+> Wenn Sie der Meinung sind, dass wir für die Wohnung geeignet sind, lassen Sie es mich bitte entweder über die Website oder per E-Mail (tomas@slama.dev) oder Telefon (Meine Telefonnummer) wissen.
 > 
 > Schönen Tag noch und danke im Voraus!
 > 
