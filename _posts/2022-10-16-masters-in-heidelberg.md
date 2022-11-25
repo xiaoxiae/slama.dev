@@ -9,7 +9,7 @@ pdf: true
 {:toc}
 
 I, along with my <a class='secret' href='/assets/kacka.webp'>lovely girlfriend</a>, recently moved to Heidelberg to pursue our respective master's degrees (Computer Science and Cancer Biology).
-While Heidelberg is a beautiful city with great sights, interesting people and a [pretty good bouldering gym](https://www.boulderhaus.net/), the process of becoming a European international student can be quite challenging.
+While Heidelberg is a beautiful city with great sights, interesting people and a pretty good bouldering gym, the process of becoming a European international student can be quite challenging.
 
 If you find yourself in a similar position (or are considering placing yourself in it), I hope this post will be useful to you, since it covers a number of the things we struggled with during the enrolment process and beyond.
 
@@ -59,7 +59,7 @@ This can vary quite drastically between the degrees, what was required for Compu
 [^insurance]: This was a bit tricky. If you're outside of the EU, you'll need to contact an insurance provider in Germany. If you're from the EU, you most likely have a EHIC-compliant insurance card. **It is not enough to send a copy** as the university requires that a German insurance provider confirms the validity of the card. This was, however, relatively easy, as described in [this document](/assets/masters-in-heidelberg/insurance.pdf).
 
 After everything has been sent, you'll need to wait a bit (say a week) and then pick up your documents (ID, Matriculation documents, etc.) from [this building](https://goo.gl/maps/LtnHGVDei4EtHR719).
-At this point, there are some more steps, such as
+There are some more steps afterwards, such as
 - activating your student ID,
 - paying the student fee[^fee],
 - setting up [Eduroam](https://www.urz.uni-heidelberg.de/en/service-catalogue/network/wi-fi-via-eduroam),
@@ -68,8 +68,7 @@ At this point, there are some more steps, such as
 
 but they are well-described in the documents you receive so I won't cover them here.
 
-[^fee]: This again depends on whether you're a citizen of EU (the fee is pretty small, we payed ~€170) or not (the fee is substantial large).
-In any case, the payment can take a little while to confirm (at least when paying from Revolut), so don't panic.
+[^fee]: This again depends on whether you're a citizen of EU (the fee is pretty small, we payed ~€170) or not (the fee is substantial large). In any case, the payment can take a little while to confirm (at least when paying from Revolut), so don't panic.
 
 
 ### Money
@@ -78,14 +77,16 @@ If that is the case, it might be advisable to either
 - set-up an account at a German bank or
 - use a service like [Revolut](https://www.revolut.com/) that facilitate currency conversions without additional fees[^revolut].
 
-[^revolut]: As of 11/2022, Revolut allows free monthly conversions of around €1000, if you don't have a premium account. This will most likely be enough for you, depending on your housing and lifestyle (for us it's plenty).
+[^revolut]: As of 11/2022, Revolut allows free monthly conversions of around €1000, if you don't have a premium account. This will most likely be enough for you, depending on your housing and lifestyle.
 
 I've chosen to use Revolut and it has been working well so far -- the app is easy to use, the money easy to track and the card has been working fine without any issues.
 If you'd like to try it too, **let someone who already has Revolut know[^noone]** since they could invite you through Revolut's referral programme and receive some money for free.
 
 [^noone]: If you don't know anyone and would like to help me out, let me know.
 
-Most places in Heidelberg accept cards so you don't need to have a lot of cash on-hand.
+Getting either of those is also quite important for signing up for services memberships for places like the Boulderhaus, [getting a German phone number](https://www.expatica.com/de/living/household/german-sim-card-244240/) or even paying rent, since a lot of them use **direct debit** -- if you don't do so, make sure your bank supports this type of payment.
+
+Also, most places in Heidelberg accept cards, so you don't need to have a lot of cash on-hand.
 
 
 ### Housing
@@ -195,16 +196,15 @@ Heidelberg is made for travel by bike -- it has great infrastructure (bike lanes
 If you don't own a bike, use a bike-sharing service like [nextbike](https://www.vrnnextbike.de/en/heidelberg/), which allows up to 30 minutes of free travel _per rental_ (for students).
 This is likely more than enough time to travel from/to any campus/mensa during your daily schedule.
 
-For traveling to specific campus buildings, there are some very useful maps for each campus part ([Altstadt](/assets/masters-in-heidelberg/altstadt.pdf), [Bergheim](/assets/masters-in-heidelberg/bergheim.pdf) and [Im Neuenheimer Feld](/assets/masters-in-heidelberg/im-neuenheimer-feld.pdf)).
+For traveling to specific campus buildings, here are some very useful maps for each campus part ([Altstadt](/assets/masters-in-heidelberg/altstadt.pdf), [Bergheim](/assets/masters-in-heidelberg/bergheim.pdf) and [Im Neuenheimer Feld](/assets/masters-in-heidelberg/im-neuenheimer-feld.pdf)).
 
 
-### Eating
+### Dining
 
-Most Mensas in Heidelberg, as opposed to the ones I'm used to from Czech Republic, are priced **by weight,** not per meal.
-They also operate in the form of a buffet, which is great because you can easily regulate how much (and of what) you eat.
-The prices are very good (~€0.95 per 100g) and the food is excellent, so it's a very good idea to eat there.
+There are a [number of mensas](https://www.studentenwerk.uni-heidelberg.de/en/mensen_neu) in Heidelberg, the most frequented being the [Zentralmensa](https://www.studentenwerk.uni-heidelberg.de/en/node/344).
+They provide food both as a **buffet** (which is great because you can regulate how much you eat) and **ready meals** (which are slightly cheaper but uniform).
 
-My favorite is the [Zeughaus Mensa](https://www.studentenwerk.uni-heidelberg.de/en/node/342) near the new university, which always has excellent food, along with a café (also with student prices).
+My favorite is the [Zeughaus Mensa](https://www.studentenwerk.uni-heidelberg.de/en/node/342) near Universitätsplatz, which always has excellent food, along with a café (with student prices).
 The best thing is that it closes pretty late (9 PM) and is also open on Saturday, so you can really minimize the amount you cook, if you're not into that or don't have the facilities at home.
 
 
