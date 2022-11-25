@@ -43,9 +43,14 @@ _Note that I've read each one as an Audiobook, either from Audible or using othe
 #### Leigh Bardugo
 
 {:.book}
-- **The Six of Crows** [[Wikipedia](https://en.wikipedia.org/wiki/Six_of_Crows)] -- if you think that "Ocean's Eleven meets Game of Thrones" sounds good, you have to read this. The books are stellarly written and very well narrated (even for Audible standards) and contain a sequel duology and prequel trilogy, both of which I'll add here once I see that they're as good as this one.
+- **The Six of Crows** duology [[Wikipedia](https://en.wikipedia.org/wiki/Six_of_Crows)] -- if you think that "Ocean's Eleven meets Game of Thrones" sounds good, you have to read this. The books are stellarly written and very well narrated (even for Audible standards) and contain a sequel duology and prequel trilogy, both of which I'll add here once I see that they're as good as this one.
 	1. **The Six of Crows**
 	2. **Crooked Kingdom**
+
+{:.book}
+- **King of Scars** duology [[Wikipedia](https://en.wikipedia.org/wiki/King_of_Scars)] -- another excellent duology by Leigh Bardugo. It is much more fantasy-ish than the Six of Crows and focuses more heavily on the magical aspect of the world that Leigh is building (so it reads quite differently) but I enjoyed it nonetheless.
+	1. **King of Scars**
+	2. **Rule of Wolves**
 
 ### Other
 
