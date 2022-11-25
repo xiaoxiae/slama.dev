@@ -1431,3 +1431,26 @@
   red:
     new: 5
   wall: Boulderhaus
+2022-11-22:
+  black:
+    new: 1
+    old: 2
+  blue:
+    old: 3
+  note: Again, a pretty strong session in which I managed to do the new black, and
+    then spent rest of it just messing around on custom boulders.
+  red:
+    old: 1
+  wall: Boulderhaus
+2022-11-24:
+  black:
+    new: 1
+  blue:
+    new: 3
+  note: Yet again a strong session. I sent all of the new hard boulders - including
+    a new black - but I didn't use the intended beta, which made it easier. I tried
+    the intended beta and fell from the top so I'm pretty happy :).
+  red:
+    new: 2
+    old: 4
+  wall: Boulderhaus
