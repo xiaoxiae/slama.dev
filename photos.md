@@ -10,7 +10,7 @@ Below is a galery of some of the nicer photos that I've taken.
 All of them had been compressed (quite agressively) to be web-usable.
 If you'd like to see the originals, simply click on the photos.
 
-Each of the photos are licensed under **[CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)**, so kindly respect it if you plan on using any of them for uses other than personal.
+_Each of the photos are licensed under **[CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)**, so kindly respect it if you plan on using any of them for uses other than personal._
 
 {% photos flowers/raw/1.jpg | flowers/raw/2.jpg %}
 {% photos bees/raw/1.jpg | bees/raw/2.jpg %}

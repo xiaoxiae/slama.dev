@@ -46,7 +46,7 @@ if os.path.exists(CACHE_FOLDER):
 for root, dirs, files in os.walk("../photos/"):
     for name in files:
         # use cwebp to convert raw images to webp
-        if name.endswith(("jpg", "jpeg")) and "raw" in root:
+        if name.endswith(("jpg", "jpeg", "png")) and "raw" in root:
             path = os.path.join(root, name)
 
             reduced_path = os.path.join(root, "..")
