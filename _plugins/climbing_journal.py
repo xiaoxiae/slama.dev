@@ -5,6 +5,16 @@ import yaml
 from unidecode import unidecode
 
 
+class UniqueKeyLoader(yaml.SafeLoader):
+    def construct_mapping(self, node, deep=False):
+        mapping = []
+        for key_node, value_node in node.value:
+            key = self.construct_object(key_node, deep=deep)
+            assert key not in mapping, f"Duplicate key {key} in journal.yaml/videos.yaml."
+            mapping.append(key)
+        return super().construct_mapping(node, deep)
+
+
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 CLIMBING_FOLDER = "../climbing/"
@@ -16,12 +26,12 @@ OUTPUT_PATH = os.path.join("..", "_includes", "diary.md")
 videos = {}
 if os.path.exists(CLIMBING_INFO):
     with open(CLIMBING_INFO, "r") as f:
-        videos = yaml.safe_load(f.read())
+        videos = yaml.load(f.read(), Loader=UniqueKeyLoader)
 
 journal = {}
 if os.path.exists(CLIMBING_JOURNAL):
     with open(CLIMBING_JOURNAL, "r") as f:
-        journal = yaml.safe_load(f.read())
+        journal = yaml.load(f.read(), Loader=UniqueKeyLoader)
 
 result = """
 <div class="climbing-journal">
