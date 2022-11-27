@@ -6,18 +6,14 @@ baseurl: ""
 
 # exclude Jekyll-related files, scripts and generated content
 exclude: [
-  "ignored/",
-  "scripts/",
-  "makefile",
-  "LICENSE.txt",
-  "**/README.md",
-  "**/ignored",
-  "README.md",
-  "climbing/journal.yaml",
-  "climbing/videos.yaml",
   "climbing/*.py",
+  "ignored/"
+  "LICENSE",
+  "makefile",
+  "README.md",
+  "scripts/",
   "*.xopp",
-  "assets/productivincrement.py"
+  "*.yaml",
 ]
 
 defaults:
