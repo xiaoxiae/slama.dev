@@ -135,8 +135,8 @@ class StackExample(Scene):
 
 {% manim_video 5-StackExample %}
 
-As the code suggests, every custom Manim object must inherit the `Mobject` class (or `VMobject`, if it's a vector object).
-The stack consists of other Manim objects, added to it via the `self.add` method.
+As the code suggests, every custom Manim object must inherit the {% manim_doc `Mobject` reference/manim.mobject.mobject.Mobject.html %} class (or {% manim_doc `VMobject` reference/manim.mobject.types.vectorized_mobject.VMobject.html %}, if it's a vector object).
+The stack consists of other Manim objects, added to it via the {% manim_doc `add` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.add %} method.
 And, since it's a regular Manim object, we can interact with it like we would with any other Manim object.
 
 ### Custom animations
@@ -259,7 +259,7 @@ This part includes some more interesting plugins that you might find into.
 
 #### Physics
 
-The first plugin to look at is `manim-physics` [GitHub](https://github.com/Matheart/manim-physics) [doc](https://manim-physics.readthedocs.io/en/latest/), which (as the name suggests) adds classes to work with various branches of physics.
+The first plugin to look at is `manim-physics` [[GitHub](https://github.com/Matheart/manim-physics)] [[doc](https://manim-physics.readthedocs.io/en/latest/)], which (as the name suggests) adds classes to work with various branches of physics.
 It can be installed by running
 ```
 pip install manim-physics
@@ -400,7 +400,7 @@ class PendulumExample(SpaceScene):
 
 #### Chemistry
 
-The second plugin is `chanim` [GitHub](https://github.com/raghavg123/chanim), which implements classes for animating chemistry notation.
+The second plugin is `chanim` [[GitHub](https://github.com/raghavg123/chanim)], which implements classes for animating chemistry notation.
 
 It can be installed similarly using
 ```
