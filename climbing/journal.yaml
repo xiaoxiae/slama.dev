@@ -42,9 +42,9 @@
     new: 1
     old: 1
 2021-09-01:
-  note: The entire session was spent on the last two yellows in zone 9 that I haven't
-    yet done. The first one went after about 20 tries and I managed to make all individual
-    moves on the second one, so today was quite a success!
+  note: The entire session was spent on the last two yellows from previous setting
+    that I haven't yet done. The first one went after about 20 tries and I managed
+    to make all individual moves on the second one, so today was quite a success!
   red:
     old: 1
   salmon:
@@ -497,7 +497,7 @@
     new: 1
   note: The session not bad! I managed to do the last blue (and boulder) from the
     previous build, and found a functional beta for the yellow that I previously thought
-    would be too hard in zone 8.
+    would be too hard.
   red:
     old: 4
   salmon:
@@ -986,7 +986,7 @@
     new: 6
   note: Pretty fun session. The new routes are well built and appropriately difficult
     for their grade, which I haven't seen for quite a while. I also ticked off a difficult
-    slab from zone 1, which is neat!
+    slab, which is neat!
   rebuilt: 2
   red:
     new: 4
@@ -1215,10 +1215,9 @@
     new: 6
   green:
     new: 1
-  note: A section of the wall was rebuilt (the sectors will be added to this page
-    once I have time). I felt pretty strong so I managed to send quite a few of the
-    new reds (besides the very endurancey ones), so we'll see if they'll go down next
-    time :).
+  note: I felt pretty strong so I managed to send quite a few of the new reds (besides
+    the very endurancey ones) so we'll see if they'll go down next time :).
+  rebuilt: null
   red:
     new: 7
   wall: Boulderhaus
@@ -1242,6 +1241,7 @@
     I also managed to figure out the beta of one really hard black that I'll work
     on next time, it felt absolutely amazing to link it all together and it definitely
     feels doable on a strong day.
+  rebuilt: null
   red:
     new: 4
     old: 2
@@ -1267,6 +1267,7 @@
     will go down in the next session, but we'll see -- my first priority is the black.
     It will actually probably be the next session over, because I'd like to focus
     a bit more on Kilter boarding.
+  rebuilt: null
   red:
     new: 3
   wall: Boulderhaus
@@ -1308,6 +1309,7 @@
     and one coordination move. I also managed to do the hard black from a few sessions
     ago! After doing the easiest black of the new ones, I don't think that I want
     to try the other two because one hurts my fingers and the other is insane!
+  rebuilt: null
   red:
     new: 5
   wall: Boulderhaus
@@ -1355,6 +1357,7 @@
     of the red ones also (still missing one). There are two new blacks, one of which
     is very endurancey (so I don't think I can send it), but the other is very powerful
     and I've done all the individual moves, so it should go next time.
+  rebuilt: null
   red:
     new: 4
   wall: Boulderhaus
@@ -1390,6 +1393,7 @@
   note: Fun session back! The new routes were quite neat, I did a few of the red ones
     and made really good progress on one of the blacks (got all of the moves down),
     so it will hopefully go down next session, along with the remaining reds :).
+  rebuilt: null
   red:
     new: 6
   wall: Boulderhaus
@@ -1415,6 +1419,7 @@
     with some fun custom routes (see video).
   other:
     new: 1
+  rebuilt: null
   red:
     new: 4
     old: 1
@@ -1428,6 +1433,7 @@
   note: A pretty strong session! I did the new black in two parts (will link next
     time) and managed to do all of the new reds. Also, I did both of the blacks from
     the previous setting (one repeat and one new), so I honestly can't complain :).
+  rebuilt: null
   red:
     new: 5
   wall: Boulderhaus
@@ -1450,6 +1456,7 @@
   note: Yet again a strong session. I sent all of the new hard boulders - including
     a new black - but I didn't use the intended beta, which made it easier. I tried
     the intended beta and fell from the top so I'm pretty happy :).
+  rebuilt: null
   red:
     new: 2
     old: 4
@@ -1462,6 +1469,7 @@
   note: Had a lot of fun with the new boulders. Managed to do all but one black where
     I fell from the top :(. I got the moves completely down though so I'm pretty confident
     that I can do it next session.
+  rebuilt: null
   red:
     new: 5
   wall: Boulderhaus
