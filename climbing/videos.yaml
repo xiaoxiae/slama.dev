@@ -9,6 +9,7 @@ boulderhaus-black-2022-10-13-eavenmop.mp4:
 boulderhaus-black-2022-10-15-vfiatcgf.mp4:
   color: black
   date: 2022-10-15
+  ignored: true
   label: close attempt
   wall: Boulderhaus
 boulderhaus-black-2022-10-22-lgwhwzkq.mp4:
@@ -50,6 +51,7 @@ boulderhaus-black-2022-11-27-fgdhlnke.mp4:
 boulderhaus-black-2022-11-27-uafytlur.mp4:
   color: black
   date: 2022-11-27
+  ignored: true
   label: close attempt
   wall: Boulderhaus
 boulderhaus-black-2022-11-29-hbvsojls.mp4:

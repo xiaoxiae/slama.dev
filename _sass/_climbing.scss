@@ -69,10 +69,8 @@ ul.climbing-routes-list {
 
 .climbing-red-text,.climbing-blue-text,.climbing-green-text,.climbing-black-text {
     color: $dark-text-color;
-    font-weight: bold;
 
     a {
-        font-weight: bold;
         color: $dark-text-color;
         &:hover { text-decoration: underline; }
     }
@@ -85,7 +83,6 @@ ul.climbing-routes-list {
     color: $light-text-color;
 
     a {
-        font-weight: bold;
         color: $light-text-color;
         &:hover { text-decoration: underline; }
     }
@@ -221,13 +218,13 @@ ul.hfill {
         padding-bottom: $line-spacing / 6;
     }
 
-        li:nth-child(2n) {
-            padding-top: $line-spacing / 5;
-            line-height: $line-height * 1.3;
-        }
+    li:nth-child(2n) {
+        padding-top: $line-spacing / 5;
+        line-height: $line-height * 1.3;
+    }
 
-        display: block;
-        padding-bottom: $line-spacing / 5;
+    display: block;
+    padding-bottom: $line-spacing / 5;
 }
 
 p.climbing-note {
