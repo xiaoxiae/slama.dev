@@ -71,7 +71,7 @@ boulderhaus-red-2022-10-13-shbsmhns.mp4:
 boulderhaus-red-2022-10-13-xqboxdxb.mp4:
   color: red
   date: 2022-10-13
-  flash: true
+  attempts: 1
   wall: Boulderhaus
 boulderhaus-red-2022-10-16-ddomhwxr.mp4:
   color: red
@@ -230,25 +230,29 @@ boulderhaus-red-2022-11-27-xbnjatpp.mp4:
   color: red
   date: 2022-11-27
   wall: Boulderhaus
+kilter-V10-2022-11-29-eqxbuhme.mp4:
+  color: V10
+  date: 2022-11-29
+  kilter: true
 kilter-V5-2022-10-15-ecryibhx.mp4:
   color: V5
   date: 2022-10-15
-  flash: true
+  attempts: 1
   kilter: true
 kilter-V5-2022-10-15-rswdmzjp.mp4:
   color: V5
   date: 2022-10-15
-  flash: true
+  attempts: 1
   kilter: true
 kilter-V6-2022-10-15-eivoxksr.mp4:
   color: V6
   date: 2022-10-15
-  flash: true
+  attempts: 1
   kilter: true
 kilter-V6-2022-10-15-ferfylye.mp4:
   color: V6
   date: 2022-10-15
-  flash: true
+  attempts: 1
   kilter: true
 kilter-V6-2022-10-15-rqplfngn.mp4:
   attempts: 3
@@ -263,22 +267,22 @@ kilter-V6-2022-10-18-hmquhzko.mp4:
 kilter-V6-2022-10-18-kkkpljpg.mp4:
   color: V6
   date: 2022-10-18
-  flash: true
+  attempts: 1
   kilter: true
 kilter-V6-2022-10-18-qdalpcnj.mp4:
   color: V6
   date: 2022-10-18
-  flash: true
+  attempts: 1
   kilter: true
 kilter-V6-2022-10-18-ypnfmcxs.mp4:
   color: V6
   date: 2022-10-18
-  flash: true
+  attempts: 1
   kilter: true
 kilter-V6-2022-10-25-bxcogqte.mp4:
   color: V6
   date: 2022-10-25
-  flash: true
+  attempts: 1
   kilter: true
 kilter-V6-2022-10-25-fhiqdsqp.mp4:
   attempts: 2
@@ -293,32 +297,32 @@ kilter-V6-2022-10-25-tavitrzd.mp4:
 kilter-V7-2022-10-18-ibolwzeb.mp4:
   color: V7
   date: 2022-10-18
-  flash: true
+  attempts: 1
   kilter: true
 kilter-V7-2022-10-18-mlqmlzcs.mp4:
   color: V7
   date: 2022-10-18
-  flash: true
+  attempts: 1
   kilter: true
 kilter-V7-2022-10-18-zzjfskqa.mp4:
   color: V7
   date: 2022-10-18
-  flash: true
+  attempts: 1
   kilter: true
 kilter-V7-2022-10-25-epzaqvhr.mp4:
   color: V7
   date: 2022-10-25
-  flash: true
+  attempts: 1
   kilter: true
 kilter-V7-2022-10-25-wbppyucn.mp4:
   color: V7
   date: 2022-10-25
-  flash: true
+  attempts: 1
   kilter: true
 kilter-V7-2022-10-27-wbdjgdgq.mp4:
   color: V7
   date: 2022-10-27
-  flash: true
+  attempts: 1
   kilter: true
 kilter-V7-2022-11-03-fsukpljb.mp4:
   color: V7
@@ -331,7 +335,7 @@ kilter-V7-2022-11-05-dmodvfyr.mp4:
 kilter-V8-2022-10-18-rjxuhewr.mp4:
   color: V8
   date: 2022-10-18
-  flash: true
+  attempts: 1
   kilter: true
 kilter-V8-2022-10-20-swyueyvc.mp4:
   attempts: 2
@@ -745,7 +749,7 @@ smichoff-blue-2022-04-04-hqmpxmgn.mp4:
 smichoff-blue-2022-04-05-bdwxtvkd.mp4:
   color: blue
   date: 2022-04-05
-  flash: true
+  attempts: 1
   zone: 3
 smichoff-blue-2022-04-05-fhltoumk.mp4:
   color: blue
@@ -766,7 +770,7 @@ smichoff-blue-2022-04-08-frqzvqnc.mp4:
 smichoff-blue-2022-04-18-btrrxcsr.mp4:
   color: blue
   date: 2022-04-18
-  flash: true
+  attempts: 1
   zone: 1
 smichoff-blue-2022-04-18-ghyphqiv.mp4:
   color: blue
@@ -783,7 +787,7 @@ smichoff-blue-2022-04-18-mtrwoljb.mp4:
 smichoff-blue-2022-04-18-pyzkjlxl.mp4:
   color: blue
   date: 2022-04-18
-  flash: true
+  attempts: 1
   zone: 1
 smichoff-blue-2022-04-18-zgpfqfea.mp4:
   color: blue
@@ -796,7 +800,7 @@ smichoff-blue-2022-04-27-hhknzlon.mp4:
 smichoff-blue-2022-04-27-uvtzyjqj.mp4:
   color: blue
   date: 2022-04-27
-  flash: true
+  attempts: 1
   zone: 1
 smichoff-blue-2022-05-05-qjillhga.mp4:
   color: blue
@@ -829,17 +833,17 @@ smichoff-blue-2022-05-25-bwydjylt.mp4:
 smichoff-blue-2022-05-30-cdqzvemo.mp4:
   color: blue
   date: 2022-05-30
-  flash: true
+  attempts: 1
   zone: 3
 smichoff-blue-2022-05-30-ptavpmwg.mp4:
   color: blue
   date: 2022-05-30
-  flash: true
+  attempts: 1
   zone: 3
 smichoff-blue-2022-05-30-xprkyiai.mp4:
   color: blue
   date: 2022-05-30
-  flash: true
+  attempts: 1
   zone: 3
 smichoff-blue-2022-06-17-gwftjjqi.mp4:
   color: blue
@@ -1280,12 +1284,12 @@ smichoff-salmon-2022-03-25-ydmnzspv.mp4:
 smichoff-salmon-2022-04-05-nqmoktxh.mp4:
   color: salmon
   date: 2022-04-05
-  flash: true
+  attempts: 1
   zone: 3
 smichoff-salmon-2022-04-05-qakrmxwu.mp4:
   color: salmon
   date: 2022-04-05
-  flash: true
+  attempts: 1
   zone: 3
 smichoff-salmon-2022-04-08-cugefnbe.mp4:
   color: salmon
@@ -1298,12 +1302,12 @@ smichoff-salmon-2022-04-08-qahchrpb.mp4:
 smichoff-salmon-2022-04-18-fcsbfssn.mp4:
   color: salmon
   date: 2022-04-18
-  flash: true
+  attempts: 1
   zone: 1
 smichoff-salmon-2022-04-18-pvhsvnjk.mp4:
   color: salmon
   date: 2022-04-18
-  flash: true
+  attempts: 1
   zone: 1
 smichoff-salmon-2022-04-18-zevyymxh.mp4:
   color: salmon
@@ -1360,7 +1364,7 @@ smichoff-salmon-2022-05-30-tedhzlsw.mp4:
 smichoff-salmon-2022-05-30-wstwjjzs.mp4:
   color: salmon
   date: 2022-05-30
-  flash: true
+  attempts: 1
   zone: 3
 smichoff-salmon-2022-05-30-yklblnis.mp4:
   color: salmon
@@ -1669,7 +1673,7 @@ smichoff-yellow-2022-04-04-fjucvwxe.mp4:
 smichoff-yellow-2022-04-05-guqpuzhy.mp4:
   color: yellow
   date: 2022-04-05
-  flash: true
+  attempts: 1
   zone: 3
 smichoff-yellow-2022-04-14-whcvzfaj.mp4:
   color: yellow
@@ -1690,5 +1694,5 @@ smichoff-yellow-2022-04-30-qhmtjmrc.mp4:
 smichoff-yellow-2022-05-30-fsutbeza.mp4:
   color: yellow
   date: 2022-05-30
-  flash: true
+  attempts: 1
   zone: 3
