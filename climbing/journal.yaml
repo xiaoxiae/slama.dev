@@ -1473,3 +1473,22 @@
   red:
     new: 5
   wall: Boulderhaus
+2022-11-29:
+  black:
+    new: 1
+    old: 1
+  kilter:
+    V10:
+      new: 1
+    V4:
+      new: 3
+    V7:
+      new: 3
+    V8:
+      new: 8
+    V9:
+      new: 1
+  note: An absolute monster of a session where I managed to send not only a hard V8
+    (7b+), but also a V9 and a V10, achieving my end-of-the-year goal with style.
+    Oh and the black did go down this session :).
+  wall: Boulderhaus

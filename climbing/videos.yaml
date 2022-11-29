@@ -52,6 +52,10 @@ boulderhaus-black-2022-11-27-uafytlur.mp4:
   date: 2022-11-27
   label: close attempt
   wall: Boulderhaus
+boulderhaus-black-2022-11-29-hbvsojls.mp4:
+  color: black
+  date: 2022-11-29
+  wall: Boulderhaus
 boulderhaus-other-2022-11-18-dptvwqrp.mp4:
   color: other
   date: 2022-11-18
@@ -332,6 +336,23 @@ kilter-V7-2022-11-05-dmodvfyr.mp4:
   color: V7
   date: 2022-11-05
   kilter: true
+kilter-V7-2022-11-29-bwpsgquc.mp4:
+  color: V7
+  date: 2022-11-29
+  kilter: true
+kilter-V7-2022-11-29-eemsyqak.mp4:
+  color: V7
+  date: 2022-11-29
+  kilter: true
+kilter-V7-2022-11-29-ekvylyll.mp4:
+  color: V7
+  date: 2022-11-29
+  kilter: true
+  attempts: 1
+kilter-V7-2022-11-29-tgrmirzm.mp4:
+  color: V7
+  date: 2022-11-29
+  kilter: true
 kilter-V8-2022-10-18-rjxuhewr.mp4:
   color: V8
   date: 2022-10-18
@@ -365,6 +386,44 @@ kilter-V8-2022-10-27-zyslcxzg.mp4:
 kilter-V8-2022-11-03-xagrscze.mp4:
   color: V8
   date: 2022-11-03
+  kilter: true
+kilter-V8-2022-11-29-gwgebvdk.mp4:
+  color: V8
+  date: 2022-11-29
+  kilter: true
+kilter-V8-2022-11-29-hikyhndo.mp4:
+  color: V8
+  date: 2022-11-29
+  kilter: true
+  attempts: 1
+kilter-V8-2022-11-29-hipoffhs.mp4:
+  color: V8
+  date: 2022-11-29
+  kilter: true
+kilter-V8-2022-11-29-hseeupsh.mp4:
+  color: V8
+  date: 2022-11-29
+  kilter: true
+kilter-V8-2022-11-29-ncexovpy.mp4:
+  color: V8
+  date: 2022-11-29
+  kilter: true
+kilter-V8-2022-11-29-nxpmbahu.mp4:
+  color: V8
+  date: 2022-11-29
+  kilter: true
+  attempts: 1
+kilter-V8-2022-11-29-ogpjxvrf.mp4:
+  color: V8
+  date: 2022-11-29
+  kilter: true
+kilter-V8-2022-11-29-ujztrpje.mp4:
+  color: V8
+  date: 2022-11-29
+  kilter: true
+kilter-V9-2022-11-29-uaxtbqkk.mp4:
+  color: V9
+  date: 2022-11-29
   kilter: true
 smichoff-blue-2020-09-07-fcmjshmc.mp4:
   color: blue
