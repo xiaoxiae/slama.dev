@@ -59,9 +59,10 @@ for name in list(config):
 
         # assign a new (random) name
         random_string = get_random_string(8)
+
         new_name = (
             f"{wall_stub}-"
-            + ("" if "color" not in config[name] else (config[name]["color"] + "-"))
+            + ("" if "color" not in config[name] else (config[name]["color"].replace("+", "p") + "-"))
             + (
                 ""
                 if "date" not in config[name]
@@ -196,10 +197,10 @@ kilter_stats_path = os.path.join("..", "_includes", "kilter.md")
 
 kilter_stats = {}
 
-for grade_number in range(100):  # probably won't climb a V100 any time soon lmao
-    grade = f"V{grade_number}"
 
-    grade_file_name = os.path.join(kilter_folder, grade.lower() + ".md")
+for grade in sorted([f"{i}{c}{p}".strip() for i in range(6, 9) for c in "abc" for p in " +"]):
+    grade_file_name = os.path.join(kilter_folder, grade.lower().replace("+", "p") + ".md")
+
     grade_file_content = f"""---
 title: Kilter {grade}
 layout: default
@@ -253,7 +254,7 @@ with open(CLIMBING_INFO, "w") as f:
     f.write(yaml.dump(config))
 
 with open(kilter_stats_path, "w") as f:
-    f.write("| " + "|".join([f"[{k}](/climbing/kilter/{k.lower()}/) ({v})" for k, v in kilter_stats.items()]) + "|\n")
+    f.write("| " + "|".join([f"[{k}](/climbing/kilter/{k.lower().replace('+', 'p')}/) ({v})" for k, v in kilter_stats.items()]) + "|\n")
 
 print("climbing videos generated (and reformatted).", flush=True)
 

@@ -46,6 +46,8 @@ ul.climbing-routes-list {
 .climbing-black { background: #222; }
 .climbing-other { background: #cccccc; }
 
+.climbing-french  { background: #eee; }
+
 .climbing-V2  { background: #eee; }
 .climbing-V3  { background: #ddd; }
 .climbing-V4  { background: #ccc; }
@@ -67,25 +69,26 @@ ul.climbing-routes-list {
 
 .climbing-red-text,.climbing-blue-text,.climbing-green-text,.climbing-black-text {
     color: $dark-text-color;
-	font-weight: bold; 
-	
+    font-weight: bold;
+
     a {
-		font-weight: bold;
-		color: $dark-text-color;
-		&:hover { text-decoration: underline; }
-	}
+        font-weight: bold;
+        color: $dark-text-color;
+        &:hover { text-decoration: underline; }
+    }
 }
 
+.climbing-french,
 .climbing-V2, .climbing-V3, .climbing-V4, .climbing-V5, .climbing-V6, .climbing-V7, .climbing-V8, .climbing-V9, .climbing-V10, .climbing-V11,
 .climbing-salmon-text,.climbing-yellow-text,
 .climbing-other-text {
     color: $light-text-color;
-	
+
     a {
-		font-weight: bold;
-		color: $light-text-color;
-		&:hover { text-decoration: underline; }
-	}
+        font-weight: bold;
+        color: $light-text-color;
+        &:hover { text-decoration: underline; }
+    }
 }
 
 .climbing-year-details {
@@ -218,7 +221,6 @@ ul.hfill {
         padding-bottom: $line-spacing / 6;
     }
 
-    @media (max-width: $small-screen-threshold) {
         li:nth-child(2n) {
             padding-top: $line-spacing / 5;
             line-height: $line-height * 1.3;
@@ -226,7 +228,6 @@ ul.hfill {
 
         display: block;
         padding-bottom: $line-spacing / 5;
-    }
 }
 
 p.climbing-note {

@@ -76,6 +76,8 @@ for entry in reversed(sorted(list(journal))):
     v_colors = [f"V{i}" for i in range(2, 11)]
     v_grading_gyms = set(["třináctka"])
 
+    f_colors = sorted([f"{i}{c}{p}".strip() for i in range(6, 9) for c in "abc" for p in " +"])
+
     # keep sorted by difficulty! (left easiest, right hardest)
     wall_colors = {
         "smichoff": ["red", "salmon", "blue", "yellow"],
@@ -156,8 +158,10 @@ for entry in reversed(sorted(list(journal))):
 
         if color == "other":
             line += f"<mark class='climbing-diary-record climbing-other climbing-other-text'>other: {count}"
-        elif (wall_stub in v_grading_gyms) or kilter:
+        elif (wall_stub in v_grading_gyms):
             line += f"<mark class='climbing-diary-record climbing-{color}'><strong>{color}:</strong> {count}"
+        elif kilter:
+            line += f"<mark class='climbing-diary-record climbing-french'><strong>{color}:</strong> {count}"
         else:
             line += f"<mark class='climbing-diary-record climbing-{color} climbing-{color}-text'>{count}"
 

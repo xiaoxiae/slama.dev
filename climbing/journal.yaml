@@ -445,14 +445,14 @@
     new: 4
   wall: Jungle
 2021-12-27:
+  7a+:
+    new: 12
   V10:
     new: 1
   V5:
     new: 1
   V6:
     new: 2
-  V7:
-    new: 12
   note: "Tried another new wall called T\u0159in\xE1ctka (thanks, Lucas!). It was\
     \ quite nice, but definitely not as good (and cheap) as Sm\xEDchoff, nor as high-quality\
     \ as Jungle (namely its competitive section)."
@@ -1194,17 +1194,19 @@
   blue:
     new: 3
   kilter:
-    V2:
+    5c:
       new: 1
-    V3:
+    6a:
       new: 2
-    V4:
-      new: 3
-    V5:
+    6b:
       new: 1
-    V6:
+    6b+:
+      new: 2
+    6c:
       new: 1
-    V7:
+    7a:
+      new: 1
+    7a+:
       new: 1
   note: A pretty fun session (mostly training). The Kilter Board is absolutely amazing
     and I think this is where I'll be spending most of my time, since the routes itself
@@ -1250,9 +1252,9 @@
   blue:
     old: 2
   kilter:
-    V5:
+    6c:
       new: 2
-    V6:
+    7a:
       new: 3
   note: Despite feeling pretty good, I didn't manage do send the black from the previous
     session, although falling twice from the top :(. That was a bit upsetting so I
@@ -1273,27 +1275,29 @@
   wall: Boulderhaus
 2022-10-18:
   kilter:
-    V3:
+    6a:
       new: 1
-    V6:
+    7a:
       new: 4
-    V7:
+    7a+:
       new: 3
-    V8:
+    7b:
       new: 1
-  note: A fun Kilter board session. I did the first V8 and a bunch of V6/V7, which
-    was nice. I also made individual moves on a V9 which I think I'll do next time.
+  note: A fun Kilter board session. I did the first 7b and a bunch of 7a/7a+, which
+    was nice. I also made individual moves on a 7c which I think I'll do next time.
     It's nice to see some progress from the previous session!
   wall: Boulderhaus
 2022-10-20:
   blue:
     new: 7
   kilter:
-    V5:
-      new: 5
-    V8:
+    6c:
+      new: 2
+    6c+:
+      new: 3
+    7b:
       new: 1
-  note: Good session! I finished the V8 from the previous session but the V9 will
+  note: Good session! I finished the 7b from the previous session but the 7c will
     be a bit more difficult (the top is unexpectedly hard), so I might need to find
     a different one to train for. Also, one of the new reds will go next time with
     a sneaky beta I found.
@@ -1319,16 +1323,16 @@
   blue:
     old: 2
   kilter:
-    V5:
+    6c:
       new: 3
-    V6:
+    7a:
       new: 3
-    V7:
+    7a+:
       new: 3
-    V8:
+    7b:
       new: 1
-  note: A very nice Kilter board session! Sent some nice V6s, V7s and a V8 (that I
-    had absolutely no chance at a few sessions ago) relatively easily, with really
+  note: A very nice Kilter board session! Sent some nice 7as, 7a+s and a 7b (that
+    I had absolutely no chance at a few sessions ago) relatively easily, with really
     good attempts on some other difficult routes that should hopefully go down next
     session!
   red:
@@ -1338,15 +1342,15 @@
   blue:
     new: 3
   kilter:
-    V6:
+    7a:
       new: 2
-    V7:
+    7a+:
       new: 1
-    V8:
+    7b:
       new: 4
-  note: Another pretty good session. The goal of doing a V9 seems to be quite a bit
-    more difficult since the jump between V8 and V9 is quite large. Nevertheless,
-    I tried a few V9s and V10s and I think that some will go down in a few sessions.
+  note: Another pretty good session. The goal of doing a 7c seems to be quite a bit
+    more difficult since the jump between 7b and 7c is quite large. Nevertheless,
+    I tried a few 7cs and 7c+s and I think that some will go down in a few sessions.
   red:
     new: 2
   wall: Boulderhaus
@@ -1363,9 +1367,9 @@
   wall: Boulderhaus
 2022-11-03:
   kilter:
-    V7:
+    7a+:
       new: 1
-    V8:
+    7b:
       new: 1
   note: Had a pretty weak session on the Kilter board, so I stopped after a short
     time and just messed around on some easier routes in the gym, which was pretty
@@ -1375,13 +1379,15 @@
   black:
     new: 1
   kilter:
-    V4:
+    6b:
       new: 1
-    V5:
-      new: 5
-    V6:
+    6c:
+      new: 3
+    6c+:
+      new: 2
+    7a:
       new: 1
-    V7:
+    7a+:
       new: 1
   note: A pretty terrible session (despite sending a new black). It was really no
     wonder since I'm sick as of writing this entry (6/11/2022). I'll take a few days
@@ -1399,7 +1405,7 @@
   wall: Boulderhaus
 2022-11-15:
   kilter:
-    V6:
+    7a:
       new: 1
   note: A pretty weak session, not much more to say :).
   red:
@@ -1478,17 +1484,21 @@
     new: 1
     old: 1
   kilter:
-    V10:
+    6b:
+      new: 2
+    6b+:
       new: 1
-    V4:
+    7a+:
       new: 3
-    V7:
+    7b:
+      new: 4
+    7b+:
       new: 3
-    V8:
-      new: 8
-    V9:
+    7c:
       new: 1
-  note: An absolute monster of a session where I managed to send not only a hard V8
-    (7b+), but also a V9 and a V10, achieving my end-of-the-year goal with style.
-    Oh and the black did go down this session :).
+    7c+:
+      new: 1
+  note: An absolute monster of a session where I managed to send not only a 7b+, but
+    also a 7c and a 7c+, achieving my end-of-the-year goal with style. Oh and the
+    black did go down this session :).
   wall: Boulderhaus
