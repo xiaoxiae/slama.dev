@@ -193,9 +193,13 @@ substitutions = [
     # lecture notes preface
     (
         r"{%\s+lecture_notes_preface\s+(.+?)\s*\|\s*(.+?)\s*%}",
-        r"# Preface\nThis website contains my lecture notes from a lecture by \1 from the academic year \2. If you find something incorrect/unclear, or would like to contribute either text or an image, feel free to submit a \\url{https://github.com/xiaoxiae/slama.dev/blob/master/\_posts/}{pull request} (or let me know via email)"
+        r"# Preface\nThis website contains my lecture notes from a lecture by \1 from the academic year \2 (Charles University). If you find something incorrect/unclear, or would like to contribute either text or an image, feel free to submit a \\href{https://github.com/xiaoxiae/slama.dev/blob/master/\_posts/}{pull request} (or let me know via email)."
         if "language" not in header_dictionary or header_dictionary["language"] == "en"
-        else r"# Úvodní informace\nTato stránka obsahuje moje poznámky z přednášky \1 z akademického roku \2. Pokud by byla někde chyba/nejasnost, nebo byste rádi někam přidali obrázek/text, tak stránku můžete upravit \\href{https://github.com/xiaoxiae/slama.dev/blob/master/\_posts/}{pull requestem} (případně mi dejte vědět na mail.",
+        else r"# Úvodní informace\nTato stránka obsahuje moje poznámky z přednášky \1 z akademického roku \2 (MFF UK). Pokud by byla někde chyba/nejasnost, nebo byste rádi něco přidali, tak stránku můžete upravit \\href{https://github.com/xiaoxiae/slama.dev/blob/master/\_posts/}{pull requestem} (případně mi dejte vědět na mail.",
+    ),
+    (
+        r"{%\s+lecture_notes_preface_heidelberg\s+(.+?)\s*\|\s*(.+?)\s*%}",
+        r"# Preface\nThis website contains my lecture notes from a lecture by \1 from the academic year \2 (University of Heidelberg). If you find something incorrect/unclear, or would like to contribute either text or an image, feel free to submit a \\href{https://github.com/xiaoxiae/slama.dev/blob/master/\_posts/}{pull request} (or let me know via email)."
     ),
     # Pandoc is stupid and requires space between paragraph and a list of items for it to work
     (r"(^[^-\n](.+?))\n(-|(1\.))", r"\1\n\n\3"),
@@ -240,6 +244,12 @@ def replace_math(contents, tag_type, argument, opening, closing):
         "definition:": r"**Definice"
         + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else "")
         + r"** \1",
+        "ENdefinition": r"**Definition"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
+        "ENdefinition:": r"**Definition"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else "")
+        + r"** \1",
         "reminder": r"**Připomenutí"
         + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
         + r"** \1",
@@ -258,13 +268,25 @@ def replace_math(contents, tag_type, argument, opening, closing):
         "theorem": r"**Věta"
         + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
         + r"** \1",
+        "ENtheorem": r"**Theorem"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
         "proof": r"**Důkaz"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
+        "ENproof": r"**Proof"
         + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
         + r"** \1",
         "algorithm": r"**Algoritmus"
         + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
         + r"** \1",
+        "ENalgorithm": r"**Algorithm"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
         "fact": r"**Fakt"
+        + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
+        + r"** \1",
+        "ENfact": r"**Fact"
         + (" (" + argument.replace("\\", "\\\\") + ")" if argument != "" else ":")
         + r"** \1",
         "problem": r"**Problém"

@@ -552,12 +552,13 @@ pro _vyvážený_ orientovaný multigraf \(G\) je ekvivalentní:
 {% math definition "křivka" %}je prostá a spojitá množina bodů{% endmath %}
 
 <!---MARKDOWN-->
+
 {:.rightFloatBox}
 {% xopp krivka %}
 <!---PDF
 \begin{wrapfigure}{R}{0.2\textwidth} 
 \centering
-\fbox{\includesvg{../_includes/diskretni-matematika/krivka}}
+\fbox{\includesvg[width=0.1\textwidth]{../_includes/diskretni-matematika/krivka}}
 \end{wrapfigure}
 -->
 

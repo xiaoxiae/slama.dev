@@ -568,7 +568,7 @@ class File {
 	- they are **not free,** it can sometimes take quite a while (`int` \(\rightarrow\) `float`)
 	- no conversions from/to `bool`
 
-![Implicit Conversions.](/assets/programovani-v-jazyce-cs/implicit-conversions.svg)
+![Implicit Conversions.](/assets/the-cs-programming-language/implicit-conversions.svg)
 
 - by default, all numeric constants (without a period) are `int`
 	- however, we can do `long a = 10;`, it's optimized to not do a conversion
