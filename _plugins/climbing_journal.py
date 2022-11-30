@@ -74,12 +74,12 @@ for entry in reversed(sorted(list(journal))):
     line += f"\n<li><ul class='hfill'><li><strong>{entry.strftime('%-d. %-m. %Y')}</strong>"
 
     v_colors = [f"V{i}" for i in range(2, 11)]
-    v_grading_gyms = set(["třináctka"])
+    v_grading_gyms_stubs = set(["trinactka"])
 
     f_colors = sorted([f"{i}{c}{p}".strip() for i in range(6, 9) for c in "abc" for p in " +"])
 
     # keep sorted by difficulty! (left easiest, right hardest)
-    wall_colors = {
+    wall_stubs_colors = {
         "smichoff": ["red", "salmon", "blue", "yellow"],
         "jungle": ["green", "blue", "red"],
         "boulderhaus": ["green", "blue", "red", "black"],
@@ -112,8 +112,8 @@ for entry in reversed(sorted(list(journal))):
 
         colors = (
             {}
-            if wall_stub not in wall_colors
-            else wall_colors[wall_stub]
+            if wall_stub not in wall_stubs_colors
+            else wall_stubs_colors[wall_stub]
         )
 
         line += f" (at <img class='climbing-wall-logo' src='/climbing/wall-logos/{wall_stub}.svg' alt='Logo of the {wall} climbing wall.'/>"
@@ -161,7 +161,7 @@ for entry in reversed(sorted(list(journal))):
 
         if color == "other":
             line += f"<mark class='climbing-diary-record climbing-other climbing-other-text'>other: {count}"
-        elif (wall_stub in v_grading_gyms):
+        elif wall_stub in v_grading_gyms_stubs:
             line += f"<mark class='climbing-diary-record climbing-{color} climbing-v'><strong>{color}:</strong> {count}"
         elif kilter:
             line += f"<mark class='climbing-diary-record climbing-{color.replace('+', 'p')} climbing-french'><strong>{color}:</strong> {count}"
