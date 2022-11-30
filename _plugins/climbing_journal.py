@@ -162,9 +162,9 @@ for entry in reversed(sorted(list(journal))):
         if color == "other":
             line += f"<mark class='climbing-diary-record climbing-other climbing-other-text'>other: {count}"
         elif (wall_stub in v_grading_gyms):
-            line += f"<mark class='climbing-diary-record climbing-{color}'><strong>{color}:</strong> {count}"
+            line += f"<mark class='climbing-diary-record climbing-{color} climbing-v'><strong>{color}:</strong> {count}"
         elif kilter:
-            line += f"<mark class='climbing-diary-record climbing-french'><strong>{color}:</strong> {count}"
+            line += f"<mark class='climbing-diary-record climbing-{color.replace('+', 'p')} climbing-french'><strong>{color}:</strong> {count}"
         else:
             line += f"<mark class='climbing-diary-record climbing-{color} climbing-{color}-text'>{count}"
 

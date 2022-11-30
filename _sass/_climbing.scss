@@ -46,8 +46,6 @@ ul.climbing-routes-list {
 .climbing-black { background: #222; }
 .climbing-other { background: #cccccc; }
 
-.climbing-french  { background: #eee; }
-
 .climbing-V2  { background: #eee; }
 .climbing-V3  { background: #ddd; }
 .climbing-V4  { background: #ccc; }
@@ -58,6 +56,25 @@ ul.climbing-routes-list {
 .climbing-V9  { background: #8a8a8a; }
 .climbing-V10 { background: #7e7e7e; }
 .climbing-V11 { background: #727272; }
+
+.climbing-6a  { background: #d2d2d2; }
+.climbing-6ap { background: #cbcbcb; }
+.climbing-6b  { background: #c4c4c4; }
+.climbing-6bp { background: #bdbdbd; }
+.climbing-6c  { background: #b6b6b6; }
+.climbing-6cp { background: #afafaf; }
+.climbing-7a  { background: #a8a8a8; }
+.climbing-7ap { background: #a1a1a1; }
+.climbing-7b  { background: #9a9a9a; }
+.climbing-7bp { background: #949494; }
+.climbing-7c  { background: #8d8d8d; }
+.climbing-7cp { background: #868686; }
+.climbing-8a  { background: #808080; }
+.climbing-8ap { background: #797979; }
+.climbing-8b  { background: #737373; }
+.climbing-8bp { background: #6d6d6d; }
+.climbing-8c  { background: #666666; }
+.climbing-8cp { background: #606060; }
 
 .climbing-wall-logo,.climbing-wall-logo-middle {
     display: inline;
@@ -77,7 +94,7 @@ ul.climbing-routes-list {
 }
 
 .climbing-french,
-.climbing-V2, .climbing-V3, .climbing-V4, .climbing-V5, .climbing-V6, .climbing-V7, .climbing-V8, .climbing-V9, .climbing-V10, .climbing-V11,
+.climbing-v,
 .climbing-salmon-text,.climbing-yellow-text,
 .climbing-other-text {
     color: $light-text-color;
