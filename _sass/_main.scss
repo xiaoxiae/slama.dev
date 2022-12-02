@@ -320,7 +320,10 @@ footer {
     float: right;
 
     @media (max-width: $small-screen-threshold) {
+        margin-left: auto;
+        margin-right: auto;
         float: none;
+        max-width: 100%;
         margin-bottom: $line-spacing;
     }
 
