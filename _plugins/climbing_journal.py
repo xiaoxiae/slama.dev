@@ -195,8 +195,12 @@ for entry in reversed(sorted(list(journal))):
         if some_color_added:
             line += "/ "
 
-        line += "<strong>Kilter: </strong>"
+        angle = journal[entry]["kilter"]["angle"]
+        line += f"<strong>Kilter ({angle}°): </strong>"
         for color in journal[entry]["kilter"]:
+            if color == "angle":
+                continue
+
             line += format_color(color, kilter=True)
 
 

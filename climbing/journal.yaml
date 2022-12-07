@@ -1208,6 +1208,7 @@
       new: 1
     7a+:
       new: 1
+    angle: 40
   note: A pretty fun session (mostly training). The Kilter Board is absolutely amazing
     and I think this is where I'll be spending most of my time, since the routes itself
     aren't all that interesting.
@@ -1256,6 +1257,7 @@
       new: 2
     7a:
       new: 3
+    angle: 40
   note: Despite feeling pretty good, I didn't manage do send the black from the previous
     session, although falling twice from the top :(. That was a bit upsetting so I
     spent the rest of the session Kilter boarding, which was fun (not a lot of hard
@@ -1283,6 +1285,7 @@
       new: 3
     7b:
       new: 1
+    angle: 40
   note: A fun Kilter board session. I did the first 7b and a bunch of 7a/7a+, which
     was nice. I also made individual moves on a 7c which I think I'll do next time.
     It's nice to see some progress from the previous session!
@@ -1297,6 +1300,7 @@
       new: 3
     7b:
       new: 1
+    angle: 40
   note: Good session! I finished the 7b from the previous session but the 7c will
     be a bit more difficult (the top is unexpectedly hard), so I might need to find
     a different one to train for. Also, one of the new reds will go next time with
@@ -1331,6 +1335,7 @@
       new: 3
     7b:
       new: 1
+    angle: 40
   note: A very nice Kilter board session! Sent some nice 7as, 7a+s and a 7b (that
     I had absolutely no chance at a few sessions ago) relatively easily, with really
     good attempts on some other difficult routes that should hopefully go down next
@@ -1348,6 +1353,7 @@
       new: 1
     7b:
       new: 4
+    angle: 40
   note: Another pretty good session. The goal of doing a 7c seems to be quite a bit
     more difficult since the jump between 7b and 7c is quite large. Nevertheless,
     I tried a few 7cs and 7c+s and I think that some will go down in a few sessions.
@@ -1371,6 +1377,7 @@
       new: 1
     7b:
       new: 1
+    angle: 40
   note: Had a pretty weak session on the Kilter board, so I stopped after a short
     time and just messed around on some easier routes in the gym, which was pretty
     fun.
@@ -1389,6 +1396,7 @@
       new: 1
     7a+:
       new: 1
+    angle: 40
   note: A pretty terrible session (despite sending a new black). It was really no
     wonder since I'm sick as of writing this entry (6/11/2022). I'll take a few days
     of rest, recover and hopefully come back stronger :).
@@ -1407,6 +1415,7 @@
   kilter:
     7a:
       new: 1
+    angle: 40
   note: A pretty weak session, not much more to say :).
   red:
     new: 1
@@ -1498,6 +1507,7 @@
       new: 1
     7c+:
       new: 1
+    angle: 40
   note: An absolute monster of a session where I managed to send not only a 7b+, but
     also a 7c and a 7c+, achieving my end-of-the-year goal with style. Oh and the
     black did go down this session :).
