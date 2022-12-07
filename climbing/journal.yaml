@@ -1539,3 +1539,18 @@
   red:
     new: 3
   wall: Boulderhaus
+2022-12-06:
+  blue:
+    old: 2
+  kilter:
+    7a+:
+      new: 3
+    angle: 50
+  note: "So yeah... I did all of the problems in the gym. Feels nice! I then went\
+    \ to Kilterboard but failed pretty badly, because it was 50\xB0, which I'm not\
+    \ very used to :(."
+  other:
+    new: 1
+  red:
+    new: 2
+  wall: Boulderhaus

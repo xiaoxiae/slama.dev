@@ -82,6 +82,10 @@ boulderhaus-other-2022-12-04-tbjrnspf.mp4:
   color: other
   date: 2022-12-04
   wall: Boulderhaus
+boulderhaus-other-2022-12-06-tthxcbdf.mp4:
+  color: other
+  date: 2022-12-06
+  wall: Boulderhaus
 boulderhaus-red-2022-10-13-acxehokt.mp4:
   color: red
   date: 2022-10-13
@@ -277,6 +281,14 @@ boulderhaus-red-2022-12-04-qjjbitui.mp4:
   color: red
   date: 2022-12-04
   wall: Boulderhaus
+boulderhaus-red-2022-12-06-janovbgk.mp4:
+  color: red
+  date: 2022-12-06
+  wall: Boulderhaus
+boulderhaus-red-2022-12-06-jfqeqogl.mp4:
+  color: red
+  date: 2022-12-06
+  wall: Boulderhaus
 kilter-6c-2022-10-15-ecryibhx.mp4:
   attempts: 1
   color: 6c
@@ -391,6 +403,14 @@ kilter-7ap-2022-11-29-ekvylyll.mp4:
 kilter-7ap-2022-11-29-tgrmirzm.mp4:
   color: 7a+
   date: 2022-11-29
+  kilter: true
+kilter-7ap-2022-12-06-ayqytked.mp4:
+  color: 7a+
+  date: 2022-12-06
+  kilter: true
+kilter-7ap-2022-12-06-uwyfwcbq.mp4:
+  color: 7a+
+  date: 2022-12-06
   kilter: true
 kilter-7b-2022-10-18-rjxuhewr.mp4:
   attempts: 1
