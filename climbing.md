@@ -58,4 +58,6 @@ Videos marked <mark class="climbing-diary-record climbing-other climbing-other-t
 
 The format for **sport climbing** is <mark class="climbing-diary-record climbing-other climbing-other-text">Name (difficulty, type)</mark>, top-to-bottom from when it was climbed during the given day. The difficulty is in whichever norm the guide is, with the type being either _onsight_ (climb without having seen the route), _redpoint_ (climb with some prior attempts) or _top rope_ (climb with the rope in the anchor).
 
+_Each of the videos are licensed under **[CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)**, so kindly respect it if you plan on using any of them for uses other than personal._
+
 {% include diary.md %}
