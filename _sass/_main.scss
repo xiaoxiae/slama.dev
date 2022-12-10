@@ -264,13 +264,21 @@ table {
     border-top: 2px solid;
     border-bottom: 2px solid;
     border-collapse: separate;
-    border-spacing: $line-spacing / 2 $line-spacing / 3;
     .katex { border-spacing: 0; }
 
-    th { border-bottom: 1px solid; }
+    border-spacing: $line-spacing / 2 $line-spacing / 3;
 
     td,
     th { padding: 0 $line-spacing / 2; }
+
+    @media (max-width: $small-screen-threshold) {
+        border-spacing: $line-spacing / 4 $line-spacing / 5;
+
+        td,
+        th { padding: 0 $line-spacing / 3; }
+    }
+
+    th { border-bottom: 1px solid; }
 
     margin-left: auto;
     margin-right: auto;
