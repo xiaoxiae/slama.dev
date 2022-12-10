@@ -1521,6 +1521,7 @@
   note: Fun session! The new black went down with quite a neat beta and I managed
     to send the red in the roof while also making good progress on the other red in
     the roof (which is more like black).
+  rebuilt: null
   red:
     new: 3
     old: 1
@@ -1536,6 +1537,7 @@
     problem, which I think turned out very well :).
   other:
     new: 2
+  rebuilt: null
   red:
     new: 3
   wall: Boulderhaus
@@ -1563,7 +1565,11 @@
     old: 3
   note: Finished all boulders from the new set so I still have all the problems! I
     think I should focus on Kilter board now, but it's super cold outside :(.
+  rebuilt: null
   red:
     new: 3
     old: 3
+  wall: Boulderhaus
+2022-12-09:
+  note: A casual session, mostly climbing older routes and making up new ones :).
   wall: Boulderhaus
