@@ -42,9 +42,10 @@ ul.climbing-routes-list {
 .climbing-salmon { background: #ffc1a8; }
 .climbing-blue { background: #087ec4; }
 .climbing-yellow { background: #efd510; }
-.climbing-green { background: #008000ff; }
+.climbing-green { background: #008000; }
 .climbing-black { background: #222; }
 .climbing-other { background: #cccccc; }
+.climbing-christmas { background: #008000; }
 
 .climbing-V2  { background: #eee; }
 .climbing-V3  { background: #ddd; }
@@ -96,6 +97,7 @@ ul.climbing-routes-list {
 .climbing-french,
 .climbing-v,
 .climbing-salmon-text,.climbing-yellow-text,
+.climbing-christmas-text,
 .climbing-other-text {
     color: $light-text-color;
 

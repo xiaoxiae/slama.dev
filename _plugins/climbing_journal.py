@@ -82,7 +82,7 @@ for entry in reversed(sorted(list(journal))):
     wall_stubs_colors = {
         "smichoff": ["red", "salmon", "blue", "yellow"],
         "jungle": ["green", "blue", "red"],
-        "boulderhaus": ["green", "blue", "red", "black"],
+        "boulderhaus": ["christmas", "blue", "red", "black"],
         "boulder-bar": ["green", "blue", "red"],
         "trinactka": v_colors,
     }
@@ -161,6 +161,8 @@ for entry in reversed(sorted(list(journal))):
 
         if color == "other":
             line += f"<mark class='climbing-diary-record climbing-other climbing-other-text'>other: {count}"
+        elif color == "christmas":
+            line += f"<mark class='climbing-diary-record climbing-christmas climbing-christmas-text'>🎄 {count}"
         elif wall_stub in v_grading_gyms_stubs:
             line += f"<mark class='climbing-diary-record climbing-{color} climbing-v'><strong>{color}:</strong> {count}"
         elif kilter:

@@ -30,8 +30,6 @@ if os.path.exists(CLIMBING_INFO):
     with open(CLIMBING_INFO, "r") as f:
         config = yaml.safe_load(f.read())
 
-colors = list(reversed(["red", "salmon", "blue", "yellow"]))
-
 for name in list(config):
     for attribute in config[name]:
         if config[name][attribute] == "TODO":

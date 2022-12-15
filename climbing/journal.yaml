@@ -1544,6 +1544,8 @@
 2022-12-06:
   blue:
     old: 2
+  christmas:
+    new: 1
   kilter:
     7a+:
       new: 3
@@ -1551,8 +1553,6 @@
   note: "So yeah... I did all of the problems in the gym. Feels nice! I then went\
     \ to Kilterboard but failed pretty badly, because it was 50\xB0, which I'm not\
     \ very used to :(."
-  other:
-    new: 1
   red:
     new: 2
   wall: Boulderhaus
@@ -1592,4 +1592,16 @@
   note: Did the last black one (and some forgotten blues), all boulders done again.
   red:
     old: 5
+  wall: Boulderhaus
+2022-12-15:
+  black:
+    old: 1
+  blue:
+    new: 2
+  christmas:
+    new: 1
+  note: Did all of the new routes, the red ones were actually pretty difficult!
+  red:
+    new: 3
+    old: 2
   wall: Boulderhaus
