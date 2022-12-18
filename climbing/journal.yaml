@@ -1605,3 +1605,15 @@
     new: 3
     old: 2
   wall: Boulderhaus
+2022-12-18:
+  blue:
+    new: 3
+  christmas:
+    new: 1
+  note: The new blacks are insanely hard, which is nice -- there's something to do
+    :). I did two of them in two parts and I know that I can send both, but the third
+    one is quite long and it has a paddle move at the end (which will is hard to do
+    even in isolation), so I'm not sure about that one.
+  red:
+    new: 4
+  wall: Boulderhaus
