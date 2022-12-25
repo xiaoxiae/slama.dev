@@ -2,6 +2,7 @@
 
 import os
 import yaml
+import markdown
 from unidecode import unidecode
 
 
@@ -74,9 +75,10 @@ for entry in reversed(sorted(list(journal))):
     line += f"\n<li><ul class='hfill'><li><strong>{entry.strftime('%-d. %-m. %Y')}</strong>"
 
     v_colors = [f"V{i}" for i in range(2, 11)]
-    v_grading_gyms_stubs = set(["trinactka"])
+    v_grading_gyms_stubs = {"trinactka"}
 
     f_colors = sorted([f"{i}{c}{p}".strip() for i in range(6, 9) for c in "abc" for p in " +"])
+    f_grading_gyms_stubs = {"boulder-point"}
 
     # keep sorted by difficulty! (left easiest, right hardest)
     wall_stubs_colors = {
@@ -85,6 +87,7 @@ for entry in reversed(sorted(list(journal))):
         "boulderhaus": ["christmas", "blue", "red", "black"],
         "boulder-bar": ["green", "blue", "red"],
         "trinactka": v_colors,
+        "boulder-point": f_colors,
     }
 
     wall = ""
@@ -165,8 +168,10 @@ for entry in reversed(sorted(list(journal))):
             line += f"<mark class='climbing-diary-record climbing-christmas climbing-christmas-text'>🎄 {count}"
         elif wall_stub in v_grading_gyms_stubs:
             line += f"<mark class='climbing-diary-record climbing-{color} climbing-v'><strong>{color}:</strong> {count}"
+        elif wall_stub in f_grading_gyms_stubs:
+            line += f"<mark class='climbing-diary-record climbing-{color.replace('+', 'p')} climbing-f'><strong>{color}:</strong> {count}"
         elif kilter:
-            line += f"<mark class='climbing-diary-record climbing-{color.replace('+', 'p')} climbing-french'><strong>{color}:</strong> {count}"
+            line += f"<mark class='climbing-diary-record climbing-{color.replace('+', 'p')} climbing-f'><strong>{color}:</strong> {count}"
         else:
             line += f"<mark class='climbing-diary-record climbing-{color} climbing-{color}-text'>{count}"
 
@@ -215,9 +220,13 @@ for entry in reversed(sorted(list(journal))):
         line += f"</ul>"
 
     if "note" in journal[entry]:
-        # the replace is a bit of a hack.
-        # I should probably do proper conversion, but I don't really use anything special
-        line += "<p class='climbing-note'>" + journal[entry]["note"].replace("--", "–").replace(":)", "<span class='emoji'>🙂</span>").replace(":(", "<span class='emoji'>☹️</span>") + "</p>"
+        note = journal[entry]["note"]\
+                .replace("--", "–")\
+                .replace(":)", "<span class='emoji'>🙂</span>")\
+                .replace("<3", "<span class='emoji'>❤️</span>")\
+                .replace(":(", "<span class='emoji'>☹️</span>")
+
+        line += "<p class='climbing-note'>" + markdown.markdown(note)[3:]
 
     line += "</li>"
 

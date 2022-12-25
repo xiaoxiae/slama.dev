@@ -42,16 +42,17 @@ The following contains my climbing diary -- how many new/old boulders have I don
 
 Since there there are some other walls that I visit from time to time (mostly thanks to some of my friends), here is the list of icons that you might see in the journal entries:
 
-| Icon                                                                                                            | Wall                                               | Location       |
-| :-:                                                                                                             | :-:                                                | --:            |
-| <img alt='Boulderhaus wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/boulderhaus.svg'/> | [Boulderhaus](https://www.boulderhaus.net/)        | Heidelberg, DE |
-| <img alt='Smíchoff wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/smichoff.svg'/>       | [Smíchoff](https://www.lezeckecentrum.cz/cs/)      | Prague, CZ     |
-| <img alt='BigWall wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/bigwall.svg'/>         | [BigWall](https://www.big-wall.cz/)                | Prague, CZ     |
-| <img alt='Jungle Letňany wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/jungle.svg'/>   | [Jungle Letňany](https://www.jungleletnany.cz/)    | Prague, CZ     |
-| <img alt='Boulder Bar wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/boulder-bar.svg'/> | [Boulder Bar](https://www.boulder.cz/)             | Prague, CZ     |
-| <img alt='Třináctka wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/trinactka.svg'/>     | [Třináctka](http://stenastodulky.cz/)              | Prague, CZ     |
-| <img alt='LokalBlok wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/lokalblok.svg'/>     | [LokalBlok](http://www.lokalblok.cz/lezecka-stena) | Prague, CZ     |
-| <img alt='Mandalawall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/mandala.svg'/>          | [Mandala](https://boulderhalle-dresden.de/)        | Dresen, DE     |
+| Icon                                                                                                                | Wall                                               | Location       |
+| :-:                                                                                                                 | :-:                                                | --:            |
+| <img alt='Boulderhaus wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/boulderhaus.svg'/>     | [Boulderhaus](https://www.boulderhaus.net/)        | Heidelberg, DE |
+| <img alt='Smíchoff wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/smichoff.svg'/>           | [Smíchoff](https://www.lezeckecentrum.cz/cs/)      | Prague, CZ     |
+| <img alt='BigWall wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/bigwall.svg'/>             | [BigWall](https://www.big-wall.cz/)                | Prague, CZ     |
+| <img alt='Jungle Letňany wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/jungle.svg'/>       | [Jungle Letňany](https://www.jungleletnany.cz/)    | Prague, CZ     |
+| <img alt='Boulder Bar wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/boulder-bar.svg'/>     | [Boulder Bar](https://www.boulder.cz/)             | Prague, CZ     |
+| <img alt='Třináctka wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/trinactka.svg'/>         | [Třináctka](http://stenastodulky.cz/)              | Prague, CZ     |
+| <img alt='LokalBlok wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/lokalblok.svg'/>         | [LokalBlok](http://www.lokalblok.cz/lezecka-stena) | Prague, CZ     |
+| <img alt='Boulder Point wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/boulder-point.svg'/> | [Boulder Point](http://www.boulderpoint.cz/)       | Liberec, CZ    |
+| <img alt='Mandalawall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/mandala.svg'/>              | [Mandala](https://boulderhalle-dresden.de/)        | Dresen, DE     |
 
 The format for **bouldering** is <mark class="climbing-diary-record climbing-black climbing-black-text"><strong>old sends/<span class="underline">new sends</span></strong> [<a>video links</a>]</mark>, left-to-right from easy to hard.
 Videos marked <mark class="climbing-diary-record climbing-other climbing-other-text"><a>F</a></mark> are flash sends while videos marked <mark class="climbing-diary-record climbing-other climbing-other-text"><a>A</a></mark> are just regular non-flash ascents.
