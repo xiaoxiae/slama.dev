@@ -22,14 +22,16 @@ _Note that I've read each one as an Audiobook, either from Audible or using othe
 	3. **Oathbringer**
 	4. **The Rhythm of War**
 
-- **Mistborn** [[Wikipedia](https://en.wikipedia.org/wiki/Mistborn_series)] -- another amazing series from Brandon Sanderson with another well thought-out magic system. The first and the second series vary greatly in their setting (medieval \(\times\) industrial revolution), but I would argue that they both work very well.
-	1. **The Final Empire**
-	2. **The Well of Ascension**
-	3. **The Hero of Ages**
-	4. **The Alloy of Law**
-	5. **Shadows of Self**
-	6. **The Bands of Mourning**
-	7. **The Lost Metal** (to be released)
+- **Mistborn** [[Wikipedia](https://en.wikipedia.org/wiki/Mistborn_series)] -- another amazing series from Brandon Sanderson with another well thought-out magic system. The first and the second eras vary greatly in their setting (medieval \(\times\) industrial revolution), but I would argue that they both work extremely well.
+	- The First Era:
+		1. **The Final Empire**
+		2. **The Well of Ascension**
+		3. **The Hero of Ages**
+	- The Second Era:
+		1. **The Alloy of Law**
+		2. **Shadows of Self**
+		3. **The Bands of Mourning**
+		4. **The Lost Metal**
 
 - **Arcanum Unbounded: The Cosmere Collection** [[Wikipedia](https://en.wikipedia.org/wiki/Arcanum_Unbounded:_The_Cosmere_Collection)] -- a series of stories about the planetary systems of Sanderson's ([Cosmere](https://en.wikipedia.org/wiki/Brandon_Sanderson#Cosmere)) universe in which all of his works are set. I'd refrain from reading this until you've gone through his other books since it mainly adds context and perspective.
 
