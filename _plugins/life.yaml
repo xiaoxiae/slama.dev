@@ -1,0 +1,9 @@
+- the first node of the YAML is expected to include personal information but is only used in the PDF
+
+- 2022
+-
+  - 25.12.
+  -
+    - "🎄 **Advent of Code completed!** 🎄<br>
+      I successfully completed this year's [Advent of Code](https://adventofcode.com/2022)!
+      Although there were some problems that took a few hours (I'm looking at you, day 19), I managed to solve all of them quite reasonably and arguably better than last year."

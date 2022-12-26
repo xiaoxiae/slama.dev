@@ -23,6 +23,8 @@ Jekyll::Hooks.register :site, :after_init do |site|
   print "                CV: " + `git submodule foreach git reset --hard origin/master`
   print "                CV: " + `_plugins/cv/cv.py --pdf -c`
   print "                CV: " + `_plugins/cv/cv.py --html -o _includes/cv`
+
+  print "              Life: " + `_plugins/cv/cv.py --html -o _includes/life -i ../../_plugins/life.yaml`
 end
 
 Jekyll::Hooks.register :posts, :post_render do |post|
