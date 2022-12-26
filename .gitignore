@@ -30,8 +30,6 @@ fonts/
 # generated
 _includes/cv.html
 _includes/life.html
-_includes/songs.md
-_includes/projects.md
 _includes/videos.md
 _includes/diary.md
 _includes/kilter.md
