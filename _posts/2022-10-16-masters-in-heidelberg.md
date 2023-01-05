@@ -216,3 +216,14 @@ Some programmes have a relatively predetermined schedule, while others are more 
 One thing that is a constant in all of this is [LSF](https://lsf.uni-heidelberg.de/), which is the central platform for organizing your education in Heidelberg.
 After reading through the handbook for your respective Master's degree, you should find the courses you'd like to sign up for in the course catalogue.
 For each course, there is usually a sign-up link, leading to one of the many e-learning platforms used ([Müsli](https://muesli.mathi.uni-heidelberg.de/), [Moodle](https://moodle.uni-heidelberg.de/login/index.php), [Mampf](https://mampf.uni-heidelberg.de), etc.).
+
+
+### Torrenting
+
+**Don't torrent without a VPN. Seriously.**
+
+You will receive a warning and will have to pay (either a lot directly or a little less when going through a mediation company).
+If this has already happened, [read this article](https://www.settle-in-berlin.com/illegal-file-sharing-germany-letter-cease-desist-warning/) and follow the advice.
+
+I'm adding this here since Germany's stance to torrenting is quite different (there is a whole industry around this) to that of some other European countries and might catch you off guard like it did us.
+It is absolutely nonsensical and predatory, but unfortunately not much can be done.
