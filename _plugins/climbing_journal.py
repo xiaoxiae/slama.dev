@@ -67,8 +67,19 @@ for entry in reversed(sorted(list(journal))):
 
         current_year = entry.year
 
+
     if current_month != entry.month:
-        line += f"</ul><h4>{month_mapping[entry.month - 1]}</h4><ul>"
+        send_of_the_month = None
+
+        for video in videos:
+            if videos[video]["date"].month == entry.month and videos[video]["date"].year == entry.year:
+                if "sotm" in videos[video] and videos[video]["sotm"]:
+                    send_of_the_month = video
+
+        if send_of_the_month is not None:
+            line += f"</ul><h4>{month_mapping[entry.month - 1]} (<a href='/climbing/videos/{send_of_the_month}'>best send</a>)</h4><ul>"
+        else:
+            line += f"</ul><h4>{month_mapping[entry.month - 1]}</h4><ul>"
 
         current_month = entry.month
 
