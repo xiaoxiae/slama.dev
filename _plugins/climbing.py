@@ -42,7 +42,7 @@ for name in list(config):
 
 # rename new files
 for name in list(config):
-    old_path = os.path.join(CLIMBING_VIDEOS_FOLDER, name)
+    path = os.path.join(CLIMBING_VIDEOS_FOLDER, name)
 
     if "new" in config[name]:
         print(f"parsing new climb '{name}'.", flush=True)
@@ -77,61 +77,65 @@ for name in list(config):
 
         name = new_name
 
-        tmp_path = os.path.join(CLIMBING_VIDEOS_FOLDER, "tmp_" + name)
-
-        # trim the video
-        if "trim" in config[name]:
-            start, end = config[name]["trim"].split(",")
-            command = [
-                "ffmpeg",
-                "-y",
-                "-i",
-                old_path,
-                "-ss",
-                start,
-                "-to",
-                end,
-                tmp_path,
-            ]
-
-            _ = Popen(command, stdout=PIPE, stderr=PIPE).communicate()
-            os.remove(old_path)
-            os.rename(tmp_path, old_path)
-            del config[name]["trim"]
-
-        # encode/rotate the video
-        if "encode" in config[name] or "rotate" in config[name]:
-            encode_config = (
-                []
-                if "encode" not in config[name]
-                else ["-vcodec", "libx264", "-crf", "28"]
-            )
-            rotate_config = (
-                []
-                if "rotate" not in config[name]
-                else [
-                    "-vf",
-                    f'transpose={"2" if config[name]["rotate"] == "left" else "1"}',
-                ]
-            )
-            command = (
-                ["ffmpeg", "-y", "-i", old_path]
-                + encode_config
-                + rotate_config
-                + [tmp_path]
-            )
-
-            _ = Popen(command, stdout=PIPE, stderr=PIPE).communicate()
-            os.remove(old_path)
-            os.rename(tmp_path, old_path)
-
-            if "encode" in config[name]:
-                del config[name]["encode"]
-            if "rotate" in config[name]:
-                del config[name]["rotate"]
-
         new_path = os.path.join(CLIMBING_VIDEOS_FOLDER, name)
-        os.rename(old_path, new_path)
+        os.rename(path, new_path)
+
+        path = new_path
+
+    tmp_path = os.path.join(CLIMBING_VIDEOS_FOLDER, "tmp_" + name)
+
+    # trim the video
+    if "trim" in config[name]:
+
+        start, end = config[name]["trim"].split(",")
+        command = [
+            "ffmpeg",
+            "-y",
+            "-i",
+            path,
+            "-ss",
+            start,
+            "-to",
+            end,
+            tmp_path,
+        ]
+
+        _ = Popen(command, stdout=PIPE, stderr=PIPE).communicate()
+        os.remove(path)
+        os.rename(tmp_path, path)
+        del config[name]["trim"]
+
+    # encode/rotate the video
+    if "encode" in config[name] or "rotate" in config[name]:
+        encode_config = (
+            []
+            if "encode" not in config[name]
+            else ["-vcodec", "libx264", "-crf", "28"]
+        )
+        rotate_config = (
+            []
+            if "rotate" not in config[name]
+            else [
+                "-vf",
+                f'transpose={"2" if config[name]["rotate"] == "left" else "1"}',
+            ]
+        )
+        command = (
+            ["ffmpeg", "-y", "-i", path]
+            + encode_config
+            + rotate_config
+            + [tmp_path]
+        )
+
+        _ = Popen(command, stdout=PIPE, stderr=PIPE).communicate()
+        os.remove(path)
+        os.rename(tmp_path, path)
+
+        if "encode" in config[name]:
+            del config[name]["encode"]
+        if "rotate" in config[name]:
+            del config[name]["rotate"]
+
 
     # generate a poster, if it doesn't exist
     poster_jpeg = os.path.join(
@@ -143,13 +147,11 @@ for name in list(config):
 
     if not os.path.exists(poster_webp):
         print(f"generating a poster for '{name}'.", flush=True)
-        new_path = os.path.join(CLIMBING_VIDEOS_FOLDER, name)
-
         _ = Popen(
             [
                 "ffmpeg",
                 "-i",
-                new_path,
+                path,
                 "-vf",
                 "select=eq(n\,0)",
                 "-vframes",
