@@ -136,6 +136,27 @@ for name in list(config):
         if "rotate" in config[name]:
             del config[name]["rotate"]
 
+    if "deface" in config[name]:
+        command = [
+            "deface",
+            path,
+            "-t",
+            "0.5",
+            "-o",
+            tmp_path,
+        ]
+
+        _ = Popen(command, stdout=PIPE, stderr=PIPE).communicate()
+
+        old_folder = os.path.join(CLIMBING_VIDEOS_FOLDER, "unblurred")
+
+        if not os.path.exists(old_folder):
+            os.mkdir(old_folder)
+
+        os.rename(path, os.path.join(old_folder, name))
+        os.rename(tmp_path, path)
+        del config[name]["deface"]
+
 
     # generate a poster, if it doesn't exist
     poster_jpeg = os.path.join(

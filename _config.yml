@@ -7,6 +7,7 @@ baseurl: ""
 # exclude Jekyll-related files, scripts and generated content
 exclude: [
   "climbing/*.py",
+  "climbing/videos/unblurred/",
   "ignored/",
   "LICENSE",
   "makefile",

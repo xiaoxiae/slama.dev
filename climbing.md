@@ -25,6 +25,8 @@ This page is dedicated to my climbing life.
 Since moving to Heidelberg for my Master's degree, Boulderhaus is the gym that I frequent.
 The setting is quite old-school (compared to the walls in Prague that I frequented), mostly difficult moves and hard positions as opposed to dynamics.
 
+_Note that since Germany's private and public filming laws are quite strict, each of the videos from Boulderhaus were ran through a [face blur software](https://github.com/ORB-HD/deface). I realize that the chance of someone having a problem with them walking by in one of my videos is slim, but I'd rather not risk it._
+
 ## Kilter board
 The Kilter board has been a bit of an obsession of mine ever since moving to Heidelberg.
 The holds are much more pleasant compared to other boards (like Moonboard) and the app is quite simple to use.

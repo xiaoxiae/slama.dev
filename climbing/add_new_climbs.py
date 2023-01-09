@@ -31,6 +31,7 @@ for file in files:
             "rotate": "left",
             "encode": None,
             "trim": "TODO",
+            "deface": None,
             "wall": "Boulderhaus",
         }
 
