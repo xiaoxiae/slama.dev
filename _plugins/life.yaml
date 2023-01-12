@@ -1,5 +1,13 @@
 - the first node of the YAML is expected to include personal information but is only used in the PDF
 
+- 2023
+-
+  - "1. 1."
+  -
+    - "**Happy New Year!** 🎆<br>
+      Celebrated New Year's eve with my lovely girlfriend.
+      We watched a movie and went to bed at 0:15... I feel old."
+
 - 2022
 -
   - "29. 12."
