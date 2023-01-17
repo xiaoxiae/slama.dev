@@ -23,6 +23,10 @@ SYNC_COMMAND = ["rsync", "-avz", OUTPUT_FOLDER, "-e", "ssh -p 222",
 
 dry_run = len(sys.argv) == 2 and sys.argv[1] in ("-n", "--dry-run")
 
+if not os.path.exists(OUTPUT_FOLDER):
+    print(f"output folder {OUTPUT_FOLDER} doesn't exist, not generating.")
+    quit()
+
 
 def stub(string: str) -> str:
     for f, t in [
