@@ -1699,3 +1699,10 @@
   red:
     new: 2
   wall: Boulderhaus
+2023-01-17:
+  blue:
+    old: 3
+  note: A really weak day. Some of them have to be that way :).
+  red:
+    old: 1
+  wall: Boulderhaus
