@@ -1,3 +1,46 @@
+# New entry formats:
+# (time format: 1:32:23.321; null to not cut)
+#
+# - beaten: TODO
+#   character: TODO
+#   input:
+#   - ["/aux/Recording/FirstVideoName", "START", "END"]
+#   - ["/aux/Recording/SecondVideoName", "START", "END"]
+#
+# - challenge: TODO
+#   input:
+#   - ["/aux/Recording/FirstVideoName", "START", "END"]
+#   - ["/aux/Recording/SecondVideoName", "START", "END"]
+#
+# - daily: TODO
+#   input:
+#   - ["/aux/Recording/FirstVideoName", "START", "END"]
+#   - ["/aux/Recording/SecondVideoName", "START", "END"]
+#
+- beaten: The Beast
+  character: Judas
+  date: 2023-01-11 19:54:07.256918
+  name: 2023-01-11-judas-hucewyxn.mp4
+- beaten: Hush, Blue Baby, Mega Satan
+  character: Tainted Judas
+  date: 2023-01-13 14:28:45.107438
+  name: 2023-01-13-tainted-judas-lfaydpmz.mp4
+- character: Lazarus
+  daily: It Lives
+  date: 2023-01-13 16:05:45.490805
+  name: 2023-01-13-daily-lazarus-it-lives-eiwqrjdl.mp4
+- beaten: Hush, The Lamb
+  character: Tainted Azazel
+  date: 2023-01-13 21:43:50.592892
+  name: 2023-01-13-tainted-azazel-nwpzvmal.mp4
+- beaten: The Mother
+  character: Tainted Azazel
+  date: 2023-01-14 01:16:58.500962
+  name: 2023-01-14-tainted-azazel-hoxgiipt.mp4
+- beaten: The Lamb
+  character: Tainted Judas
+  date: 2023-01-13 14:28:45.107438
+  name: 2023-01-13-tainted-judas-seiysgtt.mp4
 - beaten: The Mother
   character: The Lost
   date: 2022-12-26 21:48:25

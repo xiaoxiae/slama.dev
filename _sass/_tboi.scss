@@ -4,7 +4,7 @@
 
 .inline {
     display: inline;
-    height: 1.1em;
+    height: 1.3em;
     vertical-align: sub;
     filter: invert(0%) !important;
 
@@ -16,5 +16,8 @@
     image-rendering: pixelated;                 /* Universal support since 2021   */
     image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
     -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+}
 
+td {
+    vertical-align: top;
 }
