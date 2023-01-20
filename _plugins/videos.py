@@ -53,6 +53,12 @@ videos = [
             "The Remarkable BEST-SAT Algorithm",
             "10-",
         ),
+        (
+            date(2023, 1, 20),
+            "https://www.youtube.com/watch?v=umszOeerdsU",
+            "Thesesus and the Minotaur | Exploring State Space",
+            "12-",
+        ),
     ]),
     ("Shorts", [
         (
@@ -90,7 +96,7 @@ for category, video_contents in videos:
 
         folder = match[0]
 
-        video_slug = video.lower().replace("'", "").replace(" ", "-").replace("?", "")
+        video_slug = video.lower().replace(" | ", " ").replace("'", "").replace(" ", "-").replace("?", "")
 
         if not os.path.exists(VIDEO_FOLDER):
             os.mkdir(VIDEO_FOLDER)
