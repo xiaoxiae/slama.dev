@@ -1713,3 +1713,13 @@
   red:
     new: 3
   wall: Boulderhaus
+2023-01-22:
+  blue:
+    new: 12
+    old: 3
+  note: Another new set of new routes with some pretty hard reds and a new black which
+    I'll have to look at next time. Felt pretty doable, though.
+  red:
+    new: 5
+    old: 1
+  wall: Boulderhaus
