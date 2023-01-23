@@ -36,7 +36,7 @@ videos = [
         (
             date(2021, 4, 28),
             "https://www.youtube.com/watch?v=OZWZpQmGp0g",
-            "Vizing's theorem",
+            "Vizing's Theorem",
             "03-",
         ),
     ]),
