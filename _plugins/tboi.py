@@ -150,7 +150,6 @@ for video in videos:
 
     # cleanup
     video['name'] = name
-    del video['input']
 
     if not dry_run:
         for file_path in individual_files:
@@ -236,6 +235,9 @@ with open(OUTPUT_MD, "w") as file:
         if 'challenge' not in video:
             continue
 
+        # date
+        date_str = video['date'].strftime('%Y/%m/%d')
+
         # link
         file_duration = get_video_duration(os.path.join(OUTPUT_FOLDER, video['name']))
         file_url = os.path.join(OUTPUT_SERVER, video['name'])
@@ -249,6 +251,9 @@ with open(OUTPUT_MD, "w") as file:
     for video in sorted(videos, key=lambda x: x['date']):
         if 'daily' not in video:
             continue
+
+        # date
+        date_str = video['date'].strftime('%Y/%m/%d')
 
         # character
         character = video['character']
