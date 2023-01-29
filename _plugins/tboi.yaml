@@ -5,17 +5,14 @@
 #   character: TODO
 #   input:
 #   - ["/aux/Recording/FirstVideoName", "START", "END"]
-#   - ["/aux/Recording/SecondVideoName", "START", "END"]
 #
 # - challenge: TODO
 #   input:
 #   - ["/aux/Recording/FirstVideoName", "START", "END"]
-#   - ["/aux/Recording/SecondVideoName", "START", "END"]
 #
 # - daily: TODO
 #   input:
 #   - ["/aux/Recording/FirstVideoName", "START", "END"]
-#   - ["/aux/Recording/SecondVideoName", "START", "END"]
 #
 - beaten: The Beast
   character: Judas
@@ -94,3 +91,27 @@
   character: Judas
   date: 2023-01-22 17:47:47.610881
   name: 2023-01-22-judas-oykajsjf.mp4
+- beaten: Ultra Greed
+  character: Tainted Azazel
+  date: 2023-01-23 17:54:28.253508
+  input:
+  - - /aux/Recording/2023-01-23 16-59-37.mkv
+    - '2'
+    - '23:13'
+  name: 2023-01-23-tainted-azazel-qnajqyib.mp4
+- beaten: Ultra Greed
+  character: Tainted Judas
+  date: 2023-01-23 18:19:24.096498
+  input:
+  - - /aux/Recording/2023-01-23 17-55-37.mkv
+    - '0'
+    - '23:43.5'
+  name: 2023-01-23-tainted-judas-jachblis.mp4
+- beaten: Hush, The Lamb, Mega Satan, Delirium
+  character: Bethany
+  date: 2023-01-25 13:28:47.396619
+  input:
+  - - /aux/Recording/2023-01-25 12-18-59.mkv
+    - '15:48.18'
+    - '1:09:43.25'
+  name: 2023-01-25-bethany-kdtdfaav.mp4

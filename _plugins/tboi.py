@@ -46,7 +46,7 @@ def get_random_string(length: int) -> str:
         result += choice(ascii_lowercase)
     return result
 
-def run_command(command: List[str]):
+def run_command(command: List[str], pipe=None):
     process = Popen(command, stdout=PIPE, stderr=PIPE)
     return process.communicate()
 
@@ -168,17 +168,14 @@ note = """# New entry formats:
 #   character: TODO
 #   input:
 #   - ["/aux/Recording/FirstVideoName", "START", "END"]
-#   - ["/aux/Recording/SecondVideoName", "START", "END"]
 #
 # - challenge: TODO
 #   input:
 #   - ["/aux/Recording/FirstVideoName", "START", "END"]
-#   - ["/aux/Recording/SecondVideoName", "START", "END"]
 #
 # - daily: TODO
 #   input:
 #   - ["/aux/Recording/FirstVideoName", "START", "END"]
-#   - ["/aux/Recording/SecondVideoName", "START", "END"]
 #
 """
 
@@ -197,7 +194,7 @@ with open(OUTPUT_MD, "w") as file:
     file.write(f"| Date | Character | Beaten | Link |\n| :-: | --- | --- | --: | --- |\n")
 
     for video in sorted(videos, key=lambda x: x['date']):
-        if 'input' in video:
+        if 'name' not in video:
             print(f"WARNING: unprocessed run {video}")
             continue
 
@@ -268,6 +265,7 @@ with open(OUTPUT_MD, "w") as file:
 if not dry_run:
     if change or (len(sys.argv) == 2 and sys.argv[1] in ("-f", "--force")):
         print("generated, syncing... ", end="", flush=True)
+        input("press enter to input server's password (to prevent SSH timeout):")
         run_command(SYNC_COMMAND)
         print("synced.")
     else:
