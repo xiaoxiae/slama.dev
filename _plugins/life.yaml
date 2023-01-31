@@ -1,10 +1,10 @@
-- the first node of the YAML is expected to include personal information but is only used in the PDF
+- the first node of the YAML is expected to include personal information, but is only used in the PDF
 
 - 2023
 -
   - "20. 1."
   -
-    - "**Released a [new video](https://www.youtube.com/watch?v=umszOeerdsU)!** 🐂<br>
+    - "**Released a [new video](https://www.youtube.com/watch?v=umszOeerdsU)** 🐂<br>
       It's about Theseus, Minotaur, state space exploration and it's awesome so you should check it out, since it took me way too much time to make."
   - "13. 1."
   -
@@ -12,7 +12,7 @@
       You'll have to look around for it though."
   - "1. 1."
   -
-    - "**Happy New Year!** 🎆<br>
+    - "**Happy New Year** 🎆<br>
       Celebrated New Year's eve with my lovely girlfriend.
       We watched a movie and went to bed at 0:15... I feel old."
 
@@ -30,6 +30,6 @@
       Despite the runtime being slightly above 3 hours, it flew by way too fast."
   - "25. 12."
   -
-    - "**Advent of Code completed!** 🎄<br>
+    - "**Advent of Code completed** 🎄<br>
       I successfully completed this year's [Advent of Code](https://adventofcode.com/2022)!
       Although there were some problems that took a few hours (I'm looking at you, day 19), I managed to solve all of them quite reasonably and arguably better than last year."
