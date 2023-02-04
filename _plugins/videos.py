@@ -73,6 +73,12 @@ videos = [
             "What does this weird C program do?",
             "14-",
         ),
+        (
+            date(2023, 2, 4),
+            "https://youtube.com/shorts/q8Zuymd-ljc",
+            "Undirected graphs can't equal a polynomial... or can they?",
+            "16-",
+        ),
     ]),
 ]
 
@@ -96,7 +102,7 @@ for category, video_contents in videos:
 
         folder = match[0]
 
-        video_slug = video.lower().replace(" | ", " ").replace("'", "").replace(" ", "-").replace("?", "")
+        video_slug = video.lower().replace(".", "").replace(" | ", " ").replace("'", "").replace(" ", "-").replace("?", "")
 
         if not os.path.exists(VIDEO_FOLDER):
             os.mkdir(VIDEO_FOLDER)
