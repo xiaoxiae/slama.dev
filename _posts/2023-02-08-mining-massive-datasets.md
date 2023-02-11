@@ -30,8 +30,22 @@ _Note that the notes only cover the topics [required for the exam](exam.pdf)._
 
 ### Programming and Frameworks
 
-TODO: spark programming: architecture, key concepts
-TODO: programming with RRDs
+#### Links
+- [PySpark RDD Cheatsheet](/assets/mining-massive-datasets/rdd-cheatsheet.pdf)
+
+#### PySpark
+Main data structure are **RDDs** (reasilient distributed datasets):
+- collection of records spread across a cluster
+- can be text line, string, key-value pair, etc.
+
+Two operation types:
+- **transformations:** lazy operations to build RDDs from other RDDs
+- **actions:** return a result or write it to storage
+
+PySpark's other main data structure are **DataFrames**:
+- table of data with rows and (named) columns
+- has a set schema (definition of column names and types)
+
 TODO: dataframes
 TODO: ML with Spark
 TODO: spark streaming (only basics)
