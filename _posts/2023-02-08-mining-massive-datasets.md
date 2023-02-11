@@ -92,9 +92,39 @@ TODO: concept of regularization (no formulas)
 
 ### Link Analysis
 
-TODO: pagerank: flow
-TODO: pagerank: google formulation
-TODO: pagerank: how to compute in practice
+#### Flow formulation
+**Problem:** we have pages as a directed graph. We want to determine the importance of pages based on how many links lead to it. I.e. if page \(j\) of importance \(r_j\) has \(n\) outgoing links, each link gets importance \(r_j / n\).
+Formally:
+\[r_j = \sum_{i \rightarrow j} \frac{r_i}{ d^{\mathrm{out}}_i}\]
+
+Can be expressed as a system of linear equations to be solved (Gaussian elimination, for example). If formulated as an adjacency matrix \(M\) (where \(M_{ji} = \frac{1}{d^{\mathrm{out}}_i}\)), then we can define the flow equation as \[Mr = r\]
+meaning that we're looking for the **eigenvector** of the matrix.
+Since the matrix is stochastic (columns sum to 1), its first eigenvector has eigenvalue 1 and we can find it using **power iteration.**
+
+#### Matrix formulation
+
+This, however, has two problems:
+
+- **dead ends** (when a page has no out-links); makes the matrix non-stochastic!
+- **spider traps** (when there is no way to get out of a part of the graph)
+
+Both are solved using **teleports** -- during each visit, we have a probability of \(1 - \beta\) to jump to a random page (\(\beta\) usually \(0.8\)). In a dead-end, we teleport with probability \(1\).
+
+Using this, we get the **Google PageRank equation:** \[\underbrace{r_j = \sum_{i \rightarrow j} \beta \frac{r_i}{d^{\mathrm{out}}_i} + (1 - \beta) \frac{1}{N}}_{\text{PageRank equation}} \qquad \underbrace{A = \beta M + (1 - \beta) \left[\frac{1}{N}\right]_{N \times N} \quad Ar = r}_{\text{Google Matrix A}}\]
+
+#### Practical computation
+To reduce the matrix operations, we can rearange the matrix equation and get \[r =\beta M \cdot r + \left[\frac{1 - \beta}{N}\right]_N\]
+
+{% math ENalgorithm "PageRank" %}
+- set \(r^{\mathrm{old}}_j = \frac{1}{N}\)
+- repeat until \(\sum_{j} |r^{\mathrm{new}}_j - r^{\mathrm{old}}_j| < \varepsilon\):
+	- _power method iteration:_ \(\forall j: r^{\mathrm{new}}_j = \sum_{i \rightarrow j} \beta \frac{r^{\mathrm{old}_i}}{d^{\mathrm{out}}_i}\), otherwise \(0\) if in-degree of \(j\) is \(0\)
+	- _vector normalization:_ \(\forall j: r^{\mathrm{new}}_j = r^{\mathrm{new}}_j + \frac{1 - \sum_{j} r^{\mathrm{new}}_j}{N}\)
+	- \(r^{\mathrm{old}} = r^{\mathrm{new}}\)
+{% endmath %}
+
+TODO: memory constraints
+
 TODO: pagerank: topic-specific
 TODO: pagerank: trustrank
 
