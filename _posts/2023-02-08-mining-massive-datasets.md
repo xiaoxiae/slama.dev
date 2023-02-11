@@ -30,6 +30,12 @@ _Note that the notes only cover the topics [required for the exam](exam.pdf)._
 
 ### Programming and Frameworks
 
+TODO: spark programming: architecture, key concepts
+TODO: programming with RRDs
+TODO: dataframes
+TODO: ML with Spark
+TODO: spark streaming (only basics)
+
 ### Recommender Systems
 Problem: \(X\) as set of customers, \(S\) as set of items
 - utility function \(u: X \times S \mapsto R\) (set of ratings)
@@ -218,7 +224,30 @@ We want to tune \(b\) and \(r\) to catch most similar pairs but few non-similar 
 ![S-Curve illustration.](/assets/mining-massive-datasets/s-curve.svg)
 
 ### Association Rule Discovery
+TODO: The Market-Basket Model
+TODO: frequet itemsets, confidence and interest, mining association rules, examples
+TODO: finding frequent itemsets (understand ocmputational model anbottlenecks)_
+TODO: A-priori algorithm
+TODO: PCY algorithm simple
 
 ### Online Advertising
+TODO: online bipartite matching
+TODO: greedy algorithm we beadvertising
+TODO: balance algorithm rule, analyzing, general results, NOT generalized
 
 ### Mining Data Streams
+TODO: Problem statement and why hash table bad
+TODO: frst-cut 
+TODO: bloom filter!!!
+
+TODO: sampling a fixed proportion
+TODO: sampling a fixed-size sample
+
+TODO: counting distinct elements in a stream
+TODO: fajolet-martin approch
+TODO: intuition why it works
+
+TODO: counting moments
+TODO: definitinon,exact computation
+TODO: exmple of the surprise number
+TODO: alon-matias szegedy (AMS) - the algorithm
