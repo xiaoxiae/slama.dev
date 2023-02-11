@@ -123,10 +123,30 @@ To reduce the matrix operations, we can rearange the matrix equation and get \[r
 	- \(r^{\mathrm{old}} = r^{\mathrm{new}}\)
 {% endmath %}
 
-TODO: memory constraints
+When we don't have enough RAM to fit the whole matrix \(M\), we can read and update it by vertices (it's sparse so we'd likely be storing it as a dictionary):
 
-TODO: pagerank: topic-specific
-TODO: pagerank: trustrank
+| Source | Degree | Destination        |
+| ---    | ---    | ---                |
+| \(0\) | \(3\) | \(1, 5, 6\)          |
+| \(1\) | \(4\) | \(17, 64, 113, 116\) |
+| \(2\) | \(2\) | \(13, 23\)           |
+
+I.e. do \(r^{\mathrm{new}}_{\mathrm{dest}_j} += \beta r^{\mathrm{old}}_i / d_i\).
+
+When we can't even fit \(r^{\mathrm{new}}\) into memory, we can break it into \(k\) blocks that do fit into memory and scan \(M\) and \(r^{\mathrm{old}}\). This, however, is pretty inefficient -- we can instead use the **block-stripe** algorithm, which breaks \(M\) by destinations instead so we don't need to repeatedly scan it!
+
+#### Topic-Specific PageRank
+We can bias the random page walk to teleport to to relevant pages (from set \(S\)). For each teleport set \(S\), we get different vector \(r_S\). This changes the PageRank formulation like so:
+
+\[A_{ij} = \beta M_{ij} + \begin{cases} (1 - \beta) / |S| & i \in S \\ 0 & \text{otherwise} \end{cases}\]
+
+#### TrustRank
+Adresses issues with spam farms, which are pages that just point to one another.
+The general idea to fix this is to use a set of **seed pages** from the web and identify the ones that are „good“, i.e. **trusted**.
+Then perform topic-specific pagerank with \(S =\) trusted pages, which propagates the trust to other pages.
+After this, websites with trust below a certain threshold are spam.
+
+- to pick seed pages, we can use PageRank and pick the top \(k\), or use trusted domains
 
 ### Locality Sensitive Hashing
 
