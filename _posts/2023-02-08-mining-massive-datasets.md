@@ -149,12 +149,61 @@ After this, websites with trust below a certain threshold are spam.
 - to pick seed pages, we can use PageRank and pick the top \(k\), or use trusted domains
 
 ### Locality Sensitive Hashing
+We want to find near-neighbors in high-dimensional spaces:
+- points in the same cluster
+- pages with similar words
 
-TODO: word on has function and data structures
-TODO: intro
-TODO: shingling
-TODO: minhashing
-TODO: locality sensitive hashing
+{% math ENdefinition "hash function" %}function \(h: D \mapsto R\), where \(D\) is a large domain space and \(R\) a small range space (usually integers).{% endmath %}
+- for example \(h(x) = x \mod b\) with \(b\) prime
+
+General steps:
+- **Shingling:** convert items (in our case documents) into _sets_
+- **Min-hashing:** convert large sets into shorter _signatures_
+- **Locality-Sensitive Hashing:** identify pairs of signatures _likely to be similar_
+- **Final filtering:** get the final few candidate pairs and _compare them pairwise_
+
+#### Shingling
+For a document, take a sliding window of size \(k\).
+Then \(k\)-shingles for the given document are all sequences of \(k\) consecutive tokens from the document.
+- if the shingles are long, they can also be compressed using some hash function
+
+#### Min-hashing
+The shingling sets are very large, so we have to find a way to measure how similar they are.
+What we want to measure is their **Jaccard similarity**, which is \[\mathrm{sim}(S_1, S_2) = |S_1 \cap S_2|\ /\ |S_1 \cup S_2|\]
+
+To do this, we'll compute **signatures**: to compute a signature, we take many random hash function (for example random permutations), hash all values from the set of shingles and take the minimum.
+Then the list of all those minimal values is the signature.
+- in practice, we do \(((a \cdot x + b) \mod p) \mod N\) for \(a, b\) random integers, \(p\) prime and \(N\) size of shingles
+
+For example:
+- permutation \(\pi = (2, 3, 7, 6, 1, 5, 4)\)
+- set of shingles (as bit array) \((1, 1, 0, 0, 0, 1, 1)\)
+- resulting min-hash: \(2\) (by shingle \(1\) mapping to index \(2\))
+
+It turns out that \(\mathrm{Pr}\left[h_\pi (S_1) = h_pi (S_2)\right] = \mathrm{sim}(S_1, S_2)\)
+
+**Intuition** is that if the sets of shingles are very similar, randomly shuffling them in the same way and then taking the minimum value should, with a high probability, be equal.
+
+#### Locality-Sensitive Hashing
+Our goal now is to find documents with Jaccard similarity at least \(s\) (e.g. \(0.8\)).
+To do this, we will **hash parts of the signature matrix:**
+- take matrix \(M\) and divide it into \(b\) _bands_ of \(r\) _rows_
+- for each band, hash its portion of each column to a hash table with \(k\) buckets
+- candidate column pairs are those that hash to the same bucket for \(\ge 1\) band
+
+![Locality-Sensitive Hashing example.](/assets/mining-massive-datasets/lsh.svg)
+
+We want to tune \(b\) and \(r\) to catch most similar pairs but few non-similar pairs:
+- let \(s = 0.8\) and \(b = 20, r = 5\)
+- \(S_1, S_2\) are \(80\%\) similar:
+	- then the probability for one band is \(0.8^{5} = 0.328\)
+	- probability that \(S_1\) and \(S_2\) are not similar is \((1 - 0.328)^{20} = 0.00035\)
+- \(S_1, S_2\) are \(30\%\) similar:
+	- then the probability for one band is \(0.3^{5} = 0.00243\)
+	- probability that \(S_1\) and \(S_2\) ARE similar is \(1 - (1 - 0.00243)^{20} = 0.047\)
+		- i.e. \(4.74%\) pairs of docs with similarity \(0.3\) become candidate pairs
+
+![S-Curve illustration.](/assets/mining-massive-datasets/s-curve.svg)
 
 ### Association Rule Discovery
 
