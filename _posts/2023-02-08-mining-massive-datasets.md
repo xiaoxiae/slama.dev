@@ -34,7 +34,13 @@ _Note that the notes only cover the topics [required for the exam](exam.pdf)._
 Problem: \(X\) as set of customers, \(S\) as set of items
 - utility function \(u: X \times S \mapsto R\) (set of ratings)
 	- \(R\) usually \(\in [0, 1]\)
-	- can be stored in a **utility matrix**
+	- can be stored in a **utility matrix:**
+
+|           | Alice   | Bob     | Carol   | David   |
+| Star Wars | \(1\)   |         | \(0.2\) |         |
+| Matrix    |         | \(0.5\) |         | \(0.3\) |
+| Avatar    | \(0.2\) |         | \(1\)   |         |
+| Pirates   |         |         |         | \(0.4\) |
 
 Goal: **extrapolate unknown ratings from the known ones**.
 
@@ -47,7 +53,7 @@ Goal: **extrapolate unknown ratings from the known ones**.
 
 {% math ENalgorithm %}
 1. let \(r_x\) be vector of user \(x\)'s ratings and \(N\) the set of \(k\) neighbors of \(x\)
-2. predicted rating of user \(x\) for item \(i\) is \[\underbrace{r_{xi} = \frac{1}{k} \sum_{y \in N} r_{yi}}_{\text{naive version (just average)}} \qquad \underbrace{r_{xi} = \mathrm{avg}(r_x) +  \frac{\sum_{y \in N} \mathrm{sim}(x, y) \cdot (r_{yi} - \mathrm{avg}(r_x))}{ \sum_{y \in N} | \mathrm{sim}(x, y) |}}_{\text{improved, takes similarity into account, along with user's bias}}\]
+2. predicted rating of user \(x\) for item \(i\) is \[\underbrace{r_{xi} = \frac{1}{k} \sum_{y \in N} r_{yi}}_{\text{naive version (just average)}} \qquad \underbrace{r_{xi} = \mathrm{avg}(r_x) +  \frac{\sum_{y \in N} \mathrm{sim}(x, y) \cdot (r_{yi} - \mathrm{avg}(r_x))}{ \sum_{y \in N} \mathrm{sim}(x, y)}}_{\text{improved, takes similarity of users into account, along with bias}}\]
 {% endmath %}
 
 To calculate similarity, we can use a few things:
@@ -63,8 +69,10 @@ To caulcate neighbourhood, we can do a few things:
 - take the top \(k\) similar users
 
 ##### Item-item CF
+Analogous to User-user: for rating item \(i\), we're find items rated by user \(x\) that are similar (as in rated similarly by other users). To do this, we can again use \(\mathrm{sim}\), obtaining \[r_{xi} = \frac{\sum_{j \in N} \mathrm{sim}(i, j) \cdot r_{xj}}{\sum_{j \in N} \mathrm{sim}(i, j)}\]
 
-TODO
+The improved version has a slightly different baseline, namely  \[r_{xi} = b_{xi} + \frac{\sum_{j \in N} \mathrm{sim}(i, j) \cdot (r_{xj} - b_{xj})}{\sum_{j \in N} \mathrm{sim}(i, j)}\]
+where \(b_{xi} =\) mean item rating \(+\) rating deviation of user \(x\) \(+\) rating deviation of item \(i\).
 
 ##### Pros/Cons
 
@@ -76,19 +84,23 @@ TODO
 
 
 #### Content-based recommendations
-Main idea: recommend items similar to previous items rated highly (based on features)
+Main idea: create **item profiles** for each item, which is a vector \(v\) of features:
+- author, title, actor, director, important words
+- can be usually encoded as a binary vector with values getting fixed positions in the vector
 
-- create an **item profile** for each item, which is a vector \(v\) of features
-	- author, title, actor, director, important words
-	- can be usually encoded as a binary vector with values getting fixed positions in the vector
+For creating **user profiles,** we can do a weighted average (by rating) of their item profiles.
 
-TODO
+For matching User and Item, we can use **cosine similarity.**
 
 #### Latent factor models
+Merges Content-Based and CF -- use user data to create the item profiles!
+We'll do this by factorizing the matrix into user matrix \(P\) and item matrix \(Q\) such that we minimize SSE \[\min_{P, Q} \sum_{\left(i, x\right) \in R} (r_{xi} - q_{i} \cdot p_x)^2\]
 
-TODO: intro
-TODO: finding latent factors
-TODO: concept of regularization (no formulas)
+![Latent factors illustration.](/assets/mining-massive-datasets/lf.svg)
+
+What we want to do is **split the data** into a training set, which we use to create the matrices, and the testing set, on which the matrices need to perform well.
+To do this well, we'll use **regularization**, which controls for when the data is rich and when it's scarce (lots of zeroes in \(p_x\)s and \(q_i\)s): \[\min_{P, Q} \underbrace{\sum_{\left(x, i\right) \in R} \left(r_{xi} - q_i p_x\right)^2}_{\text{error}} + \underbrace{\lambda_1 \sum_{x} ||p_x||^2 + \lambda_2 \sum_{i} ||q_i||^2}_{\text{„length“}}\]
+for \(\lambda_1, \lambda_2\) user-set regularization parameters.
 
 ### Link Analysis
 
