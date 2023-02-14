@@ -359,18 +359,18 @@ We want to **respond to each search query** with a set of advertisers such that:
 
 
 ### Mining Data Streams
-TODO: Problem statement and why hash table bad
-TODO: frst-cut 
+TODO: problem statement and why hash table bad<br>
+TODO: first-cut<br>
 TODO: bloom filter!!!
 
-TODO: sampling a fixed proportion
+TODO: sampling a fixed proportion<br>
 TODO: sampling a fixed-size sample
 
-TODO: counting distinct elements in a stream
-TODO: fajolet-martin approch
-TODO: intuition why it works
+TODO: counting distinct elements in a stream<br>
+TODO: fajolet-martin approach<br>
+TODO: intuition of why it works
 
-TODO: counting moments
-TODO: definitinon,exact computation
-TODO: exmple of the surprise number
-TODO: alon-matias szegedy (AMS) - the algorithm
+TODO: counting moments<br>
+TODO: definitinon, exact computation<br>
+TODO: example of the surprise number<br>
+TODO: AMS
