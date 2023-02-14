@@ -359,12 +359,61 @@ We want to **respond to each search query** with a set of advertisers such that:
 
 
 ### Mining Data Streams
-TODO: problem statement and why hash table bad<br>
-TODO: first-cut<br>
-TODO: bloom filter!!!
+For our purposes, a **stream** is a long list of tuples of some values.
 
-TODO: sampling a fixed proportion<br>
-TODO: sampling a fixed-size sample
+#### Stream Filtering
+**Problem:** given a stream and a list of keys \(S\), determine which stream elements are in \(S\)
+- using a hash table would be great, but what if we don't have enough memory?
+	- example: spam filter and good email addresses (if an email comes from them, it's not spam)
+
+##### First-cut solution
+- create a bit array of \(n\) bits of \(0\)s
+- get a hash function and hash \(\forall s \in S\), setting \(1\) where they hash
+- if an element of the stream hashes to:
+	- \(0\), it **can't** be in S
+	- \(1\), it **could** be in S (we'd have to check to make sure)
+
+The probability that a specific target gets at least one hash is \[1 - \overbrace{ { {\underbrace{(1 - 1/n)}_{\text{one doesn't hit}}}^m} }^{\text{none of them hit}} = 1 - \left(1 - 1/n\right)^{n (m / n)} \cong 1 - e^{-m/n}\]
+
+##### Bloom filter
+- create **\(k\) independent hash functions**, setting \(1\)s for all element's hashes
+
+This changes the probabilities of the target getting a hash like so:
+\[1 - \overbrace{ { {\underbrace{(1 - 1/n)}_{\text{one doesn't hit}}}^{km} } }^{\text{none of them hit}} \cong 1 - e^{-km/n}\]
+
+However, to generate a false positive, all of the hash functions have to get a hit:
+\[(1 - e^{-km / n})^k\]
+
+The **minimum** of this function turns out to be \(n/m \ln(2)\):
+
+![Bloom filter graph.](/assets/mining-massive-datasets/bf.svg)
+
+#### Stream Sampling
+
+##### Sampling a fixed portion
+**Goal:** store a fixed portion of the stream (for ex. 1/10)
+
+**Naive solution:** pick randomly and hope for the best
+- really bad idea -- what if we want to know, how many queries are duplicates?
+	- we'd have to pick both, the probability of which is not as picking one
+
+**Better solution:** pick by value, _not by position_ (i.e. pick 1/10 of users)
+- generalized: key is some subset of the tuple, for ex. (**user**; search; time)
+	- use hashing to buckets to determine which elements to sample
+
+##### Sampling a fixed size
+**Goal:** store a fixed number \(|S|\) of elements of the stream
+
+{% math ENalgorithm "Reservoir Sampling" %}
+- store all first \(s\) elements
+- when an element number \(n > s\) comes in, with probability \(s/n\), keep it (replacing one of the current elements uniformly randomly), else discard it
+{% endmath %}
+
+This ensures that after \(n\) elements, all elements have a \(s/n\) probability to be currently sampled[^proof-sampling].
+
+[^proof-sampling]: Shown by undiction -- after element \(n + 1\) arrives: 
+    - for element in \(S\), in the probability that the algorithm keeps it this iteration is \[\underbrace{\left(1 - \frac{s}{n + 1}\right)}_{\text{new one is discarded}} + \underbrace{\left(\frac{s}{n + 1}\right) \left(\frac{s - 1}{s}\right)}_{\text{new one is not discarded} \atop \text{but replaces a different one}} = \frac{n}{n + 1}\]
+    - the probability that the tuple is in \(S\) at time \(n + 1\) is therefore \[\frac{s}{n} \cdot \frac{n}{n + 1} = \frac{s}{n + 1}\]
 
 TODO: counting distinct elements in a stream<br>
 TODO: fajolet-martin approach<br>
