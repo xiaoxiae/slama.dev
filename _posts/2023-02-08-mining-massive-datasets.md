@@ -34,7 +34,7 @@ _Note that the notes only cover the topics [required for the exam](exam.pdf), wh
 - [PySpark RDD Cheatsheet](/assets/mining-massive-datasets/rdd-cheatsheet.pdf)
 
 #### PySpark
-Main data structure are **RDDs** (reasilient distributed datasets):
+Main data structure are **RDDs** (resilient distributed datasets):
 - collection of records spread across a cluster
 - can be text line, string, key-value pair, etc.
 
@@ -68,7 +68,7 @@ Problem: \(X\) as set of customers, \(S\) as set of items
 **Idea:** take known ratings of other similar items/users.
 
 ##### User-user CF
-- find set \(N\) of other users whos ratings are similar to user \(x\)'s ratings
+- find set \(N\) of other users whose ratings are similar to user \(x\)'s ratings
 - estimate \(x\)'s ratings based on ratings of users from \(N\)
 
 {% math ENalgorithm %}
@@ -145,7 +145,7 @@ Both are solved using **teleports** -- during each visit, we have a probability 
 Using this, we get the **Google PageRank equation:** \[\underbrace{r_j = \sum_{i \rightarrow j} \beta \frac{r_i}{d^{\mathrm{out}}_i} + (1 - \beta) \frac{1}{N}}_{\text{PageRank equation}} \qquad \underbrace{A = \beta M + (1 - \beta) \left[\frac{1}{N}\right]_{N \times N} \quad Ar = r}_{\text{Google Matrix A}}\]
 
 #### Practical computation
-To reduce the matrix operations, we can rearange the matrix equation and get \[r =\beta M \cdot r + \left[\frac{1 - \beta}{N}\right]_N\]
+To reduce the matrix operations, we can rearrange the matrix equation and get \[r =\beta M \cdot r + \left[\frac{1 - \beta}{N}\right]_N\]
 
 {% math ENalgorithm "PageRank" %}
 - set \(r^{\mathrm{old}}_j = \frac{1}{N}\)
@@ -350,7 +350,7 @@ We want to **respond to each search query** with a set of advertisers such that:
 **Greedy:** pick the first available advertiser
 - again has a competitive ratio of \(\ge 1/2\)
 
-**BALANCE:** pick the advertiser with the **largest unspent budget** (larget balance)
+**BALANCE:** pick the advertiser with the **largest unspent budget** (largest balance)
 - has a competitive ratio of \(\ge 3/4\)[^proof-balance] (for 2 advertisers and budget \(\ge 2\))
 - in general, has a competitive ratio of \(\ge 1 - 1/e \cong 0.63\) (same budget for advertisers, arbitrary number of advertisers, bids are 0 or 1)
 	- no online algorithm has better competitive ration for this case
