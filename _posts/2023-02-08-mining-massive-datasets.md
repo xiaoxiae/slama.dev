@@ -10,7 +10,7 @@ pdf: false
 
 {% lecture_notes_preface_heidelberg Artur Andrzejak|2022/2023%}
 
-_Note that the notes only cover the topics [required for the exam](exam.pdf), which are only a portion of the contents of the lecture._
+_Note that the notes only cover the topics [required for the exam](/assets/mining-massive-datasets/exam.pdf), which are only a portion of the contents of the lecture._
 
 ### Lecture overview
 
@@ -78,15 +78,16 @@ Problem: \(X\) as set of customers, \(S\) as set of items
 
 To calculate similarity, we can use a few things:
 - **Cosine similarity measure** (angle between vectors) \[\mathrm{sim}(x, y) = \mathrm{cos}(r_x, r_y) = \frac{r_x \cdot r_y}{ ||r_x|| \cdot ||r_y||}\]
-	- problem 1: missing ratings become low ratings
-	- problem 2: doesn't account for bias (some users rate higher on average)
-- **Pearson similarity measure** (angle between normalized vectors without zero entries) \[\mathrm{sim}(x, y) = \frac{\sum_{s \in S_{xy}} (r_{xs} - \mathrm{avg}(r_x)) (r_{ys} - \mathrm{avg}(r_y))}{\sqrt{\sum_{s \in S_{xy}} \left(r_{xs} - \mathrm{avg}(r_x)\right)^2} \sqrt{\sum_{s \in S_{xy}} \left(r_{ys} - \mathrm{avg}(r_y)\right)^2}}\]
-	- problem 1 fixed by only taking items rated by both users
-	- problem 2 fixed by normalization
+	- _problem 1:_ missing ratings become low ratings
+	- _problem 2:_ doesn't account for bias (some users rate higher on average)
+- **Pearson similarity measure** (angle between normalized + offset vectors without zero entries) \[\mathrm{sim}(x, y) = \frac{\sum_{s \in S_{xy}} (r_{xs} - \mathrm{avg}(r_x)) (r_{ys} - \mathrm{avg}(r_y))}{\sqrt{\sum_{s \in S_{xy}} \left(r_{xs} - \mathrm{avg}(r_x)\right)^2} \sqrt{\sum_{s \in S_{xy}} \left(r_{ys} - \mathrm{avg}(r_y)\right)^2}}\]
+	- the \(S_{xy}\) here is the indexes that are non-zero for both \(x\) and \(y\)
+	- _problem 1_ fixed by only taking items rated by both users
+	- _problem 2_ fixed by offsetting by average
 
 To caulcate neighbourhood, we can do a few things:
-- set a threshold for similarity
-- take the top \(k\) similar users
+- set a threshold for similarity and only take those above
+- take the top \(k\) similar users, whatever their similarities are
 
 ##### Item-item CF
 Analogous to User-user: for rating item \(i\), we're find items rated by user \(x\) that are similar (as in rated similarly by other users). To do this, we can again use \(\mathrm{sim}\), obtaining \[r_{xi} = \frac{\sum_{j \in N} \mathrm{sim}(i, j) \cdot r_{xj}}{\sum_{j \in N} \mathrm{sim}(i, j)}\]
@@ -96,24 +97,35 @@ where \(b_{xi} =\) mean item rating \(+\) rating deviation of user \(x\) \(+\) r
 
 ##### Pros/Cons
 
-- [+] **Works for any kind of item** (no feature extraction)
-- [-] **Cold start** (needs user data)
-- [-] **Sparsity** (user/rating matrix is sparse)
-- [-] **First rater** (can't recommend an item that hasn't been rated)
-- [-] **Popularity bias** (tends to recommend popular items)
+- **[+] Works for any kind of item** (no feature extraction)
+- **[-] Cold start** (needs user data)
+- **[-] Sparsity** (user/rating matrix is sparse)
+- **[-] First rater** (can't recommend an item that hasn't been rated)
+- **[-] Popularity bias** (tends to recommend popular items)
 
 
 #### Content-based recommendations
 Main idea: create **item profiles** for each item, which is a vector \(v\) of features:
 - author, title, actor, director, important words
 - can be usually encoded as a binary vector with values getting fixed positions in the vector
+	- can also be mixed (binary encoding + floats where appropriate)
+\[i_1 = ( \underbrace{1, 0, 0, 1, 0}_{\text{set of actors}}, \ldots, \underbrace{0, 0, 1, 1, 0}_{\text{set of directors}}, \ldots, \underbrace{3.2, 2.9, 2.7, 1.3, 5.0}_{\text{ratings from movie databases}}, \ldots)\]
 
-For creating **user profiles,** we can do a weighted average (by rating) of their item profiles.
+For creating **user profiles,** we can do a weighted average (by rating) of their item profiles: \[x = \left(r_1 i_1 + r_2 i_2 + \ldots + r_n i_n\right) / n\]
 
-For matching User and Item, we can use **cosine similarity.**
+For matching User and Item (i.e. determining rating), we can again use **cosine similarity** between the **user profile** and the **item**.
+
+##### Pros/Cons
+
+- **[+] No need for user data** (no cold start or sparsity)
+- **[+] Can recommend new + unpopular items**
+- **[+] Able to provide explanations** (why was that recommended?)
+- **[-] Finding good features is hard**
+- **[-] Recommendations for new users**
+- **[-] Overspecialization** -- unable to exploit quality judgement from other users
 
 #### Latent factor models
-Merges Content-Based and CF -- use user data to create the item profiles!
+Merges Content-Based Recommenders (rating is a product of vectors) and Collaborative filtering (weighted sum of other ratings from the utility matrix) -- use user data to create the item profiles!
 We'll do this by factorizing the matrix into user matrix \(P\) and item matrix \(Q\) such that we minimize SSE \[\min_{P, Q} \sum_{\left(i, x\right) \in R} (r_{xi} - q_{i} \cdot p_x)^2\]
 
 ![Latent factors illustration.](/assets/mining-massive-datasets/lf.svg)
@@ -129,11 +141,13 @@ for \(\lambda_1, \lambda_2\) user-set regularization parameters.
 Formally:
 \[r_j = \sum_{i \rightarrow j} \frac{r_i}{ d^{\mathrm{out}}_i}\]
 
-Can be expressed as a system of linear equations to be solved (Gaussian elimination, for example). If formulated as an adjacency matrix \(M\) (where \(M_{ji} = \frac{1}{d^{\mathrm{out}}_i}\)), then we can define the flow equation as \[Mr = r\]
-meaning that we're looking for the **eigenvector** of the matrix.
-Since the matrix is stochastic (columns sum to 1), its first eigenvector has eigenvalue 1 and we can find it using **power iteration** (see the PageRank formulation below)
+Can be expressed as a system of linear equations to be solved (Gaussian elimination).
 
 #### Matrix formulation
+Can also be formulated as an adjacency matrix \(M\), \[M_{ji} = \begin{cases} \frac{1}{d^{\mathrm{out}}_i} & \text{edge}\ i \rightarrow j \\ 0 & \text{otherwise} \end{cases}\]
+then we can define the flow equation as \[Mr = r\]
+meaning that we're looking for the **eigenvector** of the matrix.
+Since the matrix is stochastic (columns sum to 1), its first eigenvector has eigenvalue 1 and we can find it using **power iteration** (see the PageRank formulation below).
 
 This, however, has two problems:
 
@@ -181,8 +195,6 @@ Each block will only contain the destination nodes in the corresponding block of
 | _\([4,5]\)_ | \(0\)  | \(4\)  | \(5\)       |
 |             | \(1\)  | \(3\)  | \(5\)       |
 |             | \(2\)  | \(2\)  | \(4\)       |
-
-The cost for 
 
 #### Topic-Specific PageRank
 We can bias the random page walk to teleport to to relevant pages (from set \(S\)). For each teleport set \(S\), we get different vector \(r_S\). This changes the PageRank formulation like so:
@@ -235,31 +247,34 @@ For example:
 
 It turns out that \(\mathrm{Pr}\left[h_\pi (S_1) = h_\pi (S_2)\right] = \mathrm{sim}(S_1, S_2)\)
 
-**Intuition** is that if the sets of shingles are very similar, randomly shuffling them in the same way and then taking the minimum value should, with a high probability (well, with probability of the similarity measure), be equal.
+- the intuition is that if the sets of shingles are very similar, randomly shuffling them in the same way and then taking the minimum value should, with a high probability (well, with probability of the similarity measure), be equal.
 
 #### Locality-Sensitive Hashing
 Our goal now is to find documents with Jaccard similarity at least \(s\) (e.g. \(0.8\)).
 To do this, we will **hash parts of the signature matrix:**
 - take matrix \(M\) and divide it into \(b\) _bands_ of \(r\) _rows_
-- for each band, hash its portion of each column to a hash table with \(k\) buckets
+- for each band, hash its portion of each column to a hash table with _\(k\) buckets_
 - candidate column pairs are those that hash to the same bucket for \(\ge 1\) band
 
 ![Locality-Sensitive Hashing example.](/assets/mining-massive-datasets/lsh.svg)
 
 We want to tune \(b\) and \(r\) to catch most similar pairs but few non-similar pairs:
-- let \(s = 0.8\) and \(b = 20, r = 5\)
+- let \(s = 0.8\) and \(b = 20, r = 5\) (we have signatures of length \(100\))
 - \(S_1, S_2\) are \(80\%\) similar:
-	- then the probability for one band is \(0.8^{5} = 0.328\)
-	- probability that \(S_1\) and \(S_2\) are not similar is \((1 - 0.328)^{20} = 0.00035\)
+	- probability for one band to hash to the same bucket is \(0.8^{5} = 0.328\)
+	- probability that \(S_1\) and \(S_2\) are not found is \((1 - 0.328)^{20} = 0.00035\)
+		- i.e. \(0.0035\%\) of similar pairs are not found -- **false negatives**
 - \(S_1, S_2\) are \(30\%\) similar:
-	- then the probability for one band is \(0.3^{5} = 0.00243\)
+	- probability for one band to hash to the same bucket is \(0.3^{5} = 0.00243\)
 	- probability that \(S_1\) and \(S_2\) ARE similar is \(1 - (1 - 0.00243)^{20} = 0.047\)
-		- i.e. \(4.74\%\) pairs of docs with similarity \(0.3\) become candidate pairs
+		- i.e. \(4.74\%\) pairs of docs with similarity \(0.3\) become candidate pairs -- **false positives**
+
+Plotting the probabilities with variable \(s\), we get the **S-curve:**
 
 ![S-Curve illustration.](/assets/mining-massive-datasets/s-curve.svg)
 
 ### Association Rule Discovery
-**Goal (the market-basket model):** identify items that are bought together by sufficiently many customers (_if someone buys diaper and baby milk, they will also buy vodka since the baby is probably driving them crazy_)
+**Goal (the market-basket model):** identify items that are bought together by sufficiently many customers _(if someone buys diaper and baby milk, they will also buy vodka since the baby is probably driving them crazy)_.
 
 **Approach:** process the sales data to find dependencies among items
 
@@ -273,7 +288,7 @@ We want to tune \(b\) and \(r\) to catch most similar pairs but few non-similar 
 
 {% math ENdefinition "frequent itemsets" %}sets of items that frequently appear together{% endmath %}
 - **support** for itemset \(I\): number of baskets containing all \(I\) items
-	- i.e. support for \(\left\{\text{Vodka}, \text{Bread}\right\}\) from the table above is 2
+	- i.e. support for \(\left\{\text{Vodka}, \text{Bread}\right\}\) from the table above is \(2\)
 	- given a **support threshold \(s\)**, we call a set **frequent**, if they appear in at least \(s\) baskets
 
 {% math ENdefinition "association rule" %}an association rule \(R\) has the form \[\left\{i_1, i_2, \ldots, i_k\right\} \implies \left\{j_1, j_2, \ldots, j_m\right\}\] and essentially states that _if_ a basket contains the set \(I\), then it also contains set \(J\){% endmath %}
@@ -298,13 +313,13 @@ We want to tune \(b\) and \(r\) to catch most similar pairs but few non-similar 
 	- output the rules above the confidence threshold
 
 #### A-Priori Algorithm
-- a **two-pass approach**
-- key idea: **monotonicity:** if a set \(I\) appears at least \(s\) times, so does every subset
-- if item \(i\) doesn't appear in \(s\) baskets, neither can any pair including \(i\)
+- a **two-pass approach** to finding frequent item sets
+- key idea: **monotonicity:** if a set \(I\) appears at least \(s\) times, so does its every subset
+	- \(\Rightarrow\) if item \(i\) doesn't appear in \(s\) baskets, neither can any set that includes it
 
 {% math ENalgorithm "A-Priori" %}
-1. **pass:** count **individual items**
-2. **pass:** count only pairs where **both elements are frequent**
+1. pass: count **individual items**
+2. pass: count only pairs where **both elements are frequent**
 {% endmath %}
 
 ![A-Priori memory layout illustration.](/assets/mining-massive-datasets/ap.svg)
@@ -315,23 +330,22 @@ We want to tune \(b\) and \(r\) to catch most similar pairs but few non-similar 
 **Observation:** in pass \(1\) of A-Priori, most memory is idle:
 - also maintain a hash table \(h\) with as many buckets as fit in memory
 - hash pairs into buckets (just their counts) to speed up phase 2
+	- _if they were frequent, their bucket must have been frequent too_
 
 {% math ENalgorithm "PCY" %}
-1. **pass:** count individual items + hash pairs to buckets, counting them too
-	- **between passes:** convert the buckets into a bit-vector:
+1. pass: count individual items + hash pairs to buckets, counting them too
+	- _between passes:_ convert the buckets into a bit-vector:
 		- \(1\) if a bucket count exceeded support \(s\)
 		- \(0\) if it did not
-2. **pass:** count only pairs where:
+2. pass: count only pairs where
 	- **both elements are frequent** (same as A-Priori) and
-	- the pair hashes to a bucket whose bit is frequent
+	- the pair **hashes to a bucket whose bit is frequent**
 {% endmath %}
 
 ![PCY memory layout illustration.](/assets/mining-massive-datasets/pcy.svg)
 
 ### Online Advertising
-
-#### Online Bipartite Matching
-**Problem:** find a maximum matching for a bipartite graph where we're only given the left side and the right side is revealed one-by-one. The obvious first try is a **greedy** algorithm (match with first available)
+**Initial problem:** find a maximum matching for a bipartite graph where we're only given the left side and the right side is revealed one-by-one. The obvious first try is a **greedy** algorithm (match with first available)
 - has a competitive ratio of \(\ge 1/2\)[^proof-greedy]
 
 [^proof-greedy]: let \(L\) be left side and \(R\) the right. If \(M_{\mathrm{greedy}} \neq M_{\mathrm{optional}}\), consider set \(G \subseteq R\) matched in \(M_{\mathrm{optional}}\) but not in \(M_{\mathrm{greedy}}\). Now consider \(B \subseteq L\) adjacent to \(G\): every one of those must be matched in \(M_{\mathrm{greedy}}\) (for those \(G\) not to be) so \(|B| \le |M_{\mathrm{greedy}}|.\). Also, \(|B| \ge |G|\), since otherwise the optimal algorithm couldn't have matched all girls in \(G\). Since \(|M_{\mathrm{opt}}| \le |M_{\mathrm{greedy}}| + |G|\), we get the desired bound after substituting for \(|G|\).
@@ -364,27 +378,25 @@ For our purposes, a **stream** is a long list of tuples of some values.
 #### Stream Filtering
 **Problem:** given a stream and a list of keys \(S\), determine which stream elements are in \(S\)
 - using a hash table would be great, but what if we don't have enough memory?
-	- example: spam filter and good email addresses (if an email comes from them, it's not spam)
+	- _example:_ spam filter (if an email comes from them, it's not spam if it's a good address)
 
 ##### First-cut solution
-- create a bit array of \(n\) bits of \(0\)s
+- create a bit array of \(n\) bits of \(0\)s and let \(|S| = m\)
 - get a hash function and hash \(\forall s \in S\), setting \(1\) where they hash
 - if an element of the stream hashes to:
-	- \(0\), it **can't** be in S
-	- \(1\), it **could** be in S (we'd have to check to make sure)
+	- \(0\), it **can't** be in \(S\)
+	- \(1\), it **could** be in \(S\) (we'd have to check to make sure)
 
 The probability that a specific target gets at least one hash is \[1 - \overbrace{ { {\underbrace{(1 - 1/n)}_{\text{one doesn't hit}}}^m} }^{\text{none of them hit}} = 1 - \left(1 - 1/n\right)^{n (m / n)} \cong 1 - e^{-m/n}\]
 
 ##### Bloom filter
-- create **\(k\) independent hash functions**, setting \(1\)s for all element's hashes
-
-This changes the probabilities of the target getting a hash like so:
+Create **\(k\) independent hash functions**, setting \(1\)s for all element's hashes:
 \[1 - \overbrace{ { {\underbrace{(1 - 1/n)}_{\text{one doesn't hit}}}^{km} } }^{\text{none of them hit}} \cong 1 - e^{-km/n}\]
 
-However, to generate a false positive, all of the hash functions have to get a hit:
+However, to generate a false positive, all of the hash functions have to get a hit, so:
 \[(1 - e^{-km / n})^k\]
 
-The **minimum** of this function turns out to be \(n/m \ln(2)\):
+The **minimum** of this function (wrt. \(k\)) is \(n/m \ln(2)\):
 
 ![Bloom filter graph.](/assets/mining-massive-datasets/bf.svg)
 
