@@ -34,6 +34,9 @@ _Note that the notes only cover the topics [required for the exam](/assets/minin
 - [PySpark RDD Cheatsheet](/assets/mining-massive-datasets/rdd-cheatsheet.pdf)
 
 #### PySpark
+
+##### Basics
+
 Main data structure are **RDDs** (resilient distributed datasets):
 - collection of records spread across a cluster
 - can be text line, string, key-value pair, etc.
@@ -47,7 +50,31 @@ PySpark's other main data structure are **DataFrames**:
 - has a set schema (definition of column names and types)
 
 TODO: dataframes
-TODO: ML with Spark (concepts of transformers, pipelines)
+
+##### ML with Spark
+- mainly lives in `MLlib`, which consists of
+	- `pyspark.ml` (high-level API) and
+	- `pyspark.mllib` (low-level API)
+- is based on **pipelines**, which set up everything, including
+	- data cleaning
+	- feature extraction
+	- model training, validation, testing
+	- they use DataFrames
+
+{% math ENdefinition "Transformer" %}an algorithm which transforms one DataFrame into another{% endmath %}
+- uses a `transform()` method to activate (i.e. transform the DataFrame)
+
+{% math ENdefinition "Estimator" %}an algorithm which can be fit on a DataFrame to produce a **Transformer**{% endmath %}
+- abstracts the concept of a learning algorithm
+- contains a `fit()` function, which when call produces a **Transformer**
+
+{% math ENdefinition "Pipeline" %}an object which contains multiple **Transformers** and **Estimators**{% endmath %}
+- a complete **untrained** pipeline is an **Estimator**
+- after calling `fit()`, all estimators become transformers!
+
+![PySpark ML pipeline illustration.](/assets/mining-massive-datasets/sparkml.png)
+
+##### Spark Streaming
 TODO: spark streaming (only basics)
 
 ### Recommender Systems
