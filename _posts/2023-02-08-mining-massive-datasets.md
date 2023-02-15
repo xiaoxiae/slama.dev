@@ -427,11 +427,31 @@ This ensures that after \(n\) elements, all elements have a \(s/n\) probability 
     - for element in \(S\), in the probability that the algorithm keeps it this iteration is \[\underbrace{\left(1 - \frac{s}{n + 1}\right)}_{\text{new one is discarded}} + \underbrace{\left(\frac{s}{n + 1}\right) \left(\frac{s - 1}{s}\right)}_{\text{new one is not discarded} \atop \text{but replaces a different one}} = \frac{n}{n + 1}\]
     - the probability that the tuple is in \(S\) at time \(n + 1\) is therefore \[\frac{s}{n} \cdot \frac{n}{n + 1} = \frac{s}{n + 1}\]
 
-TODO: counting distinct elements in a stream<br>
-TODO: fajolet-martin approach<br>
-TODO: intuition of why it works
+#### Stream Counting
+**Goal:** count the number of distinct elements in the stream
+- elements are picked from a set of size \(N\)
+- we can't store the whole \(N\), we'd like to approximate with the smallest error
 
-TODO: counting moments<br>
-TODO: definitinon, exact computation<br>
-TODO: example of the surprise number<br>
-TODO: AMS
+{% math ENalgorithm "Flajolet-Martin" %}
+- pick a hash function \(h\) that maps each of the \(N\) elements to at least \(\log_2 N\) bits
+- let \(r(a)\) be the number of trailing zeroes in \(h(a)\)
+	- estimated number of distinct elements is \(2^{\max_a r(a)} \)
+{% endmath %}
+
+Intuitively, \(h(a)\) hashes \(a\) with equal probability, so the probability that we get a hash with \(r\) trailing zeroes is \(2^r\) (i.e. we have to hash at least \(2^r\) others before).
+
+We can **generalize this** concept to counting **moments:** for \(m_a\) being the number of times element \(a\) appears in the stream \(S\), we define the **\(k\)-th moment** as \[\sum_{a \in S} m_a^k\]
+- \(k = 0 \ldots\) number of distinct elements
+- \(k = 1 \ldots\) number of elements
+- \(k = 2 \ldots\) the **surprise number \(S\)** (measure of how uneven the distribution is)
+	- for sequence \(10, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9\), \(S = 910\)
+	- for sequence \(90, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1\), \(S = 8110\)
+
+{% math ENalgorithm "AMS (Alton-Matias-Szegedy)" %}
+- pick and keep track of „approximate“ variables \(X\)
+	- the more variables there are (say \(k\)), the more precise the approximation is
+	- for each \(X\), we store the ID and the count of the given item
+	- to instantiate it, pick some random time \(t < n\) (we'll fix it later if we don't know \(n\))
+		- set \(X.\mathrm{val} = S[t]\) and count it from then on
+- the estimate of the the \(2\)nd moment is then \[\frac{1}{k} \sum_{X} n (2 \cdot X.\mathrm{count} - 1)\]
+{% endmath %}
