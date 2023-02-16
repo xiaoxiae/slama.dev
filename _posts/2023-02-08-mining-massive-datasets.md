@@ -79,7 +79,7 @@ TODO: spark streaming (only basics)
 
 ### Recommender Systems
 Problem: \(X\) as set of customers, \(S\) as set of items
-- utility function \(u: X \times S \mapsto R\) (set of ratings)
+- **utility function** \(u: X \times S \mapsto R\) (set of ratings)
 	- \(R\) usually \(\in [0, 1]\)
 	- can be stored in a **utility matrix:**
 
@@ -450,9 +450,9 @@ The **minimum** of this function (wrt. \(k\)) is \(n/m \ln(2)\):
 
 This ensures that after \(n\) elements, all elements have a \(s/n\) probability to be currently sampled[^proof-sampling].
 
-[^proof-sampling]: Shown by undiction -- after element \(n + 1\) arrives: 
-    - for element in \(S\), in the probability that the algorithm keeps it this iteration is \[\underbrace{\left(1 - \frac{s}{n + 1}\right)}_{\text{new one is discarded}} + \underbrace{\left(\frac{s}{n + 1}\right) \left(\frac{s - 1}{s}\right)}_{\text{new one is not discarded} \atop \text{but replaces a different one}} = \frac{n}{n + 1}\]
-    - the probability that the tuple is in \(S\) at time \(n + 1\) is therefore \[\frac{s}{n} \cdot \frac{n}{n + 1} = \frac{s}{n + 1}\]
+[^proof-sampling]: Shown by induction -- after element \(n + 1\) arrives: 
+    - for element \(x\) in \(S\), in the probability that the algorithm keeps it this iteration is \[\underbrace{\left(1 - \frac{s}{n + 1}\right)}_{\text{new one is discarded}} + \underbrace{\left(\frac{s}{n + 1}\right) \left(\frac{s - 1}{s}\right)}_{\text{new one is not discarded} \atop \text{but replaces a different one}} = \frac{n}{n + 1}\]
+    - the probability that the element \(x\) is in \(S\) at time \(n + 1\) is therefore \[\underbrace{\frac{s}{n}}_{\text{induction}} \cdot \frac{n}{n + 1} = \frac{s}{n + 1}\]
 
 #### Stream Counting
 **Goal:** count the number of distinct elements in the stream
@@ -479,6 +479,11 @@ We can **generalize this** concept to counting **moments:** for \(m_a\) being th
 	- the more variables there are (say \(k\)), the more precise the approximation is
 	- for each \(X\), we store the ID and the count of the given item
 	- to instantiate it, pick some random time \(t < n\) (we'll fix it later if we don't know \(n\))
-		- set \(X.\mathrm{val} = S[t]\) and count it from then on
-- the estimate of the the \(2\)nd moment is then \[\frac{1}{k} \sum_{X} n (2 \cdot X.\mathrm{count} - 1)\]
+		- set \(X.\mathrm{val} = S[t]\) and count it from then on (to \(X.\mathrm{c}\))
+- the estimate of the the \(2\)nd moment is then \[\frac{1}{k} \sum_{X} n (2 \cdot X.\mathrm{c} - 1)\]
+	- for \(3\)rd, we can use \(n (3 \cdot X.\mathrm{c}^2 - 3 \cdot X.\mathrm{c} + 1)\)
 {% endmath %}
+
+**Fixups** (we don't know the size of the stream)
+- suppose we can store at most \(k\) variables
+- use fixed-size sampling to periodically replace variables
