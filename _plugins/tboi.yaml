@@ -131,3 +131,19 @@
     - '3:03'
     - null
   name: 2023-02-04-magdalene-bahesdbr.mp4
+- beaten: The Mother
+  character: Cain
+  date: 2023-02-04 18:29:02.718709
+  input:
+  - - /aux/Recording/2023-02-04 17-05-14.mkv
+    - '15:05'
+    - null
+  name: 2023-02-04-cain-sxndsxmu.mp4
+- beaten: Blue Baby, Mega Satan
+  character: Samson
+  date: 2023-02-04 18:29:02.718709
+  input:
+  - - /aux/Recording/2023-02-04 17-05-14.mkv
+    - '6:00.7'
+    - '1:02:28'
+  name: 2023-02-04-samson-eocyfvci.mp4
