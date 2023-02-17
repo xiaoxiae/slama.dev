@@ -30,12 +30,9 @@ _Note that the notes only cover the topics [required for the exam](/assets/minin
 
 ### Programming and Frameworks
 
-#### Links
-- [PySpark RDD Cheatsheet](/assets/mining-massive-datasets/rdd-cheatsheet.pdf)
-
 #### PySpark
 
-##### Basics
+##### RDDs [[cheatsheet](/assets/mining-massive-datasets/rdd-cheatsheet.pdf)]
 
 Main data structure are **RDDs** (resilient distributed datasets):
 - collection of records spread across a cluster
@@ -45,11 +42,11 @@ Two operation types:
 - **transformations:** lazy operations to build RDDs from other RDDs
 - **actions:** return a result or write it to storage
 
+##### DataFrames [[cheatsheet](/assets/mining-massive-datasets/sql-df-cheatsheet.pdf)]
 PySpark's other main data structure are **DataFrames**:
 - table of data with rows and (named) columns
-- has a set schema (definition of column names and types)
-
-TODO: dataframes
+- has a set **schema** (definition of column names and types)
+- lives in **partitions** (collections of rows on one physical machine)
 
 ##### ML with Spark
 - mainly lives in `MLlib`, which consists of
@@ -75,7 +72,36 @@ TODO: dataframes
 ![PySpark ML pipeline illustration.](/assets/mining-massive-datasets/sparkml.png)
 
 ##### Spark Streaming
-TODO: spark streaming (only basics)
+General idea is to:
+- split the stream into **batches** of \(X\) seconds,
+- perform RDD operations and lastly
+- return the results of the RDD operations in batches
+
+**DStream** (discretized stream) -- container for a stream, implemented as a sequence of RDDs
+
+```python
+# an example that returns the word counts in a stream
+
+# 2 threads - source feed + processing
+sc = SparkContext("local[2]", "NetworkWordCount")
+
+# batch interval = 1s
+ssc = StreamingContext(sc, 1)
+
+# DStream will be connected here
+lines = ssc.socketTextStream("localhost", 9999)
+
+# lines is an RDD (kinda) and we can behave as such
+words = lines.flatMap(lambda line: line.split(" "))
+pairs = words.map(lambda word: (word, 1))
+wordCounts = words.reduceByKey(lambda x, y: x + y)
+
+wordCounts.pprint()
+
+# start the task and wait for termination
+ssc.start()
+ssc.awaitTermination()
+```
 
 ### Recommender Systems
 Problem: \(X\) as set of customers, \(S\) as set of items
