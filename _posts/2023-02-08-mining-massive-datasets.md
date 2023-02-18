@@ -104,8 +104,8 @@ ssc.awaitTermination()
 ```
 
 ### Recommender Systems
-Problem: \(X\) as set of customers, \(S\) as set of items
-- **utility function** \(u: X \times S \mapsto R\) (set of ratings)
+Problem: \(X\) as set of customers, \(I\) as set of items
+- **utility function** \(u: X \times I \mapsto R\) (set of ratings)
 	- \(R\) usually \(\in [0, 1]\)
 	- can be stored in a **utility matrix:**
 
@@ -114,6 +114,8 @@ Problem: \(X\) as set of customers, \(S\) as set of items
 | **Matrix**    |           | \(0.5\) |           | \(0.3\)   |
 | **Avatar**    | \(0.2\)   |         | \(1\)     |           |
 | **Pirates**   |           |         |           | \(0.4\)   |
+
+_Note: for some reason, this matrix is \(I \times X\) while all other notation is \(X \times I\) (like \(r_{xi}\), for example). It's confusing, I'm not sure why we've defined it this way._
 
 **Goal:** extrapolate unknown ratings from the known ones.
 
@@ -126,7 +128,7 @@ Problem: \(X\) as set of customers, \(S\) as set of items
 
 {% math ENalgorithm %}
 1. let \(r_x\) be vector of user \(x\)'s ratings and \(N\) the set of \(k\) neighbors of \(x\)
-2. predicted rating of user \(x\) for item \(i\) is \[\underbrace{r_{xi} = \frac{1}{k} \sum_{y \in N} r_{yi}}_{\text{naive version (just average)}} \qquad \underbrace{r_{xi} = \mathrm{avg}(r_x) +  \frac{\sum_{y \in N} \mathrm{sim}(x, y) \cdot (r_{yi} - \mathrm{avg}(r_x))}{ \sum_{y \in N} \mathrm{sim}(x, y)}}_{\text{improved, takes similarity of users into account, along with bias}}\]
+2. predicted rating of user \(x\) for item \(i\) is \[\underbrace{r_{xi} = \frac{1}{k} \sum_{y \in N} r_{yi}}_{\text{naive version (just average)}} \qquad \underbrace{r_{xi} = \mathrm{avg}(r_x) +  \frac{\sum_{y \in N} \mathrm{sim}(x, y) \cdot (r_{yi} - \mathrm{avg}(r_y))}{ \sum_{y \in N} \mathrm{sim}(x, y)}}_{\text{improved, takes similarity of users into account, along with their bias}}\]
 {% endmath %}
 
 To calculate similarity, we can use a few things:
@@ -138,7 +140,9 @@ To calculate similarity, we can use a few things:
 	- _problem 1_ fixed by only taking items rated by both users
 	- _problem 2_ fixed by offsetting by average
 
-To caulcate neighbourhood, we can do a few things:
+This way of writing Pearson is hiding what's really going on, so here is a nicer way: let \(s_x\) and \(s_y\) be formed from vectors \(r_x, r_y\) by removing the indexes where either one is zero. Then the **Pearson similarity measure** can be calculated like such: \[\mathrm{sim}(r_x, r_y) = \cos(s_x - \mathrm{avg}(s_x), s_y - \mathrm{avg}(s_y)) \frac{(s_x - \mathrm{avg}(s_x)) \cdot (s_y - \mathrm{avg}(s_y))}{||s_x - \mathrm{avg}(s_x)|| \cdot ||s_y - \mathrm{avg}(s_y)||}\]
+
+To calculate neighbourhood, we can do a few things:
 - set a threshold for similarity and only take those above
 - take the top \(k\) similar users, whatever their similarities are
 
@@ -345,25 +349,26 @@ Plotting the probabilities with variable \(s\), we get the **S-curve:**
 	- given a **support threshold \(s\)**, we call a set **frequent**, if they appear in at least \(s\) baskets
 
 {% math ENdefinition "association rule" %}an association rule \(R\) has the form \[\left\{i_1, i_2, \ldots, i_k\right\} \implies \left\{j_1, j_2, \ldots, j_m\right\}\] and essentially states that _if_ a basket contains the set \(I\), then it also contains set \(J\){% endmath %}
-- we want high **confidence** -- if \(I \subseteq B\) then \(J \subseteq B\)
-- we also want high **rule support** -- \(\mathrm{support}(I \cup J)\) is large
+- we want high **confidence**: if \(I \subseteq B\) then \(J \subseteq B\)
+- we also want high **rule support**: \(\mathrm{support}(I \cup J)\) is large
 
 {% math ENdefinition "confidence" %}of an association rule is the probability that it applies if \(I \subseteq B\), namely \[\mathrm{confidence}(I \rightarrow J) = \frac{\mathrm{support}(I \cup J)}{\mathrm{support}(I)}\]{% endmath %}
 
 {% math ENdefinition "interest" %}of an association rule is the difference between confidence and the fraction of baskets that contain \(J\), namely \[\mathrm{interest}(I \rightarrow J) = \mathrm{confidence}(I \rightarrow J) - \mathrm{Pr}[J \in B] \]{% endmath %}
 
 **Problem:** we want to find all association rules with \(\mathrm{support} \ge s\) and \(\mathrm{confidence} \ge c\).
-1. find all frequent itemsets \(I\)
+1. find all frequent itemsets \(I\) (those with \(\mathrm{support} \ge s\))
 	- recipes are usually stored on disks (they won't fit into memory)
 	- association-rule algorithms read data in **passes** -- this is the true cost
 	- hardest is **finding frequent pairs** (number of larger tuples drops off)
 		- approach 1: count all pairs using a matrix \(\rightarrow 4\) bytes per pair
 		- approach 2: count all pairs using a dictionary \(\rightarrow 12\) bytes per pair with count \(> 0\)
-2. for every \(A \subseteq I\), generate rule \(A \rightarrow I \setminus A\)
-	- since \(I\) is frequent, \(A\) is also frequent
-	- compute all confidences
-		- observation: if \(A, B, C \rightarrow D\) is below confidence, so is \(A, B \rightarrow C, D\)
-	- output the rules above the confidence threshold
+		- smarter approaches: below (A-Priori, PCY)
+2. use them to generate rules with \(\mathrm{confidence} \ge c\):
+	- for every \(A \subseteq I\), generate rule \(A \rightarrow I \setminus A\): since \(I\) is frequent, \(A\) is also frequent
+	- for calculating confidences:
+		1. brute force go br<span class='brr-1'>r</span><span class='brr-2'>r</span><span class='brr-3'>r</span><span class='brr-4'>r</span><span class='brr-5'>r</span>
+		2. use the fact that if \(A, B, C \rightarrow D\) is below confidence, so is \(A, B \rightarrow C, D\)
 
 #### A-Priori Algorithm
 - a **two-pass approach** to finding frequent item sets
