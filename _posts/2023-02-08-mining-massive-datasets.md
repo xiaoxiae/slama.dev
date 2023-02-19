@@ -294,7 +294,8 @@ Then \(k\)-shingles for the given document are all sequences of \(k\) consecutiv
 The shingling sets are very large, so we have to find a way to measure how similar they are.
 What we want to measure is their **Jaccard similarity**, which is \[\mathrm{sim}(S_1, S_2) = |S_1 \cap S_2|\ /\ |S_1 \cup S_2|\]
 
-To do this, we'll compute **signatures**: to compute a signature, we take many random hash function (for example random permutations), hash all values from the set of shingles and take the minimum.
+To do this, we'll compute **signatures**, which are shorter but should have the same Jaccard similarity as the original set.
+To compute a signature, we take many random hash function (for example random permutations), hash all values from the set of shingles and take the minimum.
 Then the list of all those minimal values is the signature.
 - in practice, we do \(((a \cdot x + b) \mod p) \mod N\) for \(a, b\) random integers, \(p\) prime and \(N\) size of shingles
 
