@@ -133,14 +133,15 @@ _Note: for some reason, this matrix is \(I \times X\) while all other notation i
 
 To calculate similarity, we can use a few things:
 - **Cosine similarity measure** (angle between vectors) \[\mathrm{sim}(x, y) = \mathrm{cos}(r_x, r_y) = \frac{r_x \cdot r_y}{ ||r_x|| \cdot ||r_y||}\]
+	- where \(||x|| = \sqrt{\sum_{i = 0}^n x_i^2}\)
 	- _problem 1:_ missing ratings become low ratings
 	- _problem 2:_ doesn't account for bias (some users rate higher on average)
 - **Pearson similarity measure** (angle between normalized + offset vectors without zero entries) \[\mathrm{sim}(x, y) = \frac{\sum_{s \in S_{xy}} (r_{xs} - \mathrm{avg}(r_x)) (r_{ys} - \mathrm{avg}(r_y))}{\sqrt{\sum_{s \in S_{xy}} \left(r_{xs} - \mathrm{avg}(r_x)\right)^2} \sqrt{\sum_{s \in S_{xy}} \left(r_{ys} - \mathrm{avg}(r_y)\right)^2}}\]
-	- the \(S_{xy}\) here is the indexes that are non-zero for both \(x\) and \(y\)
+	- where \(S_{xy}\) are the indexes that are non-zero for both \(x\) and \(y\)
 	- _problem 1_ fixed by only taking items rated by both users
 	- _problem 2_ fixed by offsetting by average
 
-This way of writing Pearson is hiding what's really going on, so here is a nicer way: let \(s_x\) and \(s_y\) be formed from vectors \(r_x, r_y\) by removing the indexes where either one is zero. Then the **Pearson similarity measure** can be calculated like such: \[\mathrm{sim}(r_x, r_y) = \cos(s_x - \mathrm{avg}(s_x), s_y - \mathrm{avg}(s_y)) \frac{(s_x - \mathrm{avg}(s_x)) \cdot (s_y - \mathrm{avg}(s_y))}{||s_x - \mathrm{avg}(s_x)|| \cdot ||s_y - \mathrm{avg}(s_y)||}\]
+This way of writing Pearson is hiding what's really going on, so here is a nicer way: let \(s_x\) and \(s_y\) be formed from vectors \(r_x, r_y\) by removing the indexes where either one is zero. Then the **Pearson similarity measure** can be calculated like such: \[\mathrm{sim}(r_x, r_y) = \cos(s_x - \mathrm{avg}(s_x), s_y - \mathrm{avg}(s_y))\]
 
 To calculate neighbourhood, we can do a few things:
 - set a threshold for similarity and only take those above
@@ -188,7 +189,7 @@ We'll do this by factorizing the matrix into user matrix \(P\) and item matrix \
 ![Latent factors illustration.](/assets/mining-massive-datasets/lf.svg)
 
 What we want to do is **split the data** into a training set, which we use to create the matrices, and the testing set, on which the matrices need to perform well.
-To do this well, we'll use **regularization**, which controls for when the data is rich and when it's scarce (lots of zeroes in \(p_x\)s and \(q_i\)s): \[\min_{P, Q} \underbrace{\sum_{\left(x, i\right) \in R} \left(r_{xi} - q_i p_x\right)^2}_{\text{error}} + \underbrace{\lambda_1 \sum_{x} ||p_x||^2 + \lambda_2 \sum_{i} ||q_i||^2}_{\text{„length“}}\]
+To do this well, we'll use **regularization**, which controls for when the data is rich and when it's scarce (lots of zeroes in \(p_x\)s and \(q_i\)s): \[\min_{P, Q} \underbrace{\sum_{\left(x, i\right) \in R} \left(r_{xi} - q_i p_x\right)^2}_{\text{error}} + \underbrace{\lambda_1 \sum_{x} ||p_x||^2 + \lambda_2 \sum_{i} ||q_i||^2}_{\text{„length“ (approx. number of zeros for p, q)}}\]
 for \(\lambda_1, \lambda_2\) user-set regularization parameters.
 
 ### Link Analysis
@@ -304,7 +305,7 @@ For example:
 
 It turns out that \(\mathrm{Pr}\left[h_\pi (S_1) = h_\pi (S_2)\right] = \mathrm{sim}(S_1, S_2)\)
 
-- the intuition is that if the sets of shingles are very similar, randomly shuffling them in the same way and then taking the minimum value should, with a high probability (well, with probability of the similarity measure), be equal.
+- the intuition is that if the sets of shingles are very similar, randomly shuffling them in the same way and then taking the minimum value should, with a high probability (well, with probability of the similarity measure), be equal
 
 #### Locality-Sensitive Hashing
 Our goal now is to find documents with Jaccard similarity at least \(s\) (e.g. \(0.8\)).
@@ -423,12 +424,13 @@ We want to **respond to each search query** with a set of advertisers such that:
 - again has a competitive ratio of \(\ge 1/2\)
 
 **BALANCE:** pick the advertiser with the **largest unspent budget** (largest balance)
-- has a competitive ratio of \(\ge 3/4\)[^proof-balance] (for 2 advertisers and budget \(\ge 2\))
+- has a competitive ratio of \(\ge 3/4\)[^proof-balance] (for \(2\) advertisers and budget \(\ge 2\))
 - in general, has a competitive ratio of \(\ge 1 - 1/e \cong 0.63\) (same budget for advertisers, arbitrary number of advertisers, bids are 0 or 1)
 	- no online algorithm has better competitive ration for this case
 
-[^proof-balance]: ![BALANCE proof.](/assets/mining-massive-datasets/balance.svg)
-
+[^proof-balance]:
+	Here is the proof from the lecture:
+    ![BALANCE proof.](/assets/mining-massive-datasets/balance.svg)
 
 ### Mining Data Streams
 For our purposes, a **stream** is a long list of tuples of some values.
@@ -445,13 +447,13 @@ For our purposes, a **stream** is a long list of tuples of some values.
 	- \(0\), it **can't** be in \(S\)
 	- \(1\), it **could** be in \(S\) (we'd have to check to make sure)
 
-The probability that a specific target gets at least one hash is \[1 - \overbrace{ { {\underbrace{(1 - 1/n)}_{\text{one doesn't hit}}}^m} }^{\text{none of them hit}} = 1 - \left(1 - 1/n\right)^{n (m / n)} \cong 1 - e^{-m/n}\]
+The probability that a target gets at least one hash (which here equals the _false positive rate_) is \[1 - \overbrace{ { {\underbrace{(1 - 1/n)}_{\text{one doesn't hit}}}^m} }^{\text{none of them hit}} = 1 - \left(1 - 1/n\right)^{n (m / n)} \cong 1 - e^{-m/n}\]
 
 ##### Bloom filter
 Create **\(k\) independent hash functions**, setting \(1\)s for all element's hashes:
 \[1 - \overbrace{ { {\underbrace{(1 - 1/n)}_{\text{one doesn't hit}}}^{km} } }^{\text{none of them hit}} \cong 1 - e^{-km/n}\]
 
-However, to generate a false positive, all of the hash functions have to get a hit, so:
+However, to generate a _false positive rate_, all of the hash functions have to get a hit, so:
 \[(1 - e^{-km / n})^k\]
 
 The **minimum** of this function (wrt. \(k\)) is \(n/m \ln(2)\):
@@ -517,4 +519,5 @@ We can **generalize this** concept to counting **moments:** for \(m_a\) being th
 
 **Fixups** (we don't know the size of the stream)
 - suppose we can store at most \(k\) variables
-- use fixed-size sampling to periodically replace variables
+- use **Reservoir sampling** to sample variables, counting from when they are replaced
+	- since we are guaranteed that any variable is selected with uniform probability over the whole stream (and its counter is reset at that time), AMS works
