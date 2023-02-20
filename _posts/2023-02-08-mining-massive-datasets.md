@@ -2,7 +2,6 @@
 title: Mining Massive Datasets
 category: "notes"
 category_icon: /assets/category-icons/heidelberg.webp
-pdf: false
 ---
 
 - .
@@ -104,10 +103,9 @@ ssc.awaitTermination()
 ```
 
 ### Recommender Systems
-Problem: \(X\) as set of customers, \(I\) as set of items
-- **utility function** \(u: X \times I \mapsto R\) (set of ratings)
-	- \(R\) usually \(\in [0, 1]\)
-	- can be stored in a **utility matrix:**
+**Problem:** set of customers \(X\), set of items \(I\), **utility function**  (set of ratings) \(u: X \times I \mapsto R\)
+- \(R\) usually \(\in [0, 1]\)
+- can be stored in a **utility matrix:**
 
 |               | **Alice** | **Bob** | **Carol** | **David** |
 | **Star Wars** | \(1\)     |         | \(0.2\)   |           |
@@ -363,12 +361,12 @@ Plotting the probabilities with variable \(s\), we get the **S-curve:**
 	- recipes are usually stored on disks (they won't fit into memory)
 	- association-rule algorithms read data in **passes** -- this is the true cost
 	- hardest is **finding frequent pairs** (number of larger tuples drops off)
-		- approach 1: count all pairs using a matrix \(\rightarrow 4\) bytes per pair
-		- approach 2: count all pairs using a dictionary \(\rightarrow 12\) bytes per pair with count \(> 0\)
-		- smarter approaches: below (A-Priori, PCY)
+		- _approach 1:_ count all pairs using a matrix \(\rightarrow 4\) bytes per pair
+		- _approach 2:_ count all pairs using a dictionary \(\rightarrow 12\) bytes per pair with count \(> 0\)
+		- _smarter approaches:_ A-Priori, PCY (see below)
 2. use them to generate rules with \(\mathrm{confidence} \ge c\):
 	- for every \(A \subseteq I\), generate rule \(A \rightarrow I \setminus A\): since \(I\) is frequent, \(A\) is also frequent
-	- for calculating confidences:
+	- for calculating confidences, we can do a few things:
 		1. brute force go br<span class='brr-1'>r</span><span class='brr-2'>r</span><span class='brr-3'>r</span><span class='brr-4'>r</span><span class='brr-5'>r</span>
 		2. use the fact that if \(A, B, C \rightarrow D\) is below confidence, so is \(A, B \rightarrow C, D\)
 
@@ -448,14 +446,14 @@ For our purposes, a **stream** is a long list of tuples of some values.
 	- \(0\), it **can't** be in \(S\)
 	- \(1\), it **could** be in \(S\) (we'd have to check to make sure)
 
-The probability that a target gets at least one hash (which here equals the _false positive rate_) is \[1 - \overbrace{ { {\underbrace{(1 - 1/n)}_{\text{one doesn't hit}}}^m} }^{\text{none of them hit}} = 1 - \left(1 - 1/n\right)^{n (m / n)} \cong 1 - e^{-m/n}\]
+The probability that a target gets at least one hash (which equals the _false positive rate_) is \[1 - \overbrace{ { {\underbrace{(1 - 1/n)}_{\text{one doesn't hit}}}^m} }^{\text{none of them hit}} = 1 - \left(1 - 1/n\right)^{n (m / n)} \approx 1 - e^{-m/n}\]
 
 ##### Bloom filter
 Create **\(k\) independent hash functions**, setting \(1\)s for all element's hashes:
-\[1 - \overbrace{ { {\underbrace{(1 - 1/n)}_{\text{one doesn't hit}}}^{km} } }^{\text{none of them hit}} \cong 1 - e^{-km/n}\]
+\[1 - (1 - 1/n)^{km} \approx 1 - e^{-km/n}\]
 
 However, to generate a _false positive rate_, all of the hash functions have to get a hit, so:
-\[(1 - e^{-km / n})^k\]
+\[(1 - (1 - 1/n)^{km})^k \approx (1 - e^{-km / n})^k\]
 
 The **minimum** of this function (wrt. \(k\)) is \(n/m \ln(2)\):
 
