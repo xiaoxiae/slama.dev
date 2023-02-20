@@ -266,6 +266,12 @@ After this, websites with trust below a certain threshold are spam.
 - to pick seed pages, we can use PageRank and pick the top \(k\), or use trusted domains
 - in this case, a page \(p\) confers trust equal to \(\beta t_p / d^{\mathrm{out}}_p\)
 
+We can use TrustRank for **spam mass estimation** (i.e. estimate how much rank of a page comes from spammers):
+- \(r_p\): PageRank of page \(p\)
+- \(r_p^+\)s PageRank of page \(p\) with teleport into _trusted pages only_
+- \(r_p^- = r_p - r_p^+\): how much rank comes from spam pages
+- **Spam mass of \(p\)**: \[\frac{r_p^-}{r_p} = \frac{r_p - r_p^+}{r_p}\]
+
 ### Locality Sensitive Hashing
 **Goal:** find near-neighbors in high-dimensional spaces:
 - points in the same cluster
@@ -520,3 +526,14 @@ We can **generalize this** concept to counting **moments:** for \(m_a\) being th
 - suppose we can store at most \(k\) variables
 - use **Reservoir sampling** to sample variables, counting from when they are replaced
 	- since we are guaranteed that any variable is selected with uniform probability over the whole stream (and its counter is reset at that time), AMS works
+
+Let's prove that this works for the \(2\)nd moment for one variable.
+We want to prove that \(\mathbb{E}[f(X)] = \sum_i m_i^2\).
+Let \(c_t\) be the number of times the item at index \(t\) appears from then on.
+We get \[\begin{aligned}
+	\mathbb{E}\left[f(X)\right] &= \frac{1}{n} \sum_{t = 1}^{n} n(2 c_t - 1) \qquad \text{# definition}  \\
+	                            &= \frac{1}{n} \sum_{\text{item}\ i} n(1 + 3 + 5 + \ldots + 2m_i - 1) \qquad \text{# group by $i$} \\
+	                            &= \frac{1}{n} \sum_{\text{item}\ i} n (2 \frac{m_i (m_i + 1)}{2} - m_i) \\
+	                            &= \frac{1}{n} \sum_{\text{item}\ i} n m_i^2 \\
+	                            &= \sum_{\text{item}\ i} m_i^2 \\
+\end{aligned}\]
