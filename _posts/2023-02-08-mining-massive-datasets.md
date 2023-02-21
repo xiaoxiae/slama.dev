@@ -531,8 +531,8 @@ Let's prove that this works for the \(2\)nd moment for one variable.
 We want to prove that \(\mathbb{E}[f(X)] = \sum_i m_i^2\).
 Let \(c_t\) be the number of times the item at index \(t\) appears from then on.
 We get \[\begin{aligned}
-	\mathbb{E}\left[f(X)\right] &= \frac{1}{n} \sum_{t = 1}^{n} n(2 c_t - 1) \qquad \text{# definition}  \\
-	                            &= \frac{1}{n} \sum_{\text{item}\ i} n(1 + 3 + 5 + \ldots + 2m_i - 1) \qquad \text{# group by $i$} \\
+	\mathbb{E}\left[f(X)\right] &= \frac{1}{n} \sum_{t = 1}^{n} n(2 c_t - 1) \qquad \text{\# definition}  \\
+	                            &= \frac{1}{n} \sum_{\text{item}\ i} n(1 + 3 + 5 + \ldots + 2m_i - 1) \qquad \text{\# group by $i$} \\
 	                            &= \frac{1}{n} \sum_{\text{item}\ i} n (2 \frac{m_i (m_i + 1)}{2} - m_i) \\
 	                            &= \frac{1}{n} \sum_{\text{item}\ i} n m_i^2 \\
 	                            &= \sum_{\text{item}\ i} m_i^2 \\
