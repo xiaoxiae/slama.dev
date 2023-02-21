@@ -125,8 +125,8 @@ _Note: for some reason, this matrix is \(I \times X\) while all other notation i
 - estimate \(x\)'s ratings based on ratings of users from \(N\)
 
 {% math ENalgorithm %}
-1. let \(r_x\) be vector of user \(x\)'s ratings and \(N\) the set of \(k\) neighbors of \(x\)
-2. predicted rating of user \(x\) for item \(i\) is \[\underbrace{r_{xi} = \frac{1}{k} \sum_{y \in N} r_{yi}}_{\text{naive version (just average)}} \qquad \underbrace{r_{xi} = \mathrm{avg}(r_x) +  \frac{\sum_{y \in N} \mathrm{sim}(x, y) \cdot (r_{yi} - \mathrm{avg}(r_y))}{ \sum_{y \in N} \mathrm{sim}(x, y)}}_{\text{improved, takes similarity of users into account, along with their bias}}\]
+1. let \(r_x\) be vector of user \(x\)'s ratings and \(N\) the set of neighbors of \(x\)
+2. predicted rating of user \(x\) for item \(i\) is \[\underbrace{r_{xi} = \frac{1}{|N|} \sum_{y \in N} r_{yi}}_{\text{naive version (just average)}} \qquad \underbrace{r_{xi} = \mathrm{avg}(r_x) +  \frac{\sum_{y \in N} \mathrm{sim}(x, y) \cdot (r_{yi} - \mathrm{avg}(r_y))}{ \sum_{y \in N} \mathrm{sim}(x, y)}}_{\text{improved, takes similarity of users into account, along with their bias}}\]
 {% endmath %}
 
 To calculate similarity, we can use a few things:
@@ -139,7 +139,7 @@ To calculate similarity, we can use a few things:
 	- _problem 1_ fixed by only taking items rated by both users
 	- _problem 2_ fixed by offsetting by average
 
-This way of writing Pearson is hiding what's really going on, so here is a nicer way: let \(s_x\) and \(s_y\) be formed from vectors \(r_x, r_y\) by removing the indexes where either one is zero. Then the **Pearson similarity measure** can be calculated like such: \[\mathrm{sim}(r_x, r_y) = \cos(s_x - \mathrm{avg}(s_x), s_y - \mathrm{avg}(s_y))\]
+This way of writing Pearson is hiding what's really going on, so here is a nicer way: let \(s_x\) and \(s_y\) be formed from vectors \(r_x, r_y\) by removing the indexes where either one is zero. Then the **Pearson similarity measure** can be calculated like such: \[\mathrm{sim}(r_x, r_y) = \cos(s_x - \mathrm{avg}(r_x), s_y - \mathrm{avg}(r_y))\]
 
 To calculate neighbourhood, we can do a few things:
 - set a threshold for similarity and only take those above
@@ -187,7 +187,7 @@ We'll do this by factorizing the matrix into user matrix \(P\) and item matrix \
 ![Latent factors illustration.](/assets/mining-massive-datasets/lf.svg)
 
 What we want to do is **split the data** into a training set, which we use to create the matrices, and the testing set, on which the matrices need to perform well.
-To do this well, we'll use **regularization**, which controls for when the data is rich and when it's scarce (lots of zeroes in \(p_x\)s and \(q_i\)s): \[\min_{P, Q} \underbrace{\sum_{\left(x, i\right) \in R} \left(r_{xi} - q_i p_x\right)^2}_{\text{error}} + \underbrace{\lambda_1 \sum_{x} ||p_x||^2 + \lambda_2 \sum_{i} ||q_i||^2}_{\text{„length“ (approx. number of zeros for p, q)}}\]
+To do this well, we'll use **regularization**, which controls for when the data is rich and when it's scarce (lots of zeroes in \(p_x\)s and \(q_i\)s): \[\min_{P, Q} \underbrace{\sum_{\left(x, i\right) \in R} \left(r_{xi} - q_i p_x\right)^2}_{\text{error}} + \underbrace{\lambda_1 \sum_{x} ||p_x||^2 + \lambda_2 \sum_{i} ||q_i||^2}_{\text{„length“ (approx. num. of non-zeros in p, q)}}\]
 for \(\lambda_1, \lambda_2\) user-set regularization parameters.
 
 ### Link Analysis
@@ -390,13 +390,13 @@ Plotting the probabilities with variable \(s\), we get the **S-curve:**
 
 **Can be generalized** for any \(k\) by again constructing candidate \(k\)-tuples from previous pass and then passing again to get the truly frequent \(k\)-tuples.
 
-#### PCY (Park-Chen-Yu) Algorithm
+#### PCY Algorithm
 **Observation:** in pass \(1\) of A-Priori, most memory is idle:
 - also maintain a hash table \(h\) with as many buckets as fit in memory
 - hash pairs into buckets (just their counts) to speed up phase 2
 	- _if they were frequent, their bucket must have been frequent too_
 
-{% math ENalgorithm "PCY" %}
+{% math ENalgorithm "PCY (Park-Chen-Yu)" %}
 1. pass: count individual items + hash pairs to buckets, counting them too
 	- _between passes:_ convert the buckets into a bit-vector:
 		- \(1\) if a bucket count exceeded support \(s\)
@@ -467,7 +467,7 @@ The **minimum** of this function (wrt. \(k\)) is \(n/m \ln(2)\):
 
 #### Stream Sampling
 
-##### Sampling a fixed portion
+##### Fixed portion
 **Goal:** store a fixed portion of the stream (for ex. 1/10)
 
 **Naive solution:** pick randomly and hope for the best
@@ -478,7 +478,7 @@ The **minimum** of this function (wrt. \(k\)) is \(n/m \ln(2)\):
 - generalized: key is some subset of the tuple, for ex. (**user**; search; time)
 	- use hashing to buckets to determine which elements to sample
 
-##### Sampling a fixed size
+##### Fixed size (Reservoir Sampling)
 **Goal:** store a fixed number \(|S|\) of elements of the stream
 
 {% math ENalgorithm "Reservoir Sampling" %}
@@ -497,6 +497,7 @@ This ensures that after \(n\) elements, all elements have a \(s/n\) probability 
 - elements are picked from a set of size \(N\)
 - we can't store the whole \(N\), we'd like to approximate with the smallest error
 
+##### Flajolet-Martin
 {% math ENalgorithm "Flajolet-Martin" %}
 - pick a hash function \(h\) that maps each of the \(N\) elements to at least \(\log_2 N\) bits
 - let \(r(a)\) be the number of trailing zeroes in \(h(a)\)
@@ -512,6 +513,7 @@ We can **generalize this** concept to counting **moments:** for \(m_a\) being th
 	- for sequence \(10, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9\), \(S = 910\)
 	- for sequence \(90, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1\), \(S = 8110\)
 
+##### AMS Algorithm
 {% math ENalgorithm "AMS (Alton-Matias-Szegedy)" %}
 - pick and keep track of „approximate“ variables \(X\)
 	- the more variables there are (say \(k\)), the more precise the approximation is
