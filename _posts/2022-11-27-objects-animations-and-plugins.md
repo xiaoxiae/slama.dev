@@ -253,7 +253,7 @@ The second (`Roll`) also inherits from the {% manim_doc `Animation` reference/ma
 The last (`Dissolve`) inherits from the {% manim_doc `AnimationGroup` reference/manim.animation.composition.AnimationGroup.html %} (which itself inherits from the {% manim_doc `Animation` reference/manim.animation.animation.Animation.html %} class) and is used to define animations made out of subanimations. It is also a **remover** (as again seen by the `remover` keyword argument), meaning that it "removes" objects from the scene (again, quite important for everything to work).
 
 ### Plugins
-Since we now know how to create custom Manim objects and animation, it is a good idea to explore [plugins]([https://docs.manim.community/en/stable/plugins.html]).
+Since we now know how to create custom Manim objects and animation, it is a good idea to explore [plugins](https://docs.manim.community/en/stable/plugins.html).
 Plugins extend Manim's basic functionality in various ways, be it defining new classes and objects, or implementing an [editor simplifying working with Manim](https://github.com/ManimCommunity/manim_editor).
 This part includes some more interesting plugins that you might find into.
 

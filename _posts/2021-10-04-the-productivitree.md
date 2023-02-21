@@ -25,6 +25,6 @@ The above image was generated using **weighted stippling**, which is a technique
 
 I used the [StippleGen](https://www.evilmadscientist.com/2012/stipplegen-weighted-voronoi-stippling-and-tsp-paths-in-processing/) program when generating my image. It should run on any major operating system and has a pretty straightforward UI, exporting directly to SVG.
 
-As for updating the image after being productive, I created a [simple script](/assets/productivincrement.py) that does this automatically, selecting the one that is closest to the center.
+As for updating the image after being productive, I created a simple script that does this automatically, selecting the one that is closest to the center.
 
 [^1]: If your system prefers dark theme, the dots will yellow/white, since the colors are inverted.

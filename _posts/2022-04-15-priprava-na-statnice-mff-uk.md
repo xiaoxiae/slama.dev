@@ -226,12 +226,12 @@ Pokud je u předmětu symbol kartičky (🃏), tak je zahrnut v [tomto Anki bal�
 			<li> pojem formálního důkazu, zamítnutí </li>
 			<li> schopnost práce v některém z formálních dokazovacích systémů (např. tablo metoda, rezoluce, Hilbertovský kalkul) </li>
 		</ul></li>
-		{% stlink Věty o kompaktnosti a úplnosti výrokové a predikátové logiky | /assets/priprava-na-statnice-mff-uk/autogramy/vypal.pdf#page=85 | /assets/priprava-na-statnice-mff-uk/autogramy/vypal.pdf#page=81 | /assets/priprava-na-statnice-mff-uk/autogramy/vypal.pdf#page=79 %}
+		{% stlink Věty o kompaktnosti a úplnosti výrokové a predikátové logiky | /assets/priprava-na-statnice-mff-uk/vypal-en.pdf#page=85 | /assets/priprava-na-statnice-mff-uk/vypal-en.pdf#page=81 | /assets/priprava-na-statnice-mff-uk/vypal-en.pdf#page=79 %}
 		<li style='list-style-type: none;'><ul>
 			<li> znění a porozumění významu </li>
 			<li> použití na příkladech, důsledky </li>
 		</ul></li>
-		{% stlink Rozhodnutelnost | /assets/priprava-na-statnice-mff-uk/autogramy/vypal.pdf#page=273 %}
+		{% stlink Rozhodnutelnost | /assets/priprava-na-statnice-mff-uk/vypal-en.pdf#page=273 %}
 		<li style='list-style-type: none;'><ul>
 			<li> pojem kompletnosti a její kritéria, význam pro rozhodnutelnost </li>
 			<li> příklady rozhodnutelných a nerozhodnutelných teorií </li>
