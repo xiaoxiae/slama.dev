@@ -19,8 +19,8 @@ category_icon: /assets/category-icons/heidelberg.webp
 6. Profiling [[slides](/assets/gpu-computing/06.pdf)]
 7. Scheduling optimizations [[slides](/assets/gpu-computing/07.pdf)]
 8. \(n\)-body optimization [[slides](/assets/gpu-computing/08.pdf)]
-9. TODO [[slides](/assets/gpu-computing/09.pdf)]
-10. TODO [[slides](/assets/gpu-computing/10.pdf)]
+9. Host-device optimizations [[slides](/assets/gpu-computing/09.pdf)]
+10. Productivity [[slides](/assets/gpu-computing/10.pdf)]
 11. TODO [[slides](/assets/gpu-computing/11.pdf)]
 12. TODO [[slides](/assets/gpu-computing/12.pdf)]
 13. TODO [[slides](/assets/gpu-computing/13.pdf)]
@@ -121,6 +121,7 @@ int main()
 
 ##### Host memory
 - **pinned** (i.e. can't be paged out by the system)
+	- no need for vitual address translation
 	- can be faster if we're doing a lot of computation on it
 - **pageable** (unpinned)
 
@@ -352,7 +353,8 @@ _The lecture goes into theoretical parallel algorithm design._
 - MIMD: synchronization necessary (shared variables, process synchronization, etc.)
 
 ### Profiling
-{% math ENdefinition: "arithmetic density" %} \(r\) is the ration between floating point operations to data movements, i.e. \[r = \frac{\mathrm{FLOPs}}{\mathrm{Byte}}\]{% endmath %}
+{% math ENdefinition: "arithmetic density" %} \(r\) is the ratio between floating point operations and data movements, i.e. \[r = \frac{\mathrm{FLOPs}}{\mathrm{Byte}}\]{% endmath %}
+- also sometimes called **computational intensity** (in later lectures)
 
 To evaluate a performance, we use the **roofline model:**
 - the performance is limited by its weakest link -- either **memory-bound** or **compute-bound**
@@ -549,8 +551,9 @@ __host__ __device__ void bodyBodyInteraction(...)
 	*fy = dy * s;
 	*fz = dz * s;
 }
+```
 
-
+```cuda
 __global__ void ComputeNBodyGravitation_Naive(...)
 {
 	for (int i = blockIdx.x * blockDim.x + threadIdx.x;
@@ -561,7 +564,7 @@ __global__ void ComputeNBodyGravitation_Naive(...)
 		float4 me = ((float4 *) posMass)[i];
 		float myX = me.x; float myY = me.y; float myZ = me.z;
 
-		// also includes interaction between itself
+		// care: also includes interaction between itself!
 		// is essentially zero and prevents needless branching
 #pragma unroll 16
 		for (int j = 0; j < N; j++) {
@@ -595,7 +598,8 @@ __global__ void ComputeNBodyGravitation_Naive(...)
 - each thread still computes \(N\) interactions for one body
 
 ```cuda
-__global__ void ComputeNBodyGravitation_Shared (...) {
+__global__ void ComputeNBodyGravitation_Shared (...)
+{
 	extern __shared__ float4 sharedPM[];
 	for (int i = blockIdx.x * blockDim.x + threadIdx.x;
 	     i < N;
@@ -605,7 +609,7 @@ __global__ void ComputeNBodyGravitation_Shared (...) {
 		float4 myPM = ((float4 *) posMass)[i];
 #pragma unroll 32
 		for (int j = 0; j < N; j += blockDim.x) {
-			// each thread loads its part
+			// each thread loads its part to the shared memory
 			sharedPM[threadIdx.x] = ((float4 *) posMass)[j+threadIdx.x];
 			__syncthreads();
 
@@ -624,7 +628,295 @@ __global__ void ComputeNBodyGravitation_Shared (...) {
 			}
 			__syncthreads();
 		}
-		force[3*i+0] = acc[0]; force[3*i+1] = acc[1]; force[3*i+2] = acc[2];
+
+		force[3*i+0] = acc[0];
+		force[3*i+1] = acc[1];
+		force[3*i+2] = acc[2];
+	}
+}
+```
+
+### Host-device optimizations
+
+- **streams** -- CPU/GPU concurrency!
+	- concurrent copy & execute (memcpy & kernel execute)
+
+#### Host-device synchronization
+- **context-based** -- block until all outstanding CUDA operations have completed
+	- `cudaMemcpy()`, `cudaDeviceSynchronize()`
+	- all of these operate on the **default stream**
+		- _is special: will block all other streams until it is finished_
+
+{: .no-invert}
+![SAXPY without streaming.](/assets/gpu-computing/saxpy-nostream.webp)
+
+- **stream-based** -- block until all outstanding CUDA operations in a stream have completed
+	- `cudaStreamSynchronize(stream)`
+	- `cudaStreamQuery(stream) -> cudaSuccess` or `cudaErrorNotReady`
+	- the user specifies which stream a kernel launch/memory operation goes to
+		- `kernel <<< ..., cudaStream_t stream >>>`
+		- `cudaMemcpyAsync(..., cudaStream_t stream)`
+	- the number of streams depends on the architecture
+	- we can also insert **events** and check when they have been completed
+
+{: .no-invert}
+![SAXPY with streaming.](/assets/gpu-computing/saxpy-stream.webp)
+
+```cuda
+cudaStream_t stream0, stream1;
+cudaStreamCreate ( &stream0 );
+cudaStreamCreate ( &stream1 );
+float *d_A0, *d_B0, *d_C0; // device memory for stream 0
+float *d_A1, *d_B1, *d_C1; // device memory for stream 1
+
+// cudaMallocs go here
+
+for (int i = 0; i < n; i += segSize * 2) {
+	// stream 0
+	cudaMemCpyAsync ( d_A0, h_A + i, segSize * sizeof(float), ... , stream0 );
+	cudaMemCpyAsync ( d_B0, h_B + i, segSize * sizeof(float), ... , stream0 );
+	saxpy <<< segSize/256, 256, 0, stream0 >>> ( ... );
+	cudaMemCpyAsync ( d_C0, h_C + i, segSize * sizeof(float), ... , stream0 );
+
+	// stream 1
+	cudaMemCpyAsync ( d_A1, h_A + i + segSize, segSize * sizeof(float), ..., stream1 );
+	cudaMemCpyAsync ( d_B1, h_B + i + segSize, segSize * sizeof(float), ..., stream1 );
+	saxpy <<< segSize/256, 256, 0, stream1 >>> ( ... );
+	cudaMemCpyAsync ( d_C1, h_C + i + segSize, segSize * sizeof(float), ..., stream1 );
+}
+```
+
+#### Issues
+- hardware used to only have two types of queues:
+	- **copy engine** -- issues copy operations
+	- **kernel engine** -- launches kernels
+- when the stream is processed, the following happens, resulting in sequential execution
+	- we have to move the kernel launches after the copies!
+
+{: .no-invert}
+![Improved SAXPY streams diagram.](/assets/gpu-computing/stream-issues.webp)
+
+```cuda
+cudaStream_t stream0, stream1;
+cudaStreamCreate ( &stream0 );
+cudaStreamCreate ( &stream1 );
+float *d_A0, *d_B0, *d_C0; // device memory for stream 0
+float *d_A1, *d_B1, *d_C1; // device memory for stream 1
+
+// cudaMallocs go here
+
+for (int i = 0; i < n; i += segSize * 2) {
+	cudaMemCpyAsync ( d_A0, h_A + i, segSize * sizeof(float), ... , stream0 );
+	cudaMemCpyAsync ( d_B0, h_B + i, segSize * sizeof(float), ... , stream0 );
+	cudaMemCpyAsync ( d_A1, h_A + i + segSize, segSize * sizeof(float), ..., stream1 );
+	cudaMemCpyAsync ( d_B1, h_B + i + segSize, segSize * sizeof(float), ..., stream1 );
+
+	saxpy <<< segSize/256, 256, 0, stream0 >>> ( ... );
+	saxpy <<< segSize/256, 256, 0, stream1 >>> ( ... );
+
+	cudaMemCpyAsync ( d_C0, h_C + i, segSize * sizeof(float), ... , stream0 );
+	cudaMemCpyAsync ( d_C1, h_C + i + segSize, segSize * sizeof(float), ..., stream1 );
+}
+```
+
+- the newer architectures are better and have multiple hardware queues
+- be careful, some operations _implicitly synchronize all other CUDA operations_
+	- page locked memory allocation (`cudaMallocHost()` or `cudaHostAlloc()`)
+	- device memory allocation (`cudaMalloc()`)
+	- non-async versions of memory operations (`cudaMemcpy()`, `cudaMemset()`)
+
+#### Virtual Shared Memory
+- let CPU and GPU have the same address space
+- nice to deal with (only one type of pointers)
+- access costs can be quite significant
+
+- **Unified Virtual Addressing (UVA)**
+	- single virtual address space for all memory in the system
+	- GPU code can access all memory
+
+- **Unified Memory (UM)**
+	- pool of managed memory that is shared between CPU and GPU
+	- single pointer is sufficient
+	- automatic (page) migration between CPU and GPU domains
+
+### Productivity
+- make **compiler** responsible for low-level implementations
+	- generate kernels, launch them
+	- handle data movements, optimizations
+	- simplifies the writing process
+
+#### OpenACC
+- directive-based programming model to off-load compute-intensive loops to accelerators
+- cross-platform (C, C++, Fortran)
+- **execution model:** host-directed execution with an attached accelerator device
+	- offloading compute-intensive regions
+- **coarse-grain parallelism:** fully parallel execution across execution units \(\rightarrow\) **gang parallelism**
+	- limited support for synchronization
+	- CUDA: grid level
+- **fine-grain parallelism:** multiple threads on a single execution unit \(\rightarrow\) **worker parallelism**
+	- latency hiding techniques
+	- CUDA: warps at block level
+- **SIMD/vector operations:** multiple operations per thread \(\rightarrow\) **vector parallelism**
+	- CUDA: threads at block level
+- compiler takes care of memory
+- is implemented using **directives**
+	- `#pragma acc directive-name [clauses]`
+		- `parallel` -- user responsible for finding parallelisms
+		- `kernel` -- compiler responsible for finding parallelisms
+		- `loop [clause]` -- share among threads/execute sequentially
+			- `gang` -- among _thread blocks_
+			- `worker` -- among _thread warps_ of a block
+			- `vector` -- among _threads_
+			- `seq` -- sequential execution
+		- `data [clause]`
+			- `copy` -- H2D at region start, D2H at region end
+			- `copyin`/`copyout` -- in/out device
+			- `create` -- device allocation
+			- `present` -- note that the data is already there
+	- is an iterative process (test, see how it does, repeat)
+
+##### Naive version
+```cpp
+int main() {
+	int n = 256*1024*1024; float a = 2.0f; float b = 3.0f;
+
+	float* x;
+	float* y;
+
+	// allocate & initialize x, y
+
+	for (int i = 0; i < n; ++i) {
+		y[i] = a*x[i] + y[i];
+	}
+
+	for (int i = 0; i < n; ++i) {
+		y[i] = b*x[i] + y[i];
+	}
+
+	//free and cleanup
+}
+```
+
+##### `kernels` pragma
+- the compiler will let us now what it did
+	- which kernels it launched
+	- what it copied
+
+```cpp
+int main() {
+	int n = 256*1024*1024; float a = 2.0f; float b = 3.0f;
+
+	// restrict states that the memory of the pointers doesn't overlap
+	// is useful for compiler optimizations
+	float* restrict x;
+	float* restrict y;
+
+	// allocate & initialize x, y
+
+#pragma acc kernels
+{
+	for (int i = 0; i < n; ++i) {
+		y[i] = a*x[i] + y[i];
+	}
+
+	for (int i = 0; i < n; ++i) {
+		y[i] = b*x[i] + y[i];
+	}
+}
+
+	//free and cleanup
+}
+```
+
+##### `parallel loop` pragma
+- "please, distribute this loop over different threads"
+
+```cpp
+int main() {
+	int n = 256*1024*1024; float a = 2.0f; float b = 3.0f;
+
+	float* restrict x;
+	float* restrict y;
+
+	// allocate & initialize x, y
+
+#pragma acc parallel loop
+	for (int i = 0; i < n; ++i) {
+		y[i] = a*x[i] + y[i];
+	}
+
+#pragma acc parallel loop
+	for (int i = 0; i < n; ++i) {
+		y[i] = b*x[i] + y[i];
+	}
+
+	//free and cleanup
+}
+```
+
+##### `data` pragma
+- "please, copy this data to the accelerator"
+- "now distribute this for loop, oh and also you have the data already"
+
+```cpp
+int main() {
+	int n = 256*1024*1024; float a = 2.0f; float b = 3.0f;
+
+	float* restrict x;
+	float* restrict y;
+
+	// allocate & initialize x, y
+
+#pragma acc data copyin(x[0:n]) copy(y[0:n])
+{
+#pragma acc parallel loop present(x,y)
+	for (int i = 0; i < n; ++i) {
+		y[i] = a*x[i] + y[i];
+	}
+
+#pragma acc parallel loop present(x,y)
+	for (int i = 0; i < n; ++i) {
+		y[i] = b*x[i] + y[i];
+	}
+}
+
+	//free and cleanup
+}
+```
+
+##### Nested loops
+```cpp
+// distributes outer loop to n threads
+// each thread executes the inner loop sequentially
+// block size 256, block count n/256 (rounded up)
+#pragma acc parallel vector_length(256)
+#pragma acc loop gang vector
+for ( int i = 0; i < n; ++i ) {
+	for ( int j = 0; j < m; ++j ) {
+	// do stuff
+	}
+}
+
+// same as above but only 16 blocks
+// some threads might have to loop multiple times
+#pragma acc parallel vector_length(256)
+                     num_gangs(16)
+#pragma acc loop gang vector
+for ( int i = 0; i < n; ++i ) {
+	for ( int j = 0; j < m; ++j ) {
+	// do stuff
+	}
+}
+
+// parallelizes both loops
+// distributes n outer loops to n blocks
+// distributes inner loop to their threads (256/block)
+#pragma acc parallel vector_length(256)
+#pragma acc loop gang
+for ( int i = 0; i < n; ++i ) {
+#pragma acc loop vector
+	for ( int j = 0; j < m; ++j ) {
+	// do stuff
 	}
 }
 ```
