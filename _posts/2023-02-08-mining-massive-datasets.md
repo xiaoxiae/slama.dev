@@ -68,7 +68,7 @@ PySpark's other main data structure are **DataFrames**:
 - a complete **untrained** pipeline is an **Estimator**
 - after calling `fit()`, all estimators become transformers!
 
-![PySpark ML pipeline illustration.](/assets/mining-massive-datasets/sparkml.png)
+![PySpark ML pipeline illustration.](/assets/mining-massive-datasets/sparkml.webp)
 
 ##### Spark Streaming
 General idea is to:
