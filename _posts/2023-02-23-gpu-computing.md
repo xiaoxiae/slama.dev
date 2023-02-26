@@ -20,9 +20,9 @@ category_icon: /assets/category-icons/heidelberg.webp
 7. Scheduling optimizations [[slides](/assets/gpu-computing/07.pdf)]
 8. \(n\)-body optimization [[slides](/assets/gpu-computing/08.pdf)]
 9. Host-device optimizations [[slides](/assets/gpu-computing/09.pdf)]
-10. Productivity [[slides](/assets/gpu-computing/10.pdf)]
-11. TODO [[slides](/assets/gpu-computing/11.pdf)]
-12. TODO [[slides](/assets/gpu-computing/12.pdf)]
+10. OpenACC [[slides](/assets/gpu-computing/10.pdf)]
+11. Stencil computations [[slides](/assets/gpu-computing/11.pdf)]
+12. OpenCL [[slides](/assets/gpu-computing/12.pdf)]
 13. TODO [[slides](/assets/gpu-computing/13.pdf)]
 
 ### Bulk-Synchronous Parallel (BSP) model
@@ -41,8 +41,8 @@ category_icon: /assets/category-icons/heidelberg.webp
 
 #### Moore's law
 A law about the exponential increase of processing power, has many variants:
-- 1965: **number of transistors will double each year**
-- 1975: every two years
+- 1965: **number of transistors will double each year**,
+- 1975: every two years,
 - CPU performance will double every 18 months,
 - memory size four times every three years, etc.
 
@@ -51,14 +51,18 @@ We want to find the **maximum possible improvement**, when given
 - \(P\) parallel time of the task, \(S\) serial time of the task, \(P + S = 1\)
 - \(N\) parallel execution units
 \[\mathrm{Speedup} = \frac{1}{S + \frac{P}{N}}\]
+- best case: **linear** (if superlinear, something is wrong)
+	- usually has diminishing returns
 
 ### CUDA programming
-- compute kernel as C program
+- compute kernel as C program, executed on GPU
 - explicit data and thread-level parallelism
-- **computing**, not graphics processing
+- computing, not graphics processing
 
-A program always consists of **CPU** (no/little parallelism) and **GPU** (high parallelism) part.
-The **GPU** part is made up of **kernels**, which are C functions that are executed on the GPU:
+A program always consists of two parts:
+- **host = CPU** (no/little parallelism)
+- **device = GPU** (high parallelism)
+	- made up of **kernels**, which are C functions that are executed on the GPU
 
 ```cuda
 __global__ void matAdd (float A[N][N], float B[N][N], float C[N][N])
@@ -75,17 +79,20 @@ __global__ void matAdd (float A[N][N], float B[N][N], float C[N][N])
 int main()
 {
 	// the thread grid and block structure is 2D, 2D
-	dim3 dimGrid((N + dimBlock.x – 1) / dimBlock.x, (N + dimBlock.y – 1) / dimBlock.y);
+	// adding more/less changes the structure
 	dim3 dimBlock(16, 16);
+	dim3 dimGrid((N + dimBlock.x – 1) / dimBlock.x, (N + dimBlock.y – 1) / dimBlock.y);
 	matAdd <<<dimGrid, dimBlock>>> (A, B, C);
 }
 ```
 
-- general syntax is `kernel <<<blockCount, blockSize>>> (args)`
-	- `blockCount` and `blockSize` can be 1D/2D/3D, depending on the type of problem
+#### Overview
+
+- general **kernel syntax** is `kernel <<<blockCount, blockSize>>> (args)`
+	- `blockCount` and `blockSize` are `dim3` and can be 1D/2D/3D
 - each **thread** has a unique `threadIdx.{x,y,z}`
 - each **block** has `blockIdx.{x,y,z}` (and `blockDim.{x,y,z}` for size)
-	- will be assigned to **one streaming multiprocessor** (i.e. will have shared memory)
+	- will be assigned to **one streaming multiprocessor**
 	- they are sometimes called _Cooperative Thread Arrays_ (CTAs)
 - we have to make sure that the GPU has enough SMs and threads/block to start!
 
@@ -94,10 +101,12 @@ int main()
 
 #### Memory
 
-##### Global memory
-- accessible from all threads
+##### Global/device memory
+- **accessible from all threads**
 - high latency
 - lifetime exceeds thread lifetime
+- can be quite large, depending on the GPU
+- includes **local memory** (is only thread-local)
 - **allocation:** `cudaMalloc(&dmem, size);`
 - **deallocation:** `cudaFree(&dmem);`
 - **transfer** (blocking): `cudaMemcpy(*dest, *src, size, transfer_type);`
@@ -105,25 +114,40 @@ int main()
 		- `cudaMemcpyHostToDevice`, `cudaMemcpyDeviceToHost`
 
 ##### Shared memory
-- on-chip memory
-- lifetime is same as thread block lifetime
+- **only accessible from the thread's block**
 - access costs is (in the best case) equal to register access
-- can be around \(48 kB\)
+- lifetime is same as thread block lifetime
+- can be around \(48 kB\) for a block (with SM having more to accomodate more blocks)
 - organized into \(n\) **banks:**
 	- typically 16-32 banks with \(32b\) width
 	- parallel access if no conflict (conflict results in serialization)
 
+- can be **static/dynamic**, based on if it's known at compile time or not:
+
+```cuda
+// static
+__shared__ int s[64];
+
+// dynamic, size is third parameter of kernel call
+// extern refers to the fact that it's declared elsewhere
+extern __shared__ int s[];
+```
+
 ##### Registers
-- are at thread level
+- are at **thread level**
 - depend on run-time configuration
 - max. 255 registers/thread
 - we can't really specify what will become a register
+- **register spilling:** if source core exceeds the usage of registers, they spill into local memory
 
 ##### Host memory
 - **pinned** (i.e. can't be paged out by the system)
-	- no need for vitual address translation
+	- use `cudaMallocHost`
+	- is a scarce resource (locks memory out for other processes)
+		- the OS might limit how much of this can be done
 	- can be faster if we're doing a lot of computation on it
 - **pageable** (unpinned)
+	- just use `malloc`
 
 #### Variable declaration
 
@@ -142,7 +166,6 @@ int main()
 | `__host__`   | host          | host          |
 
 - `__global__` defines a kernel, return type is `void`
-- `__host__` is optional (implicit)
 - `__host__` and `__device__` can be combined
 - for functions executed on the GPU:
 	- no recursion
@@ -151,44 +174,28 @@ int main()
 
 #### Coalescing
 Combining fine-grain access by multiple threads **into a single operation.**
-
-The following two diagrams show data access bandwidths for two main types of access patterns:
+- for **global memory,** addresses should be multiples of cache line size
+- if done improperly, results in significant bandwidth decline:
 
 {: .no-invert}
 ![Offset and stride access graph.](/assets/gpu-computing/offset-stride-access.webp)
 
-- for shared memory, concurrent access by different threads is handled by the **memory banks**
-	- for our cluster, there were \(32\), where successive \(4B\) mapped to successive banks (mod \(32\)), which made the stride pattern look like this:
+- for **shared memory,** concurrent access by different threads is handled by the **memory banks**
+	- for our cluster, there were \(32\) **banks**, where successive \(4B\) mapped to successive banks (mod \(32\)), which made the stride pattern look like this:
+- thread scheduling _does not result in coalesced access_, needs to be handled manually!
 
 {: .no-invert}
 ![Stride access for Shared memory graph.](/assets/gpu-computing/stride-shared-access.webp)
 
 ### Thread scheduling
-- up to 1k threads per block
+- up to **1k threads per block**
 	- one block executes on one SM
-- divided into **warps of 32 threads**
-	- a scheduling unit of GPU
+	- **no global synchronization!** (context switching on GPU is waaaay too expensive)
+- threads in a block grouped into **warps of 32** (scheduling units of GPU)
 	- implementation decision, not CUDA
-	- _example:_ 4 blocks being executed on one SM, each block 1k threads, 128 thread warps
-
-The **scheduler** will act in the following way:
-1. select one thread block to execute, allocate resources as required
-2. select one of its warps (32 for block of size 1024), fetch its instruction and execute
-3. repeat (for this warp) until all instructions are utilized
-4. upon stalling, select another warp
-5. deallocate resources after all warps have finished
-
-This is called **fine-grained multi-threading** (FGMT)
-- switch context when a long operation (like memory access) occurs
-	- the context switch is very fast (as opposed to the CPU)
-- **all threads in a warp execute the same instruction** (on their own data and registers)
-
-![Fine-grained multi-threading example.](/assets/gpu-computing/fgmt.svg)
-
-- _example:_ each memory access blocks execution for \(50\) cycles and occurs every \(20\) cycles: how many warps do we need to keep the GPU occupied?
-	- answer is \(4\) (as one thread waits, we can execute and stall \(3\) more)
-
-If the threads in a warp want to do something different, a **write mask** is used -- all of them still execute the same instruction, but only the result of those with the mask are written to the memory:
+	- **all threads in a warp execute the same instruction** (on their own data and registers)
+		- for conditionals, a **mask** is used (all of them still execute the same instruction but only the result of those with the mask are written to the memory)
+	- _example:_ \(4\) blocks on one SM, each block \(1\mathrm{k}\) threads \(= 128\) thread warps
 
 ```cuda
 __global__ badKernel (...)
@@ -203,15 +210,27 @@ __global__ badKernel (...)
 }
 ```
 
+The **scheduler** will act in the following way:
+1. select one thread block to execute, allocate resources as required
+2. select one of its warps (32 for block of size 1024), fetch its instruction and execute
+3. repeat (for this warp) until all instructions are utilized
+4. upon stalling, select another warp (possibly from a different block)
+
+![Fine-grained multi-threading example.](/assets/gpu-computing/fgmt.svg)
+
+This is called **fine-grained multi-threading** (FGMT)
+- switch context when a long operation (like memory access) occurs
+	- the **context switch is very fast** (is done in HW, as opposed to the CPU)
+
 ### Optimizing Matrix Multiplication
 
 
 #### Naive (CPU)
 - nothing too interesting, just three loops
-- can be further improved by changing the order we loop for better cache hits
+- can be further improved by changing the order of addition for better cache hits
 
 ```cuda
-void MM_NAIVE (float* M, float* N, float* P, int Width)
+void MM_CPU (float* M, float* N, float* P, int Width)
 {
 	for (int i = 0; i < Width; ++i)
 	{
@@ -231,11 +250,11 @@ void MM_NAIVE (float* M, float* N, float* P, int Width)
 ```
 
 #### Naive (GPU)
-- looping handled by a 2D thread array (single block)
+- looping handled by a single thread block
 - per loop, we do 2 FLOPS and 4 memory accesses
 
 ```cuda
-__global__ void MM_INIT (float* Md, float* Nd, float* Pd, int Width)
+__global__ void MM_NAIVE (float* Md, float* Nd, float* Pd, int Width)
 {
 	float Pvalue = 0;
 	float Melement, Nelement;
@@ -252,7 +271,8 @@ __global__ void MM_INIT (float* Md, float* Nd, float* Pd, int Width)
 ```
 
 #### Multiple thread blocks (GPU)
-- we can split the matrix by thread blocks so each thread block has a part of the array
+- we can split the matrix by thread blocks so each thread block does a single index
+- no longer limits us to arrays of size \(\sqrt{1024}\) (max TPB)
 
 ```cuda
 __global__ void MM_MTB (float* Md, float* Nd, float* Pd, int Width)
@@ -260,9 +280,8 @@ __global__ void MM_MTB (float* Md, float* Nd, float* Pd, int Width)
 	float Pvalue = 0;
 	float Melement, Nelement;
 
-	// Calculate the row index of the Pd element
+	// the indices the thread is responsible for
 	int row = blockIdx.y * blockDim.y + threadIdx.y;
-	// Calculate the column index of the Pd element
 	int col = blockIdx.x * blockDim.x + threadIdx.x;
 
 	for (int k = 0; k < Width; ++k)
@@ -278,46 +297,66 @@ __global__ void MM_MTB (float* Md, float* Nd, float* Pd, int Width)
 
 #### Using shared memory (GPU)
 - we can utilize shared memory to greatly improve the FLOP/global memory access ratio
-	- one FLOP here is a floating point operation
-- **main trick:** copy the part of the matrix from global memory to shared memory!
+	- then all threads to operation on those 
+- **main trick:** copy parts of the matrix from global memory to shared memory!
+	- creates an additional loop: we _tile the blocks_ such that they fit into shared memory
+
+_Note: I think that the code in the presentation is wrong -- the tiling doesn't make sense for sizes other than the size of the block (otherwise threads are writing out of bounds). I've modified it, hopefully it's somewhat correct._
 
 ```cuda
+// here we assume that
+// - blockDim.x == blockDim.y and they divide Width,
+// - nThreads * nBlocks = width ** 2
+
+TILEWIDTH = 32  // same as blockDim.x and blockDim.y!
+
+__device__ void GetMatrixValue(int row, int col, float* M, int Width) {
+	return M [row * Width + col];
+}
+
+
 __global__ void MM_SM (float* Md, float* Nd, float* Pd, int Width)
 {
+	// is defined statically for simpler code
 	__shared__ float Mds [TILEWIDTH] [TILEWIDTH];
 	__shared__ float Nds [TILEWIDTH] [TILEWIDTH];
-	int bx = blockIdx.x; int by = blockIdx.y;
-	int tx = threadIdx.x; int ty = threadIdx.y;
-	int row = by * TILEWIDTH + ty;
-	int col = bx * TILEWIDTH + tx;
+	
+	// a thread is still responsible for one element
+	int tx = threadIdx.x;
+	int ty = threadIdx.y;
+	int row = blockIdx.y * TILEWIDTH + ty;
+	int col = blockIdx.x * TILEWIDTH + tx;
 	float Pvalue = 0
 	
-	if (Row > Width || Col > Width)
+	if (row > Width || col > Width)
 		return;
 
 	// loop over tiles
 	for (int m = 0; m < Width / TILEWIDTH; ++m)
 	{
-		// threads collectively load the part of the matrix to shared memory
-		Mds [ty] [tx] = Md [ row * Width + ( m * TILEWIDTH + tx ) ];
-		Nds [ty] [tx] = Nd [ col + ( m * TILEWIDTH + ty ) * Width ];
-		
+		// load the tile of both of the arrays
+		Mds [ty] [tx] = GetMatrixValue(row, m * TILEWIDTH + tx, Md, Width);
+		Nds [ty] [tx] = GetMatrixValue(m * TILEWIDTH + ty, col, Nd, Width);
+
 		// RAW dependency:
 		// we must wait for all of them to finish!
 		__syncthreads();
-		
+
+		// do the actual computation
 		for (int k = 0; k < TILEWIDTH; ++k)
 			Pvalue += Mds[ty][k] * Nds[k][tx];
-			
+
 		// WAR dependency:
 		// again wait or some threads will change Mds/Nds
 		__syncthreads ();
 	}
+
 	Pd[row * Width + col] = Pvalue;
 }
 ```
 
 - the `__syncthreads();` calls synchronize all threads within a single block; solves dependencies:
+	- behaves as a **barrier** to make sure all threads did what they needed to do
 	- RAW (true/data dependency): _don't read before you finish writing_
 	- WAR (anti-dependency): _don't write before you finish reading_
 	- WAW (output dependency): _if the last write is important, make sure it's the last_
@@ -349,8 +388,8 @@ _The lecture goes into theoretical parallel algorithm design._
 #### Synchronization
 
 {% math ENdefinition "synchronization" %}enforcement of a defined logical order between events. This establishes a defined time-relation between distinct places, thus defining their behavior in time.{% endmath %}
-- SIMD (warps on GPU): one instruction, no synchronization necessary
-- MIMD: synchronization necessary (shared variables, process synchronization, etc.)
+- **SIMD (warps on GPU):** one instruction, no synchronization necessary
+- **MIMD:** synchronization necessary (shared variables, process synchronization, etc.)
 
 ### Profiling
 {% math ENdefinition: "arithmetic density" %} \(r\) is the ratio between floating point operations and data movements, i.e. \[r = \frac{\mathrm{FLOPs}}{\mathrm{Byte}}\]{% endmath %}
@@ -364,29 +403,32 @@ To evaluate a performance, we use the **roofline model:**
 {: .no-invert}
 ![Roofline model illustration.](/assets/gpu-computing/roofline.webp)
 
-_The lecture goes into CUDA profiling and I'm not writing that, feel free to watch the lecture._
+_The lecture goes into CUDA profiling. Here are some important concepts:_
+- **Nsight** -- records and analyzes kernel performance metrics (in detail)
+	- compute/memory graphs, roofline analysis, etc.
 
 ### Scheduling optimizations
 - common and important data parallel primitive (sum, histogram, etc.)
 - easy to implement but hard to implement fast
-- to process very large arrays, we will require more than one CTA -- synchronization problem
+- to process very large arrays, we will require more than one SM -- synchronization problem
 	- solution: _one reduction layer will be one kernel launch_
 	- _the examples don't actually do this, but in practice this would be done_
-- we're **assuming associativity** (so we can do shenaningans with the order of operations)
+- we're also **assuming associativity** (so we can do shenaningans with the order of operations)
 
 #### Naive implementation
 - we're implementing a reduction **add**
 - one kernel launch will **solve a reduction subtree of its block size**
+	- the thread structure is 1D, shared memory stores the subtree
+- this isn't entirely Naive, we're already using shared memory
 
 ```cuda
 __global__ void Reduction(int *out, int *in, size_t N)
 {
 	extern __shared__ int sPartials[];
 	const int tid = threadIdx.x;
-	unsigned int i = blockIdx.x * blockDim.x + threadIdx.x;
 
 	// each thread loads one element from global to shared mem
-	sPartials[tid] = in[i];
+	sPartials[tid] = in[blockIdx.x * blockDim.x + threadIdx.x];
 	__syncthreads();
 	
 	// do reduction in shared mem
@@ -409,7 +451,7 @@ __global__ void Reduction(int *out, int *in, size_t N)
 #### Interleaved address divergent
 - remember that **all threads in a warp execute the same instructions**
 - the previous code uses threads from all over the place -- **let's use the ones from the start**
-- improves performance by almost \(50\%\)!
+- improves performance by almost \(50\%\)! (see table below)
 
 ```cuda
 for (unsigned int s = 1; s < blockDim.x; s *= 2) {
@@ -425,12 +467,14 @@ for (unsigned int s = 1; s < blockDim.x; s *= 2) {
 ![Reduction: interleaved address divergent diagram.](/assets/gpu-computing/reduction-addresses.webp)
 
 #### Resolving bank conflicts
-- **consecutive threads should access consecutive memory addresses** (see memory bank stride access graph from a few sections ago)
-- another large performance increase
+- **consecutive threads should access consecutive memory addresses**
+	- see memory bank stride access graph from a few sections ago
+- another large performance increase (see table below)
+- _this version seems like the most intuitive one to implement_
 
 ```cuda
 for (unsigned int s = blockDim.x / 2; s > 0; s >>= 1) {
-	if (tid < 0) {
+	if (tid < s) {
 		sPartials[tid] += sPartials[tid + s];
 	}
 	__syncthreads();
@@ -441,14 +485,16 @@ for (unsigned int s = blockDim.x / 2; s > 0; s >>= 1) {
 ![Reduction: resolving bank conflicts diagram.](/assets/gpu-computing/reduction-bank.webp)
 
 #### Making use of idle threads
-- after the first iteration, **half of the blocks don't do anything** (they just load something to shared memory and are done)
-- start with half of the blocks and **do the first operation while loading**
+- after the first iteration, **half of the blocks don't do anything**
+	- they just load something to shared memory at the beginning and are done
+- idea: start with half of the blocks and **do the first operation while loading**
 - almost double performance increase again!
 
 ```cuda
+// we have HALF of the threads but each loads DOUBLE
 unsigned int i = blockIdx.x * (blockDim.x * 2) + threadIdx.x;
 
-// each thread loads one element from global to shared mem
+// each thread loads TWO elements from global to shared mem
 sPartials[tid] = in[i] + in[i + blockDim.x];
 __syncthreads();
 ```
@@ -486,9 +532,9 @@ Here is an overview of the versions we have implemented so far (the values in th
 | unrolling     | \(22.59\) | \(36.91\) | \(\mathbf{68.38}\) | \(62.35\) | \(53.06\) | \(43.78\) |
 
 ### \(n\)-body optimization
-- we have \(n\) bodies and want to evaluete their movement
+- we have \(n\) bodies and want to evaluate their movement
 - uses Newton's second law of motion
-- movement is approximated by temporal discretization (i.e. move by some small time)
+- movement is approximated by **temporal discretization** (i.e. move by some small time)
 
 _I'm not writing the formulas from the slides, this isn't a physics course._
 
@@ -528,9 +574,7 @@ p_t particles;
 ```
 
 #### Naive implementation
-- _single thread_ takes care of a _single body_
-- we don't want to recalculate force between \(a, b\) and \(b, a\) -- reuse the data!
-	- one thread per force could also be explored
+- _single thread_ takes care of a _single body_ (if blocks cover bodies)
 
 ```cuda
 __host__ __device__ void bodyBodyInteraction(...)
@@ -556,6 +600,7 @@ __host__ __device__ void bodyBodyInteraction(...)
 ```cuda
 __global__ void ComputeNBodyGravitation_Naive(...)
 {
+	// outer loop, in case blocks don't fully cover the bodies
 	for (int i = blockIdx.x * blockDim.x + threadIdx.x;
 	     i < N;
 	     i += blockDim.x * gridDim.x)
@@ -593,9 +638,8 @@ __global__ void ComputeNBodyGravitation_Naive(...)
 	- _be careful_ -- if \(N\) isn't a multiple, might not do some calculations/segfault
 
 #### Shared memory
-- tile into sub matrices that are loaded in to the shared memory
-	- after \(p = \text{block size}\) steps, reload shared memory
-- each thread still computes \(N\) interactions for one body
+- split inner loop into sections (by block width) that are saved to shared memory
+- each thread still computes all interactions for one body, but in block-sized chunks
 
 ```cuda
 __global__ void ComputeNBodyGravitation_Shared (...)
@@ -726,17 +770,19 @@ for (int i = 0; i < n; i += segSize * 2) {
 	- non-async versions of memory operations (`cudaMemcpy()`, `cudaMemset()`)
 
 #### Virtual Shared Memory
-- let CPU and GPU have the same address space
-- nice to deal with (only one type of pointers)
+- lets **CPU and GPU have the same address space**
+- nicer to deal with (only one type of pointers)
 - access costs can be quite significant
 
 - **Unified Virtual Addressing (UVA)**
+	- support since CUDA 4
 	- single virtual address space for all memory in the system
 	- GPU code can access all memory
+	- _does not automagically migrate data from one physical location to another_
 
 - **Unified Memory (UM)**
+	- newer way (CUDA 6) of handling memory
 	- pool of managed memory that is shared between CPU and GPU
-	- single pointer is sufficient
 	- automatic (page) migration between CPU and GPU domains
 
 ### Productivity
@@ -899,8 +945,7 @@ for ( int i = 0; i < n; ++i ) {
 
 // same as above but only 16 blocks
 // some threads might have to loop multiple times
-#pragma acc parallel vector_length(256)
-                     num_gangs(16)
+#pragma acc parallel vector_length(256) num_gangs(16)
 #pragma acc loop gang vector
 for ( int i = 0; i < n; ++i ) {
 	for ( int j = 0; j < m; ++j ) {
@@ -920,3 +965,79 @@ for ( int i = 0; i < n; ++i ) {
 	}
 }
 ```
+
+### Stencil computations
+- iterative kernel that updates regular arrays based on certain patterns
+- useful for image processing, partial differential equations, fluid dynamics, etc.
+
+#### Image processing
+- **connected component labeling** -- identify connected areas in this image
+	- each segment will be labeled with a different value
+	- \(4\)-way or \(8\)-way connectivity (we do \(4\))
+	- for an image, we apply a threshold to create a black/white image
+
+_Note: I am beyond confused to what the algorithm actually is, this is my best guess:_
+- parallelly set labels to the entire stencil (taking threshold into account)
+- parallelly (repeatedly) merge labels (taking the minimum)
+	- will be done diagonally
+	- **wavefronts** -- storing previous elements in shared memory to reduce memory contention
+
+#### Partial differential equations
+_Read the slides, I'm fairly certain this isn't too important._
+
+#### Performance optimizations
+- stencil codes are memory-bound
+- when partitioning the data, there is overlap (called the halo)
+	- vertical halos are poorly aligned in memory
+- **marching planes** -- only keep 3 planes in shared memory, cycling the buffers
+
+### GPU programming models
+- up to now, we've seen **CUDA**
+- similar approach: **OpenCL** (imperative language)
+- directive-based: **OpenACC** (declarative language, we've seen it)
+
+#### OpenCL
+
+##### Platform model
+- **host** stays host
+- **compute devices** are things like GPUs
+	- contain **compute units** (SMs), which have **processing elements** (thread blocks/warps)
+
+##### Execution model
+- host code (sequential parts, control)
+- kernels still run on device (computational intensive part)
+- **context** -- devices, kernel objects, program objects, memory objects
+- we have to explicitly create queues for different types of commands
+- **work item** -- kernel function in execution for a single point in the defined index space
+	- global ID / work group ID + local ID
+- **work group** -- organization structure of work items with a given kernel instance
+	- synchronization between work groups not possible (same as CUDA)
+	- can synchronize between work items
+- `NDRange`: \(n\)-dimensional index space
+
+| CUDA         | OpenCL     |
+| ---          | ---        |
+| Grid         | NDRange    |
+| Thread Block | Work group |
+| Thread       | Work item  |
+| Thread ID    | Global ID  |
+| Block index  | Block ID   |
+| Thread index | Local ID   |
+
+Different types of kernels exist:
+- **OpenCL kernels:** kernel objects associated with kernel functions (user kernels)
+- **Native kernels:** execution along with OpenCL kernels on a device and shared memory objects
+- **Built-in kernels:** specific for a particular device
+
+##### Memory model
+- **memory regions:** distinct memories visible to both host and device
+- **memory objects:** objects defined by the OpenCL API
+- **Shared Virtual Memory:** virtual address space exposed to both host and devices (UM in CUDA)
+- has special memory objects: buffer, image, pipe
+
+| CUDA                   | OpenCL         |
+| ---                    | ---            |
+| Host memory            | Host memory    |
+| Global/device memory   | Global memory  |
+| Shared memory          | Local memory   |
+| Registers/local memory | Private memory |
