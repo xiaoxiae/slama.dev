@@ -35,7 +35,7 @@ category_icon: /assets/category-icons/heidelberg.webp
 - **parallel slackness:** number of virtual processors \(v\), physical processors \(p\)
 	- \(v = 1\): not viable
 	- \(v = p\): unpromising wrt. optimality
-	- \(v \gg p\): leverages slack to schedule and pipeline computation
+	- \(v \gg p\): leverages slack to schedule and pipeline computation -- **latency tolerance**
 
 ### Scaling rules
 
@@ -63,10 +63,10 @@ A program always consists of two parts:
 - **host = CPU** (no/little parallelism)
 - **device = GPU** (high parallelism)
 	- made up of **kernels**, which are C functions that are executed on the GPU
+	- are launched **asynchronously** (wrt host, not wrt each other)
 
 ```cuda
-__global__ void matAdd (float A[N][N], float B[N][N], float C[N][N])
-{
+__global__ void matAdd (float A[N][N], float B[N][N], float C[N][N]) {
 	// one thread computes one element
 	int i = blockIdx.x * blockDim.x + threadIdx.x;
 	int j = blockIdx.y * blockDim.y + threadIdx.y;
@@ -76,8 +76,7 @@ __global__ void matAdd (float A[N][N], float B[N][N], float C[N][N])
 		C[i][j] = A[i][j] + B[i][j];
 }
 
-int main()
-{
+int main() {
 	// the thread grid and block structure is 2D, 2D
 	// adding more/less changes the structure
 	dim3 dimBlock(16, 16);
@@ -119,17 +118,18 @@ int main()
 - lifetime is same as thread block lifetime
 - can be around \(48 kB\) for a block (with SM having more to accomodate more blocks)
 - organized into \(n\) **banks:**
-	- typically 16-32 banks with \(32b\) width
-	- parallel access if no conflict (conflict results in serialization)
+	- typically 16-**32** banks with \(4B\) width
+	- parallel access if no conflict (otherwise results in serialization)
 
-- can be **static/dynamic**, based on if it's known at compile time or not:
+- can be **static/dynamic**, based on if it's known at compile time or not
+	- the access time shouldn't differ (at least not significantly)
 
 ```cuda
 // static
 __shared__ int s[64];
 
 // dynamic, size is third parameter of kernel call
-// extern refers to the fact that it's declared elsewhere
+// extern refers to the fact that it's declared elsewhere (kernel)
 extern __shared__ int s[];
 ```
 
@@ -148,6 +148,35 @@ extern __shared__ int s[];
 	- can be faster if we're doing a lot of computation on it
 - **pageable** (unpinned)
 	- just use `malloc`
+
+##### Code examples
+
+**Allocating memory:**
+
+```cuda
+float *hMem;
+float *dMem;
+
+if (USE_PINNED_MEMORY) {
+	// casting to (void**) shouldn't be necessary in newer CUDAs
+	// CUDA's malloc doesn't return the pointer, but a status
+	// (which in this case is ignored but can be handled)
+	cudaMallocHost((void**) &hMem, N * sizeof(float));
+} else {
+	hMem = (float*) malloc(N * sizeof(float));
+}
+
+cudaMalloc((void**)&dMem, N * sizeof(float));
+```
+
+**Copying memory:**
+```cuda
+// host -> device
+cudaMemcpy(dMem, hMem, N * sizeof(float), cudaMemcpyHostToDevice);
+
+// device -> host
+cudaMemcpy(hMem, dMem, N * sizeof(float), cudaMemcpyDeviceToHost);
+```
 
 #### Variable declaration
 
@@ -189,7 +218,7 @@ Combining fine-grain access by multiple threads **into a single operation.**
 
 ### Thread scheduling
 - up to **1k threads per block**
-	- one block executes on one SM
+	- **one block** executes on **one SM**
 	- **no global synchronization!** (context switching on GPU is waaaay too expensive)
 - threads in a block grouped into **warps of 32** (scheduling units of GPU)
 	- implementation decision, not CUDA
@@ -198,8 +227,7 @@ Combining fine-grain access by multiple threads **into a single operation.**
 	- _example:_ \(4\) blocks on one SM, each block \(1\mathrm{k}\) threads \(= 128\) thread warps
 
 ```cuda
-__global__ badKernel (...)
-{
+__global__ badKernel (...) {
 	id = threadIdx.x;
 
 	// not a great idea, use < instead!
@@ -210,17 +238,18 @@ __global__ badKernel (...)
 }
 ```
 
-The **scheduler** will act in the following way:
-1. select one thread block to execute, allocate resources as required
-2. select one of its warps (32 for block of size 1024), fetch its instruction and execute
-3. repeat (for this warp) until all instructions are utilized
-4. upon stalling, select another warp (possibly from a different block)
+During execution, the hardware **schedules blocks to SMs**
+- happens repeatedly -- when some blocks terminate, others will be distributed
+- the number depends on a block's resources (for ex. allocated shared memory)
 
-![Fine-grained multi-threading example.](/assets/gpu-computing/fgmt.svg)
-
-This is called **fine-grained multi-threading** (FGMT)
-- switch context when a long operation (like memory access) occurs
-	- the **context switch is very fast** (is done in HW, as opposed to the CPU)
+A SM has multiple **warp schedulers** that can execute multiple warps concurrently:
+- **context switching is fast** (as opposed to CPU), since the data stays on-chip
+- if a warp doesn't have resources, it is **stalled** while they are fetched
+	- this happens really fast because the data stays in registers
+- there are multiple policies for scheduling warp executions:
+	- **Round Robin** -- fetched in a round robin manner
+	- **Least Recently Fetched** -- fetch based on which has not been fetched the longest
+	- **Fair** -- fetch for the one with the least amount of fetches
 
 ### Optimizing Matrix Multiplication
 
@@ -230,20 +259,24 @@ This is called **fine-grained multi-threading** (FGMT)
 - can be further improved by changing the order of addition for better cache hits
 
 ```cuda
-void MM_CPU (float* M, float* N, float* P, int Width)
-{
-	for (int i = 0; i < Width; ++i)
-	{
-		for (int j = 0; j < Width; ++j)
-		{
-			float sum = 0;
-			for (int k = 0; k < Width; ++k)
-			{
-				float a = M[i * width + k];
-				float b = N[k * width + j];
-				sum += a * b;
+__host__ __device__ void GetMatrixValue(int row, int col, float* M, int Width) {
+	return M [row * Width + col];
+}
+
+__host__ __device__ void SetMatrixValue(int row, int col, float* M, int Width, float Val) {
+	M[row * Width + col] = Val;
+}
+
+void MM_CPU (float* M, float* N, float* P, int Width) {
+	for (int col = 0; col < Width; ++col) {
+		for (int row = 0; row < Width; ++row) {
+			float Pvalue = 0;
+			for (int k = 0; k < Width; ++k) {
+				float Melement = GetMatrixValue(row, k, M, Width);
+				float Nelement = GetMatrixValue(k, col, N, Width);
+				Pvalue += Melement * Nelement;
 			}
-			P[i * Width + j] = sum;
+			SetMatrixValue(row, col, P, Width, Pvalue);
 		}
 	}
 }
@@ -254,19 +287,19 @@ void MM_CPU (float* M, float* N, float* P, int Width)
 - per loop, we do 2 FLOPS and 4 memory accesses
 
 ```cuda
-__global__ void MM_NAIVE (float* Md, float* Nd, float* Pd, int Width)
-{
+__global__ void MM_NAIVE (float* Md, float* Nd, float* Pd, int Width) {
 	float Pvalue = 0;
 	float Melement, Nelement;
+	int row = threadIdx.y;
+	int col = threadIdx.x;
 
-	for (int k = 0; k < Width; ++k)
-	{
-		Melement = Md[threadIdx.y * Width + k];
-		Nelement = Nd[k * Width + threadIdx.x];
+	for (int k = 0; k < Width; ++k) {
+		Melement = GetMatrixValue(row, k, Md, Width);
+		Nelement = GetMatrixValue(k, col, Nd, Width);
 		Pvalue += Melement * Nelement;
 	}
 
-	Pd[threadIdx.y * Width + threadIdx.x] = Pvalue;
+	SetMatrixValue(row, col, Pd, Width, Pvalue);
 }
 ```
 
@@ -275,23 +308,19 @@ __global__ void MM_NAIVE (float* Md, float* Nd, float* Pd, int Width)
 - no longer limits us to arrays of size \(\sqrt{1024}\) (max TPB)
 
 ```cuda
-__global__ void MM_MTB (float* Md, float* Nd, float* Pd, int Width)
-{
+__global__ void MM_MTB (float* Md, float* Nd, float* Pd, int Width) {
 	float Pvalue = 0;
 	float Melement, Nelement;
-
-	// the indices the thread is responsible for
 	int row = blockIdx.y * blockDim.y + threadIdx.y;
 	int col = blockIdx.x * blockDim.x + threadIdx.x;
 
-	for (int k = 0; k < Width; ++k)
-	{
-		Melement = Md[row * Width + k];
-		Nelement = Nd[k * Width + col];
+	for (int k = 0; k < Width; ++k) {
+		Melement = GetMatrixValue(row, k, Md, Width);
+		Nelement = GetMatrixValue(k, col, Nd, Width);
 		Pvalue += Melement * Nelement;
 	}
-
-	Pd[row * Width + col] = Pvalue;
+	
+	SetMatrixValue(row, col, Pd, Width, Pvalue);
 }
 ```
 
@@ -310,33 +339,26 @@ _Note: I think that the code in the presentation is wrong -- the tiling doesn't 
 
 TILEWIDTH = 32  // same as blockDim.x and blockDim.y!
 
-__device__ void GetMatrixValue(int row, int col, float* M, int Width) {
-	return M [row * Width + col];
-}
 
-
-__global__ void MM_SM (float* Md, float* Nd, float* Pd, int Width)
-{
-	// is defined statically for simpler code
-	__shared__ float Mds [TILEWIDTH] [TILEWIDTH];
-	__shared__ float Nds [TILEWIDTH] [TILEWIDTH];
+__global__ void MM_SM (float* Md, float* Nd, float* Pd, int Width) {
+	// is allocated statically for simpler code
+	__shared__ float Mds[TILEWIDTH][TILEWIDTH];
+	__shared__ float Nds[TILEWIDTH][TILEWIDTH];
 	
-	// a thread is still responsible for one element
+	float Pvalue = 0
 	int tx = threadIdx.x;
 	int ty = threadIdx.y;
 	int row = blockIdx.y * TILEWIDTH + ty;
 	int col = blockIdx.x * TILEWIDTH + tx;
-	float Pvalue = 0
 	
 	if (row > Width || col > Width)
 		return;
 
 	// loop over tiles
-	for (int m = 0; m < Width / TILEWIDTH; ++m)
-	{
+	for (int m = 0; m < Width / TILEWIDTH; ++m) {
 		// load the tile of both of the arrays
-		Mds [ty] [tx] = GetMatrixValue(row, m * TILEWIDTH + tx, Md, Width);
-		Nds [ty] [tx] = GetMatrixValue(m * TILEWIDTH + ty, col, Nd, Width);
+		Mds[ty][tx] = GetMatrixValue(row, m * TILEWIDTH + tx, Md, Width);
+		Nds[ty][tx] = GetMatrixValue(m * TILEWIDTH + ty, col, Nd, Width);
 
 		// RAW dependency:
 		// we must wait for all of them to finish!
@@ -351,15 +373,15 @@ __global__ void MM_SM (float* Md, float* Nd, float* Pd, int Width)
 		__syncthreads ();
 	}
 
-	Pd[row * Width + col] = Pvalue;
+	SetMatrixValue(row, col, Pd, Width, Pvalue);
 }
 ```
 
-- the `__syncthreads();` calls synchronize all threads within a single block; solves dependencies:
+- the `__syncthreads();` calls synchronize all threads within a single block
 	- behaves as a **barrier** to make sure all threads did what they needed to do
-	- RAW (true/data dependency): _don't read before you finish writing_
-	- WAR (anti-dependency): _don't write before you finish reading_
-	- WAW (output dependency): _if the last write is important, make sure it's the last_
+	- **RAW** (true/data dependency): _don't read before you finish writing_
+	- **WAR** (anti-dependency): _don't write before you finish reading_
+	- **WAW** (output dependency): _if the last write is important, make sure it's the last_
 
 ### Parallelism
 - **sequential program**
@@ -374,13 +396,13 @@ __global__ void MM_SM (float* Md, float* Nd, float* Pd, int Width)
 Various levels of parallelism:
 - **Instruction Level Parallelism (ILP)** -- parallelism of one instruction stream
 	- huge amount of dependencies and branches
-	- limited parallelism
+	- limited parallelism: _pipelining, out-of-order execution_
 - **Thread Level Parallelism (TLP)** -- parallelism of multiple independent instruction streams
 	- less amount of dependencies, no limitations due to branches
 	- limited by the maximum number of concurrently executable streams
 - **Data Level Parallelism (DLP)** -- applying one operation on multiple independent elements
 	- parallelism depends on data structure
-	- vectorization techniques (single instruction processing multiple values)
+	- _vectorization techniques_ (single instruction processing multiple values)
 - **Request Level Parallelism (RLP)** -- datacenter and customers
 
 _The lecture goes into theoretical parallel algorithm design._
@@ -419,29 +441,28 @@ _The lecture goes into CUDA profiling. Here are some important concepts:_
 - we're implementing a reduction **add**
 - one kernel launch will **solve a reduction subtree of its block size**
 	- the thread structure is 1D, shared memory stores the subtree
+	- the output is an **array of the results of each block**
 - this isn't entirely Naive, we're already using shared memory
 
 ```cuda
-__global__ void Reduction(int *out, int *in, size_t N)
-{
+__global__ void Reduction(int *out, int *in, size_t N) {
 	extern __shared__ int sPartials[];
 	const int tid = threadIdx.x;
 
 	// each thread loads one element from global to shared mem
 	sPartials[tid] = in[blockIdx.x * blockDim.x + threadIdx.x];
 	__syncthreads();
-	
+
 	// do reduction in shared mem
 	for (unsigned int s = 1; s < blockDim.x; s *= 2) {
-		if (tid % ( 2 * s ) == 0) {
+		if (tid % ( 2 * s ) == 0)
 			sPartials[tid] += sPartials[tid + s];
-		}
+
 		__syncthreads();
 	}
 
-	if (tid == 0) {
+	if (tid == 0)
 		out[blockIdx.x] = sPartials[0];
-	}
  }
 ```
 
@@ -456,9 +477,10 @@ __global__ void Reduction(int *out, int *in, size_t N)
 ```cuda
 for (unsigned int s = 1; s < blockDim.x; s *= 2) {
 	int index = 2 * s * tid;
-	if (index < blockDim.x) {
+
+	if (index < blockDim.x)
 		sPartials[index] += sPartials[index + s];
-	}
+
 	__syncthreads();
 }
 ```
@@ -474,9 +496,9 @@ for (unsigned int s = 1; s < blockDim.x; s *= 2) {
 
 ```cuda
 for (unsigned int s = blockDim.x / 2; s > 0; s >>= 1) {
-	if (tid < s) {
+	if (tid < s)
 		sPartials[tid] += sPartials[tid + s];
-	}
+
 	__syncthreads();
 }
 ```
@@ -505,18 +527,18 @@ __syncthreads();
 
 ```cuda
 for (unsigned int s = blockDim.x / 2; s > 32; s >>= 1) {
-	if (tid < 0) {
+	if (tid < 0)
 		sPartials[tid] += sPartials[tid + s];
-	}
+
 	__syncthreads();
 }
 
-if (tid < 32 && blockDim.x >= 64) sPartials[tid] == sPartials[tid + 32];
-if (tid < 16 && blockDim.x >= 32) sPartials[tid] == sPartials[tid + 16];
-if (tid <  8 && blockDim.x >= 16) sPartials[tid] == sPartials[tid +  8];
-if (tid <  4 && blockDim.x >=  8) sPartials[tid] == sPartials[tid +  4];
-if (tid <  2 && blockDim.x >=  4) sPartials[tid] == sPartials[tid +  2];
-if (tid <  1 && blockDim.x >=  2) sPartials[tid] == sPartials[tid +  1];
+if (tid < 32 && blockDim.x >= 64) sPartials[tid] = sPartials[tid + 32];
+if (tid < 16 && blockDim.x >= 32) sPartials[tid] = sPartials[tid + 16];
+if (tid <  8 && blockDim.x >= 16) sPartials[tid] = sPartials[tid +  8];
+if (tid <  4 && blockDim.x >=  8) sPartials[tid] = sPartials[tid +  4];
+if (tid <  2 && blockDim.x >=  4) sPartials[tid] = sPartials[tid +  2];
+if (tid <  1 && blockDim.x >=  2) sPartials[tid] = sPartials[tid +  1];
 ```
 
 #### Overview
@@ -567,7 +589,7 @@ struct {
 	float vx   [MAX_SIZE],
 	      vy   [MAX_SIZE],
 	      vz   [MAX_SIZE];
-	float mass [max_size];
+	float mass [MAX_SIZE];
 } p_t;
 
 p_t particles;
@@ -577,8 +599,7 @@ p_t particles;
 - _single thread_ takes care of a _single body_ (if blocks cover bodies)
 
 ```cuda
-__host__ __device__ void bodyBodyInteraction(...)
-{
+__host__ __device__ void bodyBodyInteraction(...) {
 	float dx = x1 - x0;
 	float dy = y1 - y0;
 	float dz = z1 - z0;
@@ -598,32 +619,32 @@ __host__ __device__ void bodyBodyInteraction(...)
 ```
 
 ```cuda
-__global__ void ComputeNBodyGravitation_Naive(...)
-{
+__global__ void ComputeNBodyGravitation_Naive(...) {
 	// outer loop, in case blocks don't fully cover the bodies
 	for (int i = blockIdx.x * blockDim.x + threadIdx.x;
 	     i < N;
 	     i += blockDim.x * gridDim.x)
 	{
 		float acc[3] = {0};
-		float4 me = ((float4 *) posMass)[i];
-		float myX = me.x; float myY = me.y; float myZ = me.z;
+		float4 self = ((float4 *) posMass)[i];
 
 		// care: also includes interaction between itself!
 		// is essentially zero and prevents needless branching
 #pragma unroll 16
 		for (int j = 0; j < N; j++) {
-			float4 body = ((float4 *) posMass)[j];
+			float4 other = ((float4 *) posMass)[j];
 			float fx, fy, fz;
 
 			bodyBodyInteraction(
 				&fx, &fy, &fz,
-				myX, myY, myZ,
-				body.x, body.y, body.z, body.w,
+				self.x, self.y, self.z,
+				other.x, other.y, other.z, other.w,
 				softeningSquared
 			);
 
-			acc[0] += fx; acc[1] += fy; acc[2] += fz;
+			acc[0] += fx;
+			acc[1] += fy;
+			acc[2] += fz;
 		}
 
 		force[3*i+0] = acc[0];
@@ -642,15 +663,14 @@ __global__ void ComputeNBodyGravitation_Naive(...)
 - each thread still computes all interactions for one body, but in block-sized chunks
 
 ```cuda
-__global__ void ComputeNBodyGravitation_Shared (...)
-{
+__global__ void ComputeNBodyGravitation_Shared (...) {
 	extern __shared__ float4 sharedPM[];
 	for (int i = blockIdx.x * blockDim.x + threadIdx.x;
 	     i < N;
 	     i += blockDim.x * gridDim.x)
 	{
 		float acc[3] = {0};
-		float4 myPM = ((float4 *) posMass)[i];
+		float4 self = ((float4 *) posMass)[i];
 #pragma unroll 32
 		for (int j = 0; j < N; j += blockDim.x) {
 			// each thread loads its part to the shared memory
@@ -659,16 +679,18 @@ __global__ void ComputeNBodyGravitation_Shared (...)
 
 			for (size_t k = 0; k < blockDim.x; k++) {
 				float fx, fy, fz;
-				float4 otherMP = sharedPM[k];
+				float4 other = sharedPM[k];
 
 				bodyBodyInteraction(
 					&fx, &fy, &fz,
-					myPM.x, myPM.y, myPM.z,
-					otherMP.x, otherMP.y, otherMP.z, otherMP.w,
+					self.x, self.y, self.z,
+					other.x, other.y, other.z, other.w,
 					softeningSquared
 				);
 
-				acc[0] += fx; acc[1] += fy; acc[2] += fz;
+				acc[0] += fx;
+				acc[1] += fy;
+				acc[2] += fz;
 			}
 			__syncthreads();
 		}
@@ -684,6 +706,7 @@ __global__ void ComputeNBodyGravitation_Shared (...)
 
 - **streams** -- CPU/GPU concurrency!
 	- concurrent copy & execute (memcpy & kernel execute)
+	- here is a [nice presentation](https://developer.download.nvidia.com/CUDA/training/StreamsAndConcurrencyWebinar.pdf) that sums them well
 
 #### Host-device synchronization
 - **context-based** -- block until all outstanding CUDA operations have completed
@@ -695,8 +718,8 @@ __global__ void ComputeNBodyGravitation_Shared (...)
 ![SAXPY without streaming.](/assets/gpu-computing/saxpy-nostream.webp)
 
 - **stream-based** -- block until all outstanding CUDA operations in a stream have completed
-	- `cudaStreamSynchronize(stream)`
-	- `cudaStreamQuery(stream) -> cudaSuccess` or `cudaErrorNotReady`
+	- `cudaStreamSynchronize(stream)` -- wait until operations on this stream finish
+	- `cudaDeviceSynchronize(stream)` -- wait until operations on ALL streams finish
 	- the user specifies which stream a kernel launch/memory operation goes to
 		- `kernel <<< ..., cudaStream_t stream >>>`
 		- `cudaMemcpyAsync(..., cudaStream_t stream)`
@@ -831,13 +854,11 @@ int main() {
 
 	// allocate & initialize x, y
 
-	for (int i = 0; i < n; ++i) {
+	for (int i = 0; i < n; ++i)
 		y[i] = a*x[i] + y[i];
-	}
 
-	for (int i = 0; i < n; ++i) {
+	for (int i = 0; i < n; ++i)
 		y[i] = b*x[i] + y[i];
-	}
 
 	//free and cleanup
 }
@@ -861,13 +882,11 @@ int main() {
 
 #pragma acc kernels
 {
-	for (int i = 0; i < n; ++i) {
+	for (int i = 0; i < n; ++i)
 		y[i] = a*x[i] + y[i];
-	}
 
-	for (int i = 0; i < n; ++i) {
+	for (int i = 0; i < n; ++i)
 		y[i] = b*x[i] + y[i];
-	}
 }
 
 	//free and cleanup
@@ -887,14 +906,12 @@ int main() {
 	// allocate & initialize x, y
 
 #pragma acc parallel loop
-	for (int i = 0; i < n; ++i) {
+	for (int i = 0; i < n; ++i)
 		y[i] = a*x[i] + y[i];
-	}
 
 #pragma acc parallel loop
-	for (int i = 0; i < n; ++i) {
+	for (int i = 0; i < n; ++i)
 		y[i] = b*x[i] + y[i];
-	}
 
 	//free and cleanup
 }
@@ -916,14 +933,12 @@ int main() {
 #pragma acc data copyin(x[0:n]) copy(y[0:n])
 {
 #pragma acc parallel loop present(x,y)
-	for (int i = 0; i < n; ++i) {
+	for (int i = 0; i < n; ++i)
 		y[i] = a*x[i] + y[i];
-	}
 
 #pragma acc parallel loop present(x,y)
-	for (int i = 0; i < n; ++i) {
+	for (int i = 0; i < n; ++i)
 		y[i] = b*x[i] + y[i];
-	}
 }
 
 	//free and cleanup
@@ -939,7 +954,7 @@ int main() {
 #pragma acc loop gang vector
 for ( int i = 0; i < n; ++i ) {
 	for ( int j = 0; j < m; ++j ) {
-	// do stuff
+		// do stuff
 	}
 }
 
@@ -949,7 +964,7 @@ for ( int i = 0; i < n; ++i ) {
 #pragma acc loop gang vector
 for ( int i = 0; i < n; ++i ) {
 	for ( int j = 0; j < m; ++j ) {
-	// do stuff
+		// do stuff
 	}
 }
 
@@ -961,7 +976,7 @@ for ( int i = 0; i < n; ++i ) {
 for ( int i = 0; i < n; ++i ) {
 #pragma acc loop vector
 	for ( int j = 0; j < m; ++j ) {
-	// do stuff
+		// do stuff
 	}
 }
 ```
