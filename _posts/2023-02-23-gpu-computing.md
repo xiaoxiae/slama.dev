@@ -23,7 +23,7 @@ category_icon: /assets/category-icons/heidelberg.webp
 10. OpenACC [[slides](/assets/gpu-computing/10.pdf)]
 11. Stencil computations [[slides](/assets/gpu-computing/11.pdf)]
 12. OpenCL [[slides](/assets/gpu-computing/12.pdf)]
-13. TODO [[slides](/assets/gpu-computing/13.pdf)]
+13. Consistency & Coherence [[slides](/assets/gpu-computing/13.pdf)]
 
 ### Bulk-Synchronous Parallel (BSP) model
 - established in 1990
@@ -105,12 +105,12 @@ int main() {
 - high latency
 - lifetime exceeds thread lifetime
 - can be quite large, depending on the GPU
-- includes **local memory** (is only thread-local)
+- includes thread's **local memory** (is only thread-local)
+	- has **address interleaving:** successive addresses are mapped to different memory banks so sequential access by multiple threads is faster (each accesses different bank)
 - **allocation:** `cudaMalloc(&dmem, size);`
 - **deallocation:** `cudaFree(&dmem);`
 - **transfer** (blocking): `cudaMemcpy(*dest, *src, size, transfer_type);`
-	- the `transfer_type` here depends on what are we doing:
-		- `cudaMemcpyHostToDevice`, `cudaMemcpyDeviceToHost`
+	- the `transfer_type` is `cudaMemcpy<FROM>To<TO>` (`Host`/`Device`)
 
 ##### Shared memory
 - **only accessible from the thread's block**
@@ -1056,3 +1056,23 @@ Different types of kernels exist:
 | Global/device memory   | Global memory  |
 | Shared memory          | Local memory   |
 | Registers/local memory | Private memory |
+
+### Consistency & Coherence
+**Ordering problem:** threads operate independently: which order to apply?
+
+**Cache coherence:** two threads write to **same variable**, which gets written to cache:
+- caches have to be **coherent** (all threads see the same value)
+- different cache policies:
+	- **write-back**: write to cache, at some later point write to memory
+	- **write-through** write to cache and immediately to memory too
+	- _both cases have coherence problems,_ if we don't update caches of other threads
+- _a microarchitectural feature_
+
+**Memory consistency:** the order in which memory operations appear to be performed
+- as opposed to coherence, focuses on the _order of execution_
+- **strict**: any write seen immediately
+- **sequential:** write by different processors needs to be seen in teh same order by all processors
+- highly relaxed for GPU, few guarantees
+	- `__threadfence()` stalls current thread until **all writes to shared/global memory are visible** to other threads (if `_threadfence_block()` then only shared memory)
+	- `__syncthreads()` is a stronger version since it also **synchronizes thread execution**
+- _an architectural feature_
