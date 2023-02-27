@@ -147,3 +147,74 @@
     - '6:00.7'
     - '1:02:28'
   name: 2023-02-04-samson-zfflypiw.mp4
+- beaten: Blue Baby, Mega Satan
+  character: Samson
+  date: 2023-02-22 18:32:41.120064
+  input:
+  - - /aux/Recording/2023-02-22 17-37-33.mkv
+    - '44.0'
+    - null
+  name: 2023-02-22-samson-dobqmoya.mp4
+- beaten: The Lamb, Mega Satan, Delirium
+  character: Samson
+  date: 2023-02-23 00:44:17.365050
+  input:
+  - - /aux/Recording/2023-02-22 23-06-51.mkv
+    - '39:42.25'
+    - null
+  name: 2023-02-23-samson-oxwwoirz.mp4
+- beaten: The Beast
+  character: Bethany
+  date: 2023-02-23 12:03:50.600708
+  input:
+  - - /aux/Recording/2023-02-23 11-10-21.mkv
+    - '1:07.3'
+    - null
+  name: 2023-02-23-bethany-vjgxpftc.mp4
+- beaten: The Lamb, Mega Satan
+  character: Tainted Bethany
+  date: 2023-02-23 17:10:14.178015
+  input:
+  - - /aux/Recording/2023-02-23 15-54-11.mkv
+    - '28:20.933'
+    - null
+  name: 2023-02-23-tainted-bethany-wzkfumec.mp4
+- beaten: Blue Baby, Mega Satan
+  character: Tainted Bethany
+  date: 2023-02-23 20:32:08.840730
+  input:
+  - - /aux/Recording/2023-02-23 19-41-19.mkv
+    - '25.7'
+    - '50:36.8'
+  name: 2023-02-23-tainted-bethany-cfubcypt.mp4
+- beaten: The Beast
+  character: Magdalene
+  date: 2023-02-24 13:12:44.555818
+  input:
+  - - /aux/Recording/2023-02-24 12-12-54.mkv
+    - '38.2'
+    - null
+  name: 2023-02-24-magdalene-skoirzqr.mp4
+- beaten: The Beast
+  character: Eden
+  date: 2023-02-24 16:24:03.601976
+  input:
+  - - /aux/Recording/2023-02-24 15-26-43.mkv
+    - '1:27.66'
+    - null
+  name: 2023-02-24-eden-pviayqzw.mp4
+- beaten: Blue Baby, Mega Satan
+  character: Tainted Magdalene
+  date: 2023-02-26 01:13:58.645525
+  input:
+  - - /aux/Recording/2023-02-25 23-54-31.mkv
+    - '26:11.933'
+    - '1:19:23.983'
+  name: 2023-02-26-tainted-magdalene-irguyynj.mp4
+- challenge: DELETE THIS
+  date: 2023-02-26 14:29:36.329746
+  input:
+  - - /aux/Recording/2023-02-26 14-08-11.mkv
+    - '7:08.783'
+    - null
+  name: 2023-02-26-delete-this-rkahsgkc.mp4
