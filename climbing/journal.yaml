@@ -1808,3 +1808,13 @@
     new: 5
     old: 1
   wall: Boulderhaus
+2023-02-24:
+  black:
+    new: 1
+  blue:
+    new: 5
+  note: More new routes, sadly not too many difficult ones.
+  red:
+    new: 2
+    old: 6
+  wall: Boulderhaus
