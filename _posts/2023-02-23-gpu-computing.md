@@ -118,7 +118,7 @@ int main() {
 - lifetime is same as thread block lifetime
 - can be around \(48 kB\) for a block (with SM having more to accomodate more blocks)
 - organized into \(n\) **banks:**
-	- typically 16-**32** banks with \(4B\) width
+	- typically 16-**32** banks with 4B width
 	- parallel access if no conflict (otherwise results in serialization)
 
 - can be **static/dynamic**, based on if it's known at compile time or not
@@ -218,13 +218,12 @@ Combining fine-grain access by multiple threads **into a single operation.**
 
 ### Thread scheduling
 - up to **1k threads per block**
-	- **one block** executes on **one SM**
+	- **one block** executes on **one SM** (up to \(8\))
 	- **no global synchronization!** (context switching on GPU is waaaay too expensive)
-- threads in a block grouped into **warps of 32** (scheduling units of GPU)
+- threads in a block grouped into **warps of \(32\)** (scheduling units of GPU)
 	- implementation decision, not CUDA
 	- **all threads in a warp execute the same instruction** (on their own data and registers)
 		- for conditionals, a **mask** is used (all of them still execute the same instruction but only the result of those with the mask are written to the memory)
-	- _example:_ \(4\) blocks on one SM, each block \(1\mathrm{k}\) threads \(= 128\) thread warps
 
 ```cuda
 __global__ badKernel (...) {
@@ -260,11 +259,11 @@ A SM has multiple **warp schedulers** that can execute multiple warps concurrent
 
 ```cuda
 __host__ __device__ void GetMatrixValue(int row, int col, float* M, int Width) {
-	return M [row * Width + col];
+	return M[row * Width + col];
 }
 
-__host__ __device__ void SetMatrixValue(int row, int col, float* M, int Width, float Val) {
-	M[row * Width + col] = Val;
+__host__ __device__ void SetMatrixValue(int row, int col, float* M, int Width, float val) {
+	M[row * Width + col] = val;
 }
 
 void MM_CPU (float* M, float* N, float* P, int Width) {
@@ -377,8 +376,9 @@ __global__ void MM_SM (float* Md, float* Nd, float* Pd, int Width) {
 }
 ```
 
-- the `__syncthreads();` calls synchronize all threads within a single block
-	- behaves as a **barrier** to make sure all threads did what they needed to do
+- the `__syncthreads();` synchronizes all threads within a single block ("wait here")
+	- behaves as a **barrier** to make sure all threads are on the same page
+	- useful particularly when repeatedly writing/reading shared memory
 	- **RAW** (true/data dependency): _don't read before you finish writing_
 	- **WAR** (anti-dependency): _don't write before you finish reading_
 	- **WAW** (output dependency): _if the last write is important, make sure it's the last_
@@ -414,8 +414,7 @@ _The lecture goes into theoretical parallel algorithm design._
 - **MIMD:** synchronization necessary (shared variables, process synchronization, etc.)
 
 ### Profiling
-{% math ENdefinition: "arithmetic density" %} \(r\) is the ratio between floating point operations and data movements, i.e. \[r = \frac{\mathrm{FLOPs}}{\mathrm{Byte}}\]{% endmath %}
-- also sometimes called **computational intensity** (in later lectures)
+{% math ENdefinition: "arithmetic density" %}, sometimes called **computational intensity** \(r\) is the ratio between floating point operations and data movements, i.e. \[r = \frac{\mathrm{FLOPs}}{\mathrm{Byte}}\]{% endmath %}
 
 To evaluate a performance, we use the **roofline model:**
 - the performance is limited by its weakest link -- either **memory-bound** or **compute-bound**
@@ -733,8 +732,8 @@ __global__ void ComputeNBodyGravitation_Shared (...) {
 cudaStream_t stream0, stream1;
 cudaStreamCreate ( &stream0 );
 cudaStreamCreate ( &stream1 );
-float *d_A0, *d_B0, *d_C0; // device memory for stream 0
-float *d_A1, *d_B1, *d_C1; // device memory for stream 1
+float *d_A0, *d_B0, *d_C0;
+float *d_A1, *d_B1, *d_C1;
 
 // cudaMallocs go here
 
@@ -767,8 +766,8 @@ for (int i = 0; i < n; i += segSize * 2) {
 cudaStream_t stream0, stream1;
 cudaStreamCreate ( &stream0 );
 cudaStreamCreate ( &stream1 );
-float *d_A0, *d_B0, *d_C0; // device memory for stream 0
-float *d_A1, *d_B1, *d_C1; // device memory for stream 1
+float *d_A0, *d_B0, *d_C0;
+float *d_A1, *d_B1, *d_C1;
 
 // cudaMallocs go here
 
