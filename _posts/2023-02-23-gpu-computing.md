@@ -402,7 +402,7 @@ Various levels of parallelism:
 	- limited by the maximum number of concurrently executable streams
 - **Data Level Parallelism (DLP)** -- applying one operation on multiple independent elements
 	- parallelism depends on data structure
-	- _vectorization techniques_ (single instruction processing multiple values)
+	- _vectorization techniques (single instruction processing multiple values)_
 - **Request Level Parallelism (RLP)** -- datacenter and customers
 
 _The lecture goes into theoretical parallel algorithm design._
@@ -654,7 +654,7 @@ __global__ void ComputeNBodyGravitation_Naive(...) {
 ```
 
 - `#pragma unroll` will reduce branch overhead
-	- the factor has to be determined imperically
+	- the factor has to be determined empirically
 	- _be careful_ -- if \(N\) isn't a multiple, might not do some calculations/segfault
 
 #### Shared memory
