@@ -226,3 +226,26 @@
     - '9.0'
     - null
   name: 2023-02-27-tainted-magdalene-zeogkncf.mp4
+- challenge: Bloody Mary
+  date: 2023-02-28 00:47:30.669420
+  input:
+  - - /aux/Recording/2023-02-27 23-57-30.mkv
+    - '3:10'
+    - null
+  name: 2023-02-28-bloody-mary-vvvdlruz.mp4
+- beaten: The Beast
+  character: Keeper
+  date: 2023-02-28 16:47:45.741166
+  input:
+  - - /aux/Recording/2023-02-28 15-58-45.mkv
+    - '5:13.68'
+    - '48:52'
+  name: 2023-02-28-keeper-jjmkihnd.mp4
+- beaten: The Lamb, Mega Satan
+  character: Tainted Keeper
+  date: 2023-02-28 21:19:55.191154
+  input:
+  - - /aux/Recording/2023-02-28 19-57-10.mkv
+    - '17:13.25'
+    - null
+  name: 2023-02-28-tainted-keeper-bcvqmrdy.mp4
