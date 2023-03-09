@@ -193,7 +193,7 @@ with open(OUTPUT_MD, "w") as file:
 
     file.write(f"| Date | Character | Beaten | Link |\n| :-: | --- | --- | --: | --- |\n")
 
-    for video in sorted(videos, key=lambda x: x['date']):
+    for video in reversed(sorted(videos, key=lambda x: x['date'])):
         if 'name' not in video:
             print(f"WARNING: unprocessed run {video}")
             continue
@@ -228,7 +228,7 @@ with open(OUTPUT_MD, "w") as file:
     file.write("\n{: .center}\n### Challenges\n\n")
 
     file.write(f"| Date | Challenge | Link |\n| :-: | --- | --: | --- |\n")
-    for video in sorted(videos, key=lambda x: x['date']):
+    for video in reversed(sorted(videos, key=lambda x: x['date'])):
         if 'challenge' not in video:
             continue
 
@@ -245,7 +245,7 @@ with open(OUTPUT_MD, "w") as file:
     file.write("\n{: .center}\n### Daily Runs\n\n")
 
     file.write(f"| Date | Character | Target | Link |\n| :-: | --- | --- | --: | --- |\n")
-    for video in sorted(videos, key=lambda x: x['date']):
+    for video in reversed(sorted(videos, key=lambda x: x['date'])):
         if 'daily' not in video:
             continue
 
