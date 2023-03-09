@@ -234,6 +234,8 @@ for entry in reversed(sorted(list(journal))):
         note = journal[entry]["note"]\
                 .replace("--", "–")\
                 .replace(":)", "<span class='emoji'>🙂</span>")\
+                .replace(":|", "<span class='emoji'>😐</span>")\
+                .replace(":/", "<span class='emoji'>🫤</span>")\
                 .replace("<3", "<span class='emoji'>❤️</span>")\
                 .replace(":(", "<span class='emoji'>☹️</span>")
 
