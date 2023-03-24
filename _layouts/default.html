@@ -63,6 +63,8 @@
 			<div class="content">
 				{% unless page.no-heading %}
 					<h2>{{ page.title }}</h2>
+				{% else %}
+					<h2 class='no-display'>{{ page.title }}</h2>
 				{% endunless %}
 
 				{{ content }}
