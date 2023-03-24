@@ -14,7 +14,6 @@ redirect_from:
 {:toc}
 
 This part of the series covers creating custom objects and animations, and also showcases some interesting community-made plugins.
-In this part of the series, we'll take a look at Manim's tools for 3D animations and also at plotting all sorts of graphs.
 
 ### Custom objects
 For more complex scenes, it might be a good idea to create custom Manim objects.
