@@ -179,14 +179,15 @@ note = """# New entry formats:
 #
 """
 
-if not dry_run:
-    # backup
-    os.rename(INPUT_YAML, "." + INPUT_YAML)
+if dry_run:
+    quit()
 
-    with open(INPUT_YAML, "w") as file:
-        file.write(note)
-        file.write(yaml.dump(videos))
+# backup
+os.rename(INPUT_YAML, "." + INPUT_YAML)
 
+with open(INPUT_YAML, "w") as file:
+    file.write(note)
+    file.write(yaml.dump(videos))
 
 with open(OUTPUT_MD, "w") as file:
     file.write("{: .center}\n### Regular runs\n\n")
@@ -262,11 +263,10 @@ with open(OUTPUT_MD, "w") as file:
 
         file.write(f"| **{date_str}** | {character} {character_img} | {video['daily']} | [{file_duration}]({file_url}) |\n")
 
-if not dry_run:
-    if change or (len(sys.argv) == 2 and sys.argv[1] in ("-f", "--force")):
-        print("generated, syncing... ", end="", flush=True)
-        input("press enter to input server's password (to prevent SSH timeout):")
-        run_command(SYNC_COMMAND)
-        print("synced.")
-    else:
-        print("generated, no changes.", flush=True)
+if change or (len(sys.argv) == 2 and sys.argv[1] in ("-f", "--force")):
+    print("generated, syncing... ", end="", flush=True)
+    input("press enter to input server's password (to prevent SSH timeout):")
+    run_command(SYNC_COMMAND)
+    print("synced.")
+else:
+    print("generated, no changes.", flush=True)
