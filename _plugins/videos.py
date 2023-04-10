@@ -16,6 +16,12 @@ URL_ROOT = "https://github.com/xiaoxiae/videos/tree/master/"
 videos = [
     ("Graph Theory", [
         (
+            date(2023, 4, 9),
+            "https://www.youtube.com/watch?v=lifFgyB77zc",
+            "The most elegant search data structure | (a,b)-trees",
+            "17-",
+        ),
+        (
             date(2021, 10, 6),
             "https://www.youtube.com/watch?v=g-QyzzPM4rU",
             "Cayley's Formula",
