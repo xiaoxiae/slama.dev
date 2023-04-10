@@ -34,6 +34,9 @@ def stub(string: str) -> str:
         ("&", "and"),
         ("'", ""),
         ("!", ""),
+        (".", ""),
+        ("/", "-"),
+        ("'", ""),
     ]:
         string = string.replace(f, t)
 
@@ -55,6 +58,8 @@ def format_image(path, alt):
 
     if not os.path.exists('..' + image_path):
         print(f"WARNING: non-existent image {image_path}")
+
+    alt = alt.replace("'", "")
 
     return f"<img class='inline' src='{image_path}' alt='{alt}'>"
 
@@ -85,15 +90,15 @@ with open(INPUT_YAML) as file:
     videos = yaml.safe_load(file)
 
 for video in videos:
+    # if date is missing, parse it from the input file
+    if 'date' not in video:
+        video['date'] = datetime.fromtimestamp(os.path.getmtime(video['input'][0][0]))
+
     # parse if the name is not present
     if 'name' in video:
         continue
 
     change = True
-
-    # if date is missing, parse it from the file
-    if 'date' not in video:
-        video['date'] = datetime.fromtimestamp(os.path.getmtime(video['input'][0][0]))
 
     random_chars = get_random_string(8)
 
@@ -164,18 +169,18 @@ for video in videos:
 note = """# New entry formats:
 # (time format: 1:32:23.321; null to not cut)
 #
-# - beaten: TODO
-#   character: TODO
+# - beaten:
+#   character:
 #   input:
-#   - ["/aux/Recording/FirstVideoName", "START", "END"]
+#   - ["/aux/Recording/", null, null]
 #
-# - challenge: TODO
+# - challenge:
 #   input:
-#   - ["/aux/Recording/FirstVideoName", "START", "END"]
+#   - ["/aux/Recording/", null, null]
 #
-# - daily: TODO
+# - daily:
 #   input:
-#   - ["/aux/Recording/FirstVideoName", "START", "END"]
+#   - ["/aux/Recording/", null, null]
 #
 """
 
@@ -192,7 +197,7 @@ with open(INPUT_YAML, "w") as file:
 with open(OUTPUT_MD, "w") as file:
     file.write("{: .center}\n### Regular runs\n\n")
 
-    file.write(f"| Date | Character | Beaten | Link |\n| :-: | --- | --- | --: | --- |\n")
+    file.write(f"| Date | Character | Beaten | Link | Items |\n| :-: | --- | --- | --: | --- | --- |\n")
 
     for video in reversed(sorted(videos, key=lambda x: x['date'])):
         if 'name' not in video:
@@ -213,55 +218,63 @@ with open(OUTPUT_MD, "w") as file:
         character_img = format_image(f"characters/{stub(character)}", f"{character} character image.")
 
         # bosses
-        beaten_bosses = video['beaten'].split(", ")
         beaten_str = ""
-        for boss in beaten_bosses:
+        for boss in video['beaten'].split(", "):
             beaten_img = format_image(f"marks/{stub(boss)}", f"{boss} completion mark.")
             beaten_str += f"{boss} {beaten_img}<br> "
 
-        # link
-        file_duration = get_video_duration(os.path.join(OUTPUT_FOLDER, video['name']))
-        file_url = os.path.join(OUTPUT_SERVER, video['name'])
-
-        file.write(f"| **{date_str}** | {character} {character_img} | {beaten_str} | [{file_duration}]({file_url}) |\n")
-
-
-    file.write("\n{: .center}\n### Challenges\n\n")
-
-    file.write(f"| Date | Challenge | Link |\n| :-: | --- | --: | --- |\n")
-    for video in reversed(sorted(videos, key=lambda x: x['date'])):
-        if 'challenge' not in video:
-            continue
-
-        # date
-        date_str = video['date'].strftime('%Y/%m/%d')
+        items_str = ""
+        if 'items' in video:
+            for item in video['items'].split(", "):
+                items_str += format_image(f"items/{stub(item)}", f"{item} item icon.") + " "
 
         # link
         file_duration = get_video_duration(os.path.join(OUTPUT_FOLDER, video['name']))
         file_url = os.path.join(OUTPUT_SERVER, video['name'])
 
-        file.write(f"| **{date_str}** | {video['challenge']} | [{file_duration}]({file_url}) |\n")
+        file.write(f"| **{date_str}** | {character} {character_img} | {beaten_str} | [{file_duration}]({file_url}) | {items_str} |\n")
 
 
-    file.write("\n{: .center}\n### Daily Runs\n\n")
+    # NOTE: challenges commented out for now
+    #
+    # file.write("\n{: .center}\n### Challenges\n\n")
 
-    file.write(f"| Date | Character | Target | Link |\n| :-: | --- | --- | --: | --- |\n")
-    for video in reversed(sorted(videos, key=lambda x: x['date'])):
-        if 'daily' not in video:
-            continue
+    # file.write(f"| Date | Challenge | Link |\n| :-: | --- | --: | --- |\n")
+    # for video in reversed(sorted(videos, key=lambda x: x['date'])):
+    #     if 'challenge' not in video:
+    #         continue
 
-        # date
-        date_str = video['date'].strftime('%Y/%m/%d')
+    #     # date
+    #     date_str = video['date'].strftime('%Y/%m/%d')
 
-        # character
-        character = video['character']
-        character_img = format_image(f"characters/{stub(character)}", f"{character} character image.")
+    #     # link
+    #     file_duration = get_video_duration(os.path.join(OUTPUT_FOLDER, video['name']))
+    #     file_url = os.path.join(OUTPUT_SERVER, video['name'])
 
-        # link
-        file_duration = get_video_duration(os.path.join(OUTPUT_FOLDER, video['name']))
-        file_url = os.path.join(OUTPUT_SERVER, video['name'])
+    #     file.write(f"| **{date_str}** | {video['challenge']} | [{file_duration}]({file_url}) |\n")
 
-        file.write(f"| **{date_str}** | {character} {character_img} | {video['daily']} | [{file_duration}]({file_url}) |\n")
+
+    # NOTE: daily runs commented out for now
+    #
+    # file.write("\n{: .center}\n### Daily Runs\n\n")
+
+    # file.write(f"| Date | Character | Target | Link |\n| :-: | --- | --- | --: | --- |\n")
+    # for video in reversed(sorted(videos, key=lambda x: x['date'])):
+    #     if 'daily' not in video:
+    #         continue
+
+    #     # date
+    #     date_str = video['date'].strftime('%Y/%m/%d')
+
+    #     # character
+    #     character = video['character']
+    #     character_img = format_image(f"characters/{stub(character)}", f"{character} character image.")
+
+    #     # link
+    #     file_duration = get_video_duration(os.path.join(OUTPUT_FOLDER, video['name']))
+    #     file_url = os.path.join(OUTPUT_SERVER, video['name'])
+
+    #     file.write(f"| **{date_str}** | {character} {character_img} | {video['daily']} | [{file_duration}]({file_url}) |\n")
 
 if change or (len(sys.argv) == 2 and sys.argv[1] in ("-f", "--force")):
     print("generated, syncing... ", end="", flush=True)
