@@ -1901,3 +1901,38 @@
     new: 3
     old: 2
   wall: Boulderhaus
+2023-04-10:
+  black:
+    new: 1
+  blue:
+    new: 6
+  other:
+    new: 1
+  red:
+    new: 5
+  wall: Boulderhaus
+2023-04-13:
+  blue:
+    new: 4
+  other:
+    old: 2
+  red:
+    new: 3
+    old: 4
+  wall: Boulderhaus
+2023-04-15:
+  blue:
+    new: 3
+  red:
+    new: 7
+  wall: Boulderhaus
+2023-04-17:
+  black:
+    new: 1
+    old: 1
+  blue:
+    new: 4
+    old: 2
+  red:
+    old: 4
+  wall: Boulderhaus
