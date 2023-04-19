@@ -119,6 +119,7 @@ for entry in reversed(sorted(list(journal))):
 
         line += f"</li> <li>"
 
+        colors = []
     else:
         if wall == "":
             wall = "Smíchoff"
@@ -221,13 +222,21 @@ for entry in reversed(sorted(list(journal))):
 
             line += format_color(color, kilter=True)
 
-
-    line += "</li></ul>"
+    if line.endswith("<li>"):
+        line = line[:-len("<li>")] + "</ul>"
+    else:
+        line += "</li></ul>"
 
     if "routes" in journal[entry]:
         line += f"<ul class='climbing-routes-list'>"
-        for name, (difficulty, status) in journal[entry]["routes"]:
-            line += f"<li><mark class='climbing-diary-record climbing-other climbing-other-text'>{name} ({difficulty}, {status})</mark></li>"
+        for name, attributes in journal[entry]["routes"]:
+            # ugly but I tired
+            if len(attributes) == 2:
+                difficulty, status = attributes
+                line += f"<li><mark class='climbing-diary-record climbing-other climbing-other-text'>{name} ({difficulty}, {status})</mark></li>"
+            else:
+                difficulty = attributes[0]
+                line += f"<li><mark class='climbing-diary-record climbing-other climbing-other-text'>{name} ({difficulty})</mark></li>"
         line += f"</ul>"
 
     if "note" in journal[entry]:
