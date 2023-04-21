@@ -202,13 +202,14 @@ for entry in reversed(sorted(list(journal))):
         return line + "</mark> "
 
     some_color_added = False
-    for color in list(colors) + ["other"]:
-        formatted_color = format_color(color)
+    if "location" not in journal[entry]:
+        for color in list(colors) + ["other"]:
+            formatted_color = format_color(color)
 
-        line += formatted_color
+            line += formatted_color
 
-        if formatted_color.strip() != "":
-            some_color_added = True
+            if formatted_color.strip() != "":
+                some_color_added = True
 
     if "kilter" in journal[entry]:
         if some_color_added:
@@ -233,12 +234,17 @@ for entry in reversed(sorted(list(journal))):
             # ugly but I tired
             if len(attributes) == 2:
                 difficulty, status = attributes
-                line += f"<li><mark class='climbing-diary-record climbing-other climbing-other-text'>{name} ({difficulty}, {status})</mark></li>"
+                line += f"<li><mark class='climbing-diary-record climbing-other climbing-other-text'>{name} ({difficulty}, {status})"
             else:
                 difficulty = attributes[0]
-                line += f"<li><mark class='climbing-diary-record climbing-other climbing-other-text'>{name} ({difficulty})</mark></li>"
+                line += f"<li><mark class='climbing-diary-record climbing-other climbing-other-text'>{name} ({difficulty})"
 
-            # TODO: add climb videos here!
+            for video in videos:
+                if videos[video]["date"] == entry and videos[video]["name"] == name:
+                    line += f" [<a class='climbing-link' href='/climbing/videos/{video}'>video</a>]"
+
+            line += "</mark></li>"
+
         line += f"</ul>"
 
     if "note" in journal[entry]:
