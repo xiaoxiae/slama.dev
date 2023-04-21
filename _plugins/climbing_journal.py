@@ -237,6 +237,8 @@ for entry in reversed(sorted(list(journal))):
             else:
                 difficulty = attributes[0]
                 line += f"<li><mark class='climbing-diary-record climbing-other climbing-other-text'>{name} ({difficulty})</mark></li>"
+
+            # TODO: add climb videos here!
         line += f"</ul>"
 
     if "note" in journal[entry]:

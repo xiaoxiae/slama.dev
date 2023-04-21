@@ -151,6 +151,10 @@ boulderhaus-other-2022-12-04-tbjrnspf.mp4:
   color: other
   date: 2022-12-04
   wall: Boulderhaus
+boulderhaus-other-2023-04-13-aiwvqoyr.mp4:
+  color: other
+  date: 2023-04-13
+  wall: Boulderhaus
 boulderhaus-red-2022-10-13-acxehokt.mp4:
   color: red
   date: 2022-10-13
@@ -616,6 +620,14 @@ boulderhaus-red-2023-03-02-hloyavip.mp4:
   color: red
   date: 2023-03-02
   wall: Boulderhaus
+boulderhaus-red-2023-04-13-sdluqsat.mp4:
+  color: red
+  date: 2023-04-13
+  wall: Boulderhaus
+boulderhaus-red-2023-04-13-xkqhdvsr.mp4:
+  color: red
+  date: 2023-04-13
+  wall: Boulderhaus
 kilter-6c-2022-10-15-ecryibhx.mp4:
   attempts: 1
   color: 6c
@@ -816,6 +828,10 @@ kilter-7cp-2022-11-29-eqxbuhme.mp4:
   color: 7c+
   date: 2022-11-29
   kilter: true
+riesenstein-workflow-2023-04-19-wnvmfmmw.mp4:
+  date: 2023-04-19
+  location: Riesenstein
+  name: Workflow
 smichoff-blue-2020-09-07-fcmjshmc.mp4:
   color: blue
   date: 2020-09-07

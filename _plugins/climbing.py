@@ -11,6 +11,9 @@ from unidecode import unidecode
 import yaml
 
 
+def stubify(string: str) -> str:
+    return unidecode(string).lower().replace(" ", "-")
+
 def get_random_string(length: int):
     """Generate a random string."""
     result = ""
@@ -47,20 +50,29 @@ for name in list(config):
     if "new" in config[name]:
         print(f"parsing new climb '{name}'.", flush=True)
 
-        wall = ""
         if "wall" in config[name]:
-            wall_stub = unidecode(config[name]["wall"]).lower().replace(" ", "-")
+            location_stub = stubify(config[name]["wall"]) 
         elif "kilter" in config[name] and config[name]["kilter"]:
-            wall_stub = "kilter"
+            location_stub = "kilter"
+        elif "location" in config[name]:
+            location_stub = stubify(config[name]["location"])
         else:
-            wall_stub = "smichoff"
+            location_stub = "smichoff"
 
         # assign a new (random) name
         random_string = get_random_string(8)
 
+        if "color" in config[name]:
+            identifier_stub = config[name]["color"].replace("+", "p") + "-"
+        elif "name" in config[name]:
+            identifier_stub = stubify(config[name]["name"]) + "-"
+        else:
+            # NOTE: this probably shouldn't happen, but if it does let's not crash ok?
+            identifier_stub = ""
+
         new_name = (
-            f"{wall_stub}-"
-            + ("" if "color" not in config[name] else (config[name]["color"].replace("+", "p") + "-"))
+            f"{location_stub}-"
+            + identifier_stub
             + (
                 ""
                 if "date" not in config[name]
@@ -279,7 +291,7 @@ with open(kilter_stats_path, "w") as f:
 
 print("climbing videos generated (and reformatted).", flush=True)
 
-# remove videos that are not on the list, for good measure
+# warn about videos that are not on the list, for good measure
 files = os.listdir(CLIMBING_VIDEOS_FOLDER)
 for file in files:
     if file.lower().endswith(".mp4") and file not in config:
@@ -287,7 +299,7 @@ for file in files:
     if file.lower().endswith(".jpeg") and file[:-5] not in config:
         print(f"WARNING: leftover poster {file}.", flush=True)
 
-# list files that were not found
+# warn about videos that were not found
 for file in config:
     if file not in files:
         print(f"WARNING: file {file} not found.", flush=True)
