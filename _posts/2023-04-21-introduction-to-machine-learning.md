@@ -83,11 +83,11 @@ Setting:
 
 We usually (when Programming) want a **float matrix:** drop names, discretize labels and use one-hot encoding (one-hot because there is only ones in the particular features).
 
-| \(i \setminus j\) | \(1\) (height) | \(2\) (f) | \(3\) (m) | \(4\) (d) |
+| \(i \setminus j\) | \(1\) (height) | \(2\) (f) | \(3\) (m) | \(4\) (o) |
 | ---               | ---            | ---       | ---       | ---       |
 | \(1\)             | \(1.7\)        | \(1\)     | \(0\)     | \(0\)     |
 | \(2\)             | \(1.8\)        | \(0\)     | \(1\)     | \(0\)     |
-| \(N = 3\)         | \(1.9\)        | \(0\)     | \(1\)     | \(0\)     |
+| \(3\)         | \(1.9\)        | \(0\)     | \(1\)     | \(0\)     |
 
 - **response** \(Y_i\) row vector for instance \(i\), response elements \(m \in 1, \ldots, M\)
 	- most of the time, \(M = 1\) (scalar response)
@@ -110,7 +110,6 @@ We usually (when Programming) want a **float matrix:** drop names, discretize la
 	- learning algorithm must find the structure in the data _on its own_ (data mining or, for humans, "research")
 	- only a few solutions that are guaranteed to work (this is unsurprisingly difficult to do)
 		1. **representation learning** -- compute new features that are _better to predict_
-			- \(\tilde{X} = \Phi \mid X\) (ex. dimension reduction)
 		2. **clustering** -- group similar instances into "clusters" with a single representative
 4. **self-supervised learning** -- define an auxiliary task where \(Y_i\) are easy to determine
 
@@ -130,9 +129,8 @@ We usually (when Programming) want a **float matrix:** drop names, discretize la
 | \(-1\)                    | true negative  | false negative |
 | \(+1\)                    | false positive | true positive  |
 
-1. false positive/negative **fraction** \[\frac{\# \mathrm{FP}\ \text{or}\ \# \mathrm{FN}}{\mathrm{N}} \in \left[0, 1\right]\]
-2. false positive/negative **rate**
-	- \[\frac{\# \mathrm{FP}}{\# \mathrm{FP} + \# \mathrm{TP}} \approx p(\hat{Y} = 1 \mid Y^* = -1) \qquad \frac{\# \mathrm{FN}}{\# \mathrm{FN} + \# \mathrm{NP}} \approx p(\hat{Y} = -1 \mid Y^* = 1)\]
+1. false positive/negative **fraction** -- "how many out of **all** events are false" \[\frac{\# \mathrm{FP}\ \text{or}\ \# \mathrm{FN}}{\mathrm{N}} \in \left[0, 1\right]\]
+2. false positive/negative **rate** -- "how many out of **positive/negative** events are false" \[\frac{\# \mathrm{FP}}{\# \mathrm{FP} + \# \mathrm{TN}} \approx p(\hat{Y} = 1 \mid Y^* = -1) \qquad \frac{\# \mathrm{FN}}{\# \mathrm{FN} + \# \mathrm{TP}} \approx p(\hat{Y} = -1 \mid Y^* = 1)\]
 
 #### Probabilistic classifier
 - returns a probabilistic vector \(\in [0, 1]^C\) (soft response) for every label \(\equiv\) posterior distribution \[p(Y = k \mid X)\]
@@ -154,7 +152,8 @@ We usually (when Programming) want a **float matrix:** drop names, discretize la
 		- hard and expensive for most problems, not to mention inaccurate
 	2. **linear classification:** compute score as a linear combination and learn coefficients
 		- \(S_i = \sum_{j = 1}^{D} \beta_j X_{ij} \implies \hat{Y}_i = \mathrm{sign}(S_i - T)\) 
-		- less powerful than the first one (restricted to linear formulas), but we can learn so it usually performs better
+		- less powerful than the first one (restricted to linear formulas)
+		- we can learn so it usually performs better
 	3. **nearest neighbour:** classify test instance \(X_{\text{test}}\) according to most similar training instance
 		- \(\hat{i} = \arg \min_i\ \mathrm{dist(X_i, X_{\text{test}})}\)
 		- then \(\hat{Y}_{\text{test}} = Y^*_{\hat{i}}\)
@@ -172,4 +171,4 @@ We usually (when Programming) want a **float matrix:** drop names, discretize la
 	- **prior** -- we know this (1% for a disease in the general population)
 	- **posterior** -- we update our judgement based on measuring the features
 	- **likelyhood** -- the likelyhood of the disease given features (fever, cough)
-	- **marginal** -- can be recovered by summing over possibilities: \(p(X) = \sum_{k = 1}^{C} p(X \mid Y = k)\)
+	- **marginal** -- can be recovered by summing over possibilities: \[p(X) = \sum_{k = 1}^{C} p(X \mid Y = k)\]
