@@ -167,8 +167,99 @@ We usually (when Programming) want a **float matrix:** drop names, discretize la
 - can be decomposed by the chain rule to
 	- \(p(X) p(Y \mid X)\) -- first measure features, then determine response
 	- \(p(Y) p(X \mid Y)\) -- first determine response, then get compatible features
-- for classification, we want \[\underbrace{p(Y = k \mid X)}_{\text{posterior}} = \frac{\overbrace{p(X \mid Y = k)}^{\text{likelyhood}} \overbrace{p(Y = k)}^{\text{prior}}}{\underbrace{p(X)}_{\text{marginal}}} \]
+- for classification, we want \[\underbrace{p(Y = k \mid X)}_{\text{posterior}} = \frac{\overbrace{p(Y = k)}^{\text{prior}} \overbrace{p(X \mid Y = k)}^{\text{likelyhood}} }{\underbrace{p(X)}_{\text{marginal}}} \]
+	- **posterior** -- we want to update our judgement based on measuring the features
 	- **prior** -- we know this (1% for a disease in the general population)
-	- **posterior** -- we update our judgement based on measuring the features
 	- **likelyhood** -- the likelyhood of the disease given features (fever, cough)
 	- **marginal** -- can be recovered by summing over possibilities: \[p(X) = \sum_{k = 1}^{C} p(X \mid Y = k)\]
+
+Is hugely important for a number of reasons:
+- fundamental equation for probabilistic machine learning
+	- allows clean uncertainty handling (among others)
+- puts model accuracy into perspective (what is good or bad)
+- defines two fundamental _model types_:
+	- **discriminative model:** learns \(p(Y = k \mid X)\) (right side)
+		- answers the question "what class" directly
+		- **(+)** relatively easy -- take the direct route, no detour
+		- **(-)** often hard to interpret _how_ the model makes decisions (black box)
+	- **generative model:** learns \(p(Y = k)\) and \(p(X \mid Y = k)\) (left side)
+		- first learn how "the world" works, then use this to answer the question
+			- \(p(X \mid Y = k)\) -- understand the mechanism how observations ("phenotypes") arise from hidden properties
+		- **(-)** pretty hard -- need powerful models and a lot of data
+		- **(+)** easily interpretable -- we can know why it was answered
+
+- ex.: breast cancer screening: \(p(Y = 1) = 0.001, p(Y = -1) = 0.999\) TODO FIX THIS PARAGRAPH
+	- a test answers the following
+		- correct diagnosis: \(p(X = \text{test positive} \mid Y = 1) = 0.9\)
+		- false positive: \(p(X = \text{test positive} \mid Y = -1) = 0.01\)
+	-  _if the test is positive, should you panic?_ \[p(Y = 1 \mid X = \text{test positive}) = \frac{p(X = 1 \mid Y = 1) p(Y = 1)}{p(X = 1 \mid Y = 1) p(Y = 1) + p(X = 1 \mid Y = -1) p(Y = -1)} = \frac{0.99 \cdot 0.01}{0.99 * 0.01 + 0.01} = 0.5\]
+		- due to the very low probability of the disease, the chance is pretty good
+		- this is why the bayes rule is important
+
+Some history behind ML:
+- traditional science seeks generative models (we can create synthetic data that are indistinguishable from real data)
+	- physics understand the movement of an object, so a game can use this to appear real
+- ~1930: ML researches realized that their models were too weak to do this \(\implies\) field switched to discriminative models
+- ~2012: neural networks solved many hard discriminative tasks \(\implies\) the field is again interested in generative models (Midjourney, ChatGPT, etc.)
+	- subfield "explainable/interpretable ML"
+
+##### How good can it be?
+{% math ENdefinition "Bayes classifier" %}uses Bayes rule (LHS or RHS) with true probabilities \(p^*\).{% endmath %}
+- we don't know \(p^*\), we want to get as close as possible
+
+{% math ENtheorem %}no learned classifier using \(\hat{p}\) can be better than the Bayes classifier.{% endmath %}
+- if our results are bad, we have to get better theory (more features)
+
+##### How bad can it be?
+- case 1: **all classes are equally probable** (\(p(Y = k) = \frac{1}{C}\))
+	- worst classifier: pure guessing -- correct \(50\%\) of the time
+- case 2: **unbalanced classes**
+	- worst classifier: always return the majority label
+
+#### Linear classification
+1. use a linear formula to reduce all features to scaled score
+2. apply threshold classifier to score (\(C = 2\) for now)
+
+\[\hat{Y} = \mathrm{sign}\left(\sum_{j} \beta_j X_{ij} + b\right)\]
+for feature weights \(\beta\) and intercept \(b\).
+
+- learning means finding \(\hat{\beta}\) and \(\hat{b}\)
+- we can also get rid of \(b\) by one of the following:
+	1. if all classes are balanced (\(p(Y = k) = \frac{1}{C}\)) then we can centralize features 
+\[\bar{X} = \frac{1}{N} \sum_{i = 1}^{N} X_i \qquad \overset{0}{X_i} = X_i - \bar{X}_i\]
+	2. absorb \(b\) into \(X\): define new feature \(X_{i0} = 1\) (will then act as \(b\))
+		- done often -- \(X_{i0}\) is called the "bias neuron"
+
+##### Perceptron
+- Rosenblatt, 1958
+- first neural network (1 neuron)
+- idea: improve \(\beta\) when model makes mistakes
+	- TODO: L in cursive **naive approach** -- **0/1 loss:** \[L(\hat{Y}_i, Y^*_i) = \begin{cases} 0 & \hat{Y}_i = Y^*_i \\ 1 & \hat{Y}_i \neq Y^*_i \end{cases}\]
+		- can be used to **evaluate** but **doesn't tell us how to improve** (and how)
+	- **better idea** -- **perceptron loss:** weigh penalty by error magnitude \[L(\hat{Y}_i, Y^*_i) = \begin{cases} 0 & \hat{Y}_i = Y^*_i \\ |X_i \beta| = \underbrace{-Y_i X_i \beta}_{\text{trick}} & \hat{Y}_i \neq Y^*_i \end{cases}\]
+		- nowadays we use \(\mathrm{ReLu}(-Y_i X_i \beta)\) for \(\mathrm{ReLu}(t) = \begin{cases} 0 & t < 0 \\ t & \text{otherwise} \end{cases}\)
+- TODO: FIXME! find out how to improve gradient descent: \(\beta^{(t)} = \beta^{(t - 1)} - \underbrace{\tau}_{\text{learning rate}}\underbrace{\frac{\partial L^{(t - 1)}}{\partial \beta}}_{\text{loss derivative}}\)
+	- TODO: fix this: partils are nablas, beta t new guess and beta t - 1 old guess (tau is much less than 1)
+in our case: \[\frac{partial los}{partial beta} = \frac{partial relu (...)}{partial beta} = \begin{cases} 0 if -y_i&* x_i beta < 0 (correct) \\ -yi start xi transposed if -yi star xi beta > 0 & \text{otherwise} \end{cases}\]
+
+TODO: LMA
+Rosenblatts algorithm
+0. initialzation ( \(\beta^{(0)}\)) is random numbers (or uniform)
+1. for \(t = 1, \ldots, T\) (or until convergence
+	- update \(\beta\) like above (TODO: write this)
+		- additionally, use \(\tau / N\) instead of \(\tau\) (so it doesn't change when learning setc changes
+		- additionally, sum over only incorrect guesses from the previous iteration: \[i = \hat{Y}_i^{(t - 1)} \neq Y_i^*\] where \[\at{Y}_i^{(t - 1)} = \mathrm{sign}(X_i \beta^{t - 1})\]
+
+- only converges when the data is "linearly separable" (i.e. \(\exists \beta\) for loss \(0\)
+
+TODO: add an image of the lineraly separable thingy here
+
+- we do a thick to project them all together (see images), we then "pull the line to the data"
+
+- **(+)** first practical learning algorithm, established the gradient descent principle
+- **(-)** only converges when the training set area linearly separable
+- **(-)** tends to overfit (TODO: show image)
+
+Improved algorithm (popular around 1995): (Linear) Support Vecor Machine
+- maintain a safety region around data where solution should not be
+- if a solution intersects the safety region, it is forbidden
