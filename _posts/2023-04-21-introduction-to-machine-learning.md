@@ -167,7 +167,7 @@ We usually (when Programming) want a **float matrix:** drop names, discretize la
 - can be decomposed by the chain rule to
 	- \(p(X) p(Y \mid X)\) -- first measure features, then determine response
 	- \(p(Y) p(X \mid Y)\) -- first determine response, then get compatible features
-- for classification, we want \[\underbrace{p(Y = k \mid X)}_{\text{posterior}} = \frac{\overbrace{p(Y = k)}^{\text{prior}} \overbrace{p(X \mid Y = k)}^{\text{likelyhood}} }{\underbrace{p(X)}_{\text{marginal}}} \]
+- for classification, we want \[\underbrace{p(Y = k \mid X)}_{\text{posterior}} = \frac{  \overbrace{p(X \mid Y = k)}^{\text{likelyhood}}\ \overbrace{p(Y = k)}^{\text{prior}} }{\underbrace{p(X)}_{\text{marginal}}} \]
 	- **posterior** -- we want to update our judgement based on measuring the features
 	- **prior** -- we know this (1% for a disease in the general population)
 	- **likelyhood** -- the likelyhood of the disease given features (fever, cough)
@@ -188,13 +188,13 @@ Is hugely important for a number of reasons:
 		- **(-)** pretty hard -- need powerful models and a lot of data
 		- **(+)** easily interpretable -- we can know why it was answered
 
-- ex.: breast cancer screening: \(p(Y = 1) = 0.001, p(Y = -1) = 0.999\) TODO FIX THIS PARAGRAPH
+- ex.: breast cancer screening: \(p(Y = 1) = 0.001, p(Y = -1) = 0.999\)
 	- a test answers the following
-		- correct diagnosis: \(p(X = \text{test positive} \mid Y = 1) = 0.9\)
-		- false positive: \(p(X = \text{test positive} \mid Y = -1) = 0.01\)
-	-  _if the test is positive, should you panic?_ \[p(Y = 1 \mid X = \text{test positive}) = \frac{p(X = 1 \mid Y = 1) p(Y = 1)}{p(X = 1 \mid Y = 1) p(Y = 1) + p(X = 1 \mid Y = -1) p(Y = -1)} = \frac{0.99 \cdot 0.01}{0.99 * 0.01 + 0.01} = 0.5\]
-		- due to the very low probability of the disease, the chance is pretty good
-		- this is why the bayes rule is important
+		- correct diagnosis: \(p(X = 1 \mid Y = 1) = 0.99\)
+		- false positive: \(p(X = 1 \mid Y = -1) = 0.01\)
+	-  _if the test is positive, should you panic?_ \[\begin{aligned} p(Y = 1 \mid X = 1) &= \frac{p(X = 1 \mid Y = 1) p(Y = 1)}{p(X = 1 \mid Y = 1) p(Y = 1) + p(X = 1 \mid Y = -1) p(Y = -1)} \\ &= \frac{0.99 \cdot 0.001}{0.99 \cdot 0.001 + 0.01 \cdot 0.999} \\ &\approx \mathbf{0.1}
+\end{aligned}\]
+		- due to the very low probability of the disease, you're likely fine
 
 Some history behind ML:
 - traditional science seeks generative models (we can create synthetic data that are indistinguishable from real data)
@@ -204,7 +204,7 @@ Some history behind ML:
 	- subfield "explainable/interpretable ML"
 
 ##### How good can it be?
-{% math ENdefinition "Bayes classifier" %}uses Bayes rule (LHS or RHS) with true probabilities \(p^*\).{% endmath %}
+{% math ENdefinition "Bayes classifier" %}uses Bayes rule (LHS or RHS) with true probabilities \(p^*\){% endmath %}
 - we don't know \(p^*\), we want to get as close as possible
 
 {% math ENtheorem %}no learned classifier using \(\hat{p}\) can be better than the Bayes classifier.{% endmath %}
@@ -220,7 +220,7 @@ Some history behind ML:
 1. use a linear formula to reduce all features to scaled score
 2. apply threshold classifier to score (\(C = 2\) for now)
 
-\[\hat{Y} = \mathrm{sign}\left(\sum_{j} \beta_j X_{ij} + b\right)\]
+\[\hat{Y}_i = \mathrm{sign}\left(\sum_{j} \beta_j X_{ij} + b\right)\]
 for feature weights \(\beta\) and intercept \(b\).
 
 - learning means finding \(\hat{\beta}\) and \(\hat{b}\)
@@ -228,38 +228,39 @@ for feature weights \(\beta\) and intercept \(b\).
 	1. if all classes are balanced (\(p(Y = k) = \frac{1}{C}\)) then we can centralize features 
 \[\bar{X} = \frac{1}{N} \sum_{i = 1}^{N} X_i \qquad \overset{0}{X_i} = X_i - \bar{X}_i\]
 	2. absorb \(b\) into \(X\): define new feature \(X_{i0} = 1\) (will then act as \(b\))
-		- done often -- \(X_{i0}\) is called the "bias neuron"
+		- done quite often (\(X_{i0}\) is then called the "bias neuron")
 
 ##### Perceptron
 - Rosenblatt, 1958
 - first neural network (1 neuron)
 - idea: improve \(\beta\) when model makes mistakes
-	- TODO: L in cursive **naive approach** -- **0/1 loss:** \[L(\hat{Y}_i, Y^*_i) = \begin{cases} 0 & \hat{Y}_i = Y^*_i \\ 1 & \hat{Y}_i \neq Y^*_i \end{cases}\]
+	- **naive approach** -- **0/1 loss:** \[\mathcal{L}(\hat{Y}_i, Y^*_i) = \begin{cases} 0 & \hat{Y}_i = Y^*_i \\ 1 & \hat{Y}_i \neq Y^*_i \end{cases}\]
 		- can be used to **evaluate** but **doesn't tell us how to improve** (and how)
-	- **better idea** -- **perceptron loss:** weigh penalty by error magnitude \[L(\hat{Y}_i, Y^*_i) = \begin{cases} 0 & \hat{Y}_i = Y^*_i \\ |X_i \beta| = \underbrace{-Y_i X_i \beta}_{\text{trick}} & \hat{Y}_i \neq Y^*_i \end{cases}\]
+	- **better idea** -- **perceptron loss:** weigh penalty by error magnitude \[\mathcal{L}(\hat{Y}_i, Y^*_i) = \begin{cases} 0 & \hat{Y}_i = Y^*_i \\ |X_i \beta| = -Y_i X_i \beta & \hat{Y}_i \neq Y^*_i \end{cases}\]
 		- nowadays we use \(\mathrm{ReLu}(-Y_i X_i \beta)\) for \(\mathrm{ReLu}(t) = \begin{cases} 0 & t < 0 \\ t & \text{otherwise} \end{cases}\)
-- TODO: FIXME! find out how to improve gradient descent: \(\beta^{(t)} = \beta^{(t - 1)} - \underbrace{\tau}_{\text{learning rate}}\underbrace{\frac{\partial L^{(t - 1)}}{\partial \beta}}_{\text{loss derivative}}\)
-	- TODO: fix this: partils are nablas, beta t new guess and beta t - 1 old guess (tau is much less than 1)
-in our case: \[\frac{partial los}{partial beta} = \frac{partial relu (...)}{partial beta} = \begin{cases} 0 if -y_i&* x_i beta < 0 (correct) \\ -yi start xi transposed if -yi star xi beta > 0 & \text{otherwise} \end{cases}\]
+- gradient descent for our classifier looks as follows: \[\beta^{(t)} = \beta^{(t - 1)} - \tau \underbrace{\frac{\partial \mathcal{L}^{(t - 1)}}{\partial \beta}}_{\text{loss derivative}}\] for **learning rate** \(\tau \ll 1\)
 
-TODO: LMA
-Rosenblatts algorithm
-0. initialzation ( \(\beta^{(0)}\)) is random numbers (or uniform)
-1. for \(t = 1, \ldots, T\) (or until convergence
-	- update \(\beta\) like above (TODO: write this)
-		- additionally, use \(\tau / N\) instead of \(\tau\) (so it doesn't change when learning setc changes
-		- additionally, sum over only incorrect guesses from the previous iteration: \[i = \hat{Y}_i^{(t - 1)} \neq Y_i^*\] where \[\at{Y}_i^{(t - 1)} = \mathrm{sign}(X_i \beta^{t - 1})\]
+In our case: \[\frac{\partial \mathcal{L}^{(t - 1)}}{\partial \beta} = \frac{\partial \mathrm{ReLu} (-Y_i X_i \beta)}{\partial \beta} = \begin{cases} 0 & -Y_i^* X_i \beta < 0\ \ \text{(correct)} \\ -Y_i^* X_i^T & \text{otherwise} \end{cases}\]
 
-- only converges when the data is "linearly separable" (i.e. \(\exists \beta\) for loss \(0\)
+{% math ENalgorithm "Rosenblatt's algorithm" %}
 
-TODO: add an image of the lineraly separable thingy here
+1. initialzation of \(\beta^{(0)}\) -- random/uniform numbers
+2. for \(t = 1, \ldots, T\) (or until convergence)
+	- update \(\beta\) using the gradient descent formula above, with minor changes:
+		- additionally, use \(\tau / N\) instead of \(\tau\) (so it doesn't change when learning set changes)
+		- sum over only incorrect guesses from the previous iteration
+\[\beta^{(t)} = \beta^{(t - 1)} + \frac{\tau}{N} \sum_{i: \hat{Y}_i^{(t - 1)} \neq Y_i^*} Y_i^* X_i^T\]
+{% endmath %}
 
-- we do a thick to project them all together (see images), we then "pull the line to the data"
+- only converges when the data is "linearly separable" (i.e. \(\exists \beta\) for loss \(0\))
+- high-level overview: project points together (positive/negative), then "pull the line to the data"
+
+![Linear classifier.](/assets/introduction-to-machine-learning/linear-classifier.svg)
 
 - **(+)** first practical learning algorithm, established the gradient descent principle
 - **(-)** only converges when the training set area linearly separable
-- **(-)** tends to overfit (TODO: show image)
+- **(-)** tends to overfit, bad at generalization
 
-Improved algorithm (popular around 1995): (Linear) Support Vecor Machine
+Improved algorithm (popular around 1995): **(Linear) Support Vecor Machine**
 - maintain a safety region around data where solution should not be
-- if a solution intersects the safety region, it is forbidden
+- if a solution intersects the safety region, it is forbidden \(\implies\) better at generalization
