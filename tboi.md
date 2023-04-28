@@ -1,8 +1,8 @@
 ---
-layout: default
 title: The Binding of Isaac
-no-heading: True
+layout: default
 css: tboi
+no-heading: True
 hidden: True
 ---
 

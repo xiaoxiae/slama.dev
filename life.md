@@ -1,9 +1,9 @@
 ---
 title: Life
 layout: default
-order: 1000
 css: life
 no-heading: True
+hidden: True
 ---
 
 I've long since wanted to share exciting things that happened in my life, interesting thoughts that I had on my way to a lecture or, more generally, anything that didn't warrant an entire post of its own.
