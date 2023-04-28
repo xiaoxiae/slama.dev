@@ -167,7 +167,7 @@ We usually (when Programming) want a **float matrix:** drop names, discretize la
 - can be decomposed by the chain rule to
 	- \(p(X) p(Y \mid X)\) -- first measure features, then determine response
 	- \(p(Y) p(X \mid Y)\) -- first determine response, then get compatible features
-- for classification, we want \[\underbrace{p(Y = k \mid X)}_{\text{posterior}} = \frac{  \overbrace{p(X \mid Y = k)}^{\text{likelyhood}}\ \overbrace{p(Y = k)}^{\text{prior}} }{\underbrace{p(X)}_{\text{marginal}}} \]
+- for classification, we want to use **Bayes rule** \[\underbrace{p(Y = k \mid X)}_{\text{posterior}} = \frac{  \overbrace{p(X \mid Y = k)}^{\text{likelyhood}}\ \overbrace{p(Y = k)}^{\text{prior}} }{\underbrace{p(X)}_{\text{marginal}}} \]
 	- **posterior** -- we want to update our judgement based on measuring the features
 	- **prior** -- we know this (1% for a disease in the general population)
 	- **likelyhood** -- the likelyhood of the disease given features (fever, cough)
@@ -192,7 +192,7 @@ Is hugely important for a number of reasons:
 	- a test answers the following
 		- correct diagnosis: \(p(X = 1 \mid Y = 1) = 0.99\)
 		- false positive: \(p(X = 1 \mid Y = -1) = 0.01\)
-	-  _if the test is positive, should you panic?_ \[\begin{aligned} p(Y = 1 \mid X = 1) &= \frac{p(X = 1 \mid Y = 1) p(Y = 1)}{p(X = 1 \mid Y = 1) p(Y = 1) + p(X = 1 \mid Y = -1) p(Y = -1)} \\ &= \frac{0.99 \cdot 0.001}{0.99 \cdot 0.001 + 0.01 \cdot 0.999} \\ &\approx \mathbf{0.1}
+	-  _if the test is positive, should you panic?_ \[\begin{aligned} p(Y = 1 \mid X = 1) &= \frac{p(X = 1 \mid Y = 1) p(Y = 1)}{p(X)} \\ &= \frac{0.99 \cdot 0.001}{0.99 \cdot 0.001 + 0.01 \cdot 0.999} \\ &\approx \mathbf{0.1}
 \end{aligned}\]
 		- due to the very low probability of the disease, you're likely fine
 
@@ -236,11 +236,10 @@ for feature weights \(\beta\) and intercept \(b\).
 - idea: improve \(\beta\) when model makes mistakes
 	- **naive approach** -- **0/1 loss:** \[\mathcal{L}(\hat{Y}_i, Y^*_i) = \begin{cases} 0 & \hat{Y}_i = Y^*_i \\ 1 & \hat{Y}_i \neq Y^*_i \end{cases}\]
 		- can be used to **evaluate** but **doesn't tell us how to improve** (and how)
-	- **better idea** -- **perceptron loss:** weigh penalty by error magnitude \[\mathcal{L}(\hat{Y}_i, Y^*_i) = \begin{cases} 0 & \hat{Y}_i = Y^*_i \\ |X_i \beta| = -Y_i X_i \beta & \hat{Y}_i \neq Y^*_i \end{cases}\]
-		- nowadays we use \(\mathrm{ReLu}(-Y_i X_i \beta)\) for \(\mathrm{ReLu}(t) = \begin{cases} 0 & t < 0 \\ t & \text{otherwise} \end{cases}\)
-- gradient descent for our classifier looks as follows: \[\beta^{(t)} = \beta^{(t - 1)} - \tau \underbrace{\frac{\partial \mathcal{L}^{(t - 1)}}{\partial \beta}}_{\text{loss derivative}}\] for **learning rate** \(\tau \ll 1\)
+	- **better idea** -- **perceptron loss:** weigh penalty by error magnitude (and use \(\mathrm{ReLU}\)) \[\mathcal{L}(\hat{Y}_i, Y^*_i) = \mathrm{ReLU}(-Y_i X_i \beta) = \begin{cases} 0 & \hat{Y}_i = Y^*_i \\ |X_i \beta| = -Y_i X_i \beta & \hat{Y}_i \neq Y^*_i \end{cases}\]
+		- note that these are only for one instance, for all the average error is \[\frac{1}{N} \sum_{i = 1}^{N} \mathrm{ReLU} (-Y_i^* X_i \beta) = \frac{1}{N} \sum_{i: \hat{Y}_i \neq Y_i^*} -Y_i^* X_i \beta\]
 
-In our case: \[\frac{\partial \mathcal{L}^{(t - 1)}}{\partial \beta} = \frac{\partial \mathrm{ReLu} (-Y_i X_i \beta)}{\partial \beta} = \begin{cases} 0 & -Y_i^* X_i \beta < 0\ \ \text{(correct)} \\ -Y_i^* X_i^T & \text{otherwise} \end{cases}\]
+Gradient descent looks as follows: \[\beta^{(t)} = \beta^{(t - 1)} - \tau \underbrace{\frac{\partial \mathcal{L}^{(t - 1)}}{\partial \beta}}_{\text{loss derivative}}\] for **learning rate** \(\tau \ll 1\) In our case, the derivative (for a single instance) is \[\frac{\partial \mathcal{L}^{(t - 1)}}{\partial \beta} = \frac{\partial \mathrm{ReLU} (-Y_i X_i \beta)}{\partial \beta} = \begin{cases} 0 & -Y_i^* X_i \beta < 0\ \ \text{(correct)} \\ -Y_i^* X_i^T & \text{otherwise} \end{cases}\]
 
 {% math ENalgorithm "Rosenblatt's algorithm" %}
 
@@ -253,7 +252,6 @@ In our case: \[\frac{\partial \mathcal{L}^{(t - 1)}}{\partial \beta} = \frac{\pa
 {% endmath %}
 
 - only converges when the data is "linearly separable" (i.e. \(\exists \beta\) for loss \(0\))
-- high-level overview: project points together (positive/negative), then "pull the line to the data"
 
 ![Linear classifier.](/assets/introduction-to-machine-learning/linear-classifier.svg)
 
@@ -261,6 +259,51 @@ In our case: \[\frac{\partial \mathcal{L}^{(t - 1)}}{\partial \beta} = \frac{\pa
 - **(-)** only converges when the training set area linearly separable
 - **(-)** tends to overfit, bad at generalization
 
-Improved algorithm (popular around 1995): **(Linear) Support Vecor Machine**
+Improved algorithm (popular around 1995): **(Linear) Support Vecor Machine** (SVM)
 - maintain a safety region around data where solution should not be
-- if a solution intersects the safety region, it is forbidden \(\implies\) better at generalization
+- closest points -- **support vectors**
+- learns \(\hat{Y} = \argmax_k p(Y = k \mid X)\), which is LHS of Bayes -- is **discriminative**
+
+Reminder: distance of a point \(X_i\) and plane \(\beta, b\) is \[d(X_i, (\beta, b)) = \left| \frac{ X_i \beta + b}{|| \beta ||} \right|\]
+- notice that scaling \(\beta\) doesn't change the distance -- pairs \((\tau \beta, \tau b)\) define the same plane -- we can therefore define an equivalence class \[H = \left\{\beta', b' \mid \beta' = \tau \beta_H, b' = \tau b_H\right\}\] for \(\beta_H, b_H\) representatives (can be chosen arbitrarily)
+
+Radius of the safety region (**margin**) is the **smallest distance** distance of a point to the decision plane (also called the "Hausdorff distance between H and TS"): \[m_H = \min_{i = 1}^N d(X_i, (\beta_H, b_H))\]
+
+Let \(\hat{i}\) be the closest point. Then \[Y_{\hat{i}}^* (X_{\hat{i}} \beta_H + b_H) = m_H || \beta_H || \]
+- we don't use minus because we want distance, not penalty (like perceptron)
+- we again use the trick with multiplying by the label and brought the norm to the other side
+
+Now we chose a representative such that the equation above is \(1\).
+The decision plane is then correct when \[\forall i: Y_i^* (X_i \beta_H + b_H) \ge 1\] (specifically \(1\) for \(\hat{i}\)). To make it as general as possible, we want one that maximizes the distance, i.e. \[
+\begin{aligned}
+	H &= \argmax_H m_H \\
+	&= \argmax_H \left(\min_i \frac{Y_i^* (X_i \beta_H + b_H)}{ ||\beta_H ||}\right) \\
+	&= \argmax_H \left(\frac{1}{|| \beta_H  ||} \min_i Y_i^* (X_i \beta_H + b_H))\right) \\
+	&= \arg \max_H \frac{1}{|| \beta_H || }
+\end{aligned}
+\]
+
+This yields an optimization problem: we want to \[\argmax_H \frac{1}{|| \beta_H || } \quad \text{s.t.} \quad \forall i:  Y_i^* (X_i \beta_H + b_H) \ge 1\]
+
+This is inconvenient -- change to a more convenient equivalent optimization problem \[\argmin_H \frac{1}{2} \beta_H^T \beta_H \quad \text{s.t.} \quad \forall i:  Y_i^* (X_i \beta_H + b_H) \ge 1\]
+
+Now we define slack variables \(\xi_i \ge 0\) that measure how much it was violated \[\argmin_H \frac{1}{2} \beta_H^T \beta_H \quad \text{s.t.} \quad \forall i:  Y_i^* (X_i \beta_H + b_H) \ge 1 - \xi_i\] and we also want to minimize those, which we'll do by using **Lagrange multipliers:** \[\argmin_{H, \xi} \underbrace{\frac{1}{2} \beta_H^T \beta_H}_{\text{maximize margins}} + \underbrace{\frac{\lambda}{N} \sum_{i = 1}^{N} \mathrm{ReLU} (1 - Y_i^* (X_i \beta_H + b_H))}_{\text{minimize penalties for misclassified points}}\]
+
+- adjusting \(\lambda\) makes compromise between being right vs. robust (**hyperparameter tunning**)
+- comparing with perceptron:
+	- we introduced \(b\) (no normalization)
+	- we now have a regularization term (no overfitting!)
+	- we have \(1 - \ldots\): if you're barely right, you still pay small penalties!
+
+We again optimize by derivative + gradient descent:
+
+\[\frac{\partial \mathcal{L}}{\partial \beta} = \beta_H + \frac{\lambda }{N} \sum_{i = Y_i^* X_i \beta + b < 1}^{N} -Y_i^* X_i^T\]
+\[\frac{\partial \mathcal{L}}{\partial b} = \frac{\lambda }{N} \sum_{i = Y_i^* X_i \beta + b < 1}^{N} -Y_i^*\]
+
+We again use gradient descent, which now looks as follows (analogous for \(b\)): \[\beta^{(t)} = \beta^{(t - 1)} - \tau \left(\beta_H + \frac{\lambda }{N} \sum_{i = Y_i^* X_i \beta + b < 1}^{N} -Y_i^* X_i^T\right) \]
+- note that we can't get stuck in a minimum, since the objective function is convex
+
+### Linear Discriminant Analysis (WRONG HEADING)
+- idea: assume that data for each class forms a cluster
+- we then approximate the cluster by ellipses
+	- likelyhood function \(p(X \mid Y = k)\) is a Gaussian distribution
