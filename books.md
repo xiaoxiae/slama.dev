@@ -33,9 +33,12 @@ _Note that I've read each one as an Audiobook, either from Audible or using othe
 		3. **The Bands of Mourning**
 		4. **The Lost Metal**
 
-- **Arcanum Unbounded: The Cosmere Collection** [[Wikipedia](https://en.wikipedia.org/wiki/Arcanum_Unbounded:_The_Cosmere_Collection)] -- a series of stories about the planetary systems of Sanderson's ([Cosmere](https://en.wikipedia.org/wiki/Brandon_Sanderson#Cosmere)) universe in which all of his works are set. I'd refrain from reading this until you've gone through his other books since it mainly adds context and perspective.
+- **Arcanum Unbounded: The Cosmere Collection** [[Wikipedia](https://en.wikipedia.org/wiki/Arcanum_Unbounded:_The_Cosmere_Collection)] -- a series of stories about the planetary systems of Sanderson's ([Cosmere](https://en.wikipedia.org/wiki/Brandon_Sanderson#Cosmere)) universe in which all of his works are set. I'd refrain from reading this until you've gone through his other books, since it mainly adds context and perspective.
 
 - **The Rithmatist** [[Wikipedia](https://en.wikipedia.org/wiki/The_Rithmatist)] -- an excellent young adult fantasy novel. Although the target audience is teenagers (which is reflected mostly in character behavior and development), I still loved discovering yet another unique magic system that Sanderson created.
+
+- **Secret Novels** [[context video](https://www.youtube.com/watch?v=6a-k6eaT-jQ)]
+	1. **Tress of the Emerald Sea** [[Wikipedia](https://en.wikipedia.org/wiki/Tress_of_the_Emerald_Sea)] -- a fascinating fairtale-like novel from the Cosmere
 
 - **The Reckoners** [[Wikipedia](https://en.wikipedia.org/wiki/The_Reckoners)] -- a set of three novels set in a post-apocalyptic world where random people are transformed into superhumans with various kinds of abilities. The atmosphere is great, but the writing is targeted at a younger audience, which is noticeable.
 	1. **Steelheart**
