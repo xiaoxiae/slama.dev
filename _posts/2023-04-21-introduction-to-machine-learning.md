@@ -2,6 +2,7 @@
 title: Introduction to Machine Learning
 category: "notes"
 category_icon: /assets/category-icons/heidelberg.webp
+pdf: true
 ---
 
 - .
@@ -241,6 +242,8 @@ for feature weights \(\beta\) and intercept \(b\).
 
 Gradient descent looks as follows: \[\beta^{(t)} = \beta^{(t - 1)} - \tau \underbrace{\frac{\partial \mathcal{L}^{(t - 1)}}{\partial \beta}}_{\text{loss derivative}}\] for **learning rate** \(\tau \ll 1\) In our case, the derivative (for a single instance) is \[\frac{\partial \mathcal{L}^{(t - 1)}}{\partial \beta} = \frac{\partial \mathrm{ReLU} (-Y_i X_i \beta)}{\partial \beta} = \begin{cases} 0 & -Y_i^* X_i \beta < 0\ \ \text{(correct)} \\ -Y_i^* X_i^T & \text{otherwise} \end{cases}\]
 
+##### Rosenblatt's algorithm
+
 {% math ENalgorithm "Rosenblatt's algorithm" %}
 
 1. initialzation of \(\beta^{(0)}\) -- random/uniform numbers
@@ -258,6 +261,8 @@ Gradient descent looks as follows: \[\beta^{(t)} = \beta^{(t - 1)} - \tau \under
 - **(+)** first practical learning algorithm, established the gradient descent principle
 - **(-)** only converges when the training set area linearly separable
 - **(-)** tends to overfit, bad at generalization
+
+##### (Linear) Support Vecor Machine
 
 Improved algorithm (popular around 1995): **(Linear) Support Vecor Machine** (SVM)
 - maintain a safety region around data where solution should not be
@@ -303,7 +308,7 @@ We again optimize by derivative + gradient descent:
 We again use gradient descent, which now looks as follows (analogous for \(b\)): \[\beta^{(t)} = \beta^{(t - 1)} - \tau \left(\beta_H + \frac{\lambda }{N} \sum_{i = Y_i^* X_i \beta + b < 1}^{N} -Y_i^* X_i^T\right) \]
 - note that we can't get stuck in a minimum, since the objective function is convex
 
-### Linear Discriminant Analysis (WRONG HEADING)
+##### Linear Discriminant Analysis
 - idea: assume that data for each class forms a cluster
 - we then approximate the cluster by ellipses
 	- likelyhood function \(p(X \mid Y = k)\) is a Gaussian distribution

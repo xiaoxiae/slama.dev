@@ -55,6 +55,9 @@ $endif$
 \usepackage[normalem]{ulem}
 \usepackage[bottom]{footmisc}  % forcing footnotes to be at the very bottom
 
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
 \usepackage{emoji}
 
 \usepackage{geometry}
