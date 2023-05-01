@@ -1956,3 +1956,33 @@
   red:
     old: 2
   wall: Boulderhaus
+2023-04-26:
+  black:
+    old: 1
+  blue:
+    new: 3
+  kilter:
+    6c+:
+      new: 1
+    7a:
+      new: 3
+    7a+:
+      new: 1
+    angle: 40
+  node: Sent the new reds and the previous black. Also went Kilterboarding again and
+    oh man am I weak, the difference between now and before winter is absolutely crazy.
+  red:
+    new: 2
+  wall: Boulderhaus
+2023-04-29:
+  black:
+    new: 1
+  blue:
+    new: 4
+    old: 4
+  node: Did all the new boulders. Felt pretty strong so I think I can start recording
+    again :).
+  red:
+    new: 3
+    old: 2
+  wall: Boulderhaus
