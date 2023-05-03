@@ -262,7 +262,7 @@ Gradient descent looks as follows: \[\beta^{(t)} = \beta^{(t - 1)} - \tau \under
 - **(-)** only converges when the training set area linearly separable
 - **(-)** tends to overfit, bad at generalization
 
-##### (Linear) Support Vecor Machine
+##### (Linear) Support Vecor Machine (LSVM)
 
 Improved algorithm (popular around 1995): **(Linear) Support Vecor Machine** (SVM)
 - maintain a safety region around data where solution should not be
@@ -279,7 +279,7 @@ Let \(\hat{i}\) be the closest point. Then \[Y_{\hat{i}}^* (X_{\hat{i}} \beta_H 
 - we again use the trick with multiplying by the label and brought the norm to the other side
 
 Now we chose a representative such that the equation above is \(1\).
-The decision plane is then correct when \[\forall i: Y_i^* (X_i \beta_H + b_H) \ge 1\] (specifically \(1\) for \(\hat{i}\)). To make it as general as possible, we want one that maximizes the distance, i.e. \[
+The decision plane is then correct when \[\forall i: Y_i^* (X_i \beta_H + b_H) \ge 1\] (specifically \(1\) for \(\hat{i}\)). To make it as general as possible, we want one that maximizes the distance \[
 \begin{aligned}
 	H &= \argmax_H m_H \\
 	&= \argmax_H \left(\min_i \frac{Y_i^* (X_i \beta_H + b_H)}{ ||\beta_H ||}\right) \\
@@ -294,7 +294,19 @@ This is inconvenient -- change to a more convenient equivalent optimization prob
 
 Now we define slack variables \(\xi_i \ge 0\) that measure how much it was violated \[\argmin_H \frac{1}{2} \beta_H^T \beta_H \quad \text{s.t.} \quad \forall i:  Y_i^* (X_i \beta_H + b_H) \ge 1 - \xi_i\] and we also want to minimize those, which we'll do by using **Lagrange multipliers:** \[\argmin_{H, \xi} \underbrace{\frac{1}{2} \beta_H^T \beta_H}_{\text{maximize margins}} + \underbrace{\frac{\lambda}{N} \sum_{i = 1}^{N} \mathrm{ReLU} (1 - Y_i^* (X_i \beta_H + b_H))}_{\text{minimize penalties for misclassified points}}\]
 
-- adjusting \(\lambda\) makes compromise between being right vs. robust (**hyperparameter tunning**)
+- adjusting \(\lambda\) makes compromise between being right vs. robust (**hyperparameter tunning**):
+	1. **approach:** 3 datasets -- training, validation, testing
+		- pick a set of possible hyperparameters (\(\lambda \in \left\{10^{-2}, 10^{-1}, 1, 10, 100\right\}\))
+		- train with each \(\lambda\) on the training set
+		- measure accuracy on the validation set
+		- keep the best \(\lambda\) on validation set, test again on the test set
+		- validation is present because test set would otherwise be training too...
+	2. **approach** (2 datasets): **cross-validation**
+		- split training set into \(k\) pieces ("folds", typically \(k\) around \(5\) or \(10\))
+			- _has to be randomly ordered, otherwise it won't work!_
+		- use each fold as validation set in turn & train on the remaining \(k-1\) folds
+		- special variation: \(n\)-fold (train on everything besides one instance)
+			- expensive in practice, great in theory
 - comparing with perceptron:
 	- we introduced \(b\) (no normalization)
 	- we now have a regularization term (no overfitting!)
@@ -305,10 +317,85 @@ We again optimize by derivative + gradient descent:
 \[\frac{\partial \mathcal{L}}{\partial \beta} = \beta_H + \frac{\lambda }{N} \sum_{i = Y_i^* X_i \beta + b < 1}^{N} -Y_i^* X_i^T\]
 \[\frac{\partial \mathcal{L}}{\partial b} = \frac{\lambda }{N} \sum_{i = Y_i^* X_i \beta + b < 1}^{N} -Y_i^*\]
 
-We again use gradient descent, which now looks as follows (analogous for \(b\)): \[\beta^{(t)} = \beta^{(t - 1)} - \tau \left(\beta_H + \frac{\lambda }{N} \sum_{i = Y_i^* X_i \beta + b < 1}^{N} -Y_i^* X_i^T\right) \]
+The iteration step for \(\beta\) looks as follows (analogous for \(b\)): \[\beta^{(t)} = \beta^{(t - 1)} - \tau \left(\beta_H + \frac{\lambda }{N} \sum_{i = Y_i^* X_i \beta + b < 1}^{N} -Y_i^* X_i^T\right) \]
 - note that we can't get stuck in a minimum, since the objective function is convex
 
-##### Linear Discriminant Analysis
-- idea: assume that data for each class forms a cluster
-- we then approximate the cluster by ellipses
-	- likelyhood function \(p(X \mid Y = k)\) is a Gaussian distribution
+##### Linear Discriminant Analysis (LDA)
+- idea: assume that features for each class form a cluster
+	- assume they're elliptic and model each one as a Gaussian distribution
+- is RHS of Bayes (**generative**) -- calculate the posterior from Bayes formula
+- **Linear** -- clusters have the same shape
+	- there is also a **Quadratic**, which permits different shapes but isn't linear
+
+To get any ellipse, we start with a unit circle \(z\) and stretch (\(\lambda\)), rotate (\(Q\)) and shift (\(\mu\)) it: \[Q \lambda z + \mu = \begin{pmatrix} \cos \varphi & -\sin \varphi \\ \sin \varphi & \cos \varphi \end{pmatrix} \begin{pmatrix} x_1 & 0 \\ 0 & x_2 \end{pmatrix} z + \mu\]
+
+![Derivation of an ellipse from a unit circle.](/assets/introduction-to-machine-learning/ellipses.svg)
+
+Solving for \(z\) (and using the fact that \(Q\) is orthogonal), we get \[z = \lambda^{-1} Q^{-1} (X - \mu) = \lambda^{-1} Q^T (X - \mu)\]
+
+**Gaussian distribution** can be defined as\[\mathcal{N}(x \mid \mu, \sigma) = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(-\frac{1}{2} \left((x - \mu)\sigma^{-1}\right)^2\right)\]
+- for \(\mu \ldots\) **mean**, \(\sigma \ldots\) **variance**
+- **standard normal distribution** is for \(\mu = 0\) and \(\sigma = 1\)
+
+For higher dimensions (with our circle \(z\)), we get the generalized Gaussian \[\mathcal{N}(z \mid \mu, \Sigma) = \frac{1}{\sqrt{\det\left(2 \pi \Sigma\right)}} \exp\left(-\frac{1}{2} (x - \mu) \underbrace{Q^{-1}\lambda^{-1}\lambda^{-1}Q^{-T}}_{\Sigma^{-1}} (x - \mu)^T\right)\]
+- \(\Sigma^{-1} = K\) is the **precision matrix**
+- since \(\Sigma^{-1} = Q^{-1}\lambda^{-1}\lambda^{-1}Q^{-T}\), we see a decomposition to eigenvalues (correspond to square of radii of the ellipse) and eigenvectors (the corresponding radii vectors)
+
+Let \(\left\{X-i\right\}_{i = 1}^{N_1}\) be features of class \(1\). Then \[N(X \mid \mu_1, \Sigma_1) = \frac{1}{\sqrt{\det(2 \pi \Sigma_1)}} \exp\left(-\frac{1}{2} (x_1 - \mu_1) \Sigma_1^{-1} (x_1 - \mu_1)^T\right)\]
+- **learning:** find \(\mu_1\) and \(\Sigma_1\)
+
+To derive the learning method, we'll use two things:
+1. **maximum likelyhood principle**: choose \(\mu_1\) and \(\Sigma_1\) such that TS will be a _typical outcome of the resulting model_ (i.e. best model maximizes the likelyhood of TS)
+2. **i.i.d. assumption:** training instances drawn independently from the same distribution
+	- **i**ndependently -- joint distribution is the product
+	- **i**dentically **d**istributed -- all instances come from the same distribution
+
+For the probability, we get \[
+\begin{aligned}
+	p(\mathrm{TS}) &= p(X_1, \ldots, X_n) \\
+	               &= \prod_{i = 1}^{N} p_i(X_i) \qquad \text{independently} \\
+	               &= \prod_{i = 1}^{N} p(X_i) \qquad \text{identically distributed} \\
+	               &= \prod_{i = 1}^{N} \mathcal{N(X_i \mid \mu, \Sigma)}
+\end{aligned}\]
+
+Using the maximum likelyhood principle, the problem becomes \[\hat{\mu}, \hat{\Sigma} = \argmax_{\mu, \Sigma} p(\mathrm{TS})\]
+
+It's mathematically simpler to minimize negative logarithm of \(p(\mathrm{TS})\) (applying monotonic function to an optimization problem doesn't change \(\argmin\) and \(\max = -\min\)). We get
+
+\[
+\begin{aligned}
+	\hat{\mu}, \hat{\Sigma} &= \argmin_{\mu, \Sigma} -\log(p(\mathrm{TS})) \\ 
+	                        &= - \sum_{i = 1}^{N} \left[\log \left(\frac{1}{\sqrt{\det(2 \pi \Sigma)}}\right) - \frac{1}{2} (X_i - \mu) \Sigma^{-1} (X_i - \mu)^T\right] \\
+	                        &= \sum_{i = 1}^{N} \left[\log \left(\det(2 \pi \Sigma)\right) + (X_i - \mu) \Sigma^{-1} (X_i - \mu)^T\right] = \mathcal{L}(\mathrm{TS})
+\end{aligned}
+\]
+
+This is our loss. We now do derivative and set it to \(0\), since that will find the optimum. First, we'll derivate by \(\mu\), which gets rid of the first part of loss completely and we get
+
+\[
+\begin{aligned}
+	\frac{\partial \mathcal{L}}{ \partial \mu} = \sum_{i = 1}^{N} \overbrace{\Sigma^{-1} (X_i -\mu)^T}^{\frac{\partial vAv^T}{\partial v} = 2Av^T} &= 0 \\
+	                                             \sum_{i = 1}^{N}             (X_i -\mu)^T &= 0 \\
+	                                             \sum_{i = 1}^{N} X_i &= N \mu \\
+	                                             \frac{1}{N} \sum_{i = 1}^{N} X_i &= \mu \\
+\end{aligned}
+\]
+
+In other words, the **mean \(\mu\) is the average** (shocking, I know).
+
+For \(\Sigma\), this will be a little more complicated. We'll do the partial derivation by \(\Sigma^{-1} = K\) instead, which gives the following:
+\[
+\begin{aligned}
+	\frac{\partial \mathcal{L}}{ \partial K} = \sum_{i = 1}^{N} [ \overbrace{-(K^T)^{-1}}^{\frac{\partial \log \det K}{\partial K} = (K^T)^{-1}} + \overbrace{(X_i - \mu)^T (X_i - \mu)}^{\frac{\partial vAv^T}{\partial A} = v^Tv}] &= 0 \\
+	                                          \sum_{i = 1}^{N} \left[ -K^{-1} + (X_i - \mu)^T (X_i - \mu)\right] &= 0 \qquad K\ \text{symmetric} \\
+	                                          -N K^{-1} + \sum_{i = 1}^{N} (X_i - \mu)^T (X_i - \mu) &= 0 \\
+	                                         \frac{1}{N} \sum_{i = 1}^{N} (X_i - \mu)^T (X_i - \mu) &= \Sigma \\
+\end{aligned}
+\]
+
+Again, in other words, the **variance** is the average over the quared vectors offset by the mean, which too makes sense.
+
+Now we have \(2\) clases but with same covariance (by assumption of LDA) and we can:
+1. determine two means (\(\mu_1, \mu_{-1}\)) as \[\mu_1 = \frac{1}{N_1} \sum_{i: Y_i^* = 1} X_i \qquad \mu_{-1} = \frac{1}{N_{-1}} \sum_{i: Y_i^* = -1}\]
+2. to calculate covariance (which is the same for both classes): \[\Sigma = \frac{1}{N} \left(\sum_{i: Y_i^* = 1} (X_i - \mu_1)^T (X_i - \mu_1) + \sum_{i: Y_i^* = -1} (X_i - \mu_{-1})^T (X_i - \mu_{-1})\right)\]
+3. use Bayes RHS and our calculations to calculate the LHS (_2 lazy to write the derivation_): \[ \begin{aligned} \hat{Y}_i = \mathrm{sign}(X_i \beta + b) \quad \text{with} \quad &\beta = 2 \Sigma^{-1} (\mu_1 - \mu_{-1})^T \\ & b = \mu_{-1} \Sigma^{-1} \mu_{-1}^T - \mu_1 \Sigma^{-1} \mu_1^T \end{aligned} \]
