@@ -1986,3 +1986,14 @@
     new: 3
     old: 2
   wall: Boulderhaus
+2023-05-04:
+  black:
+    old: 1
+  blue:
+    old: 5
+  node: After a nice few-day rest, I'm happy to have done the new reds (the orange
+    was more of a black, though).
+  red:
+    new: 2
+    old: 2
+  wall: Boulderhaus
