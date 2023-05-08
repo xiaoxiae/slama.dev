@@ -12,6 +12,8 @@ pdf: true
 
 _Note that the notes are a work in progress!_
 
+_Also, special thanks to Lucia Zhang, some of the notes are shamelessly stolen from her._
+
 ### Machine Learning Essentials
 
 #### Introduction
@@ -168,10 +170,10 @@ We usually (when Programming) want a **float matrix:** drop names, discretize la
 - can be decomposed by the chain rule to
 	- \(p(X) p(Y \mid X)\) -- first measure features, then determine response
 	- \(p(Y) p(X \mid Y)\) -- first determine response, then get compatible features
-- for classification, we want to use **Bayes rule** \[\underbrace{p(Y = k \mid X)}_{\text{posterior}} = \frac{  \overbrace{p(X \mid Y = k)}^{\text{likelyhood}}\ \overbrace{p(Y = k)}^{\text{prior}} }{\underbrace{p(X)}_{\text{marginal}}} \]
+- for classification, we want to use **Bayes rule** \[\boxed{\underbrace{p(Y = k \mid X)}_{\text{posterior}} = \frac{  \overbrace{p(X \mid Y = k)}^{\text{likelihood}}\ \overbrace{p(Y = k)}^{\text{prior}} }{\underbrace{p(X)}_{\text{marginal}}}}\]
 	- **posterior** -- we want to update our judgement based on measuring the features
 	- **prior** -- we know this (1% for a disease in the general population)
-	- **likelyhood** -- the likelyhood of the disease given features (fever, cough)
+	- **likelihood** -- the likelihood of the disease given features (fever, cough)
 	- **marginal** -- can be recovered by summing over possibilities: \[p(X) = \sum_{k = 1}^{C} p(X \mid Y = k)\]
 
 Is hugely important for a number of reasons:
@@ -251,7 +253,7 @@ Gradient descent looks as follows: \[\beta^{(t)} = \beta^{(t - 1)} - \tau \under
 	- update \(\beta\) using the gradient descent formula above, with minor changes:
 		- additionally, use \(\tau / N\) instead of \(\tau\) (so it doesn't change when learning set changes)
 		- sum over only incorrect guesses from the previous iteration
-\[\beta^{(t)} = \beta^{(t - 1)} + \frac{\tau}{N} \sum_{i: \hat{Y}_i^{(t - 1)} \neq Y_i^*} Y_i^* X_i^T\]
+\[\boxed{\beta^{(t)} = \beta^{(t - 1)} + \frac{\tau}{N} \sum_{i: \hat{Y}_i^{(t - 1)} \neq Y_i^*} Y_i^* X_i^T}\]
 {% endmath %}
 
 - only converges when the data is "linearly separable" (i.e. \(\exists \beta\) for loss \(0\))
@@ -262,9 +264,9 @@ Gradient descent looks as follows: \[\beta^{(t)} = \beta^{(t - 1)} - \tau \under
 - **(-)** only converges when the training set area linearly separable
 - **(-)** tends to overfit, bad at generalization
 
-##### (Linear) Support Vecor Machine (LSVM)
+##### (Linear) Support Vector Machine (LSVM)
 
-Improved algorithm (popular around 1995): **(Linear) Support Vecor Machine** (SVM)
+Improved algorithm (popular around 1995): **(Linear) Support Vector Machine** (SVM)
 - maintain a safety region around data where solution should not be
 - closest points -- **support vectors**
 - learns \(\hat{Y} = \argmax_k p(Y = k \mid X)\), which is LHS of Bayes -- is **discriminative**
@@ -292,9 +294,9 @@ This yields an optimization problem: we want to \[\argmax_H \frac{1}{|| \beta_H 
 
 This is inconvenient -- change to a more convenient equivalent optimization problem \[\argmin_H \frac{1}{2} \beta_H^T \beta_H \quad \text{s.t.} \quad \forall i:  Y_i^* (X_i \beta_H + b_H) \ge 1\]
 
-Now we define slack variables \(\xi_i \ge 0\) that measure how much it was violated \[\argmin_H \frac{1}{2} \beta_H^T \beta_H \quad \text{s.t.} \quad \forall i:  Y_i^* (X_i \beta_H + b_H) \ge 1 - \xi_i\] and we also want to minimize those, which we'll do by using **Lagrange multipliers:** \[\argmin_{H, \xi} \underbrace{\frac{1}{2} \beta_H^T \beta_H}_{\text{maximize margins}} + \underbrace{\frac{\lambda}{N} \sum_{i = 1}^{N} \mathrm{ReLU} (1 - Y_i^* (X_i \beta_H + b_H))}_{\text{minimize penalties for misclassified points}}\]
+Now we define slack variables \(\xi_i \ge 0\) that measure how much it was violated \[\argmin_H \frac{1}{2} \beta_H^T \beta_H \quad \text{s.t.} \quad \forall i:  Y_i^* (X_i \beta_H + b_H) \ge 1 - \xi_i\] and we also want to minimize those, which we'll do by using **Lagrange multipliers:** \[\boxed{\argmin_{H, \xi} \underbrace{\frac{1}{2} \beta_H^T \beta_H}_{\text{maximize margins}} + \underbrace{\frac{\lambda}{N} \sum_{i = 1}^{N} \mathrm{ReLU} (1 - Y_i^* (X_i \beta_H + b_H))}_{\text{minimize penalties for misclassified points}}}\]
 
-- adjusting \(\lambda\) makes compromise between being right vs. robust (**hyperparameter tunning**):
+- adjusting \(\lambda\) makes compromise between being right vs. robust (**hyperparameter tuning**):
 	1. **approach:** 3 datasets -- training, validation, testing
 		- pick a set of possible hyperparameters (\(\lambda \in \left\{10^{-2}, 10^{-1}, 1, 10, 100\right\}\))
 		- train with each \(\lambda\) on the training set
@@ -314,10 +316,17 @@ Now we define slack variables \(\xi_i \ge 0\) that measure how much it was viola
 
 We again optimize by derivative + gradient descent:
 
-\[\frac{\partial \mathcal{L}}{\partial \beta} = \beta_H + \frac{\lambda }{N} \sum_{i = Y_i^* X_i \beta + b < 1}^{N} -Y_i^* X_i^T\]
+\[\frac{\partial \mathcal{L}}{\partial \beta} = \beta + \frac{\lambda }{N} \sum_{i = Y_i^* X_i \beta + b < 1}^{N} -Y_i^* X_i^T\]
 \[\frac{\partial \mathcal{L}}{\partial b} = \frac{\lambda }{N} \sum_{i = Y_i^* X_i \beta + b < 1}^{N} -Y_i^*\]
 
-The iteration step for \(\beta\) looks as follows (analogous for \(b\)): \[\beta^{(t)} = \beta^{(t - 1)} - \tau \left(\beta_H + \frac{\lambda }{N} \sum_{i = Y_i^* X_i \beta + b < 1}^{N} -Y_i^* X_i^T\right) \]
+The iteration step for \(\beta\) looks as follows: \[
+\boxed{
+\begin{aligned}
+	\beta^{(t)} &= \beta^{(t - 1)} - \tau \left(\beta^{(t - 1)} + \frac{\lambda }{N} \sum_{i = Y_i^* X_i \beta + b < 1}^{N} -Y_i^* X_i^T\right) \\
+	b^{(t)} &= b^{(t - 1)} - \tau \left(\frac{\lambda}{N} \sum_{i = Y_i^* X_i \beta + b < 1}^{N} -Y_i^*\right)
+\end{aligned}
+}
+\]
 - note that we can't get stuck in a minimum, since the objective function is convex
 
 ##### Linear Discriminant Analysis (LDA)
@@ -345,7 +354,7 @@ Let \(\left\{X-i\right\}_{i = 1}^{N_1}\) be features of class \(1\). Then \[N(X 
 - **learning:** find \(\mu_1\) and \(\Sigma_1\)
 
 To derive the learning method, we'll use two things:
-1. **maximum likelyhood principle**: choose \(\mu_1\) and \(\Sigma_1\) such that TS will be a _typical outcome of the resulting model_ (i.e. best model maximizes the likelyhood of TS)
+1. **maximum likelihood principle**: choose \(\mu_1\) and \(\Sigma_1\) such that TS will be a _typical outcome of the resulting model_ (i.e. best model maximizes the likelihood of TS)
 2. **i.i.d. assumption:** training instances drawn independently from the same distribution
 	- **i**ndependently -- joint distribution is the product
 	- **i**dentically **d**istributed -- all instances come from the same distribution
@@ -358,7 +367,7 @@ For the probability, we get \[
 	               &= \prod_{i = 1}^{N} \mathcal{N(X_i \mid \mu, \Sigma)}
 \end{aligned}\]
 
-Using the maximum likelyhood principle, the problem becomes \[\hat{\mu}, \hat{\Sigma} = \argmax_{\mu, \Sigma} p(\mathrm{TS})\]
+Using the maximum likelihood principle, the problem becomes \[\hat{\mu}, \hat{\Sigma} = \argmax_{\mu, \Sigma} p(\mathrm{TS})\]
 
 It's mathematically simpler to minimize negative logarithm of \(p(\mathrm{TS})\) (applying monotonic function to an optimization problem doesn't change \(\argmin\) and \(\max = -\min\)). We get
 
@@ -396,6 +405,103 @@ For \(\Sigma\), this will be a little more complicated. We'll do the partial der
 Again, in other words, the **variance** is the average over the quared vectors offset by the mean, which too makes sense.
 
 Now we have \(2\) clases but with same covariance (by assumption of LDA) and we can:
-1. determine two means (\(\mu_1, \mu_{-1}\)) as \[\mu_1 = \frac{1}{N_1} \sum_{i: Y_i^* = 1} X_i \qquad \mu_{-1} = \frac{1}{N_{-1}} \sum_{i: Y_i^* = -1}\]
-2. to calculate covariance (which is the same for both classes): \[\Sigma = \frac{1}{N} \left(\sum_{i: Y_i^* = 1} (X_i - \mu_1)^T (X_i - \mu_1) + \sum_{i: Y_i^* = -1} (X_i - \mu_{-1})^T (X_i - \mu_{-1})\right)\]
-3. use Bayes RHS and our calculations to calculate the LHS (_2 lazy to write the derivation_): \[ \begin{aligned} \hat{Y}_i = \mathrm{sign}(X_i \beta + b) \quad \text{with} \quad &\beta = 2 \Sigma^{-1} (\mu_1 - \mu_{-1})^T \\ & b = \mu_{-1} \Sigma^{-1} \mu_{-1}^T - \mu_1 \Sigma^{-1} \mu_1^T \end{aligned} \]
+1. determine two means (\(\mu_1, \mu_{-1}\)) as \[\boxed{\mu_1 = \frac{1}{N_1} \sum_{i: Y_i^* = 1} X_i \qquad \mu_{-1} = \frac{1}{N_{-1}} \sum_{i: Y_i^* = -1}}\]
+2. to calculate covariance (which is the same for both classes): \[\boxed{\Sigma = \frac{1}{N} \left(\sum_{i: Y_i^* = 1} (X_i - \mu_1)^T (X_i - \mu_1) + \sum_{i: Y_i^* = -1} (X_i - \mu_{-1})^T (X_i - \mu_{-1})\right)}\]
+3. use Bayes RHS and our calculations to calculate the LHS: \[\boxed{\begin{aligned} \hat{Y}_i = \mathrm{sign}(X_i \beta + b) \quad \text{with} \quad &\beta = 2 \Sigma^{-1} (\mu_1 - \mu_{-1})^T \\ & b = \mu_{-1} \Sigma^{-1} \mu_{-1}^T - \mu_1 \Sigma^{-1} \mu_1^T \end{aligned}}\]
+
+The derivation of (3) looks as follows: assuming \(p(Y = 1) = p(Y = -1) = \frac{1}{2}\) for simpler computations and \(p(Y = -1 \mid X)\) being analogous:
+
+\[
+\begin{aligned}
+ p(Y=1|X)&=\frac{p(Y=1|X){p(Y=1)}}{p(Y=1|X){p(Y=1)}+p(Y=-1|X){p(Y=-1)}}\\            
+ &=\frac{p(Y=1|X)}{p(Y=1|X)+p(Y=-1|X)}\\                                              
+ &=\frac{1}{1+\frac{p(X|Y=-1)}{p(X|Y=1)}}
+\end{aligned}
+\]
+
+Now we substitute the Gaussian function:
+
+\[
+\begin{aligned}
+ \frac{p(X_i|{Y=-1})}{p(X_i|{Y=1})}&=\frac{\cancel{\frac{1}{\sqrt{\det(2\pi\Sigma)}}}\exp(-\frac{1}{2}(X_i-\mu_{-1})\Sigma^{-1}(X_i-\mu_{-1})^T)}{\cancel{\frac{1}{\sqrt{\det(2\pi\Sigma)}}}\exp(-\frac{1}{2}(X_i-\mu_{1})\Sigma^{-1}(X_i-\mu_{1})^T)}\\
+ &=\exp(-\frac{1}{2}(X_i-\mu_{-1})\Sigma^{-1}(X_i-\mu_{-1})^T+\frac{1}{2}(X_i-\mu_{1})\Sigma^{-1}(X_i-\mu_{1})^T) \\
+ &=\exp(-\frac{1}{2}\left[\cancel{X\Sigma^{-1}X^T}-2X\Sigma^{-1}\mu_{-1}^T+\mu_{-1}\Sigma^{-1}\mu_{-1}^T-\cancel{X\Sigma^{-1}X^T}+2X\Sigma^{-1}\mu_1^T-\mu_1\Sigma^{-1}\mu_{1}^T\right])\\
+ &=\exp(-X\underbrace{\Sigma^{-1}(\mu_1^T-\mu_{-1}^T)}_\beta-\frac{1}{2}\underbrace{(\mu_{-1}\Sigma^{-1}\mu_{-1}^T-\mu_1\Sigma^{-1}\mu_1^T)}_b)=\exp(-(X\beta+b))
+\end{aligned}
+\]
+
+Plugging the result into the previous equation, we obtain the sigmoid function \(\sigma\):
+
+\[p(Y = 1 \mid X) = \frac{1}{1 + \mathrm{exp}(-(X \beta + b))} \qquad \sigma(t) = \frac{1}{1 + \exp(-t)}\]
+
+Two of its properties will be helpful for us: \[\sigma(-t) = 1 - \sigma(t) \qquad \frac{\partial \sigma(t)}{\partial t} = \sigma(t) \sigma(-t)\]
+
+Doing an analogous derivation for \(p(Y = -1 \mid X)\), we get \[
+\begin{aligned}
+\hat y=\arg\max_k p(Y=k|X) \Longleftrightarrow& \begin{cases}1 &\text{if } \sigma(X\beta+b)>\frac{1}{2}\\ -1 &\text{if } \sigma(X\beta+b)<\frac{1}{2}\end{cases}\\
+\Longleftrightarrow& \begin{cases}1 &\text{if } X\beta+b>0\\ -1 &\text{if } X\beta+b<0\end{cases}\\
+\Longleftrightarrow& \text{sign}(X\beta+b)
+\end{aligned}\]
+
+
+**Alternatives to training beta and b:**
+1. fit mean and covariance of clusters
+2. least-squares regression: \(\mathcal{L}(Y_i^*, \hat{Y}_i) = (Y_i^* - (X \beta + b))^2\) (same solution as \(1\))
+3. Fisher's idea: define 1D scores \(Z_i = X_i \beta\) and chose \(\beta\) such that a threshold on \(Z_i\) has minimum error
+	- define projection of the means \(\hat{\mu_{1}} = \mu_1 \beta, \hat{\mu_{-1}} = \mu_{-1}\beta\)
+	- **intuition:** \(\hat{\mu}_1\) and \(\hat{\mu_{-1}}\) should be as far away as possible \[\beta = \argmax_\beta (\hat{\mu}_1 - \hat{\mu}_{-1})^2\]
+	- doesn't quite work, because \(\tau \beta \implies \tau^2 (\hat{\mu}_{1} \hat{\mu}_{-1})\)
+	- solution: scale by the variance \(\hat{\sigma}\): \(\hat{\sigma}_1 = \mathrm{Var}\left(Z_1 \mid Y_i^* = 1\right), \hat{\sigma}_{-1} \mathrm{Var}\left(Z_i \mid Y_i^* = -1\right)\), then we get \[\hat{\beta} = \argmax_{\beta} \frac{\left(\hat{\mu}_1 - \hat{\mu_{-1}}\right)^2}{\hat{\sigma}_1^2 + \hat{\sigma}_{-1}^2}\]
+	- again gives the same solution as \(1\) and \(2\)
+4. **Logistic regression (LR):** same posterior as LDA, but learn LHS of Bayes rule
+	- gives different solution to LDA
+
+##### Logistic regression (LR)
+
+We again have i.i.d. assumptions -- all labels are drawn independently form the same posterior: \[p\left(\left(Y_i^*\right)_{i = 1}^N \mid \left(X_i\right)_{i = 1}^N\right) = \prod_{i = 1}^{N} p(Y_i^* \mid X_i)\]
+- as a reminder, this was **swapped for LDA** (we had \(p(X \mid Y)\))
+- use **maximum likelihood**: choose \(\hat{\beta}, \hat{b}\) such that posterior of TS is maximized: \[
+\begin{aligned}
+&\hat\beta,\hat b=\argmax_{\beta,b}\prod^N_{i=1}p(Y^*_i|X_i)\\
+\Longleftrightarrow&\hat\beta,\hat b=\arg\min_{\beta,b}-\sum^N_{i=1}\log p(Y^*_i|X_i) \qquad \min + \log \text{ trick}
+\end{aligned}\]
+
+For LR, \(Y^*_i \in \left\{0, 1\right\}\), which allows us to rewrite (with the \(\sigma\) results from LDA) like so: \[
+\boxed{\ \hat{\beta}, \hat{b}=\arg\min_{\beta, b}-\sum_{i=1}^N\Big[Y_i^* \log \sigma\left(X\beta+b\right)+\left(1-Y_i^*\right) \log \left(\sigma\left(-\left(X\beta+b\right)\right)\Big]\right.\ }
+\]
+- no analytic solution but **is convex** (local extreme = global extreme, solve via GD)
+
+Here we have \(-\log(\sigma(-t)) = \log(1 + \exp(t))\), which is called the **softplus** function:
+
+![ReLu + Softplus graphs.](/assets/introduction-to-machine-learning/relu-softplus.svg)
+
+Simplifying for \(b = 0\) and using the following properties:
+
+\[
+\begin{aligned}
+\frac{\partial \sigma\left(X\beta\right)}{\partial \beta}&=\sigma^{\prime}\left(X\beta\right) X=\sigma(X \beta) \sigma\left(-X\beta\right) \cdot X \\
+\frac{\partial \log \sigma\left(X\beta\right)}{\partial \beta}&=\frac{1}{\sigma\left(X\beta\right)} \sigma\left(X\beta\right) \sigma\left(-X\beta\right) \cdot X=\sigma\left(X\beta\right) \cdot X \\
+\frac{\partial \log \sigma\left(-X\beta\right)}{\partial \beta}&=\frac{1}{\sigma\left(-X\beta\right)} \sigma\left(X\beta\right) \sigma\left(-X\beta\right) \cdot(-X)=-\sigma\left(X\beta\right) \cdot X
+\end{aligned}
+\]
+
+We get the derivatives \(\beta\):
+\[
+\begin{aligned}
+\frac{\partial \mathcal Loss(T S)}{\partial \beta}&=-\sum_{i=1}^N\left[Y_i^* \underbrace{\sigma\left(-X_i \beta\right)}_{1-\sigma\left(X_i \beta\right)} \cdot X_i+\left(1-Y_i^*\right) \sigma\left(X_{i \beta}\right) \cdot\left(-X_i\right)\right] \\
+& =-\sum_{i=1}^N\left[Y_i^* X_i-\cancel{Y_i^* \sigma\left(X_i \beta\right) X_i}-\sigma\left(X_i \beta\right) X_i+\cancel{Y_i^* \sigma\left(X_i \beta\right) X_i}\right]
+\end{aligned}
+\]
+
+obtaining
+
+\[
+\boxed{\ \frac{\partial \mathcal Loss(T S)}{\partial \beta}=\sum_{i=1}^N(\underbrace{\sigma\left(X_i \beta\right)-Y_i^*}_{\text {error }}) \cdot X_i \stackrel{!}{=} 0\ }
+\]
+
+The four cases that can occur are as follows:
+
+| Real value \ Classifier result | \(\sigma(X_i\beta)\approx 1\)                               | \(\sigma(X_i\beta)\approx 0\)                               |
+| ---                            | ---                                                         | ---                                                         |
+| \(Y^*_i=1\)                    | no correction                                               | error \(\approx-1\): pulls \(\sigma(X_i\beta)\rightarrow1\) |
+| \(Y^*_i=0\)                    | error \(\approx 1\): pulls \(\sigma(X_i\beta)\rightarrow0\) | no correction                                               |
