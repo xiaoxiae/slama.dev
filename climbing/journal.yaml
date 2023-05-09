@@ -2006,3 +2006,15 @@
   red:
     new: 4
   wall: Boulderhaus
+2023-05-09:
+  black:
+    new: 2
+  blue:
+    new: 1
+    old: 4
+  note: Managed to send the black I attempted last time and also sent the other one
+    without cheating :).
+  red:
+    new: 1
+    old: 1
+  wall: Boulderhaus
