@@ -2,7 +2,7 @@
 title: Introduction to Machine Learning
 category: "notes"
 category_icon: /assets/category-icons/heidelberg.webp
-pdf: true
+pdf: false
 ---
 
 - .
