@@ -83,6 +83,9 @@ for entry in reversed(sorted(list(journal))):
 
         current_month = entry.month
 
+    if "image" in journal[entry]:
+        line += f"<div class='climbing-bg-div' style='background-image: url(/climbing/images/{journal[entry]['image']})'>"
+
     line += f"\n<li><ul class='hfill'><li><strong>{entry.strftime('%-d. %-m. %Y')}</strong>"
 
     v_colors = [f"V{i}" for i in range(2, 11)]
@@ -264,6 +267,9 @@ for entry in reversed(sorted(list(journal))):
         line += "<p class='climbing-note'>" + markdown.markdown(note)[3:]
 
     line += "</li>"
+
+    if "image" in journal[entry]:
+        line += "</div>"
 
     result += line + "\n"
 

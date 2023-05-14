@@ -107,6 +107,21 @@ ul.climbing-routes-list {
     }
 }
 
+.climbing-bg-div {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 16px 16px $light-background-color inset;
+
+    background-color: rgba($light-background-color, 0.8);
+    background-blend-mode: overlay;
+
+    @media (prefers-color-scheme: dark) {
+        box-shadow: 0 0 16px 16px $dark-background-color inset;
+        background-color: rgba($dark-background-color, 1) !important;
+    }
+}
+
 .climbing-year-details {
     summary {
         text-align: left;
