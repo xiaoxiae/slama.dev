@@ -115,7 +115,12 @@ for entry in reversed(sorted(list(journal))):
         line += f" ({location})"
 
         if "guide" in journal[entry]:
-            line += f" [<a href='/climbing/guides/{journal[entry]['guide']}'>guide</a>]"
+            g = journal[entry]["guide"]
+            # a bit hacky but w/e
+            if "http" in g:
+                line += f" [<a href='{g}'>guide</a>]"
+            else:
+                line += f" [<a href='/climbing/guides/{journal[entry]['guide']}'>guide</a>]"
 
         line += f"</li> <li>"
 
