@@ -264,7 +264,7 @@ Gradient descent looks as follows: \[\beta^{(t)} = \beta^{(t - 1)} - \tau \under
 - **(-)** only converges when the training set area linearly separable
 - **(-)** tends to overfit, bad at generalization
 
-##### (Linear) Support Vector Machine (LSVM)
+##### Support Vector Machine (SVM)
 
 Improved algorithm (popular around 1995): **(Linear) Support Vector Machine** (SVM)
 - maintain a safety region around data where solution should not be
@@ -505,3 +505,137 @@ The four cases that can occur are as follows:
 | ---                            | ---                                                         | ---                                                         |
 | \(Y^*_i=1\)                    | no correction                                               | error \(\approx-1\): pulls \(\sigma(X_i\beta)\rightarrow1\) |
 | \(Y^*_i=0\)                    | error \(\approx 1\): pulls \(\sigma(X_i\beta)\rightarrow0\) | no correction                                               |
+
+##### Summary
+- with \(Y \in \left\{-1, 1\right\}\), all methods have same decision rule \[\hat Y_i = \mathrm{sign}(X_i \beta + b)\] but the methods differ by how they define & find optimal \(\beta, b\)
+- common objective function \[\hat \beta, \hat b = \argmin_{\beta, b} = \frac{\lambda}{2} \underbrace{\beta^T \beta}_{\text{regularization}} + \frac{1}{N} \sum_{i = 1}^{N} \underbrace{\mathcal{Loss} (Y_i^*, X_i \beta + b)}_{\text{data term}} \]
+
+**Perceptron:** \[\mathrm{ReLU}(-Y_i^* (X_i \beta + b)) \qquad \lambda = 0\]
+
+**SVM:** \[\mathrm{ReLU}(1 - Y_i^* (X_i \beta + b)) \qquad \lambda > 0\]
+
+**LDA:** \[(Y_i^* - (X_i \beta + b)) \qquad \lambda = 0\ (\text{fit } \mu, \Sigma),\ \lambda > 0\ (\text{fit objective})\]
+
+**LR:** \[\mathrm{softplus}(-Y_i^* (X_i \beta + b)) \qquad \lambda = 0\ (\text{or >})\]
+
+- in practice, similar solutions when data is linearly separable
+- different tradeoffs otherwise \(\implies\) check validation set
+
+![Linear classifier.](/assets/introduction-to-machine-learning/summary.svg)
+
+##### Multi-class classification
+- solution: reduce to a set of \(2\)-class problems
+
+1. one-against-rest classification
+	- for \(k = 1, \ldots, C\), define \(\beta_k, b_k \implies\) score \(s_k = X_i \beta_k + b_k\)
+	- train by treating \(Y_i^* = k\) as "class + 1" and \(Y_i^* \neq k\) as "class - 1" (rest)
+	- make them comparable by normalization: \(\hat{\beta}_k = \frac{\beta_k}{||\beta_k}||\) (same for \(b\))
+	- classify according to biggest score, or "don't know" if all scores are bad: \[\hat{Y}_i = \begin{cases} \text{"unknown"} & s_k < \varepsilon\ \forall k \\ \argmax_k s_k \end{cases}\]
+2. all-pairs: train a linear model for all \(k, k'\) (\(\approx n^2\))
+	- \(s_{k, k'} = X_i \beta_{k, k'} + b_{k, k'} \forall k \neq k'\)
+	- if \(s_{k, k'} > 0\) then one vote for class \(k\), if \(s_{k, k'} < 0\) then one vote for \(k'\)
+	- \(\hat{Y}_i\) is the label with most votes (or "unknown" for ties)
+3. define posterior as "softmax-function" scores as in (1): \[\boxed{p(\hat Y_i = k \mid X_i) = \frac{\exp(s_k)}{\sum_{k' = 1}^{C} \exp(s_k')} = \mathrm{softmax}(s_i, s_k)}\]
+	- standard for neural network classification
+	- easily provable: \(\mathrm{softmax}(s_1, s_2) = \sigma(s_1 - s_2)\)
+	- new: train all \(\beta_k, b_k\) **jointly** (at the same time)
+
+#### Non-linear classification
+- _in practice, use LR and hope for the best_
+- exception: very scarce data \(\implies\) hard to justify non-linear fit
+
+1. measure more features and _increase dimension_
+	- higher dimensional spaces tend to be more linearly separable
+	- for \(N = D + 1\), it's always separable (but maybe not useful)
+	- of \(D > N\), use _sparse_ learning methods
+2. use non-linear classifier
+	- QDA, which is a linear version of LDA
+	- Kernel-SVM (non-linear SVM, less popular but cool math)
+	- Decision trees/forests (recursively subdivide \(X\), we'll discuss them later)
+3. non-linearly transform features \(\tilde{X}_i = \varphi(X_i)\)
+	- **XOR function:** \(x_1, x_2 \in \left\{-1, 1\right\}\), \(y_i^* = \begin{cases} +1 & x_1 \neq x_2 \\ -1 & \text{otherwise} \end{cases}\)
+	- **four points classification:** \(\tilde{x} = x_1 \cdot x_2, \hat{y} = \begin{cases} +1 & \tilde x < 0 \\ -1 & \text{otherwise} \end{cases}\)
+	- **BMI** (non-linear formula, linear classification)
+	- _problem:_ hand-crafting \(\varphi\) is difficult
+	- _solution:_ learn \(\varphi\) (multi-layer neural networks)
+
+### Neural networks
+- **definition:** inputs \(Z_{\mathrm{in}}\) eg. (\(Z_{\mathrm{in}} = X\) or \(Z_{\mathrm{in}} = \) output of other neurons)
+- **computation (activation):** \(Z_{\mathrm{out}} = \varphi(Z_{\mathrm{in}} \beta + b)\) (linear function plugged into non-linear one)
+	- **pre-activation:** \(Z' = Z_{\mathrm{in}} \beta + b\)
+	- popular activation functions: \(\varphi\)
+		- **identity:** used as output of regression networks
+		- **classic choices:** \(\sigma\) or \(\tanh\), almost the same when scaled / offset
+		- **modern choices:**
+			- \(\mathrm{ReLU}\) -- not differentiable at \(0\) but nice in practice
+			- leaky \(\mathrm{ReLU} = \begin{cases} x & x > 0 \\ \alpha x & \text{otherwise} \end{cases}\)
+			- exponential linear unit \(\mathrm{ELU}(x) = \begin{cases} x & x > 0 \\ \alpha (e^x - 1) & \text{otherwise} \end{cases}\)
+			- swish function \(x \cdot \sigma(x)\)
+
+- usually, \(b\) is not used but turned into a "bias neuron" for each layer
+
+A **neural network** is a collection of neurons in parallel layers
+- _fully-connected:_ all neurons of previous layer connect to those of the next
+- for \(4\) layers, we have \(z_0 = [1, x]\) (bias), \(z_1, z_2\) hidden and \(z_3 = y\)
+- sample computation would then be \[\begin{aligned}
+	y &= \varphi_3([1; z_2] B_3) \\
+	  &= \varphi_3 ([1; \varphi_2 ([1; z_1] B_2)] B_3) \\
+	  &= \varphi_3 ([1; \varphi_2 ([1; \varphi_1([1; z_0 \cdot B_1])] B_2)] B_3) \\
+\end{aligned}\]
+
+![Network example.](/assets/introduction-to-machine-learning/network.svg)
+- (1) is the first, (2-5) are hidden layers, (6) is the output
+
+Previously, NN were believed to not be a good idea, but
+- ~2005: GPUs were found out to compute them well
+- big data became available (to train the big network)
+- ~2012: starts outperforming everything else
+
+**Activation functions:**
+- \(\varphi_1, \ldots, \varphi_{L - 1}\) (not for input): chosen by the designer
+	- nowadays we usually use one of the modern choices described above
+- \(\varphi_{L}\): determined by application
+	- **regression** (\(Y \in \mathbb{R}\)): **identity**
+	- **classification** (\(p(Y = k \mid X)\)): \(\mathrm{softmax}\)
+
+**Important theorems:**
+1. neural networks with \(L \ge 2\) (\(= 1\) hidden layer) are **universal approximators** (can approximate any function to any accuracy), if there are enough neurons in the hidden layer
+	- purely existential proof, but nice to know
+	- up till 2005, this was used, since they were enough
+		- bad idea -- deeper networks are easier to train (many good local optima)
+2. finding the optimal network is NP-hard \(\implies\) we need approximation algorithms
+
+**Training by backpropagation (chain rule)**
+- idea: train \(B_1, B_L\) by gradient descent \(\implies\) need \(\frac{\partial \mathcal{Loss}}{\partial B_l}\)
+- update is the same as previous GD: \[\boxed{B_l^{(t)} = B_l^{(t - 1)} - \tau \cdot \frac{\partial \mathcal{L}}{\partial B_l^{(t - 1)}}}\]
+- to compute the derivative, we'll compute the chain rule from last layer backwards
+
+1. \(\frac{\partial \mathcal{Loss}}{\partial z_L}\) (application-dependent loss)
+	- **regression:** \[\begin{aligned} \mathcal{Loss} &= \frac{1}{2} \left(z_L - Y_i^*\right)^2 \\ \frac{\partial \mathcal{Loss}}{\partial z_L} &= z_L - Y_i^* \end{aligned}\]
+	- **classification:** \[\begin{aligned} \mathcal{Loss} &= \sum_{k = 1}^{C} \mathbb{1} \mathbb{I} \left[k = Y_i^*\right] -\log \underbrace{p(Y = k \mid X)}_{z_{Lk}} \\ \frac{\partial \mathcal{Loss}}{\partial z_{Lk}} &= \begin{cases} - \frac{1}{z_{Lk}} & k = Y_i^* \\ 0 & \text{otherwise} \end{cases} \end{aligned}\]
+
+2. back-propagate through output activation \(\varphi_L (\tilde z_L)\)
+	- here we define \(\tilde{\delta}_L = \frac{\partial \mathcal{Loss}}{\partial \tilde z_L}\) since we'll use it a lot
+	- for **regression**, we had identity activation function so \[z_L = \varphi_L(\tilde z_L) = \tilde z_L \implies \tilde{\delta}_L = \tilde z_L - Y_i^*\]
+	- for **classification**, this is a bit more complicated but ends up being \[\boxed{\tilde{\delta}_L = \begin{cases} z_{Lk} - 1 & k = Y_i^* \\ z_{Lk} & \text{otherwise} \end{cases}}\]
+
+3. for every \(l = 1, \ldots, L\), let \(\tilde \delta_l = \frac{\partial \mathcal{Loss}}{\partial \tilde z_l}\); recusion starts with \(\tilde \delta_L\) (previous step)
+	- use chain rule (and simplify/compute using previous layers): \[\begin{aligned}
+		\boxed{\tilde \delta_{l - 1} = \frac{\partial \mathcal{Loss}}{\partial \tilde z_{l - 1}}} &= \frac{\partial \mathcal{Loss}}{\partial \tilde z_l} \cdot \frac{\partial z_l}{\partial z_{l - 1}} \cdot \frac{\partial z_{l - 1}}{\partial \tilde z_{l - 1}} \\
+		&= \boxed{\tilde \delta_l \cdot B_l^T \cdot \mathrm{diag}(\varphi'(\tilde z_{l - 1}))}
+	\end{aligned}\]
+
+4. another chain rule, finally with what we want to calculate: \[\begin{aligned} \boxed{\frac{\partial \mathcal{Loss}}{\partial B_l}} &= \frac{\partial \mathcal{Loss}}{\partial \tilde z_l} \cdot \frac{\partial \tilde z_l}{\partial B_l} \\ &= \boxed{\tilde z_{l - 1} \cdot \tilde \delta_l} & \end{aligned}\]
+
+**Training algorithm:**
+1. init \(B_l\) randomly (explained later)
+2. for \(t = 1, \ldots, T\)
+	1. forward pass -- for \(i\) in batch
+		- \(z_0 = [1, X_i]\)
+		- for  \(l = 1, \ldots, L\), compute + store \(z_l, \tilde{z}_l\) along the way
+	2. backward pass: \(\Delta B_l = 0\), for \(i\) in batch
+		- compute \(\tilde \delta_L\)
+		- for \(l = L, \ldots, 1\), compute
+			- \(\Delta B_l += \tilde z_{l - 1}^T \cdot \tilde \delta_l\)
+			- \(\tilde \delta_{l - 1} = \tilde \delta_l \cdot \left(B_{l}^{(t - 1)}\right)^T \cdot \mathrm{diag}\left(\varphi'_{l - 1}\left(\tilde z_{l - 1}\right)\right)\)
+	3. update: \(B_l^{(t)} = B_l^{(t - 1)} - \tau \Delta B_l\)
