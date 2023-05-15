@@ -2042,3 +2042,14 @@
     - - 7b+
   - - "S\xFCdostkante Untere Variante"
     - - 7a
+2023-05-15:
+  black:
+    new: 1
+  blue:
+    new: 5
+    old: 5
+  note: Once again did all of the new routes :)!
+  red:
+    new: 3
+    old: 1
+  wall: Boulderhaus
