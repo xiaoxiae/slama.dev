@@ -2,8 +2,8 @@
 title: Linear Programming in Python
 category: YouTube
 category_icon: /assets/category-icons/youtube.svg
+end: "<a href='/linearni-programovani-v-pythonu'>Česká verze článku</a>"
 ---
-
 
 - .
 {:toc}
@@ -11,259 +11,172 @@ category_icon: /assets/category-icons/youtube.svg
 ### Introduction
 This page contains additional materials to my [newly released video](TODO) about linear programming, namely a number of practical examples of how it can be used to solve a variety of problems using Python and its `pulp` package.
 
+### Practical examples
 
+#### Farmer's problem
+With the planting season steadily approaching, your farmer friend presents you with the following problem.
 
-Pokud s `pulp`em také vyřešíte nějaký problém, tak budu moc rád za email/pull request, ať tu máme příkladů co možná nejvíce 🙂.
+You have \(3\) tons of potato seeds and \(4\) tons of carrot seeds.
+To grow the crops efficiently, you also have \(5\) tons of fertilizer, which has to be used when planting in a \(1:1\) ratio (i.e. \(1\) kilogram of potatoes or carrots requires \(1\) kilogram of fertilizer).
+The profit is \(1.2\$/\mathrm{kg}\) for potato seeds and \(1.7\$/\mathrm{kg}\) for carrot seeds.
 
-### Praktické příklady
-
-#### Problém pekárny
-Pekárna má k dispozici \(5000\ \mathrm{g}\) mouky, \(125\) vajec a \(500\ \mathrm{g}\) soli.
-Může z nich péct chleby, housky, bagety a koblihy s tím, že každé pečivo vyžaduje jiné množství surovin; konkrétně
-
-|       | chléb               | houska              | bageta              | kobliha             |
-| ---   | --:                 | --:                 | --:                 | --:                 |
-| mouka | \(500\ \mathrm{g}\) | \(150\ \mathrm{g}\) | \(230\ \mathrm{g}\) | \(100\ \mathrm{g}\) |
-| vejce | \(10\ \mathrm{ks}\) | \(2\ \mathrm{ks}\)  | \(7\ \mathrm{ks}\)  | \(1\ \mathrm{ks}\)  |
-| sůl   | \(50\ \mathrm{g}\)  | \(10\ \mathrm{g}\)  | \(15\ \mathrm{g}\)  |                     |
-
-Za jeden chleba získá pekárna \(20\ \mathrm{Kč}\), za housku \(2\ \mathrm{Kč}\), za bagetu \(10\ \mathrm{Kč}\) a za koblihu \(7\ \mathrm{Kč}\).
-
-Pekárna se snaží vydělat co nejvíce -- kolik chlebů, housek, baget a koblih má ze surovin upéci?
+How much potatoes and carrots should you plant to maximize your profit this season?
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary class="code-summary">Source code</summary>
 	<div markdown="1">
 ```py
-{% include linearni-programovani-v-pythonu/pekarna.py %}```
+{% include linear-programming-in-python/farmer.py %}```
 </div>
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary class="code-summary">Output</summary>
 	<div markdown="1">
 ```
-{% include linearni-programovani-v-pythonu/pekarna.out %}```
+{% include linear-programming-in-python/farmer.out %}```
 </div>
 </details>
 
-#### Problém batohu
-Pro \(n\) předmětů, kde \(i\)-tý má nějakou váhu \(v_i\) a cenu \(c_i\), máme batoh s danou nosností \(V\) a my se do něj snažíme naskládat předměty tak, abychom maximalizovali celkovou cenu předmětů v batohu.
+#### [Knapsack problem](https://en.wikipedia.org/wiki/Knapsack_problem)
+Given \(n\) items, each with weight \(w_i\) and price \(p_i\), our task is to maximize the price of the items we take into our backpack without exceeding its carry weight \(M\).
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary class="code-summary">Source code</summary>
 	<div markdown="1">
 ```py
-{% include linearni-programovani-v-pythonu/batoh.py %}```
+{% include linear-programming-in-python/knapsack.py %}```
 </div>
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary class="code-summary">Output</summary>
 	<div markdown="1">
 ```
-{% include linearni-programovani-v-pythonu/batoh.out %}```
+{% include linear-programming-in-python/knapsack.out %}```
 </div>
 </details>
 
-#### Prokládání přímkou
+#### [Graph coloring](https://en.wikipedia.org/wiki/Graph_coloring)
 
-Máme-li \(n\) bodů \((x_1 , y_1 ), \ldots, (x_n , y_n )\) v rovině, tak najděte přímku \(\left\{x \in \mathbb{R}: y = ax + b\right\}\), která minimalizuje součet vertikálních vzdáleností bodů od výsledné přímky. Vertikální vzdálenost je vzdálenost měřena pouze na ose \(y\). Pro jednoduchost předpokládejte, že výsledná přímka není kolmá na osu \(x\).
+We want to find a minimal \(k\) such that a graph \(G\) is [vertex \(k\)-colorable](https://en.wikipedia.org/wiki/Graph_coloring).
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary class="code-summary">Source code</summary>
 	<div markdown="1">
 ```py
-{% include linearni-programovani-v-pythonu/prokladani.py %}```
+{% include linear-programming-in-python/vertex-coloring.py %}```
 </div>
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary class="code-summary">Output</summary>
 	<div markdown="1">
 ```
-{% include linearni-programovani-v-pythonu/prokladani.out %}```
+{% include linear-programming-in-python/vertex-coloring.out %}```
 </div>
 </details>
 
-#### Vrcholová obarvitelnost grafu
-
-Nalezněte minimální \(k\) takové, že vrcholy grafu \(G\) lze korektně obarvit \(k\) barvami.
+#### [Traveling salesman problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem)
+Given a weighted oriented graph \(G\), we want to find the longest Hamiltonian cycle.
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary class="code-summary">Source code</summary>
 	<div markdown="1">
 ```py
-{% include linearni-programovani-v-pythonu/obarvitelnost.py %}```
+{% include linear-programming-in-python/tsp.py %}```
 </div>
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary class="code-summary">Output</summary>
 	<div markdown="1">
 ```
-{% include linearni-programovani-v-pythonu/obarvitelnost.out %}```
+{% include linear-programming-in-python/tsp.out %}```
 </div>
 </details>
 
-#### Hranová obarvitelnost grafu
-
-Nalezněte minimální \(k\) takové, že hrany grafu \(G\) lze korektně obarvit \(k\) barvami.
+#### [Bin packing](https://en.wikipedia.org/wiki/Bin_packing_problem)
+Given \(n\) items with weights \(w_1, \ldots, w_n\) and an arbitrary number of bins with maximum carry weight \(C\), determine the lowest number of bins that can contain all the items without exceeding their carry weight.
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary class="code-summary">Source code</summary>
 	<div markdown="1">
 ```py
-{% include linearni-programovani-v-pythonu/obarvitelnost2.py %}```
+{% include linear-programming-in-python/bin.py %}```
 </div>
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary class="code-summary">Output</summary>
 	<div markdown="1">
 ```
-{% include linearni-programovani-v-pythonu/obarvitelnost2.out %}```
+{% include linear-programming-in-python/bin.out %}```
 </div>
 </details>
 
-#### Problém obchodního cestujícího
-Pro daný ohodnocený neorientovaný graf \(G = (V, E, f)\), kde \(f : E \mapsto \mathbb{R}^+_0\), chceme najít Hamiltonovskou kružnici v \(G\) s nejmenším ohodnocením.
+#### [Partition problem](https://en.wikipedia.org/wiki/Partition_problem)
+Given \(n\) items with weights \(w_1, \ldots, w_n\), split them into two parts such that the difference in their weights is minimized.
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary class="code-summary">Source code</summary>
 	<div markdown="1">
 ```py
-{% include linearni-programovani-v-pythonu/tsp.py %}```
+{% include linear-programming-in-python/partition.py %}```
 </div>
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary class="code-summary">Output</summary>
 	<div markdown="1">
 ```
-{% include linearni-programovani-v-pythonu/tsp.out %}```
+{% include linear-programming-in-python/partition.out %}```
 </div>
 </details>
 
-#### Bin packing
-Zjistěte, do kolika nejméně krabic lze rozdělit množinu \(n\) předmětů s vahami \(w_1, \ldots, w_i\). Do každého koše lze umístit předměty o celkové váze nejvýše \(C\).
+#### [Maximum independent set](https://en.wikipedia.org/wiki/Independent_set_(graph_theory))
+Given a graph \(G\), find the largest set of vertices that cover all edges.
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary class="code-summary">Source code</summary>
 	<div markdown="1">
 ```py
-{% include linearni-programovani-v-pythonu/bin.py %}```
+{% include linear-programming-in-python/max-independent-set.py %}```
 </div>
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary class="code-summary">Output</summary>
 	<div markdown="1">
 ```
-{% include linearni-programovani-v-pythonu/bin.out %}```
+{% include linear-programming-in-python/max-independent-set.out %}```
 </div>
 </details>
 
-#### Partition problem
-Zjistěte, zda množinu \(n\) předmětů s vahami \(w_1, \ldots, w_i\) jde rozdělit na dvě části tak, aby součty vah těchto částí byly stejné.
+#### [Minimum vertex cover](https://en.wikipedia.org/wiki/Vertex_cover)
+Given a graph \(G\), find the largest set of vertices that cover all edges.
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary class="code-summary">Source code</summary>
 	<div markdown="1">
 ```py
-{% include linearni-programovani-v-pythonu/partition.py %}```
+{% include linear-programming-in-python/min-vertex-cover.py %}```
 </div>
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary class="code-summary">Output</summary>
 	<div markdown="1">
 ```
-{% include linearni-programovani-v-pythonu/partition.out %}```
-</div>
-</details>
-
-#### Pekárny a obchody (a)
-V Kocourkově je \(n\) pekáren a \(m\) obchodů. Každý den \(i\)-tá pekárna upeče \(p_i \in \mathbb{N}\) rohlíků \(n\) a \(j\)-tý obchod prodá \(o_j \in \mathbb{N}\) rohlíků, kde \(\sum_{i = 1}^{n} p_i = \sum_{j = 1}^{m} o_j\). Převoz jednoho rohlíku z \(i\)-té pekárny do \(j\)-tého obchodu stojí \(c_{ij}\) korun.
-
-<details>
-	<summary class="code-summary">Zdrojový kód</summary>
-	<div markdown="1">
-```py
-{% include linearni-programovani-v-pythonu/ukol01-a.py %}```
-</div>
-</details>
-
-<details>
-	<summary class="code-summary">Výpis</summary>
-	<div markdown="1">
-```
-{% include linearni-programovani-v-pythonu/ukol01-a.out %}```
-</div>
-</details>
-
-#### Pekárny a obchody (b)
-Praxe v Kocourkově ukázala, že když \(i\)-tá pekárna zásobuje \(j\)-tý obchod, tak musí pro tuto trasu zajistit logistiku, která je stojí \(l_{ij}\). Logistiku \(l_{ij} \ge 0\) je nutné platit pouze tehdy, když \(i\)-tá pekárna zásobuje \(j\)-tý obchod nenulovým počtem rohlíků, a její cena nezávisí na počtu převážených rohlíků. I nadále je nutné platit přepravné \(c_{ij}\). Zformulujte příslušnou úlohu LP.
-
-<details>
-	<summary class="code-summary">Zdrojový kód</summary>
-	<div markdown="1">
-```py
-{% include linearni-programovani-v-pythonu/ukol01-b.py %}```
-</div>
-</details>
-
-<details>
-	<summary class="code-summary">Výpis</summary>
-	<div markdown="1">
-```
-{% include linearni-programovani-v-pythonu/ukol01-b.out %}```
-</div>
-</details>
-
-#### Největší nezávislá množina
-Najděte co možná největší množinu vrcholů grafu takovou, že žádné dva nesdílejí hranu.
-
-<details>
-	<summary class="code-summary">Zdrojový kód</summary>
-	<div markdown="1">
-```py
-{% include linearni-programovani-v-pythonu/max-independent-set.py %}```
-</div>
-</details>
-
-<details>
-	<summary class="code-summary">Výpis</summary>
-	<div markdown="1">
-```
-{% include linearni-programovani-v-pythonu/max-independent-set.out %}```
-</div>
-</details>
-
-#### Nejmenší vrcholové pokrytí
-Najděte co možná nejmenší množinu vrcholů grafu takovou, že všechny hrany grafu obsahují alespoň jeden vrchol z této množiny.
-
-<details>
-	<summary class="code-summary">Zdrojový kód</summary>
-	<div markdown="1">
-```py
-{% include linearni-programovani-v-pythonu/min-vertex-cover.py %}```
-</div>
-</details>
-
-<details>
-	<summary class="code-summary">Výpis</summary>
-	<div markdown="1">
-```
-{% include linearni-programovani-v-pythonu/min-vertex-cover.out %}```
+{% include linear-programming-in-python/min-vertex-cover.out %}```
 </div>
 </details>
 
 
-### Zdroje/materiály
+### Resources
+Here are all the resources I used for data and documentation:
 - [Hands-On Linear Programming: Optimization With Python](https://realpython.com/linear-programming-python/)
-- [Dokumentace k PuLPu](https://coin-or.github.io/pulp/)
-- [Datasety obecně](https://people.sc.fsu.edu/~jburkardt/datasets/)
-- [Datasety k TSP](https://people.sc.fsu.edu/~jburkardt/datasets/tsp/tsp.html)
-- [Datasety k batohu](https://people.sc.fsu.edu/~jburkardt/datasets/knapsack_01/knapsack_01.html)
-- [Datasety k partition problému](https://people.sc.fsu.edu/~jburkardt/datasets/partition_problem/partition_problem.html)
+- [PuLP documentation](https://coin-or.github.io/pulp/)
+- [Dataset for TSP](https://people.sc.fsu.edu/~jburkardt/datasets/tsp/tsp.html)
+- [Dataset for knapsack](https://people.sc.fsu.edu/~jburkardt/datasets/knapsack_01/knapsack_01.html)
+- [Dataset for /p](https://people.sc.fsu.edu/~jburkardt/datasets/partition_problem/partition_problem.html)

@@ -1,8 +1,8 @@
 ---
 language: cz
 title: Lineární programování v Pythonu
+end: "<a href='/youtube/linear-programming-in-python'>English version of the article</a>"
 ---
-
 
 - .
 {:toc}
