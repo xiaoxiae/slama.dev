@@ -38,7 +38,8 @@ _Note that I've read each one as an Audiobook, either from Audible or using othe
 - **The Rithmatist** [[Wikipedia](https://en.wikipedia.org/wiki/The_Rithmatist)] -- an excellent young adult fantasy novel. Although the target audience is teenagers (which is reflected mostly in character behavior and development), I still loved discovering yet another unique magic system that Sanderson created.
 
 - **Secret Novels** [[context video](https://www.youtube.com/watch?v=6a-k6eaT-jQ)]
-	1. **Tress of the Emerald Sea** [[Wikipedia](https://en.wikipedia.org/wiki/Tress_of_the_Emerald_Sea)] -- a fascinating fairtale-like novel from the Cosmere
+	1. **Tress of the Emerald Sea** [[Wikipedia](https://en.wikipedia.org/wiki/Tress_of_the_Emerald_Sea)] -- a fascinating fairtale-like novel from the Cosmere.
+	2. **The Frugal Wizard's Handbook for Surviving Medieval England** -- a fun novel about multiverse traveling and... marketing?
 
 - **The Reckoners** [[Wikipedia](https://en.wikipedia.org/wiki/The_Reckoners)] -- a set of three novels set in a post-apocalyptic world where random people are transformed into superhumans with various kinds of abilities. The atmosphere is great, but the writing is targeted at a younger audience, which is noticeable.
 	1. **Steelheart**
