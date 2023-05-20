@@ -2062,3 +2062,17 @@
   red:
     new: 3
   wall: Boulderhaus
+2023-05-20:
+  guide: https://tetzank.github.io/riesenstein/boulders/
+  image: riesenstein.webp
+  location: <a href='https://goo.gl/maps/Mn18C1s2D1HHZXpx8'>Riesenstein</a>, Germany
+  note: "Did more work on the Crazy Fins variant, reaching the second to last hold\
+    \ multiple times, but couldn't quite make it. Also found out that Reason Spa\xDF\
+    \ I did last time starts lower, so I sent it properly today."
+  routes:
+  - - "Riesenspa\xDF"
+    - - 7b
+  - - Gerdina
+    - - 7a
+  - - "Reason Spa\xDF"
+    - - 7b+
