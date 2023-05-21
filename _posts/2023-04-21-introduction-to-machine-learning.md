@@ -529,10 +529,10 @@ The four cases that can occur are as follows:
 1. one-against-rest classification
 	- for \(k = 1, \ldots, C\), define \(\beta_k, b_k \implies\) score \(s_k = X_i \beta_k + b_k\)
 	- train by treating \(Y_i^* = k\) as "class + 1" and \(Y_i^* \neq k\) as "class - 1" (rest)
-	- make them comparable by normalization: \(\hat{\beta}_k = \frac{\beta_k}{||\beta_k}||\) (same for \(b\))
-	- classify according to biggest score, or "don't know" if all scores are bad: \[\hat{Y}_i = \begin{cases} \text{"unknown"} & s_k < \varepsilon\ \forall k \\ \argmax_k s_k \end{cases}\]
+	- make them comparable by normalization: \(\hat{\beta}_k = \frac{\beta_k}{\|\beta_k\|}\) (same for \(b\))
+	- classify according to biggest score, or "don't know" if all scores are bad: \[\hat{Y}_i = \begin{cases} \text{"unknown"} & s_k < \varepsilon,\ \forall k \\ \argmax_k s_k & \text{otherwise}\end{cases}\]
 2. all-pairs: train a linear model for all \(k, k'\) (\(\approx n^2\))
-	- \(s_{k, k'} = X_i \beta_{k, k'} + b_{k, k'} \forall k \neq k'\)
+	- \(s_{k, k'} = X_i \beta_{k, k'} + b_{k, k'},\ \forall k \neq k'\)
 	- if \(s_{k, k'} > 0\) then one vote for class \(k\), if \(s_{k, k'} < 0\) then one vote for \(k'\)
 	- \(\hat{Y}_i\) is the label with most votes (or "unknown" for ties)
 3. define posterior as "softmax-function" scores as in (1): \[\boxed{p(\hat Y_i = k \mid X_i) = \frac{\exp(s_k)}{\sum_{k' = 1}^{C} \exp(s_k')} = \mathrm{softmax}(s_i, s_k)}\]
@@ -547,9 +547,9 @@ The four cases that can occur are as follows:
 1. measure more features and _increase dimension_
 	- higher dimensional spaces tend to be more linearly separable
 	- for \(N = D + 1\), it's always separable (but maybe not useful)
-	- of \(D > N\), use _sparse_ learning methods
+	- for \(D > N\), use _sparse_ learning methods
 2. use non-linear classifier
-	- QDA, which is a linear version of LDA
+	- QDA, which is a non-linear version of LDA
 	- Kernel-SVM (non-linear SVM, less popular but cool math)
 	- Decision trees/forests (recursively subdivide \(X\), we'll discuss them later)
 3. non-linearly transform features \(\tilde{X}_i = \varphi(X_i)\)
@@ -562,7 +562,7 @@ The four cases that can occur are as follows:
 ### Neural networks
 - **definition:** inputs \(Z_{\mathrm{in}}\) eg. (\(Z_{\mathrm{in}} = X\) or \(Z_{\mathrm{in}} = \) output of other neurons)
 - **computation (activation):** \(Z_{\mathrm{out}} = \varphi(Z_{\mathrm{in}} \beta + b)\) (linear function plugged into non-linear one)
-	- **pre-activation:** \(Z' = Z_{\mathrm{in}} \beta + b\)
+	- **pre-activation:** \(\tilde{Z} = Z_{\mathrm{in}} \beta + b\)
 	- popular activation functions: \(\varphi\)
 		- **identity:** used as output of regression networks
 		- **classic choices:** \(\sigma\) or \(\tanh\), almost the same when scaled / offset
@@ -584,7 +584,7 @@ A **neural network** is a collection of neurons in parallel layers
 \end{aligned}\]
 
 ![Network example.](/assets/introduction-to-machine-learning/network.svg)
-- (1) is the first, (2-5) are hidden layers, (6) is the output
+- (1) is the input, (2-5) are hidden layers, (6) is the output
 
 Previously, NN were believed to not be a good idea, but
 - ~2005: GPUs were found out to compute them well
@@ -619,7 +619,7 @@ Previously, NN were believed to not be a good idea, but
 	- for **regression**, we had identity activation function so \[z_L = \varphi_L(\tilde z_L) = \tilde z_L \implies \tilde{\delta}_L = \tilde z_L - Y_i^*\]
 	- for **classification**, this is a bit more complicated but ends up being \[\boxed{\tilde{\delta}_L = \begin{cases} z_{Lk} - 1 & k = Y_i^* \\ z_{Lk} & \text{otherwise} \end{cases}}\]
 
-3. for every \(l = 1, \ldots, L\), let \(\tilde \delta_l = \frac{\partial \mathcal{Loss}}{\partial \tilde z_l}\); recusion starts with \(\tilde \delta_L\) (previous step)
+3. for every \(l = 1, \ldots, L\), let \(\tilde \delta_l = \frac{\partial \mathcal{Loss}}{\partial \tilde z_l}\); recursion starts with \(\tilde \delta_L\) (previous step)
 	- use chain rule (and simplify/compute using previous layers): \[\begin{aligned}
 		\boxed{\tilde \delta_{l - 1} = \frac{\partial \mathcal{Loss}}{\partial \tilde z_{l - 1}}} &= \frac{\partial \mathcal{Loss}}{\partial \tilde z_l} \cdot \frac{\partial z_l}{\partial z_{l - 1}} \cdot \frac{\partial z_{l - 1}}{\partial \tilde z_{l - 1}} \\
 		&= \boxed{\tilde \delta_l \cdot B_l^T \cdot \mathrm{diag}(\varphi'(\tilde z_{l - 1}))}
@@ -636,6 +636,6 @@ Previously, NN were believed to not be a good idea, but
 	2. backward pass: \(\Delta B_l = 0\), for \(i\) in batch
 		- compute \(\tilde \delta_L\)
 		- for \(l = L, \ldots, 1\), compute
-			- \(\Delta B_l += \tilde z_{l - 1}^T \cdot \tilde \delta_l\)
+			- \(\Delta B_l \mathrel{+}= \tilde z_{l - 1}^T \cdot \tilde \delta_l\)
 			- \(\tilde \delta_{l - 1} = \tilde \delta_l \cdot \left(B_{l}^{(t - 1)}\right)^T \cdot \mathrm{diag}\left(\varphi'_{l - 1}\left(\tilde z_{l - 1}\right)\right)\)
 	3. update: \(B_l^{(t)} = B_l^{(t - 1)} - \tau \Delta B_l\)
