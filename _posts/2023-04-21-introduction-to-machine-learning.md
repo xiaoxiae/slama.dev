@@ -14,9 +14,11 @@ _Note that the notes are a work in progress!_
 
 _Also, special thanks to Lucia Zhang, some of the notes are shamelessly stolen from her._
 
-### Machine Learning Essentials
+### Resources
+- [TensorFlow playground](http://playground.tensorflow.org/) -- a really cool visualization of resigning and training a neural network for classification/regression and a number of standard parameters (activation functions, training rates, etc...)
 
-#### Introduction
+
+### Introduction
 
 Setting:
 - **quantities \(Y\)** that we would like to know but can't easily measure
@@ -72,7 +74,7 @@ Setting:
 	- disagreement about what is relevant (desirable)
 - **handling uncertainty is central challenge of AI and ML**
 
-#### Notation
+### Notation
 
 - **features** vector \(X_i\) for each instance \(i \in 1, \ldots, N\)
 - **feature matrix** \(X\) (rows are instances, columns are features \(j \in 1, \ldots, D\))
@@ -104,7 +106,7 @@ We usually (when Programming) want a **float matrix:** drop names, discretize la
 - **training set** \(\mathrm{TS} = \left\{(X_i, Y_i)\right\}_{i = 1}^N\) -- **supervised learning**
 	- \(Y_i\) is the known response for instance \(i\)
 
-##### Types of learning approaches
+#### Types of learning approaches
 1. **supervised learning** -- **true responses** are known in \(\mathrm{TS} = \left\{(X_i, Y_i)\right\}_{i = 1}^N\)
 2. **weakly supervised learning**
 	1. we have _some_ information (know \(Y_i\) for some instances)
@@ -560,9 +562,9 @@ The four cases that can occur are as follows:
 	- _solution:_ learn \(\varphi\) (multi-layer neural networks)
 
 ### Neural networks
-- **definition:** inputs \(Z_{\mathrm{in}}\) eg. (\(Z_{\mathrm{in}} = X\) or \(Z_{\mathrm{in}} = \) output of other neurons)
-- **computation (activation):** \(Z_{\mathrm{out}} = \varphi(Z_{\mathrm{in}} \beta + b)\) (linear function plugged into non-linear one)
-	- **pre-activation:** \(\tilde{Z} = Z_{\mathrm{in}} \beta + b\)
+- **definition:** inputs \(z_{\mathrm{in}}\) eg. (\(z_{\mathrm{in}} = X\) or \(z_{\mathrm{in}} = \) output of other neurons)
+- **computation (activation):** \(z_{\mathrm{out}} = \varphi(z_{\mathrm{in}} \beta + b)\) (linear function plugged into non-linear one)
+	- **pre-activation:** \(\tilde{z} = z_{\mathrm{in}} \beta + b\)
 	- popular activation functions: \(\varphi\)
 		- **identity:** used as output of regression networks
 		- **classic choices:** \(\sigma\) or \(\tanh\), almost the same when scaled / offset
@@ -606,7 +608,7 @@ Previously, NN were believed to not be a good idea, but
 2. finding the optimal network is NP-hard \(\implies\) we need approximation algorithms
 
 **Training by backpropagation (chain rule)**
-- idea: train \(B_1, B_L\) by gradient descent \(\implies\) need \(\frac{\partial \mathcal{Loss}}{\partial B_l}\)
+- idea: train \(B_1, \ldots, B_L\) by gradient descent \(\implies\) need \(\frac{\partial \mathcal{Loss}}{\partial B_l}\)
 - update is the same as previous GD: \[\boxed{B_l^{(t)} = B_l^{(t - 1)} - \tau \cdot \frac{\partial \mathcal{L}}{\partial B_l^{(t - 1)}}}\]
 - to compute the derivative, we'll compute the chain rule from last layer backwards
 
