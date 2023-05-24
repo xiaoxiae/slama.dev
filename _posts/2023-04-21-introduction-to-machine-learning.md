@@ -516,7 +516,7 @@ The four cases that can occur are as follows:
 
 **SVM:** \[\mathrm{ReLU}(1 - Y_i^* (X_i \beta + b)) \qquad \lambda > 0\]
 
-**LDA:** \[(Y_i^* - (X_i \beta + b)) \qquad \lambda = 0\ (\text{fit } \mu, \Sigma),\ \lambda > 0\ (\text{fit objective})\]
+**LDA:** \[(Y_i^* - (X_i \beta + b))^2 \qquad \lambda = 0\ (\text{fit } \mu, \Sigma),\ \lambda > 0\ (\text{fit objective})\]
 
 **LR:** \[\mathrm{softplus}(-Y_i^* (X_i \beta + b)) \qquad \lambda = 0\ (\text{or >})\]
 
@@ -641,3 +641,57 @@ Previously, NN were believed to not be a good idea, but
 			- \(\Delta B_l \mathrel{+}= \tilde z_{l - 1}^T \cdot \tilde \delta_l\)
 			- \(\tilde \delta_{l - 1} = \tilde \delta_l \cdot \left(B_{l}^{(t - 1)}\right)^T \cdot \mathrm{diag}\left(\varphi'_{l - 1}\left(\tilde z_{l - 1}\right)\right)\)
 	3. update: \(B_l^{(t)} = B_l^{(t - 1)} - \tau \Delta B_l\)
+
+#### Convolutional Neural Networks (CNNs)
+- previously, we had **fully connected** networks
+	- work well for ~1000-dimensional data (can handle MNIST)
+- CNNs are typically used for images, neurons are **sparsely connected**
+	- every CNN can be implemented as a (much larger) fully connected network
+	- neurons are only connected based on its _top_ (see below)
+- idea: objects in images **don't change when at different location**
+	- classification should be _translation invariant_
+	- the learned features should be _translation equivariant_ 
+		- when dog moves, features move in the same way
+	- these are two of the defining ideas of a **convolution**
+
+{% math ENdefinition "filter" %}consumes an image and outputs another "filtered" image{% endmath %}
+\[\tilde f(t) = \mathrm{Filter\left[f(t)\right]}\]
+
+For our filter, we want **translation equivariance** \[\tilde f(t) = \mathrm{Filter}\left[f(t)\right] \implies \tilde f(t + t_0) = \mathrm{Filter}\left[f(t + t_0)\right]\]
+and **linearity** \[\tilde f(t), \tilde g(t) \implies \alpha_1 \tilde f(t) + \alpha_2 \tilde g(t) = \mathrm{Filter}\left[\alpha_1 f(t) + \alpha_2 g(t)\right]\]
+
+{% math ENtheorem %}any such filter can be written as a convolution integral, i.e. \[\tilde f(t) = \int_{-\infty}^{\infty} f(t') \cdot \underbrace{g(t - t')}_{\text{filter kernel}} dt' = (f \otimes g) (t)\]{% endmath %}
+
+Substituting \(t'' = t - t'\), we see that the operation is **commutative:** \[\int_{-\infty}^{\infty} f(t - t'') \cdot g(t'') dt'' = (g \otimes f)(t)\]
+
+Since we don't have infinite images, \(t = \ldots, -2, -1, 0, 1, 2, \ldots\), the integral becomes a sum: \[\boxed{\tilde f_t = \sum_{-\infty}^{\infty} f_{t'} \cdot g_{t - t'}}\]
+
+Trick: if we want to find \(g(t)\) of a black-box filter, take \(f(t) = \delta(t)\) ([Dirac delta function](https://en.wikipedia.org/wiki/Dirac_delta_function)), then \[\tilde f(t) = \int_{-\infty}^{\infty} \delta(t') \cdot g(t - t') dt' = g(t)\]
+
+Usually, \(g(t)\) has a finite support, i.e. \(g(t) \equiv 0\) if \(|t| > T\), then we get \[\tilde f(t) = \sum_{t' = -T}^{T} f_{t - t'} g_{t'}\]
+- \(g(t)\) has \(2T + 1\) non-zero elements so it's called the \("2T + 1"\)-tap filter
+	- \(T = 1 \implies\) 3-tap filter (in 2D \(3 \times 3\))
+	- \(T = 2 \implies\) 5-tap filter (in 2D \(5 \times 5\))
+
+Why is this useful? -- "matched filter principle"
+- \(\tilde f(t)\) is big if \(f(t)\) around \(t\) is similar ("matched") to \(g(0)\)
+
+![Matched filter example.](/assets/introduction-to-machine-learning/matched-filter.png)
+
+If we repeat this in multiple layers and learn the \(g\)s, we can do very powerful things.
+
+Fun fact: in practice, CNNs do _not_ implement convolution but instead **correlation** \[\tilde f(t) = \int_{\infty}^{\infty} f(t + t') \cdot g(t') dt'\]
+for maths reasons (the maths requires the mirrored convolution, which is correlation).
+
+**To build a CNN (3-top):**
+1. each neuron only connects to 3 neurons of previous layer
+	- image boundaries have to be resolved:
+		- _cut off the offending neurons_
+		- _zero padding_
+		- _reflect boundaries_
+2. weights are shared in each layer based on if the connection is left/middle/right
+
+**Example:** LeNet architecture (Yann LeCun, 1998, 7 layers)
+- first CNN to get MNIST accuracy > 99%
+
+![LeNet network diagram.](/assets/introduction-to-machine-learning/lenet.png)
