@@ -675,6 +675,7 @@ Usually, \(g(t)\) has a finite support, i.e. \(g(t) \equiv 0\) if \(|t| > T\), t
 
 Why is this useful? -- "matched filter principle"
 - \(\tilde f(t)\) is big if \(f(t)\) around \(t\) is similar ("matched") to \(g(0)\)
+- the kernel of the filter encodes the pattern of interest (matches similar features)
 
 ![Matched filter example.](/assets/introduction-to-machine-learning/matched-filter.png)
 
@@ -690,8 +691,69 @@ for maths reasons (the maths requires the mirrored convolution, which is correla
 		- _zero padding_
 		- _reflect boundaries_
 2. weights are shared in each layer based on if the connection is left/middle/right
+	- high response for the given pixel is a match
 
 **Example:** LeNet architecture (Yann LeCun, 1998, 7 layers)
 - first CNN to get MNIST accuracy > 99%
+	- ~60000 images, 10 categories
 
 ![LeNet network diagram.](/assets/introduction-to-machine-learning/lenet.png)
+
+Comparing a CNN to a fully-connected (FC) network, the weight matrices look like this:
+
+\[B_{\text{FC}} = \begin{pmatrix}
+	\beta_{1,1} & \beta_{1,2} & \ldots & \beta_{1,6} \\
+	\beta_{2,1} & \beta_{2,2} & \ldots & \beta_{2,6} \\
+	\vdots & \vdots & \ddots & \vdots \\
+	\beta_{6,1} & \beta_{6,2} & \ldots & \beta_{1,6} \\
+\end{pmatrix} \qquad B_{\text{CNN}} = \begin{pmatrix}
+	w_2 & w_1 & 0 & 0 & 0 & 0 \\
+	w_3 & w_2 & w_1 & 0 & 0 & 0 \\
+	0 & w_3 & w_2 & w_1 & 0 & 0 \\
+	0 & 0 & w_3 & w_2 & w_1 & 0 \\
+	0 & 0 & 0 & w_3 & w_2 & w_1 \\
+	0 & 0 & 0 & 0 & w_3 & w_2 \\
+\end{pmatrix}
+\]
+
+Here we handle the boundary with zeroes, but it can be done differently:
+- for reflected, the leftmost \(w_3\) would be \(w_1 + w_3\) (along with the rightmost \(w_1\))
+- for periodic, the rightmost top cell would not be \(0\) but \(w_3\) instead (+ some others)
+
+Here we've seen one of the major operations, **convolution**, the other being **pooling:**
+- reduces the image resolution, done by merging several input pixels into one output pixel
+- typically reduces \(2 \times 2 \rightarrow 1\)
+- not sliding anymore, _move by the window size_ instead (running window)
+- usually either **average pooling** or **max pooling**
+
+CNNs usually alternate between **convolution**, **non-linear layers** (ReLU), **pooling**, **dropout layers**, **batch normalization layers** and (towards the end of the network), **fully-connected layers** and **softmax layers**.
+
+#### Receptive field of a neuron
+- set of input pixels (from original image) that influence the value of a given neuron
+- i.e. **maximum size of detectable patterns**
+- RF of:
+	- **one convolutional layer** is the **size of the kernel**
+	- **sequence of convolutional layers** is **additive** (wrt. kernel radius)
+	- **pooling** is **multiplicative** (wrt. pooling size)
+
+#### Some history
+- ImageNet (2008) ~14 mil. images, more than 1000 classes (224x224x3)
+	- 1st public challenge (2010)
+		- predict 5 guesses for the object class
+		- correct if true label is within top 5 ("top-5 acc.")
+		- _winner:_ non-linear SVM with hand-crafted features (28% top-5 error)
+	- 2nd public challenge (2012)
+		- _winner:_ CNN AlexNet (15.3% top-5 error)
+	- 3rd public challenge (2014)
+		- _winner:_ GoogLeNet -- inception architecture (6.7% top-5 error)
+		- _runner-up:_ VGG -- upscaling of LeNet (7.3% top-5 error)
+			- clean and popular (compared to winner, which was quite hacky)
+			- used as a comparison metric for things like Midjourney/DALL-E (FID score)
+			- making VGG bigger did not work (vanishing gradient problem) -- magnitude of gradient at the prompt decreases with the number of layers and the network doesn't converge
+	- 2015: Residual Network (ResNets)
+		- instead of learning a function per layer, learn weights wrt. the input layer
+		- also skip connections as identity mappings, preventing vanishing gradients
+		- reaches superhuman performance (humans 4/5%, ResNet 3.6%)
+		- for top-1, we they had 25% error (nowadays ~10%)
+	- nowadays, use two tricks:
+		- train on _much larger datasets_ (up to 3B images)
