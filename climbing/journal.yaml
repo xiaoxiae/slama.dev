@@ -2091,3 +2091,17 @@
   red:
     new: 4
   wall: Boulderhaus
+2023-05-27:
+  guide: https://tetzank.github.io/riesenstein/boulders/
+  image: riesenstein.webp
+  location: <a href='https://goo.gl/maps/Mn18C1s2D1HHZXpx8'>Riesenstein</a>, Germany
+  note: Managed to do Crazy Fins quite handily, getting more comfortable with the
+    bottom and finding a better beta for the top. Also tried Perkeo and, I've got
+    to say, that will be quite a challenge. Philosophenweg first maybe?
+  routes:
+  - - "Riesenspa\xDF"
+    - - 7b
+  - - Gerdina
+    - - 7a
+  - - Gerdina Links (Crazy Fins)
+    - - 7b
