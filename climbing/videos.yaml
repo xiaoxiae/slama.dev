@@ -143,6 +143,7 @@ boulderhaus-black-2023-05-07-goudfjda.mp4:
 boulderhaus-black-2023-05-09-nrjfoxel.mp4:
   color: black
   date: 2023-05-09
+  sotm: true
   wall: Boulderhaus
 boulderhaus-black-2023-05-09-vqxgjtwm.mp4:
   color: black
@@ -722,6 +723,14 @@ boulderhaus-red-2023-05-17-ttcdciaw.mp4:
 boulderhaus-red-2023-05-17-vemxiget.mp4:
   color: red
   date: 2023-05-17
+  wall: Boulderhaus
+boulderhaus-red-2023-05-29-pnjdtkhd.mp4:
+  color: red
+  date: 2023-05-29
+  wall: Boulderhaus
+boulderhaus-red-2023-05-29-vwadeghd.mp4:
+  color: red
+  date: 2023-05-29
   wall: Boulderhaus
 kilter-6c-2022-10-15-ecryibhx.mp4:
   attempts: 1
