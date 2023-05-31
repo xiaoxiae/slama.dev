@@ -523,3 +523,43 @@
     - '2'
     - null
   name: 2023-04-03-tainted-lilith-lpguczbp.mp4
+- beaten: The Mother
+  character: Cain
+  date: 2023-04-10 12:10:00.262516
+  input:
+  - - /aux/Recording/2023-04-10 11-24-33.mkv
+    - null
+    - null
+  name: 2023-04-10-cain-vqworckv.mp4
+- beaten: The Mother
+  character: Tainted Lilith
+  date: 2023-04-10 13:23:06.211320
+  input:
+  - - /aux/Recording/2023-04-10 12-51-40.mkv
+    - null
+    - null
+  name: 2023-04-10-tainted-lilith-ltqmekll.mp4
+- beaten: Boss Rush, Hush, Delirium
+  character: Azazel
+  date: 2023-04-10 19:13:07.842112
+  input:
+  - - /aux/Recording/2023-04-10 18-28-22.mkv
+    - null
+    - null
+  name: 2023-04-10-azazel-nduevbxk.mp4
+- beaten: The Beast
+  character: Eve
+  date: 2023-04-11 14:57:11.353102
+  input:
+  - - /aux/Recording/2023-04-11 14-01-58.mkv
+    - null
+    - null
+  name: 2023-04-11-eve-fqyexric.mp4
+- beaten: The Lamb, Mega Satan
+  character: Jacob & Esau
+  date: 2023-04-11 14:57:11.353102
+  input:
+  - - /aux/Recording/2023-04-11 14-01-58.mkv
+    - '38:53.217'
+    - null
+  name: 2023-04-11-jacob-and-esau-ywaiwjwa.mp4
