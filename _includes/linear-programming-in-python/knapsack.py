@@ -33,11 +33,10 @@ for name, weights, prices, carry_weight in data:
     variables = [LpVariable(name=f"x_{i}", cat=LpBinary) for i in range(n)]
 
     # inequalities - don't exceed the carry weight
-    # lpSum is used since we're summing a pulp expression, not regular numbers
-    model += lpSum([weights[i] * variables[i] for i in range(n)]) <= carry_weight
+    model += lpDot(weights, variables) <= carry_weight
 
     # objective function - price of the items we take
-    model += lpSum([prices[i] * variables[i] for i in range(n)])
+    model += lpDot(prices, variables)
 
     status = model.solve(PULP_CBC_CMD(msg=False))
 
