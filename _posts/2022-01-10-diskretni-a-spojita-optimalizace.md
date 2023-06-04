@@ -452,7 +452,7 @@ V grafu jsou to kružnice.
 
 {% math definition: "největší párování" %} pokud \(|M|\) je maximální.{% endmath %}
 
-{% math observation %}je rozdíl mezi maximálním párováním (počítá se do inkluze) a největším (počítá se do velikosti), jelikož si hrany můžeme hladově vybrat špatně (viz lichá cesta).{% endmath %}
+{% math observation %}je rozdíl mezi **maximálním** párováním (počítá se do **inkluze**) a **největším** (počítá se do **velikosti**), jelikož si hrany můžeme hladově vybrat špatně (viz lichá cesta).{% endmath %}
 
 {% math definition "perfektní párování" %}pokud \(|M| = |V| / 2\){% endmath %}
 
@@ -464,7 +464,7 @@ V grafu jsou to kružnice.
 - je **zlepšující**, pokud má krajní vrcholy \(M\)-nepokryté
 {% endmath %}
 
-{% math theorem %}graf \(G = (V, E)\), \(M\) párování. Pak \(M\) je maximální \(\iff\) \(G\) nemá zlepšující cestu.{% endmath %}
+{% math theorem %}graf \(G = (V, E)\), \(M\) párování. Pak \(M\) je největší \(\iff\) \(G\) nemá zlepšující cestu.{% endmath %}
 
 {% math proof %}
 - \(\Leftarrow\) pokud má zlepšující cestu, tak párování můžeme zlepšit a není tedy maximální
