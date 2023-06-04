@@ -1011,7 +1011,7 @@
     new: 3
 2022-08-02:
   guide: brela.pdf
-  location: <a href='https://goo.gl/maps/jdzpbqzK97CS7Dyu8'>Brela</a>, Croatia
+  location: <a href='https://goo.gl/maps/jdzpbqzK97CS7Dyu8'>Brela</a>
   note: First day of my trip to Croatia, managed to redpoint a few easier routes that
     I've climbed before, but also top roped a difficult one which I'm pretty stoked
     about.
@@ -1030,7 +1030,7 @@
       - top rope
 2022-08-03:
   guide: brela.pdf
-  location: <a href='https://goo.gl/maps/jdzpbqzK97CS7Dyu8'>Brela</a>, Croatia
+  location: <a href='https://goo.gl/maps/jdzpbqzK97CS7Dyu8'>Brela</a>
   note: Second day, I was a little bummed to not onsight a 5c+, but the only difficult
     part of the route was very difficult to read, resulting in resting. The rest of
     the routes were quite easy.
@@ -1046,7 +1046,7 @@
       - onsight
 2022-08-04:
   guide: brela.pdf
-  location: <a href='https://goo.gl/maps/jdzpbqzK97CS7Dyu8'>Brela</a>, Croatia
+  location: <a href='https://goo.gl/maps/jdzpbqzK97CS7Dyu8'>Brela</a>
   note: Third day felt great, all the climbs felt good and were really beautiful.
     I also got revenge on the route I didn't onsight on the second day, it felt great.
   routes:
@@ -1064,7 +1064,7 @@
       - redpoint
 2022-08-06:
   guide: brela.pdf
-  location: <a href='https://goo.gl/maps/jdzpbqzK97CS7Dyu8'>Brela</a>, Croatia
+  location: <a href='https://goo.gl/maps/jdzpbqzK97CS7Dyu8'>Brela</a>
   note: The routes were pretty and relaxing, I'm quite happy :).
   routes:
   - - Dodo
@@ -1939,7 +1939,7 @@
 2023-04-19:
   guide: https://tetzank.github.io/riesenstein/boulders/
   image: riesenstein.webp
-  location: <a href='https://goo.gl/maps/Mn18C1s2D1HHZXpx8'>Riesenstein</a>, Germany
+  location: <a href='https://goo.gl/maps/Mn18C1s2D1HHZXpx8'>Riesenstein</a>
   note: Went outside. Was weird, no tapes and the holds weren't colored.
   routes:
   - - Workflow
@@ -2032,7 +2032,7 @@
 2023-05-13:
   guide: https://tetzank.github.io/riesenstein/boulders/
   image: riesenstein.webp
-  location: <a href='https://goo.gl/maps/Mn18C1s2D1HHZXpx8'>Riesenstein</a>, Germany
+  location: <a href='https://goo.gl/maps/Mn18C1s2D1HHZXpx8'>Riesenstein</a>
   note: Managed to send some fun boulders :). Started projecting Perkeo and the Crazy
     Fins (8A), it fits my style quite well I think.
   routes:
@@ -2065,7 +2065,7 @@
 2023-05-20:
   guide: https://tetzank.github.io/riesenstein/boulders/
   image: riesenstein.webp
-  location: <a href='https://goo.gl/maps/Mn18C1s2D1HHZXpx8'>Riesenstein</a>, Germany
+  location: <a href='https://goo.gl/maps/Mn18C1s2D1HHZXpx8'>Riesenstein</a>
   note: "Did more work on the Crazy Fins variant, reaching the second to last hold\
     \ multiple times, but couldn't quite make it. Also found out that Reason Spa\xDF\
     \ I did last time starts lower, so I sent it properly today."
@@ -2094,7 +2094,7 @@
 2023-05-27:
   guide: https://tetzank.github.io/riesenstein/boulders/
   image: riesenstein.webp
-  location: <a href='https://goo.gl/maps/Mn18C1s2D1HHZXpx8'>Riesenstein</a>, Germany
+  location: <a href='https://goo.gl/maps/Mn18C1s2D1HHZXpx8'>Riesenstein</a>
   note: Managed to do Crazy Fins quite handily, getting more comfortable with the
     bottom and finding a better beta for the top. Also tried Perkeo and, I've got
     to say, that will be quite a challenge. Philosophenweg first maybe?
@@ -2128,3 +2128,15 @@
   red:
     new: 3
   wall: Boulderhaus
+2023-06-04:
+  guide: https://tetzank.github.io/riesenstein/boulders/
+  image: riesenstein.webp
+  location: <a href='https://goo.gl/maps/Mn18C1s2D1HHZXpx8'>Riesenstein</a>
+  note: Not a whole lot of progress, mostly just got more comfortable with Gerdina
+    / Crazy Fins (since most harder routes have them as topouts). Next session will
+    be fully dedicated to Perkeo.
+  routes:
+  - - Gerdina
+    - - 7a
+  - - Gerdina Links (Crazy Fins)
+    - - 7b

@@ -22,7 +22,9 @@ CLIMBING_FOLDER = "../climbing/"
 CLIMBING_VIDEOS_FOLDER = os.path.join(CLIMBING_FOLDER, "videos")
 CLIMBING_INFO = os.path.join(CLIMBING_FOLDER, "videos.yaml")
 CLIMBING_JOURNAL = os.path.join(CLIMBING_FOLDER, "journal.yaml")
+
 OUTPUT_PATH = os.path.join("..", "_includes", "diary.md")
+LAST_CLIMB_PATH = os.path.join("..", "_includes", "last-climb.md")
 
 videos = {}
 if os.path.exists(CLIMBING_INFO):
@@ -115,7 +117,7 @@ for entry in reversed(sorted(list(journal))):
     if "location" in journal[entry]:
         location = journal[entry]["location"]
 
-        line += f" ({location})"
+        line += f" (at {location})"
 
         if "guide" in journal[entry]:
             g = journal[entry]["guide"]
@@ -277,6 +279,20 @@ result += "</ul>"
 
 with open(OUTPUT_PATH, "w") as f:
     f.write(result)
+
+with open(LAST_CLIMB_PATH, "w") as f:
+    entry = sorted(list(journal))[-1]
+
+    if "wall" in journal[entry]:
+        where = journal[entry]["wall"]
+
+        if "kilter" in journal[entry]:
+            where += " / Kilter"
+
+    elif "location" in journal[entry]:
+        where = journal[entry]["location"]
+
+    f.write(f"Last climbing session: **{entry.strftime('%-d. %-m. %Y')}** (at {where}).")
 
 with open(CLIMBING_JOURNAL, "w") as f:
     f.write(yaml.dump(journal))

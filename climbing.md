@@ -7,7 +7,8 @@ no-heading: True
 ---
 
 {:.center}
-This page is dedicated to my climbing life.
+This page is dedicated to my climbing life.<br>
+{% include last-climb.md %}
 
 <figure>
 	<div class="row">

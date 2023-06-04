@@ -29,9 +29,10 @@ fonts/
 
 # generated
 _includes/cv.html
-_includes/videos.md
 _includes/diary.md
 _includes/kilter.md
+_includes/last-climb.md
 _includes/tboi.md
+_includes/videos.md
 climbing/kilter/
 **/.*.yaml
