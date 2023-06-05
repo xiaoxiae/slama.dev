@@ -1,3 +1,4 @@
 deface
 markdown
 pillow
+unidecode
