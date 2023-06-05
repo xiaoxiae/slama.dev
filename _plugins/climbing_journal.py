@@ -88,7 +88,7 @@ for entry in reversed(sorted(list(journal))):
     if "image" in journal[entry]:
         line += f"<div class='climbing-bg-div' style='background-image: url(/climbing/images/{journal[entry]['image']})'>"
 
-    line += f"\n<li><ul class='hfill'><li><strong>{entry.strftime('%-d. %-m. %Y')}</strong>"
+    line += f"\n<li id='{str(entry)}'><ul class='hfill'><li><strong>{entry.strftime('%-d. %-m. %Y')}</strong>"
 
     v_colors = [f"V{i}" for i in range(2, 11)]
     v_grading_gyms_stubs = {"trinactka"}
@@ -292,7 +292,7 @@ with open(LAST_CLIMB_PATH, "w") as f:
     elif "location" in journal[entry]:
         where = journal[entry]["location"]
 
-    f.write(f"Last climbing session: **{entry.strftime('%-d. %-m. %Y')}** (at {where}).")
+    f.write(f"Last climbing session: **{entry.strftime('%-d. %-m. %Y')}** at {where} <a href='#{str(entry)}'>↩</a>.")
 
 with open(CLIMBING_JOURNAL, "w") as f:
     f.write(yaml.dump(journal))
