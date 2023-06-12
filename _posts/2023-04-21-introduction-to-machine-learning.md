@@ -905,8 +905,40 @@ Third solution: **QR decomposition**
 	- \(R \in \mathbb{R}^{D \times D}\) upper triangular
 - using this, we get \[\boxed{\hat \beta R^{-1} Q^T Y} \quad \text{or alternatively} \quad \boxed{R \hat\beta = Q^T Y}\] which can be solved by a simple algorithm -- \(R\) is upper triangular so we can use substitution from the last row of \(R \hat\beta\) upward
 
-But what do we do if \(N\) and \(D\) are very big?
+_What do we do if \(N\) and \(D\) are very big?_
 - in theory, we're screwed (SVD complexity \(\mathcal{O}(N \times D^2)\))
 - in practice, big \(X\) matrices usually have special structure which we can exploit
 	- \(X\) sparse -- alg. only deals with the non-zero elements
-	- \(X\) arrises from a convolution
+	- \(X\) is a convolution -- even more strict
+- we don't access \(X\) directly, but via _subroutines_
+	- **vector-matrix product** \(b^T X \implies \mathtt{vector\_times\_X}(b)\)
+	- **matrix-vector product** \(Xa \implies \mathtt{X\_times\_vector}(a)\)
+	- all the tricks to exploit the special strucure of \(X\) hidden here:
+
+##### LSQR
+1. trick: only use the subroutines to explot the structure
+2. trick: rearange the computation such that only 2 rows or columns of the result matrices are needed simultaneously (in memory)
+
+- LSQR decomposition is \(X = U \cdot B \cdot V^T\) where
+	- \(U \in \mathbb{R}^{N \times D}\) is orthonormal
+	- \(B \in \mathbb{R}^{D \times D}\) is upper bi-diagonal
+		- diagonal + one more diagonal above are non-zero, the rest is zero
+	- \(V \in \mathbb{R}^{D \times D}\) is orthonormal
+- implemented as `scipy.sparse.linalg.lsqr` in Python (or new and improved `lsmr`)
+	- arguments are sparse matrices
+
+_The lecture here has an interlude into computer tomography, which can be solved using least-squares. Most of it is explained in [homework 4](/assets/introduction-to-machine-learning/hw4.pdf) so I'm not going to repeat it here._
+
+##### Least Squares v2.0
+What do we do when noise variance is not constant?
+
+\[ \begin{aligned}
+	\hat\beta, \hat b = \argmin_{\beta, b} p(\mathrm{TS}) &= \argmax_{\beta, b} \prod_{i = 1}^{N} p(Y_i \mid X_i) \\ 
+	                                                      &= \argmin_{\beta, b} \sum_{i = 1}^{N} -\log \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(-\frac{1}{2} \frac{(Y_i - X_i \beta - b)^2}{\sigma^2}\right)
+\end{aligned} \]
+
+For OLS, we eliminated the variance but we no longer have i.i.d. assumption (the distribution is still independent but not identical).
+1. case: \(\sigma^2_i\) is known (eg. measurement device calibration)
+2. case: \(\sigma^2_i\) is unknown -- we must **learn it**
+	- supervised learning of \(\beta\), unsupervised learning of \(\sigma^2\)
+
