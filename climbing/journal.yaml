@@ -2149,3 +2149,16 @@
   red:
     new: 3
   wall: Boulderhaus
+2023-06-10:
+  guide: https://tetzank.github.io/riesenstein/boulders/
+  image: riesenstein.webp
+  location: <a href='https://goo.gl/maps/Mn18C1s2D1HHZXpx8'>Riesenstein</a>
+  note: Spent a whole session on Perkeo. At the beginning, I couldn't do any of the
+    moves. By the end, I had some pretty good links and feel very optimistic about
+    sending (that could come crumbling down very quick). I also did Gerdina + Gerdina
+    Links a few more times to further practice the topouts.
+  routes:
+  - - Gerdina
+    - - 7a
+  - - Gerdina Links (Crazy Fins)
+    - - 7b
