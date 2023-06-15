@@ -58,13 +58,15 @@ _Note that I've read each one as an Audiobook, either from Audible or using othe
 	1. **King of Scars**
 	2. **Rule of Wolves**
 
+#### Andy Weir
+
+- **The Martian** [[Wikipedia](https://en.wikipedia.org/wiki/The_Martian_(Weir_novel))] -- a hilarious novel about an astronaut surviving on Mars, after being left for dead due to an unfortunate series of events. It inspired a [movie](https://en.wikipedia.org/wiki/The_Martian_(film)#Reception), which (while not as good as the book) is also quite entertaining.
+
+- **Project Hail Mary** [[Wikipedia](https://en.wikipedia.org/wiki/Project_Hail_Mary)] -- another excellent novel by. It has exactly the same feel as the Martian, but I found it to be much more interesting story-wise and would wholeheartedly recommend it to anyone interested in space sci-fi.
+
 ### Other
 
 {:.book}
 - **Metro 2033** [[Wikipedia](https://en.wikipedia.org/wiki/Metro_2033)] by _Dimitry Glukhovsky_ -- a post-apocalyptic novel about people surviving a nuclear world war inside of the Moscow metro. I really appreciated that there was a good balance of action sequences and slower, more thought-provoking ones. Definitely worth the read (which, in my opinion, can't be said about the other books in the series).
 
 - **Surely You're Joking, Mr. Feynman!** [[Wikipedia](https://en.wikipedia.org/wiki/Surely_You%27re_Joking,_Mr._Feynman!)] by _Ralph Leighton_ and _Richard Feynman_ -- an absolute must-read auto(sort-of)biography about the life of Richard Feynman. I honestly don't understand how this many interesting things can happen in the life of a single person.
-
-- **The Martian** [[Wikipedia](https://en.wikipedia.org/wiki/The_Martian_(Weir_novel))] by _Andy Weir_ -- a hilarious novel about an astronaut surviving on Mars, after being left for dead due to an unfortunate series of events. It inspired a [movie](https://en.wikipedia.org/wiki/The_Martian_(film)#Reception), which (while not as good as the book) is also quite entertaining.
-
-- **Project Hail Mary** [[Wikipedia](https://en.wikipedia.org/wiki/Project_Hail_Mary)] by _Andy Weir_ -- another excellent novel by Andy Weir. It has exactly the same feel as the Martian, but I found it to be much more interesting story-wise and would wholeheartedly recommend it to anyone interested in space sci-fi.
