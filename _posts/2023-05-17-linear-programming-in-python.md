@@ -179,4 +179,4 @@ Here are all the resources I used for data and documentation:
 - [PuLP documentation](https://coin-or.github.io/pulp/)
 - [Dataset for TSP](https://people.sc.fsu.edu/~jburkardt/datasets/tsp/tsp.html)
 - [Dataset for knapsack](https://people.sc.fsu.edu/~jburkardt/datasets/knapsack_01/knapsack_01.html)
-- [Dataset for /p](https://people.sc.fsu.edu/~jburkardt/datasets/partition_problem/partition_problem.html)
+- [Dataset for the partition problem](https://people.sc.fsu.edu/~jburkardt/datasets/partition_problem/partition_problem.html)
