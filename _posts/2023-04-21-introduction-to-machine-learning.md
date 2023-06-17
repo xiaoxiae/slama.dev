@@ -815,7 +815,7 @@ CNNs usually alternate between **convolution**, **non-linear layers** (ReLU), **
 - has the name because it looks like the letter U
 - idea: **coarsening** to detect the semantics + **refinement** for pixel-precision
 
-![U-net network structure.](/assets/introduction-to-machine-learning/U-net.svg)
+![U-net network structure.](/assets/introduction-to-machine-learning/u-net.png)
 
 - variation: [nnU-Net](https://github.com/MIC-DKFZ/nnUNet) (2021)
 	- designed here in Heidelberg!
