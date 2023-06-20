@@ -677,7 +677,7 @@ Why is this useful? -- "matched filter principle"
 - \(\tilde f(t)\) is big if \(f(t)\) around \(t\) is similar ("matched") to \(g(0)\)
 - the kernel of the filter encodes the pattern of interest (matches similar features)
 
-![Matched filter example.](/assets/introduction-to-machine-learning/matched-filter.png)
+![Matched filter example.](/assets/introduction-to-machine-learning/matched-filter.webp)
 
 If we repeat this in multiple layers and learn the \(g\)s, we can do very powerful things.
 
@@ -697,7 +697,7 @@ for maths reasons (the maths requires the mirrored convolution, which is correla
 - first CNN to get MNIST accuracy > 99%
 	- ~60000 images, 10 categories
 
-![LeNet network diagram.](/assets/introduction-to-machine-learning/lenet.png)
+![LeNet network diagram.](/assets/introduction-to-machine-learning/lenet.webp)
 
 Comparing a CNN to a fully-connected (FC) network, the weight matrices look like this:
 
@@ -815,7 +815,7 @@ CNNs usually alternate between **convolution**, **non-linear layers** (ReLU), **
 - has the name because it looks like the letter U
 - idea: **coarsening** to detect the semantics + **refinement** for pixel-precision
 
-![U-net network structure.](/assets/introduction-to-machine-learning/u-net.png)
+![U-net network structure.](/assets/introduction-to-machine-learning/u-net.webp)
 
 - variation: [nnU-Net](https://github.com/MIC-DKFZ/nnUNet) (2021)
 	- designed here in Heidelberg!
@@ -931,14 +931,122 @@ _The lecture here has an interlude into computer tomography, which can be solved
 
 ##### Least Squares v2.0
 What do we do when noise variance is not constant?
+- i.e. we change the generative model into \[Y_i = X_i \beta^* \underbrace{(+ b)}_{\text{0}} + \varepsilon_i \qquad \varepsilon_i ~ N(0, \sigma_i^2)\]
+- data still independent but no longer identically distributed
+- we use \(\theta\) since we want to learn both \(\beta\) and \(\sigma\)
 
 \[ \begin{aligned}
-	\hat\beta, \hat b = \argmin_{\beta, b} p(\mathrm{TS}) &= \argmax_{\beta, b} \prod_{i = 1}^{N} p(Y_i \mid X_i) \\ 
-	                                                      &= \argmin_{\beta, b} \sum_{i = 1}^{N} -\log \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(-\frac{1}{2} \frac{(Y_i - X_i \beta - b)^2}{\sigma^2}\right)
+	\theta = \argmax_\theta p(\mathrm{TS}) &= \argmax_\theta \prod_{i = 1}^{N} p_i(Y_i \mid X_i) \\
+	&= \argmin_\theta \sum_{i = 1}^{N} - \log p_i(Y_i \mid X_i) \\
+	&= \argmin_\theta \sum_{i = 1}^{N} - \log N(Y_i - X_i \beta \mid 0, \sigma_i^2) \\
+	&= \argmin_\theta \sum_{i = 1}^{N} \left[-\log \frac{1}{\sqrt{2 \pi \sigma_i^2}} + \frac{\left(Y_i - X_i \beta\right)^2}{2 \sigma_i^2} \right] \\
+	&= \boxed{\argmin_\theta \sum_{i = 1}^{N} \left[\cancel{\frac{1}{2}}\log \sigma_i^2 - \cancel{\frac{1}{2}} \frac{\left(Y_i - X_i \beta\right)^2}{\sigma_i^2} \right]}
 \end{aligned} \]
 
-For OLS, we eliminated the variance but we no longer have i.i.d. assumption (the distribution is still independent but not identical).
-1. case: \(\sigma^2_i\) is known (eg. measurement device calibration)
-2. case: \(\sigma^2_i\) is unknown -- we must **learn it**
-	- supervised learning of \(\beta\), unsupervised learning of \(\sigma^2\)
+Here we destinguish multiple cases:
+1. **OLS** (all \(\sigma\)s are the same) -- we can simplify further and get stuff from lectures above
+2. **weighted LS** (\(\sigma_i\) are known) -- then \[\argmin_\beta \sum_{i = 1}^{N} \frac{(Y_i - X_i \beta)^2}{\sigma_i^2}\]
+	- the \(\sigma\)s act as weights for the residuals
+	- we can rewrite in matrix notation (\(\sigma\)s as a diagonal) and get \[\hat \beta = \argmin_\beta (Y - X \beta)^T \Sigma^{-1} (Y - X \beta)\]
+	- this can be solved by setting the derivative to zero and we get a **weighted pseudo-inverse** \[\boxed{\hat \beta = \left(X^T \Sigma^{-1} X\right)^{-1} X^T \Sigma^{-1} Y}\]
+3. **iteratively reweighed LS** (\(\sigma_i\) are not constant and unknown) -- learn the \(\sigma\)s jointly with \(\beta\))
+	- \(\sigma_i\) is **unsupervised**, \(\beta\) is **supervised** -- gives rise to interesting algorithms
+	- the problem can be formulated as \[\argmin_\theta \sum_{i = 1}^{N} \left[\log \sigma_i^2 - \frac{\left(Y_i - X_i \beta\right)^2}{\sigma_i^2} \right]\] usually called David-Sebastian score or hetero-scedastic loss
+	- if \((Y_i - X_i \beta)^2\) is big \(\implies\) increase \(\sigma_i\) to make the loss smaller, but we pay the penalty of \(\log \sigma_i^2\) for big \(\sigma\)s (optimal solution selects \(\sigma_i^2\) for the best tradeof)
 
+#### Alternating optimization
+- we want to solve IRLS by alternating learning \(\beta\) and \(\sigma\)
+- two groups of parameters \(\theta = \left[\theta_1, \theta_2\right]\) (here \(\sigma_1 = \beta, \sigma_2 = \left\{\sigma_i^2\right\}_{i = 1}^N\))
+- main idea: optimize \(\theta_1\) while keeping \(\theta_2\) fixed (and vice versa)
+
+1. define initial guess for \(\theta_2^{(0)}\)
+2. for \(t = 1, \ldots, T\) (or until convergence)
+	- optimize \(\theta_1^{(t)}\), keeping \(\theta_2^{(t - 1)}\) fixed
+	- optimize \(\theta_2^{(t)}\), keeping \(\theta_1^{(t)}\) fixed
+
+- **benefit:** individual optimization problems are much easier (can have an analytic solution)
+- **drawback:** usually doesn't converge to the global optimum
+
+To solve IRLS using this method, we do the following
+
+1. define initial guess as \(\tau_i = 1\) (\(\tau_i = \sigma_i^2\)
+2. for \(t = 1, \ldots, T\) (or until convergence)
+	- obtain \(\beta^{(t)}\) via **weighted least squares** (since \(\sigma\)s are known and fixed)
+	- since \(\beta\) is fixed, we get \[\left\{\tau_i^{(t)}\right\} = \argmin_{\left\{\tau_i\right\}} \sum_{i = 1}^{N} \frac{Y_i - X_i \beta^{(t)}}{\tau_i} + \log \tau_i\] which we can solve by setting the derivative to \(0\) and obtain \[\boxed{\tau_i^{(t)} = (Y_i - X_i \beta^{(t)})^2}\] i.e. _standard derivations are equal to the magnitude of the error_
+
+How many iterations are required?
+- in theory (with infinite accuracy) **two** iterations are sufficient
+- in practice **few** iterations are sufficient (kinda cool, no?)
+
+#### Regularized regression
+- even if we don't have a unique solution, we can select the "best" one
+- we already saw penalties \(||\beta^2||\) in SVM and \(\log \sigma_i^2\) in IRLS
+- we need regularization in two cases
+	1. more features than observations (\(D > N\))
+	2. condition of matrix \(X\) is bad (\(\kappa(X) \gg 1\))o
+		- features are almost redundant, \(\hat \beta\) tends to overfit
+		- assume feature \(j\) and \(j'\) are identical in TS (\(X_j = X_{j'}\))
+		- if \(\hat \beta\) is a solution, so it \(\hat \beta'\) with \(\hat \beta_j' = \hat \beta_j' + \gamma\) and \(\hat \beta_j' = \hat \beta_j' - \gamma\)
+		- this also works for very large \(\gamma\), which is a problem since the features might be different in test instances (i.e. overfitting)
+		- _in practice, usually more features and only near cancelation_
+
+##### Ridge regression
+Uses a standard regularization idea to penalize \(\beta_j\) with large magnitude (or squared magnitude):
+
+\[\hat \beta = \argmin_\beta (Y - X\beta)^T (Y - X\beta) \quad s.t. \quad ||\beta^2|| \le t\]
+- if constraint doesn't activate after we solve, we're chilling
+- otherwise add the constraint as a **Lagrange multiplier** (same as SVM)
+
+\[\hat \beta_{RR} = \argmin_\beta (Y - X\beta)^T (Y - X\beta) + \tau ||\beta^2||\]
+
+Setting the derivative to zero, we obtain the **regularized pseudo-inverse** \[\hat \beta_{RR} = (X^T X + \tau \mathbb{I})^{-1} X^T Y\]
+
+- data should ideally be **standardized** (zero mean, unit variance) so we shrink \(\tau\) equally
+
+Alternative solution via **augmented feature matrix** -- reduces to OLS by modifying \(X\) and \(Y\) to be \[\tilde X = \begin{pmatrix}
+	& X & \\
+	& & \\
+	\sqrt{\tau} & & \\
+	& \ddots & \\
+	& & \sqrt{\tau} \\
+\end{pmatrix} \qquad \tilde Y = \begin{pmatrix}
+	Y \\ 0 \\ \vdots \\ 0
+\end{pmatrix}\]
+- by expanding OLS, we can see this is equivalent to original loss
+
+Another alternative solution is via **SVD**.
+
+##### Remaining questions
+When using regularization, we'd like to now two things:
+1. what's the price that we pay for regularization?
+2. how to choose \(\tau\) to minimize disadvantages
+
+Both solved via **bias-variance trade-off**: we have \(M\) teams working on the same problem, each with their own \(\mathrm{TS}\):
+- how much will the results differ between teams?
+- what happens when \(M \rightarrow \infty\)?
+
+Definitions:
+- \(\beta^*\): weights of the true generative process \(Y^* = X \beta^* + \varepsilon\)
+- \(\hat \beta_m\): results of team \(m\)
+- \(\mathbb{E}_m [\hat \beta_m] \approx \frac{1}{M} \sum_{m = 1}^{M} \hat \beta_m\): average result of all teams
+- \(\mathrm{Cov(\hat \beta_m}) = \mathbb{E}_m \left[\left(\hat \beta_m - \mathbb{E}[\hat \beta_m]\right)\left(\hat \beta_m - \mathbb{E}[\hat \beta_m]\right)^T\right] \): 
+- \(\mathrm{bias} = \beta^* - \mathbb{E}_m [\hat \beta_m]\): systematic error after combining team results
+
+Now we'll measure the quality of outcomes by \[
+\begin{aligned}
+\mathrm{MSE} &= \mathbb{E}_m \left[\left(\hat \beta_m - \beta^*\right)^2\right] \\
+&= \mathbb{E}_m \left[\left(\hat \beta_m - \mathbb{E}[\hat \beta_m] + \mathbb{E}[\hat \beta_m] + \beta^*\right)^2\right] \\ 
+&= \underbrace{\mathbb{E}_m \left[\left(\hat \beta_m - \mathbb{E}_m (\hat \beta_m)\right)^2\right]}_{\text{covariance}} + \underbrace{\mathbb{E}_m \left[\left(\beta^* - \mathbb{E}_m [\hat\beta_m]\right)^2\right]}_{\text{bias}^2} \\
+\end{aligned}
+\]
+
+Useful, because we can see that \(\tau\) (regularization) has **opposite effects** on **bias** and **variance** -- "bias-variance trade-off"
+- \(\tau = 0 \ldots\) high variance (teams disagree) but zero bias
+- \(\tau = \infty \ldots\) all teams same solution, but it's \(0\)
+- \(\tau > 0 \ldots\) agreement between teams increases but so does bias (trade-off)
+
+![Bias-variance tradeoffs.](/assets/introduction-to-machine-learning/bias-variance-tradeoffs.webp)
+
+- **best trade-off:** all error sources have roughly same magnitude
+	- check via cross-validation (or validation set)
+- **bad:** only address a single error source (diminishing returns)
