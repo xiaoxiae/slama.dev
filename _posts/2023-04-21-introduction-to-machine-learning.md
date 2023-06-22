@@ -1016,7 +1016,7 @@ Alternative solution via **augmented feature matrix** -- reduces to OLS by modif
 
 Another alternative solution is via **SVD**.
 
-##### Remaining questions
+##### Bias-variance trade-off
 When using regularization, we'd like to now two things:
 1. what's the price that we pay for regularization?
 2. how to choose \(\tau\) to minimize disadvantages
@@ -1050,3 +1050,61 @@ Useful, because we can see that \(\tau\) (regularization) has **opposite effects
 - **best trade-off:** all error sources have roughly same magnitude
 	- check via cross-validation (or validation set)
 - **bad:** only address a single error source (diminishing returns)
+
+##### Other regularization terms
+- **Ridge regression**: regularization term \[||\beta||_2 = \sum_{i = 1}^{D} \beta_j^2 \le t\]
+- **Feature selection**: \[||\beta||_0 = \sum_{i = 1}^{D} \mathbb{1}[\beta_j \neq 0] \le t\]
+	- count how many features are _active_
+	- _advantage:_ reduce the number of measurements
+	- _disadvantage:_ finding the optimal feature set is NP-hard (but in practice a simple greedy algorithm like OMP is often good enough)
+- **LASSO regression**: \[||\beta||_1 = \sum_{i = 1}^{D} |\beta_j| \le t\]
+	- stands for Last Absolute Shrinkage Selection Operator
+	- also performs feature selection when \(t\) is small enough
+	- _advantage:_
+		- still a convex optimization problem \(\implies\) unique solution
+		- solution often sparse (many \(\beta_j = 0\)) \(\implies\) feature selection
+	- _disadvantage:_
+		- bias (bias-variance trade-off)
+		- active set may not be as sparse as in \(L_0\) optimization
+	- many algorithms (in the field of linear optimization)
+		- gradient descent
+		- LARS (Least Angle RegreSsion) algorithm -- almost the same as OMP, but at the beginning of each iteration, checks if the matrix is redundant (and removes weakest factors until it isn't); doesn't happen too often though
+
+**Orthogonal Matching Pursuit (OMP)**
+- approximately (local optimum) solves feature selection, i.e. \[\hat \beta = \argmin_\beta \sum_{i = 1}^{N} (Y_i^* - X_i \beta)^2 \quad \text{s.t.} ||\beta_0|| \le t\]
+
+1. initialization: set of active features\(A^{(0)} = \emptyset\)
+2. for \(\tau = 1, \ldots, t\) (max. number of features)
+	- compute residual of current guess \(R = Y^* - X \beta^{(\tau - 1)}\)
+	- find best inactive feature \(j^{(\tau)} = \argmax_{j \not\in A^{(\tau - 1)}} |X_j^T R|\)
+		- if the direction of the new feature is similar to the residual, it improves the solution by a lotx
+		- if it's orthogonal then it can't do much
+	- add new feature to active set \(A^{(\tau)} = A^{(\tau - 1)} \cup \left\{j^{(\tau)}\right\}\)
+	- compute new guess by solving OLS only with active features
+
+#### Non-linear regression
+- keep squared loss \(\implies \hat \theta = \argmin_\theta \sum_{i = 1}^{N } \left(Y_i^* - f_\theta (X_i)^2\right)\)
+	- \(f_\theta(X) = X \beta \implies\) linear regression
+	- \(f_\theta(X)\) neural network with parameters \(\theta\)
+- true generative process \(Y_i^* = f_{\theta^*} (X_i) + \varepsilon_i \quad \varepsilon_i ~ N(0, \sigma^2)\)
+
+**Two general approaches:**
+1. transform features such that we can run linear regression (and use OLS)
+	- hand-crafted
+	- learned (first layer of a NN learns the parameters) - same as classification, except
+		- squared loss (instead of cross-entropy)
+		- last layers is linear (no activation)
+2. design algorithms to solve non-linear least squares
+	- if \(\dim(\theta)\) is not very high (\(\mathcal{O}(100)\)), use **Levenberg-Markquart**
+	- **regression trees** and forests / **Gaussian processes**
+		- good results if \(\mathrm{TS}\) is small (so NN cannot be trained)
+
+##### Piecewise constant approximation
+- idea: approximate a function using _piecewise constant function_
+- in theory, we can get an _arbitrarily good approximation_
+
+How to choose bins?
+- classical: **grid** (great for \(D = 1, 2\), rather expensive for \(D \ge 3\))
+- better: define bins **adaptively** (bin size based on the number of datapoints)
+	1. method: **\(k\)-means** (defines bins by nearest-neighbour computation)
+	2. method: **recursive subdivision**
