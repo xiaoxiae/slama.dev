@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 
-import os
-import yaml
 import markdown
+import os
+import re
+import yaml
+
 from unidecode import unidecode
 
 
@@ -292,7 +294,10 @@ with open(LAST_CLIMB_PATH, "w") as f:
     elif "location" in journal[entry]:
         where = journal[entry]["location"]
 
-    f.write(f"Last climbing session: **{entry.strftime('%-d. %-m. %Y')}** at {where} <a href='#{str(entry)}'>↩</a>.")
+    # strip tags (links) from locations
+    where = re.sub('<[^<]+?>', '', where)
+
+    f.write(f"Last climbing session: **{entry.strftime('%-d. %-m. %Y')}** at <a href='#{str(entry)}'>{where} ↩</a>.")
 
 with open(CLIMBING_JOURNAL, "w") as f:
     f.write(yaml.dump(journal))
