@@ -2182,9 +2182,24 @@
     while.
   wall: Boulderhaus
 2023-06-21:
-  note: Too much gravity today.
   blue:
     new: 4
+  note: Too much gravity today.
   red:
     new: 1
   wall: Boulderhaus
+2023-06-23:
+  note: Fun session with my sisters which came to visit from the Czech Republic.
+  wall: Boulderhaus
+2023-06-25:
+  guide: https://tetzank.github.io/riesenstein/boulders/
+  image: riesenstein.webp
+  location: <a href='https://goo.gl/maps/Mn18C1s2D1HHZXpx8'>Riesenstein</a>
+  note: Hot damn, I managed to link Perkeo from like the 2nd or 3rd move, doing the
+    crux move with relative ease. It's crazy to think that the first time I tried
+    the route I couldn't even lift of the ground. Send next time?
+  routes:
+  - - Gerdina
+    - - 7a
+  - - Gerdina Links (Crazy Fins)
+    - - 7b
