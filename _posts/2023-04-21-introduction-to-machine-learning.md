@@ -931,7 +931,7 @@ _The lecture here has an interlude into computer tomography, which can be solved
 
 ##### Least Squares v2.0
 What do we do when noise variance is not constant?
-- i.e. we change the generative model into \[Y_i = X_i \beta^* \underbrace{(+ b)}_{\text{0}} + \varepsilon_i \qquad \varepsilon_i ~ N(0, \sigma_i^2)\]
+- i.e. we change the generative model into \[Y_i = X_i \beta^* \underbrace{(+ b)}_{\text{0}} + \varepsilon_i \qquad \varepsilon_i \sim N(0, \sigma_i^2)\]
 - data still independent but no longer identically distributed
 - we use \(\theta\) since we want to learn both \(\beta\) and \(\sigma\)
 
@@ -943,7 +943,7 @@ What do we do when noise variance is not constant?
 	&= \boxed{\argmin_\theta \sum_{i = 1}^{N} \left[\cancel{\frac{1}{2}}\log \sigma_i^2 - \cancel{\frac{1}{2}} \frac{\left(Y_i - X_i \beta\right)^2}{\sigma_i^2} \right]}
 \end{aligned} \]
 
-Here we destinguish multiple cases:
+Here we distinguish multiple cases:
 1. **OLS** (all \(\sigma\)s are the same) -- we can simplify further and get stuff from lectures above
 2. **weighted LS** (\(\sigma_i\) are known) -- then \[\argmin_\beta \sum_{i = 1}^{N} \frac{(Y_i - X_i \beta)^2}{\sigma_i^2}\]
 	- the \(\sigma\)s act as weights for the residuals
@@ -952,11 +952,11 @@ Here we destinguish multiple cases:
 3. **iteratively reweighed LS** (\(\sigma_i\) are not constant and unknown) -- learn the \(\sigma\)s jointly with \(\beta\))
 	- \(\sigma_i\) is **unsupervised**, \(\beta\) is **supervised** -- gives rise to interesting algorithms
 	- the problem can be formulated as \[\argmin_\theta \sum_{i = 1}^{N} \left[\log \sigma_i^2 - \frac{\left(Y_i - X_i \beta\right)^2}{\sigma_i^2} \right]\] usually called David-Sebastian score or hetero-scedastic loss
-	- if \((Y_i - X_i \beta)^2\) is big \(\implies\) increase \(\sigma_i\) to make the loss smaller, but we pay the penalty of \(\log \sigma_i^2\) for big \(\sigma\)s (optimal solution selects \(\sigma_i^2\) for the best tradeof)
+	- if \((Y_i - X_i \beta)^2\) is big \(\implies\) increase \(\sigma_i\) to make the loss smaller, but we pay the penalty of \(\log \sigma_i^2\) for big \(\sigma\)s (optimal solution selects \(\sigma_i^2\) for the best trade-off)
 
 #### Alternating optimization
 - we want to solve IRLS by alternating learning \(\beta\) and \(\sigma\)
-- two groups of parameters \(\theta = \left[\theta_1, \theta_2\right]\) (here \(\sigma_1 = \beta, \sigma_2 = \left\{\sigma_i^2\right\}_{i = 1}^N\))
+- two groups of parameters \(\theta = \left[\theta_1, \theta_2\right]\) (here \(\theta_1 = \beta, \theta_2 = \left\{\sigma_i^2\right\}_{i = 1}^N\))
 - main idea: optimize \(\theta_1\) while keeping \(\theta_2\) fixed (and vice versa)
 
 1. define initial guess for \(\theta_2^{(0)}\)
@@ -1017,7 +1017,7 @@ Alternative solution via **augmented feature matrix** -- reduces to OLS by modif
 Another alternative solution is via **SVD**.
 
 ##### Bias-variance trade-off
-When using regularization, we'd like to now two things:
+When using regularization, we'd like to know two things:
 1. what's the price that we pay for regularization?
 2. how to choose \(\tau\) to minimize disadvantages
 
@@ -1077,7 +1077,7 @@ Useful, because we can see that \(\tau\) (regularization) has **opposite effects
 2. for \(\tau = 1, \ldots, t\) (max. number of features)
 	- compute residual of current guess \(R = Y^* - X \beta^{(\tau - 1)}\)
 	- find best inactive feature \(j^{(\tau)} = \argmax_{j \not\in A^{(\tau - 1)}} |X_j^T R|\)
-		- if the direction of the new feature is similar to the residual, it improves the solution by a lotx
+		- if the direction of the new feature is similar to the residual, it improves the solution by a lot
 		- if it's orthogonal then it can't do much
 	- add new feature to active set \(A^{(\tau)} = A^{(\tau - 1)} \cup \left\{j^{(\tau)}\right\}\)
 	- compute new guess by solving OLS only with active features
