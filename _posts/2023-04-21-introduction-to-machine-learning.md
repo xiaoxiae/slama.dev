@@ -1099,7 +1099,9 @@ Useful, because we can see that \(\tau\) (regularization) has **opposite effects
 	- **regression trees** and forests / **Gaussian processes**
 		- good results if \(\mathrm{TS}\) is small (so NN cannot be trained)
 
-##### Piecewise constant approximation
+_I missed a few lectures here, the notes of the next chapter are taken from the recording of the last year's "Fundamentals of Machine Learning class"._
+
+##### Decision trees / forests
 - idea: approximate a function using _piecewise constant function_
 - in theory, we can get an _arbitrarily good approximation_
 
@@ -1107,4 +1109,52 @@ How to choose bins?
 - classical: **grid** (great for \(D = 1, 2\), rather expensive for \(D \ge 3\))
 - better: define bins **adaptively** (bin size based on the number of datapoints)
 	1. method: **\(k\)-means** (defines bins by nearest-neighbour computation)
-	2. method: **recursive subdivision**
+	2. method: **recursive subdivision** (what we'll be doing)
+
+For regression/classification, we can build a tree on top of it by doing the following:
+
+{% math algorithm "generic tree building" %}
+
+1. create the root note with all data
+	- also put all of the data on the stack
+2. while the stack is not empty:
+	- take the top node
+	- check if the **termination criterion** is reached
+		- create a leaf node which stores the desired prediction
+	- otherwise
+		- find the **best possible split** and create 2 children
+		- put the data in the respective child
+		- put the children on the stack
+{% endmath %}
+
+For specific problems:
+- **termination criteria**
+	- _generic_:
+		- stop at a defined _depth_ (hyperparameter)
+		- stop at a defined _number of instances_ in a node (hyperparameter)
+	- _application-specific_:
+		- classification: all instances in the node have the same label (then we don't improve by splitting further) -- we say they are _pure_
+- **split criteria**:
+	- _axis-aligned_, then decide left/right child by a 1-D threshold
+	- _oblique splits_ (compute a new feature as a linear combination): sometimes more accurate but also more expensive
+	- we usually restrict possible thresholds to the midpoint between neighbouring instances -- then for \(N_m\) instances and \(D\) features we have \(N_m \cdot D\) splits
+		- exhaustive search to find the best one (given a score function) or
+		- restrict the search to a random subset of features (eg. \(\sqrt{D}\))
+
+For **classification** trees:
+- the **prediction** is the majority class in the leaf node
+- the **split criterion** prefers splits that separate classes well... given a node \(m\):
+	- **C4.5** algorithm: measure the entropy by iterating over all classes: \[H_m = -\sum_{k = 1}^{C} \hat p_{m, k} \log \hat p_{m, k} \qquad \hat p_{m, k} = \frac{N_{m, k}}{N}\]
+	- **CART** algorithm: uses Gini impurity: \[G_m = 1 - \sum_{k = 1}^{C} \hat p_{m, k}^2\]
+	- in either case, the loss of a given split is \(N_l H_l + N_r H_r\) (or \(G\) if we use CART)
+
+For **classification** trees:
+- the **prediction** is the average value
+- the **split criterion** minimizes the squared loss... given a node \(m\):
+	- the average is \(\hat y_m = \frac{1}{N_m} \sum_{i \in m} y_i\) so we get \(\mathcal{loss} = \sum_{i \in m} (y_i - \hat y_{m})^2\)
+	- the loss of a given split is the sum of the squared losses
+
+Since trees tend to overfit, we can **train several trees** (i.e. forests). They have to be different for which there are a few tricks:
+- in each node, consider a different random subset of features (we're doing this)
+- train each tree on a different random subset of the training set: **bootstrapping:**
+	- create a new \(\mathrm{TS}'\) by _uniform sampling with replacement_ (\(\mathrm{TS}'\) is initially empty, then add \(N\) random instances)
