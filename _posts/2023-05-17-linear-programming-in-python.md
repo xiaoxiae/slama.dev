@@ -9,7 +9,7 @@ end: "<a href='/linearni-programovani-v-pythonu'>Česká verze článku</a>"
 {:toc}
 
 ### Introduction
-This page contains additional materials to my [newly released video](TODO) about linear programming, namely a number of practical examples of how it can be used to solve a variety of problems using Python and its `pulp` package.
+This page contains additional materials to my [newly released video](https://youtu.be/E72DWgKP_1Y) about linear programming, namely a number of practical examples of how it can be used to solve a variety of problems using Python and its `pulp` package.
 
 ### Practical examples
 

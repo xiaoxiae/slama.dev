@@ -65,6 +65,12 @@ videos = [
             "Thesesus and the Minotaur | Exploring State Space",
             "12-",
         ),
+        (
+            date(2023, 7, 3),
+            "https://www.youtube.com/watch?v=E72DWgKP_1Y",
+            "The Art of Linear Programming",
+            "18-",
+        ),
     ]),
     ("Shorts", [
         (
