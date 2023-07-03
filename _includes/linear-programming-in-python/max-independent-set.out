@@ -1,0 +1,15 @@
+Complete graph on 5 vertices
+----------------------------
+set size = 1
+1 0 0 0 0 
+
+Path of 6 vertices
+------------------
+set size = 3
+0 1 0 0 1 1 
+
+Petersen graph
+--------------
+set size = 4
+1 0 1 0 1 0 0 0 1 0 
+

@@ -1,0 +1,33 @@
+Complete graph on 5 vertices
+----------------------------
+k = 5
+v_0 has color 5
+v_1 has color 2
+v_2 has color 1
+v_3 has color 3
+v_4 has color 4
+
+Path of 6 vertices
+------------------
+k = 2
+v_0 has color 2
+v_1 has color 1
+v_2 has color 2
+v_3 has color 1
+v_4 has color 2
+v_5 has color 1
+
+Petersen graph
+--------------
+k = 3
+v_0 has color 1
+v_1 has color 2
+v_2 has color 3
+v_3 has color 2
+v_4 has color 3
+v_5 has color 3
+v_6 has color 3
+v_7 has color 2
+v_8 has color 1
+v_9 has color 1
+

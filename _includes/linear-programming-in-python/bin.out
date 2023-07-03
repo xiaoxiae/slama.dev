@@ -1,0 +1,82 @@
+Set 1
+-----
+bin count: 4
+item 0 (weight 70): bin 2
+item 1 (weight 60): bin 3
+item 2 (weight 50): bin 0
+item 3 (weight 33): bin 0
+item 4 (weight 33): bin 1
+item 5 (weight 33): bin 1
+item 6 (weight 11): bin 2
+item 7 (weight 7): bin 2
+item 8 (weight 3): bin 2
+
+Set 2
+-----
+bin count: 7
+item 0 (weight 99): bin 4
+item 1 (weight 94): bin 5
+item 2 (weight 79): bin 1
+item 3 (weight 64): bin 0
+item 4 (weight 50): bin 2
+item 5 (weight 46): bin 2
+item 6 (weight 43): bin 6
+item 7 (weight 37): bin 3
+item 8 (weight 32): bin 0
+item 9 (weight 19): bin 3
+item 10 (weight 18): bin 1
+item 11 (weight 7): bin 3
+item 12 (weight 6): bin 5
+item 13 (weight 3): bin 2
+
+Set 3
+-----
+bin count: 3
+item 0 (weight 49): bin 1
+item 1 (weight 41): bin 0
+item 2 (weight 34): bin 2
+item 3 (weight 33): bin 0
+item 4 (weight 29): bin 1
+item 5 (weight 26): bin 2
+item 6 (weight 26): bin 0
+item 7 (weight 22): bin 1
+item 8 (weight 20): bin 2
+item 9 (weight 19): bin 2
+
+Set 4
+-----
+bin count: 7
+item 0 (weight 442): bin 0
+item 1 (weight 252): bin 3
+item 2 (weight 252): bin 6
+item 3 (weight 252): bin 4
+item 4 (weight 252): bin 6
+item 5 (weight 252): bin 3
+item 6 (weight 252): bin 4
+item 7 (weight 252): bin 1
+item 8 (weight 127): bin 1
+item 9 (weight 127): bin 5
+item 10 (weight 127): bin 5
+item 11 (weight 127): bin 1
+item 12 (weight 127): bin 5
+item 13 (weight 106): bin 2
+item 14 (weight 106): bin 5
+item 15 (weight 106): bin 2
+item 16 (weight 106): bin 2
+item 17 (weight 85): bin 2
+item 18 (weight 84): bin 2
+item 19 (weight 46): bin 0
+item 20 (weight 37): bin 2
+item 21 (weight 37): bin 5
+item 22 (weight 12): bin 0
+item 23 (weight 12): bin 0
+item 24 (weight 12): bin 0
+item 25 (weight 10): bin 6
+item 26 (weight 10): bin 3
+item 27 (weight 10): bin 6
+item 28 (weight 10): bin 4
+item 29 (weight 10): bin 4
+item 30 (weight 10): bin 3
+item 31 (weight 9): bin 1
+item 32 (weight 9): bin 1
+
