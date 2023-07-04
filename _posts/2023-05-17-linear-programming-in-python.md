@@ -135,7 +135,7 @@ Given \(n\) items with weights \(w_1, \ldots, w_n\), split them into two parts s
 </details>
 
 #### [Maximum independent set](https://en.wikipedia.org/wiki/Independent_set_(graph_theory))
-Given a graph \(G\), find the largest set of vertices that cover all edges.
+Given a graph \(G\), find the largest set of vertices such that no two share an edge.
 
 <details>
 	<summary class="code-summary">Source code</summary>
@@ -154,7 +154,7 @@ Given a graph \(G\), find the largest set of vertices that cover all edges.
 </details>
 
 #### [Minimum vertex cover](https://en.wikipedia.org/wiki/Vertex_cover)
-Given a graph \(G\), find the largest set of vertices that cover all edges.
+Given a graph \(G\), find the smallest set of vertices that cover all edges.
 
 <details>
 	<summary class="code-summary">Source code</summary>
