@@ -98,6 +98,9 @@ os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 result = ""
 
+latest_video_date = date(1970, 1, 1)
+latest_video = None
+
 # ensure that the category "other" is the last one
 # not pretty, but it works :P
 for category, video_contents in videos:
@@ -105,6 +108,10 @@ for category, video_contents in videos:
 
     for date, youtube_link, video, folder_prefix in reversed(sorted(video_contents)):
         match = glob(os.path.join(ROOT, folder_prefix + "*"))
+
+        if category != "Shorts" and date > latest_video_date:
+            latest_video_date = date
+            latest_video = youtube_link, video
 
         if len(match) == 0:
             print(f"ERROR: video '{video}' doesn't have a folder.")
@@ -177,6 +184,16 @@ for category, video_contents in videos:
         category_str += f"{date.strftime('%Y/%0m/%0d')} -- **{video}** [[YouTube]({youtube_link})] [{'/'.join(resolution_links)}]\n- _{description}_\n\n"
 
     result += category_str
+
+
+youtube_link, video = latest_video
+
+result = f"""
+<h3>[<em>newest</em>] {video}</h3>
+<div class='ytVideo'>
+<iframe src="https://www.youtube.com/embed/{youtube_link.split('=')[-1]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+""" + result
 
 with open(OUT, "w") as f:
     f.write(result)
