@@ -13,6 +13,8 @@ OUT = "../_includes/videos.md"
 VIDEO_FOLDER = "../videos/"
 URL_ROOT = "https://github.com/xiaoxiae/videos/tree/master/"
 
+VIDEO_LINKS = False
+
 videos = [
     ("Graph Theory", [
         (
@@ -91,6 +93,12 @@ videos = [
             "Undirected graphs can't equal a polynomial... or can they?",
             "16-",
         ),
+        (
+            date(2023, 7, 10),
+            "https://youtube.com/shorts/1tYtjRSWkVk",
+            "The real difference between BFS and DFS",
+            "20-",
+        ),
     ]),
 ]
 
@@ -144,6 +152,9 @@ for category, video_contents in videos:
 
         # kopírování videí
         for resolution_path in resolution_paths:
+            if not VIDEO_LINKS:
+                continue
+
             filename = os.path.basename(resolution_path)
 
             if not os.path.exists(os.path.join(this_video_folder, filename)):
@@ -166,11 +177,13 @@ for category, video_contents in videos:
 
         resolution_links = [
             f"[{r}p](/videos/{video_slug}/{r}p.mp4)" for r in resolutions
+            if r != 2160
         ]
 
         with open(os.path.join(folder, "DESCRIPTION.md"), "r") as f:
             contents = f.read()
 
+            # short has a first line that's #shorts
             if not is_short:
                 description = contents.splitlines()[0]
             else:
@@ -178,10 +191,11 @@ for category, video_contents in videos:
 
         video_escaped = video.replace("|", "\|")
 
-        if len(thumbnails) == 1:
+        if len(thumbnails) == 1 and not is_short:
             category_str += f"\n[![Thumbnail for the '{video_escaped}' video](/videos/{video_slug}/thumbnail.webp){{: .video-thumbnail}}]({youtube_link})\n"
 
-        category_str += f"{date.strftime('%Y/%0m/%0d')} -- **{video}** [[YouTube]({youtube_link})] [{'/'.join(resolution_links)}]\n- _{description}_\n\n"
+        links = "" if not VIDEO_LINKS else [{'/'.join(resolution_links)}]
+        category_str += f"{date.strftime('%Y/%0m/%0d')} -- **{video}** [[YouTube]({youtube_link})] {links}\n- _{description}_\n\n"
 
     result += category_str
 
