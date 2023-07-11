@@ -112,7 +112,7 @@ latest_video = None
 # ensure that the category "other" is the last one
 # not pretty, but it works :P
 for category, video_contents in videos:
-    category_str = f"### {category}\n\n"
+    result += f"### {category}\n\n"
 
     for date, youtube_link, video, folder_prefix in reversed(sorted(video_contents)):
         match = glob(os.path.join(ROOT, folder_prefix + "*"))
@@ -192,12 +192,14 @@ for category, video_contents in videos:
         video_escaped = video.replace("|", "\|")
 
         if len(thumbnails) == 1 and not is_short:
-            category_str += f"\n[![Thumbnail for the '{video_escaped}' video](/videos/{video_slug}/thumbnail.webp){{: .video-thumbnail}}]({youtube_link})\n"
+            result += f"\n[![Thumbnail for the '{video_escaped}' video](/videos/{video_slug}/thumbnail.webp){{: .video-thumbnail}}]({youtube_link})\n"
 
         links = "" if not VIDEO_LINKS else [{'/'.join(resolution_links)}]
-        category_str += f"{date.strftime('%Y/%0m/%0d')} -- **{video}** [[YouTube]({youtube_link})] {links}\n- _{description}_\n\n"
+        result += f"{date.strftime('%Y/%0m/%0d')} -- **{video}** [[YouTube]({youtube_link})] {links}\n"
 
-    result += category_str
+        description_rest = contents.split("\n\n", maxsplit=1)[1]
+        result += f"<details><summary><em>{description}</em></summary> <pre>{description_rest}</pre></details>\n"
+        result += "\n"
 
 
 youtube_link, video = latest_video
