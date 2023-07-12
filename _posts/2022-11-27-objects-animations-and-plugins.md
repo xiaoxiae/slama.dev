@@ -8,7 +8,7 @@ redirect_from:
 - /manim/5/
 ---
 
-[Part 1](/manim/1/), [Part 2](/manim/2/), [Part 3](/manim/3/), [Part 4](/manim/4/), **→ Part 5 ←**
+[Part 1](/manim/1/), [Part 2](/manim/2/), [Part 3](/manim/3/), [Part 4](/manim/4/), **→ Part 5 ←**, [Part 6](/manim/6/)
 
 - .
 {:toc}
