@@ -242,6 +242,8 @@ Since none of this is really documented, you'll have to look at the [source code
 ### More examples!
 Here are some more examples of what you can do with OpenGL, mostly to inspire rather then document (since you'll have to do quite a bit of digging through the source code regardless).
 
+_This section is ever-expanding and will contain more examples as I experiment with OpenGL!_
+
 ```py
 from manim import *
 from manim.opengl import *
