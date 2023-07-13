@@ -53,7 +53,7 @@ class Intro(Scene):
         self.play(FadeOut(square), FadeOut(circle), run_time=2)
 ```
 
-To render the video, we will use the `manim <file name> -pqm` command, where
+To render the video, we will use the `manim <file_name> -pqm` command, where
 - `-p` is the preview flag, telling Manim that we want to immediately view the result and
 - `-qm` sets the quality to `m`edium (others being `l`ow, `h`igh and 4`k`),
 
