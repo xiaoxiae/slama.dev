@@ -202,29 +202,19 @@ class CameraScene(Scene):
 
         self.interactive_embed()
 
-
     def on_key_press(self, symbol, modifiers):
         # + adds a new camera position to interpolate
         if symbol == key.PLUS:
             print("New position added!")
-            self.camera_states.append(
-                (
-                    self.camera.get_position(),
-                    np.array(self.camera.euler_angles),
-                )
-            )
+            self.camera_states.append(self.camera.copy())
 
         # P plays the animations, one by one
         elif symbol == key.P:
             print("Replaying!")
-            for pos, ang in self.camera_states:
-                self.play(
-                    self.camera.animate.set_position(pos) \
-                                       .set_euler_angles(*ang)
-                )
+            for cam in self.camera_states:
+                self.play(self.camera.animate.become(cam))
 
         super().on_key_press(symbol, modifiers)
-
 ```
 
 {% manim_video 6-Camera %}
