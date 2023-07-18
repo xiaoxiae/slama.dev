@@ -112,6 +112,8 @@ pre.highlight {
     border-radius: $code-border-roundness;
     padding: $code-padding / 2 $code-padding;
     margin-bottom: $line-spacing;
+
+    font-variant-ligatures: none;
 }
 
 .code-summary {
