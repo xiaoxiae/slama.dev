@@ -9,6 +9,7 @@ redirect_from:
  - /lecture-notes/aproximacni-algoritmy/
  - /poznámky-z-přednášky/aproximacni-algoritmy/
  - /poznamky-z-prednasky/aproximacni-algoritmy/
+excerpt: Poznámky z přednášky Aproximační Algoritmy (Jiří Sgall, 2021/2022).
 ---
 
 - .

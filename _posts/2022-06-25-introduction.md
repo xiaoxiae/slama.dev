@@ -6,6 +6,7 @@ css: manim
 category_part: 1
 redirect_from:
 - /manim/1/
+excerpt: Over the course of this year, I created a well-received "Introduction to Manim" series for KSP (Czech CS-oriented correspondence seminar), so it made sense to make it more accessible by translating it to English and publish it here.
 ---
 
 **→ Part 1 ←**, [Part 2](/manim/2/), [Part 3](/manim/3/), [Part 4](/manim/4/), [Part 5](/manim/5/), [Part 6](/manim/6/)

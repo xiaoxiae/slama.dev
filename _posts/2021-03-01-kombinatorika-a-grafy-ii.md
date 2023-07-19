@@ -9,6 +9,7 @@ redirect_from:
  - /lecture-notes/kombinatorika-a-grafy-ii/
  - /poznámky-z-přednášky/kombinatorika-a-grafy-ii/
  - /poznamky-z-prednasky/kombinatorika-a-grafy-ii/
+excerpt: Poznámky z přednášky Kombinatorika a Grafy II (Martin Koutecký, 2020/2021).
 ---
 
 

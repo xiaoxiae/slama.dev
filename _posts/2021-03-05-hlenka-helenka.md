@@ -1,6 +1,7 @@
 ---
 language: cz
 layout: default
+excerpt: Diář naší nejoblíbenější améby.
 ---
 
 {:.center }

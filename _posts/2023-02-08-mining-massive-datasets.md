@@ -2,6 +2,7 @@
 title: Mining Massive Datasets
 category: "notes"
 category_icon: /assets/category-icons/heidelberg.webp
+excerpt: Lecture notes from the Mining Massive Datasets course (Artur Andrzejak, 2022/2023).
 ---
 
 - .

@@ -6,6 +6,7 @@ css: manim
 category_part: 4
 redirect_from:
 - /manim/4/
+excerpt: In this part of the series, we'll take a look at Manim's tools for 3D animations and also at plotting all sorts of graphs.
 ---
 
 [Part 1](/manim/1/), [Part 2](/manim/2/), [Part 3](/manim/3/), **→ Part 4 ←**, [Part 5](/manim/5/), [Part 6](/manim/6/)

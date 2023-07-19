@@ -4,6 +4,7 @@ category: "notes"
 category_icon: /assets/category-icons/mff.webp
 redirect_from:
 - /lecture-notes/the-cs-programming-language/
+excerpt: Lecture notes from The C# programming language lecture (Pavel Ježek, 2020/2021).
 ---
 
 - .

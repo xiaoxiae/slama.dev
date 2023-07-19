@@ -6,6 +6,7 @@ css: manim
 category_part: 5
 redirect_from:
 - /manim/5/
+excerpt: This part of the series covers creating custom objects and animations, and also showcases some interesting community-made plugins.
 ---
 
 [Part 1](/manim/1/), [Part 2](/manim/2/), [Part 3](/manim/3/), [Part 4](/manim/4/), **→ Part 5 ←**, [Part 6](/manim/6/)

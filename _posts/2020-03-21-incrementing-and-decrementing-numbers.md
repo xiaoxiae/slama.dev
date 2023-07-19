@@ -1,6 +1,7 @@
 ---
 category: "Vim"
 category_icon: /assets/category-icons/vim.svg
+excerpt: A short post about how to increment/decrement numbers in Vim.
 ---
 
 Some of you might know that pressing `<C-a>`/`<C-x>` in command mode _increases/decreases the next number on the line the cursor is currently on_:

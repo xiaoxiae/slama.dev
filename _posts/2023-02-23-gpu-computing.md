@@ -2,6 +2,7 @@
 title: GPU Computing
 category: "notes"
 category_icon: /assets/category-icons/heidelberg.webp
+excerpt: Lecture notes from the GPU Computing course (Kazem Shekofteh, 2022/2023).
 ---
 
 - .

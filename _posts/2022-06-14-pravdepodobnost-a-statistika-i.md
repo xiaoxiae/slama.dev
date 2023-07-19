@@ -5,6 +5,7 @@ category: "poznamky"
 category_noslug: "poznámky"
 redirect_from:
  - /poznamky-z-prednasky/pravdepodobnost-a-statistika-i/
+excerpt: Poznámky z přednášky Pravděpodobnost a Statistika I (Robert Šámal, 2020/2021).
 ---
 
 - .

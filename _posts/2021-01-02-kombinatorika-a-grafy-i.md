@@ -9,6 +9,7 @@ redirect_from:
  - /lecture-notes/kombinatorika-a-grafy-i/
  - /poznámky-z-přednášky/kombinatorika-a-grafy-i/
  - /poznamky-z-prednasky/kombinatorika-a-grafy-i/
+excerpt: Poznámky z přednášky Kombinatorika a Grafy I (Martin Koutecký, 2020/2021).
 ---
 
 - .

@@ -6,6 +6,7 @@ css: manim
 category_part: 2
 redirect_from:
 - /manim/2/
+excerpt: In this part of the series, we'll learn a number of useful functions and classes when working with groups of objects. We'll also learn how to transform objects into others, how updaters work and a few geometry-related things.
 ---
 
 [Part 1](/manim/1/), **→ Part 2 ←**, [Part 3](/manim/3/), [Part 4](/manim/4/), [Part 5](/manim/5/), [Part 6](/manim/6/)

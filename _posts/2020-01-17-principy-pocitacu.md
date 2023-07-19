@@ -9,6 +9,7 @@ redirect_from:
  - /lecture-notes/principy-pocitacu/
  - /poznámky-z-přednášky/principy-pocitacu/
  - /poznamky-z-prednasky/principy-pocitacu/
+excerpt: Poznámky z přednášky Principy Počítačů (Pavel Ježek, 2019/2020).
 ---
 
 - .

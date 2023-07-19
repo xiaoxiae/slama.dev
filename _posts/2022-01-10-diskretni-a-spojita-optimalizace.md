@@ -9,6 +9,7 @@ redirect_from:
  - /lecture-notes/diskretni-a-spojita-optimalizace/
  - /poznámky-z-přednášky/diskretni-a-spojita-optimalizace/
  - /poznamky-z-prednasky/diskretni-a-spojita-optimalizace/
+excerpt: Poznámky z přednášky Diskrétní a spojitá optimalizace (Martin Loebl + Milan Hladík, 2021/2022).
 ---
 
 - .

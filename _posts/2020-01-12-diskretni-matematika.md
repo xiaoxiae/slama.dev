@@ -9,6 +9,7 @@ redirect_from:
  - /lecture-notes/diskretni-matematika/
  - /poznámky-z-přednášky/diskretni-matematika/
  - /poznamky-z-prednasky/diskretni-matematika/
+excerpt: Poznámky z přednášky Diskrétní Matematika (Martin Mareš, 2019/2020).
 ---
 
 - .

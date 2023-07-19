@@ -1,4 +1,5 @@
 ---
+excerpt: A short post about how to add a dark website theme via CSS.
 ---
 
 - .

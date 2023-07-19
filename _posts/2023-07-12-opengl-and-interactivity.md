@@ -6,6 +6,7 @@ css: manim
 category_part: 6
 redirect_from:
 - /manim/6/
+excerpt: In this addition to my Manim series, we'll cover the (at the moment rather experimental) OpenGL backend for faster GPU-based rendering.
 ---
 
 [Part 1](/manim/1/), [Part 2](/manim/2/), [Part 3](/manim/3/), [Part 4](/manim/4/), [Part 5](/manim/5/), **→ Part 6 ←**
@@ -234,6 +235,8 @@ Here are some more examples of what you can do with OpenGL, mostly to inspire ra
 
 _This section is ever-expanding and will contain more examples as I experiment with OpenGL!_
 
+#### Point-cloud
+
 ```py
 from manim import *
 from manim.opengl import *
@@ -262,3 +265,6 @@ class BunnyScene(Scene):
 ```
 
 {% manim_video 6-PointCloud %}
+
+
+#### Polyhedron

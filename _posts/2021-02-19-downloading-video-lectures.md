@@ -1,5 +1,6 @@
 ---
 title: Downloading video lectures
+excerpt: A short post about how to download video lectures from various websites.
 ---
 
 - .

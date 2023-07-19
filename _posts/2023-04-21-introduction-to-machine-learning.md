@@ -2,7 +2,7 @@
 title: Introduction to Machine Learning
 category: "notes"
 category_icon: /assets/category-icons/heidelberg.webp
-pdf: false
+excerpt: Lecture notes from the Introduction to Machine Learning course (Ullrich Köthe, 2022/2023).
 ---
 
 - .

@@ -3,6 +3,7 @@ title: Master's in Heidelberg
 category: "education"
 category_icon: /assets/category-icons/heidelberg.webp
 pdf: true
+excerpt: I, along with my lovely girlfriend, recently moved to Heidelberg to pursue our respective master's degrees (Computer Science and Cancer Biology). While Heidelberg is a beautiful city with great sights, interesting people and a pretty good bouldering gym, the process of becoming a European international student can be quite challenging. If you find yourself in a similar position (or are considering placing yourself in it), I hope this post will be useful to you, since it covers a number of the things we struggled with during the enrolment process and beyond.
 ---
 
 - .
