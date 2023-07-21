@@ -2247,3 +2247,25 @@
   red:
     new: 4
   wall: Boulderhaus
+2023-07-17:
+  kilter:
+    7a:
+      new: 1
+    7a+:
+      new: 3
+    7b:
+      new: 2
+    7b+:
+      new: 2
+    angle: 40
+  note: Getting back to Kilter. It's rough.
+  wall: Boulderhaus
+2023-07-19:
+  kilter:
+    7a+:
+      new: 5
+    7b:
+      new: 2
+    angle: 40
+  note: It's still rough.
+  wall: Boulderhaus
