@@ -265,6 +265,3 @@ class BunnyScene(Scene):
 ```
 
 {% manim_video 6-PointCloud %}
-
-
-#### Polyhedron
