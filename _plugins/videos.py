@@ -13,8 +13,6 @@ OUT = "../_includes/videos.md"
 VIDEO_FOLDER = "../videos/"
 URL_ROOT = "https://github.com/xiaoxiae/videos/tree/master/"
 
-VIDEO_LINKS = False
-
 videos = [
     ("Graph Theory", [
         (
@@ -141,25 +139,6 @@ for category, video_contents in videos:
 
         is_short = os.path.exists(os.path.join(folder, ".short"))
 
-        # rozlišení
-        resolution_paths = [f for f in glob(os.path.join(folder, "export", "*.mp4"))]
-        resolutions = sorted(
-            [
-                int(os.path.basename(f).strip(".mp4").strip("p"))
-                for f in resolution_paths
-            ]
-        )
-
-        # kopírování videí
-        for resolution_path in resolution_paths:
-            if not VIDEO_LINKS:
-                continue
-
-            filename = os.path.basename(resolution_path)
-
-            if not os.path.exists(os.path.join(this_video_folder, filename)):
-                shutil.copy(resolution_path, os.path.join(this_video_folder, filename))
-
         # kopírování thumbnailů
         thumbnail_name = "thumbnail.webp"
         thumbnails = glob(os.path.join(folder, "export", "thumbnail.png"))
@@ -175,11 +154,6 @@ for category, video_contents in videos:
                 image.thumbnail(size)
                 image.save(os.path.join(this_video_folder, thumbnail_name))
 
-        resolution_links = [
-            f"[{r}p](/videos/{video_slug}/{r}p.mp4)" for r in resolutions
-            if r != 2160
-        ]
-
         with open(os.path.join(folder, "DESCRIPTION.md"), "r") as f:
             contents = f.read()
 
@@ -194,8 +168,7 @@ for category, video_contents in videos:
         if len(thumbnails) == 1 and not is_short:
             result += f"\n[![Thumbnail for the '{video_escaped}' video](/videos/{video_slug}/thumbnail.webp){{: .video-thumbnail}}]({youtube_link})\n"
 
-        links = "" if not VIDEO_LINKS else [{'/'.join(resolution_links)}]
-        result += f"{date.strftime('%Y/%0m/%0d')} -- **{video}** [[YouTube]({youtube_link})] {links}\n"
+        result += f"{date.strftime('%Y/%0m/%0d')} -- **{video}** [[YouTube]({youtube_link})]\n"
 
         description_rest = contents.split("\n\n", maxsplit=1)[1]
         result += f"<details><summary><em>{description}</em></summary> <pre>{description_rest}</pre></details>\n"
