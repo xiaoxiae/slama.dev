@@ -20,7 +20,7 @@ videos = [
         (
             date(2023, 4, 9),
             "https://www.youtube.com/watch?v=lifFgyB77zc",
-            "The most elegant search data structure | (a,b)-trees",
+            "The Most Elegant Search Structure | (a,b)-trees",
             "17-",
         ),
         (
@@ -32,7 +32,7 @@ videos = [
         (
             date(2021, 8, 23),
             "https://www.youtube.com/watch?v=3roPs1Bvg1Q",
-            "The Blossom algorithm",
+            "The Blossom Algorithm",
             "06-",
         ),
         (
