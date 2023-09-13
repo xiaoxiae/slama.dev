@@ -10,7 +10,7 @@ excerpt: This post contains additional materials to my newly released video abou
 {:toc}
 
 ### Introduction
-This post contains additional materials to my [newly released video](https://youtu.be/E72DWgKP_1Y) about linear programming, namely a number of practical examples of how it can be used to solve a variety of problems using Python and its `pulp` package.
+This post contains additional materials to my **[newly released video](https://youtu.be/E72DWgKP_1Y)** about linear programming, namely a number of practical examples of how it can be used to solve a variety of problems using Python and its `pulp` package.
 
 ### Practical examples
 

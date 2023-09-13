@@ -9,7 +9,8 @@ excerpt: Sbírka praktických příkladů lineárních programů v Pythonu.
 {:toc}
 
 ### Úvodní informace
-Tato stránka obsahuje náhodné programy ze cvičení/přednášky předmětu Lineární programování a kombinatorická optimalizace. Ke spuštění programů je potřeba nainstalovat Pythoní knihovnu `pulp` (přes `pip install pulp`), kterou k řešení problémů používám.
+Tato stránka obsahuje náhodné programy ze cvičení/přednášky předmětu Lineární programování a kombinatorická optimalizace, a zároveň jako dodatečné materiály k mému **[nově vydanému videu](https://youtu.be/E72DWgKP_1Y)** o lineárním programovaní.
+Ke spuštění programů je potřeba nainstalovat Pythoní knihovnu `pulp` (přes `pip install pulp`), kterou k řešení problémů používám.
 
 Pokud s `pulp`em také vyřešíte nějaký problém, tak budu moc rád za email/pull request, ať tu máme příkladů co možná nejvíce 🙂.
 
