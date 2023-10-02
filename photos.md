@@ -13,7 +13,15 @@ If you'd like to see the originals, simply click on the photos.
 _Each of the photos are licensed under **[CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)**, so kindly respect it if you plan on using any of them for uses other than personal._
 
 {: .center}
-### Tatras ⛰️
+### Austria 2023 ⛰️
+<div class='section'>
+{% photos austria/raw/1.png|austria/raw/2.png|austria/raw/3.png %}
+{% photos austria/raw/4.png|austria/raw/5.png %}
+{% photos austria/raw/s2.png %}
+</div>
+
+{: .center}
+### Tatras 2023 ⛰️
 <div class='section'>
 {% photos tatras/raw/1.png|tatras/raw/2.png %}
 {% photos tatras/raw/4.png|tatras/raw/5.png %}
