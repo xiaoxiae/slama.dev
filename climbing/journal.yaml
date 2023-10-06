@@ -2290,3 +2290,32 @@
   red:
     new: 3
   wall: Boulderhaus
+2023-10-05:
+  black:
+    new: 1
+  blue:
+    new: 5
+    old: 3
+  note: Took a very long break, during which I was climbing only sporadically. I've
+    been feeling pretty good again recently (mostly due to the break), so, with the
+    start of the next semester, I plan on starting to record my climbs and also add
+    training days to the journal too.
+  red:
+    new: 3
+    old: 1
+  wall: Boulderhaus
+2023-10-06:
+  hangboard:
+    exercises:
+    - 3-3
+    - 5-3 + 3-5
+    - 7-3 + 3-7
+    - 5-2 + 2-5
+    - 5-10 + 10-5
+    - 3-3
+    - 3-3
+    parameters: 8/8/4/120
+    type: beastmaker-2000
+  note: Starting to train on the days off from climbing, let's see how long I last
+    :D.
+  wall: home

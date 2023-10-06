@@ -143,7 +143,10 @@ for entry in reversed(sorted(list(journal))):
             else wall_stubs_colors[wall_stub]
         )
 
-        line += f" (at <img class='climbing-wall-logo' src='/climbing/wall-logos/{wall_stub}.svg' alt='Logo of the {wall} climbing wall.'/>"
+        if not os.path.exists(f"../climbing/wall-logos/{wall_stub}.svg"):
+            line += f" (at <strong>{wall}</strong>"
+        else:
+            line += f" (at <img class='climbing-wall-logo' src='/climbing/wall-logos/{wall_stub}.svg' alt='Logo of the {wall} climbing wall.'/>"
 
         if "rebuilt" in journal[entry]:
             line += f", <strong>new boulders</strong>"
@@ -259,10 +262,23 @@ for entry in reversed(sorted(list(journal))):
 
         line += f"</ul>"
 
+    if "hangboard" in journal[entry]:
+        reps, hang_time, break_time, long_break_time = list(map(int, journal[entry]["hangboard"]["parameters"].split("/")))
+
+        exercises = journal[entry]["hangboard"]["exercises"]
+        board = journal[entry]["hangboard"]["type"]
+
+        line += f"<p class='climbing-hangboard'><strong>Hangboard:</strong> <strong>{len(exercises)}x{reps}</strong> reps of hang <strong>{hang_time}s</strong> / break <strong>{break_time}s</strong> with <strong>{long_break_time}s</strong> in between" \
+                 "</p>" \
+                 "<ul>" \
+                 f"<li><a href='/climbing/boards/{board}.svg'><strong>exercises:</strong></a> {'  |  '.join(['<em>' + e + '</em>' for e in exercises])}</li>" \
+                 "</ul>"
+
     if "note" in journal[entry]:
         note = journal[entry]["note"]\
                 .replace("--", "–")\
                 .replace(":)", "<span class='emoji'>🙂</span>")\
+                .replace(":D", "<span class='emoji'>😀</span>")\
                 .replace(":|", "<span class='emoji'>😐</span>")\
                 .replace(":/", "<span class='emoji'>🫤</span>")\
                 .replace("<3", "<span class='emoji'>❤️</span>")\
