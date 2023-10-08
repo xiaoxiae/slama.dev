@@ -2319,3 +2319,29 @@
   note: Starting to train on the days off from climbing, let's see how long I last
     :D.
   wall: home
+2023-10-07:
+  black:
+    old: 1
+  blue:
+    new: 3
+    old: 6
+  note: Managed to send the hard red (more like black) and felt decent.
+  red:
+    new: 1
+    old: 1
+  training: push-ups, core.
+  wall: Boulderhaus
+2023-10-08:
+  hangboard:
+    exercises:
+    - 3-3
+    - 5-3 + 3-5
+    - 7-3 + 3-7
+    - 5-2 + 2-5
+    - 5-10 + 10-5
+    - 3-3
+    - 3-3
+    parameters: 8/8/4/120
+    type: beastmaker-2000
+  training: push-ups, core.
+  wall: home
