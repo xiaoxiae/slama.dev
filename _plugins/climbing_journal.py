@@ -302,21 +302,26 @@ with open(OUTPUT_PATH, "w") as f:
     f.write(result)
 
 with open(LAST_CLIMB_PATH, "w") as f:
-    entry = sorted(list(journal))[-1]
+    # iterating cause some entries might be at home
+    for entry in reversed(sorted(list(journal))):
 
-    if "wall" in journal[entry]:
-        where = journal[entry]["wall"]
+        if "wall" in journal[entry]:
+            where = journal[entry]["wall"]
 
-        if "kilter" in journal[entry]:
-            where += " / Kilter"
+            if where == "home":
+                continue
 
-    elif "location" in journal[entry]:
-        where = journal[entry]["location"]
+            if "kilter" in journal[entry]:
+                where += " / Kilter"
 
-    # strip tags (links) from locations
-    where = re.sub('<[^<]+?>', '', where)
+        elif "location" in journal[entry]:
+            where = journal[entry]["location"]
 
-    f.write(f"Last climbing session: **{entry.strftime('%-d. %-m. %Y')}** at <a href='#{str(entry)}'>{where} ↩</a>.")
+        # strip tags (links) from locations
+        where = re.sub('<[^<]+?>', '', where)
+
+        f.write(f"Last climbing session: **{entry.strftime('%-d. %-m. %Y')}** at <a href='#{str(entry)}'>{where} ↩</a>.")
+        break
 
 with open(CLIMBING_JOURNAL, "w") as f:
     f.write(yaml.dump(journal))
