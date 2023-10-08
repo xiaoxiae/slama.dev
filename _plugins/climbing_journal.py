@@ -268,11 +268,14 @@ for entry in reversed(sorted(list(journal))):
         exercises = journal[entry]["hangboard"]["exercises"]
         board = journal[entry]["hangboard"]["type"]
 
-        line += f"<p class='climbing-hangboard'><strong>Hangboard:</strong> <strong>{len(exercises)}x{reps}</strong> reps of hang <strong>{hang_time}s</strong> / break <strong>{break_time}s</strong> with <strong>{long_break_time}s</strong> in between" \
+        line += f"<p class='climbing-training'><strong>Hangboard:</strong> <strong>{len(exercises)}x{reps}</strong> reps of hang <strong>{hang_time}s</strong> / break <strong>{break_time}s</strong> with <strong>{long_break_time}s</strong> in between" \
                  "</p>" \
                  "<ul>" \
                  f"<li><a href='/climbing/boards/{board}.svg'><strong>exercises:</strong></a> {'  |  '.join(['<em>' + e + '</em>' for e in exercises])}</li>" \
                  "</ul>"
+
+    if "training" in journal[entry]:
+        line += f"<p class='climbing-training'><strong>Training:</strong> {journal[entry]['training']}</p>"
 
     if "note" in journal[entry]:
         note = journal[entry]["note"]\
