@@ -2345,3 +2345,38 @@
     type: beastmaker-2000
   training: push-ups, core.
   wall: home
+2023-10-09:
+  blue:
+    new: 5
+    old: 2
+  note: The new reds were a bit of a fight (was pretty tired from yesterday's hangboarding)
+    but managed to do them all in the end.
+  red:
+    new: 3
+    old: 1
+  training: core.
+  wall: Boulderhaus
+2023-10-10:
+  hangboard:
+    exercises:
+    - 3-3
+    - 5-3 + 3-5
+    - 5-10 + 10-5
+    - 3-3
+    - 3-3
+    parameters: 8/8/4/120
+    type: beastmaker-2000
+  training: core.
+  wall: home
+2023-10-12:
+  black:
+    new: 2
+  blue:
+    new: 2
+    old: 3
+  note: Pretty happy with today's climbing, managing to do the new reds (and one forgotten),
+    along with two of the blacks that I haven't yet done.
+  red:
+    new: 3
+  training: core.
+  wall: Boulderhaus
