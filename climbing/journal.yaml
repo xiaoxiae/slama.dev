@@ -2380,3 +2380,18 @@
     new: 3
   training: core.
   wall: Boulderhaus
+2023-10-13:
+  hangboard:
+    exercises:
+    - 3-3
+    - 5-3 + 3-5
+    - 7-3 + 3-7
+    - 5-2 + 2-5
+    - 5-10 + 10-5
+    - 5-5 with slow pushup
+    - 5-5 with slow pushup
+    - 3-3
+    - 3-3
+    parameters: 8/8/4/120
+    type: beastmaker-2000
+  wall: home
