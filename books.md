@@ -9,8 +9,6 @@ no-heading: True
 {:.center}
 This section covers various kinds of books that I think are worth reading.
 
-_Note that I've read each one as an Audiobook, either from Audible or using other means. If you're interested in listening to any of them but are unable to (can't find/purchase it due to Audible being picky about the country you're from), let me know and I'll gladly help._
-
 ### Fantasy
 
 #### Brandon Sanderson
@@ -40,11 +38,7 @@ _Note that I've read each one as an Audiobook, either from Audible or using othe
 - **Secret Novels** [[context video](https://www.youtube.com/watch?v=6a-k6eaT-jQ)]
 	1. **Tress of the Emerald Sea** [[Wikipedia](https://en.wikipedia.org/wiki/Tress_of_the_Emerald_Sea)] -- a fascinating fairtale-like novel from the Cosmere.
 	2. **The Frugal Wizard's Handbook for Surviving Medieval England** -- a fun novel about multiverse traveling and... marketing?
-
-- **The Reckoners** [[Wikipedia](https://en.wikipedia.org/wiki/The_Reckoners)] -- a set of three novels set in a post-apocalyptic world where random people are transformed into superhumans with various kinds of abilities. The atmosphere is great, but the writing is targeted at a younger audience, which is noticeable.
-	1. **Steelheart**
-	2. **Firefight**
-	3. **Calamity**
+	3. **Yumi and the Nightmare Painter** -- very evocative and narrated by Hoid (who was a coatrack).
 
 #### Leigh Bardugo
 
@@ -53,16 +47,23 @@ _Note that I've read each one as an Audiobook, either from Audible or using othe
 	1. **The Six of Crows**
 	2. **Crooked Kingdom**
 
-{:.book}
 - **King of Scars** duology [[Wikipedia](https://en.wikipedia.org/wiki/King_of_Scars)] -- another excellent duology by Leigh Bardugo. It is much more fantasy-ish than the Six of Crows and focuses more heavily on the magical aspect of the world that Leigh is building (so it reads quite differently) but I enjoyed it nonetheless.
 	1. **King of Scars**
 	2. **Rule of Wolves**
 
+### Sci-fi
+
 #### Andy Weir
 
+{:.book}
 - **The Martian** [[Wikipedia](https://en.wikipedia.org/wiki/The_Martian_(Weir_novel))] -- a hilarious novel about an astronaut surviving on Mars, after being left for dead due to an unfortunate series of events. It inspired a [movie](https://en.wikipedia.org/wiki/The_Martian_(film)#Reception), which (while not as good as the book) is also quite entertaining.
 
 - **Project Hail Mary** [[Wikipedia](https://en.wikipedia.org/wiki/Project_Hail_Mary)] -- another excellent novel by. It has exactly the same feel as the Martian, but I found it to be much more interesting story-wise and would wholeheartedly recommend it to anyone interested in space sci-fi.
+
+#### Isaac Asimov
+
+{:.book}
+- **The Foundation Series** [[Wikipedia](https://en.wikipedia.org/wiki/Foundation_series)] -- a series of sci-fi novels set in a long-distant future where humanity controls the entire galaxy through the Galactic Empire, but which is predicted to fall through the mathematics of psychohistory. Despite the series being written many decades ago, it holds up well and was truly a joy to read.
 
 ### Other
 
