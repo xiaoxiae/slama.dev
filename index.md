@@ -43,11 +43,3 @@ Links to the sections of the website can be found at the top, links to the posts
 {% endfor %}
 
 <div class="spacer"></div>
-
----
-
-{:.center}
-Also, I'll just leave this here for the time being.
-
-{:.no-invert}
-![](assets/putin.webp)
