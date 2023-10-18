@@ -10,7 +10,7 @@ excerpt: Lecture notes from the Introduction to Machine Learning course (Ullrich
 
 {% lecture_notes_preface_heidelberg Ullrich Köthe|2022/2023%}
 
-_Note that the notes are a work in progress!_
+**_The notes end at the decision tree/forest lecture (inclusive)!_**
 
 _Also, special thanks to [Lucia Zhang](https://github.com/LuciaZhang9), some of the notes are shamelessly stolen from her._
 
