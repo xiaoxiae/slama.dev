@@ -310,6 +310,8 @@ footer {
     p { margin-bottom: 0; }
 
     background-color: $light-header-background-color;
+
+    br { margin-bottom: $line-spacing / 4; }
 }
 
 .footnotes {
