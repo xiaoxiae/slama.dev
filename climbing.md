@@ -48,6 +48,7 @@ Since there there are some other walls that I visit from time to time (mostly th
 | Icon                                                                                                                | Wall                                               | Location       |
 | :-:                                                                                                                 | :-:                                                | --:            |
 | <img alt='Boulderhaus wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/boulderhaus.svg'/>     | [Boulderhaus](https://www.boulderhaus.net/)        | Heidelberg, DE |
+| <img alt='Studiobloc wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/studiobloc.svg'/>       | [Studiobloc](https://http://studiobloc.de/)        | Mannheim, DE |
 | <img alt='Smíchoff wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/smichoff.svg'/>           | [Smíchoff](https://www.lezeckecentrum.cz/cs/)      | Prague, CZ     |
 | <img alt='BigWall wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/bigwall.svg'/>             | [BigWall](https://www.big-wall.cz/)                | Prague, CZ     |
 | <img alt='Jungle Letňany wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/jungle.svg'/>       | [Jungle Letňany](https://www.jungleletnany.cz/)    | Prague, CZ     |

@@ -2410,3 +2410,41 @@
     time, we'll see how it goes.
   training: core.
   wall: Boulderhaus
+2023-10-18:
+  black:
+    new: 1
+  note: Did the new black! The new reds weren't too bad either, managed to send them
+    too. My skin (and body in general) is feeling a little worn though so I'll tone
+    down the training for a little bit until I feel better.
+  red:
+    new: 3
+  training: core.
+  wall: Boulderhaus
+2023-10-21:
+  note: Took a bit of a short break to be ready for the Studiobloc funcup and had
+    a blast -- the setting was more modern and the routes were exciting, sadly there
+    were too many people so I couldn't try some of the routes without having to wait
+    10 minutes...
+  wall: Studiobloc
+2023-10-22:
+  blue:
+    new: 4
+  note: Fun chill session. Was still tired from yesterday but managed to send most
+    of the new reds (besides the one that's black in disguise).
+  red:
+    new: 4
+  wall: Boulderhaus
+2023-10-23:
+  hangboard:
+    exercises:
+    - 3-3
+    - 5-3 + 3-5
+    - 7-3 + 3-7
+    - 5-2 + 2-5
+    - 5-10 + 10-5
+    - 5-5 with slow pushup
+    - 5-5 with slow pushup
+    - 5-5 with slow pushup
+    parameters: 8/8/4/120
+    type: beastmaker-2000
+  wall: home
