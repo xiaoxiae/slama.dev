@@ -2388,8 +2388,8 @@
     - 7-3 + 3-7
     - 5-2 + 2-5
     - 5-10 + 10-5
-    - 5-5 with slow pushup
-    - 5-5 with slow pushup
+    - 5-5 with slow push-up
+    - 5-5 with slow push-up
     - 3-3
     - 3-3
     parameters: 8/8/4/120
@@ -2442,9 +2442,13 @@
     - 7-3 + 3-7
     - 5-2 + 2-5
     - 5-10 + 10-5
-    - 5-5 with slow pushup
-    - 5-5 with slow pushup
-    - 5-5 with slow pushup
+    - 5-5 with slow push-up
+    - 5-5 with slow push-up
+    - 5-5 with slow push-up
     parameters: 8/8/4/120
     type: beastmaker-2000
   wall: home
+2023-10-24:
+  note: I thought it was Wednesday... suffice it to say it is not and there we no
+    new routes so I just messed around on some custom boulders.
+  wall: Boulderhaus
