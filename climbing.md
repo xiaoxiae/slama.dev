@@ -2,7 +2,7 @@
 title: Climbing
 layout: default
 order: 4
-css: climbing
+css: climbing photos
 no-heading: True
 ---
 
@@ -10,17 +10,19 @@ no-heading: True
 This page is dedicated to my climbing life.<br>
 {% include last-climb.md %}
 
+<div class='photo-section'>
 <figure>
 	<div class="row">
-		<img style="flex:38.4%; max-width: 38.4%;" src="/climbing/photos/2022-06-15-2.webp" alt="A photo from Smíchoff's Boulder Challenge">
-		<img style="flex:57.6%; max-width: 57.6%;" src="/climbing/photos/2022-06-15-1.webp" alt="A photo from Smíchoff's Boulder Challenge">
+		<img style="flex:40.0%; max-width: 40.0%;" src="/climbing/photos/2022-06-15-2.webp" alt="A photo from Smíchoff's Boulder Challenge">
+		<img style="flex:60.0%; max-width: 60.0%;" src="/climbing/photos/2022-06-15-1.webp" alt="A photo from Smíchoff's Boulder Challenge">
 	</div>
 	<div class="row">
-		<img style="flex:66.47%; max-width: 66.47%;" src="/climbing/photos/2022-06-15-3.webp" alt="A photo from Smíchoff's Boulder Challenge">
-		<img style="flex:29.53%; max-width: 29.53%;" src="/climbing/photos/2022-06-15-4.webp" alt="A photo from Smíchoff's Boulder Challenge">
+		<img style="flex:70%; max-width: 70%;" src="/climbing/photos/2022-06-15-3.webp" alt="A photo from Smíchoff's Boulder Challenge">
+		<img style="flex:30%; max-width: 30%;" src="/climbing/photos/2022-06-15-4.webp" alt="A photo from Smíchoff's Boulder Challenge">
 	</div>
-	<figcaption>A few photos from Smíchoff's Boulder Challenge (15. 6. 2022).<br>© <a href="https://instagram.com/kareafoto">KAREA foto</a></figcaption>
+	<figcaption>A few photos from Smíchoff's Boulder Challenge (15. 6. 2022). © <a href="https://instagram.com/kareafoto">KAREA foto</a></figcaption>
 </figure>
+</div>
 
 ## [Boulderhaus](https://www.boulderhaus.net/), Heidelberg
 Since moving to Heidelberg for my Master's degree, Boulderhaus is the gym that I frequent.

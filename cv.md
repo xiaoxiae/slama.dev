@@ -6,7 +6,8 @@ css: cv
 no-heading: True
 ---
 
-This section of the personal website is dedicated to my curriculum vitae. For additional information, feel free to contact me at `tomas [at] slama [dot] dev` (if you'd like to, use [my RSA public key](/assets/rsa_pub.txt)), and to browse through my [GitHub profile](https://github.com/xiaoxiae/).
+This section of the personal website is dedicated to my curriculum vitae.
+For additional information, feel free to contact me at `tomas [at] slama [dot] dev`, and to browse through my [GitHub profile](https://github.com/xiaoxiae/).
 
 Also, here is an [up-to-date PDF version](/cv.pdf) (neatly typeset in \(\TeX\)), if you're interested.
 

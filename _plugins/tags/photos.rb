@@ -9,7 +9,6 @@ module Jekyll
       def render(context)
         result = "<div class='row'>"
 
-
         for i in 0..(@parts.length - 1)
           @type = @parts[i].split("/")
           result = result + "<div class='photos#{@parts.length}'>" \

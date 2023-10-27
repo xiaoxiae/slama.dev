@@ -14,7 +14,7 @@ _Each of the photos are licensed under **[CC-BY-NC-SA 4.0](https://creativecommo
 
 {: .center}
 ### Austria 2023 ⛰️
-<div class='section'>
+<div class='photo-section'>
 {% photos austria/raw/1.png|austria/raw/2.png|austria/raw/3.png %}
 {% photos austria/raw/4.png|austria/raw/5.png %}
 {% photos austria/raw/s2.png %}
@@ -22,14 +22,14 @@ _Each of the photos are licensed under **[CC-BY-NC-SA 4.0](https://creativecommo
 
 {: .center}
 ### Tatras 2023 ⛰️
-<div class='section'>
+<div class='photo-section'>
 {% photos tatras/raw/1.png|tatras/raw/2.png %}
 {% photos tatras/raw/4.png|tatras/raw/5.png %}
 </div>
 
 {: .center}
 ### Nature 🐞
-<div class='section'>
+<div class='photo-section'>
 {% photos flowers/raw/1.jpg|flowers/raw/2.jpg %}
 {% photos tatras/raw/3.png %}
 {% photos bees/raw/1.jpg|bees/raw/2.jpg %}
@@ -37,26 +37,26 @@ _Each of the photos are licensed under **[CC-BY-NC-SA 4.0](https://creativecommo
 
 {: .center}
 ### Places 📍
-<div class='section'>
+<div class='photo-section'>
 {% photos places/raw/1.jpg|places/raw/2.jpg %}
 </div>
 
 {: .center}
 ### Prague 🏙️
-<div class='section'>
+<div class='photo-section'>
 {% photos prague/raw/1.jpg|prague/raw/2.jpg %}
 {% photos prague/raw/3.jpg|prague/raw/4.jpg %}
 </div>
 
 {: .center}
 ### Sunsets 🌇
-<div class='section'>
+<div class='photo-section'>
 {% photos panoramas/raw/1.jpg|panoramas/raw/2.jpg %}
 </div>
 
 {: .center}
 ### Winter ❄️
-<div class='section'>
+<div class='photo-section'>
 {% photos panoramas/raw/3.jpeg %}
 {% photos panoramas/raw/4.jpeg %}
 {% photos winter/raw/2.jpeg|winter/raw/3.jpeg %}
@@ -67,7 +67,7 @@ _Each of the photos are licensed under **[CC-BY-NC-SA 4.0](https://creativecommo
 
 {: .center}
 ### Fire 🔥
-<div class='section'>
+<div class='photo-section'>
 {% photos fire/raw/2.jpg|fire/raw/3.jpg %}
 {% photos fire/raw/1.jpg %}
 </div>

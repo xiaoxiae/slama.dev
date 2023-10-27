@@ -22,6 +22,11 @@
     height: 0;
     overflow: hidden;
     margin-bottom: $line-spacing;
+
+    border: 3px solid $light-text-color;
+    @media (prefers-color-scheme: dark) {
+        border: 3px solid $dark-text-color;
+    }
 }
 
 .ytVideo iframe {
@@ -39,6 +44,7 @@ details {
     summary:hover { font-weight: bold; }
 
     pre {
-        margin-top: $line-spacing;
+        margin: $line-spacing;
+        white-space: pre-line;
     }
 }

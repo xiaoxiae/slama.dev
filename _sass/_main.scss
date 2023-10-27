@@ -98,7 +98,16 @@ del {
 
 .nowrap {
     white-space: nowrap;
+    display: inline-block;
+    width: 3.5em;
 }
+
+.post-attributes {
+    @media (max-width: $small-screen-threshold) {
+        display: none;
+    }
+}
+
 
 pre.highlight {
     overflow: auto;
@@ -335,6 +344,10 @@ footer {
     height: 1.1em;
     vertical-align: sub;
     filter: invert(0%) !important;
+}
+
+.spacer {
+    padding-bottom: $line-spacing;
 }
 
 // right floats

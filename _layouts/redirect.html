@@ -9,30 +9,19 @@
 		<link rel="icon" type="image/png" href="{{ '/assets/favicon.png' | absolute_url}}" />
 
 		<!-- PAGE TITLE AND DESCRIPTION -->
-		{% if page.order == 0 %}
-			<title>{{ site.title }}</title>
-		{% elsif page.html_title %}
-			<title>{{ site.title }} – {{ page.html_title }}</title>
-		{% else %} 
-			<title>{{ site.title }} – {{ page.title }}</title>
-		{% endif %}
 		<meta name="description" content="{{site.description}}">
+		<title>{{ site.title }}</title>
 
 		<!-- CSS STYLESHEETS -->
 		<link rel="stylesheet" href="{{ '/assets/css/main.css' | absolute_url}}">
 		{% if page.css %}
-		{% assign css_names = page.css | split: " " %}
-		{% for name in css_names %}
-		{% capture url %}/assets/css/{{ name }}.css{% endcapture %}
+		{% capture url %}/assets/css/{{ page.css }}.css{% endcapture %}
 		<link rel="stylesheet" href="{{ url | absolute_url}}">
-		{% endfor %}
 		{% endif %}
 
-		<!-- KATEX -->
-		<link rel="stylesheet" href="{{ '/assets/css/katex.min.css' | absolute_url}}">
-
-		<!-- CANONICAL -->
-		<link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+		<link rel="canonical" href="{{ page.redirect.to }}">
+		<meta http-equiv="refresh" content="0; url={{ page.redirect.to }}">
+		<meta name="robots" content="noindex">
 	</head>
 
 	<body>
@@ -64,13 +53,11 @@
 
 		<div class="content-background">
 			<div class="content">
-				{% unless page.no-heading %}
-					<h2>{{ page.title }}</h2>
-				{% else %}
-					<h2 class='no-display'>{{ page.title }}</h2>
-				{% endunless %}
-
-				{{ content }}
+				<div class='center'>
+					<h2>Getting redirected...</h2>
+					<a href="{{ page.redirect.to }}">Click here if you are not redirected.</a>
+					<div class="spacer"></div>
+				</div>
 			</div>
 		</div>
 

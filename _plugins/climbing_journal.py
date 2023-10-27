@@ -67,7 +67,7 @@ for entry in reversed(sorted(list(journal))):
         if current_year is None:
             line += f"<details open class='climbing-year-details'><summary><h3>{entry.year}</h3></summary> <ul>"
         else:
-            line += f"</ul></details> <details open class='climbing-year-details'><summary><h3>{entry.year}</h3></summary> <ul>"
+            line += f"</ul></details> <details class='climbing-year-details'><summary><h3>{entry.year}</h3></summary> <ul>"
 
         current_year = entry.year
 
