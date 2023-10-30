@@ -91,6 +91,7 @@ if "category" in header_dictionary:
     category_str = header_dictionary["category"].strip('"') + "/"
 elif "category_noslug" in header_dictionary:
     category_str = header_dictionary["category_noslug"].strip('"') + "/"
+category_str = category_str.lower()
 
 header_dictionary["url"] = f"https://slama.dev/{category_str}{stripped_name}"
 
