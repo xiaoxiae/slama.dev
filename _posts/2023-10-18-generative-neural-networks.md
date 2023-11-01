@@ -3,6 +3,8 @@ title: Generative Neural Networks
 category: "notes"
 category_icon: /assets/category-icons/heidelberg.webp
 excerpt: Lecture notes from the Generative Neural Networks for the Sciences course (Ullrich Köthe, 2023/2024).
+redirect_from:
+- /notes/generative-neural-networks-for-the-sciences/
 ---
 
 - .
