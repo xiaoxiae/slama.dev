@@ -233,12 +233,97 @@ The idea is to use the **kernel trick**
         - \(\mathrm{MMD}\) is a **metric**
     - \(\varphi\): **witness function** -- certifies that \(p\) and \(p^*\) are different when \(\mathrm{MMD}\) is big
         - family function \(\mathcal{F}\) must be chosen s.t. we can't **cheat** (i.e. arbitratily add/multiply to increase -- e.g. conditions on variance)
-- now **replace** explicit mapping \(\varphi(X)\) with a kernel function \(h(X, X')\): \[\begin{aligned}
-    \mathrm{MMD}^2 &= \frac{1}{M(M-1)} \sum_{i=1}^{M} \sum_{i' \neq i} h(X_i, X_{i'}) \quad //\ \text{repulsion between synthetic $X_i$} \\
-    &+ \frac{1}{N(N + 1)} \sum_{i=1}^{N} \sum_{i' \neq i} h(X_i^*, X_{i'}^*) \quad //\ \text{independent of $p(X)$} \\
-    &- \frac{2}{M \times N} \sum_{i=1}^{M} \sum_{i'=1}^{N} h(X_i, X_{i'}^*) \quad //\ \text{attraction between synthetic and real}\end{aligned}\]
+- now **replace** explicit mapping \(\varphi(X)\) with a kernel function \(k(X, X')\): \[\begin{aligned}
+    \mathrm{MMD}^2 &= \frac{1}{M(M-1)} \sum_{i=1}^{M} \sum_{i' \neq i} k(X_i, X_{i'}) \quad //\ \text{repulsion between synthetic $X_i$} \\
+    &+ \frac{1}{N(N - 1)} \sum_{i=1}^{N} \sum_{i' \neq i} k(X_i^*, X_{i'}^*) \quad //\ \text{independent of $p(X)$} \\
+    &- \frac{2}{M N} \sum_{i=1}^{M} \sum_{i'=1}^{N} k(X_i, X_{i'}^*) \quad //\ \text{attraction between synthetic and real}\end{aligned}\]
 
 **Typical kernels** (for \(h, L\) hyperparameters):
-- squared exponential \[h(X, X') = \mathrm{exp}\left(- \frac{||X - X'||^2}{2h}\right)\]
-- inverse multi-quadratic \[h(X, X') = \frac{1}{\frac{||X - X'||^2}{h} + 1}\]
-- multi-scale squared exponential \[h(X, X') = \sum_{l=1}^{L} \mathrm{exp}\left(- \frac{||X - X'||^2}{2h_l}\right)\]
+- squared exponential \[k(X, X') = \mathrm{exp}\left(- \frac{||X - X'||^2}{2h}\right)\]
+- inverse multi-quadratic \[k(X, X') = \frac{1}{\frac{||X - X'||^2}{h} + 1}\]
+- multi-scale squared exponential \[k(X, X') = \sum_{l=1}^{L} \mathrm{exp}\left(- \frac{||X - X'||^2}{2h_l}\right)\]
+
+### Generative Modeling with NN
+- relationship between generative modeling and compression: both are essentially \[X \rightarrow f(X) \rightarrow Z \rightarrow g(Z) \rightarrow \hat X \]
+    - **lossless**: \(\hat X = X\) (e.g. ZIP)
+        - idea: use short codes for frequent symbols and longer for more rare symbols
+    - **lossy** compression: \(\hat X \approx X\) (e.g. JPEG)
+        - idea: decompose into smaller parts, drop important stuff, use lossless compression for important stuff
+
+Here we have 3 conflicting goals:
+1. **high compression**: \(d = \mathrm{dim}(Z) \ll \mathrm{dim}(X) = D\)
+2. **accurate reconstruction**: \(\mathrm{dist}(X, \tilde X) \approx 0\) (for some distance function)
+3. **preserve data distribution**: \(\mathrm{dist}(p^*(X), p(\hat X)) \approx 0\) (for some distribution)
+
+Note that \(3 \not\implies 2\) (shown during lecture).
+
+#### Autoencoder
+- _learned compression_: \(f(X)\) and \(g(Z)\) are neural networks
+    - lossy compression because usually \(d < \dim(Z) \ll \dim(X) = 1\)
+        - "bottleneck" is a hyperparameter
+    - train by **reconstruction error** \[\hat f, \hat g = \argmin_{f, g} \mathbb{E}_{X \sim p^*(X)} \left[||X - g(f(X))||^2\right]\]
+
+- **distance functions** for the loss:
+    - \(L_2\) is most common
+    - \(L_1\) tends to be less blurry for images (better preserves small details)
+    - multi-resolution \(L_p\): compute image pyramid (apply loss to different image sizes)
+
+- **denoising autoencoder**: add more noise to the data to teach the network what noise is \[\tilde X = X + \varepsilon \quad \varepsilon \sim \mathcal{N}(\varepsilon \mid 0, \sigma^2 \Pi)\]
+    \[\hat f, \hat g = \argmin_{f, g} \mathbb{E}_{X \sim p^*(X), \varepsilon \sim \mathcal{N}(\varepsilon \mid 0, \sigma^2 \Pi)} \left[||X - g(f(X + \varepsilon))||^2\right]\]
+    - better, deep mathematical properties later
+
+- autoencoder is **not** a generative model (according to our definition):
+    1. we haven't learned the distribution -- no generative capability
+    2. no inference, i.e. no way to calculate \(p(X)\)
+
+#### Generating data
+1. **expert learning** of \(p_E(Z)\) by a second generative model
+    - often simpler than learning \(p^*(X)\) directly (e.g. \(d < D\))
+    - Stable Diffusion (image generation) does this
+2. **joined optimization**:
+    - predefine \(q(Z)\) (desired code dimension)
+    - measure \(\mathrm{MMD}\left(p_E(Z), q(Z)\right) \implies\) add new loss term
+        - _choosing a kernel is another hyperparameter_
+    \[\hat f, \hat g = \argmin_{f, g} \mathbb{E}_{X \sim p^*(X)} \left[||X - g(f(X))||^2\right] + \lambda \mathrm{MMD}\left(f_\#p^*, q\right)\]
+    - _paper: variant of INfoVAE [2019]_
+3. **variational autoencoder** (VAE) [2014]
+    - idea: replace deterministic functions \(f(X)\) and \(g(Z)\) with conditional distributions
+        - encoder: \(p_E(Z \mid X)\), decoder \(p_D(X \mid Z)\)
+        - we also have data \(p^*(X)\) and desired code dist. \(g(Z)\)
+    - implies **two version of joint distribution** of \(X\) and \(Z\)
+        - encoder \(p_E(X, Z) = p^*(X) \cdot p_E(Z \mid X)\) (Bayes)
+        - decoder \(p_D(X, Z) = g(Z) \cdot p_D(X \mid Z)\) (also Bayes)
+    - **two requirements:**
+        1. decoder marginal \(p(X) = \int p_D(X, Z)\;dz \approx p^*(X)\)
+        2. encoder-decoder pair must be self-consistent: \(p_E(X, Z) = p_D(X, Z)\)
+    - here we will use the \(\mathrm{ELBO}\) loss:
+        \[\mathrm{ELBO} = \underbrace{-\mathrm{KL}\left[p_E(Z \mid X) \mid\mid q(Z)\right]}_{\text{how close is $p_E(Z \mid X)$ to $g(Z)$}} + \underbrace{\mathbb{E}_{p_E(Z \mid X)} \left[\log p_D(X \mid Z)\right]}_{\text{reconstruction error}}\]
+        - tradeoff between two objectives:
+            - **reconstruction error** minimized if encoder & decoder are deterministic with perfect reconstruction
+            - **first term** minimized if \(p_E(Z \mid X) = g(Z)\) -- encoder ignores the data, which is the _opposite of perfect reconstruction_
+    - maximizing \(\mathrm{ELBO}\) loss enforces (2) (proved during the lecture)
+        - in literature, \(\mathrm{ELBO}\) is usually maximized
+        - conceptually, minimizing \(-\mathrm{ELBO}\) is simpler
+    - maximizing the \(\mathrm{ELBO}\) also indirectly maximizes the data likelihood under the model -- ML principle: TS should be a typical model outcome
+        - \(\iff\) minimize expected negative log-likelihood (NLL) (proved during the lecture)
+        - \(-\mathrm{ELBO}\) is an upper bound for NLL loss
+    - **most common implementation** encoder and decoder are diagonal Gaussians: \[p_E(Z \mid X) = \mathcal{N}(Z \mid \mu_E(X), \mathrm{Diag}(\sigma_E(X)^2))\]
+        \[p_D(X \mid Z) = \mathcal{N}(X \mid \mu_D(Z), \beta^2 \Pi)\]
+        - _since we only have diagonal Gaussians, we can't rotate the ellipses_
+        - _since we only have Gaussians, the shape is restricted to circles_
+        - if \(g(Z) = \mathcal{N}(0, \Pi)\) then \(\mathrm{KL}\left[p_E \mid\mid g\right]\) can be calculated analytically
+        - if \(p_D(X \mid Z) = \mathcal{N}(Z \mid \mu_D(Z), \beta^2 \Pi)\), reconstruction error becomes squared loss
+        - \(\beta^2 \gg 1\) downscales squared loss \(\implies \) reconstruction error unimportant
+        - \(\beta^2 \ll 1\) upscales squared loss \(\implies \) reconstruction error dominant
+        TODO: an image here of tne entire thing -- encoder returns two vectors for mean and variance, which the decoder samples from
+        - **generation:** \(Z \sim g(Z), X \sim p_D(X \mid Z) \iff \mu_D(Z) + \overbrace{\beta^2 \varepsilon}^{\text{noise}}\)
+        - **inference:** if \(p(X) = p^*(X)\) and \(p_E(X, Z) = p_D(X, Z)\) then \[p_E(X, Z) = p(X) p_E(Z \mid X) = g(Z) p_D(X \mid Z) = p_D(X, Z)\] \[\implies p(X) = \frac{g(Z) p_D(X \mid Z)}{p_E(Z \mid X)}\] must give the same value for all \(Z \sim p_E(Z \mid X)\)
+
+4. **conditional VAE**
+    - instead of learning \(p(X)\), we learn \(p(X \mid Y)\) for some variable \(Y\)
+    - e.g. \(Y \in \left\{0, \ldots, 9\right\}\) for MNIST label
+    \[p(X \mid Y) = \int g(Z) \cdot p_D (X \mid Y, Z)\;dz \implies p(X) = \sum_{Y} p(X \mid Y) p^*(Y)\]
+    - if encoder & decoder are Gaussians, add \(Y\) as input to the networks (TODO: drawing here)
+    - we can supply different labels for encoding / decoding -- **style transfer**
+        - one digit in style of another / one image in the style of another
+    - here we can do **operative classification:** test \(X\) with unknown label, try encoding with every lael and calculate the corresponding \(p(X \mid Y)\), returning the one with maximum probability
