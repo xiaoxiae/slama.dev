@@ -198,11 +198,19 @@ blockquote {
         padding-left: 15px;
         padding-bottom: $line-spacing / 2;
         margin-bottom: 0px;
+
+        font-style: italic;
     }
 
     p:last-child {
         padding-bottom: 0;
         margin-bottom: $line-spacing;
+    }
+}
+
+blockquote.no-italic {
+    p {
+        font-style: normal;
     }
 }
 
