@@ -11,6 +11,11 @@ redirect_from:
 {:toc}
 {% lecture_notes_preface_heidelberg Ullrich Köthe|2023/2024%}
 
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/1-1.pdf)
+</div>
+
 ### Introduction to generative modeling
 
 - **assumption:**
@@ -33,7 +38,13 @@ redirect_from:
 
 > What I cannot create, I do not understand. (Richard Feynman)
 
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/1-2-1.pdf)
+</div>
+
 ### Warm up: 1D generative models
+
 Basic principle: \(p(X)\) is complicated \(\implies\) reduce it to something simple.
 - introduce new variable ("code") \(Z = f(X)\) for \(f\) deterministic function s.t. the \(q(Z)\) distribution is simple
     - we'll be actually doing it he other way -- pick \(q(Z)\) and learn \(f\) (will be a NN)
@@ -53,6 +64,11 @@ Apply to probability distribution:
 Now we can substitute \(z = f(z), dz = f'(x) dx, x_0 = f^{-1}(z_0), x_1 = f^{-1}(z_1)\), getting \[\int_{f^{-1}(f(x_0))}^{f^{-1}(f(x_1))} q(z=f(x)) f'(x)\;dx\]
 which must hold for any interval \(x_0, x_1\), meaning \[\boxed{p(x) = q(z=f(x)) f'(x)}\]
 which is called the **change-of-variables** formula, allowing us to express the complex distribution in terms of the simple distribution, transformation and its derivative (this is where the fact that it's always positive comes in handy, since it's just a scaling factor).
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/1-2-2.pdf)
+</div>
 
 For 1D, \(q(Z) \sim \text{uniform}(0, 1)\) works well (numerically easy, a generator is available anywhere)
 - e.g. [Mersenne twister](https://en.wikipedia.org/wiki/Mersenne_Twister) (based on Mersenne primes)
@@ -94,6 +110,11 @@ We want to make it continuous, we do embedding via the \(\delta\)-distribution \
 
 **TODO: add a nice plot here with the spike**
 
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/1-2-3.pdf)
+</div>
+
 #### Classical approaches
 
 **What if we don't know \(p^*(x)\)** but we have a \(TS = \left\{X_i \sim p^*(X)\right\}_{i=1}^N\)?
@@ -108,11 +129,15 @@ We want to make it continuous, we do embedding via the \(\delta\)-distribution \
         - \(\pi_l \ge 0, \sum_{l = 1}^{L} \pi_l = 1\) (has to be a probability distribution...)
     - for histogram, \(p_l(X)\) is uniform
     - for Gaussians, we have Gaussian mixture model (GMM); solved with the [EM algorithm](https://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm)
-        - **TODO: the lecture explained the algorithm here**
 3. **kernel density estimation** \(p_l(X) = \mathcal{N}(\mu_l, \sigma^2\Pi)\) (or any other simple distribution)
     - \(L = N\) (one component per training sample)
     - \(\mu_l = X_l, \pi_l = \frac{1}{N}\)
     - similar to mixture distribution (has less distributions), here \(\sigma^2\) is the hyperparameter
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/1-3.pdf)
+</div>
 
 ### Warmed up: more dimensions!
 
@@ -180,6 +205,11 @@ We want to make it continuous, we do embedding via the \(\delta\)-distribution \
         - e.g. both earthquake and burglar cause the alarm (not the other way lmao)
         - causal DAG has the **fewest edges** (i.e. easier to learn) BUT finding it is very hard
 
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/1-4.pdf)
+</div>
+
 ### Measuring model quality
 - we can measure "distance" between \(p(X)\) and \(p^*(X)\) (even if we don't know \(p^*(X)\)) to:
     1. use as **objective function** for training
@@ -243,8 +273,13 @@ The idea is to use the **kernel trick**
 - inverse multi-quadratic \[k(X, X') = \frac{1}{\frac{||X - X'||^2}{h} + 1}\]
 - multi-scale squared exponential \[k(X, X') = \sum_{l=1}^{L} \mathrm{exp}\left(- \frac{||X - X'||^2}{2h_l}\right)\]
 
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/2-1.pdf)
+</div>
+
 ### Generative Modeling with NN
-- relationship between generative modeling and compression: both are essentially \[X \rightarrow f(X) \rightarrow Z \rightarrow g(Z) \rightarrow \hat X \]
+- relationship between generative modeling and compression: both are essentially \[X \rightarrow f(X) \rightarrow Z \rightarrow q(Z) \rightarrow \hat X \]
     - **lossless**: \(\hat X = X\) (e.g. ZIP)
         - idea: use short codes for frequent symbols and longer for more rare symbols
     - **lossy** compression: \(\hat X \approx X\) (e.g. JPEG)
@@ -257,11 +292,16 @@ Here we have 3 conflicting goals:
 
 Note that \(3 \not\implies 2\) (shown during lecture).
 
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/2-2.pdf)
+</div>
+
 #### Autoencoder
-- _learned compression_: \(f(X)\) and \(g(Z)\) are neural networks
+- _learned compression_: \(f(X)\) and \(q(Z)\) are neural networks
     - lossy compression because usually \(d < \dim(Z) \ll \dim(X) = 1\)
         - "bottleneck" is a hyperparameter
-    - train by **reconstruction error** \[\hat f, \hat g = \argmin_{f, g} \mathbb{E}_{X \sim p^*(X)} \left[||X - g(f(X))||^2\right]\]
+    - train by **reconstruction error** \[\hat f, \hat g = \argmin_{f, g} \mathbb{E}_{X \sim p^*(X)} \left[||X - q(f(X))||^2\right]\]
 
 - **distance functions** for the loss:
     - \(L_2\) is most common
@@ -269,12 +309,17 @@ Note that \(3 \not\implies 2\) (shown during lecture).
     - multi-resolution \(L_p\): compute image pyramid (apply loss to different image sizes)
 
 - **denoising autoencoder**: add more noise to the data to teach the network what noise is \[\tilde X = X + \varepsilon \quad \varepsilon \sim \mathcal{N}(\varepsilon \mid 0, \sigma^2 \Pi)\]
-    \[\hat f, \hat g = \argmin_{f, g} \mathbb{E}_{X \sim p^*(X), \varepsilon \sim \mathcal{N}(\varepsilon \mid 0, \sigma^2 \Pi)} \left[||X - g(f(X + \varepsilon))||^2\right]\]
+    \[\hat f, \hat g = \argmin_{f, g} \mathbb{E}_{X \sim p^*(X), \varepsilon \sim \mathcal{N}(\varepsilon \mid 0, \sigma^2 \Pi)} \left[||X - q(f(X + \varepsilon))||^2\right]\]
     - better, deep mathematical properties later
 
 - autoencoder is **not** a generative model (according to our definition):
     1. we haven't learned the distribution -- no generative capability
     2. no inference, i.e. no way to calculate \(p(X)\)
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/2-3-2.pdf)
+</div>
 
 #### Generating data
 1. **expert learning** of \(p_E(Z)\) by a second generative model
@@ -284,23 +329,25 @@ Note that \(3 \not\implies 2\) (shown during lecture).
     - predefine \(q(Z)\) (desired code dimension)
     - measure \(\mathrm{MMD}\left(p_E(Z), q(Z)\right) \implies\) add new loss term
         - _choosing a kernel is another hyperparameter_
-    \[\hat f, \hat g = \argmin_{f, g} \mathbb{E}_{X \sim p^*(X)} \left[||X - g(f(X))||^2\right] + \lambda \mathrm{MMD}\left(f_\#p^*, q\right)\]
+    \[\hat f, \hat g = \argmin_{f, g} \mathbb{E}_{X \sim p^*(X)} \left[||X - q(f(X))||^2\right] + \lambda \mathrm{MMD}\left(f_\#p^*, q\right)\]
     - _paper: variant of INfoVAE [2019]_
+
+
 3. **variational autoencoder** (VAE) [2014]
-    - idea: replace deterministic functions \(f(X)\) and \(g(Z)\) with conditional distributions
+    - idea: replace deterministic functions \(f(X)\) and \(q(Z)\) with conditional distributions
         - encoder: \(p_E(Z \mid X)\), decoder \(p_D(X \mid Z)\)
-        - we also have data \(p^*(X)\) and desired code dist. \(g(Z)\)
+        - we also have data \(p^*(X)\) and desired code dist. \(q(Z)\)
     - implies **two version of joint distribution** of \(X\) and \(Z\)
         - encoder \(p_E(X, Z) = p^*(X) \cdot p_E(Z \mid X)\) (Bayes)
-        - decoder \(p_D(X, Z) = g(Z) \cdot p_D(X \mid Z)\) (also Bayes)
+        - decoder \(p_D(X, Z) = q(Z) \cdot p_D(X \mid Z)\) (also Bayes)
     - **two requirements:**
         1. decoder marginal \(p(X) = \int p_D(X, Z)\;dz \approx p^*(X)\)
         2. encoder-decoder pair must be self-consistent: \(p_E(X, Z) = p_D(X, Z)\)
     - here we will use the \(\mathrm{ELBO}\) loss:
-        \[\mathrm{ELBO} = \underbrace{-\mathrm{KL}\left[p_E(Z \mid X) \mid\mid q(Z)\right]}_{\text{how close is $p_E(Z \mid X)$ to $g(Z)$}} + \underbrace{\mathbb{E}_{p_E(Z \mid X)} \left[\log p_D(X \mid Z)\right]}_{\text{reconstruction error}}\]
-        - tradeoff between two objectives:
+        \[\mathrm{ELBO} = \underbrace{-\mathrm{KL}\left[p_E(Z \mid X) \mid\mid q(Z)\right]}_{\text{how close is $p_E(Z \mid X)$ to $q(Z)$}} + \underbrace{\mathbb{E}_{p_E(Z \mid X)} \left[\log p_D(X \mid Z)\right]}_{\text{reconstruction error}}\]
+        - trade-off between two objectives:
             - **reconstruction error** minimized if encoder & decoder are deterministic with perfect reconstruction
-            - **first term** minimized if \(p_E(Z \mid X) = g(Z)\) -- encoder ignores the data, which is the _opposite of perfect reconstruction_
+            - **first term** minimized if \(p_E(Z \mid X) = q(Z)\) -- encoder ignores the data, which is the _opposite of perfect reconstruction_
     - maximizing \(\mathrm{ELBO}\) loss enforces (2) (proved during the lecture)
         - in literature, \(\mathrm{ELBO}\) is usually maximized
         - conceptually, minimizing \(-\mathrm{ELBO}\) is simpler
@@ -311,19 +358,63 @@ Note that \(3 \not\implies 2\) (shown during lecture).
         \[p_D(X \mid Z) = \mathcal{N}(X \mid \mu_D(Z), \beta^2 \Pi)\]
         - _since we only have diagonal Gaussians, we can't rotate the ellipses_
         - _since we only have Gaussians, the shape is restricted to circles_
-        - if \(g(Z) = \mathcal{N}(0, \Pi)\) then \(\mathrm{KL}\left[p_E \mid\mid g\right]\) can be calculated analytically
+        - if \(q(Z) = \mathcal{N}(0, \Pi)\) then \(\mathrm{KL}\left[p_E \mid\mid g\right]\) can be calculated analytically
         - if \(p_D(X \mid Z) = \mathcal{N}(Z \mid \mu_D(Z), \beta^2 \Pi)\), reconstruction error becomes squared loss
         - \(\beta^2 \gg 1\) downscales squared loss \(\implies \) reconstruction error unimportant
         - \(\beta^2 \ll 1\) upscales squared loss \(\implies \) reconstruction error dominant
         TODO: an image here of tne entire thing -- encoder returns two vectors for mean and variance, which the decoder samples from
-        - **generation:** \(Z \sim g(Z), X \sim p_D(X \mid Z) \iff \mu_D(Z) + \overbrace{\beta^2 \varepsilon}^{\text{noise}}\)
-        - **inference:** if \(p(X) = p^*(X)\) and \(p_E(X, Z) = p_D(X, Z)\) then \[p_E(X, Z) = p(X) p_E(Z \mid X) = g(Z) p_D(X \mid Z) = p_D(X, Z)\] \[\implies p(X) = \frac{g(Z) p_D(X \mid Z)}{p_E(Z \mid X)}\] must give the same value for all \(Z \sim p_E(Z \mid X)\)
+        - **generation:** \(Z \sim q(Z), X \sim p_D(X \mid Z) \iff \mu_D(Z) + \overbrace{\beta^2 \varepsilon}^{\text{noise}}\)
+        - **inference:** if \(p(X) = p^*(X)\) and \(p_E(X, Z) = p_D(X, Z)\) then \[p_E(X, Z) = p(X) p_E(Z \mid X) = q(Z) p_D(X \mid Z) = p_D(X, Z)\] \[\implies p(X) = \frac{q(Z) p_D(X \mid Z)}{p_E(Z \mid X)}\] must give the same value for all \(Z \sim p_E(Z \mid X)\)
 
 4. **conditional VAE**
     - instead of learning \(p(X)\), we learn \(p(X \mid Y)\) for some variable \(Y\)
     - e.g. \(Y \in \left\{0, \ldots, 9\right\}\) for MNIST label
-    \[p(X \mid Y) = \int g(Z) \cdot p_D (X \mid Y, Z)\;dz \implies p(X) = \sum_{Y} p(X \mid Y) p^*(Y)\]
+    \[p(X \mid Y) = \int q(Z) \cdot p_D (X \mid Y, Z)\;dz \implies p(X) = \sum_{Y} p(X \mid Y) p^*(Y)\]
     - if encoder & decoder are Gaussians, add \(Y\) as input to the networks (TODO: drawing here)
     - we can supply different labels for encoding / decoding -- **style transfer**
         - one digit in style of another / one image in the style of another
-    - here we can do **operative classification:** test \(X\) with unknown label, try encoding with every lael and calculate the corresponding \(p(X \mid Y)\), returning the one with maximum probability
+    - here we can do **operative classification:** test \(X\) with unknown label, try encoding with every label and calculate the corresponding \(p(X \mid Y)\), returning the one with maximum probability
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/2-4.pdf)
+</div>
+
+
+### Generative Adversarial Networks (GANs)
+- dominant generative model 2014-2019/20
+    - now diffusion models and transformers are better
+- **idea:** learn quality function (instead of hand-crafted formula like MMD)
+    - new NN "discriminator/critic" \(C\) -- classifier \(p(X \text{is real} \mid X)\) vs. \(p\left(X \text{is fake} \mid X\right)\)
+    - TODO: image here of the classifier
+    - train the decoder ("generator") jointly with the critic
+    - TODO: another image
+- training becomes a game:
+    - critic becomes better at distinguishing reals and fakes
+    - decoder becomes better at fooling the critic
+    - \(\implies\) training objective \[\hat C, \hat D = \argmin_{D} \argmax_{C} \mathbb{E}_{X \sim P^*(X)} \left[\log p_C(X \text{is real} \mid X)\right] + \mathbb{E}_{Z \sim g(Z)} \left[\log p_C(X \text{is fake} \mid X = D(Z)) \right]\]
+    - at optimal convergence, we have \(p(X) = p^*(X)\) (~proven during the lecture)
+        - _assumes that we have a perfect critic and proves from there_
+    - in practice, we don't have a perfect critic (and it wouldn't work in practice because for the bad decoder, recognizing fakes is easy so gradient will be zero and we won't train anything)
+        - instead, train \(D\) and \(C\) jointly (both random initially) via alternating optimization -- one step for \(D\), one/more steps for \(C\)
+        - also use non-saturating loss -- replace \(\log(1 - p(\text{real} \mid X))\) with \(-\log(p(\text{real} \mid X))\)
+            - global optimum is preserved, should work better for training
+            - _see the graphs for \(-\log(X)\) vs. \(\log(1 - X)\)_
+        \[\hat C = \argmin_C \mathbb{E}_{X \sim p(X)} \left[\log p_C(\text{real}\mid X)\right] + \mathbb{E}_{Z \sim g(Z)} \left[\log (1 - p_C(\text{real}\mid D(Z)))\right]\]
+        \[\hat D = \argmin_D \mathbb{E}_{Z \sim g(Z)} \left[-\log p_C(\text{real}\mid D(Z))\right]\]
+- GANs defined state-of-the-art up to 2019/20:
+    - **[WassersteinGAN](https://en.wikipedia.org/wiki/Wasserstein_GAN):** uses alternative loss for critic (not really better)
+    - **[CycleGAN](https://github.com/junyanz/CycleGAN):** replace \(g(Z)\) with true distribution over another variant of real data
+        - e.g. \(p^*(X)\) dist. of daylight photos, \(\tilde p^*(\tilde X)\) dist. of night photos
+        - two cases:
+            1. paired dataset (same \(X\) from both variants) -- supervised learning
+            2. unpaired dataset (no overlap between instances)
+        - we have new "cycle losses" -- \(||X - D(E(X))||^2\) and \(||\tilde X - E(D(\tilde X))||^2\) should be small
+        - for paired, we additionally have \(||\tilde X_i - E(X_i)||^2\) and \(||X_i - D(\tilde X_i)||^2\)
+        - we still need a critic, otherwise \(D\) and \(E\) are identity (must combine with cycle loss)
+        - as opposed to GAN, we have no bottleneck -- \(X\) and \(\tilde X\) are the ~same dimensions
+    - **[InvertibleGAN](https://arxiv.org/abs/2112.04598):** add an encoder to original GAN
+        - TODO: diagram here
+        - recreating codes \(Z(X)\) and distinguishing reals from fakes can use the same image features \(\implies\) same network to encode and decode
+        - \(+\) many more additional losses (similar to CycleGAN)
+        - \(-\) hyperparameter optimization is hard
