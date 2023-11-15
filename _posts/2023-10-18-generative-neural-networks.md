@@ -101,14 +101,14 @@ We want to make it continuous, we do embedding via the \(\delta\)-distribution \
 - the delta funtion is very handy: for any function \(h(x)\), \[\int_{-\infty}^{\infty} h(x) \delta(x' - x) dx' = h(x)\]
 - \(\pm 1\) are atoms -- their probability is not zero (unlike functions like Gaussian)
 
-**TODO: add a nice plot of Bernoulli with delta funtion**
- 
+![Bernoulli example.](/assets/generative-neural-networks/bernoulli.webp)
+
 **Ex.:** spike-and-slab distribution \[p(X) = \begin{cases}
     0 & \text{probability}\ \pi & \text{(nothing happened)} \\
     \mathcal{N}(\mu, \sigma^2) & \text{probability}\ 1 - \pi &\text{(something happened)}
 \end{cases}\]
 
-**TODO: add a nice plot here with the spike**
+![Spike-and-slab example.](/assets/generative-neural-networks/spike-and-slab.webp)
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -144,7 +144,7 @@ We want to make it continuous, we do embedding via the \(\delta\)-distribution \
 #### Extensions of classical approaches
 1. **multi-variate standard normal** \[p(X) = \mathcal{N}\left(\mu=0, \Sigma=\Pi\right) = \frac{1}{\left(2\pi\right)^{D/2}}\mathrm{exp}\left(-\frac{X X^T}{2}\right)\]
     - can be expressed as a product of 1-D normal distributions: \[X X^T = \sum_{i = 1}^{D} x^2_i \implies \mathrm{exp}\left(-\frac{X X^T}{2}\right) = \mathrm{exp}\left(-\frac{\sum_{i} X_i^2}{2}\right) = \prod_{i = 1}^{D} \mathrm{exp}\left(-\frac{x_i^2}{2}\right)\]
-    - \(\implies\) sampling in \(D\) dimensions boils down to many samplings in 1-D
+    - \(\Rightarrow\) sampling in \(D\) dimensions boils down to many samplings in 1-D
 
 2. **multi-variate Gaussian distribution** with mean \(\mu\), covariance \(\Sigma\) \[p(X) = \mathcal{N}(\mu, \Sigma) = \frac{1}{\sqrt{\det 2\pi \Sigma}} \mathrm{exp}\left(-\frac{\left(X-\mu\right)\Sigma^{-1}\left(X - \mu\right)^T}{2}\right)\]
     - to sample, we compute the eigen decomposition of \(\Sigma = U \Lambda U^T\) (for \(U \in \mathbb{R}^{D \times D}\) orthonormal and \(\Lambda\) diagonal with eigen values) and do the following:
@@ -179,12 +179,12 @@ We want to make it continuous, we do embedding via the \(\delta\)-distribution \
 - naive: \(p(X) = \prod_{i=1}^{D} p_j(X_j)\), learn a 1-D model for each coordinate \(X_j\)
     - assumes variable indepence, we loose all coorelation (highly unrealistic)
 
-**TODO: drawing**
+![](/assets/generative-neural-networks/naive-reduction.webp)
 
 - exact: **auto-regressive model** -- decompose \(p(X)\) by Bayesian chain rule: \[p(X) = p_1(X_1) p_2(X_2 \mid X_1) p_3(X_3 \mid X_1, X_2) \ldots\]
     - any ordering of the chain rule also works (variable order is interchangeable)
     - each \(p_i(X_j \mid X_{<j})\) is a collection of 1-D distributions (one distribution per value of \(X_{<j}\))
-        - \(\implies\) use **conditional inverse transform method** \[x_j \sim p(X_j \mid X_{<j}) \iff z_j = p(z_j)\ ,\quad x_j = f^{1}_j (z_j ; X_{<j})\]
+        - \(\Rightarrow\) use **conditional inverse transform method** \[x_j \sim p(X_j \mid X_{<j}) \iff z_j = p(z_j)\ ,\quad x_j = f^{1}_j (z_j ; X_{<j})\]
         - then \[f^{-1}(X) = \begin{pmatrix}
             x_1 = f^{-1}_1(z_1) \\
             x_2 = f^{-1}_2(z_2; x_1) \\
@@ -227,8 +227,8 @@ It's a **divergence** and **not a distance** (i.e. a metric) -- not symmetric, t
 _There was an example here with a discrete distribution._
 
 **Caveat:** if there are datapoints in \(X\) s.t. \(p^*(X) > 0 \) but \(p(X) = 0\), then \(\mathrm{KL} = \infty\)
-- \(\implies\) can't be used as training gradient (since it's infinity)
-- \(\implies\) use model families s.t. \(\mathrm{dom}(p^*(X)) \subseteq \mathrm{dom}(p(X))\)
+- \(\Rightarrow\) can't be used as training gradient (since it's infinity)
+- \(\Rightarrow\) use model families s.t. \(\mathrm{dom}(p^*(X)) \subseteq \mathrm{dom}(p(X))\)
 
 Relationship between forward KL and maximum likelihood training: \[\mathrm{KL}\left[p^* \mid \mid p\right] = \underbrace{\int p^*(X) \log p^*(X) dx}_{H\left[p^*\right] \text{(entropy)}} - \underbrace{\int p^*(X) \log p(X) dx}_{\mathbb{E}_{X \sim p^*(X) \left[-\log p(X)\right]}}\]
 - entropy is independent of \(p(X)\) and can be dropped, so get an **optimization problem** \[\hat p(X) = \argmin_{p(X) \in \mathcal{f}} \mathbb{E}_{X \sim p^*(X)} \left[-\log p(X)\right]\]
@@ -244,12 +244,14 @@ Given \(TS = \left\{X_i \sim p^*(X)\right\}_{i=1}^N\), \[\boxed{\hat p(X) \appro
 - **empirical approximation:** iterate  \(t = 1 \ldots T\):
     - current guess \(p^{(t-1)}(X)\): draw batch \(\left\{X_i \sim p^{(t-1)} (X)\right\}_{i=1}^N\)
     - \(p^{(t)}(X) \argmin_{p(X)} \frac{1}{N} \sum_{i=1}^{N} \log \frac{p(X_i)}{p^*(X_i)}\)
-        - \(\implies\) need to know \(p^*(X)\)... cannot be used in many application
+        - \(\Rightarrow\) need to know \(p^*(X)\)... cannot be used in many application
         - useful when we know the distribution but it's intractable (ex. Gibbs distribution)
 
 #### Comparison (forward x reverse)
 - **forward** KL tends to smooth out models of \(p^*(X)\) -- **mode-covering**
 - **reverse** KL tends to focus on single (or few) highest modes -- **mode-seeking/collapse**
+
+![](/assets/generative-neural-networks/forward-reverse-kl.webp)
 
 #### Maximum Mean Discrepancy
 The idea is to use the **kernel trick**
@@ -286,11 +288,11 @@ The idea is to use the **kernel trick**
         - idea: decompose into smaller parts, drop important stuff, use lossless compression for important stuff
 
 Here we have 3 conflicting goals:
-1. **high compression**: \(d = \mathrm{dim}(Z) \ll \mathrm{dim}(X) = D\)
+1. **small codes**: \(d = \mathrm{dim}(Z) \ll \mathrm{dim}(X) = D\)
 2. **accurate reconstruction**: \(\mathrm{dist}(X, \tilde X) \approx 0\) (for some distance function)
 3. **preserve data distribution**: \(\mathrm{dist}(p^*(X), p(\hat X)) \approx 0\) (for some distribution)
 
-Note that \(3 \not\implies 2\) (shown during lecture).
+Note that \(3 \not\Rightarrow 2\) (shown during lecture).
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -362,7 +364,7 @@ Note that \(3 \not\implies 2\) (shown during lecture).
         - if \(p_D(X \mid Z) = \mathcal{N}(Z \mid \mu_D(Z), \beta^2 \Pi)\), reconstruction error becomes squared loss
         - \(\beta^2 \gg 1\) downscales squared loss \(\implies \) reconstruction error unimportant
         - \(\beta^2 \ll 1\) upscales squared loss \(\implies \) reconstruction error dominant
-        TODO: an image here of tne entire thing -- encoder returns two vectors for mean and variance, which the decoder samples from
+          ![](/assets/generative-neural-networks/diag-gauss.webp)
         - **generation:** \(Z \sim q(Z), X \sim p_D(X \mid Z) \iff \mu_D(Z) + \overbrace{\beta^2 \varepsilon}^{\text{noise}}\)
         - **inference:** if \(p(X) = p^*(X)\) and \(p_E(X, Z) = p_D(X, Z)\) then \[p_E(X, Z) = p(X) p_E(Z \mid X) = q(Z) p_D(X \mid Z) = p_D(X, Z)\] \[\implies p(X) = \frac{q(Z) p_D(X \mid Z)}{p_E(Z \mid X)}\] must give the same value for all \(Z \sim p_E(Z \mid X)\)
 
@@ -370,7 +372,8 @@ Note that \(3 \not\implies 2\) (shown during lecture).
     - instead of learning \(p(X)\), we learn \(p(X \mid Y)\) for some variable \(Y\)
     - e.g. \(Y \in \left\{0, \ldots, 9\right\}\) for MNIST label
     \[p(X \mid Y) = \int q(Z) \cdot p_D (X \mid Y, Z)\;dz \implies p(X) = \sum_{Y} p(X \mid Y) p^*(Y)\]
-    - if encoder & decoder are Gaussians, add \(Y\) as input to the networks (TODO: drawing here)
+    - if encoder & decoder are Gaussians, add \(Y\) as input to the networks
+      ![](/assets/generative-neural-networks/vae-gauss.webp)
     - we can supply different labels for encoding / decoding -- **style transfer**
         - one digit in style of another / one image in the style of another
     - here we can do **operative classification:** test \(X\) with unknown label, try encoding with every label and calculate the corresponding \(p(X \mid Y)\), returning the one with maximum probability
@@ -386,13 +389,13 @@ Note that \(3 \not\implies 2\) (shown during lecture).
     - now diffusion models and transformers are better
 - **idea:** learn quality function (instead of hand-crafted formula like MMD)
     - new NN "discriminator/critic" \(C\) -- classifier \(p(X \text{is real} \mid X)\) vs. \(p\left(X \text{is fake} \mid X\right)\)
-    - TODO: image here of the classifier
+      ![](/assets/generative-neural-networks/gan-general.webp)
     - train the decoder ("generator") jointly with the critic
-    - TODO: another image
+      ![](/assets/generative-neural-networks/gan-gauss.webp)
 - training becomes a game:
     - critic becomes better at distinguishing reals and fakes
     - decoder becomes better at fooling the critic
-    - \(\implies\) training objective \[\hat C, \hat D = \argmin_{D} \argmax_{C} \mathbb{E}_{X \sim P^*(X)} \left[\log p_C(X \text{is real} \mid X)\right] + \mathbb{E}_{Z \sim g(Z)} \left[\log p_C(X \text{is fake} \mid X = D(Z)) \right]\]
+    - \(\Rightarrow\) training objective \[\hat C, \hat D = \argmin_{D} \argmax_{C} \mathbb{E}_{X \sim P^*(X)} \left[\log p_C(X \text{is real} \mid X)\right] + \mathbb{E}_{Z \sim g(Z)} \left[\log p_C(X \text{is fake} \mid X = D(Z)) \right]\]
     - at optimal convergence, we have \(p(X) = p^*(X)\) (~proven during the lecture)
         - _assumes that we have a perfect critic and proves from there_
     - in practice, we don't have a perfect critic (and it wouldn't work in practice because for the bad decoder, recognizing fakes is easy so gradient will be zero and we won't train anything)
@@ -414,7 +417,93 @@ Note that \(3 \not\implies 2\) (shown during lecture).
         - we still need a critic, otherwise \(D\) and \(E\) are identity (must combine with cycle loss)
         - as opposed to GAN, we have no bottleneck -- \(X\) and \(\tilde X\) are the ~same dimensions
     - **[InvertibleGAN](https://arxiv.org/abs/2112.04598):** add an encoder to original GAN
-        - TODO: diagram here
+          ![](/assets/generative-neural-networks/inv-gan.webp)
         - recreating codes \(Z(X)\) and distinguishing reals from fakes can use the same image features \(\implies\) same network to encode and decode
         - \(+\) many more additional losses (similar to CycleGAN)
         - \(-\) hyperparameter optimization is hard
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/TODO.pdf)
+</div>
+
+### Normalized Flows (NF)
+- one of the major recent approaches
+
+| Goals | Autoencoder | VAE | GAN | NF |
+| --- | --- | --- | --- | --- |
+| **small codes** | hyperp. | hyperp. | hyperp. | lossless | 
+| **accurate distribution** \[p(X) \approx p^*(X)\] | bad (doesn't care) | trade-off | good | good |
+| **good reconstruction** \[\hat X = D(E(X)) \approx X\] | good | trade-off | can't | good |
+
+**Idea:** generalize the inverse transformation method to arbitrary dimensions:
+- \(X \in \mathbb{R}^D, p^*(X)\) high-dimensional density, \(A \in \mathbb{R}^D\) a region
+- define \(\mathrm{Pr}[X \in A] = \int_{A} p^*(X)\;dx\)
+- let \(Z = f(X)\) an invertible encoding, \(X = f^{-1}(Z) := g(Z)\)
+- \(\tilde A = f(A)\) the image of \(A\) in \(Z\)-space: \[\tilde A = \left\{Z: Z=f(X)\ \text{for}\ X \in A\right\}\]
+- we want **consistency:** for all \(A: \mathrm{Pr}[Z \in \tilde A] = \int_{\tilde A} q(Z)\;dz \overset{!}{=} \mathrm{Pr}\left[X \in A\right]\)
+- apply the multi-dimensional chnage-of-variables formula: \[\int_{\tilde A = f(A)} q(Z)\;dz = \int_{q(\tilde A)} q(Z=f(X))\; | \det \mathcal{J}_{f} |\;dx\]
+  for the Jacobian (matrix of partial derivatives) \(\mathcal{J}_f\) of \(f\)
+
+Since consistency must hold for any \(A\), the integrals must be equal, we get the **multi-variate change-of-variables** formula \[\boxed {p(X) = q(Z = f(X))\; | \det \mathcal{J}_f (X) | }\]
+
+**Goal:**
+- pre-define \(q(Z)\), e.g. \(q(Z) = \mathcal{N}(0, \Pi)\)
+- learn \(f(X)\) s.t. \(p(X) \approx p^*(X)\) (\(f(X) \cong\) neural network)
+
+Recall the \(1\)-D case: \(q(Z) = \text{uniform}(0, 1) \implies f(X) = \mathrm{CDF}_{p^*}(X)\)
+- for learning \(q(Z) = \mathcal{N}(0, \Pi)\) is better:
+    - has non-zero gradients for gradient descent
+    - supported on all of \(\mathbb{R}^D\) (unlike uniform -- what to do with points outside?)
+
+**Two difficult problems** in practice:
+1. how to ensure that \(f(X)\) is invertible & efficiently compute \(f^{-1}(Z)\)
+2. how to (efficiently) calculate \(\det \mathcal{J}_f\)
+
+#### Calculating \(\det \mathcal{J}_f\)
+- 2-D case is easy: \[\det \begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc\]
+- for higher cases, we can calculate determinants recursively, which grows **exponentially**
+- **general solution** with SVD: \(\mathcal{J} = U \cdot \Lambda \cdot V^T \implies |\det \mathcal{J}| = |\det \Lambda| = \prod_j \lambda_j\)
+    - effort of \(\mathcal{O}(D^3)\), which is a little better than exponential
+- we can also expoit special case if \(\mathcal{J}\) is triangular (and the diagonal is non-zero, otherwise the determinant is zero), in which case \(\det \mathcal{J}\) is just the product of the diagonal elements
+    - we already talked about an instance of this: auto-regressive models -- since they rely on the previous terms, the Jacobian is triangular and the determinant is very easy
+
+If \(f(X)\) is a multi-layer network, \(f(X)\) is a composition of functions \(f^{(l)}\)
+- the Jacobian of comosition is the **product of all Jacobians** (consequence of chain)
+- the determinant is the **product of determinants** (consequence of linear algebra)
+- \(\Rightarrow\) determinant of multi-layer network is easy when layer determinants are
+- \(\Rightarrow\) popular architecture is to define all \(f^{(l)}\left(Z^{(l-1)}\right)\) as auto-regressive functions
+
+#### Ensuring that \(f(X)\) is invertible and computable
+- **trick:** chose \(f^{(l)}\) auto-regressive and easy to invert
+- major architecture: Coupling layer \(\implies\) network is "real NVP" (non-volume-preserving due to the determinants being non-unit)
+    - auto-regressive model
+    - in each layer, change only half of the dimensions of \(Z^{(l-1)}\)
+    - pass the remaining dimensions on unchanged ("skip connection") \[\begin{aligned}
+        Z_{j}^{(l)} &= Z_{j}^{(l-1)} \; &&\forall j=1, \ldots, \tilde D \quad \text{for}\ \tilde D = \left\lfloor D/2 \right\rfloor \\ Z_j^{(l)} &= f_j^{(l)} \left(Z_j^{(l-1)}, Z_{1:\tilde D}^{(l-1)}\right) \; &&\forall j = \tilde D + 1, \ldots, D
+    \end{aligned}\]
+      \[\mathcal{J}^{(l)} = \begin{pmatrix}
+          \mathrm{I}_{\tilde D} & \mathrm{0}_{\tilde D} \\
+          \neq 0 & \mathrm{diag}\left(\frac{\partial f_j^{(l)}}{ \partial Z_j^{(l-1)}}\right) \\
+      \end{pmatrix}\]
+    - no surprise since it's a variant of the auto-regressive model
+      \[\boxed{\det \mathcal{J}^{(l)} = \prod_{j=\tilde D}^{D} \frac{\partial f_j^{(l)}\left(Z_{j}^{(l-1)}, Z_{\le \tilde D}^{(l-1)}\right)}{\partial Z_{j}^{(l-1)}}}\]
+- simplest invertible function -- **affine functions:** \(Z_{j}^{(l)} = s \cdot Z_j^{(l-1)} + t\)
+    - \(s\) and \(t\) are neural networks that we train: \(s_j^{(l-1)}\left(Z_{\le \tilde D}^{(l-1)}\right)\) (same for \(t\))
+
+TODO: add the drawing here
+
+- for \(f^{(l)}_j\) to be invertible, we need \(s^{(l)}_{j} \neq 0\)
+    - \(\Rightarrow\) we actually learn \(\tilde s_j^{(l)}\) and set \(s_{j}^{(l)}\) and set \(s_j^{(l)} = \exp(\tilde s_j^{(l)}) > 0\)
+        - also takes care of the sign of the Jacobian -- no abs!
+        - in practice, it is numerically more stable to set \(s_j^{(l)} = \exp(\tanh(\tilde s_j^{(l)}))\)
+
+#### Summary
+- forward:
+    \[\begin{aligned} Z_j^{(l)} &= \exp\left(\tilde s_{j}^{(l)}\left( Z_{\le \tilde D}^{(l-1)}\right) \right) Z_j^{(l-1)} + t_j^{(l)}\left(Z_{\le \tilde D}^{(l-1)}\right) \quad j > \tilde D \\ Z_j^{\left(l\right)} &= Z_j^{(l-1)} \quad j \le \tilde D \end{aligned}\]
+- inverse:
+    \[\begin{aligned}Z_j^{\left(l-1\right)} &= Z_j^{\left(l\right)} \quad j \le \tilde D \\ Z_j^{\left(l-1\right)} &= \left(Z_j^{\left(l\right)} - t_j^{\left(l\right)}\left(Z_{\le \tilde D}^{\left(l-1\right)}\right)\right) \cdot \exp \left(-\tilde s_j^{\left(l\right)} \left(Z_{\le \tilde D}^{\left(l-1\right)}\right)\right) \quad j > \tilde D  \end{aligned}\]
+- \(\Rightarrow\) invertible layer constructed from non-invertible \(s\) and \(t\)
+- \(\Rightarrow\) choose \(s\) and \(t\) according to architecture (fully-connected, convolutional, etc.)
+
+- determinant of an affine coupling layer \[\det \mathcal{J}^{(l)} = \text{boxed equation above} = \prod_{j=\tilde D + 1}^{D} \exp \left(\tilde s_j^{(l)} \left(Z_{\le \tilde D}^{(l-1)}\right)\right) \]
