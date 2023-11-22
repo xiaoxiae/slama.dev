@@ -424,7 +424,7 @@ Note that \(3 \not\Rightarrow 2\) (shown during lecture).
 
 {:.rightFloatBox}
 <div markdown="1">
-[slides](/assets/generative-neural-networks/TODO.pdf)
+[slides](/assets/generative-neural-networks/2-5-1.pdf)
 </div>
 
 ### Normalized Flows (NF)
@@ -507,3 +507,147 @@ TODO: add the drawing here
 - \(\Rightarrow\) choose \(s\) and \(t\) according to architecture (fully-connected, convolutional, etc.)
 
 - determinant of an affine coupling layer \[\det \mathcal{J}^{(l)} = \text{boxed equation above} = \prod_{j=\tilde D + 1}^{D} \exp \left(\tilde s_j^{(l)} \left(Z_{\le \tilde D}^{(l-1)}\right)\right) \]
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/2-5-2.pdf)
+</div>
+
+#### RealNVP
+- invertible NN with autoregressive form, i.e. \(\det \mathcal{J}_f\) is easy
+- after each coupling layer apply orthonormal transformation \(Q\), e.g. permutation
+    - have \(| \det(Q) | = 1\) and \(Q^{-1} = Q^T\) so easy to work with
+- it turned out experimentally that learning \(Q\) is not necessary, no one knows why
+    - fixed matrices are sufficient / may change with new learning algorithm
+- final architecture: \[f = f^{(L)} \circ Q^{(L - 1)} \circ f^{(L - 1)} \circ \ldots \circ Q^{(1)} \circ f^{(1)}\]
+- trainin algorithm: minimize negative likelihod of data (derivation in slides): \[\boxed{\hat f = \argmin_f \frac{1}{N} \sum_{i=1}^{N} \left(\frac{f(X_i)^2}{2} - \sum_{l=1}^{L} \sum_{j=\tilde D + 1}^{D} \tilde s_{j}^{(t)} \left(Z_{i, 1:\tilde D}^{(l-1)}\right)\right)}\]
+- _the slides here explain why affine coupling works_
+
+#### Spline coupling
+- better than affine coupling for low dimensions (\(D < 20\))
+- uses Hermite splines, which require location of knots, function at knots and derivatives at knots (with interpolation in between)
+- most popular: rational quadratic spline _[Neural Spline Flows, 2019]_
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/2-5-3.pdf)
+</div>
+
+#### Conditional derivatives
+- e.g. \(Y\) is digit label, \(X\) is MNIST
+    - \(X \sim p(X)\): sample any digit
+    - \(X \sim p(X \mid Y = Z)\): sample only \(2\)s
+- typical setup for supervised learning:
+    - **traditional networks** point estimates \(\hat X = r(Y)\) (regression or classification)
+    - **conditional NFs**: distribution of \(X \hat=\) estimate uncertainty of \(X\)
+- an autoregressive function is easy to generalize for conditionality: \[Z = f(X; Y) = \begin{pmatrix} f_1(X_1; Y) \\ f_2(X_2; X_1; Y) \\ \vdots f_D(X_D, X_{1:D-1}, Y) \end{pmatrix}\]
+    - \(Y\) can be added as an input to all nested networks \(s^{(l)}, t^{(l)}\)
+    - _works if \(Y\) is known for both forward and backward network execution_
+- if \(Y\) is complicated (e.g. high dimensional image), we have **shared preprocessing network** \(\tilde Y = h(Y)\) (feature detector / summary network), which can
+    - use architecture of an existing regression networks minus the last layer
+    - use a foundational model \(\phi(Y)\) trained by the big guys on big data
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/3-1.pdf)
+</div>
+
+### Simulation-based inference (SBI)
+- **setting:**
+    - \(X\) is observables, i.e. variables we can measure
+    - \(Y\) are hidden properties, i.e. variables we'd like to know but can't measure
+- **assumptions:**
+    1. hidden variables are more fundamental, e.g. \(Y\) is caused by \(X\)
+    2. we have a scientific theory how the \(X\) arrise from the \(Y\) (forward process)
+    3. theory is implemented as an algorithm \(\hat=\) computer **simulation**
+        - \(\Rightarrow\) we can do "in-silico experiments" (as opposed to "in-vivo" and "in-vitro")
+        - three types of variables:
+            - \(Y\): inputs to the simulation (pretend we know the hidden state)
+            - \(X\): outputs
+            - optionally \(\eta\): random variables for non-deterministic simulation
+            - deterministic \(X = \phi(Y)\) (the simulation program) \(\Rightarrow p^{S}(X \mid Y) = \delta(X - \phi(Y))\)
+            - non-deterministic \(X = \phi(Y, \eta)\) -- "noise outsourcing" \(\Rightarrow p^S(X \mid Y) = \phi_{\#}p^S(Y, \eta)\)
+- **simulation paradigm:** if we knew \(Y\), we could predit \(X\)
+    - since we don't know \(Y\), try multiple \(Y\) and generate alternate scenarios
+        - _during covid, get various assumptions about the virus and about prevention measures (\(Y\)) and simulate what happens (\(X\)), getting various scenarios_
+    - it's hard to select a good set of \(Y\)s -- SBI improves upon this
+
+- two important special cases of the structure of \(Y\):
+    1. **mixed effects model** \[Y = \begin{cases}
+        Y_G & \text{global properties (same for all members)} \\
+        Y_L & \text{local properties (differs for all members)} \\
+    \end{cases}\]
+        - \(Y_G \sim p^S(Y_G))\)
+        - for \(i=1, \ldots, N\), sample \(Y_{Li} \sim p^S(Y_L \mid Y_G)\) and \(X_i \sim p^S(X \mid Y_G, Y_{Li})\)
+        - _look at the group first, then differentiate for each individual_
+        - \(X_i \not\perp X_{i'}\), but \(X_i \perp X_{i'} \mid Y_G\) (independent conditionally based on the global assumptions)
+    2. **dynamical systems** (time-dependent behavior) \[Y = \begin{cases}
+        Y_G & \text{global properties (don't change over time)} \\
+        S_t & \text{hidden state at time $t$} \\
+    \end{cases}\]
+        - \(Y_G \sim p^S(Y_G))\)
+        - \(S_0 \sim p^S(S_0 \mid Y_G)\)
+        - for \(i=1, \ldots, T: S_t \sim p^S(S \mid Y_G, S_{<t})\), \(X_t \sim p^S(X \mid Y_G, S_{\le t})\)
+        - _look at the group first, then differentiate for each individual_
+        - if \(t\) is continuous, we get a _stochastic differential equation_
+        - if \(t\) is discrete, we get a _hidden Markov model_
+        - \(X_t \not\perp X_{t'}\), but \(X_t \perp X_{t'} \mid S_t\) (if Markov property is fulfilled)
+    \end{cases}\]
+
+#### Main tasks of SBI
+1. **surrogate modelling:** train a model \(p(X \mid Y)\) that emulates the simulation
+    - good for speed-up (since \(X = \phi(Y, \eta)\) is often slow)
+    - forward inference: often, \(X = \phi(Y, \eta)\) only defines \(p^S(X \mid Y) = \phi_{\#} (Y, \eta)\) implicitly, but doesn't allow to calculate \(p^{S}(X=X \mid Y)\) ("likelihood-free inference, implicit likelihood")
+        - approximate true likelihood by \(p(X \mid Y) \approx p^S(X \mid Y)\)
+2. **inverse inference:** run the simulation backwards: \(Y = \phi^{-1}(X)\)
+    - usually intractable (no analytic solution) and/or ill-posed (no inverse)
+    - _traditional solution would be to pick constrainst & regularization that select one_
+    - SBI solution: pick probabilistic via Bayes rule \[p^S(Y \mid X) = \frac{p^S(Y) p^S(X \mid Y)}{p^S(X)}\]
+        - define equivalence classes \(\mathcal{F}(X) = \left\{Y : \exists \eta \ \text{with}\ \phi(Y, \eta) = X\right\}\)
+            - _all \(Y\)s that could have produced given \(X\)_
+        - posterior \(p^S(Y \mid X)\) assigns a "possibility" to every \(Y \in \mathcal{F}(X)\)
+        - problems:
+            - if likelihood \(p^S(X \mid Y)\) is only implicitly defined then Bayes rule canot be calculated (i.e. surrogate model above)
+            - even if \(p^S(X \mid Y)\) (or a surrogate) is known, Bayes rules is usually intractable
+                - \(\Rightarrow\) learn generative model for posterior \(p(Y \mid X) \approx p^S(Y \mid X)\)
+3. **model missclasification & outliner detection** -- a simulation is **not** reality: \[\underbrace{p^S(Y) \cdot p^S(X \mid Y)}_{\text{simulation}} \approx \underbrace{p^*(Y)p^*(X \mid Y)}_{\text{reality}}\]
+    - \(\Rightarrow\) use SBI to detect if \(p^S(X, Y) \neq p^*(X, Y)\)
+    - this and observed outcome \(X^{\text{obs}} \sim p^*(X, Y)\) compatible with \(p^S(X, Y)\)
+        - if not, the simulation is unrealistic -- "simulation gap"
+        - _is a set of outcomes \(\left\{X_{i}^{\text{obs}}\right\}_{i=1}^N\) compatible with \(p^S(X, Y)\)?_
+4. **model comparison and selection**
+    - if we have competing theories \(X = \phi^{(l)}(Y^{(l)}, \eta^{(l)})\)
+    - \(\Rightarrow\) determine which \(l\) describes \(X^{\text{obs}}\) best (if any)
+5. **digital twins:** in a mixed effects setting, given \(\left\{X_i^{\text{obs}}\right\}_{i=1}^N\)
+    - determine \(Y_n\) and \(Y_{Li}\) accurately enough to predict \(X_i^{\text{future}} = \phi(Y_G, Y_{Li}, \eta)\)
+        - _the same treatment that worked on this pacient will work on this one too_
+    - _classical:_ base treatment decisions mainly on \(Y_G\) ("treatment guidelines") after an appropriate stratification of population into subgroups
+    - _desired:_ "precision medicine" -- use \(Y_G\) and \(Y_{Li}\)
+6. **experimental design and active learning**: how should we measure \(\left\{X_i^{\text{obs}}\right\}_{i=1}^N\) to learn as much as possible about \(Y\) with given experiment budget?
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/3-2.pdf)
+</div>
+
+**Classical approaches** for inverse inference (point \(2\) from above):
+- **conjugate priors** -- chose \(p^S(Y)\) and \(p^S(X \mid Y)\) such taht \(p^S(Y \mid X)\) can be analytically calculated and is in the same distribution family as \(p^S(Y)\) (\(\Rightarrow\) incremental Bayesian updating)
+    - common is the Gaussian (surprise surprise) but exists for many other distributions
+    - \(+\) efficient and mathematically elegant
+    - \(-\) very unrealistic \(\Rightarrow\) big simulation gap (usually picked for convenience)
+- **likelihood-based inference** -- \(p^S(Y)\) and \(p^S(X \mid Y)\) are known (not just \(X = \phi(Y, \eta)\))
+    - but \(p^S(Y \mid X)\) is intractable (so we can't use Bayes rule)
+    - \(\Rightarrow\) create a sample \(\left\{Y_n \sim p^S(Y \mid X=X^{\text{obs}})\right\}_{k=1}^K\) using Markov chain Monte Carlo (MCML) or a variant thereof (HML)
+        - important relaxation: \(p^S(X, Y)\) can be unnormalized (e.g. Gibbs distribution)
+
+{% math algorithm "Basic MCML algorithm" %}
+1. \(X^{\text{obs}}\) given, \(Y^{0}\) arbitrary initial guess
+    - pick a "proposal transition distribution" for transition prob \(q(Y' \mid Y^{(t-1)}, X^{\text{obs}})\)
+        - is a hyperparameter, e.g. a Gaussian -- something easy to work with
+2. for \(t=1, \ldots, T\)
+    - sample a proposal \(Y' \sim q(Y' \mid Y^{(t-1)}, X^{\text{obs}})\)
+    - calculate acceptance weight \[\alpha = \frac{p^S(X^{\text{obs}} \mid Y') p(Y')}{p^S(X^{\text{obs}} \mid Y^{(t-1)}) p^S(Y^{(t-1)})} = \underbrace{\frac{p^S(Y' \mid X^{\text{obs}})}{p^S(Y^{(t-1)} \mid X^{\text{obs}})}}_{\text{intractable}}\]
+    - sample \(u \sim \text{uniform}(0, 1)\)-- acceptance threshold
+    - if \(u \le \alpha\): accept (\(Y^{(t)} = Y'\)), else reject (\(Y^{(t)} = Y^{(t-1)}\))
+        - theory: for \(T \rightarrow \infty\), \(\left\{Y^{(t)}\right\}_{t=1}^T \sim p^S(Y \mid X^{\text{obs}})\) 
+{% endmath %}
