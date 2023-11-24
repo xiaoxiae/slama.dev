@@ -630,17 +630,27 @@ TODO: add the drawing here
 [slides](/assets/generative-neural-networks/3-2.pdf)
 </div>
 
-**Classical approaches** for inverse inference (point \(2\) from above):
-- **conjugate priors** -- chose \(p^S(Y)\) and \(p^S(X \mid Y)\) such taht \(p^S(Y \mid X)\) can be analytically calculated and is in the same distribution family as \(p^S(Y)\) (\(\Rightarrow\) incremental Bayesian updating)
+#### Classical approaches for inverse inference
+1. **conjugate priors** -- chose \(p^S(Y)\) and \(p^S(X \mid Y)\) such taht \(p^S(Y \mid X)\) can be analytically calculated and is in the same distribution family as \(p^S(Y)\) (\(\Rightarrow\) incremental Bayesian updating)
     - common is the Gaussian (surprise surprise) but exists for many other distributions
     - \(+\) efficient and mathematically elegant
     - \(-\) very unrealistic \(\Rightarrow\) big simulation gap (usually picked for convenience)
-- **likelihood-based inference** -- \(p^S(Y)\) and \(p^S(X \mid Y)\) are known (not just \(X = \phi(Y, \eta)\))
+2. **likelihood-based inference** -- \(p^S(Y)\) and \(p^S(X \mid Y)\) are known (not just \(X = \phi(Y, \eta)\))
     - but \(p^S(Y \mid X)\) is intractable (so we can't use Bayes rule)
-    - \(\Rightarrow\) create a sample \(\left\{Y_n \sim p^S(Y \mid X=X^{\text{obs}})\right\}_{k=1}^K\) using Markov chain Monte Carlo (MCML) or a variant thereof (HML)
+    - \(\Rightarrow\) create a sample \(\left\{Y_n \sim p^S(Y \mid X=X^{\text{obs}})\right\}_{k=1}^K\) using Markov chain Monte Carlo (MCMC)
         - important relaxation: \(p^S(X, Y)\) can be unnormalized (e.g. Gibbs distribution)
+    - \(+\) very general, has lots of mathematical theory
+    - \(+\) implemented in many libraries/languages
+    - \(-\) not amortized -- runs from scratch for each new \(X^{\text{obs}}\)
+    - \(-\) expensive -- \(T\) must be very large for complete "mixing", i.e. until all modes of \(p^S(Y \mid X^{\text{obs}})\) have been covered
+    - \(-\) often, a long "burn-in" phase is needed to forget a bad initial guess
+        - throw away \(Y^{(0)} \ldots Y^{(T_0)}\)
+    - \(-\) samples \(Y^{(t)}\) and \(Y^{(t-1)}\) are close to each other (chain moves slightly away from the previous guess) -- may bias derived statistics of the chain (i.e. both are rejected)
+        - skip each \(k\)th samples in the chain
+    - \(-\) often difficult to define proposal distribution \(p(Y' \mid Y^{(t-1)})\) that has low rejection rate
+    - \(\Rightarrow\) only applicable when \(\mathrm{dim}(Y)\) is not large and \(p^S(X \mid Y)\) not too slow
 
-{% math algorithm "Basic MCML algorithm" %}
+{% math algorithm "MCMC" %}
 1. \(X^{\text{obs}}\) given, \(Y^{0}\) arbitrary initial guess
     - pick a "proposal transition distribution" for transition prob \(q(Y' \mid Y^{(t-1)}, X^{\text{obs}})\)
         - is a hyperparameter, e.g. a Gaussian -- something easy to work with
@@ -651,3 +661,64 @@ TODO: add the drawing here
     - if \(u \le \alpha\): accept (\(Y^{(t)} = Y'\)), else reject (\(Y^{(t)} = Y^{(t-1)}\))
         - theory: for \(T \rightarrow \infty\), \(\left\{Y^{(t)}\right\}_{t=1}^T \sim p^S(Y \mid X^{\text{obs}})\) 
 {% endmath %}
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/TODO.pdf)
+</div>
+
+3. **likelihood-free inference** -- \(p^S(X \mid Y)\) is unknown and only implicitly defined as \(\phi_{\#} p^S(Y, \eta)\)
+    - only samples \(X = \phi(Y, \eta)\) with \(Y, \eta \sim p^S(Y, \eta)\)
+    - Approximate Bayesian Computation (ABC) \(\hat =\) brute force
+    - requires a distance \(\mathrm{dist}(X, X^{obs})\) for outcomes, usually hand-crafted
+    - \(+\) works when MCMC doesn't
+    - \(+\) implemented in many libraries/languages
+    - \(-\) very slow -- if \(\varepsilon\) is small, the model is more precise and slower
+    - \(-\) not amortized
+    - \(-\) hard to define \(\mathrm{dist}\) if \(X\) is complicated or \(\mathrm{dim}(X)\) is high
+        - design hand-crafted summary statistics \(h(X)\) and compare \(\mathrm{dist(h(X), h(X^{\text{obs}}))}\)
+    - \(\Rightarrow\) only applicable when \(\mathrm{dim}(Y)\) is not large
+
+{% math algorithm "ABC" %}
+1. \(t=0\), sample \(\left\{\right\}\) (we later become \(\left\{Y^{(t)} \sim p^S(Y \mid X^{\text{obs}})\right\}_{t=1}^T\)
+2. repeat until \(t=T\)
+    - sample \(Y, \eta \sim p^S(Y, \eta)\), simulate \(X \sim \phi(Y, \eta)\)
+    - if \(\mathrm{dist}(X, X^{\text{obs}}) \le \varepsilon\), add \(Y\) to samples and increase \(t\), else reject
+        - _if we were lucky with \(Y\), we accept; otherwise reject_
+{% endmath %}
+
+#### Doing it better with NN
+- **amortized SBI** -- given \(\mathrm{TS} = \left\{Y_i \sim p^S(Y), X_i = \phi(Y_i, \eta_i)\right\}_{i=1}^N, \eta_i \sim p^S(\eta \mid Y_i)\)
+    - noise often independent of \(Y_i\) (i.e. just a random number)
+    - easy to create when we know \(p^S(Y)\) and \(\phi(Y, \eta)\)
+    - we can train conditional normalized flows for
+        - \(p(X \mid Y) \approx p^S(X \mid Y)\) (forward surrogate)
+        - \(p(Y \mid X) \approx p^S(Y \mid X)\) (inverse posterior)
+    - \(+\) likelihood-free -- \(p^S(X \mid Y)\) not needed, \(X \sim \phi(Y, \eta)\) suffices
+    - \(+\) scales to high dimensions for both \(\mathrm{dim}(X)\) and \(\mathrm{dim}(Y)\)
+    - \(+\) can learn summary statistics \(h(X)\) s.t. \(p(Y \mid h(X)) \approx p^S(Y \mid X)\)
+    - \(+\) amortized -- all simulations in the TS contribute to the training, no rejections
+        - upfront training effort may be high (roughly as expensive as \(5\) to \(10\) MCMC runs)
+        - training amortizes if one analyzes many \(X^{\text{obs}}\)
+    - \(+\) prediction is very cheap (just NN evaluation on the GPU)
+    - \(+\) generalization: networks generalize to unseen \((X, Y)\) pairs
+        - even \(X\) far from \(X^{\text{obs}}\) which would normally be rejected contribute to accuracy
+    - \(-\) (so far) no theoretical performance guarantees
+    - \(-\) (so far) no cheap way to finetune networks when \(p^S(Y)\) or \(\phi(Y, \eta)\) change slightly
+
+- **e.g. inverse kinematics** -- consider 2D robot arm with 4 DOF
+    - information loss when doing the forward kinematics (4D to 2D)
+    - the simulation \(X = \phi(Y)\) is defined as follows:
+        - \(X_1 = 0 + l_1 \cos(Y_2) + l_2 \cos(Y_2 + Y_3) + l_3\cos(Y_2 + Y_3 + Y_4)\)
+        - \(X_2 = Y_1 + l_1 \sin(Y_2) + l_2 \sin(Y_2 + Y_3) + l_3\sin(Y_2 + Y_3 + Y_4)\)
+    - priors ("preferred joint positions", "convenient situations")
+        - \(p^S(Y) = p_1^S(Y_1) p_2^S(Y_2) p_3^S(Y_3) p_4^S(Y_4)\) independent
+        - \(p_1(Y_1) = \mathcal{N}(0, \sigma^2=\frac{1}{16})\)
+        - \(p_{2,3,4}(Y_{2,3,4}) = \mathcal{N}(0, \sigma^2=\frac{1}{4})\) (radians)
+    - given desired hand location \(X^{\text{obs}}\), compute \(p(Y \mid X^{\text{obs}}) \approx p^S(Y \mid X^{\text{obs}})\)
+    - \(p^S(Y \mid X^{\text{obs}}) > 0\) for all \(Y \in \mathcal{F}(X^{\text{obs}}) = \underbrace{\left\{Y \mid \phi(Y) = X^{\text{obs}}\right\}}_{\text{infinite since}\ \mathrm{dim}(Y) > \mathrm{dim}(X)}\)
+    - \(p^S(Y \mid X^{\text{obs}}) \approx 0\) if \(Y\) is inconvenient according to prior
+    - \(p^S(Y \mid X^{\text{obs}}) \gg 0\) if \(Y\) is convenient according to prior
+    - joint probability \(p^S(X, Y) \propto \delta(X - \phi(Y)) \cdot p^S(Y)\)
+
+TODO: drawing
