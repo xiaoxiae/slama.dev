@@ -2308,10 +2308,10 @@
   hangboard:
     exercises:
     - 3-3
-    - 5-3 + 3-5
-    - 7-3 + 3-7
-    - 5-2 + 2-5
-    - 5-10 + 10-5
+    - 3-5
+    - 3-7
+    - 2-2
+    - 5-10
     - 3-3
     - 3-3
     parameters: 8/8/4/120
@@ -2335,10 +2335,10 @@
   hangboard:
     exercises:
     - 3-3
-    - 5-3 + 3-5
-    - 7-3 + 3-7
-    - 5-2 + 2-5
-    - 5-10 + 10-5
+    - 3-5
+    - 3-7
+    - 2-5
+    - 5-10
     - 3-3
     - 3-3
     parameters: 8/8/4/120
@@ -2360,8 +2360,8 @@
   hangboard:
     exercises:
     - 3-3
-    - 5-3 + 3-5
-    - 5-10 + 10-5
+    - 3-5
+    - 5-10
     - 3-3
     - 3-3
     parameters: 8/8/4/120
@@ -2384,10 +2384,10 @@
   hangboard:
     exercises:
     - 3-3
-    - 5-3 + 3-5
-    - 7-3 + 3-7
-    - 5-2 + 2-5
-    - 5-10 + 10-5
+    - 3-5
+    - 3-7
+    - 2-5
+    - 5-10
     - 5-5 with slow push-up
     - 5-5 with slow push-up
     - 3-3
@@ -2438,10 +2438,10 @@
   hangboard:
     exercises:
     - 3-3
-    - 5-3 + 3-5
-    - 7-3 + 3-7
-    - 5-2 + 2-5
-    - 5-10 + 10-5
+    - 3-5
+    - 3-7
+    - 2-5
+    - 5-10
     - 5-5 with slow push-up
     - 5-5 with slow push-up
     - 5-5 with slow push-up
@@ -2456,10 +2456,10 @@
   hangboard:
     exercises:
     - 3-3
-    - 5-3 + 3-5
-    - 7-3 + 3-7
-    - 5-2 + 2-5
-    - 5-10 + 10-5
+    - 3-5
+    - 3-7
+    - 2-5
+    - 5-10
     - 5-5 with core
     - 5-5 with core
     parameters: 8/8/4/120
@@ -2510,3 +2510,31 @@
 2023-11-13:
   note: Climbing.
   wall: Boulderhaus
+2023-11-20:
+  note: Fun session with my sisters. Feel weak.
+2023-11-21:
+  hangboard:
+    exercises:
+    - 3-3
+    - 5-5
+    - 3-3
+    - 5-5
+    parameters: 8/8/4/120
+    type: beastmaker-2000
+  note: Getting back to training. Still feel weak.
+  wall: home
+2023-11-22:
+  note: Another small comp with friends. Still weak.
+2023-11-23:
+  hangboard:
+    exercises:
+    - 3-3
+    - 3-5
+    - 3-7
+    - 2-5
+    - 5-10
+    - 5-5 with slow push-up
+    - 5-5 with slow push-up
+    parameters: 8/8/4/120
+    type: beastmaker-2000
+  wall: home
