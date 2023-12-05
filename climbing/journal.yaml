@@ -2538,3 +2538,37 @@
     parameters: 8/8/4/120
     type: beastmaker-2000
   wall: home
+2023-11-25:
+  blue:
+    new: 5
+  red:
+    new: 2
+  wall: Boulderhaus
+2023-11-27:
+  black:
+    new: 1
+  note: Pretty strong session, managing to finish a few forgotten reds and the new
+    black.
+  red:
+    new: 2
+  wall: Boulderhaus
+2023-11-29:
+  note: Comp with friends. A little better this time but not quite there yet.
+  red:
+    new: 1
+  wall: Boulderhaus
+2023-12-01:
+  note: Worked on the really hard new green red but couldn't quite make it to the
+    top.
+  red:
+    new: 1
+  wall: Boulderhaus
+2023-12-02:
+  black:
+    new: 1
+  blue:
+    new: 4
+  note: "Fun new routes. The last red is harder than the black though \U0001F480."
+  red:
+    new: 3
+  wall: Boulderhaus
