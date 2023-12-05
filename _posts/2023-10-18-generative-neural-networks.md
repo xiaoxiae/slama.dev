@@ -388,14 +388,14 @@ Note that \(3 \not\Rightarrow 2\) (shown during lecture).
 - dominant generative model 2014-2019/20
     - now diffusion models and transformers are better
 - **idea:** learn quality function (instead of hand-crafted formula like MMD)
-    - new NN "discriminator/critic" \(C\) -- classifier \(p(X \text{is real} \mid X)\) vs. \(p\left(X \text{is fake} \mid X\right)\)
+    - new NN "discriminator/critic" \(C\) -- classifier \(p(X\ \text{is real} \mid X)\) vs. \(p\left(X \text{is fake} \mid X\right)\)
       ![](/assets/generative-neural-networks/gan-general.webp)
     - train the decoder ("generator") jointly with the critic
       ![](/assets/generative-neural-networks/gan-gauss.webp)
 - training becomes a game:
     - critic becomes better at distinguishing reals and fakes
     - decoder becomes better at fooling the critic
-    - \(\Rightarrow\) training objective \[\hat C, \hat D = \argmin_{D} \argmax_{C} \mathbb{E}_{X \sim P^*(X)} \left[\log p_C(X \text{is real} \mid X)\right] + \mathbb{E}_{Z \sim g(Z)} \left[\log p_C(X \text{is fake} \mid X = D(Z)) \right]\]
+    - \(\Rightarrow\) training objective \[\hat C, \hat D = \argmin_{D} \argmax_{C} \mathbb{E}_{X \sim P^*(X)} \left[\log p_C(X\ \text{is real} \mid X)\right] + \mathbb{E}_{Z \sim g(Z)} \left[\log p_C(X \text{is fake} \mid X = D(Z)) \right]\]
     - at optimal convergence, we have \(p(X) = p^*(X)\) (~proven during the lecture)
         - _assumes that we have a perfect critic and proves from there_
     - in practice, we don't have a perfect critic (and it wouldn't work in practice because for the bad decoder, recognizing fakes is easy so gradient will be zero and we won't train anything)
@@ -441,8 +441,8 @@ Note that \(3 \not\Rightarrow 2\) (shown during lecture).
 - define \(\mathrm{Pr}[X \in A] = \int_{A} p^*(X)\;dx\)
 - let \(Z = f(X)\) an invertible encoding, \(X = f^{-1}(Z) := g(Z)\)
 - \(\tilde A = f(A)\) the image of \(A\) in \(Z\)-space: \[\tilde A = \left\{Z: Z=f(X)\ \text{for}\ X \in A\right\}\]
-- we want **consistency:** for all \(A: \mathrm{Pr}[Z \in \tilde A] = \int_{\tilde A} q(Z)\;dz \overset{!}{=} \mathrm{Pr}\left[X \in A\right]\)
-- apply the multi-dimensional chnage-of-variables formula: \[\int_{\tilde A = f(A)} q(Z)\;dz = \int_{q(\tilde A)} q(Z=f(X))\; | \det \mathcal{J}_{f} |\;dx\]
+- we want **consistency:** for all \[A: \mathrm{Pr}[Z \in \tilde A] = \int_{\tilde A} q(Z)\;dz \overset{!}{=} \mathrm{Pr}\left[X \in A\right]\]
+- apply the multi-dimensional change-of-variables formula: \[\int_{\tilde A = f(A)} q(Z)\;dz = \int_{q(\tilde A)} q(Z=f(X))\; | \det \mathcal{J}_{f} |\;dx\]
   for the Jacobian (matrix of partial derivatives) \(\mathcal{J}_f\) of \(f\)
 
 Since consistency must hold for any \(A\), the integrals must be equal, we get the **multi-variate change-of-variables** formula \[\boxed {p(X) = q(Z = f(X))\; | \det \mathcal{J}_f (X) | }\]
@@ -456,11 +456,11 @@ Recall the \(1\)-D case: \(q(Z) = \text{uniform}(0, 1) \implies f(X) = \mathrm{C
     - has non-zero gradients for gradient descent
     - supported on all of \(\mathbb{R}^D\) (unlike uniform -- what to do with points outside?)
 
-**Two difficult problems** in practice:
+**Two difficult problems** in practice, covered in the next sections:
 1. how to ensure that \(f(X)\) is invertible & efficiently compute \(f^{-1}(Z)\)
 2. how to (efficiently) calculate \(\det \mathcal{J}_f\)
 
-#### Calculating \(\det \mathcal{J}_f\)
+#### (2) Calculating \(\det \mathcal{J}_f\)
 - 2-D case is easy: \[\det \begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc\]
 - for higher cases, we can calculate determinants recursively, which grows **exponentially**
 - **general solution** with SVD: \(\mathcal{J} = U \cdot \Lambda \cdot V^T \implies |\det \mathcal{J}| = |\det \Lambda| = \prod_j \lambda_j\)
@@ -474,7 +474,7 @@ If \(f(X)\) is a multi-layer network, \(f(X)\) is a composition of functions \(f
 - \(\Rightarrow\) determinant of multi-layer network is easy when layer determinants are
 - \(\Rightarrow\) popular architecture is to define all \(f^{(l)}\left(Z^{(l-1)}\right)\) as auto-regressive functions
 
-#### Ensuring that \(f(X)\) is invertible and computable
+#### (1) Ensuring that \(f(X)\) is invertible and computable
 - **trick:** chose \(f^{(l)}\) auto-regressive and easy to invert
 - major architecture: Coupling layer \(\implies\) network is "real NVP" (non-volume-preserving due to the determinants being non-unit)
     - auto-regressive model
@@ -494,7 +494,7 @@ If \(f(X)\) is a multi-layer network, \(f(X)\) is a composition of functions \(f
 TODO: add the drawing here
 
 - for \(f^{(l)}_j\) to be invertible, we need \(s^{(l)}_{j} \neq 0\)
-    - \(\Rightarrow\) we actually learn \(\tilde s_j^{(l)}\) and set \(s_{j}^{(l)}\) and set \(s_j^{(l)} = \exp(\tilde s_j^{(l)}) > 0\)
+    - \(\Rightarrow\) we actually learn \(\tilde s_j^{(l)}\) and set \(s_j^{(l)} = \exp(\tilde s_j^{(l)}) > 0\)
         - also takes care of the sign of the Jacobian -- no abs!
         - in practice, it is numerically more stable to set \(s_j^{(l)} = \exp(\tanh(\tilde s_j^{(l)}))\)
 
@@ -520,7 +520,7 @@ TODO: add the drawing here
 - it turned out experimentally that learning \(Q\) is not necessary, no one knows why
     - fixed matrices are sufficient / may change with new learning algorithm
 - final architecture: \[f = f^{(L)} \circ Q^{(L - 1)} \circ f^{(L - 1)} \circ \ldots \circ Q^{(1)} \circ f^{(1)}\]
-- trainin algorithm: minimize negative likelihod of data (derivation in slides): \[\boxed{\hat f = \argmin_f \frac{1}{N} \sum_{i=1}^{N} \left(\frac{f(X_i)^2}{2} - \sum_{l=1}^{L} \sum_{j=\tilde D + 1}^{D} \tilde s_{j}^{(t)} \left(Z_{i, 1:\tilde D}^{(l-1)}\right)\right)}\]
+- training algorithm: minimize negative likelihod of data (derivation in slides): \[\boxed{\hat f = \argmin_f \frac{1}{N} \sum_{i=1}^{N} \left(\frac{f(X_i)^2}{2} - \sum_{l=1}^{L} \sum_{j=\tilde D + 1}^{D} \tilde s_{j}^{(l)} \left(Z_{i, 1:\tilde D}^{(l-1)}\right)\right)}\]
 - _the slides here explain why affine coupling works_
 
 #### Spline coupling
@@ -662,11 +662,6 @@ TODO: add the drawing here
         - theory: for \(T \rightarrow \infty\), \(\left\{Y^{(t)}\right\}_{t=1}^T \sim p^S(Y \mid X^{\text{obs}})\) 
 {% endmath %}
 
-{:.rightFloatBox}
-<div markdown="1">
-[slides](/assets/generative-neural-networks/TODO.pdf)
-</div>
-
 3. **likelihood-free inference** -- \(p^S(X \mid Y)\) is unknown and only implicitly defined as \(\phi_{\#} p^S(Y, \eta)\)
     - only samples \(X = \phi(Y, \eta)\) with \(Y, \eta \sim p^S(Y, \eta)\)
     - Approximate Bayesian Computation (ABC) \(\hat =\) brute force
@@ -686,6 +681,11 @@ TODO: add the drawing here
     - if \(\mathrm{dist}(X, X^{\text{obs}}) \le \varepsilon\), add \(Y\) to samples and increase \(t\), else reject
         - _if we were lucky with \(Y\), we accept; otherwise reject_
 {% endmath %}
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/3-3.pdf)
+</div>
 
 #### Doing it better with NN
 - **amortized SBI** -- given \(\mathrm{TS} = \left\{Y_i \sim p^S(Y), X_i = \phi(Y_i, \eta_i)\right\}_{i=1}^N, \eta_i \sim p^S(\eta \mid Y_i)\)
@@ -721,7 +721,12 @@ TODO: add the drawing here
     - \(p^S(Y \mid X^{\text{obs}}) \gg 0\) if \(Y\) is convenient according to prior
     - joint probability \(p^S(X, Y) \propto \delta(X - \phi(Y)) \cdot p^S(Y)\)
 
-TODO: drawing
+![Claw.](/assets/generative-neural-networks/claw.webp)
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/3-4.pdf)
+</div>
 
 #### Validation of generative models (especially SBI)
 - **fundamental problem:** if \(X \sim p(X)\), there is no single correct outcome
@@ -734,7 +739,7 @@ TODO: drawing
 - we can compare means/covariances of \({\hat X_i}\) and \(\left\{X_i^*\right\}\) -- quick check, complete if \(p\) is Gauss
     - can also compare higher order momentums but this tends to be expensive
 - plot marginal distributions in 1D and 2D for features \(j, j' = 1, \ldots, D\)
-    - TODO: steal image
+      ![Marginal.](/assets/generative-neural-networks/marginal.webp)
     - we don't see correlations for higher dimensions but errors here can already be apparent
 - various scores to compare the samples \(\left\{\hat X_i\right\}_{i=1}^N\) and \(\left\{X_i^*\right\}_{i=1}^N\) (usually \(N=N'\)):
     - (we already saw) [**MMD**](#maximum-mean-discrepancy)
@@ -771,3 +776,47 @@ TODO: drawing
                 - if all points are far from each other: \(G_{i, i'} \approx 0\) for \(i \neq i'\) and \(VS = N\) (max diversity)
                 - if all points are equal, \(G_{i, i'} = \frac{1}{N}\), we only have one non-zero eigenvalue and \(VS = 1\)
                 - _choosing kernel bandwidth correctly is critical to avoid the extreme cases_
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/TODO.pdf)
+</div>
+
+#### Validation of SBI
+- given \(\left\{\hat X_i \sim p(X)\right\}_{i=1}^N\) and \(\left\{ X_i^* \sim p^*(X)\right\}_{i=1}^{N'}\)
+1. **case:** \(N' \approx N \gg 1 \Rightarrow\)  compare the distribution of samples via methods from last lecture (MMD, FID, density/coverage)
+2. **case:** \(N' = 0 \Rightarrow\) compare diversity of different approximations via Vendi score
+3. **case:** \(N' = 1 \Rightarrow\) important case in practice
+    - in SBI, create GT via forward simulation, \(\left\{Y_i \sim p^S(Y), X_i \neq \theta(Y_i, \varepsilon)\right\}\)
+        - \(\Rightarrow Y_i\) is a GT example for \(p(Y \mid X = \underbrace{X_i}_{\text{fixed}})\) with \(N' = 1\)
+    - weather forecast: \(p(Y = \text{rain tomorrow} \mid X = \text{weather up to now})\)
+        - \(80\%\) rain probability -- we can check how well it worked tomorrow
+        - \(Y_i = p^*(Y = \text{rain} \mid X = \text{weather so far}) \hat = \text{actual weather}\)
+    - idea: "calibration" -- _merge instances with same predicted confidence in a joint test set_
+        - among all days with \(80\%\) rain prob. it should have rained in \(80\%\) of the cases
+        - assumes that this is a reasonable thing to do (what if climate change?)
+    - applied to classification: \(p(Y=k \mid X)\) is \(80\%\) and it answers right...
+        - \(80\%\) of the time -- **well calibrated** - \(>80\%\) of the time -- **underconfident**
+        - \(<80\%\) of the time -- **overconfident**
+    - realization:
+        - merge \[\underbrace{\left\{\hat Y_i p(Y \mid X = \text{fixed})\right\}_{i=1}^{M}}_{\text{generated}} \lor \underbrace{\left\{Y_0 = Y^* \sim p^*(Y \mid X)\right\}}_{\text{GT}} \]
+        - sort the merged set as \(\left(Y_{[0]}, \ldots, Y_{[M]}\right)\) -- GT should be uniformly placed
+        - **algorithm:**
+            1. given GT \(Y^*\), sample \(\left\{Y_k \sim p(Y)\right\}_{k=1}^N\)
+            2. sort the joined set \(\left(Y_{i[0]}, \ldots, Y_{i[M]}\right)\)
+            3. \(C = \frac{[k]}{M}\) (for \(k\) index of \(Y^*\) in sorted order)
+                - repeat this for many \(GT\) instances \(X_i, Y_i \Rightarrow \left\{C_i\right\}_{i=1}^M \)
+            4. evaluate \(\left\{C_i\right\}\) (it should be uniform) via histogram -- if model is calibrated, \(C_i \sim \mathrm{Binomial}(N, p=\frac{1}{2}) \)
+                - TODO: graphs of what can happen -- skewed - mean is wrong / canyon - overc. / valley -- underc.
+        - caveat: **well-calibrated** does not imply **accurate**
+            - _if the model is bad and it knows it, it's still calibrated_
+            - example: \(t\) time, sample mean on day \(t\)
+                \(\mu_t \sim \mathcal{N}(0, 1), Y_t \sim \mathcal{N}(\mu_t, 1)\)
+                - marginal is \(Y_t \sim p^*(Y_t) \sim \mathcal{N}(0, \sigma^2=2)\)
+                - TODO: finish this, it's weird
+            - _the lecture has an alternative solution via empirical CDF of \(C\)s_
+                - _we don't have a hyperparameter (calculated automatically), which is useful_
+    - joint calibration checks: instead of using \(\left(Y_{i[0]}, \ldots, Y_{i[M]}\right)\) on one feature at a time, check the entire vector
+        - \(\Rightarrow\) reduce the problem to 1-D via "energy" or "surprisal" distribution
+        - _probably TODO here since I got really lost; there should be an algorithm here_
+
