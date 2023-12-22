@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+@import "variables";
+@import "hacks";
+
+.red { color: red; }
+.green { color: green; }
+.blue { color: deepskyblue; }
+.orange {
+	color: #e67e00;
+	@media (prefers-color-scheme: dark) { color: orange; }
+}
+.gray { color: gray; }
+.unselectable { user-select: none; }
+.cancel { text-decoration: underline; text-underline-offset: -.35em; text-decoration-skip-ink: none; }
+.quote { color: gray; font-style: italic; }
+
+.s1 {
+	color: #7f5539;
+	font-weight: bold;
+	@media (prefers-color-scheme: dark) { color: #ede0d4; }
+}
+
+.s2 {
+	color: #9c6644;
+	font-weight: bold;
+	@media (prefers-color-scheme: dark) { color: #e6ccb2; }
+}
+
+.s3 {
+	color: #b08968;
+	font-weight: bold;
+	@media (prefers-color-scheme: dark) { color: #ddb892; }
+}
+
+sup { font-size: 75%; }
+
+.code-summary {
+    pointer-events: none;
+    list-style: none;
+    font-style: italic;
+    padding-top: $line-spacing / 4;
+    padding-bottom: $line-spacing / 4;
+    border-radius: $code-border-roundness;
+}
+
+@keyframes cursor-blink {
+   to {
+       visibility: hidden;
+   }
+}
+
+.blink {
+    animation: cursor-blink 1.5s steps(2, start) infinite;
+}
+
+.nostyle {
+    font-style: normal;
+}

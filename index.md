@@ -35,8 +35,9 @@ Links to the sections of the website can be found at the top, links to the posts
 	<li>
     <span class="post-attributes">
 	{% if post.pdf or post.pdf-nogenerate %} <a href="/assets/{{post.url | split: "/" | last}}.pdf">PDF</a> |{% endif %}
-	{% if post.category_noslug %} {{post.category_noslug}}{% if post.category_icon %} <img class='category-icon' src='{{post.category_icon}}' alt='{{post.category_noslug}} Icon'/>{% endif %}
-	{% elsif post.category%} {{post.category}}{% if post.category_icon %} <img class='category-icon' src='{{post.category_icon}}' alt='{{post.category}} Icon'/>{% endif %}{% if post.category_part %}, part {{post.category_part}}{% endif %}{% endif %}
+	{% if post.category_noslug %} {{post.category_noslug}}
+	{% elsif post.category%} {{post.category}}{% if post.category_part %} [{{post.category_part}}]{% endif %}{% endif %}
+    {% if post.category_icon %} <img class='category-icon' src='{{post.category_icon}}'/>{% endif %}
     </span>
 	<span class="nowrap">{{ post.date  | date: "%-d. %-m."}}</span>
 	</li>
