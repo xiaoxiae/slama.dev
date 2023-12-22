@@ -725,7 +725,7 @@ TODO: add the drawing here
 
 {:.rightFloatBox}
 <div markdown="1">
-[slides](/assets/generative-neural-networks/3-4.pdf)
+[slides](/assets/generative-neural-networks/3-4-1.pdf)
 </div>
 
 #### Validation of generative models (especially SBI)
@@ -779,27 +779,28 @@ TODO: add the drawing here
 
 {:.rightFloatBox}
 <div markdown="1">
-[slides](/assets/generative-neural-networks/TODO.pdf)
+[slides](/assets/generative-neural-networks/3-4-2.pdf)
 </div>
 
 #### Validation of SBI
-- given \(\left\{\hat X_i \sim p(X)\right\}_{i=1}^N\) and \(\left\{ X_i^* \sim p^*(X)\right\}_{i=1}^{N'}\)
+- given \(\{\hat X_i \sim p(X)\}_{i=1}^N\) and \(\{ X_i^* \sim p^*(X)\}_{i=1}^{N'}\)
 1. **case:** \(N' \approx N \gg 1 \Rightarrow\)  compare the distribution of samples via methods from last lecture (MMD, FID, density/coverage)
 2. **case:** \(N' = 0 \Rightarrow\) compare diversity of different approximations via Vendi score
 3. **case:** \(N' = 1 \Rightarrow\) important case in practice
-    - in SBI, create GT via forward simulation, \(\left\{Y_i \sim p^S(Y), X_i \neq \theta(Y_i, \varepsilon)\right\}\)
+    - in SBI, create GT via forward simulation, \(\left\{Y_i \sim p^S(Y), X_i \neq \Theta(Y_i, \varepsilon)\right\}\)
         - \(\Rightarrow Y_i\) is a GT example for \(p(Y \mid X = \underbrace{X_i}_{\text{fixed}})\) with \(N' = 1\)
     - weather forecast: \(p(Y = \text{rain tomorrow} \mid X = \text{weather up to now})\)
         - \(80\%\) rain probability -- we can check how well it worked tomorrow
-        - \(Y_i = p^*(Y = \text{rain} \mid X = \text{weather so far}) \hat = \text{actual weather}\)
+        - \(Y_i = p^*(Y = \text{rain} \mid X = \text{weather so far})\ \hat =\ \text{actual weather}\)
     - idea: "calibration" -- _merge instances with same predicted confidence in a joint test set_
         - among all days with \(80\%\) rain prob. it should have rained in \(80\%\) of the cases
         - assumes that this is a reasonable thing to do (what if climate change?)
     - applied to classification: \(p(Y=k \mid X)\) is \(80\%\) and it answers right...
-        - \(80\%\) of the time -- **well calibrated** - \(>80\%\) of the time -- **underconfident**
+        - \(80\%\) of the time -- **well calibrated**
+        - \(>80\%\) of the time -- **underconfident**
         - \(<80\%\) of the time -- **overconfident**
     - realization:
-        - merge \[\underbrace{\left\{\hat Y_i p(Y \mid X = \text{fixed})\right\}_{i=1}^{M}}_{\text{generated}} \lor \underbrace{\left\{Y_0 = Y^* \sim p^*(Y \mid X)\right\}}_{\text{GT}} \]
+        - merge \[\underbrace{\left\{\hat Y_i \sim p(Y \mid X = \text{fixed})\right\}_{i=1}^{M}}_{\text{generated}} \lor \underbrace{\left\{Y_0 = Y^* \sim p^*(Y \mid X)\right\}}_{\text{GT}} \]
         - sort the merged set as \(\left(Y_{[0]}, \ldots, Y_{[M]}\right)\) -- GT should be uniformly placed
         - **algorithm:**
             1. given GT \(Y^*\), sample \(\left\{Y_k \sim p(Y)\right\}_{k=1}^N\)
@@ -820,3 +821,219 @@ TODO: add the drawing here
         - \(\Rightarrow\) reduce the problem to 1-D via "energy" or "surprisal" distribution
         - _probably TODO here since I got really lost; there should be an algorithm here_
 
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/3-4-3.pdf)
+</div>
+
+_There is a missing lecture here! See slides for what was in it._
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/3-5.pdf)
+</div>
+
+### Epidemology: SIR model
+- **an example of SBI**
+- _[Kermach & McKendrick 1927]_
+- Susceptible \(S\): people who are healthy but can get infected
+- Infected \(I\): people who are ill and can transmit
+- Recovered \(R\): people who recovered and are now immune
+- simplifying assumptions:
+    - stationary dynamics: _behavior of virus/bacteria and people does not change over time_
+        - _no mutations, no countermeasures_
+    - only consider averages over all people in each compartment (\(S\), \(I\), \(R\))
+        - _all people in the same compartment are considered identical_
+- traditional non-probabilistic parameter fitting: least squares \[\hat Y = \argmin_Y \mathbb{E}_{\eta \sim p^S(\eta)} \left[||X^{\text{obs}} - \Theta (Y, \eta)||^2\right]\]
+    - \(+\) makes the simulation reproduce the real observations as closely as possible
+    - \(-\) might get stuck in bad local optima (if the simulation isn't linear with Gaussian noise)
+    - \(-\) disregards uncertainty and ambiguity in \(Y\)
+- amortized SBI learns a GNN for \(p(Y \mid X^{\text{obs}}) \approx p^S(Y \mid X^{\text{obs}})\)
+    - using a large \(TS\) of synthetic data (\(M=10\ 000+\))
+- design model:
+    - a healthy individual meets on average \(\lambda_1\) people per day
+    - infected people are not isolated, but meet others as usual
+        - \(\Rightarrow\) a fraction \(I/N\) of the \(\lambda_1\) meetings is potentially contagious
+    - a fraction \(\lambda_2\) of all the dangerous meetings actually leads to transmissions
+    - if we observe a reduction in infections, we cannot distinguish if people became more cautious (\(\lambda_1\) goes down) or the virus is less infections (\(\lambda_2\) goes down)
+        - \(\Rightarrow\) can only recover \(\lambda = \lambda_1 \lambda_2\)
+    - nobody dies and infected people recover after \(\delta\) days
+    - the rates are the following:
+        - number of new infections per day: \(\lambda \frac{I}{N} \cdot S\)
+        - number of recoveries per day: \(\frac{1}{\delta} I = \mu I\) (for \(\mu\) recovery rate)
+    - write the dynamics as a system of ordinary differential equations -- each line is the _change in the compartment_: \[\begin{aligned}
+        \frac{dS(t)}{dt} = -\lambda \frac{I(t)}{N} S(t) \\ 
+        \frac{dI(t)}{dt} = \lambda \frac{I(t)}{N} S(t) - \mu I(t) \\ 
+        \frac{dR(t)}{dt} = \mu I(t)
+    \end{aligned}\]
+    - can divide all equations by \(N\), getting normalized values: \[\begin{aligned}
+        \frac{d[S(t)]}{dt} = -\lambda [I(t)] [S(t)] \\ 
+        \frac{d[I(t)]}{dt} = \lambda [I(t)] [S(t)] - \mu [I(t)] \\ 
+        \frac{d[R(t)]}{dt} = \mu [I(t)]
+    \end{aligned}\]
+    - to solve equations, must define \(t=0\):
+        - \(I_0 = [I(t=0)] = \mathrm{const}\)
+        - \(R_0 = [R(t=0)] = 0\)
+        - \(S_0 = [S(t=0)] = 1 - I_0\)
+    - given \(I_0, \lambda, \mu\), we can solve the ODEs for any time by "integration"
+        - **Euler forward method:** discrete timesteps \(\Delta t\), approximate
+            - \([S(t + \Delta t)] = [S(t)] - \lambda [I(t)] [S(t)] \cdot \Delta t\)
+            - same for other equations...
+            - theory says that it's a good approximation if \(\Delta t\) is _small enough_
+        - more sophisticated: Euler backward, Runge-Hutta that allow for larger timesteps
+    - define observables \(X\):
+        - repeat on every day (number of new infections and newly recovered)
+        - observations are not perfect \(\Rightarrow\) **observation model**
+            - reporting \(\Delta S^{\text{obs}}(T) = f(\Delta S^*(t - L))\) for \(L\) delay
+            - underreporting: \(\Delta S^{\text{obs}} \sim S \Delta S^*\)
+            - there is some noise going on
+        - exact values:
+            - \(\Delta S^*(t) = S^*(t - \Delta t) - S^*(t)\)
+            - \(\Delta R^*(t) = R^*(t) - R^*(t - \Delta t)\)
+        - measured values:
+            - \(\Delta \tilde S (t) = \Delta S^* (t - L) \cdot \varepsilon_S \quad S \sim \mathcal{N}\left(S, \sigma^2\right)\)
+                - we get relative error, because we're multiplying
+            - same for others (noise can be same / different)
+        - full simulation: \(Y = \left[I_0, \lambda, \mu, L, S, \sigma^2\right] \sim p^S(Y)\)
+            - usually \(p^S(Y) = p^S(I_0)p^S(\lambda)p^S(\mu)p^S(L)p^S(S)p^S(\sigma^2)\)
+            - should be chosen according to epidemiological prior knowledge
+        - \(X = \Theta(Y, \eta)\)
+            - TODO: equations for the simulation
+            - get the true values from ODE, calculate noise from the observables (diff between truth and what we can measure)
+            - we can't observe the actual state (ODES) but only the noise
+        - full algorithm:
+            1. define the simulation \(\Theta(Y, \eta)\) and priors \(p^S(Y)\) and \(p^S(\eta)\)
+            2. use the simulation to generate synthetic TS
+            3. setup architecture of GNN
+                - TODO: image here
+            4. train SNF & summary network jointly using NLL loss: \[\hat p, \hat h = \argmin_{p, h} \frac{1}{M} \sum_{i=1}^{M} -\log p(Y_i \mid h(X_i))\]
+                - \(h(X)\) will become optimally informative for \(p(Y \mid h(X))\)
+            5. validate \(\hat p, \hat h\) (check calibration, sensitivity, etc.)
+                - tells us that it models the synthetic data well, not the real data
+            6. infer \(\hat p(Y \mid h(X^{\text{obs}}))\) for real data
+            7. check for potential simulation gap (\(\hat =\) simulation is unrealistic)
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/TODO.pdf)
+</div>
+
+_New lecture here, we're doing SBI for epidemiology again._
+
+- a typical person will on average transmit to \[\delta \lambda \cdot \overline{[S(t)]}\] healthy people _(duration times change of infection times average number of healthy people the person meets in those days)_
+- basic reproduction number is \[R_0(t) = \delta \lambda(t) \begin{cases}
+    >1 & \text{new infections go up} \\
+    <1 & \text{new infections go down}
+\end{cases}\] (here \(\lambda\) is a function of \(t\) if there are eventually countermeasures / disease mutations)
+- replacement number \[r(t) = R_0(t) [S(t)] \begin{cases}
+    >1 & I(t)\ \text{grows} \\
+    <1 & I(t)\ \text{shrinks}
+\end{cases}\]
+- \(\Rightarrow\) two possibilities to end disease:
+    1. herd immunity -- when \(r(t) < 1 \iff [S(t)] < R_0(t)\)
+    2. by countermeasures -- reduce \(\lambda(t)\) s.t. \(r(t) < 1\) (regardless of \(S\))
+
+- if \(\lambda(t)\) changes over time, learning identification problem becomes much harder
+- for a simulation to be realistic, _implementing the fundamental mechanistic equations is not enough_ -- a realistic model of observation uncertainty is **required**
+    - _(use squared loss in traditional inverse inference \(\iff\) assumes additive Gaussian noise with constant variance)_
+    - model reporting delays
+
+#### Making things more complex (because we can)
+- new things:
+    - **deadly disease** -- introduce new compartment \(D\) (dead) with new variable \(\alpha\) for how many die
+    - **immunity lost** after a while -- transitions \(R \rightarrow S\)
+    - **vaccination** -- transition \(S \rightarrow R\)
+    - **imperfect immunity** -- new compartment \(V\) (like \(S\) but with \(\lambda_V < \lambda_S\))
+- refine infection:
+    - incubation period (carrier) -- infected but cannot transmit
+        - \(S \rightarrow C \rightarrow I\) (with new variable \(\kappa\) for when they can transmit)
+    - some (many) infections are undetected
+        - split \(I\) into "treated" (knows its infected) and "spreader" (can transmit without knowing it)
+- further refinements:
+    - _split into risk groups_ (e.g. by age, sex, etc.)
+    - _spatial relations_ (hot spots, travel)
+        - spatial compartments
+            - _discrete_ -- every node becomes an SIR model, edges are spatial transmissions
+            - _continuous_ -- PDE (partial differential equations)
+    - \(\lambda(t), \mu(t)\) change over time based on a lot of factors
+
+#### Checking if the simulation is realistic
+- different to calibration -- here we have outside data (as opposed to the internal validation where we have our own data)
+- Is \(X^{\mathrm{obs}}\) (real observation or from a competing theory) covered by our SBI model?
+    - _yes_ \(\rightarrow\) \(p(Y \mid X^{\mathrm{obs}})\) can be trusted (if our model is well calibrated etc.)
+
+**Idea:** if \(X^{\mathrm{obs}}\) is an outlier of the marginal then networks have not seen data like it during training:
+1. learn a surrogate for \(p(X) \approx p^S(X)\) (expensive, big neural network)
+2. get outlier detection almost for free: we have a summary network \(h(X)\)
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/TODO.pdf)
+</div>
+
+_Continuing with new lecture here._
+
+**Model misspecification detection:** is \(x^{\mathrm{obs}}\) an outlier?
+- if yes, reject and answer "idk" 🤷
+- trick: exploit the feature detection network: add loss \(\kappa \mathrm{MMD}(p(h(X)) \mid \mathbb{N}(0, \Pi))\)  to pull summary feature distribution towards standard normal
+- reject \(X^{\mathrm{obs}}\) if \(h(X^{\mathrm{obs}})\) is an outlier of \(\mathbb{N}(0, \Pi)\)
+
+**Model comparison & selection** (between competing theories): _measuring training error might not be enough because of overfitting._
+- need _tradeoff between model accuracy and complexity_ ("Occam's razor")
+    - classical model selection criterion:
+        - Akaika criterion \(\mathrm{AIC} = 2 \mathbb{E}[NLL] + 2 \cdot \text{size}\) (for the size of the model)
+            - if both models are equally good but one is smaller, it wins
+        - Bayesian information criterion: \(\mathrm{BIC} = 2 \mathbb{E}[NLL] + \log(N)\) (for \(N\) dataset size)
+
+_Some more stuff was here but brain small._
+
+**External validation algorithm:**
+- given competing theories \(\mathcal{M}_1, \ldots, \mathcal{M}_L\)
+    - epidemiology: different compartments, priors, observation uncertainty etc.
+1. create synthetic training data \[TS_l = \left\{\left(Y_{il} \sim p(Y \mid \mathcal{M} = l), X_i \sim p(X \mid Y_{ill}, \mathcal{M} = l)\right)\right\}_{i=1}^{N_l}\]
+2. train a separate SBI model for each \(TS_l\) with \(\text{MMD}\) so that \(p(h_l(X)) = \mathcal{N}(0, \Pi)\)
+3. perform internal validation for each \(l\), redesign \(\text{SBI}_l\) until successful
+4. train a sofmax classifier \(p(\mathcal{M} \mid X)\) using combined \(\mathrm{TS}\)
+    - \(\hat p(\mathcal{M} \mid X) = \argmin_P \frac{1}{L} \sum_{l=1}^{L} \frac{1}{N_l} \sum_{i=1}^{N_l} -\log p(\mathcal{M} = l \mid X = X_{il})\)
+5. external validation given \(X^{\text{obs}}\)
+    - model misspecification detection
+    - compute logits of model classifier \(S_l\) (penultimate layer, before sofmax)
+    - define classifier \(p(\mathcal{M} \mid X^{\text{obs}}) = \mathrm{softmax}(S_l: l \in \mathcal{M}^{\mathrm{in}})\)
+    - model comparison by posterior odds
+
+**Parameter degeneracy**
+- sometimes, some elements in \(Y\) cannot be fully identified from \(X\)
+    - correlations in the posteriors
+- **example:** epidemiologist write SIR equations in terms of natural/conceptual parameters
+    - \(\lambda_1\): average number of people a healthy person meets per day
+    - \(\lambda_2\): fraction of meetings leading to transmission
+    - in SIR equatoins, we always have \(\lambda_1 \lambda_2 \implies\) cannot distinguish them, but can infer \(\lambda = \lambda_1 \lambda_2\)
+    - if we still use \(\lambda_1, \lambda_2 \implies\) posterior shows the degeneracy (infinitely many pairs (\(\lambda_1, \lambda_2\)) for fixed \(\lambda = \lambda_1 \lambda_2\))
+    - degeneracy is easy to spot, but generally difficult and hard to distinguish from bad convergence of neural network
+
+_Lecture talks about SoftFlow here which addresses this issue for cNFs._
+
+- do not confuse with NoiseNet, which adds the noise to \(X\) (here we add to \(Y\))
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/TODO.pdf)
+</div>
+
+_This lecture had slides with some interesting use cases of the methods that we previously discussed._
+
+#### Hierarchical models for SBI
+- **split hidden parameters into \(Y = [Y^G, Y^I]\)**
+    - \(Y^G\) -- global (for the entire population)
+    - \(Y^I\) -- individual (for every instance)
+- example -- virology:
+    - \(Y^G\) -- properties of a patient (& disease)
+    - \(Y^I\) -- properties of individual cells we analyse
+- **simulation:**
+    - \(Y^G \sim p^S(Y^G)\) (standard SBI)
+    - \(Y^I \sim p^S(Y^I \mid Y^G)\) (for every individual)
+    - \(X_i = \Theta(Y^G, Y^I_i, \eta_i)\) for \(\eta_i \sim p^S(\eta)\)
+        - common simplification is \(\Theta(Y^I_i, \eta_i)\)
+
+_Here we discuss Estimation of a non-linear mixed effects model [Arruda et al 2023]._
