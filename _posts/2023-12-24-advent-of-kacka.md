@@ -1,12 +1,12 @@
 ---
 language: cz
-title: Advent of Kačka (PF)
+title: Advent of Kačka
 category_icon: /assets/category-icons/snowflake.svg
 css: aok
 excerpt: "'tis the season."
 ---
 
-Letos jsem pro svou <a class='secret' href='/assets/kacka.webp'>nejúžasnější přítelkyni</a> vytvořil několik [Advent of Code](https://adventofcode.com/)-inspired problémů, za které jsem schoval dárek.
+Letos jsem pro svou <a class='secret' href='/assets/kacka.webp'>nejúžasnější přítelkyni</a> vytvořil několik [Advent of Code](https://adventofcode.com/)-inspired problémů, za které jsem schoval vánoční dárek.
 Pokud chcete vyřešit pár jednoduchých programovacích úloh, jsou dostupné na
 
 {: .center .large}
