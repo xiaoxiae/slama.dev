@@ -17,7 +17,7 @@ def set_current(register):
     return [f"jmenuji se '{register}'"]
 
 def set_value(value):
-    return [f"prosím o jedno '{value}'"]
+    return [f"prosím o drink číslo '{value}'"]
 
 def set_(register, value):
     return set_current(register) + set_value(value)
@@ -391,9 +391,9 @@ def ex():
 
     comments = """
 jmenuji se 'a'
-prosím o jedno '1'  # {a: 1}
+prosím o drink číslo '1'  # {a: 1}
 jmenuji se 'b'
-prosím o jedno '2'  # {a: 1, b: 2}
+prosím o drink číslo '2'  # {a: 1, b: 2}
 
 s mlékem            # {a: 1, b: 3}
 s mlékem            # {a: 1, b: 4}
@@ -405,7 +405,39 @@ bez mléka           # {a: -1, b: 4}
 
     registers = simulate(comments.splitlines())
 
-ex()
+    print("----------------")
+
+    code = set_("a", 13) \
+            + set_("b", 23) \
+            + add("a", "b", "c")
+
+    for row in code:
+        print(row)
+    print("----------------")
+    registers = simulate(code)
+    print(registers)
+    total = 0
+    for r in registers:
+        total += registers[r]
+    print()
+    print(total)
+    print("----------------")
+
+    code = set_("a", 31) \
+            + set_("b", 15) \
+            + multiply("a", "b", "c")
+
+    for row in code:
+        print(row)
+    print("----------------")
+    registers = simulate(code)
+    print(registers)
+    total = 0
+    for r in registers:
+        total += registers[r]
+    print()
+    print(total)
+    print("----------------")
 
 
 def solve_1(name):
@@ -437,3 +469,5 @@ print("1:", solve_1("things-customers-said-this-year"))
 print()
 solve_2("things-customers-said-this-year")
 print()
+
+ex()

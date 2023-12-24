@@ -2,8 +2,7 @@
 language: cz
 title: Advent of Kačka
 layout: default
-redirect_from:
- - /aok/
+permalink: /aok/
 css: aok
 ---
 

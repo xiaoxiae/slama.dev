@@ -35,15 +35,6 @@
 
 sup { font-size: 75%; }
 
-.code-summary {
-    pointer-events: none;
-    list-style: none;
-    font-style: italic;
-    padding-top: $line-spacing / 4;
-    padding-bottom: $line-spacing / 4;
-    border-radius: $code-border-roundness;
-}
-
 @keyframes cursor-blink {
    to {
        visibility: hidden;

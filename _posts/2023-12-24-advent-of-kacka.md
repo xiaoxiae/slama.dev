@@ -10,7 +10,7 @@ Letos jsem pro svou <a class='secret' href='/assets/kacka.webp'>nejúžasnějš�
 Pokud chcete vyřešit pár jednoduchých programovacích úloh, jsou dostupné na
 
 {: .center .large}
-[https://slama.dev/aok/](/aok/acka/)
+[https://slama.dev/aok/](/aok/)
 
 {: .right}
 ❄️ Šťastné a veselé! ❄️
