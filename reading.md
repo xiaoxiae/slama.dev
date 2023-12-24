@@ -1,8 +1,10 @@
 ---
-title: Books
+title: Reading
 layout: default
 order: 1
 css: books
+redirect_from:
+ - /books/
 no-heading: True
 ---
 
@@ -50,6 +52,21 @@ This section covers various kinds of books that I think are worth reading.
 - **King of Scars** duology [[Wikipedia](https://en.wikipedia.org/wiki/King_of_Scars)] -- another excellent duology by Leigh Bardugo. It is much more fantasy-ish than the Six of Crows and focuses more heavily on the magical aspect of the world that Leigh is building (so it reads quite differently) but I enjoyed it nonetheless.
 	1. **King of Scars**
 	2. **Rule of Wolves**
+
+#### Henry H. Neff
+
+{:.book}
+- **The Tapestry** [[Wikipedia](https://en.wikipedia.org/wiki/Henry_H._Neff#The_Tapestry_Series)] -- most people have books that they read when they were younger (e.g. Eragon) that aren't necessarily the peak of writing but are a comfort book that they like returning to. Well this series is exactly that for me, so if you think it's bad then you're objectively wrong.
+    1. **The Hound of Rowan**
+    2. **The Second Siege**
+    3. **The Fiend and the Forge**
+    4. **The Maelstrom**
+    5. **The Red Winter**
+
+- **King of Scars** duology [[Wikipedia](https://en.wikipedia.org/wiki/King_of_Scars)] -- another excellent duology by Leigh Bardugo. It is much more fantasy-ish than the Six of Crows and focuses more heavily on the magical aspect of the world that Leigh is building (so it reads quite differently) but I enjoyed it nonetheless.
+	1. **King of Scars**
+	2. **Rule of Wolves**
+
 
 ### Sci-fi
 
