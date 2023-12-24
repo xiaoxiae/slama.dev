@@ -13,6 +13,13 @@ If you'd like to see the originals, simply click on the photos.
 _Each of the photos are licensed under **[CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)**, so kindly respect it if you plan on using any of them for uses other than personal._
 
 {: .center}
+### Winter 2023 ❄️
+<div class='photo-section'>
+{% photos christmas/raw/2023-1.jpg|christmas/raw/2023-2.jpg %}
+{% photos christmas/raw/2023-3.jpg|christmas/raw/2023-4.jpg %}
+</div>
+
+{: .center}
 ### Austria 2023 ⛰️
 <div class='photo-section'>
 {% photos austria/raw/1.png|austria/raw/2.png|austria/raw/3.png %}
@@ -62,7 +69,7 @@ _Each of the photos are licensed under **[CC-BY-NC-SA 4.0](https://creativecommo
 {% photos winter/raw/2.jpeg|winter/raw/3.jpeg %}
 {% photos winter/raw/4.jpg|winter/raw/5.jpg %}
 {% photos winter/raw/1.jpeg %}
-{% photos christmas/raw/2.jpg|christmas/raw/3.jpg %}
+{% photos christmas/raw/2018-1.jpg|christmas/raw/2018-2.jpg %}
 </div>
 
 {: .center}
