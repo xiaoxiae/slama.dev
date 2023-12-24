@@ -43,17 +43,36 @@ def skip():
 def p():
     return ["nápoj je připravený!"]
 
-def if_zero():
+def if_leq_zero_instruction():
     return [f"je už hotové?"]
 
-def repeat_until_zero(r, code):
+def if_leq_zero(c1, c2):
+    l_c1 = get_random_label()
+    l_end = get_random_label()
+
+    return (
+        if_leq_zero_instruction()
+        + jump(l_c1)
+        + c2
+        + jump(l_end)
+        + label(l_c1)
+        + c1
+        + label(l_end)
+    )
+
+
+def if_leq_one(c1, c2):
+    return 
+
+
+def repeat_until_leq_zero(r, code):
     l_loop = get_random_label()
     l_end = get_random_label()
 
     return (
-        set_current(r)
-        + label(l_loop)
-        + if_zero()
+        label(l_loop)
+        + set_current(r)
+        + if_leq_zero_instruction()
         + jump(l_end)
         + code
         + set_current(r)
@@ -62,9 +81,22 @@ def repeat_until_zero(r, code):
         + label(l_end)
     )
 
+def while_not_leq_zero(r, code):
+    l_loop = get_random_label()
+    l_end = get_random_label()
+
+    return (
+        label(l_loop)
+        + set_current(r)
+        + if_leq_zero_instruction()
+        + jump(l_end)
+        + code
+        + jump(l_loop)
+        + label(l_end)
+    )
+
 def zero_out(r):
-    # could be done easier but we're limit testing
-    return repeat_until_zero(r, [])
+    return set_(r, 0)
 
 def p_line(s: str):
     r = get_random_register()
@@ -73,6 +105,7 @@ def p_line(s: str):
     for c in s:
         code += set_(r, ord(c))
         code += p()
+
     code += zero_out(r)
 
     return code
@@ -80,12 +113,20 @@ def p_line(s: str):
 def copy(r1, r2):
     r = get_random_register()
 
-    return repeat_until_zero(
+    return zero_out(r2) + repeat_until_leq_zero(
         r1,
         set_current(r2) + inc() + set_current(r) + inc(),
-    ) + repeat_until_zero(
+    ) + repeat_until_leq_zero(
         r,
         set_current(r1) + inc(),
+    )
+
+def move(r1, r2):
+    r = get_random_register()
+
+    return zero_out(r2) + repeat_until_leq_zero(
+        r1,
+        set_current(r2) + inc(),
     )
 
 def subtract(r1, r2, r3):
@@ -93,13 +134,14 @@ def subtract(r1, r2, r3):
     r_t2 = get_random_register()
 
     return (
-        copy(r1, r_t1)
+        zero_out(r3)
+        + copy(r1, r_t1)
         + copy(r2, r_t2)
-        + repeat_until_zero(
+        + repeat_until_leq_zero(
             r_t1,
             set_current(r3) + inc(),
         )
-        + repeat_until_zero(
+        + repeat_until_leq_zero(
             r_t2,
             set_current(r3) + dec(),
         )
@@ -112,13 +154,14 @@ def add(r1, r2, r3):
     r_t2 = get_random_register()
 
     return (
-        copy(r1, r_t1)
+        zero_out(r3)
+        + copy(r1, r_t1)
         + copy(r2, r_t2)
-        + repeat_until_zero(
+        + repeat_until_leq_zero(
             r_t1,
             set_current(r3) + inc(),
         )
-        + repeat_until_zero(
+        + repeat_until_leq_zero(
             r_t2,
             set_current(r3) + inc(),
         )
@@ -131,14 +174,29 @@ def multiply(r1, r2, r3):
     r_t2 = get_random_register()
     r_t3 = get_random_register()
 
-    return copy(r1, r_t1) + repeat_until_zero(
+    return zero_out(r3) + copy(r1, r_t1) + repeat_until_leq_zero(
         r_t1,
         copy(r2, r_t2)
-        + repeat_until_zero(
+        + repeat_until_leq_zero(
             r_t2,
             set_current(r3) + inc(),
         ),
     )
+
+def divide(r1, r2, r3):
+    r_t1 = get_random_register()
+    r_tmp = get_random_register()
+
+    return zero_out(r3) + copy(r1, r_t1) + set_current(r_t1) + inc() + while_not_leq_zero(
+        r_t1,
+        subtract(r_t1, r2, r_tmp) + copy(r_tmp, r_t1) + set_current(r3) + inc(),
+    ) + zero_out(r_t1) + zero_out(r_tmp) + set_current(r3) + dec()
+
+def mod(r1, r2, r3):
+    r_t1 = get_random_register()
+    r_t2 = get_random_register()
+
+    return divide(r1, r2, r_t1) + multiply(r2, r_t1, r_t2) + subtract(r1, r_t2, r3) + zero_out(r_t1) + zero_out(r_t2)
 
 
 def gen(name):
@@ -146,10 +204,10 @@ def gen(name):
 
         test_part = []
 
-        n = 100
-        o = 150
+        n = 500
+        o = 250
         registers = [get_random_register() for _ in range(n)]
-        register_values = [randint(0, o) for _ in range(n)]
+        register_values = [randint(1, o) for _ in range(n)]
 
         for i, r in enumerate(registers):
             test_part += set_(r, register_values[i])
@@ -169,7 +227,7 @@ def gen(name):
 
         for i in range(m):
             a, b = sample(registers, k=2)
-            op = choice(["*", "+", "-"])
+            op = choice(["*", "+", "-", "/", "%"])
 
             a_val = register_values[registers.index(a)]
             b_val = register_values[registers.index(b)]
@@ -177,7 +235,9 @@ def gen(name):
             results[output_registers[i]] = (
                 (a_val + b_val) if op == "+"
                 else (a_val - b_val) if op == "-"
-                else (a_val * b_val)
+                else (a_val * b_val) if op == "*"
+                else (a_val % b_val) if op == "%"
+                else (a_val // b_val)
             )
 
             if i in messages:
@@ -187,10 +247,14 @@ def gen(name):
                 test_part += add(a, b, output_registers[i])
             elif op == "-":
                 test_part += subtract(a, b, output_registers[i])
-            else:
+            elif op == "*":
                 test_part += multiply(a, b, output_registers[i])
+            elif op == "/":
+                test_part += divide(a, b, output_registers[i])
+            else:
+                test_part += mod(a, b, output_registers[i])
 
-        print("Calibration sum:", sum([v for v in results.values()]))
+        print("Expected calibration sum:", sum([v for v in results.values()]))
 
         for i, r in enumerate(registers):
             test_part += zero_out(r)
@@ -246,9 +310,7 @@ def gen(name):
 
             for r in registers:
                 real_part += multiply(tmp, r, r1)
-                real_part += zero_out(tmp)
                 real_part += copy(r1, tmp)
-                real_part += zero_out(r1)
 
             r2 = get_random_register()
             real_part += set_(r2, offset)
@@ -258,7 +320,7 @@ def gen(name):
             real_part += p()
 
         code = set_(get_random_register(), 0) \
-                + if_zero() \
+                + if_leq_zero_instruction() \
                 + jump(l2) \
                 + jump(l1) \
                 + label(l2) \
@@ -272,7 +334,7 @@ def gen(name):
             f.write(line + "\n")
 
 
-def simulate(contents):
+def simulate(contents, debug=False):
     from collections import defaultdict
 
     current = None
@@ -310,7 +372,7 @@ def simulate(contents):
         elif line.startswith("to mi připomnělo"):
             i = labels[line.split("'")[1]]
         elif line.startswith("je už hotové?"):
-            if registers[current] == 0:
+            if registers[current] <= 0:
                 i += 0
             else:
                 i += 1
@@ -321,6 +383,9 @@ def simulate(contents):
         else:
             print("Unknown command", line)
             quit()
+
+        if debug:
+            print(registers)
 
         i += 1
 
@@ -360,7 +425,7 @@ def ex():
             + skip() \
             + label("loop") \
             + set_current("repeat") \
-            + if_zero() \
+            + if_leq_zero_instruction() \
             + jump("end") \
             + skip() \
             + comment("opakuje se desetkrát...") \
@@ -462,12 +527,127 @@ def solve_2(name):
         _ = simulate(contents)
 
 
-gen("things-customers-said-this-year")
+def reverse(r1, r2):
+    r1cp = get_random_register()
+    tmp1 = get_random_register()
+    tmp2 = get_random_register()
+    ten = get_random_register()
 
-print()
-print("1:", solve_1("things-customers-said-this-year"))
-print()
-solve_2("things-customers-said-this-year")
-print()
+    return copy(r1, r1cp) + set_(ten, 10) + while_not_leq_zero(
+        r1cp,
+        mod(r1cp, ten, tmp1) + multiply(r2, ten, tmp2) + add(tmp1, tmp2, r2) + divide(r1cp, ten, tmp1) + move(tmp1, r1cp)
+    ) + zero_out(tmp1) + zero_out(tmp2) + zero_out(ten)
 
-ex()
+
+def print_register(r):
+    r_rev = get_random_register()
+    ten = get_random_register()
+    n48 = get_random_register()
+    tmp1 = get_random_register()
+    tmp2 = get_random_register()
+
+    # printing ten prints newline (handy :)
+    non_zero_code = reverse(r, r_rev) + while_not_leq_zero(
+        r_rev,
+        mod(r_rev, ten, tmp1) + add(tmp1, n48, tmp2) + set_current(tmp2) + p() + divide(r_rev, ten, tmp1) + move(tmp1, r_rev)
+    ) + zero_out(tmp1) + zero_out(tmp2)
+
+    zero_code = set_current(n48) + p()
+
+    return set_(ten, 10) + set_(n48, 48) + set_current(r) + if_leq_zero(
+        zero_code,
+        non_zero_code,
+    ) + set_current(ten) + p() + zero_out(ten) + zero_out(n48)
+
+
+def format(code):
+    for i, line in enumerate(code):
+        if "'" in line:
+            code[i] = code[i].replace("'", '<span class="orange">', 1)
+            code[i] = code[i].replace("'", '</span>', 1)
+
+    return code
+
+def advanced():
+    def ex_add():
+        return set_("a", 1) + set_("b", 2) + add("a", "b", "c")
+
+    def ex_sub():
+        return set_("a", 1) + set_("b", 2) + subtract("a", "b", "c")
+
+    def ex_mul():
+        return set_("a", 1) + set_("b", 2) + multiply("a", "b", "c")
+
+    def ex_div():
+        return set_("a", 1) + set_("b", 2) + divide("a", "b", "c")
+
+    def ex_preg():
+        return set_("a", 123) + print_register("a")
+
+    def ex_fib():
+        f1 = get_random_register()
+        f2 = get_random_register()
+        tmp = get_random_register()
+
+        return set_("a", 10) + set_(f1, 0) + set_(f2, 1) + print_register(f1) + print_register(f2) + repeat_until_leq_zero(
+            "a",
+            add(f1, f2, tmp) + move(f2, f1) + move(tmp, f2) + print_register(f2)
+        )
+
+    def ex_prime():
+        a_cp = get_random_register()
+        count_down = get_random_register()
+        count_up = get_random_register()
+        tmp1 = get_random_register()
+        tmp2 = get_random_register()
+
+        # from 2 to a...
+        return set_("a", 135) + copy("a", count_down) + copy("a", a_cp) \
+                + set_current(count_down) + dec() + dec() \
+                + set_current(count_up) + inc() + inc() \
+                + repeat_until_leq_zero(
+            count_down,
+            (
+                mod(a_cp, count_up, tmp1)
+                + set_current(tmp1) \
+                + if_leq_zero(
+                    divide(a_cp, count_up, tmp2) + move(tmp2, a_cp) + print_register(count_up),
+                    set_current(count_up) + inc()
+                )
+            )
+        ) + set_current(a_cp) + dec() + if_leq_zero(
+            inc(),
+            inc() + print_register(a_cp),
+        )
+
+    with open("ss.txt", "w") as f:
+        f.write("--ADD--\n")
+        for row in format(ex_add()):
+            f.write(row + "\n")
+
+        f.write("--SUB--\n")
+        for row in format(ex_sub()):
+            f.write(row + "\n")
+
+        f.write("--MUL--\n")
+        for row in format(ex_mul()):
+            f.write(row + "\n")
+
+        f.write("--DIV--\n")
+        for row in format(ex_div()):
+            f.write(row + "\n")
+
+        f.write("--PREG--\n")
+        for row in format(ex_preg()):
+            f.write(row + "\n")
+
+        f.write("--FIB--\n")
+        for row in format(ex_fib()):
+            f.write(row + "\n")
+
+        f.write("--PRIME--\n")
+        for row in format(ex_prime()):
+            f.write(row + "\n")
+
+advanced()
+quit()
