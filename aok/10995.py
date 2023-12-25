@@ -199,141 +199,6 @@ def mod(r1, r2, r3):
     return divide(r1, r2, r_t1) + multiply(r2, r_t1, r_t2) + subtract(r1, r_t2, r3) + zero_out(r_t1) + zero_out(r_t2)
 
 
-def gen(name):
-    with open(name + ".txt", "w") as f:
-
-        test_part = []
-
-        n = 500
-        o = 250
-        registers = [get_random_register() for _ in range(n)]
-        register_values = [randint(1, o) for _ in range(n)]
-
-        for i, r in enumerate(registers):
-            test_part += set_(r, register_values[i])
-
-        m = 100
-        results = {}
-        output_registers = [get_random_register() for _ in range(m)]
-
-        messages = {
-            10: "START KALIBRACE\n",
-            20: "Varim kafe...\n",
-            30: "Zahrivam ponozky...\n",
-            50: "Pripravuji mleko...\n",
-            75: "Kombinuji...\n",
-            99: "HOTOVO!\n",
-        }
-
-        for i in range(m):
-            a, b = sample(registers, k=2)
-            op = choice(["*", "+", "-", "/", "%"])
-
-            a_val = register_values[registers.index(a)]
-            b_val = register_values[registers.index(b)]
-
-            results[output_registers[i]] = (
-                (a_val + b_val) if op == "+"
-                else (a_val - b_val) if op == "-"
-                else (a_val * b_val) if op == "*"
-                else (a_val % b_val) if op == "%"
-                else (a_val // b_val)
-            )
-
-            if i in messages:
-                test_part += p_line(messages[i])
-
-            if op == "+":
-                test_part += add(a, b, output_registers[i])
-            elif op == "-":
-                test_part += subtract(a, b, output_registers[i])
-            elif op == "*":
-                test_part += multiply(a, b, output_registers[i])
-            elif op == "/":
-                test_part += divide(a, b, output_registers[i])
-            else:
-                test_part += mod(a, b, output_registers[i])
-
-        print("Expected calibration sum:", sum([v for v in results.values()]))
-
-        for i, r in enumerate(registers):
-            test_part += zero_out(r)
-
-        message = r"""
-   .-.                                                   \ /     
-  ( (      Stastne a vesele! <3      |                  - * -    
-   '-`                              -+-                  / \     
-            \            o          _|_          \               
-            ))          }^{        /___\         ))              
-          .-#-----.     /|\     .---'-'---.    .-#-----.         
-     ___ /_________\   //|\\   /___________\  /_________\        
-    /___\ |[] _ []|    //|\\    | A /^\ A |    |[] _ []| _.O,_   
-....|"#"|.|  |*|  |...///|\\\...|   |"|   |....|  |*|  |..(^)...."""
-
-        l1 = get_random_label()
-        l2 = get_random_label()
-        l_end = get_random_label()
-
-        real_part = []
-
-        def prime_factors(n):
-            i = 2
-            factors = []
-            while i * i <= n:
-                if n % i:
-                    i += 1
-                else:
-                    n //= i
-                    factors.append(i)
-            if n > 1:
-                factors.append(n)
-            return factors
-
-
-        for j, c in enumerate(message):
-            val = ord(c)
-            offset = randint(10, 1000)
-
-            new_val = val + offset
-
-            factors = prime_factors(new_val)
-
-            registers = [get_random_register() for _ in factors]
-
-            for i, r in enumerate(registers):
-                real_part += set_(r, factors[i])
-
-            r1 = get_random_register()
-            tmp = get_random_register()
-
-            real_part += set_(tmp, 1)
-
-            for r in registers:
-                real_part += multiply(tmp, r, r1)
-                real_part += copy(r1, tmp)
-
-            r2 = get_random_register()
-            real_part += set_(r2, offset)
-
-            real_part += subtract(r1, r2, tmp)
-            real_part += set_current(tmp)
-            real_part += p()
-
-        code = set_(get_random_register(), 0) \
-                + if_leq_zero_instruction() \
-                + jump(l2) \
-                + jump(l1) \
-                + label(l2) \
-                + test_part \
-                + jump(l_end) \
-                + label(l1) \
-                + real_part \
-                + label(l_end)
-
-        for line in code:
-            f.write(line + "\n")
-
-
 def simulate(contents, debug=False):
     from collections import defaultdict
 
@@ -392,139 +257,14 @@ def simulate(contents, debug=False):
     return registers
 
 
-def ex():
-    code = set_("a", 1) \
-            + set_("b", 2) \
-            + skip() \
-            + inc() \
-            + inc() \
-            + skip() \
-            + set_current("a") \
-            + dec() \
-            + dec()
-
-    for row in code:
-        print(row)
-    print("----------------")
-    registers = simulate(code)
-    print(registers)
-    print("----------------")
-
-    code = skip() \
-            + label("loop") \
-            + skip() \
-            + comment("poběží donekonečna...") \
-            + skip() \
-            + jump("loop")
-
-    for row in code:
-        print(row)
-    print("----------------")
-
-    code = set_("repeat", 10) \
-            + skip() \
-            + label("loop") \
-            + set_current("repeat") \
-            + if_leq_zero_instruction() \
-            + jump("end") \
-            + skip() \
-            + comment("opakuje se desetkrát...") \
-            + skip() \
-            + set_current("repeat") \
-            + dec() \
-            + jump("loop") \
-            + label("end")
-
-    for row in code:
-        print(row)
-    print("----------------")
-    registers = simulate(code)
-    print(registers)
-    print("----------------")
-
-    code = set_current("tmp") + skip()
-
-    for c in "Ahoj!":
-        code += set_value(ord(c)) + p() + skip()
-
-    for row in code:
-        print(row)
-    print("----------------")
-    registers = simulate(code)
-    print(registers)
-    print("----------------")
-
-    comments = """
-jmenuji se 'a'
-prosím o drink číslo '1'  # {a: 1}
-jmenuji se 'b'
-prosím o drink číslo '2'  # {a: 1, b: 2}
-
-s mlékem            # {a: 1, b: 3}
-s mlékem            # {a: 1, b: 4}
-
-jmenuji se 'a'
-bez mléka           # {a: 0, b: 4}
-bez mléka           # {a: -1, b: 4}
-    """
-
-    registers = simulate(comments.splitlines())
-
-    print("----------------")
-
-    code = set_("a", 13) \
-            + set_("b", 23) \
-            + add("a", "b", "c")
-
-    for row in code:
-        print(row)
-    print("----------------")
-    registers = simulate(code)
-    print(registers)
-    total = 0
-    for r in registers:
-        total += registers[r]
-    print()
-    print(total)
-    print("----------------")
-
-    code = set_("a", 31) \
-            + set_("b", 15) \
-            + multiply("a", "b", "c")
-
-    for row in code:
-        print(row)
-    print("----------------")
-    registers = simulate(code)
-    print(registers)
-    total = 0
-    for r in registers:
-        total += registers[r]
-    print()
-    print(total)
-    print("----------------")
-
-
-def solve_1(name):
-    with open(name + ".txt", "r") as f:
+def run_file(name):
+    with open(name, "r") as f:
         contents = f.read().strip().splitlines()
 
         registers = simulate(contents)
 
-        total = 0
-        for k, v in sorted(registers.items()):
-            total += v
-
-        return total
-
-
-def solve_2(name):
-    with open(name + ".txt", "r") as f:
-        contents = f.read().strip().splitlines()
-
-        contents[1] = contents[1].replace("0", "1")
-
-        _ = simulate(contents)
+run_file("ss.txt")
+quit()
 
 
 def reverse(r1, r2):
@@ -564,7 +304,8 @@ def format(code):
     for i, line in enumerate(code):
         if "'" in line:
             code[i] = code[i].replace("'", '<span class="orange">', 1)
-            code[i] = code[i].replace("'", '</span>', 1)
+            code[i] = code[i].replace("'", '\'</span>', 1)
+            code[i] = code[i].replace(">", '>\'', 1)
 
     return code
 
