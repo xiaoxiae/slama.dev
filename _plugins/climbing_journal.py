@@ -71,7 +71,6 @@ for entry in reversed(sorted(list(journal))):
 
         current_year = entry.year
 
-
     if current_month != entry.month:
         send_of_the_month = None
 
@@ -86,6 +85,10 @@ for entry in reversed(sorted(list(journal))):
             line += f"</ul><h4>{month_mapping[entry.month - 1]}</h4><ul>"
 
         current_month = entry.month
+
+    if "placeholder" in journal[entry] and journal[entry]["placeholder"]:
+        result += line + f"<div class='placeholder'><p>⋮<br>{journal[entry]['note']}<br>⋮</p></div>" + "\n"
+        continue
 
     if "image" in journal[entry]:
         line += f"<div class='climbing-bg-div' style='background-image: url(/climbing/images/{journal[entry]['image']})'>"
@@ -316,6 +319,9 @@ with open(LAST_CLIMB_PATH, "w") as f:
 
         elif "location" in journal[entry]:
             where = journal[entry]["location"]
+
+        elif "placeholder" in journal[entry]:
+            continue
 
         # strip tags (links) from locations
         where = re.sub('<[^<]+?>', '', where)
