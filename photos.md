@@ -13,10 +13,12 @@ If you'd like to see the originals, simply click on the photos.
 _Each of the photos are licensed under **[CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)**, so kindly respect it if you plan on using any of them for uses other than personal._
 
 {: .center}
-### Winter 2023 ❄️
+### Winter 2023 ❄️ (2 day difference)
 <div class='photo-section'>
-{% photos christmas/raw/2023-1.jpg|christmas/raw/2023-2.jpg %}
-{% photos christmas/raw/2023-3.jpg|christmas/raw/2023-4.jpg %}
+{% photos christmas/raw/2023-1-pre.jpg|christmas/raw/2023-1-post.jpg %}
+{% photos christmas/raw/2023-2-pre.jpg|christmas/raw/2023-2-post.jpg %}
+{% photos christmas/raw/2023-3-pre.jpg|christmas/raw/2023-3-post.jpg %}
+{% photos christmas/raw/2023-4-pre.jpg|christmas/raw/2023-4-post.jpg %}
 </div>
 
 {: .center}
