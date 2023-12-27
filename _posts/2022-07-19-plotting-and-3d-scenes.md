@@ -1,11 +1,12 @@
 ---
-title: Manim – 3D and the Other Graphs
+title: Manim – Plotting and 3D Scenes
 category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim
 category_part: 4
 redirect_from:
 - /manim/4/
+- /manim/3d-and-the-other-graphs/
 excerpt: In this part of the series, we'll take a look at Manim's tools for 3D animations and also at plotting all sorts of graphs.
 ---
 
@@ -18,7 +19,7 @@ In this part of the series, we'll take a look at Manim's tools for 3D animations
 
 ### Binary operations
 We'll briefly take a look at binary operations on Manim objects, since they might come in handy for more advanced animations.
-We'll use the builtin classes from the {% manim_doc `boolean_ops` reference/manim.mobject.geometry.boolean_ops.html %} file, namely {% manim_doc `Difference` reference/manim.mobject.geometry.boolean_ops.Difference.html %}, {% manim_doc `Intersection` reference/manim.mobject.geometry.boolean_ops.Intersection.html %} and {% manim_doc `Union` reference/manim.mobject.geometry.boolean_ops.Union.html %}.
+We'll use the builtin classes from the {% manim_doc `boolean_ops` reference/manim.mobject.geometry.boolean_ops.html %} file, namely {% manim_doc `Difference` reference/manim.mobject.geometry.boolean_ops.Difference.html %}, {% manim_doc `Intersection` reference/manim.mobject.geometry.boolean_ops.Intersection.html %}, {% manim_doc `Union` reference/manim.mobject.geometry.boolean_ops.Union.html %} and {% manim_doc `Exclusion` reference/manim.mobject.geometry.boolean_ops.Exclusion.html %}.
 
 ```py
 from manim import *
@@ -34,19 +35,18 @@ class BooleanOperations(Scene):
 
         self.play(Write(group))
 
-        self.play(group.animate.scale(0.5).shift(UP * 1.6))
+        self.play(group.animate.scale(0.4).shift(UP * 1.6))
 
         union = Union(circle, square, fill_opacity=1, color=BLUE)
 
-        for operation, position, name in zip(
-            [Intersection, Union, Difference],
-            [LEFT * 4.5, ORIGIN, RIGHT * 4.5],
-            ["Intersection", "Union", "Difference"],
+        for operation, position in zip(
+            [Intersection, Union, Exclusion, Difference],
+            [LEFT * 5, LEFT * 1.7, RIGHT * 1.7, RIGHT * 5],
         ):
             result = operation(circle, square, fill_opacity=1, color=DARK_BLUE)
             result_position = DOWN * 1.3 + position
 
-            label = Tex(name).move_to(result_position).scale(0.8)
+            label = Tex(str(operation.__name__)).move_to(result_position).scale(0.8)
 
             self.play(FadeIn(result))
 
@@ -71,7 +71,7 @@ We'll be mainly using the {% manim_doc `Axes` reference/manim.mobject.graphing.c
 
 #### Using expressions
 
-The simplest way to plot a graph of a function using an expression.
+The simplest way to plot a graph of a function using an expression via the {% manim_doc `plot` reference/manim.mobject.graphing.coordinate_systems.CoordinateSystem.html#manim.mobject.graphing.coordinate_systems.CoordinateSystem.plot %} function.
 
 ```py
 from manim import *
@@ -136,7 +136,7 @@ class DiscontinuousGraphExample(Scene):
 
 #### Parametric graphs
 
-The other, more general way to define a graph is parametrically -- we're also defining the function using an expression, but it is a single parameter function returning the corresponding pair of coordinates.
+The other, more general way to plot a graph is parametrically via {% manim_doc `plot_parametric_curve` reference/manim.mobject.graphing.coordinate_systems.CoordinateSystem.html#manim.mobject.graphing.coordinate_systems.CoordinateSystem.plot_parametric_curve %} -- we're also defining the function using an expression, but it is a single parameter function returning the corresponding pair of coordinates.
 
 ```py
 from manim import *
@@ -159,7 +159,7 @@ class ParametricGraphExample(Scene):
                 0.2 * (13 * cos(t) - 5 * cos(2 * t) - 2 * cos(3 * t) - cos(4 * t)),
             )
 
-        # the t_range parameter determines the range of the parametric function parameter
+        # the t_range parameter determines the range of the function parameter
         g1 = axes.plot_parametric_curve(f1, color=RED, t_range=[0, 2 * PI])
         g2 = axes.plot_parametric_curve(f2, color=BLUE, t_range=[-PI, PI])
 
@@ -174,7 +174,7 @@ class ParametricGraphExample(Scene):
 
 #### Line graphs
 
-Besides defining the graph in terms of expressions, it is also possible to define it using the raw values themselves.
+Besides defining the graph in terms of expressions, it is also possible to define it using the raw values themselves via {% manim_doc `plot_line_graph` reference/manim.mobject.graphing.coordinate_systems.Axes.html#manim.mobject.graphing.coordinate_systems.Axes.plot_line_graph %}.
 
 ```py
 from manim import *
@@ -268,7 +268,7 @@ class Axes3DExample(ThreeDScene):
 
 As you can see, the initial camera position assumes that we're working in 2D.
 To control it, we used the {% manim_doc `set_camera_orientation` reference/manim.scene.three_d_scene.ThreeDScene.html#manim.scene.three_d_scene.ThreeDScene.set_camera_orientation %} to set its position and {% manim_doc `begin_ambient_camera_rotation` reference/manim.scene.three_d_scene.ThreeDScene.html#manim.scene.three_d_scene.ThreeDScene.move_camera %} to begin an ambient rotation.
-The used arguments `phi` (\(\varphi\)) a `theta` (\(\vartheta\)) determine the position like so.
+The used arguments `phi` (\(\varphi\)) a `theta` (\(\vartheta\)) determine the position.
 
 ![Meaning of the phi and theta arguments for 3D camera positioning.](/assets/manim/4-Camera.svg)
 

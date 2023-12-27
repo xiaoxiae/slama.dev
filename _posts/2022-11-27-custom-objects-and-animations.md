@@ -1,12 +1,13 @@
 ---
-title: Manim – Objects, Animations and Plugins
+title: Manim – Custom Objects and Animations
 category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim
 category_part: 5
 redirect_from:
 - /manim/5/
-excerpt: This part of the series covers creating custom objects and animations, and also showcases some interesting community-made plugins.
+- /manim/objects-animations-and-plugins/
+excerpt: This part of the series covers creating custom objects and animations.
 ---
 
 [Part 1](/manim/1/), [Part 2](/manim/2/), [Part 3](/manim/3/), [Part 4](/manim/4/), **→ Part 5 ←**, [Part 6](/manim/6/)
@@ -14,7 +15,7 @@ excerpt: This part of the series covers creating custom objects and animations, 
 - .
 {:toc}
 
-This part of the series covers creating custom objects and animations, and also showcases some interesting community-made plugins.
+This part of the series covers creating custom objects and animations.
 
 ### Custom objects
 For more complex scenes, it might be a good idea to create custom Manim objects.
@@ -252,10 +253,17 @@ The second (`Roll`) also inherits from the {% manim_doc `Animation` reference/ma
 
 The last (`Dissolve`) inherits from the {% manim_doc `AnimationGroup` reference/manim.animation.composition.AnimationGroup.html %} (which itself inherits from the {% manim_doc `Animation` reference/manim.animation.animation.Animation.html %} class) and is used to define animations made out of subanimations. It is also a **remover** (as again seen by the `remover` keyword argument), meaning that it "removes" objects from the scene (again, quite important for everything to work).
 
+<!--
+
+This section has been nuked for now since all of the plugins I showcased are broken in v0.18.0 and there are some more cool new ones:
+- https://github.com/GarryBGoode/Manim_CAD_Drawing_utils
+- https://github.com/UnMolDeQuimica/manim-Chemistry
+- https://github.com/GarryBGoode/manim-GearBox
+
 ### Plugins
 Since we now know how to create custom Manim objects and animation, it is a good idea to explore [plugins](https://docs.manim.community/en/stable/plugins.html).
 Plugins extend Manim's basic functionality in various ways, be it defining new classes and objects, or implementing an [editor simplifying working with Manim](https://github.com/ManimCommunity/manim_editor).
-This part includes some more interesting plugins that you might find into.
+This part includes some more interesting plugins that you might find.
 
 #### Physics
 
@@ -427,3 +435,5 @@ class ChanimExample(Scene):
 ```
 
 {% manim_video 5-ChanimExample %}
+
+-->

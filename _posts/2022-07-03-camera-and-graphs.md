@@ -43,7 +43,7 @@ class SaveAndRestoreExample(Scene):
 
 {% manim_video 3-SaveAndRestoreExample %}
 
-One animation that we used here but haven't seen yet is the {% manim_doc `Unwrite` reference/manim.animation.creation.Unwrite.html %}, which is just the inverse of {% manim_doc `Write` reference/manim.animation.creation.Write.html %}.
+One animation that we used here but haven't seen yet is the {% manim_doc `Unwrite` reference/manim.animation.creation.Unwrite.html %}, which is {% manim_doc `Write` reference/manim.animation.creation.Write.html %} in reverse.
 
 ### Graphs
 
@@ -314,6 +314,7 @@ class BackgroundColorExample(MovingCameraScene):
 
 ### Rate functions
 For fine-tuning animations, it is sometimes desirable to change the functions that time them.
+We've already seen 
 
 ```py
 from manim import *
@@ -374,6 +375,51 @@ class RateFunctionsExample(Scene):
 Below is the (almost) complete list of curves that are frequently used in animations.
 There also exists a [wonderful website](https://easings.net/) which contains a number of these functions, including an interactive visualisation of their progress, if you want to experiment with them outside of Manim.
 
+<!--
+```py
+from manim import *
+
+
+class RateFuncExample(Scene):
+    def construct(self):
+        x = VGroup()
+        for k, v in rate_functions.__dict__.items():
+            if "function" in str(v):
+                if (
+                    not k.startswith("__")
+                    and not k.startswith("sqrt")
+                    and not k.startswith("bezier")
+                ):
+                    try:
+                        rate_func = v
+                        plot = (
+                            ParametricFunction(
+                                lambda x: [x, rate_func(x), 0],
+                                t_range=[0, 1, .01],
+                                use_smoothing=False,
+                                color=YELLOW,
+                            )
+                            .stretch_to_fit_width(1.5)
+                            .stretch_to_fit_height(1)
+                        )
+                        plot_bg = SurroundingRectangle(plot).set_color(WHITE)
+                        plot_title = (
+                            Text(rate_func.__name__, weight=BOLD)
+                            .scale(0.5)
+                            .next_to(plot_bg, UP, buff=0.1)
+                        )
+                        x.add(VGroup(plot_bg, plot, plot_title))
+                    except: # because functions `not_quite_there`, `function squish_rate_func` are not working.
+                        pass
+        x.arrange_in_grid(cols=8)
+        x.height = config.frame_height
+        x.width = config.frame_width
+        x.move_to(ORIGIN).scale(0.95)
+
+        self.add(VGroup(Tex("Manim Rate Funtions").scale(1.25), x).arrange(DOWN, buff=0.75))
+```
+-->
+
 {: .inverse-invert}
 ![A list of Manim easing curves](/assets/manim/3-RateFunctionList.webp)
 
@@ -418,7 +464,7 @@ class GraphAlgorithm(Scene):
             .rotate(PI / 12)
         )
 
-        # quickfix for a bug in AniomationGroup's handling of z_index
+        # quickfix for a bug in AnimationGroup's handling of z_index
         for v in g.vertices:
             g.vertices[v].set_z_index(1)
 
@@ -692,7 +738,7 @@ In each step, the ant moves in the following manner:
 - inverts the color of the space it's standing on
 - moves forward
 
-To create the ant object, you can use the {% manim_doc `SVGMobject` reference/manim.mobject.svg.svg_mobject.SVGMobject.html %} class to render an SVG image ([this one](/assets/manim/3-ant.svg), for example).
+To create the ant object, you can use the {% manim_doc `SVGMobject` reference/manim.mobject.svg.svg_mobject.SVGMobject.html %} class to render an SVG image ([this one](/assets/manim/3-ant.svg), for example, which the author's solution uses).
 
 ```py
 from manim import *

@@ -6,12 +6,19 @@ css: manim
 category_part: 1
 redirect_from:
 - /manim/1/
+- /manim/
 excerpt: Over the course of this year, I created a well-received "Introduction to Manim" series for KSP (Czech CS-oriented correspondence seminar), so it made sense to make it more accessible by translating it to English and publish it here.
 ---
 
 **→ Part 1 ←**, [Part 2](/manim/2/), [Part 3](/manim/3/), [Part 4](/manim/4/), [Part 5](/manim/5/), [Part 6](/manim/6/)
 
-_Over the course of this year, I created a well-received "Introduction to Manim" series for [KSP](https://ksp.mff.cuni.cz/) (Czech CS-oriented correspondence seminar), so it made sense to make it more accessible by translating it to English and publish it here._
+_Over the course of this year (2021/2022), I created a well-received "Introduction to Manim" series for [KSP](https://ksp.mff.cuni.cz/) (Czech CS-oriented correspondence seminar), so it made sense to make it more accessible by translating it to English and publish it here._
+
+_**27/12/2023 update:**_
+- fixed to be up-to-date with **Manim v0.18.0**
+- the code snippets can be selected by **triple clicking** on the code window
+
+---
 
 - .
 {:toc}
@@ -35,7 +42,7 @@ The classes/methods discussed in the series are accompanied by the links to thei
 The basic building block of Manim are **scenes**, which are Python classes inheriting the {% manim_doc `Scene` reference/manim.scene.scene.Scene.html %} class.
 Each of the scenes must implement the {% manim_doc `construct` reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.construct %} method, which contains information about how the scene looks like (creating shapes, moving them, changing, color and size, etc.).
 
-Here is an example of a simple scene that creates a red square and then a blue circle.
+Here is an example of a simple scene that creates a red {% manim_doc `Square` reference/manim.mobject.geometry.polygram.Square.html %} and then a blue {% manim_doc `Circle` reference/manim.mobject.geometry.arc.Circle.html %}.
 
 ```py
 from manim import *
@@ -67,14 +74,19 @@ We're calling it with the {% manim_doc `Write` reference/manim.animation.creatio
 The optional parameter `run_time` sets the animation duration (in seconds), defaulting to \(1\) if nothing is passed.
 
 There are also a number of builtin constants used (`LEFT`, `RIGHT`, `RED`, `BLUE`).
-These are constants that Manim uses to make the code more readable, a comprehensive list can be found {% manim_doc here reference/manim.constants.html %}.
+These are constants that Manim uses to make the code more readable.
+For a more comprehensive list, here are the {% manim_doc colors reference/manim.utils.color.manim_colors.html %} and here are {% manim_doc other reference/manim.constants.html %} constants.
 
 After both of the objects are created, the {% manim_doc `shift` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.shift %} method is used to move them in the given direction, **also returning them**.
 This is how the vast majority of functions on Manim objects are implemented, mainly to avoid having to use the following (valid but verbose) syntax:
 
 ```py
+# this
 square = Square(color=RED)
 square.shift(LEFT * 2)
+
+# is the same as this
+square = Square(color=RED).shift(LEFT * 2)
 ```
 
 Since the direction constants are [NumPy arrays](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html), they can be added and multiplied by constants with ease -- to move to the side and slightly up, we can simply do `obj.shift(LEFT + UP * 1.5)`.
@@ -518,7 +530,7 @@ class Search(Scene):
 
         # print the number we're looking for
         target = randint(value_min, value_max)
-        text = Tex(f"Hledáme: ${target}$").shift(UP * 1.5)
+        text = Tex(f"Target: ${target}$").shift(UP * 1.5)
         self.play(Write(text))
 
         self.play(Write(l_pointer), Write(r_pointer))

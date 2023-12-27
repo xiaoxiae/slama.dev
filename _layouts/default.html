@@ -35,7 +35,7 @@
 		<link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
 
 		<!-- yoinked from Advent of Code: triple clicking a code snippet selects it in its entirety -->
-		<script>window.addEventListener('click', function(e,s,r){if(e.target.nodeName==='PRE'&&e.detail===3){s=window.getSelection();s.removeAllRanges();r=document.createRange();r.selectNodeContents(e.target);s.addRange(r);}});</script>
+		<script>window.addEventListener('click', function(e,s,r){if((e.target.nodeName==='PRE'||e.target.nodeName==='CODE')&&e.detail===3){s=window.getSelection();s.removeAllRanges();r=document.createRange();r.selectNodeContents(e.target);s.addRange(r);}});</script>
 	</head>
 
 	<body>

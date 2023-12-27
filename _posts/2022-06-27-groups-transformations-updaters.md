@@ -173,9 +173,9 @@ from manim import *
 
 class ZIndexExample(Scene):
     def construct(self):
-        c1 = Circle(fill_opacity=1, color=RED).shift(LEFT)
-        c2 = Circle(fill_opacity=1, color=GREEN)
-        c3 = Circle(fill_opacity=1, color=BLUE).shift(RIGHT)
+        c1 = Circle(fill_opacity=1, fill_color=RED, stroke_width=5, stroke_color=WHITE).shift(LEFT)
+        c2 = Circle(fill_opacity=1, fill_color=GREEN, stroke_width=5, stroke_color=WHITE)
+        c3 = Circle(fill_opacity=1, fill_color=BLUE, stroke_width=5, stroke_color=WHITE).shift(RIGHT)
 
         self.add(c1, c2, c3)
 
@@ -308,7 +308,7 @@ class AttentionExample(Scene):
 {% manim_video 2-AttentionExample %}
 
 The {% manim_doc `Flash` reference/manim.animation.indication.Flash.html %}, {% manim_doc `Indicate` reference/manim.animation.indication.Indicate.html %} and {% manim_doc `Circumscribe` reference/manim.animation.indication.Circumscribe.html %} animations have a useful optional `color` parameter, which changes the default color from yellow to whatever you prefer.
-Also, notice that we used an optional `shift` parameter for {% manim_doc `FadeIn` reference/manim.animation.fading.FadeIn.html#manim.animation.fading.FadeIn %} and {% manim_doc `FadeOut` reference/manim.animation.fading.FadeOut.html#manim.animation.fading.FadeOut %}.
+Also, notice that we used an optional `shift` parameter for {% manim_doc `FadeIn` reference/manim.animation.fading.FadeIn.html#manim.animation.fading.FadeIn %} and {% manim_doc `FadeOut` reference/manim.animation.fading.FadeOut.html#manim.animation.fading.FadeOut %} which specify the direction in which the fade should occur.
 
 ### Transformations
 Manim can animate the transformation of one object to another in a number of different ways.
@@ -506,7 +506,7 @@ class LineExample(Scene):
 
 {% manim_video 2-LineExample %}
 
-To create a circle given three of its points, the {% manim_doc `Circle.from_three_points` reference/manim.mobject.geometry.Circle.html#manim.mobject.geometry.Circle.from_three_points %} may be used.
+To create a circle given three of its points, the {% manim_doc `Circle.from_three_points` reference/manim.mobject.geometry.arc.Circle.html#manim.mobject.geometry.arc.Circle.from_three_points %} may be used.
 
 ```py
 from manim import *
@@ -797,9 +797,9 @@ You can use this custom `Path` function, which creates a path from the given poi
 from manim import *
 
 
-class Path(VMobject):
+class Path(Polygram):
     def __init__(self, points, *args, **kwargs):
-        super().__init__(self, *args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.set_points_as_corners(points)
 
     def get_important_points(self):
@@ -814,7 +814,7 @@ class Path(VMobject):
 
 class PathExample(Scene):
     def construct(self):
-        path = Path([LEFT + UP, LEFT + DOWN, RIGHT + UP, RIGHT + DOWN])
+        path = Path([LEFT + UP, LEFT + DOWN, RIGHT + UP, RIGHT + DOWN], color=WHITE)
 
         self.play(Write(path))
 
@@ -841,13 +841,48 @@ class PathExample(Scene):
 
 We're also using the {% manim_doc `flip` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.flip %} function, which flips an object in the given axis (defaulting to flipping left-right), and the {% manim_doc `copy` reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.copy %} function, which copies an object.
 
+Furthermore, the {% manim_doc `Create` reference/manim.animation.creation.Create.html %} animation is more appropriate than {% manim_doc `Write` reference/manim.animation.creation.Write.html %} since we're not interested in the outline of the curve we're drawing, only its shape.
+
+```py
+from manim import *
+
+
+class WriteVsCreate(Scene):
+    def construct(self):
+        s1 = Square(stroke_width=5)
+        t1 = Tex("Write")
+
+        s2 = Square(stroke_width=5)
+        t2 = Tex("Create")
+
+        VGroup(
+            VGroup(s1, t1).arrange(DOWN),
+            VGroup(s2, t2).arrange(DOWN),
+        ).arrange(buff=1)
+
+        # write also animates the outline
+        self.play(FadeIn(t1))
+        self.play(Write(s1, run_time=2))
+        self.play(s1.animate.set_color(DARK_GRAY))
+
+        # create does not and is therefore better suited
+        # the rate_func parameter is magic for now and is covered in the next part
+        self.play(FadeIn(t2))
+        self.play(Create(s2, run_time=2, rate_func=linear))
+        self.play(s2.animate.set_color(DARK_GRAY))
+
+        self.wait()
+```
+
+{% manim_video 2-WriteVsCreate %}
+
 {% manim_solution %}
 from manim import *
 
 
 class Path(VMobject):
     def __init__(self, points, *args, **kwargs):
-        super().__init__(self, *args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.set_points_as_corners(points)
 
     def get_important_points(self):
@@ -860,7 +895,7 @@ class Hilbert(Scene):
 
         hilbert = Path(points).scale(3)
 
-        self.play(Write(hilbert, lag_ratio=0.5))
+        self.play(Create(hilbert), rate_func=linear)
 
         for i in range(1, 6):
             # length of a single segment in the curve
@@ -895,7 +930,8 @@ class Hilbert(Scene):
                 + list(rd.flip(LEFT).get_important_points())
             )
 
-            self.play(Write(new_hilbert))
+            # Create will be exponentially longer so it looks nice
+            self.play(Create(new_hilbert, run_time=1.5 ** (i - 1)), rate_func=linear)
 
             self.remove(lu, ru, ld, rd)
 
