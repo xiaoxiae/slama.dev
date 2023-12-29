@@ -1,5 +1,5 @@
 ---
-title: Manim – Introduction
+title: Introduction
 category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim
@@ -16,7 +16,7 @@ _Over the course of this year (2021/2022), I created a well-received "Introducti
 
 _**27/12/2023 update:**_
 - fixed to be up-to-date with **Manim v0.18.0**
-- the code snippets can be selected by **triple clicking** on the code window
+- the code snippets can be selected by **triple clicking on the code window**
 
 ---
 

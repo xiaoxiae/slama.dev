@@ -1,7 +1,6 @@
 ---
 language: cz
 title: Advent of Kačka
-category_icon: /assets/category-icons/snowflake.svg
 css: aok
 excerpt: "'tis the season."
 ---

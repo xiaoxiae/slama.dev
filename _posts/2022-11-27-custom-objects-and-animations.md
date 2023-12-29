@@ -1,5 +1,5 @@
 ---
-title: Manim – Custom Objects and Animations
+title: Custom Objects and Animations
 category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim
@@ -16,6 +16,8 @@ excerpt: This part of the series covers creating custom objects and animations.
 {:toc}
 
 This part of the series covers creating custom objects and animations.
+
+_This part used to also include plugins, but all of the original ones are broken as of v0.18.0._
 
 ### Custom objects
 For more complex scenes, it might be a good idea to create custom Manim objects.

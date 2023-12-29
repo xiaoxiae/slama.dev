@@ -1,5 +1,5 @@
 ---
-title: Manim – OpenGL and Interactivity
+title: OpenGL and Interactivity
 category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim
