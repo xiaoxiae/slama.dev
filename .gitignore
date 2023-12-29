@@ -8,7 +8,6 @@ __pycache__/
 
 # Private
 ignored/
-_drafts/
 **/secrets.py
 
 # Too big to VC (binaries scary!)
