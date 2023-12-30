@@ -1,5 +1,5 @@
 ---
-title: Groups, Transforms, Updaters
+title: Manim – Groups, Transforms, Updaters
 category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim

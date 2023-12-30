@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: Manim – Introduction
 category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim

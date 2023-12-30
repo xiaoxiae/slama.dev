@@ -1,5 +1,5 @@
 ---
-title: Camera and Graphs
+title: Manim – Camera and Graphs
 category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim
