@@ -6,9 +6,15 @@ layout: default
 css: aok
 ---
 
+> <span class="large">**Gratulace!**</span>
+> 
+> Pokud jsi se dostala až sem, tak si dárek (a velký kafe) zasloužíš <span class="nostyle">🎁</span>.
+> 
+> Tady je ještě pár bonusových úloh, protože mě to docela baví <span class="nostyle">😀</span>.
+
 ### 4. problém ☕ (pokračování<sup>2</sup>)
 
-Pokud si chcete dál hrát se <span class="s2">S</span><span class="s1">t</span><span class="s3">a</span><span class="s2">r</span><span class="s3">b</span><span class="s1">u</span><span class="s1">c</span><span class="s3">k</span><span class="s1">s</span><span class="s3">S</span><span class="s2">c</span><span class="s2">r</span><span class="s1">i</span><span class="s3">p</span><span class="s2">t</span><span class="s1">e</span><span class="s3">m</span><sup>☕</sup>, tak na této stránce můžete najít řadu problémů s autorskými řešeními -- tentokrát **psaní**, ne spouštění.
+Pokud si chceš dál hrát s <span class="s2">S</span><span class="s1">t</span><span class="s3">a</span><span class="s2">r</span><span class="s3">b</span><span class="s1">u</span><span class="s1">c</span><span class="s3">k</span><span class="s1">s</span><span class="s3">S</span><span class="s2">c</span><span class="s2">r</span><span class="s1">i</span><span class="s3">p</span><span class="s2">t</span><span class="s1">e</span><span class="s3">m</span><sup>☕</sup>, tak na této stránce můžeš najít řadu problémů s autorskými řešeními -- tentokrát **psaní**, ne spouštění.
 _Na selectnutí celého snippetu funguje triple click._
 
 <details closed>
