@@ -2594,3 +2594,39 @@
   note: Only eating potato salad, can't lift of the ground. No climbing to be done
     here.
   placeholder: true
+2023-12-31:
+  note: The potato salad took a toll. Did some easier stuff and felt pretty strong
+    on individual moves, but my endurance is completely fucked. Welp, better get back
+    to training...
+  wall: Boulderhaus
+2024-01-01:
+  hangboard:
+    exercises:
+    - 3-3
+    - 3-5
+    - 2-3
+    - 5-7
+    - 7-10
+    - 3-3 with core
+    - 5-5 with slow push-up
+    - 5-5 with slow push-up
+    parameters: 8/8/4/120
+    type: beastmaker-2000
+  wall: home
+2024-01-02:
+  note: Getting slightly better.
+  wall: Boulderhaus
+2024-01-03:
+  hangboard:
+    exercises:
+    - 3-3
+    - 3-5
+    - 2-3
+    - 5-7
+    - 7-10
+    - 3-3 with core
+    - 5-5 with slow push-up
+    - 5-5 with slow push-up
+    parameters: 8/8/4/120
+    type: beastmaker-2000
+  wall: home
