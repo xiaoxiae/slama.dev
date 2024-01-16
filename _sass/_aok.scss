@@ -1,7 +1,6 @@
 @charset "utf-8";
 
 @import "variables";
-@import "hacks";
 
 .red { color: red; }
 .green { color: green; }
@@ -33,18 +32,20 @@
 	@media (prefers-color-scheme: dark) { color: #ddb892; }
 }
 
-sup { font-size: 75%; }
+sup {
+	font-size: 75%;
+}
 
 @keyframes cursor-blink {
-   to {
-       visibility: hidden;
-   }
+	to {
+		visibility: hidden;
+	}
 }
 
 .blink {
-    animation: cursor-blink 1.5s steps(2, start) infinite;
+	animation: cursor-blink 1.5s steps(2, start) infinite;
 }
 
 .nostyle {
-    font-style: normal;
+	font-style: normal;
 }
