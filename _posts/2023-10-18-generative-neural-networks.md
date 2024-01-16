@@ -1037,3 +1037,10 @@ _This lecture had slides with some interesting use cases of the methods that we 
         - common simplification is \(\Theta(Y^I_i, \eta_i)\)
 
 _Here we discuss Estimation of a non-linear mixed effects model [Arruda et al 2023]._
+
+### SINDy-Autoencoders
+- "Sparse Identificator of Non-Linear Dynamics"
+- we have a dynamic system that produces real-world measurements
+- observation takes place in a **different coordinate system** (e.g. measurements of the planets from earth's perspective/unknown canonical coordinates)
+
+_Rest of the lecture was spent on this._
