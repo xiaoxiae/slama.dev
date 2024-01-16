@@ -1670,6 +1670,9 @@
   red:
     new: 9
   wall: Boulderhaus
+2023-01-09:
+  note: Was too lazy to log here again. Some bouldering + hangboarding was had.
+  placeholder: true
 2023-01-10:
   blue:
     new: 3
@@ -2630,3 +2633,40 @@
     parameters: 8/8/4/120
     type: beastmaker-2000
   wall: home
+2024-01-04:
+  blue:
+    new: 5
+  note: Did some hard reds. Prett happy :).
+  red:
+    new: 5
+  wall: Boulderhaus
+2024-01-05:
+  hangboard:
+    exercises:
+    - 3-3
+    - 3-5
+    - 2-3
+    - 5-7
+    - 7-10
+    - 3-3 with core
+    - 5-5 with slow push-up
+    - 5-5 with slow push-up
+    parameters: 8/8/4/120
+    type: beastmaker-2000
+  wall: home
+2024-01-06:
+  blue:
+    new: 4
+  note: New set has some really fun moves. Missed only one red (since I'm stubborn
+    and want to cheese it), will do it next time :P.
+  red:
+    new: 2
+  wall: Boulderhaus
+2024-01-08:
+  note: Did the red and worked on the blacks (some progress was made!).
+  red:
+    new: 1
+  wall: Boulderhaus
+2024-01-15:
+  note: Created some truly despicable routes with Tom. Fun times.
+  wall: Boulderhaus
