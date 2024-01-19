@@ -23,7 +23,7 @@
     margin-bottom: $line-spacing * 1.25;
 
     figcaption {
-        padding: $line-spacing / 4;
+        padding: $line-spacing / 2;
         padding-top: 0;
     }
 }
@@ -34,10 +34,62 @@
     display: table;
 }
 
-// when there is 1/2/3 photos in one row
-.photos1,
-.photos2,
-.photos3 { padding: $line-spacing / 4; img { max-width: 100%; } }
-.photos1 { flex: 100%; }
-.photos2 { flex: 50%; }
-.photos3 { flex: 33.33%; }
+// forgive me for I have sinned
+.photos1-0,
+.photos2-0,
+.photos2-1,
+.photos3-0,
+.photos3-1,
+.photos3-2 { img { max-width: 100%; } }
+
+.photos1-0 {
+  flex: 100%;
+  padding: $line-spacing / 2 $line-spacing / 2 0 $line-spacing / 2;
+}
+.photos2-0 {
+  flex: 60%;
+  padding: $line-spacing / 2 $line-spacing / 2 0 $line-spacing / 2;
+}
+.photos2-1 {
+  flex: 60%;
+  padding: $line-spacing / 2 $line-spacing / 2 0 0;
+}
+.photos3-0 {
+  flex: 33.33%;
+  padding: $line-spacing / 2 $line-spacing / 2 0 $line-spacing / 2;
+}
+.photos3-1 {
+  flex: 33.33%;
+  padding: $line-spacing / 2 $line-spacing / 2 0 0;
+}
+.photos3-2 {
+  flex: 33.33%;
+  padding: $line-spacing / 2 $line-spacing / 2 0 0;
+}
+
+.row:last-of-type {
+  .photos1-0 {
+    flex: 100%;
+    padding: $line-spacing / 2;
+  }
+  .photos2-0 {
+    flex: 60%;
+    padding: $line-spacing / 2;
+  }
+  .photos2-1 {
+    flex: 60%;
+    padding: $line-spacing / 2 $line-spacing / 2 $line-spacing / 2 0;
+  }
+  .photos3-0 {
+    flex: 33.33%;
+    padding: $line-spacing / 2;
+  }
+  .photos3-1 {
+    flex: 33.33%;
+    padding: $line-spacing / 2 $line-spacing / 2 $line-spacing / 2 0;
+  }
+  .photos3-2 {
+    flex: 33.33%;
+    padding: $line-spacing / 2 $line-spacing / 2 $line-spacing / 2 0;
+  }
+}
