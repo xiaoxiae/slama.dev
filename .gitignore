@@ -13,6 +13,8 @@ ignored/
 # Too big to VC (binaries scary!)
 _plugins/svgcleaner/
 **/*.pdf
+**/*.wav
+**/*.fur
 **/*.webp
 **/*.png
 **/*.mp4

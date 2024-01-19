@@ -6,19 +6,33 @@ category_icon: /assets/category-icons/music.svg
 ---
 
 As a part of the holiday brake (mostly to prevent me from playing Factorio), I decided to get into making chip music.
-The goal is to, at the very least, grasp the concepts and produce an original piece of music that sounds (no qualifier).
+The goal is to, at the very least, grasp the concepts and produce an original piece of music that sounds.
+_No qualifier, just sounds._
 
-This post is both a write-up and a place for notes as I learn.
+This (short) post is both a write-up and a place for notes as I learn.
 Since I am a complete beginner, take everything written here with a huge grain of salt.
 
-### Diary
+---
+
 1. **day:** spent comfortable with Furnace; playing around with inputting notes
     - _the target device is the NES since it's channels are pretty limited_
 2. **day:** figured out a simple progression that sounds interesting
 3. **day:** fleshed out the progression and added fluff around to make it interesting
-    - **here are the results** (it's pretty bad): [First.wav](/assets/chiptune/First.wav) (10 seconds), [First.fur](/assets/chiptune/First.fur) (Furnace file)
+    - **here are the results** (it's pretty bad): [First.wav](/assets/chiptunes/First.wav) (10 seconds), [First.fur](/assets/chiptunes/First.fur) (Furnace file)
     - also thinking about the next, longer song I'd like to work on
-4. **day:** more work on the second song, which will be a Waltz
+4. **day:** work on the second song, which will be a Waltz
+5. **day:** again some more work, this is pretty hard
+
+<div class="force-spacing" markdown="1">
+_A long time ellapsed here, during which I did nothing. The work during days 4. and 5. gave me a good idea of how much work it actually is to create a good-sounding chiptune (which, to some extent, was the goal of the project), so I'm going to leave it here for now. Who knows, maybe I'll return to make more chiptunes some other time_ 🙂.<br>
+</div>
+
+<ol>
+  <li value="99"><strong>day:</strong> finishing touches on the (start of the) Waltz</li>
+    <ul>
+      <li><strong>here are the results</strong> (still pretty bad): <a href="/assets/chiptunes/Second.wav">Second.wav</a> (20 seconds), <a href="/assets/chiptunes/Second.fur">Second.fur</a> (Furnace file)</li>
+    </ul>
+</ol>
 
 ---
 
@@ -70,7 +84,7 @@ Since I am a complete beginner, take everything written here with a huge grain o
 
 - **notes** can be input either with a MIDI controller (oof) or via a the keyboard:
     - `space` -- disable/enable note input
-    - `1` -- note cut
+    - `1` -- note cut (`OFF`)
     - `zsxdcvgbhnmq` (first octave)
     - `q2w3er5t6yui` (second octave)
 

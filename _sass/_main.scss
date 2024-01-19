@@ -192,6 +192,10 @@ body {
     line-height: $line-height;
 }
 
+.force-spacing {
+    margin-bottom: $line-spacing / 2;
+}
+
 blockquote {
     p {
         border-left: 1px solid;
