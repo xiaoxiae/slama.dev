@@ -111,6 +111,10 @@ pre.highlight {
     overflow: auto;
 }
 
+pre.vanilla {
+    margin-bottom: $line-spacing;
+}
+
 .highlighter-rouge {
     pre {
         padding: $code-padding;
