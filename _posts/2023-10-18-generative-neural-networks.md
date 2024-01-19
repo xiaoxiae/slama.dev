@@ -1036,11 +1036,87 @@ _This lecture had slides with some interesting use cases of the methods that we 
     - \(X_i = \Theta(Y^G, Y^I_i, \eta_i)\) for \(\eta_i \sim p^S(\eta)\)
         - common simplification is \(\Theta(Y^I_i, \eta_i)\)
 
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/TODO.pdf)
+</div>
+
 _Here we discuss Estimation of a non-linear mixed effects model [Arruda et al 2023]._
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/TODO.pdf)
+</div>
 
 ### SINDy-Autoencoders
 - "Sparse Identificator of Non-Linear Dynamics"
 - we have a dynamic system that produces real-world measurements
 - observation takes place in a **different coordinate system** (e.g. measurements of the planets from earth's perspective/unknown canonical coordinates)
 
-_Rest of the lecture was spent on this._
+_Two lectures were spent on this._
+
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/TODO.pdf)
+</div>
+
+### Physics-informed Neural Networks (PINNs)
+- idea: use physical prior knowledge explicitly
+    - (so far SIB knowledge only used to create training set)
+    - PINNs: incorporate knowledge into training
+- PINNs focus on **surrogates for forward problem**
+    - reminder: SBI -- \(X = \Phi(Y, \eta), Y \sim p(Y), \eta \sim p(\eta) \iff p(X \mid Y) p(Y)\)
+        - surrogates learn the likelihood (what we focus on now)
+        - SBI usually learns posterior of inverse problem (\(p(Y \mid X)\))
+- typically, PINNs only give a single solution, not a distribution
+    - i.e. learn \(\Phi(Y, \eta)\) for \(Y\) and \(\eta\) fixed (known or learned)
+- PINNs address the case where \(X\) is a function
+    - this is the case in physics -- real world is a function, not a vector
+    - surrogate \(\hat\Phi(\vec u, t; Y, \eta)\) (for \(t\) time and \(\vec u\) space, which can be present)
+    - \(\Phi(t)\) is a solution of ODE, \(\Phi(\vec u t, Y, \eta)\) is a solution of PDE
+- physical prior knowledge: formula for the ODE or PDE
+
+_Why is this useful?_
+- actual simulation may be too expensive (e.g. Schrödinger)
+- requires a lot less training data than traditional SBI
+
+**Example:** growth data (real, not simulated)
+
+TODO: image here
+
+- idea: use physical knowledge as a problem-specific regularizer
+- here the growth follows the "logistic rule": \(\d f(t) / dt = \lambda f(t) (1 - f(t))\)
+    - we may or may not know \(\lambda\) (depending on the problem)
+    - _special case of SIR equations -- the lecture has a derivation here_
+- PINN approach to learning:
+    - two bounds of points (later 3)
+        - **data points** \(\hat =\) TS where \(f(t)\) is (approximately) known (at least the data for initial condition)
+        - **collocatoin points** where we apply the regularizer
+            - \(t \in \mathrm{CP}\): check if ODE is fulfilled at \(t\)
+    - regularization term: \[\mathrm{loss}_{\mathrm{ODE}} = \frac{1}{M} \sum_{m=1}^{M} \left(\frac{d\;f(t_m)}{d\;t} - \lambda f(t_m)(1-f(t_m))\right)^2\]
+        - if fulfilled then it should be zero for any \(t_m\) (ideally \(M \mapsto \infty\))
+    - data term: \[\mathrm{loss}_{\mathrm{data}} = \frac{1}{N} \sum_{i=1}^{N} \left(f_i - f(t_i)\right)^2\]
+
+The regression problem is now just \[\hat f, \hat \lambda = \argmin_{f, \lambda} \nu_{\mathrm{data}} \mathrm{loss}_{\mathrm{data}} + \nu_{\mathrm{ODE}} \mathrm{loss}_{\mathrm{ODE}}\]
+- we do not get a distribution over functions \(p(f(t) \mid \mathrm{data})\)
+
+_The lecture talks here about the general case for ODEs._
+
+**Benefits of using NNs:**
+- universal approximators (if big enough) and good convergence in practice
+    - \(\Rightarrow\) can in practice learn any \(f^*(t, Y)\)
+- derivatives \(f(t) \dot f(t), \ddot f(t)\) easily computable by autodiff
+
+**Disadvantages of using NNs:**
+- for each set of data points and parameters, training must be restarted (no amortization)
+    - problem is currently addressed (later
+
+**Tips and tricks:**
+- use \(\tanh(u)\) activation or recently \(\mathrm{GELU}\)
+- standardize the problem (similar to sclaing features to unit variance)
+    - translate ODE into a "dimensionless" form (use fractions instead of absolutes)
+        - nice constraint for \(0 \le f(t) \le 1\)
+- random Fourier features -- _convert features into the Fourier domain with random projections_
+    - was shown that low-frequency behavior converges much faster than high-frequency
+- random weight factorization (replace a linear layer with I don't know)
