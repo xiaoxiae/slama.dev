@@ -20,10 +20,11 @@ Links to the sections of the website can be found at the top, links to the posts
 {% assign currentdate = post.date | date: "%Y" %}
 {% if currentdate != date %}
 {% if date %}
-<div class="spacer"></div>
+</div>
 {% endif %}
 
 ### {{ currentdate }}
+<div class="spacer"> <!-- done to reset the (2n+1)-th child counter -->
 {% assign date = currentdate %} 
 {% endif %}
 {% unless post.hidden %}
