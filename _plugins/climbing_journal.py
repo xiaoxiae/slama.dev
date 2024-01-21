@@ -111,6 +111,20 @@ for entry in reversed(sorted(list(journal))):
         "boulder-point": f_colors,
     }
 
+    wall_urls = {
+        "beest": "https://beestboulders.com/",
+        "bigwall": "https://www.big-wall.cz/",
+        "boulder-bar": "https://www.boulder.cz/",
+        "boulderhaus": "https://www.boulderhaus.net/boulderhaus-heidelberg/",
+        "boulder-point": "http://www.boulderpoint.cz/",
+        "jungle-letnany": "https://www.jungleletnany.cz/",
+        "lokalblok": "http://www.lokalblok.cz/lezecka-stena/",
+        "mandala": "https://boulderhalle-dresden.de/",
+        "smichoff": "https://www.lezeckecentrum.cz/cs/",
+        "studiobloc": "http://studiobloc.de/",
+        "trinactka": "http://stenastodulky.cz/",
+    }
+
     wall = ""
     wall_stub = ""
 
@@ -147,9 +161,14 @@ for entry in reversed(sorted(list(journal))):
         )
 
         if not os.path.exists(f"../climbing/wall-logos/{wall_stub}.svg"):
-            line += f" (at <strong>{wall}</strong>"
+            a = f"<strong>{wall}</strong>"
         else:
-            line += f" (at <img class='climbing-wall-logo' src='/climbing/wall-logos/{wall_stub}.svg' alt='Logo of the {wall} climbing wall.'/>"
+            a = f"<img class='climbing-wall-logo' src='/climbing/wall-logos/{wall_stub}.svg' alt='Logo of the {wall} climbing wall.'/>"
+
+        if wall_stub in wall_urls:
+            a = f"<a href='{wall_urls[wall_stub]}'>{a}</a>"
+
+        line += f" (at {a}"
 
         if "rebuilt" in journal[entry]:
             line += f", <strong>new boulders</strong>"
@@ -284,6 +303,7 @@ for entry in reversed(sorted(list(journal))):
         note = journal[entry]["note"]\
                 .replace("--", "–")\
                 .replace(":)", "<span class='emoji'>🙂</span>")\
+                .replace(":P", "<span class='emoji'>😛</span>")\
                 .replace(":D", "<span class='emoji'>😀</span>")\
                 .replace(":|", "<span class='emoji'>😐</span>")\
                 .replace(":/", "<span class='emoji'>🫤</span>")\

@@ -24,7 +24,7 @@ This page is dedicated to my climbing life.<br>
 </figure>
 </div>
 
-## [Boulderhaus](https://www.boulderhaus.net/), Heidelberg
+## [Boulderhaus](https://www.boulderhaus.net/), Heidelberg <img alt='Boulderhaus wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/boulderhaus.svg'/>
 Since moving to Heidelberg for my Master's degree, Boulderhaus is the gym that I frequent.
 The setting is quite old-school (compared to the walls in Prague that I frequented), mostly difficult moves and hard positions as opposed to dynamics.
 
@@ -38,27 +38,15 @@ Here are links to sections with all sends given certain grades, along with the n
 
 {% include kilter.md %}
 
-## [Smíchoff](https://www.lezeckecentrum.cz/cs/), Prague
+## [Smíchoff](https://www.lezeckecentrum.cz/cs/), Prague <img alt='Smíchoff wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/smichoff.svg'/>
 Smíchoff was the only gym in Prague that I frequented, since it is (in my opinion) the best one, so the vast majority of the clips in previous entries are going to be from here.
 People are nice, prices are student-friendly and boulders are frequently changed, so it's a perfect place to be.
 
 ## Diary
-The following contains my climbing diary -- how many new/old boulders have I done (and links to them). It also serves as a convenient way to view the most recently sent boulders.
+The following contains my climbing diary -- how many new/old boulders have I done (and links to them).
+It also serves as a convenient way to view the most recently sent boulders.
 
-Since there there are some other walls that I visit from time to time (mostly thanks to some of my friends), here is the list of icons that you might see in the journal entries:
-
-| Icon                                                                                                                | Wall                                               | Location       |
-| :-:                                                                                                                 | :-:                                                | --:            |
-| <img alt='Boulderhaus wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/boulderhaus.svg'/>     | [Boulderhaus](https://www.boulderhaus.net/)        | Heidelberg, DE |
-| <img alt='Studiobloc wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/studiobloc.svg'/>       | [Studiobloc](https://http://studiobloc.de/)        | Mannheim, DE |
-| <img alt='Smíchoff wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/smichoff.svg'/>           | [Smíchoff](https://www.lezeckecentrum.cz/cs/)      | Prague, CZ     |
-| <img alt='BigWall wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/bigwall.svg'/>             | [BigWall](https://www.big-wall.cz/)                | Prague, CZ     |
-| <img alt='Jungle Letňany wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/jungle.svg'/>       | [Jungle Letňany](https://www.jungleletnany.cz/)    | Prague, CZ     |
-| <img alt='Boulder Bar wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/boulder-bar.svg'/>     | [Boulder Bar](https://www.boulder.cz/)             | Prague, CZ     |
-| <img alt='Třináctka wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/trinactka.svg'/>         | [Třináctka](http://stenastodulky.cz/)              | Prague, CZ     |
-| <img alt='LokalBlok wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/lokalblok.svg'/>         | [LokalBlok](http://www.lokalblok.cz/lezecka-stena) | Prague, CZ     |
-| <img alt='Boulder Point wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/boulder-point.svg'/> | [Boulder Point](http://www.boulderpoint.cz/)       | Liberec, CZ    |
-| <img alt='Mandalawall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/mandala.svg'/>              | [Mandala](https://boulderhalle-dresden.de/)        | Dresden, DE     |
+Since there there are some other walls that I visit from time to time, the journal entries contain clickable icons to their websites.
 
 The format for **bouldering** is <mark class="climbing-diary-record climbing-black climbing-black-text"><strong>old sends/<span class="underline">new sends</span></strong> [<a>video links</a>]</mark>, left-to-right from easy to hard.
 Videos marked <mark class="climbing-diary-record climbing-other climbing-other-text"><a>F</a></mark> are flash sends while videos marked <mark class="climbing-diary-record climbing-other climbing-other-text"><a>A</a></mark> are just regular non-flash ascents.
