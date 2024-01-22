@@ -916,7 +916,7 @@ _There is a missing lecture here! See slides for what was in it._
 
 {:.rightFloatBox}
 <div markdown="1">
-[slides](/assets/generative-neural-networks/TODO.pdf)
+[slides](/assets/generative-neural-networks/3-5.pdf)
 </div>
 
 _New lecture here, we're doing SBI for epidemiology again._
@@ -969,7 +969,7 @@ _New lecture here, we're doing SBI for epidemiology again._
 
 {:.rightFloatBox}
 <div markdown="1">
-[slides](/assets/generative-neural-networks/TODO.pdf)
+[slides](/assets/generative-neural-networks/3-6.pdf)
 </div>
 
 _Continuing with new lecture here._
@@ -1018,7 +1018,7 @@ _Lecture talks about SoftFlow here which addresses this issue for cNFs._
 
 {:.rightFloatBox}
 <div markdown="1">
-[slides](/assets/generative-neural-networks/TODO.pdf)
+[slides](/assets/generative-neural-networks/3-7.pdf)
 </div>
 
 _This lecture had slides with some interesting use cases of the methods that we previously discussed._
@@ -1036,16 +1036,11 @@ _This lecture had slides with some interesting use cases of the methods that we 
     - \(X_i = \Theta(Y^G, Y^I_i, \eta_i)\) for \(\eta_i \sim p^S(\eta)\)
         - common simplification is \(\Theta(Y^I_i, \eta_i)\)
 
-{:.rightFloatBox}
-<div markdown="1">
-[slides](/assets/generative-neural-networks/TODO.pdf)
-</div>
-
 _Here we discuss Estimation of a non-linear mixed effects model [Arruda et al 2023]._
 
 {:.rightFloatBox}
 <div markdown="1">
-[slides](/assets/generative-neural-networks/TODO.pdf)
+[slides](/assets/generative-neural-networks/4-1-1.pdf)
 </div>
 
 ### SINDy-Autoencoders
@@ -1053,12 +1048,17 @@ _Here we discuss Estimation of a non-linear mixed effects model [Arruda et al 20
 - we have a dynamic system that produces real-world measurements
 - observation takes place in a **different coordinate system** (e.g. measurements of the planets from earth's perspective/unknown canonical coordinates)
 
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/4-1-2.pdf)
+</div>
+
 _Two lectures were spent on this._
 
 
 {:.rightFloatBox}
 <div markdown="1">
-[slides](/assets/generative-neural-networks/TODO.pdf)
+[slides](/assets/generative-neural-networks/4-2.pdf)
 </div>
 
 ### Physics-informed Neural Networks (PINNs)
