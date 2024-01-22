@@ -484,7 +484,7 @@ Create an animation of the following triangle.
 
 {% manim_video 2-Triangle %}
 
-Dots and segments can be defined using the {% manim_doc `Dot` reference/manim.mobject.geometry.Dot.html %} and {% manim_doc `Line` reference/manim.mobject.geometry.Line.html %} classes.
+Dots and segments can be defined using the {% manim_doc `Dot` reference/manim.mobject.geometry.arc.Dot.html %} and {% manim_doc `Line` reference/manim.mobject.geometry.line.Line.html %} classes.
 
 ```py
 from manim import *

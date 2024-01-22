@@ -561,7 +561,7 @@ Create animation of the Fibonacci's spiral (or some other similar sequence like 
 {% manim_video 3-FibonacciSequence %}
 
 Updaters from the previous part will be very handy.
-Additionally, the {% manim_doc `TracedPath` reference/manim.mobject.changing.TracedPath.html %} class can be used to create the path traced by the dot traveling around the spiral.
+Additionally, the {% manim_doc `TracedPath` reference/manim.animation.changing.TracedPath.html %} class can be used to create the path traced by the dot traveling around the spiral.
 The animation of the dot travel can be implemented via the {% manim_doc `Rotate` reference/manim.animation.rotation.Rotate.html %} animation, which can be used to rotate one object around another.
 
 ```py
@@ -593,7 +593,7 @@ class TracePathExample(Scene):
 
 {% manim_video 3-TracePathExample %}
 
-There is, however, a slight catch: using {% manim_doc `TracedPath` reference/manim.mobject.changing.TracedPath.html %} runs into a [well-known Manim bug](https://github.com/ManimCommunity/manim/issues/550) with caching -- that's why we need to use the `--disable_caching` flag which fixes this bug by not caching the animations.
+There is, however, a slight catch: using {% manim_doc `TracedPath` reference/manim.animation.changing.TracedPath.html %} runs into a [well-known Manim bug](https://github.com/ManimCommunity/manim/issues/550) with caching -- that's why we need to use the `--disable_caching` flag which fixes this bug by not caching the animations.
 
 {% manim_solution %}
 from manim import *

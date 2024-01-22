@@ -12,19 +12,19 @@ excerpt: Lecture notes from the GPU Computing course (Kazem Shekofteh, 2022/2023
 
 ### Lecture overview
 
-1. Introduction [[slides](/assets/gpu-computing/01.pdf)]
-2. CUDA programming [[slides](/assets/gpu-computing/02.pdf)]
-3. Basic architecture [[slides](/assets/gpu-computing/03.pdf)]
-4. Matrix multiplication optimizations [[slides](/assets/gpu-computing/04.pdf)]
-5. Parallel computing [[slides](/assets/gpu-computing/05.pdf)]
-6. Profiling [[slides](/assets/gpu-computing/06.pdf)]
-7. Scheduling optimizations [[slides](/assets/gpu-computing/07.pdf)]
-8. \(n\)-body optimization [[slides](/assets/gpu-computing/08.pdf)]
-9. Host-device optimizations [[slides](/assets/gpu-computing/09.pdf)]
-10. OpenACC [[slides](/assets/gpu-computing/10.pdf)]
-11. Stencil computations [[slides](/assets/gpu-computing/11.pdf)]
-12. OpenCL [[slides](/assets/gpu-computing/12.pdf)]
-13. Consistency & Coherence [[slides](/assets/gpu-computing/13.pdf)]
+1. Introduction [[slides](/assets/gpu-computing/slides/01.pdf)]
+2. CUDA programming [[slides](/assets/gpu-computing/slides/02.pdf)]
+3. Basic architecture [[slides](/assets/gpu-computing/slides/03.pdf)]
+4. Matrix multiplication optimizations [[slides](/assets/gpu-computing/slides/04.pdf)]
+5. Parallel computing [[slides](/assets/gpu-computing/slides/05.pdf)]
+6. Profiling [[slides](/assets/gpu-computing/slides/06.pdf)]
+7. Scheduling optimizations [[slides](/assets/gpu-computing/slides/07.pdf)]
+8. \(n\)-body optimization [[slides](/assets/gpu-computing/slides/08.pdf)]
+9. Host-device optimizations [[slides](/assets/gpu-computing/slides/09.pdf)]
+10. OpenACC [[slides](/assets/gpu-computing/slides/10.pdf)]
+11. Stencil computations [[slides](/assets/gpu-computing/slides/11.pdf)]
+12. OpenCL [[slides](/assets/gpu-computing/slides/12.pdf)]
+13. Consistency & Coherence [[slides](/assets/gpu-computing/slides/13.pdf)]
 
 ### Bulk-Synchronous Parallel (BSP) model
 - established in 1990

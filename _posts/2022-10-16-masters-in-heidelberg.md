@@ -216,7 +216,7 @@ Some programmes have a relatively predetermined schedule, while others are more 
 
 One thing that is a constant in all of this is [LSF](https://lsf.uni-heidelberg.de/), which is the central platform for organizing your education in Heidelberg.
 After reading through the handbook for your respective Master's degree, you should find the courses you'd like to sign up for in the course catalogue.
-For each course, there is usually a sign-up link, leading to one of the many e-learning platforms used ([Müsli](https://muesli.mathi.uni-heidelberg.de/), [Moodle](https://moodle.uni-heidelberg.de/login/index.php), [Mampf](https://mampf.uni-heidelberg.de), etc.).
+For each course, there is usually a sign-up link, leading to one of the many e-learning platforms used ([Müsli](https://muesli.mathi.uni-heidelberg.de/), [Moodle](https://moodle.uni-heidelberg.de/login/index.php), [Mampf](https://mampf.mathi.uni-heidelberg.de/), etc.).
 
 
 ### Torrenting
