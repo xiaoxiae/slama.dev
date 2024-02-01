@@ -1086,7 +1086,7 @@ _Why is this useful?_
 TODO: image here
 
 - idea: use physical knowledge as a problem-specific regularizer
-- here the growth follows the "logistic rule": \(\d f(t) / dt = \lambda f(t) (1 - f(t))\)
+- here the growth follows the "logistic rule": \(\frac{\partial f(t)}{\partial t} = \lambda f(t) (1 - f(t))\)
     - we may or may not know \(\lambda\) (depending on the problem)
     - _special case of SIR equations -- the lecture has a derivation here_
 - PINN approach to learning:
@@ -1094,7 +1094,7 @@ TODO: image here
         - **data points** \(\hat =\) TS where \(f(t)\) is (approximately) known (at least the data for initial condition)
         - **collocatoin points** where we apply the regularizer
             - \(t \in \mathrm{CP}\): check if ODE is fulfilled at \(t\)
-    - regularization term: \[\mathrm{loss}_{\mathrm{ODE}} = \frac{1}{M} \sum_{m=1}^{M} \left(\frac{d\;f(t_m)}{d\;t} - \lambda f(t_m)(1-f(t_m))\right)^2\]
+    - regularization term: \[\mathrm{loss}_{\mathrm{ODE}} = \frac{1}{M} \sum_{m=1}^{M} \left(\frac{\partial f(t_m)}{\partial t} - \lambda f(t_m)(1-f(t_m))\right)^2\]
         - if fulfilled then it should be zero for any \(t_m\) (ideally \(M \mapsto \infty\))
     - data term: \[\mathrm{loss}_{\mathrm{data}} = \frac{1}{N} \sum_{i=1}^{N} \left(f_i - f(t_i)\right)^2\]
 
@@ -1120,3 +1120,64 @@ _The lecture talks here about the general case for ODEs._
 - random Fourier features -- _convert features into the Fourier domain with random projections_
     - was shown that low-frequency behavior converges much faster than high-frequency
 - random weight factorization (replace a linear layer with I don't know)
+
+{:.rightFloatBox}
+<div markdown="1">
+[slides](/assets/generative-neural-networks/4-2.pdf)
+</div>
+
+_PINN-related things (training, variants)._
+
+### State-of-the-art generative modeling
+- our current workhorse are invertible neural networks (affine or spline coupling flows)
+- the directions of improvement:
+    1. **lift architectural restrictions** that only facilitate efficient training
+        - _free-form flows_
+            - potentially higher expressive power (very new)
+            - opportunity to incorporate application-related architecture restrictions
+            - allows for bottleneck architectures
+    2. get **higher fidelity** of the generated data (image generation, molecular modeling)
+        - _diffusion models_
+            - can generate better data but can't generate the probability well
+    3. **speed-up generation and inference**
+        - _consistency models_ & _injective flows_
+
+### Free-form flows
+- _[Draxler, Sorrenson et al. 2023]_
+- use arbitrary (dimension-preserving) neural networks as encoder and decoder
+    - e.g. variations of ResNet
+- give up invertibility of encoder: \(g(z) = f^{-1}(z)\) by construction
+    - instead train two separate networks and ensure \(g(z) \approx f^{-1}(z) \)
+    - \(\Rightarrow\) reconstruction loss \(\mathcal{l}_{\mathrm{rec}} = \mathbb{E}_{x \sim p^*(\lambda)} \left[||x - g(f(x))||^2_2\right]\)
+- train generative distribution by the maximum likelihood
+- express \(p(x)\) with the change of variables formula \[p(x) = g(z=f(x)) \left|\det \frac{\partial f(x)}{\partial x}\right| \approx g(z=f(x)) \left \det \frac{\partial g(z=f(x))}{\partial z}\right^{-1} \]
+- coupling flows exist to make \(\left| \det \frac{\partial f(x)}{\partial x} \right|\) tractable
+- two types of layers in coupling flows
+    - rotation / permutation layers: \(z^{(l)} = Qz^{(l-1)}\) for \(Q\) orthonormal
+        - \(\frac{\partial z^{(l)}}{\partial z^{(l-1)}} = Q \implies \left|\det \frac{\partial z^{(l)}}{\partial z^{(l-1)}} = 1\right|\)
+    - coupling layers (generally auto-regressive blocks)
+        - \(\frac{\partial z^{(l)}}{\partial z^{(l-1)}} = \mathcal{J}^{(l)}\) is triangular \(\implies \left|\det \frac{\partial z^{(l)}}{\partial z^{(l-1)}} = \prod_{j=1}^{D} \mathcal{J}^(l)_{jj}\right|\)
+- if layer architecture is free, these tricks no longer work \(\implies\) must calculate \(\frac{\partial f(x)}{\partial x}\) by autodiff
+    - modern autodiff can do this reasonably but for \(D \in \mathcal{O}\left(10^2 \ldots 10^3\right)\)
+    - autodiff offers library functions for Jacobian-vector products (`jvp`) and vector-Jacobian products (`vjp`)
+        - can use without actually explicitly constructing the Jacobian
+    - if \(v\) is a unit vector, we get a column of \(\frac{\partial f}{\partial x}\)
+        - \(\Rightarrow\) construct \(\frac{\partial f}{\partial x}\) explicitly by \(D\) `jvp` products
+    - fast enough for inference but slow during training -- to make it efficient, you _do not need_ \(\left|\det \frac{\partial f}{\partial x}\right|\) -- for training, we only need \(\nabla{\Theta} \log \left|\det \frac{\partial f_{\Theta}}{\partial x}\right|\) with network parameters \(\Theta\)
+        - surprising result: this can be estimated efficiently without access to \(\frac{\partial f}{\partial x}\)
+
+_The lecture shows the derivation for why this is the case here._
+
+\(\boxed{\nabla\Theta \mathcal{l}_{\mathrm{NLL}} \approx \mathbb{E}_{x \sim p(x)} \left| \nabla\Theta - \log g(z=f_\Theta(x)) - \nabla_\Theta \left(\text{stop-gradient}\left(\text{vjp}(g_\Theta, z=f_\Theta(x), v)\right) \cdot \text{jvp}(f, x, v)\right) \right|}\)
+\[\mathcal{l}_{\mathrm{total}} = \mathcal{l}_{\mathrm{NLL}} + \beta \mathcal{l}_{\mathrm{rec}}\]
+
+- experiments:
+    - FFF works as well as other NFs on toy data
+    - FFF works very well on simple molecular modelling benchmarks
+
+### Injective flows
+- NF with a bottleneck: \(\dim(z) < \dim(x)\)
+
+_Fever dream._
+
+
