@@ -11,7 +11,7 @@ no-heading: True
 I'm Tom and this is my personal website.
 
 I am a Czech student, currently getting a master's degree at the [Heidelberg University](https://www.uni-heidelberg.de/en) in Germany.
-Besides programming, I like to play computer games, [take photos](/photos/), [make videos](/videos/) and [rock climb](/climbing/).
+Besides programming, I like to play <a class='secret' href='/assets/nolife.webp'>video games</a>, [take photos](/photos/), [make videos](/videos/) and [rock climb](/climbing/).
 
 This website contains things I feel are interesting enough to put on the internet.
 The language is English, but some posts might be written in other languages (and will be denoted as such).
