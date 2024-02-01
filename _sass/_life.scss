@@ -1,0 +1,66 @@
+@charset "utf-8";
+
+@import "variables";
+
+// this is essentially a copy of _cv.scss
+
+.cv {
+    table {
+        border-collapse: collapse;
+
+        // line between left and right column
+        tr {
+            td { border-left: 1px solid $light-text-color; }
+            td:first-child { border-left: 0 solid; }
+        }
+
+        tbody tr td:first-child {
+            min-width: 3em;
+            max-width: 3em;
+        }
+
+        tr:first-child {
+            // so the right column is always max. size
+            td + td { width: 100%; }
+
+            // space between border line and
+            p:first-child { padding-top: $line-spacing / 3; }
+        }
+
+        // no spacing after last <p> in each table
+        tr:last-child {
+            *:last-child {
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+        }
+
+        border-top: 2px solid $light-text-color;
+        border-bottom: 0 solid $light-text-color;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .cv {
+        table {
+            tr { td { border-left: 1px solid $dark-text-color; } }
+
+            border-top: 2px solid $dark-text-color;
+            border-bottom: 0 solid $dark-text-color;
+        }
+    }
+}
+
+.ski-red { background: #d00; }
+.ski-blue { background: #087ec4; }
+.ski-black { background: #222; }
+
+.ski-red,.ski-blue,.ski-black {
+    color: $dark-text-color;
+    &:hover { text-decoration: underline; }
+
+    color: $dark-text-color;
+    border: 2px solid $light-text-color;
+    border-radius: $code-border-roundness;
+    padding: $code-padding / 16 $code-padding / 2;
+}
