@@ -71,6 +71,26 @@ but they are well-described in the documents you receive so I won't cover them h
 
 [^fee]: This again depends on whether you're a citizen of EU (the fee is pretty small, we payed ~€170) or not (the fee is substantial large). In any case, the payment can take a little while to confirm (at least when paying from Revolut), so don't panic.
 
+#### Email Client Setup
+
+Adding this section since I had to do this multiple times and mess it up everytime (the [online documentation](https://www.urz.uni-heidelberg.de/en/service-catalogue/email-and-groupware/email-server) is not entirely well written).
+The configuration for me (Tomáš Sláma, `tm304`) is the following:
+
+```yaml
+Address: tomas.slama@stud.uni-heidelberg.de
+
+Incomming: # IMAP
+    Hostname: imap.urz.uni-heidelberg.de
+    Port: 143 # STARTTLS
+    Username: tm304
+
+Outgoing: # SMTP
+    Hostname: mail.urz.uni-heidelberg.de
+    Port: 587 # STARTTLS
+    Username: tm304
+```
+
+**Note that sending email doesn't work from other countries. Use a VPN!**
 
 ### Money
 If Euros aren't your nation's currency (which was the case for me as we use Czech Korunas), there is a chance that paying using your bank's card will include additional fees and unfavorable conversion rates of your central bank.
