@@ -1180,4 +1180,62 @@ _The lecture shows the derivation for why this is the case here._
 
 _Fever dream._
 
+### Bottleneck Free-form Flows
+- \(g(z) = z \cdot v\) is linear
+    - consistency requirement: \(z = f(g(z))\)
+    - we get \(f(z \cdot v) = z\quad f(\alpha \cdot z v) = \alpha z \implies f(x)\) is also linear
+    \(v = \begin{bmatrix} a \\ c \end{bmatrix}, w^T = \begin{bmatrix} b & d \end{bmatrix} \implies w^T v z = z \implies d = \frac{1 - ab}{c}\)
+    - infinitely many solutions for \(w^T\) if \(v\) is fixed
+- \(g(z) = z v + t \implies f(x) = w^T(x - t)\) -- even worse
+    - for non-linear pseudo-inverse pairs \(f(x), g(z)\), ambiguity is even worse
+    - _open problem_ for higher dimensions
 
+We can formalize the quesiton:
+- encoder defines equivalence classes of data points \(x\) mapped to the same code \(z\) \[\mathcal{F}(z) = \left\{x \mid f(x) = z\right\}\]
+- decoder defines a representative \(\hat x = g(z)\) for each fiber \[\mathcal{M} = \left\{\hat x = g(z) \mid z \in \mathcal{Z}\right\}\]
+- with two constraints:
+    1. \(\hat x = g(z) \in \mathcal{F}(z)\), s othat \(f(g(z)) = z\)
+    2. if \(g(z)\) is continuous, \(\mathcal{M}\) is also continuous
+- even if \(f(x)\) (and \(\mathcal{F}(z)\)) are fixed, infinitely many \(\mathcal{M}\) are still possible
+    - same goes for \(\mathcal{M}\)
+
+- how to train an injective free-form flow?
+    - to use NLL loss, we need a change-of-variables formula
+    - _rectangular/injective c-o-v formula for decoder_ \[p(\hat x = g(z)) = g(z) \cdot \left| \det\left(\underbrace{\left(\frac{\patial g}{\partial z}\right)\cdot \left(\frac{\partial g}{\partial z}\right)^T\right)}_{d\times D \cdot D \times d}\right|^{- \frac{1}{2}}\]
+        - this is a probability on \(\mathcal{M}\); says nothing about \(x \in \mathcal{M}\)
+- need to learn three things:
+    1. manifold \(\mathcal{M}\) that represents well under lossy compression
+    2. fibers \(\mathcal{F}(z)\) which differences between \(x\) and \(x'\) we choose to ignore
+    3. \(p(\hat x)\) as distribution of points after projection \(g(f(x))\)
+- much more difficult than NF, which only learn \(p(x)\)
+- the squared reconstruction loss \[\mathbb{E}_{x \sim p^x(x)} \left[||x - g(f(x))||^2_2\right]\] gives reasonable \(\mathcal{M}\) and \(\mathcal{F}(z)\) in practice
+    - \(\mathcal{M}\)is a kind of average of the original \(\mathrm{TS}\) (in lower dimension)
+    - \(\mathcal{F}(z)\) tend to be orthogonal to \(\mathcal{M}\)(in Euclidean norm)
+- \(\Nabla_\Theta \mathcal{L}_{\mathrm{NLL}}\) can be computed by an adapted version of FFF
+    - training only with \(\mathcal{L}_{\mathrm{NLL}}\) (as in standard NF) is impossible (leads to degenerate solutions)
+
+Results: injective FFFs are competitive on standard benchmarks
+- scaling it up to serious applications is an open problem
+
+FFFs for data on a known manifold \(\mathcal{M}\) (don't have to learn it)
+- further assume that the projection function \(\hat x = \mathrm{proj}(x)\) is already known
+    - \(\Rightarrow\) we also don't have to learn \(\mathcal{F}(z)\)
+- e.g. data are on the surface of the earth (manifold is sphere, projection is orthogonal)
+    - define \(g(z)\) only on \(\mathcal{M}\), not on \(\mathcal{X} \implies g(z)\)  already has correct topology
+    - if \(\mathcal{M}\) has finite volume (earth surface area), \(g(z) = \mathrm{uniform}(\mathcal{M})\) is a good choice
+- trick: train proto-encoder \(\tilde f_{\Theta} (x \in \mathcal{M}) \mapsto \mathcal{X}\) and proto-decoders \(\tilde g_{\Theta}(z \in \mathcal{M}) \mapsto \mathcal{X}\)
+    - higher expressive power by exploiting large space \(\mathcal{X}\) instead of restricting to \(\mathcal{M}\)
+- actual encoder and decoder are defined by projection:
+    - \(f_\Theta(x' \in \mathcal{M}) = \mathrm{proj}\left(\tilde f_\Theta\left(x \in \mathcal{M}\right)\right) \in \mathcal{M} \)
+    - \(g_\Theta(z' \in \mathcal{M}) = \mathrm{proj}\left(\tilde g_\Theta\left(z \in \mathcal{M}\right)\right) \in \mathcal{M} \)
+
+TODO image here
+
+- the FFF trick still works (with a minor modification)
+- benefits
+    - \(+\) simpler than most competing methods on manifolds
+    - \(+\) can be trained by NLL loss
+    - \(+\) quite good results on simple benchmarks
+- drawbacks
+    - \(-\) not quite state of the art
+    - \(-\) not tested on real problems
