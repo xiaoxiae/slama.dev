@@ -11,7 +11,7 @@ An occasional app crash here, a failed command there.
 Some bits were simply not bitting.
 
 All of these issues had a common source and are all gone now.
-You can [skip to the end](#the-culprit) if you want to find out what caused it, but I thought it would be more interesting to write it in the way I experienced it (i.e. only describing the issues) so you can try to figure it out just like I did.
+You can [skip to the end](#the-culprit--solution) if you want to find out what caused it, but I thought it would be more interesting to write it in the way I experienced it (i.e. only describing the issues) so you can try to figure it out just like I did.
 
 ### 1. App Crashes
 Certain apps (Firefox, Beeper, Thunderbird) would occasionally crash.
