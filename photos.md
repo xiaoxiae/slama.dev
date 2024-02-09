@@ -13,6 +13,12 @@ If you'd like to see the originals, simply click on the photos.
 _Each of the photos are licensed under **[CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)**, so kindly respect it if you plan on using any of them for uses other than personal._
 
 {: .center}
+### Austria 2024 🏂
+<div class='photo-section'>
+{% photos austria/raw/2024-1.jpg %}
+</div>
+
+{: .center}
 ### Winter 2023 ❄️ (2 day difference)
 <div class='photo-section'>
 {% photos christmas/raw/2023-1-pre.jpg|christmas/raw/2023-1-post.jpg %}
