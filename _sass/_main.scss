@@ -418,6 +418,7 @@ a {
 
     &:hover {
         color: $light-text-color;
+        text-decoration: underline;
     }
 }
 
@@ -518,7 +519,10 @@ hr {
 
 a.secret {
     color: $light-text-color;
-    &:hover { color: $light-text-color; }
+    &:hover {
+        color: $light-text-color;
+        text-decoration: none;
+    }
 }
 
 /* DARK COLOR THEME */
