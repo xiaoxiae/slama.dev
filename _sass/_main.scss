@@ -200,9 +200,16 @@ span.brr-5 { font-size: 50%; }
     border-radius: $code-border-roundness;
 }
 
+body, html {
+    height: 100%;
+}
+
 body {
     font-family: $serif-font, sans-serif;
     line-height: $line-height;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .force-spacing {
@@ -346,6 +353,8 @@ footer {
     background-color: $light-header-background-color;
 
     br { margin-bottom: $line-spacing / 4; }
+
+    flex-shrink: 0;
 }
 
 .footnotes {
@@ -571,6 +580,8 @@ a.secret {
 
     .content-background {
         background-color: $dark-background-color;
+
+        flex: 1 0 auto;
     }
 
     .highlight {
