@@ -67,7 +67,8 @@ for name in list(config):
         elif "name" in config[name]:
             identifier_stub = stubify(config[name]["name"]) + "-"
         else:
-            # NOTE: this probably shouldn't happen, but if it does let's not crash ok?
+            # NOTE: this can happen when a wall doesn't have colors
+            #  and we want to support it
             identifier_stub = ""
 
         new_name = (

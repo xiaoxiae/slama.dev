@@ -117,6 +117,7 @@ for entry in reversed(sorted(list(journal))):
         "boulder-bar": "https://www.boulder.cz/",
         "boulderhaus": "https://www.boulderhaus.net/boulderhaus-heidelberg/",
         "boulder-point": "http://www.boulderpoint.cz/",
+        "crimp": "https://www.crimp-heidelberg.com/",
         "jungle-letnany": "https://www.jungleletnany.cz/",
         "lokalblok": "http://www.lokalblok.cz/lezecka-stena/",
         "mandala": "https://boulderhalle-dresden.de/",
@@ -183,7 +184,8 @@ for entry in reversed(sorted(list(journal))):
             if 'ignored' in videos[video] and videos[video]['ignored']:
                 continue
 
-            if videos[video]["date"] == entry and videos[video]["color"] == color:
+            if videos[video]["date"] == entry \
+                    and (("color" in videos[video] and videos[video]["color"]) == color or (color is None and "color" not in videos[video])):
                 entry_videos.append(video)
 
         # for adding fail videos
@@ -213,6 +215,8 @@ for entry in reversed(sorted(list(journal))):
 
         if color == "other":
             line += f"<mark class='climbing-diary-record climbing-other climbing-other-text'>other: {count}"
+        elif color is None:
+            line += f"<mark class='climbing-diary-record climbing-other climbing-other-text'>{count}"
         elif color == "christmas":
             line += f"<mark class='climbing-diary-record climbing-christmas climbing-christmas-text'>🎄 {count}"
         elif wall_stub in v_grading_gyms_stubs:
@@ -240,7 +244,8 @@ for entry in reversed(sorted(list(journal))):
 
     some_color_added = False
     if "location" not in journal[entry]:
-        for color in list(colors) + ["other"]:
+        for color in list(colors) + ["other"] + [None]:
+
             formatted_color = format_color(color)
 
             line += formatted_color
