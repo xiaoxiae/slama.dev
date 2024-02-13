@@ -628,11 +628,10 @@ x = x[:-1]  # x = Aho
 - [Python Tutor](http://www.pythontutor.com/visualize.html) -- vizualizér Python kódu, ze kterého je hezky vidět, co program dělá.
 - [Repl.it pro Python](https://repl.it/languages/python3) -- prostředí, ve kterém budeme programovat.
 - [Processing 3](https://processing.org/) -- grafické prostředí, ve kterém budeme pracovat.
-	- [Processing 3 dokumentace](https://py.processing.org/reference/) -- dokumentace k Processingu
+	- [Processing 3 dokumentace](https://py.processing.org/reference/) -- dokumentace k Processingu.
 - [Ponořme se do Pythonu](http://diveintopython3.py.cz/index.html) -- dobře napsaná kniha o programování v Pythonu 3, na kterou se můžete podívat, pokud byste se rádi Python učili i ve svém volném čase.
-- [PyCharm](https://www.jetbrains.com/pycharm/) -- nejlepší Python IDE
+- [PyCharm](https://www.jetbrains.com/pycharm/) -- nejlepší Python IDE.
 - [PyQt5](https://www.riverbankcomputing.com/software/pyqt/) -- knihovna pro Python na vývoj aplikací.
-	- [PyQt5 dokumentace](https://doc.bccnsoft.com/docs/PyQt5/) -- dokumentace k PyQt5
 
 #### Programování
 - [Advent Kódu](https://adventofcode.com/) -- stránka, kde je na každý den adventu programovací úloha
