@@ -7,6 +7,8 @@ import yaml
 
 from unidecode import unidecode
 
+from collections import OrderedDict
+
 
 class UniqueKeyLoader(yaml.SafeLoader):
     def construct_mapping(self, node, deep=False):
@@ -27,6 +29,7 @@ CLIMBING_JOURNAL = os.path.join(CLIMBING_FOLDER, "journal.yaml")
 
 OUTPUT_PATH = os.path.join("..", "_includes", "diary.md")
 LAST_CLIMB_PATH = os.path.join("..", "_includes", "last-climb.md")
+CLIMBING_VIDEOS_PATH = os.path.join("..", "_includes", "climbing-videos.md")
 
 videos = {}
 if os.path.exists(CLIMBING_INFO):
@@ -41,6 +44,8 @@ if os.path.exists(CLIMBING_JOURNAL):
 result = """
 <div class="climbing-journal">
 """
+
+videos_result = {'Kilter': OrderedDict()}
 
 current_year = None
 current_month = None
@@ -176,9 +181,59 @@ for entry in reversed(sorted(list(journal))):
 
         line += ")</li> <li>"
 
-    def format_color(color, kilter=False):
+    if wall not in videos_result:
+        videos_result[wall] = OrderedDict()
+
+    def _format_color(color, oc, nc, vs, kilter):
+        if oc == 0 and nc == 0:
+            # if there are no videos and no sends for the color, don't add it
+            if len(vs) == 0:
+                return ""
+
+            count = ""
+
+        elif oc == 0:
+            count = f"<span class='underline'>{nc}</span>"
+        elif nc == 0:
+            count = f"{oc}"
+        else:
+            count = f"{oc}/<span class='underline'>{nc}</span>"
+
+        if count != "":
+            count = "<strong>" + count + "</strong>"
+
         line = ""
 
+        if color == "other":
+            line += f"<mark class='climbing-diary-record climbing-other climbing-other-text'>other: {count}"
+        elif color is None:
+            line += f"<mark class='climbing-diary-record climbing-other climbing-other-text'>{count}"
+        elif color == "christmas":
+            line += f"<mark class='climbing-diary-record climbing-christmas climbing-christmas-text'>🎄 {count}"
+        elif wall_stub in v_grading_gyms_stubs:
+            line += f"<mark class='climbing-diary-record climbing-{color} climbing-v'><strong>{color}:</strong> {count}"
+        elif wall_stub in f_grading_gyms_stubs:
+            line += f"<mark class='climbing-diary-record climbing-{color.replace('+', 'p')} climbing-f'><strong>{color}:</strong> {count}"
+        elif kilter:
+            line += f"<mark class='climbing-diary-record climbing-{color.replace('+', 'p')} climbing-f'><strong>{color}:</strong> {count}"
+        else:
+            line += f"<mark class='climbing-diary-record climbing-{color} climbing-{color}-text'>{count}"
+
+        if len(vs) != 0:
+            line += (
+                " ["
+                + "".join(
+                    [
+                        f"<a class='climbing-link' href='/climbing/videos/{name}'>{'F' if 'attempts' in videos[name] and videos[name]['attempts'] == 1 else 'A'}</a>"
+                        for i, name in enumerate(vs)
+                    ]
+                )
+                + "]"
+            )
+
+        return line + "</mark> "
+
+    def format_color(color, kilter=False):
         entry_videos = []
         for video in videos:
             if 'ignored' in videos[video] and videos[video]['ignored']:
@@ -197,50 +252,15 @@ for entry in reversed(sorted(list(journal))):
         old_count = 0 if "old" not in color_dict else color_dict["old"]
         new_count = 0 if "new" not in color_dict else color_dict["new"]
 
-        if old_count == 0 and new_count == 0:
-            # if there are no videos and no sends for the color, don't add it
-            if len(entry_videos) == 0:
-                return ""
+        w = wall if not kilter else 'Kilter'
+        if color not in videos_result[w]:
+            videos_result[w][color] = [0, 0, []]
 
-            count = ""
-        elif old_count == 0:
-            count = f"<span class='underline'>{new_count}</span>"
-        elif new_count == 0:
-            count = f"{old_count}"
-        else:
-            count = f"{old_count}/<span class='underline'>{new_count}</span>"
+        videos_result[w][color][0] += int(old_count)
+        videos_result[w][color][1] += int(new_count)
+        videos_result[w][color][2] += entry_videos
 
-        if count != "":
-            count = "<strong>" + count + "</strong>"
-
-        if color == "other":
-            line += f"<mark class='climbing-diary-record climbing-other climbing-other-text'>other: {count}"
-        elif color is None:
-            line += f"<mark class='climbing-diary-record climbing-other climbing-other-text'>{count}"
-        elif color == "christmas":
-            line += f"<mark class='climbing-diary-record climbing-christmas climbing-christmas-text'>🎄 {count}"
-        elif wall_stub in v_grading_gyms_stubs:
-            line += f"<mark class='climbing-diary-record climbing-{color} climbing-v'><strong>{color}:</strong> {count}"
-        elif wall_stub in f_grading_gyms_stubs:
-            line += f"<mark class='climbing-diary-record climbing-{color.replace('+', 'p')} climbing-f'><strong>{color}:</strong> {count}"
-        elif kilter:
-            line += f"<mark class='climbing-diary-record climbing-{color.replace('+', 'p')} climbing-f'><strong>{color}:</strong> {count}"
-        else:
-            line += f"<mark class='climbing-diary-record climbing-{color} climbing-{color}-text'>{count}"
-
-        if len(entry_videos) != 0:
-            line += (
-                " ["
-                + "".join(
-                    [
-                        f"<a class='climbing-link' href='/climbing/videos/{name}'>{'F' if 'attempts' in videos[name] and videos[name]['attempts'] == 1 else 'A'}</a>"
-                        for i, name in enumerate(entry_videos)
-                    ]
-                )
-                + "]"
-            )
-
-        return line + "</mark> "
+        return _format_color(color, old_count, new_count, entry_videos, kilter=kilter)
 
     some_color_added = False
     if "location" not in journal[entry]:
@@ -356,5 +376,33 @@ with open(LAST_CLIMB_PATH, "w") as f:
 
 with open(CLIMBING_JOURNAL, "w") as f:
     f.write(yaml.dump(journal))
+
+with open(CLIMBING_VIDEOS_PATH, "w") as f:
+    f.write(f"<div class='climbing-journal-vids-only'>")
+
+    for key in sorted(videos_result):
+        # skip no videos
+        if not any([len(videos_result[key][c][2]) for c in videos_result[key]]):
+            continue
+
+        f.write(f"<h3>{key}</h3><ul>")
+
+        colors = videos_result[key]
+        if key == 'Kilter':
+            colors = sorted(colors)
+
+        for color in colors:
+            oc, nc, vs = videos_result[key][color]
+
+            if len(vs) == 0:
+                continue
+
+            l = _format_color(color, len(vs), 0, vs, kilter=False if key != 'Kilter' else True)
+
+            f.write(f"<li>{l}</li>")
+
+        f.write(f"</ul>")
+
+    f.write(f"</div>")
 
 print("journal generated (and reformatted).", flush=True)

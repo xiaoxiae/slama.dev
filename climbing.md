@@ -44,7 +44,7 @@ People are nice, prices are student-friendly and boulders are frequently changed
 
 ## Diary
 The following contains my climbing diary -- how many new/old boulders have I done (and links to them).
-It also serves as a convenient way to view the most recently sent boulders.
+It also serves as a convenient way to view the most recently sent boulders (you can also see a list of [all boulders by color](/climbing/videos/)).
 
 Since there there are some other walls that I visit from time to time, the journal entries contain clickable icons to their websites.
 

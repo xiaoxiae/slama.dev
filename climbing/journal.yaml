@@ -2696,9 +2696,18 @@
 2024-02-02:
   note: Endurance gone. Did some fun routes though, not a bad session :).
   wall: Boulderhaus
+2024-02-03:
+  note: Ski (well, snowboard) vacation.
+  placeholder: true
 2024-02-11:
   note: Getting back to shape with some Crimp sessions. Since I basically didn't climb
     for like a month (or well it feels like it), this will take a while :).
+  wall: Crimp
+  null:
+    new: 2
+2024-02-12:
+  note: Crimp without skin is not it. At least I got the remaining easy ones, everything
+    is hard now.
   wall: Crimp
   null:
     new: 2

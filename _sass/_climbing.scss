@@ -145,10 +145,17 @@ ul.climbing-routes-list {
     }
 }
 
+.climbing-journal-vids-only {
+    li {
+        padding-bottom: $line-spacing / 3;
+    }
+}
+
 mark.climbing-diary-record {
     border: 2px solid $light-text-color;
     border-radius: $code-border-roundness;
     padding: $code-padding / 2 $code-padding;
+    word-break: break-all;
 }
 
 mark.climbing {
