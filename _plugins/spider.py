@@ -37,7 +37,7 @@ def get_status_code(url, timeout=5):
         return requests.head(url, timeout=timeout).status_code
     except requests.exceptions.Timeout as e:
         return -1
-    except requests.exceptions.ConnectionError as e:
+    except Exception as e:
         print(url, e)
         return -2
 
