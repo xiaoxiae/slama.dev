@@ -20,6 +20,7 @@ _plugins/svgcleaner/
 **/*.mp4
 **/*.jpeg
 **/*.xcf
+**/*.zip
 **/*.xopp*
 photos/
 videos/
