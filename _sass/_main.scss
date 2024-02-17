@@ -384,6 +384,10 @@ footer {
     padding-bottom: $line-spacing;
 }
 
+.vspace {
+    padding-right: $line-spacing / 2;
+}
+
 // right floats
 .rightFloatBox {
     max-width: 30%;
