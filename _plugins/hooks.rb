@@ -19,6 +19,12 @@ Jekyll::Hooks.register :site, :after_init do |site|
     print "  Climbing journal: " + x + "\n"
   }
 
+  `_plugins/resize.py`.split( /\r?\n/ ).each {
+    |x|
+    print "            Resize: " + x + "\n"
+  }
+
+
   print "                CV: " + `git submodule foreach git fetch --all`
   print "                CV: " + `git submodule foreach git reset --hard origin/master`
   print "                CV: " + `_plugins/cv/cv.py --pdf -c`
