@@ -5,8 +5,9 @@ import shutil
 from subprocess import Popen, PIPE
 from datetime import date
 
-import yaml
+import sys
 
+import yaml
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
@@ -24,22 +25,29 @@ for file in files:
     if file.lower().endswith(".mp4") and file not in config:
         full_path = os.path.join(CLIMBING_VIDEOS_FOLDER, file)
 
-        config[file] = {
-            "color": "TODO",
-            "date": date.fromtimestamp(os.path.getmtime(full_path)),
-            "new": None,
-            "rotate": "left",
-            "encode": None,
-            "trim": "TODO",
-            "deface": None,
-            "wall": "Boulderhaus",
-        }
+        if sys.argv[-1].lower() == "crimp":
+            config[file] = {
+                "date": date.fromtimestamp(os.path.getmtime(full_path)),
+                "new": None,
+                "rotate": "right",
+                "encode": None,
+                "trim": "TODO",
+                "wall": "Crimp",
+            }
+
+        else:
+            config[file] = {
+                "color": "TODO",
+                "date": date.fromtimestamp(os.path.getmtime(full_path)),
+                "new": None,
+                "rotate": "right",
+                "encode": None,
+                "trim": "TODO",
+                "deface": None,
+                "wall": "Boulderhaus",
+            }
 
         kilter = file.lower().startswith("kilter")
-
-        # hacky since the DJI camera is usually turned upside down this way
-        if "dji" not in file.lower():
-            del config[file]["rotate"]
 
         # a little hacky but very functional
         if kilter:
