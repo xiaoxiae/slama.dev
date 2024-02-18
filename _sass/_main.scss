@@ -94,6 +94,11 @@ del {
     a,
     h1 {
         font-size: $title-size;
+
+        @media (max-width: $tiny-screen-threshold) {
+            font-size: $small-title-size;
+        }
+
         font-family: $monospaced-font, monospace;
         padding-bottom: 0;
     }

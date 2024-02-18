@@ -29,6 +29,7 @@ $code-padding: 3px;	// padding for inline code will be this, and double this for
 $code-border-roundness: 6px;	// roundness of the code border
 
 $title-size: 180%;	// how much bigger is the title
+$small-title-size: 155%;	// how much bigger is the title
 $footer-size: 80%;	// how much smaller is the footer
 $toc-size: $footer-size;	// how much smaller is the TOC
 
@@ -52,6 +53,7 @@ $list-item-left-padding: 25px;	// so bullets don't stick out the page
 // sort of a hack, I don't know how else to do this
 
 $small-screen-threshold: 550px;	// if the screen is smaller than this, website changes stuff
+$tiny-screen-threshold: 375px;	// if the screen is smaller than this, website changes stuff
 
 /* FONT SETTINGS */
 $serif-font: "Fira Sans Light";
