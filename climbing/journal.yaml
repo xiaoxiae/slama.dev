@@ -2724,3 +2724,39 @@
   null:
     new: 2
     old: 4
+2024-02-20:
+  kilter:
+    6c:
+      new: 4
+    6c+:
+      new: 2
+    7a:
+      new: 1
+    7a+:
+      new: 2
+    angle: 40
+  note: Tried the hard routes a bunch without too much success.
+  wall: Crimp
+2024-02-23:
+  blue:
+    new: 6
+  note: Felt terrible. Worked on some reds/blacks, was still pretty fun. The difference
+    between how much skin Boulderhaus takes vs. Crimp is absolutely ridiculous.
+  red:
+    new: 5
+  wall: Boulderhaus
+2024-02-26:
+  moon:
+    6a+:
+      new: 8
+    6b:
+      new: 2
+    6b+:
+      new: 2
+    6c:
+      new: 3
+    6c+:
+      new: 3
+  note: Tried the hard routes again without too much success, MoonBoard made the depression
+    go away.
+  wall: Crimp

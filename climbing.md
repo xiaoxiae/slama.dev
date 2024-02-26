@@ -24,27 +24,9 @@ This page is dedicated to my climbing life.<br>
 </figure>
 </div>
 
-## [Boulderhaus](https://www.boulderhaus.net/), Heidelberg <img alt='Boulderhaus wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/boulderhaus.svg'/>
-Since moving to Heidelberg for my Master's degree, Boulderhaus is the gym that I frequent.
-The setting is quite old-school (compared to the walls in Prague that I frequented), mostly difficult moves and hard positions as opposed to dynamics.
-
-_Note that since Germany's private and public filming laws are quite strict, each of the videos from Boulderhaus were ran through a [face blur software](https://github.com/ORB-HD/deface). I realize that the chance of someone having a problem with them walking by in one of my videos is slim, but I'd rather not risk it._
-
-## Kilter board
-The Kilter board has been a bit of an obsession of mine ever since moving to Heidelberg.
-The holds are much more pleasant compared to other boards (like Moonboard) and the app is quite simple to use.
-
-Here are links to sections with all sends given certain grades, along with the number of videos:
-
-{% include kilter.md %}
-
-## [Smíchoff](https://www.lezeckecentrum.cz/cs/), Prague <img alt='Smíchoff wall icon' class='climbing-wall-logo-middle' src='/climbing/wall-logos/smichoff.svg'/>
-Smíchoff was the only gym in Prague that I frequented, since it is (in my opinion) the best one, so the vast majority of the clips in previous entries are going to be from here.
-People are nice, prices are student-friendly and boulders are frequently changed, so it's a perfect place to be.
-
-## Diary
-The following contains my climbing diary -- how many new/old boulders have I done (and links to them).
-It also serves as a convenient way to view the most recently sent boulders (you can also see a list of [all boulders by color](/climbing/videos/)).
+## Journal
+The following contains my climbing journal -- how many new/old boulders have I done (and links to them).
+It also serves as a convenient way to view the most recently sent boulders (you can also see a list of **[all boulders by color](/climbing/videos/)**).
 
 Since there there are some other walls that I visit from time to time, the journal entries contain clickable icons to their websites.
 

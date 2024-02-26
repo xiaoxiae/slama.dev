@@ -41,11 +41,14 @@ if os.path.exists(CLIMBING_JOURNAL):
     with open(CLIMBING_JOURNAL, "r") as f:
         journal = yaml.load(f.read(), Loader=UniqueKeyLoader)
 
+KILTER_NAME = 'Kilter Board'
+MOONBOARD_NAME = 'MoonBoard'
+
 result = """
 <div class="climbing-journal">
 """
 
-videos_result = {'Kilter': OrderedDict()}
+videos_result = {KILTER_NAME: OrderedDict(), MOONBOARD_NAME: OrderedDict()}
 
 current_year = None
 current_month = None
@@ -184,7 +187,7 @@ for entry in reversed(sorted(list(journal))):
     if wall not in videos_result:
         videos_result[wall] = OrderedDict()
 
-    def _format_color(color, oc, nc, vs, kilter):
+    def _format_color(color, oc, nc, vs, kilter, moon):
         if oc == 0 and nc == 0:
             # if there are no videos and no sends for the color, don't add it
             if len(vs) == 0:
@@ -214,7 +217,7 @@ for entry in reversed(sorted(list(journal))):
             line += f"<mark class='climbing-diary-record climbing-{color} climbing-v'><strong>{color}:</strong> {count}"
         elif wall_stub in f_grading_gyms_stubs:
             line += f"<mark class='climbing-diary-record climbing-{color.replace('+', 'p')} climbing-f'><strong>{color}:</strong> {count}"
-        elif kilter:
+        elif kilter or moon:
             line += f"<mark class='climbing-diary-record climbing-{color.replace('+', 'p')} climbing-f'><strong>{color}:</strong> {count}"
         else:
             line += f"<mark class='climbing-diary-record climbing-{color} climbing-{color}-text'>{count}"
@@ -233,7 +236,7 @@ for entry in reversed(sorted(list(journal))):
 
         return line + "</mark> "
 
-    def format_color(color, kilter=False):
+    def format_color(color, kilter=False, moon=False):
         entry_videos = []
         for video in videos:
             if 'ignored' in videos[video] and videos[video]['ignored']:
@@ -246,13 +249,15 @@ for entry in reversed(sorted(list(journal))):
         # for adding fail videos
         if kilter:
             color_dict = journal[entry]["kilter"][color]
+        elif moon:
+            color_dict = journal[entry]["moon"][color]
         else:
             color_dict = {} if color not in journal[entry] else journal[entry][color]
 
         old_count = 0 if "old" not in color_dict else color_dict["old"]
         new_count = 0 if "new" not in color_dict else color_dict["new"]
 
-        w = wall if not kilter else 'Kilter'
+        w = KILTER_NAME if kilter else MOONBOARD_NAME if moon else wall
         if color not in videos_result[w]:
             videos_result[w][color] = [0, 0, []]
 
@@ -260,7 +265,7 @@ for entry in reversed(sorted(list(journal))):
         videos_result[w][color][1] += int(new_count)
         videos_result[w][color][2] += entry_videos
 
-        return _format_color(color, old_count, new_count, entry_videos, kilter=kilter)
+        return _format_color(color, old_count, new_count, entry_videos, kilter=kilter, moon=moon)
 
     some_color_added = False
     if "location" not in journal[entry]:
@@ -278,12 +283,20 @@ for entry in reversed(sorted(list(journal))):
             line += "/ "
 
         angle = journal[entry]["kilter"]["angle"]
-        line += f"<strong>Kilter ({angle}°): </strong>"
+        line += f"<strong>Kilter Board ({angle}°): </strong>"
         for color in journal[entry]["kilter"]:
             if color == "angle":
                 continue
 
             line += format_color(color, kilter=True)
+
+    if "moon" in journal[entry]:
+        if some_color_added:
+            line += "/ "
+
+        line += f"<strong>MoonBoard: </strong>"
+        for color in journal[entry]["moon"]:
+            line += format_color(color, moon=True)
 
     if line.endswith("<li>"):
         line = line[:-len("<li>")] + "</ul>"
@@ -359,9 +372,6 @@ with open(LAST_CLIMB_PATH, "w") as f:
             if where == "home":
                 continue
 
-            if "kilter" in journal[entry]:
-                where += " / Kilter"
-
         elif "location" in journal[entry]:
             where = journal[entry]["location"]
 
@@ -388,7 +398,8 @@ with open(CLIMBING_VIDEOS_PATH, "w") as f:
         f.write(f"<h3>{key}</h3><ul>")
 
         colors = videos_result[key]
-        if key == 'Kilter':
+
+        if key == KILTER_NAME or key == MOONBOARD_NAME:
             colors = sorted(colors)
 
         for color in colors:
@@ -397,7 +408,10 @@ with open(CLIMBING_VIDEOS_PATH, "w") as f:
             if len(vs) == 0:
                 continue
 
-            l = _format_color(color, len(vs), 0, vs, kilter=False if key != 'Kilter' else True)
+            l = _format_color(color, len(vs), 0, vs,
+                kilter=False if key != KILTER_NAME else True,
+                moon=False if key != MOONBOARD_NAME else True,
+            )
 
             f.write(f"<li>{l}</li>")
 
