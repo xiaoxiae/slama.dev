@@ -1185,7 +1185,7 @@
   note: "Goodbye Sm\xEDchoff, hello Boulderhaus! Since I'm getting my Master's degree\
     \ in Heidelberg, this will be my home gym for the foreseeable future. While the\
     \ quality of the builders and their difficulty definitely lacks behind Sm\xED\
-    choff, the training facilities are excellent (Moonboard, Kilter Board, huge training\
+    choff, the training facilities are excellent (MoonBoard, Kilter Board, huge training\
     \ section, etc.)."
   red:
     new: 6
@@ -2759,4 +2759,22 @@
       new: 3
   note: Tried the hard routes again without too much success, MoonBoard made the depression
     go away.
+  wall: Crimp
+2024-02-29:
+  moon:
+    6a+:
+      new: 1
+    6b:
+      new: 1
+    6b+:
+      new: 2
+    6c:
+      new: 6
+    6c+:
+      new: 3
+    7a:
+      new: 1
+    7a+:
+      new: 1
+  note: Officially rebranded as a MoonBoarder.
   wall: Crimp
