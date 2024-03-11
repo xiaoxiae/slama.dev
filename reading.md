@@ -8,8 +8,9 @@ redirect_from:
 no-heading: True
 ---
 
-{:.center}
 This section covers various kinds of books that I think are worth reading.
+
+While I believe that all of these are worth a read, I also put a star (⭐) next to those that are truly special (i.e. I've read/listened to them 5+ times) and a crown (👑) next to my favorite one.
 
 ### Fantasy
 
@@ -20,33 +21,34 @@ This section covers various kinds of books that I think are worth reading.
 	1. **The Way of Kings**
 	2. **Words of Radiance**
 	3. **Oathbringer**
-	4. **The Rhythm of War**
+	4. **The Rhythm of War** ⭐
 
 - **Mistborn** [[Wikipedia](https://en.wikipedia.org/wiki/Mistborn_series)] -- another amazing series from Brandon Sanderson with another well thought-out magic system. The first and the second eras vary greatly in their setting (medieval \(\times\) industrial revolution), but I would argue that they both work extremely well.
 	- The First Era:
-		1. **The Final Empire**
+		1. **The Final Empire** ⭐
 		2. **The Well of Ascension**
 		3. **The Hero of Ages**
 	- The Second Era:
-		1. **The Alloy of Law**
+		1. **The Alloy of Law** ⭐
 		2. **Shadows of Self**
 		3. **The Bands of Mourning**
-		4. **The Lost Metal**
+		4. **The Lost Metal** 👑
 
 - **Arcanum Unbounded: The Cosmere Collection** [[Wikipedia](https://en.wikipedia.org/wiki/Arcanum_Unbounded:_The_Cosmere_Collection)] -- a series of stories about the planetary systems of Sanderson's ([Cosmere](https://en.wikipedia.org/wiki/Brandon_Sanderson#Cosmere)) universe in which all of his works are set. I'd refrain from reading this until you've gone through his other books, since it mainly adds context and perspective.
 
 - **The Rithmatist** [[Wikipedia](https://en.wikipedia.org/wiki/The_Rithmatist)] -- an excellent young adult fantasy novel. Although the target audience is teenagers (which is reflected mostly in character behavior and development), I still loved discovering yet another unique magic system that Sanderson created.
 
 - **Secret Novels** [[context video](https://www.youtube.com/watch?v=6a-k6eaT-jQ)]
-	1. **Tress of the Emerald Sea** [[Wikipedia](https://en.wikipedia.org/wiki/Tress_of_the_Emerald_Sea)] -- a fascinating fairtale-like novel from the Cosmere.
+	1. **Tress of the Emerald Sea** -- a fascinating fairtale-like novel from the Cosmere.
 	2. **The Frugal Wizard's Handbook for Surviving Medieval England** -- a fun novel about multiverse traveling and... marketing?
 	3. **Yumi and the Nightmare Painter** -- very evocative and narrated by Hoid (who was a coatrack).
+	4. **The Sunlit Man** ⭐ -- a western by Brandon Sanderson? Well, no, but it has similar vibes.
 
 #### Leigh Bardugo
 
 {:.book}
 - **The Six of Crows** duology [[Wikipedia](https://en.wikipedia.org/wiki/Six_of_Crows)] -- if you think that "Ocean's Eleven meets Game of Thrones" sounds good, you have to read this. The books are stellarly written and very well narrated (even for Audible standards) and contain a sequel duology and prequel trilogy, both of which I'll add here once I see that they're as good as this one.
-	1. **The Six of Crows**
+	1. **The Six of Crows** ⭐
 	2. **Crooked Kingdom**
 
 - **King of Scars** duology [[Wikipedia](https://en.wikipedia.org/wiki/King_of_Scars)] -- another excellent duology by Leigh Bardugo. It is much more fantasy-ish than the Six of Crows and focuses more heavily on the magical aspect of the world that Leigh is building (so it reads quite differently) but I enjoyed it nonetheless.
@@ -60,7 +62,7 @@ This section covers various kinds of books that I think are worth reading.
     1. **The Hound of Rowan**
     2. **The Second Siege**
     3. **The Fiend and the Forge**
-    4. **The Maelstrom**
+    4. **The Maelstrom** ⭐
     5. **The Red Winter**
 
 - **King of Scars** duology [[Wikipedia](https://en.wikipedia.org/wiki/King_of_Scars)] -- another excellent duology by Leigh Bardugo. It is much more fantasy-ish than the Six of Crows and focuses more heavily on the magical aspect of the world that Leigh is building (so it reads quite differently) but I enjoyed it nonetheless.
@@ -75,7 +77,7 @@ This section covers various kinds of books that I think are worth reading.
 {:.book}
 - **The Martian** [[Wikipedia](https://en.wikipedia.org/wiki/The_Martian_(Weir_novel))] -- a hilarious novel about an astronaut surviving on Mars, after being left for dead due to an unfortunate series of events. It inspired a [movie](https://en.wikipedia.org/wiki/The_Martian_(film)#Reception), which (while not as good as the book) is also quite entertaining.
 
-- **Project Hail Mary** [[Wikipedia](https://en.wikipedia.org/wiki/Project_Hail_Mary)] -- another excellent novel by. It has exactly the same feel as the Martian, but I found it to be much more interesting story-wise and would wholeheartedly recommend it to anyone interested in space sci-fi.
+- **Project Hail Mary** [[Wikipedia](https://en.wikipedia.org/wiki/Project_Hail_Mary)] ⭐ -- another excellent novel by. It has exactly the same feel as the Martian, but I found it to be much more interesting story-wise and would wholeheartedly recommend it to anyone interested in space sci-fi.
 
 #### Isaac Asimov
 
