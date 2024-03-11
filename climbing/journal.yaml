@@ -2800,3 +2800,19 @@
       new: 5
   note: Three days in a row ain't it.
   wall: Crimp
+2024-03-02:
+  note: There a few MoonBoard sessions here that got lost in the void since the app
+    is broken and absolute dogshit.
+  placeholder: true
+2024-03-08:
+  kilter:
+    6c:
+      new: 3
+    7a:
+      new: 4
+    7a+:
+      new: 3
+    7b:
+      new: 2
+    angle: 40
+  wall: Crimp
