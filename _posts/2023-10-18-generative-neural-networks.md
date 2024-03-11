@@ -9,6 +9,9 @@ redirect_from:
 
 - .
 {:toc}
+
+_**Note:** these notes are in a pretty questionable state (at least after the first few lectures) -- there are lot of TODOs that I won't do. If you're taking this class and have better notes, I'd be happy to update the website._
+
 {% lecture_notes_preface_heidelberg Ullrich Köthe|2023/2024%}
 
 {:.rightFloatBox}
