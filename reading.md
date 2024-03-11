@@ -65,10 +65,6 @@ While I believe that all of these are worth a read, I also put a star (⭐) next
     4. **The Maelstrom** ⭐
     5. **The Red Winter**
 
-- **King of Scars** duology [[Wikipedia](https://en.wikipedia.org/wiki/King_of_Scars)] -- another excellent duology by Leigh Bardugo. It is much more fantasy-ish than the Six of Crows and focuses more heavily on the magical aspect of the world that Leigh is building (so it reads quite differently) but I enjoyed it nonetheless.
-	1. **King of Scars**
-	2. **Rule of Wolves**
-
 
 ### Sci-fi
 
@@ -77,7 +73,7 @@ While I believe that all of these are worth a read, I also put a star (⭐) next
 {:.book}
 - **The Martian** [[Wikipedia](https://en.wikipedia.org/wiki/The_Martian_(Weir_novel))] -- a hilarious novel about an astronaut surviving on Mars, after being left for dead due to an unfortunate series of events. It inspired a [movie](https://en.wikipedia.org/wiki/The_Martian_(film)#Reception), which (while not as good as the book) is also quite entertaining.
 
-- **Project Hail Mary** [[Wikipedia](https://en.wikipedia.org/wiki/Project_Hail_Mary)] ⭐ -- another excellent novel by. It has exactly the same feel as the Martian, but I found it to be much more interesting story-wise and would wholeheartedly recommend it to anyone interested in space sci-fi.
+- **Project Hail Mary** [[Wikipedia](https://en.wikipedia.org/wiki/Project_Hail_Mary)] ⭐ -- exactly the same vibe as the Martian, but I found it to be much more interesting story-wise and would wholeheartedly recommend it to anyone interested in "science sci-fi."
 
 #### Isaac Asimov
 
