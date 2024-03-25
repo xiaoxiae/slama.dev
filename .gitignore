@@ -31,7 +31,6 @@ fonts/
 
 # generated
 _includes/cv.html
-_includes/life.html
 _includes/diary.md
 _includes/kilter.md
 _includes/last-climb.md
