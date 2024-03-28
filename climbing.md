@@ -13,12 +13,8 @@ This page is dedicated to my climbing life.<br>
 <div class='photo-section'>
 <figure>
 	<div class="row">
-		<img style="flex:40.0%; max-width: 40.0%;" src="/climbing/photos/2022-06-15-2.webp" alt="A photo from Smíchoff's Boulder Challenge">
-		<img style="flex:60.0%; max-width: 60.0%;" src="/climbing/photos/2022-06-15-1.webp" alt="A photo from Smíchoff's Boulder Challenge">
-	</div>
-	<div class="row">
-		<img style="flex:70%; max-width: 70%;" src="/climbing/photos/2022-06-15-3.webp" alt="A photo from Smíchoff's Boulder Challenge">
-		<img style="flex:30%; max-width: 30%;" src="/climbing/photos/2022-06-15-4.webp" alt="A photo from Smíchoff's Boulder Challenge">
+        <div class="photos2-0 flex-40"><img src="/climbing/photos/2022-06-15-2.webp" alt="A photo from Smíchoff's Boulder Challenge"></div>
+        <div class="photos2-1 flex-60"><img src="/climbing/photos/2022-06-15-1.webp" alt="A photo from Smíchoff's Boulder Challenge"></div>
 	</div>
 	<figcaption>A few photos from Smíchoff's Boulder Challenge (15. 6. 2022). © <a href="https://instagram.com/kareafoto">KAREA foto</a></figcaption>
 </figure>

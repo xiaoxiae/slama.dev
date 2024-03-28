@@ -52,11 +52,11 @@ figcaption {
   padding: 0 $line-spacing / 2 $line-spacing / 2 $line-spacing / 2;
 }
 .photos2-0 {
-  flex: 60%;
+  flex: 50%;
   padding: 0 $line-spacing / 2 $line-spacing / 2 $line-spacing / 2;
 }
 .photos2-1 {
-  flex: 60%;
+  flex: 50%;
   padding: 0 $line-spacing / 2 $line-spacing / 2 0;
 }
 .photos3-0 {
@@ -72,17 +72,27 @@ figcaption {
   padding: 0 $line-spacing / 2 $line-spacing / 2 0;
 }
 
+.flex-10 { flex: 10% !important; }
+.flex-20 { flex: 20% !important; }
+.flex-30 { flex: 30% !important; }
+.flex-40 { flex: 40% !important; }
+.flex-50 { flex: 50% !important; }
+.flex-60 { flex: 60% !important; }
+.flex-70 { flex: 70% !important; }
+.flex-80 { flex: 80% !important; }
+.flex-90 { flex: 90% !important; }
+
 .row:first-of-type {
   .photos1-0 {
     flex: 100%;
     padding: $line-spacing / 2;
   }
   .photos2-0 {
-    flex: 60%;
+    flex: 50%;
     padding: $line-spacing / 2;
   }
   .photos2-1 {
-    flex: 60%;
+    flex: 50%;
     padding: $line-spacing / 2 $line-spacing / 2 $line-spacing / 2 0;
   }
   .photos3-0 {
