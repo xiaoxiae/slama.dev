@@ -132,7 +132,7 @@ We want to make it continuous, we do embedding via the \(\delta\)-distribution \
         - \(\pi_l \ge 0, \sum_{l = 1}^{L} \pi_l = 1\) (has to be a probability distribution...)
     - for histogram, \(p_l(X)\) is uniform
     - for Gaussians, we have Gaussian mixture model (GMM); solved with the [EM algorithm](https://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm)
-3. **kernel density estimation** \(p_l(X) = \mathcal{N}(\mu_l, \sigma^2\Pi)\) (or any other simple distribution)
+3. **kernel density estimation** \(p_l(X) = \mathcal{N}(\mu_l, \sigma^2\mathbb{I})\) (or any other simple distribution)
     - \(L = N\) (one component per training sample)
     - \(\mu_l = X_l, \pi_l = \frac{1}{N}\)
     - similar to mixture distribution (has less distributions), here \(\sigma^2\) is the hyperparameter
@@ -145,7 +145,7 @@ We want to make it continuous, we do embedding via the \(\delta\)-distribution \
 ### Warmed up: more dimensions!
 
 #### Extensions of classical approaches
-1. **multi-variate standard normal** \[p(X) = \mathcal{N}\left(\mu=0, \Sigma=\Pi\right) = \frac{1}{\left(2\pi\right)^{D/2}}\mathrm{exp}\left(-\frac{X X^T}{2}\right)\]
+1. **multi-variate standard normal** \[p(X) = \mathcal{N}\left(\mu=0, \Sigma=\mathbb{I}\right) = \frac{1}{\left(2\pi\right)^{D/2}}\mathrm{exp}\left(-\frac{X X^T}{2}\right)\]
     - can be expressed as a product of 1-D normal distributions: \[X X^T = \sum_{i = 1}^{D} x^2_i \implies \mathrm{exp}\left(-\frac{X X^T}{2}\right) = \mathrm{exp}\left(-\frac{\sum_{i} X_i^2}{2}\right) = \prod_{i = 1}^{D} \mathrm{exp}\left(-\frac{x_i^2}{2}\right)\]
     - \(\Rightarrow\) sampling in \(D\) dimensions boils down to many samplings in 1-D
 
@@ -161,7 +161,7 @@ We want to make it continuous, we do embedding via the \(\delta\)-distribution \
         - then \(\tilde{X}\tilde{X}^T = \left(X - \mu\right) \Sigma^{-1} \left(X - \mu\right)^T\)
     - we can sample \(D\) 1-D gaussians and put them in the \(\tilde{X}\) vector, which we invert
         - \(X =\tilde{X} \Lambda^{1/2} U^T + \mu\): **reparametrization trick** (from arbitraty Gaussian to std. normal)
-    - in our language: \[Z = \left(X - \mu\right) U \Lambda^{-1/2} \sim \mathcal{N}(0, \Pi) \implies X = f^{-1}(Z) = Z \Lambda^{1/2} U^T + \mu \sim \mathcal{N}(\mu, \Sigma)\]
+    - in our language: \[Z = \left(X - \mu\right) U \Lambda^{-1/2} \sim \mathcal{N}(0, \mathbb{I}) \implies X = f^{-1}(Z) = Z \Lambda^{1/2} U^T + \mu \sim \mathcal{N}(\mu, \Sigma)\]
 
 - similar for other analytic multi-variate distributions (`scipy.stats` offers ~16)
 
@@ -313,8 +313,8 @@ Note that \(3 \not\Rightarrow 2\) (shown during lecture).
     - \(L_1\) tends to be less blurry for images (better preserves small details)
     - multi-resolution \(L_p\): compute image pyramid (apply loss to different image sizes)
 
-- **denoising autoencoder**: add more noise to the data to teach the network what noise is \[\tilde X = X + \varepsilon \quad \varepsilon \sim \mathcal{N}(\varepsilon \mid 0, \sigma^2 \Pi)\]
-    \[\hat f, \hat g = \argmin_{f, g} \mathbb{E}_{X \sim p^*(X), \varepsilon \sim \mathcal{N}(\varepsilon \mid 0, \sigma^2 \Pi)} \left[||X - q(f(X + \varepsilon))||^2\right]\]
+- **denoising autoencoder**: add more noise to the data to teach the network what noise is \[\tilde X = X + \varepsilon \quad \varepsilon \sim \mathcal{N}(\varepsilon \mid 0, \sigma^2 \mathbb{I})\]
+    \[\hat f, \hat g = \argmin_{f, g} \mathbb{E}_{X \sim p^*(X), \varepsilon \sim \mathcal{N}(\varepsilon \mid 0, \sigma^2 \mathbb{I})} \left[||X - q(f(X + \varepsilon))||^2\right]\]
     - better, deep mathematical properties later
 
 - autoencoder is **not** a generative model (according to our definition):
@@ -360,11 +360,11 @@ Note that \(3 \not\Rightarrow 2\) (shown during lecture).
         - \(\iff\) minimize expected negative log-likelihood (NLL) (proved during the lecture)
         - \(-\mathrm{ELBO}\) is an upper bound for NLL loss
     - **most common implementation** encoder and decoder are diagonal Gaussians: \[p_E(Z \mid X) = \mathcal{N}(Z \mid \mu_E(X), \mathrm{Diag}(\sigma_E(X)^2))\]
-        \[p_D(X \mid Z) = \mathcal{N}(X \mid \mu_D(Z), \beta^2 \Pi)\]
+        \[p_D(X \mid Z) = \mathcal{N}(X \mid \mu_D(Z), \beta^2 \mathbb{I})\]
         - _since we only have diagonal Gaussians, we can't rotate the ellipses_
         - _since we only have Gaussians, the shape is restricted to circles_
-        - if \(q(Z) = \mathcal{N}(0, \Pi)\) then \(\mathrm{KL}\left[p_E \mid\mid g\right]\) can be calculated analytically
-        - if \(p_D(X \mid Z) = \mathcal{N}(Z \mid \mu_D(Z), \beta^2 \Pi)\), reconstruction error becomes squared loss
+        - if \(q(Z) = \mathcal{N}(0, \mathbb{I})\) then \(\mathrm{KL}\left[p_E \mid\mid g\right]\) can be calculated analytically
+        - if \(p_D(X \mid Z) = \mathcal{N}(Z \mid \mu_D(Z), \beta^2 \mathbb{I})\), reconstruction error becomes squared loss
         - \(\beta^2 \gg 1\) downscales squared loss \(\implies \) reconstruction error unimportant
         - \(\beta^2 \ll 1\) upscales squared loss \(\implies \) reconstruction error dominant
           ![](/assets/generative-neural-networks/diag-gauss.webp)
@@ -451,11 +451,11 @@ Note that \(3 \not\Rightarrow 2\) (shown during lecture).
 Since consistency must hold for any \(A\), the integrals must be equal, we get the **multi-variate change-of-variables** formula \[\boxed {p(X) = q(Z = f(X))\; | \det \mathcal{J}_f (X) | }\]
 
 **Goal:**
-- pre-define \(q(Z)\), e.g. \(q(Z) = \mathcal{N}(0, \Pi)\)
+- pre-define \(q(Z)\), e.g. \(q(Z) = \mathcal{N}(0, \mathbb{I})\)
 - learn \(f(X)\) s.t. \(p(X) \approx p^*(X)\) (\(f(X) \cong\) neural network)
 
 Recall the \(1\)-D case: \(q(Z) = \text{uniform}(0, 1) \implies f(X) = \mathrm{CDF}_{p^*}(X)\)
-- for learning \(q(Z) = \mathcal{N}(0, \Pi)\) is better:
+- for learning \(q(Z) = \mathcal{N}(0, \mathbb{I})\) is better:
     - has non-zero gradients for gradient descent
     - supported on all of \(\mathbb{R}^D\) (unlike uniform -- what to do with points outside?)
 
@@ -979,8 +979,8 @@ _Continuing with new lecture here._
 
 **Model misspecification detection:** is \(x^{\mathrm{obs}}\) an outlier?
 - if yes, reject and answer "idk" 🤷
-- trick: exploit the feature detection network: add loss \(\kappa \mathrm{MMD}(p(h(X)) \mid \mathbb{N}(0, \Pi))\)  to pull summary feature distribution towards standard normal
-- reject \(X^{\mathrm{obs}}\) if \(h(X^{\mathrm{obs}})\) is an outlier of \(\mathbb{N}(0, \Pi)\)
+- trick: exploit the feature detection network: add loss \(\kappa \mathrm{MMD}(p(h(X)) \mid \mathbb{N}(0, \mathbb{I}))\)  to pull summary feature distribution towards standard normal
+- reject \(X^{\mathrm{obs}}\) if \(h(X^{\mathrm{obs}})\) is an outlier of \(\mathbb{N}(0, \mathbb{I})\)
 
 **Model comparison & selection** (between competing theories): _measuring training error might not be enough because of overfitting._
 - need _tradeoff between model accuracy and complexity_ ("Occam's razor")
@@ -995,7 +995,7 @@ _Some more stuff was here but brain small._
 - given competing theories \(\mathcal{M}_1, \ldots, \mathcal{M}_L\)
     - epidemiology: different compartments, priors, observation uncertainty etc.
 1. create synthetic training data \[TS_l = \left\{\left(Y_{il} \sim p(Y \mid \mathcal{M} = l), X_i \sim p(X \mid Y_{ill}, \mathcal{M} = l)\right)\right\}_{i=1}^{N_l}\]
-2. train a separate SBI model for each \(TS_l\) with \(\text{MMD}\) so that \(p(h_l(X)) = \mathcal{N}(0, \Pi)\)
+2. train a separate SBI model for each \(TS_l\) with \(\text{MMD}\) so that \(p(h_l(X)) = \mathcal{N}(0, \mathbb{I})\)
 3. perform internal validation for each \(l\), redesign \(\text{SBI}_l\) until successful
 4. train a sofmax classifier \(p(\mathcal{M} \mid X)\) using combined \(\mathrm{TS}\)
     - \(\hat p(\mathcal{M} \mid X) = \argmin_P \frac{1}{L} \sum_{l=1}^{L} \frac{1}{N_l} \sum_{i=1}^{N_l} -\log p(\mathcal{M} = l \mid X = X_{il})\)

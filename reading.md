@@ -23,7 +23,7 @@ While I believe that all of these are worth a read, I also put a star (⭐) next
 	3. **Oathbringer**
 	4. **The Rhythm of War** ⭐
 
-- **Mistborn** [[Wikipedia](https://en.wikipedia.org/wiki/Mistborn_series)] -- another amazing series from Brandon Sanderson with another well thought-out magic system. The first and the second eras vary greatly in their setting (medieval \(\times\) industrial revolution), but I would argue that they both work extremely well.
+- **Mistborn** [[Wikipedia](https://en.wikipedia.org/wiki/Mistborn_series)] -- another amazing series from Brandon Sanderson with another well thought-out magic system. The first and the second eras vary greatly in their setting (medieval × industrial revolution), but I would argue that they both work extremely well.
 	- The First Era:
 		1. **The Final Empire** ⭐
 		2. **The Well of Ascension**

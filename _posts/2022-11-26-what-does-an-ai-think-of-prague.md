@@ -2,6 +2,8 @@
 title: What does an AI think of Prague?
 css: photos
 excerpt: A little while ago, I was playing around with Midjourney (a prompt-based AI image generator). The goal was to create cool posters of Prague that we could print out and hang in our apartment. Since some of them turned out really well (despite the images being completely made-up, you can actually see that the architecture is Prague), I thought it would be a shame not to share them here, so here they are.
+redirect_from:
+- /photos/ai/
 ---
 
 - .

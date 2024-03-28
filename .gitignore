@@ -22,7 +22,7 @@ _plugins/svgcleaner/
 **/*.xcf
 **/*.zip
 **/*.xopp*
-photos/
+photos/**/
 videos/
 fonts/
 

@@ -6,83 +6,50 @@ css: photos
 no-heading: True
 ---
 
-Below is a galery of some of the nicer photos that I've taken.
-All of them had been compressed (quite agressively) to be web-usable.
-If you'd like to see the originals, simply click on the photos.
+Below are collections of photos that I've taken -- some are meant to be just pretty, others depict places that I've seen and things that I've done.
+All of them had been compressed (quite agressively) to be web-usable; **if you'd like to see the originals, simply click on the photos.**
 
-_Each of the photos are licensed under **[CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)**, so kindly respect it if you plan on using any of them for uses other than personal._
+As a rule of thumb, those from trips will be displayed essentially the way they were taken (only with minor modifications like denoising/exposure), whereas those in categories will be more heavily edited.
 
-{: .center}
-### Austria 2024 🏂
-<div class='photo-section'>
-{% photos austria/raw/2024-1.jpg %}
-</div>
+The number [\(x\)] next to the categories is the total number of the photos in the collection.
 
-{: .center}
-### Winter 2023 ❄️ (2 day difference)
-<div class='photo-section'>
-{% photos christmas/raw/2023-1-pre.jpg|christmas/raw/2023-1-post.jpg %}
-{% photos christmas/raw/2023-2-pre.jpg|christmas/raw/2023-2-post.jpg %}
-{% photos christmas/raw/2023-3-pre.jpg|christmas/raw/2023-3-post.jpg %}
-{% photos christmas/raw/2023-4-pre.jpg|christmas/raw/2023-4-post.jpg %}
-</div>
+_All of the photos are licensed under **[CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)**, so kindly respect it if you plan on using any of them for uses other than personal._
 
-{: .center}
-### Austria 2023 ⛰️
-<div class='photo-section'>
-{% photos austria/raw/1.png|austria/raw/2.png|austria/raw/3.png %}
-{% photos austria/raw/4.png|austria/raw/5.png %}
-{% photos austria/raw/s2.png %}
-</div>
+### Trips
 
-{: .center}
-### Tatras 2023 ⛰️
-<div class='photo-section'>
-{% photos tatras/raw/1.png|tatras/raw/2.png %}
-{% photos tatras/raw/4.png|tatras/raw/5.png %}
-</div>
+<!-- Right now, this stuff is duplicit in the photos metadata too. Fixme! -->
 
-{: .center}
-### Nature 🐞
-<div class='photo-section'>
-{% photos flowers/raw/1.jpg|flowers/raw/2.jpg %}
-{% photos tatras/raw/3.png %}
-{% photos bees/raw/1.jpg|bees/raw/2.jpg %}
-</div>
+#### [USA 2024 🇺🇸](/photos/usa-2024/)
+Me and <a class='secret' href='/assets/kacka.webp'>Kačka</a>'s trip to the USA to visit old friends and make new ones.
 
-{: .center}
-### Places 📍
-<div class='photo-section'>
-{% photos places/raw/1.jpg|places/raw/2.jpg %}
-</div>
+#### [Austria 2023 🇦🇹](/photos/austria-2023/)
+Moutaineering/climbing with my Heidelberg friends.
 
-{: .center}
-### Prague 🏙️
-<div class='photo-section'>
-{% photos prague/raw/1.jpg|prague/raw/2.jpg %}
-{% photos prague/raw/3.jpg|prague/raw/4.jpg %}
-</div>
+#### [Tatras 2023 🇸🇰](/photos/tatras-2023/)
+5 programmers versus mountains: who would win?
 
-{: .center}
-### Sunsets 🌇
-<div class='photo-section'>
-{% photos panoramas/raw/1.jpg|panoramas/raw/2.jpg %}
-</div>
+### Collections
 
-{: .center}
-### Winter ❄️
-<div class='photo-section'>
-{% photos panoramas/raw/3.jpeg %}
-{% photos panoramas/raw/4.jpeg %}
-{% photos winter/raw/2.jpeg|winter/raw/3.jpeg %}
-{% photos winter/raw/4.jpg|winter/raw/5.jpg %}
-{% photos winter/raw/1.jpeg %}
-{% photos christmas/raw/2018-1.jpg|christmas/raw/2018-2.jpg %}
-</div>
+#### [4] [Plants 🌻](/photos/plants/)
+Plant-like things and people.
 
-{: .center}
-### Fire 🔥
-<div class='photo-section'>
-{% photos fire/raw/2.jpg|fire/raw/3.jpg %}
-{% photos fire/raw/1.jpg %}
-</div>
+#### [4] [Animals 🐝](/photos/animals/)
+Animals, especially insects.
+
+#### [4] [Prague 🏙️](/photos/prague/)
+From the prettiest city in the world.
+
+#### [7] [Winter ❄️](/photos/winter/)
+Winter-themed. Contains cold things.
+
+#### [2] [Sunsets 🌇](/photos/sunsets/)
+Such romatic. Much love.
+
+#### [3] [Fire 🔥](/photos/fire/)
+Lit 🔥🔥🔥 (no like actually, ablaze).
+
+#### [2] [Christmas 🎄](/photos/christmas/)
+Photos that contain the Christmas spirit.
+
+#### [2] [Other ❔](/photos/other/)
+Pictures that didn't really fit anywhere.
