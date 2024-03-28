@@ -8,7 +8,7 @@ excerpt: Lecture notes from the GPU Computing course (Kazem Shekofteh, 2022/2023
 - .
 {:toc}
 
-{% lecture_notes_preface_heidelberg Kazem Shekofteh|2022/2023%}
+{% lecture_notes_preface Kazem Shekofteh  |  2022/2023 | Heidelberg %}
 
 ### Lecture overview
 
@@ -410,12 +410,12 @@ _The lecture goes into theoretical parallel algorithm design._
 
 #### Synchronization
 
-{% math ENdefinition "synchronization" %}enforcement of a defined logical order between events. This establishes a defined time-relation between distinct places, thus defining their behavior in time.{% endmath %}
+{% math definition "synchronization" %}enforcement of a defined logical order between events. This establishes a defined time-relation between distinct places, thus defining their behavior in time.{% endmath %}
 - **SIMD (warps on GPU):** one instruction, no synchronization necessary
 - **MIMD:** synchronization necessary (shared variables, process synchronization, etc.)
 
 ### Profiling
-{% math ENdefinition: "arithmetic density" %}, sometimes called **computational intensity** \(r\) is the ratio between floating point operations and data movements, i.e. \[r = \frac{\mathrm{FLOPs}}{\mathrm{Byte}}\]{% endmath %}
+{% math definition: "arithmetic density" %}, sometimes called **computational intensity** \(r\) is the ratio between floating point operations and data movements, i.e. \[r = \frac{\mathrm{FLOPs}}{\mathrm{Byte}}\]{% endmath %}
 
 To evaluate a performance, we use the **roofline model:**
 - the performance is limited by its weakest link -- either **memory-bound** or **compute-bound**

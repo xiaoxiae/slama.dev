@@ -15,7 +15,7 @@ excerpt: Poznámky z přednášky Diskrétní Matematika (Martin Mareš, 2019/20
 - .
 {:toc}
 
-{% lecture_notes_preface Martina Mareše | 2019/2020 %}
+{% lecture_notes_preface Martina Mareše  |  2019/2020  | MFF %}
 
 ### Relace
 {% math definition "relace" %}relace mezi množinami \(X, Y \equiv R \subseteq X \times Y\) (podmnožina kartézského součinu)

@@ -8,7 +8,7 @@ excerpt: Lecture notes from the Mining Massive Datasets course (Artur Andrzejak,
 - .
 {:toc}
 
-{% lecture_notes_preface_heidelberg Artur Andrzejak|2022/2023%}
+{% lecture_notes_preface Artur Andrzejak  |  2022/2023 | Heidelberg %}
 
 _Note that the notes only cover the topics [required for the exam](/assets/mining-massive-datasets/exam.pdf), which are only a portion of the contents of the lecture._
 
@@ -58,14 +58,14 @@ PySpark's other main data structure are **DataFrames**:
 	- model training, validation, testing
 	- they use DataFrames
 
-{% math ENdefinition "Transformer" %}an algorithm which transforms one DataFrame into another{% endmath %}
+{% math definition "Transformer" %}an algorithm which transforms one DataFrame into another{% endmath %}
 - uses a `transform()` method to activate (i.e. transform the DataFrame)
 
-{% math ENdefinition "Estimator" %}an algorithm which can be fit on a DataFrame to produce a **Transformer**{% endmath %}
+{% math definition "Estimator" %}an algorithm which can be fit on a DataFrame to produce a **Transformer**{% endmath %}
 - abstracts the concept of a learning algorithm
 - contains a `fit()` function, which when call produces a **Transformer**
 
-{% math ENdefinition "Pipeline" %}an object which contains multiple **Transformers** and **Estimators**{% endmath %}
+{% math definition "Pipeline" %}an object which contains multiple **Transformers** and **Estimators**{% endmath %}
 - a complete **untrained** pipeline is an **Estimator**
 - after calling `fit()`, all estimators become transformers!
 
@@ -125,7 +125,7 @@ _Note: for some reason, this matrix is \(I \times X\) while all other notation i
 - find set \(N\) of other users whose ratings are similar to user \(x\)'s ratings
 - estimate \(x\)'s ratings based on ratings of users from \(N\)
 
-{% math ENalgorithm %}
+{% math algorithm %}
 1. let \(r_x\) be vector of user \(x\)'s ratings and \(N\) the set of neighbors of \(x\)
 2. predicted rating of user \(x\) for item \(i\) is \[\underbrace{r_{xi} = \frac{1}{|N|} \sum_{y \in N} r_{yi}}_{\text{naive version (just average)}} \qquad \underbrace{r_{xi} = \mathrm{avg}(r_x) +  \frac{\sum_{y \in N} \mathrm{sim}(x, y) \cdot (r_{yi} - \mathrm{avg}(r_y))}{ \sum_{y \in N} \mathrm{sim}(x, y)}}_{\text{improved, takes similarity of users into account, along with their bias}}\]
 {% endmath %}
@@ -218,7 +218,7 @@ Using this, we get the **Google PageRank equation:** \[\underbrace{r_j = \sum_{i
 #### Practical computation
 To reduce the matrix operations, we can rearrange the matrix equation and get \[r =\beta M \cdot r + \left[\frac{1 - \beta}{N}\right]_N\]
 
-{% math ENalgorithm "PageRank" %}
+{% math algorithm "PageRank" %}
 - set \(r^{\mathrm{old}}_j = \frac{1}{N}\)
 - repeat until \(\sum_{j} |r^{\mathrm{new}}_j - r^{\mathrm{old}}_j| < \varepsilon\):
 	- _power method iteration:_ \(\forall j: r^{\mathrm{new}}_j = \sum_{i \rightarrow j} \beta \frac{r^{\mathrm{old}_i}}{d^{\mathrm{out}}_i}\), otherwise \(0\) if in-degree of \(j\) is \(0\)
@@ -285,7 +285,7 @@ We can use TrustRank for **spam mass estimation** (i.e. estimate how much rank o
 - **Final filtering:** get the final few candidate pairs and _compare them pairwise_
 
 #### Preface
-{% math ENdefinition "hash function" %}function \(h: D \mapsto R\), where \(D\) is a large domain space and \(R\) a small range space (usually integers).{% endmath %}
+{% math definition "hash function" %}function \(h: D \mapsto R\), where \(D\) is a large domain space and \(R\) a small range space (usually integers).{% endmath %}
 - for example \(h(x) = x \mod b\) with \(b\) prime
 
 They are very useful for implementing sets and dictionaries (have an array to store the elements in and use a good hash function to map them; dynamically grow/shrink as needed).
@@ -350,18 +350,18 @@ Plotting the probabilities with variable \(s\), we get the **S-curve:**
 | 4   | Vodka, Bread, Diaper, Milk |
 | 5   | Coke, Diaper, Milk         |
 
-{% math ENdefinition "frequent itemsets" %}sets of items that frequently appear together{% endmath %}
+{% math definition "frequent itemsets" %}sets of items that frequently appear together{% endmath %}
 - **support** for itemset \(I\): number of baskets containing all \(I\) items
 	- i.e. support for \(\left\{\text{Vodka}, \text{Bread}\right\}\) from the table above is \(2\)
 	- given a **support threshold \(s\)**, we call a set **frequent**, if they appear in at least \(s\) baskets
 
-{% math ENdefinition "association rule" %}an association rule \(R\) has the form \[\left\{i_1, i_2, \ldots, i_k\right\} \implies \left\{j_1, j_2, \ldots, j_m\right\}\] and essentially states that _if_ a basket contains the set \(I\), then it also contains set \(J\){% endmath %}
+{% math definition "association rule" %}an association rule \(R\) has the form \[\left\{i_1, i_2, \ldots, i_k\right\} \implies \left\{j_1, j_2, \ldots, j_m\right\}\] and essentially states that _if_ a basket contains the set \(I\), then it also contains set \(J\){% endmath %}
 - we want high **confidence**: if \(I \subseteq B\) then \(J \subseteq B\)
 - we also want high **rule support**: \(\mathrm{support}(I \cup J)\) is large
 
-{% math ENdefinition "confidence" %}of an association rule is the probability that it applies if \(I \subseteq B\), namely \[\mathrm{confidence}(I \rightarrow J) = \frac{\mathrm{support}(I \cup J)}{\mathrm{support}(I)}\]{% endmath %}
+{% math definition "confidence" %}of an association rule is the probability that it applies if \(I \subseteq B\), namely \[\mathrm{confidence}(I \rightarrow J) = \frac{\mathrm{support}(I \cup J)}{\mathrm{support}(I)}\]{% endmath %}
 
-{% math ENdefinition "interest" %}of an association rule is the difference between confidence and the fraction of baskets that contain \(J\), namely \[\mathrm{interest}(I \rightarrow J) = \mathrm{confidence}(I \rightarrow J) - \mathrm{Pr}[J \in B] \]{% endmath %}
+{% math definition "interest" %}of an association rule is the difference between confidence and the fraction of baskets that contain \(J\), namely \[\mathrm{interest}(I \rightarrow J) = \mathrm{confidence}(I \rightarrow J) - \mathrm{Pr}[J \in B] \]{% endmath %}
 
 **Problem:** we want to find all association rules with \(\mathrm{support} \ge s\) and \(\mathrm{confidence} \ge c\).
 1. find all frequent itemsets \(I\) (those with \(\mathrm{support} \ge s\))
@@ -382,7 +382,7 @@ Plotting the probabilities with variable \(s\), we get the **S-curve:**
 - key idea: **monotonicity:** if a set \(I\) appears at least \(s\) times, so does its every subset
 	- \(\Rightarrow\) if item \(i\) doesn't appear in \(s\) baskets, neither can any set that includes it
 
-{% math ENalgorithm "A-Priori" %}
+{% math algorithm "A-Priori" %}
 1. pass: count **individual items**
 2. pass: count only pairs where **both elements are frequent**
 {% endmath %}
@@ -397,7 +397,7 @@ Plotting the probabilities with variable \(s\), we get the **S-curve:**
 - hash pairs into buckets (just their counts) to speed up phase 2
 	- _if they were frequent, their bucket must have been frequent too_
 
-{% math ENalgorithm "PCY (Park-Chen-Yu)" %}
+{% math algorithm "PCY (Park-Chen-Yu)" %}
 1. pass: count individual items + hash pairs to buckets, counting them too
 	- _between passes:_ convert the buckets into a bit-vector:
 		- \(1\) if a bucket count exceeded support \(s\)
@@ -482,7 +482,7 @@ The **minimum** of this function (wrt. \(k\)) is \(n/m \ln(2)\):
 ##### Fixed size (Reservoir Sampling)
 **Goal:** store a fixed number \(|S|\) of elements of the stream
 
-{% math ENalgorithm "Reservoir Sampling" %}
+{% math algorithm "Reservoir Sampling" %}
 - store all first \(s\) elements
 - when an element number \(n > s\) comes in, with probability \(s/n\), keep it (replacing one of the current elements uniformly randomly), else discard it
 {% endmath %}
@@ -499,7 +499,7 @@ This ensures that after \(n\) elements, all elements have a \(s/n\) probability 
 - we can't store the whole \(N\), we'd like to approximate with the smallest error
 
 ##### Flajolet-Martin
-{% math ENalgorithm "Flajolet-Martin" %}
+{% math algorithm "Flajolet-Martin" %}
 - pick a hash function \(h\) that maps each of the \(N\) elements to at least \(\log_2 N\) bits
 - let \(r(a)\) be the number of trailing zeroes in \(h(a)\)
 	- estimated number of distinct elements is \(2^{\max_a r(a)} \)
@@ -515,7 +515,7 @@ We can **generalize this** concept to counting **moments:** for \(m_a\) being th
 	- for sequence \(90, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1\), \(S = 8110\)
 
 ##### AMS Algorithm
-{% math ENalgorithm "AMS (Alton-Matias-Szegedy)" %}
+{% math algorithm "AMS (Alton-Matias-Szegedy)" %}
 - pick and keep track of „approximate“ variables \(X\)
 	- the more variables there are (say \(k\)), the more precise the approximation is
 	- for each \(X\), we store the ID and the count of the given item

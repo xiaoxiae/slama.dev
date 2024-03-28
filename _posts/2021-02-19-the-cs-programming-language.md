@@ -10,7 +10,7 @@ excerpt: Lecture notes from The C# programming language lecture (Pavel Ježek, 2
 - .
 {:toc}
 
-{% lecture_notes_preface Pavel Ježek|2020/2021|en%}
+{% lecture_notes_preface Pavel Ježek | 2020/2021 | MFF %}
 
 Besides this, they have been slightly extended by some C#-specific questions for my [Bachelor's state exam](https://slama.dev/vzdelani/priprava-na-statnice-mff-uk/) that were not covered in the lecture, namely generics and functional elements.
 

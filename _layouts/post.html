@@ -17,10 +17,10 @@ layout: default
 		<span class="half-visible vspace">· </span>
 	{% endif %}
 
+	{{ page.date | date: date_format }}
+
 	{% if page.language == "cz" %}
-		{{ page.date | date: date_format }}
-	{% else %}
-		{{ page.date | date: date_format }}
+		<span class="half-visible vspace">· </span>🇨🇿
 	{% endif %}
 
 	{% if page.pdf or page.pdf-nogenerate %}

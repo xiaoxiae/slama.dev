@@ -15,7 +15,7 @@ excerpt: Poznámky z přednášky Diskrétní a spojitá optimalizace (Martin Lo
 - .
 {:toc}
 
-{% lecture_notes_preface Martina Loebla a Milana Hladíka|2021/2022%}
+{% lecture_notes_preface Martina Loebla a Milana Hladíka | 2021/2022 | MFF %}
 
 ### Diskrétní optimalizace
 

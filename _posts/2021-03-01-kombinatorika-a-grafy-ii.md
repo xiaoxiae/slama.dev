@@ -16,7 +16,7 @@ excerpt: Poznámky z přednášky Kombinatorika a Grafy II (Martin Koutecký, 20
 - .
 {:toc}
 
-{% lecture_notes_preface Martina Kouteckého|2020/2021%}
+{% lecture_notes_preface Martina Kouteckého | 2020/2021 | MFF %}
 
 ### 1. přednáška
 

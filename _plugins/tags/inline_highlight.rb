@@ -12,7 +12,7 @@ module Jekyll
 
 		def add_code_tag(code)
 			code_attributes = [
-				"class=\"highlight language-#{@lang.to_s.gsub('+', '-')}\"",
+				"class=\"highlighter-rogue language-#{@lang.to_s.gsub('+', '-')}\"",
 				"data-lang=\"#{@lang.to_s}\""
 			].join(" ")
 			"<code #{code_attributes}>#{code.chomp.strip}</code>"

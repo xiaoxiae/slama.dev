@@ -13,7 +13,7 @@ excerpt: Poznámky z přednášky Pravděpodobnost a Statistika I (Robert Šáma
 
 **Upozornění:** _Poznámky jsem vytvořil ke přípravě na státnice, takže jsou povrchní (obsahují pouze definice, tvrzení a příklady, žádné důkazy a velmi málo obsahu z konce semestru). Ke studiu na zkoušku se můžou hodit, ale rozhodně bych se neučil pouze z nich._
 
-{% lecture_notes_preface Roberta Šámala | 2020/2021 %}
+{% lecture_notes_preface Roberta Šámala  |  2020/2021  | MFF %}
 
 
 ### Úvod

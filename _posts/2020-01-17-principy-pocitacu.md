@@ -15,7 +15,7 @@ excerpt: Poznámky z přednášky Principy Počítačů (Pavel Ježek, 2019/2020
 - .
 {:toc}
 
-{% lecture_notes_preface Pavla Ježka|2019/2020%}
+{% lecture_notes_preface Pavla Ježka | 2019/2020 | MFF %}
 
 ### Zjednodušené schéma počítače
 

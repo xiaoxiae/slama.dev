@@ -15,7 +15,7 @@ excerpt: Poznámky z přednášky Aproximační Algoritmy (Jiří Sgall, 2021/20
 - .
 {:toc}
 
-{% lecture_notes_preface Jiřího Sgalla|2021/2022%}
+{% lecture_notes_preface Jiřího Sgalla | 2021/2022 | MFF %}
 
 ### Základní definice
 

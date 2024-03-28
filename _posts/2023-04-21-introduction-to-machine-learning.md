@@ -8,7 +8,7 @@ excerpt: Lecture notes from the Introduction to Machine Learning course (Ullrich
 - .
 {:toc}
 
-{% lecture_notes_preface_heidelberg Ullrich Köthe|2022/2023%}
+{% lecture_notes_preface Ullrich Köthe | 2022/2023 | Heidelberg %}
 
 **_The notes end at the decision tree/forest lecture (inclusive)!_**
 
@@ -209,10 +209,10 @@ Some history behind ML:
 	- subfield "explainable/interpretable ML"
 
 ##### How good can it be?
-{% math ENdefinition "Bayes classifier" %}uses Bayes rule (LHS or RHS) with true probabilities \(p^*\){% endmath %}
+{% math definition "Bayes classifier" %}uses Bayes rule (LHS or RHS) with true probabilities \(p^*\){% endmath %}
 - we don't know \(p^*\), we want to get as close as possible
 
-{% math ENtheorem %}no learned classifier using \(\hat{p}\) can be better than the Bayes classifier.{% endmath %}
+{% math theorem %}no learned classifier using \(\hat{p}\) can be better than the Bayes classifier.{% endmath %}
 - if our results are bad, we have to get better theory (more features)
 
 ##### How bad can it be?
@@ -248,7 +248,7 @@ Gradient descent looks as follows: \[\beta^{(t)} = \beta^{(t - 1)} - \tau \under
 
 ##### Rosenblatt's algorithm
 
-{% math ENalgorithm "Rosenblatt's algorithm" %}
+{% math algorithm "Rosenblatt's algorithm" %}
 
 1. initialzation of \(\beta^{(0)}\) -- random/uniform numbers
 2. for \(t = 1, \ldots, T\) (or until convergence)
@@ -654,13 +654,13 @@ Previously, NN were believed to not be a good idea, but
 		- when dog moves, features move in the same way
 	- these are two of the defining ideas of a **convolution**
 
-{% math ENdefinition "filter" %}consumes an image and outputs another "filtered" image{% endmath %}
+{% math definition "filter" %}consumes an image and outputs another "filtered" image{% endmath %}
 \[\tilde f(t) = \mathrm{Filter\left[f(t)\right]}\]
 
 For our filter, we want **translation equivariance** \[\tilde f(t) = \mathrm{Filter}\left[f(t)\right] \implies \tilde f(t + t_0) = \mathrm{Filter}\left[f(t + t_0)\right]\]
 and **linearity** \[\tilde f(t), \tilde g(t) \implies \alpha_1 \tilde f(t) + \alpha_2 \tilde g(t) = \mathrm{Filter}\left[\alpha_1 f(t) + \alpha_2 g(t)\right]\]
 
-{% math ENtheorem %}any such filter can be written as a convolution integral, i.e. \[\tilde f(t) = \int_{-\infty}^{\infty} f(t') \cdot \underbrace{g(t - t')}_{\text{filter kernel}} dt' = (f \otimes g) (t)\]{% endmath %}
+{% math theorem %}any such filter can be written as a convolution integral, i.e. \[\tilde f(t) = \int_{-\infty}^{\infty} f(t') \cdot \underbrace{g(t - t')}_{\text{filter kernel}} dt' = (f \otimes g) (t)\]{% endmath %}
 
 Substituting \(t'' = t - t'\), we see that the operation is **commutative:** \[\int_{-\infty}^{\infty} f(t - t'') \cdot g(t'') dt'' = (g \otimes f)(t)\]
 
