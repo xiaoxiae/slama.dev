@@ -18,39 +18,39 @@ Besides this, they have been slightly extended by some C#-specific questions for
 - internally an array of chars
 - **immutable** (neither length nor contents)
 	- concatenation creates new strings
-		- `String.concat(s1, s2, s3, ...);` is good for concatenating a lot of them
-			- `s = "a" + "bcd" + "ef";` internally uses this method, so it isn't slow
-- `System.String` is the same as `string`
+		- {% ihighlight cs %}String.concat(s1, s2, s3, ...);{% endihighlight %} is good for concatenating a lot of them
+			- {% ihighlight cs %}s = "a" + "bcd" + "ef";{% endihighlight %} internally uses this method, so it isn't slow
+- {% ihighlight cs %}System.String{% endihighlight %} is the same as {% ihighlight cs %}string{% endihighlight %}
 	- can't ever be a name of a variable!
-	- removes the confusion -- what if someone decides to implement a `String` class
-- `==` compares contents, char by char (same as `.Equals()`)
-	- we can use `object.ReferenceEquals(o1, o2)` if we want reference equality
+	- removes the confusion -- what if someone decides to implement a {% ihighlight cs %}String{% endihighlight %} class
+- {% ihighlight cs %}=={% endihighlight %} compares contents, char by char (same as {% ihighlight cs %}.Equals(){% endihighlight %})
+	- we can use {% ihighlight cs %}object.ReferenceEquals(o1, o2){% endihighlight %} if we want reference equality
 
 | Action                       | Code                                             |
 | ---                          | ---                                              |
-| split                        | `s.Split(char);`                                 |
-| split on multiple delimiters | `s.Split(delimiters);`, `delimiters` is `char[]` |
-| convert to integer           | `int.Parse(string);`, can throw!                 |
-| length                       | `s.Length;`                                      |
+| split                        | {% ihighlight cs %}s.Split(char);{% endihighlight %}                                 |
+| split on multiple delimiters | {% ihighlight cs %}s.Split(delimiters);{% endihighlight %}, {% ihighlight cs %}delimiters{% endihighlight %} is {% ihighlight cs %}char[]{% endihighlight %} |
+| convert to integer           | {% ihighlight cs %}int.Parse(string);{% endihighlight %}, can throw!                 |
+| length                       | {% ihighlight cs %}s.Length;{% endihighlight %}                                      |
 
 #### Interning
 - hashmap for reusing already created strings
-- only for constants, not variables (only exception being `""`)!
-- we can do this ourselves using `String.Intern(str);` -- if the table contains it, return it; else add it to the table
+- only for constants, not variables (only exception being {% ihighlight cs %}""{% endihighlight %})!
+- we can do this ourselves using {% ihighlight cs %}String.Intern(str);{% endihighlight %} -- if the table contains it, return it; else add it to the table
 	- should be limited use: strings can't be removed from the table
 
-#### `System.Text.StringBuilder`
+#### {% ihighlight cs %}System.Text.StringBuilder{% endihighlight %}
 - essentially a **mutable string**
 - internally behaves like a dynamic array
 	- quick operations like concatenation
-- `.ToString()` returns a proper string (since we can't use `StringBuilder` anywhere we want a string)
-	- no copying happens -- internally, the new string points to the contents of the `StringBuilder` (so we don't have to copy twice)
+- {% ihighlight cs %}.ToString(){% endihighlight %} returns a proper string (since we can't use {% ihighlight cs %}StringBuilder{% endihighlight %} anywhere we want a string)
+	- no copying happens -- internally, the new string points to the contents of the {% ihighlight cs %}StringBuilder{% endihighlight %} (so we don't have to copy twice)
 	- if we were to modify the string builder again, it gets copied
 
 #### Interpolation
-- `Console.Write("cislo = {0} a {1}", i, j");`
-	- same as `Console.Write("cislo = " + i.ToString() + " a " + j.ToString())`,
-	- calls `String.Format("format string", i, j)`
+- {% ihighlight cs %}Console.Write("cislo = {0} a {1}", i, j");{% endihighlight %}
+	- same as {% ihighlight cs %}Console.Write("cislo = " + i.ToString() + " a " + j.ToString()){% endihighlight %},
+	- calls {% ihighlight cs %}String.Format("format string", i, j){% endihighlight %}
 		- creates new string
 
 ```cs
@@ -60,42 +60,42 @@ Console.WriteLine("{0}: Hello, {1}!", s1, s2);
 Console.WriteLine("{0}: Hello, " + s2 + "!", s1, s2);
 ```
 
-- **interpolated strings** -- `$"My name is {name} and I'm {age}."`
-	- is translated into a `String.Format` call (at compile time)... most of the time
-	- if assigned to a `FormattableString`, its instance is created instead
-		- `.GetArgument(i)` returns the i-th argument
-		- `.Format()` creates a string
-	- the `{}` blocks can be additionaly formatted using `:<format>` and `, <format>`
+- **interpolated strings** -- {% ihighlight cs %}$"My name is {name} and I'm {age}."{% endihighlight %}
+	- is translated into a {% ihighlight cs %}String.Format{% endihighlight %} call (at compile time)... most of the time
+	- if assigned to a {% ihighlight cs %}FormattableString{% endihighlight %}, its instance is created instead
+		- {% ihighlight cs %}.GetArgument(i){% endihighlight %} returns the i-th argument
+		- {% ihighlight cs %}.Format(){% endihighlight %} creates a string
+	- the {% ihighlight cs %}{}{% endihighlight %} blocks can be additionaly formatted using {% ihighlight cs %}:<format>{% endihighlight %} and {% ihighlight cs %}, <format>{% endihighlight %}
 
 ### Chars
-- `System.Char` == `char` (keyword)
+- {% ihighlight cs %}System.Char{% endihighlight %} == {% ihighlight cs %}char{% endihighlight %} (keyword)
 - 2-byte UTF-16 character
 	- some characters must be at least a string, since some UTF-16 characters can be up to 4 bytes
-- `\xABCD` -- unicode code in hex, consumes **one to four hex characters**
-- `\uABCD` -- unicode code in hex, consumes **exactly four hex characters**
-- `\UABCDEFGH` -- unicode code in hex, consumes **exactly eight hex characters**
+- {% ihighlight cs %}\xABCD{% endihighlight %} -- unicode code in hex, consumes **one to four hex characters**
+- {% ihighlight cs %}\uABCD{% endihighlight %} -- unicode code in hex, consumes **exactly four hex characters**
+- {% ihighlight cs %}\UABCDEFGH{% endihighlight %} -- unicode code in hex, consumes **exactly eight hex characters**
 	- note that while it does mean a single character, this has to be a string
 
 ### File I/O
 
-- if we're dealing with binary I/O, use `FileStream` instead; this is for text
+- if we're dealing with binary I/O, use {% ihighlight cs %}FileStream{% endihighlight %} instead; this is for text
 
 | Action     | Code                                                              |
 | ---        | ---                                                               |
-| reading    | `System.IO.StreamReader f = new System.IO.StreamReader(path);`    |
-| read line  | `f.ReadLine();`                                                   |
-| read chars | `int chars_read = f.Read(buffer, 0, BUFFER_SIZE);`                |
-| writing    | `System.IO.StreamWriter f = new System.IO.StreamWriter(path);`    |
-| write line | `f.WriteLine(line);`                                              |
-| close      | `f.Dispose();`                                                    |
+| reading    | {% ihighlight cs %}System.IO.StreamReader f = new System.IO.StreamReader(path);{% endihighlight %}    |
+| read line  | {% ihighlight cs %}f.ReadLine();{% endihighlight %}                                                   |
+| read chars | {% ihighlight cs %}int chars_read = f.Read(buffer, 0, BUFFER_SIZE);{% endihighlight %}                |
+| writing    | {% ihighlight cs %}System.IO.StreamWriter f = new System.IO.StreamWriter(path);{% endihighlight %}    |
+| write line | {% ihighlight cs %}f.WriteLine(line);{% endihighlight %}                                              |
+| close      | {% ihighlight cs %}f.Dispose();{% endihighlight %}                                                    |
 
 ### Classes
 
 #### Constructor
-- same syntax as C++, but it's a good idea to add a `public` before it
+- same syntax as C++, but it's a good idea to add a {% ihighlight cs %}public{% endihighlight %} before it
 - if none is specified, a default one without parameters is created
 	- note that we have to write it explicitly if we want it besides one with parameters!
-- translated to a `.ctor` method (see disassembly)
+- translated to a {% ihighlight cs %}.ctor{% endihighlight %} method (see disassembly)
 	- useful to know, since debug messages can contain this
 
 ```cs
@@ -115,7 +115,7 @@ class A {
 }
 ```
 
-- everything in C# inherits `: object == System.Object` (if not inheriting anything)
+- everything in C# inherits {% ihighlight cs %}: object == System.Object{% endihighlight %} (if not inheriting anything)
 
 When inheriting, the constructor of the predecessor is called like this:
 
@@ -177,17 +177,17 @@ class A : B {
 ```
 
 - calling one constructor from another constructor:
-	- `A(): this(constructor parameters) {}`
-	- the stuff that would be called before `A()` isn't called (so we don't do it twice)
+	- {% ihighlight cs %}A(): this(constructor parameters) {}{% endihighlight %}
+	- the stuff that would be called before {% ihighlight cs %}A(){% endihighlight %} isn't called (so we don't do it twice)
 
 #### Static/class constructor
 - same as a regular constructor but for static variables
 - called before the first time an object of the class is instantiated
 	- if no object is constructed, it is never called
-	- if we do `Class a;`, then it's also not called!
+	- if we do {% ihighlight cs %}Class a;{% endihighlight %}, then it's also not called!
 - if none is specified, a default blank one is instantiated
 	- this means that it can never have parameters
-- internally called `.cctor`
+- internally called {% ihighlight cs %}.cctor{% endihighlight %}
 
 ```cs
 class A {
@@ -196,7 +196,7 @@ class A {
 ```
 
 #### Destructors/finalizers
-- same name as the class, but prepended with a tilde (`~`)
+- same name as the class, but prepended with a tilde ({% ihighlight cs %}~{% endihighlight %})
 - has no return type and no parameters
 - cannot be defined in structures
 - called when the object is **destroyed** (by the GC)
@@ -213,14 +213,14 @@ a = new B();   // is also fine
 - when inheriting, everything is inherited, **except constructors**
 	- it would be a mess -- which constructor would get called when?
 - each class has **exactly one** predecessor
-	- if none is specified, `System.Object == object` is used automatically
+	- if none is specified, {% ihighlight cs %}System.Object == object{% endihighlight %} is used automatically
 
 ##### Virtual/abstract/new methods
 - it sometimes makes sense to implement a function differently in a child... **member hiding**
-	- if we're looking at `B` like it's `A`, the `A` implementation would be called (if it's not virtual)
+	- if we're looking at {% ihighlight cs %}B{% endihighlight %} like it's {% ihighlight cs %}A{% endihighlight %}, the {% ihighlight cs %}A{% endihighlight %} implementation would be called (if it's not virtual)
 	- a warning is issued -- did we really want to do this?
-		- what if we called the method from some other method in `A`?
-		- we can use `new` to let it know that we really wanted to do this
+		- what if we called the method from some other method in {% ihighlight cs %}A{% endihighlight %}?
+		- we can use {% ihighlight cs %}new{% endihighlight %} to let it know that we really wanted to do this
 
 ```cs
 class A {
@@ -267,89 +267,89 @@ Animal pet = new Beagle();
 pet.Name();              // prints Mammal
 ```
 
-- `new` **creates a new record,** `override` **overrides the current one:**
+- {% ihighlight cs %}new{% endihighlight %} **creates a new record,** {% ihighlight cs %}override{% endihighlight %} **overrides the current one:**
 	- it doesn't matter that a method with the same name already existed
 
-|          | `A` | `M` | `D` | `B` |
+|          | {% ihighlight cs %}A{% endihighlight %} | {% ihighlight cs %}M{% endihighlight %} | {% ihighlight cs %}D{% endihighlight %} | {% ihighlight cs %}B{% endihighlight %} |
 | ---      | --- | --- | --- | --- |
-| `A.Name` | `A` | `M` | `M` | `M` |
-| `D.Name` |     |     | `D` | `B` |
+| {% ihighlight cs %}A.Name{% endihighlight %} | {% ihighlight cs %}A{% endihighlight %} | {% ihighlight cs %}M{% endihighlight %} | {% ihighlight cs %}M{% endihighlight %} | {% ihighlight cs %}M{% endihighlight %} |
+| {% ihighlight cs %}D.Name{% endihighlight %} |     |     | {% ihighlight cs %}D{% endihighlight %} | {% ihighlight cs %}B{% endihighlight %} |
 
-- if `abstract` is used, an entry in VTM is created but no implementation is provided
-	- the entire class has to be `abstract` so it can't be instantiated, since the method has to be overriden
-- virtual methods can be called from the constructor and act correctly, since `Type` (and its VMT) must have been initialized by then
-- `virtual` is essentially a promise to the user that it's fine to provide an alternate implementation in the child without breaking the entire class
-- `base` can be used to call a method from the parent non-virtually (even if it were)
+- if {% ihighlight cs %}abstract{% endihighlight %} is used, an entry in VTM is created but no implementation is provided
+	- the entire class has to be {% ihighlight cs %}abstract{% endihighlight %} so it can't be instantiated, since the method has to be overriden
+- virtual methods can be called from the constructor and act correctly, since {% ihighlight cs %}Type{% endihighlight %} (and its VMT) must have been initialized by then
+- {% ihighlight cs %}virtual{% endihighlight %} is essentially a promise to the user that it's fine to provide an alternate implementation in the child without breaking the entire class
+- {% ihighlight cs %}base{% endihighlight %} can be used to call a method from the parent non-virtually (even if it were)
 
 ##### Superclass to subclass conversion
-- take `A` and `B` from the code above; `B b = (B)a;` has to be checked at runtime
+- take {% ihighlight cs %}A{% endihighlight %} and {% ihighlight cs %}B{% endihighlight %} from the code above; {% ihighlight cs %}B b = (B)a;{% endihighlight %} has to be checked at runtime
 	- the conversion is explicit, because it's something to think about
-- if it's wrong `InvalidCastException` is thrown, so test the code!
+- if it's wrong {% ihighlight cs %}InvalidCastException{% endihighlight %} is thrown, so test the code!
 
-###### `is`
-- checks, whether `object` is of the given `Type` (or type of any of its children)
+###### {% ihighlight cs %}is{% endihighlight %}
+- checks, whether {% ihighlight cs %}object{% endihighlight %} is of the given {% ihighlight cs %}Type{% endihighlight %} (or type of any of its children)
 - runtime calls a method, not too quick of an operation -- has to go through the class tree!
-- if `object` is `null`, `false` is always returned, though it seems that `null` can be anything
+- if {% ihighlight cs %}object{% endihighlight %} is {% ihighlight cs %}null{% endihighlight %}, {% ihighlight cs %}false{% endihighlight %} is always returned, though it seems that {% ihighlight cs %}null{% endihighlight %} can be anything
 
-###### `as`
-- returns the `object` if it is of the given `Type` (or type of any of its children), else `null`
+###### {% ihighlight cs %}as{% endihighlight %}
+- returns the {% ihighlight cs %}object{% endihighlight %} if it is of the given {% ihighlight cs %}Type{% endihighlight %} (or type of any of its children), else {% ihighlight cs %}null{% endihighlight %}
 
 ```cs
-B b = a as B;  // assigns `a` to `b` if it's of the valid type
-               // this is the reason why `null is A` returns false
+B b = a as B;  // assigns {% ihighlight cs %}a{% endihighlight %} to {% ihighlight cs %}b{% endihighlight %} if it's of the valid type
+               // this is the reason why {% ihighlight cs %}null is A{% endihighlight %} returns false
 
 if (b != null) {
-	// do stuff with `B b`
+	// do stuff with {% ihighlight cs %}B b{% endihighlight %}
 }
 
 // is almost equivalent to (since C# 7.0)
-// only difference is that `b` is not initialized after
+// only difference is that {% ihighlight cs %}b{% endihighlight %} is not initialized after
 
 if (a is B b) {
-	// do stuff with `B b`
+	// do stuff with {% ihighlight cs %}B b{% endihighlight %}
 }
 ```
 
-##### `System.Object`
+##### {% ihighlight cs %}System.Object{% endihighlight %}
 - inherited by all classes
 - has the following members:
-	- `protected object MemberwiseClone();`
+	- {% ihighlight cs %}protected object MemberwiseClone();{% endihighlight %}
 		- creates a shallow copy of the object (byte by byte)
 		- doesn't make much sense for reference types
 		- note that it is protected!
-			- implement `public A Clone() {...}` to make it public
-			- there is an `IClonable` interface, but it was before `<T>`...
-	- `public Type GetType();`
-		- done for all types (`new Type("A")`,...)
-		- contains `.Name` and other stuff for reflection
+			- implement {% ihighlight cs %}public A Clone() {...}{% endihighlight %} to make it public
+			- there is an {% ihighlight cs %}IClonable{% endihighlight %} interface, but it was before {% ihighlight cs %}<T>{% endihighlight %}...
+	- {% ihighlight cs %}public Type GetType();{% endihighlight %}
+		- done for all types ({% ihighlight cs %}new Type("A"){% endihighlight %},...)
+		- contains {% ihighlight cs %}.Name{% endihighlight %} and other stuff for reflection
 		- also contains a **virtual method table** (VMT)
-	- `public virtual bool Equals(object o);`
+	- {% ihighlight cs %}public virtual bool Equals(object o);{% endihighlight %}
 		- for checking, whether two objects are equal
-	- `public virtual string ToString();`
+	- {% ihighlight cs %}public virtual string ToString();{% endihighlight %}
 		- the string representation of the object
 		- shouldn't be something too complicated (like a giant recursive function)
-	- `public virtual int GetHashCode();`
+	- {% ihighlight cs %}public virtual int GetHashCode();{% endihighlight %}
 		- hash code of the object; for hashmap-like data structures
-	- `public static bool ReferenceEquals(object objA, object objB);`
+	- {% ihighlight cs %}public static bool ReferenceEquals(object objA, object objB);{% endihighlight %}
 		- whether the two objects are equal by reference
 
-##### `System.ValueType`
-- is inherited by all types (`int`, `Nullable`, `bool`, user-defined structures...)
-- overrides `Equals` to be byte-equal (since it is a value type)
+##### {% ihighlight cs %}System.ValueType{% endihighlight %}
+- is inherited by all types ({% ihighlight cs %}int{% endihighlight %}, {% ihighlight cs %}Nullable{% endihighlight %}, {% ihighlight cs %}bool{% endihighlight %}, user-defined structures...)
+- overrides {% ihighlight cs %}Equals{% endihighlight %} to be byte-equal (since it is a value type)
 	- if it has reference members, **uses reflection to check their values too** -- string, for example
 		- better to implement it ourselves in this case
 
-##### `sealed`
+##### {% ihighlight cs %}sealed{% endihighlight %}
 - prevents inheritance and allows for some code optimizations
 	- no virtual function calls
-- `sealed class A {}` -- is not inheritable
-- `sealed override void m()` -- is not overridable
+- {% ihighlight cs %}sealed class A {}{% endihighlight %} -- is not inheritable
+- {% ihighlight cs %}sealed override void m(){% endihighlight %} -- is not overridable
 
 #### Generic classes
 - useful when we have a lot of similar classes that differ by types
-- can be used for `struct`s and `interface`s too
+- can be used for {% ihighlight cs %}struct{% endihighlight %}s and {% ihighlight cs %}interface{% endihighlight %}s too
 
-```
+```cs
 class FixedStack<T> {
 	T[] a;
 	int num;
@@ -393,21 +393,21 @@ e = f; // error, f is not initialized in all paths
 ```
 
 ### Exceptions
-- all exceptions must inherit the `System.Exception` class
-	- even the ones from other languages are wrapped in a `SEHException`
-- takes a _long_ time (a lot of things have to be collected), though a `try` block is basically free
+- all exceptions must inherit the {% ihighlight cs %}System.Exception{% endihighlight %} class
+	- even the ones from other languages are wrapped in a {% ihighlight cs %}SEHException{% endihighlight %}
+- takes a _long_ time (a lot of things have to be collected), though a {% ihighlight cs %}try{% endihighlight %} block is basically free
 - watch out for exceptions that 
-	1. can't be caught (like `StackOverflowException`)
-	2. probably shouldn't be caught (like `OutOfMemoryException`)
+	1. can't be caught (like {% ihighlight cs %}StackOverflowException{% endihighlight %})
+	2. probably shouldn't be caught (like {% ihighlight cs %}OutOfMemoryException{% endihighlight %})
 
-#### `System.Exception`
+#### {% ihighlight cs %}System.Exception{% endihighlight %}
 
 | Property/Function | Meaning                             |
 | ---               | ---                                 |
-| `e.Message`       | `string` error message              |
-| `e.StackTrace`    | `string` trace of method call stack |
-| `e.Source`        | `string` app/object that threw it   |
-| `e.ToString()`    | `string` the formatted exception    |
+| {% ihighlight cs %}e.Message{% endihighlight %}       | {% ihighlight cs %}string{% endihighlight %} error message              |
+| {% ihighlight cs %}e.StackTrace{% endihighlight %}    | {% ihighlight cs %}string{% endihighlight %} trace of method call stack |
+| {% ihighlight cs %}e.Source{% endihighlight %}        | {% ihighlight cs %}string{% endihighlight %} app/object that threw it   |
+| {% ihighlight cs %}e.ToString(){% endihighlight %}    | {% ihighlight cs %}string{% endihighlight %} the formatted exception    |
 
 #### Syntax
 ```cs
@@ -422,32 +422,32 @@ try {
 ```
 
 #### Common exception classes
-- it's important to distinguish exceptions due to bugs (`NullReferenceException`, `IndexOutOfRangeException`) and due to incorrect program usage (possibly `FileNotFoundException` and many others)
+- it's important to distinguish exceptions due to bugs ({% ihighlight cs %}NullReferenceException{% endihighlight %}, {% ihighlight cs %}IndexOutOfRangeException{% endihighlight %}) and due to incorrect program usage (possibly {% ihighlight cs %}FileNotFoundException{% endihighlight %} and many others)
 
 ---
 
-- `Exception`
-	- `SystemException`
-		- `ArithmeticException`
-			- `DivideByZeroException`
-			- `OverflowException`
+- {% ihighlight cs %}Exception{% endihighlight %}
+	- {% ihighlight cs %}SystemException{% endihighlight %}
+		- {% ihighlight cs %}ArithmeticException{% endihighlight %}
+			- {% ihighlight cs %}DivideByZeroException{% endihighlight %}
+			- {% ihighlight cs %}OverflowException{% endihighlight %}
 			- ....
-		- `NullReferenceException`
-		- `IndexOutOfRangeException`
-		- `InvalidCastException`
+		- {% ihighlight cs %}NullReferenceException{% endihighlight %}
+		- {% ihighlight cs %}IndexOutOfRangeException{% endihighlight %}
+		- {% ihighlight cs %}InvalidCastException{% endihighlight %}
 		- ...
-	- `ApplicationException`
+	- {% ihighlight cs %}ApplicationException{% endihighlight %}
 		- user-defined exceptions
 		- ...
-	- `IOException`
-		- `FileNotFoundException`
-		- `DirectoryNotFoundException`
+	- {% ihighlight cs %}IOException{% endihighlight %}
+		- {% ihighlight cs %}FileNotFoundException{% endihighlight %}
+		- {% ihighlight cs %}DirectoryNotFoundException{% endihighlight %}
 		- ...
-	- `WebException`
+	- {% ihighlight cs %}WebException{% endihighlight %}
 	- ...
 
 
-### `using`
+### {% ihighlight cs %}using{% endihighlight %}
 ```cs
 Type x;
 try {
@@ -458,7 +458,7 @@ try {
 	if (x != null) x.Dispose();
 }
 ```
-- is (sort of, because `x` has a slightly different scope) equivalent to
+- is (sort of, because {% ihighlight cs %}x{% endihighlight %} has a slightly different scope) equivalent to
 
 ```cs
 using (type x = new Type()) {
@@ -466,40 +466,40 @@ using (type x = new Type()) {
 }
 ```
 
-- is also equivalent to (since C# 8.0, with `Dispose` being called when `x` goes out of scope)
+- is also equivalent to (since C# 8.0, with {% ihighlight cs %}Dispose{% endihighlight %} being called when {% ihighlight cs %}x{% endihighlight %} goes out of scope)
 
 ```cs
 using type x = new Type();
 ```
 
-- only works with objects that inherit `IDisposable` \(\implies\) have a `Dispose` method
+- only works with objects that inherit {% ihighlight cs %}IDisposable{% endihighlight %} \(\implies\) have a {% ihighlight cs %}Dispose{% endihighlight %} method
 
 ### Properties
 
 ```cs
 T Property {
 	get { /* stuff to do */ }
-	set { /* stuff to do (with a variable `value`) */ }
+	set { /* stuff to do (with a variable {% ihighlight cs %}value{% endihighlight %}) */ }
 }
 ```
 
-- syntactic sugar for defining a `T get()` and `void set(T value)` methods
-	- must be used with `=`, although it does generate methods `get_*` and `set_*` (so don't name other methods like that)
+- syntactic sugar for defining a {% ihighlight cs %}T get(){% endihighlight %} and {% ihighlight cs %}void set(T value){% endihighlight %} methods
+	- must be used with {% ihighlight cs %}={% endihighlight %}, although it does generate methods {% ihighlight cs %}get_*{% endihighlight %} and {% ihighlight cs %}set_*{% endihighlight %} (so don't name other methods like that)
 - is nice when we want to let the programmer know that we're just setting/getting something (although it may do something more complex)
 	- it's generally a good idea to not make it too slow, since the syntax looks instant
 -  when doing assemblies, properties make it so we don't need to rebuild code that uses it, since the API stays the same (which can be desirable)
 - interfaces can also contain them (not the implementation, just that it has to have one)
 
 #### Auto-implemented
-- if we're just doing `get => value` and `set = value`, we can just do `get;` and `set;` and the code will get automatically generated
+- if we're just doing {% ihighlight cs %}get => value{% endihighlight %} and {% ihighlight cs %}set = value{% endihighlight %}, we can just do {% ihighlight cs %}get;{% endihighlight %} and {% ihighlight cs %}set;{% endihighlight %} and the code will get automatically generated
 	- what if we want to make an interface out of it in the future?
 	- what if we want to add constraints to the values in the future?
-- we can also set default values: `int X { get; set; } = 12;`
-- we can also explicitly set the accessibility of the functions: `public int Length { get; private set; }`
-	- `public` affects `get`, since it doesn't have an explicit modifier, but not `set`, because it has one
+- we can also set default values: {% ihighlight cs %}int X { get; set; } = 12;{% endihighlight %}
+- we can also explicitly set the accessibility of the functions: {% ihighlight cs %}public int Length { get; private set; }{% endihighlight %}
+	- {% ihighlight cs %}public{% endihighlight %} affects {% ihighlight cs %}get{% endihighlight %}, since it doesn't have an explicit modifier, but not {% ihighlight cs %}set{% endihighlight %}, because it has one
 
 #### Read-only
-- `set` can be omitted, which makes the property read-only
+- {% ihighlight cs %}set{% endihighlight %} can be omitted, which makes the property read-only
 - this means it can only be changed in the constructor and nowhere else
 
 #### Instantiating objects with properties
@@ -513,12 +513,12 @@ a.x = 3;
 a.y = 6;
 ```
 
-- this implies that the setter can't be `private`, since it's just syntactic sugar!
+- this implies that the setter can't be {% ihighlight cs %}private{% endihighlight %}, since it's just syntactic sugar!
 
 #### Parametric properties (indexers)
 - for defining indexing on an object of the given class
 - can be overloaded, since it's just a method (but might not be the smartest thing to do)
-- are compiled into `get_Item` and `set_Item`
+- are compiled into {% ihighlight cs %}get_Item{% endihighlight %} and {% ihighlight cs %}set_Item{% endihighlight %}
 
 ```cs
 class File {
@@ -546,97 +546,97 @@ class File {
 - variable is always passed by **value** (assigning **copies it over**)
 - usually allocated in-place on the **stack** (with exceptions, like when a part of a class)
 - contains:
-	- `struct`ures
-	- simple types (`int`, `char`)
-	- `Nullable`s (it's just a struct)
+	- {% ihighlight cs %}struct{% endihighlight %}ures
+	- simple types ({% ihighlight cs %}int{% endihighlight %}, {% ihighlight cs %}char{% endihighlight %})
+	- {% ihighlight cs %}Nullable{% endihighlight %}s (it's just a struct)
 	- enumerations
 	- is weird, since it's completely different to references that are allocated
-- **can implement interfaces**, but boxing happens when we assign to `I var`
+- **can implement interfaces**, but boxing happens when we assign to {% ihighlight cs %}I var{% endihighlight %}
 	- watch out for passing stuctures to function and doing something to them, since they will be boxed and nothing will change...
 
 ##### Simple types
-- things like `byte`, `short`, `int`, `char`, `bool`...
-- CLR and JIT knows about it, so operators (think `+`) is not a function call
+- things like {% ihighlight cs %}byte{% endihighlight %}, {% ihighlight cs %}short{% endihighlight %}, {% ihighlight cs %}int{% endihighlight %}, {% ihighlight cs %}char{% endihighlight %}, {% ihighlight cs %}bool{% endihighlight %}...
+- CLR and JIT knows about it, so operators (think {% ihighlight cs %}+{% endihighlight %}) is not a function call
 - sizes are (almost) always defined (not like C++), except:
-	- `nint` and `nuint` -- native, platform-dependent `(u)int` (since C# 9.0)
-	- `bool` is only `true/false`, so it isn't defined too (implementation detail)
-- `decimal` -- exponent is decimal, so numbers like `0.1` are precies
+	- {% ihighlight cs %}nint{% endihighlight %} and {% ihighlight cs %}nuint{% endihighlight %} -- native, platform-dependent {% ihighlight cs %}(u)int{% endihighlight %} (since C# 9.0)
+	- {% ihighlight cs %}bool{% endihighlight %} is only {% ihighlight cs %}true/false{% endihighlight %}, so it isn't defined too (implementation detail)
+- {% ihighlight cs %}decimal{% endihighlight %} -- exponent is decimal, so numbers like {% ihighlight cs %}0.1{% endihighlight %} are precies
 	- the downside is that it is much slower
 - all of them are perpendicular to one another in the type hierarchy, but there **are conversions**
 	- it is an actual conversion, not like for reference types (just checks in that case)
 	- **implicit** conversions happen automatically, while **explicit** are manual
-		- although a conversion is implicit, it can have data loss (`long` \(\rightarrow\) `float`)
-	- they are **not free,** it can sometimes take quite a while (`int` \(\rightarrow\) `float`)
-	- no conversions from/to `bool`
+		- although a conversion is implicit, it can have data loss ({% ihighlight cs %}long{% endihighlight %} \(\rightarrow\) {% ihighlight cs %}float{% endihighlight %})
+	- they are **not free,** it can sometimes take quite a while ({% ihighlight cs %}int{% endihighlight %} \(\rightarrow\) {% ihighlight cs %}float{% endihighlight %})
+	- no conversions from/to {% ihighlight cs %}bool{% endihighlight %}
 
 ![Implicit Conversions.](/assets/the-cs-programming-language/implicit-conversions.svg)
 
-- by default, all numeric constants (without a period) are `int`
-	- however, we can do `long a = 10;`, it's optimized to not do a conversion
+- by default, all numeric constants (without a period) are {% ihighlight cs %}int{% endihighlight %}
+	- however, we can do {% ihighlight cs %}long a = 10;{% endihighlight %}, it's optimized to not do a conversion
 	- when a specific constant type is desired, we can use the following suffixes:
-		- unsigned int/long: `u`
-		- long, unsigned long: `l`
-		- unsigned long: `ul`
-- by default, all decimal number constants are `double`
-	- we **can't do** `float f = 2.5;` (but must do `2.5f`)
+		- unsigned int/long: {% ihighlight cs %}u{% endihighlight %}
+		- long, unsigned long: {% ihighlight cs %}l{% endihighlight %}
+		- unsigned long: {% ihighlight cs %}ul{% endihighlight %}
+- by default, all decimal number constants are {% ihighlight cs %}double{% endihighlight %}
+	- we **can't do** {% ihighlight cs %}float f = 2.5;{% endihighlight %} (but must do {% ihighlight cs %}2.5f{% endihighlight %})
 	- other suffixes include
-		- `d` for `double`
-		- `m` for `decimal`
-- when designing APIs, it might be a good idea to do `Int32` instead of `int`, so programmers from other languages now exactly what we mean
+		- {% ihighlight cs %}d{% endihighlight %} for {% ihighlight cs %}double{% endihighlight %}
+		- {% ihighlight cs %}m{% endihighlight %} for {% ihighlight cs %}decimal{% endihighlight %}
+- when designing APIs, it might be a good idea to do {% ihighlight cs %}Int32{% endihighlight %} instead of {% ihighlight cs %}int{% endihighlight %}, so programmers from other languages now exactly what we mean
 
 ##### Nullable types
-- `int? x` is a nullable variable -- can contain its value, or `null`
-- internally imlemented as a `struct Nullable<T>` that has `T Value` and `bool HasValue` memobers
-- `bool?`'s `null` value is "i don't know" so we can use `|` and `&` and get results we expect
+- {% ihighlight cs %}int? x{% endihighlight %} is a nullable variable -- can contain its value, or {% ihighlight cs %}null{% endihighlight %}
+- internally imlemented as a {% ihighlight cs %}struct Nullable<T>{% endihighlight %} that has {% ihighlight cs %}T Value{% endihighlight %} and {% ihighlight cs %}bool HasValue{% endihighlight %} memobers
+- {% ihighlight cs %}bool?{% endihighlight %}'s {% ihighlight cs %}null{% endihighlight %} value is "i don't know" so we can use {% ihighlight cs %}|{% endihighlight %} and {% ihighlight cs %}&{% endihighlight %} and get results we expect
 
 #### Reference types
 - variable is always passed by **reference** (assigning **creates a new reference to it**)
 - the variable data is allocated and stored on managed **heaps**
 - can only ever be assigned a reference to the heap
-- can be `null`
-	- actually, since C# 8.0, we can toggle this behavior and forbid it to contain a `null`
+- can be {% ihighlight cs %}null{% endihighlight %}
+	- actually, since C# 8.0, we can toggle this behavior and forbid it to contain a {% ihighlight cs %}null{% endihighlight %}
 	- only gives warnings, since the compiler can't always determine that it's not from static analysis (although we can specify to treat certain warnings as errors)
 - contains:
-	- `class`es
-	- `interface`s
+	- {% ihighlight cs %}class{% endihighlight %}es
+	- {% ihighlight cs %}interface{% endihighlight %}s
 	- arrays
 	- delegates
 - takes up more memory, since it has to contain:
 	- the reference to the heap, where the value is
 	- **heap overhead**
-		1. which type it is (reference to an instance of the class `MethodTable`)
+		1. which type it is (reference to an instance of the class {% ihighlight cs %}MethodTable{% endihighlight %})
 			- is either \(4/8B\), depending on the architecture
 		2. syncblock -- related to threads and locking
 			- always \(4B\)
 		- padded to nearest \(8B\)
 
 ##### Arrays
-- each new type inherits `System.Array` and is a new .NET type
+- each new type inherits {% ihighlight cs %}System.Array{% endihighlight %} and is a new .NET type
 - is sort of like generic types -- code is generated for each variant
 
 | Action            | Code                                                |
 | ---               | ---                                                 |
-| create            | `int[] array = new int[size];`                      |
-| create statically | `int[] array = {1, 2, 3};`                          |
-| fill with stuff   | `Array.Fill(table, -1, 0, 256);`, requires `System` |
-| sort              | `Array.Sort(array);`, highly optimized              |
-| length            | `.Length`                                           |
+| create            | {% ihighlight cs %}int[] array = new int[size];{% endihighlight %}                      |
+| create statically | {% ihighlight cs %}int[] array = {1, 2, 3};{% endihighlight %}                          |
+| fill with stuff   | {% ihighlight cs %}Array.Fill(table, -1, 0, 256);{% endihighlight %}, requires {% ihighlight cs %}System{% endihighlight %} |
+| sort              | {% ihighlight cs %}Array.Sort(array);{% endihighlight %}, highly optimized              |
+| length            | {% ihighlight cs %}.Length{% endihighlight %}                                           |
 
-- array of `struct` automatically calls constructors on them so we don't have to
-- array of `class` is `null` by default
+- array of {% ihighlight cs %}struct{% endihighlight %} automatically calls constructors on them so we don't have to
+- array of {% ihighlight cs %}class{% endihighlight %} is {% ihighlight cs %}null{% endihighlight %} by default
 - **jagged** multidimensional arrays:
-	- `int[][] a = new int[2][]`
+	- {% ihighlight cs %}int[][] a = new int[2][]{% endihighlight %}
 	- can have different row lengths
 	- takes a lot of memory (each row is a pointer) and is not generally nice to it
 - **rectangular** multidimensional arrays:
 	- single memory object
 	- has to have same row lengths
 	- nicer to memory
-	- `int[,] a = new int[2, 3]`
+	- {% ihighlight cs %}int[,] a = new int[2, 3]{% endihighlight %}
 
 #### (un)boxing
 - crossing the bounday between a reference type and a value type
-- `object o = 5;` creates a new object on the heap where the reference points to
+- {% ihighlight cs %}object o = 5;{% endihighlight %} creates a new object on the heap where the reference points to
 - is immutable for simple value types, because... how would we modify it?
 
 ### Functional elements
@@ -661,7 +661,7 @@ static void Main(string[] args) {
 
 #### Delegates
 - value representing function or method
-- defined using the `delegate` keyword
+- defined using the {% ihighlight cs %}delegate{% endihighlight %} keyword
 
 ```cs
 using System;
@@ -685,17 +685,17 @@ static class Program {
 }
 ```
 
-- they can also be generic: `delegate bool Condition<T>(T t)`
+- they can also be generic: {% ihighlight cs %}delegate bool Condition<T>(T t){% endihighlight %}
 
 #### Lambda funtions
-- functions defined using an expression: `parameters => expression`
-- can be converted into a delegate -- `IsEven` above would be `i => i % 2 == 0`
+- functions defined using an expression: {% ihighlight cs %}parameters => expression{% endihighlight %}
+- can be converted into a delegate -- {% ihighlight cs %}IsEven{% endihighlight %} above would be {% ihighlight cs %}i => i % 2 == 0{% endihighlight %}
 
 ### Structures
 - only makes sense when we want the value semantics but more complex behavior
-	- `Vector`, `Color`, `Complex` structures, for example
+	- {% ihighlight cs %}Vector{% endihighlight %}, {% ihighlight cs %}Color{% endihighlight %}, {% ihighlight cs %}Complex{% endihighlight %} structures, for example
 - **no inheritance,** since the variable is always the value -- assigning to variables would be broken (and is one of the main reasons for inheritance), which means:
-	- no `abstract`, no `virtual` methods -- all user-defined structures are essentially sealed
+	- no {% ihighlight cs %}abstract{% endihighlight %}, no {% ihighlight cs %}virtual{% endihighlight %} methods -- all user-defined structures are essentially sealed
 - as opposed to a class, a structure **always has an empty constructor without parameters**
 	- we **can't** define one, since it's always there
 	- is preserved when we define another one
@@ -737,7 +737,7 @@ static class Program {
 }
 ```
 
-- careful with putting them in `List<S>` (or some other structure) and making them mutable -- if we attempt to do something like `myList[i].IncreaseByOne()`, it will just modify the returned copy and not do anything
+- careful with putting them in {% ihighlight cs %}List<S>{% endihighlight %} (or some other structure) and making them mutable -- if we attempt to do something like {% ihighlight cs %}myList[i].IncreaseByOne(){% endihighlight %}, it will just modify the returned copy and not do anything
 	- this **doesn't happen with arrays**, since they're not using an indexer
 	- it's generally a good idea to make structures immutable, because users will use it like this
 
@@ -745,17 +745,17 @@ static class Program {
 
 | Access Modifiers     | Access is...                                            |
 | --:                  | ---                                                     |
-| `public`             | not restricted.                                         |
-| `private`            | limited to the containing type.                         |
-| `protected`          | limited to the containing class derived types.          |
-| `internal`           | limited to the current assembly.                        |
-| `protected internal` | limited to the current assembly OR same/derived types.  |
-| `private protected`  | limited to the current assembly AND same/derived types. |
+| {% ihighlight cs %}public{% endihighlight %}             | not restricted.                                         |
+| {% ihighlight cs %}private{% endihighlight %}            | limited to the containing type.                         |
+| {% ihighlight cs %}protected{% endihighlight %}          | limited to the containing class derived types.          |
+| {% ihighlight cs %}internal{% endihighlight %}           | limited to the current assembly.                        |
+| {% ihighlight cs %}protected internal{% endihighlight %} | limited to the current assembly OR same/derived types.  |
+| {% ihighlight cs %}private protected{% endihighlight %}  | limited to the current assembly AND same/derived types. |
 
 - by default:
-	- visibility of classes/interfaces/structs is `internal`
-	- visibility in `class`es is `private`
-	- visibility in `interface`s is `public`
+	- visibility of classes/interfaces/structs is {% ihighlight cs %}internal{% endihighlight %}
+	- visibility in {% ihighlight cs %}class{% endihighlight %}es is {% ihighlight cs %}private{% endihighlight %}
+	- visibility in {% ihighlight cs %}interface{% endihighlight %}s is {% ihighlight cs %}public{% endihighlight %}
 		- it doesn't make much sense to be private, since it's a public contract
 
 ```cs
@@ -774,21 +774,21 @@ class A {
 }
 ```
 
-### `readonly`
+### {% ihighlight cs %}readonly{% endihighlight %}
 - used to set fields **not assignable**, except in the **constructor**
-- can also be used in autoimplemented properties (`int X { get; } = 5;`)
+- can also be used in autoimplemented properties ({% ihighlight cs %}int X { get; } = 5;{% endihighlight %})
 
-### `=>`
+### {% ihighlight cs %}=>{% endihighlight %}
 - syntactic sugar for:
-	- when a non-`void` method returns something
+	- when a non-{% ihighlight cs %}void{% endihighlight %} method returns something
 	- when a void method has only one command
 
-### `??`, `??=`, `?.`
-- conditional code execution, depending on whether something is `null` or not
-- `a ?? b` returns `a`, if it isn't `null`, else `b`
-- `x ??= y` will be assigned if `y` isn't `null`
-- `x?.m()` will call the method if `x` isn't `null`
-- `x?.f` will get the field value, if `x` isn't `null`
+### {% ihighlight cs %}??{% endihighlight %}, {% ihighlight cs %}??={% endihighlight %}, {% ihighlight cs %}?.{% endihighlight %}
+- conditional code execution, depending on whether something is {% ihighlight cs %}null{% endihighlight %} or not
+- {% ihighlight cs %}a ?? b{% endihighlight %} returns {% ihighlight cs %}a{% endihighlight %}, if it isn't {% ihighlight cs %}null{% endihighlight %}, else {% ihighlight cs %}b{% endihighlight %}
+- {% ihighlight cs %}x ??= y{% endihighlight %} will be assigned if {% ihighlight cs %}y{% endihighlight %} isn't {% ihighlight cs %}null{% endihighlight %}
+- {% ihighlight cs %}x?.m(){% endihighlight %} will call the method if {% ihighlight cs %}x{% endihighlight %} isn't {% ihighlight cs %}null{% endihighlight %}
+- {% ihighlight cs %}x?.f{% endihighlight %} will get the field value, if {% ihighlight cs %}x{% endihighlight %} isn't {% ihighlight cs %}null{% endihighlight %}
 
 #### Arithmetic overflows
 ```cs
@@ -800,7 +800,7 @@ checked {
 
 ### References
 
-#### `ref`
+#### {% ihighlight cs %}ref{% endihighlight %}
 - a **tracking reference**
 - address is passed and automatically de-referenced
 - can point to heap/stack/static data
@@ -816,12 +816,12 @@ void f() {
 }
 ```
 
-- calling a method on an object is just a shortcut for doing `Class.function(ref this, <other parameters>)`
+- calling a method on an object is just a shortcut for doing {% ihighlight cs %}Class.function(ref this, <other parameters>){% endihighlight %}
 
-#### `out`
-- an alternative to `ref`
+#### {% ihighlight cs %}out{% endihighlight %}
+- an alternative to {% ihighlight cs %}ref{% endihighlight %}
 - useful for returning/setting multiple things in a function
-- the CIL code is exactly the same, but the compiler checks, whether each `out` parameter has been assigned to (since the caller wouldn't know about the state of the variable)
+- the CIL code is exactly the same, but the compiler checks, whether each {% ihighlight cs %}out{% endihighlight %} parameter has been assigned to (since the caller wouldn't know about the state of the variable)
 	- we must assign the parameters (at least dummy values)
 
 ```cs
@@ -853,19 +853,19 @@ if (tryParse(something, out int a))
 Console.WriteLine("We didn't fail: " + a);
 ```
 
-### `var`
+### {% ihighlight cs %}var{% endihighlight %}
 - derived at compile time, depending on what is on the right side
 - if we can't determine the type, the code won't compile
-	- `var x;`
-	- `var y = (1, 2, 3);`
-	- `var z = null`
-- the declaration is a comment -- it's unwise to write `var` everywhere:
-	- `var name = GetName();` -- what does it return?
-	- `var d = new List<int>();` --  what if I want to change List to a HashSet later (and interface would thus be better to use)?
+	- {% ihighlight cs %}var x;{% endihighlight %}
+	- {% ihighlight cs %}var y = (1, 2, 3);{% endihighlight %}
+	- {% ihighlight cs %}var z = null{% endihighlight %}
+- the declaration is a comment -- it's unwise to write {% ihighlight cs %}var{% endihighlight %} everywhere:
+	- {% ihighlight cs %}var name = GetName();{% endihighlight %} -- what does it return?
+	- {% ihighlight cs %}var d = new List<int>();{% endihighlight %} --  what if I want to change List to a HashSet later (and interface would thus be better to use)?
 
 ### Interfaces
-- a **contract** -- we can assign any `class` that implements an interface to variables with an interface (when we only require the functionality of the given interface)
-	- we can do the same for a `struct`, but it involves boxing
+- a **contract** -- we can assign any {% ihighlight cs %}class{% endihighlight %} that implements an interface to variables with an interface (when we only require the functionality of the given interface)
+	- we can do the same for a {% ihighlight cs %}struct{% endihighlight %}, but it involves boxing
 
 ```cs
 interface Shape {
@@ -885,7 +885,7 @@ interface Shape {
 #### Heaps and garbage collection
 - **two heaps**; behavior of the garbage collector to the two heaps is different
 - real limit is around \(1.4\ GB\) (for 32-bit systems)
-	- `OutOfMemoryException` could happen sooner, since we could have a lot of holes in the given heap and the new object wouldn't fit in -- **heap fragmentation**
+	- {% ihighlight cs %}OutOfMemoryException{% endihighlight %} could happen sooner, since we could have a lot of holes in the given heap and the new object wouldn't fit in -- **heap fragmentation**
 	- happens easily when resizing (dynamic array, for example), since we're creating a new array of twice the size, that has to co-exist with the old one for a bit
 - **segment** -- reservation (virtual memory); around \(~16\ MB\)
 	- varies greatly on the architecture and GC configuration!
@@ -899,7 +899,7 @@ interface Shape {
 	- **ephemeral segment** -- the current newest segment of the garbage collector
 		- this is where GC happens
 		- once it is full, a new one is added and the old one becomes generation 2 segment
-- `GC` class -- for interacting with the GC:
+- {% ihighlight cs %}GC{% endihighlight %} class -- for interacting with the GC:
 	- checking the generation of the object
 	- checking the number of generation collections
 	- forcing a collection of a given generation
@@ -946,11 +946,11 @@ interface Shape {
 	- means that they can't be overly aggressive
 - does **method inlining** (moves body of the method to where it's called)
 	- can't always be done (recursive functions)
-	- generally happens for smaller (\(<32\ B\) of machine code) methods that aren't too complicated (no `try/catch`, for example)
+	- generally happens for smaller (\(<32\ B\) of machine code) methods that aren't too complicated (no {% ihighlight cs %}try/catch{% endihighlight %}, for example)
 
 #### AOT
 - **ahead-of-time** -- before it's needed
-- `ngen.exe` -- pre-JITting code
+- {% ihighlight cs %}ngen.exe{% endihighlight %} -- pre-JITting code
 - more intensive optimizations
 - JITting can still happen when it's needed, though
 - will be an important feature in .NET 5
@@ -971,15 +971,15 @@ interface Shape {
 - common language specification
 - what a language must do in order to be .NET-compliant
 - specifies things like minimum types:
-	- `sbyte`, `ushort` are not compliant, so making them parameters of a function called from some other DLL might not be the best idea; on the other hand, implementation details are quite fine
+	- {% ihighlight cs %}sbyte{% endihighlight %}, {% ihighlight cs %}ushort{% endihighlight %} are not compliant, so making them parameters of a function called from some other DLL might not be the best idea; on the other hand, implementation details are quite fine
 
-#### `typeof(Class)`
-- return the `Type` instance of the class
+#### {% ihighlight cs %}typeof(Class){% endihighlight %}
+- return the {% ihighlight cs %}Type{% endihighlight %} instance of the class
 - useful when we're comparing types of variables
 
-#### `nameof(x)` [[Microsoft Docs](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/nameof)]
+#### {% ihighlight cs %}nameof(x){% endihighlight %} [[Microsoft Docs](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/nameof)]
 - useful when debugging, when showing exceptions to users...
-- better to do than `"x"`, since we can rename using any IDE easily
+- better to do than {% ihighlight cs %}"x"{% endihighlight %}, since we can rename using any IDE easily
 
 ```cs
 Console.WriteLine(nameof(System.Collections.Generic));  // output: Generic
@@ -1023,23 +1023,23 @@ public class Tests
 ### Data structures
 
 #### Dictionaries
-- `using System.Collections.Generic;`
+- {% ihighlight cs %}using System.Collections.Generic;{% endihighlight %}
 
 | Action   | Code                                                   |
 | ---      | ---                                                    |
-| create   | `Dictionary<int, int> d = new Dictionary<int, int>();` |
-| contains | `d.ContainsKey(element);`                              |
-| add      | `d[index] = element;`                                  |
+| create   | {% ihighlight cs %}Dictionary<int, int> d = new Dictionary<int, int>();{% endihighlight %} |
+| contains | {% ihighlight cs %}d.ContainsKey(element);{% endihighlight %}                              |
+| add      | {% ihighlight cs %}d[index] = element;{% endihighlight %}                                  |
 
 #### Queues
 
 | Action | Code                                         |
 | ---    | ---                                          |
-| create | `Queue<string> q = new Queue<string>();`     |
-| add    | `q.Enqueue(element);`                        |
-| pop    | `q.Dequeue(element);`                        |
-| size   | `q.Count;`                                   |
-| peek   | `q.Peek();`                                  |
+| create | {% ihighlight cs %}Queue<string> q = new Queue<string>();{% endihighlight %}     |
+| add    | {% ihighlight cs %}q.Enqueue(element);{% endihighlight %}                        |
+| pop    | {% ihighlight cs %}q.Dequeue(element);{% endihighlight %}                        |
+| size   | {% ihighlight cs %}q.Count;{% endihighlight %}                                   |
+| peek   | {% ihighlight cs %}q.Peek();{% endihighlight %}                                  |
 
 ### Acknowledgements
 - Adam Dingle, whose [Programming 2 notes](/assets/priprava-na-statnice-mff-uk/prog2.pdf) I've shamelessly copied (for certain examples)
