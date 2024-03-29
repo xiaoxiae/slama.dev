@@ -3,6 +3,7 @@ title: Decipher
 layout: default
 no-heading: True
 hidden: True
+css: aok
 ---
 
 I sometimes have ideas about creating fun tasks/ciphers (like the [AOC thing](https://slama.dev/aok) thing I did for my <a class='secret' href='/assets/kacka.webp'>girlfriend</a>), but since I usually don't send these to people, they remain forgoten.
@@ -11,6 +12,11 @@ This page serves as a place where I'll be putting them from now on.
 If you're solving them and want to check the solution, here are their [SHA-256 hashes](/assets/decipher.txt).
 
 ---
+
+<span id='29-3-2024' markdown="1" class="underline">**29.3.2024**</span><br>
+<code class="language-plaintext highlighter-rouge">
+<span style="animation: cursor-blink 2s steps(2, start) infinite;">█</span><span style="animation: cursor-blink 7s steps(2, start) infinite;">█</span><span style="animation: cursor-blink 47s steps(2, start) infinite;">█</span><span style="animation: cursor-blink 709s steps(2, start) infinite;">█</span><span style="animation: cursor-blink 1063s steps(2, start) infinite;">█</span><span style="animation: cursor-blink 36809s steps(2, start) infinite;">█</span><span style="animation: cursor-blink 392611s steps(2, start) infinite;">█</span>
+</code>
 
 <span id='27-2-2024' markdown="1" class="underline">**27.2.2024**</span><br>
 [https://lichess.org/training/pTwLL](https://lichess.org/training/pTwLL)
