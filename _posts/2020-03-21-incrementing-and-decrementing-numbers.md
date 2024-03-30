@@ -1,7 +1,7 @@
 ---
 category: "Vim"
 category_icon: /assets/category-icons/vim.svg
-category_part: 2
+category_part: 1
 excerpt: A short post about how to increment/decrement numbers in Vim.
 ---
 

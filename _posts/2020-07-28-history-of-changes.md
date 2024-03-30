@@ -1,7 +1,7 @@
 ---
 category: "Vim"
 category_icon: /assets/category-icons/vim.svg
-category_part: 1
+category_part: 2
 excerpt: A short post about how history of changes is implemented in Vim.
 ---
 
