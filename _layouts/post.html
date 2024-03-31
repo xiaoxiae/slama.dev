@@ -1,10 +1,11 @@
 ---
 layout: default
+post-title: True
 ---
 
 {% assign date_format = "%-d. %-m. %Y" %}
 
-<p>
+<p class="post-metadata">
 	{% if page.category_noslug or page.category %}
 		{{ page.category_noslug | default: page.category }}</strong>
 	{% endif %}
@@ -14,31 +15,31 @@ layout: default
 	{% endif %}
 
 	{% if page.category_noslug or page.category %}
-		<span class="half-visible vspace">· </span>
+		<span class="quarter-visible vspace">· </span>
 	{% endif %}
 
 	{{ page.date | date: date_format }}
 
 	{% if page.language == "cz" %}
-		<span class="half-visible vspace">· </span>🇨🇿
+		<span class="quarter-visible vspace">· </span>🇨🇿
 	{% endif %}
 
 	{% if page.pdf or page.pdf-nogenerate %}
 		{% if page.language == "cz" %}
-			<span class="half-visible vspace">· </span>dostupné v <a href="/assets/{{ page.url | split: "/" | last }}.pdf">PDF</a>
+			<span class="quarter-visible vspace">· </span>dostupné v <a href="/assets/{{ page.url | split: "/" | last }}.pdf">PDF</a>
 		{% else %}
-			<span class="half-visible vspace">· </span>available as<a href="/assets/{{ page.url | split: "/" | last }}.pdf">PDF</a>
+			<span class="quarter-visible vspace">· </span>available as<a href="/assets/{{ page.url | split: "/" | last }}.pdf">PDF</a>
 		{% endif %}
 	{% endif %}
 
 	{% if page.end %}
-		<span class="half-visible vspace">· </span>{{ page.end }}
+		<span class="quarter-visible vspace">· </span>{{ page.end }}
 	{% endif %}
 
 	{% if page.language == "cz" %}
-		<span class="half-visible vspace">· </span>[<a href="https://github.com/xiaoxiae/slama.dev/blob/master/{{ page.path }}">upravit</a>]
+		<span class="quarter-visible vspace">· </span>[<a href="https://github.com/xiaoxiae/slama.dev/blob/master/{{ page.path }}">upravit</a>]
 	{% else %}
-		<span class="half-visible vspace">· </span>[<a href="https://github.com/xiaoxiae/slama.dev/blob/master/{{ page.path }}">edit</a>]
+		<span class="quarter-visible vspace">· </span>[<a href="https://github.com/xiaoxiae/slama.dev/blob/master/{{ page.path }}">edit</a>]
 	{% endif %}
 </p>
 

@@ -8,9 +8,8 @@ redirect_from:
 - /manim/4/
 - /manim/3d-and-the-other-graphs/
 excerpt: In this part of the series, we'll take a look at Manim's tools for 3D animations and also at plotting all sorts of graphs.
+end: <a href="/manim/1/">Part 1</a>, <a href="/manim/2/">Part 2</a>, <a href="/manim/3/">Part 3</a>, <strong>→ Part 4 ←</strong>, <a href="/manim/5/">Part 5</a>, <a href="/manim/6/">Part 6</a>
 ---
-
-[Part 1](/manim/1/), [Part 2](/manim/2/), [Part 3](/manim/3/), **→ Part 4 ←**, [Part 5](/manim/5/), [Part 6](/manim/6/)
 
 - .
 {:toc}

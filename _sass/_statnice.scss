@@ -1,29 +1,29 @@
 @import "variables";
 
 .sttopics {
-	> li {
-		padding-top: $line-spacing * 0.75;
-		padding-bottom: $line-spacing * 0.75;
-	}
- 
-	> li:last-child {
-		padding-bottom: 0;
-	}
+  > li {
+    padding-top: $line-spacing * 0.75;
+    padding-bottom: $line-spacing * 0.75;
+  }
+
+  > li:last-child {
+    padding-bottom: 0;
+  }
 }
 
 ul.hfill {
-    display: flex;
-    justify-content: space-between;
-    list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
 
-    padding-left: 0px;
-    padding-right: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
 
-    li:nth-child(2) {
-        padding-left: $line-spacing;
-    }
+  li:nth-child(2) {
+    padding-left: $line-spacing;
+  }
 }
 
 .stignored {
-	opacity: 0.5;
+  opacity: 0.5;
 }

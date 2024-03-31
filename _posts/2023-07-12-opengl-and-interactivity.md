@@ -7,9 +7,10 @@ category_part: 6
 redirect_from:
 - /manim/6/
 excerpt: In this addition to my Manim series, we'll cover the (at the moment rather experimental) OpenGL backend for faster GPU-based rendering.
+end: <a href="/manim/1/">Part 1</a>, <a href="/manim/2/">Part 2</a>, <a href="/manim/3/">Part 3</a>, <a href="/manim/4/">Part 4</a>, <a href="/manim/5/">Part 5</a>, <strong>→ Part 6 ←</strong>
 ---
 
-[Part 1](/manim/1/), [Part 2](/manim/2/), [Part 3](/manim/3/), [Part 4](/manim/4/), [Part 5](/manim/5/), **→ Part 6 ←**
+
 
 - .
 {:toc}

@@ -1,15 +1,25 @@
 @import "variables";
 
 details {
-    summary { text-align: left; }
+  summary {
+    text-align: left;
+  }
 }
 
 details[open] {
-    padding-bottom: 0;
-    summary { margin-bottom: $line-spacing; }
+  padding-bottom: 0;
+  summary {
+    margin-bottom: $line-spacing;
+  }
 }
 
 .azure-red {
-	&::after { content: "azure"; }
-	@media (prefers-color-scheme: dark) { &::after { content: "red"; } }
+  &::after {
+    content: "azure";
+  }
+  @media (prefers-color-scheme: dark) {
+    &::after {
+      content: "red";
+    }
+  }
 }

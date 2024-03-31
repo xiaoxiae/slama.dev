@@ -1,6 +1,10 @@
 @import "variables";
 
 .book {
-    > li { padding-bottom: $line-spacing; }
-    > li:last-child { padding-bottom: 0; }
+  > li {
+    padding-bottom: $line-spacing;
+  }
+  > li:last-child {
+    padding-bottom: 0;
+  }
 }

@@ -2,41 +2,43 @@
 
 // a row of photos
 .row {
-    display: flex;
+  display: flex;
 
-    // don't invert them!
-    // also respect the orientation
-    * {
-        filter: invert(0%);
-        image-orientation: from-image;
-    }
+  // don't invert them!
+  // also respect the orientation
+  * {
+    filter: invert(0%);
+    image-orientation: from-image;
+  }
 }
 
 figcaption {
-    padding: $line-spacing $line-spacing / 2;
-    padding-top: 0;
-    text-align: center;
-    font-style: italic;
+  padding: $line-spacing $line-spacing / 2;
+  padding-top: 0;
+  text-align: center;
+  font-style: italic;
 }
 
 .row {
-    figcaption { padding-top: $line-spacing / 4; }
+  figcaption {
+    padding-top: $line-spacing / 4;
+  }
 }
 
 .photo-section {
-    background: $light-code-background-color;
+  background: $light-code-background-color;
 
-    @media (prefers-color-scheme: dark) {
-        background: $dark-nav-background-color;
-    }
+  @media (prefers-color-scheme: dark) {
+    background: $dark-nav-background-color;
+  }
 
-    margin-bottom: $line-spacing * 1.25;
+  margin-bottom: $line-spacing * 1.25;
 }
 
 .row::after {
-    content: "";
-    clear: both;
-    display: table;
+  content: "";
+  clear: both;
+  display: table;
 }
 
 // forgive me for I have sinned
@@ -45,7 +47,11 @@ figcaption {
 .photos2-1,
 .photos3-0,
 .photos3-1,
-.photos3-2 { img { max-width: 100%; } }
+.photos3-2 {
+  img {
+    max-width: 100%;
+  }
+}
 
 .photos1-0 {
   flex: 100%;
@@ -72,15 +78,33 @@ figcaption {
   padding: 0 $line-spacing / 2 $line-spacing / 2 0;
 }
 
-.flex-10 { flex: 10% !important; }
-.flex-20 { flex: 20% !important; }
-.flex-30 { flex: 30% !important; }
-.flex-40 { flex: 40% !important; }
-.flex-50 { flex: 50% !important; }
-.flex-60 { flex: 60% !important; }
-.flex-70 { flex: 70% !important; }
-.flex-80 { flex: 80% !important; }
-.flex-90 { flex: 90% !important; }
+.flex-10 {
+  flex: 10% !important;
+}
+.flex-20 {
+  flex: 20% !important;
+}
+.flex-30 {
+  flex: 30% !important;
+}
+.flex-40 {
+  flex: 40% !important;
+}
+.flex-50 {
+  flex: 50% !important;
+}
+.flex-60 {
+  flex: 60% !important;
+}
+.flex-70 {
+  flex: 70% !important;
+}
+.flex-80 {
+  flex: 80% !important;
+}
+.flex-90 {
+  flex: 90% !important;
+}
 
 .row:first-of-type {
   .photos1-0 {

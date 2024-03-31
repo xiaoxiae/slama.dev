@@ -80,6 +80,14 @@ While I believe that all of these are worth a read, I also put a star (⭐) next
 {:.book}
 - **The Foundation Series** [[Wikipedia](https://en.wikipedia.org/wiki/Foundation_series)] -- a series of sci-fi novels set in a long-distant future where humanity controls the entire galaxy through the Galactic Empire, but which is predicted to fall through the mathematics of psychohistory. Despite the series being written many decades ago, it holds up well and was truly a joy to read.
 
+#### Liu Cixin
+
+{:.book}
+- **Remembrance of Earth's Past** [[Wikipedia](https://en.wikipedia.org/wiki/Remembrance_of_Earth%27s_Past)] -- 
+    1. **The Three-Body Problem**
+    2. **The Dark Forest**
+    3. **Death's End**
+
 ### Other
 
 {:.book}

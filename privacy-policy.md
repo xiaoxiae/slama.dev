@@ -1,10 +1,7 @@
 ---
 layout: default
 title: Privacy Policy
-no-heading: True
 ---
-
-## Privacy Policy
 
 I don't use your personal data. I mean... why would I? This is a personal blog, what would I even do with it? However, since all cool modern websites have them, I must too, so here is a filled-in template.
 

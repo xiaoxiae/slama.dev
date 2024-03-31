@@ -40,7 +40,7 @@ Links to the sections of the website can be found at the top, links to the posts
 	{% elsif post.category%} {{post.category}}{% if post.category_part %} [{{post.category_part}}]{% endif %}{% endif %}
     {% if post.category_icon %} <img class='category-icon' src='{{post.category_icon}}'/>{% endif %}
     </span>
-	<span class="nowrap">{{ post.date  | date: "%-d. %-m."}}</span>
+    <span class="nowrap">{{ post.date  | date: "%-d. %-m."}}</span>
 	</li>
 </ul>
 {% endunless %}

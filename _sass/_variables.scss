@@ -17,25 +17,26 @@ $dark-nav-background-color: darken($dark-text-color, 85%);
 $dark-code-background-color: $dark-header-background-color;
 
 /* SIZES */
-$website-size: 700px;	// width of content of the website
-$website-padding: 25px;	// left/right padding of website content
+$website-size: 700px; // width of content of the website
+$website-padding: 25px; // left/right padding of website content
 
-$header-padding: 15px;		// top/bottom padding of header
-$navigation-padding: 20px;	// top/bottom padding of navbar
+$header-padding: 15px; // top/bottom padding of header
+$navigation-padding: 20px; // top/bottom padding of navbar
 
-$navigation-item-spacing: 20px;	// spacing between each of the navigation items
+$navigation-item-spacing: 20px; // spacing between each of the navigation items
 
-$code-padding: 3px;	// padding for inline code will be this, and double this for regular code
-$code-border-roundness: 6px;	// roundness of the code border
+$code-padding: 3px; // padding for inline code will be this, and double this for regular code
+$code-border-roundness: 6px; // roundness of the code border
 
-$title-size: 180%;	// how much bigger is the title
-$small-title-size: 155%;	// how much bigger is the title
-$footer-size: 80%;	// how much smaller is the footer
-$toc-size: $footer-size;	// how much smaller is the TOC
+$title-size: 180%; // how much bigger is the title
+$small-title-size: 155%; // how much bigger is the title
+$navigation-size: 120%; // how much bigger is the title
+$footer-size: 80%; // how much smaller is the footer
+$toc-size: $footer-size; // how much smaller is the TOC
 
-$line-height: 1.4;	// increase line height to make text more readable
+$line-height: 1.4; // increase line height to make text more readable
 
-$line-spacing: 20px;	// spacing after paragraph
+$line-spacing: 20px; // spacing after paragraph
 
 $h2-size: 36px;
 $h3-size: 26px;
@@ -49,11 +50,11 @@ $h4-spacing: 3px;
 $h5-spacing: 2px;
 $h6-spacing: 1px;
 
-$list-item-left-padding: 25px;	// so bullets don't stick out the page
+$list-item-left-padding: 25px; // so bullets don't stick out the page
 // sort of a hack, I don't know how else to do this
 
-$small-screen-threshold: 550px;	// if the screen is smaller than this, website changes stuff
-$tiny-screen-threshold: 375px;	// if the screen is smaller than this, website changes stuff
+$small-screen-threshold: 550px; // if the screen is smaller than this, website changes stuff
+$tiny-screen-threshold: 375px; // if the screen is smaller than this, website changes stuff
 
 /* FONT SETTINGS */
 $serif-font: "Fira Sans Light";

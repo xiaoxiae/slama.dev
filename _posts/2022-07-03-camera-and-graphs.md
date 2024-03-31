@@ -7,9 +7,8 @@ category_part: 3
 redirect_from:
 - /manim/3/
 excerpt: This part of the series covers mainly two topics -- the camera and (combinatorial) graphs. Besides this, it also includes some useful concepts for more advanced animations.
+end: <a href="/manim/1/">Part 1</a>, <a href="/manim/2/">Part 2</a>, <strong>→ Part 3 ←</strong>, <a href="/manim/4/">Part 4</a>, <a href="/manim/5/">Part 5</a>, <a href="/manim/6/">Part 6</a>
 ---
-
-[Part 1](/manim/1/), [Part 2](/manim/2/), **→ Part 3 ←**, [Part 4](/manim/4/), [Part 5](/manim/5/), [Part 6](/manim/6/)
 
 - .
 {:toc}

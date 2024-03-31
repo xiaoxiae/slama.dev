@@ -8,9 +8,8 @@ redirect_from:
 - /manim/5/
 - /manim/objects-animations-and-plugins/
 excerpt: This part of the series covers creating custom objects and animations.
+end: <a href="/manim/1/">Part 1</a>, <a href="/manim/2/">Part 2</a>, <a href="/manim/3/">Part 3</a>, <a href="/manim/4/">Part 4</a>, <strong>→ Part 5 ←</strong>, <a href="/manim/6/">Part 6</a>
 ---
-
-[Part 1](/manim/1/), [Part 2](/manim/2/), [Part 3](/manim/3/), [Part 4](/manim/4/), **→ Part 5 ←**, [Part 6](/manim/6/)
 
 - .
 {:toc}
