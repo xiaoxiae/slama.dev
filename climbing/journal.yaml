@@ -2819,3 +2819,24 @@
 2024-03-10:
   note: Went to the US here and then back to Czechia, no climbing for me :(.
   placeholder: true
+2024-04-04:
+  kilter:
+    6a:
+      new: 3
+    6a+:
+      new: 2
+    6b:
+      new: 5
+    6b+:
+      new: 1
+    6c:
+      new: 1
+    6c+:
+      new: 1
+    7a:
+      new: 3
+    7a+:
+      new: 2
+    angle: 40
+  note: Back after a long-ish break. Quite rough.
+  wall: Crimp
