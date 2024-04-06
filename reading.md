@@ -83,9 +83,9 @@ While I believe that all of these are worth a read, I also put a star (⭐) next
 #### Liu Cixin
 
 {:.book}
-- **Remembrance of Earth's Past** [[Wikipedia](https://en.wikipedia.org/wiki/Remembrance_of_Earth%27s_Past)] -- 
+- **Remembrance of Earth's Past** [[Wikipedia](https://en.wikipedia.org/wiki/Remembrance_of_Earth%27s_Past)] -- an insanely well written sci-fi trilogy that manages to be both thought-provoking (creating [its own solution](https://en.wikipedia.org/wiki/Dark_forest_hypothesis) to the well-known [Fermi paradox](https://en.wikipedia.org/wiki/Fermi_paradox)) and thrilling at the same time (read all of them in the span of a few days). A must-read for any sci-fi fan.
     1. **The Three-Body Problem**
-    2. **The Dark Forest**
+    2. **The Dark Forest** ⭐
     3. **Death's End**
 
 ### Other
@@ -93,4 +93,4 @@ While I believe that all of these are worth a read, I also put a star (⭐) next
 {:.book}
 - **Metro 2033** [[Wikipedia](https://en.wikipedia.org/wiki/Metro_2033)] by _Dimitry Glukhovsky_ -- a post-apocalyptic novel about people surviving a nuclear world war inside of the Moscow metro. I really appreciated that there was a good balance of action sequences and slower, more thought-provoking ones. Definitely worth the read (which, in my opinion, can't be said about the other books in the series).
 
-- **Surely You're Joking, Mr. Feynman!** [[Wikipedia](https://en.wikipedia.org/wiki/Surely_You%27re_Joking,_Mr._Feynman!)] by _Ralph Leighton_ and _Richard Feynman_ -- an absolute must-read auto(sort-of)biography about the life of Richard Feynman. I honestly don't understand how this many interesting things can happen in the life of a single person.
+- **Surely You're Joking, Mr. Feynman!** [[Wikipedia](https://en.wikipedia.org/wiki/Surely_You%27re_Joking,_Mr._Feynman!)] by _Ralph Leighton_ and _Richard Feynman_ -- an auto(sort-of)biography about the life of Richard Feynman. I honestly don't understand how this many interesting things can happen in the life of a single person, yet they have and are a joy to read.
