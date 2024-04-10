@@ -12,6 +12,8 @@ This section covers various kinds of books that I think are worth reading.
 
 While I believe that all of these are worth a read, I also put a star (⭐) next to those that are truly special (i.e. I've read/listened to them 5+ times) and a crown (👑) next to my favorite one.
 
+If you have a good book for me to read, let me know and I'll be happy to check it out!
+
 ### Fantasy
 
 #### Brandon Sanderson
@@ -42,7 +44,7 @@ While I believe that all of these are worth a read, I also put a star (⭐) next
 	1. **Tress of the Emerald Sea** -- a fascinating fairtale-like novel from the Cosmere.
 	2. **The Frugal Wizard's Handbook for Surviving Medieval England** -- a fun novel about multiverse traveling and... marketing?
 	3. **Yumi and the Nightmare Painter** -- very evocative and narrated by Hoid (who was a coatrack).
-	4. **The Sunlit Man** ⭐ -- a western by Brandon Sanderson? Well, no, but it has similar vibes.
+	4. **The Sunlit Man** ⭐ -- a western by Brandon Sanderson? Not quite, but it has similar vibes.
 
 #### Leigh Bardugo
 
@@ -87,6 +89,8 @@ While I believe that all of these are worth a read, I also put a star (⭐) next
     1. **The Three-Body Problem**
     2. **The Dark Forest** ⭐
     3. **Death's End**
+
+- **The Cretaceous Past** (Of Ants and Dinosaurs) -- a fun novel about an implausible cooperation between ants and dinosaurs (yes, you read it right).
 
 ### Other
 
