@@ -519,7 +519,7 @@ class CircleFromPointsExample(Scene):
 
         dots = VGroup(p1, p2, p3)
 
-        # vytvoření kruhu ze tří bodů
+        # create a circle from three points
         circle = Circle.from_three_points(p1.get_center(), p2.get_center(), p3.get_center(), color=WHITE)
 
         self.play(Write(dots), run_time=1.5)
