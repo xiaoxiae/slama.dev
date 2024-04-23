@@ -52,10 +52,12 @@ ul.hfill {
   list-style-type: none;
   padding-left: $line-spacing / 5;
   padding-right: $line-spacing / 5;
-  margin-top: $line-spacing / 10;
-  margin-bottom: $line-spacing / 10;
-  padding-top: $line-spacing / 10;
-  padding-bottom: $line-spacing / 10;
+  margin-top: $line-spacing / 5;
+  margin-bottom: $line-spacing / 5;
+  padding-top: $line-spacing / 7;
+  padding-bottom: $line-spacing / 7;
+  border-radius: $line-spacing / 5;
+
 
   li:nth-child(2) {
     text-align: right;
