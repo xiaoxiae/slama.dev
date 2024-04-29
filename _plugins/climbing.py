@@ -54,6 +54,8 @@ for name in list(config):
             location_stub = stubify(config[name]["wall"]) 
         elif "kilter" in config[name] and config[name]["kilter"]:
             location_stub = "kilter"
+        elif "moon" in config[name] and config[name]["moon"]:
+            location_stub = "moon"
         elif "location" in config[name]:
             location_stub = stubify(config[name]["location"])
         else:
@@ -221,74 +223,8 @@ for name in list(config):
         _ = Popen(["rm", poster_jpeg], stdout=PIPE, stderr=PIPE).communicate()
 
 
-# Kilter routes by difficulty
-kilter_folder = os.path.join(CLIMBING_FOLDER, "kilter")
-if os.path.exists(kilter_folder):
-    shutil.rmtree(kilter_folder)
-os.mkdir(kilter_folder)
-
-kilter_stats_path = os.path.join("..", "_includes", "kilter.md")
-
-kilter_stats = {}
-
-
-for grade in sorted([f"{i}{c}{p}".strip() for i in range(6, 9) for c in "abc" for p in " +"]):
-    grade_file_name = os.path.join(kilter_folder, grade.lower().replace("+", "p") + ".md")
-
-    grade_file_content = f"""---
-title: Kilter {grade}
-layout: default
-css: climbing
-no-heading: True
----
-"""
-    total = 0
-
-    videos_in_color = []
-    for name in config:
-        if (
-            "kilter" in config[name]
-            and config[name]["kilter"]
-            and config[name]["color"] == grade
-        ):
-            videos_in_color.append(name)
-    videos_in_color = list(reversed(sorted(videos_in_color)))
-
-    for i, name in enumerate(videos_in_color):
-        style_class = "climbing-"
-
-        if i % 2 == 0:
-            style_class += "left"
-        else:
-            style_class += "right"
-
-        if len(videos_in_color) % 2 == 1 and i == len(videos_in_color) - 1:
-            style_class = "climbing-center"
-
-        grade_file_content += f"""
-<figure class='climbing-video {style_class}'>
-<video poster="/climbing/videos/{os.path.splitext(name)[0] + '.webp'}" controls preload="none"><source src='/climbing/videos/{name}' type='video/mp4'></video>
-<figcaption class='figcaption-margin'>{config[name]["date"].strftime("%d / %m / %Y")}</figcaption>
-</figure>"""
-        total += 1
-
-    # THIS IS SUPER IMPORTANT!
-    # I don't know how to make it so that floats don't intersect the footer,
-    # but putting anything below fixes it
-    if len(videos_in_color) != 0:
-        grade_file_content += f"<p>Total sends: {total}</p>"
-
-    if total != 0:
-        with open(grade_file_name, "w") as f:
-            f.write(grade_file_content)
-
-        kilter_stats[grade] = total
-
 with open(CLIMBING_INFO, "w") as f:
     f.write(yaml.dump(config))
-
-with open(kilter_stats_path, "w") as f:
-    f.write("| " + "|".join([f"[{k}](/climbing/kilter/{k.lower().replace('+', 'p')}/) ({v})" for k, v in kilter_stats.items()]) + "|\n")
 
 print("climbing videos generated (and reformatted).", flush=True)
 

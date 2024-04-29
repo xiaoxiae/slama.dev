@@ -2896,7 +2896,7 @@
   red:
     new: 11
   wall: Boulderhaus
-2024-04-23:
+2024-04-22:
   moon:
     6a+:
       new: 2
@@ -2911,4 +2911,33 @@
   note: Wanted to do some more long-term projecting and managed to do a 7B! Pretty
     stoked about it, I think I'll focus on climbing harder moonboard stuff instead
     of more easier routes.
+  wall: Crimp
+2024-04-24:
+  note: 'Comp-sim with Tom. Fun: had. Skin: gone.'
+  wall: Studiobloc
+2024-04-26:
+  moon:
+    6a+:
+      new: 2
+    6b:
+      new: 1
+    6c:
+      new: 1
+    7a:
+      new: 2
+    7a+:
+      new: 2
+  note: Late night moonboard sesh.
+  wall: Crimp
+2024-04-29:
+  moon:
+    6c:
+      new: 3
+    6c+:
+      new: 1
+    7a:
+      new: 1
+    7b:
+      new: 1
+  note: Another 7b, this time on the ~3rd serious attempt!
   wall: Crimp

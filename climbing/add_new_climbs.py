@@ -48,13 +48,22 @@ for file in files:
             }
 
         kilter = file.lower().startswith("kilter")
+        moon = file.lower().startswith("moon")
 
         # a little hacky but very functional
         if kilter:
             del config[file]["wall"]
+            del config[file]["deface"]
             config[file]["kilter"] = True
-
-        print(f"adding new {'' if not kilter else 'Kilter '}file {file}.")
+            print(f"adding new {'' if not kilter else 'Kilter '}file {file}.")
+        # a little hacky but very functional
+        elif moon:
+            del config[file]["wall"]
+            del config[file]["deface"]
+            config[file]["moon"] = True
+            print(f"adding new {'' if not moon else 'Moon '}file {file}.")
+        else:
+            print(f"adding new file {file}.")
 
 with open(CLIMBING_INFO, "w") as f:
     f.write(yaml.dump(config))
