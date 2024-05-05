@@ -195,6 +195,11 @@ pre.vanilla {
   }
 }
 
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
 .large {
   font-size: 125%;
 }
