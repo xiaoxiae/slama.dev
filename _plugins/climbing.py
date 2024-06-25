@@ -189,7 +189,7 @@ for name in list(config):
                 "-i",
                 path,
                 "-vf",
-                "select=eq(n\,0)",
+                r"select=eq(n\,0)",
                 "-vframes",
                 "1",
                 "-y",

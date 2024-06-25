@@ -132,6 +132,7 @@ for entry in reversed(sorted(list(journal))):
         "smichoff": "https://www.lezeckecentrum.cz/cs/",
         "studiobloc": "http://studiobloc.de/",
         "trinactka": "http://stenastodulky.cz/",
+        "steil": "https://boulderhalle-steil.com/en/",
     }
 
     wall = ""

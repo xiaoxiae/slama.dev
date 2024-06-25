@@ -525,6 +525,11 @@ footer {
   opacity: 0.5;
 }
 
+.box {
+  padding: $line-spacing / 2;
+  border: 1px solid;
+}
+
 // right floats
 .rightFloatBox {
   max-width: 30%;

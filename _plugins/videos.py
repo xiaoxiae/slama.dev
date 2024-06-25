@@ -163,7 +163,7 @@ for category, video_contents in videos:
             else:
                 description = contents.splitlines()[1]
 
-        video_escaped = video.replace("|", "\|")
+        video_escaped = video.replace(r"|", r"\|")
 
         if len(thumbnails) == 1 and not is_short:
             result += f"\n[![Thumbnail for the '{video_escaped}' video](/videos/{video_slug}/thumbnail.webp){{: .video-thumbnail}}]({youtube_link})\n"
