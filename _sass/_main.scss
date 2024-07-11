@@ -127,7 +127,7 @@ del {
 
 .post-attributes {
   @media (max-width: $small-screen-threshold) {
-    display: none;
+    font-size: 80%;
   }
 }
 
@@ -521,6 +521,14 @@ footer {
   opacity: 0.25;
 }
 
+.hide-when-large {
+  display: none;
+
+  @media (max-width: $small-screen-threshold) {
+    display: inline;
+  }
+}
+
 .half-visible {
   opacity: 0.5;
 }
@@ -528,6 +536,10 @@ footer {
 .box {
   padding: $line-spacing / 2;
   border: 1px solid;
+}
+
+.space-around {
+  padding: $line-spacing / 4;
 }
 
 // right floats

@@ -37,30 +37,41 @@ ul.hfill:nth-child(2n) {
 $dark-alternate-index-color-1: darken($dark-background-color, 10%);
 $dark-alternate-index-color-2: darken($dark-background-color, 3%);
 
-@media (prefers-color-scheme: dark) {
-  ul.hfill:nth-child(2n + 1) {
-    background-color: $dark-alternate-index-color-1;
+  @media (prefers-color-scheme: dark) {
+    ul.hfill:nth-child(2n + 1) {
+      background-color: $dark-alternate-index-color-1;
+    }
+    ul.hfill:nth-child(2n) {
+      background-color: $dark-alternate-index-color-2;
+    }
   }
-  ul.hfill:nth-child(2n) {
-    background-color: $dark-alternate-index-color-2;
-  }
-}
 
-ul.hfill {
-  display: flex;
-  justify-content: space-between;
-  list-style-type: none;
-  padding-left: $line-spacing / 5;
-  padding-right: $line-spacing / 5;
-  margin-top: $line-spacing / 5;
-  margin-bottom: $line-spacing / 5;
-  padding-top: $line-spacing / 7;
-  padding-bottom: $line-spacing / 7;
+  ul.hfill {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    padding-left: $line-spacing / 5;
+    padding-right: $line-spacing / 5;
+    margin-top: $line-spacing / 3;
+    margin-bottom: $line-spacing / 3;
+    padding-top: $line-spacing / 5;
+  padding-bottom: $line-spacing / 5;
   border-radius: $line-spacing / 5;
 
+  @media (max-width: $small-screen-threshold) {
+    display: block;
+    justify-content: normal;
+  }
 
   li:nth-child(2) {
     text-align: right;
     padding-left: $line-spacing;
+
+    @media (max-width: $small-screen-threshold) {
+      display: normal;
+
+      padding-left: 0;
+      text-align: left;
+    }
   }
 }

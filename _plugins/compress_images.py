@@ -172,7 +172,7 @@ for path in new_config:
         to_remove_images.append(path)
 
 if len(to_remove_images) != 0:
-    print(f"removing {len(to_remove_images)} unreferenced images", flush=True)
+    print(f"removing {len(to_remove_images)} unreferenced images (moving to {LEFTOVER_FOLDER})", flush=True)
     for image in to_remove_images:
         os.rename(image, os.path.join(LEFTOVER_FOLDER, os.path.basename(image)))
 

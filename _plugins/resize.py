@@ -36,7 +36,7 @@ def downscale_image(image_path, output_folder, max_dimension=2500):
             new_width //= 2
             new_height //= 2
 
-        img = img.resize((new_width, new_height), Image.ANTIALIAS)
+        img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
 
         shutil.copy(image_path, output_folder / (image_path.name + "." + generate_random_id(4)))
         img.save(image_path)
