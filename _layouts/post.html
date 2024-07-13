@@ -26,9 +26,9 @@ post-title: True
 
 	{% if page.pdf or page.pdf-nogenerate %}
 		{% if page.language == "cz" %}
-			<span class="quarter-visible vspace">· </span>dostupné v <a href="/assets/{{ page.url | split: "/" | last }}.pdf">PDF</a>
+			<span class="quarter-visible vspace">· </span>dostupné v <strong><a href="/assets/{{ page.url | split: "/" | last }}.pdf">PDF</a></strong>
 		{% else %}
-			<span class="quarter-visible vspace">· </span>available as<a href="/assets/{{ page.url | split: "/" | last }}.pdf">PDF</a>
+			<span class="quarter-visible vspace">· </span>available as <strong><a href="/assets/{{ page.url | split: "/" | last }}.pdf">PDF</a></strong>
 		{% endif %}
 	{% endif %}
 
