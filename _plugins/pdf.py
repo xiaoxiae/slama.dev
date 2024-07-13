@@ -174,7 +174,7 @@ substitutions = [
     ## code with language
     (
         r"```(.+?)\n((.|\n)+?)```",
-        partial(language, lambda x, y: f"\\begin{{minted}}{{{x}}}\n{y}\end{{minted}}"),
+        partial(language, lambda x, y: f"\\begin{{minted}}{{{x}}}\n{y}\\end{{minted}}"),
     ),
     # code without language
     (r"```\n((.|\n)+?)```", r"\\begin{minted}{text}\n\1\\end{minted}"),
@@ -216,7 +216,7 @@ substitutions = [
     # pandoc generates this when converting a standalone list; a bit of a hack but whatever
     (r"\\def\\labelenumi{\\arabic{enumi}\.}", ""),
     # remove things like \{: style=``max-width: 50\%'' :\}
-    ("{:\s*style=(.+?):}", ""),
+    ("{:\\s*style=(.+?):}", ""),
     # other images
     (r"^!\[(.*?)\]\((.+?)\s*\)", r"\\includegraphics[max width=\\textwidth]{\2}"),
 ]
