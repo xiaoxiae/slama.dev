@@ -32,7 +32,7 @@ Links to the sections of the website can be found at the top, links to the posts
 {% unless post.hidden %}
 <ul class="hfill">
 	<li>
-	{% if post.href %}🔗 {% endif%}
+	{% if post.href %}<i class="small fa-solid fa-link quarter-visible"></i> {% endif%}
 	{% if post.language == "cz" %}🇨🇿 {% endif%}
     <strong>
 	{% if post.href %}
@@ -44,7 +44,7 @@ Links to the sections of the website can be found at the top, links to the posts
 	</li>
 	<li>
     <span class="post-attributes">
-	{% if post.pdf or post.pdf-nogenerate %} <a href="/assets/{{post.url | split: "/" | last}}.pdf">PDF</a> |{% endif %}
+	{% if post.pdf or post.pdf-nogenerate %} <a href="/assets/{{post.url | split: "/" | last}}.pdf"><i class="fa-solid fa-file-pdf"></i></a> |{% endif %}
 	{% if post.category_noslug %} {{post.category_noslug}}
 	{% elsif post.category%}
 	{% if post.category_url %}

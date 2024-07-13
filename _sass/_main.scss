@@ -128,6 +128,9 @@ del {
 .post-attributes {
   @media (max-width: $small-screen-threshold) {
     font-size: 80%;
+
+    padding-left: $line-spacing / 3;
+    padding-right: $line-spacing / 3;
   }
 }
 
@@ -204,8 +207,22 @@ pre.vanilla {
   font-size: 125%;
 }
 
+.small {
+  font-size: 80%;
+}
+
 .tiny {
   font-size: 50%;
+}
+
+.no-link-color {
+  a {
+    color: $light-text-color;
+
+    @media (prefers-color-scheme: dark) {
+      color: $dark-text-color;
+    }
+  }
 }
 
 span.brr-1 {
@@ -454,9 +471,9 @@ footer {
   p {
     margin-bottom: $line-spacing / 2;
   }
+
   p + p {
-    font-size: $footer-size;
-    margin-bottom: 0;
+    margin-bottom: $line-spacing / 4;
   }
 
   .footer-multiline {
@@ -513,8 +530,13 @@ footer {
 }
 
 .vspace {
-  padding-left: $line-spacing / 5;
-  padding-right: $line-spacing / 5;
+  padding-left: $line-spacing / 4;
+  padding-right: $line-spacing / 4;
+}
+
+.tiny-vspace {
+  padding-left: $line-spacing / 10;
+  padding-right: $line-spacing / 10;
 }
 
 .quarter-visible {

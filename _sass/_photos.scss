@@ -135,3 +135,17 @@ figcaption {
     padding: $line-spacing / 2 $line-spacing / 2 $line-spacing / 2 0;
   }
 }
+
+.bg-div-outer {
+  background-repeat: no-repeat !important;
+}
+
+.bg-div {
+  background-color: #fffe;
+  box-shadow: 0 0 4px 4px $light-background-color inset;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #333e;
+    box-shadow: 0 0 4px 4px $dark-background-color inset;
+  }
+}
