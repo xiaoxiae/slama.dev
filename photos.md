@@ -80,6 +80,6 @@ Photos that contain the Christmas spirit.
 </div></li></ul>
 
 <ul><li class="bg-div-outer" style="background: url(/photos/other/thumbnail.webp);"><div markdown="1" class="bg-div">
-#### [3] [Other ❔](/photos/other/)
+#### [4] [Other ❔](/photos/other/)
 Pictures that didn't really fit anywhere.
 </div></li></ul>
