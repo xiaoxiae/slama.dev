@@ -94,8 +94,19 @@ for entry in reversed(sorted(list(journal))):
 
         current_month = entry.month
 
+    if "note" in journal[entry]:
+        note = journal[entry]["note"]\
+                .replace("--", "–")\
+                .replace(":)", "<span class='emoji'>🙂</span>")\
+                .replace(":P", "<span class='emoji'>😛</span>")\
+                .replace(":D", "<span class='emoji'>😀</span>")\
+                .replace(":|", "<span class='emoji'>😐</span>")\
+                .replace(":/", "<span class='emoji'>🫤</span>")\
+                .replace("<3", "<span class='emoji'>❤️</span>")\
+                .replace(":(", "<span class='emoji'>☹️</span>")
+
     if "placeholder" in journal[entry] and journal[entry]["placeholder"]:
-        result += line + f"<div class='placeholder'><p>⋮<br>{journal[entry]['note']}<br>⋮</p></div>" + "\n"
+        result += line + f"<div class='half-visible'><p>⋮<br>{note}<br>⋮</p></div>" + "\n"
         continue
 
     if "image" in journal[entry]:
@@ -338,17 +349,8 @@ for entry in reversed(sorted(list(journal))):
     if "training" in journal[entry]:
         line += f"<p class='climbing-training'><strong>Training:</strong> {journal[entry]['training']}</p>"
 
-    if "note" in journal[entry]:
-        note = journal[entry]["note"]\
-                .replace("--", "–")\
-                .replace(":)", "<span class='emoji'>🙂</span>")\
-                .replace(":P", "<span class='emoji'>😛</span>")\
-                .replace(":D", "<span class='emoji'>😀</span>")\
-                .replace(":|", "<span class='emoji'>😐</span>")\
-                .replace(":/", "<span class='emoji'>🫤</span>")\
-                .replace("<3", "<span class='emoji'>❤️</span>")\
-                .replace(":(", "<span class='emoji'>☹️</span>")
 
+    if "note" in journal[entry]:
         line += "<p class='climbing-note'>" + markdown.markdown(note)[3:]
 
     line += "</li>"
