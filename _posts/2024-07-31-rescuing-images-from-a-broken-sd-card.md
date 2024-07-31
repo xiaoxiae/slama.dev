@@ -80,7 +80,27 @@ It will also not jump all over the disk, doing mostly sequential reads that don'
 
 ### Reading the SD card!
 
-After much time, we have managed to recover
+After **~300** hours of reading, the reading speed dropped to about `1 B/s` we have managed to recover **94.5%** of data, with the graph and recovered sector visualizations (using **[`ddrescueview`](https://sourceforge.net/projects/ddrescueview/)**) looking like this:
+
+<div class='photo-section'>
+<figure>
+    <div class="row">
+        <div class="photos2-0">
+            <img src="/assets/rescuing-images-from-a-broken-sd-card/graph.webp" alt="Graph of recovery from 86%.">
+        </div>
+        <div class="photos2-1">
+            <img src="/assets/rescuing-images-from-a-broken-sd-card/recovered.webp" alt="Recovered sectors visualization.">
+        </div>
+    </div>
+    <figcaption><strong>Graph of recovery</strong> from 86% onward (left) and <strong>recovered sectors</strong> (right).</figcaption>
+</figure>
+</div>
+
+Re-running **[`photorec`](https://www.cgsecurity.org/wiki/PhotoRec)** gives us **61 images** and **700 thumbnails**, which is... better... but still pretty depressing.
+This is mainly due to how the recovered sectors are distributed -- many of the images that could not be recovered contain corrupted bytes, which makes them broken.
+
+Looking at the positive side, that is still **61** high-quality images and **700** low-quality ones, instead of none whatsoever, which is something 🙂.
+Even more positive, since you made it to the end of this post, you get to look at pictures of a cute dog which would be otherwise lost forever 🎉!
 
 <div class='photo-section'>
 <figure>
@@ -92,21 +112,6 @@ After much time, we have managed to recover
             <img src="/assets/rescuing-images-from-a-broken-sd-card/f4837824.webp" alt="A good doggo image, pt. 2.">
         </div>
     </div>
-    <figcaption>Two recovered fotos of a good doggo. 🕊️</figcaption>
+    <figcaption>Two recovered photos of a good doggo. 🕊️</figcaption>
 </figure>
 </div>
-
-<!--
-For that, we can use **[`ddrescueview`](https://sourceforge.net/projects/ddrescueview/)** to visualize `ddrescue`'s mapfile (where the progress is stored).
-
-<div class='photo-section'>
-<figure>
-    <div class="row">
-        <div class="photos1-0">
-            <img src="/assets/rescuing-images-from-a-broken-sd-card/ddrescueview-80.webp" alt="TODO">
-        </div>
-    </div>
-    <figcaption>Status of <span markdown="1">`ddrescue`</span> mapfile after <strong>40 hours.</strong></figcaption>
-</figure>
-</div>
--->
