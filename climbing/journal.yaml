@@ -3029,10 +3029,20 @@
   note: Holiday / break time! Resting fingers for a little bit :).
   placeholder: true
 2024-07-17:
+  blue:
+    new: 5
   note: Fun times :).
   red:
     new: 9
-  blue:
-    new: 5
   yellow:
     new: 4
+2024-07-21:
+  black:
+    new: 1
+  note: Still feeling a bit sick, but could be much worse.
+  red:
+    new: 5
+  wall: Boulderhaus
+2024-07-22:
+  note: More sessions here. Feeling better and better.
+  placeholder: true
