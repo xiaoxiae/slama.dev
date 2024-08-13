@@ -149,3 +149,84 @@ figcaption {
     box-shadow: 0 0 4px 4px $dark-background-color inset;
   }
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 1rem;
+
+  @media (max-width: $tiny-screen-threshold) {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+
+  padding-bottom: $line-spacing;
+}
+
+.grid > div {
+  position: relative;
+}
+
+.grid > div::before {
+  // for aspect ratio
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.grid > div::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(5px); /* Apply blur to the border */
+  z-index: 0; /* Ensure this layer is behind the image */
+
+  background-color: #0005;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #fff3;
+  }
+}
+
+.grid img {
+  z-index: 1; /* Ensure this layer is behind the image */
+
+  max-width: 100%;
+  filter: invert(0%);
+  image-orientation: from-image;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.icons {
+  position: absolute;
+  bottom: 5px; /* Distance from the bottom edge */
+  right: 10px; /* Distance from the right edge */
+  z-index: 2; /* Ensure the icons are above the blurred background */
+  display: flex;
+  gap: 10px; /* Space between icons */
+
+  a {
+    font-size: 0.9rem;
+    color: white;
+    text-shadow: 0 0 4px #000, 0 0 4px #000, 0 0 8px #000;
+  }
+}
+
+.date {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  color: white;
+  text-shadow: 0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 5px #000, 0 0 5px #000, 0 0 5px #000, 0 0 5px #000;
+  font-size: 0.75rem; /* Adjust font size as needed */
+  z-index: 2; /* Ensure the date is above other elements */
+}

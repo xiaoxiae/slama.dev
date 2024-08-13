@@ -63,19 +63,6 @@ def find_markdown_files(directory) -> list[Path]:
                 markdown_files.append(Path(root) / file)
     return markdown_files
 
-def extract_image_paths_from_directory(directories) -> set[Path]:
-    """Extracts image paths from all Markdown files in a directory and its subdirectories."""
-    markdown_files = []
-    for directory in directories:
-        markdown_files += find_markdown_files(directory)
-    image_paths_set = set()
-    for markdown_file in markdown_files:
-        with open(markdown_file, 'r') as file:
-            markdown_content = file.read()
-        image_paths = extract_image_paths_from_markdown(markdown_content)
-        image_paths_set.update(image_paths)
-    return image_paths_set
-
 config = {}
 new_config = {}
 if CACHE_FOLDER.exists():
@@ -146,17 +133,6 @@ if len(leftover_webps) != 0:
 if not LEFTOVER_FOLDER.exists():
     LEFTOVER_FOLDER.mkdir()
 
-used_image_paths = extract_image_paths_from_directory([PHOTOS_FOLDER, POSTS_FOLDER])
-to_remove_images = []
-for path in new_config:
-    if path not in used_image_paths:
-        to_remove_images.append(path)
-
-if len(to_remove_images) != 0:
-    print(f"removing {len(to_remove_images)} unreferenced images (moving to {LEFTOVER_FOLDER})", flush=True)
-    for image in to_remove_images:
-        image.rename(image, LEFTOVER_FOLDER / image.name)
-
 with open(CACHE_FOLDER, "w") as f:
     new_config = {str(k): v for k, v in new_config.items()}
     f.write(yaml.dump(new_config))
@@ -166,28 +142,3 @@ if something_changed:
     print(f"size after: {format_to_mb(thumbnail_size)} MB", flush=True)
 else:
     print("no changes.", flush=True)
-
-# Create a concatenated thumbnail image
-if something_changed:
-    print(f"generating concatenated thumbnails.")
-    for path, imgs in thumbnail_images.items():
-        tiny_size = 128
-        gap_size = 10
-
-        thumbnail_images = [Image.open(img) for img in imgs]
-
-        for t in thumbnail_images:
-            t.thumbnail((tiny_size, t.height / t.width * tiny_size))
-
-        total_width = sum(img.width for img in thumbnail_images) + gap_size * (len(thumbnail_images) - 1)
-        max_height = max(img.height for img in thumbnail_images)
-
-        new_im = Image.new('RGBA', (total_width, max_height), (255, 255, 255, 0))
-        x_offset = 0
-        for img in thumbnail_images:
-            new_im.paste(img, (x_offset, 0), img.convert('RGBA'))
-            x_offset += img.width + gap_size
-
-        new_im.filter(ImageFilter.BLUR)
-
-        new_im.save(path / "thumbnail.webp", "WEBP")

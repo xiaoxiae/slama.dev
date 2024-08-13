@@ -4,6 +4,11 @@ Jekyll::Hooks.register :site, :after_init do |site|
     print "            Images: " + x + "\n"
   }
 
+  `_plugins/photos.py`.split( /\r?\n/ ).each {
+    |x|
+    print "            Photos: " + x + "\n"
+  }
+
   `_plugins/videos.py`.split( /\r?\n/ ).each {
     |x|
     print "            Videos: " + x + "\n"
