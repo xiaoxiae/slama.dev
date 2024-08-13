@@ -299,6 +299,9 @@ blockquote {
     padding-bottom: $line-spacing / 2;
     margin-bottom: 0px;
 
+    // otherwise it exenteds from the page...
+    width: fit-content !important;
+
     font-style: italic;
   }
 
