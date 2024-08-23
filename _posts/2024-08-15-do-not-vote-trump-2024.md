@@ -1,6 +1,5 @@
 ---
 title: Do Not Vote Trump 2024
-hidden: true
 ---
 
 - .
