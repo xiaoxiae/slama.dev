@@ -73,7 +73,11 @@ GEM
       strscan
     rouge (4.3.0)
     safe_yaml (1.0.5)
-    sassc (2.4.0)
+    sassc (2.1.0)
+      ffi (~> 1.9)
+    sassc (2.1.0-x86-linux)
+      ffi (~> 1.9)
+    sassc (2.1.0-x86_64-linux)
       ffi (~> 1.9)
     strscan (3.1.0)
     terminal-table (3.0.2)
@@ -102,6 +106,7 @@ DEPENDENCIES
   jekyll-redirect-from
   jekyll-sass-converter (< 3.0)
   json
+  sassc (~> 2.1, < 2.2)
   webrick
 
 BUNDLED WITH
