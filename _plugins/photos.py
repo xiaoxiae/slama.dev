@@ -57,6 +57,7 @@ images = [
     {
         "date": datetime(2024, 9, 3),
         "path": Path('2024-09-03-romania-1-summit.jpg'),
+        "instagram_url": "https://www.instagram.com/p/C_dSzOitq8U/"
     },
     # TODO: there is a missing one here
     {
@@ -223,8 +224,14 @@ results = "<div class='grid'>"
 for image in images:
     icons = ""
 
-    date = image['date'].strftime('%Y/%m/%d')
+    date = image['date']
+    date_string = date.strftime('%Y/%m/%d')
     path = image['path']
+
+    if date > datetime.now():
+        print(f"got future image '{path}' ({date_string} > today), skipping.")
+        continue
+
     photo_url = f"/photos/{path.with_suffix('.webp').name}"
     download_url = f"/photos/raw/{path}"
 
@@ -243,7 +250,7 @@ for image in images:
 
     results += f"""
         <div>
-            <div class="date">{date}</div>
+            <div class="date">{date_string}</div>
             <img src="{photo_url}" alt="Image">
             <div class="icons">{icons}</div>
         </div>
