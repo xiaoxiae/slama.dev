@@ -136,14 +136,16 @@ for entry in reversed(sorted(list(journal))):
         "boulder-bar": "https://www.boulder.cz/",
         "boulderhaus": "https://www.boulderhaus.net/boulderhaus-heidelberg/",
         "boulder-point": "http://www.boulderpoint.cz/",
+        "boulderwelt-karlsruhe": "https://www.boulderwelt-karlsruhe.de/",
+        "climbhouse-brasov": "https://climbhouse.ro/",
         "crimp": "https://www.crimp-heidelberg.com/",
         "jungle-letnany": "https://www.jungleletnany.cz/",
         "lokalblok": "http://www.lokalblok.cz/lezecka-stena/",
         "mandala": "https://boulderhalle-dresden.de/",
         "smichoff": "https://www.lezeckecentrum.cz/cs/",
+        "steil": "https://boulderhalle-steil.com/en/",
         "studiobloc": "http://studiobloc.de/",
         "trinactka": "http://stenastodulky.cz/",
-        "steil": "https://boulderhalle-steil.com/en/",
     }
 
     wall = ""

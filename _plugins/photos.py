@@ -11,14 +11,63 @@ OUTPUT = "../_includes/photos.md"
 # Define the list of image information
 images = [
     {
+        "date": datetime(2024, 9, 12),
+        "path": Path('2024-09-12-romania-10-catto.jpg'),
+    },
+    {
+        "date": datetime(2024, 9, 11),
+        "path": Path('2024-09-11-romania-9-forest.jpg'),
+    },
+
+    {
+        "date": datetime(2024, 9, 10),
+        "path": Path('2024-09-10-romania-8-feather.jpg'),
+    },
+
+    {
+        "date": datetime(2024, 9, 9),
+        "path": Path('2024-09-09-romania-7-doggo.jpg'),
+    },
+
+    {
+        "date": datetime(2024, 9, 8),
+        "path": Path('2024-09-08-romania-6-doggo.jpg'),
+    },
+
+    {
+        "date": datetime(2024, 9, 7),
+        "path": Path('2024-09-07-romania-5-statue.jpg'),
+    },
+
+    {
+        "date": datetime(2024, 9, 6),
+        "path": Path('2024-09-06-romania-4-doggo.jpg'),
+    },
+
+    {
+        "date": datetime(2024, 9, 5),
+        "path": Path('2024-09-05-romania-3-crows.jpg'),
+    },
+
+    {
+        "date": datetime(2024, 9, 4),
+        "path": Path('2024-09-04-romania-2-dome.jpg'),
+    },
+
+    {
+        "date": datetime(2024, 9, 3),
+        "path": Path('2024-09-03-romania-1-summit.jpg'),
+    },
+    # TODO: there is a missing one here
+    {
+        "date": datetime(2024, 8, 25),
+        "path": Path('2024-08-25-frog.jpg'),
+        "instagram_url": "https://www.instagram.com/p/C-2xNP6tQNo/"
+    },
+    {
         "date": datetime(2024, 8, 22),
         "path": Path('2024-08-22-duck.jpg'),
         "instagram_url": "https://www.instagram.com/p/C--dPuqtePV/"
-    },
-    {
-        "date": datetime(2024, 8, 19),
-        "path": Path('2024-08-19-frog.jpg'),
-        "instagram_url": "https://www.instagram.com/p/C-2xNP6tQNo/"
     },
     {
         "date": datetime(2024, 8, 18),
