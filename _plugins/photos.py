@@ -18,48 +18,46 @@ images = [
         "date": datetime(2024, 9, 11),
         "path": Path('2024-09-11-romania-9-forest.jpg'),
     },
-
     {
         "date": datetime(2024, 9, 10),
         "path": Path('2024-09-10-romania-8-feather.jpg'),
     },
-
     {
         "date": datetime(2024, 9, 9),
         "path": Path('2024-09-09-romania-7-doggo.jpg'),
     },
-
     {
         "date": datetime(2024, 9, 8),
         "path": Path('2024-09-08-romania-6-doggo.jpg'),
     },
-
     {
         "date": datetime(2024, 9, 7),
         "path": Path('2024-09-07-romania-5-statue.jpg'),
     },
-
     {
         "date": datetime(2024, 9, 6),
         "path": Path('2024-09-06-romania-4-doggo.jpg'),
     },
-
     {
         "date": datetime(2024, 9, 5),
         "path": Path('2024-09-05-romania-3-crows.jpg'),
+        "instagram_url": "https://www.instagram.com/p/C_ic_17Nlvb/"
     },
-
     {
         "date": datetime(2024, 9, 4),
         "path": Path('2024-09-04-romania-2-dome.jpg'),
+        "instagram_url": "https://www.instagram.com/p/C_f3jZltPjF/"
     },
-
     {
         "date": datetime(2024, 9, 3),
         "path": Path('2024-09-03-romania-1-summit.jpg'),
         "instagram_url": "https://www.instagram.com/p/C_dSzOitq8U/"
     },
-    # TODO: there is a missing one here
+    {
+        "date": datetime(2024, 8, 30),
+        "path": Path('2024-08-30-cabin.jpg'),
+        "instagram_url": "https://www.instagram.com/p/C_TIOcVNtUo/"
+    },
     {
         "date": datetime(2024, 8, 25),
         "path": Path('2024-08-25-frog.jpg'),

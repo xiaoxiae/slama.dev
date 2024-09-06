@@ -120,6 +120,9 @@ for entry in reversed(sorted(list(journal))):
     f_colors = sorted([f"{i}{c}{p}".strip() for i in range(6, 9) for c in "abc" for p in " +"])
     f_grading_gyms_stubs = {"boulder-point"}
 
+    number_colors = sorted([str(i) for i in range(1, 10)])
+    number_grading_gyms_stubs = {"boulderwelt-karlsruhe", "climbhouse-brasov"}
+
     # keep sorted by difficulty! (left easiest, right hardest)
     wall_stubs_colors = {
         "smichoff": ["red", "salmon", "blue", "yellow"],
@@ -128,6 +131,8 @@ for entry in reversed(sorted(list(journal))):
         "boulder-bar": ["green", "blue", "red"],
         "trinactka": v_colors,
         "boulder-point": f_colors,
+        "climbhouse-brasov": number_colors,
+        "boulderwelt-karlsruhe": number_colors,
     }
 
     wall_urls = {
@@ -231,6 +236,8 @@ for entry in reversed(sorted(list(journal))):
             line += f"<mark class='climbing-diary-record climbing-{color} climbing-v'><strong>{color}:</strong> {count}"
         elif wall_stub in f_grading_gyms_stubs:
             line += f"<mark class='climbing-diary-record climbing-{color.replace('+', 'p')} climbing-f'><strong>{color}:</strong> {count}"
+        elif wall_stub in number_grading_gyms_stubs:
+            line += f"<mark class='climbing-diary-record climbing-{color} climbing-number'><strong>{color}:</strong> {count}"
         elif kilter or moon:
             line += f"<mark class='climbing-diary-record climbing-{color.replace('+', 'p')} climbing-f'><strong>{color}:</strong> {count}"
         else:

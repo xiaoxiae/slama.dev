@@ -125,7 +125,7 @@ for name in list(config):
         encode_config = (
             []
             if "encode" not in config[name]
-            else ["-vcodec", "libx264", "-crf", "28"]
+            else ["-c:v", "h264_nvenc", "-preset", "slow"]
         )
         rotate_config = (
             []

@@ -3072,6 +3072,31 @@
     much happier with my climbing.
   wall: ClimbHouse Brasov
 2024-09-02:
+  '6':
+    new: 6
+  '7':
+    new: 4
+  '8':
+    new: 1
   note: Best and last session, managing to do one 8 (hardest grade), as well as many
     7s (second hardest grade).
   wall: ClimbHouse Brasov
+2024-09-04:
+  black:
+    new: 1
+  blue:
+    new: 5
+  note: Getting back to recording. Will be consistent. Surely.
+  red:
+    new: 4
+  wall: Boulderhaus
+2024-09-06:
+  '6':
+    new: 4
+  '7':
+    new: 5
+    old: 1
+  '8':
+    new: 2
+  note: A duel-ish session with Jan. Fun movement!
+  wall: Boulderwelt Karlsruhe
