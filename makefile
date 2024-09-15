@@ -15,7 +15,7 @@ upload: check
 	cd _site && git add . && git commit -m "automated commit" && git push -f
 
 check:
-	! grep -R "localhost:4000" _site/**/*.html && echo "Check passed: No 'localhost:4000' found." || (echo "ERROR: Found 'localhost:4000' in HTML files, not uploading!" && exit 1)
+	! grep -R "localhost:4000" _site/**/*.html && echo "     Check passed: No 'localhost:4000' found." || (echo "ERROR: Found 'localhost:4000' in HTML files, not uploading!" && exit 1)
 
 clean:
 	bundle exec jekyll clean --trace
