@@ -36,9 +36,17 @@ Links to the sections of the website can be found at the top, links to the posts
 	{% if post.language == "cz" %}🇨🇿 {% endif%}
     <strong>
 	{% if post.href %}
-        <a href="{{ post.href }}">{{ post.title}}</a>
+        {% if post.draft %}
+            <a href="{{ post.href }}" class="red">{{ post.title}}</a>
+        {% else %}
+            <a href="{{ post.href }}">{{ post.title}}</a>
+        {% endif %}
     {% else %}
-        <a href="{{ post.url }}">{{ post.title}}</a>
+        {% if post.draft %}
+            <a href="{{ post.url }}" class="red">{{ post.title}}</a>
+        {% else %}
+            <a href="{{ post.url }}">{{ post.title}}</a>
+        {% endif %}
     {% endif %}
     </strong>
 	</li>
