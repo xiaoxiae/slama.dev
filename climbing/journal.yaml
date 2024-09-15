@@ -3100,3 +3100,17 @@
     new: 2
   note: A duel-ish session with Jan. Fun movement!
   wall: Boulderwelt Karlsruhe
+2024-09-07:
+  note: Austria trip. Some outdoor bouldering, an Innsbruck session, a pulled muscle...
+    the usual.
+  placeholder: true
+2024-09-15:
+  guide: https://tetzank.github.io/riesenstein/boulders/
+  image: riesenstein.webp
+  location: <a href='https://goo.gl/maps/Mn18C1s2D1HHZXpx8'>Riesenstein</a>
+  note: Back to Perkeo, almost climbed it! Feeling good about future sessions.
+  routes:
+  - - Gerdina
+    - - 7a
+  - - Gerdina Links (Crazy Fins)
+    - - 7b
