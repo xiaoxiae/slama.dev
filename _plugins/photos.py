@@ -18,16 +18,18 @@ images = [
     },
     {
         "path": Path('2024-09-19-austria-3-water.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DAGpP9LN-pY/"
     },
     {
         "path": Path('2024-09-17-austria-2-stars.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DABfnHytIH-/"
     },
     {
         "path": Path('2024-09-15-austria-1-sunset.jpg'),
+        "instagram_url": "https://www.instagram.com/p/C_8VcJhtyq6/"
     },
     {
         "path": Path('2024-09-12-romania-10-catto.jpg'),
-        "instagram_url": "https://www.instagram.com/p/C_8VcJhtyq6/"
     },
     {
         "path": Path('2024-09-11-romania-9-forest.jpg'),
