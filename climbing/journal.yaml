@@ -3114,3 +3114,37 @@
     - - 7a
   - - Gerdina Links (Crazy Fins)
     - - 7b
+2024-09-17:
+  note: Almost forgot how bad Boulderhaus routes are.
+  red:
+    new: 6
+  wall: Boulderhaus
+2024-09-18:
+  hangboard:
+    exercises:
+    - 5-5 supported
+    - 3-3
+    - 2-3
+    - 5-5
+    - 5-10
+    - 5-5 push-up to mid
+    - 5-5 slow mid to down
+    parameters: 8/8/4/120
+    type: beastmaker-2000
+  wall: home
+2024-09-19:
+  hangboard:
+    exercises:
+    - jumping jacks 30
+    - jumping jacks 30
+    - 5-5 supported
+    - 3-3
+    - 2-3
+    - 5-5
+    - 5-10
+    - 5-5 push-up to mid
+    - 5-5 slow mid to down
+    - 5-5 slow mid to down
+    parameters: 8/8/4/120
+    type: beastmaker-2000
+  wall: home
