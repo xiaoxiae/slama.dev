@@ -13,7 +13,7 @@ When asking about why it's there, <a class='secret' href='/assets/kacka.webp'>sh
 <figure>
     <div class="row">
         <div class="photos1-0">
-            <img src="/assets/rescuing-images-from-a-broken-sd-card/camera.webp" alt="TODO">
+            <img src="/assets/rescuing-images-from-a-broken-sd-card/camera.webp" alt="Image of a Nikon Coolpix S5100 handheld camera.">
         </div>
     </div>
     <figcaption><strong>Nikon Coolpix S5100</strong> handheld camera.</figcaption>
