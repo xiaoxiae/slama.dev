@@ -28,32 +28,7 @@ To greatly speed things up, we can switch the backend to **OpenGL**, which uses 
 To start things of, let's slightly edit one of the first scenes in the series:
 
 ```py
-from manim import *
-from manim.opengl import *
-
-
-class IntroScene(Scene):
-    def construct(self):
-        square = Square(color=RED).shift(LEFT * 2)
-        circle = Circle(color=BLUE).shift(RIGHT * 2)
-
-        self.play(Write(square), Write(circle))
-
-        # moving objects
-        self.play(
-            square.animate.shift(UP * 0.5),
-            circle.animate.shift(DOWN * 0.5)
-        )
-
-        # rotating and filling the square (opacity 80%)
-        # scaling and filling the circle (opacity 80%)
-        self.play(
-            square.animate.rotate(PI / 2).set_fill(RED, 0.8),
-            circle.animate.scale(2).set_fill(BLUE, 0.8),
-        )
-
-        # this is new!
-        self.interactive_embed()
+{% include manim/06-intro-example.py %}
 ```
 
 Saving the scene to a file, we can use 
@@ -83,7 +58,7 @@ self.play(square.animate.set_color(BLUE), circle.animate.set_color(RED))
 
 to swap the colors of the background objects. Pretty awesome, right?
 
-{% manim_video 6-Intro %}
+{% manim_video 06-intro-example %}
 
 We can of course use `self.interactive_embed()` as many times as we like -- to exit the current interactive session and continue onto the next one, we can either type `exit`, or just `Ctrl+D`.
 
@@ -97,37 +72,10 @@ This comes in the form of `on_key_{press/release}` and `on_mouse_{press/motion/s
 For example, let's create a simple scene that grows/shrinks an object based on key presses:
 
 ```py
-from manim import *
-from manim.opengl import *
-
-# Pyglet key constants
-from pyglet.window import key
-
-
-class KeyboardScene(Scene):
-    def construct(self):
-        # we're using self so it's available throughout the scene
-        self.circle = Circle(color=BLUE)
-
-        self.play(Write(self.circle))
-
-        self.interactive_embed()
-
-    def on_key_press(self, symbol, modifiers):
-        """Called each time a key is pressed."""
-        # grow the circle when plus is pressed
-        if symbol == key.PLUS:
-            self.play(self.circle.animate.scale(2))
-
-        # shrink it when minus is pressed
-        elif symbol == key.MINUS:
-            self.play(self.circle.animate.scale(1 / 2))
-
-        # so we can still use the default controls
-        super().on_key_press(symbol, modifiers)
+{% include manim/06-keyboard-example.py %}
 ```
 
-{% manim_video 6-Keyboard %}
+{% manim_video 06-keyboard-example %}
 
 Once we get to interact with the scene, we can press `+` to grow the size of the circle on the screen and `-` to shrink it.
 The interactive window uses [Pyglet](https://pyglet.org/), which is why we're importing the [`pyglet.window.key`](https://pyglet.readthedocs.io/en/latest/modules/window_key.html) constants.
@@ -135,38 +83,10 @@ The interactive window uses [Pyglet](https://pyglet.org/), which is why we're im
 We can do a similar thing for interactivity with the mouse:
 
 ```py
-from manim import *
-from manim.opengl import *
-
-from pyglet.window import key
-
-
-class MouseScene(Scene):
-    def construct(self):
-        self.circle = Circle(color=BLUE)
-
-        self.play(Write(self.circle))
-
-        self.interactive_embed()
-
-    def on_mouse_drag(self, point, d_point, buttons, modifiers):
-        """Called each time the mouse is dragged (moves pressed across the windows)."""
-        # resize the circle to where the mouse cursor currently is
-        new_radius = np.linalg.norm(point)
-
-        # no animations (the object is already in the scene), only changes!
-        self.circle.become(
-            Circle(
-                color=BLUE,
-                radius=new_radius,
-                fill_opacity=0.5 * abs(np.sin(new_radius)),  # for some spark ;)
-            )
-        )
-
-        # here we DON'T want to use the default controls since dragging moves the camera
+{% include manim/06-mouse-example.py %}
 ```
 
-{% manim_video 6-Mouse %}
+{% manim_video 06-mouse-example %}
 
 ### Camera
 The OpenGL camera [[source code](https://github.com/ManimCommunity/manim/blob/main/manim/renderer/opengl_renderer.py)] offers quite a few functions that work really well in combination with interactivity and can be combined in a really nice way.
@@ -174,52 +94,10 @@ The OpenGL camera [[source code](https://github.com/ManimCommunity/manim/blob/ma
 For example, one neat thing we can do is manually move camera into a number of positions and then smoothy interpolate among them using the following code:
 
 ```py
-from manim import *
-from manim.opengl import *
-
-from pyglet.window import key
-
-
-class CameraScene(Scene):
-    def construct(self):
-        square = Square(color=RED).shift(LEFT * 2)
-        circle = Circle(color=BLUE).shift(RIGHT * 2)
-
-        self.play(Write(square), Write(circle))
-
-        # moving objects
-        self.play(
-            square.animate.shift(UP * 0.5),
-            circle.animate.shift(DOWN * 0.5)
-        )
-
-        # rotating and filling the square (opacity 80%)
-        # scaling and filling the circle (opacity 80%)
-        self.play(
-            square.animate.rotate(PI / 2).set_fill(RED, 0.8),
-            circle.animate.scale(2).set_fill(BLUE, 0.8),
-        )
-
-        self.camera_states = []
-
-        self.interactive_embed()
-
-    def on_key_press(self, symbol, modifiers):
-        # + adds a new camera position to interpolate
-        if symbol == key.PLUS:
-            print("New position added!")
-            self.camera_states.append(self.camera.copy())
-
-        # P plays the animations, one by one
-        elif symbol == key.P:
-            print("Replaying!")
-            for cam in self.camera_states:
-                self.play(self.camera.animate.become(cam))
-
-        super().on_key_press(symbol, modifiers)
+{% include manim/06-camera-example.py %}
 ```
 
-{% manim_video 6-Camera %}
+{% manim_video 06-camera-example %}
 
 
 ### Mobject → OpenGLMobject
@@ -236,33 +114,10 @@ Here are some more examples of what you can do with OpenGL, mostly to inspire ra
 
 _This section is ever-expanding and will contain more examples as I experiment with OpenGL!_
 
-#### Point-cloud
+#### Pointcloud
 
 ```py
-from manim import *
-from manim.opengl import *
-
-
-class BunnyScene(Scene):
-    def construct(self):
-        pointcloud = OpenGLPMobject()
-
-        # one side of the Stanford bunny
-        # https://slama.dev/assets/manim/bunny.txt
-        points = []
-        with open("bunny.txt") as f:
-            for line in f.read().splitlines():
-                points.append(list(map(float, line.split())))
-
-        pointcloud.add_points(points)
-
-        # scale + color
-        pointcloud.scale(20)
-        pointcloud.set_color_by_gradient((RED, GREEN, BLUE))
-
-        self.play(Create(pointcloud))
-
-        self.interactive_embed()
+{% include manim/06-pointcloud-example.py %}
 ```
 
-{% manim_video 6-PointCloud %}
+{% manim_video 06-pointcloud-example %}
