@@ -11,10 +11,29 @@ OUTPUT = "../_includes/photos.md"
 # Define the list of image information
 images = [
     {
+        "path": Path('2024-10-07-austria-10-cows.jpg'),
+    },
+    {
+        "path": Path('2024-10-04-austria-9-mountains.jpg'),
+    },
+    {
+        "path": Path('2024-10-01-austria-8-mountains.jpg'),
+    },
+    {
+        "path": Path('2024-09-28-austria-7-otis.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DAd0XEPtCIy/"
+    },
+    {
+        "path": Path('2024-09-25-austria-6-water.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DAWE0Yytsy3/"
+    },
+    {
         "path": Path('2024-09-23-austria-5-mountains.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DAQ9B3ytjw8/"
     },
     {
         "path": Path('2024-09-21-austria-4-clouds.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DALy2oqtW3g/"
     },
     {
         "path": Path('2024-09-19-austria-3-water.jpg'),
