@@ -1,0 +1,35 @@
+@import "variables";
+
+
+.lang-spacer {
+  padding-bottom: $line-spacing / 6;
+}
+
+button {
+  cursor: pointer;
+
+  padding: $line-spacing / 8 $line-spacing / 4;
+  border-radius: 3px;
+
+  background-color: $light-code-background-color;
+  border-color: $light-code-background-color;
+
+  color: $light-text-color;
+
+  &:hover {
+    background-color: darken($light-code-background-color, 10%);
+    border-color: darken($light-code-background-color, 10%);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: $dark-code-background-color;
+    border-color: $dark-code-background-color;
+
+    color: $dark-text-color;
+
+    &:hover {
+      background-color: lighten($dark-code-background-color, 10%);
+      border-color: lighten($dark-code-background-color, 10%);
+    }
+  }
+}
