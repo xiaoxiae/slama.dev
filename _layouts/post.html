@@ -10,10 +10,6 @@ post-title: True
 		{{ page.category_noslug | default: page.category }}</strong>
 	{% endif %}
 
-	{% if page.category_icon %}
-		<img class='category-icon' src='{{ page.category_icon }}' alt='{{ page.category | default: page.category_noslug }} Icon'/>
-	{% endif %}
-
 	{% if page.category_noslug or page.category %}
 		<span class="quarter-visible vspace">· </span>
 	{% endif %}

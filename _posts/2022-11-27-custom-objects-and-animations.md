@@ -1,5 +1,5 @@
 ---
-title: Manim – Custom Objects and Animations
+title: Custom Objects and Animations
 category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim

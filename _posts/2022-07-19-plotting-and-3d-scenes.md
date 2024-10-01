@@ -1,5 +1,5 @@
 ---
-title: Manim – Plotting and 3D Scenes
+title: Plotting and 3D Scenes
 category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim

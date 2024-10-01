@@ -32,7 +32,9 @@ Links to the sections of the website can be found at the top, links to the posts
 {% unless post.hidden %}
 <ul class="hfill">
 	<li>
-	{% if post.href %}<i class="small fa-solid fa-link quarter-visible"></i> {% endif%}
+    {% if post.category_icon %} <img class='category-icon' src='{{post.category_icon}}'/>{% endif %}
+    {% if post.category_part %} [{{post.category_part}}]{% endif %}
+	{% if post.pdf or post.pdf-nogenerate %} <a href="/assets/{{post.url | split: "/" | last}}.pdf"><i class="fa-solid fa-file-pdf"></i></a>{% endif %}
 	{% if post.language == "cz" %}🇨🇿 {% endif%}
     <strong>
 	{% if post.href %}
@@ -51,20 +53,7 @@ Links to the sections of the website can be found at the top, links to the posts
     </strong>
 	</li>
 	<li>
-    <span class="post-attributes">
-	{% if post.pdf or post.pdf-nogenerate %} <a href="/assets/{{post.url | split: "/" | last}}.pdf"><i class="fa-solid fa-file-pdf"></i></a> |{% endif %}
-	{% if post.category_noslug %} {{post.category_noslug}}
-	{% elsif post.category%}
-	{% if post.category_url %}
-        <a href="{{post.category_url}}">{{ post.category}}</a>
-    {% else %}
-        {{post.category}}
-    {% endif %}
-    {% if post.category_part %} [{{post.category_part}}]{% endif %}{% endif %}
-    {% if post.category_icon %} <img class='category-icon' src='{{post.category_icon}}'/>{% endif %}
-    {% if post.category %}<span class="space-around quarter-visible hide-when-large">•</span>{% endif %}
-    <em><span class="hide-when-large">released </span><span class="nowrap">{{ post.date  | date: "%-d. %-m."}}</span></em>
-    </span>
+    <span class="nowrap" markdown="1">`{{ post.date  | date: "%-d. %-m."}}`</span>
 	</li>
 </ul>
 {% endunless %}
