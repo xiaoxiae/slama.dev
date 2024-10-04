@@ -9,7 +9,7 @@ all: build upload
 
 xopp: $(SVG);
 build: permissions $(SVG); ! ps -aux | grep "ruby.*jekyll" | grep -v grep -q && bundle exec jekyll build --trace || (echo "ERROR: Jekyll seems to be running already." && exit 1)
-serve: permissions $(SVG); ! ps -aux | grep "ruby.*jekyll" | grep -v grep -q && bundle exec jekyll serve --trace --drafts --config _config.yml,_config-local.yml || (echo "ERROR: Jekyll seems to be running already." && exit 1)
+serve: permissions $(SVG); ! ps -aux | grep "ruby.*jekyll" | grep -v grep -q && bundle exec jekyll serve --trace --drafts --future --config _config.yml,_config-local.yml || (echo "ERROR: Jekyll seems to be running already." && exit 1)
 
 upload: check
 	cd _site && git add . && git commit -m "automated commit" && git push -f
