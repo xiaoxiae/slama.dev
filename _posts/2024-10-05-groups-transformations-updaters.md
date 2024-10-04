@@ -6,7 +6,7 @@ category_part: 2
 css: motioncanvas photos manim
 redirect_from:
 - /motion-canvas/2/
-end: <a href="/motion-canvas/1/">Part 1</a>, <strong>→ Part 2 ←</strong>, <a href="/motion-canvas/3/">Part 3</a>
+end: <a href="/motion-canvas/1/">Part 1</a>, <strong>→ Part 2 ← [under construction]</strong>
 hidden: true
 ---
 
