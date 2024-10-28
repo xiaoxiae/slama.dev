@@ -9,7 +9,7 @@ redirect_from:
 - /motion-canvas/1/
 - /motion-canvas/from-manim-to-motion-canvas/
 excerpt: "So... I haven't released a video in a while. By a while, I mean over a year at this point. The main reason for this is my master thesis, which takes essentially all of my free time. The secondary reason is that I have severe MBS (Manim Burnout Syndrome) and therefore find it difficult to work on anything Manim-related. The remedies to this are twofold: first off, I will be working with/joining the guys over at Polylog to produce the videos much faster than working alone, and will be learning (as the title of this post suggests) Motion Canvas."
-end: <strong>→ Part 1 ←</strong>
+end: <strong>→ Part 1 ←</strong>, <a href="/motion-canvas/2/">Part 2</a>, <a href="/motion-canvas/3/">Part 3</a>
 ---
 
 - .
@@ -26,16 +26,6 @@ The remedies to this are twofold: first off, I will be working with/joining the 
 Since I have spent a significant amount of time in Manim (even writing a [series of Manim tutorials](/manim/introduction/) about how to use it), I think it's valuable to document the process of learning Motion Canvas as a former Manim user.
 
 **If you are a Manim user, this series of articles is for you** -- it is a re-creation of [my Manim tutorial series](/manim/introduction/), written from a perspective of a long-time Manim user and focused on the differences between the two.
-
-<div class='photo-section'>
-<figure>
-    <div class="row">
-        <div class="photos1-0">
-            <img src="/assets/motion-canvas/friendship-ended.webp" alt="TODO">
-        </div>
-    </div>
-</figure>
-</div>
 
 ### Setting up
 Follow the [quickstart](https://motioncanvas.io/docs/quickstart) page to setup your development environment.

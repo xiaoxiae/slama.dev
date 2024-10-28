@@ -11,13 +11,16 @@ excerpt: Over the course of this year, I created a well-received "Introduction t
 end: <strong>→ Part 1 ←</strong>, <a href="/manim/2/">Part 2</a>, <a href="/manim/3/">Part 3</a>, <a href="/manim/4/">Part 4</a>, <a href="/manim/5/">Part 5</a>, <a href="/manim/6/">Part 6</a>
 ---
 
-_Over the course of this year (2021/2022), I created a well-received "Introduction to Manim" series for [KSP](https://ksp.mff.cuni.cz/) (Czech CS-oriented correspondence seminar), so it made sense to make it more accessible by translating it to English and publish it here._
+_**15/10/2024 update:**_
+- I got fed up with Manim and **[switched to Motion Canvas](/motion-canvas/introduction/)** and I think you should too 🙂
 
 _**27/12/2023 update:**_
 - fixed to be up-to-date with **Manim v0.18.0**
 - the code snippets can be selected by **triple clicking on the code window**
 
 ---
+
+_Over the course of this year (2021/2022), I created a well-received "Introduction to Manim" series for [KSP](https://ksp.mff.cuni.cz/) (Czech CS-oriented correspondence seminar), so it made sense to make it more accessible by translating it to English and publish it here._
 
 - .
 {:toc}
