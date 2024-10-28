@@ -28,6 +28,9 @@ CLIMBING_FOLDER = "../climbing/"
 CLIMBING_VIDEOS_FOLDER = os.path.join(CLIMBING_FOLDER, "videos")
 CLIMBING_INFO = os.path.join(CLIMBING_FOLDER, "videos.yaml")
 
+HAS_CUDA = shutil.which('nvidia-smi') is not None
+
+
 config = {}
 if os.path.exists(CLIMBING_INFO):
     with open(CLIMBING_INFO, "r") as f:
@@ -115,7 +118,7 @@ for name in list(config):
             tmp_path,
         ]
 
-        _ = Popen(command, stdout=PIPE, stderr=PIPE).communicate()
+        _ = Popen(command).communicate()
         os.remove(path)
         os.rename(tmp_path, path)
         del config[name]["trim"]
@@ -125,7 +128,7 @@ for name in list(config):
         encode_config = (
             []
             if "encode" not in config[name]
-            else ["-c:v", "h264_nvenc", "-preset", "slow"]
+            else ["-c:v", "h264_nvenc" if HAS_CUDA else "h264", "-preset", "slow"]
         )
         rotate_config = (
             []
@@ -142,7 +145,7 @@ for name in list(config):
             + [tmp_path]
         )
 
-        _ = Popen(command, stdout=PIPE, stderr=PIPE).communicate()
+        _ = Popen(command).communicate()
         os.remove(path)
         os.rename(tmp_path, path)
 
@@ -161,7 +164,7 @@ for name in list(config):
             tmp_path,
         ]
 
-        _ = Popen(command, stdout=PIPE, stderr=PIPE).communicate()
+        _ = Popen(command).communicate()
 
         old_folder = os.path.join(CLIMBING_VIDEOS_FOLDER, "unblurred")
 
@@ -195,8 +198,6 @@ for name in list(config):
                 "-y",
                 poster_jpeg,
             ],
-            stdout=PIPE,
-            stderr=PIPE,
         ).communicate()
 
         im = Image.open(poster_jpeg)
@@ -216,11 +217,9 @@ for name in list(config):
                 "-o",
                 poster_webp,
             ],
-            stdout=PIPE,
-            stderr=PIPE,
         ).communicate()
 
-        _ = Popen(["rm", poster_jpeg], stdout=PIPE, stderr=PIPE).communicate()
+        _ = Popen(["rm", poster_jpeg]).communicate()
 
 
 with open(CLIMBING_INFO, "w") as f:
