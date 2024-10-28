@@ -95,7 +95,12 @@ for entry in reversed(sorted(list(journal))):
         current_month = entry.month
 
     if "note" in journal[entry]:
-        note = journal[entry]["note"]\
+        if isinstance(journal[entry]["note"], list):
+            note = "</p><p class='climbing-note'>".join(journal[entry]["note"])
+        else:
+            note = journal[entry]["note"]
+
+        note = note\
                 .replace("--", "–")\
                 .replace(":)", "<span class='emoji'>🙂</span>")\
                 .replace(":P", "<span class='emoji'>😛</span>")\
@@ -128,11 +133,13 @@ for entry in reversed(sorted(list(journal))):
         "smichoff": ["red", "salmon", "blue", "yellow"],
         "jungle": ["green", "blue", "red"],
         "boulderhaus": ["christmas", "blue", "red", "black"],
+        "boulderhaus-darmstadt": ["christmas", "blue", "red", "black"],
         "boulder-bar": ["green", "blue", "red"],
         "trinactka": v_colors,
         "boulder-point": f_colors,
         "climbhouse-brasov": number_colors,
         "boulderwelt-karlsruhe": number_colors,
+        "steil-karlsruhe": number_colors,
     }
 
     wall_urls = {
@@ -140,6 +147,7 @@ for entry in reversed(sorted(list(journal))):
         "bigwall": "https://www.big-wall.cz/",
         "boulder-bar": "https://www.boulder.cz/",
         "boulderhaus": "https://www.boulderhaus.net/boulderhaus-heidelberg/",
+        "boulderhaus-darmstadt": "https://www.boulderhaus.net/boulderhaus-darmstadt/",
         "boulder-point": "http://www.boulderpoint.cz/",
         "boulderwelt-karlsruhe": "https://www.boulderwelt-karlsruhe.de/",
         "climbhouse-brasov": "https://climbhouse.ro/",
@@ -148,7 +156,7 @@ for entry in reversed(sorted(list(journal))):
         "lokalblok": "http://www.lokalblok.cz/lezecka-stena/",
         "mandala": "https://boulderhalle-dresden.de/",
         "smichoff": "https://www.lezeckecentrum.cz/cs/",
-        "steil": "https://boulderhalle-steil.com/en/",
+        "steil-karlsruhe": "https://boulderhalle-steil.com/en/",
         "studiobloc": "http://studiobloc.de/",
         "trinactka": "http://stenastodulky.cz/",
     }

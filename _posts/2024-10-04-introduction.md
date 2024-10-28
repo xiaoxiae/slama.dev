@@ -23,9 +23,9 @@ The secondary reason is that I have severe MBS (Manim Burnout Syndrome) and ther
 
 The remedies to this are twofold: first off, I will be working with/joining the guys over at [**Polylog**](https://www.youtube.com/@PolylogCS) to produce the videos much faster than working alone, and will be learning (as the title of this post suggests) [**Motion Canvas**](https://motioncanvas.io/).
 
-Since I have spent a significant amount of time in Manim (even writing a [series of tutorials](/manim/introduction/) about how to use it), I think it's valuable to document the process of learning Motion Canvas as a former Manim user.
+Since I have spent a significant amount of time in Manim (even writing a [series of Manim tutorials](/manim/introduction/) about how to use it), I think it's valuable to document the process of learning Motion Canvas as a former Manim user.
 
-**If you are a Manim user, this series of articles is for you** -- it is a re-creation of [my Manim tutorial series](/manim/), written from a perspective of a long-time Manim user and focused on the differences between the two.
+**If you are a Manim user, this series of articles is for you** -- it is a re-creation of [my Manim tutorial series](/manim/introduction/), written from a perspective of a long-time Manim user and focused on the differences between the two.
 
 <div class='photo-section'>
 <figure>

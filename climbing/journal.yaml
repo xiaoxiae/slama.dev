@@ -2998,10 +2998,10 @@
   wall: Crimp
 2024-06-05:
   note: First time to Steil, cool gym!
-  wall: Steil
+  wall: Steil Karlsruhe
 2024-06-12:
   note: Second time to Steil. Overhang and slab sections, some cool routes :).
-  wall: Steil
+  wall: Steil Karlsruhe
 2024-06-15:
   blue:
     new: 8
@@ -3164,3 +3164,65 @@
   wall: Crimp
   null:
     new: 3
+2024-09-30:
+  note: Fun Crimp sesh. Some progress on the last remaining route.
+  wall: Crimp
+2024-10-02:
+  note: The new routes are h.a.r.d.
+  red:
+    new: 3
+  wall: Boulderhaus
+2024-10-04:
+  note:
+  - Worst session in months. This note will be a bit longer.
+  - First off, I managed to somehow **pull a muscle while warming up** (and by warming
+    up I mean climbing a few 'easier' routes), which is really fucking stupid and
+    should not happen. **I need to warm up better** to prevent things like this from
+    happening.</p><p class='climbing-note'>Second (but kind of tied to first), the
+    warm up was **nowhere long enough** to get properly warm before trying the routes,
+    resulting in really bad first attempts on harder routes that went completely to
+    waste.
+  - Third, the attempts on the hard routes were done **without breaks in between,**
+    which I often do, but not to this extent -- throwing yourself at a route does
+    not help and is, again, **fucking stupid.**
+  - These three things resulted in a completely wasted session.
+  - 'From now on, things will change. No warmup blues. No 5 seconds of brushing between
+    ground attempts. I will, instead, be doing the following:'
+  - <ul><li class='climbing-note'>**At least 15 minutes of warm-up** -- maybe not
+    ideal, but a start.</li><li class='climbing-note'>**At least 3 minute break between
+    attempts**, which is around 100x more than now.</li></ul>
+  - If not, I will find you Tom. I know where you live.
+  wall: Boulderhaus
+2024-10-05:
+  note: Better.
+  red:
+    new: 1
+  wall: Boulderhaus
+2024-10-07:
+  note: Not bad.
+  red:
+    new: 1
+  wall: Boulderhaus
+2024-10-09:
+  note: Average.
+  red:
+    new: 1
+  wall: Boulderhaus
+2024-10-13:
+  note: Cool Steil sesh with Jan. Fun custom routes!
+  other:
+    new: 3
+  wall: Steil Karlsruhe
+2024-10-16:
+  note: Pretty decent.
+  red:
+    new: 5
+  wall: Boulderhaus
+2024-10-19:
+  note: Attended the Full Haus cup. Placed 10th, not bad! Didn't send a few things
+    I should have so finals were not in the cards, but I now know what things to work
+    on :).
+  wall: Boulderhaus Darmstadt
+2024-10-20:
+  note: Spain & Paris. Also got sick.
+  placeholder: true
