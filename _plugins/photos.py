@@ -8,16 +8,52 @@ os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 OUTPUT = "../_includes/photos.md"
 
+
 # Define the list of image information
 images = [
     {
-        "path": Path('2024-10-10-protab-fire.jpg'),
+        "path": Path('2024-11-18-paris-duck.jpg'),
+    },
+    {
+        "path": Path('2024-11-15-paris-statue.jpg'),
+    },
+    {
+        "path": Path('2024-11-12-paris-eiffel.jpg'),
+    },
+    {
+        "path": Path('2024-11-09-oviedo-seagul.jpg'),
+    },
+    {
+        "path": Path('2024-11-06-oviedo-crow.jpg'),
+    },
+    {
+        "path": Path('2024-11-03-oviedo-lizzard.jpg'),
+    },
+    {
+        "path": Path('2024-10-31-oviedo-lake.jpg'),
+    },
+    {
+        "path": Path('2024-10-28-oviedo-panorama.jpg'),
+    },
+    {
+        "path": Path('2024-10-16-panorama.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DBMKqFVo8yn/"
+    },
+    {
+        "path": Path('2024-10-13-fire.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DBEcVFSIYYM/"
+    },
+    {
+        "path": Path('2024-10-10-bird.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DA8uhEutbjS/"
     },
     {
         "path": Path('2024-10-07-austria-10-cows.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DA0-9NWtBFq/"
     },
     {
         "path": Path('2024-10-04-austria-9-mountains.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DAtQo4Xtpk7/"
     },
     {
         "path": Path('2024-10-01-austria-8-mountains.jpg'),
