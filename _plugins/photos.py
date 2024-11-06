@@ -25,15 +25,19 @@ images = [
     },
     {
         "path": Path('2024-11-06-oviedo-crow.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DCCBhNCoCfI/"
     },
     {
-        "path": Path('2024-11-03-oviedo-lizzard.jpg'),
+        "path": Path('2024-11-03-oviedo-lake.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DB6AlhnIr1m/"
     },
     {
-        "path": Path('2024-10-31-oviedo-lake.jpg'),
+        "path": Path('2024-10-31-oviedo-lizard.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DBzAUUYI6MV/"
     },
     {
         "path": Path('2024-10-28-oviedo-panorama.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DBrLFBBIBog/"
     },
     {
         "path": Path('2024-10-16-panorama.jpg'),
