@@ -16,7 +16,11 @@ This page is dedicated to my climbing life.<br>
         <div class="photos2-0 flex-40"><img src="/climbing/photos/2022-06-15-2.webp" alt="A photo from Smíchoff's Boulder Challenge"></div>
         <div class="photos2-1 flex-60"><img src="/climbing/photos/2022-06-15-1.webp" alt="A photo from Smíchoff's Boulder Challenge"></div>
 	</div>
-	<figcaption>A few photos from Smíchoff's Boulder Challenge (15. 6. 2022). © <a href="https://instagram.com/kareafoto">KAREA foto</a></figcaption>
+	<div class="row">
+        <div class="photos1-0"><img src="/climbing/photos/2024-10-19.webp" alt="A photo from Boulerhaus' Full Haus Cup"></div>
+	</div>
+	<figcaption>(top) Photos from Smíchoff's Boulder Challenge (15. 6. 2022). © <a href="https://instagram.com/kareafoto">KAREA foto</a></figcaption>
+	<figcaption>(bottom) Photo from Boulerhaus' Full Haus Cup (19. 10. 2024). © <a href="https://www.boulderhaus.net/events/full-haus-vol.-1/">Boulderhaus Darmstadt</a></figcaption>
 </figure>
 </div>
 
