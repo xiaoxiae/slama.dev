@@ -12,16 +12,16 @@ OUTPUT = "../_includes/photos.md"
 # Define the list of image information
 images = [
     {
-        "path": Path('2024-11-18-paris-duck.jpg'),
+        "path": Path('2024-11-19-paris-duck.jpg'),
     },
     {
-        "path": Path('2024-11-15-paris-statue.jpg'),
+        "path": Path('2024-11-16-paris-statue.jpg'),
     },
     {
-        "path": Path('2024-11-12-paris-eiffel.jpg'),
+        "path": Path('2024-11-13-paris-eiffel.jpg'),
     },
     {
-        "path": Path('2024-11-09-oviedo-seagul.jpg'),
+        "path": Path('2024-11-10-oviedo-seagul.jpg'),
     },
     {
         "path": Path('2024-11-06-oviedo-crow.jpg'),
