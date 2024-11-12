@@ -37,11 +37,11 @@ Links to the sections of the website can be found at the top, links to the posts
 	{% if post.pdf or post.pdf-nogenerate %} <a href="/assets/{{post.url | split: "/" | last}}.pdf"><i class="fa-solid fa-file-pdf"></i></a>{% endif %}
 	{% if post.language == "cz" %}🇨🇿 {% endif%}
     <strong>
-	{% if post.href %}
+	{% if post.redirect.to %}
         {% if post.draft %}
-            <a href="{{ post.href }}" class="red">{{ post.title}}</a>
+            <a href="{{ post.redirect.to }}" class="red">{{ post.title}}</a>
         {% else %}
-            <a href="{{ post.href }}">{{ post.title}}</a>
+            <a href="{{ post.redirect.to }}">{{ post.title}}</a>
         {% endif %}
     {% else %}
         {% if post.draft %}

@@ -22,6 +22,7 @@ images = [
     },
     {
         "path": Path('2024-11-10-oviedo-seagul.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DCM2X8YoDex/"
     },
     {
         "path": Path('2024-11-06-oviedo-crow.jpg'),
