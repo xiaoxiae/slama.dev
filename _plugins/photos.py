@@ -13,9 +13,11 @@ OUTPUT = "../_includes/photos.md"
 images = [
     {
         "path": Path('2024-11-20-paris-duck.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DCmNLQtorUq/"
     },
     {
         "path": Path('2024-11-17-paris-statue.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DCd84NEI4B9/"
     },
     {
         "path": Path('2024-11-14-paris-eiffel.jpg'),
