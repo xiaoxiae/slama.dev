@@ -80,7 +80,7 @@ If you have a good book for me to read, let me know and I'll be happy to check i
 #### Isaac Asimov
 
 {:.book}
-- **The Foundation Series** [[Wikipedia](https://en.wikipedia.org/wiki/Foundation_series)] -- a series of sci-fi novels set in a long-distant future where humanity controls the entire galaxy through the Galactic Empire, but which is predicted to fall through the mathematics of psychohistory. Despite the series being written many decades ago, it holds up well and was truly a joy to read.
+- **The Foundation Series** [[Wikipedia](https://en.wikipedia.org/wiki/Foundation_series)] (books 1-4) -- a series of sci-fi novels set in a long-distant, future where humanity controls the entire galaxy through the means of an overarching Galactic Empire, but which is predicted to fall through the mathematics of psychohistory. Despite the series being written many decades ago, it holds up well and was truly a joy to read, with each book having a distinct style and feel.
 
 #### Liu Cixin
 
@@ -94,7 +94,11 @@ If you have a good book for me to read, let me know and I'll be happy to check i
 
 ### Other
 
-{:.book}
+<!--
 - **Metro 2033** [[Wikipedia](https://en.wikipedia.org/wiki/Metro_2033)] by _Dimitry Glukhovsky_ -- a post-apocalyptic novel about people surviving a nuclear world war inside of the Moscow metro. I really appreciated that there was a good balance of action sequences and slower, more thought-provoking ones. Definitely worth the read (which, in my opinion, can't be said about the other books in the series).
+-->
 
+{:.book}
 - **Surely You're Joking, Mr. Feynman!** [[Wikipedia](https://en.wikipedia.org/wiki/Surely_You%27re_Joking,_Mr._Feynman!)] by _Ralph Leighton_ and _Richard Feynman_ -- an auto(sort-of)biography about the life of Richard Feynman. I honestly don't understand how this many interesting things can happen in the life of a single person, yet they have and are a joy to read.
+
+- **The Soul of a New Machine** [[Wikipedia](https://en.wikipedia.org/wiki/The_Soul_of_a_New_Machine)] by _Tracy Kidder_ -- a story about the development of the [Data General Eclipse MV/8000](https://en.wikipedia.org/wiki/Data_General_Eclipse_MV/8000) machine. Both depressing and hearthwarming, it follows the lives and circumstances of the people developing the machine. No prior computer knowledge necessary (although it will probably be a more pleasant read), as the more technical parts of the book are explained really well.
