@@ -3334,3 +3334,20 @@
       new: 1
   note: The Boulderhaus moonboard is so much shittier than the Crimp one, holy moly.
   wall: Boulderhaus
+2024-12-04:
+  note: Fun new Crimp routes :).
+  wall: Crimp
+  null:
+    new: 10
+2024-12-06:
+  black:
+    new: 1
+  note: "Boulderhaus session with Ka\u010Dka & Tom."
+  red:
+    new: 4
+  wall: Boulderhaus
+2024-12-09:
+  note: More Crimping. All routes will go!
+  wall: Crimp
+  null:
+    new: 4
