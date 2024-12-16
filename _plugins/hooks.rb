@@ -29,6 +29,11 @@ Jekyll::Hooks.register :site, :after_init do |site|
     print "            Resize: " + x + "\n"
   }
 
+  `_plugins/aoc.py`.split( /\r?\n/ ).each {
+    |x|
+    print "               AOC: " + x + "\n"
+  }
+
 
   print "             Repos: " + `git submodule foreach git fetch --all`
 

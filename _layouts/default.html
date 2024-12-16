@@ -68,6 +68,15 @@
 						</li>
 					{% endif %}
 				{% endfor %}
+					<li>
+					<span class="navbar-item">
+					{% if p.title == page.title %}
+						<strong class="current-page-item navbar-text"><a href="/aoc/">AOC</a></strong>
+					{% else %}
+						<strong class="navbar-text"><a class="aoc-link" href="/aoc/">AOC</a></strong>
+					{% endif %}
+					</span>
+					</li>
 				</ul>
 			</div>
 		</div>

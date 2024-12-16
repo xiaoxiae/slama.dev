@@ -1,0 +1,76 @@
+@import "variables";
+
+.gold {
+  color: #ffff66;
+  animation: pulse-shadow 1.5s infinite ease-in-out; /* Pulse animation */
+  display: inline-block;
+}
+
+.silver {
+  color: #9999cc;
+  display: inline-block;
+}
+
+.gray {
+  color: gray;
+  display: inline-block;
+  opacity: 0.25;
+}
+
+.aoc {
+  width: fit-content;
+  margin: auto;
+  margin-bottom: $line-spacing;
+
+  overflow: clip;
+
+  background-color: $dark-code-background-color !important;
+  div>pre {
+
+    background-color: $dark-code-background-color !important;
+    overflow: clip;
+  }
+}
+
+.link,.day {
+  color: #00cc00;
+  text-shadow: 0 0 2px #00cc00, 0 0 5px #00cc00;
+}
+
+a:hover {
+  text-decoration: none;
+  color: white;
+  opacity: 1;
+}
+
+
+@keyframes pulse-gold {
+  0% {
+    text-shadow: 0 0 3px #ebc982,0 0 5px #ebc982,0 0 10px #ebc982,0 0 15px #ebc982;
+    opacity: 1;
+  }
+  50% {
+    text-shadow: 0 0 0px #ebc982,0 0 0px #ebc982,0 0 5px #ebc982,0 0 5px #ebc982;
+    opacity: 0.5;
+  }
+  100% {
+    text-shadow: 0 0 3px #ebc982,0 0 5px #ebc982,0 0 10px #ebc982,0 0 15px #ebc982;
+    opacity: 1;
+  }
+}
+
+
+@keyframes pulse-silver {
+  0% {
+    text-shadow: 0 0 3px silver,0 0 5px silver,0 0 10px silver,0 0 15px silver;
+    opacity: 1;
+  }
+  50% {
+    text-shadow: 0 0 0px silver,0 0 0px silver,0 0 5px silver,0 0 5px silver;
+    opacity: 0.5;
+  }
+  100% {
+    text-shadow: 0 0 3px silver,0 0 5px silver,0 0 10px silver,0 0 15px silver;
+    opacity: 1;
+  }
+}

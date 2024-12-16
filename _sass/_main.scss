@@ -56,6 +56,12 @@ del {
 
 .content-background {
   background-color: $light-background-color;
+
+  flex: 1 0 auto;
+}
+
+.aoc-link {
+  color: #00cc00;
 }
 
 .navigation {
@@ -946,8 +952,6 @@ a.secret {
 
   .content-background {
     background-color: $dark-background-color;
-
-    flex: 1 0 auto;
   }
 
   .highlight {
