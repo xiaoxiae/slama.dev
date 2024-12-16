@@ -3351,3 +3351,23 @@
   wall: Crimp
   null:
     new: 4
+2024-12-15:
+  note: Had a few sessions here. Felt/climbed pretty bad. For some reason, I kept
+    hitting my hand during each sessions, resulting in my fingers hurting and me climbing
+    like a fucking idiot. Not sure how to go about preventing this, but I should probably
+    climb more mindfully instead of 'power go brrr'.
+  placeholder: true
+2024-12-16:
+  hangboard:
+    exercises:
+    - 3-3
+    - 5-5
+    - 3-5
+    - 2-5
+    - 5-6
+    - 5-5 mid
+    - 5-5 mid
+    parameters: 8/8/4/120
+    type: beastmaker-2000
+  note: Was a little lazy to go climbing, so I stayed in and did hangboarding.
+  wall: home
