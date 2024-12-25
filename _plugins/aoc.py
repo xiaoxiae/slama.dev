@@ -8,7 +8,7 @@ os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 
 solved = {
-    2024: [(1, 24, 2)],
+    2024: [(1, 25, 2)],
     2023: [(1, 19, 2), (20, 21, 1)],
     2022: [(1, 25, 2)],
     2021: [(1, 25, 2)],
@@ -17,7 +17,7 @@ solved = {
     2018: [(1, 14, 2), (15, 15, 1), (16, 18, 2), (19, 19, 1), (20, 20, 2), (22, 23, 1), (25, 25, 1)],
     2017: [(1, 6, 2), (7, 7, 1), (8, 8, 2)],
     2016: [(1, 5, 2)],
-    2015: [(1, 9, 2)],
+    2015: [(1, 13, 2)],
 }
 
 def get_day_representation(year):
@@ -54,7 +54,12 @@ def get_day_representation(year):
 output = """<div class="aoc language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="day">1234567890123456789012345</span>
 """
 for year in sorted(solved.keys(), reverse=True):
-    output += f"<a class='link' href='https://adventofcode.com/{year}/'>{year}</a> {get_day_representation(year)}\n"
+
+    year_class = "year-silver"
+    if solved[year] == [(1, 25, 2)]:
+        year_class = "year-gold"
+
+    output += f"<a class='{year_class}' href='https://adventofcode.com/{year}/'>{year}</a> {get_day_representation(year)}\n"
 output += "</code></pre></div></div>"
 
 with open("../_includes/aoc.md", "w") as f:

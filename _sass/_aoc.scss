@@ -6,9 +6,19 @@
   display: inline-block;
 }
 
+.year-gold {
+  color: #ffff66;
+  text-shadow: 0 0 3px #ebc982,0 0 5px #ebc982,0 0 10px #ebc982,0 0 15px #ebc982;
+}
+
 .silver {
   color: #9999cc;
   display: inline-block;
+}
+
+.year-silver {
+  color: #00cc00;
+  text-shadow: 0 0 2px #00cc00, 0 0 5px #00cc00;
 }
 
 .gray {
@@ -32,7 +42,7 @@
   }
 }
 
-.link,.day {
+.day {
   color: #00cc00;
   text-shadow: 0 0 2px #00cc00, 0 0 5px #00cc00;
 }
