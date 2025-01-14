@@ -53,13 +53,23 @@ for file in files:
         # a little hacky but very functional
         if kilter:
             del config[file]["wall"]
-            del config[file]["deface"]
+
+            try:
+                del config[file]["deface"]
+            except Exception:
+                pass
+
             config[file]["kilter"] = True
             print(f"adding new {'' if not kilter else 'Kilter '}file {file}.")
         # a little hacky but very functional
         elif moon:
             del config[file]["wall"]
-            del config[file]["deface"]
+
+            try:
+                del config[file]["deface"]
+            except Exception:
+                pass
+
             config[file]["moon"] = True
             print(f"adding new {'' if not moon else 'Moon '}file {file}.")
         else:
