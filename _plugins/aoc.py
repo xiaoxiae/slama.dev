@@ -14,7 +14,7 @@ solved = {
     2019: [(1, 20, 2), (21, 22, 1), (24, 24, 1)],
     2018: [(1, 14, 2), (15, 15, 1), (16, 18, 2), (19, 19, 1), (20, 20, 2), (22, 23, 1), (25, 25, 1)],
     2017: [(1, 6, 2), (7, 7, 1), (8, 8, 2)],
-    2016: [(1, 13, 2), (15, 16, 2), (18, 20, 2)],
+    2016: [(1, 25, 2)],
     2015: [(1, 25, 2)],
 }
 
@@ -67,6 +67,7 @@ for year in sorted(solved.keys(), reverse=True):
 
 print(f"Missing Part 1: {missing_part1}")
 print(f"Missing Part 2: {missing_part2}")
+print(f"        Total:  {missing_part1 + missing_part2}")
 
 output += "</code></pre></div></div>"
 
