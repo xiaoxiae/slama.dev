@@ -24,6 +24,6 @@ A collection of my long-term goals and progress towards them.
 |       | | |
 | Other | Read <span class="silver">12</span>\|<span class="gold">18</span> books | |
 |       | Release a <span class="silver">short story</span> <span class="gold">with illustrations</span> | |
-|       | <span class="silver">&lt;2h</span>\|<span class="gold">&lt;1h</span> unproductive phone time | |
-|       | <span class="silver">&lt;30</span>\|<span class="gold">&lt;1h</span> Anki time | |
+|       | <span class="silver">&lt;1h</span>\|<span class="gold">&lt;30m</span> unproductive phone time | |
+|       | <span class="silver">&lt;15m</span>\|<span class="gold">&lt;30m</span> Anki time | |
 
