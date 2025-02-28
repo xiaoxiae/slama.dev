@@ -26,4 +26,5 @@ A collection of my long-term goals and progress towards them.
 |       | Release a <span class="silver">short story</span> <span class="gold">with illustrations</span> | |
 |       | <span class="silver">&lt;1h</span>\|<span class="gold">&lt;30m</span> unproductive phone time | |
 |       | <span class="silver">&lt;15m</span>\|<span class="gold">&lt;30m</span> Anki time | |
+|       | Make <span class="silver">latte art</span> of <span class="gold">not just a heart</span> |  |
 
