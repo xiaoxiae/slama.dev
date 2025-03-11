@@ -22,7 +22,7 @@ A collection of my long-term goals and progress towards them.
 | Programming | AOC <span class="silver">all problems</span> (<span class="gold">&lt;1s per year</span>) | missing 25 |
 |             | Climbuddy <span class="silver">beta</span> \| <span class="gold">official release</span> | |
 |       | | |
-| Other | Read <span class="silver">12</span>\|<span class="gold">18</span> books | |
+| Other | Read <span class="silver">12</span>\|<span class="gold">18</span> books | 1 |
 |       | Release a <span class="silver">short story</span> <span class="gold">with illustrations</span> | |
 |       | <span class="silver">&lt;1h</span>\|<span class="gold">&lt;30m</span> unproductive phone time | |
 |       | <span class="silver">&lt;15m</span>\|<span class="gold">&lt;30m</span> Anki time | |
