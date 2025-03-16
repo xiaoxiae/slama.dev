@@ -19,7 +19,7 @@ A collection of my long-term goals and progress towards them.
 |         | <span class="silver">1x</span>\|<span class="gold">5x</span> muscle-up | |
 |         | 10k <span class="silver">5:45/km</span> \| <span class="gold">5:30/km</span>  | 8k 6:00/km |
 |         | | |
-| Programming | AOC <span class="silver">all problems</span> (<span class="gold">&lt;1s per year</span>) | missing 24 |
+| Programming | AOC <span class="silver">all problems</span> (<span class="gold">&lt;1s per year</span>) | missing 23 |
 |             | Climbuddy <span class="silver">beta</span> \| <span class="gold">official release</span> | |
 |       | | |
 | Other | Read <span class="silver">12</span>\|<span class="gold">18</span> books | 1 |
