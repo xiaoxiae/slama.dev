@@ -9,6 +9,12 @@ hidden: True
 {: .center}
 A collection of my long-term goals and progress towards them.
 
+<!--
+Notes regarding the resolutions, so I don't forget.
+
+Books: Oathbringer (it was comfy).
+-->
+
 | Category | Goal (<span class="silver">easy</span> \| <span class="gold">hard</span>) | Progress |
 | --:  | :-- | :-- |
 | Fitness | All Moonboard <span class="silver">7a</span>\|<span class="gold">7a+</span> benchmarks | <span class="silver">1</span>\|<span class="gold">9</span> remaining |
