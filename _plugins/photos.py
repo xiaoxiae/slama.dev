@@ -12,6 +12,18 @@ OUTPUT = "../_includes/photos.md"
 # Define the list of image information
 images = [
     {
+        "path": Path('2025-03-16-droplets.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DHRsPwIIJhL/"
+    },
+    {
+        "path": Path('2025-01-05-plant.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DEdHAJ2NqjM/"
+    },
+    {
+        "path": Path('2025-01-02-berry.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DEVk3t3ghpc/"
+    },
+    {
         "path": Path('2024-12-30-plant.jpg'),
         "instagram_url": "https://www.instagram.com/p/DENzwA_tUXL/"
     },
