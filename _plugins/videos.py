@@ -175,15 +175,6 @@ for category, video_contents in videos:
         result += "\n"
 
 
-youtube_link, video = latest_video
-
-result = f"""
-<h3>[<em>newest</em>] {video}</h3>
-<div class='ytVideo'>
-<iframe src="https://www.youtube.com/embed/{youtube_link.split('=')[-1]}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</div>
-""" + result
-
 with open(OUT, "w") as f:
     f.write(result)
     print("videos generated.")
