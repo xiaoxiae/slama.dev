@@ -3517,3 +3517,20 @@
     pizza, stands with cool climbing stuff. 9/10 (-1 point for injury). Motivated
     to get stronger.
   placeholder: true
+2025-03-17:
+  hangboard:
+    exercises:
+    - 5-5 (many times)
+    parameters: 8/8/4/120
+    type: beastmaker-2000
+  note: Road to recovery begins. Doing 70% half-crimps (or whatever the load is until
+    I feel discomfort) to simulate the tendons.
+  wall: home
+2025-03-18:
+  hangboard:
+    exercises:
+    - 5-5 (many times)
+    parameters: 8/8/4/120
+    type: beastmaker-2000
+  note: More half-crimping.
+  wall: home
