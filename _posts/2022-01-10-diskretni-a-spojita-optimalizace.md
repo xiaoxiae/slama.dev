@@ -310,7 +310,7 @@ Jelikož navíc triviálně \(w^T z* \ge w^T z'\) (je to optimum), tak věta pla
 **Součet** -- pro matroidy \(\mathcal{M_1} = (X_1, \mathcal{S}_1), \mathcal{M_2} = (X_2, \mathcal{S}_2), X_1 \cap X_2 = \emptyset\)
 \[\mathcal{M}_1 + \mathcal{M}_2 = (X = X_1 \cup X_2, \left\{A \in X \mid A \cap X_1 \in \mathcal{S}_1 \land A \cap X_2 \in \mathcal{S}_2\right\})\]
 
-{% math example "součet a kontrakce v grafovém matroidu" %}
+{% math example "mazání a kontrakce v grafovém matroidu" %}
 ![](/assets/diskretni-a-spojita-optimalizace/sumcontex.svg)
 {% endmath %}
 
