@@ -12,7 +12,9 @@ A collection of my long-term goals and progress towards them.
 <!--
 Notes regarding the resolutions, so I don't forget.
 
-Books: Oathbringer (it was comfy).
+Books:
+- Oathbringer (it was comfy).
+- The Soul of a New Machine (it was also comfy).
 -->
 
 | Category | Goal (<span class="silver">easy</span> \| <span class="gold">hard</span>) | Progress |
@@ -28,7 +30,7 @@ Books: Oathbringer (it was comfy).
 | Programming | AOC <span class="silver">all problems</span> (<span class="gold">&lt;1s per year</span>) | missing 23 |
 |             | Climbuddy <span class="silver">beta</span> \| <span class="gold">official release</span> | |
 |       | | |
-| Other | Read <span class="silver">12</span>\|<span class="gold">18</span> books | 1 |
+| Other | Read <span class="silver">12</span>\|<span class="gold">18</span> books | 2 |
 |       | Release a <span class="silver">short story</span> <span class="gold">with illustrations</span> | |
 |       | <span class="silver">&lt;1h</span>\|<span class="gold">&lt;30m</span> unproductive phone time | |
 |       | <span class="silver">&lt;15m</span>\|<span class="gold">&lt;30m</span> Anki time | |
