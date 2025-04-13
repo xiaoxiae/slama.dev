@@ -64,6 +64,10 @@ del {
   color: #00cc00;
 }
 
+.mono {
+    font-family: $monospaced-font, monospace;
+}
+
 .navigation {
   padding: $navigation-padding / 2;
 
