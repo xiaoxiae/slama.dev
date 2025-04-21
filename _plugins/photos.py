@@ -279,6 +279,10 @@ images = [
         "path": Path('2015-06-06-bee.jpg'),
         "instagram_url": "https://www.instagram.com/p/3k9LqVBHM5/"
     },
+    {
+        "path": Path('2025-04-21-paraglider.jpg'),
+        "instagram_url": "https://www.instagram.com/p/DItbRiuI-fM/"
+    },
 ]
 
 results = "<div class='grid'>"
