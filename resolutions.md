@@ -29,7 +29,7 @@ Books:
 |         | <span class="silver">1x</span>\|<span class="gold">5x</span> muscle-up | <strong><span class="silver">*</span></strong> <strong><span class="gold">*</span></strong> |
 |         | 10k <span class="silver">5:45/km</span> \| <span class="gold">5:30/km</span>  | 8k <span class="silver">6:00</span>; 4k <span class="silver">4:40</span> |
 |         | | |
-| Programming | AOC <span class="silver">all problems</span> (<span class="gold">&lt;1s per year</span>) | <span class="silver">20</span> remaining |
+| Programming | AOC <span class="silver">all problems</span> (<span class="gold">&lt;1s per year</span>) | <span class="silver">17</span> remaining |
 |             | Climbuddy <span class="silver">beta</span> \| <span class="gold">official release</span> | <strong><span class="silver">*</span></strong> |
 |       | | |
 | Other | Read <span class="silver">12</span>\|<span class="gold">18</span> books | <span class="silver">4</span> |
