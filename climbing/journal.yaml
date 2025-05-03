@@ -3552,11 +3552,29 @@
 2025-04-11:
   note: Injured finger does not mean injured rest of the body and whining does not
     help, so I just have to shut up, stop crying and train what I can.
-  training: bench (3/50kg/10, 2/60kg/10), weighted pull-ups (6x10kg/2, 5x20kg/3),
+  training: bench (3x10x50, 3x10x60), weighted pull-ups (2x6x10 2x5x20),
     muscle ups.
   wall: Boulderhaus
 2025-04-13:
   note: More easy climbing (reds/blacks now that there is the new purple grade).
-  training: bench (1/50kg/10, 1/60kg/10, 2/70kg/8), weighted pull-ups (5x20kg, 3x30kg,
-    1x50kg, 3x30kg, 5x20kg), muscle ups.
+  training: bench (10x50, 10x60, 8x70, 8x70), pull-ups (5x20, 3x30, 1x50, 3x30, 5x20), muscle ups.
+  wall: Boulderhaus
+2025-03-21:
+  note: Some session descriptions missing here and in the next ones, mostly easy climbing, strength training and messing around on custom routes. The injury is slowly getting better, but will likely take a month or two more to truly feel good.
+  placeholder: true
+2025-04-25:
+  note: Tom + Jan duel. Easy win.
+  wall: Boulderwelt Karlsruhe
+2025-04-26:
+  training: pull-ups (10x, 10x, 7x10, 8x10, 7x10, 12x)
+  wall: home
+2025-04-28:
+  training: pull-ups (5x20, 3x40, 0.8x60, 3x40, 7x20), bench (10x50, 8x70, 2.5x90)
+  wall: Boulderhaus
+2025-04-30:
+  training: pull-ups (6x20, 4x40, 0.5x60), bench (10x50, 8x70, 1.5x90, 7x70, 11x50)
+  wall: Boulderhaus
+2025-05-02:
+  note: Messing around.
+  training: pull-ups (6x20, 3x40, 2x50, 3x40), bench (10x50, 8x70, 2x90, 10x50)
   wall: Boulderhaus
