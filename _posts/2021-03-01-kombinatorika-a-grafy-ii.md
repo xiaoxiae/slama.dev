@@ -156,7 +156,7 @@ Těžší případ: \(e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2)\)
 
 2. dokážeme, že každá lichá komponenta \(G - S\) je s \(S\) spojena lichým počtem hran:
 	- nechť \(L\) je lichá komponenta \(G - S\); pak:
-\[\sum_{x \in V(L)}\deg_G(x) \overset{3-\text{reg.}}{=} \underbrace{3|V(L)|}_{\text{liché číslo}} = \underbrace{2 (\text{\# hran vedoucích uvnitř $L$})}_{\text{sudé číslo}} + \underbrace{1 (\text{\# hran vedoucích uvnitř $L$})}_{\text{musí být liché}}\]
+\[\sum_{x \in V(L)}\deg_G(x) \overset{3-\text{reg.}}{=} \underbrace{3|V(L)|}_{\text{liché číslo}} = \underbrace{2 (\text{\# hran vedoucích uvnitř $L$})}_{\text{sudé číslo}} + \underbrace{1 (\text{\# hran vedoucích ven z $L$})}_{\text{musí být liché}}\]
 
 - kombinace (1) a (2) říká, že každá lichá komponenta \(G - S\) je s \(S\) spojena \(\ge 3\) hranami:
 	- \(p = \) počet hran mezi \(S\) a lichými komponentami \(G - S\)
