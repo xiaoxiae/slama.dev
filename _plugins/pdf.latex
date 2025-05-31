@@ -52,6 +52,7 @@ $endif$
 \usepackage{gensymb}
 \usepackage{parskip}
 \usepackage{titlesec}
+\usepackage{soul}
 \usepackage[normalem]{ulem}
 \usepackage[bottom]{footmisc}  % forcing footnotes to be at the very bottom
 
