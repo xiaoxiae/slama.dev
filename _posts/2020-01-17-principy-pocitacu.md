@@ -369,7 +369,7 @@ excerpt: Poznámky z přednášky Principy Počítačů (Pavel Ježek, 2019/2020
 {% xopp 19-24-11_22-56-28 %}
 
 #### Historie CPU architektur
-- G502 (Apple I -- Wozniak)
+- 6502 (Apple I -- Wozniak)
 	- 8-bit CPU
 	- von Neumann
 	- 16-bit addr space (64 kB operační paměti)
