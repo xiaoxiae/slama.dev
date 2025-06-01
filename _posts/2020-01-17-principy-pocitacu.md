@@ -475,7 +475,7 @@ A + NOT(X) + C
 
 - je potřeba to na architekturách, které to nemají, softwarově implementovat
 	- `SHL` je násobení 2 je `SHL`; dělení 2 je `SHR`
-		- násobení a dělení jinými čísly lze rozdělit na posuny a součty (pokročilé, nebrali jsme; je na to ale úžasná knížka _[Computer Systems: A Programmer's Perspective](http://guanzhou.pub/files/Computer%20System_EN.pdf)_)
+		- násobení a dělení jinými čísly lze rozdělit na posuny a součty (pokročilé, nebrali jsme; je na to ale úžasná knížka _[Computer Systems: A Programmer's Perspective](https://www.cs.sfu.ca/~ashriram/Courses/CS295/assets/books/CSAPP_2016.pdf#page=131)_)
 	- pozor na signed čísla -- `SHL` funguje jen pro menší čísla a `SHR` nefunguje vůbec (vytváří nuly)
 		- je potřeba `SAR` (kopíruje MSb), ale pořád to není ono (`-5 // 2 = -3`)
 
