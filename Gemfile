@@ -7,6 +7,8 @@ gem "jektex"
 gem "webrick"
 gem "json"
 gem "jekyll-redirect-from"
+gem "csv"
+gem "bigdecimal"
 
 gem "execjs"
 gem "htmlentities"
@@ -15,3 +17,4 @@ gem "htmlentities"
 gem "jekyll-sass-converter", "< 3.0"
 
 gem "sassc", "~> 2.1", "< 2.2"
+gem "ffi", "< 1.17.0"
