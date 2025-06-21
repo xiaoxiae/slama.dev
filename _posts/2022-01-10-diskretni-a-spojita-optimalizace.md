@@ -228,29 +228,29 @@ To je skoro submodularita!
 
 {% math proof "\(\Leftarrow\)" %}dokazujeme \(* \implies\) submodularita. Chceme \[f(Y) + f(Z) \ge f(Y \cup Z) + f(Y \cap Z)\]
 
-- definujme (S = Y \cap Z), (A = Y \setminus S) a (B = Z \setminus S), pak
+- definujme \(S = Y \cap Z\), \(A = Y \setminus S\) a \(B = Z \setminus S\), pak
 
-  - (Y = S \cup A)
-  - (Z = S \cup B)
-  - (Y \cup Z = S \cup A \cup B)
-  - (Y \cap Z = S)
+  - \(Y = S \cup A\)
+  - \(Z = S \cup B\)
+  - \(Y \cup Z = S \cup A \cup B\)
+  - \(Y \cap Z = S\)
 
-- zkonstruujeme (f(Y)) a (f(Z)) z (f(S)) za pomocí posloupností marginálních hodnot:
-  - rozepišme definici marginální hodnoty jako (f(X \cup \{y_1\}) = f(X) + \Delta f_{y_1}(X))
+- zkonstruujeme \(f(Y)\) a \(f(Z)\) z \(f(S)\) za pomocí posloupností marginálních hodnot:
+  - rozepišme definici marginální hodnoty jako \(f(X \cup \{y_1\}) = f(X) + \Delta f_{y_1}(X)\)
     - dvojím rozepsáním dostaneme:
       \[ f(X \cup \{y_1,y_2\}) = f(X \cup \{y_1\}) + \Delta f_{y_2}(X \cup \{y_1\}) = f(X) + \Delta f_{y_1}(X) + \Delta(X \cup \{y_1\}) \]
     - opakovaným rozepsáním pro \(Y = \{y_1, y_2, \dots , y_k\}\) dostaneme: \[ f(X \cup Y) = f(X) + \sum_{i = 1}^k f_{y_i}(X \cup \{y_1, \dots y_{i-1}\}) \]
-  - zafixujme pořadí prvků v (A \cup B): (a_1, a_2, \dots , a_k) a BÚNO (A = \{a_1, \dots , a_r\}) a (B = \{a_{r+1}, \dots, a_k\}), potom:
+  - zafixujme pořadí prvků v \(A \cup B\): \(a_1, a_2, \dots , a_k) a BÚNO (A = \{a_1, \dots , a_r\}) a (B = \{a_{r+1}, \dots, a_k\}\), potom:
     \[ \begin{aligned}
     f(Y) = f(S \cup A) &= f(S) + \sum_{i=1}^r \Delta f_{a_i}(S \cup\{a_1, \dots a_{i-1}\}) \\
     f(Z) = f(S \cup B) &= f(S) + \sum_{i=r+1}^k \Delta f_{a_i}(S \cup\{a_{r+1}, \dots a_{i-1}\}) \\
     f(Y \cup Z) = f(S \cup A \cup B) &= f(S) + \sum_{i=1}^k \Delta f_{a_i}(S \cup \{a_1, \dots , a_{i-1}\})
     \end{aligned} \]
-  - pro každé (i = 1, \dots , r) platí, že (S \cup \{a_1, \dots , a_{i-1}\} \subseteq S \cup \{a_{1}, \dots, a_{i-1}\} \cup \{a_{r+1}, \dots , a_{k}\}), takže:
+  - pro každé \(i = 1, \dots , r\) platí, že \(S \cup \{a_1, \dots , a_{i-1}\} \subseteq S \cup \{a_{1}, \dots, a_{i-1}\} \cup \{a_{r+1}, \dots , a_{k}\}\), takže:
     \[
     \Delta f_{a_i}(S \cup \{a_1, \dots , a_{i-1}\}) \ge \Delta f_{a_i}(S \cup \{a_1, \dots a_{i-1}, a_{r+1}, \dots , a_k\})
     \]
-  - stejně pro každé (i = r+1, \dots , k) máme:
+  - stejně pro každé \(i = r+1, \dots , k\) máme:
     \[
     \Delta f_{a_i}(S \cup \{a_{r+1}, \dots , a_{i-1}\}) \ge \Delta f_{a_i}(S \cup \{a_1, \dots a_{i-1}\})
     \]
