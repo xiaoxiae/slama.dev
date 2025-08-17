@@ -20,15 +20,19 @@ Books:
 - The Republic of Thieves
 - Rythm of War (to refresh)
 - Wind and Truth (banger)
+- Ball Lightning (amazing!!!)
+- Isles of the Emberdark (also amazing!!!)
 - Lost Metal (comfy)
+- Mistborn 1 - The Final Empire (comfy)
+- Isles of the Emberdark (had to do it)
 -->
 
 | Category | Goal (<span class="silver">easy</span> \| <span class="gold">hard</span>) | Progress |
 | --:  | :-- | :-- |
 | Fitness | All Moonboard <span class="silver">7a</span>\|<span class="gold">7a+</span> benchmarks | <span class="silver">1</span>\|<span class="gold">9</span> remaining |
-|         | Kilter <span class="silver">8a</span>\|<span class="gold">8a+</span> | got a 7c+ flash |
+|         | Kilter <span class="silver">8a</span>\|<span class="gold">8a+</span> | 7c+ flash |
 |         | Boulder <span class="silver">7c+</span>\|<span class="gold">8a</span> outside | |
-|         | <span class="silver">10s one-arm lockoff</span> \| <span class="gold">one-arm pull-up</span> | <span class="silver">2 seconds</span> |
+|         | <span class="silver">10s one-arm lockoff</span> \| <span class="gold">one-arm pull-up</span> | <span class="silver">5 seconds</span> |
 |         | <span class="silver">100kg</span> \| <span class="gold">110kg</span> bench | <span class="silver">100kg</span> |
 |         | <span class="silver">backflip</span> \| <span class="gold">frontflip</span> | still too scared |
 |         | <span class="silver">1x</span>\|<span class="gold">5x</span> muscle-up | <strong><span class="silver">*</span></strong> <strong><span class="gold">*</span></strong> |
@@ -36,10 +40,12 @@ Books:
 |         | | |
 | Programming | AOC <span class="silver">all problems</span> (<span class="gold">&lt;1s per year</span>) | <span class="silver">17</span> remaining |
 |             | Climbuddy <span class="silver">beta</span> \| <span class="gold">official release</span> | <strong><span class="silver">*</span></strong> |
+|             | <span class="silver">1600+</span> \| <span class="silver">2000+</span> elo chess engine | optimizing perft |
 |       | | |
-| Other | Read <span class="silver">12</span>\|<span class="gold">18</span> books | <span class="silver">8</span> |
-|       | Release a <span class="silver">short story</span> <span class="gold">with illustrations</span> | <span class="silver">2</span> pages |
-|       | <span class="silver">&lt;1h</span>\|<span class="gold">&lt;30m</span> unproductive phone time | going extremely poorly |
-|       | <span class="silver">&lt;15m</span>\|<span class="gold">&lt;30m</span> Anki time | going extremely poorly |
-|       | Make <span class="silver">latte art</span> of <span class="gold">not just a heart</span> | coffee machine broke down |
+| Other | Read <span class="silver">12</span>\|<span class="gold">18</span> books | <span class="silver">12</span> |
+|       | ~~Release a <span class="silver">short story</span> <span class="gold">with illustrations</span>~~ | this is hard |
+|       | <span class="silver">&lt;1h</span>\|<span class="gold">&lt;30m</span> unproductive phone time | uninstalling Instagram worked wonders |
+|       | ~~<span class="silver">&lt;15m</span>\|<span class="gold">&lt;30m</span> Anki time~~ | replaced by German; going well |
+|       | <span class="silver">A2</span>\|<span class="gold">B1</span> German | 1 month in, this is hard |
+|       | Make <span class="silver">latte art</span> of <span class="gold">not just a heart</span> | coffee machine back, but still bad |
 
