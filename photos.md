@@ -16,6 +16,12 @@ I also try to be active on **[Instagram <i class="fa-brands fa-instagram"></i>](
 
 _All of the photos are licensed under **[CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)**, so kindly respect it if you plan on using any of them for uses other than personal._
 
+### Gallery
+
+{% include photos.md %}
+
+---
+
 ### Trips
 
 #### [USA 2024 🇺🇸](/photos/usa-2024/)
@@ -26,7 +32,3 @@ Moutaineering/climbing with my Heidelberg friends.
 
 #### [Tatras 2023 🇸🇰](/photos/tatras-2023/)
 5 programmers versus mountains: who would win?
-
-### Gallery
-
-{% include photos.md %}
