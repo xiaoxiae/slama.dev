@@ -27,7 +27,7 @@ Specifically, we need to use the [`Camera`](https://motioncanvas.io/api/2d/compo
 #### Controlling
 
 ```typescript
-{% include motion-canvas/03/moving-camera.tsx %}
+{% include motion-canvas/src/scenes/03/moving-camera.tsx %}
 ```
 
 {% motion_canvas_video 03-moving-camera %}
@@ -35,7 +35,7 @@ Specifically, we need to use the [`Camera`](https://motioncanvas.io/api/2d/compo
 Additionally, just like any [`Node`](https://motioncanvas.io/api/2d/components/Node), we can use signals to create more complicated animations, such as the following, which tracks a circle within a changing grid:
 
 ```typescript
-{% include motion-canvas/03/moving-camera-follower.tsx %}
+{% include motion-canvas/src/scenes/03/moving-camera-follower.tsx %}
 ```
 
 {% motion_canvas_video 03-moving-camera-follower %}
@@ -46,7 +46,7 @@ For more complicated animations, we might be interested in using multiple camera
 To achieve this, we need to store everything we want to dispaly in a single [`Node`](https://motioncanvas.io/api/2d/components/Node) that **has to be on the top level** of the scene hierarchy, which we will feed to [`Camera.Stage`](https://motioncanvas.io/api/2d/components/Camera/#static-Stage) components:
 
 ```typescript
-{% include motion-canvas/03/multi-camera.tsx %}
+{% include motion-canvas/src/scenes/03/multi-camera.tsx %}
 ```
 
 {% motion_canvas_video 03-multi-camera %}
@@ -67,11 +67,11 @@ _Also, if you find the following examples interesting, make sure to read the inc
 Getting back to Motion Canvas, here is a simple example that creates a gradient shine effect on a circle:
 
 ```glsl
-{% include motion-canvas/03/shader.glsl %}
+{% include motion-canvas/src/scenes/03/shader.glsl %}
 ```
 
 ```typescript
-{% include motion-canvas/03/shader.tsx %}
+{% include motion-canvas/src/scenes/03/shader.tsx %}
 ```
 
 {% motion_canvas_video 03-shader %}
@@ -111,11 +111,11 @@ Fortunately, we are not limited to the default `uniform`s -- we can provide any 
 Here is a more complex example that does exactly that to create a dynamic background effect by using uniforms to provide values of the object positions, opacities and scales:
 
 ```glsl
-{% include motion-canvas/03/shader-advanced.glsl %}
+{% include motion-canvas/src/scenes/03/shader-advanced.glsl %}
 ```
 
 ```typescript
-{% include motion-canvas/03/shader-advanced.tsx %}
+{% include motion-canvas/src/scenes/03/shader-advanced.tsx %}
 ```
 
 {% motion_canvas_video 03-shader-advanced %}

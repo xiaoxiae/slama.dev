@@ -30,7 +30,7 @@ In this example, we're also using the fact that Motion Canvas supports any `X11`
 <div class="lang-spacer"></div>
 <div class="ct" markdown="1">
 ```typescript
-{% include motion-canvas/02/vgroup.tsx %}
+{% include motion-canvas/src/scenes/02/vgroup.tsx %}
 ```
 </div>
 <div class="ct" style="display:none;" markdown="1">
@@ -51,7 +51,7 @@ In Motion Canvas, we again utilize the almighty flexbox... well, kind of -- anim
 <div class="lang-spacer"></div>
 <div class="ct" markdown="1">
 ```typescript
-{% include motion-canvas/02/arrange.tsx %}
+{% include motion-canvas/src/scenes/02/arrange.tsx %}
 ```
 </div>
 <div class="ct" style="display:none;" markdown="1">
@@ -69,7 +69,7 @@ The only difference here is that we're newly using the `wrap` property, since th
 To make the animation a bit more interesting, we can utilize the [**`chroma.js`**](https://gka.github.io/chroma.js/) (which Motion Canvas internally uses to work with colors) to assign colors using a color scale.
 
 ```typescript
-{% include motion-canvas/02/arrange-in-grid.tsx %}
+{% include motion-canvas/src/scenes/02/arrange-in-grid.tsx %}
 ```
 
 {% motion_canvas_video 02-arrange-in-grid %}
@@ -80,7 +80,7 @@ The order in which the objects are rendered are based on the [scene hierarchy](h
 However, if they differ in their z-index, the one with a higher z-index will always be drawn on top of the other:
 
 ```typescript
-{% include motion-canvas/02/add-remove.tsx %}
+{% include motion-canvas/src/scenes/02/add-remove.tsx %}
 ```
 
 {% motion_canvas_video 02-add-remove %}
@@ -91,7 +91,7 @@ We've already seen a few of these in the [previous post](/motion-canvas/1/), but
 The main difference between Manim and one of the main features of Motion Canvas is that the animation model inherently allows for a lot of concurrency, since you can have multiple threads concurrently changing different properties, even of the same object:
 
 ```typescript
-{% include motion-canvas/02/animation-flow.tsx %}
+{% include motion-canvas/src/scenes/02/animation-flow.tsx %}
 ```
 
 {% motion_canvas_video 02-animation-flow %}
@@ -116,7 +116,7 @@ Instead of object's characteristics being static values, they are usually **sign
 This means that, as opposed to Manim's updater we **don't need to explicitly say** that an object's attribute should be set to this value at every frame -- we say that **it is that value:**
 
 ```typescript
-{% include motion-canvas/02/simple-signal.tsx %}
+{% include motion-canvas/src/scenes/02/simple-signal.tsx %}
 ```
 
 {% motion_canvas_video 02-simple-signal %}
@@ -125,7 +125,7 @@ Note that we don't necessarily need to only assign one signal to another -- we c
 
 
 ```typescript
-{% include motion-canvas/02/become-signal.tsx %}
+{% include motion-canvas/src/scenes/02/become-signal.tsx %}
 ```
 
 {% motion_canvas_video 02-become-signal %}
@@ -145,7 +145,7 @@ Effects come in two flavors; _directly quoting the documentation_:
 
 For example, we could use it to create a simple particle simulation like this one:
 ```typescript
-{% include motion-canvas/02/effect.tsx %}
+{% include motion-canvas/src/scenes/02/effect.tsx %}
 ```
 
 {% motion_canvas_video 02-effect %}
@@ -165,7 +165,7 @@ Before trying to animate this, here are a few useful things:
 All of the above can be summarized in the following animation:
 
 ```typescript
-{% include motion-canvas/02/shuffle-helper.tsx %}
+{% include motion-canvas/src/scenes/02/shuffle-helper.tsx %}
 ```
 
 {% motion_canvas_video 02-shuffle-helper %}
@@ -176,7 +176,7 @@ All of the above can be summarized in the following animation:
 <div class="lang-spacer"></div>
 <div class="ct" markdown="1">
 {% motion_canvas_solution %}
-{% include motion-canvas/02/task-shuffle.tsx %}
+{% include motion-canvas/src/scenes/02/task-shuffle.tsx %}
 {% endmotion_canvas_solution %}
 </div>
 <div class="ct" style="display:none;" markdown="1">
@@ -245,7 +245,7 @@ function perpendicularBisector(p1: Vector2, p2: Vector2): [Vector2, Vector2] {
 <div class="lang-spacer"></div>
 <div class="ct" markdown="1">
 {% motion_canvas_solution %}
-{% include motion-canvas/02/task-triangle.tsx %}
+{% include motion-canvas/src/scenes/02/task-triangle.tsx %}
 {% endmotion_canvas_solution %}
 </div>
 <div class="ct" style="display:none;" markdown="1">
@@ -302,7 +302,7 @@ Here is the text input that I used to generate the maze, if you wish to use it.
 <div class="lang-spacer"></div>
 <div class="ct" markdown="1">
 {% motion_canvas_solution %}
-{% include motion-canvas/02/task-wave.tsx %}
+{% include motion-canvas/src/scenes/02/task-wave.tsx %}
 {% endmotion_canvas_solution %}
 </div>
 <div class="ct" style="display:none;" markdown="1">
@@ -330,7 +330,7 @@ Here are some useful things:
 <div class="lang-spacer"></div>
 <div class="ct" markdown="1">
 {% motion_canvas_solution %}
-{% include motion-canvas/02/task-hilbert.tsx %}
+{% include motion-canvas/src/scenes/02/task-hilbert.tsx %}
 {% endmotion_canvas_solution %}
 </div>
 <div class="ct" style="display:none;" markdown="1">

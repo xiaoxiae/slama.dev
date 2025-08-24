@@ -45,7 +45,7 @@ _Whenever you see something like this, the Manim code will produce an animation 
 <div class="lang-spacer"></div>
 <div class="ct" markdown="1">
 ```typescript
-{% include motion-canvas/01/intro.tsx %}
+{% include motion-canvas/src/scenes/01/intro.tsx %}
 ```
 </div>
 <div class="ct" style="display:none;" markdown="1">
@@ -75,7 +75,7 @@ _Note that I've factored out the animation of an object appearance into the `app
 <div class="lang-spacer"></div>
 <div class="ct" markdown="1">
 ```typescript
-{% include motion-canvas/01/animate.tsx %}
+{% include motion-canvas/src/scenes/01/animate.tsx %}
 ```
 </div>
 <div class="ct" style="display:none;" markdown="1">
@@ -92,7 +92,7 @@ As you can see, each property is animated individually, as opposed to Manim's `a
 Although this seems like a minor difference at first, creating animations like this one in Manim would be essentially impossible without some crazy updater shenanigans:
 
 ```typescript
-{% include motion-canvas/01/animate-complex.tsx %}
+{% include motion-canvas/src/scenes/01/animate-complex.tsx %}
 ```
 
 {% motion_canvas_video 01-animate-complex %}
@@ -112,7 +112,7 @@ The main things used are the [`left`](https://motioncanvas.io/api/2d/components/
 <div class="lang-spacer"></div>
 <div class="ct" markdown="1">
 ```typescript
-{% include motion-canvas/01/next-to.tsx %}
+{% include motion-canvas/src/scenes/01/next-to.tsx %}
 ```
 </div>
 <div class="ct" style="display:none;" markdown="1">
@@ -132,7 +132,7 @@ The main things used are the [`left`](https://motioncanvas.io/api/2d/components/
 <div class="lang-spacer"></div>
 <div class="ct" markdown="1">
 ```typescript
-{% include motion-canvas/01/move-to.tsx %}
+{% include motion-canvas/src/scenes/01/move-to.tsx %}
 ```
 </div>
 <div class="ct" style="display:none;" markdown="1">
@@ -152,7 +152,7 @@ The main things used are the [`left`](https://motioncanvas.io/api/2d/components/
 <div class="lang-spacer"></div>
 <div class="ct" markdown="1">
 ```typescript
-{% include motion-canvas/01/align-to.tsx %}
+{% include motion-canvas/src/scenes/01/align-to.tsx %}
 ```
 </div>
 <div class="ct" style="display:none;" markdown="1">
@@ -172,7 +172,7 @@ Writing these functions is not difficult, but it's also usually not something yo
 ### Flexbox!
 
 ```typescript
-{% include motion-canvas/01/flexbox.tsx %}
+{% include motion-canvas/src/scenes/01/flexbox.tsx %}
 ```
 
 {% motion_canvas_video 01-flexbox %}
@@ -187,7 +187,7 @@ This means that when we add objects to a layout, they instantly snap to their po
 To create our animation, we can rely on the [`save`](https://motioncanvas.io/api/2d/components/Layout/#save) and [`restore`](https://motioncanvas.io/api/2d/components/Layout#restore) functions, which can remember the absolute positions in the layout and then return to them once we disable the layout, in order to nicely animate the objects getting to their positions:
 
 ```typescript
-{% include motion-canvas/01/move-to-flexbox.tsx %}
+{% include motion-canvas/src/scenes/01/move-to-flexbox.tsx %}
 ```
 
 {% motion_canvas_video 01-move-to-flexbox %}
@@ -256,7 +256,7 @@ Since [TypeScript doesn't provide a way to seed its random number generator](htt
 <div class="lang-spacer"></div>
 <div class="ct" markdown="1">
 {% motion_canvas_solution %}
-{% include motion-canvas/01/task-sort.tsx %}
+{% include motion-canvas/src/scenes/01/task-sort.tsx %}
 {% endmotion_canvas_solution %}
 </div>
 <div class="ct" style="display:none;" markdown="1">
@@ -280,7 +280,7 @@ Again, a couple of things:
 <div class="lang-spacer"></div>
 <div class="ct" markdown="1">
 {% motion_canvas_solution %}
-{% include motion-canvas/01/task-search.tsx %}
+{% include motion-canvas/src/scenes/01/task-search.tsx %}
 {% endmotion_canvas_solution %}
 </div>
 <div class="ct" style="display:none;" markdown="1">
