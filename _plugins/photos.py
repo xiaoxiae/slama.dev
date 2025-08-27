@@ -11,6 +11,12 @@ PHOTOS_DIR = "../photos/raw"
 
 # Photo metadata - path as key, metadata dict as value
 photo_metadata = {
+    "2025-08-19-pig.jpg": {
+        "bluesky_url": "https://bsky.app/profile/tomas.slama.dev/post/3lxdbratzds25"
+    },
+    "2025-08-19-chipmunk.jpg": {
+        "bluesky_url": "https://bsky.app/profile/tomas.slama.dev/post/3lxaojufuk22b"
+    },
     "2025-08-19-butterfly.jpg": {
         "bluesky_url": "https://bsky.app/profile/tomas.slama.dev/post/3lx434ffo3c2a"
     },
