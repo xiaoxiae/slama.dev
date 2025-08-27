@@ -2,6 +2,7 @@
 title: Fixing a Broken Blind Holder
 excerpt: "How 3D reconstruction and 3D printing can fix broken things."
 css: photos
+bluesky_url: https://bsky.app/profile/tomas.slama.dev/post/3lxfbgjnk5k26
 ---
 
 - .

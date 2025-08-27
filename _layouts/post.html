@@ -32,6 +32,10 @@ post-title: True
 		<span class="quarter-visible vspace">· </span>{{ page.end }}
 	{% endif %}
 
+	{% if page.bluesky_url %}
+		<span class="quarter-visible vspace">· </span><a href="{{ page.bluesky_url }}" target="_blank" rel="noopener noreferrer"><i class="fab fa-bluesky"></i></a>
+	{% endif %}
+
 	{% if page.language == "cz" %}
 		<span class="quarter-visible vspace">· </span>[<a href="https://github.com/xiaoxiae/slama.dev/blob/master/{{ page.path }}">upravit</a>]
 	{% else %}
