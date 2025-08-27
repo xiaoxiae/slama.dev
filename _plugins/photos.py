@@ -306,9 +306,9 @@ def generate_html(photos):
             """
         
         results += f"""
-        <div>
+        <div class="no-invert">
             <div class="date">{date_string}</div>
-            <img src="{photo_url}" alt="Image" class="gallery-img no-invert" data-full="{download_url}">
+            <img src="{photo_url}" alt="Image" class="gallery-img" data-full="{download_url}">
             <div class="icons">{icons}</div>
         </div>
         """
@@ -317,10 +317,10 @@ def generate_html(photos):
 </div>
 
 <!-- Lightbox Modal -->
-<div id="lightbox" class="lightbox" style="display: none;">
+<div id="lightbox" class="lightbox no-invert" style="display: none;">
     <div class="lightbox-content">
         <span class="lightbox-close">&times;</span>
-        <img id="lightbox-img" class="no-invert" src="" alt="Enlarged image">
+        <img id="lightbox-img" src="" alt="Enlarged image">
     </div>
 </div>
 
