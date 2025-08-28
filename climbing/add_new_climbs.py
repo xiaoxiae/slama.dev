@@ -29,7 +29,6 @@ for file in files:
             config[file] = {
                 "date": date.fromtimestamp(os.path.getmtime(full_path)),
                 "new": None,
-                "rotate": "right",
                 "encode": None,
                 "trim": "TODO",
                 "wall": "Crimp",
@@ -40,7 +39,6 @@ for file in files:
                 "color": "TODO",
                 "date": date.fromtimestamp(os.path.getmtime(full_path)),
                 "new": None,
-                "rotate": "right",
                 "encode": None,
                 "trim": "TODO",
                 "deface": None,

@@ -132,7 +132,8 @@ for entry in reversed(sorted(list(journal))):
     wall_stubs_colors = {
         "smichoff": ["red", "salmon", "blue", "yellow"],
         "jungle": ["green", "blue", "red"],
-        "boulderhaus": ["christmas", "blue", "red", "black"],
+        "boulderhaus": ["christmas", "blue", "red", "black", "purple"],
+        "crimp": ["blue", "red", "black", "purple"],
         "boulderhaus-darmstadt": ["christmas", "blue", "red", "black"],
         "boulder-bar": ["green", "blue", "red"],
         "trinactka": v_colors,

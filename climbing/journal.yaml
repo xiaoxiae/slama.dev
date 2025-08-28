@@ -3597,3 +3597,37 @@
 2025-05-29:
   training: bench (10x50, 10x60, 1x80)
   wall: Boulderhaus
+2025-06-03:
+  note: Motivation is temporary, fuck that.
+  placeholder: true
+2025-08-26:
+  moon:
+    6b+:
+      new: 1
+    6c+:
+      new: 2
+    7a:
+      new: 4
+    7a+:
+      new: 1
+    7b:
+      new: 1
+  note: Back to logging. Feeling strong again.
+  wall: Crimp
+2025-08-27:
+  black:
+    new: 2
+  blue:
+    new: 2
+  note: Feeling stronger.
+  purple:
+    new: 1
+  red:
+    new: 2
+  wall: Boulderhaus
+2025-08-28:
+  moon:
+    7a:
+      new: 3
+  note: Ok not feeling strong anymore, three days in a row might be an overkill.
+  wall: Crimp
