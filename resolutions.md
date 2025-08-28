@@ -25,6 +25,7 @@ Books:
 - Lost Metal (comfy)
 - Mistborn 1 - The Final Empire (comfy)
 - Isles of the Emberdark (had to do it)
+- Skyward (still not into this Brandon Sanderson series)
 -->
 
 | Category | Goal (<span class="silver">easy</span> \| <span class="gold">hard</span>) | Progress |
@@ -42,7 +43,7 @@ Books:
 |             | Climbuddy <span class="silver">beta</span> \| <span class="gold">official release</span> | <strong><span class="silver">*</span></strong> |
 |             | <span class="silver">1600+</span> \| <span class="silver">2000+</span> elo chess engine | optimizing perft |
 |       | | |
-| Other | Read <span class="silver">12</span>\|<span class="gold">18</span> books | <span class="silver">12</span> |
+| Other | Read <span class="silver">12</span>\|<span class="gold">18</span> books | <span class="silver">13</span> |
 |       | ~~Release a <span class="silver">short story</span> <span class="gold">with illustrations</span>~~ | this is hard |
 |       | <span class="silver">&lt;1h</span>\|<span class="gold">&lt;30m</span> unproductive phone time | uninstalling Instagram worked wonders |
 |       | ~~<span class="silver">&lt;15m</span>\|<span class="gold">&lt;30m</span> Anki time~~ | replaced by German; going well |
