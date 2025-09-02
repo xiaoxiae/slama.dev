@@ -3630,4 +3630,19 @@
     7a:
       new: 3
   note: Ok not feeling strong anymore, three days in a row might be an overkill.
+  other:
+    new: 2
+  wall: Crimp
+2025-08-31:
+  note: Random shenanigans @ Boulderwelt.
+  wall: Boulderwelt Karlsruhe
+2025-09-01:
+  moon:
+    7a:
+      new: 1
+    7a+:
+      new: 2
+    7b:
+      new: 1
+  note: Pretty good Moonboard sesh.
   wall: Crimp

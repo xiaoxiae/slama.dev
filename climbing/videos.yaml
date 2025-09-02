@@ -1084,6 +1084,10 @@ boulderwelt-karlsruhe-8-2025-04-25-crzagthm.mp4:
   color: '8'
   date: 2025-04-25
   wall: Boulderwelt Karlsruhe
+boulderwelt-karlsruhe-8-2025-08-31-ztfgplwn.mp4:
+  color: '8'
+  date: 2025-08-31
+  wall: Boulderwelt Karlsruhe
 boulderwelt-karlsruhe-9-2025-01-06-sjeigyzw.mp4:
   color: '9'
   date: 2025-01-06
@@ -1587,6 +1591,10 @@ moon-7a-2025-01-29-nmmijumh.mp4:
   color: 7a
   date: 2025-01-29
   moon: true
+moon-7a-2025-09-01-wxhbrtdu.mp4:
+  color: 7a
+  date: 2025-09-01
+  moon: true
 moon-7ap-2024-11-27-lwnjlvza.mp4:
   color: 7a+
   date: 2024-11-27
@@ -1659,6 +1667,14 @@ moon-7ap-2025-03-05-hibcmgny.mp4:
   color: 7a+
   date: 2025-03-05
   moon: true
+moon-7ap-2025-09-01-ieqsrujj.mp4:
+  color: 7a+
+  date: 2025-09-01
+  moon: true
+moon-7ap-2025-09-01-tqakmrzr.mp4:
+  color: 7a+
+  date: 2025-09-01
+  moon: true
 moon-7b-2024-04-29-vjlkaniv.mp4:
   color: 7b
   date: 2024-04-29
@@ -1670,6 +1686,10 @@ moon-7b-2024-11-29-ejbaixtp.mp4:
 moon-7b-2025-01-13-jywvrboy.mp4:
   color: 7b
   date: 2025-01-13
+  moon: true
+moon-7b-2025-09-01-kfelgbqm.mp4:
+  color: 7b
+  date: 2025-09-01
   moon: true
 riesenstein-reason-spass-2023-05-13-jowarloa.mp4:
   date: 2023-05-13
