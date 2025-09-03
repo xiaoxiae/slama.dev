@@ -22,7 +22,7 @@ if os.path.exists(CLIMBING_INFO):
 
 files = os.listdir(CLIMBING_VIDEOS_FOLDER)
 for file in files:
-    if file.lower().endswith(".mp4") and file not in config:
+    if file.lower().endswith((".mp4", ".avi")) and file not in config:
         full_path = os.path.join(CLIMBING_VIDEOS_FOLDER, file)
 
         if sys.argv[-1].lower() == "crimp":
