@@ -26,27 +26,33 @@ Books:
 - Mistborn 1 - The Final Empire (comfy)
 - Isles of the Emberdark (had to do it)
 - Skyward (still not into this Brandon Sanderson series)
+- Starsight (still ass, not reading the rest)
 -->
 
-| Category | Goal (<span class="silver">easy</span> \| <span class="gold">hard</span>) | Progress |
-| --:  | :-- | :-- |
-| Fitness | All Moonboard <span class="silver">7a</span>\|<span class="gold">7a+</span> benchmarks | <span class="silver">1</span>\|<span class="gold">9</span> remaining |
-|         | Kilter <span class="silver">8a</span>\|<span class="gold">8a+</span> | 7c+ flash |
-|         | Boulder <span class="silver">7c+</span>\|<span class="gold">8a</span> outside | |
-|         | <span class="silver">10s one-arm lockoff</span> \| <span class="gold">one-arm pull-up</span> | <span class="silver">5 seconds</span> |
-|         | <span class="silver">100kg</span> \| <span class="gold">110kg</span> bench | <span class="silver">100kg</span> |
-|         | <span class="silver">backflip</span> \| <span class="gold">frontflip</span> | still too scared |
-|         | <span class="silver">1x</span>\|<span class="gold">5x</span> muscle-up | <strong><span class="silver">*</span></strong> <strong><span class="gold">*</span></strong> |
-|         | 10k <span class="silver">5:45/km</span> \| <span class="gold">5:30/km</span>  | 8k <span class="silver">6:00</span>; 4k <span class="silver">4:40</span> |
-|         | | |
-| Programming | AOC <span class="silver">all problems</span> (<span class="gold">&lt;1s per year</span>) | <span class="silver">17</span> remaining |
-|             | Climbuddy <span class="silver">beta</span> \| <span class="gold">official release</span> | <strong><span class="silver">*</span></strong> |
-|             | <span class="silver">1600+</span> \| <span class="silver">2000+</span> elo chess engine | optimizing perft |
-|       | | |
-| Other | Read <span class="silver">12</span>\|<span class="gold">18</span> books | <span class="silver">13</span> |
-|       | ~~Release a <span class="silver">short story</span> <span class="gold">with illustrations</span>~~ | this is hard |
-|       | <span class="silver">&lt;1h</span>\|<span class="gold">&lt;30m</span> unproductive phone time | uninstalling Instagram worked wonders |
-|       | ~~<span class="silver">&lt;15m</span>\|<span class="gold">&lt;30m</span> Anki time~~ | replaced by German; going well |
-|       | <span class="silver">A2</span>\|<span class="gold">B1</span> German | 1 month in, this is hard |
-|       | Make <span class="silver">latte art</span> of <span class="gold">not just a heart</span> | coffee machine back, but still bad |
+<!--
+Resolution Graveyard, because some things didn't make sense and couldn't hack others
+|             | ~~Kilter <span class="silver">8a</span>\|<span class="gold">8a+</span>~~                           | 7c+ flash, but it turns out that I really hate Kilter                                       |
+|             | ~~Release a <span class="silver">short story</span> <span class="gold">with illustrations</span>~~ | this is hard                                                                                |
+|             | ~~<span class="silver">&lt;15m</span>\|<span class="gold">&lt;30m</span> Anki time~~               | replaced by German; going well                                                              |
+|             | Boulder <span class="silver">7c+</span>\|<span class="gold">8a</span> outside                 |                                                                                             |
 
+-->
+
+|    Category | Goal (<span class="silver">easy</span> \| <span class="gold">hard</span>)                     | Progress                                                                                      |
+| ----------: | :-------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------- |
+|     Fitness | All 2016 Moonboard <span class="silver">7a</span>\|<span class="gold">7a+</span> benchmarks   | <span class="silver">1</span>\|<span class="gold">9</span> remaining                          |
+|             | 2019 Moonboard <span class="silver">7b+</span>\|<span class="gold">7c</span> benchmarks       | got <span class="silver">7b+</span>                                                           |
+|             | <span class="silver">10s one-arm lockoff</span> \| <span class="gold">one-arm pull-up</span>  | 5 seconds                                                                                     |
+|             | <span class="silver">100kg</span> \| <span class="gold">110kg</span> bench                    | <span class="silver">100kg</span>, good enough                                                |
+|             | <span class="silver">backflip</span> \| <span class="gold">frontflip</span>                   | still too scared                                                                              |
+|             | <span class="silver">1x</span>\|<span class="gold">5x</span> muscle-up                        | <strong><span class="silver">\*</span></strong> <strong><span class="gold">\*</span></strong> |
+|             | 10k <span class="silver">5:45/km</span> \| <span class="gold">5:30/km</span>                  | 8k 6:00; 4k 4:40                                                                              |
+|             |                                                                                               |                                                                                               |
+| Programming | AOC <span class="silver">all problems</span> (<span class="gold">&lt;1s per year</span>)      | 17 remaining                                                                                  |
+|             | Climbuddy <span class="silver">beta</span> \| <span class="gold">customers</span>             | <strong><span class="silver">\*</span></strong>                                               |
+|             | <span class="silver">1600+</span> \| <span class="gold">2000+</span> elo chess engine         | <a href="https://lichess.org/@/prokopakop" class="silver">~1800</a> on Lichess                |
+|             |                                                                                               |                                                                                               |
+|       Other | Read <span class="silver">12</span>\|<span class="gold">18</span> books                       | <span class="silver">14</span>                                                                |
+|             | <span class="silver">&lt;1h</span>\|<span class="gold">&lt;30m</span> unproductive phone time | <span class="gold">uninstalling</span> Instagram worked                                       |
+|             | <span class="silver">A1</span>\|<span class="gold">A2</span> German                           | <span class="silver">A1</span> (somewhat)                                                     |
+|             | Make <span class="silver">latte art</span> of <span class="gold">not just a heart</span>      | <span class="silver">got one</span>; extremely inconsistent                                   |
