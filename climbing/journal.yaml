@@ -2757,6 +2757,7 @@
       new: 3
     6c+:
       new: 3
+    setup: 2016
   note: Tried the hard routes again without too much success, MoonBoard made the depression
     go away.
   wall: Crimp
@@ -2776,6 +2777,7 @@
       new: 1
     7a+:
       new: 1
+    setup: 2016
   note: Officially rebranded as a MoonBoarder.
   wall: Crimp
 2024-02-29:
@@ -2790,6 +2792,7 @@
       new: 3
     7a:
       new: 1
+    setup: 2016
   note: Impromptu midnight session. Good times.
   wall: Crimp
 2024-03-01:
@@ -2798,6 +2801,7 @@
       new: 10
     6b:
       new: 5
+    setup: 2016
   note: Three days in a row ain't it.
   wall: Crimp
 2024-03-02:
@@ -2860,6 +2864,7 @@
   moon:
     6c:
       new: 2
+    setup: 2016
   note: Getting back to the swing of things. Was surprisingly not too bad of a session.
   wall: Crimp
 2024-04-12:
@@ -2886,6 +2891,7 @@
       new: 3
     7a+:
       new: 1
+    setup: 2016
   note: Moooooooon.
   wall: Crimp
 2024-04-19:
@@ -2908,6 +2914,7 @@
       new: 5
     7b:
       new: 1
+    setup: 2016
   note: Wanted to do some more long-term projecting and managed to do a 7B! Pretty
     stoked about it, I think I'll focus on climbing harder moonboard stuff instead
     of more easier routes.
@@ -2927,6 +2934,7 @@
       new: 2
     7a+:
       new: 2
+    setup: 2016
   note: Late night moonboard sesh.
   wall: Crimp
 2024-04-29:
@@ -2939,6 +2947,7 @@
       new: 1
     7b:
       new: 1
+    setup: 2016
   note: Another 7b, this time on the ~3rd serious attempt!
   wall: Crimp
 2024-05-01:
@@ -2966,6 +2975,7 @@
       new: 3
     7a+:
       new: 1
+    setup: 2016
   note: First decent session after not feeling great for a couple of days.
   wall: Crimp
 2024-05-17:
@@ -3296,6 +3306,7 @@
       new: 3
     7a+:
       new: 3
+    setup: 2016
   note: Getting back to Moonboarding... and felt surprisingly okay. Definitely still
     quite uncoordinated, but that should hopefully be ironed out in a few sessions.
   wall: Crimp
@@ -3311,6 +3322,7 @@
       new: 3
     7b:
       new: 1
+    setup: 2016
   note: Got a 7b and felt pretty okay on others I've tried. Not bad :).
   wall: Crimp
 2024-11-30:
@@ -3332,6 +3344,7 @@
       new: 3
     7a+:
       new: 1
+    setup: 2016
   note: The Boulderhaus moonboard is so much shittier than the Crimp one, holy moly.
   wall: Boulderhaus
 2024-12-04:
@@ -3409,6 +3422,7 @@
       new: 1
     7a+:
       new: 1
+    setup: 2016
   note: Moonboard session. Felt injured, climbed poorly.
   wall: Crimp
 2025-01-13:
@@ -3417,6 +3431,7 @@
       new: 5
     7b:
       new: 1
+    setup: 2016
   note: Much better than the last session. Bench PR, although not very controlled.
     All 7as will be defeated.
   training: bench (60kg 10x, 90kg 1x, 60kg 8x).
@@ -3432,6 +3447,7 @@
   moon:
     7a:
       new: 3
+    setup: 2016
   note: Solo Moonboard session. Felt pretty strong, but all of the sends were pretty
     shit (cutting loose, not very smooth).
   wall: Crimp
@@ -3439,6 +3455,7 @@
   moon:
     7a:
       new: 8
+    setup: 2016
   note: Monster session. Enough said.
   wall: Crimp
 2025-01-22:
@@ -3450,6 +3467,7 @@
   moon:
     7a:
       new: 3
+    setup: 2016
   note: Very good!! Wanted 2, got 3.
   wall: Crimp
 2025-01-25:
@@ -3461,12 +3479,14 @@
       new: 2
     7a+:
       new: 2
+    setup: 2016
   note: Only 1 7a remaining...
   wall: Crimp
 2025-01-31:
   moon:
     7a+:
       new: 6
+    setup: 2016
   note: 7a is too hard, so 7a+ it is.
   wall: Crimp
 2025-02-03:
@@ -3476,6 +3496,7 @@
   moon:
     7a+:
       new: 1
+    setup: 2016
   note: Not a particularly strong session, but a send is a send.
   wall: Crimp
 2025-02-06:
@@ -3488,12 +3509,14 @@
   moon:
     7a+:
       new: 4
+    setup: 2016
   note: Those 7a+s' will kneel before me.
   wall: Crimp
 2025-02-28:
   moon:
     7a+:
       new: 2
+    setup: 2016
   note: Two more, it's getting tough now.
   wall: Crimp
 2025-03-03:
@@ -3505,6 +3528,7 @@
   moon:
     7a+:
       new: 1
+    setup: 2016
   note: Did a 7a+ and my right middle finger felt really shit. :/
   wall: Crimp
 2025-03-06:
@@ -3612,6 +3636,7 @@
       new: 1
     7b:
       new: 1
+    setup: 2024
   note: Back to logging. Feeling strong again.
   wall: Crimp
 2025-08-27:
@@ -3629,6 +3654,7 @@
   moon:
     7a:
       new: 3
+    setup: 2024
   note: Ok not feeling strong anymore, three days in a row might be an overkill.
   other:
     new: 2
@@ -3644,6 +3670,7 @@
       new: 2
     7b:
       new: 1
+    setup: 2024
   note: Pretty good Moonboard sesh.
   wall: Crimp
 2025-09-03:
@@ -3654,5 +3681,6 @@
       new: 2
     7b+:
       new: 1
+    setup: 2024
   note: 7b flash and a 7b+ send. Modestly good sesh. Thanks for the vids Patrick!
   wall: Crimp

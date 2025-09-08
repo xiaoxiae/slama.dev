@@ -324,8 +324,12 @@ for entry in reversed(sorted(list(journal))):
         if some_color_added:
             line += "/ "
 
-        line += f"<strong>MoonBoard: </strong>"
+        line += f"<strong>MoonBoard ({journal[entry]['moon']['setup']}): </strong>"
+
         for color in journal[entry]["moon"]:
+            if color == "setup":
+                continue
+
             line += format_color(color, moon=True)
 
     if line.endswith("<li>"):
