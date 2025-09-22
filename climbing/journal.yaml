@@ -3691,3 +3691,12 @@
   red:
     new: 1
   wall: Boulderhaus
+2025-09-08:
+  moon:
+    7a:
+      new: 7
+    7b:
+      new: 1
+    setup: 2024
+  note: Anoda day, anoda 7b Moonboard flash. Then let the 7a grind begin anew.
+  wall: Crimp
