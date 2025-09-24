@@ -1,5 +1,5 @@
 ---
-title: Chess Engine, Commit by Commit
+title: A Chess Engine, Commit by Commit
 excerpt: "Writing a chess engine from scratch, commit by commit."
 css: chess
 ---
@@ -8,7 +8,7 @@ css: chess
 {:toc}
 
 A friend of mine recently challenged me to a chess engine duel, which consisted of making a chess bot from scratch and then dueling to see whose is better.
-Naturally, I aggreed.
+Naturally, I agreed.
 And thus **[Prokopakop](https://github.com/xiaoxiae/prokopakop)** was born.
 
 It (unsurprisingly) turns out that there is a lot of things that go into making a chess bot, and I thought it would be interesting to cover my journey of writing the bot in the commits that I made, since they more-or-less correspond to the concepts that I learned along the way.
@@ -28,20 +28,21 @@ TODO
 Before beginning to write a chess bot that searches/evaluates positions, we need to make sure that we can generate them quickly, since we'll need those to search/evaluate over.
 
 {: .commit-header}
-#### [`a1f8b867`](https://github.com/xiaoxiae/Prokopakop/commit/a1f8b867c9818e411a491e8cfdbd115411f1beb1)
+[`a1f8b8`](https://github.com/xiaoxiae/Prokopakop/commit/a1f8b867c9818e411a491e8cfdbd115411f1beb1)
+
+---
 
 The first commit actually contains quite a bit of code, and should have likely been split into separate ones.
 However, I wanted the first commit to actually contain something that remotely resembles a chess engine, so here we are.
 
-##### Bitboards
+#### Bitboards
 
 The most important part of this commit is that it stored the board state position via [**bitboards**](https://www.chessprogramming.org/Bitboards), which are necessary for making the engine fast.
 The concept is very simple -- since CPUs are heavily optimized for working with 64-bit numbers, and 64 turns out to be the exact number of squares on the board, we can use them to store (among other things) locations of pieces.
 
 As an example, here is a bitboard (=64-bit unsigned integer) that stores pawn positions.
 
-{% chess %}
-0b00000000⏎     8 ........
+{% chess %}0b00000000⏎     8 ........
   11111111⏎     7 ♙♙♙♙♙♙♙♙
   00000000⏎     6 ........
   00000000⏎     5 ........
@@ -93,7 +94,7 @@ let white_rooks_and_bishops = self.color_bitboards[Color::White]
 
 There will be plenty more bitboard magic in the following commits, but this will do for now.
 
-##### Perft tests
+#### Perft tests
 
 To ensure that the chess engine is generating the correct moves, this commit also sets up tests for checking [**perft**](https://www.chessprogramming.org/Perft) (short for **perf**ormance **t**est), which checks how many legal moves there are up until the given depth.
 For example
@@ -104,13 +105,16 @@ For example
 I've borrowed a **[large perft table](https://github.com/elcabesa/vajolet/blame/master/tests/perft.txt)** from [Valojet](https://github.com/elcabesa/vajolet), a fellow chess engine, because testing perft for only the starting position won't help with debugging most of the trickier chess rules.
 
 {: .commit-header}
-#### [`6ddcef9c`](https://github.com/xiaoxiae/Prokopakop/commit/6ddcef9c1acda9e4d229fd95f76782660a307f1d)~[`67d0e64b`](https://github.com/xiaoxiae/Prokopakop/commit/67d0e64b105140242415647314e8c16e078c7e53)
+[`6ddcef`](https://github.com/xiaoxiae/Prokopakop/commit/6ddcef9c1acda9e4d229fd95f76782660a307f1d)~[`67d0e6`](https://github.com/xiaoxiae/Prokopakop/commit/67d0e64b105140242415647314e8c16e078c7e53)
+
+---
+
 Nothing particularly interesting here.
 
 I've added **pre-computing of the possible moves/attacks** for pieces at compile time, which means that we can easily obtain squares for all pieces by simply accessing a table.
 This notably **doesn't work for slider pieces** (rook, bishop, queen), because they can be blocked by other pieces... but that is a problem for a future commit.
 
-I've also added en-passant functionality, for which we'll add 
+I've also added en-passant functionality, for which we'll add
 
 ```rust
 pub struct Game {
@@ -125,19 +129,20 @@ pub struct Game {
 ```
 
 {: .commit-header}
-#### [`178193d3`](https://github.com/xiaoxiae/Prokopakop/commit/178193d3b18c50a8084af5149ca03ca331438f78)
+[`178193`](https://github.com/xiaoxiae/Prokopakop/commit/178193d3b18c50a8084af5149ca03ca331438f78)
+
+---
 
 This commit adds [**magic bitboards**](https://www.chessprogramming.org/Magic_Bitboards), which truly hold up to their name, since they're awesome.
 
-##### Magic bitboards
+#### Magic bitboards
 
 As I've previously mentioned, calculating legal moves for [slider pieces can be tricky, because they can be blocked.
 It would be great if we could pre-compute moves for all possible combinations of blockers, since we'd otherwise have to "raycast" from each slider until we hit a piece, which is slow.
 
 As an example, a rook on D5 with the following configuration of blockers should produce the following bitboard of moves + attacks (from now on, I'm leaving out the `0b` and `⏎`, but anything in this shape is still a `u64`):
 
-{% chess %}
-8 ...♙....      00000000
+{% chess %}8 ...♙....      00000000
 7 ........      00000000
 6 ...♙....      00010000
 5 ♙--♜-♙..      11101100
@@ -151,13 +156,12 @@ As an example, a rook on D5 with the following configuration of blockers should 
 The reason for why we can't precompute the moves naively is that we'd either have to use a hashmap of `blocker_state → bitboard`, which will be much slower than the raycasting approach, or create an enormous array of size \(2^{64}\) to use the blocker state as the index, in which case we'd need about 128 exabytes of memory, which I currently do not possess.
 
 Magic bitboards solve this problem in a rather elegant way -- notice that in our example, we actually **only care about a portion of the squares**, since these are the only squares where placing blockers would limit the rook movement.
-If we could use only those for indexing, then an array that stores the precomputed bitboards would be significantly smaller... the problem is that the relevant bits are all over the bitboard.
+If we could use only the relevant squares for indexing, then an array that stores the precomputed bitboards would be significantly smaller... the problem is that the relevant bits are all over the bitboard.
 
 If we could somehow remap them to be in consecutive positions, we could use them for indexing.
 To do this, we'll generate a **magic number** that, when multiplying the blocker number, does exactly that -- it **maps the bits we care about** to a combination of **consecutive positions** to be used for indexing, as outlined below:
 
-{% chess %}
-bits we       cool         bits
+{% chess %}bits we       cool         bits
 care      *   magic     =  we care
 about         number       about,
                            together
@@ -174,11 +178,10 @@ about         number       about,
 
 Finally, we shift right to obtain only the bits we care about, obtaining the key we will use to access the precomputed array of rook/bishop moves:
 
-{% chess %}
-( bits we       cool   )      (64 - num)     key for
+{% chess %}( bits we       cool   )      (64 - num)     key for
 ( care      *   magic  )  >>  (of bits )  =  indexing
 ( about         number )      (together)     the array
-                              
+
 
 (........      10001110)                     ........
 (...1....      01011010)                     ........
@@ -197,7 +200,9 @@ In practice, magic numbers can be [generated rather quickly](https://www.chesspr
 Pretty cool, isn't it?
 
 {: .commit-header}
-#### [`0371037b`](https://github.com/xiaoxiae/Prokopakop/commit/0371037bad4a7aa8449d832520b29e3cf8a65549)~[`33cbd8ec`](https://github.com/xiaoxiae/Prokopakop/commit/33cbd8ec94db534ab6c45c8ad1d41e7a2baafa01)
+[`037103`](https://github.com/xiaoxiae/Prokopakop/commit/0371037bad4a7aa8449d832520b29e3cf8a65549)~[`33cbd8`](https://github.com/xiaoxiae/Prokopakop/commit/33cbd8ec94db534ab6c45c8ad1d41e7a2baafa01)
+
+---
 
 No particularly interesting things here, here is a short recap:
 - added **promotion** (twice; the first implementation let you promote to a king)
@@ -206,11 +211,13 @@ No particularly interesting things here, here is a short recap:
 - added **castling**, which requires that you keep track of whether you can castle kingside/queenside, and whether the squares over which the king would be moving aren't under attack
 
 {: .commit-header}
-#### [`dc9fc039`](https://github.com/xiaoxiae/Prokopakop/commit/dc9fc039d13bee308619bb6befc800f785b10036)
+[`dc9fc0`](https://github.com/xiaoxiae/Prokopakop/commit/dc9fc039d13bee308619bb6befc800f785b10036)
+
+---
 
 Another absolute banger of a commit, which implements iterative [**Zobrist hashing**](https://en.wikipedia.org/wiki/Zobrist_hashing).
 
-##### Zobrist hashing
+#### Zobrist hashing
 
 When doing search over chess positions, knowing which we've already seen (and can thus skip since we've evaluated it already) is crucial for making a chess engine fast.
 We would like to be able to map `board_state → arbitrary_data`, but how do we find a suitable key?
@@ -247,28 +254,33 @@ It is **iterative**, because since XOR is commutative, we can XOR the current ke
 I've also added Zobrist hashing to the current [perft implementation](#perft-tests), since that is a great way to test whether it works as it should (spoiler: it initially very much wasn't, but now is).
 
 {: .commit-header}
-#### [`a6156eec`](https://github.com/xiaoxiae/Prokopakop/commit/a6156eec2fcbf0b0954e85c608375be4df5cf278)~[`f0253eeb`](https://github.com/xiaoxiae/Prokopakop/commit/f0253eebc1ee2ec9fdd17dde95d1b9b039ae073f)
+[`a6156e`](https://github.com/xiaoxiae/Prokopakop/commit/a6156eec2fcbf0b0954e85c608375be4df5cf278)~[`f0253e`](https://github.com/xiaoxiae/Prokopakop/commit/f0253eebc1ee2ec9fdd17dde95d1b9b039ae073f)
+
+---
 
 Removes attack bitboards in favor of simply checking whether any pieces are attacking a particular square, since most code doesn't need them anyway, but they needed to be recalculated after each move.
-Also does a bit of refactoring, but nothing too exiting.
+Also does a bit of refactoring, but nothing too exciting.
 
 {: .commit-header}
-#### [`d7c5b4db`](https://github.com/xiaoxiae/Prokopakop/commit/d7c5b4db78803fdc938c46d7f5c5e418d8782038)
+[`d7c5b4`](https://github.com/xiaoxiae/Prokopakop/commit/d7c5b4db78803fdc938c46d7f5c5e418d8782038)
+
+---
 
 This commit compacts a board move to \(16\) bits -- \(5 * 2\) for source + destination square indexes, and \(4\) for identifying a promotion piece (if applicable).
 Might not seem like a big change, but board moves are used ubiquitously though the engine, so making them as compact as possible while not sacrificing too much speed is generally a good idea.
 
 {: .commit-header}
-#### [`dda91d36`](https://github.com/xiaoxiae/Prokopakop/commit/dda91d360500421c914d4310b4070b2c20898ff5)
+[`dda91d`](https://github.com/xiaoxiae/Prokopakop/commit/dda91d360500421c914d4310b4070b2c20898ff5)
 
-##### Pins via Magic Bitboards
+---
+
+#### Pins via Magic Bitboards
 
 When a piece is pinned, we need to limit its movement along the ray of the pin (i.e. between the attacker and the king).
-We can obviously do this by "raycasting", but that is boring and slow.
+We can obviously do this by "raycasting" (i.e. iterating from the king square), but that is boring and slow.
 Instead, we can use a trick -- since we've [already implemented magic bitboards](#magic-bitboards), we can use them by pretending that the king is a queen, getting candidate blockers, removing those, and using them again to get the attackers.
 
-{% chess %}
-  magic bb                      magic bb
+{% chess %}  magic bb                      magic bb
   to get         remove         to get
   blockers                      pinners
 
@@ -286,12 +298,14 @@ Instead, we can use a trick -- since we've [already implemented magic bitboards]
 There is a slight catch: to obtain the positions of the blockers, you need either a third magic bitboard access from the position of the blocker, or precompute possible rays between points; I haven't been able to find a smarter way to do this, please let me know if there is one.
 
 {: .commit-header}
-#### [`896a48ce`](https://github.com/xiaoxiae/Prokopakop/commit/896a48ce3f51e5ee0c011add681f7180565c92d5)~[`5bc16a6b`](https://github.com/xiaoxiae/Prokopakop/commit/5bc16a6b05098bd50338504ebf85b356ec409e0d)
+[`896a48`](https://github.com/xiaoxiae/Prokopakop/commit/896a48ce3f51e5ee0c011add681f7180565c92d5)~[`5bc16a`](https://github.com/xiaoxiae/Prokopakop/commit/5bc16a6b05098bd50338504ebf85b356ec409e0d)
+
+---
 
 Currently, we are generating moves by generating all [_pseudo-legal moves_](https://www.chessprogramming.org/Pseudo-Legal_Move) (those where king can be under attack afterwards), making them, checking whether the king is under attack afterwards, and unmaking them.
 This is as simple as it is slow, as we have to repeatedly modify the board state in order to check whether the move is legal or not, causing a lot of overhead.
 
-##### Legal Move Generation
+#### Legal Move Generation
 
 A faster approach is to generate [_legal moves_](https://www.chessprogramming.org/Legal_Move) directly, without having modify the board state.
 This, however, requires significantly more care, as the king can come under attack in a number of tricky ways.
@@ -304,7 +318,9 @@ Separating the cases makes legal move generation more managable, and makes it mu
 Instead of going through the code (which, if you're interested, [can be found here](https://github.com/xiaoxiae/Prokopakop/blob/master/src/game/board.rs)), I'll point you towards [Peter Ellis Jones' blog post](https://peterellisjones.com/posts/generating-legal-chess-moves-efficiently/) on legal move generation, as it was a great resource when implementing it myself.
 
 {: .commit-header}
-#### [`99020474`](https://github.com/xiaoxiae/Prokopakop/commit/99020474e514d47bc72b25f46bc77fbd804b5dd7)~[`3ff11a44`](https://github.com/xiaoxiae/Prokopakop/commit/3ff11a44e6945f5de5cdded988b73f611b9e5f62)
+[`990204`](https://github.com/xiaoxiae/Prokopakop/commit/99020474e514d47bc72b25f46bc77fbd804b5dd7)~[`3ff11a`](https://github.com/xiaoxiae/Prokopakop/commit/3ff11a44e6945f5de5cdded988b73f611b9e5f62)
+
+---
 
 Final commits in the move generation saga.
 
@@ -328,13 +344,181 @@ if P::PIECE == Piece::Pawn {
 }
 ```
 
-
-
-
 ### Search & Evaluation
 
+Now that we can generate moves quickly, we need to **search** through them to find the best one and **evaluate** the resulting positions.
+Since chess is a zero-sum two-player game, we can simply assign each position a positive/negative score (white is positive, black is negative) based on piece positions/counts, and always pick the move that leads to the best score for the given player.
 
+{% chess %}                     Current
+                   (Max: +0.8)
+                        |
+       ┌────────────────┼────────────────┐
+       ↓                │                │
+    Move A           Move B           Move C
+   (Normal)        (Queen Sac)      (Pawn Sack)
+  (Min: +0.8)      (Min: -6.1)      (Min: -0.7)
+       │                │                │
+       │                │                │
+  ┌────┼────┐      ┌────┼────┐      ┌────┼────┐
+  ↓    │    │      ↓    │    │      │    │    ↓
++0.8 +1.2 +0.9   -6.1 -5.8 -7.2   -0.3 +0.1 -0.7
+{% endchess %}
+
+This is called the [minimax algorithm](https://www.chessprogramming.org/Minimax), and is at the heart of most[^lc0] strong chess engines (prokopakop included).
+The algorithm works by recursively exploring all possible moves to a certain depth. When it's our turn (**max**imizing player), we want to pick the move that leads to the **highest** score. When it's the opponent's turn (**min**imizing player), they will pick the move that leads to the **lowest** score (best for them, worst for us).
+
+At each **leaf node** (when we've reached our search depth), we evaluate the position, i.e. how good it is for the player whose turn it is.
+Then we propagate these scores back up the tree: maximizing nodes take the maximum of their children's scores, minimizing nodes take the minimum.
+
+
+{: .commit-header}
+[`9fec3a0`](https://github.com/xiaoxiae/Prokopakop/commit/9fec3a0)
+
+---
+
+#### Alpha-Beta Search
+
+While minimax is an important foundation to our search functionality, we can greatly improve it by using **[alpha-beta pruning](https://www.chessprogramming.org/Alpha-Beta)**, which I implemented in the first search & eval commit.
+
+Let's say that we we have just fully explored the move `A`, which was a regular move that gave us a slight advantage.
+We then proceed to `B`, which is actually a blunder, and we find this out quickly after exploring the first opponent response.
+Since the opponent has a **strong response** that will already be **worse for us than the output of `A`**, we can **prune** the rest of the tree -- no matter what the other moves are, if the opponent picks this response, it will be worse for us than the output of `A`.
+
+{% chess %}                     Current
+                        │
+       ┌────────────────┼────────────────┐
+       │                │                │
+    Move A           Move B           Move C
+   (Normal)        (Queen Sac)      (Pawn Sack)
+  (Min: +0.8)     (Min:<= -6.1)
+       │                │
+       │                │
+  ┌────┼────┐      ┌────┼────┐
+  ↓    │    │      ↓    │    │
++0.8 +1.2 +0.9   -6.1   ?    ?
+{% endchess %}
+
+As seen in the diagram, we can safely skip all other moves in branch `B` (marked `?`), because if he opponent picked the first one, it would be worse for us than the result of branch `A`, which we have calculated already.
+
+Formally, we track the **best values the players can achieve** in the particular position as \(\alpha\) (white) and \(\beta\) (black), and induce a cutoff if \(\beta \le \alpha\) -- this is something that can only happen if, at some earlier point of the search tree, we had a better option to pick.
+
+
+{% chess %}                     Current
+                        │
+       ┌────────────────┼────────────────┐
+       │                │                │
+    Move A           Move B           Move C
+   (Normal)        (Queen Sac)      (Pawn Sack)
+  α=-∞, β=+∞      α=+0.8, β=+∞
+       │                │
+       │                │
+  ┌────┼────┐      ┌────┼────┐
+  ↓    │    │      ↓    │    │
++0.8 +1.2 +0.9   -6.1   ?    ?
+
+                     β <= α
+                  -6.1 <= +0.8
+                 CUTOFF INDUCED
+{% endchess %}
+
+In prokopakop, I have implemented this via **[negamax](https://www.chessprogramming.org/Alpha-Beta#Negamax_Framework)**, which simplifies the implementation by always maximizing and flipping the alpha/beta values and evaluation in the function calls.
+This reduces code duplication, but slightly complicates the implementation, so use with care.
+
+I have also implemented **[iterative deepening](https://www.chessprogramming.org/Iterative_Deepening)** for time management, which runs alpha-beta search with depths \(1, 2, \ldots\) until time runs out and returns the best result found, so we can limit time spent on searching based on the current time control.
+
+Note that for alpha-beta search to work well, we need to ensure that the moves are **sorted**, as exploring more interesting lines first will induce more cutoffs, as compared to when the moves are unordered -- we'll [implement this later](#mmv-lva).
+
+#### Material Evaluation
+
+As a final step in this initial seach/eval commit, I implemented a basic evaluation function, which simply counts material.
+While this might seem like all you need, this is generally not sufficient as it doesn't take into account many nuances of the position, such as pawn structure, piece mobility, etc...
+
+{: .commit-header}
+[`8eeb84e`](https://github.com/xiaoxiae/Prokopakop/commit/8eeb84e)~[`6aec863`](https://github.com/xiaoxiae/Prokopakop/commit/6aec863)
+
+---
+
+#### Piece-Square Tables
+
+This commit adds [**piece-square tables**](https://www.chessprogramming.org/Piece-Square_Tables) for positional evaluation.
+These are a set of tables that, for each piece, provide information about how much it is worth when being on a particular square.
+As an example, here is what a pawn table could look like:
+
+{% chess %}const PAWN_TABLE: [f32; 64] = [
+    0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,
+   +1.0, +1.0, +1.0, +1.0, +1.0, +1.0, +1.0, +1.0,
+   +0.2, +0.2, +0.4, +0.6, +0.6, +0.4, +0.2, +0.2,
+   +0.1, +0.1, +0.2, +0.5, +0.5, +0.2, +0.1, +0.1,
+    0.0,  0.0,  0.0, +0.4, +0.4,  0.0,  0.0,  0.0,
+   +0.1, -0.1, -0.2,  0.0,  0.0, -0.2, -0.1, +0.1,
+   +0.1, +0.2, +0.2, -0.4, -0.4, +0.2, +0.2, +0.1,
+    0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,
+];
+{% endchess %}
+
+Positive values correspond to places where pawns are more valuable (closer to the opponent's back rank, in the center, etc...), while negative values correspond to those where they are less valuable.
+
+We can also take this one step further, and have two tables -- one for "early" game, one for "late" game (for some suitable definitions of early and late, such as total remaining material), and interpolate between them during the game.
+This is typically done for the king, as we want him to be more protected in the early game, and more aggressive in the late game.
+
+{% chess %}const KING_EARLY_TABLE: [f32; 64] = [
+   +0.2, +0.1, +0.1,  0.0,  0.0, +0.1, +0.1, +0.2,
+   +0.2, +0.1, +0.1,  0.0,  0.0, +0.1, +0.1, +0.2,
+   +0.2, +0.1, +0.1,  0.0,  0.0, +0.1, +0.1, +0.2,
+   +0.2, +0.1, +0.1,  0.0,  0.0, +0.1, +0.1, +0.2,
+   +0.3, +0.2, +0.2, +0.1, +0.1, +0.2, +0.2, +0.3,
+   +0.4, +0.3, +0.3, +0.3, +0.3, +0.3, +0.3, +0.4,
+   +0.7, +0.7, +0.5, +0.5, +0.5, +0.5, +0.7, +0.7,
+   +0.7, +0.7, +1.0, +0.5, +0.5, +0.6, +1.0, +0.7,
+];
+
+const KING_LATE_TABLE: [f32; 64] = [
+    0.0, +0.1, +0.2, +0.3, +0.3, +0.2, +0.1,  0.0,
+   +0.2, +0.3, +0.4, +0.5, +0.5, +0.4, +0.3, +0.2,
+   +0.2, +0.4, +0.7, +0.8, +0.8, +0.7, +0.4, +0.2,
+   +0.2, +0.4, +0.8, +0.9, +0.9, +0.8, +0.4, +0.2,
+   +0.2, +0.4, +0.8, +0.9, +0.9, +0.8, +0.4, +0.2,
+   +0.2, +0.4, +0.7, +0.8, +0.8, +0.7, +0.4, +0.2,
+   +0.2, +0.2, +0.5, +0.5, +0.5, +0.5, +0.2, +0.2,
+    0.0, +0.2, +0.2, +0.2, +0.2, +0.2, +0.2,  0.0,
+];
+{% endchess %}
+
+{: .commit-header}
+[`53a09e5`](https://github.com/xiaoxiae/Prokopakop/commit/53a09e5)
+
+---
+
+#### Move Ordering
+
+As mentioned in the [alpha-beta section](#alpha-beta-search), for the moves to be pruned efficiently, we need to pick the strongest lines early so that they can be searched first and used for pruning the later branches.
+While general moves are difficult to order without branching on them first, we can use a simple heuristic to order **capturing moves**, and it is exactly what you're thinking of -- capture the *m*ost *v*aluable *v*ictim with the *l*east *v*aluable *a*ttacker ([MVV-LVA](https://www.chessprogramming.org/MVV-LVA)).
+
+This, combined with always searching the moves from the *p*rincipal *v*ariation first (best line found in the previous iteration of iterative deepening), gives a decent ordering and provides a good speed-up to the alpha-beta search.
+
+{: .commit-header}
+[`bbef3be`](https://github.com/xiaoxiae/Prokopakop/commit/bbef3be)
+
+---
+
+#### Quiescence Search
+
+Using alpha-beta search with iterative deepening means that we always, for depths \(1, \ldots, n\), explore until a certain depth and then evaluate the position.
+This has an obvious flaw: what if we just made a terrible blunder, like taking a queen in return for getting checkmated in one?
+Since this was the last depth that we were searching, this wouldn't get caught, and we'd happily return positive evaluation, since we're up a queen!
+
+This is where [quiescence search](https://www.chessprogramming.org/Quiescence_Search)[^quiescence] comes in -- when reaching depth \(0\), it **extends the search** to **all remaining captures** (and possibly checks), so that we are **only evaluating quiet positions** (i.e. those where there are no tactical sequences that can severely impact the score).
+
+
+{: .commit-header}
+[`35f6fb6`](https://github.com/xiaoxiae/Prokopakop/commit/35f6fb6)
+
+---
 
 [^allyouneed]: Okay, not quite; you also need to cast `Color::White as usize`, but that's ugly and an implementation detail, so I skipped it for the sake of clarity. You can get rid of it by implementing indexing for the array type, but I haven't done that because I'm lazy.
 
 [^theplusone]: This is done so that we don't need to check whether en-passant bit changed during the move (since that adds branching, which is slow) -- we therefore add an additional "no-op value", which will be used when en-passant didn't happen; since we're XORing twice, these cancel out and we don't need to branch!
+
+[^lc0]: Some chess engines, like [Leela Chess Zero](https://lczero.org/), use [Monte Carlo tree search](https://en.wikipedia.org/wiki/Monte_Carlo_tree_search) instead. This is because their position evaluation is orders of magnitude slower but much more advanced, so they do a deeper search on promising lines instead of a wide one on all of them.
+
+[^quiescence]: I'm not a native speaker, so this seemed like a strange usage of this word. The definition of "quiescence" is, according to the Cambridge English Dictionary, _the state of being temporarily quiet and not active_, so this makes sense -- we want to **search for quiet positions** and only evaluate those.

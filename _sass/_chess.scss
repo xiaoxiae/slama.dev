@@ -1,3 +1,24 @@
-.commit-header {
+@import "variables";
+
+p.commit-header {
   font-variant: normal;
+  padding-bottom: $h3-spacing;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.highlight .c1 {
+    font-style: normal;
+}
+
+.highlight .k {
+    font-weight: normal;
+}
+
+.highlight .kn {
+    font-weight: normal;
+}
+
+.highlight .nc {
+    font-weight: normal;
 }
