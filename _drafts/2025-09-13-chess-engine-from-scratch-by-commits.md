@@ -528,6 +528,40 @@ That way, we don't have crazy spikes in evaluation and avoid blunders.
 
 ---
 
+#### Transposition Tables
+
+Re-evaluating a position we have already reached and evaluated would be a waste, so let's not do that and implement [**transposition tables**](https://www.chessprogramming.org/Transposition_Table) (TTs for the rest of the article because I'm too lazy to type).
+Since we've already implemented [zobrist hashing](#zobrist-hashing), we can quickly identify these positions and avoid needless computation... but what do we actually store?
+
+Let's look at a minimax search first -- when evaluating a position, we examine **all moves** until a certain **depth**, so the calculated evaluation is **exact** up until the given depth.
+When reaching this position again, we can use this already calculated value **if the depth we're searching to** is **less than or equal to the one we already did**
+In other words, if the depth we're searching to exceeds the one we already did, we need to actually do the computation, otherwise we return the stored result.
+
+Alpha-beta makes this slightly more difficult, because pruning means that certain calculations will no longer be exact.
+They still, however, tell us information about **alpha and beta** -- if we prune a branch when examining the **black player**, it is because of some good move the **white player** has guaranteed somewhere else in the tree.
+This means that the evaluation of this branch can **only get lower** (we get the **upper bound**) as black finds progressively better moves, so we store this result as **alpha** (and vice versa for **beta** when maximizing) and re-use it if we reach this position again if the stored depth is sufficient.
+
+Adding these two cases, we store **three types** of nodes -- **exact** (we calculated all of the moves), **upper bound** (pruned when black's move; is an upper bound on evaluation), and **lower bound** (pruned when white's move; is a lower bound on evaluation).
+Implementation-wise, we'd store something like this:
+
+```rust
+pub enum NodeType {
+    Exact,       // no pruning happened
+    LowerBound,  // beta cutoff at maximizing node
+    UpperBound,  // alpha cutoff at minimizing node
+}
+
+pub struct TTEntry {
+    pub key: u64,             // zobrist hash
+    pub depth: u8,            // how far we searched
+    pub evaluation: f32,      // evaluation of this branch
+    pub node_type: NodeType,  // lower/exact/upper
+}
+```
+
+For implementing the TT itself, we can use a nice trick: instead of using a hashmap, use a **fixed array** of size \(2^n\) and the **first \(n\) bits** of the zobrist hash as an index... because why would we hash twice?
+There are many other things to consider like [replacement strategies](https://www.chessprogramming.org/Transposition_Table#Replacement_Strategies) and more advanced TT implementations, such as using [buckets](https://www.chessprogramming.org/Transposition_Table#Bucket_Systems), but I won't go into detail on those as we've covered the core idea.
+
 [^allyouneed]: Okay, not quite; you also need to cast `Color::White as usize`, but that's ugly and an implementation detail, so I skipped it for the sake of clarity. You can get rid of it by implementing indexing for the array type, but I haven't done that because I'm lazy.
 
 [^theplusone]: This is done so that we don't need to check whether en-passant bit changed during the move (since that adds branching, which is slow) -- we therefore add an additional "no-op value", which will be used when en-passant didn't happen; since we're XORing twice, these cancel out and we don't need to branch!
