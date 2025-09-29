@@ -16,11 +16,18 @@ del {
   font-family: $serif-font;
   src:
     local($serif-font),
-    url("/assets/css/fonts/FiraSans-Light.eot") format("embedded-opentype"),
-    url("/assets/css/fonts/FiraSans-Light.woff2") format("woff2"),
-    url("/assets/css/fonts/FiraSans-Light.woff") format("woff"),
-    url("/assets/css/fonts/FiraSans-Light.ttf") format("truetype");
-  font-weight: 300;
+    url("/assets/css/fonts/FiraSans-Light.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: $serif-font;
+  src:
+    local($serif-font),
+    url("/assets/css/fonts/FiraSans-Medium.woff2") format("woff2");
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -29,10 +36,18 @@ del {
   font-family: $monospaced-font;
   src:
     local($monospaced-font),
-    url("/assets/css/fonts/FiraCode-Light.woff2") format("woff2"),
-    url("/assets/css/fonts/FiraCode-Light.woff") format("woff"),
-    url("/assets/css/fonts/FiraCode-Light.ttf") format("truetype");
+    url("/assets/css/fonts/FiraMono-Regular.woff2") format("woff2");
   font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: $monospaced-font;
+  src:
+    local($monospaced-font),
+    url("/assets/css/fonts/FiraMono-Bold.woff2") format("woff2");
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
