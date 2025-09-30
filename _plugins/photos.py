@@ -11,6 +11,12 @@ PHOTOS_DIR = "../photos/raw"
 
 # Photo metadata - path as key, metadata dict as value
 photo_metadata = {
+    "2025-09-13-mouse.jpg": {
+        "bluesky_url": "https://bsky.app/profile/tomas.slama.dev/post/3lzyz2ytpn224"
+    },
+    "2025-09-12-waterfall.jpg": {
+        "bluesky_url": "https://bsky.app/profile/tomas.slama.dev/post/3lztvvrjb6222"
+    },
     "2025-08-19-flower.jpg": {
         "bluesky_url": "https://bsky.app/profile/tomas.slama.dev/post/3lxxby3v2zs24"
     },
@@ -42,7 +48,8 @@ photo_metadata = {
         "instagram_url": "https://www.instagram.com/p/DEdHAJ2NqjM/"
     },
     "2025-01-02-berry.jpg": {
-        "instagram_url": "https://www.instagram.com/p/DEVk3t3ghpc/"
+        "instagram_url": "https://www.instagram.com/p/DEVk3t3ghpc/",
+        "bluesky_url": "https://bsky.app/profile/tomas.slama.dev/post/3lzqwaihxp22p"
     },
     "2024-12-30-plant.jpg": {
         "instagram_url": "https://www.instagram.com/p/DENzwA_tUXL/"
@@ -234,15 +241,15 @@ def get_all_photos():
     if not os.path.exists(PHOTOS_DIR):
         print(f"Photos directory '{PHOTOS_DIR}' not found!")
         return []
-    
+
     # Get all image files (common extensions)
     extensions = ['*.jpg', '*.jpeg', '*.png', '*.webp', '*.gif']
     photos = []
-    
+
     for ext in extensions:
         photos.extend(glob.glob(os.path.join(PHOTOS_DIR, ext)))
         photos.extend(glob.glob(os.path.join(PHOTOS_DIR, ext.upper())))
-    
+
     # Convert to Path objects and get just the filename
     return [Path(photo).name for photo in photos]
 
@@ -258,20 +265,20 @@ def process_photos():
     """Process all photos and generate HTML."""
     all_photos = get_all_photos()
     valid_photos = []
-    
+
     for photo in all_photos:
         if is_valid_date_format(photo):
             path = Path(photo)
-            
+
             # Parse date and skip future photos
             date = datetime.strptime(path.name[:10], '%Y-%m-%d')
             if date > datetime.now():
                 print(f"Skipping future image '{photo}' ({date.strftime('%Y/%m/%d')} > today)")
                 continue
-                
+
             # Get metadata if available
             metadata = photo_metadata.get(photo, {})
-            
+
             valid_photos.append({
                 'path': path,
                 'date': date,
@@ -279,10 +286,10 @@ def process_photos():
             })
         else:
             print(f"Skipping '{photo}' - doesn't match YYYY-MM-DD format")
-    
+
     # Sort by date (newest first)
     valid_photos.sort(key=lambda x: x['date'], reverse=True)
-    
+
     return valid_photos
 
 def generate_html(photos):
@@ -290,23 +297,23 @@ def generate_html(photos):
     results = """
 <div class='grid'>
 """
-    
+
     for photo in photos:
         path = photo['path']
         date = photo['date']
         metadata = photo['metadata']
-        
+
         date_string = date.strftime('%Y/%m/%d')
         photo_url = f"/photos/{path.with_suffix('.webp').name}"
         download_url = f"/photos/raw/{path}"
-        
+
         # Build icons
         icons = f"""
             <a href="{download_url}" download class="icon download">
                 <i class="fas fa-download"></i>
             </a>
         """
-        
+
         # Add Instagram icon if URL exists
         if 'instagram_url' in metadata:
             icons += f"""
@@ -314,7 +321,7 @@ def generate_html(photos):
                     <i class="fab fa-instagram"></i>
                 </a>
             """
-        
+
         # Add Bluesky icon if URL exists
         if 'bluesky_url' in metadata:
             icons += f"""
@@ -322,7 +329,7 @@ def generate_html(photos):
                     <i class="fab fa-bluesky"></i>
                 </a>
             """
-        
+
         results += f"""
         <div class="no-invert">
             <div class="date">{date_string}</div>
@@ -330,7 +337,7 @@ def generate_html(photos):
             <div class="icons">{icons}</div>
         </div>
         """
-    
+
     results += """
 </div>
 
@@ -412,35 +419,35 @@ document.addEventListener('DOMContentLoaded', function() {
     const lightboxImg = document.getElementById('lightbox-img');
     const closeBtn = document.querySelector('.lightbox-close');
     const galleryImages = document.querySelectorAll('.gallery-img');
-    
+
     // Add click event to each gallery image
     galleryImages.forEach((img) => {
         img.addEventListener('click', function() {
             showLightbox(this.dataset.full);
         });
     });
-    
+
     function showLightbox(src) {
         lightboxImg.src = src;
         lightbox.style.display = 'flex';
         document.body.style.overflow = 'hidden'; // Prevent background scrolling
     }
-    
+
     function hideLightbox() {
         lightbox.style.display = 'none';
         document.body.style.overflow = 'auto'; // Restore scrolling
     }
-    
+
     // Event listeners
     closeBtn.addEventListener('click', hideLightbox);
-    
+
     // Close when clicking outside the image
     lightbox.addEventListener('click', function(e) {
         if (e.target === lightbox) {
             hideLightbox();
         }
     });
-    
+
     // Keyboard navigation
     document.addEventListener('keydown', function(e) {
         if (lightbox.style.display === 'flex') {
@@ -458,11 +465,11 @@ def main():
     """Main function to generate photo gallery."""
     photos = process_photos()
     html_content = generate_html(photos)
-    
+
     # Save the HTML content to a file
     with open(OUTPUT, 'w') as file:
         file.write(html_content)
-    
+
     print(f"Generated gallery with {len(photos)} photos.")
 
 if __name__ == "__main__":
