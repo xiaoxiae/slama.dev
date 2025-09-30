@@ -97,7 +97,7 @@ For example
 - `perft(1) = 20` -- there are \(8 \cdot 2\) white pawn moves and \(4\) knight moves
 - `perft(2) = 400` -- for each `perft(1)` position, there are `20` moves for black
 
-I've borrowed a **[large perft table](https://github.com/elcabesa/vajolet/blame/master/tests/perft.txt)** from [Valojet](https://github.com/elcabesa/vajolet), a fellow chess engine, because testing perft for only the starting position won't help with debugging most of the trickier chess rules.
+I've borrowed a **[large perft table](https://github.com/elcabesa/vajolet/blame/master/tests/perft.txt)** from [Vajolet](https://github.com/elcabesa/vajolet), a fellow chess engine, because testing perft for only the starting position won't help with debugging most of the trickier chess rules.
 
 {: .commit-header}
 [`6ddcef`](https://github.com/xiaoxiae/Prokopakop/commit/6ddcef9c1acda9e4d229fd95f76782660a307f1d)~[`67d0e6`](https://github.com/xiaoxiae/Prokopakop/commit/67d0e64b105140242415647314e8c16e078c7e53)
@@ -321,7 +321,7 @@ Instead of going through the code (which, if you're interested, [can be found he
 
 Final commits in the move generation saga.
 
-Besides small improvements/optimizations, the main change that I made was to repleace most of the move generation code by [**const generic**](https://www.chessprogramming.org/Generic_Programming) variants.
+Besides small improvements/optimizations, the main change that I made was to replace most of the move generation code by [**const generic**](https://www.chessprogramming.org/Generic_Programming) variants.
 This is just a fancy way of saying that most functions in my code have multiple variants for pieces/colors, which reduces the number of branches in the code and thus speeds it up.
 
 As an example, the outer `if` in this code:
@@ -356,7 +356,7 @@ As you can see, two three places stand out in this graph:
 - the **first major crash** (commit [`1d8e55`](https://github.com/xiaoxiae/Prokopakop/commit/1d8e55)) was caused by **starting to move away from the make/unmake-based move generation** by splitting each move generation into different functions based on the number of attacks; as this only included the spitting, but no optimized code, this introduced a large amount of branching that killed the speed
 - the **second major spike** (commits [`a67205`](https://github.com/xiaoxiae/Prokopakop/commit/a67205) and [`5bc16a`](https://github.com/xiaoxiae/Prokopakop/commit/5bc16a)) were caused by **finishing moving away from the make/unmake-free move generation** by introducing functions optimized for zero/one/two+ king attacks
 
-The engine is slower than Stockfish (\(8.71\text{s}\) vs. \(9.74\text{s}\) for `perft(7)`), but this is simply too bad because I'm not spending more time on this when I haven't written any search & evaluation functionality yet.
+The engine is slower than Stockfish (\(9.74\text{s}\) vs. \(8.71\text{s}\) for `perft(7)`), but this is simply too bad because I'm not spending more time on this when I haven't written any search & evaluation functionality yet.
 Maybe I'll revisit to beat Stockfish at some point in the future, but we'll have to do with this.
 
 ### Search & Evaluation
@@ -528,9 +528,9 @@ That way, we don't have crazy spikes in evaluation and avoid blunders.
 
 ---
 
-#### Transposition Tables
+#### Transposition Table
 
-Re-evaluating a position we have already reached and evaluated would be a waste, so let's not do that and implement [**transposition tables**](https://www.chessprogramming.org/Transposition_Table) (TTs for the rest of the article because I'm too lazy to type).
+Re-evaluating a position we have already reached and evaluated would be a waste, so let's not do that and implement [**transposition table**](https://www.chessprogramming.org/Transposition_Table) (TT for the rest of the article because I'm too lazy to type).
 Since we've already implemented [zobrist hashing](#zobrist-hashing), we can quickly identify these positions and avoid needless computation... but what do we actually store?
 
 Let's look at a minimax search first -- when evaluating a position, we examine **all moves** until a certain **depth**, so the calculated evaluation is **exact** up until the given depth.
