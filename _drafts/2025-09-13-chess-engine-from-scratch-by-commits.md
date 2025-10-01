@@ -540,6 +540,32 @@ There are many other things to consider like [replacement strategies](https://ww
 As a final note: when doing research for this article, I found that the three [node categories](https://www.chessprogramming.org/Node_Types) described above are sometimes called **PV** (exact), **Cut** (lower bound) and **All** (upper bound) nodes, so don't be surprised when you see these terms used; they refer to the node types.
 This mainly originates from a [2003 paper](https://dke.maastrichtuniversity.nl/m.winands/documents/Enhanced%20forward%20pruning.pdf) about pruning methods[^alphabeta].
 
+{: .commit-header}
+[`ff14c29`](https://github.com/xiaoxiae/Prokopakop/commit/ff14c29)~[`6c4e7ee`](https://github.com/xiaoxiae/Prokopakop/commit/6c4e7ee)
+
+I've added threefold repetition detection, but only for the first few [plys](https://www.chessprogramming.org/Ply) (this is what the chess people call turns, and corresponds to the current depth we're in[^ply]), since the check can be rather expensive.
+In addition, I've improved the evaluation function to incentivize [passed pawns](https://www.chessprogramming.org/Passed_Pawn), penalize [doubled pawns](https://www.chessprogramming.org/Doubled_Pawn), and account for [piece mobility](https://www.chessprogramming.org/Mobility) by counting moves available to each piece from both sides.
+
+{: .commit-header}
+[`a28d291`](https://github.com/xiaoxiae/Prokopakop/commit/a28d291)
+
+#### Killer Moves
+
+In certain positions, there are moves that can act as refutations to multiple moves that the opponent might like to play.
+As an example, if pushing a pawn kicks out an annoying knight, it can also be a good response to the opponent's other moves, like blocking a bishop, threatening a pawn, etc...
+
+More specifically: if we find a move that **causes a cut-off**, it means that it's a good response and could be used in some of the sibling branches, so we **remember it for this ply** and **prioritize it in move order** (but after the [move ordering heuristics that we already have](#move-ordering))
+Since we already have [MVV-LVA](#move-ordering) which handles capture ordering well, we will only do this for non-capture (i.e. quiet) moves.
+
+In practice, it is usually better to store **two** moves for each ply, because there can be cutoffs that are not killer and could mess with the move ordering.
+The implementation itself is very easy (with suitable getters/setters):
+
+```rust
+pub struct KillerMoves {
+    // 2 killer moves per ply
+    killers: Vec<[BoardMove; 2]>,
+}
+```
 
 [^allyouneed]: Okay, not quite; you also need to cast `Color::White as usize`, but that's ugly and an implementation detail, so I skipped it for the sake of clarity. You can get rid of it by implementing indexing for the array type, but I haven't done that because I'm lazy.
 
@@ -548,3 +574,7 @@ This mainly originates from a [2003 paper](https://dke.maastrichtuniversity.nl/m
 [^lc0]: Some chess engines, like [Leela Chess Zero](https://lczero.org/), use [Monte Carlo tree search](https://en.wikipedia.org/wiki/Monte_Carlo_tree_search) instead. This is because their position evaluation is orders of magnitude slower but much more advanced, so they do a deeper search on promising lines instead of a wide one on all of them.
 
 [^quiescence]: I'm not a native speaker, so this seemed like a strange usage of this word. The definition of "quiescence" is, according to the Cambridge English Dictionary, _the state of being temporarily quiet and not active_, so this makes sense -- we want to **search for quiet positions** and only evaluate those.
+
+[^ply]: The origin of the word "ply" comes from _pli_, [which is old French](https://www.etymonline.com/word/ply) for "layer".
+
+[^alphabeta]: As a side-note, they refer to alpha-beta seach as \(\alpha\beta\) search and I find that very funny for some reason.
