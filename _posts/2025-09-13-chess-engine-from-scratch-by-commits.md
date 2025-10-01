@@ -3,6 +3,7 @@ title: A Chess Engine, Commit by Commit
 excerpt: "Writing a chess engine from scratch, commit by commit."
 css: chess
 category_icon: /assets/category-icons/prokopakop.svg
+hidden: true
 ---
 
 - .
