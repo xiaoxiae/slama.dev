@@ -7,9 +7,9 @@ css: chess
 - .
 {:toc}
 
-[Prokop, a ginger and a friend](https://rdck.dev/) (these are the same person) recently challenged me to a chess engine duel, which consisted of making a chess bot from scratch and then dueling to see whose is better.
+[Prokop, a ginger and a friend of mine](https://rdck.dev/) (these are the same person, which is surprising) recently challenged me to a chess engine duel, which consisted of making a chess bot from scratch and then dueling to see whose is better.
 Naturally, I agreed.
-And thus **[Prokopakop](https://github.com/xiaoxiae/prokopakop)** (literally translates to "the one that kicked Prokop") was born.
+And thus **[Prokopakop](https://github.com/xiaoxiae/prokopakop)** (literally translates to _the one that kicked Prokop_) was born.
 
 It (unsurprisingly) turns out that there is a lot of things that go into making a chess bot, and I thought it would be interesting to cover my journey of writing the bot in the commits that I made, since they more-or-less correspond to the concepts that I learned along the way.
 
@@ -21,6 +21,7 @@ If not, this will be a wild ride. 🕊_
 ### Move Generation
 
 Before beginning to write a chess bot that searches/evaluates positions, we need to make sure that we can generate them quickly, since we'll need those to search/evaluate over.
+If you're not too interested in how the moves are generated (which is a shame, since I'd say that this is the more interesting part), you can skip to **[search & evaluation](#search--evaluation)**.
 
 {: .commit-header}
 [`a1f8b8`](https://github.com/xiaoxiae/Prokopakop/commit/a1f8b867c9818e411a491e8cfdbd115411f1beb1)
@@ -388,7 +389,7 @@ Since the opponent has a **strong response** that will already be **worse for us
        │                │
   ┌────┼────┐      ┌────┼────┐
   ↓    │    │      ↓    │    │
-+0.8 +1.2 +0.9   -6.1   ?    ?   pruned!
++0.8 +1.2 +0.9   -6.1   ?    ?   pruned
 {% endchess %}
 
 Formally, we track the **best values the players can achieve** in the particular position as \(\alpha\) (white) and \(\beta\) (black), and induce a cutoff if \(\beta \le \alpha\) -- this is something that can only happen if, at some earlier point of the search tree, we had a better option to pick.
