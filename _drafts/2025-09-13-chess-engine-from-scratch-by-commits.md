@@ -413,8 +413,8 @@ Formally, we track the **best values the players can achieve** in the particular
                  CUTOFF INDUCED
 {% endchess %}
 
-In prokopakop, I have implemented this via **[negamax](https://www.chessprogramming.org/Alpha-Beta#Negamax_Framework)**, which simplifies the implementation by always maximizing and flipping the alpha/beta values and evaluation in the function calls.
-This reduces code duplication, but slightly complicates the implementation, so use with care.
+In prokopakop (and essentially all other engines), I have implemented this via **[negamax](https://www.chessprogramming.org/Alpha-Beta#Negamax_Framework)**, which simplifies the implementation by **always maximizing** and **flipping + negating** the alpha/beta values and evaluation when doing the recursive call, as we're changing perspectives.
+This is very convenient, because it simplifies both the implementation and the conceptual meaning of alpha and beta -- we can now always think of **alpha** as the **lower bound** (what we are _guaranteed_ somewhere in the search tree), and **beta** as the **upper bound** (what the _opponent won't allow us to exceed_ because of what he has guaranteed somewhere in the search tree).
 
 I have also implemented **[iterative deepening](https://www.chessprogramming.org/Iterative_Deepening)** for time management, which runs alpha-beta search with depths \(1, 2, \ldots\) until time runs out and returns the best result found, so we can limit time spent on searching based on the current time control.
 
@@ -499,22 +499,23 @@ That way, we don't have crazy spikes in evaluation and avoid blunders.
 {: .commit-header}
 [`35f6fb6`](https://github.com/xiaoxiae/Prokopakop/commit/35f6fb6)
 
----
-
 #### Transposition Table
 
 Re-evaluating a position we have already reached and evaluated would be a waste, so let's not do that and implement [**transposition table**](https://www.chessprogramming.org/Transposition_Table) (TT for the rest of the article because I'm too lazy to type).
 Since we've already implemented [zobrist hashing](#zobrist-hashing), we can quickly identify these positions and avoid needless computation... but what do we actually store?
 
 Let's look at a minimax search first -- when evaluating a position, we examine **all moves** until a certain **depth**, so the calculated evaluation is **exact** up until the given depth.
-When reaching this position again, we can use this already calculated value **if the depth we're searching to** is **less than or equal to the one we already did**
+When reaching this position again, we can use this already calculated value **if the depth we're searching to** is **less than or equal to the one we already did**.
 In other words, if the depth we're searching to exceeds the one we already did, we need to actually do the computation, otherwise we return the stored result.
 
-Alpha-beta makes this slightly more difficult, because pruning means that certain calculations will no longer be exact.
-They still, however, tell us information about **alpha and beta** -- if we prune a branch when examining the **black player**, it is because of some good move the **white player** has guaranteed somewhere else in the tree.
-This means that the evaluation of this branch can **only get lower** (we get the **upper bound**) as black finds progressively better moves, so we store this result as **alpha** (and vice versa for **beta** when maximizing) and re-use it if we reach this position again if the stored depth is sufficient.
+Alpha-beta makes this slightly more difficult, because alpha-beta means that certain calculations will no longer be exact.
+They still, however, tell us important information about whether we have calculated an **upper bound** on the score, or a **lower bound** -- there are two additional things (besides the exact case) that can happen:
 
-Adding these two cases, we store **three types** of nodes -- **exact** (we calculated all of the moves), **upper bound** (pruned when black's move; is an upper bound on evaluation), and **lower bound** (pruned when white's move; is a lower bound on evaluation).
+1. If we **prune** a branch (i.e. cause a **cut-off**), it is because we found a move that is **too good**, because the **other player** will play something that's better for him elsewhere in the tree.
+   This means that the evaluation of this branch can **only get better** as we go through the moves, so we get a **lower bound**.
+2. If we, on the other hand, go through **all moves** and **none of them improve alpha**, it means that the position can't score better than what we have found, and we have thus found an **upper bound**.
+
+Adding these two cases, we store **three types** of nodes -- **exact**, **upper bound**, and **lower bound**.
 Implementation-wise, we'd store something like this:
 
 ```rust
@@ -528,12 +529,17 @@ pub struct TTEntry {
     pub key: u64,             // zobrist hash
     pub depth: u8,            // how far we searched
     pub evaluation: f32,      // evaluation of this branch
-    pub node_type: NodeType,  // lower/exact/upper
+    pub node_type: NodeType,  // what type of information we obtained
 }
 ```
 
-For implementing the TT itself, we can use a nice trick: instead of using a hashmap, use a **fixed array** of size \(2^n\) and the **first \(n\) bits** of the zobrist hash as an index... because why would we hash twice?
-There are many other things to consider like [replacement strategies](https://www.chessprogramming.org/Transposition_Table#Replacement_Strategies) and more advanced TT implementations, such as using [buckets](https://www.chessprogramming.org/Transposition_Table#Bucket_Systems), but I won't go into detail on those as we've covered the core idea.
+For implementing the TT itself, we can use a nice trick: instead of using a hashmap, use a **fixed array** of size \(2^n\) and the **first \(\mathbf{n}\) bits** of the zobrist hash as an index... because why would we hash twice?
+
+There are many other things to consider like [replacement strategies](https://www.chessprogramming.org/Transposition_Table#Replacement_Strategies) and more advanced TT implementations, such as using  [buckets](https://www.chessprogramming.org/Transposition_Table#Bucket_Systems), but I won't go into detail on those as we've covered the core idea behind TT and this article is already long enough.
+
+As a final note: when doing research for this article, I found that the three [node categories](https://www.chessprogramming.org/Node_Types) described above are sometimes called **PV** (exact), **Cut** (lower bound) and **All** (upper bound) nodes, so don't be surprised when you see these terms used; they refer to the node types.
+This mainly originates from a [2003 paper](https://dke.maastrichtuniversity.nl/m.winands/documents/Enhanced%20forward%20pruning.pdf) about pruning methods[^alphabeta].
+
 
 [^allyouneed]: Okay, not quite; you also need to cast `Color::White as usize`, but that's ugly and an implementation detail, so I skipped it for the sake of clarity. You can get rid of it by implementing indexing for the array type, but I haven't done that because I'm lazy.
 
