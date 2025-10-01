@@ -9,22 +9,22 @@ module Jekyll
 
       # Character to CSS class mapping
       char_map = {
-        '→' => 'nc',
-        '*' => 'nc',
-        '↓' => 'nc',
-        '>' => 'nc',
-        '=' => 'nc',
-        '⏎' => 'c1',
-        '.' => 'c1',
-        '(' => 'c1',
-        ')' => 'c1',
-        '┌' => 'c1',
-        '┐' => 'c1',
-        '│' => 'c1',
-        '─' => 'c1',
-        '┼' => 'c1',
-        '?' => 'c1',
-        '!' => 'k',
+        '→' => 'yellow',
+        '*' => 'yellow',
+        '↓' => 'yellow',
+        '>' => 'yellow',
+        '=' => 'yellow',
+        '⏎' => 'gray',
+        '.' => 'gray',
+        '(' => 'gray',
+        ')' => 'gray',
+        '┌' => 'gray',
+        '┐' => 'gray',
+        '│' => 'gray',
+        '─' => 'gray',
+        '┼' => 'gray',
+        '?' => 'gray',
+        '!' => 'red',
       }
 
       # Process each line
@@ -68,18 +68,18 @@ module Jekyll
           number_info = number_positions.find { |pos_sign| pos_sign[0] == idx }
           if number_info
             sign = number_info[1]
-            css_class = sign == '-' ? 'k' : 'kn' # Green for +, red for -
+            css_class = sign == '-' ? 'red' : 'green' # Green for +, red for -
           # Check if this position is part of an 8-digit binary sequence
           elsif binary_positions.include?(idx)
-            css_class = char == '0' ? 'k' : 'kn' if char =~ /[01]/
+            css_class = char == '0' ? 'red' : 'green' if char =~ /[01]/
           else
             css_class = char_map[char]
           end
 
           if css_class
-            "<span class=\"#{css_class}\">#{char}</span>"
+            "<span class=\"char #{css_class}\">#{char}</span>"
           else
-            char
+          "<span class=\"char\">#{char}</span>"
           end
         end.join('')
 

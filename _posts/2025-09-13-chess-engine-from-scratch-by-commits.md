@@ -134,14 +134,14 @@ It would be great if we could pre-compute moves for all possible combinations of
 
 As an example, a rook on D5 with the following configuration of blockers should produce the following bitboard of moves + attacks (from now on, I'm leaving out the `0b` and `⏎`, but any zeros/ones in an 8x8 shape are still `u64`):
 
-{% chess %}8 ...♙....      00000000
-7 ........      00000000
-6 ...♙....      00010000
-5 ♙--♜-♙..      11101100
-4 ...|....  →   00010000
-3 ...|....      00010000
-2 ...♙....      00010000
-1 ........      00000000
+{% chess %}8 ...♙....     00000000
+7 ........     00000000
+6 ...♙....     00010000
+5 ♙--♜-♙..     11101100
+4 ...|....  →  00010000
+3 ...|....     00010000
+2 ...♙....     00010000
+1 ........     00000000
   abcdefgh
 {% endchess %}
 

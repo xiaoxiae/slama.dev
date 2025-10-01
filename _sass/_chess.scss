@@ -18,18 +18,44 @@ p.commit-header {
   }
 }
 
-.highlight .c1 {
-  font-style: normal;
-}
-
-.highlight .k {
+.highlight .char {
+  display: inline-block;
+  width: 1.25ch;
+  text-align: center;
   font-weight: normal;
 }
 
-.highlight .kn {
-  font-weight: normal;
+.highlight .gray {
+  color: rgb(100, 95, 90);
 }
 
-.highlight .nc {
-  font-weight: normal;
+.highlight .red {
+  color: rgb(200, 20, 50);
+}
+
+.highlight .green {
+  color: #008000;
+}
+
+.highlight .yellow {
+  color: rgb(200, 120, 0);
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  .highlight .gray {
+    color: rgb(133, 127, 120);
+  }
+
+  .highlight .red {
+    color: rgb(255, 44, 75);
+  }
+
+  .highlight .green {
+    color: #aeee00;
+  }
+
+  .highlight .yellow {
+    color: rgb(255, 167, 36);
+  }
 }
