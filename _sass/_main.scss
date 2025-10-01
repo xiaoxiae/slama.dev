@@ -644,7 +644,7 @@ a {
   }
 }
 
-a[href^="#"]:not(.footnote):not(.reversefootnote)::before {
+a[href^="#"]:not(.footnote):not(.reversefootnote):not(#markdown-toc a)::before {
   content: "#";
   font-weight: bold;
   opacity: 0.25;
