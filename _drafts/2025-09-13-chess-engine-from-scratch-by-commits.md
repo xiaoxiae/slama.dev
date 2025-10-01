@@ -25,8 +25,6 @@ Before beginning to write a chess bot that searches/evaluates positions, we need
 {: .commit-header}
 [`a1f8b8`](https://github.com/xiaoxiae/Prokopakop/commit/a1f8b867c9818e411a491e8cfdbd115411f1beb1)
 
----
-
 The first commit actually contains quite a bit of code, and should have likely been split into separate ones.
 However, I wanted the first commit to actually contain something that remotely resembles a chess engine, so here we are.
 
@@ -102,8 +100,6 @@ I've borrowed a **[large perft table](https://github.com/elcabesa/vajolet/blame/
 {: .commit-header}
 [`6ddcef`](https://github.com/xiaoxiae/Prokopakop/commit/6ddcef9c1acda9e4d229fd95f76782660a307f1d)~[`67d0e6`](https://github.com/xiaoxiae/Prokopakop/commit/67d0e64b105140242415647314e8c16e078c7e53)
 
----
-
 Nothing particularly interesting here.
 
 I've added **pre-computing of the possible moves/attacks** for pieces at compile time, which means that we can easily obtain squares for all pieces by simply accessing a table.
@@ -125,8 +121,6 @@ pub struct Game {
 
 {: .commit-header}
 [`178193`](https://github.com/xiaoxiae/Prokopakop/commit/178193d3b18c50a8084af5149ca03ca331438f78)
-
----
 
 This commit adds [**magic bitboards**](https://www.chessprogramming.org/Magic_Bitboards), which truly hold up to their name, since they're awesome.
 
@@ -198,8 +192,6 @@ Pretty cool, isn't it?
 {: .commit-header}
 [`037103`](https://github.com/xiaoxiae/Prokopakop/commit/0371037bad4a7aa8449d832520b29e3cf8a65549)~[`33cbd8`](https://github.com/xiaoxiae/Prokopakop/commit/33cbd8ec94db534ab6c45c8ad1d41e7a2baafa01)
 
----
-
 No particularly interesting things here, here is a short recap:
 - added **promotion** (twice; the first implementation let you promote to a king)
 - added **history**, so you can undo moves -- a bit tricky, since you need to store both the en-passant bitmap and information about castling
@@ -208,8 +200,6 @@ No particularly interesting things here, here is a short recap:
 
 {: .commit-header}
 [`dc9fc0`](https://github.com/xiaoxiae/Prokopakop/commit/dc9fc039d13bee308619bb6befc800f785b10036)
-
----
 
 Another absolute banger of a commit, which implements iterative [**Zobrist hashing**](https://en.wikipedia.org/wiki/Zobrist_hashing).
 
@@ -253,23 +243,17 @@ Generally, you should only do this once the tests are passing for an implementat
 {: .commit-header}
 [`a6156e`](https://github.com/xiaoxiae/Prokopakop/commit/a6156eec2fcbf0b0954e85c608375be4df5cf278)~[`f0253e`](https://github.com/xiaoxiae/Prokopakop/commit/f0253eebc1ee2ec9fdd17dde95d1b9b039ae073f)
 
----
-
 Removes attack bitboards in favor of simply checking whether any pieces are attacking a particular square, since most code doesn't need them anyway, but they needed to be recalculated after each move.
 Also does a bit of refactoring, but nothing too exciting.
 
 {: .commit-header}
 [`d7c5b4`](https://github.com/xiaoxiae/Prokopakop/commit/d7c5b4db78803fdc938c46d7f5c5e418d8782038)
 
----
-
 This commit compacts a board move to \(16\) bits -- \(5 * 2\) for source + destination square indexes, and \(4\) for identifying a promotion piece (if applicable).
 Might not seem like a big change, but board moves are used ubiquitously though the engine, so making them as compact as possible while not sacrificing too much speed is generally a good idea.
 
 {: .commit-header}
 [`dda91d`](https://github.com/xiaoxiae/Prokopakop/commit/dda91d360500421c914d4310b4070b2c20898ff5)
-
----
 
 #### Pins via Magic Bitboards
 
@@ -297,8 +281,6 @@ There is a slight catch: to obtain the positions of the blockers, you need eithe
 {: .commit-header}
 [`896a48`](https://github.com/xiaoxiae/Prokopakop/commit/896a48ce3f51e5ee0c011add681f7180565c92d5)~[`5bc16a`](https://github.com/xiaoxiae/Prokopakop/commit/5bc16a6b05098bd50338504ebf85b356ec409e0d)
 
----
-
 Currently, we are generating moves by generating all [pseudo-legal moves](https://www.chessprogramming.org/Pseudo-Legal_Move) (those where king can be under attack afterwards), making them, checking whether the king is under attack afterwards, and unmaking them.
 This is as simple as it is slow, as we have to repeatedly modify the board state in order to check whether the move is legal or not, causing a lot of overhead.
 
@@ -316,8 +298,6 @@ Instead of going through the code (which, if you're interested, [can be found he
 
 {: .commit-header}
 [`990204`](https://github.com/xiaoxiae/Prokopakop/commit/99020474e514d47bc72b25f46bc77fbd804b5dd7)~[`3ff11a`](https://github.com/xiaoxiae/Prokopakop/commit/3ff11a44e6945f5de5cdded988b73f611b9e5f62)
-
----
 
 Final commits in the move generation saga.
 
@@ -389,8 +369,6 @@ Then we propagate these scores back up the tree: maximizing nodes take the maxim
 {: .commit-header}
 [`9fec3a0`](https://github.com/xiaoxiae/Prokopakop/commit/9fec3a0)
 
----
-
 #### Alpha-Beta Search
 
 While minimax is an important foundation to our search functionality, we can greatly improve it by using **[alpha-beta pruning](https://www.chessprogramming.org/Alpha-Beta)**, which I implemented in the first search & eval commit.
@@ -449,8 +427,6 @@ While this might seem like all you need, this is generally not sufficient as it 
 {: .commit-header}
 [`8eeb84e`](https://github.com/xiaoxiae/Prokopakop/commit/8eeb84e)~[`6aec863`](https://github.com/xiaoxiae/Prokopakop/commit/6aec863)
 
----
-
 #### Piece-Square Tables
 
 This commit adds [**piece-square tables**](https://www.chessprogramming.org/Piece-Square_Tables) for positional evaluation.
@@ -500,8 +476,6 @@ const KING_LATE_TABLE: [f32; 64] = [
 {: .commit-header}
 [`53a09e5`](https://github.com/xiaoxiae/Prokopakop/commit/53a09e5)
 
----
-
 #### Move Ordering
 
 As mentioned in the [alpha-beta section](#alpha-beta-search), for the moves to be pruned efficiently, we need to pick the strongest lines early so that they can be searched first and used for pruning the later branches.
@@ -511,8 +485,6 @@ This, combined with always searching the moves from the **p**rincipal **v**ariat
 
 {: .commit-header}
 [`bbef3be`](https://github.com/xiaoxiae/Prokopakop/commit/bbef3be)
-
----
 
 #### Quiescence Search
 

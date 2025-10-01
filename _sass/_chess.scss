@@ -2,9 +2,20 @@
 
 p.commit-header {
   font-variant: normal;
-  padding-bottom: $h3-spacing;
+  padding-top: $line-spacing;
+  padding-bottom: 2 * $line-spacing;
   margin-bottom: 0;
   text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #aaa;
+  }
 }
 
 .highlight .c1 {
