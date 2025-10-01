@@ -2,6 +2,7 @@
 title: A Chess Engine, Commit by Commit
 excerpt: "Writing a chess engine from scratch, commit by commit."
 css: chess
+category_icon: /assets/category-icons/prokopakop.svg
 ---
 
 - .
@@ -78,7 +79,7 @@ pub struct Game {
 }
 ```
 
-As an example, to obtain all positions of _white rooks and bishops_, all you need to[^allyouneed] do is
+As an example, to obtain all positions of _white rooks and bishops_, all you need to[^all-you-need] do is
 
 ```rust
 let white_rooks_and_bishops = self.color_bitboards[Color::White]
@@ -218,7 +219,7 @@ To uniquely identify a chess position, we need
 which is not a convenient number of bits to use for table indexing.
 Ideally, we'd like to reduce those to 64, which is much nicer to work with and has an extremely low chance of collision over the runtime of a standard chess game.
 
-Zobrist hashing does this in a rather simple way -- we **generate random numbers** for all of the things mentioned above, and **XOR all that apply** (with an aditional extra one for en-passant[^theplusone]) to create the game identifier:
+Zobrist hashing does this in a rather simple way -- we **generate random numbers** for all of the things mentioned above, and **XOR all that apply** (with an aditional extra one for en-passant[^the-plus-one]) to create the game identifier:
 
 ```rust
 struct ZobristKeys {
@@ -501,7 +502,7 @@ That way, we don't have crazy spikes in evaluation and avoid blunders.
 
 #### Transposition Table
 
-Re-evaluating a position we have already reached and evaluated would be a waste, so let's not do that and implement [**transposition table**](https://www.chessprogramming.org/Transposition_Table) (TT for the rest of the article because I'm too lazy to type).
+Re-evaluating a position we have already reached and evaluated would be a waste, so let's not do that and implement a [**transposition table**](https://www.chessprogramming.org/Transposition_Table) (TT for the rest of the article because I'm too lazy to type).
 Since we've already implemented [zobrist hashing](#zobrist-hashing), we can quickly identify these positions and avoid needless computation... but what do we actually store?
 
 Let's look at a minimax search first -- when evaluating a position, we examine **all moves** until a certain **depth**, so the calculated evaluation is **exact** up until the given depth.
@@ -511,11 +512,11 @@ In other words, if the depth we're searching to exceeds the one we already did, 
 Alpha-beta makes this slightly more difficult, because alpha-beta means that certain calculations will no longer be exact.
 They still, however, tell us important information about whether we have calculated an **upper bound** on the score, or a **lower bound** -- there are two additional things (besides the exact case) that can happen:
 
-1. If we **prune** a branch (i.e. cause a **cut-off**), it is because we found a move that is **too good**, because the **other player** will play something that's better for him elsewhere in the tree.
-   This means that the evaluation of this branch can **only get better** as we go through the moves, so we get a **lower bound**.
-2. If we, on the other hand, go through **all moves** and **none of them improve alpha**, it means that the position can't score better than what we have found, and we have thus found an **upper bound**.
+1. If we **prune** a branch (i.e. cause a **beta cut-off**), it is because we found a move that is **too good** and the **other player** won't allow us to play it because they'll play something elsewhere in the tree.
+   This means that the evaluation of this branch can **only get better** for us as we go through the moves, so we get a **lower bound**.
+2. If we, on the other hand, go through **all moves** and **none of them improve alpha** (i.e. the move **fails low**), it means that the position can't score better than what we have found, and we have thus found an **upper bound**.
 
-Adding these two cases, we store **three types** of nodes -- **exact**, **upper bound**, and **lower bound**.
+Adding these two cases, we store **three types** of nodes -- **exact**, **lower bound** and **upper bound**.
 Implementation-wise, we'd store something like this:
 
 ```rust
@@ -530,6 +531,10 @@ pub struct TTEntry {
     pub depth: u8,            // how far we searched
     pub evaluation: f32,      // evaluation of this branch
     pub node_type: NodeType,  // what type of information we obtained
+
+    // These are not required, but useful
+    pub best_move: Move,      // best move found
+    pub age: u8,              // age of this entry, so we can clear the old ones
 }
 ```
 
@@ -538,7 +543,7 @@ For implementing the TT itself, we can use a nice trick: instead of using a hash
 There are many other things to consider like [replacement strategies](https://www.chessprogramming.org/Transposition_Table#Replacement_Strategies) and more advanced TT implementations, such as using  [buckets](https://www.chessprogramming.org/Transposition_Table#Bucket_Systems), but I won't go into detail on those as we've covered the core idea behind TT and this article is already long enough.
 
 As a final note: when doing research for this article, I found that the three [node categories](https://www.chessprogramming.org/Node_Types) described above are sometimes called **PV** (exact), **Cut** (lower bound) and **All** (upper bound) nodes, so don't be surprised when you see these terms used; they refer to the node types.
-This mainly originates from a [2003 paper](https://dke.maastrichtuniversity.nl/m.winands/documents/Enhanced%20forward%20pruning.pdf) about pruning methods[^alphabeta].
+This mainly originates from a [2003 paper](https://dke.maastrichtuniversity.nl/m.winands/documents/Enhanced%20forward%20pruning.pdf) about pruning methods[^alpha-beta].
 
 {: .commit-header}
 [`ff14c29`](https://github.com/xiaoxiae/Prokopakop/commit/ff14c29)~[`6c4e7ee`](https://github.com/xiaoxiae/Prokopakop/commit/6c4e7ee)
@@ -554,11 +559,11 @@ In addition, I've improved the evaluation function to incentivize [passed pawns]
 In certain positions, there are moves that can act as refutations to multiple moves that the opponent might like to play.
 As an example, if pushing a pawn kicks out an annoying knight, it can also be a good response to the opponent's other moves, like blocking a bishop, threatening a pawn, etc...
 
-More specifically: if we find a move that **causes a cut-off**, it means that it's a good response and could be used in some of the sibling branches, so we **remember it for this ply** and **prioritize it in move order** (but after the [move ordering heuristics that we already have](#move-ordering))
+More specifically: a move **causes a beta cut-off**, it means that it's a good response and could be used in some of the sibling branches, so we **remember it for this ply** and **prioritize it in move order**.
 Since we already have [MVV-LVA](#move-ordering) which handles capture ordering well, we will only do this for non-capture (i.e. quiet) moves.
 
 In practice, it is usually better to store **two** moves for each ply, because there can be cutoffs that are not killer and could mess with the move ordering.
-The implementation itself is very easy (with suitable getters/setters):
+The implementation itself is very easy (with suitable updates as we traverse the search tree):
 
 ```rust
 pub struct KillerMoves {
@@ -567,9 +572,60 @@ pub struct KillerMoves {
 }
 ```
 
-[^allyouneed]: Okay, not quite; you also need to cast `Color::White as usize`, but that's ugly and an implementation detail, so I skipped it for the sake of clarity. You can get rid of it by implementing indexing for the array type, but I haven't done that because I'm lazy.
+{: .commit-header}
+[`2c1a839`](https://github.com/xiaoxiae/Prokopakop/commit/2c1a839)
 
-[^theplusone]: This is done so that we don't need to check whether en-passant bit changed during the move (since that adds branching, which is slow) -- we therefore add an additional "no-op value", which will be used when en-passant didn't happen; since we're XORing twice, these cancel out and we don't need to branch!
+#### Delta Pruning
+
+Up until now, all of the things[^quiescence-is-not-exact] that we implemented were a part of the classical alpha-beta algorithm, which means that the calculated score for the given depth was **exact**... but that's still too slow for us.
+Let's start cutting corners 😎.
+
+We'll begin by implementing [**delta pruning**](https://www.chessprogramming.org/Delta_Pruning) for quiescence search.
+It's a rather intuitive heuristic on whether we should explore a particular move -- if **capturing the piece** + some **safety margin** (usually two pawns), is **not sufficient to raise alpha**, then we don't bother exploring the move at all since we are, as the kids say, beyond cooked and the position is hopeless.
+
+While this will speed up the search because we're no longer exploring hopeless positions, we can miss certain tactical sequences -- especially those that swing the evaluation by more than the safety margin (since that's the maximum we're assuming we could gain).
+It is therefore recommended to **not use this heuristic when approaching the endgame,** because we might need to sacrifice some material for positional advantage and conversion.
+
+Techniques that prune branches with the risk of overlooking things are referred to as [**forward pruning**](https://www.chessprogramming.org/Pruning#Forward_pruning_techniques), and we'll be implementing a lot more of them, since we've mostly run out of the regular (sometimes called "backward") pruning techniques.
+
+{: .commit-header}
+[`10c64e9`](https://github.com/xiaoxiae/Prokopakop/commit/10c64e9)
+
+#### Null Move Pruning
+
+We'll cut the corners even further!
+
+**[Null move pruning](https://www.chessprogramming.org/Null_Move_Pruning)** uses the simple observation that **skipping a turn** (i.e. making a null move) is almost[^nmp] always worse than **making the best move** in the position.
+Therefore, it's a relatively safe assumption that if making a null move causes a **beta cut-off** (i.e. even not making any move is so good and the opponent wouldn't let us play it), we can **prune this entire branch** without exploring any of the moves, since the best move is bound to be better than no move at all.
+
+Implementation-wise, two things to mention:
+- The search on the null move uses a **reduced depth** (either flat or progressive), because it should usually be apparent quite quickly whether a beta cut-off will occur or not.
+- If the [**static evaluation**](https://www.chessprogramming.org/Evaluation) (running `game.evaluate()` right now) of the current position is **below beta** (with some margin), we **don't need to try null move pruning**, since it extremely unlikely to result in a beta cut-off anyway.
+
+{: .commit-header}
+[`5047857`](https://github.com/xiaoxiae/Prokopakop/commit/5047857)
+
+#### Late Move Reduction
+
+The shape of our engine is still not spherical enough -- more corner cutting!
+
+With move ordering implemented ([MVV-LVA](#move-ordering), [principal variation](#move-ordering), [killer moves](#killer-moves) and the [transposition table](#transposition-table)), we usually have a good idea on which moves look promising, and we explore those first to induce as many cut-offs as possible.
+It therefore stands to reason that **quiet moves** that come **later in the move order** (hence [late move reduction](https://www.chessprogramming.org/Late_Move_Reduction)) are **not that interesting**.
+
+To not waste time, we explore them with a **reduced depth** and distinguish two cases:
+- If they cause a **fail low** (alpha wasn't improved), we were right -- they are not interesting and we **do not** explore them further.
+- If, on the other hand, they **improve alpha**, we need to **re-run the search with the original depth**, since we don't want to miss a potentially interesting line.
+
+{: .commit-header}
+[`da6dbb0`](https://github.com/xiaoxiae/Prokopakop/commit/da6dbb0)
+
+#### Aspiration Windows
+
+TODO todo
+
+[^all-you-need]: Okay, not quite; you also need to cast `Color::White as usize`, but that's ugly and an implementation detail, so I skipped it for the sake of clarity. You can get rid of it by implementing indexing for the array type, but I haven't done that because I'm lazy.
+
+[^the-plus-one]: This is done so that we don't need to check whether en-passant bit changed during the move (since that adds branching, which is slow) -- we therefore add an additional "no-op value", which will be used when en-passant didn't happen; since we're XORing twice, these cancel out and we don't need to branch!
 
 [^lc0]: Some chess engines, like [Leela Chess Zero](https://lczero.org/), use [Monte Carlo tree search](https://en.wikipedia.org/wiki/Monte_Carlo_tree_search) instead. This is because their position evaluation is orders of magnitude slower but much more advanced, so they do a deeper search on promising lines instead of a wide one on all of them.
 
@@ -577,4 +633,8 @@ pub struct KillerMoves {
 
 [^ply]: The origin of the word "ply" comes from _pli_, [which is old French](https://www.etymonline.com/word/ply) for "layer".
 
-[^alphabeta]: As a side-note, they refer to alpha-beta seach as \(\alpha\beta\) search and I find that very funny for some reason.
+[^alpha-beta]: As a side-note, they refer to alpha-beta seach as \(\alpha\beta\) search and I find that very funny.
+
+[^nmp]: This is not true for [Zugzwangs](https://www.chessprogramming.org/Zugzwang), which, by definition, are positions where making a move is worse than not making a move. These usually happen in pawn endgames, so it's best to turn NMP off in those cases.
+
+[^quiescence-is-not-exact]: Okay, this is not quite true. We've already implemented quiescence search, which in and of itself is not exact as we're skipping non-capture and non-check moves. This is a bit tricky, however, since we could think of it as an extended static evaluation.
