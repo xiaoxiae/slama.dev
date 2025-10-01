@@ -1,0 +1,12 @@
+{
+  "overrides": [
+    {
+      "files": ["*.scss", "*.sass"],
+      "options": {
+        "singleQuote": false,
+        "printWidth": 100,
+        "tabWidth": 2
+      }
+    }
+  ]
+}

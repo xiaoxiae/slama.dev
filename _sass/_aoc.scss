@@ -8,7 +8,11 @@
 
 .year-gold {
   color: #ffff66;
-  text-shadow: 0 0 3px #ebc982,0 0 5px #ebc982,0 0 10px #ebc982,0 0 15px #ebc982;
+  text-shadow:
+    0 0 3px #ebc982,
+    0 0 5px #ebc982,
+    0 0 10px #ebc982,
+    0 0 15px #ebc982;
 }
 
 .silver {
@@ -18,7 +22,9 @@
 
 .year-silver {
   color: #00cc00;
-  text-shadow: 0 0 2px #00cc00, 0 0 5px #00cc00;
+  text-shadow:
+    0 0 2px #00cc00,
+    0 0 5px #00cc00;
 }
 
 .gray {
@@ -35,8 +41,7 @@
   overflow: clip;
 
   background-color: $dark-code-background-color !important;
-  div>pre {
-
+  div > pre {
     background-color: $dark-code-background-color !important;
     overflow: clip;
   }
@@ -44,7 +49,9 @@
 
 .day {
   color: #00cc00;
-  text-shadow: 0 0 2px #00cc00, 0 0 5px #00cc00;
+  text-shadow:
+    0 0 2px #00cc00,
+    0 0 5px #00cc00;
 }
 
 a:hover {
@@ -52,7 +59,6 @@ a:hover {
   color: white;
   opacity: 1;
 }
-
 
 @keyframes pulse-gold {
   0% {
@@ -68,7 +74,6 @@ a:hover {
     opacity: 1;
   }
 }
-
 
 @keyframes pulse-silver {
   0% {

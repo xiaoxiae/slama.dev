@@ -1,9 +1,0 @@
-{
-    "extends": "/usr/lib/node_modules/stylelint-config-standard",
-    "rules": {
-        "indentation": 4,
-        "declaration-block-single-line-max-declarations": null,
-        "no-duplicate-selectors": null,
-        "no-descending-specificity": null
-    }
-}

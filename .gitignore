@@ -11,6 +11,7 @@ ignored/
 **/secrets.py
 
 # Too big to VC (binaries scary!)
+node_modules/
 _plugins/svgcleaner/
 **/*.pdf
 **/*.wav
