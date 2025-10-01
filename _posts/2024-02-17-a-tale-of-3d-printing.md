@@ -2,6 +2,7 @@
 title: A tale of 3D Printing
 excerpt: "A story of doing some 3D printing and failing miserably."
 css: photos
+category_icon: /assets/category-icons/3d-print.webp
 ---
 
 - .
