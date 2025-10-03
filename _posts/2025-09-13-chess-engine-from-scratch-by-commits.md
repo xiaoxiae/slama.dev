@@ -132,7 +132,7 @@ This commit adds [**magic bitboards**](https://www.chessprogramming.org/Magic_Bi
 As I've previously mentioned, calculating legal moves for slider pieces can be tricky, because they can be blocked.
 It would be great if we could pre-compute moves for all possible combinations of blockers, since we'd otherwise have to "raycast" from each slider until we hit a piece, which is slow.
 
-As an example, a rook on D5 with the following configuration of blockers should produce the following bitboard of moves + attacks (from now on, I'm leaving out the `0b` and `⏎`, but any zeros/ones in an 8x8 shape are still `u64`):
+As an example, a rook on d5 with the following configuration of blockers should produce the following bitboard of moves + attacks (from now on, I'm leaving out the `0b` and `⏎`, but any zeros/ones in an 8x8 shape are still `u64`):
 
 {% chess %}8 ...♙....     00000000
 7 ........     00000000
@@ -211,13 +211,13 @@ Another absolute banger of a commit, which implements iterative [**Zobrist hashi
 When doing search over chess positions, knowing which we've already seen (and can thus skip since we've evaluated it already) is crucial for making a chess engine fast.
 We would like to be able to map `board_state → arbitrary_data`, but how do we find a suitable key?
 
-To uniquely identify a chess position, we need
+To uniquely[^unique-chess-position] identify a chess position, we need
 - \(64b\) for piece colors + \({\sim}3b * 64\) for piece types
 - \(5b\) for en-passant index
-- \(4b\) for castling information
+- \(4b * 2\) for castling information
 - \(1b\) for whose turn it is
 
-which is not a convenient number of bits to use for table indexing.
+which is \({\sim}\) not a convenient number of bits to use for table indexing.
 Ideally, we'd like to reduce those to 64, which is much nicer to work with and has an extremely low chance of collision over the runtime of a standard chess game.
 
 Zobrist hashing does this in a rather simple way -- we **generate random numbers** for all of the things mentioned above, and **XOR all that apply** (with an aditional extra one for en-passant[^the-plus-one]) to create the game identifier:
@@ -292,9 +292,9 @@ This is as simple as it is slow, as we have to repeatedly modify the board state
 A faster approach is to generate [legal moves](https://www.chessprogramming.org/Legal_Move) directly, without having modify the board state.
 This, however, requires significantly more care, as the king can come under attack in a number of tricky ways.
 In prokopakop, I distinguish between three cases, depending on the **number of attacks** the king is under:
-- **0**: normal generation
-- **1**: king has to either **move,** or the attacker must be **captured**
-- **2+**: king can **only move**
+- **0 attacks**: normal generation
+- **1 attack**: king has to either **move,** or the attacker must be **captured**
+- **2 attacks+**: king can **only move**
 
 Separating the cases makes legal move generation more managable, and makes it much faster than make/unmake-based move generation.
 Instead of going through the code (which, if you're interested, [can be found here](https://github.com/xiaoxiae/Prokopakop/blob/master/src/game/board.rs)), I'll point you towards [Peter Ellis Jones' blog post](https://peterellisjones.com/posts/generating-legal-chess-moves-efficiently/) on legal move generation, as it was a great resource when implementing it myself.
@@ -415,12 +415,12 @@ Formally, we track the **best values the players can achieve** in the particular
                  CUTOFF INDUCED
 {% endchess %}
 
-In prokopakop (and essentially all other engines), I have implemented this via **[negamax](https://www.chessprogramming.org/Alpha-Beta#Negamax_Framework)**, which simplifies the implementation by **always maximizing** and **flipping + negating** the alpha/beta values and evaluation when doing the recursive call, as we're changing perspectives.
+In prokopakop (as in most other engines), I have implemented this via **[negamax](https://www.chessprogramming.org/Alpha-Beta#Negamax_Framework)**, which simplifies the implementation by **always maximizing** and **flipping + negating** the alpha/beta values and evaluation when doing the recursive call, as we're changing perspectives.
 This is very convenient, because it simplifies both the implementation and the conceptual meaning of alpha and beta -- we can now always think of **alpha** as the **lower bound** (what we are _guaranteed_ somewhere in the search tree), and **beta** as the **upper bound** (what the _opponent won't allow us to exceed_ because of what he has guaranteed somewhere in the search tree).
 
 I have also implemented **[iterative deepening](https://www.chessprogramming.org/Iterative_Deepening)** for time management, which runs alpha-beta search with depths \(1, 2, \ldots\) until time runs out and returns the best result found, so we can limit time spent on searching based on the current time control.
 
-Note that for alpha-beta search to work well, we need to ensure that the moves are **sorted**, as exploring more interesting lines first will induce more cutoffs, as compared to when the moves are unordered -- we'll [implement this later](#mmv-lva).
+Note that for alpha-beta search to work well, we need to ensure that the moves are **ordered** from strongest to the weakest, as exploring more interesting lines first will induce more cutoffs, as compared to when the moves are unordered -- we'll [implement this later](#mmv-lva).
 
 #### Material Evaluation
 
@@ -434,7 +434,7 @@ While this might seem like all you need, this is generally not sufficient as it 
 
 This commit adds [**piece-square tables**](https://www.chessprogramming.org/Piece-Square_Tables) for positional evaluation.
 These are a set of tables that, for each piece, provide information about how much it is worth when being on a particular square.
-As an example, here is what a pawn table could look like:
+As an example, here is a pawn table:
 
 {% chess %}const PAWN_TABLE: [f32; 64] = [
     0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,
@@ -481,8 +481,9 @@ const KING_LATE_TABLE: [f32; 64] = [
 
 #### Move Ordering
 
-As mentioned in the [alpha-beta section](#alpha-beta-search), for the moves to be pruned efficiently, we need to pick the strongest lines early so that they can be searched first and used for pruning the later branches.
-While general moves are difficult to order without branching on them first, we can use a simple heuristic to order **capturing moves**, and it is exactly what you're thinking of -- capture the **m**ost **v**aluable **v**ictim with the **l**east **v**aluable **a**ttacker ([MVV-LVA](https://www.chessprogramming.org/MVV-LVA)).
+As mentioned in the [alpha-beta section](#alpha-beta-search), for the moves to be pruned efficiently, we need to pick the strongest moves early so that they can be searched first and used for pruning the later branches.
+While this is quite difficult to do in general, we can use heuristics that perform well in practice.
+The most straightforward one is for ordering **capturing moves**, and it is exactly what you're thinking of -- capture the **m**ost **v**aluable **v**ictim with the **l**east **v**aluable **a**ttacker ([MVV-LVA](https://www.chessprogramming.org/MVV-LVA)).
 
 This, combined with always searching the moves from the **p**rincipal **v**ariation first (best line found in the previous iteration of iterative deepening), gives a decent ordering and provides a good speed-up to the alpha-beta search.
 
@@ -495,8 +496,8 @@ Using alpha-beta search with iterative deepening means that we always, for depth
 This has an obvious flaw: what if we make blunder, like taking a queen for a pawn, in the final depth?
 Since this was the last depth that we were searching, this wouldn't get caught, and we'd happily return positive evaluation, since we're up a pawn!
 
-This is where [quiescence search](https://www.chessprogramming.org/Quiescence_Search)[^quiescence] comes in -- when reaching the final depth of the iteration, it **extends the search** to **all remaining captures** (and possibly checks), so that we are **only evaluating quiet positions** (i.e. those where there are no tactical sequences that can severely impact the score).
-That way, we don't have crazy spikes in evaluation and avoid blunders.
+This is where [quiescence search](https://www.chessprogramming.org/Quiescence_Search)[^quiescence] comes in -- when reaching the final depth of the iteration, it **extends the search** until **all remaining captures** (and possibly checks) are resolved, so that we are **only evaluating quiet positions** (i.e. those where there are no tactical sequences that can severely impact the score).
+This way, we resolve tactical sequences don't make any blunders in the final layer of the search.
 
 {: .commit-header}
 [`35f6fb6`](https://github.com/xiaoxiae/Prokopakop/commit/35f6fb6)
@@ -557,10 +558,11 @@ In addition, I've improved the evaluation function to incentivize [passed pawns]
 
 #### Killer Moves
 
-In certain positions, there are moves that can act as refutations to multiple moves that the opponent might like to play.
-As an example, if pushing a pawn kicks out an annoying knight, it can also be a good response to the opponent's other moves, like blocking a bishop, threatening a pawn, etc...
+In certain positions, there are responses that can act as refutations to multiple moves that the opponent might like to play.
+As an example, if pushing a pawn kicks out an annoying knight, it can also be a good response to the opponent's other moves, like blocking a bishop, threatening a pushed pawn, etc...
 
-More specifically: a move **causes a beta cut-off**, it means that it's a good response and could be used in some of the sibling branches, so we **remember it for this ply** and **prioritize it in move order**.
+More specifically: if a move **causes a beta cut-off**, it means that it's likely a good response and should be prioritized in sibling branches.
+To do this, we **remember it for this ply** and **prioritize it in move order**.
 Since we already have [MVV-LVA](#move-ordering) which handles capture ordering well, we will only do this for non-capture (i.e. quiet) moves.
 
 In practice, it is usually better to store **two** moves for each ply, because there can be cutoffs that are not killer and could mess with the move ordering.
@@ -585,7 +587,7 @@ We'll begin by implementing [**delta pruning**](https://www.chessprogramming.org
 It's a rather intuitive heuristic on whether we should explore a particular move -- if **capturing the piece** + some **safety margin** (usually two pawns), is **not sufficient to raise alpha**, then we don't bother exploring the move at all since we are, as the kids say, beyond cooked and the position is hopeless.
 
 While this will speed up the search because we're no longer exploring hopeless positions, we can miss certain tactical sequences -- especially those that swing the evaluation by more than the safety margin (since that's the maximum we're assuming we could gain).
-It is therefore recommended to **not use this heuristic when approaching the endgame,** because we might need to sacrifice some material for positional advantage and conversion.
+It is therefore recommended to **not use this heuristic when approaching the endgame**, because we might need to sacrifice some material for positional advantage and conversion.
 
 Techniques that prune branches with the risk of overlooking things are referred to as [**forward pruning**](https://www.chessprogramming.org/Pruning#Forward_pruning_techniques), and we'll be implementing a lot more of them, since we've mostly run out of the regular (sometimes called "backward") pruning techniques.
 
@@ -610,7 +612,7 @@ Implementation-wise, two things to mention:
 
 The shape of our engine is still not spherical enough -- more corner cutting!
 
-With move ordering implemented ([MVV-LVA](#move-ordering), [principal variation](#move-ordering), [killer moves](#killer-moves) and the [transposition table](#transposition-table)), we usually have a good idea on which moves look promising, and we explore those first to induce as many cut-offs as possible.
+With move ordering implemented ([MVV-LVA](#move-ordering), [principal variation](#move-ordering), [killer moves](#killer-moves) and [transposition table](#transposition-table)), we usually have a good idea on which moves look promising, and we explore those first to induce as many cut-offs as possible.
 It therefore stands to reason that **quiet moves** that come **later in the move order** (hence [late move reduction](https://www.chessprogramming.org/Late_Move_Reduction)) are **not that interesting**.
 
 To not waste time, we explore them with a **reduced depth** and distinguish two cases:
@@ -622,13 +624,26 @@ To not waste time, we explore them with a **reduced depth** and distinguish two 
 
 #### Aspiration Windows
 
-TODO todo
+When doing iterative deepening, each successive iteration returns an evaluation of the position.
+If we have a well-behaved alpha-beta implementation and evaluation function, the evaluation should not swing wildly as the search goes on, but stabilize around some particular value.
+
+[**Aspiration window search**](https://www.chessprogramming.org/Aspiration_Windows) takes advantage of this observation by **setting the alpha and beta bounds** in alpha-beta search to be around **the previous iterative deepening iteration result**, \(\pm\) some **small margin** (usually half a pawn).
+A few things can happen with the root result:
+- The root evaluation is **within the bounds** of the aspiration window, which means we were correct and this is the **true evaluation**. Yippie!
+- The root evaluation is **outside the bounds** (either fail low or fail high), which means that the guess was wrong; in that case we need to **re-search** with a **larger window** (usually extending the side of the bound that failed), until we fall within the bounds.
+
+Aspiration windows were difficult for me to understand initially, so here is the observation that made it click: if the value calculated in an alpha-beta search **falls within the bounds**, then it is **exact**.
+This happens because the best line leads to a position with the expected evaluation, with others being cut off due to the tighter bounds (which is what we want).
+
+If we missjudge the position, and there is a forcing tactical sequence, then this will lead to a fail (low or high) and the aspiration window search will return only a bound -- since we don't know what the actual value is, we have to re-run the search.
 
 [^all-you-need]: Okay, not quite; you also need to cast `Color::White as usize`, but that's ugly and an implementation detail, so I skipped it for the sake of clarity. You can get rid of it by implementing indexing for the array type, but I haven't done that because I'm lazy.
 
 [^the-plus-one]: This is done so that we don't need to check whether en-passant bit changed during the move (since that adds branching, which is slow) -- we therefore add an additional "no-op value", which will be used when en-passant didn't happen; since we're XORing twice, these cancel out and we don't need to branch!
 
 [^lc0]: Some chess engines, like [Leela Chess Zero](https://lczero.org/), use [Monte Carlo tree search](https://en.wikipedia.org/wiki/Monte_Carlo_tree_search) instead. This is because their position evaluation is orders of magnitude slower but much more advanced, so they do a deeper search on promising lines instead of a wide one on all of them.
+
+[^unique-chess-position]: This is not quite correct, as we're wasting a bit; e.g. there are 6 pieces and we're using 3 bits. If we really tried, we could get it down to \[\log_2(\left(2 \cdot 6\right)^{64} \cdot 16 \cdot 8 \cdot 2) \cong 237.4 \] which saves a couple of bits, but still doesn't solve the problem.
 
 [^quiescence]: I'm not a native speaker, so this seemed like a strange usage of this word. The definition of "quiescence" is, according to the Cambridge English Dictionary, _the state of being temporarily quiet and not active_, so this makes sense -- we want to **search for quiet positions** and only evaluate those.
 
