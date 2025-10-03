@@ -25,37 +25,37 @@ p.commit-header {
   font-weight: normal;
 }
 
-.highlight .gray {
+.gray {
   color: rgb(100, 95, 90);
 }
 
-.highlight .red {
+.red {
   color: rgb(200, 20, 50);
 }
 
-.highlight .green {
+.green {
   color: #008000;
 }
 
-.highlight .yellow {
+.yellow {
   color: rgb(200, 120, 0);
 }
 
 /* Dark theme */
 @media (prefers-color-scheme: dark) {
-  .highlight .gray {
+  .gray {
     color: rgb(133, 127, 120);
   }
 
-  .highlight .red {
+  .red {
     color: rgb(255, 44, 75);
   }
 
-  .highlight .green {
+  .green {
     color: #aeee00;
   }
 
-  .highlight .yellow {
+  .yellow {
     color: rgb(255, 167, 36);
   }
 }

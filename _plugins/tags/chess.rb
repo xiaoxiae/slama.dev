@@ -2,6 +2,7 @@ module Jekyll
   class ChessParserBlock < Liquid::Block
     def initialize(tag_name, input, tokens)
       super
+      @mode = input.strip
     end
 
     def render(context)
@@ -79,15 +80,19 @@ module Jekyll
           if css_class
             "<span class=\"char #{css_class}\">#{char}</span>"
           else
-          "<span class=\"char\">#{char}</span>"
+            "<span class=\"char\">#{char}</span>"
           end
         end.join('')
 
         chars
       end.join("\n")
 
-      # Wrap in a container div
-      "<div class=\"language-plaintext highlighter-rouge\"><div class=\"highlight\"><pre class=\"highlight\"><code>#{lines}</code></pre></div></div>"
+      # Choose wrapper based on mode
+      if @mode == 'inline'
+        "<code class=\"language-plaintext highlighter-rouge\">#{lines}</code>"
+      else
+        "<div class=\"language-plaintext highlighter-rouge\"><div class=\"highlight\"><pre class=\"highlight\"><code>#{lines}</code></pre></div></div>"
+      end
     end
   end
 end
