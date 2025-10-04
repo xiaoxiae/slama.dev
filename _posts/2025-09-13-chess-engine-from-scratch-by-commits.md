@@ -364,6 +364,7 @@ Maybe I'll revisit to take my revenge on Stockfish at some point in the future, 
 Now that we can generate moves quickly (for some definition of quickly), we need to **search** through them to find the best one and **evaluate** the resulting positions.
 Since chess is a zero-sum two-player game, we can simply **assign each position a score** (white is positive, black is negative) based on things like piece positions, counts, etc., and always pick the move that leads to the best score for the moving player.
 
+{: .tight-char}
 {% chess %}                     Current
                    (Max: +0.8)
                         │
@@ -397,6 +398,7 @@ Let's say that we we have just fully explored the move `A`, which was a regular 
 We then proceed to `B`, which is actually a blunder, and we find this out quickly after exploring the first opponent response, which is extremely strong.
 Since the opponent has a **strong response**, which if he were to play would put us in a **worse position than `A`**, we can **prune** the rest of `B` -- no matter what the other moves are, if the opponent picks this response, it will be worse for us than the output of `A`, so we won't bother exploring just how bad it is for us.
 
+{: .tight-char}
 {% chess %}                     Current
                         │
        ┌────────────────┼────────────────┐
@@ -408,7 +410,7 @@ Since the opponent has a **strong response**, which if he were to play would put
        │                │
   ┌────┼────┐      ┌────┼────┐
   ↓    │    │      ↓    │    │
-+0.8 +1.2 +0.9   -6.1   ?    ?   pruned
++0.8 +1.2 +0.9   -6.1   ?    ?   PRUNED
 {% endchess %}
 
 Formally, we track the **best values the players can achieve** in the particular position as \(\alpha\) (white) and \(\beta\) (black), and induce a cutoff if \(\beta \le \alpha\) -- this is something that can only happen if, at some earlier point of the search tree, we had a better option to pick.
@@ -417,6 +419,7 @@ We can see how these values get updated on the example we just covered -- first,
 Next, exploration of branch `B` is started, with the first move returning {% chess inline %}-6.1{% endchess %}, which is then used to update \(\beta\).
 At this point, we can see that \(\beta \le \alpha\), so we can prune the rest of the tree.
 
+{: .tight-char}
 {% chess %}                     Current
                         │
        ┌────────────────┼────────────────┐
@@ -456,6 +459,7 @@ This commit adds [**piece-square tables**](https://www.chessprogramming.org/Piec
 These are a set of tables that, for each piece, provide information about how much it is worth when being on a particular square.
 As an example, here is a pawn table:
 
+{: .tight-char}
 {% chess %}const PAWN_TABLE: [f32; 64] = [
     0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,
    +1.0, +1.0, +1.0, +1.0, +1.0, +1.0, +1.0, +1.0,
@@ -474,6 +478,7 @@ For pawns, these values try to incentivize center pawn pushes and promotions, an
 For certain pieces, we can take this one step further and have **two tables** -- one for "early" game and one for "late" game (for some suitable definitions of early and late, such as total remaining material), and interpolate between them based on the current game phase.
 This is typically done for the king, as we want him to be more protected in the early game, and more aggressive in the late game.
 
+{: .tight-char}
 {% chess %}const KING_EARLY_TABLE: [f32; 64] = [
    +0.2, +0.1, +0.1,  0.0,  0.0, +0.1, +0.1, +0.2,
    +0.2, +0.1, +0.1,  0.0,  0.0, +0.1, +0.1, +0.2,
@@ -576,7 +581,7 @@ I've added threefold repetition detection, but only for the first few [plys](htt
 In addition, I've improved the evaluation function to incentivize [passed pawns](https://www.chessprogramming.org/Passed_Pawn), penalize [doubled pawns](https://www.chessprogramming.org/Doubled_Pawn), and account for [piece mobility](https://www.chessprogramming.org/Mobility) by counting moves available to each piece from both sides.
 
 {: .commit-header}
-[`a28d291`](https://github.com/xiaoxiae/Prokopakop/commit/a28d291)
+[`2c1a839`](https://github.com/xiaoxiae/Prokopakop/commit/2c1a839)
 
 #### Killer Moves
 
@@ -598,7 +603,7 @@ pub struct KillerMoves {
 ```
 
 {: .commit-header}
-[`2c1a839`](https://github.com/xiaoxiae/Prokopakop/commit/2c1a839)
+[`a28d291`](https://github.com/xiaoxiae/Prokopakop/commit/a28d291)
 
 #### Delta Pruning
 
@@ -670,8 +675,25 @@ If we missjudge the position, and there is a line outside of this evaluation, th
 I'll end the article here (at least for now), since I'm still actively developing the engine, so waiting until it's complete would likely mean that I would take this to my grave.
 If people find this interesting, I'll keep updating it as more commits come in, but this is definitely more than enough to write an engine that will beat most chess players with relative ease.
 
-Here is a table of engine performance against previous versions.
-As you can see, it's getting smarter, and if we interpolate
+Here is a table of engine performance across different versions (**100** games between each pair), using [**fastchess**](https://github.com/Disservin/fastchess) to facilitate the matches via the [UCI protocol](https://official-stockfish.github.io/docs/stockfish-wiki/UCI-&-Commands.html) that the engine implements.
+The named versions are commits implementing things we described in the article, while [`master`](https://github.com/xiaoxiae/Prokopakop) ([~2000 on Lichess](https://lichess.org/@/prokopakop)) is the latest version that contains a bunch more that I couldn't cover.
+
+{: .tight-char}
+{% chess %}Name            nElo      +/-    Score     Draw                   Ptnml(0-2)
+----            ----      ---    -----     ----                   ----------
+master       +420.38    21.53    84.0%     9.2%    [  1,  16,  46, 177, 260]
+1fb64eb-4    +123.74    21.53    67.1%    18.8%    [ 48,  61,  94,  95, 202]
+10c64e9-3     +31.00    21.53    54.5%    23.6%    [ 86,  86, 118,  71, 139]
+2c1a839-2     -12.60    21.53    48.2%    31.4%    [124,  49, 157,  79,  91]
+6c4e7ee-1     -88.68    21.53    37.5%    25.4%    [162, 108, 127,  25,  78]
+bbef3be-0    -708.33    21.53     8.8%     4.4%    [349, 128,  22,   1,   0]
+{% endchess %}
+
+In the table, `Ptnml(0-2)` is short for [**pentanomial model**](https://www.chessprogramming.org/Match_Statistics#Statistical_Analysis), which is used to evaluate the engine performances.
+Engines are repeatedly played against each other for random opening positions, and in each case play **two games** (one with white, one with black).
+The results are then `[ll, dl, dd/wl, wd, ww]` for `w`in, `d`raw and `l`oss respectively, which is better for measuring the performances than a simple win/draw/loss ratio, especially for uneven positions
+
+That's it. Thanks for reading! ❤️
 
 [^all-you-need]: Okay, not quite; you also need to cast {% ihighlight rust %}Color::White as usize{% endihighlight %}, but that's ugly and an implementation detail, so I skipped it for the sake of clarity. You can get rid of it by implementing indexing for the array type, but I haven't done that because I'm lazy.
 

@@ -18,9 +18,16 @@ p.commit-header {
   }
 }
 
-.highlight .char {
+.char:not(.tight-char .char) {
   display: inline-block;
   width: 1.25ch;
+  text-align: center;
+  font-weight: normal;
+}
+
+.char {
+  display: inline-block;
+  width: 1ch;
   text-align: center;
   font-weight: normal;
 }
