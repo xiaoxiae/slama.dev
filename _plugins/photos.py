@@ -55,7 +55,8 @@ photo_metadata = {
         "instagram_url": "https://www.instagram.com/p/DENzwA_tUXL/"
     },
     "2024-11-20-paris-duck.jpg": {
-        "instagram_url": "https://www.instagram.com/p/DCmNLQtorUq/"
+        "instagram_url": "https://www.instagram.com/p/DCmNLQtorUq/",
+        "bluesky_url": "https://bsky.app/profile/tomas.slama.dev/post/3m2erkw5oxk2m"
     },
     "2024-11-17-paris-statue.jpg": {
         "instagram_url": "https://www.instagram.com/p/DCd84NEI4B9/"
@@ -67,7 +68,8 @@ photo_metadata = {
         "instagram_url": "https://www.instagram.com/p/DCM2X8YoDex/"
     },
     "2024-11-06-oviedo-crow.jpg": {
-        "instagram_url": "https://www.instagram.com/p/DCCBhNCoCfI/"
+        "instagram_url": "https://www.instagram.com/p/DCCBhNCoCfI/",
+        "bluesky_url": "https://bsky.app/profile/tomas.slama.dev/post/3m27r3uh2as2f"
     },
     "2024-11-03-oviedo-lake.jpg": {
         "instagram_url": "https://www.instagram.com/p/DB6AlhnIr1m/"
