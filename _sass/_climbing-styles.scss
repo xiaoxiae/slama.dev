@@ -1,12 +1,14 @@
-@import "variables";
+@use "sass:math";
 
-$light-link-color: #aaa;
-$dark-link-color: #888;
+@use "variables";
+
+variables.$light-link-color: #aaa;
+variables.$dark-link-color: #888;
 
 .climbing-video {
   border: 3px solid;
   display: inline-block;
-  margin-bottom: $line-spacing;
+  margin-bottom: variables.$line-spacing;
 
   video {
     width: 100%;
@@ -17,7 +19,7 @@ $dark-link-color: #888;
 
 ul.climbing-routes-list {
   li {
-    padding-bottom: $line-spacing / 4;
+    padding-bottom: variables.$line-spacing * 0.25;
   }
 }
 
@@ -199,10 +201,10 @@ ul.climbing-routes-list {
 .climbing-blue-text,
 .climbing-green-text,
 .climbing-black-text {
-  color: $dark-text-color;
+  color: variables.$dark-text-color;
 
   a {
-    color: $dark-text-color;
+    color: variables.$dark-text-color;
     &:hover {
       text-decoration: underline;
     }
@@ -216,10 +218,10 @@ ul.climbing-routes-list {
 .climbing-yellow-text,
 .climbing-christmas-text,
 .climbing-other-text {
-  color: $light-text-color;
+  color: variables.$light-text-color;
 
   a {
-    color: $light-text-color;
+    color: variables.$light-text-color;
     &:hover {
       text-decoration: underline;
     }
@@ -230,14 +232,14 @@ ul.climbing-routes-list {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  box-shadow: 0 0 16px 16px $light-background-color inset;
+  box-shadow: 0 0 16px 16px variables.$light-background-color inset;
 
-  background-color: rgba($light-background-color, 0.8);
+  background-color: rgba(variables.$light-background-color, 0.8);
   background-blend-mode: overlay;
 
   @media (prefers-color-scheme: dark) {
-    box-shadow: 0 0 16px 16px $dark-background-color inset;
-    background-color: rgba($dark-background-color, 1) !important;
+    box-shadow: 0 0 16px 16px variables.$dark-background-color inset;
+    background-color: rgba(variables.$dark-background-color, 1) !important;
   }
 }
 
@@ -265,7 +267,7 @@ ul.climbing-routes-list {
 .climbing-center {
   width: 48%;
 
-  @media (max-width: $small-screen-threshold) {
+  @media (max-width: variables.$small-screen-threshold) {
     width: 100%;
     float: none;
   }
@@ -273,37 +275,37 @@ ul.climbing-routes-list {
 
 .climbing-journal {
   li {
-    padding-bottom: $line-spacing / 1.25;
+    padding-bottom: math.div(variables.$line-spacing, 1.25);
     p {
-      padding-bottom: $line-spacing / 4;
+      padding-bottom: variables.$line-spacing * 0.25;
     }
   }
 }
 
 .climbing-journal-vids-only {
   li {
-    padding-bottom: $line-spacing / 3;
+    padding-bottom: math.div(variables.$line-spacing, 3);
   }
 }
 
 mark.climbing-diary-record {
-  border: 2px solid $light-text-color;
-  border-radius: $code-border-roundness;
-  padding: $code-padding / 2 $code-padding;
+  border: 2px solid variables.$light-text-color;
+  border-radius: variables.$code-border-roundness;
+  padding: variables.$code-padding * 0.5 variables.$code-padding;
   word-break: break-all;
 }
 
 mark.climbing {
-  color: $dark-text-color;
-  border: 2px solid $light-text-color;
-  border-radius: $code-border-roundness;
-  padding: $code-padding / 2 $code-padding;
+  color: variables.$dark-text-color;
+  border: 2px solid variables.$light-text-color;
+  border-radius: variables.$code-border-roundness;
+  padding: variables.$code-padding * 0.5 variables.$code-padding;
   background: none;
 }
 
 mark.climbing-low-angle {
   background: #96cdffff;
-  color: $light-text-color;
+  color: variables.$light-text-color;
 }
 mark.climbing-vertical {
   background: #60a3d9ff;
@@ -327,7 +329,7 @@ img {
   .zone:hover,
   .zone:active {
     fill-opacity: 1;
-    fill: $light-text-color;
+    fill: variables.$light-text-color;
   }
 }
 
@@ -338,11 +340,11 @@ img {
   border: 0;
   text-align: center;
   height: 1.5em;
-  background: $light-background-color;
-  color: $light-text-color;
+  background: variables.$light-background-color;
+  color: variables.$light-text-color;
 
   &::before {
-    background: $light-text-color;
+    background: variables.$light-text-color;
     content: "";
     // use the linear-gradient for the fading effect
     // use a solid background color for a solid bar
@@ -359,31 +361,32 @@ img {
     display: inline-block;
     padding: 0 1em;
     line-height: 1.5em;
-    background-color: $light-background-color;
+    background-color: variables.$light-background-color;
   }
 
-  margin-bottom: $line-spacing / 2;
+  margin-bottom: variables.$line-spacing * 0.5;
 
   // YUCK!
-  margin-top: -$line-spacing - $line-spacing / 2 + $line-spacing / 4;
+  margin-top: -(variables.$line-spacing) - variables.$line-spacing * 0.5 + variables.$line-spacing *
+    0.25;
 }
 
 @media (prefers-color-scheme: dark) {
   .hr-text {
-    background: $dark-background-color;
-    color: $dark-text-color;
+    background: variables.$dark-background-color;
+    color: variables.$dark-text-color;
 
     &::before {
-      background: $dark-text-color;
+      background: variables.$dark-text-color;
     }
     &::after {
-      background-color: $dark-background-color;
+      background-color: variables.$dark-background-color;
     }
   }
 }
 
 ul.hfill:nth-child(2n) {
-  background-color: $light-nav-background-color;
+  background-color: variables.$light-nav-background-color;
 }
 
 ul.hfill {
@@ -393,16 +396,16 @@ ul.hfill {
   padding-left: 0;
 
   li {
-    padding-bottom: $line-spacing / 6;
+    padding-bottom: math.div(variables.$line-spacing, 6);
   }
 
   li:nth-child(2n) {
-    padding-top: $line-spacing / 5;
-    line-height: $line-height * 1.3;
+    padding-top: variables.$line-spacing * 0.2;
+    line-height: variables.$line-height * 1.3;
   }
 
   display: block;
-  padding-bottom: $line-spacing / 5;
+  padding-bottom: variables.$line-spacing * 0.2;
 }
 
 .climbing-note {
@@ -416,7 +419,7 @@ p.climbing-training {
 
 p + ul {
   li {
-    padding-bottom: $line-spacing / 4 !important;
+    padding-bottom: variables.$line-spacing * 0.25 !important;
   }
 }
 

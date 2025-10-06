@@ -1,12 +1,12 @@
-@import "variables";
+@use "variables";
 
 .video-thumbnail {
   float: right;
-  margin-left: $line-spacing / 2;
+  margin-left: variables.$line-spacing * 0.5;
 
-  border: 1px solid $light-text-color;
+  border: 1px solid variables.$light-text-color;
   @media (prefers-color-scheme: dark) {
-    border: 1px solid $dark-text-color;
+    border: 1px solid variables.$dark-text-color;
   }
 
   filter: invert(0%);
@@ -19,11 +19,11 @@
   padding-bottom: 56.25%; /* 16:9 */
   height: 0;
   overflow: hidden;
-  margin-bottom: $line-spacing;
+  margin-bottom: variables.$line-spacing;
 
-  border: 3px solid $light-text-color;
+  border: 3px solid variables.$light-text-color;
   @media (prefers-color-scheme: dark) {
-    border: 3px solid $dark-text-color;
+    border: 3px solid variables.$dark-text-color;
   }
 }
 
@@ -36,7 +36,7 @@
 }
 
 details {
-  margin-top: -$line-spacing;
+  margin-top: -(variables.$line-spacing);
 
   summary {
     text-align: left;
@@ -46,7 +46,7 @@ details {
   }
 
   pre {
-    margin: $line-spacing;
+    margin: variables.$line-spacing;
     white-space: pre-line;
   }
 }

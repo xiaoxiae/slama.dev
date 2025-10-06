@@ -1,5 +1,9 @@
-@import "variables";
-@import "hacks";
+@use "sass:color";
+
+@use "sass:math";
+
+@use "variables";
+@use "hacks";
 
 * {
   margin: 0;
@@ -13,9 +17,9 @@ del {
 }
 
 @font-face {
-  font-family: $serif-font;
+  font-family: variables.$serif-font;
   src:
-    local($serif-font),
+    local(variables.$serif-font),
     url("/assets/css/fonts/FiraSans-Light.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
@@ -23,9 +27,9 @@ del {
 }
 
 @font-face {
-  font-family: $serif-font;
+  font-family: variables.$serif-font;
   src:
-    local($serif-font),
+    local(variables.$serif-font),
     url("/assets/css/fonts/FiraSans-Medium.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
@@ -33,9 +37,9 @@ del {
 }
 
 @font-face {
-  font-family: $monospaced-font;
+  font-family: variables.$monospaced-font;
   src:
-    local($monospaced-font),
+    local(variables.$monospaced-font),
     url("/assets/css/fonts/FiraMono-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
@@ -43,9 +47,9 @@ del {
 }
 
 @font-face {
-  font-family: $monospaced-font;
+  font-family: variables.$monospaced-font;
   src:
-    local($monospaced-font),
+    local(variables.$monospaced-font),
     url("/assets/css/fonts/FiraMono-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
@@ -54,15 +58,15 @@ del {
 
 // website content spacing
 .content {
-  max-width: $website-size;
+  max-width: variables.$website-size;
   margin: auto;
-  padding-left: $website-padding;
-  padding-right: $website-padding;
+  padding-left: variables.$website-padding;
+  padding-right: variables.$website-padding;
 
   p {
     width: 100%;
 
-    @media not screen and (max-width: $small-screen-threshold) {
+    @media not screen and (max-width: variables.$small-screen-threshold) {
       text-align: justify;
       hyphens: auto;
     }
@@ -70,7 +74,7 @@ del {
 }
 
 .content-background {
-  background-color: $light-background-color;
+  background-color: variables.$light-background-color;
 
   flex: 1 0 auto;
 }
@@ -80,11 +84,11 @@ del {
 }
 
 .mono {
-  font-family: $monospaced-font, monospace;
+  font-family: variables.$monospaced-font, monospace;
 }
 
 .navigation {
-  padding: $navigation-padding / 2;
+  padding: variables.$navigation-padding * 0.5;
 
   li {
     display: inline-block;
@@ -96,17 +100,17 @@ del {
     padding-bottom: 0;
   }
 
-  background-color: $light-nav-background-color;
+  background-color: variables.$light-nav-background-color;
   text-align: center;
-  font-size: $navigation-size;
+  font-size: variables.$navigation-size;
 
-  @media (max-width: $tiny-screen-threshold) {
+  @media (max-width: variables.$tiny-screen-threshold) {
     font-size: 100%;
   }
 
   .navigation-separator {
-    margin-left: $navigation-item-spacing / 2;
-    margin-right: $navigation-item-spacing / 2;
+    margin-left: variables.$navigation-item-spacing * 0.5;
+    margin-right: variables.$navigation-item-spacing * 0.5;
 
     &::before {
       content: " ";
@@ -115,8 +119,8 @@ del {
 }
 
 .navigation-background {
-  background-color: $light-background-color;
-  padding-bottom: $navigation-padding;
+  background-color: variables.$light-background-color;
+  padding-bottom: variables.$navigation-padding;
 }
 
 .current-page-item {
@@ -124,18 +128,18 @@ del {
 }
 
 .header {
-  padding: $header-padding $website-padding;
+  padding: variables.$header-padding variables.$website-padding;
   text-align: center;
 
   a,
   h1 {
-    font-size: $title-size;
+    font-size: variables.$title-size;
 
-    @media (max-width: $tiny-screen-threshold) {
-      font-size: $small-title-size;
+    @media (max-width: variables.$tiny-screen-threshold) {
+      font-size: variables.$small-title-size;
     }
 
-    font-family: $monospaced-font, monospace;
+    font-family: variables.$monospaced-font, monospace;
     padding-bottom: 0;
   }
 }
@@ -155,11 +159,11 @@ del {
 }
 
 .post-attributes {
-  @media (max-width: $small-screen-threshold) {
+  @media (max-width: variables.$small-screen-threshold) {
     font-size: 80%;
 
-    padding-left: $line-spacing / 3;
-    padding-right: $line-spacing / 3;
+    padding-left: math.div(variables.$line-spacing, 3);
+    padding-right: math.div(variables.$line-spacing, 3);
   }
 }
 
@@ -168,25 +172,25 @@ pre.highlight {
 }
 
 pre.vanilla {
-  margin-bottom: $line-spacing;
+  margin-bottom: variables.$line-spacing;
 }
 
 .highlighter-rouge {
   pre {
-    padding: $code-padding;
+    padding: variables.$code-padding;
   }
 
-  border-radius: $code-border-roundness;
-  padding: $code-padding / 2 $code-padding;
-  margin-bottom: $line-spacing;
+  border-radius: variables.$code-border-roundness;
+  padding: variables.$code-padding * 0.5 variables.$code-padding;
+  margin-bottom: variables.$line-spacing;
 
   font-variant-ligatures: none;
 }
 
 .code-summary {
-  padding-top: $line-spacing / 4;
-  padding-bottom: $line-spacing / 4;
-  border-radius: $code-border-roundness;
+  padding-top: variables.$line-spacing * 0.25;
+  padding-bottom: variables.$line-spacing * 0.25;
+  border-radius: variables.$code-border-roundness;
 }
 
 .left {
@@ -223,7 +227,7 @@ pre.vanilla {
   margin-top: 0;
 
   li {
-    margin-bottom: $line-spacing;
+    margin-bottom: variables.$line-spacing;
   }
 }
 
@@ -246,10 +250,10 @@ pre.vanilla {
 
 .no-link-color {
   a {
-    color: $light-text-color;
+    color: variables.$light-text-color;
 
     @media (prefers-color-scheme: dark) {
-      color: $dark-text-color;
+      color: variables.$dark-text-color;
     }
   }
 }
@@ -272,28 +276,28 @@ span.brr-5 {
 
 #markdown-toc {
   max-width: 30%;
-  font-size: $toc-size;
+  font-size: variables.$toc-size;
   margin-top: 0;
-  margin-left: $line-spacing;
-  margin-bottom: $line-spacing;
-  padding-top: $line-spacing / 2;
-  padding-right: $line-spacing;
-  padding-bottom: $line-spacing / 2;
+  margin-left: variables.$line-spacing;
+  margin-bottom: variables.$line-spacing;
+  padding-top: variables.$line-spacing * 0.5;
+  padding-right: variables.$line-spacing;
+  padding-bottom: variables.$line-spacing * 0.5;
   float: right;
-  background-color: darken($light-background-color, 6%);
+  background-color: color.adjust(variables.$light-background-color, $lightness: -6%, $space: hsl);
 
   @media (prefers-color-scheme: dark) {
-    background-color: darken($dark-background-color, 6%);
+    background-color: color.adjust(variables.$dark-background-color, $lightness: -6%, $space: hsl);
   }
 
-  @media (max-width: $small-screen-threshold) {
+  @media (max-width: variables.$small-screen-threshold) {
     float: none;
     margin-left: 0;
     max-width: 100%;
   }
 
   border: 2px solid;
-  border-radius: $code-border-roundness;
+  border-radius: variables.$code-border-roundness;
 }
 
 body,
@@ -302,19 +306,19 @@ html {
 }
 
 body {
-  font-family: $serif-font, sans-serif;
-  line-height: $line-height;
+  font-family: variables.$serif-font, sans-serif;
+  line-height: variables.$line-height;
 
   display: flex;
   flex-direction: column;
 }
 
 .force-spacing {
-  margin-bottom: $line-spacing / 2;
+  margin-bottom: variables.$line-spacing * 0.5;
 }
 
 .post-metadata {
-  font-size: $footer-size;
+  font-size: variables.$footer-size;
 }
 
 .post-title {
@@ -325,7 +329,7 @@ blockquote {
   p {
     border-left: 1px solid;
     padding-left: 15px;
-    padding-bottom: $line-spacing / 2;
+    padding-bottom: variables.$line-spacing * 0.5;
     margin-bottom: 0px;
 
     // otherwise it exenteds from the page...
@@ -336,7 +340,7 @@ blockquote {
 
   p:last-child {
     padding-bottom: 0;
-    margin-bottom: $line-spacing;
+    margin-bottom: variables.$line-spacing;
   }
 }
 
@@ -347,7 +351,7 @@ blockquote.no-italic {
 }
 
 details {
-  padding-bottom: $line-spacing;
+  padding-bottom: variables.$line-spacing;
 
   summary {
     text-align: center;
@@ -359,8 +363,8 @@ details {
 
 ul,
 ol {
-  padding-left: $list-item-left-padding;
-  padding-bottom: $line-spacing;
+  padding-left: variables.$list-item-left-padding;
+  padding-bottom: variables.$line-spacing;
 }
 
 ol,
@@ -381,12 +385,12 @@ ol ol {
 
 p + ul,
 p + ol {
-  margin-top: -$line-spacing / 4 * 3;
+  margin-top: -(variables.$line-spacing) * 0.25 * 3;
 }
 
 p,
 hr {
-  margin-bottom: $line-spacing;
+  margin-bottom: variables.$line-spacing;
 }
 
 h2,
@@ -398,24 +402,24 @@ h6 {
 }
 
 h2 {
-  padding-bottom: $h2-spacing;
-  font-size: $h2-size;
+  padding-bottom: variables.$h2-spacing;
+  font-size: variables.$h2-size;
 }
 h3 {
-  padding-bottom: $h3-spacing;
-  font-size: $h3-size;
+  padding-bottom: variables.$h3-spacing;
+  font-size: variables.$h3-size;
 }
 h4 {
-  padding-bottom: $h4-spacing;
-  font-size: $h4-size;
+  padding-bottom: variables.$h4-spacing;
+  font-size: variables.$h4-size;
 }
 h5 {
-  padding-bottom: $h5-spacing;
-  font-size: $h5-size;
+  padding-bottom: variables.$h5-spacing;
+  font-size: variables.$h5-size;
 }
 h6 {
-  padding-bottom: $h6-spacing;
-  font-size: $h6-size;
+  padding-bottom: variables.$h6-spacing;
+  font-size: variables.$h6-size;
 }
 
 img,
@@ -444,11 +448,11 @@ figure {
     font-style: italic;
   }
 
-  margin-bottom: $line-spacing;
+  margin-bottom: variables.$line-spacing;
 }
 
 code {
-  font-family: $monospaced-font, monospace;
+  font-family: variables.$monospaced-font, monospace;
 
   // reduced tab size to 4
   tab-size: 4;
@@ -471,19 +475,19 @@ table {
     border-spacing: 0;
   }
 
-  border-spacing: $line-spacing / 2 $line-spacing / 3;
+  border-spacing: variables.$line-spacing * 0.5 math.div(variables.$line-spacing, 3);
 
   td,
   th {
-    padding: 0 $line-spacing / 2;
+    padding: 0 variables.$line-spacing * 0.5;
   }
 
-  @media (max-width: $small-screen-threshold) {
-    border-spacing: $line-spacing / 4 $line-spacing / 5;
+  @media (max-width: variables.$small-screen-threshold) {
+    border-spacing: variables.$line-spacing * 0.25 variables.$line-spacing * 0.2;
 
     td,
     th {
-      padding: 0 $line-spacing / 3;
+      padding: 0 math.div(variables.$line-spacing, 3);
     }
   }
 
@@ -493,19 +497,19 @@ table {
 
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: $line-spacing;
+  margin-bottom: variables.$line-spacing;
 }
 
 footer {
   text-align: center;
-  padding: $header-padding $website-padding;
+  padding: variables.$header-padding variables.$website-padding;
 
   p {
-    margin-bottom: $line-spacing / 2;
+    margin-bottom: variables.$line-spacing * 0.5;
   }
 
   p + p {
-    margin-bottom: $line-spacing / 4;
+    margin-bottom: variables.$line-spacing * 0.25;
   }
 
   .footer-multiline {
@@ -513,10 +517,10 @@ footer {
     line-height: 0.9;
   }
 
-  background-color: $light-header-background-color;
+  background-color: variables.$light-header-background-color;
 
   br {
-    margin-bottom: $line-spacing / 4;
+    margin-bottom: variables.$line-spacing * 0.25;
   }
 
   flex-shrink: 0;
@@ -524,10 +528,10 @@ footer {
 
 .footnotes {
   border-top: 1px solid;
-  padding-top: $line-spacing / 4;
+  padding-top: variables.$line-spacing * 0.25;
   ol {
     li:not(:last-child) {
-      padding-bottom: $line-spacing / 2;
+      padding-bottom: variables.$line-spacing * 0.5;
     }
   }
 }
@@ -565,17 +569,17 @@ footer {
 }
 
 .spacer {
-  padding-bottom: $line-spacing;
+  padding-bottom: variables.$line-spacing;
 }
 
 .vspace {
-  padding-left: $line-spacing / 3;
-  padding-right: $line-spacing / 3;
+  padding-left: math.div(variables.$line-spacing, 3);
+  padding-right: math.div(variables.$line-spacing, 3);
 }
 
 .tiny-vspace {
-  padding-left: $line-spacing / 12;
-  padding-right: $line-spacing / 12;
+  padding-left: math.div(variables.$line-spacing, 12);
+  padding-right: math.div(variables.$line-spacing, 12);
 }
 
 .quarter-visible {
@@ -585,7 +589,7 @@ footer {
 .hide-when-large {
   display: none;
 
-  @media (max-width: $small-screen-threshold) {
+  @media (max-width: variables.$small-screen-threshold) {
     display: inline;
   }
 }
@@ -595,29 +599,29 @@ footer {
 }
 
 .box {
-  padding: $line-spacing / 2;
+  padding: variables.$line-spacing * 0.5;
   border: 1px solid;
 }
 
 .space-around {
-  padding: $line-spacing / 4;
+  padding: variables.$line-spacing * 0.25;
 }
 
 // right floats
 .rightFloatBox {
   max-width: 30%;
-  font-size: $toc-size;
+  font-size: variables.$toc-size;
   margin-top: 0;
-  margin-left: $line-spacing / 2;
-  padding: $line-spacing / 2;
+  margin-left: variables.$line-spacing * 0.5;
+  padding: variables.$line-spacing * 0.5;
   float: right;
 
-  @media (max-width: $small-screen-threshold) {
+  @media (max-width: variables.$small-screen-threshold) {
     margin-left: auto;
     margin-right: auto;
     float: none;
     max-width: 100%;
-    margin-bottom: $line-spacing;
+    margin-bottom: variables.$line-spacing;
   }
 
   // no bottom spacing of the last element in the box
@@ -631,15 +635,15 @@ footer {
 
 /* LIGHT COLOR THEME */
 body {
-  color: $light-text-color;
-  background-color: $light-header-background-color;
+  color: variables.$light-text-color;
+  background-color: variables.$light-header-background-color;
 }
 
 a {
-  color: $light-link-color;
+  color: variables.$light-link-color;
 
   &:hover {
-    color: $light-text-color;
+    color: variables.$light-text-color;
     text-decoration: underline;
   }
 }
@@ -651,31 +655,35 @@ a[href^="#"]:not(.footnote):not(.reversefootnote):not(#markdown-toc a)::before {
 }
 
 hr {
-  border: 1px solid $light-text-color;
-  background: $light-text-color;
+  border: 1px solid variables.$light-text-color;
+  background: variables.$light-text-color;
 }
 
 .current-page-item,
 .header {
   a {
-    color: $light-text-color;
+    color: variables.$light-text-color;
   }
 }
 
 .header {
-  background-color: $light-header-background-color;
+  background-color: variables.$light-header-background-color;
 }
 
 .highlight,
 .highlighter-rouge {
   clear: both;
-  background-color: $light-code-background-color;
-  border-color: $light-code-background-color;
+  background-color: variables.$light-code-background-color;
+  border-color: variables.$light-code-background-color;
 }
 
 .code-summary {
-  background-color: darken($light-code-background-color, 8%);
-  border-color: darken($light-code-background-color, 8%);
+  background-color: color.adjust(
+    variables.$light-code-background-color,
+    $lightness: -8%,
+    $space: hsl
+  );
+  border-color: color.adjust(variables.$light-code-background-color, $lightness: -8%, $space: hsl);
 }
 
 .highlight {
@@ -903,9 +911,9 @@ hr {
 }
 
 a.secret {
-  color: $light-text-color;
+  color: variables.$light-text-color;
   &:hover {
-    color: $light-text-color;
+    color: variables.$light-text-color;
     text-decoration: none;
   }
 }
@@ -913,8 +921,8 @@ a.secret {
 /* DARK COLOR THEME */
 @media (prefers-color-scheme: dark) {
   body {
-    color: $dark-text-color;
-    background-color: $dark-header-background-color;
+    color: variables.$dark-text-color;
+    background-color: variables.$dark-header-background-color;
   }
 
   // update image colors appropriately
@@ -930,53 +938,57 @@ a.secret {
   }
 
   a {
-    color: $dark-link-color;
+    color: variables.$dark-link-color;
     &:hover {
-      color: $dark-text-color;
+      color: variables.$dark-text-color;
     }
   }
 
   hr {
-    border: 1px solid $dark-text-color;
-    background: $dark-text-color;
+    border: 1px solid variables.$dark-text-color;
+    background: variables.$dark-text-color;
   }
 
   .current-page-item,
   .header {
     a {
-      color: $dark-text-color;
+      color: variables.$dark-text-color;
     }
   }
 
   .header {
-    background-color: $dark-header-background-color;
+    background-color: variables.$dark-header-background-color;
   }
 
   .highlight,
   .highlighter-rouge {
-    background-color: $dark-code-background-color;
-    border-color: $dark-code-background-color;
+    background-color: variables.$dark-code-background-color;
+    border-color: variables.$dark-code-background-color;
   }
 
   .code-summary {
-    background-color: lighten($dark-code-background-color, 6%);
-    border-color: lighten($dark-code-background-color, 6%);
+    background-color: color.adjust(
+      variables.$dark-code-background-color,
+      $lightness: 6%,
+      $space: hsl
+    );
+    border-color: color.adjust(variables.$dark-code-background-color, $lightness: 6%, $space: hsl);
   }
 
   .navigation {
-    background-color: $dark-nav-background-color;
+    background-color: variables.$dark-nav-background-color;
   }
 
   .navigation-background {
-    background-color: $dark-background-color;
+    background-color: variables.$dark-background-color;
   }
 
   footer {
-    background-color: $dark-header-background-color;
+    background-color: variables.$dark-header-background-color;
   }
 
   .content-background {
-    background-color: $dark-background-color;
+    background-color: variables.$dark-background-color;
   }
 
   .highlight {
@@ -1172,9 +1184,9 @@ a.secret {
   }
 
   a.secret {
-    color: $dark-text-color;
+    color: variables.$dark-text-color;
     &:hover {
-      color: $dark-text-color;
+      color: variables.$dark-text-color;
     }
   }
 }

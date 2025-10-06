@@ -1,9 +1,9 @@
-@import "variables";
+@use "variables";
 
 p.commit-header {
   font-variant: normal;
-  padding-top: $line-spacing;
-  padding-bottom: 2 * $line-spacing;
+  padding-top: variables.$line-spacing;
+  padding-bottom: 2 * variables.$line-spacing;
   margin-bottom: 0;
   text-align: center;
   display: flex;

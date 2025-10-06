@@ -1,4 +1,6 @@
-@import "variables";
+@use "sass:math";
+
+@use "variables";
 
 .cv {
   table {
@@ -7,7 +9,7 @@
     // line between left and right column
     tr {
       td {
-        border-left: 1px solid $light-text-color;
+        border-left: 1px solid variables.$light-text-color;
       }
       td:first-child {
         border-left: 0 solid;
@@ -27,7 +29,7 @@
 
       // space between border line and
       p:first-child {
-        padding-top: $line-spacing / 3;
+        padding-top: math.div(variables.$line-spacing, 3);
       }
     }
 
@@ -39,8 +41,8 @@
       }
     }
 
-    border-top: 2px solid $light-text-color;
-    border-bottom: 0 solid $light-text-color;
+    border-top: 2px solid variables.$light-text-color;
+    border-bottom: 0 solid variables.$light-text-color;
   }
 }
 
@@ -49,12 +51,12 @@
     table {
       tr {
         td {
-          border-left: 1px solid $dark-text-color;
+          border-left: 1px solid variables.$dark-text-color;
         }
       }
 
-      border-top: 2px solid $dark-text-color;
-      border-bottom: 0 solid $dark-text-color;
+      border-top: 2px solid variables.$dark-text-color;
+      border-bottom: 0 solid variables.$dark-text-color;
     }
   }
 }

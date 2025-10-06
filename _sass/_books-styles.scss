@@ -1,8 +1,8 @@
-@import "variables";
+@use "variables";
 
 .book {
   > li {
-    padding-bottom: $line-spacing;
+    padding-bottom: variables.$line-spacing;
   }
   > li:last-child {
     padding-bottom: 0;

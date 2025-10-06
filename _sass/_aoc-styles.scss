@@ -1,4 +1,4 @@
-@import "variables";
+@use "variables";
 
 .gold {
   color: #ffff66;
@@ -36,13 +36,13 @@
 .aoc {
   width: fit-content;
   margin: auto;
-  margin-bottom: $line-spacing;
+  margin-bottom: variables.$line-spacing;
 
   overflow: clip;
 
-  background-color: $dark-code-background-color !important;
+  background-color: variables.$dark-code-background-color !important;
   div > pre {
-    background-color: $dark-code-background-color !important;
+    background-color: variables.$dark-code-background-color !important;
     overflow: clip;
   }
 }

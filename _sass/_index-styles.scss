@@ -1,0 +1,105 @@
+@use "sass:color";
+
+@use "sass:math";
+
+@use "variables";
+
+.portrait {
+  filter: brightness(110%);
+
+  @media (prefers-color-scheme: light) {
+    filter: brightness(140%);
+  }
+
+  img {
+    float: right !important;
+    width: 250px;
+    margin-left: variables.$line-spacing * 0.25;
+    margin-bottom: variables.$line-spacing * 0.25;
+    filter: drop-shadow(0 0 0.1rem variables.$dark-header-background-color);
+
+    @media (prefers-color-scheme: light) {
+      filter: drop-shadow(0 0 0.1rem variables.$dark-nav-background-color);
+    }
+
+    @media (max-width: math.div(variables.$small-screen-threshold, 1.05)) {
+      display: none;
+    }
+  }
+}
+
+$light-alternate-index-color-1: color.adjust(
+  variables.$light-background-color,
+  $lightness: -10%,
+  $space: hsl
+);
+$light-alternate-index-color-2: color.adjust(
+  variables.$light-background-color,
+  $lightness: -3%,
+  $space: hsl
+);
+
+ul.hfill:nth-child(2n + 1) {
+  background-color: $light-alternate-index-color-1;
+
+  code {
+    background-color: $light-alternate-index-color-2;
+  }
+}
+ul.hfill:nth-child(2n) {
+  background-color: $light-alternate-index-color-2;
+
+  code {
+    background-color: $light-alternate-index-color-1;
+  }
+}
+
+$dark-alternate-index-color-1: color.adjust(
+  variables.$dark-background-color,
+  $lightness: -10%,
+  $space: hsl
+);
+$dark-alternate-index-color-2: color.adjust(
+  variables.$dark-background-color,
+  $lightness: -3%,
+  $space: hsl
+);
+
+@media (prefers-color-scheme: dark) {
+  ul.hfill:nth-child(2n + 1) {
+    background-color: $dark-alternate-index-color-1;
+
+    code {
+      background-color: $dark-alternate-index-color-2;
+    }
+  }
+  ul.hfill:nth-child(2n) {
+    background-color: $dark-alternate-index-color-2;
+
+    code {
+      background-color: $dark-alternate-index-color-1;
+    }
+  }
+}
+
+ul.hfill {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  padding-left: variables.$line-spacing * 0.2;
+  padding-right: variables.$line-spacing * 0.2;
+  margin-top: math.div(variables.$line-spacing, 3);
+  margin-bottom: math.div(variables.$line-spacing, 3);
+  padding-top: variables.$line-spacing * 0.2;
+  padding-bottom: variables.$line-spacing * 0.2;
+  border-radius: variables.$line-spacing * 0.2;
+
+  li:nth-child(2) {
+    text-align: right;
+    padding-left: variables.$line-spacing;
+
+    @media (max-width: variables.$small-screen-threshold) {
+      padding-left: 0;
+    }
+  }
+}
