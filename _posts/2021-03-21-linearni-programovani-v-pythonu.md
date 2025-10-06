@@ -31,7 +31,7 @@ Za jeden chleba získá pekárna \(20\ \mathrm{Kč}\), za housku \(2\ \mathrm{K�
 Pekárna se snaží vydělat co nejvíce -- kolik chlebů, housek, baget a koblih má ze surovin upéci?
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary>Zdrojový kód</summary>
 	<div markdown="1">
 ```py
 {% include linearni-programovani-v-pythonu/pekarna.py %}```
@@ -39,7 +39,7 @@ Pekárna se snaží vydělat co nejvíce -- kolik chlebů, housek, baget a kob
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary>Výpis</summary>
 	<div markdown="1">
 ```
 {% include linearni-programovani-v-pythonu/pekarna.out %}```
@@ -50,7 +50,7 @@ Pekárna se snaží vydělat co nejvíce -- kolik chlebů, housek, baget a kob
 Pro \(n\) předmětů, kde \(i\)-tý má nějakou váhu \(v_i\) a cenu \(c_i\), máme batoh s danou nosností \(V\) a my se do něj snažíme naskládat předměty tak, abychom maximalizovali celkovou cenu předmětů v batohu.
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary>Zdrojový kód</summary>
 	<div markdown="1">
 ```py
 {% include linearni-programovani-v-pythonu/batoh.py %}```
@@ -58,7 +58,7 @@ Pro \(n\) předmětů, kde \(i\)-tý má nějakou váhu \(v_i\) a cenu \(c_i\),
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary>Výpis</summary>
 	<div markdown="1">
 ```
 {% include linearni-programovani-v-pythonu/batoh.out %}```
@@ -70,7 +70,7 @@ Pro \(n\) předmětů, kde \(i\)-tý má nějakou váhu \(v_i\) a cenu \(c_i\),
 Máme-li \(n\) bodů \((x_1 , y_1 ), \ldots, (x_n , y_n )\) v rovině, tak najděte přímku \(\left\{x \in \mathbb{R}: y = ax + b\right\}\), která minimalizuje součet vertikálních vzdáleností bodů od výsledné přímky. Vertikální vzdálenost je vzdálenost měřena pouze na ose \(y\). Pro jednoduchost předpokládejte, že výsledná přímka není kolmá na osu \(x\).
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary>Zdrojový kód</summary>
 	<div markdown="1">
 ```py
 {% include linearni-programovani-v-pythonu/prokladani.py %}```
@@ -78,7 +78,7 @@ Máme-li \(n\) bodů \((x_1 , y_1 ), \ldots, (x_n , y_n )\) v rovině, tak najd
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary>Výpis</summary>
 	<div markdown="1">
 ```
 {% include linearni-programovani-v-pythonu/prokladani.out %}```
@@ -90,7 +90,7 @@ Máme-li \(n\) bodů \((x_1 , y_1 ), \ldots, (x_n , y_n )\) v rovině, tak najd
 Nalezněte minimální \(k\) takové, že vrcholy grafu \(G\) lze korektně obarvit \(k\) barvami.
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary>Zdrojový kód</summary>
 	<div markdown="1">
 ```py
 {% include linearni-programovani-v-pythonu/obarvitelnost.py %}```
@@ -98,7 +98,7 @@ Nalezněte minimální \(k\) takové, že vrcholy grafu \(G\) lze korektně oba
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary>Výpis</summary>
 	<div markdown="1">
 ```
 {% include linearni-programovani-v-pythonu/obarvitelnost.out %}```
@@ -110,7 +110,7 @@ Nalezněte minimální \(k\) takové, že vrcholy grafu \(G\) lze korektně oba
 Nalezněte minimální \(k\) takové, že hrany grafu \(G\) lze korektně obarvit \(k\) barvami.
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary>Zdrojový kód</summary>
 	<div markdown="1">
 ```py
 {% include linearni-programovani-v-pythonu/obarvitelnost2.py %}```
@@ -118,7 +118,7 @@ Nalezněte minimální \(k\) takové, že hrany grafu \(G\) lze korektně obarv
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary>Výpis</summary>
 	<div markdown="1">
 ```
 {% include linearni-programovani-v-pythonu/obarvitelnost2.out %}```
@@ -129,7 +129,7 @@ Nalezněte minimální \(k\) takové, že hrany grafu \(G\) lze korektně obarv
 Pro daný ohodnocený neorientovaný graf \(G = (V, E, f)\), kde \(f : E \mapsto \mathbb{R}^+_0\), chceme najít Hamiltonovskou kružnici v \(G\) s nejmenším ohodnocením.
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary>Zdrojový kód</summary>
 	<div markdown="1">
 ```py
 {% include linearni-programovani-v-pythonu/tsp.py %}```
@@ -137,7 +137,7 @@ Pro daný ohodnocený neorientovaný graf \(G = (V, E, f)\), kde \(f : E \mapsto
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary>Výpis</summary>
 	<div markdown="1">
 ```
 {% include linearni-programovani-v-pythonu/tsp.out %}```
@@ -148,7 +148,7 @@ Pro daný ohodnocený neorientovaný graf \(G = (V, E, f)\), kde \(f : E \mapsto
 Zjistěte, do kolika nejméně krabic lze rozdělit množinu \(n\) předmětů s vahami \(w_1, \ldots, w_i\). Do každého koše lze umístit předměty o celkové váze nejvýše \(C\).
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary>Zdrojový kód</summary>
 	<div markdown="1">
 ```py
 {% include linearni-programovani-v-pythonu/bin.py %}```
@@ -156,7 +156,7 @@ Zjistěte, do kolika nejméně krabic lze rozdělit množinu \(n\) předmětů s
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary>Výpis</summary>
 	<div markdown="1">
 ```
 {% include linearni-programovani-v-pythonu/bin.out %}```
@@ -167,7 +167,7 @@ Zjistěte, do kolika nejméně krabic lze rozdělit množinu \(n\) předmětů s
 Zjistěte, zda množinu \(n\) předmětů s vahami \(w_1, \ldots, w_i\) jde rozdělit na dvě části tak, aby součty vah těchto částí byly stejné.
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary>Zdrojový kód</summary>
 	<div markdown="1">
 ```py
 {% include linearni-programovani-v-pythonu/partition.py %}```
@@ -175,7 +175,7 @@ Zjistěte, zda množinu \(n\) předmětů s vahami \(w_1, \ldots, w_i\) jde rozd
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary>Výpis</summary>
 	<div markdown="1">
 ```
 {% include linearni-programovani-v-pythonu/partition.out %}```
@@ -186,7 +186,7 @@ Zjistěte, zda množinu \(n\) předmětů s vahami \(w_1, \ldots, w_i\) jde rozd
 V Kocourkově je \(n\) pekáren a \(m\) obchodů. Každý den \(i\)-tá pekárna upeče \(p_i \in \mathbb{N}\) rohlíků \(n\) a \(j\)-tý obchod prodá \(o_j \in \mathbb{N}\) rohlíků, kde \(\sum_{i = 1}^{n} p_i = \sum_{j = 1}^{m} o_j\). Převoz jednoho rohlíku z \(i\)-té pekárny do \(j\)-tého obchodu stojí \(c_{ij}\) korun.
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary>Zdrojový kód</summary>
 	<div markdown="1">
 ```py
 {% include linearni-programovani-v-pythonu/ukol01-a.py %}```
@@ -194,7 +194,7 @@ V Kocourkově je \(n\) pekáren a \(m\) obchodů. Každý den \(i\)-tá pek
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary>Výpis</summary>
 	<div markdown="1">
 ```
 {% include linearni-programovani-v-pythonu/ukol01-a.out %}```
@@ -205,7 +205,7 @@ V Kocourkově je \(n\) pekáren a \(m\) obchodů. Každý den \(i\)-tá pek
 Praxe v Kocourkově ukázala, že když \(i\)-tá pekárna zásobuje \(j\)-tý obchod, tak musí pro tuto trasu zajistit logistiku, která je stojí \(l_{ij}\). Logistiku \(l_{ij} \ge 0\) je nutné platit pouze tehdy, když \(i\)-tá pekárna zásobuje \(j\)-tý obchod nenulovým počtem rohlíků, a její cena nezávisí na počtu převážených rohlíků. I nadále je nutné platit přepravné \(c_{ij}\). Zformulujte příslušnou úlohu LP.
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary>Zdrojový kód</summary>
 	<div markdown="1">
 ```py
 {% include linearni-programovani-v-pythonu/ukol01-b.py %}```
@@ -213,7 +213,7 @@ Praxe v Kocourkově ukázala, že když \(i\)-tá pekárna zásobuje \(j\
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary>Výpis</summary>
 	<div markdown="1">
 ```
 {% include linearni-programovani-v-pythonu/ukol01-b.out %}```
@@ -224,7 +224,7 @@ Praxe v Kocourkově ukázala, že když \(i\)-tá pekárna zásobuje \(j\
 Najděte co možná největší množinu vrcholů grafu takovou, že žádné dva nesdílejí hranu.
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary>Zdrojový kód</summary>
 	<div markdown="1">
 ```py
 {% include linearni-programovani-v-pythonu/max-independent-set.py %}```
@@ -232,7 +232,7 @@ Najděte co možná největší množinu vrcholů grafu takovou, že žádné dv
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary>Výpis</summary>
 	<div markdown="1">
 ```
 {% include linearni-programovani-v-pythonu/max-independent-set.out %}```
@@ -243,7 +243,7 @@ Najděte co možná největší množinu vrcholů grafu takovou, že žádné dv
 Najděte co možná nejmenší množinu vrcholů grafu takovou, že všechny hrany grafu obsahují alespoň jeden vrchol z této množiny.
 
 <details>
-	<summary class="code-summary">Zdrojový kód</summary>
+	<summary>Zdrojový kód</summary>
 	<div markdown="1">
 ```py
 {% include linearni-programovani-v-pythonu/min-vertex-cover.py %}```
@@ -251,7 +251,7 @@ Najděte co možná nejmenší množinu vrcholů grafu takovou, že všechny hra
 </details>
 
 <details>
-	<summary class="code-summary">Výpis</summary>
+	<summary>Výpis</summary>
 	<div markdown="1">
 ```
 {% include linearni-programovani-v-pythonu/min-vertex-cover.out %}```

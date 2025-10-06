@@ -165,13 +165,13 @@ for category, video_contents in videos:
 
         video_escaped = video.replace(r"|", r"\|")
 
-        if len(thumbnails) == 1 and not is_short:
-            result += f"\n[![Thumbnail for the '{video_escaped}' video](/videos/{video_slug}/thumbnail.webp){{: .video-thumbnail}}]({youtube_link})\n"
+        # if len(thumbnails) == 1 and not is_short:
+        #     result += f"\n[![Thumbnail for the '{video_escaped}' video](/videos/{video_slug}/thumbnail.webp){{: .video-thumbnail}}]({youtube_link})\n"
 
-        result += f"{date.strftime('%Y/%0m/%0d')} -- **{video}** [[YouTube]({youtube_link})]\n"
+        result += f"{date.strftime('%Y/%0m/%0d')} -- **{video}** [[YouTube]({youtube_link})]<br/>\n"
 
         description_rest = contents.split("\n\n", maxsplit=1)[1]
-        result += f"<details><summary><em>{description}</em></summary> <pre>{description_rest}</pre></details>\n"
+        result += f"_{description}_\n"
         result += "\n"
 
 

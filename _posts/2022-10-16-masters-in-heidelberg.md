@@ -3,7 +3,7 @@ title: Master's in Heidelberg
 category: "education"
 category_icon: /assets/category-icons/heidelberg.webp
 pdf: true
-excerpt: I, along with my lovely girlfriend, recently moved to Heidelberg to pursue our respective master's degrees (Computer Science and Cancer Biology). While Heidelberg is a beautiful city with great sights, interesting people and a pretty good bouldering gym, the process of becoming a European international student can be quite challenging. If you find yourself in a similar position (or are considering placing yourself in it), I hope this post will be useful to you, since it covers a number of the things we struggled with during the enrolment process and beyond.
+excerpt: Things we learned during our move to Heidelberg (Germany) for our master's degrees, including enrolment, housing, travel, torrenting, and more.
 ---
 
 - .
@@ -123,20 +123,20 @@ The text we usually sent, along with a **SCHUFA certificate** (which you can eit
 <!---MARKDOWN-->
 
 <details>
-	<summary class="code-summary">English</summary>
+	<summary>English</summary>
 	<div markdown="1">
 > Greetings,
-> 
+>
 > me and my girlfriend (both 22 years old) are starting our Master's degrees in Heidelberg and would be interested in the apartment. I will be studying Computer Science and she will be studying Cancer Biology. Since the semester starts quite soon, we'd like to move in as soon as possible, but the date is very much flexible.
-> 
+>
 > We're both from the Czech Republic and have been together for 8 years now. We're quiet and not very outgoing, mostly focusing on our studies and hobbies (rock climbing, dance). We don't smoke and have no pets.
-> 
+>
 > In terms of financing, we are fortunate to have the financial support of both of our parents, along with having a sizable amount of savings.
-> 
+>
 > If you think we'd be the right fit for the apartment, please let me know either through the website or by email (tomas@slama.dev) or phone (my phone number).
-> 
+>
 > Have a nice day and thank you in advance!
-> 
+>
 > Sincerely
 > T. Sláma
 </div>
@@ -145,17 +145,17 @@ The text we usually sent, along with a **SCHUFA certificate** (which you can eit
 <!---PDF
 
 > Greetings,
-> 
+>
 > me and my girlfriend (both 22 years old) are starting our Master's degrees in Heidelberg and would be interested in the apartment. I will be studying Computer Science and she will be studying Cancer Biology. Since the semester starts quite soon, we'd like to move in as soon as possible, but the date is very much flexible.
-> 
+>
 > We're both from the Czech Republic and have been together for 8 years now. We're quiet and not very outgoing, mostly focusing on our studies and hobbies (rock climbing, dance). We don't smoke and have no pets.
-> 
+>
 > In terms of financing, we are fortunate to have the financial support of both of our parents, along with having a sizable amount of savings.
-> 
+>
 > If you think we'd be the right fit for the apartment, please let me know either through the website or by email (tomas@slama.dev) or phone (my phone number).
-> 
+>
 > Have a nice day and thank you in advance!
-> 
+>
 > Sincerely
 > T. Sláma
 -->
@@ -167,20 +167,20 @@ The text we usually sent, along with a **SCHUFA certificate** (which you can eit
 
 <!---MARKDOWN-->
 <details>
-	<summary class="code-summary">German</summary>
+	<summary>German</summary>
 	<div markdown="1">
 > Schöne Grüße,
-> 
+>
 > ich und meine Freundin (beide 22 Jahre alt) beginnen unser Masterstudium in Heidelberg und hätten Interesse an der Wohnung. Ich werde Informatik studieren und sie wird Krebsbiologie studieren. Da das Semester ziemlich bald beginnt, würden wir gerne so schnell wie möglich einziehen, aber der Termin ist sehr flexibel.
-> 
+>
 > Wir kommen beide aus Tschechien und sind jetzt seit 8 Jahren zusammen. Wir sind ruhig und nicht sehr kontaktfreudig und konzentrieren uns hauptsächlich auf unser Studium und unsere Hobbys (Klettern, Tanzen). Wir rauchen nicht und haben keine Haustiere.
-> 
+>
 > In Bezug auf die Finanzierung haben wir das Glück, die finanzielle Unterstützung unserer beiden Eltern zu haben, zusammen mit einer beträchtlichen Summe an Ersparnissen.
-> 
+>
 > Wenn Sie der Meinung sind, dass wir für die Wohnung geeignet sind, lassen Sie es mich bitte entweder über die Website oder per E-Mail (tomas@slama.dev) oder Telefon (Meine Telefonnummer) wissen.
-> 
+>
 > Schönen Tag noch und danke im Voraus!
-> 
+>
 > Aufrichtig
 > T. Sláma
 </div>
@@ -189,17 +189,17 @@ The text we usually sent, along with a **SCHUFA certificate** (which you can eit
 <!---PDF
 
 > Schöne Grüße,
-> 
+>
 > ich und meine Freundin (beide 22 Jahre alt) beginnen unser Masterstudium in Heidelberg und hätten Interesse an der Wohnung. Ich werde Informatik studieren und sie wird Krebsbiologie studieren. Da das Semester ziemlich bald beginnt, würden wir gerne so schnell wie möglich einziehen, aber der Termin ist sehr flexibel.
-> 
+>
 > Wir kommen beide aus Tschechien und sind jetzt seit 8 Jahren zusammen. Wir sind ruhig und nicht sehr kontaktfreudig und konzentrieren uns hauptsächlich auf unser Studium und unsere Hobbys (Klettern, Tanzen). Wir rauchen nicht und haben keine Haustiere.
-> 
+>
 > In Bezug auf die Finanzierung haben wir das Glück, die finanzielle Unterstützung unserer beiden Eltern zu haben, zusammen mit einer beträchtlichen Summe an Ersparnissen.
-> 
+>
 > Wenn Sie der Meinung sind, dass wir für die Wohnung geeignet sind, lassen Sie es mich bitte entweder über die Website oder per E-Mail (tomas@slama.dev) oder Telefon (Meine Telefonnummer) wissen.
-> 
+>
 > Schönen Tag noch und danke im Voraus!
-> 
+>
 > Aufrichtig
 > T. Sláma
 

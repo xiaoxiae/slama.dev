@@ -1,5 +1,6 @@
 ---
 title: Do Not Vote Trump 2024
+excerpt: Don't vote for the orange insurrectionist fuck.
 ---
 
 - .
@@ -132,7 +133,3 @@ Quoting a [DailyMeal article](https://www.thedailymeal.com/entertain/donald-trum
 This man is a psychopath and should be jailed immediately.
 >
 >
-
-
-
-

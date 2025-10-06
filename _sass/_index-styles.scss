@@ -1,32 +1,6 @@
 @use "sass:color";
-
 @use "sass:math";
-
 @use "variables";
-
-.portrait {
-  filter: brightness(110%);
-
-  @media (prefers-color-scheme: light) {
-    filter: brightness(140%);
-  }
-
-  img {
-    float: right !important;
-    width: 250px;
-    margin-left: variables.$line-spacing * 0.25;
-    margin-bottom: variables.$line-spacing * 0.25;
-    filter: drop-shadow(0 0 0.1rem variables.$dark-header-background-color);
-
-    @media (prefers-color-scheme: light) {
-      filter: drop-shadow(0 0 0.1rem variables.$dark-nav-background-color);
-    }
-
-    @media (max-width: math.div(variables.$small-screen-threshold, 1.05)) {
-      display: none;
-    }
-  }
-}
 
 $light-alternate-index-color-1: color.adjust(
   variables.$light-background-color,
@@ -35,24 +9,9 @@ $light-alternate-index-color-1: color.adjust(
 );
 $light-alternate-index-color-2: color.adjust(
   variables.$light-background-color,
-  $lightness: -3%,
+  $lightness: -5%,
   $space: hsl
 );
-
-ul.hfill:nth-child(2n + 1) {
-  background-color: $light-alternate-index-color-1;
-
-  code {
-    background-color: $light-alternate-index-color-2;
-  }
-}
-ul.hfill:nth-child(2n) {
-  background-color: $light-alternate-index-color-2;
-
-  code {
-    background-color: $light-alternate-index-color-1;
-  }
-}
 
 $dark-alternate-index-color-1: color.adjust(
   variables.$dark-background-color,
@@ -61,27 +20,143 @@ $dark-alternate-index-color-1: color.adjust(
 );
 $dark-alternate-index-color-2: color.adjust(
   variables.$dark-background-color,
-  $lightness: -3%,
+  $lightness: -4%,
   $space: hsl
 );
 
-@media (prefers-color-scheme: dark) {
-  ul.hfill:nth-child(2n + 1) {
-    background-color: $dark-alternate-index-color-1;
+.post-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: variables.$line-spacing * 0.5 variables.$line-spacing * 0.6;
+  margin-top: math.div(variables.$line-spacing, 4);
+  margin-bottom: math.div(variables.$line-spacing, 4);
+  border-radius: variables.$line-spacing * 0.3;
+  cursor: pointer;
+
+  &:nth-child(2n + 1) {
+    background-color: $light-alternate-index-color-1;
 
     code {
-      background-color: $dark-alternate-index-color-2;
+      background-color: $light-alternate-index-color-2;
     }
   }
-  ul.hfill:nth-child(2n) {
-    background-color: $dark-alternate-index-color-2;
+
+  &:nth-child(2n) {
+    background-color: $light-alternate-index-color-2;
 
     code {
-      background-color: $dark-alternate-index-color-1;
+      background-color: $light-alternate-index-color-1;
     }
   }
 }
 
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: variables.$line-spacing * 0.8;
+}
+
+.post-title-row {
+  align-items: center;
+  gap: variables.$line-spacing * 0.3;
+  flex-wrap: wrap;
+  flex: 0 1 auto;
+
+  .icon {
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+
+  .category-tag {
+    opacity: 0.7;
+    font-size: 0.9em;
+  }
+
+  .post-icon {
+    position: relative;
+    z-index: 2;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .language-flag {
+    font-size: 0.9em;
+  }
+
+  .post-title-link {
+    .main-link {
+      text-decoration: none;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &.red {
+        color: #d32f2f;
+      }
+    }
+  }
+}
+
+.post-date {
+  flex-shrink: 0;
+  opacity: 0.8;
+  font-size: 0.9em;
+  margin-left: auto;
+  white-space: nowrap;
+  font-family: variables.$monospaced-font;
+}
+
+.post-excerpt {
+  margin-top: variables.$line-spacing * 0.3;
+  font-size: 0.8em;
+  opacity: 0.8;
+  line-height: 1.4;
+
+  @media (max-width: variables.$small-screen-threshold) {
+    padding-left: 0;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .post-item {
+    &:nth-child(2n + 1) {
+      background-color: $dark-alternate-index-color-1;
+
+      code {
+        background-color: $dark-alternate-index-color-2;
+      }
+    }
+
+    &:nth-child(2n) {
+      background-color: $dark-alternate-index-color-2;
+
+      code {
+        background-color: $dark-alternate-index-color-1;
+      }
+    }
+  }
+}
+
+// Backward compatibility for old ul.hfill if needed
 ul.hfill {
   display: flex;
   justify-content: space-between;

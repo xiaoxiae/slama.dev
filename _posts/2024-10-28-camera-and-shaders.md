@@ -7,6 +7,7 @@ css: motioncanvas photos manim
 redirect_from:
 - /motion-canvas/3/
 end: <a href="/motion-canvas/1/">Part 1</a>, <a href="/motion-canvas/2/">Part 2</a>, <strong>→ Part 3 ←</strong>
+excerpt: "Camera controls, and a glimpse into the wonderful world of shaders."
 ---
 
 - .

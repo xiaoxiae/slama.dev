@@ -9,13 +9,18 @@
 }
 
 button {
+  // Reset all browser defaults
+  all: unset;
+
+  // Reapply the styles we want
   cursor: pointer;
+  display: inline-block;
+  box-sizing: border-box;
 
   padding: variables.$line-spacing * 0.125 variables.$line-spacing * 0.25;
   border-radius: 3px;
 
   background-color: variables.$light-code-background-color;
-  border-color: variables.$light-code-background-color;
 
   color: variables.$light-text-color;
 
@@ -25,26 +30,15 @@ button {
       $lightness: -10%,
       $space: hsl
     );
-    border-color: color.adjust(
-      variables.$light-code-background-color,
-      $lightness: -10%,
-      $space: hsl
-    );
   }
 
   @media (prefers-color-scheme: dark) {
     background-color: variables.$dark-code-background-color;
-    border-color: variables.$dark-code-background-color;
 
     color: variables.$dark-text-color;
 
     &:hover {
       background-color: color.adjust(
-        variables.$dark-code-background-color,
-        $lightness: 10%,
-        $space: hsl
-      );
-      border-color: color.adjust(
         variables.$dark-code-background-color,
         $lightness: 10%,
         $space: hsl

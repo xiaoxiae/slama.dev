@@ -8,7 +8,7 @@ redirect_from:
 - /motion-canvas/
 - /motion-canvas/1/
 - /motion-canvas/from-manim-to-motion-canvas/
-excerpt: "So... I haven't released a video in a while. By a while, I mean over a year at this point. The main reason for this is my master thesis, which takes essentially all of my free time. The secondary reason is that I have severe MBS (Manim Burnout Syndrome) and therefore find it difficult to work on anything Manim-related. The remedies to this are twofold: first off, I will be working with/joining the guys over at Polylog to produce the videos much faster than working alone, and will be learning (as the title of this post suggests) Motion Canvas."
+excerpt: "After a year-long break (master thesis + Manim burnout), I'm switching to Motion Canvas and documenting the transition for other Manim users through a series that recreates my original Manim tutorials."
 end: <strong>→ Part 1 ←</strong>, <a href="/motion-canvas/2/">Part 2</a>, <a href="/motion-canvas/3/">Part 3</a>
 ---
 

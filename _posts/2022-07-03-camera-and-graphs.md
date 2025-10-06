@@ -6,7 +6,7 @@ css: manim
 category_part: 3
 redirect_from:
 - /manim/3/
-excerpt: This part of the series covers mainly two topics -- the camera and (combinatorial) graphs. Besides this, it also includes some useful concepts for more advanced animations.
+excerpt: Camera controls, (combinatorial) graphs and rate functions.
 end: <a href="/manim/1/">Part 1</a>, <a href="/manim/2/">Part 2</a>, <strong>→ Part 3 ←</strong>, <a href="/manim/4/">Part 4</a>, <a href="/manim/5/">Part 5</a>, <a href="/manim/6/">Part 6</a>
 ---
 
@@ -103,7 +103,7 @@ Besides moving and zooming, we can also do things like changing the color of the
 
 ### Rate functions
 For fine-tuning animations, it is sometimes desirable to change the functions that time them.
-We've already seen 
+We've already seen
 
 ```py
 {% include manim/03-rate-functions-example.py %}

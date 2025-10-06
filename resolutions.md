@@ -2,7 +2,6 @@
 title: Resolutions
 layout: default
 no-heading: True
-css: resolutions
 hidden: True
 ---
 

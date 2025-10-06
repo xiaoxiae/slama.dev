@@ -1,23 +1,5 @@
 @use "variables";
 
-.red {
-  color: red;
-}
-.green {
-  color: green;
-}
-.blue {
-  color: deepskyblue;
-}
-.orange {
-  color: #e67e00;
-  @media (prefers-color-scheme: dark) {
-    color: orange;
-  }
-}
-.gray {
-  color: gray;
-}
 .unselectable {
   user-select: none;
 }

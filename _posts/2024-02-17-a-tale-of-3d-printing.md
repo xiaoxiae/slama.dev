@@ -173,7 +173,7 @@ This is nice, but just dragging them into the Prusa Slicer won't work due to the
 To clean up the dataset, I used Python and the [`trimesh` library](https://trimesh.org/) to voxelize+smoothen+decimate the objects:
 
 <details closed>
-	<summary class="code-summary">The clean-up code (click to show).</summary>
+	<summary>The clean-up code (click to show).</summary>
 	<div markdown="1">
 ```py
 """Must be run from the folder with the hold files!"""

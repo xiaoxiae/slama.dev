@@ -1,6 +1,7 @@
 ---
 title: Rescuing Images from a Broken SD Card
 css: photos
+excerpt: "Write-up of an attempt to rescue images from my girlfriend's old camera."
 ---
 
 - .

@@ -10,7 +10,6 @@ Since I don't really have anything to talk about in this section but the templat
 
 For the purposes of this privacy policy:
 
-{: .spaced-list}
 - the function \(f\) has a **total differential** in the point \(\mathbf{a}\), if there exists a continuous function \(\mu\) in the neighbourhood of \(U\) of the point \(\mathbf{o} \in \mathbb{R}^n\), such that \(\mu(\mathbf{o}) = 0\), and numbers \(A_1, \ldots, A_n\) for which the following holds: \[f(\mathbf{a} + \mathbf{h}) - f(\mathbf{a}) = \sum_{k - 1}^{n} A_k h_k + || \mathbf{h} || \mu(\mathbf{h})\]
 - the **Tutte polynomial** of a multigraph \(G = (V, E)\) is a polynomial of \(x, y\) defined as \[T_G(x, y) = \sum_{F \subseteq E} (x - 1)^{r(E) - r(F)} \cdot (y - 1)^{n(F)}\]
 - a **mitochondria** is a double-membrane-bound organelle found in most eukaryotic organisms

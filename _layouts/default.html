@@ -18,7 +18,7 @@
 			<title>{{ site.title }}</title>
 		{% elsif page.html_title %}
 			<title>{{ page.html_title }} – {{ site.title }}</title>
-		{% else %} 
+		{% else %}
 			<title>{{ page.title }} – {{ site.title }}</title>
 		{% endif %}
 		<meta name="description" content="{{site.description}}">
@@ -61,9 +61,9 @@
 						<li>
 						<span class="navbar-item">
 						{% if p.title == page.title %}
-							<strong class="current-page-item navbar-text"><a href="{{p.url}}">{{p.title}}</a></strong>
+							<span class="current-page-item navbar-text"><a href="{{p.url}}">{{p.title}}</a></span>
 						{% else %}
-							<strong class="navbar-text"><a href="{{p.url}}">{{p.title}}</a></strong>
+							<span class="navbar-text"><a href="{{p.url}}">{{p.title}}</a></span>
 						{% endif %}
 						</span>
 						</li>
@@ -85,10 +85,10 @@
 				{% else %}
 				{% unless page.no-heading %}
 					{% if page.center-title %}
-						<h2 class="center {% if layout.post-title %} post-title{% endif %}">{% if page.category_icon %}<img class='category-icon' src='{{ page.category_icon }}' alt='{{ page.category | default: page.category_noslug }} Icon'/>{% endif %} {{ page.title }}</h2>
+						<h2 class="center {% if layout.post-title %} post-title{% endif %}">{% if page.category_icon %}<img class='icon' src='{{ page.category_icon }}' alt='{{ page.category | default: page.category_noslug }} Icon'/>{% endif %} {{ page.title }}</h2>
 					{% else %}
-	
-						<h2 class="{% if layout.post-title %} post-title{% endif %}">{% if page.category_icon %}<img class='category-icon' src='{{ page.category_icon }}' alt='{{ page.category | default: page.category_noslug }} Icon'/>{% endif %} {{ page.title }}</h2>
+
+						<h2 class="{% if layout.post-title %} post-title{% endif %}">{% if page.category_icon %}<img class='icon' src='{{ page.category_icon }}' alt='{{ page.category | default: page.category_noslug }} Icon'/>{% endif %} {{ page.title }}</h2>
 					{% endif %}
 				{% else %}
 					<h2 class='no-display'>{{ page.title }}</h2>
@@ -107,8 +107,6 @@
 				<a href="https://bsky.app/profile/tomas.slama.dev"><i class="fa-brands fa-bluesky"></i></a>
 				<span class="tiny-vspace"></span>
 				<a href="https://github.com/xiaoxiae"><i class="fa-brands fa-github"></i></a>
-				<span class="tiny-vspace"></span>
-				<a href="https://www.instagram.com/tomas.slama/"><i class="fa-brands fa-instagram"></i></a>
 				<span class="tiny-vspace"></span>
 				<a href="https://open.spotify.com/playlist/6tzOl4stxMsAClqNaUalBg?si=466aa28329d143fd"><i class="fa-brands fa-spotify"></i></a>
 				<span class="vspace"></span>

@@ -47,7 +47,7 @@ Pro maximalizační zajišťujeme, že je vždy dostatečně velké.
 - v polynomiálním čase v \(|I|\) na vstupu \(I\) najde \(A \in \mathcal{F}(I)\)
 - pro minimalizační problém: \(\forall I: f(A) \le R \cdot \mathrm{OPT}(I)\)
 - pro maximalizační problém: \(\forall I: f(A) \ge \mathrm{OPT}(I) / R\)
-{% endmath %} 
+{% endmath %}
 
 #### Pravděpodobnost v algoritmech
 1. algoritmy s chybou: někdy dělají chybu, ale většinou ji neudělají
@@ -750,7 +750,7 @@ Program pro vrcholové pokrytí:
 
 {% math observation %}\(\mathrm{ALG} = \sum_{e = 1}^{n} q_e\)
 - vyplývá z toho, že jsme cenu \(p_j\) při přidávání rozdělili do \(q_e\)
-{% endmath %} 
+{% endmath %}
 
 {% math lemma %}\(\overline{q} = \frac{1}{H_g} \cdot q\) je přípustné řešení duálního LP{% endmath %}
 

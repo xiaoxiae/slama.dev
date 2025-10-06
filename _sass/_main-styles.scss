@@ -1,9 +1,14 @@
-@use "sass:color";
-
 @use "sass:math";
 
 @use "variables";
 @use "hacks";
+
+@use "light_styles";
+@use "dark_styles";
+
+/* ==========================================================================
+   BASE STYLES & RESETS
+   ========================================================================== */
 
 * {
   margin: 0;
@@ -15,6 +20,10 @@
 del {
   text-decoration: line-through;
 }
+
+/* ==========================================================================
+   FONTS
+   ========================================================================== */
 
 @font-face {
   font-family: variables.$serif-font;
@@ -50,255 +59,15 @@ del {
   font-family: variables.$monospaced-font;
   src:
     local(variables.$monospaced-font),
-    url("/assets/css/fonts/FiraMono-Bold.woff2") format("woff2");
+    url("/assets/css/fonts/FiraMono-Medium.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
-// website content spacing
-.content {
-  max-width: variables.$website-size;
-  margin: auto;
-  padding-left: variables.$website-padding;
-  padding-right: variables.$website-padding;
-
-  p {
-    width: 100%;
-
-    @media not screen and (max-width: variables.$small-screen-threshold) {
-      text-align: justify;
-      hyphens: auto;
-    }
-  }
-}
-
-.content-background {
-  background-color: variables.$light-background-color;
-
-  flex: 1 0 auto;
-}
-
-.aoc-link {
-  color: #00cc00;
-}
-
-.mono {
-  font-family: variables.$monospaced-font, monospace;
-}
-
-.navigation {
-  padding: variables.$navigation-padding * 0.5;
-
-  li {
-    display: inline-block;
-    margin-right: 15px;
-  }
-
-  ul,
-  ol {
-    padding-bottom: 0;
-  }
-
-  background-color: variables.$light-nav-background-color;
-  text-align: center;
-  font-size: variables.$navigation-size;
-
-  @media (max-width: variables.$tiny-screen-threshold) {
-    font-size: 100%;
-  }
-
-  .navigation-separator {
-    margin-left: variables.$navigation-item-spacing * 0.5;
-    margin-right: variables.$navigation-item-spacing * 0.5;
-
-    &::before {
-      content: " ";
-    }
-  }
-}
-
-.navigation-background {
-  background-color: variables.$light-background-color;
-  padding-bottom: variables.$navigation-padding;
-}
-
-.current-page-item {
-  font-weight: bold;
-}
-
-.header {
-  padding: variables.$header-padding variables.$website-padding;
-  text-align: center;
-
-  a,
-  h1 {
-    font-size: variables.$title-size;
-
-    @media (max-width: variables.$tiny-screen-threshold) {
-      font-size: variables.$small-title-size;
-    }
-
-    font-family: variables.$monospaced-font, monospace;
-    padding-bottom: 0;
-  }
-}
-
-.underline {
-  text-decoration: underline;
-}
-
-.red {
-  color: red;
-}
-
-.nowrap {
-  white-space: nowrap;
-  display: inline-block;
-  width: 4.5em;
-}
-
-.post-attributes {
-  @media (max-width: variables.$small-screen-threshold) {
-    font-size: 80%;
-
-    padding-left: math.div(variables.$line-spacing, 3);
-    padding-right: math.div(variables.$line-spacing, 3);
-  }
-}
-
-pre.highlight {
-  overflow: auto;
-}
-
-pre.vanilla {
-  margin-bottom: variables.$line-spacing;
-}
-
-.highlighter-rouge {
-  pre {
-    padding: variables.$code-padding;
-  }
-
-  border-radius: variables.$code-border-roundness;
-  padding: variables.$code-padding * 0.5 variables.$code-padding;
-  margin-bottom: variables.$line-spacing;
-
-  font-variant-ligatures: none;
-}
-
-.code-summary {
-  padding-top: variables.$line-spacing * 0.25;
-  padding-bottom: variables.$line-spacing * 0.25;
-  border-radius: variables.$code-border-roundness;
-}
-
-.left {
-  text-align: left !important;
-  * {
-    margin-left: 0 !important;
-  }
-}
-.center {
-  text-align: center !important;
-}
-.right {
-  text-align: right !important;
-  * {
-    margin-right: 0 !important;
-  }
-}
-.none {
-  display: none;
-}
-
-.no-display {
-  display: none;
-}
-
-.maximized-image {
-  img {
-    width: 100%;
-    max-width: 100%;
-  }
-}
-
-.spaced-list {
-  margin-top: 0;
-
-  li {
-    margin-bottom: variables.$line-spacing;
-  }
-}
-
-.disabled {
-  cursor: not-allowed;
-  opacity: 0.35;
-}
-
-.large {
-  font-size: 125%;
-}
-
-.small {
-  font-size: 80%;
-}
-
-.tiny {
-  font-size: 50%;
-}
-
-.no-link-color {
-  a {
-    color: variables.$light-text-color;
-
-    @media (prefers-color-scheme: dark) {
-      color: variables.$dark-text-color;
-    }
-  }
-}
-
-span.brr-1 {
-  font-size: 90%;
-}
-span.brr-2 {
-  font-size: 80%;
-}
-span.brr-3 {
-  font-size: 70%;
-}
-span.brr-4 {
-  font-size: 60%;
-}
-span.brr-5 {
-  font-size: 50%;
-}
-
-#markdown-toc {
-  max-width: 30%;
-  font-size: variables.$toc-size;
-  margin-top: 0;
-  margin-left: variables.$line-spacing;
-  margin-bottom: variables.$line-spacing;
-  padding-top: variables.$line-spacing * 0.5;
-  padding-right: variables.$line-spacing;
-  padding-bottom: variables.$line-spacing * 0.5;
-  float: right;
-  background-color: color.adjust(variables.$light-background-color, $lightness: -6%, $space: hsl);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: color.adjust(variables.$dark-background-color, $lightness: -6%, $space: hsl);
-  }
-
-  @media (max-width: variables.$small-screen-threshold) {
-    float: none;
-    margin-left: 0;
-    max-width: 100%;
-  }
-
-  border: 2px solid;
-  border-radius: variables.$code-border-roundness;
-}
+/* ==========================================================================
+   BASE ELEMENT STYLES
+   ========================================================================== */
 
 body,
 html {
@@ -308,84 +77,8 @@ html {
 body {
   font-family: variables.$serif-font, sans-serif;
   line-height: variables.$line-height;
-
   display: flex;
   flex-direction: column;
-}
-
-.force-spacing {
-  margin-bottom: variables.$line-spacing * 0.5;
-}
-
-.post-metadata {
-  font-size: variables.$footer-size;
-}
-
-.post-title {
-  padding-bottom: 0;
-}
-
-blockquote {
-  p {
-    border-left: 1px solid;
-    padding-left: 15px;
-    padding-bottom: variables.$line-spacing * 0.5;
-    margin-bottom: 0px;
-
-    // otherwise it exenteds from the page...
-    width: fit-content !important;
-
-    font-style: italic;
-  }
-
-  p:last-child {
-    padding-bottom: 0;
-    margin-bottom: variables.$line-spacing;
-  }
-}
-
-blockquote.no-italic {
-  p {
-    font-style: normal;
-  }
-}
-
-details {
-  padding-bottom: variables.$line-spacing;
-
-  summary {
-    text-align: center;
-  }
-  summary:hover {
-    font-weight: bold;
-  }
-}
-
-ul,
-ol {
-  padding-left: variables.$list-item-left-padding;
-  padding-bottom: variables.$line-spacing;
-}
-
-ol,
-ul {
-  p + ul,
-  p + ol {
-    margin-top: 0;
-  }
-}
-
-ul ul,
-ol ul,
-ul ol,
-ol ol {
-  margin: 0;
-  padding-bottom: 0;
-}
-
-p + ul,
-p + ol {
-  margin-top: -(variables.$line-spacing) * 0.25 * 3;
 }
 
 p,
@@ -422,19 +115,158 @@ h6 {
   font-size: variables.$h6-size;
 }
 
+ul,
+ol {
+  padding-left: variables.$list-item-left-padding;
+  padding-bottom: variables.$line-spacing;
+}
+
+ol,
+ul {
+  p + ul,
+  p + ol {
+    margin-top: 0;
+  }
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+p + ul,
+p + ol {
+  margin-top: -(variables.$line-spacing) * 0.25 * 3;
+}
+
 img,
 svg {
   max-width: 90%;
   margin: 0 auto 0;
   display: block;
 }
-.katex {
-  svg {
-    max-width: 100%;
+
+code {
+  font-family: variables.$monospaced-font, monospace;
+  tab-size: 4;
+  -moz-tab-size: 4;
+}
+
+blockquote {
+  p {
+    border-left: 1px solid;
+    padding-left: 15px;
+    padding-bottom: variables.$line-spacing * 0.5;
+    margin-bottom: 0px;
+    width: fit-content !important;
+    font-style: italic;
+  }
+
+  p:last-child {
+    padding-bottom: 0;
+    margin-bottom: variables.$line-spacing;
+  }
+}
+
+blockquote.no-italic {
+  p {
+    font-style: normal;
+  }
+}
+
+details {
+  margin-bottom: variables.$line-spacing;
+
+  summary {
+    cursor: pointer;
+    padding: variables.$line-spacing * 0.5;
+    border: 1px solid;
+    border-radius: variables.$code-border-roundness;
+    user-select: none;
+    list-style: none;
+    align-items: center;
+
+    &::before {
+      content: "▶";
+      margin-right: 0.5em;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      opacity: 0.5;
+    }
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  &[open] {
+    summary {
+      margin-bottom: variables.$line-spacing * 0.5;
+
+      &::before {
+        transform: rotate(90deg);
+      }
+    }
+
+    // Content fade-in animation
+    > *:not(summary) {
+      animation: slideDown 0.3s ease-out;
+    }
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+table {
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: separate;
+  border-spacing: variables.$line-spacing * 0.5 math.div(variables.$line-spacing, 3);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: variables.$line-spacing;
+
+  .katex {
+    border-spacing: 0;
+  }
+
+  td,
+  th {
+    padding: 0 variables.$line-spacing * 0.5;
+  }
+
+  th {
+    border-bottom: 1px solid;
+  }
+
+  @media (max-width: variables.$small-screen-threshold) {
+    border-spacing: variables.$line-spacing * 0.25 variables.$line-spacing * 0.2;
+
+    td,
+    th {
+      padding: 0 math.div(variables.$line-spacing, 3);
+    }
   }
 }
 
 figure {
+  margin-bottom: variables.$line-spacing;
+
   img,
   svg {
     height: auto;
@@ -447,16 +279,6 @@ figure {
     text-align: center;
     font-style: italic;
   }
-
-  margin-bottom: variables.$line-spacing;
-}
-
-code {
-  font-family: variables.$monospaced-font, monospace;
-
-  // reduced tab size to 4
-  tab-size: 4;
-  -moz-tab-size: 4;
 }
 
 article {
@@ -467,42 +289,88 @@ article {
   }
 }
 
-table {
-  border-top: 2px solid;
-  border-bottom: 2px solid;
-  border-collapse: separate;
-  .katex {
-    border-spacing: 0;
+/* ==========================================================================
+   LAYOUT COMPONENTS
+   ========================================================================== */
+
+.content {
+  max-width: variables.$website-size;
+  margin: auto;
+  padding-left: variables.$website-padding;
+  padding-right: variables.$website-padding;
+  padding-bottom: 1px;
+
+  p {
+    width: 100%;
+
+    @media not screen and (max-width: variables.$small-screen-threshold) {
+      text-align: justify;
+      hyphens: auto;
+    }
+  }
+}
+
+.content-background {
+  flex: 1 0 auto;
+}
+
+div.header {
+  padding: variables.$header-padding variables.$website-padding;
+  text-align: center;
+
+  a,
+  h1 {
+    font-size: variables.$title-size;
+    font-family: variables.$monospaced-font, monospace;
+    padding-bottom: 0;
+
+    @media (max-width: variables.$tiny-screen-threshold) {
+      font-size: variables.$small-title-size;
+    }
+  }
+}
+
+.navigation {
+  padding: variables.$navigation-padding * 0.5;
+  text-align: center;
+  font-size: variables.$navigation-size;
+
+  li {
+    display: inline-block;
+    margin-right: 15px;
   }
 
-  border-spacing: variables.$line-spacing * 0.5 math.div(variables.$line-spacing, 3);
-
-  td,
-  th {
-    padding: 0 variables.$line-spacing * 0.5;
+  ul,
+  ol {
+    padding-bottom: 0;
   }
 
-  @media (max-width: variables.$small-screen-threshold) {
-    border-spacing: variables.$line-spacing * 0.25 variables.$line-spacing * 0.2;
+  .navigation-separator {
+    margin-left: variables.$navigation-item-spacing * 0.5;
+    margin-right: variables.$navigation-item-spacing * 0.5;
 
-    td,
-    th {
-      padding: 0 math.div(variables.$line-spacing, 3);
+    &::before {
+      content: " ";
     }
   }
 
-  th {
-    border-bottom: 1px solid;
+  @media (max-width: variables.$tiny-screen-threshold) {
+    font-size: 100%;
   }
+}
 
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: variables.$line-spacing;
+div.navigation-background {
+  padding-bottom: variables.$navigation-padding;
+}
+
+.current-page-item {
+  font-weight: bold;
 }
 
 footer {
   text-align: center;
   padding: variables.$header-padding variables.$website-padding;
+  flex-shrink: 0;
 
   p {
     margin-bottom: variables.$line-spacing * 0.5;
@@ -517,24 +385,243 @@ footer {
     line-height: 0.9;
   }
 
-  background-color: variables.$light-header-background-color;
-
   br {
     margin-bottom: variables.$line-spacing * 0.25;
   }
+}
 
-  flex-shrink: 0;
+/* ==========================================================================
+   POST & CONTENT COMPONENTS
+   ========================================================================== */
+
+.post-metadata {
+  font-size: variables.$footer-size;
+}
+
+.post-title {
+  padding-bottom: 0;
+}
+
+.post-attributes {
+  @media (max-width: variables.$small-screen-threshold) {
+    font-size: 80%;
+    padding-left: math.div(variables.$line-spacing, 3);
+    padding-right: math.div(variables.$line-spacing, 3);
+  }
+}
+
+#markdown-toc {
+  max-width: 30%;
+  font-size: variables.$toc-size;
+  margin-top: 0;
+  margin-left: variables.$line-spacing;
+  margin-bottom: variables.$line-spacing;
+  padding-top: variables.$line-spacing * 0.5;
+  padding-right: variables.$line-spacing;
+  padding-bottom: variables.$line-spacing * 0.5;
+  float: right;
+  border: 2px solid;
+  border-radius: variables.$code-border-roundness;
+
+  @media (max-width: variables.$small-screen-threshold) {
+    float: none;
+    margin-left: 0;
+    max-width: 100%;
+  }
 }
 
 .footnotes {
   border-top: 1px solid;
   padding-top: variables.$line-spacing * 0.25;
+
   ol {
     li:not(:last-child) {
       padding-bottom: variables.$line-spacing * 0.5;
     }
   }
 }
+
+.box {
+  padding: variables.$line-spacing * 0.5;
+  border: 1px solid;
+}
+
+.rightFloatBox {
+  max-width: 30%;
+  font-size: variables.$toc-size;
+  margin-top: 0;
+  margin-left: variables.$line-spacing * 0.5;
+  padding: variables.$line-spacing * 0.5;
+  float: right;
+  border: 1px solid;
+
+  @media (max-width: variables.$small-screen-threshold) {
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    max-width: 100%;
+    margin-bottom: variables.$line-spacing;
+  }
+
+  // no bottom spacing of the last element in the box
+  *:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+/* ==========================================================================
+   CODE & SYNTAX HIGHLIGHTING & MATH
+   ========================================================================== */
+
+pre.highlight {
+  overflow: auto;
+}
+
+pre.vanilla {
+  margin-bottom: variables.$line-spacing;
+}
+
+.highlighter-rouge {
+  border-radius: variables.$code-border-roundness;
+  padding: variables.$code-padding * 0.5 variables.$code-padding;
+  margin-bottom: variables.$line-spacing;
+  font-variant-ligatures: none;
+
+  pre {
+    padding: variables.$code-padding;
+  }
+}
+
+.katex {
+  svg {
+    max-width: 100%;
+  }
+}
+
+/* ==========================================================================
+   UTILITY CLASSES - TEXT ALIGNMENT
+   ========================================================================== */
+
+.left {
+  text-align: left !important;
+  * {
+    margin-left: 0 !important;
+  }
+}
+
+.center {
+  text-align: center !important;
+}
+
+.right {
+  text-align: right !important;
+  * {
+    margin-right: 0 !important;
+  }
+}
+
+/* ==========================================================================
+   UTILITY CLASSES - TYPOGRAPHY & TEXT
+   ========================================================================== */
+
+.mono {
+  font-family: variables.$monospaced-font, monospace;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.nowrap {
+  white-space: nowrap;
+  display: inline-block;
+  width: 4.5em;
+}
+
+.large {
+  font-size: 125%;
+}
+
+.small {
+  font-size: 80%;
+}
+
+.tiny {
+  font-size: 50%;
+}
+
+.spaced-list {
+  > li {
+    padding-bottom: variables.$line-spacing;
+  }
+  > li:last-child {
+    padding-bottom: 0;
+  }
+}
+
+/* ==========================================================================
+   UTILITY CLASSES - DISPLAY & VISIBILITY
+   ========================================================================== */
+
+.none {
+  display: none;
+}
+
+.no-display {
+  display: none;
+}
+
+.quarter-visible {
+  opacity: 0.25;
+}
+
+.half-visible {
+  opacity: 0.5;
+}
+
+.hide-when-large {
+  display: none;
+
+  @media (max-width: variables.$small-screen-threshold) {
+    display: inline;
+  }
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+/* ==========================================================================
+   UTILITY CLASSES - SPACING
+   ========================================================================== */
+
+.force-spacing {
+  margin-bottom: variables.$line-spacing * 0.5;
+}
+
+.spacer {
+  padding-bottom: variables.$line-spacing;
+}
+
+.vspace {
+  padding-left: math.div(variables.$line-spacing, 3);
+  padding-right: math.div(variables.$line-spacing, 3);
+}
+
+.tiny-vspace {
+  padding-left: math.div(variables.$line-spacing, 12);
+  padding-right: math.div(variables.$line-spacing, 12);
+}
+
+.space-around {
+  padding: variables.$line-spacing * 0.25;
+}
+
+/* ==========================================================================
+   UTILITY CLASSES - IMAGES
+   ========================================================================== */
 
 .no-invert {
   * {
@@ -554,639 +641,15 @@ footer {
   }
 }
 
-.category-icon {
+.icon {
   display: inline;
   height: 1.1em;
   vertical-align: sub;
   filter: invert(0%) !important;
-
-  image-rendering: optimizeSpeed; /* STOP SMOOTHING, GIVE ME SPEED  */
-  image-rendering: -moz-crisp-edges; /* Firefox                        */
-  image-rendering: -o-crisp-edges; /* Opera                          */
-  image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
-  image-rendering: pixelated; /* Universal support since 2021   */
-  image-rendering: optimize-contrast; /* CSS3 Proposed                  */
-}
-
-.spacer {
-  padding-bottom: variables.$line-spacing;
-}
-
-.vspace {
-  padding-left: math.div(variables.$line-spacing, 3);
-  padding-right: math.div(variables.$line-spacing, 3);
-}
-
-.tiny-vspace {
-  padding-left: math.div(variables.$line-spacing, 12);
-  padding-right: math.div(variables.$line-spacing, 12);
-}
-
-.quarter-visible {
-  opacity: 0.25;
-}
-
-.hide-when-large {
-  display: none;
-
-  @media (max-width: variables.$small-screen-threshold) {
-    display: inline;
-  }
-}
-
-.half-visible {
-  opacity: 0.5;
-}
-
-.box {
-  padding: variables.$line-spacing * 0.5;
-  border: 1px solid;
-}
-
-.space-around {
-  padding: variables.$line-spacing * 0.25;
-}
-
-// right floats
-.rightFloatBox {
-  max-width: 30%;
-  font-size: variables.$toc-size;
-  margin-top: 0;
-  margin-left: variables.$line-spacing * 0.5;
-  padding: variables.$line-spacing * 0.5;
-  float: right;
-
-  @media (max-width: variables.$small-screen-threshold) {
-    margin-left: auto;
-    margin-right: auto;
-    float: none;
-    max-width: 100%;
-    margin-bottom: variables.$line-spacing;
-  }
-
-  // no bottom spacing of the last element in the box
-  *:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  border: 1px solid;
-}
-
-/* LIGHT COLOR THEME */
-body {
-  color: variables.$light-text-color;
-  background-color: variables.$light-header-background-color;
-}
-
-a {
-  color: variables.$light-link-color;
-
-  &:hover {
-    color: variables.$light-text-color;
-    text-decoration: underline;
-  }
-}
-
-a[href^="#"]:not(.footnote):not(.reversefootnote):not(#markdown-toc a)::before {
-  content: "#";
-  font-weight: bold;
-  opacity: 0.25;
-}
-
-hr {
-  border: 1px solid variables.$light-text-color;
-  background: variables.$light-text-color;
-}
-
-.current-page-item,
-.header {
-  a {
-    color: variables.$light-text-color;
-  }
-}
-
-.header {
-  background-color: variables.$light-header-background-color;
-}
-
-.highlight,
-.highlighter-rouge {
-  clear: both;
-  background-color: variables.$light-code-background-color;
-  border-color: variables.$light-code-background-color;
-}
-
-.code-summary {
-  background-color: color.adjust(
-    variables.$light-code-background-color,
-    $lightness: -8%,
-    $space: hsl
-  );
-  border-color: color.adjust(variables.$light-code-background-color, $lightness: -8%, $space: hsl);
-}
-
-.highlight {
-  .bp {
-    color: #008000;
-  } /* Name.Builtin.Pseudo */
-  .c1 {
-    color: #408080;
-    font-style: italic;
-  } /* Comment.Single */
-  .c {
-    color: #408080;
-    font-style: italic;
-  } /* Comment */
-  .ch {
-    color: #408080;
-    font-style: italic;
-  } /* Comment.Hashbang */
-  .cm {
-    color: #408080;
-    font-style: italic;
-  } /* Comment.Multiline */
-  .cp {
-    color: #bc7a00;
-  } /* Comment.Preproc */
-  .cpf {
-    color: #408080;
-    font-style: italic;
-  } /* Comment.PreprocFile */
-  .cs {
-    color: #408080;
-    font-style: italic;
-  } /* Comment.Special */
-  .dl {
-    color: #ba2121;
-  } /* Literal.String.Delimiter */
-  .fm {
-    color: #00f;
-  } /* Name.Function.Magic */
-  .gd {
-    color: #a00000;
-  } /* Generic.Deleted */
-  .ge {
-    font-style: italic;
-  } /* Generic.Emph */
-  .gh {
-    color: #000080;
-    font-weight: bold;
-  } /* Generic.Heading */
-  .gi {
-    color: #00a000;
-  } /* Generic.Inserted */
-  .go {
-    color: #888;
-  } /* Generic.Output */
-  .gp {
-    color: #000080;
-    font-weight: bold;
-  } /* Generic.Prompt */
-  .gs {
-    font-weight: bold;
-  } /* Generic.Strong */
-  .gt {
-    color: #04d;
-  } /* Generic.Traceback */
-  .gu {
-    color: #800080;
-    font-weight: bold;
-  } /* Generic.Subheading */
-  .hll {
-    background-color: #ffc;
-  }
-  .il {
-    color: #666;
-  } /* Literal.Number.Integer.Long */
-  .kc {
-    color: #008000;
-    font-weight: bold;
-  } /* Keyword.Constant */
-  .k {
-    color: #008000;
-    font-weight: bold;
-  } /* Keyword */
-  .kd {
-    color: #008000;
-    font-weight: bold;
-  } /* Keyword.Declaration */
-  .kn {
-    color: #008000;
-    font-weight: bold;
-  } /* Keyword.Namespace */
-  .kp {
-    color: #008000;
-  } /* Keyword.Pseudo */
-  .kr {
-    color: #008000;
-    font-weight: bold;
-  } /* Keyword.Reserved */
-  .kt {
-    color: #b00040;
-  } /* Keyword.Type */
-  .mb {
-    color: #666;
-  } /* Literal.Number.Bin */
-  .m {
-    color: #666;
-  } /* Literal.Number */
-  .mf {
-    color: #666;
-  } /* Literal.Number.Float */
-  .mh {
-    color: #666;
-  } /* Literal.Number.Hex */
-  .mi {
-    color: #666;
-  } /* Literal.Number.Integer */
-  .mo {
-    color: #666;
-  } /* Literal.Number.Oct */
-  .na {
-    color: #7d9029;
-  } /* Name.Attribute */
-  .nb {
-    color: #008000;
-  } /* Name.Builtin */
-  .nc {
-    color: #00f;
-    font-weight: bold;
-  } /* Name.Class */
-  .nd {
-    color: #a2f;
-  } /* Name.Decorator */
-  .ne {
-    color: #d2413a;
-    font-weight: bold;
-  } /* Name.Exception */
-  .nf {
-    color: #00f;
-  } /* Name.Function */
-  .ni {
-    color: #999;
-    font-weight: bold;
-  } /* Name.Entity */
-  .nl {
-    color: #a0a000;
-  } /* Name.Label */
-  .nn {
-    color: #00f;
-    font-weight: bold;
-  } /* Name.Namespace */
-  .no {
-    color: #800;
-  } /* Name.Constant */
-  .nt {
-    color: #008000;
-    font-weight: bold;
-  } /* Name.Tag */
-  .nv {
-    color: #19177c;
-  } /* Name.Variable */
-  .o {
-    color: #666;
-  } /* Operator */
-  .ow {
-    color: #a2f;
-    font-weight: bold;
-  } /* Operator.Word */
-  .s1 {
-    color: #ba2121;
-  } /* Literal.String.Single */
-  .s2 {
-    color: #ba2121;
-  } /* Literal.String.Double */
-  .sa {
-    color: #ba2121;
-  } /* Literal.String.Affix */
-  .sb {
-    color: #ba2121;
-  } /* Literal.String.Backtick */
-  .sc {
-    color: #ba2121;
-  } /* Literal.String.Char */
-  .s {
-    color: #ba2121;
-  } /* Literal.String */
-  .sd {
-    color: #ba2121;
-    font-style: italic;
-  } /* Literal.String.Doc */
-  .se {
-    color: #b62;
-    font-weight: bold;
-  } /* Literal.String.Escape */
-  .sh {
-    color: #ba2121;
-  } /* Literal.String.Heredoc */
-  .si {
-    color: #b68;
-    font-weight: bold;
-  } /* Literal.String.Interpol */
-  .sr {
-    color: #b68;
-  } /* Literal.String.Regex */
-  .ss {
-    color: #19177c;
-  } /* Literal.String.Symbol */
-  .sx {
-    color: #008000;
-  } /* Literal.String.Other */
-  .vc {
-    color: #19177c;
-  } /* Name.Variable.Class */
-  .vg {
-    color: #19177c;
-  } /* Name.Variable.Global */
-  .vi {
-    color: #19177c;
-  } /* Name.Variable.Instance */
-  .vm {
-    color: #19177c;
-  } /* Name.Variable.Magic */
-  .w {
-    color: #bbb;
-  } /* Text.Whitespace */
-}
-
-a.secret {
-  color: variables.$light-text-color;
-  &:hover {
-    color: variables.$light-text-color;
-    text-decoration: none;
-  }
-}
-
-/* DARK COLOR THEME */
-@media (prefers-color-scheme: dark) {
-  body {
-    color: variables.$dark-text-color;
-    background-color: variables.$dark-header-background-color;
-  }
-
-  // update image colors appropriately
-  svg,
-  img {
-    filter: invert(100%);
-  }
-
-  .katex {
-    svg {
-      filter: invert(0%);
-    }
-  }
-
-  a {
-    color: variables.$dark-link-color;
-    &:hover {
-      color: variables.$dark-text-color;
-    }
-  }
-
-  hr {
-    border: 1px solid variables.$dark-text-color;
-    background: variables.$dark-text-color;
-  }
-
-  .current-page-item,
-  .header {
-    a {
-      color: variables.$dark-text-color;
-    }
-  }
-
-  .header {
-    background-color: variables.$dark-header-background-color;
-  }
-
-  .highlight,
-  .highlighter-rouge {
-    background-color: variables.$dark-code-background-color;
-    border-color: variables.$dark-code-background-color;
-  }
-
-  .code-summary {
-    background-color: color.adjust(
-      variables.$dark-code-background-color,
-      $lightness: 6%,
-      $space: hsl
-    );
-    border-color: color.adjust(variables.$dark-code-background-color, $lightness: 6%, $space: hsl);
-  }
-
-  .navigation {
-    background-color: variables.$dark-nav-background-color;
-  }
-
-  .navigation-background {
-    background-color: variables.$dark-background-color;
-  }
-
-  footer {
-    background-color: variables.$dark-header-background-color;
-  }
-
-  .content-background {
-    background-color: variables.$dark-background-color;
-  }
-
-  .highlight {
-    $plain: #fafafa;
-    $snow: #fff;
-    $gravel: #857f78;
-    $dirtyblonde: #f4cf86;
-    $taffy: #ff2c4b;
-    $orange: #ffa724;
-    $lime: #aeee00;
-    $toffee: #b88853;
-
-    .c {
-      color: $gravel;
-    } /* Comment */
-    .k {
-      color: $taffy;
-    } /* Keyword */
-    .l {
-      color: $toffee;
-    } /* Literal */
-    .n {
-      color: $plain;
-    } /* Name */
-    .o {
-      color: $plain;
-    } /* Operator */
-    .p {
-      color: $plain;
-    } /* Punctuation */
-    .cm {
-      color: $gravel;
-    } /* Comment.Multiline */
-    .cp {
-      color: $gravel;
-    } /* Comment.Preproc */
-    .c1 {
-      color: $gravel;
-    } /* Comment.Single */
-    .cs {
-      color: $gravel;
-    } /* Comment.Special */
-    .ge {
-      font-style: italic;
-    } /* Generic.Emph */
-    .gs {
-      font-weight: bold;
-    } /* Generic.Strong */
-    .kc {
-      color: $toffee;
-    } /* Keyword.Constant */
-    .kd {
-      color: $toffee;
-    } /* Keyword.Declaration */
-    .kn {
-      color: $lime;
-    } /* Keyword.Namespace */
-    .kp {
-      color: $toffee;
-    } /* Keyword.Pseudo */
-    .kr {
-      color: $toffee;
-    } /* Keyword.Reserved */
-    .kt {
-      color: $toffee;
-    } /* Keyword.Type */
-    .ld {
-      color: $dirtyblonde;
-    } /* Literal.Date */
-    .m {
-      color: $toffee;
-    } /* Literal.Number */
-    .s {
-      color: $dirtyblonde;
-    } /* Literal.String */
-    .na {
-      color: $orange;
-    } /* Name.Attribute */
-    .nb {
-      color: $toffee;
-    } /* Name.Builtin */
-    .nc {
-      color: $orange;
-    } /* Name.Class */
-    .no {
-      color: $toffee;
-    } /* Name.Constant */
-    .nd {
-      color: $lime;
-    } /* Name.Decorator */
-    .ni {
-      color: $plain;
-    } /* Name.Entity */
-    .ne {
-      color: $orange;
-    } /* Name.Exception */
-    .nf {
-      color: $orange;
-    } /* Name.Function */
-    .nl {
-      color: $plain;
-    } /* Name.Label */
-    .nn {
-      color: $plain;
-    } /* Name.Namespace */
-    .nx {
-      color: $orange;
-    } /* Name.Other */
-    .py {
-      color: $plain;
-    } /* Name.Property */
-    .nt {
-      color: $taffy;
-    } /* Name.Tag */
-    .nv {
-      color: $orange;
-    } /* Name.Variable */
-    .ow {
-      color: $taffy;
-    } /* Operator.Word */
-    .w {
-      color: $plain;
-    } /* Text.Whitespace */
-    .mf {
-      color: $toffee;
-    } /* Literal.Number.Float */
-    .mh {
-      color: $toffee;
-    } /* Literal.Number.Hex */
-    .mi {
-      color: $toffee;
-    } /* Literal.Number.Integer */
-    .mo {
-      color: $toffee;
-    } /* Literal.Number.Oct */
-    .sb {
-      color: $dirtyblonde;
-    } /* Literal.String.Backtick */
-    .sc {
-      color: $dirtyblonde;
-    } /* Literal.String.Char */
-    .sd {
-      color: $dirtyblonde;
-    } /* Literal.String.Doc */
-    .s2 {
-      color: $dirtyblonde;
-    } /* Literal.String.Double */
-    .se {
-      color: $toffee;
-    } /* Literal.String.Escape */
-    .sh {
-      color: $dirtyblonde;
-    } /* Literal.String.Heredoc */
-    .si {
-      color: $dirtyblonde;
-    } /* Literal.String.Interpol */
-    .sx {
-      color: $dirtyblonde;
-    } /* Literal.String.Other */
-    .sr {
-      color: $dirtyblonde;
-    } /* Literal.String.Regex */
-    .s1 {
-      color: $dirtyblonde;
-    } /* Literal.String.Single */
-    .ss {
-      color: $dirtyblonde;
-    } /* Literal.String.Symbol */
-    .bp {
-      color: $plain;
-    } /* Name.Builtin.Pseudo */
-    .vc {
-      color: $plain;
-    } /* Name.Variable.Class */
-    .vg {
-      color: $plain;
-    } /* Name.Variable.Global */
-    .vi {
-      color: $plain;
-    } /* Name.Variable.Instance */
-    .il {
-      color: $toffee;
-    } /* Literal.Number.Integer.Long */
-    .gu {
-      color: $gravel;
-    } /* Generic.Subheading & Diff Unified/Comment? */
-    .gd {
-      color: $lime;
-    } /* Generic.Deleted & Diff Deleted */
-    .gi {
-      color: $orange;
-    } /* Generic.Inserted & Diff Inserted */
-  }
-
-  a.secret {
-    color: variables.$dark-text-color;
-    &:hover {
-      color: variables.$dark-text-color;
-    }
-  }
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: pixelated;
+  image-rendering: optimize-contrast;
 }

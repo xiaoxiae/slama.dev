@@ -31,38 +31,3 @@ p.commit-header {
   text-align: center;
   font-weight: normal;
 }
-
-.gray {
-  color: rgb(100, 95, 90);
-}
-
-.red {
-  color: rgb(200, 20, 50);
-}
-
-.green {
-  color: #008000;
-}
-
-.yellow {
-  color: rgb(200, 120, 0);
-}
-
-/* Dark theme */
-@media (prefers-color-scheme: dark) {
-  .gray {
-    color: rgb(133, 127, 120);
-  }
-
-  .red {
-    color: rgb(255, 44, 75);
-  }
-
-  .green {
-    color: #aeee00;
-  }
-
-  .yellow {
-    color: rgb(255, 167, 36);
-  }
-}

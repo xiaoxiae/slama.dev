@@ -61,7 +61,7 @@ def format_image(path, alt):
 
     alt = alt.replace("'", "")
 
-    return f"<img class='inline' src='{image_path}' alt='{alt}'>"
+    return f"<img class='icon' src='{image_path}' alt='{alt}'>"
 
 def get_video_duration(path):
     seconds_str, _ = run_command(["ffprobe", "-i", path, "-show_entries", "format=duration", "-v", "quiet", "-of", "csv"])

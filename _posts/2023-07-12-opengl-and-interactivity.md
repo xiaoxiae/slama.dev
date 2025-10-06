@@ -6,7 +6,7 @@ css: manim
 category_part: 6
 redirect_from:
 - /manim/6/
-excerpt: In this addition to my Manim series, we'll cover the (at the moment rather experimental) OpenGL backend for faster GPU-based rendering.
+excerpt: Experimental OpenGL backend for faster GPU-based rendering in Manim Community.
 end: <a href="/manim/1/">Part 1</a>, <a href="/manim/2/">Part 2</a>, <a href="/manim/3/">Part 3</a>, <a href="/manim/4/">Part 4</a>, <a href="/manim/5/">Part 5</a>, <strong>→ Part 6 ←</strong>
 ---
 
@@ -31,7 +31,7 @@ To start things of, let's slightly edit one of the first scenes in the series:
 {% include manim/06-intro-example.py %}
 ```
 
-Saving the scene to a file, we can use 
+Saving the scene to a file, we can use
 ```
 manim <file_name> -p --renderer=opengl
 ```

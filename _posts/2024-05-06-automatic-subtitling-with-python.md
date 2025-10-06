@@ -40,7 +40,7 @@ To automatically create the subtitles, we can use `ffmpeg` to extract the audio,
 _Assuming you are in the directory with your audio files, you can run the following script:_
 
 <details>
-<summary class="code-summary">Code</summary>
+<summary>Code</summary>
 <div markdown="1">
 ```sh
 #!/bin/sh
@@ -100,7 +100,7 @@ Ivošk -> Ivušk
 Yet again, here is a Python script that automatically does this for subtitle files in all subdirectories of wherever you're launching it from:
 
 <details>
-<summary class="code-summary">Code</summary>
+<summary>Code</summary>
 <div markdown="1">
 ```python
 #!/bin/python
@@ -186,7 +186,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 To perform the translation, we will again run a script in the directory with the videos:
 
 <details>
-<summary class="code-summary">Code</summary>
+<summary>Code</summary>
 <div markdown="1">
 ```python
 #!/bin/python
@@ -254,7 +254,7 @@ Open the subtitles in your favorite text editor (`vim`) and fix away.
 I also added a link to the page with all Comeback subtitles at the beginning of each individual subtitles, in case people obtain them from somewhere else and would like to get them for other episodes:
 
 <details>
-<summary class="code-summary">Code</summary>
+<summary>Code</summary>
 <div markdown="1">
 ```python
 #!/bin/python

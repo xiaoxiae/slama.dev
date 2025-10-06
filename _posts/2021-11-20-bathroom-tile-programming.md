@@ -1,9 +1,12 @@
 ---
-css: tiles
 category: YouTube
 category_icon: /assets/category-icons/youtube.svg
-excerpt: This post is a follow-up to the video I released about bathroom tile programming. It contains a few other problems that didn't make it into the video (so it wouldn't be too long), but are interesting to try to solve on your own.
+excerpt: Follow-up to a video I released about bathroom tile programming, containing a few problems that didn't make it into the video (so it wouldn't be too long), but are interesting to try to solve on your own.
 ---
+
+<styles>
+
+</styles>
 
 This post is a follow-up to the [video I released](https://www.youtube.com/watch?v=KlaEp6ydVhA) on [my YouTube channel](https://www.youtube.com/channel/UC_IaBSHmisYbiYlv32EeNkQ) about bathroom tile programming. It contains a few other problems that didn't make it into the video (so it wouldn't be too long), but are interesting to try to solve on your own.
 
@@ -25,7 +28,7 @@ The idea is to count, how many parentheses we've seen so far and store it in the
 {: .inverse-invert}
 ![](/assets/bathroom-tile-programming/parentheses.webp)
 
-If we wanted to make the tileset a little more concise, we could exchange the <span class="azure-red"></span> color (that is mostly there for clarity) with a zero, yielding the following:
+If we wanted to make the tileset a little more concise, we could exchange the color (that is mostly there for clarity) with a zero, yielding the following:
 
 {: .inverse-invert}
 ![](/assets/bathroom-tile-programming/parentheses_minimal.webp)

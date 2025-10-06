@@ -2,7 +2,6 @@
 title: Reading
 layout: default
 order: 1
-css: books
 redirect_from:
  - /books/
 no-heading: True
@@ -18,7 +17,7 @@ If you have a good book for me to read, let me know and I'll be happy to check i
 
 #### Brandon Sanderson
 
-{:.book}
+{:.spaced-list}
 - **The Stormlight Archive** [[Wikipedia](https://en.wikipedia.org/wiki/The_Stormlight_Archive)] -- by far the most interesting fantasy world I have explored. Every time you think "that's it", something new and exciting happens (honestly, I'm still thinking about how he tops the ending of the fourth book). The books are relatively long, but very much worth the read (or listen).
 	1. **The Way of Kings**
 	2. **Words of Radiance**
@@ -48,7 +47,7 @@ If you have a good book for me to read, let me know and I'll be happy to check i
 
 #### Leigh Bardugo
 
-{:.book}
+{:.spaced-list}
 - **The Six of Crows** duology [[Wikipedia](https://en.wikipedia.org/wiki/Six_of_Crows)] -- if you think that "Ocean's Eleven meets Game of Thrones" sounds good, you have to read this. The books are stellarly written and very well narrated (even for Audible standards) and contain a sequel duology and prequel trilogy, both of which I'll add here once I see that they're as good as this one.
 	1. **The Six of Crows** ⭐
 	2. **Crooked Kingdom**
@@ -59,7 +58,7 @@ If you have a good book for me to read, let me know and I'll be happy to check i
 
 #### Henry H. Neff
 
-{:.book}
+{:.spaced-list}
 - **The Tapestry** [[Wikipedia](https://en.wikipedia.org/wiki/Henry_H._Neff#The_Tapestry_Series)] -- most people have books that they read when they were younger (e.g. Eragon) that aren't necessarily the peak of writing but are a comfort book that they like returning to. Well this series is exactly that for me, so if you think it's bad then you're objectively wrong.
     1. **The Hound of Rowan**
     2. **The Second Siege**
@@ -72,19 +71,19 @@ If you have a good book for me to read, let me know and I'll be happy to check i
 
 #### Andy Weir
 
-{:.book}
+{:.spaced-list}
 - **The Martian** [[Wikipedia](https://en.wikipedia.org/wiki/The_Martian_(Weir_novel))] -- a hilarious novel about an astronaut surviving on Mars, after being left for dead due to an unfortunate series of events. It inspired a [movie](https://en.wikipedia.org/wiki/The_Martian_(film)#Reception), which (while not as good as the book) is also quite entertaining.
 
 - **Project Hail Mary** [[Wikipedia](https://en.wikipedia.org/wiki/Project_Hail_Mary)] ⭐ -- exactly the same vibe as the Martian, but I found it to be much more interesting story-wise and would wholeheartedly recommend it to anyone interested in "science sci-fi."
 
 #### Isaac Asimov
 
-{:.book}
+{:.spaced-list}
 - **The Foundation Series** [[Wikipedia](https://en.wikipedia.org/wiki/Foundation_series)] (books 1-4) -- a series of sci-fi novels set in a long-distant, future where humanity controls the entire galaxy through the means of an overarching Galactic Empire, but which is predicted to fall through the mathematics of psychohistory. Despite the series being written many decades ago, it holds up well and was truly a joy to read, with each book having a distinct style and feel.
 
 #### Liu Cixin
 
-{:.book}
+{:.spaced-list}
 - **Remembrance of Earth's Past** [[Wikipedia](https://en.wikipedia.org/wiki/Remembrance_of_Earth%27s_Past)] -- an insanely well written sci-fi trilogy that manages to be both thought-provoking (creating [its own solution](https://en.wikipedia.org/wiki/Dark_forest_hypothesis) to the well-known [Fermi paradox](https://en.wikipedia.org/wiki/Fermi_paradox)) and thrilling at the same time (read all of them in the span of a few days). A must-read for any sci-fi fan.
     1. **The Three-Body Problem**
     2. **The Dark Forest** ⭐
@@ -98,7 +97,7 @@ If you have a good book for me to read, let me know and I'll be happy to check i
 - **Metro 2033** [[Wikipedia](https://en.wikipedia.org/wiki/Metro_2033)] by _Dimitry Glukhovsky_ -- a post-apocalyptic novel about people surviving a nuclear world war inside of the Moscow metro. I really appreciated that there was a good balance of action sequences and slower, more thought-provoking ones. Definitely worth the read (which, in my opinion, can't be said about the other books in the series).
 -->
 
-{:.book}
+{:.spaced-list}
 - **Surely You're Joking, Mr. Feynman!** [[Wikipedia](https://en.wikipedia.org/wiki/Surely_You%27re_Joking,_Mr._Feynman!)] by _Ralph Leighton_ and _Richard Feynman_ -- an auto(sort-of)biography about the life of Richard Feynman. I honestly don't understand how this many interesting things can happen in the life of a single person, yet they have and are a joy to read.
 
 - **The Soul of a New Machine** [[Wikipedia](https://en.wikipedia.org/wiki/The_Soul_of_a_New_Machine)] by _Tracy Kidder_ -- a story about the development of the [Data General Eclipse MV/8000](https://en.wikipedia.org/wiki/Data_General_Eclipse_MV/8000) machine. Both depressing and hearthwarming, it follows the lives and circumstances of the people developing the machine. No prior computer knowledge necessary (although it will probably be a more pleasant read), as the more technical parts of the book are explained really well.

@@ -30,7 +30,7 @@ module Jekyll
 
         return "
 <details>
-	<summary class='code-summary'>Author's Solution</summary>
+	<summary>Author's Solution</summary>
 <div markdown='1'>
 ```typescript
 #{contents}

@@ -5,6 +5,25 @@ category_icon: /assets/category-icons/heidelberg.webp
 excerpt: Lecture notes from the Mining Massive Datasets course (Artur Andrzejak, 2022/2023).
 ---
 
+<style>
+    // Progressive text shrinking classes (used for what?)
+    span.brr-1 {
+    font-size: 90%;
+    }
+    span.brr-2 {
+    font-size: 80%;
+    }
+    span.brr-3 {
+    font-size: 70%;
+    }
+    span.brr-4 {
+    font-size: 60%;
+    }
+    span.brr-5 {
+    font-size: 50%;
+    }
+</style>
+
 - .
 {:toc}
 
@@ -489,7 +508,7 @@ The **minimum** of this function (wrt. \(k\)) is \(n/m \ln(2)\):
 
 This ensures that after \(n\) elements, all elements have a \(s/n\) probability to be currently sampled[^proof-sampling].
 
-[^proof-sampling]: Shown by induction -- after element \(n + 1\) arrives: 
+[^proof-sampling]: Shown by induction -- after element \(n + 1\) arrives:
     - for element \(x\) in \(S\), in the probability that the algorithm keeps it this iteration is \[\underbrace{\left(1 - \frac{s}{n + 1}\right)}_{\text{new one is discarded}} + \underbrace{\left(\frac{s}{n + 1}\right) \left(\frac{s - 1}{s}\right)}_{\text{new one is not discarded} \atop \text{but replaces a different one}} = \frac{n}{n + 1}\]
     - the probability that the element \(x\) is in \(S\) at time \(n + 1\) is therefore \[\underbrace{\frac{s}{n}}_{\text{induction}} \cdot \frac{n}{n + 1} = \frac{s}{n + 1}\]
 

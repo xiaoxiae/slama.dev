@@ -7,9 +7,9 @@ css: aok
 ---
 
 > <span class="large">**Gratulace!**</span>
-> 
+>
 > Pokud jsi se dostala až sem, tak si dárek (a velký kafe) zasloužíš <span class="nostyle">🎁</span>.
-> 
+>
 > Tady je ještě pár bonusových úloh, protože mě to docela baví <span class="nostyle">😀</span>.
 
 ### 4. problém ☕ (pokračování<sup>2</sup>)
@@ -18,7 +18,7 @@ Pokud si chceš dál hrát s <span class="s2">S</span><span class="s1">t</span><
 _Na selectnutí celého snippetu funguje triple click._
 
 <details closed>
-<summary class="code-summary">Součet registrů <code class="language-plaintext orange highlighter-rouge">a</code> a <code class="language-plaintext orange highlighter-rouge">b</code> do registru <code class="language-plaintext orange highlighter-rouge">c</code>.</summary>
+<summary>Součet registrů <code class="language-plaintext orange highlighter-rouge">a</code> a <code class="language-plaintext orange highlighter-rouge">b</code> do registru <code class="language-plaintext orange highlighter-rouge">c</code>.</summary>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jmenuji se <span class="orange">'a'</span>
 prosím o drink číslo <span class="orange">'1'</span>
 jmenuji se <span class="orange">'b'</span>
@@ -97,7 +97,7 @@ včera jsem slyšela o <span class="orange">'mnxnsyqzimpz'</span>
 </details>
 
 <details closed>
-<summary class="code-summary">Rozdíl registrů <code class="language-plaintext orange highlighter-rouge">a</code> a <code class="language-plaintext orange highlighter-rouge">b</code> do registru <code class="language-plaintext orange highlighter-rouge">c</code>.</summary>
+<summary>Rozdíl registrů <code class="language-plaintext orange highlighter-rouge">a</code> a <code class="language-plaintext orange highlighter-rouge">b</code> do registru <code class="language-plaintext orange highlighter-rouge">c</code>.</summary>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jmenuji se <span class="orange">'a'</span>
 prosím o drink číslo <span class="orange">'1'</span>
 jmenuji se <span class="orange">'b'</span>
@@ -176,7 +176,7 @@ včera jsem slyšela o <span class="orange">'asqtsghtgkas'</span>
 </details>
 
 <details closed>
-<summary class="code-summary">Součin registrů <code class="language-plaintext orange highlighter-rouge">a</code> a <code class="language-plaintext orange highlighter-rouge">b</code> do registru <code class="language-plaintext orange highlighter-rouge">c</code>.</summary>
+<summary>Součin registrů <code class="language-plaintext orange highlighter-rouge">a</code> a <code class="language-plaintext orange highlighter-rouge">b</code> do registru <code class="language-plaintext orange highlighter-rouge">c</code>.</summary>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jmenuji se <span class="orange">'a'</span>
 prosím o drink číslo <span class="orange">'1'</span>
 jmenuji se <span class="orange">'b'</span>
@@ -253,7 +253,7 @@ včera jsem slyšela o <span class="orange">'efbxdolkdrhs'</span>
 </details>
 
 <details closed>
-<summary class="code-summary">Podíl registrů <code class="language-plaintext orange highlighter-rouge">a</code> a <code class="language-plaintext orange highlighter-rouge">b</code> do registru <code class="language-plaintext orange highlighter-rouge">c</code>.</summary>
+<summary>Podíl registrů <code class="language-plaintext orange highlighter-rouge">a</code> a <code class="language-plaintext orange highlighter-rouge">b</code> do registru <code class="language-plaintext orange highlighter-rouge">c</code>.</summary>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jmenuji se <span class="orange">'a'</span>
 prosím o drink číslo <span class="orange">'1'</span>
 jmenuji se <span class="orange">'b'</span>
@@ -398,7 +398,7 @@ bez mléka
 </details>
 
 <details closed>
-<summary class="code-summary">Výpis čísla v registru <code class="language-plaintext orange highlighter-rouge">a</code> (těžší než se zdá)!</summary>
+<summary>Výpis čísla v registru <code class="language-plaintext orange highlighter-rouge">a</code> (těžší než se zdá)!</summary>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jmenuji se <span class="orange">'a'</span>
 prosím o drink číslo <span class="orange">'123'</span>
 jmenuji se <span class="orange">'ewungwlumtaj'</span>
@@ -1533,7 +1533,7 @@ prosím o drink číslo <span class="orange">'0'</span>
 </details>
 
 <details closed>
-<summary class="code-summary">Výpis prvních <code class="language-plaintext orange highlighter-rouge">a</code> fibonacciho čísel.</summary>
+<summary>Výpis prvních <code class="language-plaintext orange highlighter-rouge">a</code> fibonacciho čísel.</summary>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jmenuji se <span class="orange">'a'</span>
 prosím o drink číslo <span class="orange">'10'</span>
 jmenuji se <span class="orange">'azprbrdftldb'</span>
@@ -5030,7 +5030,7 @@ včera jsem slyšela o <span class="orange">'izsjijklwiaq'</span>
 </details>
 
 <details closed>
-<summary class="code-summary">Výpis prvočíselného rozkladu čísla v registru <code class="language-plaintext orange highlighter-rouge">a</code>.</summary>
+<summary>Výpis prvočíselného rozkladu čísla v registru <code class="language-plaintext orange highlighter-rouge">a</code>.</summary>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jmenuji se <span class="orange">'a'</span>
 prosím o drink číslo <span class="orange">'135'</span>
 jmenuji se <span class="orange">'tbpvtzscdsqg'</span>

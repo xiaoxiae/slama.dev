@@ -1,6 +1,6 @@
 ---
 title: Chiptunes
-excerpt: "A set of notes on making chiptune music."
+excerpt: "An experiment in making chiptune music."
 category: "music"
 category_icon: /assets/category-icons/music.svg
 ---

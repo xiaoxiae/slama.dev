@@ -1,10 +1,15 @@
 ---
 title: The Binding of Isaac
 layout: default
-css: tboi
 no-heading: True
 hidden: True
 ---
+
+<styles>
+td {
+  vertical-align: top;
+}
+</styles>
 
 You seem to have located my secret [The Binding of Isaac](https://bindingofisaacrebirth.fandom.com/wiki/Binding_of_Isaac:_Rebirth_Wiki) page. Nice job.
 

@@ -3,7 +3,7 @@ title: Linear Programming in Python
 category: YouTube
 category_icon: /assets/category-icons/youtube.svg
 end: "<a href='/linearni-programovani-v-pythonu'>Česká verze článku</a>"
-excerpt: This post contains additional materials to my newly released video about linear programming, namely a number of practical examples of how it can be used to solve a variety of problems using Python and its `pulp` package.
+excerpt: Additional material to my newly released video about linear programming, namely a number of practical examples of how it can be used to solve a variety of problems using Python and its pulp package.
 ---
 
 - .
@@ -24,7 +24,7 @@ The profit is \(1.2\$/\mathrm{kg}\) for potato seeds and \(1.7\$/\mathrm{kg}\) f
 How much potatoes and carrots should you plant to maximize your profit this season?
 
 <details>
-	<summary class="code-summary">Source code</summary>
+	<summary>Source code</summary>
 	<div markdown="1">
 ```py
 {% include linear-programming-in-python/farmer.py %}```
@@ -32,7 +32,7 @@ How much potatoes and carrots should you plant to maximize your profit this seas
 </details>
 
 <details>
-	<summary class="code-summary">Output</summary>
+	<summary>Output</summary>
 	<div markdown="1">
 ```
 {% include linear-programming-in-python/farmer.out %}```
@@ -43,7 +43,7 @@ How much potatoes and carrots should you plant to maximize your profit this seas
 Given \(n\) items, each with weight \(w_i\) and price \(p_i\), our task is to maximize the price of the items we take into our backpack without exceeding its carry weight \(M\).
 
 <details>
-	<summary class="code-summary">Source code</summary>
+	<summary>Source code</summary>
 	<div markdown="1">
 ```py
 {% include linear-programming-in-python/knapsack.py %}```
@@ -51,7 +51,7 @@ Given \(n\) items, each with weight \(w_i\) and price \(p_i\), our task is to ma
 </details>
 
 <details>
-	<summary class="code-summary">Output</summary>
+	<summary>Output</summary>
 	<div markdown="1">
 ```
 {% include linear-programming-in-python/knapsack.out %}```
@@ -63,7 +63,7 @@ Given \(n\) items, each with weight \(w_i\) and price \(p_i\), our task is to ma
 We want to find a minimal \(k\) such that a graph \(G\) is [vertex \(k\)-colorable](https://en.wikipedia.org/wiki/Graph_coloring).
 
 <details>
-	<summary class="code-summary">Source code</summary>
+	<summary>Source code</summary>
 	<div markdown="1">
 ```py
 {% include linear-programming-in-python/vertex-coloring.py %}```
@@ -71,7 +71,7 @@ We want to find a minimal \(k\) such that a graph \(G\) is [vertex \(k\)-colorab
 </details>
 
 <details>
-	<summary class="code-summary">Output</summary>
+	<summary>Output</summary>
 	<div markdown="1">
 ```
 {% include linear-programming-in-python/vertex-coloring.out %}```
@@ -82,7 +82,7 @@ We want to find a minimal \(k\) such that a graph \(G\) is [vertex \(k\)-colorab
 Given a weighted oriented graph \(G\), we want to find the longest Hamiltonian cycle.
 
 <details>
-	<summary class="code-summary">Source code</summary>
+	<summary>Source code</summary>
 	<div markdown="1">
 ```py
 {% include linear-programming-in-python/tsp.py %}```
@@ -90,7 +90,7 @@ Given a weighted oriented graph \(G\), we want to find the longest Hamiltonian c
 </details>
 
 <details>
-	<summary class="code-summary">Output</summary>
+	<summary>Output</summary>
 	<div markdown="1">
 ```
 {% include linear-programming-in-python/tsp.out %}```
@@ -101,7 +101,7 @@ Given a weighted oriented graph \(G\), we want to find the longest Hamiltonian c
 Given \(n\) items with weights \(w_1, \ldots, w_n\) and an arbitrary number of bins with maximum carry weight \(C\), determine the lowest number of bins that can contain all the items without exceeding their carry weight.
 
 <details>
-	<summary class="code-summary">Source code</summary>
+	<summary>Source code</summary>
 	<div markdown="1">
 ```py
 {% include linear-programming-in-python/bin.py %}```
@@ -109,7 +109,7 @@ Given \(n\) items with weights \(w_1, \ldots, w_n\) and an arbitrary number of b
 </details>
 
 <details>
-	<summary class="code-summary">Output</summary>
+	<summary>Output</summary>
 	<div markdown="1">
 ```
 {% include linear-programming-in-python/bin.out %}```
@@ -120,7 +120,7 @@ Given \(n\) items with weights \(w_1, \ldots, w_n\) and an arbitrary number of b
 Given \(n\) items with weights \(w_1, \ldots, w_n\), split them into two parts such that the difference in their weights is minimized.
 
 <details>
-	<summary class="code-summary">Source code</summary>
+	<summary>Source code</summary>
 	<div markdown="1">
 ```py
 {% include linear-programming-in-python/partition.py %}```
@@ -128,7 +128,7 @@ Given \(n\) items with weights \(w_1, \ldots, w_n\), split them into two parts s
 </details>
 
 <details>
-	<summary class="code-summary">Output</summary>
+	<summary>Output</summary>
 	<div markdown="1">
 ```
 {% include linear-programming-in-python/partition.out %}```
@@ -139,7 +139,7 @@ Given \(n\) items with weights \(w_1, \ldots, w_n\), split them into two parts s
 Given a graph \(G\), find the largest set of vertices such that no two share an edge.
 
 <details>
-	<summary class="code-summary">Source code</summary>
+	<summary>Source code</summary>
 	<div markdown="1">
 ```py
 {% include linear-programming-in-python/max-independent-set.py %}```
@@ -147,7 +147,7 @@ Given a graph \(G\), find the largest set of vertices such that no two share an 
 </details>
 
 <details>
-	<summary class="code-summary">Output</summary>
+	<summary>Output</summary>
 	<div markdown="1">
 ```
 {% include linear-programming-in-python/max-independent-set.out %}```
@@ -158,7 +158,7 @@ Given a graph \(G\), find the largest set of vertices such that no two share an 
 Given a graph \(G\), find the smallest set of vertices that cover all edges.
 
 <details>
-	<summary class="code-summary">Source code</summary>
+	<summary>Source code</summary>
 	<div markdown="1">
 ```py
 {% include linear-programming-in-python/min-vertex-cover.py %}```
@@ -166,7 +166,7 @@ Given a graph \(G\), find the smallest set of vertices that cover all edges.
 </details>
 
 <details>
-	<summary class="code-summary">Output</summary>
+	<summary>Output</summary>
 	<div markdown="1">
 ```
 {% include linear-programming-in-python/min-vertex-cover.out %}```

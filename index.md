@@ -25,36 +25,43 @@ Links to the sections of the website can be found at the top, links to the posts
 {% endif %}
 
 ### {{ currentdate }}
-<div class="spacer"> <!-- done to reset the (2n+1)-th child counter -->
-{% assign date = currentdate %} 
+<div class="spacer">
+{% assign date = currentdate %}
 {% endif %}
 {% unless post.hidden %}
-<ul class="hfill">
-	<li>
-    {% if post.category_icon %} <img class='category-icon' src='{{post.category_icon}}'/>{% endif %}
-    {% if post.category_part %} [<span class='mono'>{{post.category_part}}</span>]{% endif %}
-	{% if post.pdf or post.pdf-nogenerate %} <a href="/assets/{{post.url | split: "/" | last}}.pdf"><i class="fa-solid fa-file-pdf"></i></a>{% endif %}
-	{% if post.language == "cz" %}🇨🇿 {% endif%}
-    <strong>
-	{% if post.redirect.to %}
-        {% if post.draft %}
-            <a href="{{ post.redirect.to }}" class="red">{{ post.title}}</a>
-        {% else %}
-            <a href="{{ post.redirect.to }}">{{ post.title}}</a>
-        {% endif %}
-    {% else %}
-        {% if post.draft %}
-            <a href="{{ post.url }}" class="red">{{ post.title}}</a>
-        {% else %}
-            <a href="{{ post.url }}">{{ post.title}}</a>
-        {% endif %}
-    {% endif %}
-    </strong>
-	</li>
-	<li>
-    <span class="nowrap" markdown="1">`{{ post.date  | date: "%-d. %-m."}}`</span>
-	</li>
-</ul>
+<div class="post-item">
+	<div class="post-header">
+		<div class="post-title-row">
+			{% if post.category_icon %}<img class='icon' src='{{post.category_icon}}' alt="Category icon"/>{% endif %}
+			{% if post.category_part %}<span class='category-tag'>[<span class='mono'>{{post.category_part}}</span>]</span>{% endif %}
+			{% if post.pdf or post.pdf-nogenerate %}<a href="/assets/{{post.url | split: "/" | last}}.pdf" class="post-icon" aria-label="PDF"><i class="fa-solid fa-file-pdf"></i></a>{% endif %}
+			{% if post.language == "cz" %}<span class="language-flag">🇨🇿</span>{% endif %}
+			<span class="post-title-link">
+			{% if post.redirect.to %}
+				{% if post.draft %}
+					<a href="{{ post.redirect.to }}" class="red main-link"><strong>{{ post.title}}</strong></a>
+				{% else %}
+					<a href="{{ post.redirect.to }}" class="main-link"><strong>{{ post.title}}</strong></a>
+				{% endif %}
+			{% else %}
+				{% if post.draft %}
+					<a href="{{ post.url }}" class="red main-link"><strong>{{ post.title}}</strong></a>
+				{% else %}
+					<a href="{{ post.url }}" class="main-link"><strong>{{ post.title}}</strong></a>
+				{% endif %}
+			{% endif %}
+			</span>
+		</div>
+		<div class="post-date">
+			<span markdown="1">{{ post.date  | date: "%-d. %-m."}}</span>
+		</div>
+	</div>
+	{% if post.excerpt %}
+	<div class="post-excerpt">
+		{{ post.excerpt | strip_html }}
+	</div>
+	{% endif %}
+</div>
 {% endunless %}
 {% endfor %}
 
