@@ -9,37 +9,33 @@ hidden: true
 - .
 {:toc}
 
-[Prokop, a ginger and a friend of mine](https://rdck.dev/) (these are the same person, which is surprising) recently challenged me to a chess engine duel, which consisted of making a chess bot from scratch and then dueling to see whose is better.
+[Prokop, a ginger and a friend of mine](https://rdck.dev/) (these are the same person, which is surprising) recently challenged me to a chess engine duel, which consisted of making a chess engine from scratch and then dueling to see whose is better.
 Naturally, I agreed.
 And thus **[Prokopakop](https://github.com/xiaoxiae/prokopakop)** (literally translates to _the one that kicked Prokop_) was born.
 
-It (unsurprisingly) turns out that there is a lot of things that go into making a chess bot, and I thought it would be interesting to cover my journey of writing the bot in the commits that I made, since they correspond to the order in which I learned the various techniques and algorithms that a chess engine uses.
+It (unsurprisingly) turns out that there are a lot of things that go into making a chess engine, and I thought it would be interesting to cover my journey of writing the bot in the commits that I made, since they correspond to the order in which I learned the various techniques and algorithms that a chess engine uses.
 
 While this article is intended to be read top-to-bottom for beginners to chess-bot-related things, I've also added headings for specific topics so that people who are only interested in those can skip around -- **all sections are self-sustained** (as much as they can be), so skipping around is very much encouraged.
 
-So, without further ado, let's write a chess bot!
+If you'd like to play it, you can [**challenge it on Lichess**](https://lichess.org/@/prokopakop); just keep in mind that it **won't play more than one game at a time,** because the server it's running on only has two cores, and using both would take this website down.
 
-Also, [**go play it on Lichess**](https://lichess.org/@/prokopakop); just keep in mind that it **won't play more than one game at a time,** because the server it's running on only has two cores, and using both would take this website down.
+Finally, I assume that you know chess rules, because you managed to stumble upon this exceedingly nerdy post about a chess engine and have read this far.
+If not, this will be a wild ride. 🕊
 
----
-
-_I assume that you know chess rules, because you managed to stumble upon this exceedingly nerdy post about a chess engine.
-If not, this will be a wild ride. 🕊_
+{: .commit-header}
+[`a1f8b8`](https://github.com/xiaoxiae/Prokopakop/commit/a1f8b867c9818e411a491e8cfdbd115411f1beb1)
 
 ### Move Generation
 
 Before beginning to write a chess bot that searches/evaluates positions, we need to make sure that we can generate them quickly.
 If you're not too interested in how the positions are generated (which is a red flag, since I'd say that this is the more interesting part), you can skip to the **[search & evaluation](#search--evaluation)** portion of the article.
 
-{: .commit-header}
-[`a1f8b8`](https://github.com/xiaoxiae/Prokopakop/commit/a1f8b867c9818e411a491e8cfdbd115411f1beb1)
-
 The first commit actually contains quite a bit of code, and should have likely been split into separate ones.
 However, I wanted the first commit to actually contain something that remotely resembles a chess engine, so here we are.
 
 #### Bitboards
 
-The most important part of this commit is that it stored the board state position via [**bitboards**](https://www.chessprogramming.org/Bitboards), which are necessary for making the engine fast.
+The most important part of this commit is that it stores the board state position via [**bitboards**](https://www.chessprogramming.org/Bitboards), which are necessary for making the engine fast.
 The concept is very simple -- since CPUs are heavily optimized for working with 64-bit numbers, and 64 turns out to be the exact number of squares on the board, we can use them to store (among other things) locations of pieces!
 
 As an example, here is a bitboard (=64-bit unsigned integer) that stores pawn positions.
@@ -55,7 +51,7 @@ As an example, here is a bitboard (=64-bit unsigned integer) that stores pawn po
                   abcdefgh
 {% endchess %}
 
-The main advantage of storing information in 64-bit numbers is that you can combine multiple bitboards using binary operations to obtain a particular set of squares you need.
+The main advantage of storing information in 64-bit numbers is that we can combine multiple bitboards using binary operations to obtain a particular set of squares we need.
 Prokopakop stores them in the following way:
 
 ```rust
@@ -86,7 +82,7 @@ pub struct Game {
 }
 ```
 
-As an example, to obtain all positions of _white rooks and bishops_, all you need to[^all-you-need] do is
+As an example, to obtain all positions of _white rooks and bishops_, all we need to[^all-we-need] do is
 
 ```rust
 self.color_bb[Color::White] & ( self.piece_bb[Piece::Rook]
@@ -109,10 +105,10 @@ This is especially true in the beginning, when the engine is also very slow and 
 {: .commit-header}
 [`6ddcef`](https://github.com/xiaoxiae/Prokopakop/commit/6ddcef9c1acda9e4d229fd95f76782660a307f1d)~[`67d0e6`](https://github.com/xiaoxiae/Prokopakop/commit/67d0e64b105140242415647314e8c16e078c7e53)
 
-I've added **pre-computing of the possible moves/attacks** for pieces at compile time, which means that we can easily obtain squares for all pieces by simply accessing a table.
+This commit adds **pre-computing of the possible moves/attacks** for pieces at compile time, which means that we can easily obtain squares for all pieces by simply accessing a table.
 This notably **doesn't work for [sliding pieces](https://www.chessprogramming.org/Sliding_Pieces)** (rook, bishop, queen), because they can be blocked by other pieces... but that is a problem [for a future commit](#magic-bitboards).
 
-I've also added en-passant functionality, for which we'll add
+It also added en-passant functionality, for which we'll add
 
 ```rust
 pub struct Game {
@@ -149,13 +145,12 @@ As an example, a rook on d5 with the following configuration of blockers should 
   abcdefgh
 {% endchess %}
 
-The reason for why we can't precompute the moves naively is that we'd either have to use a hashmap of `blocker_state → bitboard`, which will be much slower than the raycasting approach, or create an enormous array of size \(2^{64}\) to use the blocker state as the index, in which case we'd need about 128 exabytes of memory, which I currently do not possess.
+The reason why we can't precompute the moves naively is that we'd either have to use a hashmap of `blocker_state → bitboard`, which will be much slower than the raycasting approach, or create an enormous array of size \(2^{64}\) to use the blocker state as the index, in which case we'd need about 128 exabytes of memory, which I currently do not possess.
 
 [**Magic bitboards**](https://www.chessprogramming.org/Magic_Bitboards) solve this problem in a rather elegant way -- notice that in our example, we actually **only care about a portion of the squares** (in this case the row + column the rook is in), since these are the **only squares where placing blockers would limit the rook movement**.
-If we could use only the relevant squares for indexing, then an array that stores the precomputed bitboards would be significantly smaller.
+The issue is that they are scattered all over the bitboard -- **if they were consecutive**, we could use them for indexing... so we'll create this mapping!
 
-If we could somehow **remap them to be in consecutive positions,** we could use them for indexing.
-To do this, we will, for each square, generate a **magic number** that, when **multiplying** the blocker bitmap, does exactly that -- it **maps the bits we care about** to a combination of **consecutive positions** to be used for indexing, as seen in the following diagram:
+To do this, we will, for each square, generate a **magic number** that, when **multiplying** the blocker bitmap, does exactly what we want -- it **maps the bits we care about** to a combination of **consecutive positions** to be used for indexing, as seen in the following diagram:
 
 {% chess %}bits we       cool         bits
 care      *   magic     =  we care
@@ -163,12 +158,12 @@ about         number       about,
                            together
 
 ........      10001110     17482605
-...1....      01011010     39......
-...2....      00000110     ........
-.34♜567.      01000000     ........
-...8....  *   11001101  =  ........
-...9....      00000001     ........
-...0....      10111111     ........
+...0....      01011010     39......
+...1....      00000110     ........
+.23♜456.      01000000     ........
+...7....  *   11001101  =  ........
+...8....      00000001     ........
+...9....      10111111     ........
 ........      00100111     ........
 {% endchess %}
 
@@ -181,12 +176,12 @@ This is the reason for why we'd like the consecutive positions to start from the
 
 
 (........      10001110)                     ........
-(...1....      01011010)                     ........
-(...2....      00000110)                     ........
-(.34♜567.      01000000)                     ........
-(...8....  *   11001101)  >>  (64 - 10)   =  ........
-(...9....      00000001)                     ........
-(...0....      10111111)                     ......17
+(...0....      01011010)                     ........
+(...1....      00000110)                     ........
+(.23♜456.      01000000)                     ........
+(...7....  *   11001101)  >>  (64 - 10)   =  ........
+(...8....      00000001)                     ........
+(...9....      10111111)                     ......17
 (........      00100111)                     48260539
 {% endchess %}
 
@@ -197,11 +192,12 @@ In practice, magic numbers can be [generated rather quickly](https://www.chesspr
 {: .commit-header}
 [`037103`](https://github.com/xiaoxiae/Prokopakop/commit/0371037bad4a7aa8449d832520b29e3cf8a65549)~[`33cbd8`](https://github.com/xiaoxiae/Prokopakop/commit/33cbd8ec94db534ab6c45c8ad1d41e7a2baafa01)
 
-No particularly interesting things here, here is a short recap:
-- added **promotion** (twice; the first implementation let you promote to a king)
-- added **history**, so you can undo moves -- a bit tricky, since you need to store both the en-passant bitmap and information about castling
-- added **attack bitboards** for both colors, which contained all squares attacked by the opponent -- won't cover these in more detail since they were removed later due to being too slow
-- added **castling**, which requires that you keep track of whether you can castle kingside/queenside, and whether the squares over which the king would be moving aren't under attack
+Adds the remaining chess rules, making the engine **an actual engine** for the first time as the **[perft tests](#perft-tests) are finally passing**!
+This includes:
+- **promotion** (implemented twice; the first implementation let you promote to a king),
+- **history**, so we can undo moves,
+- **castling**, which requires that we keep track of whether we can castle kingside/queenside, and whether the squares over which the king would be moving aren't under attack, and
+- **attack bitboard calculation** for both colors, which pre-calculates all squares attacked by the opponent (won't go into detail since they were removed shortly after due to being too slow)
 
 These changes expand our `Game` struct:
 
@@ -216,8 +212,16 @@ pub struct Game {
     // the flags can NOT be calculated as an arbitrary position can have those
     // (move, captured_piece, castling_flags, en_passant_bitmap)
     pub history: Vec<(BoardMove, Option<ColoredPiece>, u8, Bitboard)>,
+
+    // store the attack bitboards for both colors,
+    // with 1 being that some piece attacks the square
+    pub attack_bitboards: [Bitboard; Color::COUNT],
 }
 ```
+
+With all of these chess rules implemented, the moves are generated via the **make + unmake approach** to move generation -- we first generate [**pseudo-legal moves**](https://www.chessprogramming.org/Pseudo-Legal_Move) (moves where the king can come under attack), perform them, check whether the king is actually under attack, and if not, this move is legal.
+
+We'll replace this with [legal-move generation later](#legal-move-generation) later, since it's much faster.
 
 {: .commit-header}
 [`dc9fc0`](https://github.com/xiaoxiae/Prokopakop/commit/dc9fc039d13bee308619bb6befc800f785b10036)
@@ -228,15 +232,15 @@ When doing search over chess positions, knowing which we've already seen (and ca
 We would like to be able to map `board_state → arbitrary_data`, but how do we find a suitable key?
 
 To uniquely[^unique-chess-position] identify a chess position, we store
-- \(64b\) for piece colors + \({\sim}3b * 64\) for piece types
-- \(64b\) for en-passant bitmap
-- \(4b * 2\) for castling information
-- \(1b\) for whose turn it is
+- \(64b\) for piece colors + \({\sim}3b * 64\) for piece types,
+- \(64b\) for en-passant bitmap,
+- \(4b \cdot 2\) for castling information,
+- \(1b\) for whose turn it is,
 
 which is too many to use as a key for a hash table, if we want it to be fast.
-Ideally, we'd like to reduce those to 64, which is much nicer to work with while still having an extremely low chance of collision over the runtime of a standard chess game.
+Ideally, we'd like to reduce those to 64, which is much nicer to work with while still having a low chance of collision[^chance-of-collision] over the runtime of a standard chess game.
 
-[**Zobrist hashing**](https://en.wikipedia.org/wiki/Zobrist_hashing) does this in a rather simple way -- we **generate random numbers** for all of the things mentioned above, and **XOR all that apply** (with an additional extra one for en-passant[^the-plus-one]) to create the game identifier:
+[**Zobrist hashing**](https://en.wikipedia.org/wiki/Zobrist_hashing) does this in a rather simple way -- we **generate random numbers** for all of the things mentioned above, and **XOR all that apply** (with an additional one for en-passant[^the-plus-one]) to create the game identifier:
 
 ```rust
 struct ZobristKeys {
@@ -254,10 +258,10 @@ struct ZobristKeys {
 }
 ```
 
-It is **iterative**, because since XOR is commutative, we can XOR the current hash on what move was made, and don't need to calculate it from scratch every time the board changes.
+Since XOR is commutative, we can **iteratively update** the current hash after every move by XORing only the things that actually changed, which adds very little overhead.
 
 I've also added Zobrist hashing to the current [perft implementation](#perft-tests), since that is a great way to test whether it works as it should.
-Generally, you should only do this once the tests are passing without hashing, otherwise the debugging will be miserable (speaking from personal experience).
+Generally, we should only do this once the tests are passing without hashing, otherwise the debugging will be miserable (speaking from personal experience).
 
 {: .commit-header}
 [`a6156e`](https://github.com/xiaoxiae/Prokopakop/commit/a6156eec2fcbf0b0954e85c608375be4df5cf278)~[`f0253e`](https://github.com/xiaoxiae/Prokopakop/commit/f0253eebc1ee2ec9fdd17dde95d1b9b039ae073f)
@@ -278,11 +282,11 @@ Might not seem like a big change, but board moves are used ubiquitously though t
 
 When a piece is pinned, we need to limit its movement along the ray of the pin (i.e. between the attacker and the king).
 We can obviously do this by "raycasting" (i.e. iterating from the king square), but that is boring and slow.
-Instead, we can use a trick -- since we've [already implemented magic bitboards](#magic-bitboards), we can use them by pretending that the king is a queen, getting candidate blockers, removing those, and using them again to get the attackers.
+Instead, we can use a trick -- since we've [already implemented magic bitboards](#magic-bitboards), we can use them by pretending that the king is a queen, getting candidate blockers (white pawns), removing those, and using them again to get the attackers (black rook and bishop).
 
-{% chess %}  magic bb                      magic bb
-  to get         remove         to get
-  blockers                      pinners
+{% chess %}  magic bb       remove         magic bb
+  to get         the hit        to get
+  blockers       pieces         pinners
 
 8 ........     8 ........     8 ........
 7 .....♖..     7 .....♖..     7 .....♖..
@@ -295,19 +299,19 @@ Instead, we can use a trick -- since we've [already implemented magic bitboards]
   abcdefgh       abcdefgh       abcdefgh
 {% endchess %}
 
-There is a slight catch: to obtain the positions of the blockers, you need either a third magic bitboard access from the position of the blocker, or precompute possible rays between points; I haven't been able to find a smarter way to do this, please let me know if there is one.
+There is a slight catch: to obtain the positions of the blockers, we need either a third magic bitboard access from the position of the blocker, or use precomputed rays between squares; I haven't been able to find a smarter way to do this, please let me know if there is one.
 
 {: .commit-header}
 [`896a48`](https://github.com/xiaoxiae/Prokopakop/commit/896a48ce3f51e5ee0c011add681f7180565c92d5)~[`5bc16a`](https://github.com/xiaoxiae/Prokopakop/commit/5bc16a6b05098bd50338504ebf85b356ec409e0d)
 
 #### Legal Move Generation
 
-Currently, we are generating legal moves by first **generating all [pseudo-legal moves](https://www.chessprogramming.org/Pseudo-Legal_Move)** (those where king can be under attack afterwards), **making** them, **checking** whether the king is in check afterwards, and finally **unmaking** them.
+As we've already discussed, we are currently generating legal moves by first **generating all [pseudo-legal moves](https://www.chessprogramming.org/Pseudo-Legal_Move)** (those where king can be under attack afterwards), **making** them, **checking** whether the king is in check afterwards, and finally **unmaking** them.
 
 A faster approach is to generate [legal moves](https://www.chessprogramming.org/Legal_Move) directly, without having to modify the board state.
 This, however, is much more complicated, as the king can come under attack in a number of tricky ways (most of which having to do with en-passant; curse the French!).
-In prokopakop, I distinguish between three cases, depending on the **number of attacks** the king is under:
-- **0 attacks**: normal generation, just watch for pins
+In Prokopakop, I distinguish between three cases, depending on the **number of attacks** the king is under:
+- **0 attacks**: normal generation; just watch for pins
 - **1 attack**: king has to either **move away,** or the attacker must be **captured**; also watch for pins
 - **2 attacks+**: king can **only move away**
 
@@ -323,7 +327,7 @@ Besides small improvements/optimizations, the main change that I made was to rep
 This is just a fancy way of saying that most functions in my code have multiple variants for pieces/colors, which reduces the number of branches in the code and thus speeds it up.
 
 It's important to note here that we're not talking about **runtime** variants, where a function takes a `Piece` and does different things depending on which piece it is.
-In out case, this happens at **compile-time** -- instead of `make_move(piece, ...)`, we have `make_rook_move(...)` (as well as all other pieces).
+In our case, this happens at **compile-time** -- instead of `make_move(piece, ...)`, we have `make_rook_move(...)` (as well as all other pieces).
 
 As an example, the outer `if` in this code:
 ```rust
@@ -351,12 +355,12 @@ As we have reached the end of the move generation portion of this article, here 
 
 ![](/assets/chess-engine-from-scratch-by-commits/benchmark.webp)
 
-As you can see, two three places stand out in this graph:
+As we can see, three places stand out in this graph:
 - the **first major spike in speed** (commit [`f0253e`](https://github.com/xiaoxiae/Prokopakop/commit/f0253eebc1ee2ec9fdd17dde95d1b9b039ae073f)) was caused by **removing the attack bitboards;** since these were previously calculated every move and consisted of evaluating all attacks of all pieces on the board, this is not surprising
 - the **first major crash** (commit [`1d8e55`](https://github.com/xiaoxiae/Prokopakop/commit/1d8e55)) was caused by **starting to move away from the make/unmake-based move generation** by splitting each move generation into different functions based on the number of attacks; as this only included the spitting, but no optimized code, this introduced a large amount of branching that killed the speed
 - the **second major spike** (commits [`a67205`](https://github.com/xiaoxiae/Prokopakop/commit/a67205) and [`5bc16a`](https://github.com/xiaoxiae/Prokopakop/commit/5bc16a)) were caused by **finishing moving away from the make/unmake-free move generation** by introducing functions optimized for zero/one/two+ king attacks
 
-The engine is slower than Stockfish (\(9.74\text{s}\) vs. \(8.71\text{s}\) for `perft(7)`), but this is simply a skill issue because I'm not spending more time on this when I haven't written any search & evaluation functionality yet.
+The engine is slower than Stockfish (\(9.74\text{s}\) for Prokopakop vs. \(8.71\text{s}\) for Stockfish on `perft(7)`), but this is simply a skill issue because I'm not spending more time on this when I haven't written any search & evaluation functionality yet.
 Maybe I'll revisit to take my revenge on Stockfish at some point in the future, but this will have to do for now.
 
 ### Search & Evaluation
@@ -372,15 +376,15 @@ Since chess is a zero-sum two-player game, we can simply **assign each position 
        ↓                │                │
     Move A           Move B           Move C
    (Normal)        (Queen Sac)      (Pawn Sack)
-  (Min: +0.8)      (Min: -6.1)      (Min: -0.7)
+  (Min: +0.8)      (Min: -7.2)      (Min: -0.7)
        │                │                │
        │                │                │
   ┌────┼────┐      ┌────┼────┐      ┌────┼────┐   minimizing
-  ↓    │    │      ↓    │    │      │    │    ↓
+  ↓    │    │      │    │    ↓      │    │    ↓
 +0.8 +1.2 +0.9   -6.1 -5.8 -7.2   -0.3 +0.1 -0.7
 {% endchess %}
 
-This is called the [minimax algorithm](https://www.chessprogramming.org/Minimax), and is at the heart of most[^lc0] strong chess engines (prokopakop included).
+This is called the [minimax algorithm](https://www.chessprogramming.org/Minimax), and is at the heart of most[^lc0] strong chess engines (Prokopakop included).
 The algorithm works by recursively exploring all possible moves to a certain depth. When it's our turn (**max**imizing player), we want to pick the move that leads to the **highest** score. When it's the opponent's turn (**min**imizing player), they will pick the move that leads to the **lowest** score (best for them, worst for us).
 
 At each **leaf node** (when we've reached our search depth), we evaluate the position, i.e. how good it is for the player whose turn it is.
@@ -405,7 +409,7 @@ Since the opponent has a **strong response**, which if he were to play would put
        │                │                │
     Move A           Move B           Move C
    (Normal)        (Queen Sac)      (Pawn Sack)
-  (Min: +0.8)     (Min:<= -6.1)
+  (Min: +0.8)     (Min <= -6.1)
        │                │
        │                │
   ┌────┼────┐      ┌────┼────┐
@@ -438,17 +442,17 @@ At this point, we can see that \(\beta \le \alpha\), so we can prune the rest of
                  CUTOFF INDUCED
 {% endchess %}
 
-In prokopakop (as in most other engines), I have implemented this via **[negamax](https://www.chessprogramming.org/Alpha-Beta#Negamax_Framework)**, which simplifies the implementation by **always maximizing** and **flipping + negating** the alpha/beta values and evaluation when doing the recursive call, as we're changing perspectives.
+Prokopakop (and most other engines) implements this via **[negamax](https://www.chessprogramming.org/Alpha-Beta#Negamax_Framework)**, which simplifies the implementation by **always maximizing** and **flipping + negating** the alpha/beta values and evaluation when doing the recursive call, as we're changing perspectives.
 This is very convenient, because it simplifies both the implementation and the conceptual meaning of alpha and beta -- we can now always think of **alpha** as the **lower bound** (what we are _guaranteed_ somewhere in the search tree), and **beta** as the **upper bound** (what the _opponent won't allow us to exceed_ because of what he has guaranteed somewhere in the search tree).
 
-I have also implemented **[iterative deepening](https://www.chessprogramming.org/Iterative_Deepening)** for time management, which runs alpha-beta search with depths \(1, 2, \ldots\) until time runs out and returns the best result found, so we can limit time spent on searching based on the current time control.
+This commit also implements **[iterative deepening](https://www.chessprogramming.org/Iterative_Deepening)** for time management, which runs alpha-beta search with depths \(1, 2, \ldots\) until time runs out and returns the best result found, so we can limit time spent on searching based on the current time control.
 
-Note that for alpha-beta search to work well, we need to ensure that the moves are **ordered** from strongest to the weakest, as exploring more interesting lines first will induce more cutoffs, as compared to when the moves are unordered -- we'll [implement this later](#mmv-lva).
+Note that for alpha-beta search to work well, we need to ensure that the moves are **ordered** from strongest to the weakest, as exploring more interesting lines first will induce more cutoffs, as compared to when the moves are unordered -- [we'll implement this later](#move-ordering).
 
 #### Material Evaluation
 
-As a final step in this initial seach/eval commit, I implemented a basic evaluation function, which simply counts material.
-While this might seem like all you need, this is generally not sufficient as it doesn't take into account many nuances of the position, such as pawn structure, piece mobility, etc...
+As a final step in this initial search/eval commit, we implement a basic evaluation function, which simply counts material.
+While this might seem like all we need, this is generally not sufficient as it doesn't take into account many nuances of the position, such as pawn structure, piece mobility, etc. We'll improve this in the very next commit.
 
 {: .commit-header}
 [`8eeb84e`](https://github.com/xiaoxiae/Prokopakop/commit/8eeb84e)~[`6aec863`](https://github.com/xiaoxiae/Prokopakop/commit/6aec863)
@@ -472,11 +476,11 @@ As an example, here is a pawn table:
 ];
 {% endchess %}
 
-Positive values correspond to places where pawns are more valuable, while negative values correspond to those where they are less valuable.
-For pawns, these values try to incentivize center pawn pushes and promotions, and discourage advances of pawns used to protect the king.
+**Positive** values correspond to places where pawns are **more valuable**, while **negative** values correspond to those where they are **less valuable**.
+For pawns, these values try to incentivize center pawn pushes and promotions, and discourage advancing pawns that shield the king.
 
 For certain pieces, we can take this one step further and have **two tables** -- one for "early" game and one for "late" game (for some suitable definitions of early and late, such as total remaining material), and interpolate between them based on the current game phase.
-This is typically done for the king, as we want him to be more protected in the early game, and more aggressive in the late game.
+This is typically done for the king, as we want him to be more protected in the early game, and more aggressive in the late game:
 
 {: .tight-char}
 {% chess %}const KING_EARLY_TABLE: [f32; 64] = [
@@ -665,7 +669,7 @@ Running this search, two things can happen with the root result:
 Aspiration windows were difficult for me to understand initially, so here is the observation that made it click: if the value calculated from alpha-beta search **falls within the alpha-beta bounds**, then it is **exact**.
 This is because we found a line that leads to a position with the expected evaluation, and there is no line that is better/worse than the provided bounds.
 
-If we missjudge the position, and there is a line outside of this evaluation, then this will lead to a fail (low or high) and the aspiration window search will return only a bound -- since we don't know what the actual value is, we have to re-run.
+If we misjudge the position, and there is a line outside of this evaluation, then this will lead to a fail (low or high) and the aspiration window search will return only a bound -- since we don't know what the actual value is, we have to re-run.
 
 {: .commit-header}
 **To be continued?**
@@ -695,23 +699,25 @@ The results are then `[ll, dl, dd/wl, wd, ww]` for `w`in, `d`raw and `l`oss resp
 
 That's it. Thanks for reading! ❤️
 
-[^all-you-need]: Okay, not quite; you also need to cast {% ihighlight rust %}Color::White as usize{% endihighlight %}, but that's ugly and an implementation detail, so I skipped it for the sake of clarity. You can get rid of it by implementing indexing for the array type, but I haven't done that because I'm lazy.
+[^all-we-need]: Okay, not quite; we also need to cast {% ihighlight rust %}Color::White as usize{% endihighlight %}, but that's ugly and an implementation detail, so I skipped it for the sake of clarity. You can get rid of it by implementing indexing for the array type, but I haven't done that because I'm lazy.
 
-[^the-plus-one]: This is done so that we don't need to check whether en-passant bit changed during the move (since that adds branching, which is slow) -- we therefore add an additional "no-op value", which will be used when en-passant didn't happen; since we're XORing twice, these cancel out and we don't need to branch!
+[^chance-of-collision]: The engine can explore \(50\;000\;000\) positions per second on my laptop (excluding evaluation). For a 10+5 game with 100 moves, that's a total of \[50\;000\;000 \cdot (10 \cdot 60 + 100 \cdot 5) = 5.5 \cdot 10^{10}\] positions. The expected number of collisions is then approximately \[\frac{\left(5.5 \cdot 10^{10}\right)^2}{2^{64}} = \mathbf{82}\] so while we do get a few collisions, the way we're replacing them in the transposition table should make this a non-issue.
+
+[^the-plus-one]: This is done so that we don't need to check whether en-passant bit changed during the move (since that adds branching, which is slow) -- we therefore add an additional "no-op value", which will be used when en-passant didn't happen; since, if en-passant bit didn't change, we XOR the same value twice, which cancels out.
 
 [^lc0]: Some chess engines, like [Leela Chess Zero](https://lczero.org/), use [Monte Carlo tree search](https://en.wikipedia.org/wiki/Monte_Carlo_tree_search) instead. This is because their position evaluation is orders of magnitude slower but much more advanced, so they do a deeper search on promising lines instead of a wide one on all of them.
 
 [^unique-chess-position]: This is not quite correct, as we're wasting a bit; e.g. there are 6 pieces and we're using 3 bits. If we really tried, we could get it down to \[\log_2(\left(2 \cdot 6\right)^{64} \cdot 16 \cdot 8 \cdot 2) \cong 237.4 \] which saves a couple of bits, but still doesn't solve the problem.
 
-[^quiescence]: I'm not a native speaker, so this seemed like a strange usage of this word. The definition of "quiescence" is, according to the Cambridge English Dictionary, _the state of being temporarily quiet and not active_, so this makes sense -- we want to **search for quiet positions** and only evaluate those.
+[^quiescence]: I'm not a native speaker, so this seemed like a strange usage of this word. The definition of "quiescence" is, according to the Cambridge English Dictionary, _the state of being temporarily quiet and not active_, so this actually makes sense -- we want to **search for quiet positions** and only evaluate those.
 
 [^ply]: The origin of the word "ply" comes from _pli_, [which is old French](https://www.etymonline.com/word/ply) for "layer".
 
-[^alpha-beta]: As a side-note, they refer to alpha-beta seach as \(\alpha\beta\) search and I find that very funny.
+[^alpha-beta]: As a side-note, they refer to alpha-beta search as \(\alpha\beta\) search and I find that very funny.
 
 [^nmp]: This is not true for [Zugzwangs](https://www.chessprogramming.org/Zugzwang), which, by definition, are positions where making a move is worse than not making a move. These usually happen in pawn endgames, so it's best to turn NMP off in those cases.
 
-[^quiescence-is-not-exact]: Okay, this is not quite true. We've already implemented quiescence search, which in and of itself is not exact as we're skipping non-capture and non-check moves. This is a bit tricky, however, since we could think of it as an extended static evaluation.
+[^quiescence-is-not-exact]: Okay, this is not quite true. We've already implemented quiescence search, which in and of itself is not exact as we're skipping non-capture and non-check moves.
 
 <!--
 // TODO topics; ignore these
