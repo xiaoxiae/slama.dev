@@ -3700,3 +3700,13 @@
     setup: 2024
   note: Anoda day, anoda 7b Moonboard flash. Then let the 7a grind begin anew.
   wall: Crimp
+2025-10-06:
+  note: Austria trip + Czechia voting; not much climbing to be had.
+  placeholder: true
+2025-10-07:
+  moon:
+    7a:
+      new: 5
+    setup: 2024
+  note: Getting back to the grind.
+  wall: Crimp
