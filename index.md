@@ -21,10 +21,12 @@ Links to the sections of the website can be found at the top, links to the posts
 {% assign currentdate = post.date | date: "%Y" %}
 {% if currentdate != date %}
 {% if date %}
+
 </div>
 {% endif %}
 
 ### {{ currentdate }}
+
 <div class="spacer">
 {% assign date = currentdate %}
 {% endif %}
@@ -32,8 +34,7 @@ Links to the sections of the website can be found at the top, links to the posts
 <div class="post-item">
 	<div class="post-header">
 		<div class="post-title-row">
-			{% if post.category_icon %}<img class='icon' src='{{post.category_icon}}' alt="Category icon"/>{% endif %}
-			{% if post.category_part %}<span class='category-tag'>[<span class='mono'>{{post.category_part}}</span>]</span>{% endif %}
+    	{% if post.category_icon %}<img class='icon' src='{{post.category_icon}}' alt="Category icon"/>{% endif %}
 			{% if post.pdf or post.pdf-nogenerate %}<a href="/assets/{{post.url | split: "/" | last}}.pdf" class="post-icon" aria-label="PDF"><i class="fa-solid fa-file-pdf"></i></a>{% endif %}
 			{% if post.language == "cz" %}<span class="language-flag">🇨🇿</span>{% endif %}
 			<span class="post-title-link">
@@ -51,6 +52,7 @@ Links to the sections of the website can be found at the top, links to the posts
 				{% endif %}
 			{% endif %}
 			</span>
+			{% if post.category %}<span class='category-tag'>[{{ post.category }}{% if post.category_part %} <span class='mono'>{{post.category_part}}</span>{% endif %}]</span>{% elsif post.category_part %}<span class='category-tag'>[<span class='mono'>{{post.category_part}}</span>]</span>{% endif %}
 		</div>
 		<div class="post-date">
 			<span markdown="1">{{ post.date  | date: "%-d. %-m."}}</span>
