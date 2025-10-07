@@ -1,9 +1,8 @@
 ---
 title: A Chess Engine, Commit by Commit
-excerpt: "Writing a chess engine from scratch, commit by commit."
-css: chess
 category_icon: /assets/category-icons/prokopakop.svg
-hidden: true
+excerpt: "Writing a chess engine from scratch, in Rust, commit by commit."
+css: chess
 ---
 
 - .
@@ -21,6 +20,8 @@ If you'd like to play it, you can [**challenge it on Lichess**](https://lichess.
 
 Finally, I assume that you know chess rules, because you managed to stumble upon this exceedingly nerdy post about a chess engine and have read this far.
 If not, this will be a wild ride. 🕊
+
+
 
 {: .commit-header}
 [`a1f8b8`](https://github.com/xiaoxiae/Prokopakop/commit/a1f8b867c9818e411a491e8cfdbd115411f1beb1)
@@ -351,7 +352,7 @@ No branching, no problem!
 
 #### Summary
 
-As we have reached the end of the move generation portion of this article, here is the speed of move generation across the commits that we've discussed.
+As we have reached the end of the move generation portion of this article, here is the speed of move generation across the commits that we've discussed (benchmarked via **[hyperfine](https://github.com/sharkdp/hyperfine)**, with hashing enabled).
 
 ![](/assets/chess-engine-from-scratch-by-commits/benchmark.webp)
 
@@ -699,6 +700,16 @@ The results are then `[ll, dl, dd/wl, wd, ww]` for `w`in, `d`raw and `l`oss resp
 
 That's it. Thanks for reading! ❤️
 
+### Resources
+
+- **[Chess Programming Wiki](https://www.chessprogramming.org/Main_Page)** -- an extremely well-written wiki that I took the vast majority of algorithms and techniques from.
+- **[Peter Ellis Jones' blog post](https://peterellisjones.com/posts/generating-legal-chess-moves-efficiently/)** about legal move generation helped me debug a number of tricky situations (*cough* en-passant *cough*).
+- **[fastchess](https://github.com/Disservin/fastchess)** and **[hyperfine](https://github.com/sharkdp/hyperfine)** for benchmarking the movegen + play.
+- **[Lichess](https://lichess.org/)** and their plug-and-play **[bot bridge](https://github.com/lichess-bot-devs/lichess-bot)**, making it possible to **[play the bot online](https://lichess.org/@/prokopakop)**.
+
+
+**Special thanks to [Prokop](https://rdck.dev/) for the original nerdsnipe and proofreading.**
+
 [^all-we-need]: Okay, not quite; we also need to cast {% ihighlight rust %}Color::White as usize{% endihighlight %}, but that's ugly and an implementation detail, so I skipped it for the sake of clarity. You can get rid of it by implementing indexing for the array type, but I haven't done that because I'm lazy.
 
 [^chance-of-collision]: The engine can explore \(50\;000\;000\) positions per second on my laptop (excluding evaluation). For a 10+5 game with 100 moves, that's a total of \[50\;000\;000 \cdot (10 \cdot 60 + 100 \cdot 5) = 5.5 \cdot 10^{10}\] positions. The expected number of collisions is then approximately \[\frac{\left(5.5 \cdot 10^{10}\right)^2}{2^{64}} = \mathbf{82}\] so while we do get a few collisions, the way we're replacing them in the transposition table should make this a non-issue.
@@ -718,32 +729,3 @@ That's it. Thanks for reading! ❤️
 [^nmp]: This is not true for [Zugzwangs](https://www.chessprogramming.org/Zugzwang), which, by definition, are positions where making a move is worse than not making a move. These usually happen in pawn endgames, so it's best to turn NMP off in those cases.
 
 [^quiescence-is-not-exact]: Okay, this is not quite true. We've already implemented quiescence search, which in and of itself is not exact as we're skipping non-capture and non-check moves.
-
-<!--
-// TODO topics; ignore these
-// ## PV-search
-// - Implemented Principal Variation (PV) search algorithm
-// - Significant improvement to the search tree exploration
-// - Enhanced move ordering and search efficiency through better handling of expected best moves
-//
-// ## ordering via move history
-// - Implemented move history heuristics for improved move ordering
-// - Added historical move scoring to guide search prioritization
-// - Enhanced search efficiency through better move selection
-//
-// ## Quiet move pruning
-// - Implemented quiet move pruning techniques to reduce search tree size
-// - Added sophisticated pruning logic to skip unlikely quiet moves in certain positions
-// - Improved search efficiency without sacrificing playing strength
-//
-// ## basic king safety + factor out eval magic constants + eval command
-// - Implemented fundamental king safety evaluation
-// - Added king zone attack calculations and weightings
-// - Introduced eval command for position analysis
-// - Refactored evaluation constants for better maintainability
-//
-// ## king zone attacks & more significant king zone attack weight
-// - Enhanced king safety evaluation with detailed king zone attack analysis
-// - Increased the weight of king zone attacks in position evaluation
-// - Improved tactical awareness around king safety
--->
