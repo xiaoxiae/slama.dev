@@ -346,8 +346,10 @@ def generate_html(photos):
 <!-- Lightbox Modal -->
 <div id="lightbox" class="lightbox no-invert" style="display: none;">
     <div class="lightbox-content">
-        <span class="lightbox-close">&times;</span>
-        <img id="lightbox-img" src="" alt="Enlarged image">
+        <span class="lightbox-close" style="display: none;">&times;</span>
+        <div class="lightbox-loader"></div>
+        <img id="lightbox-thumb" class="lightbox-thumbnail" src="" alt="Thumbnail">
+        <img id="lightbox-img" src="" alt="Enlarged image" style="display: none;">
     </div>
 </div>
 
@@ -379,6 +381,29 @@ def generate_html(photos):
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
+}
+
+.lightbox-thumbnail {
+    position: absolute;
+    filter: blur(5px);
+    opacity: 0.7;
+}
+
+/* Loading Spinner */
+.lightbox-loader {
+    position: absolute;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    z-index: 1;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .lightbox-close {
@@ -419,25 +444,52 @@ def generate_html(photos):
 document.addEventListener('DOMContentLoaded', function() {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxThumb = document.getElementById('lightbox-thumb');
+    const loader = document.querySelector('.lightbox-loader');
     const closeBtn = document.querySelector('.lightbox-close');
     const galleryImages = document.querySelectorAll('.gallery-img');
 
     // Add click event to each gallery image
     galleryImages.forEach((img) => {
         img.addEventListener('click', function() {
-            showLightbox(this.dataset.full);
+            showLightbox(this.dataset.full, this.src);
         });
     });
 
-    function showLightbox(src) {
-        lightboxImg.src = src;
+    function showLightbox(fullSrc, thumbSrc) {
+        // Reset state
+        lightboxImg.style.display = 'none';
+        lightboxThumb.style.display = 'block';
+        loader.style.display = 'block';
+        closeBtn.style.display = 'none';
+
+        // Show thumbnail immediately
+        lightboxThumb.src = thumbSrc;
+
+        // Show lightbox
         lightbox.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        document.body.style.overflow = 'hidden';
+
+        // Load full resolution image
+        const fullImg = new Image();
+        fullImg.onload = function() {
+            lightboxImg.src = fullSrc;
+            lightboxImg.style.display = 'block';
+            lightboxThumb.style.display = 'none';
+            loader.style.display = 'none';
+            closeBtn.style.display = 'flex';
+        };
+        fullImg.onerror = function() {
+            // If full image fails to load, hide loader but keep thumbnail
+            loader.style.display = 'none';
+            closeBtn.style.display = 'flex';
+        };
+        fullImg.src = fullSrc;
     }
 
     function hideLightbox() {
         lightbox.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Restore scrolling
+        document.body.style.overflow = 'auto';
     }
 
     // Event listeners
