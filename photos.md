@@ -10,7 +10,7 @@ redirect_from:
 ---
 
 Below are collections of photos that I've taken -- some are meant to be just pretty, others depict places that I've seen and things that I've done.
-All of them had been compressed (quite aggressively) to be web-usable; **if you'd like to see the originals, simply click on the download icon.**
+All of them had been compressed (quite aggressively) to be web-usable; **if you'd like to see the originals, simply click on the photos** (JS required).
 
 I also try to be active on **[Instagram <i class="fa-brands fa-instagram"></i>](https://www.instagram.com/tomas.slama/)**, so feel free to give me a follow if you like the photos! 🙂
 

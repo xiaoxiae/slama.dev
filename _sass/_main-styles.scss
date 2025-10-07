@@ -653,3 +653,59 @@ pre.vanilla {
   image-rendering: pixelated;
   image-rendering: optimize-contrast;
 }
+
+// Base row styles
+.row {
+  display: flex;
+  gap: variables.$line-spacing;
+
+  // Don't invert images, respect orientation
+  * {
+    filter: invert(0%);
+    image-orientation: from-image;
+  }
+
+  // Space between rows (when followed by another row)
+  & + .row {
+    margin-top: variables.$line-spacing * 0.5;
+  }
+}
+
+// All children get equal width by default
+.row > * {
+  flex: 1 1 0;
+  min-width: 0;
+
+  img {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+// Caption styles
+figcaption {
+  padding: 0 variables.$line-spacing * 0.5;
+  text-align: center;
+  font-style: italic;
+
+  // Space above caption (after a row)
+  .row + & {
+    padding-top: variables.$line-spacing * 0.5;
+  }
+}
+
+// Section background
+.photo-section {
+  background: variables.$light-code-background-color;
+  margin-bottom: variables.$line-spacing * 1.25;
+  padding: variables.$line-spacing * 0.5;
+
+  @media (prefers-color-scheme: dark) {
+    background: variables.$dark-nav-background-color;
+  }
+
+  figure {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}

@@ -10,16 +10,10 @@ excerpt: "Write-up of an attempt to rescue images from my girlfriend's old camer
 I recently went through a box of electronics that me and my <a class='secret' href='/assets/kacka.webp'>girlfriend Kačka</a> no longer use in the hopes of finding something worth salvaging and stumbled upon her old camera.
 When asking about why it's there, <a class='secret' href='/assets/kacka.webp'>she</a> told me that <a class='secret' href='/assets/kacka.webp'>she</a> no longer uses it since _"it doesn't turn on"_, which piqued my interest because it could be fun to fix and could contain a lot of awesome pictures from when we were growing up.
 
-<div class='photo-section'>
-<figure>
-    <div class="row">
-        <div class="photos1-0">
-            <img src="/assets/rescuing-images-from-a-broken-sd-card/camera.webp" alt="Image of a Nikon Coolpix S5100 handheld camera.">
-        </div>
-    </div>
-    <figcaption><strong>Nikon Coolpix S5100</strong> handheld camera.</figcaption>
-</figure>
-</div>
+{% photosection %}
+  {% photorow /assets/rescuing-images-from-a-broken-sd-card/camera.webp :: Image of a Nikon Coolpix S5100 handheld camera. %}
+  {% photocaption <strong>Nikon Coolpix S5100</strong> handheld camera. %}
+{% endphotosection %}
 
 The camera in question is a [Nikon Coolpix S5100](https://www.nikonusa.com/p/coolpix-s5100/26222/overview), which came out in 2010.
 Since it was used quite extensively and <a class='secret' href='/assets/kacka.webp'>Kačka</a> doesn't remember when/why it stopped working, there could be a number of things wrong.
@@ -83,19 +77,10 @@ It will also not jump all over the disk, doing mostly sequential reads that don'
 
 After **~300** hours of reading, the reading speed dropped to about `1 B/s` we have managed to recover **94.5%** of data, with the graph and recovered sector visualizations (using **[`ddrescueview`](https://sourceforge.net/projects/ddrescueview/)**) looking like this:
 
-<div class='photo-section'>
-<figure>
-    <div class="row">
-        <div class="photos2-0">
-            <img src="/assets/rescuing-images-from-a-broken-sd-card/graph.webp" alt="Graph of recovery from 86%.">
-        </div>
-        <div class="photos2-1">
-            <img src="/assets/rescuing-images-from-a-broken-sd-card/recovered.webp" alt="Recovered sectors visualization.">
-        </div>
-    </div>
-    <figcaption><strong>Graph of recovery</strong> from 86% onward (left) and <strong>recovered sectors</strong> (right).</figcaption>
-</figure>
-</div>
+{% photosection %}
+  {% photorow /assets/rescuing-images-from-a-broken-sd-card/graph.webp :: Graph of recovery from 86%. | /assets/rescuing-images-from-a-broken-sd-card/recovered.webp :: Recovered sectors visualization. %}
+  {% photocaption <strong>Graph of recovery</strong> from 86% onward (left) and <strong>recovered sectors</strong> (right). %}
+{% endphotosection %}
 
 Re-running **[`photorec`](https://www.cgsecurity.org/wiki/PhotoRec)** gives us **61 images** and **700 thumbnails**, which is... better... but still pretty depressing.
 This is mainly due to how the recovered sectors are distributed -- many of the images that could not be recovered contain corrupted bytes, which makes them broken.
@@ -103,16 +88,7 @@ This is mainly due to how the recovered sectors are distributed -- many of the i
 Looking at the positive side, that is still **61** high-quality images and **700** low-quality ones, instead of none whatsoever, which is something 🙂.
 Even more positive, since you made it to the end of this post, you get to look at pictures of a cute dog which would be otherwise lost forever 🎉!
 
-<div class='photo-section'>
-<figure>
-    <div class="row">
-        <div class="photos2-0">
-            <img src="/assets/rescuing-images-from-a-broken-sd-card/f4747712.webp" alt="A good doggo image, pt. 1.">
-        </div>
-        <div class="photos2-1">
-            <img src="/assets/rescuing-images-from-a-broken-sd-card/f4837824.webp" alt="A good doggo image, pt. 2.">
-        </div>
-    </div>
-    <figcaption>Two recovered photos of a good doggo. 🕊️</figcaption>
-</figure>
-</div>
+{% photosection %}
+  {% photorow /assets/rescuing-images-from-a-broken-sd-card/f4747712.webp :: A good doggo image, pt. 1. | /assets/rescuing-images-from-a-broken-sd-card/f4837824.webp :: A good doggo image, pt. 2. %}
+  {% photocaption Two recovered photos of a good doggo. 🕊️ %}
+{% endphotosection %}

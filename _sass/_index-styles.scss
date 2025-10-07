@@ -155,26 +155,3 @@ $dark-alternate-index-color-2: color.adjust(
     }
   }
 }
-
-// Backward compatibility for old ul.hfill if needed
-ul.hfill {
-  display: flex;
-  justify-content: space-between;
-  list-style-type: none;
-  padding-left: variables.$line-spacing * 0.2;
-  padding-right: variables.$line-spacing * 0.2;
-  margin-top: math.div(variables.$line-spacing, 3);
-  margin-bottom: math.div(variables.$line-spacing, 3);
-  padding-top: variables.$line-spacing * 0.2;
-  padding-bottom: variables.$line-spacing * 0.2;
-  border-radius: variables.$line-spacing * 0.2;
-
-  li:nth-child(2) {
-    text-align: right;
-    padding-left: variables.$line-spacing;
-
-    @media (max-width: variables.$small-screen-threshold) {
-      padding-left: 0;
-    }
-  }
-}
