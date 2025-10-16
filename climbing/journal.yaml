@@ -3710,3 +3710,20 @@
     setup: 2024
   note: Getting back to the grind.
   wall: Crimp
+2025-10-13:
+  moon:
+    7a:
+      new: 4
+    7a+:
+      new: 1
+    setup: 2024
+  wall: Crimp
+2025-10-15:
+  moon:
+    7a:
+      new: 5
+    7b+:
+      new: 1
+    setup: 2024
+  note: Sent a sick 7b+. Feeling strong!
+  wall: Crimp
