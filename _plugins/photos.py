@@ -75,7 +75,8 @@ photo_metadata = {
         "instagram_url": "https://www.instagram.com/p/DB6AlhnIr1m/"
     },
     "2024-10-31-oviedo-lizard.jpg": {
-        "instagram_url": "https://www.instagram.com/p/DBzAUUYI6MV/"
+        "instagram_url": "https://www.instagram.com/p/DBzAUUYI6MV/",
+        "bluesky_url": "https://bsky.app/profile/tomas.slama.dev/post/3m2oncry3nc2f"
     },
     "2024-10-28-oviedo-panorama.jpg": {
         "instagram_url": "https://www.instagram.com/p/DBrLFBBIBog/"
