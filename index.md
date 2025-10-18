@@ -4,6 +4,7 @@ layout: default
 order: 0
 css: index
 no-heading: True
+icon: fa-house
 ---
 
 ## Hi everyone!

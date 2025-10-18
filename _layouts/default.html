@@ -61,9 +61,9 @@
 						<li>
 						<span class="navbar-item">
 						{% if p.title == page.title %}
-							<span class="current-page-item navbar-text"><a href="{{p.url}}">{{p.title}}</a></span>
+							<span class="current-page-item navbar-text"><a href="{{p.url}}">{% if p.icon %}<i class="{% if p.icon contains 'fa-brands' %}{{p.icon}}{% else %}fa-solid {{p.icon}}{% endif %}"></i> {% endif %}{{p.title}}</a></span>
 						{% else %}
-							<span class="navbar-text"><a href="{{p.url}}">{{p.title}}</a></span>
+							<span class="navbar-text"><a href="{{p.url}}">{% if p.icon %}<i class="{% if p.icon contains 'fa-brands' %}{{p.icon}}{% else %}fa-solid {{p.icon}}{% endif %}"></i> {% endif %}{{p.title}}</a></span>
 						{% endif %}
 						</span>
 						</li>

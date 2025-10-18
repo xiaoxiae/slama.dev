@@ -3,6 +3,7 @@ title: Stickers
 layout: default
 no-heading: True
 order: 200
+icon: fa-note-sticky
 ---
 
 **I love stickers ❤️.**

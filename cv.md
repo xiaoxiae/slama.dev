@@ -4,6 +4,7 @@ layout: default
 order: 3
 css: cv
 no-heading: True
+icon: fa-id-card
 ---
 
 This section of the personal website is dedicated to my curriculum vitae.

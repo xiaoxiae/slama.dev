@@ -3,6 +3,7 @@ title: Videos
 layout: default
 order: 100
 no-heading: True
+icon: fa-brands fa-youtube
 ---
 
 I occasionally create videos about math/computer science that I put up on my **[YouTube channel](https://www.youtube.com/channel/UC_IaBSHmisYbiYlv32EeNkQ)**.

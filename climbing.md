@@ -4,6 +4,7 @@ layout: default
 order: 4
 css: climbing photos
 no-heading: True
+icon: fa-bolt
 ---
 
 {:.center}

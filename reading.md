@@ -5,6 +5,7 @@ order: 1
 redirect_from:
  - /books/
 no-heading: True
+icon: fa-book
 ---
 
 This section covers various kinds of books that I think are worth reading.

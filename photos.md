@@ -7,6 +7,7 @@ no-heading: True
 redirect_from:
  - /photography/
  - /pictures/
+icon: fa-camera
 ---
 
 Below are collections of photos that I've taken -- some are meant to be just pretty, others depict places that I've seen and things that I've done.
