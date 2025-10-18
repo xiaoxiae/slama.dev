@@ -331,13 +331,13 @@ div.header {
 }
 
 .navigation {
-  padding: variables.$navigation-padding * 0.5;
+  padding: variables.$navigation-padding * 0.7;
   text-align: center;
   font-size: variables.$navigation-size;
 
   li {
     display: inline-block;
-    margin-right: 15px;
+    margin-right: 20px;
   }
 
   ul,
@@ -352,6 +352,15 @@ div.header {
     &::before {
       content: " ";
     }
+  }
+
+  // Make navigation icons quarter opacity when not selected
+  i {
+    opacity: 0.25;
+  }
+
+  .current-page-item i {
+    opacity: 1;
   }
 
   @media (max-width: variables.$tiny-screen-threshold) {

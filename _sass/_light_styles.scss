@@ -65,7 +65,8 @@ hr {
 }
 
 .current-page-item,
-.header {
+.header,
+.navbar-text {
   a {
     color: variables.$light-text-color;
   }
