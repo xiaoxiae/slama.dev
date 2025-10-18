@@ -8,7 +8,7 @@ function serve
         echo "ERROR: Jekyll seems to be running already."
         return 1
     end
-    bundle exec jekyll serve --trace --drafts --future --config _config.yml,_config-local.yml
+    bundle exec jekyll serve --livereload --trace --drafts --future --config _config.yml,_config-local.yml
 end
 
 function clean
@@ -38,18 +38,18 @@ end
 
 function upload
     echo "Uploading site to VPS..."
-    
+
     # Check for localhost references first
     if not check_localhost
         return 1
     end
-    
+
     echo "Syncing files to VPS..."
     rsync -avz --zc=zstd --delete _site/ root@138.199.216.195:/var/www/slama.dev/
-    
+
     echo "Setting proper permissions..."
     ssh root@138.199.216.195 'chown -R www-data:www-data /var/www/slama.dev/ && chmod -R 755 /var/www/slama.dev/'
-    
+
     echo "Upload complete!"
 end
 
