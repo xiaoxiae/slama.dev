@@ -94,6 +94,7 @@ $dark-alternate-index-color-2: color.adjust(
   .post-title-link {
     .main-link {
       text-decoration: none;
+      position: relative;
 
       &::after {
         content: "";
@@ -111,6 +112,13 @@ $dark-alternate-index-color-2: color.adjust(
 
       &.red {
         color: #d32f2f;
+      }
+
+      i {
+        margin-left: 0.15em;
+        font-size: 0.75em;
+        opacity: 0.5;
+        vertical-align: 0.1em;
       }
     }
   }

@@ -41,9 +41,9 @@ Links to the sections of the website can be found at the top, links to the posts
 			<span class="post-title-link">
 			{% if post.redirect.to %}
 				{% if post.draft %}
-					<a href="{{ post.redirect.to }}" class="red main-link"><strong>{{ post.title}}</strong></a>
+					<a href="{{ post.redirect.to }}" class="red main-link"><strong>{{ post.title}}</strong> <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
 				{% else %}
-					<a href="{{ post.redirect.to }}" class="main-link"><strong>{{ post.title}}</strong></a>
+					<a href="{{ post.redirect.to }}" class="main-link"><strong>{{ post.title}}</strong> <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
 				{% endif %}
 			{% else %}
 				{% if post.draft %}
