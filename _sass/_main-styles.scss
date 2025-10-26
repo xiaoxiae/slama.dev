@@ -376,6 +376,7 @@ article {
 }
 
 div.header {
+  position: relative;
   padding: variables.$header-padding variables.$website-padding;
   text-align: center;
 

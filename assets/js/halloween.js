@@ -224,8 +224,12 @@ function toggleHalloween() {
 
 function updateGhostCursorVisibility() {
   const ghostCursor = document.getElementById("ghost-cursor");
+  const cobwebs = document.querySelectorAll("img[alt='Cobweb']");
   const isHalloween = getCookie("halloween-mode") === "true";
   ghostCursor.style.display = isHalloween ? "block" : "none";
+  cobwebs.forEach((cobweb) => {
+    cobweb.style.display = isHalloween ? "block" : "none";
+  });
 }
 
 // Ghost cursor position tracking (in percentage coordinates)
