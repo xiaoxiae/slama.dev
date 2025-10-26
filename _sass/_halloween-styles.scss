@@ -28,6 +28,15 @@ html.halloween .navbar-text a[onclick*="toggleHalloween"] {
   filter: grayscale(0);
 }
 
+/* Halloween toggle indicator: show ? when off, ! when on */
+.halloween-toggle-indicator::before {
+  content: "?";
+}
+
+html.halloween .halloween-toggle-indicator::before {
+  content: "!";
+}
+
 /* Post item Halloween effects */
 html.halloween .post-item {
   overflow: hidden;
