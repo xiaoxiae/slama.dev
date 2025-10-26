@@ -34,3 +34,7 @@ jektex:
 plugins:
 - jekyll-redirect-from
 - jektex
+
+# Halloween theme configuration
+halloween:
+  enabled: true
