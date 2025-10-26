@@ -5,6 +5,67 @@
 
 @use "light_styles";
 @use "dark_styles";
+@use "halloween-styles";
+
+/* ==========================================================================
+   CSS CUSTOM PROPERTIES FOR THEME SWITCHING
+   ========================================================================== */
+
+:root {
+  /* Light mode (default) */
+  --text-color: #{variables.$light-text-color};
+  --link-color: #{variables.$light-link-color};
+  --background-color: #{variables.$light-background-color};
+  --header-bg: #{variables.$light-header-background-color};
+  --nav-bg: #{variables.$light-nav-background-color};
+  --code-bg: #{variables.$light-code-background-color};
+  --code-summary-bg: #{variables.$light-code-summary-background-color};
+  --toc-bg: #{variables.$light-toc-background-color};
+  --grid-overlay-color: #{variables.$light-grid-overlay-color};
+  --overlay-text-color: #{variables.$overlay-text-color};
+  --overlay-text-shadow-color: #{variables.$overlay-text-shadow-color};
+  --alternate-index-color-1: #{variables.$light-alternate-index-color-1};
+  --alternate-index-color-2: #{variables.$light-alternate-index-color-2};
+  --button-bg: #{variables.$light-button-background-color};
+  --button-bg-hover: #{variables.$light-button-background-color-hover};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode */
+    --text-color: #{variables.$dark-text-color};
+    --link-color: #{variables.$dark-link-color};
+    --background-color: #{variables.$dark-background-color};
+    --header-bg: #{variables.$dark-header-background-color};
+    --nav-bg: #{variables.$dark-nav-background-color};
+    --code-bg: #{variables.$dark-code-background-color};
+    --toc-bg: #{variables.$dark-toc-background-color};
+    --grid-overlay-color: #{variables.$dark-grid-overlay-color};
+    --overlay-text-color: #{variables.$overlay-text-color};
+    --overlay-text-shadow-color: #{variables.$overlay-text-shadow-color};
+    --alternate-index-color-1: #{variables.$dark-alternate-index-color-1};
+    --alternate-index-color-2: #{variables.$dark-alternate-index-color-2};
+    --button-bg: #{variables.$dark-button-background-color};
+    --button-bg-hover: #{variables.$dark-button-background-color-hover};
+  }
+}
+
+/* Halloween theme override */
+html.halloween {
+  --text-color: #{variables.$halloween-text-color};
+  --link-color: #{variables.$halloween-link-color};
+  --background-color: #{variables.$halloween-background-color};
+  --header-bg: #{variables.$halloween-header-background-color};
+  --nav-bg: #{variables.$halloween-nav-background-color};
+  --code-bg: #{variables.$halloween-code-background-color};
+  --grid-overlay-color: #{variables.$halloween-grid-overlay-color};
+  --overlay-text-color: #{variables.$halloween-overlay-text-color};
+  --overlay-text-shadow-color: #{variables.$halloween-overlay-text-shadow-color};
+  --alternate-index-color-1: #{variables.$halloween-alternate-index-color-1};
+  --alternate-index-color-2: #{variables.$halloween-alternate-index-color-2};
+  --button-bg: #{variables.$halloween-button-background-color};
+  --button-bg-hover: #{variables.$halloween-button-background-color-hover};
+}
 
 /* ==========================================================================
    BASE STYLES & RESETS
@@ -707,13 +768,9 @@ figcaption {
 
 // Section background
 .photo-section {
-  background: variables.$light-code-background-color;
+  background: var(--code-bg);
   margin-bottom: variables.$line-spacing * 1.25;
   padding: variables.$line-spacing * 0.5;
-
-  @media (prefers-color-scheme: dark) {
-    background: variables.$dark-nav-background-color;
-  }
 
   figure {
     margin-bottom: 0;

@@ -20,29 +20,11 @@ button {
   padding: variables.$line-spacing * 0.125 variables.$line-spacing * 0.25;
   border-radius: 3px;
 
-  background-color: variables.$light-code-background-color;
+  background-color: var(--button-bg);
 
-  color: variables.$light-text-color;
+  color: var(--text-color);
 
   &:hover {
-    background-color: color.adjust(
-      variables.$light-code-background-color,
-      $lightness: -10%,
-      $space: hsl
-    );
-  }
-
-  @media (prefers-color-scheme: dark) {
-    background-color: variables.$dark-code-background-color;
-
-    color: variables.$dark-text-color;
-
-    &:hover {
-      background-color: color.adjust(
-        variables.$dark-code-background-color,
-        $lightness: 10%,
-        $space: hsl
-      );
-    }
+    background-color: var(--button-bg-hover);
   }
 }

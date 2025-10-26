@@ -1,0 +1,29 @@
+/* ==========================================================================
+   HALLOWEEN THEME SPECIAL EFFECTS
+   ========================================================================== */
+
+/* Floating title animation */
+@keyframes float-up-down {
+  0%,
+  100% {
+    transform: translateY(4px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* Apply effects when halloween class is active */
+html.halloween div.header a,
+html.halloween div.header h1 {
+  animation: float-up-down 2s ease-in-out infinite;
+}
+
+/* Pumpkin icon grayscale when not in halloween mode */
+.navbar-text a[onclick*="toggleHalloween"] {
+  filter: grayscale(1);
+}
+
+html.halloween .navbar-text a[onclick*="toggleHalloween"] {
+  filter: grayscale(0);
+}

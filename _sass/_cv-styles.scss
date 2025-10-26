@@ -9,7 +9,7 @@
     // line between left and right column
     tr {
       td {
-        border-left: 1px solid variables.$light-text-color;
+        border-left: 1px solid var(--text-color);
       }
       td:first-child {
         border-left: 0 solid;
@@ -41,22 +41,7 @@
       }
     }
 
-    border-top: 2px solid variables.$light-text-color;
-    border-bottom: 0 solid variables.$light-text-color;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .cv {
-    table {
-      tr {
-        td {
-          border-left: 1px solid variables.$dark-text-color;
-        }
-      }
-
-      border-top: 2px solid variables.$dark-text-color;
-      border-bottom: 0 solid variables.$dark-text-color;
-    }
+    border-top: 2px solid var(--text-color);
+    border-bottom: 0 solid var(--text-color);
   }
 }
