@@ -2,7 +2,6 @@
 title: The Binding of Isaac
 layout: default
 no-heading: True
-hidden: True
 ---
 
 <styles>

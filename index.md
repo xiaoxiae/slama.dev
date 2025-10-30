@@ -11,7 +11,7 @@ icon: fa-house
 
 I'm Tom and this is my personal website.
 
-I'm **the co-founder of [climbuddy.com](https://climbuddy.com)**, the climbing platform of the future.
+I'm a full-stack developer at **[Freya Voice](https://freyavoice.ai/)**, working on **[Climbuddy](https://climbuddy.com)** in my spare time.
 
 Besides programming, I like to play <a class='secret' href='/assets/nolife.webp'>video games</a>, [take photos](/photos/), [make videos](/videos/) and [rock climb](/climbing/).
 

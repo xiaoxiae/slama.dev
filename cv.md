@@ -1,7 +1,7 @@
 ---
 title: CV
 layout: default
-order: 3
+# order: 3
 css: cv
 no-heading: True
 icon: fa-id-card

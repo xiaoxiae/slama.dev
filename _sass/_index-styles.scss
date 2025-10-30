@@ -32,7 +32,6 @@ $dark-alternate-index-color-2: color.adjust(
   margin-top: math.div(variables.$line-spacing, 4);
   margin-bottom: math.div(variables.$line-spacing, 4);
   border-radius: variables.$line-spacing * 0.3;
-  cursor: pointer;
 
   &:nth-child(2n + 1) {
     background-color: $light-alternate-index-color-1;
