@@ -382,7 +382,56 @@ for entry in reversed(sorted(list(journal))):
 
     result += line + "\n"
 
-result += "</ul>"
+result += "</ul></details>"
+
+# Handle orphaned videos (videos without corresponding journal entries)
+orphaned_videos = {}
+for video in videos:
+    if 'ignored' in videos[video] and videos[video]['ignored']:
+        continue
+
+    if videos[video]["date"] not in journal:
+        video_wall = videos[video].get("wall", "Smíchoff")
+        if video_wall not in orphaned_videos:
+            orphaned_videos[video_wall] = {}
+
+        video_color = videos[video].get("color", None)
+        if video_color not in orphaned_videos[video_wall]:
+            orphaned_videos[video_wall][video_color] = []
+
+        orphaned_videos[video_wall][video_color].append(video)
+
+# Add orphaned videos section if there are any
+if orphaned_videos:
+    result += "<h3>Unlinked Videos</h3>"
+    result += "<p>These are videos that were added to this website before the journal was created (before 2020), so they can't be linked to any particular journal entry. They are all from Smíchoff, since that's where I was climbing at the time.</p>"
+
+    for wall_name in sorted(orphaned_videos.keys()):
+        colors = orphaned_videos[wall_name]
+        wall_stub = unidecode(wall_name).lower().replace(" ", "-")
+
+        # Get colors for this wall
+        wall_colors = (
+            {}
+            if wall_stub not in wall_stubs_colors
+            else wall_stubs_colors[wall_stub]
+        )
+
+        # Format each color's videos
+        for color in list(wall_colors) + ["other"] + [None]:
+            if color not in colors:
+                continue
+
+            vs = colors[color]
+            if len(vs) == 0:
+                continue
+
+            # Format the color with video links
+            result += _format_color(color, 0, len(vs), vs, kilter=False, moon=False)
+
+    result += "<p></p>"  # it was 2 AM and I wanted a spacer
+
+result += "</div>"
 
 with open(OUTPUT_PATH, "w") as f:
     f.write(result)

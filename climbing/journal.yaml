@@ -1321,6 +1321,12 @@
   red:
     new: 5
   wall: Boulderhaus
+2022-10-23:
+  black:
+    new: 1
+  red:
+    new: 4
+  wall: Boulderhaus
 2022-10-25:
   black:
     old: 1
@@ -2053,7 +2059,7 @@
     new: 3
     old: 1
   wall: Boulderhaus
-2023-05-18:
+2023-05-17:
   blue:
     new: 3
     old: 2
@@ -2105,7 +2111,11 @@
     - - 7a
   - - Gerdina Links (Crazy Fins)
     - - 7b
-2023-05-30:
+2023-05-29:
+  red:
+    new: 2
+  wall: Boulderhaus
+2023-05-31:
   blue:
     new: 4
   note: Only 3 new reds :(.
