@@ -9,6 +9,7 @@ from subprocess import Popen, PIPE
 from unidecode import unidecode
 
 import yaml
+from climbing_types import VideoMetadata
 
 
 def stubify(string: str) -> str:
@@ -31,14 +32,23 @@ CLIMBING_INFO = os.path.join(CLIMBING_FOLDER, "videos.yaml")
 HAS_CUDA = shutil.which('nvidia-smi') is not None
 
 
-config = {}
+config: dict[str, VideoMetadata] = {}
 if os.path.exists(CLIMBING_INFO):
     with open(CLIMBING_INFO, "r") as f:
-        config = yaml.safe_load(f.read())
+        raw_config = yaml.safe_load(f.read())
+        if raw_config:
+            # Parse each video entry through Pydantic for validation
+            for video_name, video_data in raw_config.items():
+                # Skip default names
+                if 'name' in video_data and video_data['name'] == video_name:
+                    video_data['name'] = None
+
+                config[video_name] = VideoMetadata(**video_data)
 
 for name in list(config):
-    for attribute in config[name]:
-        if config[name][attribute] == "TODO":
+    video_dict = config[name].model_dump()
+    for attribute, value in video_dict.items():
+        if value == "TODO":
             print("ERROR: the videos.yaml file contains TODOs, not generating.")
             quit()
 
@@ -49,28 +59,30 @@ for name in list(config):
 # rename new files
 for name in list(config):
     path = os.path.join(CLIMBING_VIDEOS_FOLDER, name)
+    video = config[name]
 
-    if "new" in config[name]:
+    if video.new:
         print(f"parsing new climb '{name}'.", flush=True)
 
-        if "wall" in config[name]:
-            location_stub = stubify(config[name]["wall"]) 
-        elif "kilter" in config[name] and config[name]["kilter"]:
+        if video.wall:
+            location_stub = stubify(video.wall)
+        elif video.type == "kilter":
             location_stub = "kilter"
-        elif "moon" in config[name] and config[name]["moon"]:
+        elif video.type == "moon":
             location_stub = "moon"
-        elif "location" in config[name]:
-            location_stub = stubify(config[name]["location"])
+        elif video.location:
+            location_stub = stubify(video.location)
         else:
             location_stub = "smichoff"
 
         # assign a new (random) name
         random_string = get_random_string(8)
 
-        if "color" in config[name]:
-            identifier_stub = config[name]["color"].replace("+", "p") + "-"
-        elif "name" in config[name]:
-            identifier_stub = stubify(config[name]["name"]) + "-"
+        if video.color is not None:
+            color_str = str(video.color).replace("+", "p")
+            identifier_stub = color_str + "-"
+        elif video.name:
+            identifier_stub = stubify(video.name) + "-"
         else:
             # NOTE: this can happen when a wall doesn't have colors
             #  and we want to support it
@@ -81,16 +93,16 @@ for name in list(config):
             + identifier_stub
             + (
                 ""
-                if "date" not in config[name]
-                else config[name]["date"].strftime("%Y-%m-%d") + "-"
+                if video.date is None
+                else video.date.strftime("%Y-%m-%d") + "-"
             )
             + random_string
             + ".mp4"
         )
 
-        # not new anymore
-        del config[name]["new"]
-        config[new_name] = config[name]
+        # not new anymore - create a new instance without the 'new' flag
+        video.new = None
+        config[new_name] = video
         del config[name]
 
         name = new_name
@@ -101,11 +113,11 @@ for name in list(config):
         path = new_path
 
     tmp_path = os.path.join(CLIMBING_VIDEOS_FOLDER, "tmp_" + name)
+    video = config[name]
 
     # trim the video
-    if "trim" in config[name]:
-
-        start, end = config[name]["trim"].split(",")
+    if video.trim:
+        start, end = video.trim.split(",")
         command = [
             "ffmpeg",
             "-y",
@@ -121,21 +133,21 @@ for name in list(config):
         _ = Popen(command).communicate()
         os.remove(path)
         os.rename(tmp_path, path)
-        del config[name]["trim"]
+        video.trim = None
 
     # encode/rotate the video
-    if "encode" in config[name] or "rotate" in config[name]:
+    if video.encode or video.rotate:
         encode_config = (
             []
-            if "encode" not in config[name]
+            if not video.encode
             else ["-c:v", "h264_nvenc" if HAS_CUDA else "h264", "-preset", "slow"]
         )
         rotate_config = (
             []
-            if "rotate" not in config[name]
+            if not video.rotate
             else [
                 "-vf",
-                f'transpose={"2" if config[name]["rotate"] == "left" else "1"}',
+                f'transpose={"2" if video.rotate == "left" else "1"}',
             ]
         )
         command = (
@@ -149,12 +161,12 @@ for name in list(config):
         os.remove(path)
         os.rename(tmp_path, path)
 
-        if "encode" in config[name]:
-            del config[name]["encode"]
-        if "rotate" in config[name]:
-            del config[name]["rotate"]
+        if video.encode:
+            video.encode = None
+        if video.rotate:
+            video.rotate = None
 
-    if "deface" in config[name]:
+    if video.deface:
         command = [
             "deface",
             path,
@@ -173,7 +185,7 @@ for name in list(config):
 
         os.rename(path, os.path.join(old_folder, name))
         os.rename(tmp_path, path)
-        del config[name]["deface"]
+        video.deface = None
 
 
     # generate a poster, if it doesn't exist
@@ -222,8 +234,19 @@ for name in list(config):
         _ = Popen(["rm", poster_jpeg]).communicate()
 
 
+# Convert Pydantic models back to dicts for YAML serialization
+# Exclude None values, defaults, and temporary processing fields
+config_dict = {
+    video_name: video.model_dump(
+        exclude_none=True,
+        exclude_defaults=True,
+        exclude={'new', 'trim', 'encode', 'rotate', 'deface'}
+    )
+    for video_name, video in config.items()
+}
+
 with open(CLIMBING_INFO, "w") as f:
-    f.write(yaml.dump(config))
+    f.write(yaml.dump(config_dict))
 
 print("climbing videos generated (and reformatted).", flush=True)
 
