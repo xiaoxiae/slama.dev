@@ -83,6 +83,22 @@
     }
   }
 
+  details {
+    summary {
+      --summary-background: #{color.adjust(
+          variables.$dark-code-background-color,
+          $lightness: 4%,
+          $space: hsl
+        )};
+      --summary-text: #{variables.$dark-text-color};
+      --summary-background-hover: #{color.adjust(
+          variables.$dark-code-background-color,
+          $lightness: 8%,
+          $space: hsl
+        )};
+    }
+  }
+
   .highlight {
     $plain: #fafafa;
     $snow: #fff;

@@ -182,12 +182,15 @@ details {
 
   summary {
     cursor: pointer;
-    padding: variables.$line-spacing * 0.5;
-    border: 1px solid;
+    padding: variables.$line-spacing * 0.25 variables.$line-spacing * 0.5;
+    border: none;
     border-radius: variables.$code-border-roundness;
     user-select: none;
     list-style: none;
     align-items: center;
+    background-color: var(--summary-background);
+    color: var(--summary-text);
+    transition: background-color 0.2s ease;
 
     &::before {
       content: "▶";
@@ -197,7 +200,7 @@ details {
     }
 
     &:hover {
-      opacity: 0.5;
+      background-color: var(--summary-background-hover);
     }
 
     &::-webkit-details-marker {

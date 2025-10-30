@@ -126,6 +126,22 @@ a.secret {
   }
 }
 
+details {
+  summary {
+    --summary-background: #{color.adjust(
+        variables.$light-code-background-color,
+        $lightness: -4%,
+        $space: hsl
+      )};
+    --summary-text: #{variables.$light-text-color};
+    --summary-background-hover: #{color.adjust(
+        variables.$light-code-background-color,
+        $lightness: -8%,
+        $space: hsl
+      )};
+  }
+}
+
 .highlight {
   .bp {
     color: #008000;
