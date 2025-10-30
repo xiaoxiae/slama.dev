@@ -315,8 +315,14 @@ window.addEventListener("resize", function () {
   // Clamp positions to boundaries
   ghostXPercent = Math.max(offsetPercent, Math.min(maxXPercent, ghostXPercent));
   ghostYPercent = Math.max(offsetPercent, Math.min(maxYPercent, ghostYPercent));
-  targetXPercent = Math.max(offsetPercent, Math.min(maxXPercent, targetXPercent));
-  targetYPercent = Math.max(offsetPercent, Math.min(maxYPercent, targetYPercent));
+  targetXPercent = Math.max(
+    offsetPercent,
+    Math.min(maxXPercent, targetXPercent),
+  );
+  targetYPercent = Math.max(
+    offsetPercent,
+    Math.min(maxYPercent, targetYPercent),
+  );
 
   // Save the new state to localStorage
   saveGhostState();
@@ -373,7 +379,9 @@ function initGhostAnimation() {
       // Calculate direction to target (in percentage space)
       const dxPercent = targetXPercent - ghostXPercent;
       const dyPercent = targetYPercent - ghostYPercent;
-      const distancePercent = Math.sqrt(dxPercent * dxPercent + dyPercent * dyPercent);
+      const distancePercent = Math.sqrt(
+        dxPercent * dxPercent + dyPercent * dyPercent,
+      );
 
       // Update velocity towards target
       if (distancePercent > 0.5) {
@@ -396,14 +404,16 @@ function initGhostAnimation() {
       // Velocity naturally decreases via air resistance (not explicitly decelerated)
 
       // Apply repulsive force from borders
-      const offsetPercent = (ghostConfig.boundaryOffset / window.innerWidth) * 100;
+      const offsetPercent =
+        (ghostConfig.boundaryOffset / window.innerWidth) * 100;
       const repulsionRangePercent = (150 / window.innerWidth) * 100; // Distance at which repulsion starts
       const repulsionStrength = 0.2;
 
       // Left/Right borders
       if (ghostXPercent < offsetPercent + repulsionRangePercent) {
         const repulsion =
-          (1 - (ghostXPercent - offsetPercent) / repulsionRangePercent) * repulsionStrength;
+          (1 - (ghostXPercent - offsetPercent) / repulsionRangePercent) *
+          repulsionStrength;
         velocityX += repulsion;
       } else if (ghostXPercent > 100 - offsetPercent - repulsionRangePercent) {
         const repulsion =
@@ -415,7 +425,8 @@ function initGhostAnimation() {
       // Top/Bottom borders
       if (ghostYPercent < offsetPercent + repulsionRangePercent) {
         const repulsion =
-          (1 - (ghostYPercent - offsetPercent) / repulsionRangePercent) * repulsionStrength;
+          (1 - (ghostYPercent - offsetPercent) / repulsionRangePercent) *
+          repulsionStrength;
         velocityY += repulsion;
       } else if (ghostYPercent > 100 - offsetPercent - repulsionRangePercent) {
         const repulsion =
@@ -432,8 +443,14 @@ function initGhostAnimation() {
       ghostYPercent += velocityYPercent * deltaTime;
 
       // Hard bounds to prevent going off-screen
-      ghostXPercent = Math.max(offsetPercent, Math.min(100 - offsetPercent, ghostXPercent));
-      ghostYPercent = Math.max(offsetPercent, Math.min(100 - offsetPercent, ghostYPercent));
+      ghostXPercent = Math.max(
+        offsetPercent,
+        Math.min(100 - offsetPercent, ghostXPercent),
+      );
+      ghostYPercent = Math.max(
+        offsetPercent,
+        Math.min(100 - offsetPercent, ghostYPercent),
+      );
 
       // Position using percentages with CSS
       ghostCursor.style.left = ghostXPercent + "%";
@@ -452,7 +469,8 @@ function initGhostAnimation() {
           const ghostPixelX = (ghostXPercent / 100) * window.innerWidth;
           const ghostPixelY = (ghostYPercent / 100) * window.innerHeight;
           const distanceToCursor = Math.sqrt(
-            Math.pow(ghostPixelX - cursorX, 2) + Math.pow(ghostPixelY - cursorY, 2),
+            Math.pow(ghostPixelX - cursorX, 2) +
+              Math.pow(ghostPixelY - cursorY, 2),
           );
           const maxDistance = ghostConfig.maxDistanceForOpacity;
           const opacity = Math.max(
