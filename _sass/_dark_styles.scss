@@ -1,11 +1,11 @@
 @use "sass:color";
 @use "variables";
 
-/* DARK COLOR THEME */
+/* DARK COLOR THEME (uses CSS custom properties) */
 @media (prefers-color-scheme: dark) {
   body {
-    color: variables.$dark-text-color;
-    background-color: variables.$dark-header-background-color;
+    color: var(--text-color);
+    background-color: var(--header-bg);
   }
 
   // update image colors appropriately
@@ -21,65 +21,65 @@
   }
 
   a {
-    color: variables.$dark-link-color;
+    color: var(--link-color);
     &:hover {
-      color: variables.$dark-text-color;
+      color: var(--text-color);
     }
   }
 
   hr {
-    border: 1px solid variables.$dark-text-color;
-    background: variables.$dark-text-color;
+    border: 1px solid var(--text-color);
+    background: var(--text-color);
   }
 
   .current-page-item,
   .header,
   .navbar-text {
     a {
-      color: variables.$dark-text-color;
+      color: var(--text-color);
     }
   }
 
   .header {
-    background-color: variables.$dark-header-background-color;
+    background-color: var(--header-bg);
   }
 
   .highlight,
   .highlighter-rouge {
-    background-color: variables.$dark-code-background-color;
-    border-color: variables.$dark-code-background-color;
+    background-color: var(--code-bg);
+    border-color: var(--code-bg);
   }
 
   .navigation {
-    background-color: variables.$dark-nav-background-color;
+    background-color: var(--nav-bg);
   }
 
   .navigation-background {
-    background-color: variables.$dark-background-color;
+    background-color: var(--background-color);
   }
 
   footer {
-    background-color: variables.$dark-header-background-color;
+    background-color: var(--header-bg);
   }
 
   .content-background {
-    background-color: variables.$dark-background-color;
+    background-color: var(--background-color);
   }
 
   #markdown-toc {
-    background-color: color.adjust(variables.$dark-background-color, $lightness: -6%, $space: hsl);
+    background-color: var(--toc-bg);
   }
 
   .no-link-color {
     a {
-      color: variables.$dark-text-color;
+      color: var(--text-color);
     }
   }
 
   a.secret {
-    color: variables.$dark-text-color;
+    color: var(--text-color);
     &:hover {
-      color: variables.$dark-text-color;
+      color: var(--text-color);
     }
   }
 

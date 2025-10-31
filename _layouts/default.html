@@ -42,13 +42,40 @@
 		<!-- CANONICAL -->
 		<link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
 
+		{% if site.halloween.enabled %}
+		<!-- HALLOWEEN: Hide Halloween toggle when JavaScript is disabled -->
+		<noscript><style>.halloween-toggle { display: none; }</style></noscript>
+		{% endif %}
+
 		<!-- yoinked from Advent of Code: triple clicking a code snippet selects it in its entirety -->
 		<script>window.addEventListener('click', function(e,s,r){if((e.target.nodeName==='PRE'||e.target.nodeName==='CODE')&&e.detail===3){s=window.getSelection();s.removeAllRanges();r=document.createRange();r.selectNodeContents(e.target);s.addRange(r);}});</script>
+
+		{% if site.halloween.enabled %}
+		<!-- HALLOWEEN: Halloween theme toggle -->
+		<script src="{{ '/assets/js/halloween.js' | absolute_url}}"></script>
+		{% endif %}
 	</head>
 
 	<body>
-		<div class="header">
+		{% if site.halloween.enabled %}
+		<!-- HALLOWEEN: Cursor following ghost -->
+		<div id="ghost-cursor" style="display: none; position: fixed; font-size: 60px; z-index: 9999; opacity: 0; transition: opacity 0.1s; left: 0; top: 0;">
+			<i class="fa-solid fa-ghost"></i>
+			<div id="ghost-text" style="display: none; position: absolute; top: 85px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 12px; color: #fff; text-shadow: 0 0 3px rgba(0,0,0,0.8); font-family: Arial, sans-serif; pointer-events: none;">Got your cursor lmao</div>
+		</div>
+		{% endif %}
+		<div class="header no-invert">
+			{% if site.halloween.enabled %}
+			<!-- HALLOWEEN: Cobweb decoration -->
+			<img src="{{ '/assets/halloween/cobweb.svg' | absolute_url}}" style="display: none; position: absolute; top: 0; left: 0; width: 80px; height: auto; z-index: 1; opacity: 0.7;" alt="Cobweb">
+
 			<h1><a href="/">{{ site.title }}</a></h1>
+
+			<!-- HALLOWEEN: Cobweb decoration (flipped) -->
+			<img src="{{ '/assets/halloween/cobweb.svg' | absolute_url}}" style="display: none; position: absolute; bottom: 0; right: 0; width: 40px; height: auto; z-index: 1; opacity: 0.7; transform: scaleX(-1) scaleY(-1);" alt="Cobweb">
+			{% else %}
+			<h1><a href="/">{{ site.title }}</a></h1>
+			{% endif %}
 		</div>
 
 		<!-- navigation bar -->
@@ -69,6 +96,14 @@
 						</li>
 					{% endif %}
 				{% endfor %}
+				{% if site.halloween.enabled %}
+				<!-- HALLOWEEN: Halloween toggle button -->
+				<li>
+					<span class="navbar-item">
+						<span class="navbar-text"><a class="nohashtag" href="#" onclick="toggleHalloween(); return false;">🎃<span class="halloween-toggle-indicator"></span></a></span>
+					</span>
+				</li>
+				{% endif %}
 				</ul>
 			</div>
 		</div>
@@ -100,7 +135,7 @@
 		</div>
 
 		<footer>
-			<p>Maintained by Tomáš Sláma.</p>
+			<p>Maintained by <span id="author-name">Tomáš Sláma</span>.</p>
 			<p class="large no-link-color">
 				<a href="https://www.youtube.com/channel/UC_IaBSHmisYbiYlv32EeNkQ"><i class="fa-brands fa-youtube"></i></a>
 				<span class="tiny-vspace"></span>
@@ -122,5 +157,19 @@
     			<span>🇨🇿 🇵🇸 🇺🇦</span>
 			</p>
 		</footer>
+
+		<!-- Apply navbar name mapping after DOM is loaded -->
+		<script>
+			applyNavbarNameMapping();
+			applyAuthorNameMapping();
+			applyFooterLinkMapping();
+			updateGhostCursorVisibility();
+			document.addEventListener('DOMContentLoaded', function() {
+				applyNavbarNameMapping();
+				applyAuthorNameMapping();
+				applyFooterLinkMapping();
+				updateGhostCursorVisibility();
+			});
+		</script>
 	</body>
 </html>

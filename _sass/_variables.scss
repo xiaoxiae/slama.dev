@@ -8,6 +8,13 @@ $light-background-color: #fff;
 $light-header-background-color: color.adjust($light-text-color, $lightness: 85%, $space: hsl);
 $light-nav-background-color: color.adjust($light-text-color, $lightness: 94%, $space: hsl);
 $light-code-background-color: $light-header-background-color;
+$light-code-summary-background-color: color.adjust(
+  $light-code-background-color,
+  $lightness: -8%,
+  $space: hsl
+);
+$light-toc-background-color: color.adjust($light-background-color, $lightness: -6%, $space: hsl);
+$light-grid-overlay-color: #0005;
 
 /* DARK COLORS */
 $dark-text-color: #fff;
@@ -17,6 +24,69 @@ $dark-background-color: #333;
 $dark-header-background-color: color.adjust($dark-text-color, $lightness: -94%, $space: hsl);
 $dark-nav-background-color: color.adjust($dark-text-color, $lightness: -85%, $space: hsl);
 $dark-code-background-color: $dark-header-background-color;
+$dark-toc-background-color: color.adjust($dark-background-color, $lightness: -6%, $space: hsl);
+$dark-grid-overlay-color: #fff3;
+
+/* SHARED/OVERLAY COLORS */
+$overlay-text-color: white;
+$overlay-text-shadow-color: #000;
+
+/* HALLOWEEN COLORS */
+$halloween-text-color: #ff6600;
+$halloween-link-color: #9d4edd;
+$halloween-background-color: #1a0a1a;
+$halloween-header-background-color: #2d0a3a;
+$halloween-nav-background-color: #3d1547;
+$halloween-code-background-color: $halloween-header-background-color;
+$halloween-grid-overlay-color: #2d0a3a99;
+$halloween-overlay-text-color: #ff6600;
+$halloween-overlay-text-shadow-color: #1a0a1a;
+$halloween-alternate-index-color-1: color.adjust(
+  $halloween-background-color,
+  $lightness: 4%,
+  $space: hsl
+);
+$halloween-alternate-index-color-2: color.adjust(
+  $halloween-background-color,
+  $lightness: 2%,
+  $space: hsl
+);
+
+/* INDEX ALTERNATE COLORS - LIGHT MODE */
+$light-alternate-index-color-1: color.adjust(
+  $light-background-color,
+  $lightness: -10%,
+  $space: hsl
+);
+$light-alternate-index-color-2: color.adjust($light-background-color, $lightness: -5%, $space: hsl);
+
+/* INDEX ALTERNATE COLORS - DARK MODE */
+$dark-alternate-index-color-1: color.adjust($dark-background-color, $lightness: -10%, $space: hsl);
+$dark-alternate-index-color-2: color.adjust($dark-background-color, $lightness: -4%, $space: hsl);
+
+/* BUTTON COLORS */
+$light-button-background-color: $light-code-background-color;
+$light-button-background-color-hover: color.adjust(
+  $light-code-background-color,
+  $lightness: -10%,
+  $space: hsl
+);
+$dark-button-background-color: $dark-code-background-color;
+$dark-button-background-color-hover: color.adjust(
+  $dark-code-background-color,
+  $lightness: 10%,
+  $space: hsl
+);
+$halloween-button-background-color: color.adjust(
+  $halloween-code-background-color,
+  $lightness: -5%,
+  $space: hsl
+);
+$halloween-button-background-color-hover: color.adjust(
+  $halloween-code-background-color,
+  $lightness: -15%,
+  $space: hsl
+);
 
 /* SIZES */
 $website-size: 700px; // width of content of the website

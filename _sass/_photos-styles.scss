@@ -1,4 +1,5 @@
 @use "variables";
+@use "sass:color";
 
 .grid {
   display: grid;
@@ -33,11 +34,7 @@
   filter: blur(5px); /* Apply blur to the border */
   z-index: 0; /* Ensure this layer is behind the image */
 
-  background-color: #0005;
-
-  @media (prefers-color-scheme: dark) {
-    background-color: #fff3;
-  }
+  background-color: var(--grid-overlay-color);
 }
 
 .grid img {
@@ -66,11 +63,11 @@
 
   a {
     font-size: 0.9rem;
-    color: white;
+    color: var(--overlay-text-color);
     text-shadow:
-      0 0 4px #000,
-      0 0 4px #000,
-      0 0 8px #000;
+      0 0 4px var(--overlay-text-shadow-color),
+      0 0 4px var(--overlay-text-shadow-color),
+      0 0 8px var(--overlay-text-shadow-color);
   }
 }
 
@@ -78,15 +75,15 @@
   position: absolute;
   top: 5px;
   left: 10px;
-  color: white;
+  color: var(--overlay-text-color);
   text-shadow:
-    0 0 2px #000,
-    0 0 2px #000,
-    0 0 2px #000,
-    0 0 5px #000,
-    0 0 5px #000,
-    0 0 5px #000,
-    0 0 5px #000;
+    0 0 2px var(--overlay-text-shadow-color),
+    0 0 2px var(--overlay-text-shadow-color),
+    0 0 2px var(--overlay-text-shadow-color),
+    0 0 5px var(--overlay-text-shadow-color),
+    0 0 5px var(--overlay-text-shadow-color),
+    0 0 5px var(--overlay-text-shadow-color),
+    0 0 5px var(--overlay-text-shadow-color);
   font-size: 0.75rem; /* Adjust font size as needed */
   z-index: 2; /* Ensure the date is above other elements */
 }

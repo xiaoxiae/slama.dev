@@ -2,28 +2,6 @@
 @use "sass:math";
 @use "variables";
 
-$light-alternate-index-color-1: color.adjust(
-  variables.$light-background-color,
-  $lightness: -10%,
-  $space: hsl
-);
-$light-alternate-index-color-2: color.adjust(
-  variables.$light-background-color,
-  $lightness: -5%,
-  $space: hsl
-);
-
-$dark-alternate-index-color-1: color.adjust(
-  variables.$dark-background-color,
-  $lightness: -10%,
-  $space: hsl
-);
-$dark-alternate-index-color-2: color.adjust(
-  variables.$dark-background-color,
-  $lightness: -4%,
-  $space: hsl
-);
-
 .post-item {
   position: relative;
   display: flex;
@@ -34,18 +12,18 @@ $dark-alternate-index-color-2: color.adjust(
   border-radius: variables.$line-spacing * 0.3;
 
   &:nth-child(2n + 1) {
-    background-color: $light-alternate-index-color-1;
+    background-color: var(--alternate-index-color-1);
 
     code {
-      background-color: $light-alternate-index-color-2;
+      background-color: var(--alternate-index-color-2);
     }
   }
 
   &:nth-child(2n) {
-    background-color: $light-alternate-index-color-2;
+    background-color: var(--alternate-index-color-2);
 
     code {
-      background-color: $light-alternate-index-color-1;
+      background-color: var(--alternate-index-color-1);
     }
   }
 }
@@ -140,25 +118,5 @@ $dark-alternate-index-color-2: color.adjust(
 
   @media (max-width: variables.$small-screen-threshold) {
     padding-left: 0;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .post-item {
-    &:nth-child(2n + 1) {
-      background-color: $dark-alternate-index-color-1;
-
-      code {
-        background-color: $dark-alternate-index-color-2;
-      }
-    }
-
-    &:nth-child(2n) {
-      background-color: $dark-alternate-index-color-2;
-
-      code {
-        background-color: $dark-alternate-index-color-1;
-      }
-    }
   }
 }

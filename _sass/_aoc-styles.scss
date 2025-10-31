@@ -40,9 +40,9 @@
 
   overflow: clip;
 
-  background-color: variables.$dark-code-background-color !important;
+  background-color: var(--code-bg) !important;
   div > pre {
-    background-color: variables.$dark-code-background-color !important;
+    background-color: var(--code-bg) !important;
     overflow: clip;
   }
 }
