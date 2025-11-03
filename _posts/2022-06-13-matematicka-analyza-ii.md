@@ -4,8 +4,6 @@ title: Matematická Analýza II
 category: "poznamky"
 category_noslug: "poznámky"
 pdf-nogenerate: true
-redirect_from:
- - /poznamky-z-prednasky/matematicka-analyza-ii/
 excerpt: Poznámky z přednášky Matematická Analýza II (Aleš Pultr, 2020/2021).
 ---
 

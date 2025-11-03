@@ -5,9 +5,6 @@ category: "poznamky"
 category_noslug: "poznámky"
 category_icon: /assets/category-icons/mff.webp
 css: statnice
-redirect_from:
-- /priprava-na-statnice-mff-uk/
-- /vzdelani/priprava-na-statnice-mff-uk/
 excerpt: Příprava na státní zkoušky z Obecné informatiky pro akademický rok 2021/2022 (tj. nová akreditace).
 ---
 

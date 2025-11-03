@@ -3,8 +3,6 @@ language: cz
 title: Pravděpodobnost a Statistika I
 category: "poznamky"
 category_noslug: "poznámky"
-redirect_from:
- - /poznamky-z-prednasky/pravdepodobnost-a-statistika-i/
 excerpt: Poznámky z přednášky Pravděpodobnost a Statistika I (Robert Šámal, 2020/2021).
 ---
 
@@ -63,7 +61,7 @@ Množině \(\Omega\) říkáme prostor elementárních jevů.
 
 {% math theorem "Bayesova" %}pokud \(B_1, B_2, \ldots\) je rozklad \(\Omega\), \(A \in \mathcal{F}\) a \(P(A), P(B_j) >0 \), tak \[P(B_j \mid A) = \frac{P(B_j) P(A \mid B_j)}{P(A)}  = \frac{P(A \mid B_j) P(B_j)}{\sum_{i} P(A \mid B_i) P(B_i)}\]
 
-Věta řeší problém, kdy máme jev \(H\) (hypotézu), který chceme spočítat, když platí jev \(E\) (evidence). Použitím Bayesova vzorce dostáváme \[P(H \mid E) = \frac{P(E \mid H) P(H)}{P(E)}\] což intuitivně dává smysl -- při pravděpodobnosti \(H \mid E\) musíme zohlednit pravděpodobnost \(E\). 
+Věta řeší problém, kdy máme jev \(H\) (hypotézu), který chceme spočítat, když platí jev \(E\) (evidence). Použitím Bayesova vzorce dostáváme \[P(H \mid E) = \frac{P(E \mid H) P(H)}{P(E)}\] což intuitivně dává smysl -- při pravděpodobnosti \(H \mid E\) musíme zohlednit pravděpodobnost \(E\).
 {% endmath %}
 
 {: .inverse-invert}

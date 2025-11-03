@@ -4,10 +4,6 @@ category: "Motion Canvas"
 category_icon: /assets/category-icons/motion-canvas.svg
 category_part: 1
 css: motioncanvas photos manim
-redirect_from:
-- /motion-canvas/
-- /motion-canvas/1/
-- /motion-canvas/from-manim-to-motion-canvas/
 excerpt: "After a year-long break (master thesis + Manim burnout), I'm switching to Motion Canvas and documenting the transition for other Manim users through a series that recreates my original Manim tutorials."
 end: <strong>→ Part 1 ←</strong>, <a href="/motion-canvas/2/">Part 2</a>, <a href="/motion-canvas/3/">Part 3</a>
 ---

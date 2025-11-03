@@ -5,10 +5,6 @@ category: "poznamky"
 category_noslug: "poznámky"
 category_icon: /assets/category-icons/mff.webp
 pdf: true
-redirect_from:
- - /lecture-notes/principy-pocitacu/
- - /poznámky-z-přednášky/principy-pocitacu/
- - /poznamky-z-prednasky/principy-pocitacu/
 excerpt: Poznámky z přednášky Principy Počítačů (Pavel Ježek, 2019/2020).
 ---
 
@@ -93,7 +89,7 @@ excerpt: Poznámky z přednášky Principy Počítačů (Pavel Ježek, 2019/2020
 #### Řešení (1): nový stav
 - vymyšlení _dalšího stavu_ přenosu, ve kterém k přenosu nedochází
 
-1. odpojení vodiče = **floating state** (plovoucí stav) 
+1. odpojení vodiče = **floating state** (plovoucí stav)
 	- lze detekovat, že je linka odpojena
 	- není to ideální, moc se nepoužívá
 
@@ -127,7 +123,7 @@ excerpt: Poznámky z přednášky Principy Počítačů (Pavel Ježek, 2019/2020
 	- nemusí to nutně být 10, existují i jiné konfigurace
 
 ### Typy přenosu
-1. **half-duplex**: 1 datový vodič -- zařízení se v přenosu střídají 
+1. **half-duplex**: 1 datový vodič -- zařízení se v přenosu střídají
 	- komplikované
 	- nikdy nelze posílat najednou oběma směry
 2. **full duplex**: 2 nezávislé simplexí linky
@@ -242,7 +238,7 @@ excerpt: Poznámky z přednášky Principy Počítačů (Pavel Ježek, 2019/2020
 
 {% xopp 19-10-11_13-25-36 & I2C sběrnice %}
 
-- **SDA** = serial data; **SCL** = serial clock 
+- **SDA** = serial data; **SCL** = serial clock
 - idle stav je vždy vyrušen masterem, který chce navázat komunikaci
 	- rovněž _generuje hodinový signál_
 	- začátek nastává, když nastane \(0\) na SDA a \(1\) na SCL (zakázaný stav!)
@@ -374,13 +370,13 @@ excerpt: Poznámky z přednášky Principy Počítačů (Pavel Ježek, 2019/2020
 	- von Neumann
 	- 16-bit addr space (64 kB operační paměti)
 	- little endian
-- Intel 8088 
+- Intel 8088
 	- 16-bit CPU
 	- 20-bit addr space (1 MB operační paměti)
 	- little endian
 	- převládlo -- 20-bit address space byl velká výhoda
 
-#### Assembler 
+#### Assembler
 - jelikož jsou instrukce pouze posloupnost hex cifer, tak se špatně čtou -- řeší to **assembler**
 	- skok je např. `JMP`, load je `LDA`, store je `STA`
 
@@ -405,7 +401,7 @@ excerpt: Poznámky z přednášky Principy Počítačů (Pavel Ježek, 2019/2020
 	- řetězení: `LDA CLC ADC STA | LDA ADC STA | ...`
 - implementace odčítání pomocí sčítání
 	1. přepsání na sčítání: `A - B  ->  A + (-B)  ->  A + NOT(B) + 1`
-	2. subtract w/ borrow (**SBB**) -- carry je borrow 
+	2. subtract w/ borrow (**SBB**) -- carry je borrow
 		- \(1\) znamená, že si něco potřebuji půjčit z vyššího řádu
 		- principiálně stejné jako normální sčítání
 		- x86 to takhle dělá
@@ -692,8 +688,8 @@ mov    %ax,-0x1e(%rbp)
 		- \(1\): posun od aktuální pozice
 		- \(2\): posun od konce souboru
 
-##### Byty 
-- `<str>.encode("<encoding>")` -- `str -> bytes` 
+##### Byty
+- `<str>.encode("<encoding>")` -- `str -> bytes`
 - `<bytes>.decode("<encoding>")` -- `bytes -> str`
 - bytes je **immutable** (nelze měnit) -- je potřeba použít bytearray (`bytearray(<size>)`)
 	- lze převádět z `bytes` vcelku přímočaře: `bytearray(<bytes object>)`
@@ -701,7 +697,7 @@ mov    %ax,-0x1e(%rbp)
 #### Šestnáctkový výpis
 - hex view(er) -- vypsání souborů jako šestnáctkové byty
 	- na Linuxu:
-		- `xxd <soubor>`; obrácený převod `xxd -r <soubor>` 
+		- `xxd <soubor>`; obrácený převod `xxd -r <soubor>`
 		- `hexdump <soubor> -C`
 - pozor -- \(1B\) = 2 znaky
 - 3 sloupečky (tradičně po 16 znacích -- dobře se počítá pozice):
@@ -722,7 +718,7 @@ mov    %ax,-0x1e(%rbp)
 ##### Pixel
 - co sem uložit? fotonů máme od \(0\) do \(\infty\)
 	- je třeba (dobře) stanovit meze (analog \(\rightarrow\) digital) -- mapování intenzit
-- **bit depth** (bpp = bitová hloubka) -- kolik dat máme na pixel: 
+- **bit depth** (bpp = bitová hloubka) -- kolik dat máme na pixel:
 	- \(1b\) -- černobílá
 	- \(8b\) -- odstíny šedi
 	- floating pointy -- větší rozsah (HDR)
@@ -747,7 +743,7 @@ mov    %ax,-0x1e(%rbp)
 - nestačí je jen uložit za sebe -- potřebujeme metadata (obrázku, ne souboru), jako např.:
 	1. bitová hloubka
 	2. výška, šířka
-	3. pořadí barev (endianita) -- `RGB(A)` / `(A)BGR` (populárnější) 
+	3. pořadí barev (endianita) -- `RGB(A)` / `(A)BGR` (populárnější)
 	4. offset, na kterém začínají data
 
 - obecně metadata (hlavička) bývají na začátku souboru, abychom ji přečetli první
@@ -769,7 +765,7 @@ mov    %ax,-0x1e(%rbp)
 	- whitespace (mezera, tabulátor)
 - **grafém** -- nejmenší jednotka psaného jazyka
 - **kódování** (většinou pro celý text) zavádí:
-	1. 1 znak \(\iff\) 1 kód (číslo) 
+	1. 1 znak \(\iff\) 1 kód (číslo)
 	2. kód \(\iff\) binární reprezentace
 		- zda bude 1 kód = \(1B\), \(2B\), proměnlivý...
 - ukládaní do paměti tak, jak by se text četl (latinka levo-pravo, arabština pravo-levo...)
@@ -783,7 +779,7 @@ mov    %ax,-0x1e(%rbp)
 - **extended** -- rozšíření
 	- každá část Evropy (W/M/E) si to rozšířila jinak
 		- ISO8859-2 (Latin 2) -- snaha o standardizaci, ale trochu pozdě
-		- Win1250 -- Windowsové kódování 
+		- Win1250 -- Windowsové kódování
 
 ##### Unicode
 - standardizace -- všechny jazyky, všechny symboly, ~~žádné problémy~~
@@ -830,8 +826,8 @@ mov    %ax,-0x1e(%rbp)
 	- 2 dedikované druhy packetů (memory **write**, memory **read**)
 		- jen memory controller reaguje na tenhle packet
 		- není tam adresa zařízení, ale paměti
-	- příklad: 
-		1. CPU pošle **MRd** (Memory Read packet) 
+	- příklad:
+		1. CPU pošle **MRd** (Memory Read packet)
 			- cílová adresa je adresa paměti
 			- musí tam být uložena i adresa procesoru, aby mohl přijít packet zpět
 		2. memory controller vykoná požadavek, pošle **CpID** (Completion with data)

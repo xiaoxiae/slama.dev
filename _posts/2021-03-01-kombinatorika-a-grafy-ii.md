@@ -5,10 +5,6 @@ category: "poznamky"
 category_noslug: "poznámky"
 category_icon: /assets/category-icons/mff.webp
 pdf: true
-redirect_from:
- - /lecture-notes/kombinatorika-a-grafy-ii/
- - /poznámky-z-přednášky/kombinatorika-a-grafy-ii/
- - /poznamky-z-prednasky/kombinatorika-a-grafy-ii/
 excerpt: Poznámky z přednášky Kombinatorika a Grafy II (Martin Koutecký, 2020/2021).
 ---
 
@@ -47,7 +43,7 @@ excerpt: Poznámky z přednášky Kombinatorika a Grafy II (Martin Koutecký, 20
 </div>
 
 <!---PDF
-\begin{wrapfigure}{R}{0.2\textwidth} 
+\begin{wrapfigure}{R}{0.2\textwidth}
 \centering
 \fbox{\includesvg{../assets/kombinatorika-a-grafy-ii/alter.svg}}
 \end{wrapfigure}
@@ -180,7 +176,7 @@ Těžší případ: \(e_1 \in M_1, e_2 \in M_2, H = (V, M_1 \cup M_2)\)
 {% math lemma "pomocné" %} \(\forall e = \left\{x, y\right\} \exists z_e \in V \setminus \left\{x, y\right\}\) t. ž. \(\left\{x, y, z_e\right\}\) tvoří vrcholový řez v G, navíc každý z \(\left\{x, y, z_e\right\}\) má alespoň jednoho souseda v každé komponentě \(G \setminus \left\{x, y, z_e\right\}\).{% endmath %}
 - přesně popisuje situaci, že kontrakce libovolné hrany nám dá řez velikosti \(2\)
 - ve skutečnosti **neplatí** (ale dovětek ano) a dokazujeme ho pouze v rámci sporu!
-- {% math observation "které platí" %}\(S\) minimální vrcholový řez \(G\), pak každý vrchol \(S\) má souseda v každé komponentě \(G \setminus S\) -- když to pro nějaký \(v\) neplatí, tak \(S \setminus v\) je pořád řez{% endmath %} 
+- {% math observation "které platí" %}\(S\) minimální vrcholový řez \(G\), pak každý vrchol \(S\) má souseda v každé komponentě \(G \setminus S\) -- když to pro nějaký \(v\) neplatí, tak \(S \setminus v\) je pořád řez{% endmath %}
 
 {% xopp img1 %}
 
@@ -252,7 +248,7 @@ Pak ale \(G_{i - 1}\) nebyl 3-souvislý, rozborem toho, kde vznikla hrana:
 - *\(1 \Rightarrow 2\): z prváku, protože \(K_5\) ani \(K_{3, 3}\) nejsou rovinné
 - \(3 \Rightarrow 2\): obměna: „obsahuje dělení jako podgraf“ \(\Rightarrow\) „obsahuje dělení jako minor“
 - \(1 \Rightarrow 3\): je-li rovinný, tak i minor bude rovinný (fakt výše)
-- *\(2 \Rightarrow 3\): na přednášce nebyl, k přečtení tady[^1] 
+- *\(2 \Rightarrow 3\): na přednášce nebyl, k přečtení tady[^1]
 - *\(3 \Rightarrow 1\): indukcí podle \(|V(G)|\)
 	- pro \(|V(G)| \le 4\) vše funguje
 	- předpokládám \(G\) má alespoň 5 vrcholů a neobsahuje \(K_5\) ani \(K_{3, 3}\) jako minor. Rozeberu případy podle \(k_v(G)\) (vrcholová souvislost \(G\))
@@ -268,7 +264,7 @@ Pokračování v další přednášce...
 
 ### 4. přednáška
 - \(k_v(G) \ge 3\Rightarrow\) použijeme lemma o kontrahovatelné hraně: \(\exists e = \left\{x, y\right\}\) t. ž. \(G \setminus e = G'\) je \(3\)-souvislý
-	- {% math observation %}\(G'\) nemůže obsahovat \(K_5\) ani \(K_{3, 3}\) jako minor (kontrakcí něčeho, co je nemělo, je nevytvoříme){% endmath %} 
+	- {% math observation %}\(G'\) nemůže obsahovat \(K_5\) ani \(K_{3, 3}\) jako minor (kontrakcí něčeho, co je nemělo, je nevytvoříme){% endmath %}
 	- \(\mathcal{G}' \ldots\) rovinné nakreslení \(G'\) (existuje z IP)
 	- \(G'' = G' - v_e\) (vrchol vzniklý kontrakcí \(e\)) \( = G - \left\{x, y\right\}\)
 		- {% math observation %}\(G''\) bude \(2\)-souvislý (protože \(G'\) je \(3\)-souvislý a \(G''\) vznikne odebráním vrcholu){% endmath %}
@@ -327,7 +323,7 @@ Operace s plochami, přes které umíme všechny zkonstruovat:
 	- vyříznu dva kruhy
 	- vezmu plášť pálce bez dna a vrchu
 	- ohnu a přílepím jej na díry po kruzích
-	- {% math observation %}teleport, do kterého když vejdeme, tak na druhé straně vyjdeme opačně („otočeně“){% endmath %} 
+	- {% math observation %}teleport, do kterého když vejdeme, tak na druhé straně vyjdeme opačně („otočeně“){% endmath %}
 
 <!---MARKDOWN-->
 
@@ -384,7 +380,7 @@ Pro \(g \in \left\{1, 2, \ldots\right\}\) nechť \(\prod_g\) značí plochu zvni
 \]
 {% endmath %}
 
-{% math theorem "zobecněná Eulerova formule" %}Nechť máme nakreslení grafu \(G = (V, E)\) na ploše \(\Gamma\), které má \(S\) stěn. Pak \(|V| - |E| + |S| \ge \Chi(\Gamma)\). Pokud je buňkové, tak dokonce \(|V| - |E| + |S| = \Chi(\Gamma)\).{% endmath %} 
+{% math theorem "zobecněná Eulerova formule" %}Nechť máme nakreslení grafu \(G = (V, E)\) na ploše \(\Gamma\), které má \(S\) stěn. Pak \(|V| - |E| + |S| \ge \Chi(\Gamma)\). Pokud je buňkové, tak dokonce \(|V| - |E| + |S| = \Chi(\Gamma)\).{% endmath %}
 
 {% math proof "rovnosti" %}idea je indukce podle rodu \(\Gamma\)
 - \(\Gamma \cong \Sigma_0\) platí
@@ -518,7 +514,7 @@ Tedy \[\Chi(\Gamma) = L(G)\]
 <!---PDF
 -->
 
-{% math proof %}Tvrdím, že \(G\) je (\(\Delta(G) - 1\))-degenerovaný. Volme \(H\) neprázdný podgraf \(G\) a dokazujeme, že v \(H\) existuje \(v\) stupně \(\le \Delta(G) - 1\) 
+{% math proof %}Tvrdím, že \(G\) je (\(\Delta(G) - 1\))-degenerovaný. Volme \(H\) neprázdný podgraf \(G\) a dokazujeme, že v \(H\) existuje \(v\) stupně \(\le \Delta(G) - 1\)
 - pokud \(H\) obsahuje všechny vrcholy \(\Rightarrow\) předpoklad
 - jinak \(\exists e = \left\{x, y\right\} \in G\) t. ž. \(x \in H\) a \(y \not\in H\)
 	- \(\deg_H(x) \le \deg_G(x) - 1 \le \Delta(G) - 1\)
@@ -541,10 +537,10 @@ Tedy \[\Chi(\Gamma) = L(G)\]
 
 2. \(k_V(G) = 2\)
 	- dobré případy (lze slepit)
-		- \(b_1(x) = b_1(y)\) a \(b_2(x) = b_2(y)\) 
-		- \(b_1(x) \neq b_1(y)\) a \(b_2(x) \neq b_2(y)\) 
+		- \(b_1(x) = b_1(y)\) a \(b_2(x) = b_2(y)\)
+		- \(b_1(x) \neq b_1(y)\) a \(b_2(x) \neq b_2(y)\)
 	- těžší případ -- na jedné straně stejné, na druhé různé
-		- \(b_1(x) = b_1(y)\) a \(b_2(x) \neq b_2(y)\) 
+		- \(b_1(x) = b_1(y)\) a \(b_2(x) \neq b_2(y)\)
 			- pokud \(\deg_{G_1}(x)\) nebo \(\deg_{G_1}(y) \le \Delta - 2\), tak po přidání hrany půjde použít lemma a vrcholy budou mít různou barvu a máme dobrý případ
 				- nemůže se stát, že by např. druhý měl \(\deg_{G_1} = \Delta\), protože musí vidět i do druhé komponenty
 			- nebo \(\deg_{G_1}(x) = \deg_{G_1}(y) = \Delta - 1\)
@@ -637,7 +633,7 @@ Pro spor: \(R\) není klika \(\Rightarrow\) obsahuje \(u, v\) nesousedy. Protož
 		- použijeme IP na \(G_x^+\)
 			- pokud \(G_x^+\) klika, vezmi jako \(s_x\) libovolný vrchol \(G_x\) (např. \(x\))
 			- pokud \(G_x^+\) není klika, má dva simpliciální vrcholy; nejvýše jeden může ležet v \(R\), jelikož je to klika a za \(s_x\) zvolím ten druhý; analogicky pro \(G_y^+\)
-			- {% math observation %}jelikož \(R\) je řez, tak se sousedství nezmění: \(N_{G_x^+}(s_x) = N_{G}(s_x)\) (proto vlastně děláme indukci přes \(G_x^+\), né jen přes \(G_x\){% endmath %} 
+			- {% math observation %}jelikož \(R\) je řez, tak se sousedství nezmění: \(N_{G_x^+}(s_x) = N_{G}(s_x)\) (proto vlastně děláme indukci přes \(G_x^+\), né jen přes \(G_x\){% endmath %}
 
 {% xopp another2 %}
 {% endmath %}
@@ -650,7 +646,7 @@ Pro spor: \(R\) není klika \(\Rightarrow\) obsahuje \(u, v\) nesousedy. Protož
 </div>
 
 <!---PDF
-\begin{wrapfigure}{R}{0.2\textwidth} 
+\begin{wrapfigure}{R}{0.2\textwidth}
 \centering
 \fbox{\includesvg{../assets/kombinatorika-a-grafy-ii/dog.svg}}
 \end{wrapfigure}
@@ -884,7 +880,7 @@ Potom **obyčejná vytvořující funkce** pro \(\mathcal{A}\) je FMŘ \[\mathrm
 - \(H(x) = \mathrm{OVF}(\mathcal{H}) = x^{90} + 2x^{100} \)
 - \(J(x) = P(x) + H(x)\)
 
-- {% math observation %}\(\mathrm{OVF}(\mathcal{A} \cup \mathcal{B}) = \mathrm{OVF}(\mathcal{A}) + \mathrm{OVF}(\mathcal{B})\){% endmath %} 
+- {% math observation %}\(\mathrm{OVF}(\mathcal{A} \cup \mathcal{B}) = \mathrm{OVF}(\mathcal{A}) + \mathrm{OVF}(\mathcal{B})\){% endmath %}
 - {% math observation %}\(\mathrm{OVF}(\mathcal{A}) \cdot \mathrm{OVF}(\mathcal{B}) = \mathrm{OVF}(\mathcal{A} \times \mathcal{B})\){% endmath %}
 	- \(P(x) \cdot H(x) = \) kartézský součin dvojic (polívka, hlavní jídlo)
 	- \([x^{130}](J(x) \cdot J(x)) = \) počet uspořádaných dvojic jídel, které se sečtou na \(130\)
@@ -931,7 +927,7 @@ V následujících definicích a pozorováních je _takovýhle text_ odkaz na to
 
 {% math definition "EVF" %}Mějme množinu \(\mathcal{A}\) (_všechny konečné stromy s očíslovanými vrcholy_), předpokládejme:
 1. každý prvek \(\alpha \in \mathcal{A}\) (_nějaký strom_) má množinu vrcholů (_vrcholů_) \(V(\alpha) \subseteq \mathbb{N}, V(\alpha)\) konečná
-2. pro každou konečnou \(V \subseteq \mathbb{N}\) existuje konečně mnoho \(\alpha \in \mathcal{A}\) t. ž. \(V(\alpha) = V\) 
+2. pro každou konečnou \(V \subseteq \mathbb{N}\) existuje konečně mnoho \(\alpha \in \mathcal{A}\) t. ž. \(V(\alpha) = V\)
 	- (_existuje konečné množství stromů_)
 3. pro dvě konečné množiny \(V, W \subseteq \mathbb{N}\) t. ž. \(|V| = |W|\) platí, že počet \(\alpha \in \mathcal{A}\) t. ž. \(V(\alpha) = V\) je stejný jako \(\alpha \in \mathcal{A}\) t. ž. \(V(\alpha) = W\) (co do počtu, záleží jen na velikosti množiny vrcholů)
 	- (_dvě stejně velké množiny vrcholů mají stejný počet stromů_)
@@ -1090,7 +1086,7 @@ Tedy dostáváme, že \[A(x) = \frac{1}{4} \left(\left(\frac{1}{1 - x}\right)^4 
 Nechť \(x \in V(G)\) je vrchol max. stupně v \(G\)
 - \(S = N_G(x)\) (sousedství)
 - \(G_S = G\left[S\right]\) (podgraf indukovaný \(S\))
-	- {% math observation %}\(G_S\) neobsahuje \(k_{r - 1}\), jinak \(G\left[S \cup \left\{x\right\}\right]\) obsahuje \(k_r\){% endmath %} 
+	- {% math observation %}\(G_S\) neobsahuje \(k_{r - 1}\), jinak \(G\left[S \cup \left\{x\right\}\right]\) obsahuje \(k_r\){% endmath %}
 	- využijeme IP: \(\exists (r - 2)\)-partitní graf \(H_S = (S, E_{H_{S}})\)
 		- splňuje (dle IP), že \(\forall y \in s: \deg_{H_S} (y) \ge \deg_{G_S}(y)\)
 		- \(V \setminus S\) zadefinuji jako (\((r-1)\).) partitu a vše patřičně spojím, čímž získám \(H\)

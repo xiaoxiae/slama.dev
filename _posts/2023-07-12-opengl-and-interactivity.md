@@ -4,8 +4,6 @@ category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim
 category_part: 6
-redirect_from:
-- /manim/6/
 excerpt: Experimental OpenGL backend for faster GPU-based rendering in Manim Community.
 end: <a href="/manim/1/">Part 1</a>, <a href="/manim/2/">Part 2</a>, <a href="/manim/3/">Part 3</a>, <a href="/manim/4/">Part 4</a>, <a href="/manim/5/">Part 5</a>, <strong>→ Part 6 ←</strong>
 ---

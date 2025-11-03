@@ -4,9 +4,6 @@ category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim
 category_part: 1
-redirect_from:
-- /manim/1/
-- /manim/
 excerpt: An introduction to Manim, originally translated from a Czech CS-oriented correspondence seminar.
 end: <strong>→ Part 1 ←</strong>, <a href="/manim/2/">Part 2</a>, <a href="/manim/3/">Part 3</a>, <a href="/manim/4/">Part 4</a>, <a href="/manim/5/">Part 5</a>, <a href="/manim/6/">Part 6</a>
 ---

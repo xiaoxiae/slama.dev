@@ -5,10 +5,6 @@ category: "poznamky"
 category_noslug: "poznámky"
 category_icon: /assets/category-icons/mff.webp
 pdf: true
-redirect_from:
- - /lecture-notes/kombinatorika-a-grafy-i/
- - /poznámky-z-přednášky/kombinatorika-a-grafy-i/
- - /poznamky-z-prednasky/kombinatorika-a-grafy-i/
 excerpt: Poznámky z přednášky Kombinatorika a Grafy I (Martin Koutecký, 2020/2021).
 ---
 
@@ -67,7 +63,7 @@ e\left(\frac{n}{e}\right)^n \le n! \le en \left(\frac{n}{e}\right)^n
 \]
 {% endmath %}
 
-{% math proof "indukcí" %} 
+{% math proof "indukcí" %}
 - \(n = 1\): \[1 \le e \cdot 1 \cdot \frac{1}{e}\]
 - \(n - 1 \rightarrow n\):
 \[\begin{aligned} n! = n \left(n - 1\right)! &\le^\mathrm{IP} en \left(n - 1\right) \left(\frac{n - 1}{e}\right)^{n - 1} \\ &= en \left(\frac{n}{e}\right)^n \left(\frac{e}{n}\right)^n \left(n - 1\right) \left(\frac{n - 1}{e}\right)^{n - 1} \\
@@ -77,7 +73,7 @@ e\left(\frac{n}{e}\right)^n \le n! \le en \left(\frac{n}{e}\right)^n
 Důkaz, toho proč ten výraz \(\le 1\):
 
 \[
-\begin{aligned} 
+\begin{aligned}
 \left(1 - \frac{1}{n}\right)^n e &\le \left(e^{-\frac{1}{n}}\right)^n e = e^{-1} e = 1 \qquad 1 + x \le e^x
 \end{aligned}
 \]
@@ -101,7 +97,7 @@ pro malé \(k << n \ldots \binom{n}{k} = \frac{n!}{(n - k)! k!} = \frac{n \cdot 
 \[\frac{2^n}{n + 1} \le \binom{n}{\left\lfloor n/2 \right\rfloor} \le 2^n\]
 {% endmath %}
 
-{% math proof %} 
+{% math proof %}
 - součet všech čísel v řádku je \(2^n\), tak jistě to největší nebude větší
 - největší sčítanec je rovněž alespoň tak velký jako průměrný
 {% endmath %}
@@ -133,7 +129,7 @@ Pak ještě druhé kouzlo:
 
 Máme tedy:
 \[
-\begin{aligned} 
+\begin{aligned}
 	P^2 &< \frac{1}{2m + 1} < \frac{1}{2m} \\
 	P &< \frac{1}{\sqrt{2m}} \\
 \end{aligned}
@@ -241,7 +237,7 @@ V krabici je \(30\) červených, \(40\) žlutých a \(50\) zelených míčků. K
 
 \[
 \begin{aligned}
-	&(1 + x + \ldots + x^{30})(1 + x + \ldots + x^{40})(1 + x + \ldots + x^{50}) =\\ 
+	&(1 + x + \ldots + x^{30})(1 + x + \ldots + x^{40})(1 + x + \ldots + x^{50}) =\\
 	&= \frac{1 - x^{31}}{1 - x} \frac{1 - x^{41}}{1 - x}\frac{1 - x^{51}}{1 - x} \qquad //\ \text{posuneme o $31$ míst a odečteme}\\
 	&= \frac{1}{\left(1 - x\right)^3} \left(1 - x^{31}\right)\left(1 - x^{41}\right)\left(1 - x^{51}\right) \\
 	&= \left(\binom{2}{2} + \binom{3}{2}x + \binom{4}{2}x^2 + \ldots\right) \left(1 - x^{31}\right)\left(1 - x^{41}\right)\left(1 - x^{51}\right) \\
@@ -371,7 +367,7 @@ Dokáže se přes to přes rozbor příkladů toho, jak vedou přímky přes \(\
 
 {% math claim %}
 nechť \((X, \mathcal{P})\) je KPR řádu \(n\). Pak:{% endmath %}
-1. každým bodem prochází \(n + 1\) přímek 
+1. každým bodem prochází \(n + 1\) přímek
 2. \(|X| = n^2 + n + 1\)
 3. \(|\mathcal{P}| = n^2 + n + 1\)
 
@@ -406,7 +402,7 @@ Bodů na obrázku je \(\overbrace{1}^{x} + \underbrace{\left(n + 1\right)}_{P_0 
 {% xopp xins %}
 
 <!---PDF
-\begin{wrapfigure}{R}{0.2\textwidth} 
+\begin{wrapfigure}{R}{0.2\textwidth}
 \centering
 \fbox{\includesvg{../_includes/kombinatorika-a-grafy-i/xins}}
 \end{wrapfigure}
@@ -503,12 +499,12 @@ dvou navzájem ortogonálních latinských čtverců stupně \(n\):{% endmath %}
 	1 & 2 & 3 & 4 \\
 	2 & 1 & 4 & 3 \\
 	3 & 4 & 1 & 2 \\
-	4 & 3 & 2 & 1 
+	4 & 3 & 2 & 1
 \end{matrix} \qquad \begin{matrix}
 	1 & 2 & 3 & 4 \\
 	3 & 4 & 1 & 2 \\
 	4 & 3 & 2 & 1 \\
-	2 & 1 & 4 & 3 
+	2 & 1 & 4 & 3
 \end{matrix}
 \]
 
@@ -554,7 +550,7 @@ Mám tedy \(n - 1\) možností a musím přijít na \(n - 1\) různých řešen�
 {% math theorem %}
 \(\exists L_1, \ldots, L_{n - 1}\) NOLČ \(\iff \exists KPR\) řádu \(n\).{% endmath %}
 
-{% math proof "konstrukce \(\Rightarrow\)" %} 
+{% math proof "konstrukce \(\Rightarrow\)" %}
 - dány čtverce \(L_1, \ldots, L_{n - 1}\)
 - body: \(r, s, l_1, l_{n - 1}, m_{1, 1}, m_{1, 2}, \ldots, m_{1, n}, \ldots, m_{n, n}\)
 - přímky:
@@ -584,20 +580,20 @@ Mám tedy \(n - 1\) možností a musím přijít na \(n - 1\) různých řešen�
 	- \(II, III \rightarrow m_{k, l}\)
 	- \(II, IV \rightarrow \) čtverec je latinský, na řádku se symbol někde vyskytuje
 	- \(III, IV \rightarrow \) obdobně ^
-	- \(IV, IV \rightarrow \) 
+	- \(IV, IV \rightarrow \)
 		- různé čtverce: přesně definice ortogonality (existuje dvojice souřadnic pro dvojici symbolů)
 		- stejné čtverce: \(l_i\)
 3. mezi:
-	- \(r, s, l_i \rightarrow \mathrm{I}\) 
-	- \(r, m_{k, l} \rightarrow \mathrm{II}\) 
-	- \(s, m_{k, l} \rightarrow \mathrm{III}\) 
+	- \(r, s, l_i \rightarrow \mathrm{I}\)
+	- \(r, m_{k, l} \rightarrow \mathrm{II}\)
+	- \(s, m_{k, l} \rightarrow \mathrm{III}\)
 	- \(l_{i}, m_{k, l} \rightarrow \mathrm{IV}\), symbol \(\left(L_i\right)_{k, l}\) určuje, o kterou přímku z \(l_i\) jde
 	- \(m_{k, l}, m_{k', l'} \rightarrow\)
 		- stejný řádek: \(\mathrm{II}\)
 		- stejný sloupec: \(\mathrm{III}\)
 		- jinak: \(\mathrm{IV}\) a existuje, vycházíme z minulého pozorování
 
-{% math proof "konstrukce \(\Leftarrow\)" %} 
+{% math proof "konstrukce \(\Leftarrow\)" %}
 - dána KPR \((X, \mathcal{P})\), hledáme \(L_1, \ldots, L_{n - 1}\)
 	1. zvolíme libovolně přímku \(I = \left\{r, s, l_1, \ldots, l_{n - 1}\right\}\)
 	2. \(\exists n\) přímek protínající \(r\) -- typ \(\mathrm{II}\) a opět oindexuji body
@@ -675,7 +671,7 @@ graf \(G\) s \(n\) vrcholy bez \(C_4\) má nejvýše \(\frac{1}{2} \left(n^{3/2}
 ![](/assets/kombinatorika-a-grafy-i/vidlicka.svg)
 
 <!---PDF
-\begin{wrapfigure}{R}{0.2\textwidth} 
+\begin{wrapfigure}{R}{0.2\textwidth}
 \centering
 \fbox{\includesvg{../assets/kombinatorika-a-grafy-i/vidlicka}}
 \end{wrapfigure}
@@ -826,7 +822,7 @@ je tok takový, že každá (neorientovaná) cesta ze \(z\) do \(s\) je nasycen�
 {% math claim %}
 \(f\) je maximální \(\iff f\) je nasycený.{% endmath %}
 
-{% math proof "maximální je nasycený" %}  
+{% math proof "maximální je nasycený" %}
 - sporem, předpokládáme maximální \(f\), který není nasycený, tedy existuje nenasycená cesta \(P\)
 	- \(\varepsilon_1 = min \left\{c(e)-f(e)\ |e \in P \text{ po směru } \right\}\)
 	- \(\varepsilon_2 = min \left\{f(e)\ |e \in P \text{ proti směru } \right\}\)
@@ -839,7 +835,7 @@ je tok takový, že každá (neorientovaná) cesta ze \(z\) do \(s\) je nasycen�
 - \(f\) nebyl maximální, spor
 {% endmath %}
 
-{% math proof "nasycený je maximální" %} 
+{% math proof "nasycený je maximální" %}
 - uvážíme množinu vrcholů, do kterých se lze dostat ze \(z\) po nenasycené cestě -- \(A = \left\{v \in V\ |\ \exists\ \text{nenasycená cesta }\right\}\)
 	- \(s \notin A\) (jinak \(f\) není nasycený)
 	- \(\forall e \in S(A, V \setminus A)\) platí \(f(e) = c(e)\)
@@ -877,7 +873,7 @@ Plyne z běhu F-F algoritmu. Tok je součtem zlepšujících cest a cyklů.{% en
 
 {% math theorem "Königova" %}
 v bipartitním grafu je velikost maximálního párování rovna velikosti minimalního vrcholového pokrytí.{% endmath %}
-- \(M \subseteq E\) je **párování**, pokud \(\forall e, e' \in M, e \neq e': e \cap e' = \emptyset\) 
+- \(M \subseteq E\) je **párování**, pokud \(\forall e, e' \in M, e \neq e': e \cap e' = \emptyset\)
 - \(U \subseteq V\) je **vrcholové pokrytí**, pokud \(\forall e \in E \exists u \in U: u \in e\)
 
 {% math proof %}
@@ -977,7 +973,7 @@ Máme tedy \(\left(n - k\right)\)-regulární graf, pro který \(\exists\) perfe
 
 #### Míra souvislosti neorientovaných grafu
 
-{% math definition %} 
+{% math definition %}
 - **hranový řez** v grafu \(G\) je \(F \subseteq E\) t. ž. \(G' = (V, E \setminus F)\) je nesouvislý.
 - **vrcholový řez** v grafu \(G\) je \(A \subseteq V\) t. ž. \(G' = (V \setminus A, E \cap \binom{V \setminus A}{2}) = G\left[V \setminus A\right]\) je nesouvislý.
 - **hranová souvislost** \(k_e(G) = \mathrm{min} \left\{|F|\ |\ F \subseteq E \text{ je hranový řez}\right\}\)
@@ -1068,7 +1064,7 @@ graf je \(2\)-souvislý právě tehdy, když jej lze vytvořit  z \(K_3\) poslou
 - dělení hran
 - přidávání hran
 
-{% math proof "\(\Rightarrow\)" %} 
+{% math proof "\(\Rightarrow\)" %}
 - zvolme \(G_0\) libovolně (kružnici mít musí, jinak není \(2\)-souvislý).
 - předpokládejme, že \(G_j, j \le i\) jsou definovány jako výše
 - pokud \(G_i = G\), tak jsme hotovi
@@ -1115,7 +1111,7 @@ vycházíme z Fanovy roviny a o přímkách uvažujeme jako o prvcích \(\mathbb
 \]
 - pro \(n = 100, p = 0.01\) vyjde \(95\%\), což je nice!
 
-{% math definition %} 
+{% math definition %}
 - \(\Sigma \ldots\) abeceda
 	- \(s \in \Sigma^n \ldots\) slovo (vstup)
 - \(C \subseteq \Sigma^n \ldots\) kód
@@ -1132,7 +1128,7 @@ vycházíme z Fanovy roviny a o přímkách uvažujeme jako o prvcích \(\mathbb
 - kód s vlastnostmi \(n, k, d\) se označuje \((n,k,d)-\) kód
 {% endmath %}
 
-{% math example "kódy" %} 
+{% math example "kódy" %}
 1. totální kód \(C = \Sigma^n\) (nic se nekóduje)
 	- délka \( = n\)
 	- velikost \(= 2^n \implies k = \log |C| = n\)
@@ -1258,7 +1254,7 @@ slova \(z\) je \(Pz\), kde \(P\) je paritní matice kódu \(C\).{% endmath %}
 - výsledek dekódování \(y = \tilde{x} - m(s) = \tilde{x} - m(P\tilde{x})\)
 	- {% math observation %}\(y\) má mezi kódovými slovy nejmenší vzdálenost od \(\tilde{x}\){% endmath %}
 
-{% math example %} 
+{% math example %}
 - \(G = \begin{matrix} v_1 \\ v_2 \end{matrix} \begin{pmatrix} 1 & 1 & 1 & 0 & 0 \\ 0 & 0 & 1 & 1 & 1 \end{pmatrix}\)
 - \(k = 2\), máme \(4\) slova \(\left\{v_1, v_2, (0\ \ldots\ 0), v_1 + v_2\right\}\)
 - \(\Delta(C) = 3\) (počet jedniček vektoru báze)
@@ -1336,7 +1332,7 @@ kód \(C\) je perfektní, pokud pro něj platí Hammingův odhad s rovností.{% 
 
 {% math example "perfektních kódů" %}
 - totální (koule o poloměru 1)
-- opakovací kód liché délky 
+- opakovací kód liché délky
 - jednoprvkový kód (koule zaplňuje celý prostor)
 {% endmath %}
 
@@ -1384,7 +1380,7 @@ pro každý graf na \(\ge 6\) vrcholech \(\exists\) podrgraf \(E_3\) (prázdný 
 ![](/assets/kombinatorika-a-grafy-i/ramsey-obr.svg)
 
 <!---PDF
-\begin{wrapfigure}{R}{0.2\textwidth} 
+\begin{wrapfigure}{R}{0.2\textwidth}
 \centering
 \fbox{\includesvg{../assets/kombinatorika-a-grafy-i/ramsey-obr}}
 \end{wrapfigure}

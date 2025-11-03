@@ -3,8 +3,6 @@ title: Generative Neural Networks
 category: "notes"
 category_icon: /assets/category-icons/heidelberg.webp
 excerpt: Lecture notes from the Generative Neural Networks for the Sciences course (Ullrich Köthe, 2023/2024).
-redirect_from:
-- /notes/generative-neural-networks-for-the-sciences/
 ---
 
 - .
@@ -435,7 +433,7 @@ Note that \(3 \not\Rightarrow 2\) (shown during lecture).
 
 | Goals | Autoencoder | VAE | GAN | NF |
 | --- | --- | --- | --- | --- |
-| **small codes** | hyperp. | hyperp. | hyperp. | lossless | 
+| **small codes** | hyperp. | hyperp. | hyperp. | lossless |
 | **accurate distribution** \[p(X) \approx p^*(X)\] | bad (doesn't care) | trade-off | good | good |
 | **good reconstruction** \[\hat X = D(E(X)) \approx X\] | good | trade-off | can't | good |
 
@@ -662,7 +660,7 @@ TODO: add the drawing here
     - calculate acceptance weight \[\alpha = \frac{p^S(X^{\text{obs}} \mid Y') p(Y')}{p^S(X^{\text{obs}} \mid Y^{(t-1)}) p^S(Y^{(t-1)})} = \underbrace{\frac{p^S(Y' \mid X^{\text{obs}})}{p^S(Y^{(t-1)} \mid X^{\text{obs}})}}_{\text{intractable}}\]
     - sample \(u \sim \text{uniform}(0, 1)\)-- acceptance threshold
     - if \(u \le \alpha\): accept (\(Y^{(t)} = Y'\)), else reject (\(Y^{(t)} = Y^{(t-1)}\))
-        - theory: for \(T \rightarrow \infty\), \(\left\{Y^{(t)}\right\}_{t=1}^T \sim p^S(Y \mid X^{\text{obs}})\) 
+        - theory: for \(T \rightarrow \infty\), \(\left\{Y^{(t)}\right\}_{t=1}^T \sim p^S(Y \mid X^{\text{obs}})\)
 {% endmath %}
 
 3. **likelihood-free inference** -- \(p^S(X \mid Y)\) is unknown and only implicitly defined as \(\phi_{\#} p^S(Y, \eta)\)
@@ -766,7 +764,7 @@ TODO: add the drawing here
     - \(\Rightarrow\) must evaluate on the basis of \(\left\{\hat X_i\right\}_{i=1}^N\) only, possibly with a single instance \(X^* \sim p(X^*)\)
         - _e.g. grayscale coloring -- we only have one GT image that we created the grayscale one from_
     - check the diversity of the generated sample (always possible without any GT)
-        - by diversity, we mean that \(\left\{\hat X_i\right\}_{i=1}^N\) are all different and ideally cover the entire \(p^*(X)\) 
+        - by diversity, we mean that \(\left\{\hat X_i\right\}_{i=1}^N\) are all different and ideally cover the entire \(p^*(X)\)
         - **Vendi score** [Friedman & Dieng 2023]
             1. calculate kernel (Gram) matrix \(G\):
                 - \(G_{i, i'} = \frac{1}{N} k(\hat X_i, \hat X_{i'})\) (can also be done in a feature space)
@@ -866,13 +864,13 @@ _There is a missing lecture here! See slides for what was in it._
         - number of new infections per day: \(\lambda \frac{I}{N} \cdot S\)
         - number of recoveries per day: \(\frac{1}{\delta} I = \mu I\) (for \(\mu\) recovery rate)
     - write the dynamics as a system of ordinary differential equations -- each line is the _change in the compartment_: \[\begin{aligned}
-        \frac{dS(t)}{dt} = -\lambda \frac{I(t)}{N} S(t) \\ 
-        \frac{dI(t)}{dt} = \lambda \frac{I(t)}{N} S(t) - \mu I(t) \\ 
+        \frac{dS(t)}{dt} = -\lambda \frac{I(t)}{N} S(t) \\
+        \frac{dI(t)}{dt} = \lambda \frac{I(t)}{N} S(t) - \mu I(t) \\
         \frac{dR(t)}{dt} = \mu I(t)
     \end{aligned}\]
     - can divide all equations by \(N\), getting normalized values: \[\begin{aligned}
-        \frac{d[S(t)]}{dt} = -\lambda [I(t)] [S(t)] \\ 
-        \frac{d[I(t)]}{dt} = \lambda [I(t)] [S(t)] - \mu [I(t)] \\ 
+        \frac{d[S(t)]}{dt} = -\lambda [I(t)] [S(t)] \\
+        \frac{d[I(t)]}{dt} = \lambda [I(t)] [S(t)] - \mu [I(t)] \\
         \frac{d[R(t)]}{dt} = \mu [I(t)]
     \end{aligned}\]
     - to solve equations, must define \(t=0\):

@@ -2,8 +2,6 @@
 title: The C# programming language
 category: "notes"
 category_icon: /assets/category-icons/mff.webp
-redirect_from:
-- /lecture-notes/the-cs-programming-language/
 excerpt: Lecture notes from The C# programming language lecture (Pavel Ježek, 2020/2021).
 ---
 
@@ -101,7 +99,7 @@ Console.WriteLine("{0}: Hello, " + s2 + "!", s1, s2);
 ```cs
 class A {
 	int x = stuff;
-	
+
 	A () {}
 }
 
@@ -122,7 +120,7 @@ When inheriting, the constructor of the predecessor is called like this:
 ```cs
 class B : A {
 	int x = stuff;
-	
+
 	B () {
 		stuff2
 	}
@@ -134,9 +132,9 @@ class B : A {
 class B : A {
 	B () {
 		int x = stuff;
-		
+
 		// constructor of A (without parameters)
-		
+
 		stuff2
 	}
 }
@@ -168,9 +166,9 @@ class A : B {
 class A : B {
 	A () {
 		int x = something;
-		
+
 		// constructor of B (with the appropriate parameters)
-		
+
 		stuff
 	}
 }
@@ -230,7 +228,7 @@ class A {
 
 class B : A {
 	public override void f() { Console.WriteLine("B"); }
-	
+
 	// new is optinal, suppresses a warning
 	public new void g() { Console.WriteLine("B"); }
 }
@@ -353,16 +351,16 @@ if (a is B b) {
 class FixedStack<T> {
 	T[] a;
 	int num;
-	
+
 	public FixedStack(int maxSize) {
 		a = new T[maxSize];
 	}
-	
+
 	public void push(T val) {
 		a[num] = val;
 		num += 1;
 	}
-	
+
 	public T pop() {
 		num -= 1;
 		T ret = a[num];
@@ -396,7 +394,7 @@ e = f; // error, f is not initialized in all paths
 - all exceptions must inherit the {% ihighlight cs %}System.Exception{% endihighlight %} class
 	- even the ones from other languages are wrapped in a {% ihighlight cs %}SEHException{% endihighlight %}
 - takes a _long_ time (a lot of things have to be collected), though a {% ihighlight cs %}try{% endihighlight %} block is basically free
-- watch out for exceptions that 
+- watch out for exceptions that
 	1. can't be caught (like {% ihighlight cs %}StackOverflowException{% endihighlight %})
 	2. probably shouldn't be caught (like {% ihighlight cs %}OutOfMemoryException{% endihighlight %})
 
@@ -452,7 +450,7 @@ try {
 Type x;
 try {
 	x = new Type();  // could raise an exception!
-	
+
 	// some code
 } finally {
 	if (x != null) x.Dispose();
@@ -523,19 +521,19 @@ a.y = 6;
 ```cs
 class File {
 	FileStream s;
-	
+
 	public int this [int index] {
 		get {
 			s.Seek(index, SeekOrigin.Begin);
 			return s.ReadByte();
 		}
-		
+
 		set {
 			s.Seek(index, SeekOrigin.Begin);
 			return s.WriteByte((byte) value);
 		}
 	}
-	
+
 }
 ```
 
@@ -648,11 +646,11 @@ class File {
 ```cs
 static void Main(string[] args) {
 	WriteLine("hello");
-	
+
 	double arg(int n) {
 		return double.Parse(args[n]);
 	}
-	
+
 	double d = arg(0);
 	double e = arg(1);
 	WriteLine(d + e);
@@ -668,7 +666,7 @@ using System;
 
 static class Program {
 	public delegate bool Condition(int i);
-	
+
 	public static void TestNumbers(Condition condition) {
 		for (int i = 0; i < 10; i++) {
 			if (condition(i))
@@ -761,12 +759,12 @@ static class Program {
 ```cs
 class A {
 	private int x;
-	
+
 	// is ok, x is private in A
 	public int GetX() {
 		return x;
 	}
-	
+
 	// is ALSO OK, since the code is inside A (B : A)
 	public static void SetXOnB(B b) {
 		b.x = 30;
@@ -1003,7 +1001,7 @@ public class Tests
 {
 	[SetUp]
 	public void Setup() { /* do something for setup (optional) */ }
-	
+
 	[Test]
 	public void NameOfTheTest()
 	{
@@ -1011,7 +1009,7 @@ public class Tests
 		Assert.AreNotEqual("a", "b");
 		Assert.IsTrue(true);
 		Assert.IsFalse(false);
-		
+
 		Assert.Throws<ArgumentException>(() =>
 		{
 			This doesn't throw!

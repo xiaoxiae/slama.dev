@@ -4,9 +4,6 @@ layout: default
 order: 5
 css: photos
 no-heading: True
-redirect_from:
- - /photography/
- - /pictures/
 icon: fa-camera
 ---
 

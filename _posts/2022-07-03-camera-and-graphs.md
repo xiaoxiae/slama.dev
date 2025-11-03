@@ -4,8 +4,6 @@ category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim
 category_part: 3
-redirect_from:
-- /manim/3/
 excerpt: Camera controls, (combinatorial) graphs and rate functions.
 end: <a href="/manim/1/">Part 1</a>, <a href="/manim/2/">Part 2</a>, <strong>→ Part 3 ←</strong>, <a href="/manim/4/">Part 4</a>, <a href="/manim/5/">Part 5</a>, <a href="/manim/6/">Part 6</a>
 ---

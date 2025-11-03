@@ -2,8 +2,6 @@
 title: Reading
 layout: default
 order: 1
-redirect_from:
- - /books/
 no-heading: True
 icon: fa-book
 ---

@@ -4,9 +4,6 @@ category: "Motion Canvas"
 category_icon: /assets/category-icons/motion-canvas.svg
 category_part: 2
 css: motioncanvas photos manim
-redirect_from:
-- /motion-canvas/2/
-- /motion-canvas/groups-transformations-updaters/
 end: <a href="/motion-canvas/1/">Part 1</a>, <strong>→ Part 2 ←</strong>, <a href="/motion-canvas/3/">Part 3</a>
 excerpt: "Groups of objects, animation flow, signals (Manim updaters on crack), effects."
 ---

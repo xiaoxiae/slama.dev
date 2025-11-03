@@ -5,10 +5,6 @@ category: "poznamky"
 category_noslug: "poznámky"
 category_icon: /assets/category-icons/mff.webp
 pdf: true
-redirect_from:
- - /lecture-notes/diskretni-a-spojita-optimalizace/
- - /poznámky-z-přednášky/diskretni-a-spojita-optimalizace/
- - /poznamky-z-prednasky/diskretni-a-spojita-optimalizace/
 excerpt: Poznámky z přednášky Diskrétní a spojitá optimalizace (Martin Loebl + Milan Hladík, 2021/2022).
 ---
 
@@ -119,7 +115,7 @@ Pokud \(|B| = |\tilde{B}|\), pak platí \(\mathrm{R3}\)
    - \(B \cup \left\{y\right\}\) je nezávislá a \(r(Y) < r(Y \cup \left\{y\right\})\) a předpoklad implikace v \(\mathrm{R3}\) neplatí
 {% endmath %}
 
-{% math proof "\(\Leftarrow\)" %} 
+{% math proof "\(\Leftarrow\)" %}
 z \(X\) konstruujeme matroid s řádovou funkcí \(r\).
 Matroid definujme jako \[\mathcal{M} = \left(X, \mathcal{S}\right)\quad\text{t.ž.}\quad A \in \mathcal{S} \iff |A| = r(A)\]
 
@@ -353,7 +349,7 @@ Jelikož navíc triviálně \(w^T z* \ge w^T z'\) (je to optimum), tak věta pla
 
 {% math theorem "sjednocení matroidů je matroid)" %} sjednocení matroidů je matroid s řádovou funkcí \[r(U) = \min_{T \subseteq U} \left\{|U - T| + r_1(T \cap X_1) + \ldots + r_k(T \cap X_k)\right\}\]{% endmath %}
 
-{% math proof "náznak" %}matroidy zdisjunktníme (\(X'_i = X_i 
+{% math proof "náznak" %}matroidy zdisjunktníme (\(X'_i = X_i
 \times \left\{i\right\}\)), sečteme a pak zobrazíme.{% endmath %}
 
 {:.rightFloatBox}

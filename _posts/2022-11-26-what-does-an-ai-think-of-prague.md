@@ -1,8 +1,6 @@
 ---
 title: What does an AI think of Prague?
 excerpt: Neat AI-generated images of Prague (when AI was the cool new thing).
-redirect_from:
-- /photos/ai/
 ---
 
 - .

@@ -4,8 +4,6 @@ category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim
 category_part: 2
-redirect_from:
-- /manim/2/
 excerpt: Functions and classes for working with groups of objects, object transforms and updaters.
 end: <a href="/manim/1/">Part 1</a>, <strong>→ Part 2 ←</strong>, <a href="/manim/3/">Part 3</a>, <a href="/manim/4/">Part 4</a>, <a href="/manim/5/">Part 5</a>, <a href="/manim/6/">Part 6</a>
 ---

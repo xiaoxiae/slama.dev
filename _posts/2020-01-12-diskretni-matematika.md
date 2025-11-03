@@ -5,10 +5,6 @@ category: "poznamky"
 category_noslug: "poznámky"
 category_icon: /assets/category-icons/mff.webp
 pdf: true
-redirect_from:
- - /lecture-notes/diskretni-matematika/
- - /poznámky-z-přednášky/diskretni-matematika/
- - /poznamky-z-prednasky/diskretni-matematika/
 excerpt: Poznámky z přednášky Diskrétní Matematika (Martin Mareš, 2019/2020).
 ---
 
@@ -46,14 +42,14 @@ excerpt: Poznámky z přednášky Diskrétní Matematika (Martin Mareš, 2019/20
 {% endmath %}
 
 #### Vlastnosti relace
-- **reflexivní**: \(\equiv \forall x \in X: xRx\) 
+- **reflexivní**: \(\equiv \forall x \in X: xRx\)
 	- diagonála
 - **symetrická**: \(\equiv \forall x, y \in X: xRy \iff yRx\)
 	- pozn.: \(R^{-1} = R\)
 - **antisymetrická**: \(\forall x, y \in X, x \neq y: xRy \implies \neg yRx\)
 	- alternativně: \(\forall x, y \in X: xRy \land yRx \implies x = y\) (je z toho lépe vidět diagonála)
 	- např. menší než... musí to být pouze jedním směrem
-- **tranzitivní**: \(\forall x,y,z \in X: xRy \land yRz \implies xRz\) 
+- **tranzitivní**: \(\forall x,y,z \in X: xRy \land yRz \implies xRz\)
 	- hezky vidět na grafech, špatně na maticích
 
 #### Ekvivalence
@@ -104,7 +100,7 @@ Nechť \(X\) je abeceda a \(\le\) uspořadání na \(X\). Pak definujeme lexikog
 
 #### Dlouhý a široký
 {% math definition "(anti)řetězec" %}
-pro \(\left(X, \le\right)\) ČUM (částečně uspořádaná množina): 
+pro \(\left(X, \le\right)\) ČUM (částečně uspořádaná množina):
 - \(A \subseteq X\) je _řetězec_ \(\forall a, b \in A\) jsou porovnatelné
 	- \(\omega\left(X, \le\right) :=\) délka nejdelšího řetězce
 - \(A \subseteq X\) je _antiřetězec_ \(\equiv\) žádné 2 prvky nejsou porovnatelné (nezávislá množina)
@@ -136,18 +132,18 @@ je-li \(A\) \(a\)-prvkové a \(B\) \(b\)-prvkové, pak počet \(f: A \mapsto B =
 {% endmath %}
 
 {% math proof %}
-každý prvek z \(A\) můžeme (z definice dokonce musíme) poslat do libovolného prvku z \(B\). 
+každý prvek z \(A\) můžeme (z definice dokonce musíme) poslat do libovolného prvku z \(B\).
 {% endmath %}
 
 {% math theorem %} \(\left|2^X\right| = 2^{\left|X\right|}\)
 {% endmath %}
 
 {% math proof %}
-pro \(Y \subseteq X\) zavedeme *charakteristickou funkci* \(C_Y: X \mapsto \left\{0, 1\right\}\), kde 
+pro \(Y \subseteq X\) zavedeme *charakteristickou funkci* \(C_Y: X \mapsto \left\{0, 1\right\}\), kde
 
-\[C_Y\left(x\right) \begin{cases} 1 & x \in Y \\ 0 & \text{jindy}\end{cases}\] 
+\[C_Y\left(x\right) \begin{cases} 1 & x \in Y \\ 0 & \text{jindy}\end{cases}\]
 
-Každá \(C_Y\) jasně určuje unikátní podmnožinu, tím pádem vlastně počítáme funkce z \(n\)-prvkové do \(2\)-prvkové množiny, kterých je \(2^n\) (viz předešlá věta). 
+Každá \(C_Y\) jasně určuje unikátní podmnožinu, tím pádem vlastně počítáme funkce z \(n\)-prvkové do \(2\)-prvkové množiny, kterých je \(2^n\) (viz předešlá věta).
 {% endmath %}
 
 {% math theorem %}
@@ -184,7 +180,7 @@ Počet bijekcí mezi \(X\) a \(X\) (permutací) \(= n \cdot \left(n - 1\right) \
 {% endmath %}
 
 {% math proof %}
-budeme počítat dvěma způsoby: 
+budeme počítat dvěma způsoby:
 - \# (počet) uspořádaných \(k\)-tic různých prvků z \(X\) je stejný jako:
 	- \# prostých funkcí z \(\left\{1, \ldots, k\right\} \mapsto X\), kterých je \(n \cdot \left(n - 1\right) \cdot \ldots \cdot \left(n - k + 1\right)\)
 	- \# \(k\)-prvkových množin \( \cdot\ k!\) (zpermutováním)... \(\left|\binom{X}{k}\right| \cdot k!\)
@@ -225,10 +221,10 @@ budeme počítat dvěma způsoby:
 {% math proof %}
 \[
 \begin{aligned}
-	\left(a - b\right)^2 &\ge 0 \\ 
-	a^2 - 2ab + b^2 &\ge 0 \\ 
-	a^2 + b^2 &\ge 2ab \\ 
-	\frac{a^2 + b^2}{2} &\ge ab \\ 
+	\left(a - b\right)^2 &\ge 0 \\
+	a^2 - 2ab + b^2 &\ge 0 \\
+	a^2 + b^2 &\ge 2ab \\
+	\frac{a^2 + b^2}{2} &\ge ab \\
 	\frac{x + y}{2} &\ge \sqrt{xy}
 \end{aligned}
 \]
@@ -250,7 +246,7 @@ budeme počítat dvěma způsoby:
 Důkaz, toho proč ten výraz \(\le 1\):
 
 \[
-\begin{aligned} 
+\begin{aligned}
 \left(1 - \frac{1}{n}\right)^n e &\le \left(e^{-\frac{1}{n}}\right)^n e = e^{-1} e = 1 \qquad 1 + x \le e^x
 \end{aligned}
 \]
@@ -300,7 +296,7 @@ grafy \(G\) a \(H\) jsou **izomorfní** \(\left(G \cong H\right) \equiv f: V\lef
 {% endmath %}
 
 #### Grafové odhady
-Nechť \(V = \left\{v_1, \ldots, v_n\right\}\). 
+Nechť \(V = \left\{v_1, \ldots, v_n\right\}\).
 - počet _všech_ grafů na \(V\) je \(2^{\binom{n}{2}}\) (všechny možné dvojice; buďto tam jsou nebo nejsou)
 - počet _neizomorfních_ grafů: počet všech grafů / počet tříd izomorfismu (ekvivalence)
 	- izomorfismů je nejvýše \(n!\) (uvažujeme všechna přejmenování)
@@ -346,12 +342,12 @@ nechť \(d_1 \le d_2 \le \ldots \le d_n\) posloupnost přirozených čísel. Pak
 - \(\Leftarrow\):
 	- nechť \(\mathcal{G} := \left\{G\ \text{na}\ \left\{v_1, \ldots, v_n\right\}, \mid \forall i: \mathrm{deg}_G\left(v_i\right) = d_i\right\}\)
 		- = všechny možné grafy s tímhle skórem
-	- lemma: \(\exists\ G \in \mathcal{G}: \forall j, n - d_n \le j < n: \left\{v_j, v_n\right\} \in E\left(G\right)\) 
+	- lemma: \(\exists\ G \in \mathcal{G}: \forall j, n - d_n \le j < n: \left\{v_j, v_n\right\} \in E\left(G\right)\)
 		- tedy existuje graf, od kterého můžeme odtrhnout poslední vrchol (ten s největším stupněm) a dostaneme správné skóre
 	- nechť \(j\left(G\right) := \mathrm{max}\left\{j \mid \left\{v_j, v_n\right\} \not\in E\left(G\right)\right\}\) (první díra zprava)
 
 {% xopp score_1 %}
- 
+
 - nechť \(G \in \mathcal{G}\) má minimální \(j\left(G\right)\)... pak \(j < n - d_n\)
 	- důkaz sporem: kdyby \(j \ge n - d_n\), pak \(\exists i\) a \(\exists k: \left\{v_j, v_k\right\} \in E\left(G\right) \land \left\{v_i, v_k\right\} \not\in E\left(G\right)	\)
 		- pro \(d_i < d_j\) -- z \(v_j\) jich vede více než s \(d_i\) (takže do nějaké do které \(d_j\) vede \(d_i\) nevede)
@@ -397,9 +393,9 @@ Graf \(G\) je _souvislý_ \(\ \equiv \forall u, v \in V\left(G\right) \exists\ \
 
 V souvislém grafu \(G\) je vzdálenost vrcholu \(u, v\) _minimum_ z delek cest z \(u\) do \(v\) (značíme \(\rho\left(u, v\right)\)).
 - jedná se o _metriku_, jelikož splňuje následující:
-	1. \(\forall u, v: \rho\left(u, v\right) \ge 0\) 
-	2. \(\forall u, v: \rho\left(u, v\right) = 0 \iff u = v\) 
-	3. \(\forall u, v: \rho\left(u, v\right) = \rho\left(v, u\right)\) 
+	1. \(\forall u, v: \rho\left(u, v\right) \ge 0\)
+	2. \(\forall u, v: \rho\left(u, v\right) = 0 \iff u = v\)
+	3. \(\forall u, v: \rho\left(u, v\right) = \rho\left(v, u\right)\)
 	4. \(\forall u, v, w: \rho\left(u, v\right) \le \rho\left(u, w\right) + \rho\left(w, v\right)\) (trojúhelníková nerovnost)
 {% endmath %}
 
@@ -449,7 +445,7 @@ následující tvrzení jsou ekvivalentní:
 {% math proof %}
 \(1 \implies 5\): indukcí:
 - \(n = 1\) sedí (0 hran, 1 vrchol, je to strom)
-- \(n \rightarrow n + 1\)... nechť \(G\) má \(n + 1\) vrcholů... 
+- \(n \rightarrow n + 1\)... nechť \(G\) má \(n + 1\) vrcholů...
 	- \(G\) má list (lemma), jehož odtržením máme stále strom (\(G'\))... poštváním IP máme důkaz
 
 \(1 \implies 2\): indukcí:
@@ -464,20 +460,20 @@ následující tvrzení jsou ekvivalentní:
 	- IP: graf \(n\) se rozpadne
 	- po odebrání \(n+1\) hrany se graf také rozpadne
 
-\(1 \implies 4\): 
+\(1 \implies 4\):
 - acykličnost sedí
 - přidáním hrany vytvoříme cyklus, jelikož tam již existuje cesta a tohle vytvoří druhou
 	- pozor! neplést si s implikací \(4 \implies 1\); tohle _není spor_
 
-\(2 \implies 1\): 
+\(2 \implies 1\):
 - je tím pádem souvislý
 - kdyby existovala kružnice, pak existují 2 různé cesty
 
-\(3 \implies 1\): 
+\(3 \implies 1\):
 - souvislost sedí
 - kdyby existoval cyklus, tak se odstraněním nestane nesouvislý
 
-\(4 \implies 1\): 
+\(4 \implies 1\):
 - acykličnost sedí
 - kdyby nebyl souvislý, tak přidání nevytvoří cyklus
 
@@ -510,7 +506,7 @@ v grafu \(G\) existuje _uzavřený Eulerovský tah_ \(\iff\) je souvislý a \(\f
 	- POZOR: je potřeba si dávat pozor na pořadí, ve kterém tuhle implikaci dokazuji -- záleží na něm
 {% endmath %}
 
-#### Rozšiřování grafů 
+#### Rozšiřování grafů
 {% math definition: "multigraf" %}
 je uspořádaná trojice \(\left(V, E, K\right)\), kde:
 - \(V\) jsou vrcholy ( \(V \neq \emptyset\))
@@ -557,7 +553,7 @@ pro _vyvážený_ orientovaný multigraf \(G\) je ekvivalentní:
 {:.rightFloatBox}
 {% xopp krivka %}
 <!---PDF
-\begin{wrapfigure}{R}{0.2\textwidth} 
+\begin{wrapfigure}{R}{0.2\textwidth}
 \centering
 \fbox{\includesvg[width=0.1\textwidth]{../_includes/diskretni-matematika/krivka}}
 \end{wrapfigure}
@@ -716,7 +712,7 @@ pokud \(G\) nemá lichou kružnici, pak \(\chi\left(G\right) \le 2\).
 {% endmath %}
 
 {% math proof %}
-graf je souvislý \(\implies\) má kostru \(T\). Nechť \(C\) je 2-obarvení \(T\). Pokud by \(C\) nebylo obarvením \(G\), pak \(\exists\) cesta sudé délky z vrcholu \(u\) do \(v\), jejíž propojením dostáváme lichý cyklus. 
+graf je souvislý \(\implies\) má kostru \(T\). Nechť \(C\) je 2-obarvení \(T\). Pokud by \(C\) nebylo obarvením \(G\), pak \(\exists\) cesta sudé délky z vrcholu \(u\) do \(v\), jejíž propojením dostáváme lichý cyklus.
 {% endmath %}
 
 {% math claim %}
@@ -786,7 +782,7 @@ je \(\left(\Omega, P\right)\).
 {% endmath %}
 
 #### Podmíněná pravděpodobnost
-\[P\left[A \mid B\right] := \frac{P\left[A \cap B\right]}{P\left[B\right]}\] 
+\[P\left[A \mid B\right] := \frac{P\left[A \cap B\right]}{P\left[B\right]}\]
 - podmínkou vytváříme novou množinu elementárních jevů, která ale není normalizovaná (to zajišťuje dělení)
 - vlastně to po přepsání na \(P\left[A \mid B\right] \cdot P\left[B\right] = P\left[A \cap B\right]\) znamená: pravděpodobnost \(B\) krát pravděpodobnost, že v rámci \(B\) nastane \(A\) je šance jejich průniku (\(P\left[A \cap B\right]\)):
 
@@ -809,7 +805,7 @@ nechť \(B_1, \ldots, B_k\) je rozklad \(\Omega\) t. ž. \(\forall i: P\left[B_i
 
 {% math definition "nezávislé jevy" %}
 jevy \(A, B\) jsou nezávislé (\(B\) neovlivňuje \(A\)), pokud (ekvivalentní výroky):
-1. \(P\left[A \mid B\right] = P\left[A\right]\) 
+1. \(P\left[A \mid B\right] = P\left[A\right]\)
 2. \(P\left[A \cap B\right] = P\left[A\right] \cdot P\left[B\right]\)
 
 Obecněji: jevy \(A_1, \ldots, A_n\) jsou po \(k\) nezávislé \[\iff \forall I \in \binom{\left[n\right]}{k}: P\left[\bigcap_{i \in I} A_i\right] = \prod_{i \in I} P\left[A_i\right]\]
@@ -826,7 +822,7 @@ Obecněji: jevy \(A_1, \ldots, A_n\) jsou po \(k\) nezávislé \[\iff \forall I 
 {% math definition: "náhodná veličina"  %}
 je \(f: \Omega \mapsto \mathbb{R}\) (ale klidně i do jiné množiny... je to dost jedno)
 - \(P\left[f \ge 7\right] = \left\{\omega \in \Omega \mid f\left(\omega\right) \ge 7\right\}\)
-- _střední hodnota_ náhodné veličiny \(X\) je \(\mathbb{E}\left[X\right] := \sum_{\omega \in \Omega}X\left(\omega\right) \cdot P\left(\omega\right)\) 
+- _střední hodnota_ náhodné veličiny \(X\) je \(\mathbb{E}\left[X\right] := \sum_{\omega \in \Omega}X\left(\omega\right) \cdot P\left(\omega\right)\)
 - linearita střední hodnoty: \(\forall X, Y\) náhodné veličiny platí:
 	- \(\mathbb{E}\left[X + Y\right] = \mathbb{E}\left[X\right] + \mathbb{E}\left[Y\right]\)
 	- \(\mathbb{E}\left[\alpha X\right] = \alpha \mathbb{E}\left[X\right] \quad \forall \alpha \in \mathbb{R}\)

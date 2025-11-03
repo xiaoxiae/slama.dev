@@ -4,9 +4,6 @@ category: "Manim"
 category_icon: /assets/category-icons/manim.svg
 css: manim
 category_part: 4
-redirect_from:
-- /manim/4/
-- /manim/3d-and-the-other-graphs/
 excerpt: 3D animations and graph plotting.
 end: <a href="/manim/1/">Part 1</a>, <a href="/manim/2/">Part 2</a>, <a href="/manim/3/">Part 3</a>, <strong>→ Part 4 ←</strong>, <a href="/manim/5/">Part 5</a>, <a href="/manim/6/">Part 6</a>
 ---
