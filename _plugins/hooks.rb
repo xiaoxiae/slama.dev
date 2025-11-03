@@ -14,7 +14,7 @@ Jekyll::Hooks.register :site, :after_init do |site|
     print "            Videos: " + x + "\n"
   }
 
-  `_plugins/climbing.py`.split( /\r?\n/ ).each {
+  `_plugins/climbing_videos.py`.split( /\r?\n/ ).each {
     |x|
     print "          Climbing: " + x + "\n"
   }

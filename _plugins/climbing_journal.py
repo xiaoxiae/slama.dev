@@ -272,7 +272,19 @@ for entry in reversed(sorted(list(journal))):
             if 'ignored' in videos[video] and videos[video]['ignored']:
                 continue
 
-            if videos[video]["date"] == entry \
+            # Check if video type matches the context (kilter/moon/regular)
+            video_type = videos[video].get("type", "indoor")
+            type_matches = False
+
+            if kilter and video_type == "kilter":
+                type_matches = True
+            elif moon and video_type == "moon":
+                type_matches = True
+            elif not kilter and not moon and video_type in ["indoor", "outdoor"]:
+                type_matches = True
+
+            # Check if date and color match
+            if type_matches and videos[video]["date"] == entry \
                     and (("color" in videos[video] and videos[video]["color"]) == color or (color is None and "color" not in videos[video])):
                 entry_videos.append(video)
 
@@ -391,7 +403,15 @@ for video in videos:
         continue
 
     if videos[video]["date"] not in journal:
-        video_wall = videos[video].get("wall", "Smíchoff")
+        # Determine the wall/board name based on type
+        video_type = videos[video].get("type", "indoor")
+        if video_type == "kilter":
+            video_wall = KILTER_NAME
+        elif video_type == "moon":
+            video_wall = MOONBOARD_NAME
+        else:
+            video_wall = videos[video].get("wall", "Smíchoff")
+
         if video_wall not in orphaned_videos:
             orphaned_videos[video_wall] = {}
 
@@ -410,15 +430,24 @@ if orphaned_videos:
         colors = orphaned_videos[wall_name]
         wall_stub = unidecode(wall_name).lower().replace(" ", "-")
 
+        # Determine if this is a board (kilter/moon)
+        is_kilter = wall_name == KILTER_NAME
+        is_moon = wall_name == MOONBOARD_NAME
+
         # Get colors for this wall
-        wall_colors = (
-            {}
-            if wall_stub not in wall_stubs_colors
-            else wall_stubs_colors[wall_stub]
-        )
+        if is_kilter or is_moon:
+            # For boards, iterate through the grades that exist in sorted order
+            wall_colors = sorted(colors.keys())
+        else:
+            wall_colors = (
+                {}
+                if wall_stub not in wall_stubs_colors
+                else wall_stubs_colors[wall_stub]
+            )
 
         # Format each color's videos
-        for color in list(wall_colors) + ["other"] + [None]:
+        colors_to_iterate = wall_colors if (is_kilter or is_moon) else list(wall_colors) + ["other"] + [None]
+        for color in colors_to_iterate:
             if color not in colors:
                 continue
 
@@ -427,7 +456,7 @@ if orphaned_videos:
                 continue
 
             # Format the color with video links
-            result += _format_color(color, 0, len(vs), vs, kilter=False, moon=False)
+            result += _format_color(color, 0, len(vs), vs, kilter=is_kilter, moon=is_moon)
 
     result += "<p></p>"  # it was 2 AM and I wanted a spacer
 
