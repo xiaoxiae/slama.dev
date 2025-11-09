@@ -2,6 +2,7 @@
 _site
 .*cache
 __pycache__/
+.jekyll-metadata
 
 # Static .git
 .site-git

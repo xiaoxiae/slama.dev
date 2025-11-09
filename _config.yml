@@ -18,6 +18,8 @@ exclude:
     "scripts/",
     "*.xopp",
     "*.yaml",
+    "*.conf",
+    "site",
   ]
 
 defaults:
