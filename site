@@ -8,7 +8,7 @@ function serve
         echo "ERROR: Jekyll seems to be running already."
         return 1
     end
-    bundle exec jekyll serve --livereload --trace --drafts --future --config _config.yml,_config-local.yml
+    bundle exec jekyll serve --incremental --skip-initial-build --livereload --trace --drafts --future --config _config.yml,_config-local.yml
 end
 
 function clean

@@ -2,6 +2,12 @@
 @use "variables";
 
 /* LIGHT COLOR THEME (uses CSS custom properties) */
+:root {
+  --border-color: #{color.adjust(variables.$light-text-color, $lightness: 50%, $space: hsl)};
+  --error-color: #e74c3c;
+  --success-color: #27ae60;
+}
+
 body {
   color: var(--text-color);
   background-color: var(--header-bg);

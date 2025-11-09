@@ -54,6 +54,11 @@
 		<!-- HALLOWEEN: Halloween theme toggle -->
 		<script src="{{ '/assets/js/halloween.js' | absolute_url}}"></script>
 		{% endif %}
+
+		{% if page.htmx %}
+		<meta name="htmx-config" content='{"selfRequestsOnly": false}' />
+		<script src="{{ '/assets/js/htmx.min.js' | absolute_url}}"></script>
+		{% endif %}
 	</head>
 
 	<body>

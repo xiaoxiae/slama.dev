@@ -3,6 +3,12 @@
 
 /* DARK COLOR THEME (uses CSS custom properties) */
 @media (prefers-color-scheme: dark) {
+  :root {
+    --border-color: #{color.adjust(variables.$dark-text-color, $lightness: -50%, $space: hsl)};
+    --error-color: #ff6b6b;
+    --success-color: #51cf66;
+  }
+
   body {
     color: var(--text-color);
     background-color: var(--header-bg);
