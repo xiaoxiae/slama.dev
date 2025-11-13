@@ -1,13 +1,20 @@
 ---
 title: Printomat
 layout: default
-no-heading: True
+order: 999
 icon: fa-print
 css: printomat
 htmx: true
 ---
 
-Send me a message that will get printed on my home receipt printer.
+Send me a message that will get [printed on my home receipt printer](https://github.com/xiaoxiae/Printomat/). No, I'm not kidding.
+
+{% photosection %}
+  {% photorow /assets/printomat/printer-1.webp :: Receipt printer with a sample print. | /assets/printomat/printer-2.webp :: Receipt printer with a sample print. | /assets/printomat/printer-3.webp :: Receipt printer with a sample print. %}
+  {% photocaption The printer in action – prints text, images, and occasionally bugs. %}
+{% endphotosection %}
+
+### Send a message!
 
 <form id="printForm" hx-post="https://printomat.slama.dev/submit" hx-target="#printForm" hx-swap="outerHTML"  hx-request="true">
     <fieldset>
@@ -30,6 +37,12 @@ Send me a message that will get printed on my home receipt printer.
             <input type="text" id="token" name="token" placeholder="Enter a token if you have one...">
         </div>
 
+<div markdown="1">
+{: .small}
+_While I have implemented detections on both the server request side (timeouts, sane defaults) and the client side (hard limits on print frequency), it is possible for a motivated attacker to bypass those.
+In that case, the worst thing that can happen is that there will be a stack of paper at my desk in the morning, a scowl on my face, and a swift disappearance of this fun project from my website.
+**Don't be a jerk**._
+</div>
         <div>
             <button type="submit">Submit</button>
         </div>
