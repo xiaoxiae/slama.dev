@@ -51,9 +51,9 @@ Resolution Graveyard, because some things didn't make sense and couldn't hack ot
 |             |                                                                                               |                                                                                               |
 | Programming | AOC <span class="silver">all problems</span> (<span class="gold">&lt;1s per year</span>)      | 17 remaining                                                                                  |
 |             | Climbuddy <span class="silver">beta</span> \| <span class="gold">customers</span>             | <strong><span class="silver">\*</span></strong>                                               |
-|             | <span class="silver">1600+</span> \| <span class="gold">2000+</span> elo chess engine         | <a href="https://lichess.org/@/prokopakop" class="gold">+2000 on Lichess</a>                  |
+|             | <span class="silver">1600+</span> \| <span class="gold">2000+</span> elo chess engine         | <a href="https://lichess.org/@/prokopakop" class="gold">~2400 on Lichess</a>                  |
 |             |                                                                                               |                                                                                               |
 |       Other | Read <span class="silver">12</span>\|<span class="gold">18</span> books                       | <span class="silver">17</span>                                                                |
 |             | <span class="silver">&lt;1h</span>\|<span class="gold">&lt;30m</span> unproductive phone time | <span class="gold">uninstalling</span> Instagram worked                                       |
-|             | <span class="silver">A1</span>\|<span class="gold">A2</span> German                           | <span class="silver">A1</span> (somewhat), very inconsistent recently                           |
-|             | Make <span class="silver">latte art</span> of <span class="gold">not just a heart</span>      | <span class="silver">got one</span> and getting better                                   |
+|             | <span class="silver">A1</span>\|<span class="gold">A2</span> German                           | <span class="silver">A1</span> (somewhat), nothing                                              |
+|             | Make <span class="silver">latte art</span> of <span class="gold">not just a heart</span>      | <span class="silver">got one</span> and switched to tea                              |
