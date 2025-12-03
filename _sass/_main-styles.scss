@@ -217,18 +217,29 @@ code {
 }
 
 blockquote {
+  position: relative;
+  margin-left: variables.$line-spacing;
+  margin-bottom: variables.$line-spacing;
+  padding-left: variables.$line-spacing * 0.5;
+  opacity: 0.5;
+
+  &::before {
+    content: "\201C";
+    position: absolute;
+    left: -(variables.$line-spacing * 0.5);
+    top: variables.$line-spacing * 0.1;
+    font-size: 2.5em;
+    line-height: 1;
+    opacity: 0.3;
+  }
+
   p {
-    border-left: 1px solid;
-    padding-left: 15px;
-    padding-bottom: variables.$line-spacing * 0.5;
-    margin-bottom: 0px;
-    width: fit-content !important;
+    margin-bottom: variables.$line-spacing * 0.5;
     font-style: italic;
   }
 
   p:last-child {
-    padding-bottom: 0;
-    margin-bottom: variables.$line-spacing;
+    margin-bottom: 0;
   }
 }
 
