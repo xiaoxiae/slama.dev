@@ -131,5 +131,3 @@ Quoting a [DailyMeal article](https://www.thedailymeal.com/entertain/donald-trum
 > According to a profile on the Trump White House in Politico, he reportedly asked the White House kitchen to cook him up a McDonald's-style meal. But not any meal! He wanted a quarter-pounder with cheese with extra ketchup and no pickles. For dessert, he wanted one of the fast food chain's signature fried apple pies.
 
 This man is a psychopath and should be jailed immediately.
->
->
