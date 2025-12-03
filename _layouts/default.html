@@ -101,14 +101,6 @@
 						</li>
 					{% endif %}
 				{% endfor %}
-				{% if site.halloween.enabled %}
-				<!-- HALLOWEEN: Halloween toggle button -->
-				<li>
-					<span class="navbar-item">
-						<span class="navbar-text"><a class="nohashtag" href="#" onclick="toggleHalloween(); return false;">🎃<span class="halloween-toggle-indicator"></span></a></span>
-					</span>
-				</li>
-				{% endif %}
 				</ul>
 			</div>
 		</div>
@@ -162,6 +154,10 @@
 			<a href="/security/">security</a>
 			<span class="half-visible vspace">·</span>
     			<span>🇨🇿 🇵🇸 🇺🇦</span>
+			{% if site.halloween.enabled %}
+			<span class="half-visible vspace">·</span>
+			<a class="nohashtag" href="#" onclick="toggleHalloween(); return false;">🎃<span class="halloween-toggle-indicator"></span></a>
+			{% endif %}
 			</p>
 		</footer>
 
