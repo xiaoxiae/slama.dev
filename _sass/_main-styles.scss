@@ -569,14 +569,57 @@ pre.vanilla {
   margin-bottom: variables.$line-spacing;
 }
 
-.highlighter-rouge {
+.highlighter-rouge,
+figure.highlight {
   border-radius: variables.$code-border-roundness;
   padding: variables.$code-padding * 0.5 variables.$code-padding;
   margin-bottom: variables.$line-spacing;
   font-variant-ligatures: none;
+  position: relative;
 
   pre {
     padding: variables.$code-padding;
+  }
+
+  // Line numbers table structure
+  table.rouge-table {
+    border: none;
+    border-top: none;
+    border-bottom: none;
+    margin: 0;
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    font-size: inherit;
+    line-height: inherit;
+
+    td,
+    th {
+      padding: 0;
+      border: none;
+    }
+
+    pre {
+      margin: 0;
+      padding: 0;
+      font-size: inherit;
+      line-height: inherit;
+      font-family: inherit;
+    }
+
+    .rouge-gutter,
+    .gutter {
+      position: absolute;
+      left: -(variables.$line-spacing * 1.25);
+      text-align: right;
+      user-select: none;
+      opacity: 0.25;
+    }
+
+    .rouge-code,
+    .code {
+      width: 100%;
+    }
   }
 }
 
