@@ -2,6 +2,54 @@
 @use "sass:math";
 @use "variables";
 
+.promo-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: variables.$line-spacing * 0.6 variables.$line-spacing * 0.8;
+  margin-bottom: variables.$line-spacing;
+  border-radius: variables.$line-spacing * 0.3;
+  text-decoration: none;
+  transition: filter 0.2s ease;
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+
+  .promo-text {
+    flex: 1;
+  }
+
+  .promo-cta {
+    flex-shrink: 0;
+    margin-left: variables.$line-spacing;
+    font-weight: bold;
+  }
+
+  @media (max-width: variables.$small-screen-threshold) {
+    flex-direction: column;
+    gap: variables.$line-spacing * 0.3;
+    text-align: center;
+
+    .promo-cta {
+      margin-left: 0;
+    }
+  }
+}
+
+.protab-banner {
+  background-color: #a8eedc;
+  color: #2c3e50;
+
+  &:hover {
+    color: #2c3e50;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #18bc9c;
+  }
+}
+
 .post-item {
   position: relative;
   display: flex;

@@ -7,6 +7,11 @@ no-heading: True
 icon: fa-house
 ---
 
+<a href="https://protab.cz/" class="promo-banner protab-banner">
+	<span class="promo-text"><strong>ProTab 2025</strong> – Letní <strong>programátorský tábor</strong> pro středoškoláky, který každým rokem organizuji s partou fajn lidí. Pojeďte na super akci! ️❤️ </span>
+	<span class="promo-cta">Více info →</span>
+</a>
+
 ## Hi everyone!
 
 I'm Tom and this is my personal website.
