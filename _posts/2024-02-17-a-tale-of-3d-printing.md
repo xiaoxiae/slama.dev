@@ -67,7 +67,7 @@ Tank god it was simple.
 
 ### The Disaster
 
-Since the last one was a really simple design, I wanted today to be a little more complicated and so I designed a mini replica of the [Kilter Board](https://settercloset.com/pages/the-kilter-board), dubbing it the Bilter Koard (creative, I know; they can't sue me, right?).
+Since the last one was a really simple design, I wanted today to be a little more complicated and so I designed a mini replica of the Kilter Board, dubbing it the Bilter Koard (creative, I know; they can't sue me, right?).
 
 {% photosection %}
   {% photorow /assets/a-tale-of-3d-printing/board-render.webp :: A render of the Bilter Koard. %}

@@ -210,7 +210,7 @@ In each step, the ant moves in the following manner:
 - inverts the color of the space it's standing on
 - moves forward
 
-To create the ant object, you can use the {% manim_doc `SVGMobject` reference/manim.mobject.svg.svg_mobject.SVGMobject.html %} class to render an SVG image ([this one](/assets/manim/3-ant.svg), for example, which the author's solution uses).
+To create the ant object, you can use the {% manim_doc `SVGMobject` reference/manim.mobject.svg.svg_mobject.SVGMobject.html %} class to render an SVG image ([this one](/assets/manim/03-ant.svg), for example, which the author's solution uses).
 
 ```py
 {% include manim/03-svg-example.py %}

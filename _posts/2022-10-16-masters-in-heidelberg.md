@@ -214,7 +214,7 @@ This depends a lot on where you live but it might be a good idea to purchase the
 Also, if you can, travel by bike.
 Heidelberg is made for travel by bike -- it has great infrastructure (bike lanes and racks everywhere), cars are used to them and it is arguably the fastest way to travel here since the public transport always has delays.
 
-If you don't own a bike, use a bike-sharing service like [nextbike](https://www.vrnnextbike.de/en/heidelberg/), which allows up to 30 minutes of free travel _per rental_ (for students).
+If you don't own a bike, use a bike-sharing service like [nextbike](https://www.vrnnextbike.de/en/), which allows up to 30 minutes of free travel _per rental_ (for students).
 This is likely more than enough time to travel from/to any campus/mensa during your daily schedule.
 
 For traveling to specific campus buildings, here are some very useful maps for each campus part ([Altstadt](/assets/masters-in-heidelberg/altstadt.pdf), [Bergheim](/assets/masters-in-heidelberg/bergheim.pdf) and [Im Neuenheimer Feld](/assets/masters-in-heidelberg/im-neuenheimer-feld.pdf)).
@@ -222,10 +222,10 @@ For traveling to specific campus buildings, here are some very useful maps for e
 
 ### Dining
 
-There are a [number of mensas](https://www.studentenwerk.uni-heidelberg.de/en/mensen_neu) in Heidelberg, the most frequented being the [Zentralmensa](https://www.studentenwerk.uni-heidelberg.de/en/node/344).
+There are a [number of mensas](https://www.stw.uni-heidelberg.de/) in Heidelberg, the most frequented being the Zentralmensa.
 They provide food both as a **buffet** (which is great because you can regulate how much you eat) and **ready meals** (which are slightly cheaper but uniform).
 
-My favorite is the [Zeughaus Mensa](https://www.studentenwerk.uni-heidelberg.de/en/node/342) near Universitätsplatz, which always has excellent food, along with a café (with student prices).
+My favorite is the Zeughaus Mensa near Universitätsplatz, which always has excellent food, along with a café (with student prices).
 The best thing is that it closes pretty late (9 PM) and is also open on Saturday, so you can really minimize the amount you cook, if you're not into that or don't have the facilities at home.
 
 
