@@ -19,12 +19,18 @@ html.halloween div.header h1 {
   animation: float-up-down 2s ease-in-out infinite;
 }
 
-/* Pumpkin icon grayscale when not in halloween mode */
-.navbar-text a[onclick*="toggleHalloween"] {
+/* Halloween toggle button styling */
+.halloween-toggle-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
   filter: grayscale(1);
 }
 
-html.halloween .navbar-text a[onclick*="toggleHalloween"] {
+html.halloween .halloween-toggle-btn {
   filter: grayscale(0);
 }
 

@@ -35,6 +35,7 @@ jektex:
 
 plugins:
   - jektex
+  - jekyll-sitemap
 
 kramdown:
   syntax_highlighter: rouge

@@ -1,4 +1,5 @@
 @use "sass:math";
+@use "sass:color";
 
 @use "variables";
 @use "hacks";
@@ -28,6 +29,13 @@
   --alternate-index-color-2: #{variables.$light-alternate-index-color-2};
   --button-bg: #{variables.$light-button-background-color};
   --button-bg-hover: #{variables.$light-button-background-color-hover};
+  --summary-background: #{variables.$light-code-summary-background-color};
+  --summary-background-hover: #{color.adjust(
+      variables.$light-code-summary-background-color,
+      $lightness: -5%,
+      $space: hsl
+    )};
+  --summary-text: #{variables.$light-text-color};
 }
 
 @media (prefers-color-scheme: dark) {
@@ -47,6 +55,13 @@
     --alternate-index-color-2: #{variables.$dark-alternate-index-color-2};
     --button-bg: #{variables.$dark-button-background-color};
     --button-bg-hover: #{variables.$dark-button-background-color-hover};
+    --summary-background: #{variables.$dark-code-background-color};
+    --summary-background-hover: #{color.adjust(
+        variables.$dark-code-background-color,
+        $lightness: 5%,
+        $space: hsl
+      )};
+    --summary-text: #{variables.$dark-text-color};
   }
 }
 
@@ -65,6 +80,13 @@ html.halloween {
   --alternate-index-color-2: #{variables.$halloween-alternate-index-color-2};
   --button-bg: #{variables.$halloween-button-background-color};
   --button-bg-hover: #{variables.$halloween-button-background-color-hover};
+  --summary-background: #{variables.$halloween-code-background-color};
+  --summary-background-hover: #{color.adjust(
+      variables.$halloween-code-background-color,
+      $lightness: 5%,
+      $space: hsl
+    )};
+  --summary-text: #{variables.$halloween-text-color};
 }
 
 /* ==========================================================================
@@ -389,7 +411,7 @@ article {
   flex: 1 0 auto;
 }
 
-div.header {
+header.header {
   position: relative;
   padding: variables.$header-padding variables.$website-padding;
   text-align: center;
@@ -446,7 +468,7 @@ div.header {
   }
 }
 
-div.navigation-background {
+nav.navigation-background {
   padding-bottom: variables.$navigation-padding;
 }
 

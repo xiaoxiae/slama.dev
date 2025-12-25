@@ -41,14 +41,14 @@ Links to the sections of the website can be found at the top, links to the posts
 	<div class="post-header">
 		<div class="post-title-row">
     	{% if post.category_icon %}<img class='icon' src='{{post.category_icon}}' alt="Category icon"/>{% endif %}
-			{% if post.pdf or post.pdf-nogenerate %}<a href="/assets/{{post.url | split: "/" | last}}.pdf" class="post-icon" aria-label="PDF"><i class="fa-solid fa-file-pdf"></i></a>{% endif %}
+			{% if post.pdf or post.pdf-nogenerate %}<a href="/assets/{{post.url | split: "/" | last}}.pdf" class="post-icon" aria-label="Download PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></a>{% endif %}
 			{% if post.language == "cz" %}<span class="language-flag">🇨🇿</span>{% endif %}
 			<span class="post-title-link">
 			{% if post.redirect.to %}
 				{% if post.draft %}
-					<a href="{{ post.redirect.to }}" class="red main-link"><strong>{{ post.title}}</strong> <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+					<a href="{{ post.redirect.to }}" class="red main-link"><strong>{{ post.title}}</strong> <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
 				{% else %}
-					<a href="{{ post.redirect.to }}" class="main-link"><strong>{{ post.title}}</strong> <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+					<a href="{{ post.redirect.to }}" class="main-link"><strong>{{ post.title}}</strong> <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
 				{% endif %}
 			{% else %}
 				{% if post.draft %}

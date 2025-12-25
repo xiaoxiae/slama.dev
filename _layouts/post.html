@@ -7,7 +7,7 @@ post-title: True
 
 <p class="post-metadata">
 	{% if page.category_noslug or page.category %}
-		{{ page.category_noslug | default: page.category }}</strong>
+		<strong>{{ page.category_noslug | default: page.category }}</strong>
 	{% endif %}
 
 	{% if page.category_noslug or page.category %}
@@ -33,13 +33,13 @@ post-title: True
 	{% endif %}
 
 	{% if page.bluesky_url %}
-		<span class="quarter-visible vspace">· </span><a href="{{ page.bluesky_url }}" target="_blank" rel="noopener noreferrer"><i class="fab fa-bluesky"></i></a>
+		<span class="quarter-visible vspace">· </span><a href="{{ page.bluesky_url }}" target="_blank" rel="noopener noreferrer" aria-label="Discuss on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i></a>
 	{% endif %}
 
 	{% if page.language == "cz" %}
-		<span class="quarter-visible vspace">· </span>[<a href="https://github.com/xiaoxiae/slama.dev/blob/master/{{ page.path }}">upravit</a>]
+		<span class="quarter-visible vspace">· </span>[<a href="https://github.com/xiaoxiae/slama.dev/blob/master/{{ page.path }}" rel="noopener noreferrer">upravit</a>]
 	{% else %}
-		<span class="quarter-visible vspace">· </span>[<a href="https://github.com/xiaoxiae/slama.dev/blob/master/{{ page.path }}">edit</a>]
+		<span class="quarter-visible vspace">· </span>[<a href="https://github.com/xiaoxiae/slama.dev/blob/master/{{ page.path }}" rel="noopener noreferrer">edit</a>]
 	{% endif %}
 </p>
 

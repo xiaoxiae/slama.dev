@@ -21,7 +21,23 @@
 		{% else %}
 			<title>{{ page.title }} – {{ site.title }}</title>
 		{% endif %}
-		<meta name="description" content="{{site.description}}">
+		{% if page.excerpt %}
+		<meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncatewords: 30 }}">
+		{% else %}
+		<meta name="description" content="{{ site.description }}">
+		{% endif %}
+
+		<!-- OPEN GRAPH -->
+		<meta property="og:title" content="{% if page.title %}{{ page.title }} – {{ site.title }}{% else %}{{ site.title }}{% endif %}">
+		<meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncatewords: 30 }}{% else %}{{ site.description }}{% endif %}">
+		<meta property="og:type" content="{% if page.date %}article{% else %}website{% endif %}">
+		<meta property="og:url" content="{{ page.url | absolute_url }}">
+		<meta property="og:site_name" content="{{ site.title }}">
+		<meta name="twitter:card" content="summary">
+
+		<!-- FONT PRELOADS -->
+		<link rel="preload" href="{{ '/assets/css/fonts/FiraSans-Light.woff2' | absolute_url}}" as="font" type="font/woff2" crossorigin>
+		<link rel="preload" href="{{ '/assets/css/fonts/FiraMono-Regular.woff2' | absolute_url}}" as="font" type="font/woff2" crossorigin>
 
 		<!-- CSS STYLESHEETS -->
 		<link rel="stylesheet" href="{{ '/assets/css/main.css' | absolute_url}}">
@@ -52,24 +68,25 @@
 
 		{% if site.halloween.enabled %}
 		<!-- HALLOWEEN: Halloween theme toggle -->
-		<script src="{{ '/assets/js/halloween.js' | absolute_url}}"></script>
+		<script src="{{ '/assets/js/halloween.js' | absolute_url}}" defer></script>
 		{% endif %}
 
 		{% if page.htmx %}
 		<meta name="htmx-config" content='{"selfRequestsOnly": false}' />
-		<script src="{{ '/assets/js/htmx.min.js' | absolute_url}}"></script>
+		<script src="{{ '/assets/js/htmx.min.js' | absolute_url}}" defer></script>
 		{% endif %}
 	</head>
 
 	<body>
+		<a href="#main-content" class="skip-link">Skip to main content</a>
 		{% if site.halloween.enabled %}
 		<!-- HALLOWEEN: Cursor following ghost -->
-		<div id="ghost-cursor" style="display: none; position: fixed; font-size: 60px; z-index: 9999; opacity: 0; transition: opacity 0.1s; left: 0; top: 0;">
+		<div id="ghost-cursor" style="display: none; position: fixed; font-size: 60px; z-index: 9999; opacity: 0; transition: opacity 0.1s; left: 0; top: 0;" aria-hidden="true">
 			<i class="fa-solid fa-ghost"></i>
 			<div id="ghost-text" style="display: none; position: absolute; top: 85px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 12px; color: #fff; text-shadow: 0 0 3px rgba(0,0,0,0.8); font-family: Arial, sans-serif; pointer-events: none;">Got your cursor lmao</div>
 		</div>
 		{% endif %}
-		<div class="header no-invert">
+		<header class="header no-invert">
 			{% if site.halloween.enabled %}
 			<!-- HALLOWEEN: Cobweb decoration -->
 			<img src="{{ '/assets/halloween/cobweb.svg' | absolute_url}}" style="display: none; position: absolute; top: 0; left: 0; width: 80px; height: auto; z-index: 1; opacity: 0.7;" alt="Cobweb">
@@ -81,10 +98,10 @@
 			{% else %}
 			<h1><a href="/">{{ site.title }}</a></h1>
 			{% endif %}
-		</div>
+		</header>
 
 		<!-- navigation bar -->
-		<div class="navigation-background">
+		<nav class="navigation-background" aria-label="Main navigation">
 			<div class="navigation">
 				<ul>
 				{% assign sections_sorted = site.documents | concat: site.pages | sort: 'order' %}
@@ -93,9 +110,9 @@
 						<li>
 						<span class="navbar-item">
 						{% if p.title == page.title %}
-							<span class="current-page-item navbar-text"><a href="{{p.url}}">{% if p.icon %}<i class="{% if p.icon contains 'fa-brands' %}{{p.icon}}{% else %}fa-solid {{p.icon}}{% endif %}"></i> {% endif %}{{p.title}}</a></span>
+							<span class="current-page-item navbar-text"><a href="{{p.url}}">{% if p.icon %}<i class="{% if p.icon contains 'fa-brands' %}{{p.icon}}{% else %}fa-solid {{p.icon}}{% endif %}" aria-hidden="true"></i> {% endif %}{{p.title}}</a></span>
 						{% else %}
-							<span class="navbar-text"><a href="{{p.url}}">{% if p.icon %}<i class="{% if p.icon contains 'fa-brands' %}{{p.icon}}{% else %}fa-solid {{p.icon}}{% endif %}"></i> {% endif %}{{p.title}}</a></span>
+							<span class="navbar-text"><a href="{{p.url}}">{% if p.icon %}<i class="{% if p.icon contains 'fa-brands' %}{{p.icon}}{% else %}fa-solid {{p.icon}}{% endif %}" aria-hidden="true"></i> {% endif %}{{p.title}}</a></span>
 						{% endif %}
 						</span>
 						</li>
@@ -103,9 +120,9 @@
 				{% endfor %}
 				</ul>
 			</div>
-		</div>
+		</nav>
 
-		<div class="content-background">
+		<main id="main-content" class="content-background">
 
 			<div class="content">
 				{% if page.redirect.to %}
@@ -129,25 +146,25 @@
 
 				{{ content }}
 			</div>
-		</div>
+		</main>
 
 		<footer>
 			<p>Maintained by <span id="author-name">Tomáš Sláma</span>.</p>
 			<p class="large no-link-color">
-				<a href="https://www.youtube.com/channel/UC_IaBSHmisYbiYlv32EeNkQ"><i class="fa-brands fa-youtube"></i></a>
+				<a href="https://www.youtube.com/channel/UC_IaBSHmisYbiYlv32EeNkQ" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
 				<span class="tiny-vspace"></span>
-				<a href="https://bsky.app/profile/tomas.slama.dev"><i class="fa-brands fa-bluesky"></i></a>
+				<a href="https://bsky.app/profile/tomas.slama.dev" rel="noopener noreferrer" aria-label="Bluesky"><i class="fa-brands fa-bluesky" aria-hidden="true"></i></a>
 				<span class="tiny-vspace"></span>
-				<a href="https://github.com/xiaoxiae"><i class="fa-brands fa-github"></i></a>
+				<a href="https://github.com/xiaoxiae" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
 				<span class="tiny-vspace"></span>
-				<a href="https://open.spotify.com/playlist/6tzOl4stxMsAClqNaUalBg?si=466aa28329d143fd"><i class="fa-brands fa-spotify"></i></a>
+				<a href="https://open.spotify.com/playlist/6tzOl4stxMsAClqNaUalBg?si=466aa28329d143fd" rel="noopener noreferrer" aria-label="Spotify playlist"><i class="fa-brands fa-spotify" aria-hidden="true"></i></a>
 				<span class="vspace"></span>
-				<a href="mailto: tomas@slama.dev"><i class="fa-solid fa-at"></i></a>
+				<a href="mailto: tomas@slama.dev" aria-label="Email"><i class="fa-solid fa-at" aria-hidden="true"></i></a>
 				<span class="tiny-vspace"></span>
-				<a href="/feed.xml"><i class="fa-solid fa-rss"></i></a>
+				<a href="/feed.xml" aria-label="RSS feed"><i class="fa-solid fa-rss" aria-hidden="true"></i></a>
 			</p>
 			<p class="small">
-				<a href="https://github.com/xiaoxiae/slama.dev">source code</a>
+				<a href="https://github.com/xiaoxiae/slama.dev" rel="noopener noreferrer">source code</a>
 				<span class="half-visible vspace">·</span>
 				<a href="/privacy-policy/">privacy policy</a>
 				<span class="half-visible vspace">·</span>
@@ -156,7 +173,7 @@
     			<span>🇨🇿 🇵🇸 🇺🇦</span>
 			{% if site.halloween.enabled %}
 			<span class="half-visible vspace">·</span>
-			<a class="nohashtag" href="#" onclick="toggleHalloween(); return false;">🎃<span class="halloween-toggle-indicator"></span></a>
+			<button type="button" class="halloween-toggle-btn" onclick="toggleHalloween();" aria-label="Toggle Halloween theme">🎃<span class="halloween-toggle-indicator"></span></button>
 			{% endif %}
 			</p>
 		</footer>
