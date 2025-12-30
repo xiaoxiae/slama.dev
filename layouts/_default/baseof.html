@@ -47,9 +47,7 @@
 		<link rel="stylesheet" href="{{ "/assets/css/fa.min.css" | absURL }}">
 
 		<!-- KATEX (server-side rendered, loaded conditionally) -->
-		{{- if .Store.Get "hasMath" }}
 		<link rel="stylesheet" href="{{ "/assets/css/katex.min.css" | absURL }}">
-		{{- end }}
 
 		<!-- CANONICAL -->
 		<link rel="canonical" href="{{ .Permalink }}">
