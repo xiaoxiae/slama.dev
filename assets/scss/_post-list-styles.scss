@@ -1,0 +1,120 @@
+@import "variables";
+
+.post-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: $line-spacing * 0.5 $line-spacing * 0.6;
+  margin-top: $line-spacing / 4;
+  margin-bottom: $line-spacing / 4;
+  border-radius: $line-spacing * 0.3;
+
+  &:nth-child(2n + 1) {
+    background-color: var(--alternate-index-color-1);
+
+    code {
+      background-color: var(--alternate-index-color-2);
+    }
+  }
+
+  &:nth-child(2n) {
+    background-color: var(--alternate-index-color-2);
+
+    code {
+      background-color: var(--alternate-index-color-1);
+    }
+  }
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: $line-spacing * 0.8;
+}
+
+.post-title-row {
+  align-items: center;
+  gap: $line-spacing * 0.3;
+  flex-wrap: wrap;
+  flex: 0 1 auto;
+
+  .icon {
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+
+  .category-tag {
+    opacity: 0.7;
+    font-size: 0.9em;
+  }
+
+  .post-icon {
+    position: relative;
+    z-index: 2;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .language-flag {
+    font-size: 0.9em;
+  }
+
+  .post-title-link {
+    .main-link {
+      text-decoration: none;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &.red {
+        color: #d32f2f;
+      }
+
+      i {
+        margin-left: 0.15em;
+        font-size: 0.75em;
+        opacity: 0.5;
+        vertical-align: 0.1em;
+      }
+    }
+  }
+}
+
+.post-date {
+  flex-shrink: 0;
+  opacity: 0.8;
+  font-size: 0.9em;
+  margin-left: auto;
+  white-space: nowrap;
+  font-family: $monospaced-font;
+}
+
+.post-excerpt {
+  margin-top: $line-spacing * 0.3;
+  font-size: 0.8em;
+  opacity: 0.8;
+  line-height: 1.4;
+
+  @media (max-width: $small-screen-threshold) {
+    padding-left: 0;
+  }
+}

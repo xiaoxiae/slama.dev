@@ -1,0 +1,17 @@
+{{/* AOC shortcode - renders Advent of Code progress from data/aoc.yaml */}}
+<div class="aoc highlight"><pre><code>     <span class="day">1234567890123456789012345</span>
+{{ range site.Data.aoc.years -}}
+{{- $year := .year -}}
+{{- $days := .days | default 25 -}}
+{{- $silver := .silver | default slice -}}
+{{- $gray := .gray | default slice -}}
+{{- $yearStatus := "gold" -}}
+{{- if or $silver $gray }}{{ $yearStatus = "silver" }}{{ end -}}
+<a class='aoc-year-{{ $yearStatus }}' href='https://adventofcode.com/{{ $year }}/'>{{ $year }}</a> {{ range $day := seq $days -}}
+{{- $status := "gold" -}}
+{{- if in $silver $day }}{{ $status = "silver" }}{{ end -}}
+{{- if in $gray $day }}{{ $status = "gray" }}{{ end -}}
+<a href="https://adventofcode.com/{{ $year }}/day/{{ $day }}" class="aoc-{{ $status }}">*</a>
+{{- end }}
+{{ end -}}
+</code></pre></div>

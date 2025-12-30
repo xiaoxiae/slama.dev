@@ -1,0 +1,9 @@
+{{- $mcFile := .Get 0 -}}
+{{- $manimFile := .Get 1 -}}
+{{- $summary := .Get 2 | default "Author's Solution" -}}
+<details>
+<summary>{{ $summary }}</summary>
+<div>
+{{ partial "code-tabs.html" (dict "page" $.Page "mcFile" $mcFile "manimFile" $manimFile) }}
+</div>
+</details>

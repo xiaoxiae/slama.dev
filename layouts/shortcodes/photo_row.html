@@ -1,0 +1,34 @@
+{{- $rawInput := .Get 0 -}}
+{{- $images := split $rawInput "|" -}}
+{{- $page := .Page -}}
+<div class="row">
+{{- range $images -}}
+    {{- $imgSpec := strings.TrimSpace . -}}
+    {{- $imgPath := $imgSpec -}}
+    {{- $altText := "" -}}
+
+    {{- /* Parse path and optional alt text */ -}}
+    {{- if strings.Contains $imgSpec "::" -}}
+        {{- $parts := split $imgSpec "::" -}}
+        {{- $imgPath = strings.TrimSpace (index $parts 0) -}}
+        {{- $altText = strings.TrimSpace (index $parts 1) -}}
+    {{- end -}}
+
+    {{- /* Get processed image */ -}}
+    {{- $img := partial "get-image" (dict "src" $imgPath "page" $page "process" "resize 1000x webp q50") -}}
+    {{- /* Get original for linking */ -}}
+    {{- $original := partial "get-image" (dict "src" $imgPath "page" $page) -}}
+
+    {{- if $img -}}
+        {{- /* Default alt text from filename */ -}}
+        {{- if not $altText -}}
+            {{- $altText = path.Base $imgPath | replaceRE `[-_]` " " | replaceRE `\.[^.]+$` "" -}}
+        {{- end -}}
+        {{- if $original -}}
+	<div><a href="{{ $original.Permalink }}"><img src="{{ $img.RelPermalink }}" alt="{{ $altText }}"></a></div>
+        {{- else -}}
+	<div><img src="{{ $img.RelPermalink }}" alt="{{ $altText }}"></div>
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+</div>

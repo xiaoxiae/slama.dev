@@ -1,0 +1,15 @@
+{{- $parts := split (.Get 0) "|" -}}
+{{- $author := strings.TrimSpace (index $parts 0) -}}
+{{- $year := strings.TrimSpace (index $parts 1) -}}
+{{- $inst := strings.TrimSpace (index $parts 2) -}}
+
+{{- $institution := "MFF UK" -}}
+{{- if ne $inst "MFF" -}}
+    {{- $institution = "University of Heidelberg" -}}
+{{- end -}}
+
+{{- $data := dict "author" $author "year" $year "institution" $institution "url" "https://github.com/xiaoxiae/slama.dev/blob/master/content/" -}}
+{{- $lang := .Page.Params.language | default "en" -}}
+
+<h3>{{ partial "t.html" (dict "key" "preface_heading" "lang" $lang) }}</h3>
+<p>{{ partial "t.html" (dict "key" "preface_text" "lang" $lang "data" $data) | markdownify }}</p>

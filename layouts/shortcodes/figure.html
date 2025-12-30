@@ -1,0 +1,12 @@
+<figure{{ with .Get "class" }} class="{{ . }}"{{ end }}>
+  {{- $src := .Get "src" -}}
+  {{- $alt := .Get "alt" | default (.Get "caption") -}}
+  {{- with .Page.Resources.GetMatch $src -}}
+    <img src="{{ .RelPermalink }}" {{ with $alt }}alt="{{ . }}"{{ end }}>
+  {{- else -}}
+    <img src="{{ $src }}" {{ with $alt }}alt="{{ . }}"{{ end }}>
+  {{- end -}}
+  {{- with .Get "caption" }}
+  <figcaption>{{ $.Page.RenderString . }}</figcaption>
+  {{- end }}
+</figure>

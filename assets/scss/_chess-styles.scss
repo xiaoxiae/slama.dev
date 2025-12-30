@@ -1,0 +1,68 @@
+@import "variables";
+
+p.commit-header {
+  font-variant: normal;
+  padding-top: $line-spacing;
+  padding-bottom: 2 * $line-spacing;
+  margin-bottom: 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #aaa;
+  }
+}
+
+.char:not(.tight-char .char) {
+  display: inline-block;
+  width: 1.25ch;
+  text-align: center;
+  font-weight: normal;
+}
+
+.char {
+  display: inline-block;
+  width: 1ch;
+  text-align: center;
+  font-weight: normal;
+}
+
+// Reset summary styles for the "skip this section" joke
+details.skip-section {
+  margin-bottom: $line-spacing;
+
+  summary {
+    cursor: pointer;
+    display: inline;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    list-style: none;
+
+    &::before {
+      content: none;
+    }
+
+    &:hover {
+      background: none;
+    }
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    a {
+      pointer-events: none;
+    }
+  }
+
+  &[open] summary {
+    margin-bottom: 0;
+  }
+}

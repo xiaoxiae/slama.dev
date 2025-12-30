@@ -1,26 +1,14 @@
 {
-  "name": "slama.dev",
-  "version": "1.0.0",
-  "description": "This repository contains the source code to my personal website.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xiaoxiae/slama.dev.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/xiaoxiae/slama.dev/issues"
-  },
-  "homepage": "https://github.com/xiaoxiae/slama.dev#readme",
+  "name": "slama-dev",
+  "private": true,
   "devDependencies": {
-    "husky": "^9.1.7",
-    "prettier": "^3.6.2"
+    "html-validate": "^8.0.0",
+    "pa11y": "^8.0.0",
+    "prettier": "^3.0.0"
+  },
+  "scripts": {
+    "check:html": "html-validate 'public/**/*.html'",
+    "check:a11y": "pa11y-ci",
+    "format": "prettier --check '**/*.{scss,sass}'"
   }
 }

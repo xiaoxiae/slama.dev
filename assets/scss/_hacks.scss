@@ -1,0 +1,16 @@
+@import "variables";
+
+// fixes Jekyll generating p tags inside li
+li {
+  p {
+    margin-bottom: 0;
+  }
+}
+
+// fixes https://blog.lysender.com/2014/09/css-elements-covered-by-a-container-div-not-clickable/
+.katex-html {
+  visibility: hidden;
+  * {
+    visibility: visible;
+  }
+}

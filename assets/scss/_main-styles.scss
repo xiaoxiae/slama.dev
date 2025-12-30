@@ -1,0 +1,942 @@
+@import "variables";
+@import "hacks";
+
+@import "light_styles";
+@import "dark_styles";
+@import "halloween-styles";
+@import "chroma";
+
+/* ==========================================================================
+   CSS CUSTOM PROPERTIES FOR THEME SWITCHING
+   ========================================================================== */
+
+:root {
+  /* Light mode (default) */
+  --text-color: #{$light-text-color};
+  --link-color: #{$light-link-color};
+  --background-color: #{$light-background-color};
+  --header-bg: #{$light-header-background-color};
+  --nav-bg: #{$light-nav-background-color};
+  --code-bg: #{$light-code-background-color};
+  --code-summary-bg: #{$light-code-summary-background-color};
+  --toc-bg: #{$light-toc-background-color};
+  --grid-overlay-color: #{$light-grid-overlay-color};
+  --overlay-text-color: #{$overlay-text-color};
+  --overlay-text-shadow-color: #{$overlay-text-shadow-color};
+  --alternate-index-color-1: #{$light-alternate-index-color-1};
+  --alternate-index-color-2: #{$light-alternate-index-color-2};
+  --button-bg: #{$light-button-background-color};
+  --button-bg-hover: #{$light-button-background-color-hover};
+  --summary-background: #{$light-code-summary-background-color};
+  --summary-background-hover: #{adjust-color(
+      $light-code-summary-background-color,
+      $lightness: -5%
+    )};
+  --summary-text: #{$light-text-color};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode */
+    --text-color: #{$dark-text-color};
+    --link-color: #{$dark-link-color};
+    --background-color: #{$dark-background-color};
+    --header-bg: #{$dark-header-background-color};
+    --nav-bg: #{$dark-nav-background-color};
+    --code-bg: #{$dark-code-background-color};
+    --toc-bg: #{$dark-toc-background-color};
+    --grid-overlay-color: #{$dark-grid-overlay-color};
+    --overlay-text-color: #{$overlay-text-color};
+    --overlay-text-shadow-color: #{$overlay-text-shadow-color};
+    --alternate-index-color-1: #{$dark-alternate-index-color-1};
+    --alternate-index-color-2: #{$dark-alternate-index-color-2};
+    --button-bg: #{$dark-button-background-color};
+    --button-bg-hover: #{$dark-button-background-color-hover};
+    --summary-background: #{$dark-code-background-color};
+    --summary-background-hover: #{adjust-color(
+        $dark-code-background-color,
+        $lightness: 5%
+      )};
+    --summary-text: #{$dark-text-color};
+  }
+}
+
+/* Halloween theme override */
+html.halloween {
+  --text-color: #{$halloween-text-color};
+  --link-color: #{$halloween-link-color};
+  --background-color: #{$halloween-background-color};
+  --header-bg: #{$halloween-header-background-color};
+  --nav-bg: #{$halloween-nav-background-color};
+  --code-bg: #{$halloween-code-background-color};
+  --grid-overlay-color: #{$halloween-grid-overlay-color};
+  --overlay-text-color: #{$halloween-overlay-text-color};
+  --overlay-text-shadow-color: #{$halloween-overlay-text-shadow-color};
+  --alternate-index-color-1: #{$halloween-alternate-index-color-1};
+  --alternate-index-color-2: #{$halloween-alternate-index-color-2};
+  --button-bg: #{$halloween-button-background-color};
+  --button-bg-hover: #{$halloween-button-background-color-hover};
+  --summary-background: #{$halloween-code-background-color};
+  --summary-background-hover: #{adjust-color(
+      $halloween-code-background-color,
+      $lightness: 5%
+    )};
+  --summary-text: #{$halloween-text-color};
+}
+
+/* ==========================================================================
+   BASE STYLES & RESETS
+   ========================================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+// globally disabling text decoration is the dumbest thing ever, but I'm in too deep
+del {
+  text-decoration: line-through;
+}
+
+// Skip link for accessibility - hidden until focused
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+
+  &:focus {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    padding: 0.5em 1em;
+    background: var(--background-color);
+    color: var(--text-color);
+    z-index: 10000;
+    outline: 2px solid var(--link-color);
+  }
+}
+
+/* ==========================================================================
+   FONTS
+   ========================================================================== */
+
+@font-face {
+  font-family: $serif-font;
+  src:
+    local($serif-font),
+    url("/assets/css/fonts/FiraSans-Light.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: $serif-font;
+  src:
+    local($serif-font),
+    url("/assets/css/fonts/FiraSans-Medium.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: $monospaced-font;
+  src:
+    local($monospaced-font),
+    url("/assets/css/fonts/FiraMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: $monospaced-font;
+  src:
+    local($monospaced-font),
+    url("/assets/css/fonts/FiraMono-Medium.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   BASE ELEMENT STYLES
+   ========================================================================== */
+
+body,
+html {
+  height: 100%;
+}
+
+body {
+  font-family: $serif-font, sans-serif;
+  line-height: $line-height;
+  display: flex;
+  flex-direction: column;
+}
+
+p,
+hr {
+  margin-bottom: $line-spacing;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-variant: small-caps;
+}
+
+h2 {
+  padding-bottom: $h2-spacing;
+  font-size: $h2-size;
+}
+h3 {
+  padding-bottom: $h3-spacing;
+  font-size: $h3-size;
+}
+h4 {
+  padding-bottom: $h4-spacing;
+  font-size: $h4-size;
+}
+h5 {
+  padding-bottom: $h5-spacing;
+  font-size: $h5-size;
+}
+h6 {
+  padding-bottom: $h6-spacing;
+  font-size: $h6-size;
+}
+
+ul,
+ol {
+  padding-left: $list-item-left-padding;
+  padding-bottom: $line-spacing;
+}
+
+ol,
+ul {
+  p + ul,
+  p + ol {
+    margin-top: 0;
+  }
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+p + ul,
+p + ol {
+  margin-top: -($line-spacing) * 0.25 * 3;
+}
+
+img,
+svg {
+  max-width: 90%;
+  height: auto;
+  margin: 0 auto 0;
+  display: block;
+}
+
+code {
+  font-family: $monospaced-font, monospace;
+  tab-size: 4;
+  -moz-tab-size: 4;
+}
+
+// Inline code styling (not inside pre blocks)
+:not(pre) > code {
+  background-color: var(--code-bg);
+  padding: 0.1em 0.3em;
+  border-radius: $code-border-roundness;
+}
+
+blockquote {
+  position: relative;
+  margin-left: $line-spacing;
+  margin-bottom: $line-spacing;
+  padding-left: $line-spacing * 0.5;
+  opacity: 0.5;
+
+  &::before {
+    content: "\201C";
+    position: absolute;
+    left: -($line-spacing * 0.5);
+    top: $line-spacing * 0.1;
+    font-size: 2.5em;
+    line-height: 1;
+    opacity: 0.3;
+  }
+
+  p {
+    margin-bottom: $line-spacing * 0.5;
+    font-style: italic;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+blockquote.no-italic {
+  p {
+    font-style: normal;
+  }
+}
+
+details {
+  margin-bottom: $line-spacing;
+
+  summary {
+    cursor: pointer;
+    padding: $line-spacing * 0.25 $line-spacing * 0.5;
+    border: none;
+    border-radius: $code-border-roundness;
+    user-select: none;
+    list-style: none;
+    align-items: center;
+    background-color: var(--summary-background);
+    color: var(--summary-text);
+    transition: background-color 0.2s ease;
+
+    &::before {
+      content: "▶";
+      margin-right: 0.5em;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      background-color: var(--summary-background-hover);
+    }
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  &[open] {
+    summary {
+      margin-bottom: $line-spacing * 0.5;
+
+      &::before {
+        transform: rotate(90deg);
+      }
+    }
+
+    // Content fade-in animation
+    > *:not(summary) {
+      animation: slideDown 0.3s ease-out;
+    }
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+table {
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: separate;
+  border-spacing: ($line-spacing * 0.5) (($line-spacing / 3));
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: $line-spacing;
+
+  .katex {
+    border-spacing: 0;
+  }
+
+  td,
+  th {
+    padding: 0 $line-spacing * 0.5;
+  }
+
+  th {
+    border-bottom: 1px solid;
+  }
+
+  @media (max-width: $small-screen-threshold) {
+    border-spacing: $line-spacing * 0.25 $line-spacing * 0.2;
+
+    td,
+    th {
+      padding: 0 ($line-spacing / 3);
+    }
+  }
+}
+
+figure {
+  margin-bottom: $line-spacing;
+
+  img,
+  svg {
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  figcaption {
+    text-align: center;
+    font-style: italic;
+  }
+}
+
+article {
+  header {
+    h2 {
+      padding-bottom: 0;
+    }
+  }
+}
+
+/* ==========================================================================
+   LAYOUT COMPONENTS
+   ========================================================================== */
+
+.content {
+  max-width: $website-size;
+  margin: auto;
+  padding-left: $website-padding;
+  padding-right: $website-padding;
+  padding-bottom: 1px;
+
+  p {
+    width: 100%;
+
+    @media not screen and (max-width: $small-screen-threshold) {
+      text-align: justify;
+      hyphens: auto;
+    }
+  }
+}
+
+.content-background {
+  flex: 1 0 auto;
+}
+
+header.header {
+  position: relative;
+  padding: $header-padding $website-padding;
+  text-align: center;
+
+  a,
+  h1 {
+    font-size: $title-size;
+    font-family: $monospaced-font, monospace;
+    padding-bottom: 0;
+
+    @media (max-width: $tiny-screen-threshold) {
+      font-size: $small-title-size;
+    }
+  }
+}
+
+.navigation {
+  padding: $navigation-padding * 0.7;
+  text-align: center;
+  font-size: $navigation-size;
+
+  li {
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+  }
+
+  ul,
+  ol {
+    padding-bottom: 0;
+  }
+
+  .navigation-separator {
+    margin-left: $navigation-item-spacing * 0.5;
+    margin-right: $navigation-item-spacing * 0.5;
+
+    &::before {
+      content: " ";
+    }
+  }
+
+  // Make navigation icons quarter opacity when not selected
+  i {
+    opacity: 0.25;
+  }
+
+  .current-page-item i {
+    opacity: 1;
+  }
+
+  @media (max-width: $tiny-screen-threshold) {
+    font-size: 100%;
+  }
+}
+
+nav.navigation-background {
+  padding-bottom: $navigation-padding;
+}
+
+.current-page-item {
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: $header-padding $website-padding;
+  flex-shrink: 0;
+
+  p {
+    margin-bottom: $line-spacing * 0.5;
+  }
+
+  p + p {
+    margin-bottom: $line-spacing * 0.25;
+  }
+
+  .footer-multiline {
+    display: inline-grid;
+    line-height: 0.9;
+  }
+
+  br {
+    margin-bottom: $line-spacing * 0.25;
+  }
+}
+
+/* ==========================================================================
+   POST & CONTENT COMPONENTS
+   ========================================================================== */
+
+.post-metadata {
+  font-size: $footer-size;
+}
+
+.post-title {
+  padding-bottom: 0;
+}
+
+.post-attributes {
+  @media (max-width: $small-screen-threshold) {
+    font-size: 80%;
+    padding-left: ($line-spacing / 3);
+    padding-right: ($line-spacing / 3);
+  }
+}
+
+#markdown-toc,
+#TableOfContents {
+  max-width: 30%;
+  font-size: $toc-size;
+  margin-top: 0;
+  margin-left: $line-spacing;
+  margin-bottom: $line-spacing;
+  padding-left: 0;
+  padding-top: $line-spacing * 0.5;
+  padding-right: $line-spacing / 2;
+  padding-bottom: $line-spacing * 0.5;
+  float: right;
+  border: 2px solid;
+  border-radius: $code-border-roundness;
+  overflow-wrap: break-word;
+
+  ul {
+    padding: 0 0 0 0;
+    padding-left: $line-spacing / 2;
+    list-style: none;
+  }
+
+  li > ul {
+    padding-left: $line-spacing / 2;
+    list-style: inside;
+  }
+
+  @media (max-width: $small-screen-threshold) {
+    float: none;
+    margin-left: 0;
+    max-width: 100%;
+  }
+}
+
+.footnotes {
+  padding-top: $line-spacing * 0.5;
+
+  ol {
+    li:not(:last-child) {
+      padding-bottom: $line-spacing * 0.5;
+    }
+  }
+}
+
+.box {
+  padding: $line-spacing * 0.5;
+  border: 1px solid;
+}
+
+.rightFloatBox {
+  max-width: 30%;
+  font-size: $toc-size;
+  margin-top: 0;
+  margin-left: $line-spacing * 0.5;
+  padding: $line-spacing * 0.5;
+  float: right;
+  border: 1px solid;
+
+  @media (max-width: $small-screen-threshold) {
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    max-width: 100%;
+    margin-bottom: $line-spacing;
+  }
+
+  // no bottom spacing of the last element in the box
+  *:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+/* ==========================================================================
+   CODE & SYNTAX HIGHLIGHTING & MATH
+   ========================================================================== */
+
+pre.highlight {
+  overflow: auto;
+}
+
+pre.vanilla {
+  margin-bottom: $line-spacing;
+}
+
+// Hugo/Chroma code block styling
+figure.highlight,
+div.highlight {
+  border-radius: $code-border-roundness;
+  padding: $code-padding * 2 $code-padding * 4;
+  margin-bottom: $line-spacing;
+  font-variant-ligatures: none;
+  position: relative;
+
+  pre {
+    padding: $code-padding;
+    overflow-x: auto;
+  }
+
+  // Line numbers table structure (Hugo/Chroma)
+  .chroma {
+    background: transparent;
+
+    .lntable {
+      border: none;
+      border-top: none;
+      border-bottom: none;
+      margin: 0;
+      width: 100%;
+      border-spacing: 0;
+      border-collapse: collapse;
+      font-size: inherit;
+      line-height: inherit;
+
+      td,
+      th {
+        padding: 0;
+        border: none;
+        vertical-align: top;
+      }
+
+      pre {
+        margin: 0;
+        padding: 0;
+        font-size: inherit;
+        line-height: inherit;
+        font-family: inherit;
+        background: transparent;
+      }
+
+      // Line number column
+      td:first-child {
+        position: absolute;
+        right: 100%;
+        margin-right: 0.5em;
+        text-align: right;
+        user-select: none;
+        opacity: 0.4;
+
+        .lnt {
+          padding: 0;
+        }
+      }
+
+      // Code column
+      td:last-child {
+        width: 100%;
+        max-width: 0;
+
+        pre {
+          overflow-x: auto;
+        }
+      }
+    }
+  }
+}
+
+.katex {
+  svg {
+    max-width: 100%;
+  }
+}
+
+/* ==========================================================================
+   UTILITY CLASSES - TEXT ALIGNMENT
+   ========================================================================== */
+
+.left {
+  text-align: left !important;
+  * {
+    margin-left: 0 !important;
+  }
+}
+
+.center {
+  text-align: center !important;
+}
+
+.right {
+  text-align: right !important;
+  * {
+    margin-right: 0 !important;
+  }
+}
+
+// Horizontal fill - flex row with space-between for two-column layouts
+ul.hfill {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+/* ==========================================================================
+   UTILITY CLASSES - TYPOGRAPHY & TEXT
+   ========================================================================== */
+
+.mono {
+  font-family: $monospaced-font, monospace;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.nowrap {
+  white-space: nowrap;
+  display: inline-block;
+  width: 4.5em;
+}
+
+.large {
+  font-size: 125%;
+}
+
+.small {
+  font-size: 80%;
+}
+
+.tiny {
+  font-size: 50%;
+}
+
+.spaced-list {
+  > li {
+    padding-bottom: $line-spacing;
+  }
+  > li:last-child {
+    padding-bottom: 0;
+  }
+}
+
+/* ==========================================================================
+   UTILITY CLASSES - DISPLAY & VISIBILITY
+   ========================================================================== */
+
+.none {
+  display: none;
+}
+
+.no-display {
+  display: none;
+}
+
+.quarter-visible {
+  opacity: 0.25;
+}
+
+.half-visible {
+  opacity: 0.5;
+}
+
+.hide-when-large {
+  display: none;
+
+  @media (max-width: $small-screen-threshold) {
+    display: inline;
+  }
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+/* ==========================================================================
+   UTILITY CLASSES - SPACING
+   ========================================================================== */
+
+.force-spacing {
+  margin-bottom: $line-spacing * 0.5;
+}
+
+.spacer {
+  padding-bottom: $line-spacing;
+}
+
+.vspace {
+  padding-left: ($line-spacing / 3);
+  padding-right: ($line-spacing / 3);
+}
+
+.tiny-vspace {
+  padding-left: ($line-spacing / 12);
+  padding-right: ($line-spacing / 12);
+}
+
+.space-around {
+  padding: $line-spacing * 0.25;
+}
+
+/* ==========================================================================
+   UTILITY CLASSES - IMAGES
+   ========================================================================== */
+
+.no-invert {
+  filter: invert(0%);
+
+  * {
+    filter: invert(0%);
+  }
+}
+
+.inverse-invert {
+  filter: invert(100%);
+
+  * {
+    filter: invert(100%);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    filter: invert(0%);
+
+    * {
+      filter: invert(0%);
+    }
+  }
+}
+
+.icon {
+  display: inline;
+  height: 1.1em;
+  vertical-align: sub;
+  filter: invert(0%) !important;
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: pixelated;
+  image-rendering: optimize-contrast;
+}
+
+// Base row styles
+.row {
+  display: flex;
+  gap: $line-spacing;
+
+  // Don't invert images, respect orientation
+  * {
+    filter: invert(0%);
+    image-orientation: from-image;
+  }
+
+  // Space between rows (when followed by another row)
+  & + .row {
+    margin-top: $line-spacing * 0.5;
+  }
+}
+
+// All children get equal width by default
+.row > * {
+  flex: 1 1 0;
+  min-width: 0;
+
+  img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+// Caption styles
+figcaption {
+  padding: 0 $line-spacing * 0.5;
+  text-align: center;
+  font-style: italic;
+
+  // Space above caption (after a row)
+  .row + & {
+    padding-top: $line-spacing * 0.5;
+  }
+}
+
+// Section background
+.photo-section {
+  background: var(--code-bg);
+  margin-bottom: $line-spacing * 1.25;
+  padding: $line-spacing * 0.5;
+
+  figure {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+// Documentation links
+.doc-link {
+  font-size: 85%;
+
+  i {
+    font-size: 0.7em;
+    margin-right: 0.2em;
+    opacity: 0.6;
+  }
+}

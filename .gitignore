@@ -1,46 +1,38 @@
-# Ruby/Jekyll/Python cache files
-_site
-.*cache
-__pycache__/
-.jekyll-metadata
+# Hugo build output
+public/
 
-# Static .git
-.site-git
+# Hugo generated resources
+resources/_gen/
 
-# Private
-ignored/
-**/secrets.py
+# Hugo lock file
+.hugo_build.lock
 
-# Too big to VC (binaries scary!)
-node_modules/
-_plugins/svgcleaner/
-**/*.pdf
-**/*.wav
-**/*.fur
-**/*.webp
-**/*.png
-**/*.mp4
+# Hugo module cache
+_vendor/
+
+# Large static files
+static/climbing/
+
+# Binary content files (images, media, documents)
+**/*.jpg
 **/*.jpeg
-**/*.xcf
+**/*.png
+**/*.webp
+**/*.mp4
+**/*.wav
+**/*.pdf
 **/*.zip
-**/*.xopp*
-photos/**/
-videos/
-fonts/
+**/*.ttf
+**/*.woff
+**/*.woff2
+**/*.svg
 
-# Even you, SVG
-*.svg
+# Python (uv)
+.venv/
 
-# generated
-_includes/cv.html
-_includes/diary.md
-_includes/kilter.md
-_includes/last-climb.md
-_includes/photos.md
-_includes/climbing-videos.md
-_includes/tboi.md
-_includes/videos.md
-_includes/aoc.md
-climbing/kilter/
-**/.*.yaml
-CLAUDE.md
+# Node
+node_modules/
+__pycache__/
+
+# Editor
+.zed/

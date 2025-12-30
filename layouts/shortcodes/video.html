@@ -1,0 +1,9 @@
+{{- $type := .Get 0 -}}
+{{- $name := strings.TrimSpace (.Get 1) -}}
+{{- $poster := .Page.Resources.GetMatch (printf "%s.webp" $name) -}}
+{{- $video := .Page.Resources.GetMatch (printf "%s.mp4" $name) -}}
+<figure>
+  <video poster='{{ with $poster }}{{ .RelPermalink }}{{ else }}/assets/{{ $type }}/{{ $name }}.webp{{ end }}' controls preload='none'>
+    <source src='{{ with $video }}{{ .RelPermalink }}{{ else }}/assets/{{ $type }}/{{ $name }}.mp4{{ end }}' type='video/mp4'>
+  </video>
+</figure>

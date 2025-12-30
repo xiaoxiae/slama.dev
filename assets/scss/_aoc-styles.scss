@@ -1,0 +1,85 @@
+@import "variables";
+
+.aoc-gold {
+  color: #ffff66;
+  animation: pulse-shadow 1.5s infinite ease-in-out;
+  display: inline-block;
+}
+
+.aoc-year-gold {
+  color: #ffff66;
+  text-shadow:
+    0 0 3px #ebc982,
+    0 0 5px #ebc982,
+    0 0 10px #ebc982,
+    0 0 15px #ebc982;
+}
+
+.aoc-silver {
+  color: #9999cc;
+  display: inline-block;
+}
+
+.aoc-year-silver {
+  color: #00cc00;
+  text-shadow:
+    0 0 2px #00cc00,
+    0 0 5px #00cc00;
+}
+
+.aoc-gray {
+  color: gray;
+  display: inline-block;
+  opacity: 0.25;
+}
+
+.aoc {
+  width: fit-content;
+  margin: auto;
+  margin-bottom: $line-spacing;
+
+  overflow: clip;
+
+  background-color: var(--code-bg) !important;
+  div > pre {
+    background-color: var(--code-bg) !important;
+    overflow: clip;
+  }
+}
+
+.day {
+  color: #00cc00;
+  text-shadow:
+    0 0 2px #00cc00,
+    0 0 5px #00cc00;
+}
+
+a:hover {
+  text-decoration: none;
+  color: white;
+  opacity: 1;
+}
+
+@keyframes pulse-aoc-gold {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-aoc-silver {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 1;
+  }
+}

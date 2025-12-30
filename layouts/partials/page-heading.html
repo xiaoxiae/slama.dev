@@ -1,0 +1,13 @@
+{{- /* A page is a post if and only if it has a date */ -}}
+{{- $isPost := and .Date (ne .Date.Unix 0) (ne .Date (time "0001-01-01")) -}}
+{{- $sectionTitle := "" -}}
+{{- with site.GetPage .Section }}{{ $sectionTitle = .Title }}{{ end -}}
+{{ if not .Params.noHeading }}
+	{{ if .Params.centerTitle }}
+		<h2 class="center{{ if $isPost }} post-title{{ end }}">{{ with .Params.categoryIcon }}<img class='icon' src='{{ . }}' alt='{{ $sectionTitle }} Icon'/>{{ end }} {{ .Title }}</h2>
+	{{ else }}
+		<h2 class="{{ if $isPost }} post-title{{ end }}">{{ with .Params.categoryIcon }}<img class='icon' src='{{ . }}' alt='{{ $sectionTitle }} Icon'/>{{ end }} {{ .Title }}</h2>
+	{{ end }}
+{{ else }}
+	<h2 class='no-display'>{{ .Title }}</h2>
+{{ end }}

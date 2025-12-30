@@ -1,0 +1,32 @@
+{{- $type := .Get 0 -}}
+{{- $name := .Get 1 -}}
+{{- $content := .Inner | strings.TrimSpace -}}
+
+{{- /* Check for colon suppression */ -}}
+{{- $colon := ":" -}}
+{{- $cleanType := $type -}}
+{{- if strings.HasSuffix $type ":" -}}
+  {{- $colon = "" -}}
+  {{- $cleanType = strings.TrimSuffix ":" $type -}}
+{{- end -}}
+
+{{- /* Get translation using custom i18n */ -}}
+{{- $lang := .Page.Params.language | default "en" -}}
+{{- $tagText := partial "t.html" (dict "key" $cleanType "lang" $lang) -}}
+{{- $italic := or (eq $cleanType "lemma") (eq $cleanType "claim") (eq $cleanType "theorem") -}}
+
+{{- if $tagText -}}
+  {{- $nameStr := "" -}}
+  {{- if $name -}}
+    {{- $renderedName := $.Page.RenderString $name -}}
+    {{- $renderedName = $renderedName | replaceRE "^<p>" "" | replaceRE "</p>\\s*$" "" -}}
+    {{- $nameStr = printf " (%s)" $renderedName -}}
+  {{- end -}}
+
+  {{- $rendered := $.Page.RenderString $content -}}
+  {{- $rendered = $rendered | replaceRE "^<p>" "" | replaceRE "</p>\\s*$" "" -}}
+
+<p><strong>{{ $tagText }}{{ $nameStr | safeHTML }}{{ $colon }}</strong> {{ if $italic }}<em>{{ end }}{{ $rendered | safeHTML }}{{ if $italic }}</em>{{ end }}</p>
+{{- else -}}
+ERROR: tag {{ $cleanType }} unrecognized
+{{- end -}}

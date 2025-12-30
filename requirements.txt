@@ -1,4 +1,0 @@
-deface
-markdown
-pillow
-unidecode

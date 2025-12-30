@@ -1,0 +1,5 @@
+{{- $type := .Get 0 -}}
+{{- $name := .Get 1 -}}
+{{- $ref := .Get 2 -}}
+{{- $baseURL := cond (eq $type "manim") "https://docs.manim.community/en/stable/" "https://motioncanvas.io/api/" -}}
+<a class="doc-link" href="{{ $baseURL }}{{ $ref }}"><code><i class="fa-solid fa-book" aria-hidden="true"></i>{{ trim $name "`" }}</code></a>

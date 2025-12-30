@@ -1,0 +1,12 @@
+{{- $key := .key -}}
+{{- $lang := .lang | default "en" -}}
+{{- $data := .data -}}
+{{- $translations := index site.Data.i18n $lang | default site.Data.i18n.en -}}
+{{- $text := index $translations $key | default $key -}}
+{{- if $data -}}
+  {{- $text = replace $text "{{ .author }}" $data.author -}}
+  {{- $text = replace $text "{{ .year }}" $data.year -}}
+  {{- $text = replace $text "{{ .institution }}" $data.institution -}}
+  {{- $text = replace $text "{{ .url }}" $data.url -}}
+{{- end -}}
+{{- $text -}}

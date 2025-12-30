@@ -1,0 +1,45 @@
+# Math shortcode
+definition:
+  other: "Definice"
+reminder:
+  other: "Připomenutí"
+remark:
+  other: "Poznámka"
+notation:
+  other: "Značení"
+lemma:
+  other: "Lemma"
+claim:
+  other: "Tvrzení"
+theorem:
+  other: "Věta"
+proof:
+  other: "Důkaz"
+algorithm:
+  other: "Algoritmus"
+fact:
+  other: "Fakt"
+problem:
+  other: "Problém"
+example:
+  other: "Příklad"
+consequence:
+  other: "Důsledek"
+observation:
+  other: "(👀)"
+question:
+  other: "Otázka"
+
+# UI strings
+pdf_available:
+  other: "dostupné v"
+edit:
+  other: "upravit"
+back_to_home:
+  other: "zpět na hlavní stránku"
+
+# Lecture notes preface
+preface_heading:
+  other: "Úvodní informace"
+preface_text:
+  other: "Tato stránka obsahuje moje poznámky z přednášky {{ .author }} z akademického roku {{ .year }} ({{ .institution }}). Pokud by byla někde chyba/nejasnost, nebo byste rádi něco přidali, tak stránku můžete upravit [pull requestem]({{ .url }}) (případně mi dejte vědět na mail)."

@@ -1,0 +1,8 @@
+<div class='photo-section'>
+<figure>
+{{ .Inner }}
+{{- with .Get "caption" }}
+<figcaption>{{ . | markdownify | safeHTML }}</figcaption>
+{{- end }}
+</figure>
+</div>

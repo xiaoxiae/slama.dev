@@ -1,0 +1,29 @@
+@import "variables";
+
+.sttopics {
+  > li {
+    padding-top: $line-spacing * 0.75;
+    padding-bottom: $line-spacing * 0.75;
+  }
+
+  > li:last-child {
+    padding-bottom: 0;
+  }
+}
+
+// Statnice topic/link header (title + links horizontally)
+ul.statnice-header {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  padding-left: 0;
+  padding-right: 0;
+
+  li:nth-child(2) {
+    padding-left: $line-spacing;
+  }
+}
+
+.stignored {
+  opacity: 0.5;
+}

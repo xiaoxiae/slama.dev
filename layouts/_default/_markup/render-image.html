@@ -1,0 +1,30 @@
+{{- $src := .Destination -}}
+{{- $alt := .Text -}}
+{{- $title := .Title -}}
+{{- $class := "" -}}
+
+{{- /* Handle class attribute from markdown {.class} syntax */ -}}
+{{- with .Attributes.class }}{{ $class = . }}{{ end -}}
+
+{{- /* Get and process image (pass page context for bundles) */ -}}
+{{- $img := partial "get-image" (dict "src" $src "page" .Page "process" "webp") -}}
+
+{{- if $img -}}
+  {{- $isSVG := eq $img.MediaType.SubType "svg" -}}
+  {{- $isGIF := eq $img.MediaType.SubType "gif" -}}
+
+  <img src="{{ $img.RelPermalink }}" alt="{{ $alt }}"
+    {{- with $class }} class="{{ . }}"{{ end -}}
+    {{- with $title }} title="{{ . }}"{{ end -}}
+    {{- if and (not $isSVG) (not $isGIF) -}}
+      {{- with $img.Width }} width="{{ . }}"{{ end -}}
+      {{- with $img.Height }} height="{{ . }}"{{ end -}}
+    {{- end -}}
+    loading="lazy">
+{{- else -}}
+  {{- /* Fallback for images not found */ -}}
+  <img src="{{ $src }}" alt="{{ $alt }}"
+    {{- with $class }} class="{{ . }}"{{ end -}}
+    {{- with $title }} title="{{ . }}"{{ end -}}
+    loading="lazy">
+{{- end -}}

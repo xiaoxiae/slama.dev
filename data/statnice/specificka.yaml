@@ -1,0 +1,184 @@
+- title: Kombinatorika
+  resources: "Kombagra 1 [[poznámky](/poznamky/kombinatorika-a-grafy-i/)] 🃏 a 2 [[poznámky](/poznamky/kombinatorika-a-grafy-ii/)] 🃏"
+  items:
+    - name: Vytvořující funkce.
+      links: ["/poznamky/kombinatorika-a-grafy-i/#generující-funkce"]
+      details:
+        - použití vytvořujících funkcí k řešení lineárních rekurencí
+        - zobecněná binomická věta (formulace)
+        - Catalanova čísla (příklad kombinatorické interpretace, odvození vzorce)
+    - name: Odhady faktoriálů a kombinačních čísel.
+      links: ["/poznamky/kombinatorika-a-grafy-i/#odhady-faktoriálu", "/poznamky/kombinatorika-a-grafy-i/#odhady-binomických-koeficientů"]
+      details:
+        - $(n/e)^n \le n! \le n(n/e)^n$
+        - $(n/k)^k \le \binom{n}{k} \le (en/k)^k$
+        - $2^{2m}/(2  \sqrt{m}) \le \binom{2m}{m} \le 2^{2m} / \sqrt{2m}$
+    - name: Ramseyova teorie.
+      links: ["/poznamky/kombinatorika-a-grafy-i/#ramseyovy-barevnénekonečné-věty"]
+      details:
+        - Ramseyova věta (formulace konečné a nekonečné verze pro p-tice, důkaz verze $p=2$ pro 2 barvy)
+        - Ramseyova čísla (definice, pro 2 barvy horní odhad z důkazu Ramseyovy věty a dolní odhad pravděpodobnostní konstrukcí)
+    - name: Extremální kombinatorika
+      links: ["/poznamky/kombinatorika-a-grafy-ii/#extremální-teorie-grafů-a-hypergrafů"]
+      details:
+        - obecné povědomí co extremální kombinatorika studuje
+        - Turánova věta (formulace, Turánovy grafy)
+        - Erdös-Ko-Radoova věta (formulace)
+    - name: Samoopravné kódy.
+      links: ["/poznamky/kombinatorika-a-grafy-i/#samoopravné-kódy"]
+      details:
+        - přehled o používané terminologii
+        - vzdálenost kódu a její vztah k počtu opravitelných a detekovatelných chyb
+        - Hammingův odhad (formulace a důkaz)
+        - perfektní kódy (definice a příklady, Hammingův kód bez přesné konstrukce)
+
+- title: Základy sítí
+  resources: "Sítě [[slidy](site.pdf)] 🃏"
+  items:
+    - name: Taxonomie počítačových sítí.
+    - name: Architektura ISO/OSI.
+    - name: Přehled síťového modelu TCP/IP.
+    - name: Směrování.
+    - name: Koncept adresy, portu, socketu.
+    - name: Architektura klient/server.
+    - name: Základy fungování protokolů HTTP, FTP a SMTP.
+
+- title: Matalýza 2
+  resources: "Matalýza 2 [[poznámky Pultr](ma2.pdf), [poznámky Klazar](ma2-klazar.pdf)] 🃏"
+  items:
+    - name: Riemannův integrál jedno- i vícerozměrný
+    - name: Funkce více proměnných
+      details:
+        - "parciální derivace: definice a výpočet"
+        - výpočet extrémů pomocí paricálních derivací
+        - existence extrémů pro funkce několika reálných proměnných
+        - "vázané extrémy: výpočet pomocí Lagrangeových multiplikátorů"
+    - name: Metrický prostor
+      details:
+        - definice a základní příklady
+        - "otevřené a uzavřené množiny: definice, příklady"
+        - spojitost funkce na metrickém prostoru
+        - "kompaktnost: definice a důsledky pro extrémy funkcí více proměnných"
+        - stejnoměrná spojitost
+
+- title: Optimalizace
+  resources: "LP [[skripta](lp.pdf)] 🃏, APX [[pozn.](/poznamky/aproximacni-algoritmy/)] 🃏, Kombagra 2 [[pozn.](/poznamky/kombinatorika-a-grafy-ii/)] 🃏, DSPO [[pozn.](/poznamky/diskretni-a-spojita-optimalizace/)]"
+  items:
+    - name: Základy lineárního a celočíselného programování.
+      details:
+        - dualita lineárního programování, Farkasovo lemma
+        - name: simplexová metoda, pivotovací pravidla
+          links: [lp-simplex.pdf]
+    - name: Kombinatorická geometrie
+      details:
+        - konvexní obal objektů
+        - mnohostěny
+        - Minkowski-Weylova věta
+    - name: Edmondsův algoritmus.
+      links: ["/poznamky/kombinatorika-a-grafy-ii/#největší-párování", "https://www.youtube.com/watch?v=3roPs1Bvg1Q"]
+    - name: Základy matematického programování
+      details:
+        - unimodularita, Königovo lemma, toky v sítích, souvislost s dualitou LP
+        - vážené maximální párování v bipartitních grafech a jeho primárně-duální algoritmus
+    - name: Celočíselné programování.
+      details:
+        - name: metoda řezů
+          links: ["https://en.wikipedia.org/wiki/Cutting-plane_method"]
+    - name: Matroidy.
+      links: [/poznamky/diskretni-a-spojita-optimalizace/]
+      details:
+        - řádová funkce, existence a submodularita
+        - hladový algoritmus
+    - name: "Aproximační algoritmy pro kombinatorické problémy:"
+      links: [/poznamky/aproximacni-algoritmy/]
+      details:
+        - "definice: aproximační poměr, aproximační schéma"
+        - name: splnitelnost
+          links: [/lecture-notes/best-sat/]
+        - name: nezávislé množiny
+          links: ["/poznamky/aproximacni-algoritmy/#maximální-nezávislá-množina"]
+        - name: množinové pokrytí
+          links: ["/poznamky/aproximacni-algoritmy/#pokrývací-problémy"]
+        - name: rozvrhování
+          links: ["/poznamky/aproximacni-algoritmy/#rozvrhování"]
+    - name: Použití lineárního programování pro aproximační algoritmy.
+      details:
+        - name: algoritmy pro splnitelnost (MAXSAT, pravděpodobnostní zaokrouhlování)
+          links: ["/poznamky/aproximacni-algoritmy/#lp-sat"]
+        - name: vrcholové a množinové pokrytí (deterministické zaokrouhlování, primárně-duální algoritmus)
+          links: ["/poznamky/aproximacni-algoritmy/#pokrývací-problémy"]
+    - name: Využití pravděpodobnosti při návrhu algoritmů.
+      details:
+        - name: minimální globální řez v grafu
+          links: ["/poznamky/aproximacni-algoritmy/#globální-minimální-řez"]
+        - name: hashování a jeho využítí pro slovník s konstantním časem vyhledávání
+          links: ["/poznamky/aproximacni-algoritmy/#hashovací-funkce"]
+        - name: pravděpodobnostní testování maticových a polynomiálních identit
+          links: ["/poznamky/aproximacni-algoritmy/#nulovost-polynomů-polynomial-identity-testing"]
+        - name: paralelní algoritmus pro hledání maximální nezávislé množiny
+          links: ["/poznamky/aproximacni-algoritmy/#maximální-nezávislá-množina"]
+        - name: paralelní algoritmy pro hledání párování (bipartitní grafy)
+          links: ["/poznamky/aproximacni-algoritmy/#perfektní-párování"]
+
+- title: Pokročilé ADS
+  resources: "ADS 1 a 2 [[Průvodce](pruvodce.pdf), [GA](ga.pdf)] 🃏, APX [[poznámky](/poznamky/aproximacni-algoritmy/)] 🃏, Algebra 1 [[skripta](algebra.pdf)]"
+  items:
+    - name: Dynamické programování.
+      links: [pruvodce.pdf#s12]
+      details:
+        - princip dynamického programování (řešení podproblémů od nejmenších k největším)
+        - name: "aplikace: nejdelší rostoucí podposloupnost, editační vzdálenost"
+          links: [lis.py, edit.py]
+    - name: Výpočetní model RAM.
+      links: [pruvodce.pdf#s2.5]
+    - name: Komponenty silné souvislosti orientovaných grafů.
+      links: [pruvodce.pdf#s5.9]
+      details:
+        - tranzitivní uzávěr (Floyd-Warshal)
+        - komponenty silné souvislosti orientovaných grafů
+        - toky v sítích (Dinicův a Goldbergův algoritmus)
+    - name: Toky v sítích (FF, Diniz, Goldberg).
+      links: [pruvodce.pdf#s14, /poznamky/kombinatorika-a-grafy-i/#7-přednáška]
+    - name: Vyhledávání v textu (KMP, AC).
+      links: [pruvodce.pdf#s13, kmp.py]
+      details:
+        - algoritmy Knuth-Morris-Pratt a Aho-Corasicková
+    - name: Diskrétní Fourierova transformace, aplikace.
+      links: [pruvodce.pdf#s17, fft.py]
+      details:
+        - diskrétní Fourierova transformace a její aplikace
+        - výpočet Fourierovy transformace algoritmem FFT
+    - name: RSA (šifrování, dešifrování a generování klíčů)
+      links: [algebra.pdf#subsection.2.2]
+    - name: Aproximační algoritmy a schémata (cestující, batoh).
+      links: [pruvodce.pdf#s19.6, "/poznamky/aproximacni-algoritmy/#metrický-tsp"]
+      details:
+        - poměrová a relativní chyba
+        - aproximační schémata
+        - "příklady: obchodní cestující, batoh"
+    - name: Paralelní třidění pomocí komparátorových sítí.
+      links: [pruvodce.pdf#s15]
+    - name: Červeno-černé stromy a jejich vyvažování
+
+- title: Geometrie
+  ignored: true
+  resources: "Základy KVG"
+  items:
+    - name: Základní věty o konvexních množinách (Hellyho, Radonova, o oddělování).
+    - name: Minkowského věta o mřížkách.
+    - name: Konvexní mnohostěny (zákadní vlastnosti, V-mnohostěny, H-mnohostěny, kombinatorická složitost).
+    - name: Geometrická dualita.
+    - name: Voroného diagramy, arrangementy (komplexy) nadrovin, incidence bodů a přímek, základní algoritmy výpočetní geometrie (konstrukce arrangementu přímek v rovině, konstrukce konvexního obalu v rovině).
+
+- title: Pokročilá diskrétní matematika
+  ignored: true
+  resources: "Kombagra 2, Teorie množin"
+  items:
+    - name: Barvení grafů (Brooksova a Vizingova věta).
+    - name: Tutteova věta.
+    - name: Extremální kombinatorika (Turánova věta, Erdös-Ko-Radoova věta).
+    - name: Kreslení grafů na plochách.
+    - name: Množiny a zobrazení.
+    - name: Subvalence a ekvivalence množin.
+    - name: Dobré uspořádání.
+    - name: Axiom výběru (Zermelova věta, Zornovo lemma).

@@ -1,0 +1,51 @@
+{{- /*
+  Get and optionally process an image.
+
+  Usage: {{ partial "get-image" (dict "src" "image.webp" "page" . "process" "webp") }}
+
+  Parameters:
+    - src: Image path (relative or absolute)
+    - page: Page context (for page resources)
+    - process: Optional processing string (e.g., "webp", "resize 800x webp")
+
+  Returns: Processed image resource or nil
+*/ -}}
+
+{{- $src := .src -}}
+{{- $page := .page -}}
+{{- $process := .process | default "" -}}
+{{- $img := "" -}}
+
+{{- /* Try page resources first (for page bundles) */ -}}
+{{- if and $page (not (hasPrefix $src "/")) -}}
+  {{- $img = $page.Resources.Get $src -}}
+{{- end -}}
+
+{{- /* Try global assets */ -}}
+{{- if not $img -}}
+  {{- $assetPath := "" -}}
+  {{- if hasPrefix $src "/assets/" -}}
+    {{- $assetPath = printf "images%s" (strings.TrimPrefix "/assets" $src) -}}
+  {{- else if hasPrefix $src "assets/" -}}
+    {{- $assetPath = printf "images/%s" (strings.TrimPrefix "assets/" $src) -}}
+  {{- else if not (hasPrefix $src "/") -}}
+    {{- /* Relative path not found in page resources, try global */ -}}
+    {{- $assetPath = printf "images/%s" $src -}}
+  {{- end -}}
+
+  {{- if $assetPath -}}
+    {{- $img = resources.Get $assetPath -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Process the image if found */ -}}
+{{- if $img -}}
+  {{- $isSVG := eq $img.MediaType.SubType "svg" -}}
+  {{- $isGIF := eq $img.MediaType.SubType "gif" -}}
+
+  {{- if and (not $isSVG) (not $isGIF) $process -}}
+    {{- $img = $img.Process $process -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return $img -}}

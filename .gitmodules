@@ -1,9 +1,0 @@
-[submodule "_plugins/cv"]
-	path = _plugins/cv
-	url = https://github.com/xiaoxiae/CV.git
-[submodule "_plugins/ma2"]
-	path = _plugins/ma2
-	url = https://github.com/3O11/ma2-poznamky.git
-[submodule "_includes/motion-canvas"]
-	path = _includes/motion-canvas
-	url = https://github.com/xiaoxiae/motion-canvas-examples

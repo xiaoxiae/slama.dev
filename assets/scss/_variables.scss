@@ -1,0 +1,142 @@
+/* LIGHT COLORS */
+$light-text-color: #000;
+$light-link-color: #004af3;
+$light-background-color: #fff;
+
+$light-header-background-color: adjust-color(
+  $light-text-color,
+  $lightness: 85%
+);
+$light-nav-background-color: adjust-color($light-text-color, $lightness: 94%);
+$light-code-background-color: $light-header-background-color;
+$light-code-summary-background-color: adjust-color(
+  $light-code-background-color,
+  $lightness: -8%
+);
+$light-toc-background-color: adjust-color(
+  $light-background-color,
+  $lightness: -6%
+);
+$light-grid-overlay-color: #0005;
+
+/* DARK COLORS */
+$dark-text-color: #fff;
+$dark-link-color: #659aff;
+$dark-background-color: #333;
+
+$dark-header-background-color: adjust-color($dark-text-color, $lightness: -94%);
+$dark-nav-background-color: adjust-color($dark-text-color, $lightness: -85%);
+$dark-code-background-color: $dark-header-background-color;
+$dark-toc-background-color: adjust-color(
+  $dark-background-color,
+  $lightness: -6%
+);
+$dark-grid-overlay-color: #fff3;
+
+/* SHARED/OVERLAY COLORS */
+$overlay-text-color: white;
+$overlay-text-shadow-color: #000;
+
+/* HALLOWEEN COLORS */
+$halloween-text-color: #ff6600;
+$halloween-link-color: #9d4edd;
+$halloween-background-color: #1a0a1a;
+$halloween-header-background-color: #2d0a3a;
+$halloween-nav-background-color: #3d1547;
+$halloween-code-background-color: $halloween-header-background-color;
+$halloween-grid-overlay-color: #2d0a3a99;
+$halloween-overlay-text-color: #ff6600;
+$halloween-overlay-text-shadow-color: #1a0a1a;
+$halloween-alternate-index-color-1: adjust-color(
+  $halloween-background-color,
+  $lightness: 4%
+);
+$halloween-alternate-index-color-2: adjust-color(
+  $halloween-background-color,
+  $lightness: 2%
+);
+
+/* INDEX ALTERNATE COLORS - LIGHT MODE */
+$light-alternate-index-color-1: adjust-color(
+  $light-background-color,
+  $lightness: -10%
+);
+$light-alternate-index-color-2: adjust-color(
+  $light-background-color,
+  $lightness: -5%
+);
+
+/* INDEX ALTERNATE COLORS - DARK MODE */
+$dark-alternate-index-color-1: adjust-color(
+  $dark-background-color,
+  $lightness: -10%
+);
+$dark-alternate-index-color-2: adjust-color(
+  $dark-background-color,
+  $lightness: -4%
+);
+
+/* BUTTON COLORS */
+$light-button-background-color: $light-code-background-color;
+$light-button-background-color-hover: adjust-color(
+  $light-code-background-color,
+  $lightness: -10%
+);
+$dark-button-background-color: $dark-code-background-color;
+$dark-button-background-color-hover: adjust-color(
+  $dark-code-background-color,
+  $lightness: 10%
+);
+$halloween-button-background-color: adjust-color(
+  $halloween-code-background-color,
+  $lightness: -5%
+);
+$halloween-button-background-color-hover: adjust-color(
+  $halloween-code-background-color,
+  $lightness: -15%
+);
+
+/* SIZES */
+$website-size: 700px; // width of content of the website
+$website-padding: 25px; // left/right padding of website content
+
+$header-padding: 15px; // top/bottom padding of header
+$navigation-padding: 20px; // top/bottom padding of navbar
+
+$navigation-item-spacing: 20px; // spacing between each of the navigation items
+
+$code-padding: 3px; // padding for inline code will be this, and double this for regular code
+$code-border-roundness: 6px; // roundness of the code border
+
+$title-size: 180%; // how much bigger is the title
+$small-title-size: 155%; // how much bigger is the title
+$navigation-size: 120%; // how much bigger is the title
+$footer-size: 80%; // how much smaller is the footer
+$toc-size: $footer-size; // how much smaller is the TOC
+
+$line-height: 1.4; // increase line height to make text more readable
+
+$line-spacing: 20px; // spacing after paragraph
+
+$h2-size: 36px;
+$h3-size: 26px;
+$h4-size: 21px;
+$h5-size: 15px;
+$h6-size: 13px;
+
+$h2-spacing: 8px;
+$h3-spacing: 5px;
+$h4-spacing: 3px;
+$h5-spacing: 2px;
+$h6-spacing: 1px;
+
+$list-item-left-padding: 25px; // so bullets don't stick out the page
+// sort of a hack, I don't know how else to do this
+
+$small-screen-threshold: 550px; // if the screen is smaller than this, website changes stuff
+$tiny-screen-threshold: 375px; // if the screen is smaller than this, website changes stuff
+
+/* FONT SETTINGS */
+$serif-font: "SerifLight";
+$monospaced-font: "CodeLight";
+$icons-font: "Icons Font";

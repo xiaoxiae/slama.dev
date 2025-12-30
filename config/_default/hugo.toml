@@ -1,0 +1,140 @@
+baseURL = "https://slama.dev"
+title = "slama.dev"
+defaultContentLanguage = "en"
+
+# Language configuration for i18n support
+[languages]
+  [languages.en]
+    languageCode = "en"
+    weight = 1
+
+# Disable some default behaviors
+disableKinds = ["taxonomy", "term"]
+
+# Build settings
+buildDrafts = false
+buildFuture = false
+
+[params]
+  description = "Tomáš Sláma's personal website."
+  author = "Tomáš Sláma"
+  halloween = true
+
+# Main navigation menu
+[[menus.main]]
+  name = "Home"
+  url = "/"
+  weight = 100
+  [menus.main.params]
+    icon = "fa-house"
+
+[[menus.main]]
+  name = "Reading"
+  pageRef = "/reading"
+  weight = 200
+  [menus.main.params]
+    icon = "fa-book"
+
+[[menus.main]]
+  name = "CV"
+  pageRef = "/cv"
+  weight = 300
+  [menus.main.params]
+    icon = "fa-id-card"
+
+[[menus.main]]
+  name = "Climbing"
+  pageRef = "/climbing"
+  weight = 400
+  [menus.main.params]
+    icon = "fa-bolt"
+
+[[menus.main]]
+  name = "Photos"
+  pageRef = "/photos"
+  weight = 500
+  [menus.main.params]
+    icon = "fa-camera"
+
+[[menus.main]]
+  name = "Videos"
+  pageRef = "/videos"
+  weight = 600
+  [menus.main.params]
+    icon = "fa-brands fa-youtube"
+
+[[menus.main]]
+  name = "Stickers"
+  pageRef = "/stickers"
+  weight = 700
+  [menus.main.params]
+    icon = "fa-note-sticky"
+
+[[menus.main]]
+  name = "Printomat"
+  pageRef = "/printomat"
+  weight = 800
+  [menus.main.params]
+    icon = "fa-print"
+
+[markup]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineAnchors = ""
+    lineNoStart = 1
+    lineNos = true
+    lineNumbersInTable = true
+    noClasses = false
+    style = "monokai"
+    tabWidth = 4
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    [markup.goldmark.parser]
+      [markup.goldmark.parser.attribute]
+        block = true
+        title = true
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
+      [markup.goldmark.extensions.extras.delete]
+        enable = true
+      [markup.goldmark.extensions.extras.subscript]
+        enable = true
+      [markup.goldmark.extensions.extras.superscript]
+        enable = true
+  [markup.tableOfContents]
+    endLevel = 6
+    ordered = false
+    startLevel = 2
+
+[permalinks]
+  posts = "/:slug/"
+
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
+# Use Dart Sass for @use syntax support
+[build]
+  [build.buildStats]
+    enable = false
+
+[module]
+  [module.hugoVersion]
+    extended = true
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML"]
+  page = ["HTML"]
+
+[outputFormats.RSS]
+  baseName = "feed"

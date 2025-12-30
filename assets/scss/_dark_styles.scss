@@ -1,0 +1,104 @@
+@import "variables";
+
+/* DARK COLOR THEME (uses CSS custom properties) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --border-color: #{adjust-color($dark-text-color, $lightness: -50%)};
+    --error-color: #ff6b6b;
+    --success-color: #51cf66;
+  }
+
+  body {
+    color: var(--text-color);
+    background-color: var(--header-bg);
+  }
+
+  // update image colors appropriately
+  svg,
+  img {
+    filter: invert(100%);
+  }
+
+  .katex {
+    svg {
+      filter: invert(0%);
+    }
+  }
+
+  a {
+    color: var(--link-color);
+    &:hover {
+      color: var(--text-color);
+    }
+  }
+
+  hr {
+    border: 1px solid color-mix(in srgb, var(--text-color) 50%, transparent);
+    background: none;
+  }
+
+  .current-page-item,
+  .header,
+  .navbar-text {
+    a {
+      color: var(--text-color);
+    }
+  }
+
+  .header {
+    background-color: var(--header-bg);
+  }
+
+  .highlight {
+    background-color: var(--code-bg);
+    border-color: var(--code-bg);
+  }
+
+  .navigation {
+    background-color: var(--nav-bg);
+  }
+
+  .navigation-background {
+    background-color: var(--background-color);
+  }
+
+  footer {
+    background-color: var(--header-bg);
+  }
+
+  .content-background {
+    background-color: var(--background-color);
+  }
+
+  #markdown-toc,
+  #TableOfContents {
+    background-color: var(--toc-bg);
+  }
+
+  .no-link-color {
+    a {
+      color: var(--text-color);
+    }
+  }
+
+  a.secret {
+    color: var(--text-color);
+    &:hover {
+      color: var(--text-color);
+    }
+  }
+
+  details {
+    summary {
+      --summary-background: #{adjust-color(
+          $dark-code-background-color,
+          $lightness: 4%
+        )};
+      --summary-text: #{$dark-text-color};
+      --summary-background-hover: #{adjust-color(
+          $dark-code-background-color,
+          $lightness: 8%
+        )};
+    }
+  }
+}

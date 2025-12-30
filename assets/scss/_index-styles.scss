@@ -1,0 +1,49 @@
+@import "variables";
+
+.promo-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $line-spacing * 0.6 $line-spacing * 0.8;
+  margin-bottom: $line-spacing;
+  border-radius: $line-spacing * 0.3;
+  text-decoration: none;
+  transition: filter 0.2s ease;
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+
+  .promo-text {
+    flex: 1;
+  }
+
+  .promo-cta {
+    flex-shrink: 0;
+    margin-left: $line-spacing;
+    font-weight: bold;
+  }
+
+  @media (max-width: $small-screen-threshold) {
+    flex-direction: column;
+    gap: $line-spacing * 0.3;
+    text-align: center;
+
+    .promo-cta {
+      margin-left: 0;
+    }
+  }
+}
+
+.protab-banner {
+  background-color: #a8eedc;
+  color: #2c3e50;
+
+  &:hover {
+    color: #2c3e50;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #18bc9c;
+  }
+}

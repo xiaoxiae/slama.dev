@@ -1,33 +1,94 @@
 #!/usr/bin/env fish
 
-# Jekyll site management script
+# Hugo site management script
 
 function serve
-    echo "Starting Jekyll development server..."
-    if pgrep -f "ruby.*jekyll" > /dev/null
-        echo "ERROR: Jekyll seems to be running already."
+    echo "Starting Hugo development server..."
+    if pgrep -f "hugo server" > /dev/null
+        echo "ERROR: Hugo seems to be running already."
         return 1
     end
-    bundle exec jekyll serve --incremental --livereload --trace --drafts --future --config _config.yml,_config-local.yml
+    hugo server --buildDrafts --buildFuture
 end
 
 function clean
-    echo "Cleaning Jekyll site..."
-    bundle exec jekyll clean --trace
+    echo "Cleaning Hugo site..."
+    rm -rf public resources/_gen
+    echo "Clean complete."
 end
 
 function build
-    echo "Building Jekyll site..."
-    if pgrep -f "ruby.*jekyll" > /dev/null
-        echo "ERROR: Jekyll seems to be running already."
+    echo "Building Hugo site..."
+    if pgrep -f "hugo server" > /dev/null
+        echo "ERROR: Hugo server seems to be running already."
         return 1
     end
-    bundle exec jekyll build --trace
+
+    echo "Processing climbing content..."
+    uv run python scripts/climbing.py build
+
+    hugo --minify --cleanDestinationDir
+
+    echo "Generating honeypot files..."
+    uv run python scripts/secrets.py
+end
+
+function check
+    set -l errors 0
+
+    # Check for required tools
+    if not command -q lychee
+        echo "ERROR: lychee is not installed. Install with: cargo install lychee"
+        return 1
+    end
+    if not command -q npx
+        echo "ERROR: npm/npx is not installed."
+        return 1
+    end
+
+    # Start server for accessibility testing
+    echo "Starting local server..."
+    hugo server --quiet --port 13130 &
+    set hugo_pid $last_pid
+
+    # Wait for server to be ready
+    while not curl -s http://localhost:13130 > /dev/null 2>&1
+        sleep 0.1
+    end
+
+    # Link checking (no server needed)
+    echo "Running lychee link checker..."
+    lychee --timeout 5 --root-dir public/ \
+        --exclude 'public/manim/\d+$' \
+        --exclude 'public/motion-canvas/\d+$' \
+        --exclude 'public/lecture-notes/' \
+        --exclude 'github\.com/xiaoxiae/slama\.dev/blob/master/content' \
+        'public/**/*.html'
+    or set errors (math $errors + 1)
+
+    # Wait for server to be ready
+    while not curl -s http://localhost:13130 > /dev/null 2>&1
+        sleep 0.1
+    end
+
+    # Accessibility testing
+    echo "Running pa11y accessibility checker..."
+    npx pa11y http://localhost:13130
+    or set errors (math $errors + 1)
+
+    echo "Stopping local server..."
+    kill $hugo_pid 2>/dev/null
+
+    if test $errors -gt 0
+        echo "Check completed with $errors error(s)."
+        return 1
+    end
+    echo "All checks passed."
 end
 
 function check_localhost
     echo "Checking for localhost references..."
-    if grep -r "localhost:4000" _site/**/*.html > /dev/null 2>&1
+    if grep -r "localhost:1313" public/**/*.html > /dev/null 2>&1
         echo "ERROR: Found 'localhost' in HTML files, not uploading!"
         return 1
     else
@@ -45,10 +106,13 @@ function upload
     end
 
     echo "Syncing files to VPS..."
-    rsync -avz --zc=zstd --delete _site/ root@138.199.216.195:/var/www/slama.dev/
+    rsync -avz --zc=zstd --delete public/ root@138.199.216.195:/var/www/slama.dev/
 
     echo "Setting proper permissions..."
     ssh root@138.199.216.195 'chown -R www-data:www-data /var/www/slama.dev/ && chmod -R 755 /var/www/slama.dev/'
+
+    echo "Reloading nginx..."
+    ssh root@138.199.216.195 'systemctl reload nginx'
 
     echo "Upload complete!"
 end
@@ -61,6 +125,8 @@ switch $argv[1]
         clean
     case "build"
         build
+    case "check"
+        check
     case "upload"
         upload
     case "all"
@@ -68,12 +134,13 @@ switch $argv[1]
     case ""
         build && upload
     case "*"
-        echo "Usage: ./site [serve|clean|build|upload|all]"
+        echo "Usage: ./site [serve|clean|build|check|upload|all]"
         echo ""
         echo "Commands:"
         echo "  serve   - Start development server with drafts and future posts"
         echo "  clean   - Clean generated files"
-        echo "  build   - Build the site"
+        echo "  build   - Build the site (minified)"
+        echo "  check   - Run all checks (html-validate, lychee, pa11y)"
         echo "  upload  - Check for localhost and upload to VPS"
-        echo "  all     - Build and upload"
+        echo "  all     - Build and upload (default)"
 end

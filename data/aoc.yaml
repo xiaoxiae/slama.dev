@@ -1,0 +1,23 @@
+# Advent of Code progress
+# Default status is gold; only list exceptions (silver/gray days)
+# Use 'days' to limit available days (default 25)
+years:
+  - year: 2025
+    days: 12
+    gray: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  - year: 2024
+  - year: 2023
+    silver: [20, 21, 25]
+    gray: [23, 24]
+  - year: 2022
+  - year: 2021
+  - year: 2020
+  - year: 2019
+    silver: [21, 22, 24]
+    gray: [23, 25]
+  - year: 2018
+    silver: [25]
+    gray: [21]
+  - year: 2017
+  - year: 2016
+  - year: 2015

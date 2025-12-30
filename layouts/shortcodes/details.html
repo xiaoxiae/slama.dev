@@ -1,0 +1,17 @@
+{{- $summary := .Get 0 -}}
+{{- $file := .Get 1 -}}
+<details>
+	<summary>{{ $summary | .Page.RenderString }}</summary>
+<div>
+{{- if $file -}}
+{{- $ext := path.Ext $file -}}
+{{- $langs := dict ".py" "python" ".ts" "typescript" ".js" "javascript" ".sh" "bash" ".out" "text" ".txt" "text" -}}
+{{- $lang := index $langs $ext | default "text" -}}
+{{- with $.Page.Resources.Get $file -}}
+{{ highlight .Content $lang "" }}
+{{- end -}}
+{{- else -}}
+{{ .Inner | .Page.RenderString }}
+{{- end -}}
+</div>
+</details>

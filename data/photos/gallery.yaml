@@ -1,0 +1,403 @@
+# Photo gallery data
+# Each photo has: date, name, raw_ext, and optional social links
+photos:
+  - date: "2025-09-13"
+    name: rainbow
+    raw_ext: jpg
+
+  - date: "2025-09-13"
+    name: mouse
+    raw_ext: jpg
+    bluesky: "3lzyz2ytpn224"
+
+  - date: "2025-09-12"
+    name: red-rocks
+    raw_ext: jpg
+
+  - date: "2025-09-12"
+    name: waterfall
+    raw_ext: jpg
+    bluesky: "3lztvvrjb6222"
+
+  - date: "2025-09-12"
+    name: fog
+    raw_ext: jpg
+
+  - date: "2025-08-19"
+    name: bird
+    raw_ext: jpg
+    bluesky: "3lxmlqdacn22e"
+
+  - date: "2025-08-19"
+    name: flower
+    raw_ext: jpg
+    bluesky: "3lxxby3v2zs24"
+
+  - date: "2025-08-19"
+    name: bee
+    raw_ext: jpg
+    bluesky: "3lxua6cpu622j"
+
+  - date: "2025-08-19"
+    name: birds
+    raw_ext: jpg
+    bluesky: "3lx5ocrhbd22n"
+
+  - date: "2025-08-19"
+    name: chipmunk
+    raw_ext: jpg
+    bluesky: "3lxaojufuk22b"
+
+  - date: "2025-08-19"
+    name: pig
+    raw_ext: jpg
+    bluesky: "3lxdbratzds25"
+
+  - date: "2025-08-19"
+    name: butterfly
+    raw_ext: jpg
+    bluesky: "3lx434ffo3c2a"
+
+  - date: "2025-08-19"
+    name: vulture
+    raw_ext: jpg
+
+  - date: "2025-04-21"
+    name: paraglider
+    raw_ext: jpg
+    instagram: "DItbRiuI-fM"
+
+  - date: "2025-03-16"
+    name: droplets
+    raw_ext: jpg
+    instagram: "DHRsPwIIJhL"
+
+  - date: "2025-01-05"
+    name: plant
+    raw_ext: jpg
+    instagram: "DEdHAJ2NqjM"
+
+  - date: "2025-01-02"
+    name: berry
+    raw_ext: jpg
+    instagram: "DEVk3t3ghpc"
+    bluesky: "3lzqwaihxp22p"
+
+  - date: "2024-12-30"
+    name: plant
+    raw_ext: jpg
+    instagram: "DENzwA_tUXL"
+
+  - date: "2024-11-20"
+    name: paris-duck
+    raw_ext: jpg
+    instagram: "DCmNLQtorUq"
+    bluesky: "3m2erkw5oxk2m"
+
+  - date: "2024-11-17"
+    name: paris-statue
+    raw_ext: jpg
+    instagram: "DCd84NEI4B9"
+
+  - date: "2024-11-14"
+    name: paris-eiffel
+    raw_ext: jpg
+    instagram: "DCWag7uIUkg"
+
+  - date: "2024-11-10"
+    name: oviedo-seagul
+    raw_ext: jpg
+    instagram: "DCM2X8YoDex"
+
+  - date: "2024-11-06"
+    name: oviedo-crow
+    raw_ext: jpg
+    instagram: "DCCBhNCoCfI"
+    bluesky: "3m27r3uh2as2f"
+
+  - date: "2024-11-03"
+    name: oviedo-lake
+    raw_ext: jpg
+    instagram: "DB6AlhnIr1m"
+
+  - date: "2024-10-31"
+    name: oviedo-lizard
+    raw_ext: jpg
+    instagram: "DBzAUUYI6MV"
+    bluesky: "3m2oncry3nc2f"
+
+  - date: "2024-10-28"
+    name: oviedo-panorama
+    raw_ext: jpg
+    instagram: "DBrLFBBIBog"
+
+  - date: "2024-10-16"
+    name: panorama
+    raw_ext: jpg
+    instagram: "DBMKqFVo8yn"
+
+  - date: "2024-10-13"
+    name: fire
+    raw_ext: jpg
+    instagram: "DBEcVFSIYYM"
+
+  - date: "2024-10-10"
+    name: bird
+    raw_ext: jpg
+    instagram: "DA8uhEutbjS"
+
+  - date: "2024-10-07"
+    name: austria-10-cows
+    raw_ext: jpg
+    instagram: "DA0-9NWtBFq"
+
+  - date: "2024-10-04"
+    name: austria-9-mountains
+    raw_ext: jpg
+    instagram: "DAtQo4Xtpk7"
+
+  - date: "2024-10-01"
+    name: austria-8-mountains
+    raw_ext: jpg
+    instagram: "DAlloUrNi28"
+
+  - date: "2024-09-28"
+    name: austria-7-otis
+    raw_ext: jpg
+    instagram: "DAd0XEPtCIy"
+
+  - date: "2024-09-25"
+    name: austria-6-water
+    raw_ext: jpg
+    instagram: "DAWE0Yytsy3"
+
+  - date: "2024-09-23"
+    name: austria-5-mountains
+    raw_ext: jpg
+    instagram: "DAQ9B3ytjw8"
+
+  - date: "2024-09-21"
+    name: austria-4-clouds
+    raw_ext: jpg
+    instagram: "DALy2oqtW3g"
+
+  - date: "2024-09-19"
+    name: austria-3-water
+    raw_ext: jpg
+    instagram: "DAGpP9LN-pY"
+
+  - date: "2024-09-17"
+    name: austria-2-stars
+    raw_ext: jpg
+    instagram: "DABfnHytIH-"
+
+  - date: "2024-09-15"
+    name: austria-1-sunset
+    raw_ext: jpg
+    instagram: "C_8VcJhtyq6"
+
+  - date: "2024-09-12"
+    name: romania-10-catto
+    raw_ext: jpg
+
+  - date: "2024-09-11"
+    name: romania-9-forest
+    raw_ext: jpg
+    instagram: "C_yC3rztXDn"
+
+  - date: "2024-09-10"
+    name: romania-8-feather
+    raw_ext: jpg
+    instagram: "C_vdfYGtpzB"
+
+  - date: "2024-09-09"
+    name: romania-7-doggo
+    raw_ext: jpg
+    instagram: "C_sxVMdNrY2"
+
+  - date: "2024-09-08"
+    name: romania-6-doggo
+    raw_ext: jpg
+    instagram: "C_qL6T-NekZ"
+
+  - date: "2024-09-07"
+    name: romania-5-statue
+    raw_ext: jpg
+    instagram: "C_nnElXtAw8"
+
+  - date: "2024-09-06"
+    name: romania-4-doggo
+    raw_ext: jpg
+    instagram: "C_lC4WINB3E"
+
+  - date: "2024-09-05"
+    name: romania-3-crows
+    raw_ext: jpg
+    instagram: "C_ic_17Nlvb"
+
+  - date: "2024-09-04"
+    name: romania-2-dome
+    raw_ext: jpg
+    instagram: "C_f3jZltPjF"
+
+  - date: "2024-09-03"
+    name: romania-1-summit
+    raw_ext: jpg
+    instagram: "C_dSzOitq8U"
+
+  - date: "2024-08-30"
+    name: cabin
+    raw_ext: jpg
+    instagram: "C_TIOcVNtUo"
+
+  - date: "2024-08-25"
+    name: frog
+    raw_ext: jpg
+    instagram: "C-2xNP6tQNo"
+
+  - date: "2024-08-22"
+    name: duck
+    raw_ext: jpg
+    instagram: "C--dPuqtePV"
+
+  - date: "2024-08-18"
+    name: lizard
+    raw_ext: jpg
+    instagram: "C-0I-8KNd2f"
+
+  - date: "2024-08-16"
+    name: birdhouse
+    raw_ext: jpg
+    instagram: "C-5Xo_fNDkg"
+
+  - date: "2024-08-12"
+    name: moon
+    raw_ext: jpg
+    instagram: "C-k_hBBtLsK"
+
+  - date: "2024-08-11"
+    name: protab
+    raw_ext: jpg
+    instagram: "C-iEwWLt4nI"
+
+  - date: "2024-08-07"
+    name: cat
+    raw_ext: jpg
+    instagram: "C-X7nbfiEKq"
+
+  - date: "2024-07-29"
+    name: berd
+    raw_ext: jpg
+    instagram: "C-DNxsUN-di"
+
+  - date: "2024-07-26"
+    name: tatry-3
+    raw_ext: png
+
+  - date: "2024-07-26"
+    name: tatry-1
+    raw_ext: png
+
+  - date: "2024-07-26"
+    name: tatry-4
+    raw_ext: png
+
+  - date: "2024-07-22"
+    name: vrat
+    raw_ext: jpg
+    instagram: "C9kXxFKN3-s"
+
+  - date: "2024-07-18"
+    name: squirrel
+    raw_ext: jpg
+    instagram: "C9uq4K5tiBR/?img_index=2"
+
+  - date: "2024-07-14"
+    name: moon
+    raw_ext: jpg
+    instagram: "C97fajytWD1"
+
+  - date: "2024-07-09"
+    name: austria
+    raw_ext: png
+
+  - date: "2021-10-31"
+    name: prague-3
+    raw_ext: jpg
+    instagram: "CVq_Gw3N-Y_/?img_index=3"
+
+  - date: "2021-10-31"
+    name: prague-1
+    raw_ext: jpg
+    instagram: "CVq_Gw3N-Y_/?img_index=1"
+
+  - date: "2021-10-31"
+    name: prague-2
+    raw_ext: jpg
+    instagram: "CVq_Gw3N-Y_/?img_index=2"
+
+  - date: "2021-10-31"
+    name: prague-4
+    raw_ext: jpg
+    instagram: "CVq_Gw3N-Y_/?img_index=4"
+
+  - date: "2020-10-02"
+    name: winter
+    raw_ext: jpg
+
+  - date: "2020-10-02"
+    name: panorama-1
+    raw_ext: jpeg
+
+  - date: "2020-10-02"
+    name: panorama-2
+    raw_ext: jpeg
+
+  - date: "2018-06-27"
+    name: fire
+    raw_ext: jpg
+    instagram: "Bkg1_sKFDB4"
+
+  - date: "2017-12-25"
+    name: winter
+    raw_ext: jpg
+    instagram: "BcgD6DYlo57"
+
+  - date: "2017-12-25"
+    name: christmas
+    raw_ext: jpg
+    instagram: "BdI2KnOH_If/?img_index=4"
+
+  - date: "2017-07-03"
+    name: other
+    raw_ext: jpg
+    instagram: "BWFzjsglya6"
+
+  - date: "2017-02-26"
+    name: winter
+    raw_ext: jpeg
+
+  - date: "2016-07-16"
+    name: sunset
+    raw_ext: jpg
+    instagram: "BH7PSl9AS5a"
+
+  - date: "2016-06-30"
+    name: sunset
+    raw_ext: jpg
+    instagram: "BHRgCv1AAVY"
+
+  - date: "2015-06-08"
+    name: flower-2
+    raw_ext: jpg
+    instagram: "3rpA4whHD7"
+
+  - date: "2015-06-08"
+    name: flower-1
+    raw_ext: jpg
+    instagram: "3rWUaeBHMQ"
+
+  - date: "2015-06-06"
+    name: bee
+    raw_ext: jpg
+    instagram: "3k9LqVBHM5"

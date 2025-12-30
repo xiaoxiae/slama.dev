@@ -1,0 +1,226 @@
+- title: Matalýza
+  resources: "Matalýza 1 [[skripta](ma1.pdf), [derivace](ma-derivate.pdf), [integrály](ma-integrate.pdf), [limity](ma-limits.pdf)] 🃏"
+  items:
+    - name: Reálná čísla
+      links: [ma1.pdf#chapter.1]
+      details:
+        - odmocnina ze dvou je iracionální
+        - $\mathbb{R}$ je nespočetná množina
+    - name: Posloupnosti reálných čísel a jejich limity
+      links: [ma1.pdf#chapter.2, ma1.pdf#chapter.3]
+      details:
+        - definice, aritmetika limit
+        - věta o dvou policajtech, limity a uspořádání
+    - name: Řady
+      links: [ma1.pdf#chapter.2, ma1.pdf#chapter.3]
+      details:
+        - definice částečného součtu a součtu
+        - geometrická řada, harmonická řada
+    - name: Reálné funkce jedné reálné proměnné.
+      links: [ma1.pdf#chapter.4]
+      details:
+        - name: limita funkce v bodě
+          links: [ma1.pdf#page=16, ma1.pdf#chapter.6]
+          details:
+            - definice, aritmetika limit
+            - vztah s uspořádáním
+            - limita složené funkce
+        - name: funkce spojité na intervalu
+          links: [ma1.pdf#chapter.6]
+          details:
+            - nabývání mezihodnot
+            - nabývání maxima
+    - name: Derivace a její aplikace
+      links: [ma1.pdf#chapter.7, ma1.pdf#chapter.8, "https://en.wikipedia.org/wiki/Weierstrass_function"]
+      details:
+        - definice a základní pravidla pro výpočet
+        - l'Hospitalovo pravidlo
+        - "vyšetření průběhu funkcí: extrémy, monotonie a konvexita/konkavita"
+        - name: Taylorův polynom se zbytkem
+          links: [ma1.pdf#chapter.9, "https://brilliant.org/wiki/taylor-series-error-bounds/"]
+    - name: Integrály a jejich aplikace
+      links: [ma1.pdf#chapter.10]
+      details:
+        - "primitivní funkce: definice a metody výpočtu (substituce, per-partes)"
+        - "Riemannův integrál: definice, souvislost s primitivní funkcí (Newtonovým integrálem)"
+        - name: aplikace
+          details:
+            - odhady součtu řad (konečných i nekonečných)
+            - obsahy rovinných útvarů
+            - objemy a povrchy rotačních útvarů v prostoru
+            - délka křivky
+
+- title: Algebra a lineární algebra
+  resources: "Lingebra 1 a 2 [[skripta](la.pdf)] 🃏"
+  items:
+    - name: Grupy a podgrupy (definice, příklady, komutativita)
+      links: [la.pdf#chapter.4]
+    - name: Tělesa (definice, charakteristika tělesa, konečná tělesa)
+      links: [la.pdf#chapter.4]
+    - name: Vektorové prostory a podprostory.
+      links: [la.pdf#chapter.5]
+      details:
+        - vlastnosti a základní pojmy (lineární kombinace, lineární obal, generátory, lineární závislost a nezávislost, báze, dimenze, souřadnice) a jejich použití
+        - praktická dovednost testování lineární závislosti a nezávislosti, nalezení báze, určení dimenze atp.
+        - skalární součin a jeho vlastnosti
+        - norma a vztah se skalárním součinem, příklady
+        - kolmost, ortonormální báze, její vlastnosti a použití (nalezení souřadnic a projekce)
+    - name: Skalární součin, norma.
+      links: [la.pdf#section.8.1]
+    - name: Kolmost, ortonormální báze.
+      links: [la.pdf#section.8.2, la.pdf#section.8.3, la.pdf#section.8.4]
+    - name: Soustavy lineárních rovnic a množina řešení.
+      links: [la.pdf#chapter.2]
+      details:
+        - metody řešení, Gaussova a Gaussova-Jordanova eliminace, odstupňovaný tvar matice a jeho jednoznačnost (bez důkazu)
+    - name: Matice a operace s maticemi (součet, součin, transpozice)
+      links: [la.pdf#chapter.3, la.pdf#chapter.9, la.pdf#chapter.11]
+      details:
+        - interpretace součinu matic pomocí skládání lineárních zobrazení
+        - hodnost matice a její transpozice
+        - name: vlastní čísla a vlastní vektory matice a jejich geometrický význam a vlastnosti, vícenásobná vlastní čísla, spektrální poloměr
+          links: [la.pdf#chapter.10]
+        - name: charakteristický polynom, vztah vlastních čísel s kořeny polynomů
+          links: [la.pdf#chapter.12]
+
+- title: Diskrétní matematika
+  resources: "Diskrétka [[poznámky](/poznamky/diskretni-matematika/)] 🃏, Kombagra 1 [[poznámky](/poznamky/kombinatorika-a-grafy-i/)] 🃏"
+  items:
+    - name: Relace.
+      links: [/poznamky/diskretni-matematika/#relace]
+      details:
+        - vlastnosti binárních relací (reflexivita, symetrie, antisymetrie, tranzitivita)
+    - name: Ekvivalence a rozkladové třídy.
+      links: [/poznamky/diskretni-matematika/#ekvivalence]
+    - name: Částečná uspořádání.
+      links: [/poznamky/diskretni-matematika/#uspořádání]
+      details:
+        - základní pojmy
+        - name: výška a šířka částečně uspořádané množiny, věta o dlouhém a širokém
+          links: ["/poznamky/diskretni-matematika/#dlouhý-a-široký"]
+    - name: Funkce.
+      links: [/poznamky/diskretni-matematika/#funkce]
+      details:
+        - typy funkcí (prostá, na, bijekce)
+        - počty různých typů funkcí mezi dvěma konečnými množinami
+    - name: Permutace a jejich základní vlastnosti (počet a pevný bod).
+      links: [/poznamky/diskretni-matematika/#segway-do-kombinatorického-počítání]
+    - name: Kombinační čísla a vztahy mezi nimi, binomická věta a její aplikace.
+      links: [/poznamky/diskretni-matematika/#kombinatorika]
+    - name: Princip inkluze a exkluze.
+      links: [/poznamky/diskretni-matematika/#princip-inkluzeexkluze]
+      details:
+        - obecná formulace (a důkaz)
+        - použití (problém šatnářky, Eulerova funkce pro počet dělitelů, počet surjekcí)
+    - name: Hallova věta o systému různých reprezentantů, vztah k párování v bipartitním grafu.
+      links: ["/poznamky/kombinatorika-a-grafy-i/#aplikace-toků-v-sítích"]
+      details:
+        - princip důkazu a algoritmické aspekty (polynomiální algoritmus pro nalezení SRR)
+
+- title: Teorie grafů
+  resources: "Diskrétka [[poznámky](/poznamky/diskretni-matematika/)] 🃏, Kombagra 1 [[poznámky](/poznamky/kombinatorika-a-grafy-i/)] 🃏"
+  items:
+    - name: Základní pojmy, základní příklady grafů.
+      links: [/poznamky/diskretni-matematika/#grafy]
+    - name: Souvislost grafů, komponenty souvislosti, vzdálenost v grafu.
+      links: [/poznamky/diskretni-matematika/#rozšiřování-grafů]
+    - name: Stromy.
+      links: [/poznamky/diskretni-matematika/#stromy]
+      details:
+        - definice a základní vlastnosti (existence listů, počet hran stromu)
+        - ekvivalentní charakteristiky stromů
+    - name: Rovinné grafy.
+      links: [/poznamky/diskretni-matematika/#rovinné-nakreslení-grafu]
+      details:
+        - definice a základní pojmy (rovinný graf a rovinné nakreslení grafu, stěny)
+        - Eulerova formule a maximální počet hran rovinného grafu (důkaz a použití)
+    - name: Barevnost grafů, klikovost grafů.
+      links: [/poznamky/diskretni-matematika/#barvení, /poznamky/diskretni-matematika/#degenerovanost-klikovost-dualita]
+      details:
+        - definice dobrého obarvení
+        - vztah barevnosti a klikovosti grafu
+    - name: Hranová a vrcholová souvislost grafů, Mengerovy věty.
+      links: [/poznamky/kombinatorika-a-grafy-i/#míra-souvislosti-neorientovaných-grafu]
+    - name: Orientované grafy, silná a slabá souvislost.
+      links: [/poznamky/diskretni-matematika/#rozšiřování-grafů]
+    - name: Toky v sítích.
+      links: [/poznamky/kombinatorika-a-grafy-i/#7-přednáška, pruvodce.pdf#s14]
+      details:
+        - definice sítě a toku v ní
+        - existence maximálního toku (bez důkazu)
+        - princip hledání maximálního toku v síti s celočíselnými kapacitami (například pomocí Ford-Fulkersonova algoritmu)
+
+- title: Past
+  resources: "Diskrétka [[poznámky](/poznamky/diskretni-matematika/)] 🃏, Past [[slidy](past/slides.pdf), [cheatsheet](past/cheatsheet.pdf), [příklady](past/examples.pdf)] 🃏"
+  items:
+    - name: Pravděpodobnostní prostor, náhodné jevy, pravděpodobnost
+      details:
+        - definice těchto pojmů, příklady
+        - základní pravidla pro počítání s pravděpodobností
+        - nezávislost náhodných jevů, podmíněná pravděpodobnost
+        - Bayesův vzorec
+    - name: Náhodné veličiny a jejich rozdělení
+      details:
+        - diskrétní i spojitý případ
+        - popis pomocí distribuční funkce a pomocí pravděpodobnostní funkce/hustoty
+        - name: střední hodnota
+          details:
+            - linearita střední hodnoty
+            - střední hodnota součinu nezávislých veličin
+            - Markovova nerovnost
+        - name: rozptyl
+          details:
+            - definice
+            - vzorec pro rozptyl součtu (závislých či nezávislých veličin)
+        - "práce s konkrétními rozděleními: geometrické, binomické, Poissonovo, normální, exponenciální"
+    - name: Limitní věty
+      details:
+        - zákon velkých čísel
+        - centrální limitní věta
+    - name: Bodové odhady
+      details:
+        - alespoň jedna metoda pro jejich tvorbu
+        - vlastnosti
+    - name: "Intervalové odhady: metoda založená na aproximaci normálním rozdělením"
+    - name: Testování hypotéz
+      details:
+        - základní přístup
+        - chyby 1. a 2. druhu
+        - hladina významnosti
+
+- title: Logika
+  resources: "Výpal [[slidy CZ](vypal-cz.pdf), [slidy](vypal-en.pdf)] 🃏"
+  items:
+    - name: Syntaxe
+      details:
+        - znalost a práce se základními pojmy syntaxe výrokové a predikátové logiky (jazyk, otevřená a uzavřená formule, instance formule, apod.)
+        - name: normální tvary výrokových formulí
+          details:
+            - prenexní tvary formulí predikátové logiky
+            - znalost základních normálních tvarů (CNF, DNF, PNF)
+            - převody na normální tvary
+            - použití pro algoritmy (SAT, rezoluce)
+    - name: Sémantika
+      details:
+        - pojem modelu teorie
+        - pravdivost, lživost, nezávislost formule vzhledem k teorii
+        - splnitelnost, tautologie, důsledek
+        - analýza výrokových teorií nad konečně mnoha prvovýroky
+    - name: Extenze teorií
+      details:
+        - schopnost porovnat sílu teorií
+        - konzervativnost, skolemizace
+    - name: "Dokazatelnost:"
+      details:
+        - pojem formálního důkazu, zamítnutí
+        - schopnost práce v některém z formálních dokazovacích systémů (např. tablo metoda, rezoluce, Hilbertovský kalkul)
+    - name: Věty o kompaktnosti a úplnosti výrokové a predikátové logiky
+      links: [vypal-en.pdf#page=85, vypal-en.pdf#page=81, vypal-en.pdf#page=79]
+      details:
+        - znění a porozumění významu
+        - použití na příkladech, důsledky
+    - name: Rozhodnutelnost
+      links: [vypal-en.pdf#page=273]
+      details:
+        - pojem kompletnosti a její kritéria, význam pro rozhodnutelnost
+        - příklady rozhodnutelných a nerozhodnutelných teorií

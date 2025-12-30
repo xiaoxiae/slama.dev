@@ -1,0 +1,144 @@
+@import "variables";
+
+/* LIGHT COLOR THEME (uses CSS custom properties) */
+:root {
+  --border-color: #{adjust-color($light-text-color, $lightness: 50%)};
+  --error-color: #e74c3c;
+  --success-color: #27ae60;
+}
+
+body {
+  color: var(--text-color);
+  background-color: var(--header-bg);
+}
+
+a {
+  color: var(--link-color);
+
+  &:hover {
+    color: var(--text-color);
+    text-decoration: underline;
+  }
+}
+
+a[href^="#"]:not(.footnote):not(.reversefootnote):not(.footnote-backref):not(
+    .footnote-ref
+  ):not(#markdown-toc a):not(#TableOfContents a):not(.nohashtag)::before {
+  content: "#";
+  font-weight: bold;
+  opacity: 0.25;
+}
+
+hr {
+  border: 1px solid color-mix(in srgb, var(--text-color) 50%, transparent);
+  background: none;
+}
+
+/* Utility color classes */
+.red {
+  color: rgb(200, 20, 50);
+}
+
+.green {
+  color: #008000;
+}
+
+.blue {
+  color: deepskyblue;
+}
+
+.yellow {
+  color: rgb(200, 120, 0);
+}
+
+.orange {
+  color: adjust-color(#e67e00, $lightness: -10%);
+}
+
+.gray {
+  color: rgb(100, 95, 90);
+}
+
+.gold {
+  color: #a2a200;
+}
+
+.silver {
+  color: #7a7aa8;
+}
+
+.aoc-link {
+  color: #00cc00;
+}
+
+.current-page-item,
+.header,
+.navbar-text {
+  a {
+    color: var(--text-color);
+  }
+}
+
+.header {
+  background-color: var(--header-bg);
+}
+
+.navigation {
+  background-color: var(--nav-bg);
+}
+
+.navigation-background {
+  background-color: var(--background-color);
+}
+
+.content-background {
+  background-color: var(--background-color);
+}
+
+.highlight {
+  clear: both;
+  background-color: var(--code-bg);
+  border-color: var(--code-bg);
+}
+
+.code-summary {
+  background-color: var(--code-summary-bg);
+  border-color: var(--code-summary-bg);
+}
+
+#markdown-toc,
+#TableOfContents {
+  background-color: var(--toc-bg);
+}
+
+footer {
+  background-color: var(--header-bg);
+}
+
+.no-link-color {
+  a {
+    color: var(--text-color);
+  }
+}
+
+a.secret {
+  color: var(--text-color);
+  &:hover {
+    color: var(--text-color);
+    text-decoration: none;
+  }
+}
+
+details {
+  summary {
+    --summary-background: #{adjust-color(
+        $light-code-background-color,
+        $lightness: -4%
+      )};
+    --summary-text: #{$light-text-color};
+    --summary-background-hover: #{adjust-color(
+        $light-code-background-color,
+        $lightness: -8%
+      )};
+  }
+}

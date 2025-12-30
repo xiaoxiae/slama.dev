@@ -1,0 +1,51 @@
+{{- $videoServer := "https://tom.ggu.cz/big/tboi/" -}}
+
+{{/* Sort runs by date descending (newest first) */}}
+{{- $runs := sort site.Data.tboi "date" "desc" -}}
+
+{{/* Filter by type */}}
+{{- $regularRuns := where $runs "beaten" "!=" nil -}}
+
+<div class="center">
+<h3>Regular runs</h3>
+</div>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Date</th>
+<th>Character</th>
+<th>Beaten</th>
+<th style="text-align: right;">Link</th>
+<th>Items</th>
+</tr>
+</thead>
+<tbody>
+{{- range $regularRuns }}
+{{- $charStub := .character | lower | replaceRE " " "-" | replaceRE "&" "and" | replaceRE "'" "" | replaceRE "!" "" | replaceRE "\\." "" | replaceRE "/" "-" | replaceRE "'" "" -}}
+{{- $charImg := $.Page.Resources.GetMatch (printf "characters/%s.webp" $charStub) -}}
+<tr>
+<td style="text-align: center;"><strong>{{ .date | time.Format "2006/01/02" }}</strong></td>
+<td>{{ .character }} <img class="icon" src="{{ with $charImg }}{{ .RelPermalink }}{{ else }}/assets/tboi/characters/{{ $charStub }}.webp{{ end }}" alt="{{ .character }} character image."></td>
+<td>
+{{- range split .beaten ", " -}}
+{{- $bossStub := . | lower | replaceRE " " "-" | replaceRE "&" "and" | replaceRE "'" "" | replaceRE "!" "" | replaceRE "\\." "" | replaceRE "/" "-" | replaceRE "'" "" -}}
+{{- $markImg := $.Page.Resources.GetMatch (printf "marks/%s.webp" $bossStub) -}}
+{{ . }} <img class="icon" src="{{ with $markImg }}{{ .RelPermalink }}{{ else }}/assets/tboi/marks/{{ $bossStub }}.webp{{ end }}" alt="{{ . }} completion mark."><br>
+{{- end -}}
+</td>
+<td style="text-align: right;"><a href="{{ $videoServer }}{{ .name }}">{{ with .duration }}{{ . }}{{ else }}Video{{ end }}</a></td>
+<td>
+{{- with .items -}}
+{{- range split . ", " -}}
+{{- $itemStub := . | lower | replaceRE " " "-" | replaceRE "&" "and" | replaceRE "'" "" | replaceRE "!" "" | replaceRE "\\." "" | replaceRE "/" "-" | replaceRE "'" "" -}}
+{{- $itemImg := $.Page.Resources.GetMatch (printf "items/%s.webp" $itemStub) -}}
+<img class="icon" src="{{ with $itemImg }}{{ .RelPermalink }}{{ else }}/assets/tboi/items/{{ $itemStub }}.webp{{ end }}" alt="{{ . }} item icon.">
+{{- end -}}
+{{- end -}}
+</td>
+</tr>
+{{- end }}
+</tbody>
+</table>
+

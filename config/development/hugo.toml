@@ -1,0 +1,2 @@
+# Development config - overrides baseURL for local serving
+baseURL = "http://localhost:1313"

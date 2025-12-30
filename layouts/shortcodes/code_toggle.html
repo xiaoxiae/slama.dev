@@ -1,0 +1,3 @@
+{{- $mcFile := .Get 0 -}}
+{{- $manimFile := .Get 1 -}}
+{{ partial "code-tabs.html" (dict "page" $.Page "mcFile" $mcFile "manimFile" $manimFile) }}

@@ -1,0 +1,5 @@
+{{- /* Right-floating box shortcode with markdown support */ -}}
+{{- /* Usage: {{% floatbox %}}content here{{% /floatbox %}} */ -}}
+<div class="rightFloatBox">
+{{ .Inner | markdownify }}
+</div>

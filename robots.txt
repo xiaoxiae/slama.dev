@@ -1,4 +1,0 @@
-User-agent: *
-Disallow:
-
-Sitemap: https://slama.dev/sitemap.xml

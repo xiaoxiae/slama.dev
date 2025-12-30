@@ -1,0 +1,85 @@
+@import "variables";
+
+.lang-spacer {
+  padding-bottom: $line-spacing / 6;
+}
+
+button {
+  // Reset all browser defaults
+  all: unset;
+
+  // Reapply the styles we want
+  cursor: pointer;
+  display: inline-block;
+  box-sizing: border-box;
+
+  padding: $line-spacing * 0.125 $line-spacing * 0.25;
+  border-radius: 3px;
+
+  background-color: var(--button-bg);
+
+  color: var(--text-color);
+
+  &:hover {
+    background-color: var(--button-bg-hover);
+  }
+}
+
+// Smaller code blocks for motion-canvas posts
+.section-motion-canvas {
+  figure.highlight,
+  div.highlight {
+    font-size: 80%;
+  }
+}
+
+// Code tabs for switching between Motion Canvas and Manim
+.code-tabs {
+  margin-bottom: $line-spacing;
+
+  .code-tabs-header {
+    display: flex;
+  }
+
+  .code-tab {
+    padding: $line-spacing * 0.2 $line-spacing * 0.5;
+    cursor: pointer;
+    background-color: var(--code-bg);
+    opacity: 0.5;
+    border-radius: $code-border-roundness $code-border-roundness 0 0;
+
+    &.active {
+      opacity: 1;
+    }
+
+    &:hover:not(.active) {
+      opacity: 0.75;
+    }
+  }
+
+  .code-tabs-content {
+    display: none;
+
+    figure.highlight,
+    div.highlight {
+      margin-bottom: 0;
+      border-radius: 0 $code-border-roundness $code-border-roundness
+        $code-border-roundness;
+    }
+  }
+
+  // Show first content by default
+  .code-tabs-header + .code-tabs-content {
+    display: block;
+  }
+
+  &.show-alt {
+    // Hide first, show second
+    .code-tabs-header + .code-tabs-content {
+      display: none;
+    }
+    .code-tabs-header + .code-tabs-content + .code-tabs-content {
+      display: block;
+    }
+  }
+}

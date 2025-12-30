@@ -1,0 +1,71 @@
+---
+date: '2024-05-06'
+title: Comeback Titulky/Subtitles
+end: <a href="/automatic-subtitling-with-python/">How were these made?</a>
+description: Subtitles for all Comeback episodes, both in Czech and in English
+---
+
+
+**CZ:** Tato stránka obsahuje České a Anglické titulky k seriálu Comeback, jelikož je jejich oficiální distribuce [Voyo.cz](https://tv.nova.cz/porad/comeback/videa/cele-dily) nemá.
+_Aktuálně obsahuje pouze část z epizod, chybějící jsou překládány v závislosti na mém volném čase._
+
+Pokud objevíte chybu, dejte mi prosím vědět na email: **[tomas@slama.dev](mailto:tomas@slama.dev).**
+
+**EN:** This page contains Czech and English subtitles for the Czech TV show Comeback, since their official distributor [Voyo.cz](https://tv.nova.cz/porad/comeback/videa/cele-dily) doesn't have them.
+_Currently, it only contains a portion of the episodes, with the missing ones being translated based on my free time._
+
+If you find a mistake, please let me know via email: **[tomas@slama.dev](mailto:tomas@slama.dev).**
+
+| Ep. | Name | Link |
+| --: | :-- | :-- |
+| `1.` | _Křeslo_ | <a href="cz/01 - Křeslo.srt">České</a> / <a href="en/01 - Křeslo.srt">English</a> |
+| `2.` | _Gott Ex Machina_ | <a href="cz/02 - Gott Ex Machina.srt">České</a> / <a class="disabled">English</a> |
+| `3.` | _Souboj titánů_ | <a href="cz/03 - Souboj titánů.srt">České</a> / <a class="disabled">English</a> |
+| `4.` | _Pomáhat a chránit_ | <a href="cz/04 - Pomáhat a chránit.srt">České</a> / <a class="disabled">English</a> |
+| `5.` | _Pravidla rodinného provozzu_ | <a href="cz/05 - Pravidla rodinného provozzu.srt">České</a> / <a class="disabled">English</a> |
+| `6.` | _Je jaro..._ | <a href="cz/06 - Je jaro.srt">České</a> / <a class="disabled">English</a> |
+| `7.` | _Lupiči_ | <a href="cz/07 - Lupiči.srt">České</a> / <a class="disabled">English</a> |
+| `8.` | _Zdravý a nemocný_ | <a href="cz/08 - Zdravý a nemocný.srt">České</a> / <a class="disabled">English</a> |
+| `9.` | _Modelka_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `10.` | _Lexa a porno_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `11.` | _Giganti_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `12.` | _Zlatá rybka_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `13.` | _Sliby chyby_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `14.` | _Simonina volba_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `15.` | _Taneční_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `16.` | _Heavy Christmas_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `17.` | _Jmenuje sa Dagmar!_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `18.` | _SzechSteh_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `19.` | _Mrtvý muž_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `20.` | _Berňák_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `21.` | _Scrabble trable_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `22.` | _Koprovka_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `23.` | _Narozzeniny_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `24.` | _Rozzvod_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `25.` | _Prohozz_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `26.` | _Těžká hodina_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `27.` | _Pan Prase odchází_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `28.` | _Absťák_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `29.` | _Krev, pop a slzy_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `30.` | _Boží mlejny_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `31.` | _Změna je pivo_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `32.` | _Děvečka z Lidečka_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `33.` | _Komu zvoní hrany_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `34.` | _Zlatá ledvina_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `35.` | _Boží frisbee_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `36.` | _Cesta do vtelna_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `37.` | _Sbohem Káhiro_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `38.` | _Bejk_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `39.` | _Krik kormorána_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `40.` | _Třinácte pivo_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `41.` | _Bez kláves neodjedu_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `42.` | _Let mouchy_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `43.` | _Obraz paní Rybkové_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `44.` | _Zabíjačka_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `45.` | _Sulc_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `46.` | _Holter_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `47.` | _Strakonický bubák_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `48.` | _Havárie_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `49.` | _Francouzká restaurace_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `50.` | _Snáď to vyjde příště_ | <a class="disabled">České</a> / <a class="disabled">English</a> |
+| `51.` | _Slepák_ | <a class="disabled">České</a> / <a class="disabled">English</a> |

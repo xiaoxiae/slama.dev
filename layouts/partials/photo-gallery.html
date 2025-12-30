@@ -1,0 +1,204 @@
+{{/* Photo gallery partial - renders photos from data/photos/gallery.yaml */}}
+
+<div class='grid'>
+{{ range site.Data.photos.gallery.photos }}
+  {{ $date := time.AsTime .date }}
+  {{ $filename := printf "%s-%s.%s" .date .name .raw_ext }}
+  {{ $img := $.Page.Resources.GetMatch $filename }}
+
+  {{ if $img }}
+    {{ $thumb := $img.Process "resize 1000x webp q50" }}
+    {{ $full := $img.Permalink }}
+
+    <div class="no-invert">
+      <div class="date">{{ $date.Format "2006/01/02" }}</div>
+      <img src="{{ $thumb.RelPermalink }}" alt="Image" class="gallery-img" data-full="{{ $full }}">
+      <div class="icons">
+        <a href="{{ $full }}" download class="icon download">
+          <i class="fas fa-download"></i>
+        </a>
+        {{- if .instagram }}
+        <a href="https://www.instagram.com/p/{{ .instagram }}/" target="_blank" class="icon instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        {{- end }}
+        {{- if .bluesky }}
+        <a href="https://bsky.app/profile/tomas.slama.dev/post/{{ .bluesky }}" target="_blank" class="icon bluesky">
+          <i class="fab fa-bluesky"></i>
+        </a>
+        {{- end }}
+      </div>
+    </div>
+  {{ end }}
+{{ end }}
+</div>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox no-invert" style="display: none;">
+    <div class="lightbox-content">
+        <span class="lightbox-close" style="display: none;">&times;</span>
+        <div class="lightbox-loader"></div>
+        <img id="lightbox-thumb" class="lightbox-thumbnail" src="" alt="Thumbnail">
+        <img id="lightbox-img" src="" alt="Enlarged image" style="display: none;">
+    </div>
+</div>
+
+<style>
+/* Lightbox Styles */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.lightbox-thumbnail {
+    position: absolute;
+    filter: blur(5px);
+    opacity: 0.7;
+}
+
+/* Loading Spinner */
+.lightbox-loader {
+    position: absolute;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    z-index: 1;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.lightbox-close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+    user-select: none;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-close:hover {
+    opacity: 0.7;
+}
+
+/* Make gallery images clickable */
+.gallery-img {
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.gallery-img:hover {
+    opacity: 0.8;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxThumb = document.getElementById('lightbox-thumb');
+    const loader = document.querySelector('.lightbox-loader');
+    const closeBtn = document.querySelector('.lightbox-close');
+    const galleryImages = document.querySelectorAll('.gallery-img');
+
+    // Add click event to each gallery image
+    galleryImages.forEach((img) => {
+        img.addEventListener('click', function() {
+            showLightbox(this.dataset.full, this.src);
+        });
+    });
+
+    function showLightbox(fullSrc, thumbSrc) {
+        // Reset state
+        lightboxImg.style.display = 'none';
+        lightboxThumb.style.display = 'block';
+        loader.style.display = 'block';
+        closeBtn.style.display = 'none';
+
+        // Show thumbnail immediately
+        lightboxThumb.src = thumbSrc;
+
+        // Show lightbox
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+
+        // Load full resolution image
+        const fullImg = new Image();
+        fullImg.onload = function() {
+            lightboxImg.src = fullSrc;
+            lightboxImg.style.display = 'block';
+            lightboxThumb.style.display = 'none';
+            loader.style.display = 'none';
+            closeBtn.style.display = 'flex';
+        };
+        fullImg.onerror = function() {
+            // If full image fails to load, hide loader but keep thumbnail
+            loader.style.display = 'none';
+            closeBtn.style.display = 'flex';
+        };
+        fullImg.src = fullSrc;
+    }
+
+    function hideLightbox() {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // Event listeners
+    closeBtn.addEventListener('click', hideLightbox);
+
+    // Close when clicking outside the image
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+            hideLightbox();
+        }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (lightbox.style.display === 'flex') {
+            if (e.key === 'Escape') {
+                hideLightbox();
+            }
+        }
+    });
+});
+</script>

@@ -1,0 +1,203 @@
+- title: Automaty a jazyky
+  resources: "Autogramy [[skripta](autogramy/skripta.pdf), [slidy](autogramy/slidy.pdf)] 🃏"
+  items:
+    - name: Regulární jazyky.
+      details:
+        - regulární gramatiky
+        - konečný automat, jazyk přijímaný konečným automatem
+        - deterministický a nedeterministický automat, lambda přechody
+        - regulární výrazy
+        - Kleeneho věta
+        - iterační (pumping) lemma pro konečné automaty
+    - name: Uzávěrové vlastnosti
+    - name: Bezkontextové jazyky.
+      details:
+        - bezkontextové gramatiky, jazyk generovaný gramatikou
+        - zásobníkový automat, třída jazyků přijímaných zásobníkovými automaty
+    - name: Turingův stroj.
+      details:
+        - gramatika typu 0
+        - diagonální jazyk
+        - univerzální jazyk
+    - name: Chomského hierarchie.
+      details:
+        - určení ekvivalence či inkluze tříd jazyků generovaných výše uvedenými automaty a gramatikami
+        - schopnost zařazení konkrétního jazyka do Chomského hierarchie (zpravidla sestrojení odpovídajícího automatu či gramatiky a důkaz iteračním lemmatem, že jazyk není v nižší třídě)
+
+- title: Algoritmy a datové stuktury
+  resources: "ADS 1 a 2 [[Průvodce](pruvodce.pdf), [GA](ga.pdf)] 🃏"
+  items:
+    - name: Časová a prostorová složitost algoritmů.
+      links: [pruvodce.pdf#s2]
+      details:
+        - čas a prostor výpočtu pro konkrétní vstup
+        - časová a prostorová složitost algoritmu
+        - měření velikosti dat
+        - složitost v nejlepším, nejhorším a průměrném případě
+        - asymptotická notace
+    - name: Třídy složitosti.
+      links: [pruvodce.pdf#s19.3, pvnp.webp]
+      details:
+        - třídy P a NP
+        - převoditelnost problémů, NP-těžkost a NP-úplnost
+        - příklady NP-úplných problémů a převodů mezi nimi
+    - name: Metoda "rozděl a panuj".
+      links: [pruvodce.pdf#s10]
+      details:
+        - princip rekurzivního dělení problému na podproblémy
+        - výpočet složitosti pomocí rekurentních rovnic
+        - Master theorem (kuchařková věta)
+        - name: aplikace
+          details:
+            - Mergesort
+            - násobení dlouhých čísel
+            - Strassenův algoritmus
+    - name: Binarní vyhledávací stromy.
+      links: [pruvodce.pdf#s8]
+      details:
+        - definice vyhledávacího stromu
+        - operace s nevyvažovanými stromy
+        - AVL stromy (definice)
+    - name: Binární haldy.
+      links: [pruvodce.pdf#s4.2]
+    - name: Hešování s přihrádkami a s otevřenou adresací.
+      links: [pruvodce.pdf#s11.3]
+    - name: Třídící algoritmy.
+      links: [pruvodce.pdf#s3]
+      details:
+        - primitivní třídicí algoritmy (Bubblesort, Insertsort)
+        - třídění haldou (Heapsort)
+        - Quicksort
+        - dolní odhad složitosti porovnávacích třídicích algoritmů
+        - přihrádkové třídění čísel a řetězců
+    - name: Grafové algoritmy.
+      links: [pruvodce.pdf#s5, pruvodce.pdf#s6, pruvodce.pdf#s7]
+      details:
+        - name: DFS, BFS a jejich aplikace.
+          links: [pruvodce.pdf#s5, "https://stackoverflow.com/questions/20429310/why-is-depth-first-search-claimed-to-be-space-efficient"]
+        - name: Nejkratší cesty (Dijkstra, BF).
+          links: [pruvodce.pdf#s6]
+        - name: Minimální kostry (Jarník, Borůvka).
+          links: [pruvodce.pdf#s7]
+        - name: Toky v sítích (FF).
+          links: [pruvodce.pdf#s14, /poznamky/kombinatorika-a-grafy-i/#7-přednáška]
+    - name: Euklidův algoritmus.
+      links: [pruvodce.pdf#s1.3]
+
+- title: Programovací jazyky
+  resources: "Programko [[poznámky](prog2.pdf)], Java/C#/C++ [[C# poznámky](/lecture-notes/the-cs-programming-language/)]"
+  items:
+    - name: Koncepty pro abstrakci, zapouzdření a polymorfismus.
+      details:
+        - name: související konstrukty programovacích jazyků
+          details:
+            - třídy, rozhraní, metody, datové položky, dědičnost, viditelnost
+        - (dynamický) polymorfismus, statické a dynamické typování
+        - name: jednoduchá dědičnost
+          details:
+            - virtuální a nevirtuální metody v C++ ~~a C#~~
+            - ~~defaultní metody v Javě~~
+        - ~~vícenásobná dědičnost a její problémy~~
+        - name: "~~vícenásobná dědičnost a její problémy~~ (details)"
+          ignored: true
+          details:
+            - ~~vícenásobná a virtuální dědičnost v C++~~
+            - ~~interfaces v Javě a C++~~
+        - implementace rozhraní (interface)
+    - name: Primitivní a objektové typy a jejich reprezentace.
+      details:
+        - číselné a výčtové typy
+        - ~~ukazatele a reference v C++~~
+        - hodnotové a referenční typy v C#
+        - imutabilní typy a boxing/unboxing v C# ~~a Javě~~
+    - name: Generické typy a funkcionální prvky (procedurálních programovacích jazyků).
+      details:
+        - ~~šablony (templates) a statický polymorfismus v C++~~
+        - generické typy v Javě a C# (bez omezení typových parametrů)
+        - typy reprezentující funkce v ~~C++~~, C#, ~~nebo Javě~~
+        - lambda funkce a funkcionální rozhraní
+    - name: Manipulace se zdroji a mechanizmy pro ošetření chyb.
+      details:
+        - name: správa životního cyklu zdrojů v případě výskytu chyb
+          details:
+            - ~~RAII v C++~~, using v C#, ~~try-with-resources v Javě~~
+        - konstrukce pro obsluhu a propagaci výjimek
+    - name: Životní cyklus objektů a správa paměti.
+      details:
+        - alokace (alokace statická, na zásobníku, na haldě)
+        - inicializace (konstruktory, volání zděděných konstruktorů)
+        - destrukce (destruktory, finalizátory)
+        - explicitní uvolňování objektů, reference counting, garbage collector
+    - name: Vlákna a podpora synchronizace.
+      details:
+        - reprezentace vláken v programovacích jazycích
+        - specifikace funkce vykonávané vláknem a základní operace na vlákny
+        - časově závislé chyby a mechanizmy pro synchronizaci vláken
+    - name: Implementace základních prvků objektových jazyků.
+      details:
+        - základní objektové koncepty v konkrétním jazyce (~~Java~~, ~~C++~~, C#)
+        - implementace a interní reprezentace primitivních typů
+        - implementace a interní reprezentace složených typů a objektů
+        - implementace dynamického polymorfismu (tabulka virtuálních metod)
+    - name: Nativní a interpretovaný běh, řízení překladu a sestavení programu.
+      details:
+        - reprezentace programu, bytecode, interpret jazyka
+        - just-in-time (JIT) a ahead-of-time (AOT) překlad
+        - proces sestavení programu, oddělený překlad, linkování
+        - staticky a dynamicky linkované knihovny
+        - běhové prostředí procesu a vazba na operační systém
+
+- title: Architektura počítačů a OS
+  resources: "Principy poč. [[poznámky](/poznamky/principy-pocitacu/)] 🃏, Poč. systémy [[slidy](ps.pdf)]"
+  items:
+    - name: Základní architektura počítače.
+      links: ["/poznamky/principy-pocitacu/#zjednodušené-schéma-počítače", ps.pdf#page=24]
+      details:
+        - reprezentace a přístup k datům v paměti, adresa, adresový prostor
+        - ukládání jednoduchých a složených datových typů
+        - základní aritmetické a logické operace
+    - name: Reprezentace dat a programů.
+      links: ["/poznamky/principy-pocitacu/#kódování-informace-v-počítači", ps.pdf#page=60]
+    - name: Instrukční sada, vazba na vyšší programovací jazyky.
+      links: [ps.pdf#page=29]
+      details:
+        - Implementovat běžné programové konstrukce vyšších jazyků (přiřazení, podmínka, cyklus, volání funkce) pomocí instrukcí procesoru
+        - Zapsat běžnou konstrukci vyššího jazyka (přiřazení, podmínka, cyklus, volání funkce), která odpovídá zadané sekvenci (vysvětlených) instrukcí procesoru
+    - name: Podpora pro běh operačního systému.
+      links: [ps.pdf#page=97]
+      details:
+        - privilegovaný a neprivilegovaný režim procesoru
+        - jádro operačního systému
+    - name: Rozhraní periferních zařízení a jejich obsluha.
+      links: ["/poznamky/principy-pocitacu/#otročina", ps.pdf#page=105]
+      details:
+        - Popsat roli řadiče zařízení při programem řízené obsluze zařízení (PIO), pro zadané adresy a funkce vstupních a výstupních portů implementovat programem řízenou obsluhu zadaného zařízení (myš, disk)
+        - Popsat roli přerušení při programem řízené obsluze zařízení (PIO), na úrovni vykonávání instrukcí popsat reakci procesoru (hardware) a operačního systému (software) na žádost o přerušení
+    - name: Základní abstrakce, rozhraní a mechanizmy OS pro běh programů, sdílení prostředků a vstup/výstup.
+      links: [ps.pdf#page=97]
+      details:
+        - neprivilegované (uživatelské) procesy
+        - name: sdílení procesoru
+          details:
+            - procesy, vlákna, kontext procesu a vlákna
+            - přepínání kontextu, kooperativní a preemptivní multitasking
+            - plánování běhu procesů a vláken, stavy vlákna
+        - name: sdílení paměti
+          details:
+            - Vysvětlit rozdíl mezi virtuální a fyzickou adresou a identifikovat, zda se v zadaném kontextu či fragmentu kódu používá virtuální nebo fyzická adresa
+            - Na zadaném příkladu identifikovat a vysvětlit význam komponent virtuální a fyzické adresy (číslo stránky, číslo rámce, offset)
+            - Pro konkrétní adresy a obsah jednoúrovňové stránkovací tabulky řešit úlohy překladu adres
+            - Vysvětlit roli virtuálních adresových prostorů v ochraně paměti procesů a vláken
+        - name: sdílení úložného prostoru
+          details:
+            - soubory, analogie s adresovým prostorem
+            - abstrakce a rozhraní pro práci se soubory
+    - name: Paralelismus, vlákna a rozhraní pro jejich správu, synchronizace vláken.
+      links: [ps.pdf#page=112]
+      details:
+        - časově závislé chyby (race conditions)
+        - kritická sekce, vzájemné vyloučení
+        - name: základní sychronizační primitiva, jejich rozhraní a použití
+          details:
+            - zámky
+            - aktivní a pasivní čekání

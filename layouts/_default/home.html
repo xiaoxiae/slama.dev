@@ -1,0 +1,13 @@
+{{ define "main" }}
+{{ .Content }}
+
+{{/* Get pages from current site */}}
+{{ $posts := where site.RegularPages "Date" "!=" (time "0001-01-01") }}
+
+{{/* Merge pages from other language sites */}}
+{{ range complement (slice site) site.Sites }}
+  {{ $posts = $posts | lang.Merge (where .RegularPages "Date" "!=" (time "0001-01-01")) }}
+{{ end }}
+
+{{ partial "post-list.html" (dict "Pages" $posts) }}
+{{ end }}

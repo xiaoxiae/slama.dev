@@ -1,0 +1,42 @@
+{{ define "main" }}
+{{/* Show post metadata if this page has a date (i.e., is a post) and is not a redirect */}}
+{{ if and (ne .Date (time "0001-01-01")) (not .Params.redirect) }}
+<p class="post-metadata">
+	{{ if .Section }}
+		{{ $section := site.GetPage .Section }}
+		{{ with $section }}
+		<strong><a href="{{ .RelPermalink }}">{{ .Title }}</a></strong>
+		{{ end }}
+	{{ end }}
+
+	{{ if .Section }}
+		<span class="quarter-visible vspace">· </span>
+	{{ end }}
+
+	{{ .Date.Format "2. 1. 2006" }}
+
+	{{ if eq .Params.language "cs" }}
+		<span class="quarter-visible vspace">· </span>🇨🇿
+	{{ end }}
+
+	{{- $lang := .Params.language | default "en" -}}
+	{{ if or .Params.pdf .Params.pdfNogenerate }}
+		<span class="quarter-visible vspace">· </span>{{ partial "t.html" (dict "key" "pdf_available" "lang" $lang) }} <strong><a href="{{ .Parent.RelPermalink }}{{ path.Base .RelPermalink }}.pdf">PDF</a></strong>
+	{{ end }}
+
+	{{ with .Params.end }}
+		<span class="quarter-visible vspace">· </span>{{ . | safeHTML }}
+	{{ end }}
+
+	{{ with .Params.bluesky_url }}
+		<span class="quarter-visible vspace">· </span><a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Discuss on Bluesky"><i class="fab fa-bluesky" aria-hidden="true"></i></a>
+	{{ end }}
+
+	<span class="quarter-visible vspace">· </span>[<a href="https://github.com/xiaoxiae/slama.dev/blob/master/content/{{ .File.Path }}" rel="noopener noreferrer">{{ partial "t.html" (dict "key" "edit" "lang" $lang) }}</a>]
+</p>
+{{ end }}
+
+{{ with .Params.toc }}{{ $.TableOfContents }}{{ end }}
+
+{{ .Content }}
+{{ end }}

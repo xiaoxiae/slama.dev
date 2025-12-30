@@ -1,0 +1,8 @@
+{{- $lang := .Type -}}
+{{- $code := .Inner -}}
+{{- with .Attributes.file -}}
+  {{- with $.Page.Resources.Get . -}}
+    {{- $code = .Content -}}
+  {{- end -}}
+{{- end -}}
+{{- highlight $code $lang .Options -}}

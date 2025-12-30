@@ -1,0 +1,167 @@
+@import "variables";
+
+#printForm {
+  fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  div {
+    margin-bottom: $line-spacing * 0.75;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &.inline-input {
+      display: flex;
+      align-items: center;
+      gap: $code-padding * 2;
+
+      label {
+        margin-bottom: 0;
+        white-space: nowrap;
+      }
+
+      input {
+        flex: 1;
+      }
+    }
+
+    &.image-input-group {
+      display: flex;
+      gap: $code-padding * 1.5;
+      align-items: stretch;
+
+      input[type="file"] {
+        flex: 1;
+      }
+
+      button {
+        display: inline-block;
+        margin: 0;
+        padding: 0 $code-padding * 2;
+        white-space: nowrap;
+        height: auto;
+      }
+    }
+  }
+
+  label {
+    display: block;
+    margin-bottom: $code-padding;
+    color: var(--text-color);
+  }
+
+  textarea,
+  input[type="password"],
+  input[type="text"],
+  input[type="file"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: $code-padding $code-padding * 1.5;
+    border-radius: $code-border-roundness;
+    font-family: $monospaced-font, monospace;
+    font-size: 0.95em;
+    color: var(--text-color);
+    background-color: var(--code-bg);
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: $line-spacing * 6;
+  }
+
+  button {
+    display: block;
+    margin-left: auto;
+    margin-bottom: $line-spacing;
+    padding: $code-padding * 1.5 $code-padding * 4;
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: $code-border-roundness;
+    font-size: 0.95em;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+
+    &:hover {
+      background-color: var(--code-bg);
+    }
+  }
+
+  &.error,
+  &.success {
+    padding: $code-padding * 2;
+    background-color: var(--code-bg);
+    border-radius: $code-border-roundness;
+    margin-bottom: $line-spacing;
+
+    p {
+      margin: 0;
+      color: var(--text-color);
+      font-size: 0.95em;
+      line-height: $line-spacing;
+
+      a {
+        text-decoration: underline;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+
+    em {
+      display: block;
+      margin-top: $code-padding * 4;
+      color: var(--text-color);
+      font-size: 0.85em;
+      line-height: $line-spacing;
+    }
+  }
+
+  &.error {
+    border: 2px solid var(--error-color);
+
+    p a {
+      color: var(--error-color);
+    }
+  }
+
+  &.success {
+    border: 2px solid var(--success-color);
+
+    p a {
+      color: var(--success-color);
+    }
+  }
+}
+
+#backButton {
+  text-align: right;
+  margin-top: $line-spacing;
+
+  a {
+    display: inline-block;
+    padding: $code-padding * 1.5 $code-padding * 4;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: $code-border-roundness;
+    text-decoration: none;
+    font-size: 0.95em;
+    background-color: transparent;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+
+    &:hover {
+      background-color: var(--code-bg);
+    }
+  }
+}

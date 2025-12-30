@@ -1,0 +1,127 @@
+{{- $mode := .Get 0 -}}
+{{- $content := .Inner -}}
+
+{{- /* Character to CSS class mapping */ -}}
+{{- $charMap := dict
+    "→" "yellow"
+    "*" "yellow"
+    "↓" "yellow"
+    ">" "yellow"
+    "=" "yellow"
+    "⏎" "gray"
+    "." "gray"
+    "(" "gray"
+    ")" "gray"
+    "┌" "gray"
+    "┐" "gray"
+    "│" "gray"
+    "─" "gray"
+    "┼" "gray"
+    "?" "gray"
+    "!" "red"
+-}}
+
+{{- $lines := split $content "\n" -}}
+{{- $processedLines := slice -}}
+
+{{- range $lines -}}
+    {{- $line := . -}}
+
+    {{- /* Use markers for special sequences before character processing */ -}}
+    {{- /* Marker format: \x00TYPE\x01content\x02 */ -}}
+
+    {{- /* First, mark exactly 8-digit binary sequences */ -}}
+    {{- /* We need to mark each digit with its color */ -}}
+    {{- $binaryMatches := findRE `[01]{8}` $line -}}
+    {{- range $binaryMatches -}}
+        {{- $match := . -}}
+        {{- /* Check if it's exactly 8 digits (not part of longer sequence) */ -}}
+        {{- /* Build replacement with markers for each digit */ -}}
+        {{- $replacement := "" -}}
+        {{- range split $match "" -}}
+            {{- if eq . "0" -}}
+                {{- $replacement = printf "%s\x00R\x01%s\x02" $replacement . -}}
+            {{- else -}}
+                {{- $replacement = printf "%s\x00G\x01%s\x02" $replacement . -}}
+            {{- end -}}
+        {{- end -}}
+        {{- $line = replace $line $match $replacement 1 -}}
+    {{- end -}}
+
+    {{- /* Mark signed numbers: +d.d, -d.d, +∞, -∞ */ -}}
+    {{- $posNumMatches := findRE `\+(?:\d+\.\d+|∞)` $line -}}
+    {{- range $posNumMatches -}}
+        {{- $match := . -}}
+        {{- $replacement := "" -}}
+        {{- range split $match "" -}}
+            {{- $replacement = printf "%s\x00G\x01%s\x02" $replacement . -}}
+        {{- end -}}
+        {{- $line = replace $line $match $replacement 1 -}}
+    {{- end -}}
+
+    {{- $negNumMatches := findRE `-(?:\d+\.\d+|∞)` $line -}}
+    {{- range $negNumMatches -}}
+        {{- $match := . -}}
+        {{- $replacement := "" -}}
+        {{- range split $match "" -}}
+            {{- $replacement = printf "%s\x00R\x01%s\x02" $replacement . -}}
+        {{- end -}}
+        {{- $line = replace $line $match $replacement 1 -}}
+    {{- end -}}
+
+    {{- /* Now process character by character */ -}}
+    {{- $chars := split $line "" -}}
+    {{- $processedChars := slice -}}
+    {{- $inMarker := false -}}
+    {{- $markerType := "" -}}
+    {{- $markerContent := "" -}}
+    {{- $state := "normal" -}} {{- /* normal, marker_type, marker_content */ -}}
+
+    {{- range $idx, $char := $chars -}}
+        {{- if eq $char "\x00" -}}
+            {{- $state = "marker_type" -}}
+            {{- $markerType = "" -}}
+        {{- else if eq $char "\x01" -}}
+            {{- $state = "marker_content" -}}
+        {{- else if eq $char "\x02" -}}
+            {{- /* End of marker - output the marked content */ -}}
+            {{- $cssClass := "" -}}
+            {{- if eq $markerType "R" -}}
+                {{- $cssClass = "red" -}}
+            {{- else if eq $markerType "G" -}}
+                {{- $cssClass = "green" -}}
+            {{- end -}}
+            {{- $processedChars = $processedChars | append (printf "<span class=\"char %s\">%s</span>" $cssClass $markerContent) -}}
+            {{- $state = "normal" -}}
+            {{- $markerContent = "" -}}
+        {{- else if eq $state "marker_type" -}}
+            {{- $markerType = $char -}}
+        {{- else if eq $state "marker_content" -}}
+            {{- $markerContent = $char -}}
+        {{- else -}}
+            {{- /* Normal character processing */ -}}
+            {{- $cssClass := "" -}}
+
+            {{- /* Check char map */ -}}
+            {{- with index $charMap $char -}}
+                {{- $cssClass = . -}}
+            {{- end -}}
+
+            {{- if $cssClass -}}
+                {{- $processedChars = $processedChars | append (printf "<span class=\"char %s\">%s</span>" $cssClass $char) -}}
+            {{- else -}}
+                {{- $processedChars = $processedChars | append (printf "<span class=\"char\">%s</span>" $char) -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+
+    {{- $processedLines = $processedLines | append (delimit $processedChars "") -}}
+{{- end -}}
+
+{{- $output := delimit $processedLines "\n" -}}
+
+{{- if eq $mode "inline" -}}
+<code class="language-plaintext highlighter-rouge">{{ $output | safeHTML }}</code>
+{{- else -}}
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{{ $output | safeHTML }}</code></pre></div></div>
+{{- end -}}

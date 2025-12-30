@@ -1,0 +1,9 @@
+{{- $file := .Get 0 -}}
+{{- $ext := path.Ext $file -}}
+{{- with .Page.Resources.Get $file -}}
+{{- if eq $ext ".html" -}}
+{{ .Content | safeHTML }}
+{{- else -}}
+{{ .Content | $.Page.RenderString }}
+{{- end -}}
+{{- end -}}

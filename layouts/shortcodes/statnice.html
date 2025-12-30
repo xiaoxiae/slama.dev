@@ -1,0 +1,55 @@
+{{- $dataFile := .Get 0 -}}
+{{- $start := .Get 1 | default "1" -}}
+{{- $data := index site.Data.statnice $dataFile -}}
+
+{{- define "renderLinks" -}}
+  {{- range . -}}
+    <a href='{{ . }}'> 🔗</a>
+  {{- end -}}
+{{- end -}}
+
+{{- define "renderItem" -}}
+  {{- $item := . -}}
+  {{- if reflect.IsMap $item -}}
+    {{- $name := $item.name -}}
+    {{- $links := $item.links -}}
+    {{- $details := $item.details -}}
+    {{- $ignored := $item.ignored -}}
+    <li{{ if $ignored }} class="ignored"{{ end }}>
+      {{- if $links -}}
+        <ul class='statnice-header'>
+          <li>{{ $name | markdownify }}</li>
+          <li>{{ template "renderLinks" $links }}</li>
+        </ul>
+      {{- else -}}
+        {{ $name | markdownify }}
+      {{- end -}}
+      {{- with $details -}}
+        <ul>
+          {{- range . -}}
+            {{ template "renderItem" . }}
+          {{- end -}}
+        </ul>
+      {{- end -}}
+    </li>
+  {{- else -}}
+    <li>{{ $item | markdownify }}</li>
+  {{- end -}}
+{{- end -}}
+
+<ol class='sttopics' start='{{ $start }}'>
+{{- range $data -}}
+  {{- $ignored := .ignored -}}
+  <li{{ if $ignored }} class="stignored"{{ end }}>
+    <ul class='statnice-header'>
+      <li><strong>{{ .title }}</strong></li>
+      <li>{{ .resources | markdownify }}</li>
+    </ul>
+    <ul>
+      {{- range .items -}}
+        {{ template "renderItem" . }}
+      {{- end -}}
+    </ul>
+  </li>
+{{- end -}}
+</ol>

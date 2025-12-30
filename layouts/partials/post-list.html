@@ -1,0 +1,54 @@
+{{/* Expects .Pages as the collection to iterate */}}
+{{ $currentYear := "" }}
+{{ range .Pages.ByDate.Reverse }}
+{{ if not .Params.hidden }}
+{{ $postYear := .Date.Format "2006" }}
+{{ if ne $postYear $currentYear }}
+{{ if $currentYear }}
+</div>
+{{ end }}
+
+<h3>{{ $postYear }}</h3>
+
+<div class="spacer">
+{{ $currentYear = $postYear }}
+{{ end }}
+<div class="post-item">
+	<div class="post-header">
+		<div class="post-title-row">
+			{{ with .Params.categoryIcon }}<img class='icon' src='{{ . }}' alt="Category icon"/>{{ end }}
+			{{ if or .Params.pdf .Params.pdfNogenerate }}<a href="{{ .Parent.RelPermalink }}{{ path.Base .RelPermalink }}.pdf" class="post-icon" aria-label="Download PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></a>{{ end }}
+			{{ if eq .Language.Lang "cs" }}<span class="language-flag">🇨🇿</span>{{ end }}
+			<span class="post-title-link">
+			{{ if .Params.redirect }}
+				{{ if .Params.draft }}
+					<a href="{{ .Params.redirect.to }}" class="red main-link"><strong>{{ .Title }}</strong> <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+				{{ else }}
+					<a href="{{ .Params.redirect.to }}" class="main-link"><strong>{{ .Title }}</strong> <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+				{{ end }}
+			{{ else }}
+				{{ if .Params.draft }}
+					<a href="{{ .RelPermalink }}" class="red main-link"><strong>{{ .Title }}</strong></a>
+				{{ else }}
+					<a href="{{ .RelPermalink }}" class="main-link"><strong>{{ .Title }}</strong></a>
+				{{ end }}
+			{{ end }}
+			</span>
+			{{ $page := . }}{{ if .Section }}{{ $section := .Site.GetPage .Section }}{{ with $section }}<span class='category-tag'>[<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ with $page.Params.categoryPart }} · <span class='mono'>{{ . }}</span>{{ end }}]</span>{{ end }}{{ else if .Params.categoryPart }}<span class='category-tag'>[<span class='mono'>{{ .Params.categoryPart }}</span>]</span>{{ end }}
+		</div>
+		<div class="post-date">
+			<span>{{ .Date.Format "2. 1." }}</span>
+		</div>
+	</div>
+	{{ with .Description }}
+	<div class="post-excerpt">
+		{{ . }}
+	</div>
+	{{ end }}
+</div>
+{{ end }}
+{{ end }}
+
+{{ if $currentYear }}
+</div>
+{{ end }}
