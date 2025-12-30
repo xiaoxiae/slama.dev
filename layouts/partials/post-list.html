@@ -1,7 +1,7 @@
 {{/* Expects .Pages as the collection to iterate */}}
 {{ $currentYear := "" }}
 {{ range .Pages.ByDate.Reverse }}
-{{ if not .Params.hidden }}
+{{ if or (not .Params.hidden) .Draft }}
 {{ $postYear := .Date.Format "2006" }}
 {{ if ne $postYear $currentYear }}
 {{ if $currentYear }}
@@ -18,16 +18,16 @@
 		<div class="post-title-row">
 			{{ with .Params.categoryIcon }}<img class='icon' src='{{ . }}' alt="Category icon"/>{{ end }}
 			{{ if or .Params.pdf .Params.pdfNogenerate }}<a href="{{ .Parent.RelPermalink }}{{ path.Base .RelPermalink }}.pdf" class="post-icon" aria-label="Download PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></a>{{ end }}
-			{{ if eq .Language.Lang "cs" }}<span class="language-flag">🇨🇿</span>{{ end }}
+			{{ if eq .Params.language "cs" }}<span class="language-flag">🇨🇿</span>{{ end }}
 			<span class="post-title-link">
 			{{ if .Params.redirect }}
-				{{ if .Params.draft }}
+				{{ if .Draft }}
 					<a href="{{ .Params.redirect.to }}" class="red main-link"><strong>{{ .Title }}</strong> <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
 				{{ else }}
 					<a href="{{ .Params.redirect.to }}" class="main-link"><strong>{{ .Title }}</strong> <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
 				{{ end }}
 			{{ else }}
-				{{ if .Params.draft }}
+				{{ if .Draft }}
 					<a href="{{ .RelPermalink }}" class="red main-link"><strong>{{ .Title }}</strong></a>
 				{{ else }}
 					<a href="{{ .RelPermalink }}" class="main-link"><strong>{{ .Title }}</strong></a>

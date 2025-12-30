@@ -11,10 +11,6 @@ defaultContentLanguage = "en"
 # Disable some default behaviors
 disableKinds = ["taxonomy", "term"]
 
-# Build settings
-buildDrafts = false
-buildFuture = false
-
 [params]
   description = "Tomáš Sláma's personal website."
   author = "Tomáš Sláma"
@@ -130,6 +126,10 @@ buildFuture = false
 [module]
   [module.hugoVersion]
     extended = true
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+    excludeFiles = ["climbing/videos/unblurred/**"]
 
 [outputs]
   home = ["HTML", "RSS"]

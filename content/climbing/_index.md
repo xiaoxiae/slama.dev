@@ -10,7 +10,7 @@ icon: fa-bolt
 {{< embed "last-climb.txt" >}}</p>
 
 {{< photo_section caption="From Boulerhaus' Full Haus Cup (19. 10. 2024). © <a href=\"https://www.boulderhaus.net/events/full-haus-vol.-1/\">Boulderhaus Darmstadt</a>" >}}
-{{< photo_row "/assets/climbing/photos/2024-10-19.webp" >}}
+{{< photo_row "2024-10-19.jpg" >}}
 {{< /photo_section >}}
 
 ## Journal

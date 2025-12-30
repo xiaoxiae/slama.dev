@@ -1,12 +1,9 @@
-{{ define "main" }}
-{{- $lang := .Params.language | default "en" -}}
-{{ if ne .Params.layout "default" }}
-<p><a href="/">← {{ partial "t.html" (dict "key" "back_to_home" "lang" $lang) }}</a></p>
-{{ end }}
-
-{{ .Content }}
-
-{{ if ne .Params.layout "default" }}
-{{ partial "post-list.html" (dict "Pages" .Pages) }}
-{{ end }}
-{{ end }}
+{{ define "main" }} {{- $lang := .Params.language | default "en" -}} {{ if ne
+.Params.layout "default" }}
+<p>
+  <a href="/"
+    >← {{ partial "t.html" (dict "key" "back_to_home" "lang" $lang) }}</a
+  >
+</p>
+{{ end }} {{ .Content }} {{ if ne .Params.layout "default" }} {{ partial
+"post-list.html" (dict "Pages" .Pages) }} {{ end }} {{ end }}

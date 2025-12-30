@@ -8,7 +8,7 @@ function serve
         echo "ERROR: Hugo seems to be running already."
         return 1
     end
-    hugo server --buildDrafts --buildFuture
+    hugo server -D -F
 end
 
 function clean

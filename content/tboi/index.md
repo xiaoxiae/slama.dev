@@ -5,12 +5,6 @@ noHeading: true
 ---
 
 
-<styles>
-td {
-  vertical-align: top;
-}
-</styles>
-
 You seem to have located my secret [The Binding of Isaac](https://bindingofisaacrebirth.fandom.com/wiki/Binding_of_Isaac:_Rebirth_Wiki) page. Nice job.
 
 I'm a huge fan of TBOI and have been playing it on/off for a couple of years now.
