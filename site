@@ -65,7 +65,7 @@ function check
         --exclude 'public/manim/\d+$' \
         --exclude 'public/motion-canvas/\d+$' \
         --exclude 'public/lecture-notes/' \
-        --exclude 'github\.com/xiaoxiae/slama\.dev/blob/master/content' \
+        --exclude 'github\.com/xiaoxiae/slama\.dev/blob/main/content' \
         'public/**/*.html'
     or set errors (math $errors + 1)
 
