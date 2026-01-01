@@ -40,8 +40,8 @@
 		<link rel="preload" href="{{ "/assets/css/fonts/FiraMono-Regular.woff2" | absURL }}" as="font" type="font/woff2" crossorigin>
 
 		<!-- CSS STYLESHEETS -->
-		{{ $mainStyle := resources.Get "scss/main.scss" | toCSS (dict "targetPath" "assets/css/main.css") | minify }}
-		<link rel="stylesheet" href="{{ $mainStyle.Permalink }}">
+		{{ $mainStyle := resources.Get "scss/main.scss" | toCSS (dict "targetPath" "assets/css/main.css") | minify | fingerprint }}
+		<link rel="stylesheet" href="{{ $mainStyle.RelPermalink }}">
 
 		<!-- FA -->
 		<link rel="stylesheet" href="{{ "/assets/css/fa.min.css" | absURL }}">
@@ -62,12 +62,14 @@
 
 		{{ if site.Params.halloween }}
 		<!-- HALLOWEEN: Halloween theme toggle -->
-		<script src="{{ "/assets/js/halloween.js" | absURL }}" defer></script>
+		{{- $halloweenJS := resources.Get "js/halloween.js" | minify | fingerprint }}
+		<script src="{{ $halloweenJS.RelPermalink }}" defer></script>
 		{{ end }}
 
 		{{ if .Params.htmx }}
 		<meta name="htmx-config" content='{"selfRequestsOnly": false}' />
-		<script src="{{ "/assets/js/htmx.min.js" | absURL }}" defer></script>
+		{{- $htmxJS := resources.Get "js/htmx.min.js" | fingerprint }}
+		<script src="{{ $htmxJS.RelPermalink }}" defer></script>
 		{{ end }}
 	</head>
 
@@ -186,7 +188,8 @@
 				<img id="lightbox-img" src="" alt="Enlarged image" style="display: none;">
 			</div>
 		</div>
-		<script src="{{ "/assets/js/lightbox.js" | absURL }}"></script>
+		{{- $lightboxJS := resources.Get "js/lightbox.js" | minify | fingerprint }}
+		<script src="{{ $lightboxJS.RelPermalink }}"></script>
 		{{- end }}
 	</body>
 </html>
