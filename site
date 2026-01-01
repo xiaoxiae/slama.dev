@@ -8,7 +8,7 @@ function serve
         echo "ERROR: Hugo seems to be running already."
         return 1
     end
-    hugo server -D -F
+    hugo server -D -F --cleanDestinationDir
 end
 
 function clean
@@ -28,6 +28,9 @@ function build
     uv run python scripts/climbing.py build
 
     hugo --minify --cleanDestinationDir
+
+    echo "Subsetting fonts..."
+    uv run python scripts/subset_fonts.py
 
     echo "Generating honeypot files..."
     uv run python scripts/secrets.py

@@ -4,7 +4,8 @@
   "devDependencies": {
     "html-validate": "^8.0.0",
     "pa11y": "^8.0.0",
-    "prettier": "^3.0.0"
+    "prettier": "^3.0.0",
+    "subfont": "^7.2.1"
   },
   "scripts": {
     "check:html": "html-validate 'public/**/*.html'",
