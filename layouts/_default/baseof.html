@@ -181,9 +181,10 @@
 		{{- if .Store.Get "hasLightbox" }}
 		<!-- Lightbox (only included on pages with lightbox-enabled images) -->
 		<div id="lightbox" class="lightbox no-invert" style="display: none;">
+			<span class="lightbox-close">&times;</span>
+			<span class="lightbox-prev" style="display: none;">&#10094;</span>
+			<span class="lightbox-next" style="display: none;">&#10095;</span>
 			<div class="lightbox-content">
-				<span class="lightbox-close" style="display: none;">&times;</span>
-				<div class="lightbox-loader"></div>
 				<img id="lightbox-thumb" class="lightbox-thumbnail" src="" alt="Thumbnail">
 				<img id="lightbox-img" src="" alt="Enlarged image" style="display: none;">
 			</div>

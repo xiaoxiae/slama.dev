@@ -15,49 +15,25 @@
 
 .lightbox-content {
   position: relative;
-  max-width: 90%;
-  max-height: 90%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .lightbox img {
-  max-width: 90vw;
-  max-height: 90vh;
+  width: 90vw;
+  height: 90vh;
   object-fit: contain;
 }
 
 .lightbox-thumbnail {
-  position: absolute;
   filter: blur(5px);
-  opacity: 0.7;
 }
 
-.lightbox-loader {
-  position: absolute;
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid white;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: lightbox-spin 1s linear infinite;
-  z-index: 1;
-}
-
-@keyframes lightbox-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.lightbox-close {
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
   position: fixed;
-  top: 20px;
-  right: 20px;
   color: white;
   font-size: 40px;
   font-weight: bold;
@@ -75,6 +51,25 @@
   &:hover {
     opacity: 0.7;
   }
+}
+
+.lightbox-close {
+  top: 20px;
+  right: 20px;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-prev {
+  left: 20px;
+}
+
+.lightbox-next {
+  right: 20px;
 }
 
 // Make lightbox trigger images clickable

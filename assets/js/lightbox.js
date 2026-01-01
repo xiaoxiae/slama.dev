@@ -5,17 +5,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxThumb = document.getElementById('lightbox-thumb');
-    const loader = document.querySelector('.lightbox-loader');
     const closeBtn = document.querySelector('.lightbox-close');
-    const triggers = document.querySelectorAll('.lightbox-trigger');
+    const prevBtn = document.querySelector('.lightbox-prev');
+    const nextBtn = document.querySelector('.lightbox-next');
+    const triggers = Array.from(document.querySelectorAll('.lightbox-trigger'));
+
+    let currentIndex = 0;
 
     // Add click event to each trigger
-    triggers.forEach((trigger) => {
+    triggers.forEach((trigger, index) => {
         trigger.addEventListener('click', function(e) {
             e.preventDefault();
-            const fullSrc = this.href;
-            const thumbSrc = this.dataset.thumb;
-            showLightbox(fullSrc, thumbSrc);
+            currentIndex = index;
+            showLightbox(this.href, this.dataset.thumb);
         });
     });
 
@@ -23,8 +25,16 @@ document.addEventListener('DOMContentLoaded', function() {
         // Reset state
         lightboxImg.style.display = 'none';
         lightboxThumb.style.display = 'block';
-        loader.style.display = 'block';
-        closeBtn.style.display = 'none';
+        closeBtn.style.display = 'flex';
+
+        // Show/hide nav buttons based on number of images
+        if (triggers.length > 1) {
+            prevBtn.style.display = 'flex';
+            nextBtn.style.display = 'flex';
+        } else {
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+        }
 
         // Show thumbnail immediately
         lightboxThumb.src = thumbSrc;
@@ -39,15 +49,14 @@ document.addEventListener('DOMContentLoaded', function() {
             lightboxImg.src = fullSrc;
             lightboxImg.style.display = 'block';
             lightboxThumb.style.display = 'none';
-            loader.style.display = 'none';
-            closeBtn.style.display = 'flex';
-        };
-        fullImg.onerror = function() {
-            // If full image fails to load, hide loader but keep thumbnail
-            loader.style.display = 'none';
-            closeBtn.style.display = 'flex';
         };
         fullImg.src = fullSrc;
+    }
+
+    function navigate(direction) {
+        currentIndex = (currentIndex + direction + triggers.length) % triggers.length;
+        const trigger = triggers[currentIndex];
+        showLightbox(trigger.href, trigger.dataset.thumb);
     }
 
     function hideLightbox() {
@@ -57,6 +66,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event listeners
     closeBtn.addEventListener('click', hideLightbox);
+    prevBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navigate(-1);
+    });
+    nextBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navigate(1);
+    });
 
     // Close when clicking outside the image
     lightbox.addEventListener('click', function(e) {
@@ -70,6 +87,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (lightbox.style.display === 'flex') {
             if (e.key === 'Escape') {
                 hideLightbox();
+            } else if (e.key === 'ArrowLeft') {
+                navigate(-1);
+            } else if (e.key === 'ArrowRight') {
+                navigate(1);
             }
         }
     });
