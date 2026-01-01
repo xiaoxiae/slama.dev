@@ -638,6 +638,11 @@ div.highlight {
   font-variant-ligatures: none;
   position: relative;
 
+  // Remove margin when followed by figcaption
+  &:has(+ figcaption) {
+    margin-bottom: 0;
+  }
+
   pre {
     padding: $code-padding;
     overflow-x: auto;
@@ -908,11 +913,30 @@ figcaption {
   font-size: 85%;
 }
 
+// Image caption overlay (bottom-right of image in rows)
+.image-caption {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  color: var(--overlay-text-color);
+  text-shadow:
+    0 0 2px var(--overlay-text-shadow-color),
+    0 0 2px var(--overlay-text-shadow-color),
+    0 0 2px var(--overlay-text-shadow-color),
+    0 0 5px var(--overlay-text-shadow-color),
+    0 0 5px var(--overlay-text-shadow-color),
+    0 0 5px var(--overlay-text-shadow-color),
+    0 0 5px var(--overlay-text-shadow-color);
+  font-size: 0.75rem;
+  z-index: 2;
+}
+
 // Section background for image groups
 .image-section {
   background: var(--code-bg);
   margin-bottom: $line-spacing * 1.25;
   padding: $line-spacing * 0.5;
+  overflow: hidden;
 
   figure {
     margin-bottom: 0;

@@ -16,6 +16,8 @@ colors_cached = [jekyll_cached, hugo_cached]
 colors_clean = [jekyll_clean, hugo_clean]
 
 fig, ax = plt.subplots(figsize=(8, 6))
+fig.patch.set_alpha(0)
+ax.set_facecolor("none")
 
 # Create stacked bars - cached as base, clean additional on top
 bars_cached = ax.bar(labels, cached, color=colors_cached)
@@ -81,8 +83,8 @@ class TwoColorHandler(HandlerBase):
         return [r1, r2]
 
 
-jekyll_patch = Patch(label="Jekyll (clean / cached)")
-hugo_patch = Patch(label="Hugo (clean / cached)")
+jekyll_patch = Patch(label="Jekyll (cold / hot)")
+hugo_patch = Patch(label="Hugo (cold / hot)")
 
 ax.legend(
     handles=[jekyll_patch, hugo_patch],
@@ -91,9 +93,18 @@ ax.legend(
         hugo_patch: TwoColorHandler(hugo_clean, hugo_cached),
     },
     loc="upper right",
+    frameon=False,
 )
 
 plt.tight_layout()
 plt.savefig("build_times.svg", format="svg")
 plt.savefig("build_times.png", dpi=150)
 print("Saved build_times.svg and build_times.png")
+
+# Calculate speedups
+cold_jekyll = 265.46
+cold_hugo = 54.24
+hot_jekyll = 71.489
+hot_hugo = 3.47
+print(f"Cold speedup: {cold_jekyll / cold_hugo:.1f}x")
+print(f"Hot speedup: {hot_jekyll / hot_hugo:.1f}x")

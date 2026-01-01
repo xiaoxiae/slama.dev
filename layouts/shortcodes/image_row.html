@@ -2,10 +2,11 @@
   Image row shortcode for displaying multiple images in a row.
   Used inside image_section for grouped, clickable images.
 
-  Usage: {{< image_row "img1.jpg :: Alt 1 | img2.jpg :: Alt 2" >}}
+  Usage: {{< image_row "img1.jpg :: Alt 1 :: Caption | img2.jpg :: Alt 2" >}}
 
   - Images are separated by |
   - Alt text is optional, specified with ::
+  - Caption is optional, specified with a second ::
   - All images are clickable with lightbox
 */ -}}
 
@@ -18,12 +19,18 @@
     {{- $imgSpec := strings.TrimSpace . -}}
     {{- $imgPath := $imgSpec -}}
     {{- $altText := "" -}}
+    {{- $caption := "" -}}
 
-    {{- /* Parse path and optional alt text */ -}}
+    {{- /* Parse path, optional alt text, and optional caption */ -}}
     {{- if strings.Contains $imgSpec "::" -}}
         {{- $parts := split $imgSpec "::" -}}
         {{- $imgPath = strings.TrimSpace (index $parts 0) -}}
-        {{- $altText = strings.TrimSpace (index $parts 1) -}}
+        {{- if ge (len $parts) 2 -}}
+            {{- $altText = strings.TrimSpace (index $parts 1) -}}
+        {{- end -}}
+        {{- if ge (len $parts) 3 -}}
+            {{- $caption = strings.TrimSpace (index $parts 2) -}}
+        {{- end -}}
     {{- end -}}
 
     {{- /* Default alt text from filename */ -}}
@@ -39,6 +46,7 @@
       "clickable" true
       "lightbox" true
     ) -}}
+    {{- with $caption -}}<div class="image-caption">{{ . | markdownify }}</div>{{- end -}}
     </div>
 {{- end -}}
 </div>

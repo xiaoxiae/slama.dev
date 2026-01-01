@@ -13,6 +13,10 @@ Looking at the [Wayback machine](https://web.archive.org/web/20250101000000*/sla
 Over time, I've added lecture notes ([Czech](/poznamky)/[English](/notes)), a [climbing diary](/climbing), some [pretty neat photos](/photos), and much more.
 While I'm really happy how the website grew, it was like building a ship as it's sailing the ocean -- add a sail here, patch the hull there, sprinkle some duct tape and hope it holds.
 
+{{< image_section caption="The evolution of [slama.dev](/) over the years (click to enlarge). <br> (2021 is missing since it's not on wayback)" >}}
+{{< image_row "2019.png :: 2019 :: **2019** | 2020.png :: 2020 :: **2020** | 2022.png :: 2022 :: **2022** " >}}
+{{< image_row "2023.png :: 2023 :: **2023** | 2024.png :: 2024 :: **2024** | 2025.png :: 2025 :: **2025**" >}}
+{{< /image_section >}}
 
 Although tech debt is something that could be addressed by refactoring the codebase, what could not be addressed are Jekyll (the SSG this website uses)'s [terrible build times](#build-times), the [glacial pace of new updates](https://jekyllrb.com/news/releases/) the lack of useful features like [image transformations](https://talk.jekyllrb.com/t/good-way-to-handle-images-on-websites/8689) and [overriding markdown to HTML conversions](https://stackoverflow.com/questions/67475956/jekyll-change-the-markdown-blockquote-html-output), and my [personal dislike of Ruby](ruby.jpg) (that one's on me though).
 
@@ -24,39 +28,49 @@ Let's do some rewriting!
 
 ---
 
+### Build Times
+
+This was arguably the biggest painpoint for me when deciding to migrate from Jekyll, since a work on an article meant taking a small coffee break to begin to see the rendered results.
+You could argue that seeing the article is not needed for writing the content, but this is absolutely not the case for me -- I like to see how the paragraphs look, how the images appear align, how the code gets highlighted.
+
+Cutting to the chase, here are the cold/hot build times for both the Jekyll and the Hugo version[^jekyll].
+
+[^jekyll]: Technically, the Jekyll hot speed time was around 2.5 seconds if we run multiple builds in a row, but this doesn't represent the actual use case -- if we ever run a server in between (i.e. work on a post and want to see how it looks), the build goes back to ~71 seconds.
+
+![Build Times](build_times.svg "Cold / hot build times for Jekyll and Hugo, achieving a 4.9x / 20.6x speedup respectively. Cold build time occurs when the **build folder is empty**, while hot build time is every subsequent build.")
+
 ### [Page Bundles](https://gohugo.io/content-management/page-bundles/)
 
-As the paragraphs above alude to, the iterative way in which this blog developed meant that a lot of assets were placed where there was room for them -- most were in `/assets/<post_name>`, some were just in `/assets/`, a few (especially climbing) were in `/climbing`, the `cv.pdf` was crying in the `/` corner... it was a mess.
+As the introduction aludes to, the iterative way in which this blog developed meant that a lot of assets were placed where there was room for them -- most were in `/assets/<post_name>`, some were just in `/assets/`, a few (especially climbing) were in `/climbing`, the `cv.pdf` was crying in the `/` corner... it was a mess.
 
 While some of this is admittedly a personal skill issue, but Jekyll does not make this any easier, as the `/assets` convention is the [official way](https://jekyllrb.com/docs/assets/) to store assets like images.
 
 Hugo makes things much easier by using **[page bundles](https://gohugo.io/content-management/page-bundles/)** -- the assets of a post can live in `content/<post_name>/` and be referenced via a relative path, and things will just work.
-This means that all of the post assets can be moved to where they belong, and structures like these in Jekyll
+This means that all of the post assets can be moved to where they belong, and structures like these
 
-```text
+```text {caption="**Jekyll** file structure -- two different places"}
 _posts/
-  2024-01-15-a-chess-engine...md
+  2024-01-15-chess-...md
 
 assets/
 └── images/
-    └── a-chess-engine.../
+    └── chess-.../
         ├── benchmark.png
-        ├── cpw.png
         └── cpw.webp
 ```
 
-with usage like `![](/assets/images/a-chess-engine.../benchmark.png)` can be rewritten in Hugo as
+with usage like `![](/assets/images/chess-.../benchmark.png)` can be rewritten as
 
-```text
+```text {caption="**Hugo** file structure -- all in a [page bundle](https://gohugo.io/content-management/page-bundles/)"}
 content/                         
-└── a-chess-engine.../           
+└── chess-.../           
     ├── index.md
     ├── benchmark.png            
-    ├── cpw.png                  
     └── cpw.webp                 
 ```
 
 and a nice relative path like `![](benchmark.png)`.
+
 This makes writing posts significantly easier, as you just plop the image in the given directory and reference it via a relative path -- no careful typing of the absolute path necessary.
 
 ### [Image Processing](https://gohugo.io/content-management/image-processing/)
@@ -68,28 +82,24 @@ Besides the [aforementioned path shenanigans](#page-bundles), I try to keep my w
 {.inverse-invert}
 
 While this is easy to achieve for CSS/HTML-only pages, it becomes much harder when images get introduced into the picture[^pun].
-The Jekyll version handled this via a [custom automated script](https://github.com/xiaoxiae/slama.dev/blob/1b3247748ff722dd403707fd269e38cd57c8e3e3/_plugins/resize.py) that looked for images in the `_posts` directory and resized them, and [another one](https://github.com/xiaoxiae/slama.dev/blob/1b3247748ff722dd403707fd269e38cd57c8e3e3/_plugins/compress_images.py) that did something similar for the photo gallery, but this was absolutely unmaintainable.
+The Jekyll version handled this via a [custom automated script](https://github.com/xiaoxiae/slama.dev/blob/1b3247748ff722dd403707fd269e38cd57c8e3e3/_plugins/resize.py) that looked for images on the website and resized them, and [another one](https://github.com/xiaoxiae/slama.dev/blob/1b3247748ff722dd403707fd269e38cd57c8e3e3/_plugins/compress_images.py) that did something similar for the photo gallery.
+
+This was absolutely unmaintainable.
 
 [^pun]: Pun intended.
 
-Hugo has built-in [image processing](https://gohugo.io/content-management/image-processing/), which allows you to resize, crop, and manipulate images automatically.
-This, in combination with a [render hook](https://gohugo.io/render-hooks/) that overwrites what HTML gets generated from Markdown's `![image](syntax)` means that we can automatically convert and resize **all images** on the **entire website** without the need for custom scripts.
+Fortunately, Hugo has built-in [image processing](https://gohugo.io/content-management/image-processing/), which allows you to resize, crop, and manipulate images automatically.
+This, in combination with a [render hook](https://gohugo.io/render-hooks/) that overwrites what HTML gets generated from Markdown's `![image](syntax)` means that we can automatically convert and resize **all images** on the **entire website** without the need for custom scripts, with something as simple as this:
 
-This is whatmy 
+```go
+{{- $img = $img.Process "resize 800x webp" -}}
+````
 
+Here is a nice [blog post](https://blog.nathanv.me/posts/hugo-resources/) by [Nathan Vaughn](https://blog.nathanv.me/) that goes into greater detail on how Hugo handles resources and some good practices, definitely recommend a read if you're interested implementing this on your own website.
 
-_Here is a nice [blog post](https://blog.nathanv.me/posts/hugo-resources/) by [Nathan Vaughn](https://blog.nathanv.me/) on how resources work in Hugo, if the code above looks strange to you (like it did to me when picking up Hugo)._
+### [Data Files]()
 
-
-
-To understand how it works, however, we need a short intermezzo on how Hugo handles resources.
-
-#### Resources
-
-
-
-### [Render Hooks](https://gohugo.io/render-hooks/)
-
+---
 
 The fundamental organization of the project changed significantly:
 
