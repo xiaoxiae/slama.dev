@@ -36,3 +36,6 @@ __pycache__/
 
 # Editor
 .zed/
+
+# LLM
+CLAUDE.md
