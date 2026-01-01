@@ -20,9 +20,9 @@ So, without further ado, **let's get some elo** and kop some prokops.
 
 ### Search
 
-{{< photo_section caption="A meme about search." >}}
-{{< photo_row "i-lied.webp :: A meme about search." >}}
-{{< /photo_section >}}
+{{< image_section caption="A meme about search." >}}
+{{< image_row "i-lied.webp :: A meme about search." >}}
+{{< /image_section >}}
 
 Jokes aside, there are a few search techniques that I couldn't cover in the previous blog post because it was getting too long, so I'll sneak these in here and hope you won't mind.
 
@@ -126,16 +126,16 @@ If the estimate exceeds the remaining time, the engine will **skip the next iter
 While crude, it matches the search quite well, as seen on a plot of time vs. depth when searching from the starting position.
 Although there are positions more/less complex than this, even a rough estimate is a good improvement over the naive kill+discard approach method.
 
-{{< photo_section caption="Search time / nodes vs. depth from the starting position." >}}
-{{< photo_row "scaling.webp :: Search time / nodes vs. depth." >}}
-{{< /photo_section >}}
+{{< image_section caption="Search time / nodes vs. depth from the starting position." >}}
+{{< image_row "scaling.webp :: Search time / nodes vs. depth." >}}
+{{< /image_section >}}
 
 To see this in action, the image below shows the search time of an engine that **doesn't** implement this (white), and an engine that **does** (black).
 Black won that game, because it's my engine and I wouldn't show you a loss.
 
-{{< photo_section caption="Time-per-move graph for <a href=\"https://lichess.org/@/RavenEngine\">RavenEngine</a> (white) vs <a href=\"https://lichess.org/@/Prokopakop\">Prokopakop</a> (black)." >}}
-{{< photo_row "time-management.webp :: Time-per-move graph of two chess engines." >}}
-{{< /photo_section >}}
+{{< image_section caption="Time-per-move graph for <a href=\"https://lichess.org/@/RavenEngine\">RavenEngine</a> (white) vs <a href=\"https://lichess.org/@/Prokopakop\">Prokopakop</a> (black)." >}}
+{{< image_row "time-management.webp :: Time-per-move graph of two chess engines." >}}
+{{< /image_section >}}
 
 [`c056f9b`](https://github.com/xiaoxiae/Prokopakop/commit/c056f9b)
 {.commit-header}

@@ -9,13 +9,13 @@ The goal was to create cool posters of Prague that we could print out and hang i
 
 _Each of the images are licensed under **[CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)**, so kindly respect it if you plan on using any of them for uses other than personal._
 
-{{% photo_section %}}
-  {{< photo_row "ai/fantasy.png | ai/flowers-on-the-charles-bridge.png" >}}
-  {{< photo_row "ai/lithnograph.png | ai/tree-of-life.png | ai/in-broken-glass.png" >}}
-  {{< photo_row "ai/with-the-aurora.png" >}}
-  {{< photo_row "ai/cosmic-city-1.png | ai/cosmic-city-2.png" >}}
-  {{< photo_row "ai/demon-city.png" >}}
-  {{< photo_row "ai/in-a-snowglobe-1.png | ai/in-a-snowglobe-2.png" >}}
-  {{< photo_row "ai/glass-mosaic.png | ai/the-scream.png | ai/starry-night.png" >}}
-  {{< photo_row "ai/northern-lights.png | ai/first-days-of-invasion.png" >}}
-{{% /photo_section %}}
+{{% image_section %}}
+  {{< image_row "ai/fantasy.png | ai/flowers-on-the-charles-bridge.png" >}}
+  {{< image_row "ai/lithnograph.png | ai/tree-of-life.png | ai/in-broken-glass.png" >}}
+  {{< image_row "ai/with-the-aurora.png" >}}
+  {{< image_row "ai/cosmic-city-1.png | ai/cosmic-city-2.png" >}}
+  {{< image_row "ai/demon-city.png" >}}
+  {{< image_row "ai/in-a-snowglobe-1.png | ai/in-a-snowglobe-2.png" >}}
+  {{< image_row "ai/glass-mosaic.png | ai/the-scream.png | ai/starry-night.png" >}}
+  {{< image_row "ai/northern-lights.png | ai/first-days-of-invasion.png" >}}
+{{% /image_section %}}

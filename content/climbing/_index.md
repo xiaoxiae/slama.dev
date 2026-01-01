@@ -9,9 +9,9 @@ icon: fa-bolt
 <p class="center">This page is dedicated to my climbing life.<br>
 {{< embed "last-climb.txt" >}}</p>
 
-{{< photo_section caption="From Boulerhaus' Full Haus Cup (19. 10. 2024). © <a href=\"https://www.boulderhaus.net/events/full-haus-vol.-1/\">Boulderhaus Darmstadt</a>" >}}
-{{< photo_row "2024-10-19.jpg" >}}
-{{< /photo_section >}}
+{{< image_section caption="From Boulerhaus' Full Haus Cup (19. 10. 2024). © <a href=\"https://www.boulderhaus.net/events/full-haus-vol.-1/\">Boulderhaus Darmstadt</a>" >}}
+{{< image_row "2024-10-19.jpg" >}}
+{{< /image_section >}}
 
 ## Journal
 The following contains my climbing journal -- how many new/old boulders have I done (and links to them).

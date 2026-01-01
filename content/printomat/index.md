@@ -8,9 +8,9 @@ htmx: true
 
 Send me a message that will get [printed on my home receipt printer](https://github.com/xiaoxiae/Printomat/). No, I'm not kidding.
 
-{{< photo_section caption="The printer in action - prints text, images, and occasionally bugs." >}}
-{{< photo_row "printer-1.webp :: Receipt printer with a sample print. | printer-2.webp :: Receipt printer with a sample print. | printer-3.webp :: Receipt printer with a sample print." >}}
-{{< /photo_section >}}
+{{< image_section caption="The printer in action - prints text, images, and occasionally bugs." >}}
+{{< image_row "printer-1.webp :: Receipt printer with a sample print. | printer-2.webp :: Receipt printer with a sample print. | printer-3.webp :: Receipt printer with a sample print." >}}
+{{< /image_section >}}
 
 ### Send a message!
 

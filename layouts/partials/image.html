@@ -1,0 +1,77 @@
+{{- /*
+  Central image rendering partial.
+
+  Parameters:
+    - src: Image path (required)
+    - page: Page context for resource lookup (required)
+    - alt: Alt text (default: "")
+    - caption: Shown as figcaption if present (default: "")
+    - clickable: Link to original (default: false)
+    - lightbox: If clickable, use lightbox vs. new tab (default: false)
+    - class: CSS classes (default: "")
+
+  Usage:
+    {{ partial "image" (dict "src" "photo.jpg" "page" . "alt" "A photo" "caption" "My caption" "clickable" true "lightbox" true) }}
+*/ -}}
+
+{{- $src := .src -}}
+{{- $page := .page -}}
+{{- $alt := .alt | default "" -}}
+{{- $caption := .caption | default "" -}}
+{{- $clickable := .clickable | default false -}}
+{{- $lightbox := .lightbox | default false -}}
+{{- $class := .class | default "" -}}
+
+{{- $img := $page.Resources.Get $src -}}
+
+{{- if $img -}}
+  {{- $isSVG := eq $img.MediaType.SubType "svg" -}}
+  {{- $isGIF := eq $img.MediaType.SubType "gif" -}}
+  {{- $original := $img -}}
+
+  {{- /* Process image unless SVG or GIF */ -}}
+  {{- if not (or $isSVG $isGIF) -}}
+    {{- $img = $img.Process "resize 800x webp" -}}
+  {{- end -}}
+
+  {{- /* Build the img tag */ -}}
+  {{- $imgTag := printf `<img src="%s" alt="%s"` $img.RelPermalink $alt -}}
+  {{- if $class -}}
+    {{- $imgTag = printf `%s class="%s"` $imgTag $class -}}
+  {{- end -}}
+  {{- if not (or $isSVG $isGIF) -}}
+    {{- with $img.Width -}}
+      {{- $imgTag = printf `%s width="%d"` $imgTag . -}}
+    {{- end -}}
+    {{- with $img.Height -}}
+      {{- $imgTag = printf `%s height="%d"` $imgTag . -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $imgTag = printf `%s loading="lazy">` $imgTag -}}
+
+  {{- /* Wrap with link if clickable */ -}}
+  {{- if $clickable -}}
+    {{- if $lightbox -}}
+      {{- $page.Store.Set "hasLightbox" true -}}
+      {{- $imgTag = printf `<a href="%s" class="lightbox-trigger" data-thumb="%s">%s</a>` $original.Permalink $img.RelPermalink $imgTag -}}
+    {{- else -}}
+      {{- $imgTag = printf `<a href="%s" target="_blank">%s</a>` $original.Permalink $imgTag -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- /* Wrap with figure if caption */ -}}
+  {{- if $caption -}}
+    <figure>
+      {{ $imgTag | safeHTML }}
+      <figcaption>{{ $caption | markdownify }}</figcaption>
+    </figure>
+  {{- else -}}
+    {{ $imgTag | safeHTML }}
+  {{- end -}}
+
+{{- else -}}
+  {{- /* Fallback for images not found in page bundle */ -}}
+  <img src="{{ $src }}" alt="{{ $alt }}"
+    {{- with $class }} class="{{ . }}"{{ end }}
+    loading="lazy">
+{{- end -}}

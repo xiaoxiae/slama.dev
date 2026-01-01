@@ -18,9 +18,9 @@ And so the adventure begins.
 I own a [Prusa i3 MK3S+](https://www.prusa3d.com/category/original-prusa-i3-mk3s/) (great product, great company) and know my way around [Fusion 360](https://www.autodesk.com/products/fusion-360/free-trial) (great product, [fuck the company](https://hackaday.com/2022/08/12/local-simulation-feature-to-be-removed-from-all-autodesk-fusion-360-versions/)), so designing something to hold my liquid chalk and a brush was pretty simple.
 This is what I came up with:
 
-{{< photo_section caption="The Holder (left render, right image) <a href=\"holder.zip\">[.STL model]</a>." >}}
-{{< photo_row "holder-render.webp :: Render of the Holder. | holder-photo.png :: Photo of the Holder." >}}
-{{< /photo_section >}}
+{{< image_section caption="The Holder (left render, right image) <a href=\"holder.zip\">[.STL model]</a>." >}}
+{{< image_row "holder-render.webp :: Render of the Holder. | holder-photo.png :: Photo of the Holder." >}}
+{{< /image_section >}}
 
 It is meant to be hooked around something (in my case the door frame) and carry a reasonably-sized brush and bottled liquid chalk.
 
@@ -34,9 +34,9 @@ Since we were missing a stand for salt and pepper in our kitchen, this was the n
 While not necessary, it would be a nice addition to our otherwise barren table.
 Here it is:
 
-{{< photo_section caption="The Salt and Pepper (left render, right image) <a href=\"salt-and-pepper.zip\">[.STL model]</a>." >}}
-{{< photo_row "salt-and-pepper-render.webp :: Render of the Salt and Pepper. | salt-and-pepper-photo.png :: Photo of the Salt and Pepper." >}}
-{{< /photo_section >}}
+{{< image_section caption="The Salt and Pepper (left render, right image) <a href=\"salt-and-pepper.zip\">[.STL model]</a>." >}}
+{{< image_row "salt-and-pepper-render.webp :: Render of the Salt and Pepper. | salt-and-pepper-photo.png :: Photo of the Salt and Pepper." >}}
+{{< /image_section >}}
 
 There again isn't much to comment on here -- the design is pretty simple and works fine.
 Designing the hex pattern was the only non-trivial part (but was still pretty easy) and could prove useful in the future.
@@ -47,9 +47,9 @@ The only bad thing is that the letters are facing away from the center of the ta
 
 Having basically no time today, <a class='secret' href='/assets/kacka.webp'>my girlfriend</a> suggested I print a small box to keep her jewelry in when she needs to remove it in her lab:
 
-{{< photo_section caption="The Box (left render, right image) <a href=\"tank.zip\">[.STL model]</a>." >}}
-{{< photo_row "tank-render.webp :: Render of the Bank. | tank-photo.png :: Photo of the Box." >}}
-{{< /photo_section >}}
+{{< image_section caption="The Box (left render, right image) <a href=\"tank.zip\">[.STL model]</a>." >}}
+{{< image_row "tank-render.webp :: Render of the Bank. | tank-photo.png :: Photo of the Box." >}}
+{{< /image_section >}}
 
 Tank god it was simple.
 
@@ -64,16 +64,16 @@ Tank god it was simple.
 
 Since the last one was a really simple design, I wanted today to be a little more complicated and so I designed a mini replica of the Kilter Board, dubbing it the Bilter Koard (creative, I know; they can't sue me, right?).
 
-{{< photo_section caption="The Bilter Koard render <a href=\"board.zip\">[.STL model]</a>." >}}
-{{< photo_row "board-render.webp :: A render of the Bilter Koard." >}}
-{{< /photo_section >}}
+{{< image_section caption="The Bilter Koard render <a href=\"board.zip\">[.STL model]</a>." >}}
+{{< image_row "board-render.webp :: A render of the Bilter Koard." >}}
+{{< /image_section >}}
 
 First, I printed the base, which holds the board in place.
 The first print produced an extreme amount of fuzz, which I solved by reducing the temperature from 215°C down to 180°C:
 
-{{< photo_section caption="Stringing reduction for 180C (left) from 215C (right)." >}}
-{{< photo_row "stringing-photo.png :: A photo of the stringing problem." >}}
-{{< /photo_section >}}
+{{< image_section caption="Stringing reduction for 180C (left) from 215C (right)." >}}
+{{< image_row "stringing-photo.png :: A photo of the stringing problem." >}}
+{{< /image_section >}}
 
 And here is where the fuck-up happens.
 
@@ -83,10 +83,10 @@ Usually, there is a bit of pressure I have to exert to get it off, but this time
 Thinking it strange but blaming it on the reduced temperature, I repeated the step with for the top part and **w̸͇̱̑̃͜e̴̛̜n̸͍̳̐͊͑t̷̳̰̗͗ ̸̡̼̔̽t̸͖̭͖̽̄o̴͕̰͒ ̴̦̜̪͂̈́͝b̴̘̥̒̀͜ȅ̴̗́͛͜d̵̜̀̑̍**, waking up to this sight.
 
 
-{{< photo_section caption="ALL IS LOST" >}}
-{{< photo_row "fucky-wucky-photo-5.png :: A photo of a fucked-up extruder [1]. | fucky-wucky-photo-1.png :: A photo of a fucked-up extruder [2]. | fucky-wucky-photo-2.png :: A photo of a fucked-up extruder [3]." >}}
-{{< photo_row "fucky-wucky-photo-3.png :: A photo of a fucked-up extruder [4]. | fucky-wucky-photo-4.png :: A photo of a fucked-up extruder [5]." >}}
-{{< /photo_section >}}
+{{< image_section caption="ALL IS LOST" >}}
+{{< image_row "fucky-wucky-photo-5.png :: A photo of a fucked-up extruder [1]. | fucky-wucky-photo-1.png :: A photo of a fucked-up extruder [2]. | fucky-wucky-photo-2.png :: A photo of a fucked-up extruder [3]." >}}
+{{< image_row "fucky-wucky-photo-3.png :: A photo of a fucked-up extruder [4]. | fucky-wucky-photo-4.png :: A photo of a fucked-up extruder [5]." >}}
+{{< /image_section >}}
 
 Sigh.
 
@@ -141,22 +141,22 @@ for file in Path(".").iterdir():
 {{< /highlight >}}
 {{< /details >}}
 
-{{< photo_section caption="The Holds <a href=\"holds.zip\">[.STL models]</a>." >}}
-{{< photo_row "holds.png :: Photo of the holds." >}}
-{{< /photo_section >}}
+{{< image_section caption="The Holds <a href=\"holds.zip\">[.STL models]</a>." >}}
+{{< image_row "holds.png :: Photo of the holds." >}}
+{{< /image_section >}}
 
 The board design isn't anything too exciting -- it consists of the board the holds attach to, bottom part that holds the board in place and two stick on each that hold it at the desired angle (35°/45°/55°).
 
-{{< photo_section caption="The Bilter Koard (left assembled, right disassembled) <a href=\"board.zip\">[.STL model]</a>." >}}
-{{< photo_row "board-photo.png :: A photo of the board, along with a sample route. | board-parts.png :: A photo of the parts of the board, along with a sample route." >}}
-{{< /photo_section >}}
+{{< image_section caption="The Bilter Koard (left assembled, right disassembled) <a href=\"board.zip\">[.STL model]</a>." >}}
+{{< image_row "board-photo.png :: A photo of the board, along with a sample route. | board-parts.png :: A photo of the parts of the board, along with a sample route." >}}
+{{< /image_section >}}
 
 To attach the holds to the board, I made sure to bevel the holes so I can use M3.5 screws superglued to the holds.
 I experimented with printing thin plastic sticks so the build would be plastic-only (no extra parts) but it didn't work super well.
 
-{{< photo_section caption="How the screws are superglued to the holds (left) and connected to the board (right)." >}}
-{{< photo_row "screws-1.png :: Photo of how the screws are done [1]. | screws-2.png :: Photo of how the screws are done [2]." >}}
-{{< /photo_section >}}
+{{< image_section caption="How the screws are superglued to the holds (left) and connected to the board (right)." >}}
+{{< image_row "screws-1.png :: Photo of how the screws are done [1]. | screws-2.png :: Photo of how the screws are done [2]." >}}
+{{< /image_section >}}
 
 I'm happy with how it turned out but what I would really like is to make the holds' first few layers semi-transparent, put individually addressable RPi-controlled LEDs behind it, add a servo or two and make a proper Kilter Board miniature.
 That would, however, turn it from something made in ~4 hours to a summer project so maybe some other time.

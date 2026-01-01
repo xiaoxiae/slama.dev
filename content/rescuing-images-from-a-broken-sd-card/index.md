@@ -8,9 +8,9 @@ toc: true
 I recently went through a box of electronics that me and my <a class='secret' href='/assets/kacka.webp'>girlfriend Kačka</a> no longer use in the hopes of finding something worth salvaging and stumbled upon her old camera.
 When asking about why it's there, <a class='secret' href='/assets/kacka.webp'>she</a> told me that <a class='secret' href='/assets/kacka.webp'>she</a> no longer uses it since _"it doesn't turn on"_, which piqued my interest because it could be fun to fix and could contain a lot of awesome pictures from when we were growing up.
 
-{{< photo_section caption="<strong>Nikon Coolpix S5100</strong> handheld camera." >}}
-{{< photo_row "camera.png :: Image of a Nikon Coolpix S5100 handheld camera." >}}
-{{< /photo_section >}}
+{{< image_section caption="<strong>Nikon Coolpix S5100</strong> handheld camera." >}}
+{{< image_row "camera.png :: Image of a Nikon Coolpix S5100 handheld camera." >}}
+{{< /image_section >}}
 
 The camera in question is a [Nikon Coolpix S5100](https://www.nikonusa.com/p/coolpix-s5100/26222/overview), which came out in 2010.
 Since it was used quite extensively and <a class='secret' href='/assets/kacka.webp'>Kačka</a> doesn't remember when/why it stopped working, there could be a number of things wrong.
@@ -74,9 +74,9 @@ It will also not jump all over the disk, doing mostly sequential reads that don'
 
 After **~300** hours of reading, the reading speed dropped to about `1 B/s` we have managed to recover **94.5%** of data, with the graph and recovered sector visualizations (using **[`ddrescueview`](https://sourceforge.net/projects/ddrescueview/)**) looking like this:
 
-{{< photo_section caption="<strong>Graph of recovery</strong> from 86% onward (left) and <strong>recovered sectors</strong> (right)." >}}
-{{< photo_row "graph.webp :: Graph of recovery from 86%. | recovered.webp :: Recovered sectors visualization." >}}
-{{< /photo_section >}}
+{{< image_section caption="<strong>Graph of recovery</strong> from 86% onward (left) and <strong>recovered sectors</strong> (right)." >}}
+{{< image_row "graph.webp :: Graph of recovery from 86%. | recovered.webp :: Recovered sectors visualization." >}}
+{{< /image_section >}}
 
 Re-running **[`photorec`](https://www.cgsecurity.org/wiki/PhotoRec)** gives us **61 images** and **700 thumbnails**, which is... better... but still pretty depressing.
 This is mainly due to how the recovered sectors are distributed -- many of the images that could not be recovered contain corrupted bytes, which makes them broken.
@@ -84,6 +84,6 @@ This is mainly due to how the recovered sectors are distributed -- many of the i
 Looking at the positive side, that is still **61** high-quality images and **700** low-quality ones, instead of none whatsoever, which is something 🙂.
 Even more positive, since you made it to the end of this post, you get to look at pictures of a cute dog which would be otherwise lost forever 🎉!
 
-{{< photo_section caption="Two recovered photos of a good doggo." >}}
-{{< photo_row "f4747712.webp :: A good doggo image, pt. 1. | f4837824.webp :: A good doggo image, pt. 2." >}}
-{{< /photo_section >}}
+{{< image_section caption="Two recovered photos of a good doggo." >}}
+{{< image_row "f4747712.webp :: A good doggo image, pt. 1. | f4837824.webp :: A good doggo image, pt. 2." >}}
+{{< /image_section >}}

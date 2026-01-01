@@ -400,7 +400,6 @@ figure {
 
   figcaption {
     text-align: center;
-    font-style: italic;
   }
 }
 
@@ -904,18 +903,13 @@ ul.hfill {
 
 // Caption styles
 figcaption {
-  padding: 0 $line-spacing * 0.5;
+  padding: $line-spacing * 0.5 $line-spacing * 0.5 0;
   text-align: center;
-  font-style: italic;
-
-  // Space above caption (after a row)
-  .row + & {
-    padding-top: $line-spacing * 0.5;
-  }
+  font-size: 85%;
 }
 
-// Section background
-.photo-section {
+// Section background for image groups
+.image-section {
   background: var(--code-bg);
   margin-bottom: $line-spacing * 1.25;
   padding: $line-spacing * 0.5;

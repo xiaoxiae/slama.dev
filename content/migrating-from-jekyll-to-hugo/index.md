@@ -13,17 +13,6 @@ Looking at the [Wayback machine](https://web.archive.org/web/20250101000000*/sla
 Over time, I've added lecture notes ([Czech](/poznamky)/[English](/notes)), a [climbing diary](/climbing), some [pretty neat photos](/photos), and much more.
 While I'm really happy how the website grew, it was like building a ship as it's sailing the ocean -- add a sail here, patch the hull there, sprinkle some duct tape and hope it holds.
 
-<!--
-{{< photo_scroller >}}
-{{< photo "2019.png" "2019" >}}
-{{< photo "2020.png" "2020" >}}
-{{< photo "2021.png" "2021" >}}
-{{< photo "2022.png" "2022" >}}
-{{< photo "2023.png" "2023" >}}
-{{< photo "2024.png" "2024" >}}
-{{< photo "2025.png" "2025" >}}
-{{< /photo_scroller >}}
--->
 
 Although tech debt is something that could be addressed by refactoring the codebase, what could not be addressed are Jekyll (the SSG this website uses)'s [terrible build times](#build-times), the [glacial pace of new updates](https://jekyllrb.com/news/releases/) the lack of useful features like [image transformations](https://talk.jekyllrb.com/t/good-way-to-handle-images-on-websites/8689) and [overriding markdown to HTML conversions](https://stackoverflow.com/questions/67475956/jekyll-change-the-markdown-blockquote-html-output), and my [personal dislike of Ruby](ruby.jpg) (that one's on me though).
 
@@ -73,17 +62,29 @@ This makes writing posts significantly easier, as you just plop the image in the
 ### [Image Processing](https://gohugo.io/content-management/image-processing/)
 
 Working with images in Jekyll is absolutely attrocious.
-Besides the aforementioned [path shenanigans](#page-bundles), I try to keep my website relatively lean, clocking in at a little over `500 kB` for the home page, which I think is more reasonable in the current age of JavaScript monstrosities.
+Besides the [aforementioned path shenanigans](#page-bundles), I try to keep my website relatively lean, clocking in at a little over `500 kB` for the home page, which I think is reasonable in the current age of JavaScript monstrosities.
 
 ![](time.png)
 {.inverse-invert}
 
 While this is easy to achieve for CSS/HTML-only pages, it becomes much harder when images get introduced into the picture[^pun].
-The Jekyll version handled this via a [custom automated script](https://github.com/xiaoxiae/slama.dev/blob/1b3247748ff722dd403707fd269e38cd57c8e3e3/_plugins/resize.py) that looked for images in the `_posts` directory and resized them, but this was absolutely unmaintainable.
+The Jekyll version handled this via a [custom automated script](https://github.com/xiaoxiae/slama.dev/blob/1b3247748ff722dd403707fd269e38cd57c8e3e3/_plugins/resize.py) that looked for images in the `_posts` directory and resized them, and [another one](https://github.com/xiaoxiae/slama.dev/blob/1b3247748ff722dd403707fd269e38cd57c8e3e3/_plugins/compress_images.py) that did something similar for the photo gallery, but this was absolutely unmaintainable.
 
 [^pun]: Pun intended.
 
 Hugo has built-in [image processing](https://gohugo.io/content-management/image-processing/), which allows you to resize, crop, and manipulate images automatically.
+This, in combination with a [render hook](https://gohugo.io/render-hooks/) that overwrites what HTML gets generated from Markdown's `![image](syntax)` means that we can automatically convert and resize **all images** on the **entire website** without the need for custom scripts.
+
+This is whatmy 
+
+
+_Here is a nice [blog post](https://blog.nathanv.me/posts/hugo-resources/) by [Nathan Vaughn](https://blog.nathanv.me/) on how resources work in Hugo, if the code above looks strange to you (like it did to me when picking up Hugo)._
+
+
+
+To understand how it works, however, we need a short intermezzo on how Hugo handles resources.
+
+#### Resources
 
 
 
@@ -246,7 +247,7 @@ Jekyll has custom Liquid tags (Ruby classes); Hugo has shortcodes (Go template f
 | Tag | Jekyll Syntax | Hugo Syntax |
 |-----|---------------|-------------|
 | Math blocks | `{% math theorem "name" %}...{% endmath %}` | `{{</* math "theorem" "name" */>}}...{{</* /math */>}}` |
-| Photo row | `{% photos img1\|img2 %}` | `{{</* photo_row "img1\|img2" */>}}` |
+| Photo row | `{% photos img1\|img2 %}` | `{{</* image_row "img1\|img2" */>}}` |
 | Inline highlight | `{% ihighlight python %}...{% endihighlight %}` | `{{</* inline_highlight "python" */>}}...{{</* /inline_highlight */>}}` |
 | Manim video | `{% manim_video name %}` | `{{</* video "manim" "name" */>}}` |
 | Motion Canvas video | `{% motion_canvas_video name %}` | `{{</* video "motion-canvas" "name" */>}}` |
@@ -350,8 +351,8 @@ Hugo version has these shortcodes in `layouts/shortcodes/`:
 | `lecture_notes_preface.html` | Standard lecture notes intro |
 | `math.html` | Mathematical statements (theorem, lemma, etc.) |
 | `photo_gallery.html` | Photo gallery rendering |
-| `photo_row.html` | Row of photos |
-| `photo_section.html` | Photo section with title |
+| `image_row.html` | Row of photos |
+| `image_section.html` | Photo section with title |
 | `statnice.html` | State exam preparation content |
 | `tboi.html` | Binding of Isaac runs display |
 | `video.html` | Unified video player |
@@ -899,7 +900,7 @@ For each post in `_posts/YYYY-MM-DD-slug.md`:
 + {{</* /math */>}}
 
 - {% photos landscapes/img1.jpg|portraits/img2.jpg %}
-+ {{</* photo_row "landscapes/img1.jpg|portraits/img2.jpg" */>}}
++ {{</* image_row "landscapes/img1.jpg|portraits/img2.jpg" */>}}
 
 - {% manim_video pythagorean %}
 + {{</* video "manim" "pythagorean" */>}}

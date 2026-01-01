@@ -175,5 +175,18 @@
 			});
 		</script>
 		{{ end }}
+
+		{{- if .Store.Get "hasLightbox" }}
+		<!-- Lightbox (only included on pages with lightbox-enabled images) -->
+		<div id="lightbox" class="lightbox no-invert" style="display: none;">
+			<div class="lightbox-content">
+				<span class="lightbox-close" style="display: none;">&times;</span>
+				<div class="lightbox-loader"></div>
+				<img id="lightbox-thumb" class="lightbox-thumbnail" src="" alt="Thumbnail">
+				<img id="lightbox-img" src="" alt="Enlarged image" style="display: none;">
+			</div>
+		</div>
+		<script src="{{ "/assets/js/lightbox.js" | absURL }}"></script>
+		{{- end }}
 	</body>
 </html>

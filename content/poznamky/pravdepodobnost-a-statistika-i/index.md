@@ -35,7 +35,7 @@ Množině \(\Omega\) říkáme prostor elementárních jevů.
 - **spojitý:** \(\Omega \subseteq \mathbb{R}^n\), \(\mathcal{F}\) vhodná, \(P\) definován přes integrál (viz dále)
 {{< /math >}}
 
-{{< figure src="psp.webp" caption="Znázornění konečného prostoru s uniformní pravděpodobností. dvojice hodů kostkou jsou elementární jevy (\\(\\in \\Omega\\)), vyznačené množiny jsou měřené jevy (\\(\\in \\mathcal{F}\\))." >}}
+![Znázornění konečného prostoru s uniformní pravděpodobností. dvojice hodů kostkou jsou elementární jevy (\\(\\in \\Omega\\)), vyznačené množiny jsou měřené jevy (\\(\\in \\mathcal{F}\\)).](psp.webp "Znázornění konečného prostoru s uniformní pravděpodobností. dvojice hodů kostkou jsou elementární jevy (\\(\\in \\Omega\\)), vyznačené množiny jsou měřené jevy (\\(\\in \\mathcal{F}\\)).")
 
 {{< math "lemma" "základní vlastnosti" >}} \(\forall A, B \in \mathcal{F}\) platí
 - \(P(A) + P(A^C) = 1\)
@@ -183,17 +183,17 @@ neboli
 #### Rozdělení
 {{< math "example" "uniformní rozdělení" >}}n.v. \(X\) má na \(\left[a, b\right]\) uniformní rozdělení, pokud má hustotní funkci \[f_X(x) = \begin{cases} \frac{1}{b-a} & x \in \left[a, b\right] \\ 0 & \text{jindy} \end{cases}\]
 
-{{< figure src="uniform.svg" caption="Distribuční a hustotní funkce uniformního rozdělení." >}}
+![Distribuční a hustotní funkce uniformního rozdělení.](uniform.svg "Distribuční a hustotní funkce uniformního rozdělení.")
 {{< /math >}}
 
 {{< math "example" "exponenciální rozdělení" >}}n.v. \(X\) má exponenciální rozdělení, pokud má distribuční funkci \[F_X(x) = \begin{cases} 0 & x \le 0 \\ 1 - e^{-\lambda x} & x \ge 0\end{cases}\]
 
-{{< figure src="exponential.svg" caption="Distribuční a hustotní funkce exponenciálního rozdělení." >}}
+![Distribuční a hustotní funkce exponenciálního rozdělení.](exponential.svg "Distribuční a hustotní funkce exponenciálního rozdělení.")
 {{< /math >}}
 
 {{< math "example" "normální rozdělení" >}}n.v. \(X\) má standardní normální rozdělení, pokud má hustotní funkci \[f_X(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2 / 2}\]
 
-{{< figure src="normal.svg" caption="Distribuční a hustotní funkce normálních rozdělení. Standardní je pro \(\mu = 0\) a \(\sigma = 1\)." >}}
+![Distribuční a hustotní funkce normálních rozdělení. Standardní je pro \(\mu = 0\) a \(\sigma = 1\).](normal.svg "Distribuční a hustotní funkce normálních rozdělení. Standardní je pro \(\mu = 0\) a \(\sigma = 1\).")
 {{< /math >}}
 
 
@@ -238,8 +238,8 @@ Ke zkoušce byla povolena A4 s libovolnými poznamkami, tady jsou moje (dostupn�
 
 ---
 
-{{< figure src="tahak/1.svg" >}}
+![](tahak/1.svg)
 
-{{< figure src="tahak/2.svg" >}}
+![](tahak/2.svg)
 
 ---

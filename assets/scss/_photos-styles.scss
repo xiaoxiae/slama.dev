@@ -36,8 +36,12 @@
   background-color: var(--grid-overlay-color);
 }
 
+.grid .lightbox-trigger {
+  display: contents;
+}
+
 .grid img {
-  z-index: 1; /* Ensure this layer is behind the image */
+  z-index: 1;
 
   max-width: 100%;
   filter: invert(0%);

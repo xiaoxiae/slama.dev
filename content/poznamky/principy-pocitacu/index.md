@@ -11,12 +11,7 @@ language: cs
 
 ### Zjednodušené schéma počítače
 
-<figure style="max-width: 50%">
-
-![Harvardská architektura](19-07-10_22-58-36.svg)
-
-<figcaption>Harvardská architektura</figcaption>
-</figure>
+![Harvardská architektura](19-07-10_22-58-36.svg "Harvardská architektura")
 
 - vymyšlena na univerzitě v Harvardu
 - **CPU** -- vykonává instrukce
@@ -50,7 +45,7 @@ language: cs
 	- teplota vodiče
 	- elektromagnetické pole, které je vodičem jak generováno, tak přijímáno
 
-{{< figure src="19-07-10_23-07-42.svg" caption="ztrátovost analogového přenosu" >}}
+![ztrátovost analogového přenosu](19-07-10_23-07-42.svg "ztrátovost analogového přenosu")
 
 #### Digitální přenos
 - problém je v intervalech, které se překrývají... co je odtáhnout od sebe?
@@ -58,21 +53,21 @@ language: cs
 - jednotka _bit_ (BInary digiT, značíme \(b\))
 - funguje s rozumným šumem (100procentní ale není)
 
-{{< figure src="19-07-10_23-10-06.svg" caption="digitální přenos" >}}
+![digitální přenos](19-07-10_23-10-06.svg "digitální přenos")
 
 ##### Sériový přenos
 - způsob přenosu více bitů informace: pošleme je _za sebou_
 
-{{< figure src="19-07-10_23-11-43.svg" caption="přenos čísla 1011, znázornění odporu vůči změně napájení" >}}
+![přenos čísla 1011, znázornění odporu vůči změně napájení](19-07-10_23-11-43.svg "přenos čísla 1011, znázornění odporu vůči změně napájení")
 
 
 1. měření hodnoty **na měřáku**
 	- nezapomínat na to, že napětí je relativní
-{{< figure src="19-07-10_23-14-05.svg" caption="referenční přenos (barvy ukazují způsoby, jakými lze signál vést do cíle)" >}}
+![referenční přenos (barvy ukazují způsoby, jakými lze signál vést do cíle)](19-07-10_23-14-05.svg "referenční přenos (barvy ukazují způsoby, jakými lze signál vést do cíle)")
 
 2. měření **rozdílu napětí** dvou vodičů
 	- výhoda -- elektromagnetické rušení signál neovlivňuje, jelikož rozdíl je relativní
-{{< figure src="19-07-10_23-22-08.svg" caption="diferenciální přenos (vlevo); USB konektor (vpravo)" >}}
+![diferenciální přenos (vlevo); USB konektor (vpravo)](19-07-10_23-22-08.svg "diferenciální přenos (vlevo); USB konektor (vpravo)")
 
 - délka bitů musí být jasně dána, aby přijímající dobře interpretoval informace
 	- dnes bývá dána hardwarově
@@ -103,7 +98,7 @@ language: cs
 			- pozn.: \(1B\) jsou 2 šestnáctkové znaky
 	- velký overhead... z \(10b\) je jen \(8b\) datových... \(\underbrace{1000}_{\text{clock}} \cdot \underbrace{8/10}_{\text{start + end}} = 800\ bps\)
 
-{{< figure src="19-18-10_12-16-39.svg" caption="přenos s idle stavem" >}}
+![přenos s idle stavem](19-18-10_12-16-39.svg "přenos s idle stavem")
 
 #### Řešení (2): hodinový signál
 - používá \(\text{I}^2 \text{C}\)
@@ -129,7 +124,7 @@ language: cs
 2. **full duplex**: 2 nezávislé simplexí linky
 	- např. RS-232 -- 2 datové + 1 zem
 
-{{< figure src="19-18-10_11-18-27.svg" caption="RS-232" >}}
+![RS-232](19-18-10_11-18-27.svg "RS-232")
 
 - **význačné** (out-of-band) stavy = dochází baterka/změna módu/...
 	- někdy je potřeba sdělit uprostřed přenosu
@@ -139,7 +134,7 @@ language: cs
 #### Značení
 - většinou \(1\) je pravda a \(0\) nepravda, někdy se ale hodí prohodit:
 
-{{< figure src="19-18-10_11-23-35.svg" caption="inverzní logika" >}}
+![inverzní logika](19-18-10_11-23-35.svg "inverzní logika")
 
 - někdy je také potřeba rozlišovat soustav, ve kterém číslo je:
 \[\text{desítková}\ldots 23 = 23_d = 23_{10} = 23_{dec}\] \[\text{šestnáctková}\ldots \$23 = 0x23 = 23h = 23H = 23_{16} = 23_{hex}\]
@@ -150,7 +145,7 @@ language: cs
 - problém: starší zařízení mají \(1B=7b\)
 	- řešení: řadič (controller), který přijímá data ze zařízení a zpracovává je
 
-{{< figure src="19-18-10_12-42-10.svg" caption="řadič (controller)" >}}
+![řadič (controller)](19-18-10_12-42-10.svg "řadič (controller)")
 
 - config register -- nastavení přenosové rychlosti, parity,...
 - stav register -- zda se načetl celý byte
@@ -207,7 +202,7 @@ language: cs
 	- role se mohou měnit
 	- směr _master \(\mapsto\) slave_ je **write**, obrácený **read**
 
-{{< figure src="19-10-11_13-10-25.svg" caption="slave/master přenos" >}}
+![slave/master přenos](19-10-11_13-10-25.svg "slave/master přenos")
 
 #### Připojení
 - **point-to-point** linka:
@@ -217,14 +212,14 @@ language: cs
 	- více slavů na jedné lince
 	- pozor -- sběrnice znamená něco jiného, ale dnes se to takhle říká
 
-{{< figure src="19-10-11_13-15-26.svg" caption="sběrnice" >}}
+![sběrnice](19-10-11_13-15-26.svg "sběrnice")
 
 - rozlišují se **adresou,** která je pro každé zařízení na sběrnici _unikátní_
 	- rozsahu těchto adres se říká **adresový prostor** (adress space)
 - linky jsou half-duplexy bez floatingového stavu
 	- vždy se mezi sebou baví 2 zařízení
 
-{{< figure src="19-10-11_13-19-36.svg" caption="implementace sběrnice" >}}
+![implementace sběrnice](19-10-11_13-19-36.svg "implementace sběrnice")
 
 - když nevysílá nikdo, je tam díky pull-up rezistoru \(1\); když někdo \(0\), tak \(0\)
 	- rezistor zařídí to, aby stav na lince nebyl plovoucí
@@ -236,14 +231,14 @@ language: cs
 	- že musí se detekovat srážky, když chtějí 2 masterové vysílat najednou
 	- rozdílné od USB (universal serial bus) -- to je single master
 
-{{< figure src="19-10-11_13-25-36.svg" caption="I2C sběrnice" >}}
+![I2C sběrnice](19-10-11_13-25-36.svg "I2C sběrnice")
 
 - **SDA** = serial data; **SCL** = serial clock
 - idle stav je vždy vyrušen masterem, který chce navázat komunikaci
 	- rovněž _generuje hodinový signál_
 	- začátek nastává, když nastane \(0\) na SDA a \(1\) na SCL (zakázaný stav!)
 
-{{< figure src="19-10-11_13-27-58.svg" caption="komunikace v I2C" >}}
+![komunikace v I2C](19-10-11_13-27-58.svg "komunikace v I2C")
 
 - \(9\) bit na byte
 	- \(8\) data (MSb-first)
@@ -255,13 +250,13 @@ language: cs
 - pro clock jsou dány standardizované rozsahy, aby to slave ustál
 	- má možnost dělat **clock stretching** -- pokud by nestíhal, tak může hodiny podržet na \(0\) (hold low)
 
-{{< figure src="19-10-11_13-34-38.svg" caption="struktura přenosu I2C" >}}
+![struktura přenosu I2C](19-10-11_13-34-38.svg "struktura přenosu I2C")
 
 - **management** je obecný pro \(\text{I}^2 \text{C}\); zbytek je device-specific
 	- 1-7 je adresa, 8 je r/w
 - **payload** -- to, „za co platíme“ (samotná data)
 
-{{< figure src="19-10-11_13-36-02.svg" caption="I2C zařízení (ambient light sensor)" >}}
+![I2C zařízení (ambient light sensor)](19-10-11_13-36-02.svg "I2C zařízení (ambient light sensor)")
 
 - **ADC** = analog-digital converter -- převod analogu do digitálu
 	- přijímáme světlo (analogový signál)
@@ -327,7 +322,7 @@ language: cs
 - zápis -- 1 transakce
 - čtení -- 2 transakce (psaní do adresového registru nějakou hodnotu + zápis slova)
 
-{{< figure src="19-18-11_11-47-34.svg" caption="PCF8570 paměť" >}}
+![PCF8570 paměť](19-18-11_11-47-34.svg "PCF8570 paměť")
 
 ### Instrukce a architektury
 - **instrukce** -- posloupnost \(n\) bytů
@@ -337,16 +332,16 @@ language: cs
 	- zpravidla ukazuje na první bit (vícebitové) instrukce
 	- je \(x\)-bitový (logicky stejně jako code memory)
 
-{{< figure src="19-24-11_22-40-04.svg" caption="architektura s instrukcemi" >}}
+![architektura s instrukcemi](19-24-11_22-40-04.svg "architektura s instrukcemi")
 
 - **opcode** (operation code) -- typ instrukce
 	- podle toho se interpretují argumenty
 	- bývá \(1B\) až \(2B\)
 - **argumenty** -- s čím instrukce pracuje -- hodnota/adresa/...
 
-{{< figure src="19-24-11_22-50-13.svg" caption="struktura instrukcí" >}}
+![struktura instrukcí](19-24-11_22-50-13.svg "struktura instrukcí")
 
-{{< figure src="19-24-11_22-52-17.svg" caption="jak to funguje doopravdy" >}}
+![jak to funguje doopravdy](19-24-11_22-52-17.svg "jak to funguje doopravdy")
 
 #### Endianita
 - pochází z Gulliverových cest podle skupin lidí, kteří jedli vejce z různých konců -- little end(iáni), big end(iáni)
@@ -354,7 +349,7 @@ language: cs
 - většina procesorů je **little endian** (ten divný, obrácený způsob)
 - pozor -- endianita _bitů_ a _bytů_ může být rozdílná!
 
-{{< figure src="19-24-11_22-54-12.svg" caption="endianita" >}}
+![endianita](19-24-11_22-54-12.svg "endianita")
 
 #### Harvard \(\times\) von Neumann
 
@@ -397,7 +392,7 @@ language: cs
 - aritmetika je trochu problematická -- x86 ani 6502 neumějí ukládat na třetí adresu
 
 ##### Sčítání a odčítání
-{{< figure src="19-01-12_18-33-09.svg" caption="sčítací (odčítací) blackbox" >}}
+![sčítací (odčítací) blackbox](19-01-12_18-33-09.svg "sčítací (odčítací) blackbox")
 
 - je potřeba explicitně nastavit `carry` příznak na 0 (`CLC` instrukce)
 	- řetězení: `LDA CLC ADC STA | LDA ADC STA | ...`
@@ -548,7 +543,7 @@ mov    %ax,-0x1e(%rbp)
 #### Floating-point
 - čísla v normalizovaném formátu: \(\mathrm{sign} \cdot 1.0110101 \cdot 2^{10001001}\)
 
-{{< figure src="20-19-01_13-29-05.svg" caption="struktura floating-point čísla" >}}
+![struktura floating-point čísla](20-19-01_13-29-05.svg "struktura floating-point čísla")
 
 - v mantise první 1 ignorujeme (je tam totiž v normalizovaném tvaru vždy)
 - exponent je v _bias_ reprezentaci: mapování \(\left(-n, n\right) \mapsto \left(0, 2n + 1\right)\)
@@ -603,7 +598,7 @@ mov    %ax,-0x1e(%rbp)
 		- dokáže zapsat/vracet velké bloky -- \(1\)/\(10 kB\)
 		- rychlejší na přístup k většímu počtu dat, pomalejší na random přístup
 
-{{< figure src="20-19-01_18-52-03.svg" caption="Harvard počítač (s GPIO)" >}}
+![Harvard počítač (s GPIO)](20-19-01_18-52-03.svg "Harvard počítač (s GPIO)")
 
 - **GPIO** = General Purpose Input and Output
 	- slouží jak pro vstup, tak pro výstup
@@ -620,7 +615,7 @@ mov    %ax,-0x1e(%rbp)
 - přístup vně je lepší -- rychlost sektorů dále od středu je větší
 	- zaplňují se od vnějších po vnitřní
 
-{{< figure src="20-19-01_19-04-31.svg" caption="HDD" >}}
+![HDD](20-19-01_19-04-31.svg "HDD")
 
 ###### Výhody
 - levnější než alternativy
@@ -636,7 +631,7 @@ mov    %ax,-0x1e(%rbp)
 - nejsou optimální pro archivační účely -- vrací se do svého původního stavu
 - oproti pevným diskům jsou data ukládána do **spirály** (stejně jako gramofonová deska)
 
-{{< figure src="20-19-01_19-22-10.svg" caption="CD" >}}
+![CD](20-19-01_19-22-10.svg "CD")
 
 - používají **LBA** -- linear block addressing (není to už trojice -- lehčí na programování)
 - přenosová rychlost je menší (\(10 MBps\)), přístupová také (\(100 ms\))
@@ -655,7 +650,7 @@ mov    %ax,-0x1e(%rbp)
 - **offset** (v \(B\)) -- posun od začátku paměti
 - **base address** -- odkud začínáme (čteme/píšeme/...)
 
-{{< figure src="20-19-01_19-37-02.svg" caption="struktura paměti" >}}
+![struktura paměti](20-19-01_19-37-02.svg "struktura paměti")
 
 - **metadata** -- _data o datech_; ukládá:
 	- čísla sektorů, kde se soubor nachází
@@ -712,7 +707,7 @@ mov    %ax,-0x1e(%rbp)
 - **bitmapy** -- mapy bitů
 - rozdělíme na **pixely** -- na každém bude informace o tom, „jaké je tam světlo“
 
-{{< figure src="20-19-01_20-01-26.svg" caption="obrázek v počítači" >}}
+![obrázek v počítači](20-19-01_20-01-26.svg "obrázek v počítači")
 
 - indexováno \((x, y)\)
 	- pozor -- \(y\) jdoucí dolů _stoupá_, neklesá
@@ -730,7 +725,7 @@ mov    %ax,-0x1e(%rbp)
 	- vnímáme malé spektrum (viditelně světlo)
 	- tyčinky (rozsah) x čípky (frekvence -- 3 barvy)
 
-{{< figure src="20-19-01_20-15-41.svg" caption="čípky v oku" >}}
+![čípky v oku](20-19-01_20-15-41.svg "čípky v oku")
 
 - barevná bit depth:
 	- \(3b\) na pixel -- dost neúsporné (jen jestli je červelá/zelená/modrá) a blbě se rozděluje

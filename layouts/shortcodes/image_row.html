@@ -1,0 +1,44 @@
+{{- /*
+  Image row shortcode for displaying multiple images in a row.
+  Used inside image_section for grouped, clickable images.
+
+  Usage: {{< image_row "img1.jpg :: Alt 1 | img2.jpg :: Alt 2" >}}
+
+  - Images are separated by |
+  - Alt text is optional, specified with ::
+  - All images are clickable with lightbox
+*/ -}}
+
+{{- $rawInput := .Get 0 -}}
+{{- $images := split $rawInput "|" -}}
+{{- $page := .Page -}}
+
+<div class="row">
+{{- range $images -}}
+    {{- $imgSpec := strings.TrimSpace . -}}
+    {{- $imgPath := $imgSpec -}}
+    {{- $altText := "" -}}
+
+    {{- /* Parse path and optional alt text */ -}}
+    {{- if strings.Contains $imgSpec "::" -}}
+        {{- $parts := split $imgSpec "::" -}}
+        {{- $imgPath = strings.TrimSpace (index $parts 0) -}}
+        {{- $altText = strings.TrimSpace (index $parts 1) -}}
+    {{- end -}}
+
+    {{- /* Default alt text from filename */ -}}
+    {{- if not $altText -}}
+        {{- $altText = path.Base $imgPath | replaceRE `[-_]` " " | replaceRE `\.[^.]+$` "" -}}
+    {{- end -}}
+
+    <div>
+    {{- partial "image" (dict
+      "src" $imgPath
+      "page" $page
+      "alt" $altText
+      "clickable" true
+      "lightbox" true
+    ) -}}
+    </div>
+{{- end -}}
+</div>
