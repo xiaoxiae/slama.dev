@@ -12,12 +12,12 @@ To make them unique, I've added an <span class="silver">easy</span> and a <span 
 The goal was to make the gold extremely challenging and make sure to not just oneshot both, which worked remarkably well, and I will be doing [the same for next year](/resolutions/2025/).
 
 This post is mostly a collection of my thoughts on these resolutions, and my wishes for the next year.
-If you happen to be into programming/climbing (which most of there revolve around), these might be of interest to you 🙂.
+If you happen to be into programming/climbing (which most of these revolve around), these might be of interest to you 🙂.
 
 ### Fitness
 
 I'm a [pretty active person](/climbing), with the main activity being climbing.
-As I like to push myself to climb better, I've set as few goals that I wanted to accomplish; let's see how I did.
+As I like to push myself to climb better, I've set a few goals that I wanted to accomplish; let's see how I did.
 
 #### <span class="silver">All 2019 Moonboard 7a|7a+ benchmarks</span>
 
@@ -36,13 +36,13 @@ Coming back for you next year, Moonspawn.
 
 It turns out this is hard to do when you don't really climb outside.
 
-There is one 8a in Riesenstein (the closest bouldering area to where I live) that I know I can do if I give it a few sessions, but they simply didn't materialize next year as I've always prefered to do indoor climbing.
+There is one 8a in Riesenstein (the closest bouldering area to where I live) that I know I can do if I give it a few sessions, but they simply didn't materialize this year as I've always preferred to do indoor climbing.
 
 I'll likely not pursue this further, since I think it's better to focus on goals that are actually fun, instead of doing something because it's a goal for others -- you don't have to climb outside to feel good about your climbing.
 
 I feel like this needs to be stressed -- climbing is, at the end of the day, a fun hobby that you do with your friends to stay active.
 You don't need to go climb outside if that's something you don't enjoy as much as doing dynos in the gym (my case, guilty as charged 🤲).
-This goal was mostly added because "if others climb stuff outside, but I should too", but it truly tought me to just pursue what I like.
+This goal was mostly added because "if others climb stuff outside, I should too", but it truly taught me to just pursue what I like.
 
 The rock is not getting reset that often anyway.
 
@@ -100,7 +100,7 @@ Nevertheless, it was an amazing experience that taught me many valuable things �
 
 Absolutely [destroyed this one](https://lichess.org/@/prokopakop) (hovering around **2350**).
 
-A collosal nerdsnipe (thanks, [Prokop](https://rdck.dev/)), an [article about writing a chess engine](/a-chess-engine-commit-by-commit/), many lost nights (and hair; like I have any to lose), and a bet won.
+A colossal nerdsnipe (thanks, [Prokop](https://rdck.dev/)), an [article about writing a chess engine](/a-chess-engine-commit-by-commit/), many lost nights (and hair; like I have any to lose), and a bet won.
 
 Cinema.
 
