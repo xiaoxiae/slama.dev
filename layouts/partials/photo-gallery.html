@@ -4,9 +4,8 @@
 {{- $.Page.Store.Set "hasLightbox" true -}}
 <div class='grid'>
 {{ range site.Data.photos.gallery.photos }}
-  {{ $date := time.AsTime .date }}
-  {{ $filename := printf "%s-%s.%s" .date .name .raw_ext }}
-  {{ $img := $.Page.Resources.GetMatch $filename }}
+  {{ $date := time.AsTime (substr .file 0 10) }}
+  {{ $img := $.Page.Resources.GetMatch .file }}
 
   {{ if $img }}
     {{ $thumb := $img.Process "resize 800x webp" }}
