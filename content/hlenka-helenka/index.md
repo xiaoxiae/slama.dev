@@ -9,7 +9,7 @@ language: cs
 
 <p class="center">Tohle je naše hlenka Helenka.</p>
 
-![Obrázek hlenky.](hlenka-helenka-still.webp)
+![Obrázek hlenky.](tribute.png)
 {.no-invert}
 
 Jedná se o kolonii amoéb, která tím, jak postupně roste, tvoří mezi zdroji jídla nejkratší možná spojení. [Tento TED talk](https://www.ted.com/talks/heather_barnett_what_humans_can_learn_from_semi_intelligent_slime/transcript) moc hezky shrnuje nejpodstatnější informace o hlenkách.
