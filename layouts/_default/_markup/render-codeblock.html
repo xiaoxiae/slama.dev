@@ -1,9 +1,17 @@
 {{- $caption := .Attributes.caption -}}
+{{- $file := .Attributes.file -}}
+{{- $code := .Inner -}}
+{{- if $file -}}
+  {{- $resource := .Page.Resources.GetMatch $file -}}
+  {{- if $resource -}}
+    {{- $code = $resource.Content -}}
+  {{- end -}}
+{{- end -}}
 {{- if $caption -}}
 <figure>
-  {{- highlight .Inner .Type .Options -}}
+  {{- highlight $code .Type .Options -}}
   <figcaption>{{ $caption | markdownify }}</figcaption>
 </figure>
 {{- else -}}
-  {{- highlight .Inner .Type .Options -}}
+  {{- highlight $code .Type .Options -}}
 {{- end -}}
