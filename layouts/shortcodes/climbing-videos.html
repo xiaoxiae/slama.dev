@@ -1,0 +1,201 @@
+{{- $sessions := site.Data.climbing.climbing.sessions -}}
+{{- $walls := site.Data.climbing.walls -}}
+{{- $orphaned := site.Data.climbing.climbing.orphaned_videos -}}
+
+{{- /* Collect all videos grouped by wall and color */ -}}
+{{- $videosByWall := dict -}}
+
+{{- range $date, $session := $sessions -}}
+  {{- $wallName := $session.wall | default "Smíchoff" -}}
+  {{- $wallStub := $wallName | lower | replaceRE " " "-" | replaceRE "í" "i" -}}
+
+  {{- /* Regular wall colors */ -}}
+  {{- $wall := index $walls $wallStub -}}
+  {{- $colors := slice -}}
+  {{- with $wall -}}
+    {{- $colors = .colors | default slice -}}
+  {{- end -}}
+
+  {{- range $colors -}}
+    {{- $color := . -}}
+    {{- $colorData := index $session $color -}}
+    {{- if $colorData -}}
+      {{- with $colorData.videos -}}
+        {{- range . -}}
+          {{- $key := $wallName -}}
+          {{- if not (index $videosByWall $key) -}}
+            {{- $videosByWall = merge $videosByWall (dict $key (dict)) -}}
+          {{- end -}}
+          {{- $wallDict := index $videosByWall $key -}}
+          {{- if not (index $wallDict $color) -}}
+            {{- $wallDict = merge $wallDict (dict $color slice) -}}
+          {{- end -}}
+          {{- $colorVids := index $wallDict $color -}}
+          {{- $colorVids = $colorVids | append . -}}
+          {{- $wallDict = merge $wallDict (dict $color $colorVids) -}}
+          {{- $videosByWall = merge $videosByWall (dict $key $wallDict) -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- /* Other color */ -}}
+  {{- with $session.other -}}
+    {{- with .videos -}}
+      {{- range . -}}
+        {{- $key := $wallName -}}
+        {{- if not (index $videosByWall $key) -}}
+          {{- $videosByWall = merge $videosByWall (dict $key (dict)) -}}
+        {{- end -}}
+        {{- $wallDict := index $videosByWall $key -}}
+        {{- $color := "other" -}}
+        {{- if not (index $wallDict $color) -}}
+          {{- $wallDict = merge $wallDict (dict $color slice) -}}
+        {{- end -}}
+        {{- $colorVids := index $wallDict $color -}}
+        {{- $colorVids = $colorVids | append . -}}
+        {{- $wallDict = merge $wallDict (dict $color $colorVids) -}}
+        {{- $videosByWall = merge $videosByWall (dict $key $wallDict) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- /* Null color */ -}}
+  {{- with index $session "null" -}}
+    {{- with .videos -}}
+      {{- range . -}}
+        {{- $key := $wallName -}}
+        {{- if not (index $videosByWall $key) -}}
+          {{- $videosByWall = merge $videosByWall (dict $key (dict)) -}}
+        {{- end -}}
+        {{- $wallDict := index $videosByWall $key -}}
+        {{- $color := "null" -}}
+        {{- if not (index $wallDict $color) -}}
+          {{- $wallDict = merge $wallDict (dict $color slice) -}}
+        {{- end -}}
+        {{- $colorVids := index $wallDict $color -}}
+        {{- $colorVids = $colorVids | append . -}}
+        {{- $wallDict = merge $wallDict (dict $color $colorVids) -}}
+        {{- $videosByWall = merge $videosByWall (dict $key $wallDict) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- /* Kilter */ -}}
+  {{- with $session.kilter -}}
+    {{- range $grade, $gradeData := . -}}
+      {{- if and (ne $grade "angle") (reflect.IsMap $gradeData) -}}
+        {{- with $gradeData.videos -}}
+          {{- range . -}}
+            {{- $key := "Kilter Board" -}}
+            {{- if not (index $videosByWall $key) -}}
+              {{- $videosByWall = merge $videosByWall (dict $key (dict)) -}}
+            {{- end -}}
+            {{- $wallDict := index $videosByWall $key -}}
+            {{- if not (index $wallDict $grade) -}}
+              {{- $wallDict = merge $wallDict (dict $grade slice) -}}
+            {{- end -}}
+            {{- $colorVids := index $wallDict $grade -}}
+            {{- $colorVids = $colorVids | append . -}}
+            {{- $wallDict = merge $wallDict (dict $grade $colorVids) -}}
+            {{- $videosByWall = merge $videosByWall (dict $key $wallDict) -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- /* Moon */ -}}
+  {{- with $session.moon -}}
+    {{- range $grade, $gradeData := . -}}
+      {{- if and (ne $grade "setup") (reflect.IsMap $gradeData) -}}
+        {{- with $gradeData.videos -}}
+          {{- range . -}}
+            {{- $key := "MoonBoard" -}}
+            {{- if not (index $videosByWall $key) -}}
+              {{- $videosByWall = merge $videosByWall (dict $key (dict)) -}}
+            {{- end -}}
+            {{- $wallDict := index $videosByWall $key -}}
+            {{- if not (index $wallDict $grade) -}}
+              {{- $wallDict = merge $wallDict (dict $grade slice) -}}
+            {{- end -}}
+            {{- $colorVids := index $wallDict $grade -}}
+            {{- $colorVids = $colorVids | append . -}}
+            {{- $wallDict = merge $wallDict (dict $grade $colorVids) -}}
+            {{- $videosByWall = merge $videosByWall (dict $key $wallDict) -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+<div class='climbing-journal-vids-only'>
+{{- range $wallName, $colors := $videosByWall -}}
+  {{- /* Skip walls with no videos */ -}}
+  {{- $hasVideos := false -}}
+  {{- range $color, $vids := $colors -}}
+    {{- if gt (len $vids) 0 -}}
+      {{- $hasVideos = true -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not $hasVideos -}}
+    {{- continue -}}
+  {{- end -}}
+
+<h3>{{ $wallName }}</h3><ul>
+  {{- $wallStub := $wallName | lower | replaceRE " " "-" | replaceRE "í" "i" -}}
+  {{- $wall := index $walls $wallStub -}}
+  {{- $grading := "color" -}}
+  {{- with $wall -}}
+    {{- $grading = .grading | default "color" -}}
+  {{- end -}}
+  {{- $isKilter := eq $wallName "Kilter Board" -}}
+  {{- $isMoon := eq $wallName "MoonBoard" -}}
+  {{- if or $isKilter $isMoon -}}
+    {{- $grading = "french" -}}
+  {{- end -}}
+
+  {{- range $color, $vids := $colors -}}
+    {{- if eq (len $vids) 0 -}}
+      {{- continue -}}
+    {{- end -}}
+
+    {{- /* Determine CSS class */ -}}
+    {{- $colorClass := "" -}}
+    {{- $colorText := "" -}}
+    {{- $count := printf "<strong>%d</strong>" (len $vids) -}}
+
+    {{- if eq $color "other" -}}
+      {{- $colorClass = "climbing-other climbing-other-text" -}}
+      {{- $colorText = printf "other: %s" $count -}}
+    {{- else if eq $color "null" -}}
+      {{- $colorClass = "climbing-other climbing-other-text" -}}
+      {{- $colorText = $count -}}
+    {{- else if eq $color "christmas" -}}
+      {{- $colorClass = "climbing-christmas climbing-christmas-text" -}}
+      {{- $colorText = printf "🎄 %s" $count -}}
+    {{- else if or (eq $grading "v-grade") (hasPrefix $color "V") -}}
+      {{- $colorClass = printf "climbing-%s climbing-v" $color -}}
+      {{- $colorText = printf "<strong>%s:</strong> %s" $color $count -}}
+    {{- else if or (eq $grading "french") (strings.ContainsAny $color "abc+") -}}
+      {{- $safeColor := replace $color "+" "p" -}}
+      {{- $colorClass = printf "climbing-%s climbing-f" $safeColor -}}
+      {{- $colorText = printf "<strong>%s:</strong> %s" $color $count -}}
+    {{- else if eq $grading "number" -}}
+      {{- $colorClass = printf "climbing-%s climbing-number" $color -}}
+      {{- $colorText = printf "<strong>%s:</strong> %s" $color $count -}}
+    {{- else -}}
+      {{- $colorClass = printf "climbing-%s climbing-%s-text" $color $color -}}
+      {{- $colorText = $count -}}
+    {{- end -}}
+
+<li><mark class='climbing-diary-record {{ $colorClass }}'>{{ $colorText | safeHTML }} [
+    {{- range $vids -}}
+<a class='climbing-link' href='/climbing/videos/{{ .file }}'>{{ if eq (default 2 .attempts) 1 }}F{{ else }}A{{ end }}</a>
+    {{- end -}}
+]</mark> </li>
+  {{- end -}}
+</ul>
+{{- end -}}
+</div>

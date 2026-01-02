@@ -1,0 +1,38 @@
+{{- $sessions := site.Data.climbing.climbing.sessions -}}
+
+{{- /* Sort dates descending */ -}}
+{{- $sortedDates := slice -}}
+{{- range $date, $_ := $sessions -}}
+  {{- $sortedDates = $sortedDates | append $date -}}
+{{- end -}}
+{{- $sortedDates = sort $sortedDates "value" "desc" -}}
+
+{{- range $sortedDates -}}
+  {{- $date := . -}}
+  {{- $session := index $sessions $date -}}
+
+  {{- /* Skip placeholders and home sessions */ -}}
+  {{- if $session.placeholder -}}
+    {{- continue -}}
+  {{- end -}}
+
+  {{- $wall := $session.wall | default "" -}}
+  {{- if eq $wall "home" -}}
+    {{- continue -}}
+  {{- end -}}
+
+  {{- $where := "" -}}
+  {{- if $session.wall -}}
+    {{- $where = $session.wall -}}
+  {{- else if $session.location -}}
+    {{- $where = $session.location -}}
+    {{- /* Strip HTML tags */ -}}
+    {{- $where = replaceRE "<[^>]+>" "" $where -}}
+  {{- else -}}
+    {{- continue -}}
+  {{- end -}}
+
+  {{- $d := time $date -}}
+{{ (printf "Last climbing session: **%d. %s. %d** at [%s ↩](#%s)." $d.Day ($d.Format "1") $d.Year $where $date) | markdownify }}
+  {{- break -}}
+{{- end -}}

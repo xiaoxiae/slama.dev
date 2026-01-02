@@ -7,7 +7,7 @@ icon: fa-bolt
 
 
 <p class="center">This page is dedicated to my climbing life.<br>
-{{< embed "last-climb.txt" >}}</p>
+{{< climbing-last >}}</p>
 
 {{< image_section caption="From Boulerhaus' Full Haus Cup (19. 10. 2024). © <a href=\"https://www.boulderhaus.net/events/full-haus-vol.-1/\">Boulderhaus Darmstadt</a>" >}}
 {{< image_row "2024-10-19.jpg" >}}
@@ -26,4 +26,4 @@ The format for **sport climbing** is <mark class="climbing-diary-record climbing
 
 _Each of the videos are licensed under **[CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)**, so kindly respect it if you plan on using any of them for uses other than personal._
 
-{{< embed "diary.txt" >}}
+{{< climbing-diary >}}

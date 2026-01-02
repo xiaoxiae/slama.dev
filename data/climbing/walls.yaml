@@ -1,0 +1,105 @@
+# Wall configuration for climbing journal
+# grading: color (color names), v-grade (V2-V10), french (6a-8c+), number (1-9)
+
+smíchoff:
+  name: "Smíchoff"
+  url: "https://www.lezeckecentrum.cz/cs/"
+  colors: [red, salmon, blue, yellow]
+  grading: color
+
+jungle:
+  name: "Jungle"
+  url: "https://www.jungleletnany.cz/"
+  colors: [green, blue, red]
+  grading: color
+
+boulderhaus:
+  name: "Boulderhaus"
+  url: "https://www.boulderhaus.net/boulderhaus-heidelberg/"
+  colors: [christmas, blue, red, black, purple]
+  grading: color
+
+crimp:
+  name: "Crimp"
+  url: "https://www.crimp-heidelberg.com/"
+  colors: [blue, red, black, purple]
+  grading: color
+
+boulderhaus-darmstadt:
+  name: "Boulderhaus Darmstadt"
+  url: "https://www.boulderhaus.net/boulderhaus-darmstadt/"
+  colors: [christmas, blue, red, black]
+  grading: color
+
+boulder-bar:
+  name: "Boulder Bar"
+  url: "https://www.boulder.cz/"
+  colors: [green, blue, red]
+  grading: color
+
+třináctka:
+  name: "Třináctka"
+  url: "http://stenastodulky.cz/"
+  colors: [V2, V3, V4, V5, V6, V7, V8, V9, V10]
+  grading: v-grade
+
+boulder-point:
+  name: "Boulder Point"
+  url: "http://www.boulderpoint.cz/"
+  colors: [6a, 6a+, 6b, 6b+, 6c, 6c+, 7a, 7a+, 7b, 7b+, 7c, 7c+, 8a, 8a+, 8b, 8b+, 8c, 8c+]
+  grading: french
+
+climbhouse-brasov:
+  name: "Climbhouse Brașov"
+  url: "https://climbhouse.ro/"
+  colors: ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+  grading: number
+
+boulderwelt-karlsruhe:
+  name: "Boulderwelt Karlsruhe"
+  url: "https://www.boulderwelt-karlsruhe.de/"
+  colors: ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+  grading: number
+
+steil-karlsruhe:
+  name: "Steil Karlsruhe"
+  url: "https://boulderhalle-steil.com/en/"
+  colors: ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+  grading: number
+
+# Walls without color progression (URL only)
+beest:
+  name: "Beest Boulders"
+  url: "https://beestboulders.com/"
+  colors: []
+  grading: color
+
+bigwall:
+  name: "BigWall"
+  url: "https://www.big-wall.cz/"
+  colors: []
+  grading: color
+
+lokalblok:
+  name: "Lokalblok"
+  url: "http://www.lokalblok.cz/lezecka-stena/"
+  colors: []
+  grading: color
+
+mandala:
+  name: "Mandala"
+  url: "https://boulderhalle-dresden.de/"
+  colors: []
+  grading: color
+
+studiobloc:
+  name: "Studiobloc"
+  url: "http://studiobloc.de/"
+  colors: []
+  grading: color
+
+unknown:
+  name: "Unknown"
+  url: ""
+  colors: []
+  grading: color

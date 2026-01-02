@@ -1,0 +1,319 @@
+{{- $sessions := site.Data.climbing.climbing.sessions -}}
+{{- $walls := site.Data.climbing.walls -}}
+{{- $orphaned := site.Data.climbing.climbing.orphaned_videos -}}
+
+{{- /* Collect all videos to find SOTM */ -}}
+{{- $allVideos := slice -}}
+{{- range $date, $session := $sessions -}}
+  {{- range $key, $val := $session -}}
+    {{- if reflect.IsMap $val -}}
+      {{- with $val.videos -}}
+        {{- range . -}}
+          {{- $allVideos = $allVideos | append (dict "file" .file "date" $date "sotm" (default false .sotm)) -}}
+        {{- end -}}
+      {{- end -}}
+      {{- /* Handle nested grades in kilter/moon */ -}}
+      {{- range $grade, $gradeData := $val -}}
+        {{- if reflect.IsMap $gradeData -}}
+          {{- with $gradeData.videos -}}
+            {{- range . -}}
+              {{- $allVideos = $allVideos | append (dict "file" .file "date" $date "sotm" (default false .sotm)) -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Build SOTM lookup by year-month */ -}}
+{{- $sotmByMonth := dict -}}
+{{- range $allVideos -}}
+  {{- if .sotm -}}
+    {{- $d := time .date -}}
+    {{- $key := printf "%d-%02d" $d.Year $d.Month -}}
+    {{- $sotmByMonth = merge $sotmByMonth (dict $key .file) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Sort dates descending */ -}}
+{{- $sortedDates := slice -}}
+{{- range $date, $_ := $sessions -}}
+  {{- $sortedDates = $sortedDates | append $date -}}
+{{- end -}}
+{{- $sortedDates = sort $sortedDates "value" "desc" -}}
+
+<div class="climbing-journal">
+{{- $currentYear := 0 -}}
+{{- $currentMonth := 0 -}}
+{{- $first := true -}}
+
+{{- range $sortedDates -}}
+  {{- $date := . -}}
+  {{- $session := index $sessions $date -}}
+  {{- $d := time $date -}}
+
+  {{- /* Year grouping */ -}}
+  {{- if ne $currentYear $d.Year -}}
+    {{- if $first -}}
+      <details open class='climbing-year-details'><summary><h3>{{ $d.Year }}</h3></summary> <ul>
+      {{- $first = false -}}
+    {{- else -}}
+      </ul></details> <details class='climbing-year-details'><summary><h3>{{ $d.Year }}</h3></summary> <ul>
+    {{- end -}}
+    {{- $currentYear = $d.Year -}}
+    {{- $currentMonth = 0 -}}
+  {{- end -}}
+
+  {{- /* Month grouping */ -}}
+  {{- if ne $currentMonth $d.Month -}}
+    {{- $monthKey := printf "%d-%02d" $d.Year $d.Month -}}
+    {{- $sotm := index $sotmByMonth $monthKey -}}
+    {{- $monthName := index (slice "" "January" "February" "March" "April" "May" "June" "July" "August" "September" "October" "November" "December") $d.Month -}}
+    </ul><h4>{{ $monthName }}{{ with $sotm }} (<a href='/climbing/videos/{{ . }}'>best send</a>){{ end }}</h4><ul>
+    {{- $currentMonth = $d.Month -}}
+  {{- end -}}
+
+  {{- /* Placeholder entries */ -}}
+  {{- if $session.placeholder -}}
+    {{- $note := $session.note | default "" -}}
+    {{- $note = replace $note "--" "–" -}}
+    {{- $note = replace $note ":)" "🙂" -}}
+    {{- $note = replace $note ":P" "😛" -}}
+    {{- $note = replace $note ":D" "😀" -}}
+    {{- $note = replace $note ":|" "😐" -}}
+    {{- $note = replace $note ":/" "🫤" -}}
+    {{- $note = replace $note "<3" "❤️<" -}}
+    {{- $note = replace $note ":(" "☹️" -}}
+<div class='half-visible'><p>⋮<br>{{ $note }}<br>⋮</p></div>
+    {{- continue -}}
+  {{- end -}}
+
+  {{- /* Get wall info */ -}}
+  {{- $wallName := $session.wall | default "Smíchoff" -}}
+  {{- $wallStub := $wallName | anchorize -}}
+  {{- $wall := index $walls $wallStub -}}
+  {{- $colors := slice -}}
+  {{- with $wall -}}
+    {{- $colors = .colors | default slice -}}
+  {{- end -}}
+
+  {{- /* Background image */ -}}
+  {{- with $session.image -}}
+<div class='climbing-bg-div' style='background-image: url(/climbing/images/{{ . }})'>
+  {{- end -}}
+
+<li id='{{ $date }}'><ul class='climbing-entry-header'><li><strong>{{ $d.Day }}. {{ $d.Format "1" }}. {{ $d.Year }}</strong>
+  {{- if $session.location -}}
+ (at {{ $session.location | safeHTML }})
+    {{- with $session.guide -}}
+      {{- if strings.Contains . "http" -}}
+ [<a href='{{ . }}'>guide</a>]
+      {{- else -}}
+ [<a href='/climbing/guides/{{ . }}'>guide</a>]
+      {{- end -}}
+    {{- end -}}
+</li> <li>
+  {{- else -}}
+ (at {{ with $wall }}<a href='{{ .url }}'><img class='climbing-wall-logo' src='/climbing/wall-logos/{{ $wallStub }}.svg' alt='Logo of the {{ .name }} climbing wall.'/></a>{{ else }}<strong>{{ $wallName }}</strong>{{ end }}
+    {{- if $session.rebuilt -}}, <strong>new boulders</strong>{{ end -}}
+)</li> <li>
+  {{- end -}}
+
+  {{- /* Render colors */ -}}
+  {{- $someColorAdded := false -}}
+  {{- if not $session.location -}}
+    {{- range $colors -}}
+      {{- $color := . -}}
+      {{- $colorData := index $session $color -}}
+      {{- if $colorData -}}
+        {{- $someColorAdded = true -}}
+        {{- $oc := $colorData.old | default 0 -}}
+        {{- $nc := $colorData.new | default 0 -}}
+        {{- $vs := $colorData.videos | default slice -}}
+        {{- $grading := "color" -}}
+        {{- with $wall -}}{{- $grading = .grading | default "color" -}}{{- end -}}
+        {{- template "colorMark" (dict "color" $color "old" $oc "new" $nc "videos" $vs "wallStub" $wallStub "walls" $walls "grading" $grading) -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{- /* Other color */ -}}
+    {{- with $session.other -}}
+      {{- $someColorAdded = true -}}
+      {{- $oc := .old | default 0 -}}
+      {{- $nc := .new | default 0 -}}
+      {{- $vs := .videos | default slice -}}
+      {{- template "colorMark" (dict "color" "other" "old" $oc "new" $nc "videos" $vs "wallStub" $wallStub "walls" $walls "grading" "color") -}}
+    {{- end -}}
+
+    {{- /* Null color (videos without color) */ -}}
+    {{- with index $session "null" -}}
+      {{- $someColorAdded = true -}}
+      {{- $oc := .old | default 0 -}}
+      {{- $nc := .new | default 0 -}}
+      {{- $vs := .videos | default slice -}}
+      {{- template "colorMark" (dict "color" nil "old" $oc "new" $nc "videos" $vs "wallStub" $wallStub "walls" $walls "grading" "color") -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- /* Kilter Board */ -}}
+  {{- with $session.kilter -}}
+    {{- if $someColorAdded }}/ {{ end -}}
+<strong>Kilter Board ({{ .angle }}°): </strong>
+    {{- range $grade, $gradeData := . -}}
+      {{- if ne $grade "angle" -}}
+        {{- if reflect.IsMap $gradeData -}}
+          {{- $oc := $gradeData.old | default 0 -}}
+          {{- $nc := $gradeData.new | default 0 -}}
+          {{- $vs := $gradeData.videos | default slice -}}
+          {{- template "colorMark" (dict "color" $grade "old" $oc "new" $nc "videos" $vs "wallStub" "" "walls" $walls "grading" "french") -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- /* MoonBoard */ -}}
+  {{- with $session.moon -}}
+    {{- if $someColorAdded }}/ {{ end -}}
+<strong>MoonBoard ({{ .setup }}): </strong>
+    {{- range $grade, $gradeData := . -}}
+      {{- if ne $grade "setup" -}}
+        {{- if reflect.IsMap $gradeData -}}
+          {{- $oc := $gradeData.old | default 0 -}}
+          {{- $nc := $gradeData.new | default 0 -}}
+          {{- $vs := $gradeData.videos | default slice -}}
+          {{- template "colorMark" (dict "color" $grade "old" $oc "new" $nc "videos" $vs "wallStub" "" "walls" $walls "grading" "french") -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+</li></ul>
+
+  {{- /* Routes */ -}}
+  {{- with $session.routes -}}
+<ul class='climbing-routes-list'>
+    {{- range . -}}
+<li><mark class='climbing-diary-record climbing-other climbing-other-text'>{{ .name }} ({{ .difficulty }}{{ with .status }}, {{ . }}{{ end }}){{ with .video }} [<a class='climbing-link' href='/climbing/videos/{{ . }}'>video</a>]{{ end }}</mark></li>
+    {{- end -}}
+</ul>
+  {{- end -}}
+
+  {{- /* Hangboard */ -}}
+  {{- with $session.hangboard -}}
+    {{- $params := split .parameters "/" -}}
+    {{- $reps := index $params 0 -}}
+    {{- $hang := index $params 1 -}}
+    {{- $break := index $params 2 -}}
+    {{- $longBreak := index $params 3 -}}
+<p class='climbing-training'><strong>Hangboard:</strong> <strong>{{ len .exercises }}x{{ $reps }}</strong> reps of hang <strong>{{ $hang }}s</strong> / break <strong>{{ $break }}s</strong> with <strong>{{ $longBreak }}s</strong> in between</p><ul><li><a href='/climbing/boards/{{ .type }}.svg'><strong>exercises:</strong></a> {{ range $i, $e := .exercises }}{{ if $i }}  |  {{ end }}<em>{{ $e }}</em>{{ end }}</li></ul>
+  {{- end -}}
+
+  {{- /* Training */ -}}
+  {{- with $session.training -}}
+<p class='climbing-training'><strong>Training:</strong> {{ . }}</p>
+  {{- end -}}
+
+  {{- /* Note */ -}}
+  {{- with $session.note -}}
+    {{- $note := "" -}}
+    {{- if reflect.IsSlice . -}}
+      {{- $note = delimit . "</p><p class='climbing-note'>" -}}
+    {{- else -}}
+      {{- $note = . -}}
+    {{- end -}}
+    {{- $note = replace $note "--" "–" -}}
+    {{- $note = replace $note ":)" "<span class='emoji'>🙂</span>" -}}
+    {{- $note = replace $note ":P" "<span class='emoji'>😛</span>" -}}
+    {{- $note = replace $note ":D" "<span class='emoji'>😀</span>" -}}
+    {{- $note = replace $note ":|" "<span class='emoji'>😐</span>" -}}
+    {{- $note = replace $note ":/" "<span class='emoji'>🫤</span>" -}}
+    {{- $note = replace $note "<3" "<span class='emoji'>❤️</span>" -}}
+    {{- $note = replace $note ":(" "<span class='emoji'>☹️</span>" -}}
+<p class='climbing-note'>{{ $note | markdownify }}</p>
+  {{- end -}}
+</li>
+  {{- with $session.image -}}
+</div>
+  {{- end -}}
+
+{{- end -}}
+</ul></details>
+
+{{- /* Orphaned videos section */ -}}
+{{- with $orphaned -}}
+<h3>Unlinked Videos</h3>
+<p>These are videos that were added to this website before the journal was created (before 2020), so they can't be linked to any particular journal entry. They are all from Smíchoff, since that's where I was climbing at the time.</p>
+  {{- range $wallName, $colors := . -}}
+    {{- range $color, $vids := $colors -}}
+      {{- if gt (len $vids) 0 -}}
+        {{- template "colorMark" (dict "color" $color "old" (len $vids) "new" 0 "videos" $vids "wallStub" $wallName "walls" $walls "grading" "color") -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+<p></p>
+{{- end -}}
+
+</div>
+
+{{- define "colorMark" -}}
+  {{- $color := .color -}}
+  {{- $oc := .old -}}
+  {{- $nc := .new -}}
+  {{- $vs := .videos -}}
+  {{- $wallStub := .wallStub -}}
+  {{- $grading := .grading -}}
+
+  {{- /* Skip if no content */ -}}
+  {{- if and (eq $oc 0) (eq $nc 0) (eq (len $vs) 0) -}}
+    {{- return -}}
+  {{- end -}}
+
+  {{- /* Format count */ -}}
+  {{- $count := "" -}}
+  {{- if and (eq $oc 0) (gt $nc 0) -}}
+    {{- $count = printf "<span class='underline'>%d</span>" $nc -}}
+  {{- else if and (gt $oc 0) (eq $nc 0) -}}
+    {{- $count = printf "%d" $oc -}}
+  {{- else if and (gt $oc 0) (gt $nc 0) -}}
+    {{- $count = printf "%d/<span class='underline'>%d</span>" $oc $nc -}}
+  {{- end -}}
+
+  {{- if $count -}}
+    {{- $count = printf "<strong>%s</strong>" $count -}}
+  {{- end -}}
+
+  {{- /* Determine CSS class */ -}}
+  {{- $colorClass := "" -}}
+  {{- $colorText := "" -}}
+  {{- if eq $color "other" -}}
+    {{- $colorClass = "climbing-other climbing-other-text" -}}
+    {{- $colorText = printf "other: %s" $count -}}
+  {{- else if eq $color nil -}}
+    {{- $colorClass = "climbing-other climbing-other-text" -}}
+    {{- $colorText = $count -}}
+  {{- else if eq $color "christmas" -}}
+    {{- $colorClass = "climbing-christmas climbing-christmas-text" -}}
+    {{- $colorText = printf "🎄 %s" $count -}}
+  {{- else if or (eq $grading "v-grade") (hasPrefix (printf "%s" $color) "V") -}}
+    {{- $colorClass = printf "climbing-%s climbing-v" $color -}}
+    {{- $colorText = printf "<strong>%s:</strong> %s" $color $count -}}
+  {{- else if or (eq $grading "french") (findRE "^[0-9]" (printf "%s" $color)) -}}
+    {{- $safeColor := replace (printf "%s" $color) "+" "p" -}}
+    {{- $colorClass = printf "climbing-%s climbing-f" $safeColor -}}
+    {{- $colorText = printf "<strong>%s:</strong> %s" $color $count -}}
+  {{- else if eq $grading "number" -}}
+    {{- $colorClass = printf "climbing-%s climbing-number" $color -}}
+    {{- $colorText = printf "<strong>%s:</strong> %s" $color $count -}}
+  {{- else -}}
+    {{- /* Color grading - don't show color name */ -}}
+    {{- $colorClass = printf "climbing-%s climbing-%s-text" $color $color -}}
+    {{- $colorText = $count -}}
+  {{- end -}}
+
+<mark class='climbing-diary-record {{ $colorClass }}'>{{ $colorText | safeHTML }}
+  {{- if gt (len $vs) 0 }} [
+    {{- range $vs -}}
+<a class='climbing-link' href='/climbing/videos/{{ .file }}'>{{ if eq (default 2 .attempts) 1 }}F{{ else }}A{{ end }}</a>
+    {{- end -}}
+]{{- end -}}</mark>
+{{- end -}}
