@@ -6,7 +6,7 @@ categoryIcon: /assets/category-icons/3d-print.webp
 bluesky_url: https://bsky.app/profile/tomas.slama.dev/post/3lxfbgjnk5k26
 ---
 
-A blind holder, as pictured on the image below, recently broke in our appartment.
+A blind holder, as pictured on the image below, recently broke in our apartment.
 Naturally, the only reasonable thing to do was to ~~go to Obi and buy a new one for 3 euros~~
 - take ~80 images of the working one from various angles,
 - use [`colmap`](https://colmap.github.io/) to reconstruct the 3D model,

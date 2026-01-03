@@ -37,7 +37,7 @@ Additionally, just like any {{< doc "motion-canvas" "Node" "2d/components/Node" 
 #### Multi-camera
 
 For more complicated animations, we might be interested in using multiple cameras showing the same thing, e.g. for main/side camera setups.
-To achieve this, we need to store everything we want to dispaly in a single {{< doc "motion-canvas" "Node" "2d/components/Node" >}} that **has to be on the top level** of the scene hierarchy, which we will feed to {{< doc "motion-canvas" "Camera.Stage" "2d/components/Camera/#static-Stage" >}} components:
+To achieve this, we need to store everything we want to display in a single {{< doc "motion-canvas" "Node" "2d/components/Node" >}} that **has to be on the top level** of the scene hierarchy, which we will feed to {{< doc "motion-canvas" "Camera.Stage" "2d/components/Camera/#static-Stage" >}} components:
 
 ```tsx {file="multi-camera.tsx"}
 ```
@@ -69,7 +69,7 @@ Getting back to Motion Canvas, here is a simple example that creates a gradient 
 
 The code should be quite straightforward, but let's comment on a few things, mainly for those who are learning about shaders for the first time (just like me when writing this example).
 
-First of, each Motion Canvas shader will recieve a set of the following `in`puts:
+First of, each Motion Canvas shader will receive a set of the following `in`puts:
 
 ```glsl
 in vec2 screenUV;
@@ -84,7 +84,7 @@ out vec4 outColor;
 
 #### Uniforms
 
-Each shader also recieves a set of values called `uniforms` (since their value stays the same for all shaders in a single render) of a number of useful things:
+Each shader also receives a set of values called `uniforms` (since their value stays the same for all shaders in a single render) of a number of useful things:
 
 ```glsl
 uniform float time;
