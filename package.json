@@ -4,6 +4,7 @@
   "devDependencies": {
     "html-validate": "^8.0.0",
     "pa11y": "^8.0.0",
+    "pa11y-ci": "^4.0.1",
     "prettier": "^3.0.0",
     "subfont": "^7.2.1"
   },

@@ -38,6 +38,8 @@ end
 
 function check
     set -l errors 0
+    set -l report_dir reports
+    mkdir -p $report_dir
 
     # Check for required tools
     if not command -q lychee
@@ -59,15 +61,19 @@ function check
         sleep 0.1
     end
 
-    # Link checking (no server needed)
+    # Link checking
     echo "Running lychee link checker..."
     lychee --timeout 5 --root-dir public/ \
         --exclude 'public/manim/\d+$' \
         --exclude 'public/motion-canvas/\d+$' \
         --exclude 'public/lecture-notes/' \
-        --exclude 'github\.com/xiaoxiae/slama\.dev/blob/main/content' \
-        'public/**/*.html'
-    or set errors (math $errors + 1)
+        'public/**/*.html' > $report_dir/lychee.txt 2>&1
+    if test $status -ne 0
+        set errors (math $errors + 1)
+        echo "  FAILED - see $report_dir/lychee.txt"
+    else
+        echo "  OK"
+    end
 
     # Wait for server to be ready
     while not curl -s http://localhost:13130 > /dev/null 2>&1
@@ -76,14 +82,19 @@ function check
 
     # Accessibility testing
     echo "Running pa11y accessibility checker..."
-    npx pa11y http://localhost:13130
-    or set errors (math $errors + 1)
+    npx pa11y-ci --sitemap http://localhost:13130/sitemap.xml > $report_dir/pa11y.txt 2>&1
+    if test $status -ne 0
+        set errors (math $errors + 1)
+        echo "  FAILED - see $report_dir/pa11y.txt"
+    else
+        echo "  OK"
+    end
 
     echo "Stopping local server..."
     kill $hugo_pid 2>/dev/null
 
     if test $errors -gt 0
-        echo "Check completed with $errors error(s)."
+        echo "Check completed with $errors error(s). Reports in $report_dir/"
         return 1
     end
     echo "All checks passed."

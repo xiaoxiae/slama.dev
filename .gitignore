@@ -39,3 +39,9 @@ __pycache__/
 
 # LLM
 CLAUDE.md
+
+# Check reports
+reports/
+
+# Other
+ignored/
