@@ -8,7 +8,7 @@ toc: true
 ### Preface
 This post is **not** about how to illegally download lectures to share them online, since it's something you obviously shouldn't do (for both moral and legal reasons).
 
-It is instead meant for people who would like to download videos for offline viewing, when the sites they're viewing them on don't support this by default. They usually do this so for reasons mentioned above, which is frustrating for people who:
+It is instead meant for people who would like to download videos for offline viewing, when the sites they're viewing them on don't support this by default. They usually do this for reasons mentioned above, which is frustrating for people who:
 - would rather use a video player of their choice
 - have a bad internet connection and so can't view the video without lagging
 - want to view it later when they won't have an internet connection

@@ -16,7 +16,7 @@ _This part used to also include plugins, but all of the original ones are broken
 
 ### Custom objects
 For more complex scenes, it might be a good idea to create custom Manim objects.
-These usually reperesent more complex objects where simple primitives don't suffice.
+These usually represent more complex objects where simple primitives don't suffice.
 
 To see how to create them, let's look at an example of a stack:
 

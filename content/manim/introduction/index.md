@@ -29,7 +29,7 @@ To follow the series, basic knowledge of Python is required.
 It is also useful to know the basics of \(\TeX\), which we'll use to typeset math and text, but it is not required.
 You will also need to [install Manim](https://docs.manim.community/en/stable/installation.html) if you wish to try the example code yourself.
 
-Each part of the series contain a number of tasks for the reader to implement, which use the covered concepts.
+Each part of the series contains a number of tasks for the reader to implement, which use the covered concepts.
 The author's solutions are always provided (you are, however, highly encouraged to try to implement them first).
 
 The classes/methods discussed in the series are accompanied by the links to their pages on the [official Manim documentation](https://docs.manim.community/en/stable/index.html), which contains a more comprehensive description and the source code.

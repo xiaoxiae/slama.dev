@@ -31,7 +31,7 @@ In the latter case, there was no interview so you could skip directly to sending
 This includes (but is not limited to):
 - a filled-in **application**,
 - a certificate of **English proficiency** (at least B2)[^german]
-- a transcript of **completed study requirements** (I haven't received my degree at a time),
+- a transcript of **completed study requirements** (I hadn't received my degree at the time),
 - a certified copy of a **high-school diploma** and
 - a copy of my **ID** (or a VISA, if you're not a European citizen).
 
@@ -68,17 +68,17 @@ There are some more steps afterwards, such as
 
 but they are well-described in the documents you receive so I won't cover them here.
 
-[^fee]: This again depends on whether you're a citizen of EU (the fee is pretty small, we payed ~€170) or not (the fee is substantial large). In any case, the payment can take a little while to confirm (at least when paying from Revolut), so don't panic.
+[^fee]: This again depends on whether you're a citizen of EU (the fee is pretty small, we payed ~€170) or not (the fee is substantially large). In any case, the payment can take a little while to confirm (at least when paying from Revolut), so don't panic.
 
 #### Email Client Setup
 
-Adding this section since I had to do this multiple times and mess it up everytime (the [online documentation](https://www.urz.uni-heidelberg.de/en/service-catalogue/email-and-groupware/email-server) is not entirely well written).
+Adding this section since I had to do this multiple times and mess it up every time (the [online documentation](https://www.urz.uni-heidelberg.de/en/service-catalogue/email-and-groupware/email-server) is not entirely well written).
 The configuration for me (Tomáš Sláma, `tm304`) is the following:
 
 ```yaml
 Address: tomas.slama@stud.uni-heidelberg.de
 
-Incomming: # IMAP
+Incoming: # IMAP
     Hostname: imap.urz.uni-heidelberg.de
     Port: 143 # STARTTLS
     Username: tm304

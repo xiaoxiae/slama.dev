@@ -35,7 +35,7 @@ Množině \(\Omega\) říkáme prostor elementárních jevů.
 - **spojitý:** \(\Omega \subseteq \mathbb{R}^n\), \(\mathcal{F}\) vhodná, \(P\) definován přes integrál (viz dále)
 {{< /math >}}
 
-![Znázornění konečného prostoru s uniformní pravděpodobností. dvojice hodů kostkou jsou elementární jevy (\\(\\in \\Omega\\)), vyznačené množiny jsou měřené jevy (\\(\\in \\mathcal{F}\\)).](psp.webp "Znázornění konečného prostoru s uniformní pravděpodobností. dvojice hodů kostkou jsou elementární jevy (\\(\\in \\Omega\\)), vyznačené množiny jsou měřené jevy (\\(\\in \\mathcal{F}\\)).")
+![Znázornění konečného prostoru s uniformní pravděpodobností.](psp.webp "Znázornění konečného prostoru s uniformní pravděpodobností. Dvojice hodů kostkou jsou elementární jevy (\(\in \Omega\)), vyznačené množiny jsou měřené jevy (\(\in \mathcal{F}\)).")
 
 {{< math "lemma" "základní vlastnosti" >}} \(\forall A, B \in \mathcal{F}\) platí
 - \(P(A) + P(A^C) = 1\)

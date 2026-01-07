@@ -44,7 +44,7 @@ centerTitle: true
 {{< image_section caption="**Day 8:** Drive to Boston. 10/10 AirBnB, had Smokey the cat." >}}
 {{< /image_section >}}
 
-{{< image_section caption="**Day 9:** Boston. Very well organized tourist-wise (you literally a follow a trail on the road). Went to Better Bagels for lunch as a suggestion from Kačka's friend from the US and they did not disappoint!" >}}
+{{< image_section caption="**Day 9:** Boston. Very well organized tourist-wise (you literally follow a trail on the road). Went to Better Bagels for lunch as a suggestion from Kačka's friend from the US and they did not disappoint!" >}}
 {{< image_row "DSC6913.jpg :: Day 9" >}}
 {{< /image_section >}}
 
@@ -63,7 +63,7 @@ centerTitle: true
 {{< image_row "DSC7583.jpg :: Day 11, image 9 | DSC7565.jpg :: Day 11, image 10" >}}
 {{< /image_section >}}
 
-{{< image_section caption="**Day 12:** Saw a Broadway show (Spamalot)! Also ment up with Auxen and Caden for dinner (awesome sushi) and walked around Times Square at night." >}}
+{{< image_section caption="**Day 12:** Saw a Broadway show (Spamalot)! Also met up with Auxen and Caden for dinner (awesome sushi) and walked around Times Square at night." >}}
 {{< /image_section >}}
 
 {{< image_section caption="**Day 13:** The American Museum of Natural History. The exhibitions were almost as interesting as the animals outside – Central Park!" >}}
@@ -79,6 +79,6 @@ centerTitle: true
 {{< image_row "DSC8328.jpg :: Day 14, image 6" >}}
 {{< /image_section >}}
 
-{{< image_section caption="**Day 15:** Well MET (the art museum) and see you back some day!" >}}
+{{< image_section caption="**Day 15:** Visited the MET (the art museum) and see you back some day!" >}}
 {{< image_row "DSC8416.jpg :: Day 15, image 1 | DSC8436.jpg :: Day 15, image 2" >}}
 {{< /image_section >}}

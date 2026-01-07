@@ -38,21 +38,21 @@ sdb           8:16   1   3.7G  0 disk
 This is good news since it seems like the card is not entirely dead.
 Mounting it, however, hangs indefinitely, so it is not entirely alive either.
 
-Luckily, we can use the amazing **[`ddrescue` tool](https://www.gnu.org/software/ddrescue/)**, which exist specifically for extracting data from faulty devices such as the one we're dealing with here.
+Luckily, we can use the amazing **[`ddrescue` tool](https://www.gnu.org/software/ddrescue/)**, which exists specifically for extracting data from faulty devices such as the one we're dealing with here.
 Unluckily, this process can take a **very long time** since the faulty devices tend not to cooperate very well.
 
 Running **`sudo ddrescue -d /dev/sdb backup.img backup.log`** for approximately **40 hours** over many days rescued about **80%** of the data.
-Since at this point the percentage is growing by a very small amount and I'm inpatient, let's start looking at what the contents look like (_we can assume that certain parts will simply not be recovered_).
+Since at this point the percentage is growing by a very small amount and I'm impatient, let's start looking at what the contents look like (_we can assume that certain parts will simply not be recovered_).
 
 What we can do with a partially recovered image is to use another amazing tool called **[`photorec`](https://www.cgsecurity.org/wiki/PhotoRec),** which will try its best to find data within the image that **look like** they could be files.
 
-Running **`photorec backup.img`** on the paritally recovered image yields around `691` images, which initially sounds really good, but looking at their contents reveals that around `650` of these are thumbnails (which all images on the camera have) and only `41` are actual photos, which is very depressing... ☹️.
+Running **`photorec backup.img`** on the partially recovered image yields around `691` images, which initially sounds really good, but looking at their contents reveals that around `650` of these are thumbnails (which all images on the camera have) and only `41` are actual photos, which is very depressing... ☹️.
 
 This depression is further increased by grepping the binary image for strings that are in the format of the photos (`N0000JPG`) and getting `2281` hits, with the highest value being `N6147JPG`... meaning that, optimistically, we've recovered a whole **`1.8%`** of images... 😢.
 
 Welp, guess we'll have to wait a little longer. 😴
 
-### How `ddrescescue`s your data
+### How `ddrescue`s your data
 
 Since this will take a while, here is a short intermezzo on how `ddrescue` works.
 
@@ -63,7 +63,7 @@ Under those constraints and with minor simplifications[^1], the algorithm works 
 
 1. **copying:** read the disk from start to end (and reversed) multiple times, skipping bad / slow parts by skipping exponentially larger amounts of data until a good sector is found.
 2. **trimming:** read from both edges of the skipped parts until failure, determining the edges of the bad sectors (the ones from step **(1)** are very coarse).
-3. **scraping:** (repeatly) sequentially read the bad sectors to scrape every last bit.
+3. **scraping:** (repeatedly) sequentially read the bad sectors to scrape every last bit.
 
 Doing it this way will extract a lot of good data fast and then work on the rest slowly, with diminishing returns.
 It will also not jump all over the disk, doing mostly sequential reads that don't touch the bad sectors, which satisfies the assumptions we made about the input device.

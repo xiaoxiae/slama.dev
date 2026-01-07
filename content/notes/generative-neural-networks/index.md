@@ -616,7 +616,7 @@ TODO: add the drawing here
 {{% /float_box %}}
 
 #### Classical approaches for inverse inference
-1. **conjugate priors** -- chose \(p^S(Y)\) and \(p^S(X \mid Y)\) such taht \(p^S(Y \mid X)\) can be analytically calculated and is in the same distribution family as \(p^S(Y)\) (\(\Rightarrow\) incremental Bayesian updating)
+1. **conjugate priors** -- chose \(p^S(Y)\) and \(p^S(X \mid Y)\) such that \(p^S(Y \mid X)\) can be analytically calculated and is in the same distribution family as \(p^S(Y)\) (\(\Rightarrow\) incremental Bayesian updating)
     - common is the Gaussian (surprise surprise) but exists for many other distributions
     - \(+\) efficient and mathematically elegant
     - \(-\) very unrealistic \(\Rightarrow\) big simulation gap (usually picked for convenience)

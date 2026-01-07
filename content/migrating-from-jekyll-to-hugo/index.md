@@ -10,7 +10,7 @@ I've been working on this website for a few years now.
 Looking at the [Wayback machine](https://web.archive.org/web/20250101000000*/slama.dev), the oldest available snapshot is from **[23. 10. 2019](https://web.archive.org/web/20191023024113/http://slama.dev/)**, which itself is not far off from the [initial commit](https://github.com/xiaoxiae/slama.dev/commit/b7e9db8), which was 4. 5. 2019 -- **over 6 years ago**.
 
 Over time, I've added lecture notes ([Czech](/poznamky)/[English](/notes)), a [climbing diary](/climbing), some [pretty neat photos](/photos), and much more.
-While I'm really happy how the website grew, it was like building a ship as it's sailing the ocean -- add a sail here, patch the hull there, sprinkle some duct tape and hope it holds.
+While I'm really happy with how the website grew, it was like building a ship as it's sailing the ocean -- add a sail here, patch the hull there, sprinkle some duct tape and hope it holds.
 
 {{< image_section caption="The evolution of [slama.dev](/) over the years (click to enlarge). <br> (2021 is missing since it's not on wayback)" >}}
 {{< image_row "2019.png :: 2019 :: **2019** | 2020.png :: 2020 :: **2020** | 2022.png :: 2022 :: **2022** | 2023.png :: 2023 :: **2023**" >}}
@@ -200,7 +200,7 @@ If you really need Ruby-like tags, run a pre-processing script to generate the H
 
 I haven't talked about [asset minification](https://gohugo.io/hugo-pipes/minification/), [fingerprinting](https://gohugo.io/hugo-pipes/fingerprint/), [menus](https://gohugo.io/configuration/menus/), [built-in KaTeX math support](https://gohugo.io/content-management/mathematics/), and many other nice things that make using Hugo a much more pleasant experience than Jekyll, but I think I've shown enough to convince you that it really is.
 
-I do want to say that Jekyll has community plugins that implement a lot of the functionality covered in this post, which is great on paper but **all** of the most popular plugins that I looked at were **unmaintained** (i.e. youngest commit is older than 2 year) -- better to have a limited core implementation that's maintained, than a rich plugin that's not.
+I do want to say that Jekyll has community plugins that implement a lot of the functionality covered in this post, which is great on paper but **all** of the most popular plugins that I looked at were **unmaintained** (i.e. youngest commit is older than 2 years) -- better to have a limited core implementation that's maintained, than a rich plugin that's not.
 
 In the end, the **rewrite went great** -- the website feels the same, almost no redirects were necessary, the deployment is still a simple build + rsync (+ nginx restart for redirects to take place), and I can now focus on actual writing, instead of making more coffee since the build takes so long.
 

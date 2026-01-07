@@ -274,7 +274,7 @@ Each block will only contain the destination nodes in the corresponding block of
 |             | \(2\)  | \(2\)  | \(4\)       |
 
 #### Topic-Specific PageRank
-We can bias the random page walk to teleport to to relevant pages (from set \(S\)). For each teleport set \(S\), we get different vector \(r_S\). This changes the PageRank formulation like so:
+We can bias the random page walk to teleport to relevant pages (from set \(S\)). For each teleport set \(S\), we get different vector \(r_S\). This changes the PageRank formulation like so:
 
 \[A_{ij} = \beta M_{ij} + \begin{cases} (1 - \beta) / |S| & i \in S \\ 0 & \text{otherwise} \end{cases}\]
 
@@ -541,7 +541,7 @@ We can **generalize this** concept to counting **moments:** for \(m_a\) being th
 	- for each \(X\), we store the ID and the count of the given item
 	- to instantiate it, pick some random time \(t < n\) (we'll fix it later if we don't know \(n\))
 		- set \(X.\mathrm{val} = S[t]\) and count it from then on (to \(X.\mathrm{c}\))
-- the estimate of the the \(2\)nd moment is then \[\frac{1}{k} \sum_{X} n (2 \cdot X.\mathrm{c} - 1)\]
+- the estimate of the \(2\)nd moment is then \[\frac{1}{k} \sum_{X} n (2 \cdot X.\mathrm{c} - 1)\]
 	- for \(3\)rd, we can use \(n (3 \cdot X.\mathrm{c}^2 - 3 \cdot X.\mathrm{c} + 1)\)
 {{< /math >}}
 

@@ -6,7 +6,7 @@ description: A fun Python quine that I stumbled upon when messing around with er
 ---
 
 
-Here is a [quine](https://en.wikipedia.org/wiki/Quine_%28computing%29) that I recently stumbled upon when playing around with Python. It is likely a „cheating“ quine, due to the fact that I'm using interpreter messages (hence the title of this short post), but I found it quite interesting anyway.
+Here is a [quine](https://en.wikipedia.org/wiki/Quine_%28computing%29) that I recently stumbled upon when playing around with Python. It is likely a "cheating" quine, due to the fact that I'm using interpreter messages (hence the title of this short post), but I found it quite interesting anyway.
 
 Here it is, saved as a file called `a`:
 

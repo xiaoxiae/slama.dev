@@ -90,10 +90,10 @@ Thinking it strange but blaming it on the reduced temperature, I repeated the st
 
 Sigh.
 
-This is entirely my bad -- not making sure that the first layer sticks and going to bed instead is pretty irresponsible (although this has never happened to me for the first layer of this size).
+This is entirely my bad -- not making sure that the first layer sticks, and going to bed instead, is pretty irresponsible (although this has never happened to me for the first layer of this size).
 
 To fix this self-induced fuck-up, I
-1. I heated the nozzle again to 230°C and left it be for a while, eventually loosening the blob enough so I could get it off,
+1. heated the nozzle again to 230°C and left it be for a while, eventually loosening the blob enough so I could get it off,
 2. followed these two manuals [[1]](https://help.prusa3d.com/guide/2a-mk3s-extruder-disassembly_188397) [[2]](https://help.prusa3d.com/guide/2b-mk3s-extruder-disassembly_181561) to take the extruder apart, clean it up and put it back,
 3. tried printing something, which resulted in filament leaking from the top of the heater block ([this video](https://www.youtube.com/watch?v=OzRAVkXjw3I) explains what happened quite well)
 4. went back to step **2** but did it properly this time (_only once; no infinite loops here!_),
@@ -145,7 +145,7 @@ for file in Path(".").iterdir():
 {{< image_row "holds.png :: Photo of the holds." >}}
 {{< /image_section >}}
 
-The board design isn't anything too exciting -- it consists of the board the holds attach to, bottom part that holds the board in place and two stick on each that hold it at the desired angle (35°/45°/55°).
+The board design isn't anything too exciting -- it consists of the board the holds attach to, bottom part that holds the board in place and two sticks on each that hold it at the desired angle (35°/45°/55°).
 
 {{< image_section caption="The Bilter Koard (left assembled, right disassembled) <a href=\"board.zip\">[.STL model]</a>." >}}
 {{< image_row "board-photo.png :: A photo of the board, along with a sample route. | board-parts.png :: A photo of the parts of the board, along with a sample route." >}}

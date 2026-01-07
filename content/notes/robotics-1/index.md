@@ -25,7 +25,7 @@ Thanks to Pascal Hansen and Kiryl Kiril for corrections.
 10. Trajectory Planning in Cartesian Space [[slides](slides/10_trajectory_planning_in_cartesian_space.pdf)] [[tutorial -- Grübler, DH](exercises/10.pdf)]
 11. Manipulability [[slides](slides/11_manipulability.pdf)] [[tutorial -- Jacobian, Lagrangian](exercises/11.pdf)]
 
-An **excellent resource** for more formal an in-depth study is **[Robot modeling and Control](https://www.wiley.com/en-us/Robot+Modeling+and+Control%2C+2nd+Edition-p-9781119524045)** by Mark W. Spong, which the lecture frequently references.
+An **excellent resource** for more formal and in-depth study is **[Robot modeling and Control](https://www.wiley.com/en-us/Robot+Modeling+and+Control%2C+2nd+Edition-p-9781119524045)** by Mark W. Spong, which the lecture frequently references.
 The first edition can be [downloaded for free](https://www.researchgate.net/profile/Mohamed_Mourad_Lafifi/post/How_to_avoid_singular_configurations/attachment/59d6361b79197b807799389a/AS%3A386996594855942%401469278586939/download/Spong+-+Robot+modeling+and+Control.pdf), while the second needs to be purchased (or downloaded too, if you know [where to look](https://www.youtube.com/watch?v=dQw4w9WgXcQ)).
 
 

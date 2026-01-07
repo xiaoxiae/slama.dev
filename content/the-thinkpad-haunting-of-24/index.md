@@ -20,7 +20,7 @@ Furthermore, re-launching the app would sometimes make it crash again and again,
 For FireFox, my first thought was that it had something to do with the large collection of add-ons I've accumulated over the years, but disabling them made no difference -- it kept crashing.
 Looking through other general fixes (you can't find very many quality answers when the question is _"Firefox keeps crashing"_) didn't help either.
 
-Since Beeper is still in beta, I chalked its crashes to this fact and left it at.
+Since Beeper is still in beta, I chalked its crashes to this fact and left it at that.
 
 ### 2. Can't Pull a Docker Image
 Pulling a Docker image from Docker Hub would fail every time, for various different (yet equally strange) reasons.
@@ -34,7 +34,7 @@ Looking at the specific errors in question yielded answers where this happened d
 When making this website, certain images would, from time to time, **contain flipped bits.**
 This was extremely strange since (theoretically) they should have just been copied straight from the source without any modification, yet this was clearly not happening.
 
-I almost cried when trying to debug this, since there was quite literally nothing to off of
+I almost cried when trying to debug this, since there was quite literally nothing to go off of
 - the issue would immediately go away with a rebuild (it happened very infrequently)
 - nobody experienced anything even remotely close to this when using Jekyll
 

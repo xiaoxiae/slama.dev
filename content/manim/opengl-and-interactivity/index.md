@@ -19,7 +19,7 @@ This is usually fine, but quickly falls apart for more complex animations (espec
 
 To greatly speed things up, we can switch the backend to **OpenGL**, which uses the GPU and thus greatly improves the rendering times, to the point that it is now possible to use the scene interactively!
 
-To start things of, let's slightly edit one of the first scenes in the series:
+To start things off, let's slightly edit one of the first scenes in the series:
 
 ```python {file="06-intro-example.py"}
 ```
@@ -100,7 +100,7 @@ Since none of this is really documented, you'll have to look at the [source code
 
 
 ### More examples!
-Here are some more examples of what you can do with OpenGL, mostly to inspire rather then document (since you'll have to do quite a bit of digging through the source code regardless).
+Here are some more examples of what you can do with OpenGL, mostly to inspire rather than document (since you'll have to do quite a bit of digging through the source code regardless).
 
 _This section is ever-expanding and will contain more examples as I experiment with OpenGL!_
 

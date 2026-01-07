@@ -54,7 +54,7 @@ _For maximalization problem, we ensure that the solution is always large enough.
 
 We also assume that:
 - no literal repeats in a clause
-- at most one of \(x_i, \overline{x}_i\) appearas in a clause
+- at most one of \(x_i, \overline{x}_i\) appears in a clause
 
 ### RAND-SAT
 {{< math "algorithm" "RAND-SAT" >}}

@@ -31,6 +31,6 @@ It seems that setting dark theme for a given system will set up the browser them
 1. run with the `--force-dark-mode` flag
 
 ### Support
-It seems that this CSS option has been getting attention only recently, so it might take a while for the browsers to adopt it in a more user-friendly, since it's just so much better than having to deal with JavaScript.
+It seems that this CSS option has been getting attention only recently, so it might take a while for the browsers to adopt it in a more user-friendly way, since it's just so much better than having to deal with JavaScript.
 
 That being said, if you have your browser configured accordingly, you should be seeing this website in its dark theme 🌙.

@@ -7,7 +7,7 @@ toc: true
 
 I bet you didn't expect a post about politics on here.
 
-I've been thinking for quite a while to start writing about my opinions on issues like these for a while, but thought that this website is not the place.
+I've been thinking for quite a while to start writing about my opinions on issues like these, but thought that this website is not the place.
 Thinking it over, however, I don't see a better one -- social media has become a cesspool oriented towards punchy one-liners instead of researched opinions, so writing a post about a topic that I feel strongly about is probably the way to go.
 
 Since **I am not a US citizen,** this post serves mostly as a plea toward my US readers (and anyone else who stumbles upon it) -- you might not realize this, but your influence of other countries around the world is significant, so having a competent non-pro-Russia leader would be nice.
@@ -93,13 +93,13 @@ Oh, and he also did similar things publicly with [Australia](https://archive.ph/
 
 ### Trump **is a rapist**
 
-Trump's relationship with women is revloting: Trump
+Trump's relationship with women is revolting: Trump
 
-- **[is a rapist](https://www.washingtonpost.com/politics/2023/07/19/trump-carroll-judge-rape/),** being found liable for sexual assault that would be commonly understood as rape, and is also currently being [sued for defamation](https://www.washingtonpost.com/dc-md-va/2023/07/11/carroll-trump-defamation-justice-department-liability/?itid=lk_inline_manual_27) due to his remarks while president[^sc]:
+- **[is a rapist](https://www.washingtonpost.com/politics/2023/07/19/trump-carroll-judge-rape/),** having been found liable for sexual assault that would be commonly understood as rape, and is also currently being [sued for defamation](https://www.washingtonpost.com/dc-md-va/2023/07/11/carroll-trump-defamation-justice-department-liability/?itid=lk_inline_manual_27) due to his remarks while president[^sc]:
     > Number one, she’s not my type. Number two, it never happened. It never happened, OK?
     {.half-visible}
 
-- **[entered beauty peagant dressing rooms](https://www.youtube.com/watch?v=gGpVreCqNLo)** while the girls were changing:
+- **[entered beauty pageant dressing rooms](https://www.youtube.com/watch?v=gGpVreCqNLo)** while the girls were changing:
     > Well, I'll tell you the funniest is that before a show, I'll go backstage and everyone's getting dressed, and everything else, and you know, no men are anywhere, and I'm allowed to go in because I'm the owner of the pageant and therefore I'm inspecting it. You know, I'm inspecting because I want to make sure that everything is good. [...] You know, the dresses. 'Is everyone okay?' You know, they're standing there with no clothes. 'Is everybody okay?' And you see these incredible looking women, and so, I sort of get away with things like that. But no, I've been very good.
     {.half-visible}
 
@@ -115,7 +115,7 @@ Trump's relationship with women is revloting: Trump
     > Yeah, she's really something, and what a beauty, that one. If I weren't happily married and, ya know, her father...
     {.half-visible}
 
-[^sc]: "She's not my type" is a wild thing to say to rape alegations.
+[^sc]: "She's not my type" is a wild thing to say to rape allegations.
 
 The fact that he was found to have raped someone is the least of the problems outlined should hopefully give you a good idea of who this person is, and that voting for him is unjustifiable.
 

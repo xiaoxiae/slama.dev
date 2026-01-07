@@ -60,7 +60,7 @@ If we don't want to create random graphs manually, we can use the popular [`netw
 
 ### Camera
 In Manim, each camera scene contains a camera object (implemented via the {{< doc "manim" "Camera" "reference/manim.camera.camera.Camera.html" >}}).
-So far, it wasn't vert useful, because we've implemented all object transformations by changing the objects themselves.
+So far, it wasn't very useful, because we've implemented all object transformations by changing the objects themselves.
 In certain cases, however, it is much more convenient to just move/zoom the camera to achieve the same result.
 
 This is not as simple as it seems, because the default {{< doc "manim" "Scene" "reference/manim.scene.scene.Scene.html" >}} class isn't equipped to deal with a moving camera.

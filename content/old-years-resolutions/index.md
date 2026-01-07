@@ -6,7 +6,7 @@ toc: true
 ---
 
 Over the course of this year, I've been maintaining a page with **[resolutions](/resolutions/2024/)** to complete until the end of the year.
-They weren't new year's per-se, as I've been adding/updating them throughout the year, but they were close enough.
+They weren't new year's per se, as I've been adding/updating them throughout the year, but they were close enough.
 
 To make them unique, I've added an <span class="silver">easy</span> and a <span class="gold">hard</span> version to each, so I push further after achieving the easy version.
 The goal was to make the gold extremely challenging and make sure to not just oneshot both, which worked remarkably well, and I will be doing [the same for next year](/resolutions/2025/).

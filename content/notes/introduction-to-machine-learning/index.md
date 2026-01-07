@@ -14,7 +14,7 @@ toc: true
 _Also, special thanks to [Lucia Zhang](https://github.com/LuciaZhang9), some of the notes are shamelessly stolen from her._
 
 ### Resources
-- [TensorFlow playground](http://playground.tensorflow.org/) -- a really cool visualization of resigning and training a neural network for classification/regression and a number of standard parameters (activation functions, training rates, etc...)
+- [TensorFlow playground](http://playground.tensorflow.org/) -- a really cool visualization of designing and training a neural network for classification/regression and a number of standard parameters (activation functions, training rates, etc...)
 
 
 ### Introduction

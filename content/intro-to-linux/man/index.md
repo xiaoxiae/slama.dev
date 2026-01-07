@@ -12,7 +12,7 @@ toc: true
 ### Usage
 Let's use `man` to examine what `ls` does. To do this, run `man ls` -- a window should open with the documentation of the command `ls`.
 
-This is the default way to use `man` -- it tries to look for a manual page(s), whose name matches the provided argument(s). However, there are other it can also do different things, depending on if the  following flags are specified:
+This is the default way to use `man` -- it tries to look for a manual page(s), whose name matches the provided argument(s). However, it can also do different things, depending on if the following flags are specified:
 
 | Flag                     | Description                                                |
 | ---                      | ---                                                        |
@@ -75,7 +75,7 @@ The language that `man` uses is determined by the `LANG` and `LC_MESSAGES` envir
 [^1]: Sadly, the language support for most of the languages is rather limited. Browsing through a few of them, a lot of translations are in a WIP state and they only cover the most essential commands. Let's hope that this will change in the future 🙂.
 
 ### Internals
-`man` internally uses `/etc/man_db.conf` for configuration. Examining the file can tell you where `man` looks for the reference pages that it can display, and also the order in which sections are searcher for your manpage.
+`man` internally uses `/etc/man_db.conf` for configuration. Examining the file can tell you where `man` looks for the reference pages that it can display, and also the order in which sections are searched for your manpage.
 
 The manual files are (normally) stored in the `nroff` format (compressed in the `.gz` format) and are then processed using various pre-processors, followed by the `groff` formatting system and then either ran through additional post-processors, or presented to the user via a pager (`less` by default).
 

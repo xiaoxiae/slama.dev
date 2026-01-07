@@ -56,7 +56,7 @@ My tool of choice is [Kdenlive](https://kdenlive.org/en/), since it's the video 
 I don't really have much to write here -- to edit the subtitles, just drag & drop the video + subtitles and hit play, fixing mistakes along the way.
 _Note that doing this for a 30-minute episode usually takes me around 1 hour, so if it takes you 10 you're doing something wrong and if it takes you 5 minutes please tell me how._
 
-One helpful thing that I discovered after translating the first ~3 episodes is that Whisper can sometimes produce consistent incorrect results, which you can fix automatically for all future episodes -- in my case, the names of the lead characters (mainly Ivuška and Ozzák) made rise to the following replacement rules:
+One helpful thing that I discovered after translating the first ~3 episodes is that Whisper can sometimes produce consistent incorrect results, which you can fix automatically for all future episodes -- in my case, the names of the lead characters (mainly Ivuška and Ozzák) gave rise to the following replacement rules:
 ```text
 ozák -> Ozzák
 Ozák -> Ozzák

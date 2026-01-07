@@ -21,7 +21,7 @@ For the purposes of this privacy policy:
 No.
 
 #### Retention of your personal data
-I will not retain your personal data only for as long as you want me to. If you feel like it is necessarry for me to have it, feel free to email it to my email adress (`tomas [at] slama [dot] dev`).
+I will not retain your personal data only for as long as you want me to. If you feel like it is necessary for me to have it, feel free to email it to my email address (`tomas [at] slama [dot] dev`).
 
 #### Disclosure of your personal data
 I pinky promise not to share the fact that I don't have any of your personal data with anyone. There, I pinky promised, that should suffice in any reasonable court of law.
