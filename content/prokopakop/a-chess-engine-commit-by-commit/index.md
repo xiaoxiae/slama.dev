@@ -2,8 +2,7 @@
 date: '2025-10-07'
 title: A Chess Engine, Commit by Commit
 description: Writing a chess engine from scratch, in Rust, commit by commit.
-categoryIcon: /assets/category-icons/prokopakop.svg
-#end: <strong>→ Part 1 ←</strong>, <a href="/nnues-and-where-to-find-them/">Part 2</a>
+end: <strong>→ Part 1 ←</strong>, <a href="/prokopakop/2/">Part 2</a>
 toc: true
 ---
 

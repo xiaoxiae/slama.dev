@@ -1,9 +1,8 @@
 ---
-date: '2025-10-07'
+date: '2026-01-07'
 title: NNUEs, and Where to Find Them
 description: "Writing more of my chess engine from scratch, in Rust, commit by commit; this time with 56% more NNUEs."
-categoryIcon: /assets/category-icons/prokopakop.svg
-end: <a href="/a-chess-engine-commit-by-commit/">Part 1</a>, <strong>→ Part 2 ←</strong>
+end: <a href="/prokopakop/1/">Part 1</a>, <strong>→ Part 2 ←</strong>
 draft: true
 toc: true
 ---
@@ -58,13 +57,14 @@ We can do this by doing two things:
 A null-window search noly answers the question **is this better than what I already have**, which is exactly what we want in this case to confirm that the PV is the best.
 Since we're usually right and null-window searches are much faster (only answers yes/no, not by how much better), this saves time, even though we sometimes have to re-search if we're wrong about PV.
 
+<!--
 [`5ddad41`](https://github.com/xiaoxiae/Prokopakop/commit/5ddad41)
 {.commit-header}
 
 #### Improved TT
 
 https://www.chessprogramming.org/Transposition_Table
-
+-->
 
 [`d00348d`](https://github.com/xiaoxiae/Prokopakop/commit/d00348d)
 {.commit-header}
@@ -116,7 +116,7 @@ let base_time = available_time / moves_until_increment.max(1);
 let allocated_time = base_time + (increment * 8 / 10);
 ```
 
-Since we're usually playing games without a fixed move count until time control, `moves_until_increment` defaults to \\(30\\) (or some other arbitrary value, based on how fast you want to decay), and so the remaining time decays exponentially as the moves go on.
+Since we're usually playing games without a fixed move count until time control, `moves_until_increment` defaults to \(30\) (or some other arbitrary value, based on how fast you want to decay), and so the remaining time decays exponentially as the moves go on.
 
 While this sounds great on paper, implementing it like this is problematic -- when the time runs out for a given step, the engine has to **kill the current iterative deepening iteration** and **discard the result** (unless you're being very meticulous), since premature stopping can lead to incorrect move selection.
 
@@ -204,23 +204,28 @@ Since we're doing this as negamax (always subtracting and thus swapping between 
 
 Besides quiescence search, you can use SEE to [**order capture moves**](https://www.chessprogramming.org/Static_Exchange_Evaluation#Move_Ordering) -- a lot of engines (mine included) do
 
-\\[... > \text{good captures} > \text{quiet moves} > \text{bad captures} > ...\\]
+\[... > \text{good captures} > \text{quiet moves} > \text{bad captures} > ...\]
 
 since good captures tend to be better than the bad ones.
 
 ### Evaluation
+
+With the search functionality working reasonably well, we can focus on improving the evaluation.
+
+The current way we're doing it will not scale well, as it's hand-crafted.
+We can improve it up to a point, but wouldn't it be so much easier to descent some gradients instead?
 
 [`a91a3f2`](https://github.com/xiaoxiae/Prokopakop/commit/a91a3f2)~[`5063949`](https://github.com/xiaoxiae/Prokopakop/commit/5063949)
 {.commit-header}
 
 #### King Safety
 
-Before we proceed to NNUEs, I've made some improvements to king safety evaluation.
-Until now, I haven't really paid attention to king safety, but it is arguably one of the most important parts of eval, as a king in danger can easily add \\(\pm 500\\) centipawns.
+Before we proceed to NNUEs, I've made some final improvements to the hand-crafted evaluation, namely king safety.
+Until now, I haven't really paid attention to king safety, but it is arguably one of the most important parts of eval, as a king in danger can easily add \(\pm 500\) centipawns.
 
 The implementation penalizes a few things; namely:
 - **missing pawn shield** in front of the king,
-- **(semi)-open files** next to the king and, most importantly,S
+- **(semi)-open files** next to the king and, most importantly,
 - **attacks near the king** (in the king zone), **weighted** by the attacker
 
 The first two are pretty self-explanatory, but the third one is interesting.
@@ -234,7 +239,7 @@ const ROOK_ATTACK_WEIGHT: f32 = 3.0;
 const QUEEN_ATTACK_WEIGHT: f32 = 5.0;
 ```
 
-and the area around consisting of a \\(3 \times 4\\) square like so:
+and the area around consisting of a \(3 \times 4\) square like so:
 
 {{< chess >}}8 ........
 7 ..♗.....
@@ -252,7 +257,7 @@ To further emphasise that king safety is important, the penalty increases quadra
 #### Removing Schizophrenia
 I found this commit when looking through the Git history and thought it was funny.
 
-```
+```text
 * 3d536e8 | 2025-09-30 | xiaoxiae | make the engine not schizophrenic
 ```
 
@@ -268,7 +273,88 @@ This, with `SQUARE_ATTACK_FACTOR` being `1/50` effectively meant that before thi
 
 I stand by the commit message.
 
-#### NNUEs
+#### [NNUE](https://en.wikipedia.org/wiki/Efficiently_updatable_neural_network)s
+
+**Ǝ**fficiently **U**pdatable **И**eural **И**etworks, are a relatively new addition to the game of chess (~2018), and have revolutionized chess engines unlike (arguably) anything that came before them.
+
+Traditionally, an evaluation function would be fast and hand-crafted (possibly tuned via a learning algorithm), due to the fact that a quicker evaluation function means deeper search and thus (generally) a better engine.
+This can work fine initially, but as the complexity of the function and the number of parameters increase, hand-crafting quickly becomes infeasible.
+
+With the advent of [AlphaZero](https://www.chessprogramming.org/AlphaZero), neural networks came into the chess engine scene in a big way, as AlphaZero [decisively defeated Stockfish](https://en.wikipedia.org/wiki/AlphaZero#Final_results), which was (and still is) the best chess engine in the world.
+It used [Monte-Carlo Tree Search](https://en.wikipedia.org/wiki/Monte_Carlo_tree_search) instead of alpha-beta, since the evaluation was significantly slower than a standard evaluation function (around **1000x**), and it wouldn't get too far going layer-by-layer.
+
+Although the AlphaZero architecture was markedly different from classical chess engines (MCTS vs. alpha-beta), its massive success raised an important question -- would a small, carefully designed neural network, outperform hand-crafted evaluation?
+
+Let's find out!
+
+##### Overview
+
+Let's say we want to evaluate a chess position using a neural network.
+The simplest thing we could do is to use a **fully-connected network** (see my [ML course lecture notes for details](http://localhost:1313/notes/introduction-to-machine-learning/#neural-networks)) with a suitable input and a single float output, which would tell us how good the position is.
+
+The input can take many shapes, but the easiest would be a **one-hot encoding** of the board state, with each combination of square/piece/color corresponding to a single neuron, for a total of \[6 \times 2 \times 8 \times 8 = \mathbf{768}\] input neurons.
+
+The core idea behind NNUEs is the following: after a move is made, **what values do we actually need to change to update the network**?
+It will of course be the neurons in the first layer corresponding to the changed pieces, but how about the others?
+
+Since we're dealing with a fully connected network, we only need to update the values of the neurons that the **changed input neuron is connected to** (and the subsequent layers), instead of having to re-calculate the entire network.
+If the network is shallow enough (i.e. 1 hidden layer), the number of operations needed for the evaluation corresponds **linearly** to the **size of the** (single) **hidden layer**.
+
+![](network.svg "Basic NNEU architecture examples -- **left** shows the **portion of the network to be recalculated** (blue),<br>the **middle** shows an improved NNUE architecture with two accumulators,<br>the **right** adds two buckets for early/late game weights. ")
+{.no-invert}
+
+Since the first hidden layer repeatedly adds/subtracts values based on how the pieces move on the board, it is referred to as the **accumulator**.
+Usually, **two accumulators** are used instead, one for white and the other for black, to view the board "from it's point of view" and take full advantage of the game symmetry.
+
+The update code for adding a piece to the board is then as simple as
+
+```rust
+let net = get_network();
+
+// We're updating two accumulators, one from each point of view
+let white_idx = Self::calculate_white_feature_idx(square, P::PIECE, C::COLOR);
+let black_idx = Self::calculate_black_feature_idx(square, P::PIECE, C::COLOR);
+
+self.white_accumulator.add_piece(white_idx, net);
+self.black_accumulator.add_piece(black_idx, net);
+```
+
+for
+
+```rust
+pub fn add_piece(&mut self, idx: usize, net: &Network) {
+    let weights = &net.weights[idx].vals;
+    
+    // Accumulate weights for the activated neuron
+    for (acc, weight) in self.vals.iter_mut().zip(weights) {
+        *acc += weight;
+    }
+}
+```
+
+and analogously for removing a piece (just subtract instead).
+
+While this will work and you can train a really good chess engine this way, NNUEs have a few more tricks up their sleeves to make them faster and more accurate.
+
+##### [Quantization](https://www.chessprogramming.org/NNUE#Quantization)
+
+**Quantization** has become a rather well-known term in these times of LLMs.
+By quantizing a network, we are **converting** it to use a **lower-precision types** (think `f32 -> u8`) to make it smaller and faster, but likely also dumber since this loses information.
+
+Since it is really important for an evaluation function to be quick, we don't need to use `f32` when we can just use `u8` and not lose almost anything.
+This is because since the network is very shallow, the quantization errors don't have enough layers to propagate through, so this is a reasonable thing to do.
+
+
+
+
+##### Bucketing
+
+
+
+
+
+After a move is made, the network gets recalculated to evaluate position, but what does it actually need to recalculate?
+
 
 
 | * dcc1ddf | 2025-10-28 | xiaoxiae | train: unused superbatches arg
