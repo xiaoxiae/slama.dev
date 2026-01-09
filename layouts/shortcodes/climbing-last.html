@@ -33,6 +33,6 @@
   {{- end -}}
 
   {{- $d := time $date -}}
-{{ (printf "Last climbing session: **%d. %s. %d** at [%s ↩](#%s)." $d.Day ($d.Format "1") $d.Year $where $date) | markdownify }}
+Last climbing session: <strong>{{ $d.Day }}. {{ $d.Format "1" }}. {{ $d.Year }}</strong> at <a href="#{{ $date }}">{{ $where }} ↩</a>.
   {{- break -}}
 {{- end -}}
