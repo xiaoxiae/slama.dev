@@ -79,6 +79,8 @@ While these were all useful in their own right, quiet moves have remained mostly
 The only thing we're doing right now for ordering quiet moves is the [killer heuristic](/a-chess-engine-commit-by-commit/#killer-moves), which remembers **moves** that **caused a beta cut-off** in other branches in the **same ply** of the search tree.
 The **[history heuristic](https://www.chessprogramming.org/History_Heuristic)**[^history-heuristic] is what you get when you take this to the extreme --  if a move was **good** (i.e. caused a beta cut-off), we should **prioritize** it over **other quiet moves in ALL future searched positions**.
 
+[^history-heuristic]: [This paper](https://webdocs.cs.ualberta.ca/~jonathan/publications/ai_publications/pami.pdf) by Jonathan Schaeffer gives a good overview of the history heuristic (among other things).
+
 Implementation-wise, we can store `[side][sq_from][sq_to]`, which will keep track of how good these moves were in the past, and will be updated as follows; if a move
 - causes **beta cutoff**: `[side][from][to] += depth * depth`
 - **doesn't improve alpha**: `[side][from][to] -= (depth * depth) / 2`
@@ -158,6 +160,8 @@ There are two observations that produce the algorithm that we'll use. The first 
 This means that while one player might have overwhelming material advantage (i.e. 2 queens), they shouldn't capture a pawn if it's being protected by a bistop.
 
 The second observation is that it's **always optimal** to capture with your **lowest-value** piece[^checks], since the opponent can always chose to stop capturing and so you didn't help anything by sending higher-valued pieces earlier.
+
+[^checks]: This is not true, since we're ignoring checks, in-between moves (usually checks), sacrifices, and other tactics. However, quiescence search is not the right place to explore these and they will be explored properly in alpha-beta afterwards anyway, so we're fine.
 
 Here is the algorithm in a nutshell:
 
@@ -244,10 +248,10 @@ and the area around consisting of a \(3 \times 4\) square like so:
 {{< chess >}}8 ........
 7 ..♗.....
 6 ...\....
-5 ....!oo.  the bishop hits
-4 ....o!o.  3 squares, adding
-3 ....o♚!.  penalty of 3x2=6
-2 ....ooo\
+5 ....!••.  the bishop hits
+4 ....•!•.  3 squares, adding
+3 ....•♚!.  penalty of 3x2=6
+2 ....•••\
 1 ........
   abcdefgh
 {{< /chess >}}
@@ -273,19 +277,22 @@ This, with `SQUARE_ATTACK_FACTOR` being `1/50` effectively meant that before thi
 
 I stand by the commit message.
 
+[`9cfd936`](https://github.com/xiaoxiae/Prokopakop/commit/9cfd936)~**current**
+{.commit-header}
+
 #### [NNUE](https://en.wikipedia.org/wiki/Efficiently_updatable_neural_network)s
 
 **Ǝ**fficiently **U**pdatable **И**eural **И**etworks, are a relatively new addition to the game of chess (~2018), and have revolutionized chess engines unlike (arguably) anything that came before them.
 
 Traditionally, an evaluation function would be fast and hand-crafted (possibly tuned via a learning algorithm), due to the fact that a quicker evaluation function means deeper search and thus (generally) a better engine.
-This can work fine initially, but as the complexity of the function and the number of parameters increase, hand-crafting quickly becomes infeasible.
+This can work fine initially, but as the complexity of the function and the number of parameters increase, hand-crafting and tuning quickly becomes infeasible.
 
-With the advent of [AlphaZero](https://www.chessprogramming.org/AlphaZero), neural networks came into the chess engine scene in a big way, as AlphaZero [decisively defeated Stockfish](https://en.wikipedia.org/wiki/AlphaZero#Final_results), which was (and still is) the best chess engine in the world.
+With the advent of [AlphaZero](https://www.chessprogramming.org/AlphaZero), neural networks came into the chess engine scene in a big way, as AlphaZero [decisively defeated Stockfish](https://en.wikipedia.org/wiki/AlphaZero#Final_results), the best chess engine in the world at the time  (arguably still is).
 It used [Monte-Carlo Tree Search](https://en.wikipedia.org/wiki/Monte_Carlo_tree_search) instead of alpha-beta, since the evaluation was significantly slower than a standard evaluation function (around **1000x**), and it wouldn't get too far going layer-by-layer.
 
-Although the AlphaZero architecture was markedly different from classical chess engines (MCTS vs. alpha-beta), its massive success raised an important question -- would a small, carefully designed neural network, outperform hand-crafted evaluation?
+Although the AlphaZero architecture was markedly different from classical chess engines and so couldn't be immediately applied, its massive success raised an important question -- would a small, carefully designed neural network, outperform hand-crafted evaluations?
 
-Let's find out!
+Spoiler alert: **yes.**
 
 ##### Overview
 
@@ -298,31 +305,34 @@ The core idea behind NNUEs is the following: after a move is made, **what values
 It will of course be the neurons in the first layer corresponding to the changed pieces, but how about the others?
 
 Since we're dealing with a fully connected network, we only need to update the values of the neurons that the **changed input neuron is connected to** (and the subsequent layers), instead of having to re-calculate the entire network.
-If the network is shallow enough (i.e. 1 hidden layer), the number of operations needed for the evaluation corresponds **linearly** to the **size of the** (single) **hidden layer**.
+If the network is shallow enough (i.e. 1 hidden layer), the number of operations needed for the evaluation then corresponds **linearly** to the **size of the** (single) **hidden layer**.
 
-![](network.svg "Basic NNEU architecture examples -- **left** shows the **portion of the network to be recalculated** (blue),<br>the **middle** shows an improved NNUE architecture with two accumulators,<br>the **right** adds two buckets for early/late game weights. ")
+![](network.svg "Basic NNEU architecture examples -- **A)** shows the portion of the network to be recalculated (blue),<br>**B)** shows an improved NNUE architecture with two accumulators,<br>**C)** adds two buckets for early/late game weights.")
 {.no-invert}
 
 Since the first hidden layer repeatedly adds/subtracts values based on how the pieces move on the board, it is referred to as the **accumulator**.
-Usually, **two accumulators** are used instead, one for white and the other for black, to view the board "from it's point of view" and take full advantage of the game symmetry.
+Usually, **two accumulators** are used instead, one for the **side to move** and the other for the **side not to move**, since this takes full advantage of the game symmetry and allows the network to learn different features for both the "player" (positive) and "opponent" (negative).
 
-The update code for adding a piece to the board is then as simple as
+Updating code for adding a piece to the board is then as simple as
 
 ```rust
-let net = get_network();
-
-// We're updating two accumulators, one from each point of view
-let white_idx = Self::calculate_white_feature_idx(square, P::PIECE, C::COLOR);
-let black_idx = Self::calculate_black_feature_idx(square, P::PIECE, C::COLOR);
-
-self.white_accumulator.add_piece(white_idx, net);
-self.black_accumulator.add_piece(black_idx, net);
+fn add_piece(square: Square, piece: Piece, color: Color, net: &Network) {
+    // We're updating two accumulators, one from each point of view
+    // 
+    // In practice, we'll just call one 'white', the other 'black'
+    // and swap them during evlauation, since the side-to-move switches
+    let white_idx = Self::calculate_white_feature_idx(square, piece, color);
+    let black_idx = Self::calculate_black_feature_idx(square, piece, color);
+    
+    self.white_accumulator.enable_index(white_idx, net);
+    self.black_accumulator.enable_index(black_idx, net);
+}
 ```
 
 for
 
 ```rust
-pub fn add_piece(&mut self, idx: usize, net: &Network) {
+pub fn enable_index(&mut self, idx: usize, net: &Network) {
     let weights = &net.weights[idx].vals;
     
     // Accumulate weights for the activated neuron
@@ -334,50 +344,97 @@ pub fn add_piece(&mut self, idx: usize, net: &Network) {
 
 and analogously for removing a piece (just subtract instead).
 
+The evaluation is then just
+
+```rust
+pub(crate) fn evaluate(&self) {
+    let net = get_network();
+
+    // Swap for side-to-move and side-not-to-move to be in the correct place
+    match self.side == Color::White {
+        true => net.evaluate(&self.white_accumulator, &self.black_accumulator),
+        false => -net.evaluate(&self.black_accumulator, &self.white_accumulator),
+    }
+}
+```
+
 While this will work and you can train a really good chess engine this way, NNUEs have a few more tricks up their sleeves to make them faster and more accurate.
 
 ##### [Quantization](https://www.chessprogramming.org/NNUE#Quantization)
 
 **Quantization** has become a rather well-known term in these times of LLMs.
-By quantizing a network, we are **converting** it to use a **lower-precision types** (think `f32 -> u8`) to make it smaller and faster, but likely also dumber since this loses information.
+By quantizing a network, we are converting the network layers to use **integer types** (i.e. `f32 -> i16`), since they have **faster multiplication**.
+This can be done by simply **multiplying by a constant factor** (say `Q`), converting to int to fit within the required data type.
 
-Since it is really important for an evaluation function to be quick, we don't need to use `f32` when we can just use `u8` and not lose almost anything.
-This is because since the network is very shallow, the quantization errors don't have enough layers to propagate through, so this is a reasonable thing to do.
+This will mean that we have to **keep track** of the current quantization factor so we can de-quantize as we go through the layers, and that the more layers the network has, the more the **quantization errors propagate** though the network, but these are non-issues since our network is very shallow -- in our case, the quantization is very manageable.
 
+While the details are heavily dependent on the network architecture, I'll walk through how the one in Prokopakop works.
+I'm using the **[Bullet library](https://github.com/jw1912/bullet)** for training NNUE training Rust library.
+We'll be quantizing the input layer to `QA` and the hidden layer to `QB`, and will use **screlu** as the activation function:
 
+{{< chess >}}   ----        ----
+   side        side
+    to        not to
+   move        move
+   ----        ----
+    │           │
+    ↓           ↓
+   Linear(768, 128)      // quant = QA
+    │           │
+    ↓           ↓
+ SCReLU()    SCReLU()    // quant = QA * QA
+    │           │
+    │  Concat   │
+    └─────┬─────┘
+          │
+          ↓
+    Linear(256, 1)       // quant = QA * QA * QB
+          │
+          ↓
+       Output
+{{< /chess >}}
+
+You might think that it's strange for the quantization to have an extra `QA`, but that comes from the fact that we're using screlu which squares the input.
+
+Putting this together, we get
+
+```rust
+impl Network {
+    /// Calculates the output of the network, starting from the already
+    /// calculated hidden layer (done efficiently during makemoves).
+    pub fn evaluate(&self, us: &Accumulator, them: &Accumulator) -> i32 {
+        // Initialise output.
+        let mut output = 0;
+
+        // Side-To-Move Accumulator -> Output.
+        for (&input, &weight) in us.vals.iter().zip(&self.output_weights[..HIDDEN_SIZE]) {
+            output += screlu(input) * i32::from(weight);
+        }
+
+        // Not-Side-To-Move Accumulator -> Output.
+        for (&input, &weight) in them.vals.iter().zip(&self.output_weights[HIDDEN_SIZE..]) {
+            output += screlu(input) * i32::from(weight);
+        }
+
+        // Reduce quantization from QA * QA * QB to QA * QB,
+        // since bias has been quantized with QA * QB only.
+        output /= i32::from(QA);
+
+        // Add bias.
+        output += i32::from(self.output_bias);
+
+        // Apply eval scale.
+        output *= SCALE;
+
+        // Remove quantisation altogether.
+        output /= i32::from(QA) * i32::from(QB);
+
+        output
+    }
+}
+```
 
 
 ##### Bucketing
 
-
-
-
-
-After a move is made, the network gets recalculated to evaluate position, but what does it actually need to recalculate?
-
-
-
-| * dcc1ddf | 2025-10-28 | xiaoxiae | train: unused superbatches arg
-| * b7fceb9 | 2025-10-28 | xiaoxiae | remove build-engines
-| * 89900d0 | 2025-10-28 | xiaoxiae | tournament: NNUE options, type hints
-| * 4e83ebf | 2025-10-28 | xiaoxiae | train: convert command
-| * 28ea09e | 2025-10-28 | xiaoxiae | panic when network fails to load
-| * 24cd0cc | 2025-10-28 | xiaoxiae | train: deduplicate command
-| * 34040bb | 2025-10-27 | xiaoxiae | tournament: no heatmaps
-| * d6310e5 | 2025-10-27 | xiaoxiae | README: nnue
-| * 7fcbf11 | 2025-10-27 | xiaoxiae | README: remove figures + clean up unused scripts
-| * 5372c9b | 2025-10-27 | xiaoxiae | warn about loading a network two times
-| * 17d6f70 | 2025-10-27 | xiaoxiae | training doesn't overwrite but append
-| * 89cf032 | 2025-10-27 | xiaoxiae | handle ^D
-| * b3d9cc0 | 2025-10-27 | xiaoxiae | fully replace hand-crafted eval with NNUE
-| * 35f61e0 | 2025-10-27 | xiaoxiae | forgotten OwnBook
-| * 5b869ba | 2025-10-27 | xiaoxiae | better NNUE training experiment setup
-| * 86b5ea9 | 2025-10-23 | xiaoxiae | experiment tooling
-| * 75ef527 | 2025-10-21 | xiaoxiae | use depth instead of move time
-| * 1a83edf | 2025-10-21 | xiaoxiae | eval: insufficient drawing material
-| * abe33bc | 2025-10-21 | xiaoxiae | futility pruning: don't prune all moves
-| * 9cfd936 | 2025-10-21 | xiaoxiae | init NNUE architecture
-
-[^history-heuristic]: [This paper](https://webdocs.cs.ualberta.ca/~jonathan/publications/ai_publications/pami.pdf) by Jonathan Schaeffer gives a good overview of the history heuristic (among other things).
-
-[^checks]: This is not true, since we're ignoring checks, in-between moves (usually checks), sacrifices, and other tactics. However, quiescence search is not the right place to explore these and they will be explored properly in alpha-beta afterwards anyway, so we're fine.
+TODO
