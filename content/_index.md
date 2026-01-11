@@ -9,14 +9,14 @@ icon: fa-house
 	<span class="promo-cta">Více info →</span>
 </a>
 
-_**Warning:** I've recently **rewritten the entire website** from [Jekyll](https://jekyllrb.com/) to [Hugo](https://gohugo.io/). Although I've tried to match the original as closely as possible, some things will look different; if you spot something that broke, please shoot me an email!_
+_**Warning:** I've recently [**rewritten the entire website**](/migrating-from-jekyll-to-hugo) from [Jekyll](https://jekyllrb.com/) to [Hugo](https://gohugo.io/). Although I've tried to match the original as closely as possible, some things will look different; if you spot something that broke, please shoot me an email!_
 
 
 ## Hi everyone!
 
 I'm Tom and this is my personal website.
 
-I'm a full-stack developer at **[Freya Voice](https://freyavoice.ai/)**, working on **[Climbuddy](https://climbuddy.com)** in my spare time.
+I'm a full-stack developer at **[Freya](https://freyavoice.ai/)**, working on **[Climbuddy](https://climbuddy.com)** in my spare time.
 
 Besides programming, I like to play <a class='secret' href='/assets/nolife.webp'>video games</a>, [take photos](/photos/), [make videos](/videos/) and [rock climb](/climbing/).
 

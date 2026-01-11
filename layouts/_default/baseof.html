@@ -71,6 +71,11 @@
 		{{- $htmxJS := resources.Get "js/htmx.min.js" | fingerprint }}
 		<script src="{{ $htmxJS.RelPermalink }}" defer></script>
 		{{ end }}
+
+		<!-- Anonymous Umami analytics (production only) -->
+		{{ if hugo.IsProduction }}
+		<script defer src="https://umami.slama.dev/script.js" data-website-id="bdbd7886-723f-464c-a321-ccd2b6b64756"></script>
+		{{ end }}
 	</head>
 
 	<body class="section-{{ .Section | default "root" }}">

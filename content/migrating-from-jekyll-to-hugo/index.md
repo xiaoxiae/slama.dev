@@ -202,7 +202,11 @@ I haven't talked about [asset minification](https://gohugo.io/hugo-pipes/minific
 
 I do want to say that Jekyll has community plugins that implement a lot of the functionality covered in this post, which is great on paper but **all** of the most popular plugins that I looked at were **unmaintained** (i.e. youngest commit is older than 2 years) -- better to have a limited core implementation that's maintained, than a rich plugin that's not.
 
-In the end, the **rewrite went great** -- the website feels the same, almost no redirects were necessary, the deployment is still a simple build + rsync (+ nginx restart for redirects to take place), and I can now focus on actual writing, instead of making more coffee since the build takes so long.
+In the end, the **rewrite went great** -- the website feels the same, the deployment is still a simple build + rsync (+ nginx restart for redirects to take place), and I can now focus on actual writing, instead of making more coffee since the build takes so long.
+
+While page-level redirects were not necessary, **file-level redirects were**.
+It turns out that people link assets from my website in other places, and since I moved most assets from `/assets/<post>/...` to `/<post>/...`, all of these would break.
+To fix this, I wrote a small script to match files from old assets folder to the path in the new website, and these should now be functional 🙂.
 
 To be fully transparent, the vast majority was done via [Claude Code](https://claude.ai/claude-code) (no vibe, just supervision), as it was more laborious than interesting -- a pinch of SED calls, a sprinkle of Ruby-to-Go-template rewrites, a few hours wasted on a [bug in Hugo's markdown parser](https://github.com/gohugoio/hugo-goldmark-extensions/issues/40)... nothing out of the ordinary.
 
