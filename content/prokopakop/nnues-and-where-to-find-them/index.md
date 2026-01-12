@@ -3,7 +3,6 @@ date: '2026-01-07'
 title: NNUEs, and Where to Find Them
 description: "Writing more of my chess engine from scratch, in Rust, commit by commit; this time with 56% more NNUEs."
 end: <a href="/prokopakop/1/">Part 1</a>, <strong>→ Part 2 ←</strong>
-hidden: true
 toc: true
 ---
 
