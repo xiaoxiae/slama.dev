@@ -11,7 +11,7 @@ toc: true
 It turns out that it's easier to start writing a chess engine than to stop writing it.
 This is something I wish I had known when I was starting, but it's too late now so I might as well write another blog post to document the things that I've learned, and gloat a bit since [the **Prokopakop engine**](https://github.com/xiaoxiae/prokopakop) is now [much stronger](https://lichess.org/@/prokopakop).
 
-When I was initially writing the engine, I was eyeing the [NNUE architecture](https://www.chessprogramming.org/NNUE), since replacing a painstakingly hand-crafted evaluation function with a gradient-(de)scended one sounded very appealing, but I wouldn't spare it too much time since most of the engine was on fire.
+When I was initially writing the engine, I was eyeing the [NNUE architecture](https://www.chessprogramming.org/NNUE), since replacing a painstakingly hand-crafted evaluation function with a gradient-(de)scented one sounded very appealing, but I wouldn't spare it too much time since most of the engine was on fire.
 
 Now, with the search functionality mostly in-place (modulo a few stragglers), the limiting factor is once again the evaluation, which is what I'll spend most of this article on.
 
@@ -23,7 +23,7 @@ So, without further ado, let's get some Elo and **kop some prokops**.
 {{< image_row "i-lied.png :: A meme about search." >}}
 {{< /image_section >}}
 
-Jokes aside, there are a few search techniques that I couldn't cover in the previous blog post because it was getting too long, so I'll sneak these in here and hope you won't mind.
+Jokes aside, there are a few search techniques that I couldn't cover [in the previous blog post](/prokopakop/2/) because it was getting too long, so I'll sneak these in here and hope you won't mind.
 
 <details class="skip-section" id="trap">
 <summary>If you do, feel free to <a href="#">skip to the next section</a>...</summary>
@@ -54,7 +54,7 @@ We can do this by doing two things:
 - search the **first move** regularly, with a **full window** (`[alpha, beta]`)
 - for **subsequent moves**, search with a **null window** (`[alpha, alpha + 1]`), and **re-search** if it fails
 
-A null-window search only answers the question **is this better than what I already have**, which is exactly what we want in this case to confirm that the PV is the best.
+A null-window search only answers the question _is this better than what I already have_, which is exactly what we want in this case to confirm that the PV is the best.
 Since we're usually right and null-window searches are much faster (only answers yes/no, not by how much better), this saves time, even though we sometimes have to re-search if we're wrong about PV.
 
 <!--
@@ -88,8 +88,7 @@ Implementation-wise, we can store `[side][sq_from][sq_to]`, which will keep trac
 - **doesn't improve alpha**: `[side][from][to] -= (depth * depth) / 2`
 
 The reason for using depth instead of constant values is that deeper cutoffs are more significant than shallower ones.
-
-To make sure entry values don't explode, we can **decay** all entries over time (i.e. divide by 2 after each added move), or interpolate to some max value based on current value and depth for the given square (as Stockfish does).
+To make sure entry values don't explode, we can **decay** all entries over time (i.e. divide by 2 after each added move), or interpolate to some max value based on current value and depth (as Stockfish does).
 
 
 [`7490eba`](https://github.com/xiaoxiae/Prokopakop/commit/7490eba)
@@ -103,7 +102,7 @@ To make sure entry values don't explode, we can **decay** all entries over time 
 
 **[Futility pruning](https://www.chessprogramming.org/Futility_Pruning),** as well as its **[Reverse Futility Pruning](https://www.chessprogramming.org/Reverse_Futility_Pruning)** counterpart, prune positions that are **futile** (for either side), since they're unlikely to change the outcome at that point.
 
-What this means is that if we're in a quiet position which, according to static evaluation, is **hopeless** and we are looking at a **quiet** move, it's a reasonable assumption that it's not going to help us and we can **skip it**; specifically (`static eval + margin(depth) <= alpha`).
+What this means is that if we're in a quiet position which, according to static evaluation, is **hopeless** and we are looking at a **quiet** move, it's a reasonable assumption that it's not going to help us and we can **skip it**, i.e. `static eval + margin(depth) <= alpha`.
 The higher depth we have remaining, the larger the margin should be for us to not miss tactics (i.e. `[0, 100, 200, 300, ...]`).
 
 Similarly, if our position is **amazing** (`static eval - reverse_margin(depth) >= beta`), we can **skip the branch entirely** since, no matter the type of move, we will not get to play it anyway (again setting margins depending on the remaining depth).
@@ -160,7 +159,7 @@ During [quiescence search](https://www.chessprogramming.org/Quiescence_Search), 
 This usually involves captures, since these are at the heart of many tactics, so resolving them quickly is important.
 
 Until now, we've resolved them by simply playing them out as recursive quiescence search calls, but we can do better.
-There are many capture sequences that we don't ever need to consider, since they're obviously bad (think `Qxp` followed by `pxQ`) and do not warrant a function call and all that comes with it.
+There are many capture sequences that we don't ever need to consider, since they're obviously bad (think `Qxp` followed by `pxQ`) and do not warrant a function call.
 
 This is where [**static exchange evaluation**](https://www.chessprogramming.org/Static_Exchange_Evaluation) comes in handy -- instead of recursive calls, we will do the evaluation **statically**, calculating the **overal result** instead of recursing, since that's the only thing we need in quiescence search.
 
@@ -214,7 +213,7 @@ gains[1]
 ```
 
 The core of the algorithm is in the final while loop -- going from the end, **each player** makes the decision to **stop capturing** at that point if it's not optimal for them (this is what `max` is doing).
-Since we're doing this as [negamax](/prokopakop/1/#alpha-beta-search) (always subtracting and thus swapping between the colors), the player will **never** want to play out a sequence that will yield a **negative score**, which is what we're calculating by accumulating it from the end.
+Since we're doing this as [negamax](/prokopakop/1#alpha-beta-search) (always subtracting and thus swapping between the colors), the player will **never** want to play out a sequence that will yield a **negative score**, which is what we're calculating by accumulating it from the end.
 
 Besides quiescence search, you can use SEE to [**order capture moves**](https://www.chessprogramming.org/Static_Exchange_Evaluation#Move_Ordering) -- a lot of engines (mine included) do
 
@@ -227,7 +226,7 @@ since good captures tend to be better than the bad ones.
 With the search functionality working reasonably well, we can focus on improving the evaluation.
 
 The current way we're doing it will not scale well, as it's hand-crafted.
-We can improve it up to a point, but wouldn't it be so much easier to descent some gradients instead?
+We can improve it up to a point, but wouldn't it be so much easier to descend some gradients instead?
 
 [`a91a3f2`](https://github.com/xiaoxiae/Prokopakop/commit/a91a3f2)~[`5063949`](https://github.com/xiaoxiae/Prokopakop/commit/5063949)
 {.commit-header}
@@ -292,12 +291,12 @@ I stand by the commit message.
 
 #### NNUEs
 
-[**Ǝ**fficiently **U**pdatable **И**eural **И**etworks](https://en.wikipedia.org/wiki/Efficiently_updatable_neural_network), are a relatively new addition to the game of chess (~2018, ~2020 in Stockfish), and have revolutionized chess engines unlike (arguably) anything that came before them.
+[**Ǝ**fficiently **U**pdatable **И**eural **И**etworks](https://en.wikipedia.org/wiki/Efficiently_updatable_neural_network) are a relatively new addition to the game of chess (~2018, ~2020 in Stockfish), and have revolutionized chess engines unlike (arguably) anything that came before them.
 
 Traditionally, an evaluation function would be fast and hand-crafted (possibly tuned via a learning algorithm), due to the fact that a quicker evaluation function means deeper search and thus (generally) a better engine.
 This can work fine initially, but as the complexity of the function and the number of parameters increase, hand-crafting and tuning quickly becomes infeasible.
 
-With the advent of [AlphaZero](https://www.chessprogramming.org/AlphaZero), neural networks came into the chess engine scene in a big way, as AlphaZero [decisively defeated Stockfish](https://en.wikipedia.org/wiki/AlphaZero#Final_results), the best chess engine in the world at the time (and arguably still is).
+With the advent of [AlphaZero](https://www.chessprogramming.org/AlphaZero), neural networks came into the chess engine scene in a big way, as AlphaZero [decisively defeated Stockfish](https://en.wikipedia.org/wiki/AlphaZero#Final_results), the best chess engine in the world at the time.
 It used [Monte-Carlo Tree Search](https://en.wikipedia.org/wiki/Monte_Carlo_tree_search) instead of alpha-beta, since the evaluation was significantly slower than a standard evaluation function (around **1000x**), and it wouldn't get too far going layer-by-layer.
 
 Although the AlphaZero architecture was markedly different from classical chess engines and so couldn't be immediately applied, its massive success raised an important question -- would a small, carefully designed neural network, outperform hand-crafted evaluations?
@@ -325,7 +324,7 @@ Usually, **two accumulators** are used instead, one for the **side to move** and
 Updating code for adding a piece to the board is then as simple as
 
 ```rust
-fn add_piece(square: Square, piece: Piece, color: Color, net: &Network) {
+pub fn add_piece(square: Square, piece: Piece, color: Color, net: &Network) {
     // We're updating two accumulators, one from each point of view
     // 
     // In practice, we'll just call one 'white', the other 'black'
@@ -336,11 +335,7 @@ fn add_piece(square: Square, piece: Piece, color: Color, net: &Network) {
     self.white_accumulator.enable_index(white_idx, net);
     self.black_accumulator.enable_index(black_idx, net);
 }
-```
 
-for
-
-```rust
 pub fn enable_index(&mut self, idx: usize, net: &Network) {
     let weights = &net.weights[idx].vals;
     
@@ -356,7 +351,8 @@ pub fn enable_index(&mut self, idx: usize, net: &Network) {
 ```rust
 pub(crate) fn evaluate(&self) {
     let net = get_network();
-
+    
+    // Flip accumulators according to side-to-move
     match self.side == Color::White {
         true => net.evaluate(&self.white_accumulator, &self.black_accumulator),
         false => -net.evaluate(&self.black_accumulator, &self.white_accumulator),
@@ -364,9 +360,41 @@ pub(crate) fn evaluate(&self) {
 }
 ```
 
+with the core {{< inline_highlight "rust" >}}net.evaluate{{< /inline_highlight >}} function defined as:
+
+```rust
+//
+// https://github.com/jw1912/bullet/blob/main/examples/simple.rs
+// 
+impl Network {
+    /// Calculates the output of the network, starting from the already
+    /// calculated hidden layer (done efficiently during makemoves).
+    pub fn evaluate(&self, us: &Accumulator, them: &Accumulator) -> f32 {
+        // Initialise output.
+        let mut output = 0.0;
+    
+        // Side-To-Move Accumulator
+        for (&input, &weight) in us.vals.iter().zip(&self.output_weights[..HIDDEN_SIZE]) {
+            output += screlu(input) * weight;
+        }
+    
+        // Not-Side-To-Move Accumulator
+        for (&input, &weight) in them.vals.iter().zip(&self.output_weights[HIDDEN_SIZE..]) {
+            output += screlu(input) * weight;
+        }
+    
+        // Add bias.
+        output += self.output_bias;
+    
+        // Apply eval scale.
+        output * SCALE
+    }
+}
+```
+
 Neat!
 
-While this will work and you can train a really good chess engine this way, NNUEs have a few more tricks up their sleeves to make them faster and more accurate.
+While this will work and you can train a really good chess engine this way, NNUEs have a few more tricks up their sleeve to make them faster and more accurate.
 
 ##### Quantization
 
@@ -378,7 +406,7 @@ This will mean that we have to **keep track** of the current quantization factor
 Luckily, these are non-issues since our network is very shallow -- it's not difficult to track it and the errors will be negligible.
 
 While the details are heavily dependent on the network architecture, I'll walk through how the one in Prokopakop works.
-I'm using the **[Bullet library](https://github.com/jw1912/bullet)** for training NNUEs (Rust), although you could just as well use Pytorch or some other ML library.
+I'm using the **[Bullet library](https://github.com/jw1912/bullet)** for training NNUEs (Rust), although you could just as well use Pytorch (Python) or some other ML library.
 We'll be quantizing the input layer to `QA` and the hidden layer to `QB`, and will use **SCReLU** as the activation function, yielding the following network architecture:
 
 {{< chess >}}   side        side
@@ -447,11 +475,8 @@ impl Network {
 
 ##### Output Buckets
 
-Although there are many more techniques used in the more advanced chess engines, they require a significant amount of data to actually be useful, which I do not have. 
-Besides quantization, the only additional technique I used was bucketing.
-
 I feel like I say this all the time in the chess articles that I write, but the core idea behind this is rather simple.
-The evaluation priorities based on the current phase of the game change drastically, which was reflected in our previous hand-crafted evaluation function in a number of ways, such as the [changing piece table values](/prokopakop/1/#piece-square-tables)?
+The evaluation priorities based on the current phase of the game change drastically, which was reflected in our previous hand-crafted evaluation function in a number of ways, such as the [changing piece table values](/prokopakop/1#piece-square-tables).
 
 [**Output Buckets**](https://www.chessprogramming.org/NNUE#Output_Buckets) are just a fancy way of doing this for NNUEs, where we have **multiple output weights/biases** and pick one **based on the current phase of the game** (determined by remaining material).
 Prokopakop uses 8, but any reasonable will do -- increasing will give you more granular weights for different stages of the game, but also increase the size of the network which may not be desirable since it will be harder to train.
@@ -462,7 +487,7 @@ Speaking of which...
 
 ##### Gathering data
 
-To gather training data, I made the bot ~~play with itself~~ self-play, using a fixed depth of 8-12 and randomizing the first 1-6 moves, generating approximately **500 positions / second** for **~11.5 days**, amounting to approximately **500 million positions** (about **32% unique**).
+To gather training data, I made the bot ~~play with itself~~ self-play, using a fixed depth of 8-12 and randomizing the first 1-6 moves, generating approximately **500 positions / second** for approximately **11.5 days**, amounting to approximately **500 million positions** (about **32% unique**).
 
 This was not done at the same time, but in a bootstrapped manner: 
 1. **self-play** + evaluate to obtain training data (~100m positions at a time),
