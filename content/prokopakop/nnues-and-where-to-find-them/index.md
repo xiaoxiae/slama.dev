@@ -23,7 +23,7 @@ So, without further ado, let's get some Elo and **kop some prokops**.
 {{< image_row "i-lied.png :: A meme about search." >}}
 {{< /image_section >}}
 
-Jokes aside, there are a few search techniques that I couldn't cover [in the previous blog post](/prokopakop/2/) because it was getting too long, so I'll sneak these in here and hope you won't mind.
+Jokes aside, there are a few search techniques that I couldn't cover [in the previous blog post](/prokopakop/1/) because it was getting too long, so I'll sneak these in here and hope you won't mind.
 
 <details class="skip-section" id="trap">
 <summary>If you do, feel free to <a href="#">skip to the next section</a>...</summary>
@@ -52,7 +52,7 @@ The [**P**rincipal **V**ariation search](https://www.chessprogramming.org/Princi
 
 We can do this by doing two things:
 - search the **first move** regularly, with a **full window** (`[alpha, beta]`)
-- for **subsequent moves**, search with a **null window** (`[alpha, alpha + 1]`), and **re-search** if it fails
+- for **subsequent moves**, search with a **null window** (`[alpha, alpha + 1]`), and **re-search** if it fails high
 
 A null-window search only answers the question _is this better than what I already have_, which is exactly what we want in this case to confirm that the PV is the best.
 Since we're usually right and null-window searches are much faster (only answers yes/no, not by how much better), this saves time, even though we sometimes have to re-search if we're wrong about PV.
@@ -87,7 +87,7 @@ Implementation-wise, we can store `[side][sq_from][sq_to]`, which will keep trac
 - causes **beta cutoff**: `[side][from][to] += depth * depth`
 - **doesn't improve alpha**: `[side][from][to] -= (depth * depth) / 2`
 
-The reason for using depth instead of constant values is that deeper cutoffs are more significant than shallower ones.
+The reason for using depth squared instead of constant values is that deeper cutoffs are more significant than shallower ones.
 To make sure entry values don't explode, we can **decay** all entries over time (i.e. divide by 2 after each added move), or interpolate to some max value based on current value and depth (as Stockfish does).
 
 
@@ -291,7 +291,7 @@ I stand by the commit message.
 
 #### NNUEs
 
-[**Ǝ**fficiently **U**pdatable **И**eural **И**etworks](https://en.wikipedia.org/wiki/Efficiently_updatable_neural_network) are a relatively new addition to the game of chess (~2018, ~2020 in Stockfish), and have revolutionized chess engines unlike (arguably) anything that came before them.
+[**Ǝ**fficiently **U**pdatable **И**eural **И**etworks](https://en.wikipedia.org/wiki/Efficiently_updatable_neural_network) are a relatively new addition to chess engines (~2018, ~2020 in Stockfish), and have revolutionized chess engines unlike (arguably) anything that came before them.
 
 Traditionally, an evaluation function would be fast and hand-crafted (possibly tuned via a learning algorithm), due to the fact that a quicker evaluation function means deeper search and thus (generally) a better engine.
 This can work fine initially, but as the complexity of the function and the number of parameters increase, hand-crafting and tuning quickly becomes infeasible.
@@ -306,7 +306,7 @@ Spoiler alert: **yes.**
 ##### Overview
 
 Let's say we want to evaluate a chess position using a neural network.
-The simplest thing we could do is to use a **fully-connected network** (see my [ML course lecture notes for details](/notes/introduction-to-machine-learning/#neural-networks)) with a suitable input and a single float output, which would tell us how good the position is.
+The simplest thing we could do is to use a **fully-connected network** (see my [ML course lecture notes](/notes/introduction-to-machine-learning/#neural-networks) for more details) with a suitable input and a single scalar output, which would tell us how good the position is.
 
 The input can take many shapes, but the easiest would be a **one-hot encoding** of the board state, with each combination of square/piece/color corresponding to a single neuron, for a total of \[6 \times 2 \times 8 \times 8 = \mathbf{768}\] input neurons.
 
@@ -430,7 +430,7 @@ We'll be quantizing the input layer to `QA` and the hidden layer to `QB`, and wi
        Output
 {{< /chess >}}
 
-You might think that it's strange for the quantization to have an extra `QA`, but that comes from the fact that we're using screlu which squares the input.
+You might think that it's strange for the quantization to have an extra `QA`, but that comes from the fact that we're using SCReLU, which squares the input.
 
 Putting this together, we get
 
@@ -479,7 +479,7 @@ I feel like I say this all the time in the chess articles that I write, but the 
 The evaluation priorities based on the current phase of the game change drastically, which was reflected in our previous hand-crafted evaluation function in a number of ways, such as the [changing piece table values](/prokopakop/1#piece-square-tables).
 
 [**Output Buckets**](https://www.chessprogramming.org/NNUE#Output_Buckets) are just a fancy way of doing this for NNUEs, where we have **multiple output weights/biases** and pick one **based on the current phase of the game** (determined by remaining material).
-Prokopakop uses 8, but any reasonable will do -- increasing will give you more granular weights for different stages of the game, but also increase the size of the network which may not be desirable since it will be harder to train.
+Prokopakop uses 8, but any reasonable number will do -- increasing will give you more granular weights for different stages of the game, but also increase the size of the network which may not be desirable since it will be harder to train.
 
 There are similar more advanced techniques that can do this for input such as [king input buckets](https://www.chessprogramming.org/NNUE#King_Input_Buckets) and, to some extent, [horizontal mirroring](https://www.chessprogramming.org/NNUE#Horizontal_Mirroring), but these usually only pay off, as I've mentioned, if you have massive amounts of training data.
 
