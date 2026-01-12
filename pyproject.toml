@@ -13,6 +13,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "matplotlib>=3.10.8",
     "pre-commit>=4.5.1",
     "ruff>=0.8.6",
 ]

@@ -18,7 +18,8 @@ A collection of my long-term goals and progress towards them.
 |             | AOC <span class="silver">all problems</span> (<span class="gold">all in Rust</span>)           |               |
 |             |                                                                                                |               |
 |       Other | Read <span class="silver">12</span>\|<span class="gold">18</span> new books                    |               |
-|       Other | Read <span class="silver">12</span>\|<span class="gold">18</span> papers                       |               |
+|             | Read <span class="silver">12</span>\|<span class="gold">18</span> papers                       |               |
+|             | Release <span class="silver">12</span>\|<span class="gold">18</span> blog posts                | 1             |
 |             | <span class="silver">A2</span>\|<span class="gold">B1</span> German                            |               |
-|             | <span class="silver">&lt;15m</span>\|<span class="gold">&lt;30m</span> German time / day       |               |
+|             | <span class="silver">&lt;15m</span>\|<span class="gold">&lt;30m</span> German time / day       | Picked it up again! |
 |             | Release a <span class="silver">short story</span> <span class="gold">with illustrations</span> |               |
