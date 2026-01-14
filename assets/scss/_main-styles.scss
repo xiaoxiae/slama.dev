@@ -954,3 +954,58 @@ figcaption {
     opacity: 0.6;
   }
 }
+
+/* ==========================================================================
+   STORY/FICTION STYLING
+   ========================================================================== */
+
+// CMU Serif font for stories
+@font-face {
+  font-family: "CMU Serif";
+  src: url("/assets/css/fonts/CMUSerif-Roman.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CMU Serif";
+  src: url("/assets/css/fonts/CMUSerif-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CMU Serif";
+  src: url("/assets/css/fonts/CMUSerif-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Story content styling
+.story {
+  font-family: "CMU Serif", Georgia, serif;
+  font-size: 110%;
+  line-height: 1.6;
+}
+
+// Drop cap for story openings
+.drop-cap {
+  float: left;
+  font-size: 3em;
+  line-height: 0.8;
+  padding-right: 0.15em;
+  padding-top: 0.1em;
+  font-weight: normal;
+  color: var(--text-color);
+  font-family: "CMU Serif", Georgia, serif;
+}
+
+// Lightext encoded images
+.lightext {
+  width: 100%;
+  max-width: 100%;
+  margin: $line-spacing 0;
+}

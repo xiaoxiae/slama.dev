@@ -27,6 +27,9 @@ function build
     echo "Processing climbing content..."
     uv run python scripts/climbing.py build
 
+    echo "Generating lightext images..."
+    uv run python scripts/lightext.py content/light/index.md
+
     hugo --minify --cleanDestinationDir
 
     echo "Subsetting fonts..."

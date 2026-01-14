@@ -1,0 +1,4 @@
+{{- $text := .Get 0 -}}
+{{- $hash := substr (md5 $text) 0 8 -}}
+{{- $filename := printf "lightext-%s.svg" $hash -}}
+<img src="{{ $filename }}" alt="Encoded text pattern" class="lightext no-mobile-width-limit">
