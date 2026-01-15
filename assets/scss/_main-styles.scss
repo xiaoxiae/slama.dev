@@ -959,26 +959,26 @@ figcaption {
    STORY/FICTION STYLING
    ========================================================================== */
 
-// CMU Serif font for stories
+// Libertinus Serif font for stories
 @font-face {
-  font-family: "CMU Serif";
-  src: url("/assets/css/fonts/CMUSerif-Roman.woff2") format("woff2");
+  font-family: "Libertinus Serif";
+  src: url("/assets/css/fonts/LibertinusSerif-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "CMU Serif";
-  src: url("/assets/css/fonts/CMUSerif-Italic.woff2") format("woff2");
+  font-family: "Libertinus Serif";
+  src: url("/assets/css/fonts/LibertinusSerif-Italic.woff2") format("woff2");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "CMU Serif";
-  src: url("/assets/css/fonts/CMUSerif-Bold.woff2") format("woff2");
+  font-family: "Libertinus Serif";
+  src: url("/assets/css/fonts/LibertinusSerif-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -986,7 +986,7 @@ figcaption {
 
 // Story content styling
 .story {
-  font-family: "CMU Serif", Georgia, serif;
+  font-family: "Libertinus Serif", Georgia, serif;
   font-size: 110%;
   line-height: 1.6;
 }
@@ -1000,7 +1000,7 @@ figcaption {
   padding-top: 0.1em;
   font-weight: normal;
   color: var(--text-color);
-  font-family: "CMU Serif", Georgia, serif;
+  font-family: "Libertinus Serif", Georgia, serif;
 }
 
 // Lightext encoded images
