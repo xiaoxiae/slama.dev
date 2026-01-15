@@ -1,0 +1,63 @@
+info:
+  name: Tomáš Sláma
+  email: tomas@slama.dev
+  website: slama.dev
+  github: github.com/xiaoxiae
+
+sections:
+  - title: Education
+    entries:
+      - label: 2022–2025
+        items:
+          - "**Heidelberg University** [[website](https://www.uni-heidelberg.de/en)], _Germany_\n\nI got my master's degree in Computer Science at the University of Heidelberg, which I turned into a startup (_see Experience section for details_)."
+
+      - label: 2019–2022
+        items:
+          - "**Charles University** [[website](https://www.mff.cuni.cz/en)], _Czech Republic_\n\nI got my bachelor's degree in Computer Science at the Charles University, with a specialization in Theoretical computer science (_see Projects section for thesis_)."
+
+      - label: 2017–2018
+        items:
+          - "**Westtown School** [[website](https://www.westtown.edu/)], _USA_\n\nI received an ASSIST scholarship (as one of the 4 people from the Czech Republic in 2017) to study at the Westtown private boarding school for one academic year."
+
+      - label: 2015–2019
+        items:
+          - "**Turnov Grammar School** [[website](http://www.gytu.cz/postnuke/index.php)], _Czech Republic_"
+
+  - title: Experience
+    entries:
+      - label: 2024–current
+        items:
+          - "**Founder & developer** of **Climbuddy** [[website](https://climbuddy.com/)]\n\nI'm the founder and lead developer of Climbuddy, the climbing platform of the future, which allows climbers to log their ascents in an interactive way using a 3D model of their gym by _only using phone images_ in a _fully automatic way._"
+
+      - label: 2019–2022
+        items:
+          - "**System administrator** at the _Charles University_\n\nMy responsibilities included network and server management, handling of software/hardware issues, implementation of internal faculty services and more at the department of Applied Mathematics of the Charles University."
+
+      - label: 2019–2021
+        items:
+          - "**Vex EDR programming lecturer** at the _Turnov Educational Center_\n\nAs a part of a government grant, I wrote a textbook [[PDF](https://github.com/xiaoxiae/uvod-do-programovani-vex-v5)] about Vex EDR programming, which I used to introduce programming and robotics to high-school students."
+
+  - title: Projects
+    entries:
+      - label: YouTube
+        items:
+          - "**TomS** (30k, [[link](https://www.youtube.com/@YTomS)]) and **Polylog** (100k, [[link](https://www.youtube.com/@PolylogCS)]); Computer Science education"
+
+      - label: Coding
+        items:
+          - "**Florodoro** (2021, Python) [[GitHub](https://github.com/xiaoxiae/Florodoro)]\n\nA pomodoro timer that grows randomized plants while you're studying."
+          - "**FRC Robot Codebase** (2017–18, Java) [[website](https://www.metalmoose1391.org/2018)] [[GitHub](https://github.com/MetalMooseFRC/MetalMoose2018)] [[whitepaper](https://raw.githubusercontent.com/MetalMooseFRC/MetalMoose2018/master/Documents/Software%20Overview.pdf)]\n\nI was the lead programmer and driver for the FRC team 1391, implementing the robot code for that year. We reached the world championships in Detroit and received the Innovation in Control Award for my robot's autonomous code."
+
+      - label: Bc. Thesis
+        items:
+          - "**Clis** and **Cled** (2021–2022, Python + C#) [[pdf](https://github.com/xiaoxiae/Thesis)]\n\nTools for automatic climbing hold scanning and virtual route editing. This includes an Arduino-powered turntable which automatically takes pictures and converts them to 3D models, along with a cross-platform editor to place them on the wall."
+
+  - title: Other
+    entries:
+      - label: Languages
+        items:
+          - "**Czech** (native) and **English** (bilingual)"
+
+      - label: Interests
+        items:
+          - "– organizing CS-oriented camps and seminars ([KSP](https://ksp.mff.cuni.cz/), [ProTab](https://protab.cz/))\n– photography ([see my photos](https://slama.dev/photos/))\n– rock climbing ([see me climb](https://slama.dev/climbing/)), snowboarding, slacklining"

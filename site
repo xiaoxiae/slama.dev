@@ -30,6 +30,9 @@ function build
     echo "Generating lightext images..."
     uv run python scripts/lightext.py content/light/index.md
 
+    echo "Generating CV PDF..."
+    typst compile --root . content/cv/cv.typ static/cv.pdf
+
     hugo --minify --cleanDestinationDir
 
     echo "Subsetting fonts..."

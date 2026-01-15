@@ -1,0 +1,39 @@
+{{- $cv := site.Data.cv -}}
+{{- $info := $cv.info -}}
+
+<div class='cv'>
+{{- range $cv.sections -}}
+  <h3>{{ .title }}</h3>
+  <table>
+    <tbody>
+    {{- range .entries -}}
+      {{- $label := .label -}}
+      {{- range $idx, $item := .items -}}
+        <tr>
+          {{- if eq $idx 0 -}}
+            <td style='vertical-align: top !important;'>
+              <p style='text-align: right !important;'><em>{{ $label }}</em></p>
+            </td>
+          {{- else -}}
+            <td></td>
+          {{- end -}}
+          <td>
+            {{- /* Convert \n\n to <br>, then markdownify, wrap in <p>, handle en-dashes */ -}}
+            {{- $text := replace $item "\n\n" "<br>" -}}
+            {{- $text = replace $text "\n" "<br>" -}}
+            {{- $html := $text | markdownify -}}
+            {{- $html = replace $html "--" "–" -}}
+            {{- /* Wrap in <p> if not already wrapped */ -}}
+            {{- if not (hasPrefix $html "<p>") -}}
+              <p>{{ $html | safeHTML }}</p>
+            {{- else -}}
+              {{- $html | safeHTML -}}
+            {{- end -}}
+          </td>
+        </tr>
+      {{- end -}}
+    {{- end -}}
+    </tbody>
+  </table>
+{{- end -}}
+</div>
