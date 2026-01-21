@@ -1,7 +1,5 @@
-// Import markdown parser
 #import "@preview/cmarker:0.1.1": render as markdown
 
-// Read CV data from YAML
 #let data = yaml("../../data/cv.yaml")
 #let info = data.info
 
@@ -26,7 +24,6 @@
   ]
 ]
 
-// Gray links for body
 #show link: set text(fill: gray)
 
 // Process sections
@@ -73,5 +70,4 @@
   )
 ]
 
-// Bottom spacing for optical balance
 #v(2fr)
