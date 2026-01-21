@@ -38,6 +38,9 @@
 		<!-- FONT PRELOADS -->
 		<link rel="preload" href="{{ "/assets/css/fonts/FiraSans-Light.woff2" | absURL }}" as="font" type="font/woff2" crossorigin>
 		<link rel="preload" href="{{ "/assets/css/fonts/FiraMono-Regular.woff2" | absURL }}" as="font" type="font/woff2" crossorigin>
+		{{ if .Params.hasTomoji }}
+		<link rel="preload" href="{{ "/assets/css/fonts/tomoji.woff2" | absURL }}" as="font" type="font/woff2" crossorigin>
+		{{ end }}
 
 		<!-- CSS STYLESHEETS -->
 		{{ $mainStyle := resources.Get "scss/main.scss" | toCSS (dict "targetPath" "assets/css/main.css") | minify | fingerprint }}
