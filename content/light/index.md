@@ -69,7 +69,7 @@ Khast's knife clattered to the floor, his senses immediately dulling.
 Staring at the pulse-claw's lifeless body in sheer disbelief, he couldn't believe that his plan had actually worked.
 
 Despite the fatigue, he willed himself to focus, picked up the knife and began the gruesome work of dissecting the body.
-Extracting the vitals and placing them into the vials he had prepared earlier in the day, he knew that getting back to the village in time was going to be close.
+Extracting the vitals and placing them into the flask he had prepared earlier in the day, he knew that getting back to the village in time was going to be close.
 
 Getting up with mounting slowness, he began the shuffle towards Amber, the place he hoped to save, with the knowledge he now carried on his back.
 A thirty-minute walk with this much light was likely not going to be enough, but he had to try.
@@ -95,16 +95,20 @@ Just one more st...
 
 Khast woke up.
 
-Slowly opening his eyes, he found himself in a room with a bed.
-Morning light shone though the sun reflector and bathed the room in warm light as he took in his surroundings.
+Opening his eyes slowly, he found himself staring at a wooden ceiling.
+His head ached and his limbs felt like lead, but at least he was breathing.
+Despite everything that went horribly last night, he was alive.
 
-It was clear that he was in one of the village's many medical tents, as 
+Turning his head around the room, his eyes fell on layers of lightleaf that covered the walls.
+The reflective leaves sent rays of light across the room, lighting it up despite the meager morning rays that shone through the window.
 
-As he began to rise, pain flared up immediately from his right leg and he was forced to collapse back onto the bed.
+Upon further examination, Khast spotted herbal bandages on a nearby table next to some vials.
+He was in one of the village's medical tents on the south side, as that's where he fell unconscious last night.
 
-"Don't move," Lira said as she rushed to the side of his bed.
-
-"Shir found you outside of the city gates, bleeding badly."
+As he began to rise, pain flared up immediately from his right leg and he collapsed back onto the bed.
+"Don't move," a familiar voice said. "Shir spotted you near the gates and dragged you in. He almost didn't make it back in time."
+ 
+"Lira?", Khast asked as he turned his head towards the entrance.
 
 </div>
 
