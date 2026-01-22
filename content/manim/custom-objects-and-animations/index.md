@@ -2,9 +2,6 @@
 date: '2022-11-27'
 categoryPart: 5
 title: Custom Objects and Animations
-end: <a href="/manim/1/">Part 1</a>, <a href="/manim/2/">Part 2</a>, <a href="/manim/3/">Part
-  3</a>, <a href="/manim/4/">Part 4</a>, <strong>→ Part 5 ←</strong>, <a href="/manim/6/">Part
-  6</a>
 description: Custom objects and animations (and formerly plugins, but those are outdated
   now).
 toc: true

@@ -2,9 +2,6 @@
 date: '2022-07-19'
 categoryPart: 4
 title: Plotting and 3D Scenes
-end: <a href="/manim/1/">Part 1</a>, <a href="/manim/2/">Part 2</a>, <a href="/manim/3/">Part
-  3</a>, <strong>→ Part 4 ←</strong>, <a href="/manim/5/">Part 5</a>, <a href="/manim/6/">Part
-  6</a>
 description: 3D animations and graph plotting.
 toc: true
 ---

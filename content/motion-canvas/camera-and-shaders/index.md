@@ -2,8 +2,6 @@
 date: '2024-10-28'
 categoryPart: 3
 title: Camera and Shaders
-end: <a href="/motion-canvas/1/">Part 1</a>, <a href="/motion-canvas/2/">Part 2</a>,
-  <strong>→ Part 3 ←</strong>
 description: Camera controls, and a glimpse into the wonderful world of shaders.
 toc: true
 ---

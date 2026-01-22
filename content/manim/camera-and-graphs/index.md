@@ -2,9 +2,6 @@
 date: '2022-07-03'
 categoryPart: 3
 title: Camera and Graphs
-end: <a href="/manim/1/">Part 1</a>, <a href="/manim/2/">Part 2</a>, <strong>→ Part
-  3 ←</strong>, <a href="/manim/4/">Part 4</a>, <a href="/manim/5/">Part 5</a>, <a
-  href="/manim/6/">Part 6</a>
 description: Camera controls, (combinatorial) graphs and rate functions.
 toc: true
 ---

@@ -2,8 +2,6 @@
 date: '2024-10-13'
 categoryPart: 2
 title: Groups, Animations, Signals, Effects
-end: <a href="/motion-canvas/1/">Part 1</a>, <strong>→ Part 2 ←</strong>, <a href="/motion-canvas/3/">Part
-  3</a>
 description: Groups of objects, animation flow, signals (Manim updaters on crack),
   effects.
 toc: true

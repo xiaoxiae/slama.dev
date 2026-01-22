@@ -1,42 +1,68 @@
 {{ define "main" }} {{/* Show post metadata if this page has a date (i.e., is a
 post) and is not a redirect */}} {{ if and (ne .Date (time "0001-01-01")) (not
-.Params.redirect) }}
-{{- $lang := .Params.language | default "en" -}}
-{{- $olderPost := false -}}
-{{- $newerPost := false -}}
-{{- $foundCurrent := false -}}
-{{- range site.RegularPages -}}
-  {{- if not .Params.redirect -}}
-    {{- if eq .Permalink $.Permalink -}}
-      {{- $foundCurrent = true -}}
-    {{- else -}}
-      {{- if $foundCurrent -}}
-        {{- if not $olderPost -}}
-          {{- $olderPost = . -}}
-        {{- end -}}
-      {{- else -}}
-        {{- $newerPost = . -}}
-      {{- end -}}
-    {{- end -}}
-  {{- end -}}
-{{- end -}}
+.Params.redirect) }} {{- $lang := .Params.language | default "en" -}} {{-
+$olderPost := false -}} {{- $newerPost := false -}} {{- $foundCurrent := false
+-}} {{- range site.RegularPages -}} {{- if not .Params.redirect -}} {{- if eq
+.Permalink $.Permalink -}} {{- $foundCurrent = true -}} {{- else -}} {{- if
+$foundCurrent -}} {{- if not $olderPost -}} {{- $olderPost = . -}} {{- end -}}
+{{- else -}} {{- $newerPost = . -}} {{- end -}} {{- end -}} {{- end -}} {{- end
+-}}
 <p class="post-metadata">
-  {{ with $olderPost }}<a href="{{ .RelPermalink }}" aria-label="Older post"><i class="fas fa-chevron-left" aria-hidden="true"></i></a>{{ else }}<i class="fas fa-chevron-left quarter-visible" aria-hidden="true"></i>{{ end }} <span class="post-nav-date">{{ .Date.Format "2. 1. 2006" }}</span> {{ with $newerPost }}<a href="{{ .RelPermalink }}" aria-label="Newer post"><i class="fas fa-chevron-right" aria-hidden="true"></i></a>{{ else }}<i class="fas fa-chevron-right quarter-visible" aria-hidden="true"></i>{{ end }}
-  {{ if .Section }}<span class="quarter-visible vspace">· </span>{{ $section := site.GetPage .Section }} {{ with $section }}
+  {{ with $olderPost }}<a href="{{ .RelPermalink }}" aria-label="Older post"
+    ><i class="fas fa-chevron-left" aria-hidden="true"></i></a
+  >{{ else }}<i
+    class="fas fa-chevron-left quarter-visible"
+    aria-hidden="true"
+  ></i
+  >{{ end }}
+  <span class="post-nav-date">{{ .Date.Format "2. 1. 2006" }}</span> {{ with
+  $newerPost }}<a href="{{ .RelPermalink }}" aria-label="Newer post"
+    ><i class="fas fa-chevron-right" aria-hidden="true"></i></a
+  >{{ else }}<i
+    class="fas fa-chevron-right quarter-visible"
+    aria-hidden="true"
+  ></i
+  >{{ end }} {{ if .Section }}<span class="quarter-visible vspace">· </span>{{
+  $section := site.GetPage .Section }} {{ with $section }}
   <strong><a href="{{ .RelPermalink }}">{{ .Title }}</a></strong>
-  {{ end }} {{ end }}
-  <span class="quarter-visible vspace">· </span>{{ .ReadingTime }} {{ partial "t.html" (dict "key" "min_read" "lang" $lang) }} {{ if eq .Params.language "cs" }}
-  <span class="quarter-visible vspace">· </span>🇨🇿 {{ end }} {{ if or .Params.pdf .Params.pdfNogenerate
-  }} <span class="quarter-visible vspace">· </span>{{ partial "t.html" (dict
-  "key" "pdf_available" "lang" $lang) }}
+  {{ end }} {{ end }}{{ if .Params.categoryPart }} {{- $currentPart :=
+  .Params.categoryPart -}} {{- $seriesParts := slice -}} {{- range
+  .CurrentSection.Pages -}} {{- if .Params.categoryPart -}} {{- $seriesParts =
+  $seriesParts | append . -}} {{- end -}} {{- end -}} {{- $seriesParts = sort
+  $seriesParts ".Params.categoryPart" -}}
+  {{ $prevPart := false -}}{{- $nextPart := false -}}{{- $total := len $seriesParts -}}{{- range
+  $index, $part := $seriesParts -}}{{- if eq $part.Params.categoryPart
+  $currentPart -}}{{- if gt $index 0 -}}{{- $prevPart = index $seriesParts (sub
+  $index 1) -}}{{- end -}}{{- if lt (add $index 1) $total -}}{{- $nextPart =
+  index $seriesParts (add $index 1) -}}{{- end -}}{{- end -}}{{- end -}}<span class="part-nav">{{ with
+  $prevPart }}<a href="{{ .RelPermalink }}" aria-label="Previous part"
+    ><i class="fas fa-chevron-left" aria-hidden="true"></i></a
+  >{{ else }}<i
+    class="fas fa-chevron-left quarter-visible"
+    aria-hidden="true"
+  ></i
+  >{{ end }}<span class="part-nav-num">{{ $currentPart }}/{{ $total }}</span>{{ with $nextPart
+  }}<a href="{{ .RelPermalink }}" aria-label="Next part"
+    ><i class="fas fa-chevron-right" aria-hidden="true"></i></a
+  >{{ else }}<i
+    class="fas fa-chevron-right quarter-visible"
+    aria-hidden="true"
+  ></i
+  >{{ end }}</span>{{ else }}{{ with .Params.end }}
+  <span class="quarter-visible vspace">· </span>{{ . | safeHTML }} {{ end }}{{ end }}
+  <span class="quarter-visible vspace">· </span>{{ .ReadingTime }} {{ partial
+  "t.html" (dict "key" "min_read" "lang" $lang) }} {{ if eq .Params.language
+  "cs" }} <span class="quarter-visible vspace">· </span>🇨🇿 {{ end }} {{ if or
+  .Params.pdf .Params.pdfNogenerate }}
+  <span class="quarter-visible vspace">· </span>{{ partial "t.html" (dict "key"
+  "pdf_available" "lang" $lang) }}
   <strong
     ><a href="{{ .Parent.RelPermalink }}{{ path.Base .RelPermalink }}.pdf"
       >PDF</a
     ></strong
   >
-  {{ end }} {{ with .Params.end }}
-  <span class="quarter-visible vspace">· </span>{{ . | safeHTML }} {{ end }} {{
-  with .Params.bluesky_url }} <span class="quarter-visible vspace">· </span
+  {{ end }} {{ with .Params.bluesky_url }}
+  <span class="quarter-visible vspace">· </span
   ><a
     href="{{ . }}"
     target="_blank"

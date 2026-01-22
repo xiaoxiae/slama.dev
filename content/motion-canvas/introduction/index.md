@@ -2,7 +2,6 @@
 date: '2024-10-04'
 categoryPart: 1
 title: From Manim to Motion Canvas
-end: <strong>→ Part 1 ←</strong>, <a href="/motion-canvas/2/">Part 2</a>, <a href="/motion-canvas/3/">Part 3</a>
 description: After a year-long break (master thesis + Manim burnout), I'm switching to Motion Canvas and documenting the transition for other Manim users through a series that recreates my original Manim tutorials.
 toc: true
 ---
