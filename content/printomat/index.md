@@ -23,7 +23,7 @@ Send me a message that will get [printed on my home receipt printer](https://git
 <div>
 <label for="imageFile"><strong>Image</strong></label>
 <div class="image-input-group">
-<input type="file" id="imageFile" name="imageFile" accept="image/png" onchange="handleImageSelect(event)">
+<input type="file" id="imageFile" name="imageFile" accept="image/*" onchange="handleImageSelect(event)">
 <button type="button" onclick="clearImage()">Clear</button>
 </div>
 <input type="hidden" id="image" name="image">
