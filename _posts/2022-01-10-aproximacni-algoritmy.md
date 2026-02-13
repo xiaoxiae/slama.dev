@@ -503,14 +503,14 @@ Předpokládáme:
 {% math theorem %}RAND-SAT je \(2\)-aproximační algoritmus.{% endmath %}
 
 {% math proof %}pro každou klauzuli zavedeme indikátorovou proměnnou \(Y_j\).
-- pravděpodobnost, že \(C_j\) není splňená je \(\frac{1}{2^k}\)
+- pravděpodobnost, že \(C_j\) není splňená je \(\frac{1}{2^{k_j}}\)
 
-Díky tomu, že \(k \ge 1\) máme \(\mathbb{E}\left[Y_j\right] = \mathrm{Pr}\left[C_j\ \text{is satistied}\right] = 1 - \frac{1}{2^k} \ge \frac{1}{2} \) a tedy:
+Díky tomu, že \(k_j \ge 1\) máme \(\mathbb{E}\left[Y_j\right] = \mathrm{Pr}\left[C_j\ \text{is satistied}\right] = 1 - \frac{1}{2^{k_j}} \ge \frac{1}{2} \) a tedy:
 \[\mathbb{E}\left[\sum_{j = 1}^{m} w_j Y_j\right] \overset{\text{linearita}}{=} \frac{1}{2} \sum_{j = 1}^{m} w_j \ge \frac{1}{2}\mathrm{OPT} \]
 {% endmath %}
 
 {% math remark %}pro \(k = 3\) dostáváme po dosazení \(\frac{8}{7}\)-aproximaci
-- \(\forall \varepsilon > 0: \left(\frac{8}{7} - \varepsilon\right)\)-aproximace MAX-3SATu ne NP úplná {% endmath %}
+- \(\forall \varepsilon > 0: \left(\frac{8}{7} - \varepsilon\right)\)-aproximace MAX-3SATu je NP úplná {% endmath %}
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -518,36 +518,26 @@ Předchozí algoritmus měl problémy s krátkými klauzulemi, jelikož je menš
 </div>
 
 #### BIASED-SAT
-- předpoklad: \(\forall i: \sum_{j: C_j = x_i} w_j \ge \sum_{j: C_j = \overline{x}_i} w_j\)
-	- chceme preferovat splnění krátkých kladných před splněním krátkých záporných
-	- pokud nevychází, tak literál všude znegujeme
 
 {% math algorithm "BIASED-SAT" %}
-1. vybereme nezávisle náhodně všechny literály
-	- true: \(p > \frac{1}{2}\), jinak false; hodnotu \(p\) najdeme později
+1. vybereme nezávisle náhodně všechny hodnoty \(a_i \in \{0,1\}\) takto:
+  - pokud se \(x_i\) vyskytuje jako jednoprvková klauzule častěji než \(\neg x_i\), pak zvol \(a_i = 1\) s pravděpodobností \(\phi - 1 = \frac{\sqrt{5} - 1}2\), jinak \(a_i = 0\)
+  - pro všechny ostatní \(i\) zvol \(a_i = 0\) s pravděpodobností \(\phi - 1\), jinak \(a_i = 1\)
 {% endmath %}
 
-{% math theorem %}BIASED-SAT je \(\left(\phi = \frac{\sqrt{5} - 1}{2}\right)\)-aproximační algoritmus.{% endmath %}
+{% math theorem %}BIASED-SAT je \(\left(\phi - 1 = \frac{\sqrt{5} - 1}{2}\right)\)-aproximační algoritmus.{% endmath %}
 
-Uvažme \(C_j\) (a opět indikátorové veličiny \(Y_j\)):
-- kladný literál: \(Y_j = p\)
-- \(k_j \ge 2\): \(Y_j = 1 - p^a (1 - p)^b \overset{p > \frac{1}{2}}{\ge} 1-p^{a + b} \overset{k_j \ge 2}{\ge} 1 - p^2\)
-	- \(a\) je počet kladných a \(b\) počet záporných literálů
+Z dvojice jednotkových klauzulí \((x_i)\) a \((\neg x_i)\) je vždy právě jedna splněná, pro další analýzu je tak vynecháme. Zbývající jednotkové klauzule jsou splněny s pravděpodobností přesně \(\phi - 1\). Klauzule délky \(k\ge 2\) jsou splněny s pravděpodobností \(1 - (\phi - 1)^k \ge 1 - (\phi - 1)^2 = \phi - 1\).
+- pravděpodobnost \(\phi - 1\) jsme zvolili přesně kvůli tomu, aby platila tato poslední rovnost
 
-Po vyřešení \(p = 1 - p^2\) dostáváme \(p = \phi = \frac{\sqrt{5} - 1}{2}\).
-
-Nechť \(U\) množina klauzulí bez záporných jednotkových.
-
-{% math observation %}\(\mathrm{OPT} \le \sum_{j \in U} w_j\)
-- zde používáme předpoklad -- kladné literály je splňovat lepší než záporné
-{% endmath %}
+Střední hodnota hodnoty výsledného řešení je tak: (pro stejné indikátorové veličiny \(Y_i\) definované v důkazu pro "RAND-SAT")
 
 \[
 \begin{aligned}
 	\mathbb{E}\left[\sum_{j = 1}^{m} w_j Y_j\right] &= \sum_{j = 1}^{m} w_j \mathbb{E}\left[Y_j\right] \\
 	&\ge \sum_{j \in U} w_j \cdot \mathrm{Pr}\left[C_j\ \text{je splněná}\right] \\
-	&\ge \sum_{j \in U} w_j \cdot p \\
-	&\ge p \cdot \mathrm{OPT}
+	&\ge \sum_{j \in U} w_j \cdot (\phi - 1) \\
+	&\ge (\phi - 1) \cdot \mathrm{OPT}
 \end{aligned}
 \]
 
