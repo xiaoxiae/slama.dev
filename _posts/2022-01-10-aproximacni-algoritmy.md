@@ -1014,7 +1014,7 @@ Budeme používat trochu divný vstup:
 - _Vstup:_ matice polynomů proměnných, determinant určuje náš polynom
 - _Výstup:_ ANO, jestliže je polynom identicky nulový, jinak NE
 
-{% math lemma %}nechť \(P(x_1, \ldots, x_n)\) je **nenulový** polynom nad \(K\) stupně \(\le d_i\) a \(S \subseteq K\) konečná. Nechť \(x_1, \ldots, x_n \in S\) unif. náhodně. Pak \[\mathrm{Pr}_{\vec{x}} \left[P(\vec{x}) = 0\right] \le \frac{d}{|S|}\]
+{% math lemma %}nechť \(P(x_1, \ldots, x_n)\) je **nenulový** polynom nad \(K\) stupně \(\le d_i\) a \(S \subseteq K\) konečná. Nechť \(x_1, \ldots, x_n \in S\) unif. náhodně. Pak pravděpodobnost, že jsme se trefili do jednoho z kořenů z \(S\), je \[\mathrm{Pr}_{\vec{x}} \left[P(\vec{x}) = 0\right] \le \frac{d}{|S|}\]
 - \(n = 1 \ldots\ \) polynom má nejvýše \(d\) kořenů, ať zvolíme \(s\) jakkoliv
 - je to dost šikovné, protože podle \(|S|\) si volíme přesnost algoritmu (pro \(|S| \ge 2d\) máme \(\ge \frac{1}{2}\))
 {% endmath %}
@@ -1026,7 +1026,21 @@ Budeme používat trochu divný vstup:
 		- při konkrétních hodnotách \(x_2, \ldots, x_n\) se mi polynom vyhodnotí na nějaké číslo a zbytek polynomu \(P(\vec{x})\) bude \(\alpha x_1^k + \beta\), což nebude mít více než \(k\) kořenů
 {% endmath %}
 
-Nyní si uvědomíme, že \[\mathrm{Pr}\left[P(\vec{x}) = 0\right] \le \alpha + \beta \le \frac{d - k}{|S|} + \frac{k}{|S|} = \frac{d}{|S|}\]
+Nyní si uvědomíme, že
+\[
+\begin{aligned}
+  \mathrm{Pr}\left[P(\vec{x}) = 0\right]
+  &\le \mathrm{Pr}[A(x_2, \dots, x_n) = 0] + \mathrm{Pr}[P(\vec{x}) = 0 \mid A(x_2, \dots, x_n) \ne 0] \\
+  &\le \frac{d - k}{|S|} + \frac{k}{|S|} = \frac{d}{|S|}
+\end{aligned}
+\]
+
+{% math algorithm %}
+1. vybereme dostatečně velké \(S\) a uniformně náhodné ohodnocení proměnných \(x_i\)
+2. pokud \(P(\vec{x}) = 0\), odpovíme, že je nulový, jinak že není
+{% endmath %}
+- pokud je \(P\) nulový, vždy odpovíme správně
+- pokud \(P\) není nulový, pak uděláme chybu s pravděpodobností \(\le \frac d {|S|}\)
 
 ### Perfektní párování
 Nechť \((U, V, E)\) je bipartitní graf, \(n = |U| = |V|\). Pak Edmondsova matice grafu je \(n \times n\) matice \(B\) s
