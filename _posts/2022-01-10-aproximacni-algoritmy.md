@@ -162,11 +162,13 @@ modifikujme algoritmus, aby zkoušel přistupovat i po té, co ho získal (lehč
 Nechť \(A_{i, r}\) je jev, že \(i\)-tý proces upěl v \(r\)-tém cyklu. Pak
 \[\mathrm{Pr}\left[A_{i, r}\right] = p \cdot \left(1 - p\right)^{n - 1} = \frac{1}{n} \left(1 - \frac{1}{n}\right)^{n - 1} \ge \frac{1}{en}\]
 
-Nyní počítáme \(F_{i, t}\) které říká, že \(i\)-tý proces neuspěje v žádném z \(t = 2 en \ln n\) cyklů:
+Nyní počítáme pravděpodobnosti jevů \(F_{i, t}\) které říkají, že \(i\)-tý proces neuspěje v žádném z \(t = 2 en \ln n\) cyklů:
 \[\mathrm{Pr}\left[F_{i, t}\right] = \prod_{r = 1}^{t} \left(1 - A_{i, r}\right) \le \left(1 - \frac{1}{en}\right)^t = \left(\left(1 - \frac{1}{en}\right)^{en}\right)^{\frac{t}{en}} \le n^{-2}\]
 
-To, že neexistuje proces, který neuspěje, odhadneme jako
+To, že existuje proces, který neuspěje, odhadneme jako
 \[\mathrm{Pr}\left[\bigcup_{i = 1}^{n} F_{i, t}\right] \le \sum_{i = 1}^{n} \mathrm{Pr}\left[F_{i, t}\right] \le n \cdot n^{-2} = n^{-1} = \frac{1}{n}\]
+
+Pravděpodobnost, že všechny procesy uspějí, je tak \(1 - \mathrm{Pr}\left[\bigcup_{i = 1}^{n} F_{i, t}\right] \ge 1 - \frac 1 n\)
 {% endmath %}
 
 
