@@ -389,7 +389,7 @@ BUNO předpokládejme, že \(p_n\) určuje délku rozvrhu (kdyby ne tak na dalš
 - _Výstup:_
 	- \(I \subseteq \left\{1, \ldots, k\right\}\) (dvojice které spojíme cestou)
 	- cesty \(P_i, i \in I, P_i\) cesta z \(s_i\) do \(t_i\) tak, že každá hrana \(e \in E\) leží na nejvýše \(c\) cestách \(P_i\)
-- _Cíl:_ minimalizovat \(|I|\)
+- _Cíl:_ maximalizovat \(|I|\)
 
 #### Jednotkové kapacity
 {% math algorithm "hladový" %}
@@ -420,7 +420,7 @@ Nechť \(I^*, \left\{P_i^* \mid i \in I^*\right\}\) je optimum. Počítejme cest
 	- \(i \not\in I \ldots\ P_i^*\) má nějakou společnou hranu s nějakou cestou \(P_j\) t. ž. \(|P_j| \le \sqrt{m}\)
 		- ve chvíli, kdy algoritmus poprvé vybral cestu delší než \(\sqrt{m}\) už nemohl vybrat \(P_i^*\), protože tu blokovala nějaká cesta, kterou již předtím zvolil (a ta musí být krátká)
 
-Tedy počet krátkých cest \(P_i^* \le |I| \left(\sqrt{m} + 1\right)\)
+Tedy počet krátkých cest \(P_i^* \le \sum_{j \in I}\text{\#cest blokovaných $P_j$} \le \sum_{j\in I}1 + \sqrt{m} = |I| \cdot (1 + \sqrt{m})\)
 - \(1\) -- náš algoritmus a optimum vybrali stejnou cestu
 - \(\sqrt{m}\) -- krátká cesta v našem řešení zablokuje nejvýše \(\sqrt{m}\) ostatních krátkých
 \[\mathrm{OPT} = |I^*| \le \underbrace{\sqrt{m}}_{\text{dlouhé}} + \underbrace{|I| \left(\sqrt{m} + 1\right)}_{\text{krátké}} \le \mathcal{O}(\sqrt{m}) |I| = \mathcal{O}(\sqrt{m}) \mathrm{ALG} \]
