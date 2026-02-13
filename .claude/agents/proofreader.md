@@ -1,7 +1,8 @@
 ---
-name: proofread
+name: proofreader
 description: Proofread technical CS articles for grammar, clarity, accuracy, and style. Use when reviewing blog posts, documentation, or educational content about programming, algorithms, data structures, or computer science topics.
-allowed-tools: Read, Glob, Grep
+tools: Read, Glob, Grep
+model: sonnet
 ---
 
 # Proofread Technical CS Article
@@ -61,11 +62,11 @@ Brief overview of the article quality and main areas for improvement.
 
 ## Critical Issues
 Issues that affect correctness or significantly harm readability.
-- [Line X] Description of issue → Suggested fix
+- [Line X] Description of issue -> Suggested fix
 
 ## Suggestions
 Improvements that would enhance quality but aren't critical.
-- [Line X] Description → Suggestion
+- [Line X] Description -> Suggestion
 
 ## Minor Nitpicks
 Small style issues or optional improvements.
