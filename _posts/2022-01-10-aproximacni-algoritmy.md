@@ -986,18 +986,21 @@ Výpočtem dostáváme \(\sum n_i^2 \le 2 |C| + \sum n_i \le 2n + s = \mathcal{O
 
 {% math theorem %}existuje pravděpodobnostní algoritmus s jednostrannou chybou pro testování maticového násobení v čase \(\mathcal{O}\left(n^2\right)\)
 - když platí, tak vždy řekne že platí
-- když neplatí, tak se netrefí s nějakou pravděpodobností (konkrétně \(\ge \frac{1}{2}\))
+- když neplatí, tak udělá chybu s nějakou pravděpodobností (konkrétně \(\le \frac{1}{2}\))
 {% endmath %}
 
 {% math algorithm %}
 1. vezmi náhodný \(\vec{x} \in \left\{0, 1\right\}^n\)
-2. vstup ANO, jestliže \(A \cdot B \cdot \vec{x} = C \cdot \vec{x}\), jinak NE
+2. vystup ANO, jestliže \(A \cdot (B \cdot \vec{x}) = C \cdot \vec{x}\), jinak NE
+- nejdříve vynásobíme \(\vec x\) maticí \(B\), až pak maticí \(A\), abychom měli kvadratickou časovou složitost
 {% endmath %}
 
 {% math observation %}algoritmus trvá \(\mathcal{O}(n^2)\) kroků{% endmath %}
 
 {% math observation %}algoritmus řekne ano \(\iff \left(A \cdot B - C\right) \cdot \vec{x} = D \cdot \vec{x} = \vec{0}\)
-- \(D\) je nenulová matice (jelikož \(A \cdot B \neq C\)), má tedy **nenulový řádek**
+- pokud \(D = 0\), pak algoritmus správně odpoví ANO
+- pokud \(D \ne 0\), pak algoritmus udělá chybu s pravděpodobností \(\le \frac 1 2\)
+  - \(D\) je nenulová matice, má tedy **nenulový řádek**
 	- podle lemmatu platí \(\mathrm{Pr}_{\vec{x}} \left[D \cdot \vec{x} \neq 0\right] \ge \frac{1}{2}\)
 {% endmath %}
 
