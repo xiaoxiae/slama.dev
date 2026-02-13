@@ -947,24 +947,27 @@ Zvolíme \(n \in \left[s, 2s\right], H, h \in H\) náhodně uniformně:
 
 {% xopp static %}
 
+- v první tabulce máme přihrádky velikosti \(n_i\), pro každou z nich pak vytvoříme další tabulku velikosti \(n_i^2\)
 - vybereme \(h \in H\) tak, že má \(\le n\) kolizí
 	- kolize \(C = \left\{\left\{x, y\right\} \mid x, y \in M, x \neq y, h(x) = h(y)\right\}\)
 
 {% math lemma %}existuje \(h \in H\) s počtem kolizí \(\le n\).{% endmath %}
 
 {% math proof %} \(\mathbb{E}\left[|C|\right] \overset{2-\text{univ}}{\le} \binom{s}{2} \frac{1}{n} \overset{s \le n}{\le} \binom{n}{2} \cdot \frac{1}{n} \le \frac{n}{2}\){% endmath %}
-- jelikož je průměrný počet kolizí \(\le \frac{n}{2}\), tak musí existovat hodně takových, že \(\le \frac{n}{2}\)
+- pokud vybereme uniformně náhodně hashovací funkci z \(h \in H\), pak dle Markovovy nerovnosti \(\mathrm{Pr}[|C| \ge n]\) \le \frac {\mathbb{E}[|C|]} n \le \frac 1 2
+- každá druhá taková funkce má \(\le n\) kolizí
 
 {% math lemma %}existuje \(h_i \in H\) s počtem kolizí \(0\).{% endmath %}
 
 {% math proof %} \(\mathbb{E}\left[|C_{n_i}|\right] \le \binom{n_i}{2} \cdot \frac{1}{n_i^2} \le \frac{1}{2}\){% endmath %}
-- jelikož je průměrný počet kolizí \(\le \frac{1}{2}\), tak musí existovat hodně takových, že \(0\)
+- opět dle Markovova pro uniformně náhodně vybranou \(h\in H\) máme \(\mathrm{Pr}[|C_{n_i}| \ge 1] \le \mathbb{E}[|C_{n_i}|] \le \frac 1 2\)
+- každá druhá taková funkce má 0 kolizí
 {% endmath %}
 
 {% math observation %}\(|C| = \sum_{i = 1}^{n} \binom{n_i}{2} =	\sum \frac{n_i^2}{2} - \sum \frac{n_i}{2}\)
 - počet prvků kolidující do daného políčka je \(n_i\), počet dvojic je tedy výraz nahoře
 
-Výpočtem dostáváme \(\sum n_i^2 \le 2 |C| + \sum n_i \le 2s + s = \mathcal{O}(s)\)
+Výpočtem dostáváme \(\sum n_i^2 \le 2 |C| + \sum n_i \le 2n + s = \mathcal{O}(s)\)
 {% endmath %}
 
 ### Testování
