@@ -7,26 +7,13 @@
 - [Node.js](https://nodejs.org/) (html-validate, pa11y, prettier)
 - [lychee](https://github.com/lycheeverse/lychee) (link checking)
 
-## Setup
+## Contributing
+
+To check how changes look on the website, [install Hugo](https://gohugo.io/installation/) and run
 
 ```bash
-uv sync
-npm install
-uv run pre-commit install
+./site serve
 ```
 
-## Development
-
-```bash
-./site serve   # Start dev server (with drafts)
-./site build   # Build the site
-./site check   # Run checks (HTML, links, accessibility)
-./site upload  # Upload to VPS
-./site all     # Build and upload (default)
-```
-
-## Pre-commit Hooks
-
-Runs on commit via `uv run` and `npx`:
-- **ruff** - Python linting and formatting
-- **prettier** - SCSS formatting
+Note that while this will build the website, it will look broken since the full build requires gigabytes of static files.
+However, text elements, math, and general structure will be fine, so you can check that changes you make work.
