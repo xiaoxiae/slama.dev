@@ -253,7 +253,7 @@ uvažme následující diagram:
 {% xopp rozvrh %}
 
 Z obrázku vyplývá:
-- \(T \le \mathrm{OPT}\) (optimum muselo úlohy také někam dát)
+- \(T \le \mathrm{OPT}\) (\(T\) je minimum z délek rozvrhů všech front, takže jistě \(T \le \mathrm{OPT}\))
 - \(p_j \le \mathrm{OPT}\) (optimum \(p_j\) muselo použít)
 
 Spojením dostáváme \(\mathrm{ALG} = T + p_j \le 2 \cdot \mathrm{OPT}\)
@@ -275,7 +275,8 @@ Nyní místo odhadu \(T \le \mathrm{OPT}\) použijeme tyto dva odhady:
 \[
 \begin{aligned}
 	T + \frac{p_j}{m} &\le \mathrm{OPT} \\
-	(p_j &\le \mathrm{OPT}) \cdot \left(1 - \frac{1}{m}\right)
+  \\
+  p_j &\le \mathrm{OPT} \implies \left(1-\frac 1 m\right)p_j \le \left(1-\frac 1 m\right) \mathrm{OPT}
 \end{aligned}
 \]
 
@@ -283,7 +284,7 @@ Součtem dostáváme
 
 \[
 \begin{aligned}
-	T + \frac{p_j}{m} + \left(1 - \frac{1}{m}\right) p_j &\le \mathrm{OPT} + \left(1 - \frac{1}{m}\right) \mathrm{OPT} \\
+	\mathrm{ALG} = T + p_j = T + \frac{p_j}{m} + \left(1 - \frac{1}{m}\right) p_j &\le \mathrm{OPT} + \left(1 - \frac{1}{m}\right) \mathrm{OPT} \\
 	\mathrm{ALG} &\le \left(2 - \frac{1}{m}\right) \mathrm{OPT}
 \end{aligned}
 \]
