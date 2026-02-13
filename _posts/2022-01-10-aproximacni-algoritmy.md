@@ -123,7 +123,7 @@ Pro připomenutí:
 - \(\mathbb{E}\left[X + Y\right] = \mathbb{E}\left[X\right] + \mathbb{E}\left[Y\right]\)
 </div>
 
-{% math proof %} počítáme \(A_{i, j} = \mathrm{Pr}\left[\text{porovnáme $i$-tý a $j$-tý prvek}\right]\)
+{% math proof %} počítáme \(A_{i, j}\) -- jev, že prvky \(p_i\) a \(p_j\) byly porovnány
 - zavedeme indikátorové veličiny \(X_{i, j} = \begin{cases}1 & A_{i, j}\ \text{nastane} \\ 0 & \text{jinak}\end{cases}\)
 
 {% math lemma %}nechť \(i < j\). Pak \(\mathrm{Pr}\left[A_{i, j}\right] = \frac{2}{j - i + 1}\){% endmath %}
@@ -162,11 +162,13 @@ modifikujme algoritmus, aby zkoušel přistupovat i po té, co ho získal (lehč
 Nechť \(A_{i, r}\) je jev, že \(i\)-tý proces upěl v \(r\)-tém cyklu. Pak
 \[\mathrm{Pr}\left[A_{i, r}\right] = p \cdot \left(1 - p\right)^{n - 1} = \frac{1}{n} \left(1 - \frac{1}{n}\right)^{n - 1} \ge \frac{1}{en}\]
 
-Nyní počítáme \(F_{i, t}\) které říká, že \(i\)-tý proces neuspěje v žádném z \(t = 2 en \ln n\) cyklů:
+Nyní počítáme pravděpodobnosti jevů \(F_{i, t}\) které říkají, že \(i\)-tý proces neuspěje v žádném z \(t = 2 en \ln n\) cyklů:
 \[\mathrm{Pr}\left[F_{i, t}\right] = \prod_{r = 1}^{t} \left(1 - A_{i, r}\right) \le \left(1 - \frac{1}{en}\right)^t = \left(\left(1 - \frac{1}{en}\right)^{en}\right)^{\frac{t}{en}} \le n^{-2}\]
 
-To, že neexistuje proces, který neuspěje, odhadneme jako
+To, že existuje proces, který neuspěje, odhadneme jako
 \[\mathrm{Pr}\left[\bigcup_{i = 1}^{n} F_{i, t}\right] \le \sum_{i = 1}^{n} \mathrm{Pr}\left[F_{i, t}\right] \le n \cdot n^{-2} = n^{-1} = \frac{1}{n}\]
+
+Pravděpodobnost, že všechny procesy uspějí, je tak \(1 - \mathrm{Pr}\left[\bigcup_{i = 1}^{n} F_{i, t}\right] \ge 1 - \frac 1 n\)
 {% endmath %}
 
 
@@ -202,12 +204,16 @@ To, že neexistuje proces, který neuspěje, odhadneme jako
 
 {% math theorem %}pravděpodobnost, že najdeme daný minimální řez \(C\) je alespoň \(\binom{n}{2}^{-1} = \frac{2}{n \cdot (n - 1)}\).{% endmath %}
 
-{% math proof %}nechť \(A_i\) jev, že v prvních \(i\) iteracích jsme nevybrali hranu z \(C\).
+{% math proof %} Zafixujme některý globální minimální řez \(C\). Nechť \(A_i\) jev, že v prvních \(i\) iteracích jsme nevybrali hranu z \(C\).
 
 - \(\mathrm{Pr}[A_0] = 1\) (žádnou jsme ještě nevybrali)
 - \(\mathrm{Pr}[A_1] \ge 1 - \frac{k}{nk / 2} = 1 - \frac{2}{n}\)
 - \(\mathrm{Pr}[A_2 \mid A_1] \ge 1 - \frac{k}{(n-1)k/2} =  1 - \frac{2}{n - 1}\)
-- \(\mathrm{Pr}[A_2] = \mathrm{Pr}[A_2 \mid A_1] \cdot \mathrm{Pr}\left[A_1\right] \), z čehož vyplývá:
+
+Po \(i\) iteracích máme \(n-i\) vrcholů a minimální globální řez má velikost alespoň \(k\), takže máme alespoň \((n-i)\frac k 2\) hran, z čehož nejvýše \(k\) hran je v \(C\). Obecně tak máme:
+
+- \(\mathrm{Pr}[A_{i+1} \mid A_i] \ge 1 - \frac{2k}{(n-i)k} = \frac{n-i-2}{n-i}\)
+- \(\mathrm{Pr}[A_{i+1}] = \mathrm{Pr}[A_{i+1} \mid A_i] \cdot \mathrm{Pr}\left[A_i\right] \), z čehož vyplývá:
 
 \[
 \begin{aligned}
@@ -247,7 +253,7 @@ uvažme následující diagram:
 {% xopp rozvrh %}
 
 Z obrázku vyplývá:
-- \(T \le \mathrm{OPT}\) (optimum muselo úlohy také někam dát)
+- \(T \le \mathrm{OPT}\) (\(T\) je minimum z délek rozvrhů všech front, takže jistě \(T \le \mathrm{OPT}\))
 - \(p_j \le \mathrm{OPT}\) (optimum \(p_j\) muselo použít)
 
 Spojením dostáváme \(\mathrm{ALG} = T + p_j \le 2 \cdot \mathrm{OPT}\)
@@ -269,7 +275,8 @@ Nyní místo odhadu \(T \le \mathrm{OPT}\) použijeme tyto dva odhady:
 \[
 \begin{aligned}
 	T + \frac{p_j}{m} &\le \mathrm{OPT} \\
-	(p_j &\le \mathrm{OPT}) \cdot \left(1 - \frac{1}{m}\right)
+  \\
+  p_j &\le \mathrm{OPT} \implies \left(1-\frac 1 m\right)p_j \le \left(1-\frac 1 m\right) \mathrm{OPT}
 \end{aligned}
 \]
 
@@ -277,7 +284,7 @@ Součtem dostáváme
 
 \[
 \begin{aligned}
-	T + \frac{p_j}{m} + \left(1 - \frac{1}{m}\right) p_j &\le \mathrm{OPT} + \left(1 - \frac{1}{m}\right) \mathrm{OPT} \\
+	\mathrm{ALG} = T + p_j = T + \frac{p_j}{m} + \left(1 - \frac{1}{m}\right) p_j &\le \mathrm{OPT} + \left(1 - \frac{1}{m}\right) \mathrm{OPT} \\
 	\mathrm{ALG} &\le \left(2 - \frac{1}{m}\right) \mathrm{OPT}
 \end{aligned}
 \]
@@ -382,7 +389,7 @@ BUNO předpokládejme, že \(p_n\) určuje délku rozvrhu (kdyby ne tak na dalš
 - _Výstup:_
 	- \(I \subseteq \left\{1, \ldots, k\right\}\) (dvojice které spojíme cestou)
 	- cesty \(P_i, i \in I, P_i\) cesta z \(s_i\) do \(t_i\) tak, že každá hrana \(e \in E\) leží na nejvýše \(c\) cestách \(P_i\)
-- _Cíl:_ minimalizovat \(|I|\)
+- _Cíl:_ maximalizovat \(|I|\)
 
 #### Jednotkové kapacity
 {% math algorithm "hladový" %}
@@ -413,7 +420,7 @@ Nechť \(I^*, \left\{P_i^* \mid i \in I^*\right\}\) je optimum. Počítejme cest
 	- \(i \not\in I \ldots\ P_i^*\) má nějakou společnou hranu s nějakou cestou \(P_j\) t. ž. \(|P_j| \le \sqrt{m}\)
 		- ve chvíli, kdy algoritmus poprvé vybral cestu delší než \(\sqrt{m}\) už nemohl vybrat \(P_i^*\), protože tu blokovala nějaká cesta, kterou již předtím zvolil (a ta musí být krátká)
 
-Tedy počet krátkých cest \(P_i^* \le |I| \left(\sqrt{m} + 1\right)\)
+Tedy počet krátkých cest \(P_i^* \le \sum_{j \in I}\text{\#cest blokovaných $P_j$} \le \sum_{j\in I}1 + \sqrt{m} = |I| \cdot (1 + \sqrt{m})\)
 - \(1\) -- náš algoritmus a optimum vybrali stejnou cestu
 - \(\sqrt{m}\) -- krátká cesta v našem řešení zablokuje nejvýše \(\sqrt{m}\) ostatních krátkých
 \[\mathrm{OPT} = |I^*| \le \underbrace{\sqrt{m}}_{\text{dlouhé}} + \underbrace{|I| \left(\sqrt{m} + 1\right)}_{\text{krátké}} \le \mathcal{O}(\sqrt{m}) |I| = \mathcal{O}(\sqrt{m}) \mathrm{ALG} \]
@@ -423,7 +430,7 @@ Tedy počet krátkých cest \(P_i^* \le |I| \left(\sqrt{m} + 1\right)\)
 #### Nejednotkové kapacity
 
 {% math algorithm "hladový pro nejednotkovou kapacitu" %}
-1. zvolíme \(\beta = \left\lceil m^{\frac{1}{c + 1}} \right\rceil\)
+1. zvolíme \(\beta = \left\lceil m^{\frac{1}{c + 1}} \right\rceil\), nastavíme \(\forall e \in E: d(e) = 1\)
 2. najdeme nejkratší cestu mezi nespojenou dvojicí (přes všechna \(i\))
 	- pokud neexistuje nebo \(d(P_i) \ge \beta^c\), vystoupíme
 3. přenásobíme délku hran nejkratší cesty faktorem \(\beta\) a opakujeme
@@ -434,7 +441,8 @@ Tedy počet krátkých cest \(P_i^* \le |I| \left(\sqrt{m} + 1\right)\)
 {% math consequence %}výsledné řešení je přípustné
 - po \(c\) použitích hrany \(e\) je \(d(e) = \beta^c \approx m^{\frac{c}{c + 1}} < m\), dále algoritmus hranu nepoužívá{% endmath %}
 
-{% math consequence %}algoritmus je polynomiální.{% endmath %}
+{% math consequence %}algoritmus je polynomiální.
+- díky celočíselnosti \(\beta\){% endmath %}
 
 {% math theorem %}Hladový algoritmus je \(\mathcal{O}\left(\beta\right)\)-aproximační.{% endmath %}
 - pro \(c = 1\) máme \(\beta = m^{\frac{1}{c + 1}} = \sqrt{m}\), což odpovídá
@@ -495,14 +503,14 @@ Předpokládáme:
 {% math theorem %}RAND-SAT je \(2\)-aproximační algoritmus.{% endmath %}
 
 {% math proof %}pro každou klauzuli zavedeme indikátorovou proměnnou \(Y_j\).
-- pravděpodobnost, že \(C_j\) není splňená je \(\frac{1}{2^k}\)
+- pravděpodobnost, že \(C_j\) není splňená je \(\frac{1}{2^{k_j}}\)
 
-Díky tomu, že \(k \ge 1\) máme \(\mathbb{E}\left[Y_j\right] = \mathrm{Pr}\left[C_j\ \text{is satistied}\right] = 1 - \frac{1}{2^k} \ge \frac{1}{2} \) a tedy:
+Díky tomu, že \(k_j \ge 1\) máme \(\mathbb{E}\left[Y_j\right] = \mathrm{Pr}\left[C_j\ \text{is satistied}\right] = 1 - \frac{1}{2^{k_j}} \ge \frac{1}{2} \) a tedy:
 \[\mathbb{E}\left[\sum_{j = 1}^{m} w_j Y_j\right] \overset{\text{linearita}}{=} \frac{1}{2} \sum_{j = 1}^{m} w_j \ge \frac{1}{2}\mathrm{OPT} \]
 {% endmath %}
 
 {% math remark %}pro \(k = 3\) dostáváme po dosazení \(\frac{8}{7}\)-aproximaci
-- \(\forall \varepsilon > 0: \left(\frac{8}{7} - \varepsilon\right)\)-aproximace MAX-3SATu ne NP úplná {% endmath %}
+- \(\forall \varepsilon > 0: \left(\frac{8}{7} - \varepsilon\right)\)-aproximace MAX-3SATu je NP úplná {% endmath %}
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -510,36 +518,26 @@ Předchozí algoritmus měl problémy s krátkými klauzulemi, jelikož je menš
 </div>
 
 #### BIASED-SAT
-- předpoklad: \(\forall i: \sum_{j: C_j = x_i} w_j \ge \sum_{j: C_j = \overline{x}_i} w_j\)
-	- chceme preferovat splnění krátkých kladných před splněním krátkých záporných
-	- pokud nevychází, tak literál všude znegujeme
 
 {% math algorithm "BIASED-SAT" %}
-1. vybereme nezávisle náhodně všechny literály
-	- true: \(p > \frac{1}{2}\), jinak false; hodnotu \(p\) najdeme později
+1. vybereme nezávisle náhodně všechny hodnoty \(a_i \in \{0,1\}\) takto:
+  - pokud se \(x_i\) vyskytuje jako jednoprvková klauzule častěji než \(\neg x_i\), pak zvol \(a_i = 1\) s pravděpodobností \(\phi - 1 = \frac{\sqrt{5} - 1}2\), jinak \(a_i = 0\)
+  - pro všechny ostatní \(i\) zvol \(a_i = 0\) s pravděpodobností \(\phi - 1\), jinak \(a_i = 1\)
 {% endmath %}
 
-{% math theorem %}BIASED-SAT je \(\left(\phi = \frac{\sqrt{5} - 1}{2}\right)\)-aproximační algoritmus.{% endmath %}
+{% math theorem %}BIASED-SAT je \(\left(\phi - 1 = \frac{\sqrt{5} - 1}{2}\right)\)-aproximační algoritmus.{% endmath %}
 
-Uvažme \(C_j\) (a opět indikátorové veličiny \(Y_j\)):
-- kladný literál: \(Y_j = p\)
-- \(k_j \ge 2\): \(Y_j = 1 - p^a (1 - p)^b \overset{p > \frac{1}{2}}{\ge} 1-p^{a + b} \overset{k_j \ge 2}{\ge} 1 - p^2\)
-	- \(a\) je počet kladných a \(b\) počet záporných literálů
+Z dvojice jednotkových klauzulí \((x_i)\) a \((\neg x_i)\) je vždy právě jedna splněná, pro další analýzu je tak vynecháme. Zbývající jednotkové klauzule jsou splněny s pravděpodobností přesně \(\phi - 1\). Klauzule délky \(k\ge 2\) jsou splněny s pravděpodobností \(1 - (\phi - 1)^k \ge 1 - (\phi - 1)^2 = \phi - 1\).
+- pravděpodobnost \(\phi - 1\) jsme zvolili přesně kvůli tomu, aby platila tato poslední rovnost
 
-Po vyřešení \(p = 1 - p^2\) dostáváme \(p = \phi = \frac{\sqrt{5} - 1}{2}\).
-
-Nechť \(U\) množina klauzulí bez záporných jednotkových.
-
-{% math observation %}\(\mathrm{OPT} \le \sum_{j \in U} w_j\)
-- zde používáme předpoklad -- kladné literály je splňovat lepší než záporné
-{% endmath %}
+Střední hodnota hodnoty výsledného řešení je tak: (pro stejné indikátorové veličiny \(Y_i\) definované v důkazu pro "RAND-SAT")
 
 \[
 \begin{aligned}
 	\mathbb{E}\left[\sum_{j = 1}^{m} w_j Y_j\right] &= \sum_{j = 1}^{m} w_j \mathbb{E}\left[Y_j\right] \\
 	&\ge \sum_{j \in U} w_j \cdot \mathrm{Pr}\left[C_j\ \text{je splněná}\right] \\
-	&\ge \sum_{j \in U} w_j \cdot p \\
-	&\ge p \cdot \mathrm{OPT}
+	&\ge \sum_{j \in U} w_j \cdot (\phi - 1) \\
+	&\ge (\phi - 1) \cdot \mathrm{OPT}
 \end{aligned}
 \]
 
@@ -622,7 +620,7 @@ Podívejme se, s jakou pravděpodobností splní klauzuli algoritmy:
 
 #### Vrcholové pokrytí
 - _Vstup:_ graf \(G\), ceny vrcholů \(c_v \ge 0\)
-- _Výstup:_ \(W \subseteq V\) tak, že \(\forall e \in E: e \cap W \neq 0\)
+- _Výstup:_ \(W \subseteq V\) tak, že \(\forall e \in E: |e \cap W| \neq 0\)
 - _Cíl:_ minimalizovat \(c(W) = \sum_{v \in W} c_v\)
 
 {% math algorithm "LP relaxace" %}
@@ -689,7 +687,7 @@ Program pro vrcholové pokrytí:
 
 {% math observation %}duál programu vypadá následně:
 - proměnné jsou \(y_1, \ldots, y_n \ge 0\) pro každý **prvek**
-- podmínky jsou \(\forall e \in \left\{1, \ldots, m\right\}: \sum_{e \in S_j} y_e \le c_j\)
+- podmínky jsou \(\forall j \in \left\{1, \ldots, m\right\}: \sum_{e \in S_j} y_e \le c_j\)
 - maximalizujeme \(\sum_{e \in S_j} y_e\)
 {% endmath %}
 
@@ -768,6 +766,11 @@ Nyní dostáváme
 
 {% endmath %}
 
+Jelikož \(\overline q\) je přípustné řešení duálu, pak ze slabé duality platí:
+\[
+\mathrm{OPT} \ge \sum_{e \in E} \overline{q}_e = \frac 1 {H_g} \cdot \sum_{e \in E}q_e = \frac 1 {H_g} \mathrm{ALG}
+\]
+
 #### Maximální nezávislá množina
 - _Vstup:_ graf \(G = (V, E)\)
 - _Výstup:_ \(I \subseteq V\) nezávislá množina, maximální **vzhledem k inkluzi**
@@ -781,9 +784,9 @@ Nás zajímá najít rychlý paralelní algoritmus:
 {% math algorithm "rychlý paralelní" %}
 1. \(I = \emptyset\)
 2. dokud \(V \neq \emptyset\), tak každý následující krok děláme paralelně:
-	- \(\forall v \in E\) pokud je stupeň \(0\), pak přidáme do \(I\) a vymažeme z \(V\)
+	- \(\forall v \in V\) pokud je stupeň \(0\), pak přidáme do \(I\) a vymažeme z \(V\)
 	- \(\forall v \in E\) označ \(v\) (přidej do \(S\)) s pravděpodobností \(\frac{1}{2 d_v}\) (nezávisle)
-	- \(\forall u, v \in E\) pokud \(u\) i \(v\) jsou označené, odeber značku nižšího stupně
+	- \(\forall u, v \in E\) pokud \(u\) i \(v\) jsou označené, odeber značku u vrcholu nižšího stupně
 		- nižší stupeň proto, abychom odebírali hran co nejvíce
 	- přidej označené vrcholy do \(I\) a odeber je **a jejich sousedy** (a odpovídající hrany) z \(V\)
 		- sousedy množiny \(S\) značíme \(N(S)\)
@@ -804,7 +807,7 @@ Chceme, aby se graf v každé iteraci zmenšil o nějakou část a iterací bylo
 {% math proof %}hrany zorientujeme od menšího k většímu stupni (rovnost řešíme libovolně)
 - \(v\) špatný \(\implies d_v^{\mathrm{in}} < \frac{d_v}{3}\)
 	- z definice -- vstupující jsou stejného nebo menšího stupně, takže jich má málo, jinak by byl dobrý
-	- \(> \frac{2 d_v}{3}\) vstupuje a platí \(d_v^{\mathrm{in}} \le \frac{1}{2} d_v^{\mathrm{out}}\)
+	- \(> \frac{2 d_v}{3}\) vystupuje a platí \(d_v^{\mathrm{in}} \le \frac{1}{2} d_v^{\mathrm{out}}\)
 		- „za každou špatnou hranu nejvýše dvě dobré“
 
 {% xopp spatny %}
@@ -820,7 +823,7 @@ Nyní počítáme
 \]
 {% endmath %}
 
-Tedy dobrých je \(\ge \frac{1}{2}\).
+Tedy dobrých je \(\ge \frac{1}{2}|E|\).
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -828,6 +831,7 @@ Pravděpodobnost, že dobrý vrchol odstraním (buď označením toho vrcholu sa
 </div>
 
 {% math lemma %}existuje \(\alpha > 0\) t. ž. \(\forall v\) **dobrý** platí \[\mathrm{Pr}\left[v \in S \cup N(S)\right] \ge \alpha\]
+- pravděpodobnost, že \(v\) je označený nebo je označený některý jeho soused
 - přímo z toho plyne to, co chceme, jelikož dobré hrany jsou pouze u dobrých vrcholů
 {% endmath %}
 
@@ -837,6 +841,7 @@ Pro dobrý vrchol \(v\) platí následující:
 \begin{aligned}
 	\mathrm{Pr}\left[v\ \text{má souseda označeného v kroku 2}\right] &\ge 1 - \overbrace{\prod_{w \in N(v)} \left(1 - \frac{1}{2d_w}\right)}^{\text{neoznačíme žádného souseda}} \\
 	& \ge 1 - \left(1 - \frac{1}{2d_v}\right)^{\frac{d_v}{3}} \qquad // \text{lemma výše}\\
+  & \ge 1 - e^{-\frac 1 6} \\
 	& = \text{konstanta} \\
 \end{aligned}
 \]
@@ -847,7 +852,9 @@ Může být špatné, když by se hodně ze sousedů dobrého vrcholu odstranilo
 	\mathrm{Pr}\left[\text{odstraníme značku}\right] &= \mathrm{Pr}\left[\text{je označený soused s větším stupněm}\right] \\
 	&= \mathrm{Pr}\left[\exists u \in N(v): d_u \ge d_w \land u\ \text{byl označený}\right] \\
 	&\le \sum_{u \in N(v) \mid d_u \ge d_v} \mathrm{Pr}\left[u\ \text{byl označený}\right] \\
-	&\le \sum_{w \in N(v)} d_w \cdot \frac{1}{2d_w} \\
+  &= \sum_{u \in N(v) \mid d_u \ge d_v}\frac 1 {2d_u} \\
+  &\le \sum_{u \in N(v) \mid d_u \ge d_v}\frac 1 {2d_v} \\
+  &\le d_v \cdot \frac 1 {2d_v} \\
 	&\le \frac{1}{2}
 \end{aligned}
 \]
@@ -855,12 +862,27 @@ Může být špatné, když by se hodně ze sousedů dobrého vrcholu odstranilo
 
 Nikde v důkazu nepočítáme s pravděpodobností označení dobrého vrcholu, což nepotřebujeme.
 
+Spojením odhadů dostaneme, že pro dobrý vrchol \(v\) je \(\mathrm{Pr}[v \in S \cup N(S)] \ge \alpha\) pro \(\alpha = (1-e^{-\frac 1 6}) / 2\).
+
 {% math theorem %}očekávaný počet fází algoritmu je \(\le \mathcal{O}(\log n)\){% endmath %}
 
-{% math proof %}nechť \(M_i = \) počet hran po \(i\) fázích. Platí, že \(\mathbb{E}\left[|M_{i + 1}|\right] \le \left(1 - \frac{\alpha}{2}\right) \mathbb{E}\left[|M_i|\right]\)
-- podle lemmatu je \(\ge M_i / 2\) hran dobrých a dobrá hrana je odebrána s \(p = \alpha\)
+{% math proof %}nechť \(M_i = \) počet hran po \(i\) fázích. Pak platí
 
-Tedy po logaritmicky mnoho krocích (v \(m\) nebo \(n\)) odstraníme všechny hrany pravděpodobností alespoň \(\frac{1}{2}\).
+\[
+  \mathbb{E}[M_k] \le \left(1-\frac \alpha 2\right)^k \cdot \mathbb{E}[M_0] = \left(1-\frac \alpha 2\right)^k \cdot m
+\]
+
+Pokud \(\mathbb{E}[M_k] \le \frac 1 2\), pak z Markovovy nerovnosti \(\mathrm{Pr}[M_k \ge 1] \le \frac 1 2\), takže \(\mathrm{Pr}[M_k = 0] \ge \frac 1 2\).
+
+Aby \(\mathbb{E}[M_k] \le \frac 1 2\), pak musí platit
+\[
+\begin{aligned}
+  \left(1-\frac \alpha 2\right)^k \cdot m &\le \frac 1 2 \\
+  k \cdot \ln\left(1-\frac \alpha 2\right) + \ln(m) &\le \ln\left(\frac 1 2\right) \\
+  &\vdots \\
+  k \in \mathcal O (\log m) &= \mathcal O (\log n)
+\end{aligned}
+\]
 {% endmath %}
 
 ### Hashovací funkce
@@ -925,24 +947,27 @@ Zvolíme \(n \in \left[s, 2s\right], H, h \in H\) náhodně uniformně:
 
 {% xopp static %}
 
+- v první tabulce máme přihrádky velikosti \(n_i\), pro každou z nich pak vytvoříme další tabulku velikosti \(n_i^2\)
 - vybereme \(h \in H\) tak, že má \(\le n\) kolizí
 	- kolize \(C = \left\{\left\{x, y\right\} \mid x, y \in M, x \neq y, h(x) = h(y)\right\}\)
 
 {% math lemma %}existuje \(h \in H\) s počtem kolizí \(\le n\).{% endmath %}
 
 {% math proof %} \(\mathbb{E}\left[|C|\right] \overset{2-\text{univ}}{\le} \binom{s}{2} \frac{1}{n} \overset{s \le n}{\le} \binom{n}{2} \cdot \frac{1}{n} \le \frac{n}{2}\){% endmath %}
-- jelikož je průměrný počet kolizí \(\le \frac{n}{2}\), tak musí existovat hodně takových, že \(\le \frac{n}{2}\)
+- pokud vybereme uniformně náhodně hashovací funkci z \(h \in H\), pak dle Markovovy nerovnosti \(\mathrm{Pr}[|C| \ge n]\) \le \frac {\mathbb{E}[|C|]} n \le \frac 1 2
+- každá druhá taková funkce má \(\le n\) kolizí
 
 {% math lemma %}existuje \(h_i \in H\) s počtem kolizí \(0\).{% endmath %}
 
 {% math proof %} \(\mathbb{E}\left[|C_{n_i}|\right] \le \binom{n_i}{2} \cdot \frac{1}{n_i^2} \le \frac{1}{2}\){% endmath %}
-- jelikož je průměrný počet kolizí \(\le \frac{1}{2}\), tak musí existovat hodně takových, že \(0\)
+- opět dle Markovova pro uniformně náhodně vybranou \(h\in H\) máme \(\mathrm{Pr}[|C_{n_i}| \ge 1] \le \mathbb{E}[|C_{n_i}|] \le \frac 1 2\)
+- každá druhá taková funkce má 0 kolizí
 {% endmath %}
 
 {% math observation %}\(|C| = \sum_{i = 1}^{n} \binom{n_i}{2} =	\sum \frac{n_i^2}{2} - \sum \frac{n_i}{2}\)
 - počet prvků kolidující do daného políčka je \(n_i\), počet dvojic je tedy výraz nahoře
 
-Výpočtem dostáváme \(\sum n_i^2 \le 2 |C| + \sum n_i \le 2s + s = \mathcal{O}(s)\)
+Výpočtem dostáváme \(\sum n_i^2 \le 2 |C| + \sum n_i \le 2n + s = \mathcal{O}(s)\)
 {% endmath %}
 
 ### Testování
@@ -961,18 +986,21 @@ Výpočtem dostáváme \(\sum n_i^2 \le 2 |C| + \sum n_i \le 2s + s = \mathcal{O
 
 {% math theorem %}existuje pravděpodobnostní algoritmus s jednostrannou chybou pro testování maticového násobení v čase \(\mathcal{O}\left(n^2\right)\)
 - když platí, tak vždy řekne že platí
-- když neplatí, tak se netrefí s nějakou pravděpodobností (konkrétně \(\ge \frac{1}{2}\))
+- když neplatí, tak udělá chybu s nějakou pravděpodobností (konkrétně \(\le \frac{1}{2}\))
 {% endmath %}
 
 {% math algorithm %}
 1. vezmi náhodný \(\vec{x} \in \left\{0, 1\right\}^n\)
-2. vstup ANO, jestliže \(A \cdot B \cdot \vec{x} = C \cdot \vec{x}\), jinak NE
+2. vystup ANO, jestliže \(A \cdot (B \cdot \vec{x}) = C \cdot \vec{x}\), jinak NE
+- nejdříve vynásobíme \(\vec x\) maticí \(B\), až pak maticí \(A\), abychom měli kvadratickou časovou složitost
 {% endmath %}
 
 {% math observation %}algoritmus trvá \(\mathcal{O}(n^2)\) kroků{% endmath %}
 
 {% math observation %}algoritmus řekne ano \(\iff \left(A \cdot B - C\right) \cdot \vec{x} = D \cdot \vec{x} = \vec{0}\)
-- \(D\) je nenulová matice (jelikož \(A \cdot B \neq C\)), má tedy **nenulový řádek**
+- pokud \(D = 0\), pak algoritmus správně odpoví ANO
+- pokud \(D \ne 0\), pak algoritmus udělá chybu s pravděpodobností \(\le \frac 1 2\)
+  - \(D\) je nenulová matice, má tedy **nenulový řádek**
 	- podle lemmatu platí \(\mathrm{Pr}_{\vec{x}} \left[D \cdot \vec{x} \neq 0\right] \ge \frac{1}{2}\)
 {% endmath %}
 
@@ -986,7 +1014,7 @@ Budeme používat trochu divný vstup:
 - _Vstup:_ matice polynomů proměnných, determinant určuje náš polynom
 - _Výstup:_ ANO, jestliže je polynom identicky nulový, jinak NE
 
-{% math lemma %}nechť \(P(x_1, \ldots, x_n)\) je **nenulový** polynom nad \(K\) stupně \(\le d_i\) a \(S \subseteq K\) konečná. Nechť \(x_1, \ldots, x_n \in S\) unif. náhodně. Pak \[\mathrm{Pr}_{\vec{x}} \left[P(\vec{x}) = 0\right] \le \frac{d}{|S|}\]
+{% math lemma %}nechť \(P(x_1, \ldots, x_n)\) je **nenulový** polynom nad \(K\) stupně \(\le d_i\) a \(S \subseteq K\) konečná. Nechť \(x_1, \ldots, x_n \in S\) unif. náhodně. Pak pravděpodobnost, že jsme se trefili do jednoho z kořenů z \(S\), je \[\mathrm{Pr}_{\vec{x}} \left[P(\vec{x}) = 0\right] \le \frac{d}{|S|}\]
 - \(n = 1 \ldots\ \) polynom má nejvýše \(d\) kořenů, ať zvolíme \(s\) jakkoliv
 - je to dost šikovné, protože podle \(|S|\) si volíme přesnost algoritmu (pro \(|S| \ge 2d\) máme \(\ge \frac{1}{2}\))
 {% endmath %}
@@ -998,7 +1026,21 @@ Budeme používat trochu divný vstup:
 		- při konkrétních hodnotách \(x_2, \ldots, x_n\) se mi polynom vyhodnotí na nějaké číslo a zbytek polynomu \(P(\vec{x})\) bude \(\alpha x_1^k + \beta\), což nebude mít více než \(k\) kořenů
 {% endmath %}
 
-Nyní si uvědomíme, že \[\mathrm{Pr}\left[P(\vec{x}) = 0\right] \le \alpha + \beta \le \frac{d - k}{|S|} + \frac{k}{|S|} = \frac{d}{|S|}\]
+Nyní si uvědomíme, že
+\[
+\begin{aligned}
+  \mathrm{Pr}\left[P(\vec{x}) = 0\right]
+  &\le \mathrm{Pr}[A(x_2, \dots, x_n) = 0] + \mathrm{Pr}[P(\vec{x}) = 0 \mid A(x_2, \dots, x_n) \ne 0] \\
+  &\le \frac{d - k}{|S|} + \frac{k}{|S|} = \frac{d}{|S|}
+\end{aligned}
+\]
+
+{% math algorithm %}
+1. vybereme dostatečně velké \(S\) a uniformně náhodné ohodnocení proměnných \(x_i\)
+2. pokud \(P(\vec{x}) = 0\), odpovíme, že je nulový, jinak že není
+{% endmath %}
+- pokud je \(P\) nulový, vždy odpovíme správně
+- pokud \(P\) není nulový, pak uděláme chybu s pravděpodobností \(\le \frac d {|S|}\)
 
 ### Perfektní párování
 Nechť \((U, V, E)\) je bipartitní graf, \(n = |U| = |V|\). Pak Edmondsova matice grafu je \(n \times n\) matice \(B\) s
@@ -1044,7 +1086,7 @@ Pokud \(A_i\) nastane, pak platí
 
 Pak (když zafixujeme všechny váhy a vybíráme váhu \(a_i\)) platí \[\mathrm{Pr}_{w(a_i) \in R}\left[w(S_k) = w(S_l) \mid w(a_i'), i' \neq i\ \text{vybrána}\right] \le \frac{1}{r}\]
 
-Součtem pro všechny množiny a dostáním opačného jevu dostáváme hledanou nerovnost.
+Součtem pro všechny množiny, dostáním opačného jevu a aplikací union boundu dostáváme hledanou nerovnost.
 {% endmath %}
 
 {% math algorithm "rychlý paralelní algoritmus pro PP" %}
@@ -1054,13 +1096,11 @@ Součtem pro všechny množiny a dostáním opačného jevu dostáváme hledanou
 		- z definice determinantu (permutace nějakých indexů matice)
 3. najdeme \(W\) tak, že \(2^W\) je maximální číslo tvaru \(2^{\alpha}\) dělící \(\mathrm{det}(C)\)
 	- zajímá nás **poslední index, kde má determinant jedničku**, jelikož to odpovídá unikátnímu PP (všechny PP jsou ve tvaru \(0b1\underbrace{0000}_{w(uv)}\))
-4. pro \(uv \in E\) spočítáme \(d = \mathrm{det}(C^{uv})\)
+4. \(\forall uv \in E\) spočítáme \(d = \mathrm{det}(C^{uv})\)
 	- jestliže \(2^{W - w(uv)}\) je max. číslo tvaru \(2^{\alpha}\) dělící \(d\), pak přidáme \(uv\) do \(M\)
 		- odpovídá tomu, zda párování přežilo odstranění hrany -- pokud ne, tak ho přidáme
 6. zkontrolujeme, že \(M\) je PP (mohli jsme vygenerovat nesmysl)
 {% endmath %}
-
-TODO: algoritmus pro obecné grafy přes Tutteho matici
 
 ### Odkazy
 - [Webová stránka předmětu](https://iuuk.mff.cuni.cz/~sgall/vyuka/BCALG/)
