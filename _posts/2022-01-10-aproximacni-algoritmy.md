@@ -620,7 +620,7 @@ Podívejme se, s jakou pravděpodobností splní klauzuli algoritmy:
 
 #### Vrcholové pokrytí
 - _Vstup:_ graf \(G\), ceny vrcholů \(c_v \ge 0\)
-- _Výstup:_ \(W \subseteq V\) tak, že \(\forall e \in E: e \cap W \neq 0\)
+- _Výstup:_ \(W \subseteq V\) tak, že \(\forall e \in E: |e \cap W| \neq 0\)
 - _Cíl:_ minimalizovat \(c(W) = \sum_{v \in W} c_v\)
 
 {% math algorithm "LP relaxace" %}
@@ -687,7 +687,7 @@ Program pro vrcholové pokrytí:
 
 {% math observation %}duál programu vypadá následně:
 - proměnné jsou \(y_1, \ldots, y_n \ge 0\) pro každý **prvek**
-- podmínky jsou \(\forall e \in \left\{1, \ldots, m\right\}: \sum_{e \in S_j} y_e \le c_j\)
+- podmínky jsou \(\forall j \in \left\{1, \ldots, m\right\}: \sum_{e \in S_j} y_e \le c_j\)
 - maximalizujeme \(\sum_{e \in S_j} y_e\)
 {% endmath %}
 
@@ -765,6 +765,11 @@ Nyní dostáváme
 \]
 
 {% endmath %}
+
+Jelikož \(\overline q\) je přípustné řešení duálu, pak ze slabé duality platí:
+\[
+\mathrm{OPT} \ge \sum_{e \in E} \overline{q}_e = \frac 1 {H_g} \cdot \sum_{e \in E}q_e = \frac 1 {H_g} \mathrm{ALG}
+\]
 
 #### Maximální nezávislá množina
 - _Vstup:_ graf \(G = (V, E)\)
