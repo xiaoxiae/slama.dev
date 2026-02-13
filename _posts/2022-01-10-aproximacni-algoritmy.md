@@ -123,7 +123,7 @@ Pro připomenutí:
 - \(\mathbb{E}\left[X + Y\right] = \mathbb{E}\left[X\right] + \mathbb{E}\left[Y\right]\)
 </div>
 
-{% math proof %} počítáme \(A_{i, j} = \mathrm{Pr}\left[\text{porovnáme $i$-tý a $j$-tý prvek}\right]\)
+{% math proof %} počítáme \(A_{i, j}\) -- jev, že prvky \(p_i\) a \(p_j\) byly porovnány
 - zavedeme indikátorové veličiny \(X_{i, j} = \begin{cases}1 & A_{i, j}\ \text{nastane} \\ 0 & \text{jinak}\end{cases}\)
 
 {% math lemma %}nechť \(i < j\). Pak \(\mathrm{Pr}\left[A_{i, j}\right] = \frac{2}{j - i + 1}\){% endmath %}
