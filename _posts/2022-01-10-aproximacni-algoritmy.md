@@ -204,12 +204,16 @@ Pravděpodobnost, že všechny procesy uspějí, je tak \(1 - \mathrm{Pr}\left[\
 
 {% math theorem %}pravděpodobnost, že najdeme daný minimální řez \(C\) je alespoň \(\binom{n}{2}^{-1} = \frac{2}{n \cdot (n - 1)}\).{% endmath %}
 
-{% math proof %}nechť \(A_i\) jev, že v prvních \(i\) iteracích jsme nevybrali hranu z \(C\).
+{% math proof %} Zafixujme některý globální minimální řez \(C\). Nechť \(A_i\) jev, že v prvních \(i\) iteracích jsme nevybrali hranu z \(C\).
 
 - \(\mathrm{Pr}[A_0] = 1\) (žádnou jsme ještě nevybrali)
 - \(\mathrm{Pr}[A_1] \ge 1 - \frac{k}{nk / 2} = 1 - \frac{2}{n}\)
 - \(\mathrm{Pr}[A_2 \mid A_1] \ge 1 - \frac{k}{(n-1)k/2} =  1 - \frac{2}{n - 1}\)
-- \(\mathrm{Pr}[A_2] = \mathrm{Pr}[A_2 \mid A_1] \cdot \mathrm{Pr}\left[A_1\right] \), z čehož vyplývá:
+
+Po \(i\) iteracích máme \(n-i\) vrcholů a minimální globální řez má velikost alespoň \(k\), takže máme alespoň \((n-i)\frac k 2\) hran, z čehož nejvýše \(k\) hran je v \(C\). Obecně tak máme:
+
+- \(\mathrm{Pr}[A_{i+1} \mid A_i] \ge 1 - \frac{2k}{(n-i)k} = \frac{n-i-2}{n-i}\)
+- \(\mathrm{Pr}[A_{i+1}] = \mathrm{Pr}[A_{i+1} \mid A_i] \cdot \mathrm{Pr}\left[A_i\right] \), z čehož vyplývá:
 
 \[
 \begin{aligned}
