@@ -1086,7 +1086,7 @@ Pokud \(A_i\) nastane, pak platí
 
 Pak (když zafixujeme všechny váhy a vybíráme váhu \(a_i\)) platí \[\mathrm{Pr}_{w(a_i) \in R}\left[w(S_k) = w(S_l) \mid w(a_i'), i' \neq i\ \text{vybrána}\right] \le \frac{1}{r}\]
 
-Součtem pro všechny množiny a dostáním opačného jevu dostáváme hledanou nerovnost.
+Součtem pro všechny množiny, dostáním opačného jevu a aplikací union boundu dostáváme hledanou nerovnost.
 {% endmath %}
 
 {% math algorithm "rychlý paralelní algoritmus pro PP" %}
@@ -1096,13 +1096,11 @@ Součtem pro všechny množiny a dostáním opačného jevu dostáváme hledanou
 		- z definice determinantu (permutace nějakých indexů matice)
 3. najdeme \(W\) tak, že \(2^W\) je maximální číslo tvaru \(2^{\alpha}\) dělící \(\mathrm{det}(C)\)
 	- zajímá nás **poslední index, kde má determinant jedničku**, jelikož to odpovídá unikátnímu PP (všechny PP jsou ve tvaru \(0b1\underbrace{0000}_{w(uv)}\))
-4. pro \(uv \in E\) spočítáme \(d = \mathrm{det}(C^{uv})\)
+4. \(\forall uv \in E\) spočítáme \(d = \mathrm{det}(C^{uv})\)
 	- jestliže \(2^{W - w(uv)}\) je max. číslo tvaru \(2^{\alpha}\) dělící \(d\), pak přidáme \(uv\) do \(M\)
 		- odpovídá tomu, zda párování přežilo odstranění hrany -- pokud ne, tak ho přidáme
 6. zkontrolujeme, že \(M\) je PP (mohli jsme vygenerovat nesmysl)
 {% endmath %}
-
-TODO: algoritmus pro obecné grafy přes Tutteho matici
 
 ### Odkazy
 - [Webová stránka předmětu](https://iuuk.mff.cuni.cz/~sgall/vyuka/BCALG/)
