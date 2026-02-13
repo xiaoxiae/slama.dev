@@ -784,9 +784,9 @@ Nás zajímá najít rychlý paralelní algoritmus:
 {% math algorithm "rychlý paralelní" %}
 1. \(I = \emptyset\)
 2. dokud \(V \neq \emptyset\), tak každý následující krok děláme paralelně:
-	- \(\forall v \in E\) pokud je stupeň \(0\), pak přidáme do \(I\) a vymažeme z \(V\)
+	- \(\forall v \in V\) pokud je stupeň \(0\), pak přidáme do \(I\) a vymažeme z \(V\)
 	- \(\forall v \in E\) označ \(v\) (přidej do \(S\)) s pravděpodobností \(\frac{1}{2 d_v}\) (nezávisle)
-	- \(\forall u, v \in E\) pokud \(u\) i \(v\) jsou označené, odeber značku nižšího stupně
+	- \(\forall u, v \in E\) pokud \(u\) i \(v\) jsou označené, odeber značku u vrcholu nižšího stupně
 		- nižší stupeň proto, abychom odebírali hran co nejvíce
 	- přidej označené vrcholy do \(I\) a odeber je **a jejich sousedy** (a odpovídající hrany) z \(V\)
 		- sousedy množiny \(S\) značíme \(N(S)\)
@@ -807,7 +807,7 @@ Chceme, aby se graf v každé iteraci zmenšil o nějakou část a iterací bylo
 {% math proof %}hrany zorientujeme od menšího k většímu stupni (rovnost řešíme libovolně)
 - \(v\) špatný \(\implies d_v^{\mathrm{in}} < \frac{d_v}{3}\)
 	- z definice -- vstupující jsou stejného nebo menšího stupně, takže jich má málo, jinak by byl dobrý
-	- \(> \frac{2 d_v}{3}\) vstupuje a platí \(d_v^{\mathrm{in}} \le \frac{1}{2} d_v^{\mathrm{out}}\)
+	- \(> \frac{2 d_v}{3}\) vystupuje a platí \(d_v^{\mathrm{in}} \le \frac{1}{2} d_v^{\mathrm{out}}\)
 		- „za každou špatnou hranu nejvýše dvě dobré“
 
 {% xopp spatny %}
@@ -823,7 +823,7 @@ Nyní počítáme
 \]
 {% endmath %}
 
-Tedy dobrých je \(\ge \frac{1}{2}\).
+Tedy dobrých je \(\ge \frac{1}{2}|E|\).
 
 {:.rightFloatBox}
 <div markdown="1">
@@ -831,6 +831,7 @@ Pravděpodobnost, že dobrý vrchol odstraním (buď označením toho vrcholu sa
 </div>
 
 {% math lemma %}existuje \(\alpha > 0\) t. ž. \(\forall v\) **dobrý** platí \[\mathrm{Pr}\left[v \in S \cup N(S)\right] \ge \alpha\]
+- pravděpodobnost, že \(v\) je označený nebo je označený některý jeho soused
 - přímo z toho plyne to, co chceme, jelikož dobré hrany jsou pouze u dobrých vrcholů
 {% endmath %}
 
@@ -840,6 +841,7 @@ Pro dobrý vrchol \(v\) platí následující:
 \begin{aligned}
 	\mathrm{Pr}\left[v\ \text{má souseda označeného v kroku 2}\right] &\ge 1 - \overbrace{\prod_{w \in N(v)} \left(1 - \frac{1}{2d_w}\right)}^{\text{neoznačíme žádného souseda}} \\
 	& \ge 1 - \left(1 - \frac{1}{2d_v}\right)^{\frac{d_v}{3}} \qquad // \text{lemma výše}\\
+  & \ge 1 - e^{-\frac 1 6} \\
 	& = \text{konstanta} \\
 \end{aligned}
 \]
@@ -850,7 +852,9 @@ Může být špatné, když by se hodně ze sousedů dobrého vrcholu odstranilo
 	\mathrm{Pr}\left[\text{odstraníme značku}\right] &= \mathrm{Pr}\left[\text{je označený soused s větším stupněm}\right] \\
 	&= \mathrm{Pr}\left[\exists u \in N(v): d_u \ge d_w \land u\ \text{byl označený}\right] \\
 	&\le \sum_{u \in N(v) \mid d_u \ge d_v} \mathrm{Pr}\left[u\ \text{byl označený}\right] \\
-	&\le \sum_{w \in N(v)} d_w \cdot \frac{1}{2d_w} \\
+  &= \sum_{u \in N(v) \mid d_u \ge d_v}\frac 1 {2d_u} \\
+  &\le \sum_{u \in N(v) \mid d_u \ge d_v}\frac 1 {2d_v} \\
+  &\le d_v \cdot \frac 1 {2d_v} \\
 	&\le \frac{1}{2}
 \end{aligned}
 \]
@@ -858,12 +862,27 @@ Může být špatné, když by se hodně ze sousedů dobrého vrcholu odstranilo
 
 Nikde v důkazu nepočítáme s pravděpodobností označení dobrého vrcholu, což nepotřebujeme.
 
+Spojením odhadů dostaneme, že pro dobrý vrchol \(v\) je \(\mathrm{Pr}[v \in S \cup N(S)] \ge \alpha\) pro \(\alpha = (1-e^{-\frac 1 6}) / 2\).
+
 {% math theorem %}očekávaný počet fází algoritmu je \(\le \mathcal{O}(\log n)\){% endmath %}
 
-{% math proof %}nechť \(M_i = \) počet hran po \(i\) fázích. Platí, že \(\mathbb{E}\left[|M_{i + 1}|\right] \le \left(1 - \frac{\alpha}{2}\right) \mathbb{E}\left[|M_i|\right]\)
-- podle lemmatu je \(\ge M_i / 2\) hran dobrých a dobrá hrana je odebrána s \(p = \alpha\)
+{% math proof %}nechť \(M_i = \) počet hran po \(i\) fázích. Pak platí
 
-Tedy po logaritmicky mnoho krocích (v \(m\) nebo \(n\)) odstraníme všechny hrany pravděpodobností alespoň \(\frac{1}{2}\).
+\[
+  \mathbb{E}[M_k] \le \left(1-\frac \alpha 2\right)^k \cdot \mathbb{E}[M_0] = \left(1-\frac \alpha 2\right)^k \cdot m
+\]
+
+Pokud \(\mathbb{E}[M_k] \le \frac 1 2\), pak z Markovovy nerovnosti \(\mathrm{Pr}[M_k \ge 1] \le \frac 1 2\), takže \(\mathrm{Pr}[M_k = 0] \ge \frac 1 2\).
+
+Aby \(\mathbb{E}[M_k] \le \frac 1 2\), pak musí platit
+\[
+\begin{aligned}
+  \left(1-\frac \alpha 2\right)^k \cdot m &\le \frac 1 2 \\
+  k \cdot \ln\left(1-\frac \alpha 2\right) + \ln(m) &\le \ln\left(\frac 1 2\right) \\
+  &\vdots \\
+  k \in \mathcal O (\log m) &= \mathcal O (\log n)
+\end{aligned}
+\]
 {% endmath %}
 
 ### Hashovací funkce
