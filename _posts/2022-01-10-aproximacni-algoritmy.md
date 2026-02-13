@@ -430,7 +430,7 @@ Tedy počet krátkých cest \(P_i^* \le \sum_{j \in I}\text{\#cest blokovaných 
 #### Nejednotkové kapacity
 
 {% math algorithm "hladový pro nejednotkovou kapacitu" %}
-1. zvolíme \(\beta = \left\lceil m^{\frac{1}{c + 1}} \right\rceil\)
+1. zvolíme \(\beta = \left\lceil m^{\frac{1}{c + 1}} \right\rceil\), nastavíme \(\forall e \in E: d(e) = 1\)
 2. najdeme nejkratší cestu mezi nespojenou dvojicí (přes všechna \(i\))
 	- pokud neexistuje nebo \(d(P_i) \ge \beta^c\), vystoupíme
 3. přenásobíme délku hran nejkratší cesty faktorem \(\beta\) a opakujeme
@@ -441,7 +441,8 @@ Tedy počet krátkých cest \(P_i^* \le \sum_{j \in I}\text{\#cest blokovaných 
 {% math consequence %}výsledné řešení je přípustné
 - po \(c\) použitích hrany \(e\) je \(d(e) = \beta^c \approx m^{\frac{c}{c + 1}} < m\), dále algoritmus hranu nepoužívá{% endmath %}
 
-{% math consequence %}algoritmus je polynomiální.{% endmath %}
+{% math consequence %}algoritmus je polynomiální.
+- díky celočíselnosti \(\beta\){% endmath %}
 
 {% math theorem %}Hladový algoritmus je \(\mathcal{O}\left(\beta\right)\)-aproximační.{% endmath %}
 - pro \(c = 1\) máme \(\beta = m^{\frac{1}{c + 1}} = \sqrt{m}\), což odpovídá
