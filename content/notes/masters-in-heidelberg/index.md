@@ -68,7 +68,7 @@ There are some more steps afterwards, such as
 
 but they are well-described in the documents you receive so I won't cover them here.
 
-[^fee]: This again depends on whether you're a citizen of EU (the fee is pretty small, we payed ~€170) or not (the fee is substantially large). In any case, the payment can take a little while to confirm (at least when paying from Revolut), so don't panic.
+[^fee]: This again depends on whether you're a citizen of EU (the fee is pretty small, we paid ~€170) or not (the fee is substantially large). In any case, the payment can take a little while to confirm (at least when paying from Revolut), so don't panic.
 
 #### Email Client Setup
 

@@ -14,7 +14,7 @@ We'll also play around with colors a bit 🙂.
 ### Grouping objects
 
 Motion Canvas doesn't fully support the same grouping as Manim (i.e. change the color of all objects in this particular group).
-Instead, we should always be working with the [**scene hierarchy**](https://motioncanvas.io/docs/hierarchy) and layout objects, which do supports certain operations, mostly related to their position, scale/size and rotation.
+Instead, we should always be working with the [**scene hierarchy**](https://motioncanvas.io/docs/hierarchy) and layout objects, which does support certain operations, mostly related to their position, scale/size and rotation.
 
 In this example, we're also using the fact that Motion Canvas supports any `X11` colors names -- feel free to [browse through them](https://x11.linci.co/) and pick the ones that you like!
 
@@ -190,7 +190,7 @@ function perpendicularBisector(p1: Vector2, p2: Vector2): [Vector2, Vector2] {
 
 {{< video "motion-canvas" "02-task-wave" >}}
 
-Noting extra here, just a BFS.
+Nothing extra here, just a BFS.
 
 Here is the text input that I used to generate the maze, if you wish to use it.
 
@@ -237,7 +237,7 @@ Here are some useful things:
 
 - the {{< doc "motion-canvas" "clone" "2d/components/Node/#clone" >}} function will be very useful here to create copies of an object
 - use the {{< doc "motion-canvas" "topLeft" "2d/components/Layout/#topLeft" >}}, {{< doc "motion-canvas" "topRight" "2d/components/Layout/#topRight" >}}, {{< doc "motion-canvas" "bottomLeft" "2d/components/Layout/#bottomLeft" >}} and {{< doc "motion-canvas" "bottomRight" "2d/components/Layout/#bottomRight" >}} cardinal directions for alignment
-- you can [define the spline using `<Knot>`](https://motioncanvas.io/docs/spline#using-knot-nodes), which allows you to access their {{< doc "motion-canvas" "absolutePosition" "2d/components/Layout/#absolutePosition" >}}, which will make the code a lot simpler easier (the clones will likely be scaled + rotated at this point, which doesn't change their relative {{< doc "motion-canvas" "position" "2d/components/Node#position" >}})
+- you can [define the spline using `<Knot>`](https://motioncanvas.io/docs/spline#using-knot-nodes), which allows you to access their {{< doc "motion-canvas" "absolutePosition" "2d/components/Layout/#absolutePosition" >}}, which will make the code a lot simpler (the clones will likely be scaled + rotated at this point, which doesn't change their relative {{< doc "motion-canvas" "position" "2d/components/Node#position" >}})
 - setting the smoothness of a spline to `0` will make it line segments
 - you can animate drawing of a spline with the {{< doc "motion-canvas" "end" "2d/components/Curve#end" >}} signal
 

@@ -324,7 +324,7 @@ __global__ void MM_MTB (float* Md, float* Nd, float* Pd, int Width) {
 
 #### Using shared memory (GPU)
 - we can utilize shared memory to greatly improve the FLOP/global memory access ratio
-	- then all threads to operation on those 
+	- then all threads operate on those
 - **main trick:** copy parts of the matrix from global memory to shared memory!
 	- creates an additional loop: we _tile the blocks_ such that they fit into shared memory
 
@@ -433,7 +433,7 @@ _The lecture goes into CUDA profiling. Here are some important concepts:_
 - to process very large arrays, we will require more than one SM -- synchronization problem
 	- solution: _one reduction layer will be one kernel launch_
 	- _the examples don't actually do this, but in practice this would be done_
-- we're also **assuming associativity** (so we can do shenaningans with the order of operations)
+- we're also **assuming associativity** (so we can do shenanigans with the order of operations)
 
 #### Naive implementation
 - we're implementing a reduction **add**
@@ -1069,7 +1069,7 @@ Different types of kernels exist:
 **Memory consistency:** the order in which memory operations appear to be performed
 - as opposed to coherence, focuses on the _order of execution_
 - **strict**: any write seen immediately
-- **sequential:** write by different processors needs to be seen in teh same order by all processors
+- **sequential:** write by different processors needs to be seen in the same order by all processors
 - highly relaxed for GPU, few guarantees
 	- `__threadfence()` stalls current thread until **all writes to shared/global memory are visible** to other threads (if `_threadfence_block()` then only shared memory)
 	- `__syncthreads()` is a stronger version since it also **synchronizes thread execution**

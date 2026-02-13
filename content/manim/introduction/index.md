@@ -36,7 +36,7 @@ The classes/methods discussed in the series are accompanied by the links to thei
 
 ### First animations
 The basic building block of Manim are **scenes**, which are Python classes inheriting the {{< doc "manim" "Scene" "reference/manim.scene.scene.Scene.html" >}} class.
-Each of the scenes must implement the {{< doc "manim" "construct" "reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.construct" >}} method, which contains information about how the scene looks like (creating shapes, moving them, changing, color and size, etc.).
+Each of the scenes must implement the {{< doc "manim" "construct" "reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.construct" >}} method, which contains information about what the scene looks like (creating shapes, moving them, changing, color and size, etc.).
 
 Here is an example of a simple scene that creates a red {{< doc "manim" "Square" "reference/manim.mobject.geometry.polygram.Square.html" >}} and then a blue {{< doc "manim" "Circle" "reference/manim.mobject.geometry.arc.Circle.html" >}}.
 

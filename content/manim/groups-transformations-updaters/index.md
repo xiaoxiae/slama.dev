@@ -20,7 +20,7 @@ This is where the {{< doc "manim" "VGroup" "reference/manim.mobject.types.vector
 {{< video "manim" "02-vgroup-example" >}}
 
 The {{< doc "manim" "VGroup" "reference/manim.mobject.types.vectorized_mobject.VGroup.html" >}} class additionally contains functions for arranging objects.
-The simplest to use is the {{< doc "manim" "arrange" "reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.arrange" >}} function which arranges object such that they are next to one another, in the order they were passed to the constructor (left to right).
+The simplest to use is the {{< doc "manim" "arrange" "reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.arrange" >}} function which arranges objects such that they are next to one another, in the order they were passed to the constructor (left to right).
 
 ```python {file="02-arrange-example.py"}
 ```
@@ -111,7 +111,7 @@ Note that it has the same behavior as {{< doc "manim" "ReplacementTransform" "re
 
 ### Updaters
 Imagine that we would like to continually update an object during an animation (its position, scale, etc.).
-This what Manim's updaters are for -- they are functions containing arbitrary code, connected to a certain object and evaluated each rendered frame.
+This is what Manim's updaters are for -- they are functions containing arbitrary code, connected to a certain object and evaluated each rendered frame.
 
 ```python {file="02-simple-updater-example.py"}
 ```

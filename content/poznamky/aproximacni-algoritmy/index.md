@@ -139,11 +139,11 @@ Sečtením přes všechny dvojice \(i < j\) dostaváme následující:
 ### Konflikty v distribuovaných systémech
 - \(n\) procesorů se snaží o přístup k jednomu zdroji
 - přímá komunikace není možná
-- v každém cylku může každý procesor požadovat přístup
+- v každém cyklu může každý procesor požadovat přístup
 	- povede se pouze, když o něho žádá jeden
 
 {{< math "algorithm" >}}
-1. v každém cylku zkus s pravděpodobností \(p\) přistoupit ke zdroji
+1. v každém cyklu zkus s pravděpodobností \(p\) přistoupit ke zdroji
 	- \(p\) si nastavíme tak, aby to vyšlo hezky
 2. opakuj, dokud se ti to nepovede
 {{< /math >}}
@@ -151,7 +151,7 @@ Sečtením přes všechny dvojice \(i < j\) dostaváme následující:
 {{< math "theorem" >}}algoritmus s \(p = \frac{1}{n}\) s pravděpodobností alespoň \(1 - \frac{1}{n}\) uspěje po \(t = 2 en \ln n\) cyklech.{{< /math >}}
 
 {{< math "proof" >}}
-modifikujme algoritmus, aby zkoušel přistupovat i po té, co ho získal (lehčí počítání, které pouze zhorší pravděpodobnost úspěchu).
+modifikujme algoritmus, aby zkoušel přistupovat i poté, co ho získal (lehčí počítání, které pouze zhorší pravděpodobnost úspěchu).
 
 Nechť \(A_{i, r}\) je jev, že \(i\)-tý proces uspěl v \(r\)-tém cyklu. Pak
 \[\mathrm{Pr}\left[A_{i, r}\right] = p \cdot \left(1 - p\right)^{n - 1} = \frac{1}{n} \left(1 - \frac{1}{n}\right)^{n - 1} \ge \frac{1}{en}\]
@@ -498,7 +498,7 @@ Předpokládáme:
 {{< math "proof" >}}pro každou klauzuli zavedeme indikátorovou proměnnou \(Y_j\).
 - pravděpodobnost, že \(C_j\) není splňená je \(\frac{1}{2^{k_j}}\)
 
-Díky tomu, že \(k_j \ge 1\) máme \(\mathbb{E}\left[Y_j\right] = \mathrm{Pr}\left[C_j\ \text{is satistied}\right] = 1 - \frac{1}{2^{k_j}} \ge \frac{1}{2} \) a tedy:
+Díky tomu, že \(k_j \ge 1\) máme \(\mathbb{E}\left[Y_j\right] = \mathrm{Pr}\left[C_j\ \text{is satisfied}\right] = 1 - \frac{1}{2^{k_j}} \ge \frac{1}{2} \) a tedy:
 \[\mathbb{E}\left[\sum_{j = 1}^{m} w_j Y_j\right] \overset{\text{linearita}}{=} \frac{1}{2} \sum_{j = 1}^{m} w_j \ge \frac{1}{2}\mathrm{OPT} \]
 {{< /math >}}
 

@@ -22,12 +22,12 @@ language: cs
 	- pozor: nemusí to být funkce!
 
 - složená: \(x \left(R \circ S\right) z \equiv\ \exists y \in Y: xRy \land ySz\)
-	- tzn. tj. musí existovat cesta (když si to představíme jako grafy)
+	- tzn. musí existovat cesta (když si to představíme jako grafy)
 
 #### Funkce
 {{< math "definition" "funkce" >}}relace \(f\) mezi \(X, Y\) je funkce (zobrazení) \(\ \equiv \forall x \in X \ \exists!\ y \in Y: x f y\)
 
-- speciální druh relace, ve kterém se prvek z \(X\) zobrazuje na ten z \(Y\) právě jednou na
+- speciální druh relace, ve kterém se prvek z \(X\) zobrazuje na ten z \(Y\) právě jednou
 - značíme \(f: X \mapsto Y\) nebo \(f\left(x\right) = y\)<br>
 
 - **prostá:** \(\forall x, x' \in X, x \neq x': f\left(x\right) \neq f\left(x'\right)\) (dvě různé \(x\) se nezobrazí na stejné \(y\))
@@ -523,7 +523,7 @@ je \(\left(V, E\right)\), kde \(E \subseteq V^2 \setminus \Delta_V\) (lze u mult
 
 {{< math "definition" "souvislost" >}}
 - _slabá_ -- dosažitelnost v podkladovém
-- _silná_ -- \(\forall u, v \in V \exists\) cesta z  do \(v\)
+- _silná_ -- \(\forall u, v \in V \exists\) cesta z \(u\) do \(v\)
 {{< /math >}}
 
 {{< math "theorem" >}}

@@ -199,7 +199,7 @@ A mnemonic to remember which parameter relates which is that it's **from a to z*
 ![Anthropomorphic arm.](anthropomorphic-arm.svg)
 {.rightFloatBox}
 
-{{< math "example" >}} anthropomorphic arm (3 revolute joins):{{< /math >}}
+{{< math "example" >}} anthropomorphic arm (3 revolute joints):{{< /math >}}
 
 |     | \(a_i\) | \(d_i\)     | \(\alpha_i\) | \(\vartheta_i\)   |
 | --- | ---     | ---         | ---          | ---               |
@@ -246,7 +246,7 @@ When dealing with inverse kinematics, an important notion are **workspaces:**
 ![Spherical wrist.](spherical-wrist.svg)
 {.rightFloatBox}
 
-{{< math "example" >}}spherical wrist (3 revolute joins):{{< /math >}}
+{{< math "example" >}}spherical wrist (3 revolute joints):{{< /math >}}
 
 \[T_6^3(q) = \begin{bmatrix} c_4 c_5 c_6 - s_4 s_6 & -c_4 c_5 s_6 - s_4 c_6 & c_4 s_5 & c_4 s_5 d_6 \\ s_4 c_5 c_6 + c_4 s_6 & -s_4 c_5 s_6 + c_4 c_6 & s_4 s_5 & s_4 s_5 d_6 \\ -s_5 c_6 & s_5 s_6 & c_5 & c_5 d_6 \\ 0 & 0 & 0 & 1 \end{bmatrix}
 \]
@@ -275,7 +275,7 @@ Two major ways of solving it, namely:
 
 1. **Newton method:**
 	- uses Taylor series around point \(q_k\) to expand the forward kinematics \[r = F(q) = F(q_k) + \underbrace{\frac{\partial F(q_k)}{\partial q}}_{\text{Jacobian}\ J(q_k)}(q - q_k) + \underbrace{\mathcal{O}(||q-q_k||^2)}_{\text{neglected}}\]
-	- stripping the higher-order terms and solving for \(q\), we get \[\begin{aligned} r &= F(q_k) + J(q_k)(q - q_k) \\ r - F(q_k) &= J(q_k)(q - q_k) \\ J^{-1}(q_k)(r - F(q_k)) &= (q - q_k) \\ q = q_{k + 1} &= q_k + J^{-1}_r(q_k) \underbrace{(r - F(q_k)}_{\text{error}}) \end{aligned} \]
+	- stripping the higher-order terms and solving for \(q\), we get \[\begin{aligned} r &= F(q_k) + J(q_k)(q - q_k) \\ r - F(q_k) &= J(q_k)(q - q_k) \\ J^{-1}(q_k)(r - F(q_k)) &= (q - q_k) \\ q = q_{k + 1} &= q_k + J^{-1}_r(q_k) \underbrace{(r - F(q_k))}_{\text{error}} \end{aligned} \]
 	- is nice when \(n = m\), otherwise we have to use the **[pseudo-inverse](#pseudo-inverse)**
 	- bad for problems near singularities (becomes unstable)
 	- _note: we're using the Jacobian as a function here but it's just a matrix_

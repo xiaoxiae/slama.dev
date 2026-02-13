@@ -71,7 +71,7 @@ Keep in mind that the flags are very important here, since there are a lot of po
 | `-l`, `--list`           | List files owned by this package.                        |
 | `-o <f>`, `--owns <f>`   | List, which package owns the specified file.             |
 | `-m`, `--foreign`        | List packages not found in the sync database.[^2]        |
-| `-n`, `--natived`        | Opposite of `-m`.                                        |
+| `-n`, `--native`        | Opposite of `-m`.                                        |
 | `-s <r>`, `--search <r>` | List packages, whose names/descriptions matches a regex. |
 | `-u`, `--upgrades`       | List out-of-date packages. Good to prepend with `-y`.    |
 

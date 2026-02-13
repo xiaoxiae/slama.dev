@@ -26,7 +26,7 @@ language: cs
 {{< /math >}}
 
 {{< math "remark" >}}
-Při definici matroidu je dobré si predstavit graf. \(X\) je tu množina hran a \(\mathcal{S}\) všechny acyklické podgrafy.
+Při definici matroidu je dobré si představit graf. \(X\) je tu množina hran a \(\mathcal{S}\) všechny acyklické podgrafy.
 Pak podmínka dědičnosti říká, že acyklické podgrafy jsou rovněž acyklické a axiom \(3'\) to, že maximální kostry (co do inkluze) mají stejnou velikost.
 {{< /math >}}
 
@@ -100,7 +100,7 @@ V řeči grafů chceme pro libovolnou množinu hran (prvků podmnožin) vrátit 
 
 {{< math "proof" "\(\Rightarrow\)" >}} ukážeme přímo:
 
-- \((\mathrm{R1})\): max. nezávislá podmnožina \(\emptyset\) je \(\emptyset\) a \(|\emptyset| = \emptyset\)
+- \((\mathrm{R1})\): max. nezávislá podmnožina \(\emptyset\) je \(\emptyset\) a \(|\emptyset| = 0\)
 - \((\mathrm{R2})\): z definice řádové funkce a dědičnosti matroidu
 - \((\mathrm{R3})\): nechť \(B\) je max. nez. podmn. \(Y\) a \(\tilde{B}\) je max. nez. podmn. \(Y \cup \left\{y, z\right\}\) t.ž. \(B \subseteq \tilde{B}\)
 
@@ -164,7 +164,7 @@ Máme \[\begin{aligned}
 \end{aligned}\]
 K důkazu tvrzení zbývá ukázat, že \(|A_Y \cup A_Z| \ge r(Y \cup Z)\).
 
-{{< math "observation" >}}\(A_Y\) nemůže být rozšířené víče než \(A_Z \setminus Y\) prvky na nezávislou množinu v \(Y \cup Z\){{< /math >}}
+{{< math "observation" >}}\(A_Y\) nemůže být rozšířené více než \(A_Z \setminus Y\) prvky na nezávislou množinu v \(Y \cup Z\){{< /math >}}
 
 ![](sub-proof-2.svg)
 

@@ -7,7 +7,7 @@ categoryIcon: /assets/category-icons/heidelberg.webp
 toc: true
 ---
 
-_**Note:** these notes are in a pretty questionable state (at least after the first few lectures) -- there are lot of TODOs that I won't do. If you're taking this class and have better notes, I'd be happy to update the website._
+_**Note:** these notes are in a pretty questionable state (at least after the first few lectures) -- there are a lot of TODOs that I won't do. If you're taking this class and have better notes, I'd be happy to update the website._
 
 {{< lecture_notes_preface "Ullrich Köthe  |  2023/2024 | Heidelberg" >}}
 
@@ -45,7 +45,7 @@ _**Note:** these notes are in a pretty questionable state (at least after the fi
 
 Basic principle: \(p(X)\) is complicated \(\implies\) reduce it to something simple.
 - introduce new variable ("code") \(Z = f(X)\) for \(f\) deterministic function s.t. the \(q(Z)\) distribution is simple
-    - we'll be actually doing it he other way -- pick \(q(Z)\) and learn \(f\) (will be a NN)
+    - we'll be actually doing it the other way -- pick \(q(Z)\) and learn \(f\) (will be a NN)
 - for generative modeling to work, we additionally require that \(f(X)\) is invertible
     - if \(X \sim p(X) \implies Z = f(X) \sim q(Z)\) -- inference direction
     - if \(Z \sim q(Z) \implies X = f^{-1} \sim p(X)\) -- generative direction
@@ -84,7 +84,7 @@ for \(\tau\) hyperparameter \(v\) normalization, which has to be \[v = \int_{0}^
 To get \(f(x)\), we again do the integral with upper bound being \(x\), getting \[\int_{0}^{x} \frac{1}{\tau}e^{-x/\tau} dx' = 1 - e^{-x/\tau}\]
 
 To sample from it, we solve for \(x\) in the equation above and get \[\boxed{f^{-1}(z) = -\tau \log(1-z)}\]
-which is either **inverse CDF**, **quanti** function or the **percent-point** function (PPF)
+which is either **inverse CDF**, **quantile** function or the **percent-point** function (PPF)
 
 _There was another example of a Gaussian PDF/CDF/PPF. Unlike the exponential, it the CDF doesn't have a closed-form solution and has to be approximated._
 
@@ -161,7 +161,7 @@ We want to make it continuous, we do embedding via the \(\delta\)-distribution \
 **Mixture model** idea naturally generalizes to \(D\) dimensions:
 1. **histograms** are defined by a regular grid with \(K\) levels per dimension \(\implies L = k^D\) (exponential, does not scale)
     - solution: define bins by **recursive subdivision** (eg. density tree)
-    - quality of the models is only medium -- each subdivision doubles the number but looks at only one variable, which is bad if you have 100s of variables... the number of coorelations to be considered is bounded by tree depth, which must be \(\mathcal{O}\left(\log N\right)\)
+    - quality of the models is only medium -- each subdivision doubles the number but looks at only one variable, which is bad if you have 100s of variables... the number of correlations to be considered is bounded by tree depth, which must be \(\mathcal{O}\left(\log N\right)\)
 2. for **Gaussians**, we have to learn co-variance (instead of variance) \(\implies\) change the EM algorithm accordingly
 3. **kernel density estimation** is also unchanged, but finding a bandwidth \(\sigma^{2}\) that works equally well \(\forall X_i\) is very difficult
 
@@ -278,7 +278,7 @@ The idea is to use the **kernel trick**
     - **lossless**: \(\hat X = X\) (e.g. ZIP)
         - idea: use short codes for frequent symbols and longer for more rare symbols
     - **lossy** compression: \(\hat X \approx X\) (e.g. JPEG)
-        - idea: decompose into smaller parts, drop important stuff, use lossless compression for important stuff
+        - idea: decompose into smaller parts, drop unimportant stuff, use lossless compression for important stuff
 
 Here we have 3 conflicting goals:
 1. **small codes**: \(d = \mathrm{dim}(Z) \ll \mathrm{dim}(X) = D\)
@@ -544,7 +544,7 @@ TODO: add the drawing here
     - \(Y\) are hidden properties, i.e. variables we'd like to know but can't measure
 - **assumptions:**
     1. hidden variables are more fundamental, e.g. \(Y\) is caused by \(X\)
-    2. we have a scientific theory how the \(X\) arrise from the \(Y\) (forward process)
+    2. we have a scientific theory how the \(X\) arise from the \(Y\) (forward process)
     3. theory is implemented as an algorithm \(\hat=\) computer **simulation**
         - \(\Rightarrow\) we can do "in-silico experiments" (as opposed to "in-vivo" and "in-vitro")
         - three types of variables:
@@ -594,7 +594,7 @@ TODO: add the drawing here
         - posterior \(p^S(Y \mid X)\) assigns a "possibility" to every \(Y \in \mathcal{F}(X)\)
         - problems:
             - if likelihood \(p^S(X \mid Y)\) is only implicitly defined then Bayes rule canot be calculated (i.e. surrogate model above)
-            - even if \(p^S(X \mid Y)\) (or a surrogate) is known, Bayes rules is usually intractable
+            - even if \(p^S(X \mid Y)\) (or a surrogate) is known, Bayes rule is usually intractable
                 - \(\Rightarrow\) learn generative model for posterior \(p(Y \mid X) \approx p^S(Y \mid X)\)
 3. **model missclasification & outliner detection** -- a simulation is **not** reality: \[\underbrace{p^S(Y) \cdot p^S(X \mid Y)}_{\text{simulation}} \approx \underbrace{p^*(Y)p^*(X \mid Y)}_{\text{reality}}\]
     - \(\Rightarrow\) use SBI to detect if \(p^S(X, Y) \neq p^*(X, Y)\)
@@ -861,7 +861,7 @@ _There is a missing lecture here! See slides for what was in it._
             - \([S(t + \Delta t)] = [S(t)] - \lambda [I(t)] [S(t)] \cdot \Delta t\)
             - same for other equations...
             - theory says that it's a good approximation if \(\Delta t\) is _small enough_
-        - more sophisticated: Euler backward, Runge-Hutta that allow for larger timesteps
+        - more sophisticated: Euler backward, Runge-Kutta that allow for larger timesteps
     - define observables \(X\):
         - repeat on every day (number of new infections and newly recovered)
         - observations are not perfect \(\Rightarrow\) **observation model**

@@ -585,7 +585,7 @@ class File {
 
 ##### Nullable types
 - {{< inline_highlight "cs" >}}int? x{{< /inline_highlight >}} is a nullable variable -- can contain its value, or {{< inline_highlight "cs" >}}null{{< /inline_highlight >}}
-- internally imlemented as a {{< inline_highlight "cs" >}}struct Nullable<T>{{< /inline_highlight >}} that has {{< inline_highlight "cs" >}}T Value{{< /inline_highlight >}} and {{< inline_highlight "cs" >}}bool HasValue{{< /inline_highlight >}} memobers
+- internally implemented as a {{< inline_highlight "cs" >}}struct Nullable<T>{{< /inline_highlight >}} that has {{< inline_highlight "cs" >}}T Value{{< /inline_highlight >}} and {{< inline_highlight "cs" >}}bool HasValue{{< /inline_highlight >}} members
 - {{< inline_highlight "cs" >}}bool?{{< /inline_highlight >}}'s {{< inline_highlight "cs" >}}null{{< /inline_highlight >}} value is "i don't know" so we can use {{< inline_highlight "cs" >}}|{{< /inline_highlight >}} and {{< inline_highlight "cs" >}}&{{< /inline_highlight >}} and get results we expect
 
 #### Reference types

@@ -22,7 +22,7 @@ If you find a mistake, please let me know via email: **[tomas@slama.dev](mailto:
 | `2.` | _Gott Ex Machina_ | <a href="cz/02 - Gott Ex Machina.srt">České</a> / <a class="disabled">English</a> |
 | `3.` | _Souboj titánů_ | <a href="cz/03 - Souboj titánů.srt">České</a> / <a class="disabled">English</a> |
 | `4.` | _Pomáhat a chránit_ | <a href="cz/04 - Pomáhat a chránit.srt">České</a> / <a class="disabled">English</a> |
-| `5.` | _Pravidla rodinného provozzu_ | <a href="cz/05 - Pravidla rodinného provozzu.srt">České</a> / <a class="disabled">English</a> |
+| `5.` | _Pravidla rodinného provozu_ | <a href="cz/05 - Pravidla rodinného provozu.srt">České</a> / <a class="disabled">English</a> |
 | `6.` | _Je jaro..._ | <a href="cz/06 - Je jaro.srt">České</a> / <a class="disabled">English</a> |
 | `7.` | _Lupiči_ | <a href="cz/07 - Lupiči.srt">České</a> / <a class="disabled">English</a> |
 | `8.` | _Zdravý a nemocný_ | <a href="cz/08 - Zdravý a nemocný.srt">České</a> / <a class="disabled">English</a> |

@@ -20,5 +20,5 @@ There is 0xc apples. -<C-x>-> There is 0xb apples.
 This is 'a'. -<C-a>-> This is 'b'.
 ```
 
-Equipped with this knowledge, one can easily add to and subtract from any number (`10<C-a>`), create a list of numbers in a given base (a relatively simple macro), play around with [caesar cypers](https://en.wikipedia.org/wiki/Caesar_cipher) and generally do many things that would likely not be possible in other text editors.
+Equipped with this knowledge, one can easily add to and subtract from any number (`10<C-a>`), create a list of numbers in a given base (a relatively simple macro), play around with [caesar ciphers](https://en.wikipedia.org/wiki/Caesar_cipher) and generally do many things that would likely not be possible in other text editors.
 

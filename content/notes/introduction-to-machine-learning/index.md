@@ -403,7 +403,7 @@ For \(\Sigma\), this will be a little more complicated. We'll do the partial der
 \end{aligned}
 \]
 
-Again, in other words, the **variance** is the average over the quared vectors offset by the mean, which too makes sense.
+Again, in other words, the **variance** is the average over the squared vectors offset by the mean, which too makes sense.
 
 Now we have \(2\) clases but with same covariance (by assumption of LDA) and we can:
 1. determine two means (\(\mu_1, \mu_{-1}\)) as \[\boxed{\mu_1 = \frac{1}{N_1} \sum_{i: Y_i^* = 1} X_i \qquad \mu_{-1} = \frac{1}{N_{-1}} \sum_{i: Y_i^* = -1}}\]
@@ -753,12 +753,12 @@ CNNs usually alternate between **convolution**, **non-linear layers** (ReLU), **
 		- instead of learning a function per layer, learn weights wrt. the input layer
 		- also skip connections as identity mappings, preventing vanishing gradients
 		- reaches superhuman performance (humans 4/5%, ResNet 3.6%)
-		- for top-1, we they had 25% error (nowadays ~10%)
+		- for top-1, they had 25% error (nowadays ~10%)
 	- nowadays, use two tricks:
 		- train on _much larger datasets_ (up to 3B images)
 
 #### Residual Networks (ResNet)
-- base idea: use **skip connections** to avoid the **vanishing grandient** problem
+- base idea: use **skip connections** to avoid the **vanishing gradient** problem
 - **stages** between pooling layers (image resolution _unchanged_ within the stage)
 - **block** -- sequence of layers + one skip connection (bridges the block):
 	- **batch normalization:** adjust mean and variance of pre-activations
@@ -878,7 +878,7 @@ which are called the **normal equations** of the OLS problem, since \(\beta\) is
 [Pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse) is a generalization of the inverse for rectangular matrices:
 - not a great way to calculate this -- expensive and also \(X^T X\) might be too degenerate
 	- if at least one feature (column of \(X\)) can be expressed as a linear combination of other features, it will be entirely degenerate and OLS will have no solution
-- **contition number \(\kappa(X) = ||X|| \cdot ||X^+||\)** measures this:
+- **condition number \(\kappa(X) = ||X|| \cdot ||X^+||\)** measures this:
 	- if \(\kappa(x) = 1 \implies X\) is nice (almost orthogonal features)
 	- if \(\kappa(x) \gg 1 \implies X\) has almost redundant features, \(\hat \beta\) becomes inaccurate
 	- if \(\kappa(x) = \infty \implies X\) has redundant features, \(\hat \beta\) doesn't exist

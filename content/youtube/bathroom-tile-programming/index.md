@@ -35,7 +35,7 @@ If we wanted to make the tileset a little more concise, we could exchange the co
 
 {{< /details >}}
 
-{{< details "**Task:** accept the input \(\iff\) if contains the same number of zeroes and ones" >}}
+{{< details "**Task:** accept the input \(\iff\) it contains the same number of zeroes and ones" >}}
 The solution is very similar to the previous example. We're again counting in binary. The main difference is that we can go "negative" (since there can sometimes be more zeroes and sometimes more ones), which we handle by counting with two different sets of tiles for positive and negative numbers.
 
 I'm not including the exact solution, since it's essentially the same as the previous one, only with twice as much tiles.
@@ -46,7 +46,7 @@ The time complexity is \(\mathcal{O}(\log n)\).
 {{< details "**Task:** accept the input \(\iff\) the number of ones is a power of 2" >}}
 The main trick here is to realize that numbers in the form \(2^n - 1\) are made out of \(n\) ones in binary, which we can match against the right side of the wall when filling from the left. The only thing we have to figure out is how to subtract one -- this we can do with a different left color and a set of tiles that simply ignore the first one on the input and only then start the count.
 
-We also must not forgot to accept a single 1, for which we include a special tile (the last one).
+We also must not forget to accept a single 1, for which we include a special tile (the last one).
 
 
 

@@ -438,7 +438,7 @@ Plotting the probabilities with variable \(s\), we get the **S-curve:**
 **Revised problem:** left side are advertisers, right side terms to advertise on; we know
 - the bids advertisers have on the queries,
 - click-through rate for each advertiser-query pair (_for us, all are equal_),
-- budet for each advertiser (_for us, all have budget \(B\)_) and
+- budget for each advertiser (_for us, all have budget \(B\)_) and
 - limit on the number of ads to be displayed with each search query (_for us, limit to \(1\)_)
 
 We want to **respond to each search query** with a set of advertisers such that:
@@ -525,7 +525,7 @@ This ensures that after \(n\) elements, all elements have a \(s/n\) probability 
 	- estimated number of distinct elements is \(2^{\max_a r(a)} \)
 {{< /math >}}
 
-Intuitively, \(h(a)\) hashes \(a\) with equal probability, so the probability that we get a hash with \(r\) trailing zeroes is \(2^r\) (i.e. we have to hash at least \(2^r\) others before).
+Intuitively, \(h(a)\) hashes \(a\) with equal probability, so the probability that we get a hash with \(r\) trailing zeroes is \(1/2^r\) (i.e. we have to hash at least \(2^r\) others before).
 
 We can **generalize this** concept to counting **moments:** for \(m_a\) being the number of times element \(a\) appears in the stream \(S\), we define the **\(k\)-th moment** as \[\sum_{a \in S} m_a^k\]
 - \(k = 0 \ldots\) number of distinct elements

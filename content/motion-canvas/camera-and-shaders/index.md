@@ -67,7 +67,7 @@ Getting back to Motion Canvas, here is a simple example that creates a gradient 
 
 The code should be quite straightforward, but let's comment on a few things, mainly for those who are learning about shaders for the first time (just like me when writing this example).
 
-First of, each Motion Canvas shader will receive a set of the following `in`puts:
+First off, each Motion Canvas shader will receive a set of the following `in`puts:
 
 ```glsl
 in vec2 screenUV;

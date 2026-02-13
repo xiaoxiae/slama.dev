@@ -19,12 +19,12 @@ This is the default way to use `man` -- it tries to look for a manual page(s), w
 | `-f`, `--whatis`         | Gives short descriptions of the matching manual pages.     |
 | `-K`, `--global-apropos` | Searches for text in the man pages themselves.             |
 | `-w`, `--where`          | Only print the location of the page, don't display it.     |
-| `-a`, `--all`            | Attempt to show all matched pages (not just the first one. |
+| `-a`, `--all`            | Attempt to show all matched pages (not just the first one). |
 
 Although the default usage is arguably the most useful, it is still good to know of others.
 
 #### Specifying sections
-As mentioned above, `man` covers a variety of topics, divided in to various sections. The division is necessary, because (for example) `exit` could mean any of the following:
+As mentioned above, `man` covers a variety of topics, divided into various sections. The division is necessary, because (for example) `exit` could mean any of the following:
 - a shell command
 - a system call
 - a C library function
@@ -58,7 +58,7 @@ To specify, which section the page should be displayed from, either of the follo
 | `--nh`, | Prevent line breaks on words that don't contain hyphens. |
 | `--nj`, | Don't justify to both margins.                           |
 
-Also, if you set the `MANWIDTH` environment variable, the width of the page will automatically adjusted to its value. If not, it will default to taking up the whole terminal window width.
+Also, if you set the `MANWIDTH` environment variable, the width of the page will be automatically adjusted to its value. If not, it will default to taking up the whole terminal window width.
 
 
 #### Exporting to other formats

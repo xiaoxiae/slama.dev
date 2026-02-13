@@ -21,14 +21,14 @@ An example problem could be minimum spanning trees:
 - we're **minimizing**
 {{% /float_box %}}
 
-{{< math "definition:" "Optimalization problem" >}} is a tuple \(\mathcal{I}, \mathcal{F}, f, g\)
+{{< math "definition:" "Optimization problem" >}} is a tuple \(\mathcal{I}, \mathcal{F}, f, g\)
 - set of all **input instances** \(\mathcal{I}\)
 - sets of **permissible inputs** \(\forall I \in \mathcal{I}: \mathcal{F}(I)\)
 - **utility function** \(\forall I \in \mathcal{I}, A \in \mathcal{F}(I): f(I, A)\)
 - whether we're **maximizing** or **minimizing** (a single bit \(g\))
 {{< /math >}}
 
-{{< math "definition:" "NP-Optimalization problem" >}} is an optimalization problem \(\mathcal{I}, \mathcal{F}, f, g\), for which we additionally require that:
+{{< math "definition:" "NP-Optimization problem" >}} is an optimization problem \(\mathcal{I}, \mathcal{F}, f, g\), for which we additionally require that:
 - the length of all permissible solutions is polynomial
 - the language of \((I, A), I \in \mathcal{I}, A \in \mathcal{F}(I)\) is polynomial
 	- _we can check the correctness of a solution in polynomial time_
@@ -36,15 +36,15 @@ An example problem could be minimum spanning trees:
 {{< /math >}}
 
 {{% float_box %}}
-_For minimalization problem, we ensure that the solution is always small enough._
+_For minimization problem, we ensure that the solution is always small enough._
 
-_For maximalization problem, we ensure that the solution is always large enough._
+_For maximization problem, we ensure that the solution is always large enough._
 {{% /float_box %}}
 
 {{< math "definition" >}}algorithm \(A\) is \(R\)-approximation, if:
 - it computes the solution in polynomial time (in terms of \(|I|\))
-- for minimalization problem: \(\forall I: f(A) \le R \cdot \mathrm{OPT}(I)\)
-- for maximalization problem: \(\forall I: f(A) \ge \mathrm{OPT}(I) / R\)
+- for minimization problem: \(\forall I: f(A) \le R \cdot \mathrm{OPT}(I)\)
+- for maximization problem: \(\forall I: f(A) \ge \mathrm{OPT}(I) / R\)
 {{< /math >}}
 
 ### MAX-SAT
@@ -74,7 +74,7 @@ Since the size of the clause \(k \ge 1\), we get \(\mathbb{E}\left[Y_j\right] = 
 ### LP-SAT
 
 {{% float_box %}}
-We're using the optimal solution to the linear program (and generally the formula, if we allow real vlaues for literals) as a guide for our randomized algorithm.
+We're using the optimal solution to the linear program (and generally the formula, if we allow real values for literals) as a guide for our randomized algorithm.
 {{% /float_box %}}
 
 {{< math "algorithm" "LP-SAT" >}}
@@ -133,7 +133,7 @@ We're interested in the satisfied ones, so
 \end{aligned}
 \]
 
-To use fact \(B\), we observed that \(a = f(0) = 0\) and that the second derivation is non-positive (so the function is concave). Now to formally count how many our program satisfies:
+To use fact \(B\), we observed that \(a = f(0) = 0\) and that the second derivative is non-positive (so the function is concave). Now to formally count how many our program satisfies:
 \[
 \begin{aligned}
 	\mathbb{E}\left[\sum_{j = 1}^{m} Y_j\right] &= \sum_{j = 1}^{m} \mathbb{E}\left[Y_j\right] \\

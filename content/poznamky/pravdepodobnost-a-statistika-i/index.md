@@ -85,7 +85,7 @@ Věta řeší problém, kdy máme jev \(H\) (hypotézu), který chceme spočíta
 
 ##### Binomiální
 - \(X \ldots \) počet orlů při \(n\) hodech nespravedlivou mincí (značíme \(X \sim \mathrm{Bin}(n, p)\))
-- méně očivivně \(p_X(k) = \binom{n}{k} p^k (1 - p)^{n - k}\)
+- méně očividně \(p_X(k) = \binom{n}{k} p^k (1 - p)^{n - k}\)
 	- chceme, aby se \(k\) hodů trefilo a \(n - k\) netrefilo
 
 ##### Poissonovo
@@ -234,7 +234,7 @@ Tedy (vhodně přeškálovaný) součet n.n.v. \(X_i\) konverguje ke standardní
 
 
 ### Tahák
-Ke zkoušce byla povolena A4 s libovolnými poznamkami, tady jsou moje (dostupné i v [PDF](tahak.pdf)).
+Ke zkoušce byla povolena A4 s libovolnými poznámkami, tady jsou moje (dostupné i v [PDF](tahak.pdf)).
 
 ---
 

@@ -6,7 +6,7 @@ categoryIcon: /assets/category-icons/music.svg
 ---
 
 
-As a part of the holiday brake (mostly to prevent me from playing Factorio), I decided to get into making chip music.
+As a part of the holiday break (mostly to prevent me from playing Factorio), I decided to get into making chip music.
 The goal is to, at the very least, grasp the concepts and produce an original piece of music that sounds.
 _No qualifier, just sounds._
 
@@ -16,7 +16,7 @@ Since I am a complete beginner, take everything written here with a huge grain o
 ---
 
 1. **day:** spent comfortable with Furnace; playing around with inputting notes
-    - _the target device is the NES since it's channels are pretty limited_
+    - _the target device is the NES since its channels are pretty limited_
 2. **day:** figured out a simple progression that sounds interesting
 3. **day:** fleshed out the progression and added fluff around to make it interesting
     - **here are the results** (it's pretty bad): [First.wav](First.wav) (10 seconds), [First.fur](First.fur) (Furnace file)
@@ -25,7 +25,7 @@ Since I am a complete beginner, take everything written here with a huge grain o
 5. **day:** again some more work, this is pretty hard
 
 <div class="force-spacing">
-<em>A long time ellapsed here, during which I did nothing. The work during days 4. and 5. gave me a good idea of how much work it actually is to create a good-sounding chiptune (which, to some extent, was the goal of the project), so I'm going to leave it here for now. Who knows, maybe I'll return to make more chiptunes some other time</em> 🙂.<br>
+<em>A long time elapsed here, during which I did nothing. The work during days 4. and 5. gave me a good idea of how much work it actually is to create a good-sounding chiptune (which, to some extent, was the goal of the project), so I'm going to leave it here for now. Who knows, maybe I'll return to make more chiptunes some other time</em> 🙂.<br>
 </div>
 
 <ol>

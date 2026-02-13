@@ -220,7 +220,7 @@ pub struct Game {
 
 With all of these chess rules implemented, the moves are generated via the **make + unmake approach** to move generation -- we first generate [**pseudo-legal moves**](https://www.chessprogramming.org/Pseudo-Legal_Move) (moves where the king can come under attack), perform them, check whether the king is actually under attack, and if not, this move is legal.
 
-We'll replace this with [legal-move generation later](#legal-move-generation) later, since it's much faster.
+We'll replace this with [legal-move generation later](#legal-move-generation), since it's much faster.
 
 [`dc9fc0`](https://github.com/xiaoxiae/Prokopakop/commit/dc9fc039d13bee308619bb6befc800f785b10036)
 {.commit-header}

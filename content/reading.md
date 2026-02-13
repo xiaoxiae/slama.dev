@@ -43,7 +43,7 @@ If you have a good book for me to read, let me know and I'll be happy to check i
 	2. **The Frugal Wizard's Handbook for Surviving Medieval England** <span class="half-visible">(2023)</span> -- a fun novel about multiverse traveling and... marketing?
 	3. **Yumi and the Nightmare Painter** <span class="half-visible">(2023)</span> -- very evocative and narrated by Hoid (who was a coatrack).
 	4. **The Sunlit Man** ⭐ <span class="half-visible">(2023)</span> -- a western by Brandon Sanderson? Not quite, but it has similar vibes.
-  5. **Isles of the Emberdark** ⭐ <span class="half-visible">(2025)</span> -- I absolutely loved **Sixth of the Dusk** <span class="half-visible">(2015)</span>, which was one of Brandon's short stories. Despite him saying that there likely won't be a full novel from that particular universe
+  5. **Isles of the Emberdark** ⭐ <span class="half-visible">(2025)</span> -- I absolutely loved **Sixth of the Dusk** <span class="half-visible">(2015)</span>, which was one of Brandon's short stories. Despite him saying that there likely won't be a full novel from that particular universe, here we are, and it's great.
 {.spaced-list}
 
 #### Leigh Bardugo
