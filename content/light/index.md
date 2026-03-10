@@ -9,7 +9,7 @@ hidden: true
 ## Project Light
 
 _I'm trying to do some fantasy writing.
-It sucks right now, I'll unhide this when it doesn't, so read only if you truly have nothing better to do and don't mind cringing._
+It sucks right now, I'll unhide this when it doesn't, so read only if you truly have nothing better to do._
 {.half-visible}
 
 {{< pause >}}
@@ -103,7 +103,7 @@ Turning his head around the room, his eyes fell on layers of lightleaf that cove
 The reflective leaves sent rays of light across the room, lighting it up despite the meager morning rays that shone through the window.
 
 Upon further examination, Khast spotted herbal bandages on a nearby table next to some vials.
-He was in one of the village's medical tents on the south side, as that's where he fell unconscious last night.
+He was in one of the village's medical tents on the south side, likely because it was nearest to where he fell unconscious last night.
 
 As he began to rise, pain flared up immediately from his right leg and he collapsed back onto the bed.
 "Don't move," a familiar voice said. "Shir spotted you near the gates and dragged you in. He almost didn't make it back in time."
