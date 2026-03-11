@@ -27,6 +27,7 @@ static/climbing/
 **/*.woff2
 **/*.svg
 **/*.pgn
+**/*.stl
 
 # Python (uv)
 .venv/
