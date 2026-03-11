@@ -7,7 +7,7 @@ categoryIcon: /assets/category-icons/hollow-knight.ico
 
 I am a big fan of [Hollow Knight: Silksong](https://store.steampowered.com/app/1030300/Hollow_Knight_Silksong/). I've 100%ed the game and trying Steel Soul attempts when I have time (so not very much), and I think the design of the main characters leads itself to nice-looking art / posters.
 
-Since I [recently set up an OctoPrint server](/you-really-should-get-a-vps) on a Raspberry Pi 4, I had an opportunity to print a case.
+Since I recently set up an OctoPrint server on a Raspberry Pi 4, I had an opportunity to print a case.
 I found **[this awesome modular one by Malolo](https://www.thingiverse.com/thing:3723561)**, which contained OpenSCAD source files, making it extremely easy to modify them to cut an SVG of my choice.
 
 {{< image_section caption="3D renders of Malolo's customizable case. [[Thingiverse](https://www.thingiverse.com/thing:3723561)]" >}}
