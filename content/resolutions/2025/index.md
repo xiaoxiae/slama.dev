@@ -9,17 +9,27 @@ A collection of my long-term goals and progress towards them.
 
 |    Category | Goal (<span class="silver">easy</span> \| <span class="gold">hard</span>)                      | Progress      |
 | ----------: | :--------------------------------------------------------------------------------------------- | :------------ |
-|     Fitness | 2024 Moonboard <span class="silver">7c</span>\|<span class="gold">7c+</span> benchmark         | 1 move away!  |
-|             | <span class="silver">one-arm pull-up</span> \| <span class="gold">5x one-arm pull-up</span>    |               |
+|     Fitness | 2024 Moonboard <span class="silver">7c</span>\|<span class="gold">7c+</span> benchmark         | getting strong again |
+|             | <span class="silver">one-arm pull-up</span> \| <span class="gold">5x one-arm pull-up</span>    | see above! |
 |             | <span class="silver">backflip</span> \| <span class="gold">frontflip</span>                    |               |
-|             | 10k <span class="silver">5:45/km</span> \| <span class="gold">5:30/km</span>                   |               |
+|             | 10k <span class="silver">5:45/km</span> \| <span class="gold">5:30/km</span>                   | training! |
 |             |                                                                                                |               |
-| Programming | <span class="silver">3</span> \| <span class="gold">5</span> Poylog videos                     |               |
-|             | AOC <span class="silver">all problems</span> (<span class="gold">all in Rust</span>)           |               |
+| Programming | <span class="silver">3</span> \| <span class="gold">5</span> Poylog videos                     | 1 |
 |             |                                                                                                |               |
-|       Other | Read <span class="silver">12</span>\|<span class="gold">18</span> new books                    |               |
+|       Other | Read <span class="silver">12</span>\|<span class="gold">18</span> new books                    | 1 |
+|             | Release <span class="silver">12</span>\|<span class="gold">18</span> blog posts                | 3 |
+|             | <span class="silver">&lt;15m</span>\|<span class="gold">&lt;30m</span> German time / day       | Going terribly. |
+|             | Release a <span class="silver">short story</span> <span class="gold">with illustrations</span> | Also terrible. |
+
+
+
+<!--
+I think doing topic exploration + blog posts will be better
 |             | Read <span class="silver">12</span>\|<span class="gold">18</span> papers                       |               |
-|             | Release <span class="silver">12</span>\|<span class="gold">18</span> blog posts                | 2             |
+
+don't want to invest my time in this
+|             | AOC <span class="silver">all problems</span> (<span class="gold">all in Rust</span>)           |               |
+
+let's get consistency first
 |             | <span class="silver">A2</span>\|<span class="gold">B1</span> German                            |               |
-|             | <span class="silver">&lt;15m</span>\|<span class="gold">&lt;30m</span> German time / day       | I'm trying!   |
-|             | Release a <span class="silver">short story</span> <span class="gold">with illustrations</span> |               |
+-->
