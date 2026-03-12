@@ -208,7 +208,7 @@ While page-level redirects were not necessary, **file-level redirects were**.
 It turns out that people link assets from my website in other places, and since I moved most assets from `/assets/<post>/...` to `/<post>/...`, all of these would break.
 To fix this, I wrote a small script to match files from old assets folder to the path in the new website, and these should now be functional 🙂.
 
-To be fully transparent, the vast majority was done via [Claude Code](https://claude.ai/claude-code) (no vibe, just supervision), as it was more laborious than interesting -- a pinch of SED calls, a sprinkle of Ruby-to-Go-template rewrites, a few hours wasted on a [bug in Hugo's markdown parser](https://github.com/gohugoio/hugo-goldmark-extensions/issues/40)... nothing out of the ordinary.
+To be fully transparent, the vast majority was done via [Claude Code](https://claude.com/product/claude-code) (no vibe, just supervision), as it was more laborious than interesting -- a pinch of SED calls, a sprinkle of Ruby-to-Go-template rewrites, a few hours wasted on a [bug in Hugo's markdown parser](https://github.com/gohugoio/hugo-goldmark-extensions/issues/40)... nothing out of the ordinary.
 
 There were a few breaking changes that needed to be fixed, namely
 - **no `<div markdown="1">`** -- this is honestly for my own good, because I completely abused this [Kramdown-only feature](https://kramdown.gettalong.org/syntax.html) when I should have been using tags,

@@ -500,7 +500,7 @@ While the parameters will heavily depend on your particular network architecture
 
 Looking at the Elo progression below, it is safe to say that NNUEs helped, achieving a **+200 elo** increase over the non-NNUE version, which is almost the same as the increase of **all of the search techniques combined** (as the first functional state the engine was in was around ~1800).
 
-{{< image_section caption="Prokopakop's Elo progression for bullet (generated from <a href=\"games.pgn\">games.pgn</a> using <a href=\"elo.py\">elo.py</a>)." >}}
+{{< image_section caption="Prokopakop's Elo progression for bullet." >}}
 {{< image_row "elo-bullet.svg :: Bullet rating progression." >}}
 {{< /image_section >}}
 
