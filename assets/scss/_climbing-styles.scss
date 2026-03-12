@@ -192,14 +192,34 @@ ul.climbing-routes-list {
   vertical-align: middle;
 }
 
-.climbing-red-text,
 .climbing-blue-text,
-.climbing-green-text,
-.climbing-black-text {
+.climbing-green-text {
   color: $dark-text-color;
 
   a {
     color: $dark-text-color;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.climbing-black-text {
+  color: white;
+
+  a {
+    color: white;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.climbing-red-text {
+  color: black;
+
+  a {
+    color: black;
     &:hover {
       text-decoration: underline;
     }

@@ -6,8 +6,12 @@
 {{- $videosByWall := dict -}}
 
 {{- range $date, $session := $sessions -}}
+  {{- /* Skip outdoor sessions (location without wall) */ -}}
+  {{- if and $session.location (not $session.wall) -}}
+    {{- continue -}}
+  {{- end -}}
   {{- $wallName := $session.wall | default "Smíchoff" -}}
-  {{- $wallStub := $wallName | lower | replaceRE " " "-" | replaceRE "í" "i" -}}
+  {{- $wallStub := $wallName | anchorize -}}
 
   {{- /* Regular wall colors */ -}}
   {{- $wall := index $walls $wallStub -}}
@@ -130,11 +134,35 @@
   {{- end -}}
 {{- end -}}
 
+{{- /* Merge orphaned videos (pre-journal) into $videosByWall */ -}}
+{{- range $wallKey, $orphanedColors := $orphaned -}}
+  {{- $wall := index $walls $wallKey -}}
+  {{- $wallName := $wallKey -}}
+  {{- with $wall -}}
+    {{- $wallName = .name -}}
+  {{- end -}}
+  {{- range $color, $vids := $orphanedColors -}}
+    {{- range $vids -}}
+      {{- if not (index $videosByWall $wallName) -}}
+        {{- $videosByWall = merge $videosByWall (dict $wallName (dict)) -}}
+      {{- end -}}
+      {{- $wallDict := index $videosByWall $wallName -}}
+      {{- if not (index $wallDict $color) -}}
+        {{- $wallDict = merge $wallDict (dict $color slice) -}}
+      {{- end -}}
+      {{- $colorVids := index $wallDict $color -}}
+      {{- $colorVids = $colorVids | append . -}}
+      {{- $wallDict = merge $wallDict (dict $color $colorVids) -}}
+      {{- $videosByWall = merge $videosByWall (dict $wallName $wallDict) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
 <div class='climbing-journal-vids-only'>
-{{- range $wallName, $colors := $videosByWall -}}
+{{- range $wallName, $wallColors := $videosByWall -}}
   {{- /* Skip walls with no videos */ -}}
   {{- $hasVideos := false -}}
-  {{- range $color, $vids := $colors -}}
+  {{- range $color, $vids := $wallColors -}}
     {{- if gt (len $vids) 0 -}}
       {{- $hasVideos = true -}}
     {{- end -}}
@@ -144,7 +172,7 @@
   {{- end -}}
 
 <h3>{{ $wallName }}</h3><ul>
-  {{- $wallStub := $wallName | lower | replaceRE " " "-" | replaceRE "í" "i" -}}
+  {{- $wallStub := $wallName | anchorize -}}
   {{- $wall := index $walls $wallStub -}}
   {{- $grading := "color" -}}
   {{- with $wall -}}
@@ -156,7 +184,7 @@
     {{- $grading = "french" -}}
   {{- end -}}
 
-  {{- range $color, $vids := $colors -}}
+  {{- range $color, $vids := $wallColors -}}
     {{- if eq (len $vids) 0 -}}
       {{- continue -}}
     {{- end -}}
@@ -178,7 +206,7 @@
     {{- else if or (eq $grading "v-grade") (hasPrefix $color "V") -}}
       {{- $colorClass = printf "climbing-%s climbing-v" $color -}}
       {{- $colorText = printf "<strong>%s:</strong> %s" $color $count -}}
-    {{- else if or (eq $grading "french") (strings.ContainsAny $color "abc+") -}}
+    {{- else if or (eq $grading "french") (findRE "^[0-9]" $color) -}}
       {{- $safeColor := replace $color "+" "p" -}}
       {{- $colorClass = printf "climbing-%s climbing-f" $safeColor -}}
       {{- $colorText = printf "<strong>%s:</strong> %s" $color $count -}}
@@ -198,4 +226,5 @@
   {{- end -}}
 </ul>
 {{- end -}}
+
 </div>
