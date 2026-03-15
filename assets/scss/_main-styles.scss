@@ -219,6 +219,7 @@ h6 {
 ul,
 ol {
   padding-left: $list-item-left-padding;
+  padding-top: $line-spacing / 3;
   padding-bottom: $line-spacing;
 }
 
