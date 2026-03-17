@@ -1,5 +1,5 @@
 ---
-date: '2026-03-15'
+date: '2026-03-17'
 title: "Learning German with Bilbo"
 description: "Implementing an interleaver for audiobooks."
 ---
@@ -45,8 +45,8 @@ Then pick your favorite audiobook player (I prefer [Smart AudioBook Player](http
 ### How it works
 
 Fortunately, all of the difficult parts were already implemented: given two audio files, I use
-1. [faster-whisper](https://github.com/SYSTRAN/faster-whisper) for word-level timestamps (**transcription**),
-2. [pySBD](https://github.com/nipunsadvilkar/pySBD) to detect sentence boundaries (**segmentation**),
+1. [faster-whisper](https://github.com/SYSTRAN/faster-whisper) + [SileroVAD](https://github.com/snakers4/silero-vad) for transcriptions + word-level timestamps (**transcription**),
+2. [pySBD](https://github.com/nipunsadvilkar/pySBD) to clean up + detect sentence boundaries (**segmentation**),
 3. [LaBSE](https://huggingface.co/sentence-transformers/LaBSE) (via [sentence-transformers](https://github.com/UKPLab/sentence-transformers)) to compute sentence embeddings across languages and match them using dynamic programming via [Bertalign](https://github.com/bfsujason/bertalign) (**alignment**),
 4. [ffmpeg](https://www.ffmpeg.org/) for audio normalization/extraction/interleaving (**assembly**), and
 5. optionally, a local LLM via [ollama](https://ollama.com/) for cover art and text metadata merging (**metadata**).
