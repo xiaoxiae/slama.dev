@@ -15,6 +15,7 @@ Pokud objevíte chybu, dejte mi prosím vědět na email: **[tomas@slama.dev](ma
 
 
 **EN:** This page contains Czech and English subtitles for the Czech TV show Comeback, since their official distributor [Voyo.cz](https://tv.nova.cz/porad/comeback/videa/cele-dily) doesn't have them.
+
 _Currently, it only contains a portion of the episodes, with the missing ones being translated based on my free time.
 Since I don't have a lot of it these days, subtitles with a star<sup>★</sup> were not checked after their automatic conversion and potentially contain errors._
 
