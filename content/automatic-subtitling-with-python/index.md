@@ -6,6 +6,12 @@ description: How to create subtitles for videos in an effective way (essentially
 toc: true
 ---
 
+**Update 19. 3. 2026:** while the core of the article holds, it's not quite using the state of the art.
+Since I wanted to put up some usable version of the subtitles, I used **[Bilbo](/bilbo/)** (one of my recent projects) which uses [`faster-whisper`](https://github.com/SYSTRAN/faster-whisper) with the `large-v3` model and [Silero VAD](https://github.com/snakers4/silero-vad) to get tighter timestamps, and ran the result though [Opus 4.6](https://www.anthropic.com/news/claude-opus-4-6) to both fix the miss-translated words, and to translate into English.
+
+---
+
+
 Growing up, [Comeback](https://www.imdb.com/title/tt1321261/) was[^1] one of my favorite Czech sitcoms.
 Re-watching it recently, I wanted to show it to my friend who doesn't speak Czech, but English subtitles don't seem to exist (and, for that matter, neither do Czech ones).
 
