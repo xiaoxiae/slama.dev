@@ -1,0 +1,89 @@
+# slama.dev
+
+> Personal website of Tomáš Sláma — programming, rock climbing, photography, videography, and more.
+
+## About
+
+This is the personal website of Tomáš Sláma (Tom), a programmer based in Germany. The site contains blog posts about programming, technology, and personal projects, as well as university lecture notes, photo galleries, and a climbing journal. The primary language is English, with some content in Czech.
+
+- [Home](https://slama.dev/)
+- [CV](https://slama.dev/cv/)
+- [Reading](https://slama.dev/reading/): Curated book recommendations
+- [Climbing](https://slama.dev/climbing/): Climbing journal with videos
+- [Photos](https://slama.dev/photos/): Photo galleries from trips
+- [Videos](https://slama.dev/videos/): Math/CS YouTube videos (Polylog channel)
+- [Stickers](https://slama.dev/stickers/): Sticker collection
+- [Printomat](https://slama.dev/printomat/): Interactive receipt printer
+
+## Blog Posts
+
+- [Migrating from Jekyll to Hugo](https://slama.dev/migrating-from-jekyll-to-hugo/): How the site was migrated from Jekyll to Hugo, with 130x build time speedups.
+- [Tomoji – Creating a Font from my Face](https://slama.dev/tomoji/): Making a custom emoji font from facial expressions.
+- [Hollow Knight Raspberry Pi 4 Case](https://slama.dev/hollow-knight-raspberry-pi-4-case/): 3D printing a Hollow Knight-themed Raspberry Pi case.
+- [Learning German with Bilbo](https://slama.dev/bilbo/): Implementing an audiobook interleaver for language learning.
+- [Old Year's Resolutions](https://slama.dev/old-years-resolutions/): A summary of yearly resolutions.
+- [Fixing a Broken Blind Holder](https://slama.dev/fixing-a-broken-blind-holder/): Using 3D reconstruction and 3D printing to fix broken things.
+- [Automatic Subtitling with Python](https://slama.dev/automatic-subtitling-with-python/): How to create subtitles for videos effectively using Whisper.
+- [Comeback Titulky/Subtitles](https://slama.dev/comeback/): Czech and English subtitles for the Comeback TV series.
+- [Rescuing Images from a Broken SD Card](https://slama.dev/rescuing-images-from-a-broken-sd-card/): Write-up of recovering images from a broken camera SD card.
+- [Do Not Vote Trump 2024](https://slama.dev/do-not-vote-trump-2024/): A post about politics and the 2024 US election.
+- [A tale of 3D Printing](https://slama.dev/a-tale-of-3d-printing/): A story of 3D printing and failing miserably.
+- [Chiptunes](https://slama.dev/music/chiptunes/): An experiment in making chiptune music.
+- [What does an AI think of Prague?](https://slama.dev/what-does-an-ai-think-of-prague/): AI-generated images of Prague using Midjourney.
+- [GPT-3 Shenanigans](https://slama.dev/gpt3-shenanigans/): Playing around with the GPT-3 language model.
+- [The Thinkpad Haunting of '24](https://slama.dev/the-thinkpad-haunting-of-24/): When strange things happen to laptops.
+- [The Productivitree](https://slama.dev/the-productivitree/): A fun experiment on productivity using a tree visualization.
+- [Downloading video lectures](https://slama.dev/downloading-video-lectures/): How to download video lectures from various websites.
+- [A Cheeky Python Quine](https://slama.dev/a-cheeky-python-quine/): A fun Python quine using error messages.
+- [Adding Dark Theme Support](https://slama.dev/adding-dark-theme-support/): How to add a dark website theme via CSS prefers-color-scheme.
+- [Hlenka Helenka](https://slama.dev/hlenka-helenka/): Diary of a pet slime mold (in Czech).
+- [Advent of Kačka](https://slama.dev/advent-of-kacka/): Advent of Code-inspired programming puzzles (in Czech).
+
+## Series
+
+### Prokopakop (Chess Engine in Rust)
+- [Part 1: A Chess Engine, Commit by Commit](https://slama.dev/prokopakop/1/): Writing a chess engine from scratch in Rust.
+- [Part 2: NNUEs, and Where to Find Them](https://slama.dev/prokopakop/2/): Adding NNUE evaluation to the chess engine.
+
+### Manim (Math Animation Framework)
+- [Introduction](https://slama.dev/manim/introduction/): An introduction to Manim.
+- [Groups, Transforms, Updaters](https://slama.dev/manim/groups-transforms-updaters/): Working with groups of objects, transforms, and updaters.
+- [Camera and Graphs](https://slama.dev/manim/camera-and-graphs/): Camera controls, combinatorial graphs, and rate functions.
+- [Plotting and 3D Scenes](https://slama.dev/manim/plotting-and-3d-scenes/): 3D animations and graph plotting.
+- [Custom Objects and Animations](https://slama.dev/manim/custom-objects-and-animations/): Creating custom objects and animations.
+- [OpenGL and Interactivity](https://slama.dev/manim/opengl-and-interactivity/): Experimental OpenGL backend for GPU-based rendering.
+
+### Motion Canvas (from a Manim User's Perspective)
+- [From Manim to Motion Canvas](https://slama.dev/motion-canvas/from-manim-to-motion-canvas/): Transitioning from Manim to Motion Canvas.
+- [Groups, Animations, Signals, Effects](https://slama.dev/motion-canvas/groups-animations-signals-effects/): Groups, animation flow, signals, and effects.
+- [Camera and Shaders](https://slama.dev/motion-canvas/camera-and-shaders/): Camera controls and shaders.
+
+### Vim Tips
+- [Incrementing and Decrementing Numbers](https://slama.dev/vim/incrementing-and-decrementing-numbers/): How to increment/decrement numbers in Vim.
+- [History of Changes](https://slama.dev/vim/history-of-changes/): How history of changes is implemented in Vim.
+
+## YouTube Video Companion Posts
+- [Bathroom Tile Programming](https://slama.dev/youtube/bathroom-tile-programming/): Problems about bathroom tile programming.
+- [Best-SAT](https://slama.dev/youtube/best-sat/): Expanded explanation of BEST-SAT from randomized algorithms.
+- [Linear Programming in Python](https://slama.dev/youtube/linear-programming-in-python/): Practical examples of linear programming using Python and PuLP.
+
+## Lecture Notes (English)
+- [Generative Neural Networks](https://slama.dev/notes/generative-neural-networks/): Generative Neural Networks for the Sciences (Heidelberg, 2023/2024).
+- [GPU Computing](https://slama.dev/notes/gpu-computing/): GPU Computing (Heidelberg, 2022/2023).
+- [Introduction to Machine Learning](https://slama.dev/notes/introduction-to-machine-learning/): Introduction to Machine Learning (Heidelberg, 2022/2023).
+- [Master's in Heidelberg](https://slama.dev/notes/masters-in-heidelberg/): Practical guide to moving to Heidelberg for a master's degree.
+- [Mining Massive Datasets](https://slama.dev/notes/mining-massive-datasets/): Mining Massive Datasets (Heidelberg, 2022/2023).
+- [Robotics 1](https://slama.dev/notes/robotics-1/): Robotics 1 (Heidelberg, 2022/2023).
+- [The C# Programming Language](https://slama.dev/notes/the-cs-programming-language/): The C# Programming Language (MFF UK, 2020/2021).
+
+## Lecture Notes (Czech)
+- [Aproximační Algoritmy](https://slama.dev/poznamky/aproximacni-algoritmy/): MFF UK, 2021/2022.
+- [Diskrétní a spojitá optimalizace](https://slama.dev/poznamky/diskretni-a-spojita-optimalizace/): MFF UK, 2021/2022.
+- [Diskrétní Matematika](https://slama.dev/poznamky/diskretni-matematika/): MFF UK, 2019/2020.
+- [Kombinatorika a Grafy I](https://slama.dev/poznamky/kombinatorika-a-grafy-i/): MFF UK, 2020/2021.
+- [Kombinatorika a Grafy II](https://slama.dev/poznamky/kombinatorika-a-grafy-ii/): MFF UK, 2020/2021.
+- [Matematická Analýza II](https://slama.dev/poznamky/matematicka-analyza-ii/): MFF UK, 2020/2021.
+- [Pravděpodobnost a Statistika I](https://slama.dev/poznamky/pravdepodobnost-a-statistika-i/): MFF UK, 2020/2021.
+- [Principy Počítačů](https://slama.dev/poznamky/principy-pocitacu/): MFF UK, 2019/2020.
+- [Příprava na státnice](https://slama.dev/poznamky/priprava-na-statnice-mff-uk/): State exam preparation, MFF UK, 2021/2022.
+- [Lineární programování v Pythonu](https://slama.dev/linearni-programovani-v-pythonu/): Practical LP examples in Python (Czech version).
