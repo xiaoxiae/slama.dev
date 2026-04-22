@@ -1,0 +1,3 @@
+Contact: mailto:tomas@slama.dev
+Preferred-Languages: en, cs
+Canonical: https://slama.dev/.well-known/security.txt
