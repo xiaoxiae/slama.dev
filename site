@@ -126,13 +126,7 @@ function upload
     end
 
     echo "Syncing files to VPS..."
-    rsync -avz --zc=zstd --delete public/ root@138.199.216.195:/var/www/slama.dev/
-
-    echo "Setting proper permissions..."
-    ssh root@138.199.216.195 'chown -R www-data:www-data /var/www/slama.dev/ && chmod -R 755 /var/www/slama.dev/'
-
-    echo "Reloading nginx..."
-    ssh root@138.199.216.195 'systemctl reload nginx'
+    rsync -avz --zc=zstd --delete public/ slama-deploy@slama.dev:/var/www/slama.dev/
 
     echo "Upload complete!"
 end
