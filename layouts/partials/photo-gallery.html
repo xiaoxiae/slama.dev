@@ -3,7 +3,7 @@
 
 {{- $.Page.Store.Set "hasLightbox" true -}}
 <div class='grid'>
-{{ range site.Data.photos.gallery.photos }}
+{{ range hugo.Data.photos.gallery.photos }}
   {{ $date := time.AsTime (substr .file 0 10) }}
   {{ $img := $.Page.Resources.GetMatch .file }}
 

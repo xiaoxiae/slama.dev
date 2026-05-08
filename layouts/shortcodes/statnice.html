@@ -1,6 +1,6 @@
 {{- $dataFile := .Get 0 -}}
 {{- $start := .Get 1 | default "1" -}}
-{{- $data := index site.Data.statnice $dataFile -}}
+{{- $data := index hugo.Data.statnice $dataFile -}}
 
 {{- define "renderLinks" -}}
   {{- range . -}}

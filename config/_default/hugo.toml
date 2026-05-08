@@ -5,7 +5,7 @@ defaultContentLanguage = "en"
 # Language configuration for i18n support
 [languages]
   [languages.en]
-    languageCode = "en"
+    locale = "en"
     weight = 1
 
 # Disable some default behaviors
@@ -129,7 +129,7 @@ disableKinds = ["taxonomy", "term"]
   [[module.mounts]]
     source = "static"
     target = "static"
-    excludeFiles = ["climbing/videos/unblurred/**"]
+    files = ["! climbing/videos/unblurred/**"]
 
 [outputs]
   home = ["HTML", "RSS"]

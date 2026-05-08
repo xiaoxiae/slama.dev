@@ -1,7 +1,7 @@
 {{- $videoServer := "https://tom.ggu.cz/big/tboi/" -}}
 
 {{/* Sort runs by date descending (newest first) */}}
-{{- $runs := sort site.Data.tboi "date" "desc" -}}
+{{- $runs := sort hugo.Data.tboi "date" "desc" -}}
 
 {{/* Filter by type */}}
 {{- $regularRuns := where $runs "beaten" "!=" nil -}}

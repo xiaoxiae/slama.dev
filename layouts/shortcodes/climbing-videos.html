@@ -1,6 +1,6 @@
-{{- $sessions := site.Data.climbing.climbing.sessions -}}
-{{- $walls := site.Data.climbing.walls -}}
-{{- $orphaned := site.Data.climbing.climbing.orphaned_videos -}}
+{{- $sessions := hugo.Data.climbing.climbing.sessions -}}
+{{- $walls := hugo.Data.climbing.walls -}}
+{{- $orphaned := hugo.Data.climbing.climbing.orphaned_videos -}}
 
 {{- /* Collect all videos grouped by wall and color */ -}}
 {{- $videosByWall := dict -}}

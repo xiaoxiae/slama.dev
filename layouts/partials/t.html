@@ -1,7 +1,7 @@
 {{- $key := .key -}}
 {{- $lang := .lang | default "en" -}}
 {{- $data := .data -}}
-{{- $translations := index site.Data.i18n $lang | default site.Data.i18n.en -}}
+{{- $translations := index hugo.Data.i18n $lang | default hugo.Data.i18n.en -}}
 {{- $text := index $translations $key | default $key -}}
 {{- if $data -}}
   {{- $text = replace $text "{{ .author }}" $data.author -}}

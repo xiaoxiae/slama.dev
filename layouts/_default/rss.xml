@@ -12,7 +12,7 @@
     <link>{{ .Permalink }}</link>
     <description>{{ .Site.Params.description }}</description>
     <generator>Hugo</generator>
-    <language>{{ site.Language.LanguageCode }}</language>{{ with .Site.Copyright }}
+    <language>{{ site.Language.Locale }}</language>{{ with .Site.Copyright }}
     <copyright>{{.}}</copyright>{{ end }}{{ if not .Date.IsZero }}
     <lastBuildDate>{{ (index $pages.ByLastmod.Reverse 0).Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
     {{- with .OutputFormats.Get "RSS" -}}
