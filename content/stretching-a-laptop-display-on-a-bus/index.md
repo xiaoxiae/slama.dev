@@ -1,7 +1,6 @@
 ---
-date: '2026-04-22'
+date: '2026-05-13'
 title: "Stretching a Laptop Display on a Bus"
-draft: true
 ---
 
 We've all been there -- you find yourself sitting on a bus with an hour or two to spare.
