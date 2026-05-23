@@ -101,7 +101,7 @@ for name, distances in graphs:
     ]
 
     # inequalities
-    ## each edge has one incoming and one outgoing vertex
+    ## each vertex has one incoming and one outgoing edge
     for i in range(n):
         model += lpSum([variables[max(i, j)][min(i, j)] for j in range(n)]) == 2
         model += variables[i][i] == 0

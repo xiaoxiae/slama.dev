@@ -42,7 +42,7 @@ We want to find a minimal \(k\) such that a graph \(G\) is [vertex \(k\)-colorab
 {{< details "Output" "vertex-coloring.out" >}}{{< /details >}}
 
 #### [Traveling salesman problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem)
-Given a weighted oriented graph \(G\), we want to find the longest Hamiltonian cycle.
+Given a weighted undirected graph \(G\), we want to find the shortest Hamiltonian cycle.
 
 {{< details "Source code" "tsp.py" >}}{{< /details >}}
 

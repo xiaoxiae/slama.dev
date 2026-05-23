@@ -146,7 +146,7 @@ To use fact \(B\), we observed that \(a = f(0) = 0\) and that the second derivat
 
 ### BEST-SAT
 {{< math "algorithm" "BEST-SAT" >}}
-1. assign a value of a literal using RAND-SAT with probability \(1/2\), else use BEST-SAT
+1. assign a value of a literal using RAND-SAT with probability \(1/2\), else use LP-SAT
 2. have an existential crisis about the fact that this works and is asymptotically optimal
 {{< /math >}}
 

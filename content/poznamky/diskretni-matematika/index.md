@@ -155,7 +155,7 @@ Důkaz: 1. prvek z \(a\) má \(b\) možností, druhý \(b - 1\), ...
 - \(\left\{1, \ldots, k\right\}\) -- uspořádání \(k\)-tice
 - \(\mathbb{N} \mapsto X\) -- nekonečné posloupnosti prvků z \(X\)
 
-Počet \(k\)-tic různých prvků z \(X\)... \(f: \left\{1, \ldots, k\right\} \mapsto X\) je \[n \cdot \left(n - 1\right) \cdot \left(n - 2\right) \cdot \ldots \cdot \left(n - k - 1\right)\]
+Počet \(k\)-tic různých prvků z \(X\)... \(f: \left\{1, \ldots, k\right\} \mapsto X\) je \[n \cdot \left(n - 1\right) \cdot \left(n - 2\right) \cdot \ldots \cdot \left(n - k + 1\right)\]
 - \(n = \left|X\right|\) (stejné jako počítání prostých funkcí)
 
 {{< math "theorem" >}}
@@ -284,7 +284,7 @@ graf je _uspořádaná dvojice_ množin \(\left(V, E\right)\), kde \(V\) je _kon
 	- \(E\left(K_{m, n}\right) = \left\{\left\{a_i, b_j\right\} \mid i \in \left[m\right], j \in \left[n\right]\right\}\)
 	- bipartitní -- \(E \subseteq\ \) úplného bipartitního
 - **cesta** \(P_n \equiv \left(\left[n\right], \left\{\left\{i, i + 1\right\} \mid 0 \le i < n\right\}\right) \)
-- **cyklus** \(C_n \equiv \left(\left[n\right], \left\{\left\{i, \left(i + 1\right)\ \mathrm{mod}\ n\right\} \mid 0 \le i \le n\right\}\right)\)
+- **cyklus** \(C_n \equiv \left(\left[n\right], \left\{\left\{i, \left(i + 1\right)\ \mathrm{mod}\ n\right\} \mid 0 \le i < n\right\}\right)\)
 
 {{< math "definition" "izomorfismus" >}}
 grafy \(G\) a \(H\) jsou **izomorfní** \(\left(G \cong H\right) \equiv f: V\left(G\right) \mapsto V\left(H\right)\) bijekce t. ž. \(\forall u, v \in V\left(G\right)\) platí: \(\left\{u, v\right\} \in E\left(G\right) \iff \left\{f\left(u\right), f\left(v\right)\right\} \in E\left(H\right)\)
@@ -313,7 +313,7 @@ Nechť \(V = \left\{v_1, \ldots, v_n\right\}\).
 	- \(k\)-regulární graf: stupeň všech vrcholů je \(k\)
 - **skóre grafu** je uspořádaná \(n\)-tice stupňů všech vrcholů
 	- typicky \(d_1 \le d_2 \le \ldots \le d_n\)
-	- \(0 \le d_i < n - 1\)
+	- \(0 \le d_i \le n - 1\)
 
 {{< math "claim" >}}
 \[\sum_{v \in V\left(G\right)} \mathrm{deg}\left(v\right) = 2 \cdot \left|E\left(G\right)\right|\]

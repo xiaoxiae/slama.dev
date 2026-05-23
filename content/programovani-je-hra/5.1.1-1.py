@@ -53,7 +53,7 @@ def update_state():
                 else:
                     novy_stav[x][y] = 0
             else:
-                if pocet_sousedu(x, y) == 2:
+                if pocet_sousedu(x, y) == 3:
                     novy_stav[x][y] = 1
                 else:
                     novy_stav[x][y] = 0

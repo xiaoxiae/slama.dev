@@ -8,7 +8,7 @@ class Path(Polygram):
 
     def get_important_points(self):
         """Returns the important points of the curve."""
-        # shot explanation: Manim uses quadratic Bézier curves to create paths
+        # shot explanation: Manim uses cubic Bézier curves to create paths
         # > each curve is determined by 4 points - 2 anchor and 2 control
         # > VMobject's builtin self.points returns *all* points
         # > we, however, only care about the anchors

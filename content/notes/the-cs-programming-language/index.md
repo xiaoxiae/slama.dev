@@ -155,18 +155,18 @@ class B : A {
 We have to do this instead:
 
 ```cs
-class A : B {
-	A () : base(/*parameters for constructor of B*/) {stuff}
+class B : A {
+	B () : base(/*parameters for constructor of A*/) {stuff}
 }
 
 // is equivalent to (for each constructor!)
 // note that stuff can be arbitrary code
 
-class A : B {
-	A () {
+class B : A {
+	B () {
 		int x = something;
 
-		// constructor of B (with the appropriate parameters)
+		// constructor of A (with the appropriate parameters)
 
 		stuff
 	}
@@ -531,7 +531,7 @@ class File {
 
 		set {
 			s.Seek(index, SeekOrigin.Begin);
-			return s.WriteByte((byte) value);
+			s.WriteByte((byte) value);
 		}
 	}
 

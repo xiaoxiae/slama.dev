@@ -56,9 +56,9 @@ for name, vertices, edges in graphs:
     # inequalities
     ## each edge must have at most one vertex from the set
     for u, v in edges:
-        model += variables[u - 1] + variables[v - 1] <= 1
+        model += variables[u] + variables[v] <= 1
 
-    # minimize the number of selected edges
+    # maximize the number of selected vertices
     model += lpSum(variables)
 
     status = model.solve(PULP_CBC_CMD(msg=False))

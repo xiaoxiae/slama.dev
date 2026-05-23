@@ -66,9 +66,9 @@ Since I am a complete beginner, take everything written here with a huge grain o
 **Tempo** (top right) is determined by the `tick rate`, which determines TPS
 - `speed` -- how many ticks a row lasts for
 - `highlight` -- highlights row multiples (i.e. determines beat/measure length)
-- `pattern length` -- number of measures in the **current pattern**
+- `pattern length` -- number of rows in the **current pattern**
 
-**Pattern window** (top left) determines the order the patterns in the song are played
+**Orders window** (top left) determines the order the patterns in the song are played
 
 **Edit window** (top left-ish) has things for editing the composition
 - `octave` -- the octave that will be input

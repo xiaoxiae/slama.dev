@@ -478,7 +478,7 @@ Tedy \[\Chi(\Gamma) = L(G)\]
 - \(=\) každý podgraf má vrchol stupně nejvýše \(d\)
 
 {{< math "definition" "eliminační pořadí" >}}Alternativní definice \(d\)-degenerovanosti: graf je \(d\)-degenerovaný
-\(\iff \exists\) pořadí vrcholů (eliminační) \(v_1, \ldots v_n\) t. ž. \(\forall i: G_i := G - \left\{v_1, \ldots, v_i\right\}: \delta(G_i) \le d\) a \(v_{i - 1}\) má \(\le d\) sousedů v \(G_i\)
+\(\iff \exists\) pořadí vrcholů (eliminační) \(v_1, \ldots v_n\) t. ž. \(\forall i: G_i := G - \left\{v_1, \ldots, v_i\right\}: \delta(G_i) \le d\) a \(v_i\) má \(\le d\) sousedů v \(G_{i - 1}\)
 - trháme vrcholy -- každý další odebraný má nejvýše \(d\) sousedů a graf je stále \(d\)-degenerovaný
 - {{< math "observation" >}}\(G\) je \(d\)-degenerovaný \(\Rightarrow \Chi(G) \le d + 1\){{< /math >}} (barvím indukcí v pořadí \(v_n, \ldots, v_1\))
 {{< /math >}}
@@ -678,7 +678,7 @@ Pro spor: \(R\) není klika \(\Rightarrow\) obsahuje \(u, v\) nesousedy. Protož
 	- \(|I_1| = \deg_G(x) - 1\) (nesmím použít \(v_2\))
 	- \(|I_2| = \deg_G(y) - 1\) (nesmím použít \(v_{n - 1}\))
 	- \(|I_1| + |I_2| = \deg_G(x) - 1 + \deg_G(y) - 1 \ge n - 2\) (z předpokladu)
-	- \(|I_1 \cup I_2| \le 3\) ale \(|I_1 + I_2| \ge n - 2\) znamená, že se překrývají
+	- \(|I_1 \cup I_2| \le n - 3\) ale \(|I_1 + I_2| \ge n - 2\) znamená, že se překrývají
 
 ![](another3.svg)
 {{< /math >}}
@@ -733,7 +733,7 @@ Spojením dostáváme \(r(F) = |F| = |V| - k(F) = |V| - k(G) = r(E)\).
 {{< math "proof" >}}Dosadím do polynomu a získám \(0^{r(E) - r(F)} 0^{n(F)}\). Vím, že \(x^0 \equiv 1\), tedy výraz bude počet \(F\) takových, že \(r(E) = r(F)\) a \(n(F) = 0\).
 - z předpokladu souvislosti je počet komponent \(1\)
 	- \(F\) musí mít také pouze \(1\), protože \(r(E) = r(F)\)
-- \(n(F) = 0\) znamená, že \(0 = |F| - |V| - 1\), tedy \(|F| = |V| - 1\)
+- \(n(F) = 0\) znamená, že \(0 = |F| - |V| + 1\), tedy \(|F| = |V| - 1\)
 - kombinace počtu hran a souvislosti dává, že je to strom a tedy kostra
 {{< /math >}}
 
@@ -1180,7 +1180,7 @@ K důkazu původního vyberu \(x \in V(G)\), \(S = N_G(x), G_S = G\left[S\right]
 
 ![](slunnnn.svg)
 
-Dvojic je tedy nejvýše \(r - 1\).
+Dvojic je tedy nejvýše \(k - 1\).
 {{< /math >}}
 
 Důkaz věty bude dvojí počítání \((e, C)\) t.ž. \(e \in E, c\) cyklické pořadí a \(e\) tvoří v \(C\) interval.

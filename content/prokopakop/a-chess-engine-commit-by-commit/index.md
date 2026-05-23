@@ -233,7 +233,7 @@ We would like to be able to map `board_state → arbitrary_data`, but how do we 
 To uniquely[^unique-chess-position] identify a chess position, we store
 - \(64b\) for piece colors + \({\sim}3b * 64\) for piece types,
 - \(64b\) for en-passant bitmap,
-- \(4b \cdot 2\) for castling information,
+- \(4b\) for castling information,
 - \(1b\) for whose turn it is,
 
 which is too many to use as a key for a hash table, if we want it to be fast.
@@ -271,7 +271,7 @@ Also does a bit of refactoring, but nothing too exciting.
 [`d7c5b4`](https://github.com/xiaoxiae/Prokopakop/commit/d7c5b4db78803fdc938c46d7f5c5e418d8782038)
 {.commit-header}
 
-Compacts a board move to \(16\) bits -- \(5 * 2\) for source + destination square indexes, and \(4\) for identifying a promotion piece (if applicable).
+Compacts a board move to \(16\) bits -- \(6 * 2\) for source + destination square indexes, and \(4\) for identifying a promotion piece (if applicable).
 Might not seem like a big change, but board moves are used ubiquitously though the engine, so making them as compact as possible while not sacrificing too much speed is generally a good idea.
 
 [`dda91d`](https://github.com/xiaoxiae/Prokopakop/commit/dda91d360500421c914d4310b4070b2c20898ff5)
@@ -357,7 +357,7 @@ As we have reached the end of the move generation portion of this article, here 
 As we can see, three places stand out in this graph:
 - the **first major spike in speed** (commit [`f0253e`](https://github.com/xiaoxiae/Prokopakop/commit/f0253eebc1ee2ec9fdd17dde95d1b9b039ae073f)) was caused by **removing the attack bitboards;** since these were previously calculated every move and consisted of evaluating all attacks of all pieces on the board, this is not surprising
 - the **first major crash** (commit [`1d8e55`](https://github.com/xiaoxiae/Prokopakop/commit/1d8e55)) was caused by **starting to move away from the make/unmake-based move generation** by splitting each move generation into different functions based on the number of attacks; as this only included the spitting, but no optimized code, this introduced a large amount of branching that killed the speed
-- the **second major spike** (commits [`a67205`](https://github.com/xiaoxiae/Prokopakop/commit/a67205) and [`5bc16a`](https://github.com/xiaoxiae/Prokopakop/commit/5bc16a)) were caused by **finishing moving away from the make/unmake-free move generation** by introducing functions optimized for zero/one/two+ king attacks
+- the **second major spike** (commits [`a67205`](https://github.com/xiaoxiae/Prokopakop/commit/a67205) and [`5bc16a`](https://github.com/xiaoxiae/Prokopakop/commit/5bc16a)) were caused by **finishing moving away from the make/unmake-based move generation** by introducing functions optimized for zero/one/two+ king attacks
 
 The engine is slower than Stockfish (\(9.74\text{s}\) for Prokopakop vs. \(8.71\text{s}\) for Stockfish on `perft(7)`), but this is simply a skill issue because I'm not spending more time on this when I haven't written any search & evaluation functionality yet.
 Maybe I'll revisit to take my revenge on Stockfish at some point in the future, but this will have to do for now.
@@ -388,7 +388,7 @@ Since chess is a zero-sum two-player game, we can simply **assign each position 
 This is called the [minimax algorithm](https://www.chessprogramming.org/Minimax), and is at the heart of most[^lc0] strong chess engines (Prokopakop included).
 The algorithm works by recursively exploring all possible moves to a certain depth. When it's our turn (**max**imizing player), we want to pick the move that leads to the **highest** score. When it's the opponent's turn (**min**imizing player), they will pick the move that leads to the **lowest** score (best for them, worst for us).
 
-At each **leaf node** (when we've reached our search depth), we evaluate the position, i.e. how good it is for the player whose turn it is.
+At each **leaf node** (when we've reached our search depth), we evaluate the position, i.e. how good it is for white (white positive, black negative).
 Then we propagate these scores back up the tree: maximizing nodes take the maximum of their children's scores, minimizing nodes take the minimum.
 
 
@@ -722,7 +722,7 @@ That's it. Thanks for reading! ❤️
 
 [^all-we-need]: Okay, not quite; we also need to cast {{< inline_highlight "rust" >}}Color::White as usize{{< /inline_highlight >}}, but that's ugly and an implementation detail, so I skipped it for the sake of clarity. You can get rid of it by implementing indexing for the array type, but I haven't done that because I'm lazy.
 
-[^chance-of-collision]: The engine can explore \(50\;000\;000\) positions per second on my laptop (excluding evaluation). For a 10+5 game with 100 moves, that's a total of \[50\;000\;000 \cdot (10 \cdot 60 + 100 \cdot 5) = 5.5 \cdot 10^{10}\] positions. The expected number of collisions is then approximately \[\frac{\left(5.5 \cdot 10^{10}\right)^2}{2^{64}} = \mathbf{82}\] so while we do get a few collisions, the way we're replacing them in the transposition table should make this a non-issue.
+[^chance-of-collision]: The engine can explore \(50\;000\;000\) positions per second on my laptop (excluding evaluation). For a 10+5 game with 100 moves, that's a total of \[50\;000\;000 \cdot (10 \cdot 60 + 100 \cdot 5) = 5.5 \cdot 10^{10}\] positions. The expected number of collisions is then approximately \[\frac{\left(5.5 \cdot 10^{10}\right)^2}{2 \cdot 2^{64}} = \mathbf{82}\] so while we do get a few collisions, the way we're replacing them in the transposition table should make this a non-issue.
 
 [^the-plus-one]: This is done so that we don't need to check whether en-passant bit changed during the move (since that adds branching, which is slow) -- we therefore add an additional "no-op value", which will be used when en-passant didn't happen; since, if en-passant bit didn't change, we XOR the same value twice, which cancels out.
 

@@ -281,7 +281,7 @@ Two major ways of solving it, namely:
 	- _note: we're using the Jacobian as a function here but it's just a matrix_
 
 2. **Gradient method:**
-	- aims to minimize the squared error (the \(1/2\) is there for nicer calculations): \[H(q) = \frac{1}{2} ||F(q) - r|| = \frac{1}{2} [F(q) - r]^T [F(q) - r]\]
+	- aims to minimize the squared error (the \(1/2\) is there for nicer calculations): \[H(q) = \frac{1}{2} ||F(q) - r||^2 = \frac{1}{2} [F(q) - r]^T [F(q) - r]\]
 	- the gradient of \(\nabla_q H(q)\) is the steepest direction to minimize this error: \[ \nabla_q H(q) = J(q)^T [F(q) - r] \]
 	- to move in this direction (given the current solution), we do the following: \[\begin{aligned} q_{k + 1} &= q_k - \alpha \nabla_q H(q_k) \\           &= q_k - \alpha J(q)^T [F(q) - r] \end{aligned}\]
 		- \(\alpha\) should be chosen appropriately (dictates the size of iteration steps)
@@ -322,7 +322,7 @@ And they can be calculated from the forward kinematics matrix (namely the DH mat
 \[
 \begin{aligned}
 	z_{i - 1} &= (\overbrace{R^0_1(q_1, \ldots, q_n)}^{\text{rotation part} \atop {\text{of matrix}\ A^0_1} } \cdot \ldots \cdot \overbrace{R^{i-2}_{i-1}(q_1, \ldots, q_n)}^{\text{rotation part} \atop {\text{of matrix}\ A^{i-2}_{i-1}} }) \overbrace{(0, 0, 1)^T}^{\text{just get\ }z} \\
-	p_{i - 1, EE} &= \underbrace{p_{0,EE} (q_1, \ldots, q_n)}_{\text{in last column of} \atop {\text{matrix}\ A^0_{EE} } } - \underbrace{p_{0, i - 1}(q_1, \ldots, q_{i - 1}}_{\text{in last column of} \atop {\text{matrix}\ A^{i - 1}_{EE} } })
+	p_{i - 1, EE} &= \underbrace{p_{0,EE} (q_1, \ldots, q_n)}_{\text{in last column of} \atop {\text{matrix}\ A^0_{EE} } } - \underbrace{p_{0, i - 1}(q_1, \ldots, q_{i - 1}}_{\text{in last column of} \atop {\text{matrix}\ A^0_{i - 1} } })
 \end{aligned}
 \]
 

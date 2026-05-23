@@ -1,8 +1,8 @@
 """
 NOTE: This code is the same as max-independent-set.py (the problems are complimentary),
       with two changes:
-- line 30: we minimize instead of maximize
-- line 39: we want >= instead of <=
+- line 58: we minimize instead of maximize
+- line 66: we want >= instead of <=
 """
 
 from pulp import *
@@ -61,11 +61,11 @@ for name, vertices, edges in graphs:
     variables = [LpVariable(name=f"x_{i}", cat=LpBinary) for i in range(n)]
 
     # inequalities
-    ## each edge must have at most one vertex from the set
+    ## each edge must have at least one vertex from the set
     for u, v in edges:
-        model += variables[u - 1] + variables[v - 1] >= 1
+        model += variables[u] + variables[v] >= 1
 
-    # minimize the number of selected edges
+    # minimize the number of selected vertices
     model += lpSum(variables)
 
     status = model.solve(PULP_CBC_CMD(msg=False))

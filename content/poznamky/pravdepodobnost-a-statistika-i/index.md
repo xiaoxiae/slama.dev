@@ -45,13 +45,13 @@ Množině \(\Omega\) říkáme prostor elementárních jevů.
 
 {{< math "definition" "podmíněná pravděpodobnost" >}}pokud \(A, B \in \mathcal{F}\) a \(P(B) > 0\), tak definujeme podmíněnou pravděpodobnost \(A\) při \(B\) jako \[P(A \mid B) = \frac{P(A \cap B)}{P(B)}\]{{< /math >}}
 
-{{< math "theorem" "o úplně pravděpodobnosti" >}}Pokud \(A_1, \ldots, A_n \in \mathcal{F}\) a \(P(A_1 \cap A_2 \cap \ldots \cap A_n) > 0\), tak \[P(A_1 \cap A_2 \cap \ldots \cap  A_n) = P(A_1)\ P(A_2 \mid A_1)\ P(A_3 \mid A_2 \cup A_1) \ldots\]{{< /math >}}
+{{< math "theorem" "o řetězení" >}}Pokud \(A_1, \ldots, A_n \in \mathcal{F}\) a \(P(A_1 \cap A_2 \cap \ldots \cap A_n) > 0\), tak \[P(A_1 \cap A_2 \cap \ldots \cap  A_n) = P(A_1)\ P(A_2 \mid A_1)\ P(A_3 \mid A_2 \cap A_1) \ldots\]{{< /math >}}
 
 {{< math "definition" "rozklad" >}}spočetný systém množin \(B_i \in \mathcal{F}\) je rozklad \(\Omega\), pokud
 - \(B_i \cap B_j = \emptyset\) pro \(i \neq j\) a
 - \(\bigcup_{i} B_i = \Omega\){{< /math >}}
 
-{{< math "theorem" "rozbor všech možností" >}}Pokud \(A_1, \ldots, A_n \in \mathcal{F}\) je rozklad \(\Omega\) a \(A \in \mathcal{F}\), pak \[P(A) = \sum_{i } P(A \mid B_i) P(B_i)\]{{< /math >}}
+{{< math "theorem" "rozbor všech možností" >}}Pokud \(B_1, \ldots, B_n \in \mathcal{F}\) je rozklad \(\Omega\) a \(A \in \mathcal{F}\), pak \[P(A) = \sum_{i } P(A \mid B_i) P(B_i)\]{{< /math >}}
 
 {{< math "theorem" "Bayesova" >}}pokud \(B_1, B_2, \ldots\) je rozklad \(\Omega\), \(A \in \mathcal{F}\) a \(P(A), P(B_j) >0 \), tak \[P(B_j \mid A) = \frac{P(B_j) P(A \mid B_j)}{P(A)}  = \frac{P(A \mid B_j) P(B_j)}{\sum_{i} P(A \mid B_i) P(B_i)}\]
 
@@ -123,7 +123,7 @@ Přehled parametrů známých rozdělení:
 | ---                        | ---            | ---                       |
 | \(\mathrm{Bern(p)}\)       | \(p\)          | \(p(1 - p)\)              |
 | \(\mathrm{Bin(n,p)}\)      | \(np\)         | \(np(1 - p)\)             |
-| \(\mathrm{Geom(p)}\)       | \(1/p\)        | \(np(\frac{1 - p}{p^2})\) |
+| \(\mathrm{Geom(p)}\)       | \(1/p\)        | \(\frac{1 - p}{p^2}\) |
 | \(\mathrm{Pois(\lambda)}\) | \(\lambda\)    | \(\lambda\)               |
 
 #### Sdružené rozdělení
@@ -178,7 +178,7 @@ neboli
 - \(F_X\) je zprava spojitá
 {{< /math >}}
 
-{{< math "definition" "spojitá náhodná veličina" >}}n.n.v. je spojitá, pokud existuje nezáporná reálná funkce \(f_x\) (hustota) t.ž. \[F_X(x) = P(X \le x) = \int_{-\infty}^{t} f_X(t)\ dt\]{{< /math >}}
+{{< math "definition" "spojitá náhodná veličina" >}}n.n.v. je spojitá, pokud existuje nezáporná reálná funkce \(f_x\) (hustota) t.ž. \[F_X(x) = P(X \le x) = \int_{-\infty}^{x} f_X(t)\ dt\]{{< /math >}}
 
 #### Rozdělení
 {{< math "example" "uniformní rozdělení" >}}n.v. \(X\) má na \(\left[a, b\right]\) uniformní rozdělení, pokud má hustotní funkci \[f_X(x) = \begin{cases} \frac{1}{b-a} & x \in \left[a, b\right] \\ 0 & \text{jindy} \end{cases}\]

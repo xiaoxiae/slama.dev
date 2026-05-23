@@ -1,9 +1,7 @@
 from pulp import *
 from networkx import *
 
-n = 300
-p = 0.01
-g = erdos_renyi_graph(n, p)
+g = petersen_graph()
 
 edges = g.edges()
 
@@ -42,7 +40,7 @@ for color in range(n):
 # edge chromatic number is also the number of the highest color
 for i, j in edges:
     for color in range(n):
-        model += edge_chromatic_number >= color * variables[(i, j)][color]
+        model += edge_chromatic_number >= (color + 1) * variables[(i, j)][color]
 
 # we're minimizing the edge chromatic number
 model += edge_chromatic_number

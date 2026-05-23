@@ -27,7 +27,7 @@ class FallingObjectsExample(SpaceScene):
         )
 
         # it was regular Manim code until here
-        self.make_rigid_body(rect, circle)  # squares are rigid (they move)
+        self.make_rigid_body(rect, circle)  # objects are rigid (they move)
         self.make_static_body(walls)  # walls are static (they don't move)
 
         # now we wait for the objects to fall

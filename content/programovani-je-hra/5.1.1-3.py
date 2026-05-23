@@ -108,4 +108,4 @@ def mouseDragged():
     if mouseButton == LEFT:
         stav[x][y] = 1
     elif mouseButton == RIGHT:
-        stav[x][y] = 1
+        stav[x][y] = 0

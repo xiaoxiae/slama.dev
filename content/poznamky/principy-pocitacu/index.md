@@ -181,7 +181,7 @@ language: cs
 - jako pole... ukládá si právě tolik cifer, kolik je potřeba (+ padding do bytu)
 - také potřebuje vědět, kolik bytů to číslo má
 	- tím pádem je max. velikost \(2^{32} - 1\) bitů, což je... dost
-- znamená to, že se operace chovají divně... `~255` je `-256` (`(0)1111110 -> (1)00000001`)
+- znamená to, že se operace chovají divně... `~255` je `-256` (`(0)11111111 -> (1)00000000`)
 
 #### Převody mezi soustavami
 - literály: `0x123` (hex), `0o123` (oct), `0b101` (bin)
@@ -320,7 +320,7 @@ language: cs
 		- na každou transakci (\(8b\) + ack) přeneseme 3B, z toho jen 1 jsou data
 		- jde to zlepšit -- burst přenos (nezačínáme další přenosy, jen sekvenčně čteme/zapisujeme): \(\left(x - \left(2 \cdot 9\right)\right) /  9 \rightarrow 11109 Bps\)
 - zápis -- 1 transakce
-- čtení -- 2 transakce (psaní do adresového registru nějakou hodnotu + zápis slova)
+- čtení -- 2 transakce (psaní do adresového registru nějakou hodnotu + čtení slova)
 
 ![PCF8570 paměť](19-18-11_11-47-34.svg "PCF8570 paměť")
 
@@ -732,7 +732,7 @@ mov    %ax,-0x1e(%rbp)
 	- \(4b\) na pixel -- poslední je intenzita (1 násobí vše 2x)
 	- \(2B\) na pixel -- 5R/5G/5B/1 nic
 		- někdy ten 1 bývá v zelené složce (oko je na ni citlivější)
-	- \(3B\) na pixel (true color; 65535 barev)
+	- \(3B\) na pixel (true color; 16777216 barev)
 		- je to ošklivě nesoudělné; ukládá se většinou do \(32b\)... co se zbylými \(8b\)?
 			- plýtvat
 			- vytvořit na alpha kanál určující (ne)průhlednost pixelu (255 je neprůhledné, 0 transparentní)

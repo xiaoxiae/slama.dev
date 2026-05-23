@@ -106,8 +106,8 @@ To disable using the bad part of the memory, I did the following:
 2. **disable the bad sectors via kernel command line parameters;** for Grub:
     - open `/etc/default/grub`
     - add `memmap=0x10000\\\$0x316C50000` to `GRUB_CMDLINE_LINUX_DEFAULT`
-        - the syntax is `size&start`, so this covers all of the bad addresses
-        - note the triple escape; one is shell and one is for the argument itself
+        - the syntax is `size$start`, so this covers all of the bad addresses
+        - note the triple escape: one for the Markdown code span, one for the shell that parses `GRUB_CMDLINE_LINUX_DEFAULT`, and one to keep the literal `$` the kernel argument needs
     - run `update-grub`
     - reboot
 3. **run `memtester` with as much RAM as possible**

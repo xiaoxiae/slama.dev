@@ -120,7 +120,7 @@ export default makeScene2D(function* (view) {
     // </Rect>
     //
     // using ref={...} doesn't work at the moment (likely a bug), so we do this instead
-    const rect = view.children()[view.children.length - 1];
+    const rect = view.children()[view.children().length - 1];
 
     yield* all(
         circle().size(100, 1),

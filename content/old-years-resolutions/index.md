@@ -98,7 +98,7 @@ Nevertheless, it was an amazing experience that taught me many valuable things â
 
 #### <span class="gold">1600+ | 2000+ elo chess engine</span>
 
-Absolutely [destroyed this one](https://lichess.org/@/prokopakop) (hovering around **2350**).
+Absolutely [destroyed this one](https://lichess.org/@/prokopakop) (hovering around **2400**).
 
 A colossal nerdsnipe (thanks, [Prokop](https://rdck.dev/)), an [article about writing a chess engine](/a-chess-engine-commit-by-commit/), many lost nights (and hair; like I have any to lose), and a bet won.
 

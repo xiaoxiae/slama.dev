@@ -548,7 +548,7 @@ Střední hodnota hodnoty výsledného řešení je tak: (pro stejné indikátor
 
 {{< math "fact" "A - A/G nerovnost" >}}\(\prod_{i = 1}^{n} a_i^{\frac{1}{n}} \le \frac{1}{n} \sum_{i = 1}^{n} a_i\){{< /math >}}
 
-{{< math "fact" "B - konvexní funkce" >}}pokud je funkce na \(\left[0, 1\right]\) konkávní a \(f(0) = a, f(1) = a + b\), pak \[\forall x \in \left[0, 1\right]: f(x) \ge a + bx\]{{< /math >}}
+{{< math "fact" "B - konkávní funkce" >}}pokud je funkce na \(\left[0, 1\right]\) konkávní a \(f(0) = a, f(1) = a + b\), pak \[\forall x \in \left[0, 1\right]: f(x) \ge a + bx\]{{< /math >}}
 
 ![](aplusb.svg)
 

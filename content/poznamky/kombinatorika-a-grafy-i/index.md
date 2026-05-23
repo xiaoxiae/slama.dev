@@ -275,7 +275,7 @@ Pro daný koeficient vytvořující funkce tedy máme:
 \[
 \begin{aligned}
 	F_n &= \frac{1}{\sqrt{5}} \left[\left(\frac{1 + \sqrt{5}}{2}\right)^n - \underbrace{\left(\frac{1 - \sqrt{5}}{2}\right)^n}_{\text{jde k $0$}}\right] \\
-	&= \left\lfloor \frac{1}{\sqrt{5}} \left(\frac{1 + \sqrt{5}}{2}\right)^n \right\rfloor \\
+	&= \left\lfloor \frac{1}{\sqrt{5}} \left(\frac{1 + \sqrt{5}}{2}\right)^n + \frac{1}{2} \right\rfloor \\
 \end{aligned}
 \]
 
@@ -1300,7 +1300,7 @@ Pokud pro \(C\) platí \(\Delta(C) = 2t + 1\), pak pro libovolné slovo \(x \in 
 Jelikož disjunktní koule mohou pokrýt nejvýše všech \(2^n\) slov, tak dostáváme následující pozorování na počet kódových slov:
 
 {{< math "theorem" "Hammingův odhad" >}}
-pro binární kód s \(\Delta(C) \ge 2t + 1\) platí \[|C| \le A(n, d) \le \frac{2^n}{V(n, t)} \]{{< /math >}}
+pro binární kód s \(\Delta(C) \ge 2t + 1\) platí \[|C| \le 2^{A(n, d)} \le \frac{2^n}{V(n, t)} \]{{< /math >}}
 - \(V(n, t) = \sum_{i = 0}^{t} \binom{n}{i}\) je objem kombinatorické koule dimenze \(n\) o poloměru \(t\)
 	- způsoby, jak si vybrat \(i\) bitů a flipnout je
 

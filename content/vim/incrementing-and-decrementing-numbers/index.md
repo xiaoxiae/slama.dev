@@ -6,7 +6,7 @@ description: A short post about how to increment/decrement numbers in Vim.
 ---
 
 
-Some of you might know that pressing `<C-a>`/`<C-x>` in command mode _increases/decreases the next number on the line the cursor is currently on_:
+Some of you might know that pressing `<C-a>`/`<C-x>` in normal mode _increases/decreases the next number on the line the cursor is currently on_:
 
 ```text
 There is 12 apples. -<C-a>-> There is 13 apples.

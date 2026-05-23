@@ -293,7 +293,7 @@ Note that \(3 \not\Rightarrow 2\) (shown during lecture).
 
 #### Autoencoder
 - _learned compression_: \(f(X)\) and \(q(Z)\) are neural networks
-    - lossy compression because usually \(d < \dim(Z) \ll \dim(X) = 1\)
+    - lossy compression because usually \(d = \dim(Z) \ll \dim(X) = D\)
         - "bottleneck" is a hyperparameter
     - train by **reconstruction error** \[\hat f, \hat g = \argmin_{f, g} \mathbb{E}_{X \sim p^*(X)} \left[||X - q(f(X))||^2\right]\]
 
@@ -728,7 +728,7 @@ TODO: add the drawing here
     - (we already saw) [**MMD**](#maximum-mean-discrepancy)
     - Fredechet Inception Distance (**FID**) -- popular if \(X\) is an image
         - idea: compare means and covariance matrices via Fredechet distance
-        - if they are Gaussian, the Fredechet distance (otherwise complicated) can be computed analytically as \[FD = ||\hat \mu - \mu^*||^2 + \mathrm{tr}\left[\hat\Sigma - \Sigma^* - 2\left(\hat \Sigma \Sigma^*\right)^{1/2}\right]\]
+        - if they are Gaussian, the Fredechet distance (otherwise complicated) can be computed analytically as \[FD = ||\hat \mu - \mu^*||^2 + \mathrm{tr}\left[\hat\Sigma + \Sigma^* - 2\left(\hat \Sigma \Sigma^*\right)^{1/2}\right]\]
         - for images Gaussian assumption is not fulfilled \(\Rightarrow\) calculate FD in some feature space \(h(X)\)
             - typically, use a pre-trained network (traditionally Inception network, nowadays some foundational model eg. CLIP or DINOv2)
             - if no pre-trained model available, we can still use a random(ly initialized) network
@@ -910,7 +910,7 @@ _New lecture here, we're doing SBI for epidemiology again._
     <1 & I(t)\ \text{shrinks}
 \end{cases}\]
 - \(\Rightarrow\) two possibilities to end disease:
-    1. herd immunity -- when \(r(t) < 1 \iff [S(t)] < R_0(t)\)
+    1. herd immunity -- when \(r(t) < 1 \iff [S(t)] < \frac{1}{R_0(t)}\)
     2. by countermeasures -- reduce \(\lambda(t)\) s.t. \(r(t) < 1\) (regardless of \(S\))
 
 - if \(\lambda(t)\) changes over time, learning identification problem becomes much harder

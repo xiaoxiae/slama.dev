@@ -76,7 +76,7 @@ Pak podmínka dědičnosti říká, že acyklické podgrafy jsou rovněž acykli
 
 {{< math "definition" "charakteristický vektor" >}}mějme nosnou množinu \(X\) a podmnožinu \(A \subseteq X\). Charakteristický vektor \(A\) je \(\chi_A \in \left\{0, 1\right\}^{|X|}\) t.ž. \[\left(\chi_A\right)_{k} = \begin{cases} 1 & k \in A \\ 0 & k \not\in A \end{cases}\]{{< /math >}}
 
-{{< math "observation" >}}řádek matice incidence \(I_G\) indexovaný vrcholem \(w\) je roven \(\chi_{\underbrace{|N(w)|}_{\text{okolí}}}\){{< /math >}}
+{{< math "observation" >}}řádek matice incidence \(I_G\) indexovaný vrcholem \(w\) je roven \(\chi_{\underbrace{\delta(w)}_{\text{hrany incidentní s } w}}\){{< /math >}}
 
 {{< math "observation" "prostor cyklů" >}}jádro matice můžeme ekvivalentně vyjádřit jako \[\mathrm{Ker}_{\mathbb{F}_2} I_G = \left\{x \in \mathbb{F}_2^{|E|} \mid x = \chi_{E'}\ \text{pro}\ E'\ \text{sudou}\right\}\]{{< /math >}}
 Tuto množinu rovněž nazýváme **prostor cyklů.**
@@ -153,7 +153,7 @@ r(V) &= r(V \cup \left\{x\right\}) = r(V \cup \left\{y\right\}) \\
 {{< math "proof" "\(\Rightarrow\) R3'" >}}
 - \(A\) -- maximální nezávislá množina v \(Y \cap Z\)
 - \(A_Y\) -- maximální nezávislá množina v \(Y\) t.ž. \(A \subseteq A_Y\) (nějaká taková existuje)
-- \(A_Z\) -- maximální nezávislá množina v \(Y\) t.ž. \(A \subseteq A_Z\) (nějaká taková existuje)
+- \(A_Z\) -- maximální nezávislá množina v \(Z\) t.ž. \(A \subseteq A_Z\) (nějaká taková existuje)
 
 ![](sub-proof-1.svg)
 
@@ -251,8 +251,8 @@ To je skoro submodularita!
     &= f(S) + \sum_{i=1}^r \Delta f_{a_i}(S \cup\{a_1, \dots a_{i-1}\}) \\
     &+ f(S) + \sum_{i=r+1}^k \Delta f_{a_i}(S \cup\{a_{r+1}, \dots a_{i-1}\}) \\
     &\ge f(S) + \sum_{i=1}^k\Delta f_{a_i}(S \cup \{a_1, \dots , a_{i-1}\}) + f(S) \\
-    &= f(S \cup A \cup B) + f(B) \\ \\
-    &= f(Y \cup Z) + f(Y \cup Z)
+    &= f(S \cup A \cup B) + f(S) \\ \\
+    &= f(Y \cup Z) + f(Y \cap Z)
     \end{aligned} \]
 
 {{< /math >}}
@@ -382,7 +382,7 @@ Podobné jako mazání, ale chová se dost jinak (viz kontrakce/mazání hran v 
 
 **Partition matroid** -- nechť \(X_1, \ldots, X_n\) jsou disjunktní množiny a \(\mathcal{S}_i = \left\{A \subseteq X_i \mid |A| \le 1\right\}\). Pak \(\sum_{i} (X_i, \mathcal{S}_i)\) je partiční matroid.
 
-{{< math "theorem" "Edmondsova MiniMaxová o průniku matroidů" >}}nechť \(\mathcal{M}_1 = \left(X, \mathcal{S}_1\right)\) a \(\mathcal{M_2} = \left(X_{1}, \mathcal{S_2}\right)\) jsou matroidy. Pak
+{{< math "theorem" "Edmondsova MiniMaxová o průniku matroidů" >}}nechť \(\mathcal{M}_1 = \left(X, \mathcal{S}_1\right)\) a \(\mathcal{M_2} = \left(X, \mathcal{S_2}\right)\) jsou matroidy. Pak
 \[\max \left\{|Y| \mid Y \in \mathcal{S_1} \cap \mathcal{S}_2\right\} = \min_{A \subseteq X} r_1(A) + r_2(X \setminus A)\]
 {{< /math >}}
 
@@ -398,7 +398,7 @@ A tedy
 {{< math "proof" "\(\ge\)" >}}TODO, tenhle důkaz je naprosto brutální{{< /math >}}
 
 {{< math "consequence" "obraz matroidu je matroid" >}}mějme matroid \(\mathcal{M}' = (X', \mathcal{S}')\) a funkci \(f: X' \implies X\). Definujme \[\mathcal{S} = \left\{f[I] \mid I \in \mathcal{S}'\right\}\]
-Potom \((X, \mathcal{S})\) je také matroid a navíc pro \(U \subseteq T\) platí \[r(U) = \min_{T \subseteq U} \left\{|U - T| + r'(f^{-1} (T))\right\}\]{{< /math >}}
+Potom \((X, \mathcal{S})\) je také matroid a navíc pro \(T \subseteq U\) platí \[r(U) = \min_{T \subseteq U} \left\{|U - T| + r'(f^{-1} (T))\right\}\]{{< /math >}}
 
 ![](matroid-obraz.svg)
 

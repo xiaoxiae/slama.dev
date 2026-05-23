@@ -13,7 +13,7 @@ class AlignTo(Scene):
             c3.animate.next_to(c2, RIGHT),
         )
 
-        # align c1 and c2 such that their bottoms are the same as c2
+        # align c1 and c3 such that their bottoms are the same as c2
         self.play(
             c1.animate.align_to(c2, DOWN),
             c3.animate.align_to(c2, DOWN),

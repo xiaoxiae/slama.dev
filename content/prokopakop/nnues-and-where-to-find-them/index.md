@@ -174,7 +174,7 @@ The second observation is that it's **always optimal** to capture with your **lo
 Here is the algorithm in a nutshell:
 
 ```rust
-let mut gains = [0.0f32; 16];  // max 16 captures
+let mut gains = [0.0f32; 17];  // max 16 captures
 let mut depth = 1;
 
 // Player 1 starts with the value of the piece they captured

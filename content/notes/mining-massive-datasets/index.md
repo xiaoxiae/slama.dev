@@ -347,7 +347,7 @@ We want to tune \(b\) and \(r\) to catch most similar pairs but few non-similar 
 - \(S_1, S_2\) are \(80\%\) similar:
 	- probability for one band to hash to the same bucket is \(0.8^{5} = 0.328\)
 	- probability that \(S_1\) and \(S_2\) are not found is \((1 - 0.328)^{20} = 0.00035\)
-		- i.e. \(0.0035\%\) of similar pairs are not found -- **false negatives**
+		- i.e. \(0.035\%\) of similar pairs are not found -- **false negatives**
 - \(S_1, S_2\) are \(30\%\) similar:
 	- probability for one band to hash to the same bucket is \(0.3^{5} = 0.00243\)
 	- probability that \(S_1\) and \(S_2\) ARE similar is \(1 - (1 - 0.00243)^{20} = 0.047\)

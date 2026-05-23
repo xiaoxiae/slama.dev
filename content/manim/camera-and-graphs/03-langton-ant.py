@@ -35,12 +35,12 @@ class Ant:
         """Move and turn the ant, updating its state."""
         x, y = self.position
 
-        states[y][x] = not states[y][x]
-
         if states[y][x]:
             self.rotate_right()
         else:
             self.rotate_left()
+
+        states[y][x] = not states[y][x]
 
         self.move_forward()
 

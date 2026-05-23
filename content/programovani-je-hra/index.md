@@ -248,8 +248,8 @@ funkce()
 
 ##### Základní Processing program
 - `line(x1, y1, x2, y2)` -- vykreslení čáry
-- `rect(x1, y1, x2, y2)` -- vykreslení obdélníku
-- `ellipse(x1, y1, x2, y2)` -- vykreslení elipsy
+- `rect(x, y, w, h)` -- vykreslení obdélníku
+- `ellipse(x, y, w, h)` -- vykreslení elipsy
 
 ```py
 def setup():  # kód, který se vykoná pouze jednou
@@ -469,8 +469,8 @@ def setup():
 
 ##### `random`
 - generování náhodných čísel:
-	- `math.randint(a, b)` -- náhodné **celé** číslo od `a` do `b`
-	- `math.random()` -- náhodné **desetinné** číslo od `0` do `1`
+	- `random.randint(a, b)` -- náhodné **celé** číslo od `a` do `b`
+	- `random.random()` -- náhodné **desetinné** číslo od `0` do `1`
 
 #### Docstringy
 - způsob komentování toho, co dělá celá funkce
@@ -527,8 +527,8 @@ print(factorial(5))
 
 ---
 
-1. Naprogramujte [Sierpińského trojúhelník](https://cs.wikipedia.org/wiki/Sierpińského_trojúhelník) [[řešení](9.2.1.py)]
-2. Naprogramujte [Mengerovu houbu](https://cs.wikipedia.org/wiki/Mengerova_houba) ve 2D. [[řešení](9.2.2.py)]
+1. Naprogramujte [Sierpińského trojúhelník](https://cs.wikipedia.org/wiki/Sierpińského_trojúhelník) [[řešení](9.2.2.py)]
+2. Naprogramujte [Mengerovu houbu](https://cs.wikipedia.org/wiki/Mengerova_houba) ve 2D. [[řešení](9.2.1.py)]
 
 ### 10. hodina (4. 3. 2021)
 

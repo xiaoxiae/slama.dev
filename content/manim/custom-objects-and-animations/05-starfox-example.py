@@ -71,7 +71,7 @@ class Dissolve(AnimationGroup):
     """An animation that dissolves an object (shrinks + flashes)."""
 
     def __init__(self, mobject: Mobject, remover=True, **kwargs):
-        # we're using the remover keyword argument, because the animation adds the
+        # we're using the remover keyword argument, because the animation removes the
         # objects to the scene (can be seen when running self.mobjects after)
 
         self.original = mobject.copy()

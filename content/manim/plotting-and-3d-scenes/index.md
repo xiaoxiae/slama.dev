@@ -75,7 +75,7 @@ To render the scene in 3D, we'll have to use {{< doc "manim" "ThreeDScene" "refe
 {{< video "manim" "04-axes3d-example" >}}
 
 As you can see, the initial camera position assumes that we're working in 2D.
-To control it, we used the {{< doc "manim" "set_camera_orientation" "reference/manim.scene.three_d_scene.ThreeDScene.html#manim.scene.three_d_scene.ThreeDScene.set_camera_orientation" >}} to set its position and {{< doc "manim" "begin_ambient_camera_rotation" "reference/manim.scene.three_d_scene.ThreeDScene.html#manim.scene.three_d_scene.ThreeDScene.move_camera" >}} to begin an ambient rotation.
+To control it, we used the {{< doc "manim" "set_camera_orientation" "reference/manim.scene.three_d_scene.ThreeDScene.html#manim.scene.three_d_scene.ThreeDScene.set_camera_orientation" >}} to set its position and {{< doc "manim" "begin_ambient_camera_rotation" "reference/manim.scene.three_d_scene.ThreeDScene.html#manim.scene.three_d_scene.ThreeDScene.begin_ambient_camera_rotation" >}} to begin an ambient rotation.
 The used arguments `phi` (\(\varphi\)) a `theta` (\(\vartheta\)) determine the position.
 
 ![Meaning of the phi and theta arguments for 3D camera positioning.](04-camera.svg)
@@ -125,7 +125,7 @@ For additional information about the behavior of Bézier curves, I highly recomm
 Create an animation of a 3D variant of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway's_Game_of_Life).
 
 The rules are simple: we start in an initial state where some cells are dead and some are alive.
-Each (besides the corner ones) has 26 neighbours (all cells 1 away in space).
+Each (besides the ones on the boundary) has 26 neighbours (all cells 1 away in space).
 For each game, we define sets of rules \(X\) and \(Y\), which determine when cells live and die.
 In each step of the game, **all cells at once** change by the following rules:
 

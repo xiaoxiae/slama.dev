@@ -107,7 +107,7 @@ int main() {
 - includes thread's **local memory** (is only thread-local)
 	- has **address interleaving:** successive addresses are mapped to different memory banks so sequential access by multiple threads is faster (each accesses different bank)
 - **allocation:** `cudaMalloc(&dmem, size);`
-- **deallocation:** `cudaFree(&dmem);`
+- **deallocation:** `cudaFree(dmem);`
 - **transfer** (blocking): `cudaMemcpy(*dest, *src, size, transfer_type);`
 	- the `transfer_type` is `cudaMemcpy<FROM>To<TO>` (`Host`/`Device`)
 
@@ -257,7 +257,7 @@ A SM has multiple **warp schedulers** that can execute multiple warps concurrent
 - can be further improved by changing the order of addition for better cache hits
 
 ```cpp
-__host__ __device__ void GetMatrixValue(int row, int col, float* M, int Width) {
+__host__ __device__ float GetMatrixValue(int row, int col, float* M, int Width) {
 	return M[row * Width + col];
 }
 
@@ -282,7 +282,7 @@ void MM_CPU (float* M, float* N, float* P, int Width) {
 
 #### Naive (GPU)
 - looping handled by a single thread block
-- per loop, we do 2 FLOPS and 4 memory accesses
+- per loop, we do 2 FLOPS and 2 memory accesses
 
 ```cpp
 __global__ void MM_NAIVE (float* Md, float* Nd, float* Pd, int Width) {
@@ -349,7 +349,7 @@ __global__ void MM_SM (float* Md, float* Nd, float* Pd, int Width) {
 	int row = blockIdx.y * TILEWIDTH + ty;
 	int col = blockIdx.x * TILEWIDTH + tx;
 	
-	if (row > Width || col > Width)
+	if (row >= Width || col >= Width)
 		return;
 
 	// loop over tiles
@@ -505,7 +505,7 @@ for (unsigned int s = blockDim.x / 2; s > 0; s >>= 1) {
 {.no-invert}
 
 #### Making use of idle threads
-- after the first iteration, **half of the blocks don't do anything**
+- after the first iteration, **half of the threads don't do anything**
 	- they just load something to shared memory at the beginning and are done
 - idea: start with half of the blocks and **do the first operation while loading**
 - almost double performance increase again!
@@ -525,18 +525,18 @@ __syncthreads();
 
 ```cpp
 for (unsigned int s = blockDim.x / 2; s > 32; s >>= 1) {
-	if (tid < 0)
+	if (tid < s)
 		sPartials[tid] += sPartials[tid + s];
 
 	__syncthreads();
 }
 
-if (tid < 32 && blockDim.x >= 64) sPartials[tid] = sPartials[tid + 32];
-if (tid < 16 && blockDim.x >= 32) sPartials[tid] = sPartials[tid + 16];
-if (tid <  8 && blockDim.x >= 16) sPartials[tid] = sPartials[tid +  8];
-if (tid <  4 && blockDim.x >=  8) sPartials[tid] = sPartials[tid +  4];
-if (tid <  2 && blockDim.x >=  4) sPartials[tid] = sPartials[tid +  2];
-if (tid <  1 && blockDim.x >=  2) sPartials[tid] = sPartials[tid +  1];
+if (tid < 32 && blockDim.x >= 64) sPartials[tid] += sPartials[tid + 32];
+if (tid < 16 && blockDim.x >= 32) sPartials[tid] += sPartials[tid + 16];
+if (tid <  8 && blockDim.x >= 16) sPartials[tid] += sPartials[tid +  8];
+if (tid <  4 && blockDim.x >=  8) sPartials[tid] += sPartials[tid +  4];
+if (tid <  2 && blockDim.x >=  4) sPartials[tid] += sPartials[tid +  2];
+if (tid <  1 && blockDim.x >=  2) sPartials[tid] += sPartials[tid +  1];
 ```
 
 #### Overview
@@ -717,7 +717,7 @@ __global__ void ComputeNBodyGravitation_Shared (...) {
 
 - **stream-based** -- block until all outstanding CUDA operations in a stream have completed
 	- `cudaStreamSynchronize(stream)` -- wait until operations on this stream finish
-	- `cudaDeviceSynchronize(stream)` -- wait until operations on ALL streams finish
+	- `cudaDeviceSynchronize()` -- wait until operations on ALL streams finish
 	- the user specifies which stream a kernel launch/memory operation goes to
 		- `kernel <<< ..., cudaStream_t stream >>>`
 		- `cudaMemcpyAsync(..., cudaStream_t stream)`

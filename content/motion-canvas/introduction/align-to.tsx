@@ -11,13 +11,13 @@ export default makeScene2D(function* (view) {
 
     yield* all(...circles.map(ref => appear(ref())));
 
-    // align squares next to one another
+    // align circles next to one another
     yield* all(
         circles[0]().left(circles[1]().right().addX(25), 1),
         circles[2]().right(circles[1]().left().addX(-25), 1),
     );
 
-    // align c1 and c2 such that their bottoms are the same as c2
+    // align c1 and c3 such that their bottoms are the same as c2
     yield* all(
         circles[0]().bottom(new Vector2(circles[0]().position.x(), circles[1]().bottom().y), 1),
         circles[2]().bottom(new Vector2(circles[2]().position.x(), circles[1]().bottom().y), 1),

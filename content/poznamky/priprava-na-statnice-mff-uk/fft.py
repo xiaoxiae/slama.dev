@@ -48,9 +48,9 @@ def fft(p: List[int]) -> List[int]:
 
 
 def inverse_fft(p: List[int]) -> List[int]:
-    """Calculates the polynomial of degree len(p) that passes through the p complex points."""
+    """Calculates the polynomial of degree len(p) - 1 that passes through the p complex points."""
     n = len(p)
-    return [x / n for x in _fft(-(e ** (2 * i * pi / n)), p)]
+    return [x / n for x in _fft(e ** (-2 * i * pi / n), p)]
 
 
 def multiply_polynomials(p: List[int], q: List[int]):

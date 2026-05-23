@@ -82,7 +82,7 @@ export default makeScene2D(function* (view) {
         </Layout>
     );
 
-    let targetNumber = values[random.nextInt(0, values.length - 1)];
+    let targetNumber = values[random.nextInt(0, values.length)];
 
     // display the target number
     yield* sequence(
@@ -133,7 +133,7 @@ export default makeScene2D(function* (view) {
                 searchArrows.mid().stroke('lightgreen', 1),
                 rectangles[mid]().stroke('lightgreen', 1),
                 rectangles[mid]().fill('rgba(0, 255, 0, 0.2)', 1),
-                sequence(0.1, ...rectangles.slice(left - 1, mid).map(ref => ref().opacity(0.25, 1))),
+                sequence(0.1, ...rectangles.slice(left, mid).map(ref => ref().opacity(0.25, 1))),
                 sequence(0.1, ...rectangles.slice(mid + 1, right + 2).reverse().map(ref => ref().opacity(0.25, 1))),
             );
 

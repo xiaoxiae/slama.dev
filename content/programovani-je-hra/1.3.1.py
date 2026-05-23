@@ -7,5 +7,5 @@ if a < b:
 if a > b:
     print(">")
 
-if a < b:
+if a == b:
     print("=")

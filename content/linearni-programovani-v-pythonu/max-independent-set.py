@@ -38,7 +38,7 @@ for edges in edges_lists:
     for u, v in edges:
         model += variables[u - 1] + variables[v - 1] <= 1
 
-    # minimalizujeme počet vybraných vrcholů
+    # maximalizujeme počet vybraných vrcholů
     model += lpSum(variables)
 
     # řešení (ignorujeme debug zprávy)

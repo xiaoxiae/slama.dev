@@ -175,18 +175,18 @@ We usually (when Programming) want a **float matrix:** drop names, discretize la
 	- **posterior** -- we want to update our judgement based on measuring the features
 	- **prior** -- we know this (1% for a disease in the general population)
 	- **likelihood** -- the likelihood of the disease given features (fever, cough)
-	- **marginal** -- can be recovered by summing over possibilities: \[p(X) = \sum_{k = 1}^{C} p(X \mid Y = k)\]
+	- **marginal** -- can be recovered by summing over possibilities: \[p(X) = \sum_{k = 1}^{C} p(X \mid Y = k) p(Y = k)\]
 
 Is hugely important for a number of reasons:
 - fundamental equation for probabilistic machine learning
 	- allows clean uncertainty handling (among others)
 - puts model accuracy into perspective (what is good or bad)
 - defines two fundamental _model types_:
-	- **discriminative model:** learns \(p(Y = k \mid X)\) (right side)
+	- **discriminative model:** learns \(p(Y = k \mid X)\) (left side)
 		- answers the question "what class" directly
 		- **(+)** relatively easy -- take the direct route, no detour
 		- **(-)** often hard to interpret _how_ the model makes decisions (black box)
-	- **generative model:** learns \(p(Y = k)\) and \(p(X \mid Y = k)\) (left side)
+	- **generative model:** learns \(p(Y = k)\) and \(p(X \mid Y = k)\) (right side)
 		- first learn how "the world" works, then use this to answer the question
 			- \(p(X \mid Y = k)\) -- understand the mechanism how observations ("phenotypes") arise from hidden properties
 		- **(-)** pretty hard -- need powerful models and a lot of data
@@ -939,7 +939,7 @@ What do we do when noise variance is not constant?
 	&= \argmin_\theta \sum_{i = 1}^{N} - \log p_i(Y_i \mid X_i) \\
 	&= \argmin_\theta \sum_{i = 1}^{N} - \log N(Y_i - X_i \beta \mid 0, \sigma_i^2) \\
 	&= \argmin_\theta \sum_{i = 1}^{N} \left[-\log \frac{1}{\sqrt{2 \pi \sigma_i^2}} + \frac{\left(Y_i - X_i \beta\right)^2}{2 \sigma_i^2} \right] \\
-	&= \boxed{\argmin_\theta \sum_{i = 1}^{N} \left[\cancel{\frac{1}{2}}\log \sigma_i^2 - \cancel{\frac{1}{2}} \frac{\left(Y_i - X_i \beta\right)^2}{\sigma_i^2} \right]}
+	&= \boxed{\argmin_\theta \sum_{i = 1}^{N} \left[\cancel{\frac{1}{2}}\log \sigma_i^2 + \cancel{\frac{1}{2}} \frac{\left(Y_i - X_i \beta\right)^2}{\sigma_i^2} \right]}
 \end{aligned} \]
 
 Here we distinguish multiple cases:
@@ -950,7 +950,7 @@ Here we distinguish multiple cases:
 	- this can be solved by setting the derivative to zero and we get a **weighted pseudo-inverse** \[\boxed{\hat \beta = \left(X^T \Sigma^{-1} X\right)^{-1} X^T \Sigma^{-1} Y}\]
 3. **iteratively reweighed LS** (\(\sigma_i\) are not constant and unknown) -- learn the \(\sigma\)s jointly with \(\beta\))
 	- \(\sigma_i\) is **unsupervised**, \(\beta\) is **supervised** -- gives rise to interesting algorithms
-	- the problem can be formulated as \[\argmin_\theta \sum_{i = 1}^{N} \left[\log \sigma_i^2 - \frac{\left(Y_i - X_i \beta\right)^2}{\sigma_i^2} \right]\] usually called David-Sebastian score or hetero-scedastic loss
+	- the problem can be formulated as \[\argmin_\theta \sum_{i = 1}^{N} \left[\log \sigma_i^2 + \frac{\left(Y_i - X_i \beta\right)^2}{\sigma_i^2} \right]\] usually called David-Sebastian score or hetero-scedastic loss
 	- if \((Y_i - X_i \beta)^2\) is big \(\implies\) increase \(\sigma_i\) to make the loss smaller, but we pay the penalty of \(\log \sigma_i^2\) for big \(\sigma\)s (optimal solution selects \(\sigma_i^2\) for the best trade-off)
 
 #### Alternating optimization
@@ -1057,7 +1057,7 @@ Useful, because we can see that \(\tau\) (regularization) has **opposite effects
 	- _advantage:_ reduce the number of measurements
 	- _disadvantage:_ finding the optimal feature set is NP-hard (but in practice a simple greedy algorithm like OMP is often good enough)
 - **LASSO regression**: \[||\beta||_1 = \sum_{i = 1}^{D} |\beta_j| \le t\]
-	- stands for Last Absolute Shrinkage Selection Operator
+	- stands for Least Absolute Shrinkage and Selection Operator
 	- also performs feature selection when \(t\) is small enough
 	- _advantage:_
 		- still a convex optimization problem \(\implies\) unique solution
@@ -1147,7 +1147,7 @@ For **classification** trees:
 	- **CART** algorithm: uses Gini impurity: \[G_m = 1 - \sum_{k = 1}^{C} \hat p_{m, k}^2\]
 	- in either case, the loss of a given split is \(N_l H_l + N_r H_r\) (or \(G\) if we use CART)
 
-For **classification** trees:
+For **regression** trees:
 - the **prediction** is the average value
 - the **split criterion** minimizes the squared loss... given a node \(m\):
 	- the average is \(\hat y_m = \frac{1}{N_m} \sum_{i \in m} y_i\) so we get \(\mathcal{loss} = \sum_{i \in m} (y_i - \hat y_{m})^2\)

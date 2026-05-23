@@ -11,4 +11,4 @@ class Clovek:
         self.vaha += 1
 
     def zhubni(self):
-        self.vaha += 1
+        self.vaha -= 1
