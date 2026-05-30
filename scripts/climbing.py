@@ -10,12 +10,12 @@ Usage:
 import argparse
 import os
 import shutil
-from collections import OrderedDict
 import datetime
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from random import choice
 from string import ascii_lowercase
-from subprocess import Popen
+from subprocess import DEVNULL, Popen
 from typing import Literal
 
 import yaml
@@ -65,6 +65,25 @@ VIDEOS_YAML = DATA_DIR / "videos.yaml"
 HAS_CUDA = shutil.which("nvidia-smi") is not None
 
 
+def _nvidia_lib_path() -> str | None:
+    """LD_LIBRARY_PATH entries for the nvidia-*-cu12 pip packages, if installed.
+
+    onnxruntime-gpu needs the CUDA 12 runtime libs (cublasLt, cudnn, ...) on the
+    loader path; the pip packages ship them under nvidia/<component>/lib. Returns
+    None when they aren't installed, in which case deface stays on CPU.
+    """
+    try:
+        import nvidia
+    except ImportError:
+        return None
+    base = Path(nvidia.__file__).parent
+    libs = [str(d / "lib") for d in base.iterdir() if (d / "lib").is_dir()]
+    return os.pathsep.join(libs) if libs else None
+
+
+NVIDIA_LIB_PATH = _nvidia_lib_path()
+
+
 def stubify(string: str) -> str:
     return unidecode(string).lower().replace(" ", "-")
 
@@ -85,6 +104,29 @@ def save_yaml(path: Path, data: dict):
         yaml.dump(data, f, default_flow_style=False, allow_unicode=True, width=1000)
 
 
+def collect_known_files(data) -> set[str]:
+    """Recursively collect every video filename referenced anywhere in the data.
+
+    Covers sessions (including nested grades and _pending_videos) as well as
+    orphaned_videos, so already-archived clips are never re-detected as new.
+    """
+    found: set[str] = set()
+
+    def walk(node):
+        if isinstance(node, dict):
+            file = node.get("file")
+            if isinstance(file, str):
+                found.add(file)
+            for value in node.values():
+                walk(value)
+        elif isinstance(node, list):
+            for item in node:
+                walk(item)
+
+    walk(data)
+    return found
+
+
 def cmd_add(args):
     """Add new videos to today's session in climbing.yaml."""
     # Check if we're using new or legacy format
@@ -102,6 +144,8 @@ def cmd_add(args):
     files = os.listdir(VIDEOS_FOLDER)
     added = 0
 
+    known_files = collect_known_files(data) if use_new_format else set()
+
     for file in files:
         if not file.lower().endswith((".mp4", ".avi")):
             continue
@@ -109,23 +153,8 @@ def cmd_add(args):
         full_path = VIDEOS_FOLDER / file
 
         if use_new_format:
-            # Check if video already exists anywhere in the data
-            video_exists = False
-            for session in data.get("sessions", {}).values():
-                for key, val in session.items():
-                    if isinstance(val, dict):
-                        for v in val.get("videos", []):
-                            if v.get("file") == file:
-                                video_exists = True
-                                break
-                        if not video_exists:
-                            for grade, grade_data in val.items():
-                                if isinstance(grade_data, dict):
-                                    for v in grade_data.get("videos", []):
-                                        if v.get("file") == file:
-                                            video_exists = True
-                                            break
-            if video_exists:
+            # Skip videos already referenced anywhere (sessions or orphaned)
+            if file in known_files:
                 continue
         else:
             # Legacy format
@@ -215,6 +244,10 @@ def cmd_add(args):
             added += 1
 
     if use_new_format:
+        # Keep pending videos sorted by filename for stable, readable diffs
+        for session in data.get("sessions", {}).values():
+            if "_pending_videos" in session:
+                session["_pending_videos"].sort(key=lambda v: v["file"])
         save_yaml(CLIMBING_YAML, data)
         target = CLIMBING_YAML
     else:
@@ -227,9 +260,14 @@ def cmd_add(args):
         print("No new videos found.")
 
 
-def process_video(name: str, video: VideoMetadata) -> tuple[str, VideoMetadata]:
+def process_video(
+    name: str, video: VideoMetadata, quiet: bool = False
+) -> tuple[str, VideoMetadata]:
     """Process a single video (rename, trim, encode, poster). Returns new name."""
     path = VIDEOS_FOLDER / name
+
+    # When processing in parallel, silence the (interleaved) subprocess output.
+    quiet_out = DEVNULL if quiet else None
 
     # Rename new files
     if video.new:
@@ -276,8 +314,14 @@ def process_video(name: str, video: VideoMetadata) -> tuple[str, VideoMetadata]:
     if video.trim:
         start, end = video.trim.split(",")
         Popen(
-            ["ffmpeg", "-y", "-i", str(path), "-ss", start, "-to", end, str(tmp_path)]
+            ["ffmpeg", "-y", "-i", str(path), "-ss", start, "-to", end, str(tmp_path)],
+            stdout=quiet_out,
+            stderr=quiet_out,
         ).communicate()
+        # Only replace the source once ffmpeg actually produced the trimmed file,
+        # so a failed run never destroys the original.
+        if not tmp_path.exists():
+            raise RuntimeError(f"ffmpeg trim produced no output for '{name}'")
         os.remove(path)
         os.rename(tmp_path, path)
         video.trim = None
@@ -298,8 +342,12 @@ def process_video(name: str, video: VideoMetadata) -> tuple[str, VideoMetadata]:
             ["ffmpeg", "-y", "-i", str(path)]
             + encode_cfg
             + rotate_cfg
-            + [str(tmp_path)]
+            + [str(tmp_path)],
+            stdout=quiet_out,
+            stderr=quiet_out,
         ).communicate()
+        if not tmp_path.exists():
+            raise RuntimeError(f"ffmpeg encode produced no output for '{name}'")
         os.remove(path)
         os.rename(tmp_path, path)
         video.encode = None
@@ -307,7 +355,25 @@ def process_video(name: str, video: VideoMetadata) -> tuple[str, VideoMetadata]:
 
     # Deface
     if video.deface:
-        Popen(["deface", str(path), "-t", "0.5", "-o", str(tmp_path)]).communicate()
+        deface_cmd = ["deface", str(path), "-t", "0.5", "-o", str(tmp_path)]
+        deface_env = os.environ.copy()
+        if NVIDIA_LIB_PATH:
+            # Run detection on the GPU (onnxrt + CUDA); deface falls back to CPU
+            # on its own if the CUDA provider can't be loaded.
+            deface_cmd += ["--backend", "onnxrt", "--ep", "CUDAExecutionProvider"]
+            existing = deface_env.get("LD_LIBRARY_PATH", "")
+            deface_env["LD_LIBRARY_PATH"] = NVIDIA_LIB_PATH + (
+                os.pathsep + existing if existing else ""
+            )
+        Popen(
+            deface_cmd, env=deface_env, stdout=quiet_out, stderr=quiet_out
+        ).communicate()
+        # Only swap files if deface actually produced output, so a failed run
+        # never strands the original outside of videos/.
+        if not tmp_path.exists():
+            raise RuntimeError(
+                f"deface produced no output for '{name}'; leaving original in place"
+            )
         old_folder = VIDEOS_FOLDER / "unblurred"
         old_folder.mkdir(exist_ok=True)
         os.rename(path, old_folder / name)
@@ -330,7 +396,9 @@ def process_video(name: str, video: VideoMetadata) -> tuple[str, VideoMetadata]:
                 "1",
                 "-y",
                 str(poster_jpeg),
-            ]
+            ],
+            stdout=quiet_out,
+            stderr=quiet_out,
         ).communicate()
         im = Image.open(poster_jpeg)
         width, height = im.size
@@ -347,7 +415,9 @@ def process_video(name: str, video: VideoMetadata) -> tuple[str, VideoMetadata]:
                 str(poster_jpeg),
                 "-o",
                 str(poster_webp),
-            ]
+            ],
+            stdout=quiet_out,
+            stderr=quiet_out,
         ).communicate()
         os.remove(poster_jpeg)
 
@@ -449,24 +519,20 @@ def cmd_build(args):
                                     process_video(video_file, video)
             return
 
-        print(f"Processing {pending_count} pending video(s)...")
+        print(
+            f"Processing {pending_count} pending video(s) with {args.jobs} worker(s)..."
+        )
 
-        # Process each pending video
+        # Flatten every pending video across all sessions into a work list. Each
+        # video is fully independent (its own files), so processing is safe to
+        # run concurrently; assembly into the yaml happens afterwards.
+        tasks = []  # (session, video_entry, VideoMetadata)
         for session_date, session in data.get("sessions", {}).items():
-            pending = session.get("_pending_videos", [])
-            if not pending:
-                continue
-
             wall = session.get("wall", "Smíchoff")
-            processed_videos = []
-
-            for video_entry in pending:
-                old_name = video_entry["file"]
+            for video_entry in session.get("_pending_videos", []):
                 video_type = video_entry.get("type", "indoor")
                 color = video_entry.get("color")
                 grade = video_entry.get("grade")
-
-                # Build VideoMetadata for processing
                 video = VideoMetadata(
                     date=datetime.date.fromisoformat(session_date),
                     type=video_type,
@@ -478,66 +544,68 @@ def cmd_build(args):
                     rotate=video_entry.get("rotate"),
                     deface=video_entry.get("deface"),
                 )
+                tasks.append((session, video_entry, video))
 
-                new_name, processed = process_video(old_name, video)
+        quiet = args.jobs > 1
 
-                processed_videos.append(
-                    {
-                        "new_name": new_name,
-                        "type": video_type,
-                        "color": color,
-                        "grade": grade,
-                        "attempts": video_entry.get("attempts"),
-                        "sotm": video_entry.get("sotm"),
-                    }
+        def _process(task):
+            _session, video_entry, video = task
+            new_name, _ = process_video(video_entry["file"], video, quiet=quiet)
+            print(f"processed '{video_entry['file']}' -> '{new_name}'.", flush=True)
+            return task, new_name
+
+        # The heavy work runs in ffmpeg/deface subprocesses, so threads give real
+        # parallelism (the GIL is released while waiting on them). map() preserves
+        # input order, keeping videos in their original per-session sequence.
+        with ThreadPoolExecutor(max_workers=args.jobs) as pool:
+            results = list(pool.map(_process, tasks))
+
+        # Assemble processed videos into their sessions (sequential and cheap).
+        for (session, video_entry, _video), new_name in results:
+            video_type = video_entry.get("type", "indoor")
+            grade = video_entry.get("grade")
+
+            video_ref = {"file": new_name}
+            if video_entry.get("attempts"):
+                video_ref["attempts"] = video_entry["attempts"]
+            if video_entry.get("sotm"):
+                video_ref["sotm"] = video_entry["sotm"]
+
+            if video_type == "kilter":
+                if "kilter" not in session:
+                    session["kilter"] = {"angle": "TODO"}
+                if grade not in session["kilter"]:
+                    session["kilter"][grade] = {"new": 0, "videos": []}
+                if "videos" not in session["kilter"][grade]:
+                    session["kilter"][grade]["videos"] = []
+                session["kilter"][grade]["videos"].append(video_ref)
+                session["kilter"][grade]["new"] = (
+                    session["kilter"][grade].get("new", 0) + 1
                 )
 
-            # Move processed videos to their proper location in the session
-            for pv in processed_videos:
-                video_ref = {"file": pv["new_name"]}
-                if pv.get("attempts"):
-                    video_ref["attempts"] = pv["attempts"]
-                if pv.get("sotm"):
-                    video_ref["sotm"] = pv["sotm"]
+            elif video_type == "moon":
+                if "moon" not in session:
+                    session["moon"] = {"setup": "TODO"}
+                if grade not in session["moon"]:
+                    session["moon"][grade] = {"new": 0, "videos": []}
+                if "videos" not in session["moon"][grade]:
+                    session["moon"][grade]["videos"] = []
+                session["moon"][grade]["videos"].append(video_ref)
+                session["moon"][grade]["new"] = session["moon"][grade].get("new", 0) + 1
 
-                if pv["type"] == "kilter":
-                    if "kilter" not in session:
-                        session["kilter"] = {"angle": "TODO"}
-                    grade = pv["grade"]
-                    if grade not in session["kilter"]:
-                        session["kilter"][grade] = {"new": 0, "videos": []}
-                    if "videos" not in session["kilter"][grade]:
-                        session["kilter"][grade]["videos"] = []
-                    session["kilter"][grade]["videos"].append(video_ref)
-                    session["kilter"][grade]["new"] = (
-                        session["kilter"][grade].get("new", 0) + 1
-                    )
+            else:
+                # Regular indoor climbing with color
+                color = video_entry.get("color") or "other"
+                if color not in session:
+                    session[color] = {"new": 0, "videos": []}
+                if "videos" not in session[color]:
+                    session[color]["videos"] = []
+                session[color]["videos"].append(video_ref)
+                session[color]["new"] = session[color].get("new", 0) + 1
 
-                elif pv["type"] == "moon":
-                    if "moon" not in session:
-                        session["moon"] = {"setup": "TODO"}
-                    grade = pv["grade"]
-                    if grade not in session["moon"]:
-                        session["moon"][grade] = {"new": 0, "videos": []}
-                    if "videos" not in session["moon"][grade]:
-                        session["moon"][grade]["videos"] = []
-                    session["moon"][grade]["videos"].append(video_ref)
-                    session["moon"][grade]["new"] = (
-                        session["moon"][grade].get("new", 0) + 1
-                    )
-
-                else:
-                    # Regular indoor climbing with color
-                    color = pv["color"] or "other"
-                    if color not in session:
-                        session[color] = {"new": 0, "videos": []}
-                    if "videos" not in session[color]:
-                        session[color]["videos"] = []
-                    session[color]["videos"].append(video_ref)
-                    session[color]["new"] = session[color].get("new", 0) + 1
-
-            # Remove _pending_videos
-            del session["_pending_videos"]
+        # Remove _pending_videos from every session that had them
+        for session in data.get("sessions", {}).values():
+            session.pop("_pending_videos", None)
 
         save_yaml(CLIMBING_YAML, data)
         print("climbing videos generated (and reformatted).", flush=True)
@@ -555,6 +623,13 @@ def main():
     add_parser.set_defaults(func=cmd_add)
 
     build_parser = subparsers.add_parser("build", help="Process videos")
+    build_parser.add_argument(
+        "-j",
+        "--jobs",
+        type=int,
+        default=4,
+        help="Number of videos to process in parallel (default: 4)",
+    )
     build_parser.set_defaults(func=cmd_build)
 
     args = parser.parse_args()

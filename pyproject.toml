@@ -5,9 +5,17 @@ description = "Scripts for slama.dev Hugo site"
 requires-python = ">=3.13"
 dependencies = [
     "brotli>=1.1.0",
+    "deface>=1.5.0",
     "fonttools>=4.38.0",
     "lxml>=5.0.0",
     "markdown>=3.10",
+    "nvidia-cublas-cu12>=12.9.2.10",
+    "nvidia-cuda-runtime-cu12>=12.9.79",
+    "nvidia-cudnn-cu12>=9.23.0.39",
+    "nvidia-cufft-cu12>=11.4.1.4",
+    "nvidia-curand-cu12>=10.3.10.19",
+    "onnx>=1.21.0",
+    "onnxruntime-gpu>=1.26.0",
     "pillow>=12.2.0",
     "pydantic>=2.12.5",
     "pyyaml>=6.0.3",
