@@ -24,6 +24,21 @@ function build
         return 1
     end
 
+    # Fail fast if a required external tool is missing, before any partial work
+    # (climbing.py renames/encodes videos, so a mid-run crash leaves a mess).
+    for tool in hugo uv typst ffmpeg cwebp
+        if not command -q $tool
+            echo "ERROR: required tool '$tool' is not installed."
+            switch $tool
+                case typst
+                    echo "  Install with: cargo install typst-cli"
+                case ffmpeg cwebp
+                    echo "  Install the system package (on Arch, cwebp ships in 'libwebp-utils': sudo pacman -S libwebp-utils)"
+            end
+            return 1
+        end
+    end
+
     echo "Processing climbing content..."
     uv run python scripts/climbing.py build
 

@@ -10,6 +10,7 @@ Usage:
 import argparse
 import os
 import shutil
+import sys
 import datetime
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -82,6 +83,31 @@ def _nvidia_lib_path() -> str | None:
 
 
 NVIDIA_LIB_PATH = _nvidia_lib_path()
+
+
+# External binaries the build shells out to, with install hints for the
+# "missing tool" error. deface ships as a project dependency (uv sync); the
+# others are system packages.
+TOOL_HINTS = {
+    "ffmpeg": "system package 'ffmpeg'",
+    "cwebp": "system package providing cwebp (on Arch: `sudo pacman -S libwebp-utils`)",
+    "deface": "project dependency (`uv sync`)",
+}
+
+
+def require_tools(*tools: str) -> None:
+    """Exit early with a clear message if any required external binary is missing.
+
+    The build shells out to these via Popen, which otherwise dies with a bare
+    FileNotFoundError mid-processing (after some videos have already been
+    renamed/encoded). Checking up front keeps that from happening.
+    """
+    missing = [t for t in tools if shutil.which(t) is None]
+    if missing:
+        print("ERROR: missing required tool(s):", file=sys.stderr)
+        for t in missing:
+            print(f"  - {t}: {TOOL_HINTS.get(t, 'not found on PATH')}", file=sys.stderr)
+        sys.exit(1)
 
 
 def stubify(string: str) -> str:
@@ -426,6 +452,11 @@ def process_video(
 
 def cmd_build(args):
     """Process videos (rename, trim, encode, generate posters)."""
+    # ffmpeg (trim/encode/poster frame) and cwebp (poster encode) are always
+    # needed; bail before touching any files if they're missing. deface is
+    # checked per-format below, only when a video actually requests it.
+    require_tools("ffmpeg", "cwebp")
+
     # Check which format we're using
     if VIDEOS_YAML.exists():
         # Legacy format: process videos.yaml
@@ -450,6 +481,9 @@ def cmd_build(args):
             if not (VIDEOS_FOLDER / name).exists():
                 print(f"ERROR: nonexistent video '{name}', not generating.")
                 return
+
+        if any(v.deface for v in config.values()):
+            require_tools("deface")
 
         # Process each video
         new_config = {}
@@ -483,6 +517,7 @@ def cmd_build(args):
 
         # Find all pending videos and check for TODOs
         pending_count = 0
+        needs_deface = False
         for session_date, session in data.get("sessions", {}).items():
             pending = session.get("_pending_videos", [])
             for video_entry in pending:
@@ -498,6 +533,11 @@ def cmd_build(args):
                         f"ERROR: nonexistent video '{video_entry['file']}', not generating."
                     )
                     return
+                if video_entry.get("deface"):
+                    needs_deface = True
+
+        if needs_deface:
+            require_tools("deface")
 
         if pending_count == 0:
             print("No pending videos to process.")
