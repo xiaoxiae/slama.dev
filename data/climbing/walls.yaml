@@ -31,6 +31,18 @@ boulderhaus-darmstadt:
   colors: [christmas, blue, red, black]
   grading: color
 
+boulderhaus-mannheim:
+  name: "Boulderhaus Mannheim"
+  url: "https://www.boulderhaus.net/boulderhaus-mannheim/"
+  colors: ["1", "2", "3", "4", "5", "6", "7", "8"]
+  grading: number
+
+bison-boulders:
+  name: "Bison Boulders"
+  url: "https://www.bison-boulders.com/"
+  colors: ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+  grading: number
+
 boulder-bar:
   name: "Boulder Bar"
   url: "https://www.boulder.cz/"

@@ -4660,6 +4660,7 @@ sessions:
       videos:
       - file: boulderhaus-black-2026-05-30-fthxqeqf.mp4
       - file: boulderhaus-black-2026-05-30-whvxlddk.mp4
+        sotm: true
       - file: boulderhaus-black-2026-05-30-wifpktpf.mp4
       - file: boulderhaus-black-2026-05-30-piragdcd.mp4
       - file: boulderhaus-black-2026-05-30-emqyizxs.mp4
@@ -4674,3 +4675,25 @@ sessions:
       - file: boulderhaus-red-2026-05-30-cqlasbnm.mp4
       - file: boulderhaus-red-2026-05-30-pqdxaiju.mp4
     wall: boulderhaus
+  '2026-06-02':
+    '6':
+      new: 4
+      videos:
+      - file: boulderhaus-mannheim-6-2026-06-02-zcvryaxx.mp4
+      - file: boulderhaus-mannheim-6-2026-06-02-xbsgrylp.mp4
+      - file: boulderhaus-mannheim-6-2026-06-02-jldrdixn.mp4
+      - file: boulderhaus-mannheim-6-2026-06-02-anyscbrr.mp4
+    note: I feel extremely heavy. Need to lose some weight, it's not good.
+    wall: Boulderhaus Mannheim
+  '2026-06-04':
+    wall: Bison Boulders
+    note: Copenhagen sesh; fun modern gym!
+    7:
+      new: 2
+      videos:
+      - file: bison-boulders-7-2026-06-04-cmisijgb.mp4
+      - file: bison-boulders-7-2026-06-04-edjjfwet.mp4
+    9:
+      new: 1
+      videos:
+      - file: bison-boulders-9-2026-06-04-iaowhieb.mp4
