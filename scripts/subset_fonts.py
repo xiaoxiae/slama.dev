@@ -6,7 +6,9 @@ Subsets fonts based on characters actually used in the built site.
 Run after `hugo --minify` to analyze the built HTML.
 """
 
+import hashlib
 import re
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -15,6 +17,7 @@ ROOT = Path(__file__).parent.parent
 PUBLIC = ROOT / "public"
 STATIC = ROOT / "static"
 FA_CSS = ROOT / "static" / "assets" / "css" / "fa.min.css"
+CACHE = ROOT / ".cache" / "font-subset"
 
 
 def get_html_codepoints() -> set[int]:
@@ -70,21 +73,39 @@ def to_unicode_range(codepoints: set[int]) -> str:
     return ",".join(ranges)
 
 
-def subset_font(src: Path, dest: Path, unicodes: str):
-    """Subset a font file using pyftsubset."""
+PYFTSUBSET_ARGS = ["--flavor=woff2", "--layout-features=*", "--desubroutinize"]
+
+
+def cache_key(src: Path, unicodes: str) -> Path:
+    """Cache path for a subset, keyed by source bytes + unicode range + args."""
+    h = hashlib.sha256()
+    h.update(src.read_bytes())
+    h.update(unicodes.encode())
+    h.update("\0".join(PYFTSUBSET_ARGS).encode())
+    return CACHE / f"{h.hexdigest()}.woff2"
+
+
+def subset_font(src: Path, dest: Path, unicodes: str) -> bool:
+    """Subset a font file, using the cache when possible. Returns True on cache hit."""
+    cached = cache_key(src, unicodes)
+    if cached.exists():
+        shutil.copyfile(cached, dest)
+        return True
+
     subprocess.run(
         [
             "pyftsubset",
             str(src),
             f"--unicodes={unicodes}",
-            "--flavor=woff2",
             f"--output-file={dest}",
-            "--layout-features=*",
-            "--desubroutinize",
+            *PYFTSUBSET_ARGS,
         ],
         check=True,
         capture_output=True,
     )
+    CACHE.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(dest, cached)
+    return False
 
 
 def find_fonts() -> tuple[list[tuple[Path, Path]], list[tuple[Path, Path]]]:
@@ -117,11 +138,12 @@ def subset_fonts(fonts: list[tuple[Path, Path]], codepoints: set[int]):
 
         orig_size = dest.stat().st_size
         print(f"  {src.name}...", end=" ", flush=True)
-        subset_font(src, dest, unicodes)
+        hit = subset_font(src, dest, unicodes)
 
         new_size = dest.stat().st_size
         pct = (1 - new_size / orig_size) * 100 if orig_size else 0
-        print(f"{orig_size // 1024}KB → {new_size // 1024}KB ({pct:.0f}%)")
+        tag = " (cached)" if hit else ""
+        print(f"{orig_size // 1024}KB → {new_size // 1024}KB ({pct:.0f}%){tag}")
 
 
 def remove_unused_formats():

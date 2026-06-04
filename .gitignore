@@ -10,6 +10,9 @@ resources/_gen/
 # Hugo module cache
 _vendor/
 
+# Font subsetting cache
+.cache/
+
 # Large static files
 static/climbing/
 

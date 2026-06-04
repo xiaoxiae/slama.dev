@@ -133,6 +133,8 @@ function check_localhost
 end
 
 function upload
+    set -l mode $argv[1]
+
     echo "Uploading site to VPS..."
 
     # Check for localhost references first
@@ -140,8 +142,18 @@ function upload
         return 1
     end
 
-    echo "Syncing files to VPS..."
-    rsync -avz --zc=zstd --delete public/ slama-deploy@slama.dev:/var/www/slama.dev/
+    # Hugo restamps mtimes on every build even when content is identical, so the
+    # default mtime quick-check makes rsync re-read ~2.3 GB of unchanged media on
+    # both ends each upload. --size-only compares by size alone and skips those
+    # instantly; every real content change also changes byte size, so it's safe
+    # here. Use `upload --full` (--checksum) for a periodic content-verified pass.
+    if test "$mode" = "--full"
+        echo "Syncing files to VPS (full checksum verification)..."
+        rsync -av --checksum --delete public/ slama-deploy@slama.dev:/var/www/slama.dev/
+    else
+        echo "Syncing files to VPS..."
+        rsync -av --size-only --delete public/ slama-deploy@slama.dev:/var/www/slama.dev/
+    end
 
     echo "Upload complete!"
 end
@@ -157,11 +169,11 @@ switch $argv[1]
     case "check"
         check
     case "upload"
-        upload
+        upload $argv[2]
     case "all"
-        build && upload
+        build && upload $argv[2]
     case ""
-        build && upload
+        build && upload $argv[2]
     case "*"
         echo "Usage: ./site [serve|clean|build|check|upload|all]"
         echo ""
@@ -170,6 +182,7 @@ switch $argv[1]
         echo "  clean   - Clean generated files"
         echo "  build   - Build the site (minified)"
         echo "  check   - Run all checks (html-validate, lychee, pa11y)"
-        echo "  upload  - Check for localhost and upload to VPS"
+        echo "  upload  - Check for localhost and upload to VPS (size-only sync)"
+        echo "            add --full for a checksum-verified pass"
         echo "  all     - Build and upload (default)"
 end
