@@ -1049,13 +1049,7 @@ dependencies = [
     { name = "fonttools" },
     { name = "lxml" },
     { name = "markdown" },
-    { name = "nvidia-cublas-cu12" },
-    { name = "nvidia-cuda-runtime-cu12" },
-    { name = "nvidia-cudnn-cu12" },
-    { name = "nvidia-cufft-cu12" },
-    { name = "nvidia-curand-cu12" },
     { name = "onnx" },
-    { name = "onnxruntime-gpu" },
     { name = "pillow" },
     { name = "pydantic" },
     { name = "pyyaml" },
@@ -1069,6 +1063,14 @@ dev = [
     { name = "pre-commit" },
     { name = "ruff" },
 ]
+gpu = [
+    { name = "nvidia-cublas-cu12" },
+    { name = "nvidia-cuda-runtime-cu12" },
+    { name = "nvidia-cudnn-cu12" },
+    { name = "nvidia-cufft-cu12" },
+    { name = "nvidia-curand-cu12" },
+    { name = "onnxruntime-gpu" },
+]
 
 [package.metadata]
 requires-dist = [
@@ -1077,13 +1079,7 @@ requires-dist = [
     { name = "fonttools", specifier = ">=4.38.0" },
     { name = "lxml", specifier = ">=5.0.0" },
     { name = "markdown", specifier = ">=3.10" },
-    { name = "nvidia-cublas-cu12", specifier = ">=12.9.2.10" },
-    { name = "nvidia-cuda-runtime-cu12", specifier = ">=12.9.79" },
-    { name = "nvidia-cudnn-cu12", specifier = ">=9.23.0.39" },
-    { name = "nvidia-cufft-cu12", specifier = ">=11.4.1.4" },
-    { name = "nvidia-curand-cu12", specifier = ">=10.3.10.19" },
     { name = "onnx", specifier = ">=1.21.0" },
-    { name = "onnxruntime-gpu", specifier = ">=1.26.0" },
     { name = "pillow", specifier = ">=12.2.0" },
     { name = "pydantic", specifier = ">=2.12.5" },
     { name = "pyyaml", specifier = ">=6.0.3" },
@@ -1096,6 +1092,14 @@ dev = [
     { name = "matplotlib", specifier = ">=3.10.8" },
     { name = "pre-commit", specifier = ">=4.5.1" },
     { name = "ruff", specifier = ">=0.8.6" },
+]
+gpu = [
+    { name = "nvidia-cublas-cu12", specifier = ">=12.9.2.10" },
+    { name = "nvidia-cuda-runtime-cu12", specifier = ">=12.9.79" },
+    { name = "nvidia-cudnn-cu12", specifier = ">=9.23.0.39" },
+    { name = "nvidia-cufft-cu12", specifier = ">=11.4.1.4" },
+    { name = "nvidia-curand-cu12", specifier = ">=10.3.10.19" },
+    { name = "onnxruntime-gpu", specifier = ">=1.26.0" },
 ]
 
 [[package]]

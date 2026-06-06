@@ -1062,7 +1062,7 @@ sessions:
     yellow:
       new: 1
   '2022-03-27':
-    note: Went to Mandala in Dresen today and it was absolutely great! There was a competition yesterday so I had a chance of trying both the qualification and the finals boulders -- they were tough but I did manage to get 80/100 on one of the final ones (not trying the other two for too long), which I'm quite proud of.
+    note: Went to Mandala in Dresden today and it was absolutely great! There was a competition yesterday so I had a chance of trying both the qualification and the finals boulders -- they were tough but I did manage to get 80/100 on one of the final ones (not trying the other two for too long), which I'm quite proud of.
     wall: Mandala
   '2022-03-29':
     blue:
@@ -2180,7 +2180,7 @@ sessions:
   '2023-01-08':
     blue:
       new: 5
-    note: Feels good to be back :). I still feel pretty week, but it should hopefully pass after a few sessions.
+    note: Feels good to be back :). I still feel pretty weak, but it should hopefully pass after a few sessions.
     red:
       new: 9
       videos:
@@ -2227,7 +2227,7 @@ sessions:
   '2023-01-15':
     blue:
       new: 2
-    note: Depsite not a lot of routes sent, I made good progress on the new red (more like black) and the actual new black, both being quite long and powerful.
+    note: Despite not a lot of routes sent, I made good progress on the new red (more like black) and the actual new black, both being quite long and powerful.
     red:
       new: 2
       videos:
@@ -2844,7 +2844,7 @@ sessions:
     guide: https://tetzank.github.io/riesenstein/boulders/
     image: riesenstein.webp
     location: <a href='https://goo.gl/maps/Mn18C1s2D1HHZXpx8'>Riesenstein</a>
-    note: Hot damn, I managed to link Perkeo from like the 2nd or 3rd move, doing the crux move with relative ease. It's crazy to think that the first time I tried the route I couldn't even lift of the ground. Send next time?
+    note: Hot damn, I managed to link Perkeo from like the 2nd or 3rd move, doing the crux move with relative ease. It's crazy to think that the first time I tried the route I couldn't even lift off the ground. Send next time?
     routes:
     - difficulty: 7a
       name: Gerdina
@@ -3106,7 +3106,7 @@ sessions:
       type: beastmaker-2000
     wall: home
   '2023-10-24':
-    note: I thought it was Wednesday... suffice it to say it is not and there we no new routes so I just messed around on some custom boulders.
+    note: I thought it was Wednesday... suffice it to say it is not and there were no new routes so I just messed around on some custom boulders.
     wall: Boulderhaus
   '2023-10-25':
     hangboard:
@@ -3247,7 +3247,7 @@ sessions:
     note: It seems that going to boulder on the day before Christmas has become a bit of a tradition in our family (a pretty good one, I might add), so we went to Boulder Point. Fun times!
     wall: Boulder Point
   '2023-12-24':
-    note: Only eating potato salad, can't lift of the ground. No climbing to be done here.
+    note: Only eating potato salad, can't lift off the ground. No climbing to be done here.
     placeholder: true
   '2023-12-31':
     note: The potato salad took a toll. Did some easier stuff and felt pretty strong on individual moves, but my endurance is completely fucked. Welp, better get back to training...
@@ -3375,7 +3375,7 @@ sessions:
       - file: crimp-2024-02-16-gtruxwaq.mp4
       - file: crimp-2024-02-16-nibzusax.mp4
         sotm: true
-    note: Skin back! Good sends. Stonger? Wow!
+    note: Skin back! Good sends. Stronger? Wow!
   '2024-02-20':
     kilter:
       6c:
@@ -4649,7 +4649,7 @@ sessions:
         videos:
         - file: moon-7ap-2026-01-14-gioqqzhf.mp4
       setup: 2024
-    note: Getting back to boarding. Very weak, but it will bet better ❤️.
+    note: Getting back to boarding. Very weak, but it will be better ❤️.
     wall: Crimp
   '2026-05-29':
     note: Lack of motivation, lost a camera, was really busy. Let's see how long I can last.
@@ -4660,6 +4660,7 @@ sessions:
       videos:
       - file: boulderhaus-black-2026-05-30-fthxqeqf.mp4
       - file: boulderhaus-black-2026-05-30-whvxlddk.mp4
+        sotm: true
       - file: boulderhaus-black-2026-05-30-wifpktpf.mp4
       - file: boulderhaus-black-2026-05-30-piragdcd.mp4
       - file: boulderhaus-black-2026-05-30-emqyizxs.mp4
@@ -4684,3 +4685,15 @@ sessions:
       - file: boulderhaus-mannheim-6-2026-06-02-anyscbrr.mp4
     wall: Boulderhaus Mannheim
     note: I feel extremely heavy. Need to lose some weight, it's not good.
+  '2026-06-04':
+    wall: Bison Boulders
+    note: Copenhagen sesh; fun modern gym!
+    7:
+      new: 2
+      videos:
+      - file: bison-boulders-7-2026-06-04-cmisijgb.mp4
+      - file: bison-boulders-7-2026-06-04-edjjfwet.mp4
+    9:
+      new: 1
+      videos:
+      - file: bison-boulders-9-2026-06-04-iaowhieb.mp4
