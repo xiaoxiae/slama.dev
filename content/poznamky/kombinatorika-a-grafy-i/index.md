@@ -860,7 +860,7 @@ Plyne z běhu F-F algoritmu. Tok je součtem zlepšujících cest a cyklů.{{< /
 ##### Párování v bipartitním grafu
 
 {{< math "theorem" "Königova" >}}
-v bipartitním grafu je velikost maximálního párování rovna velikosti minimalního vrcholového pokrytí.{{< /math >}}
+v bipartitním grafu je velikost maximálního párování rovna velikosti minimálního vrcholového pokrytí.{{< /math >}}
 - \(M \subseteq E\) je **párování**, pokud \(\forall e, e' \in M, e \neq e': e \cap e' = \emptyset\)
 - \(U \subseteq V\) je **vrcholové pokrytí**, pokud \(\forall e \in E \exists u \in U: u \in e\)
 
@@ -951,7 +951,7 @@ Protože \(k_1 \ge k_2\), pak \(|N[j]| \ge |J|\).
 {{< math "example" >}}
 doplňování latinských obdélníků:{{< /math >}}
 
-![Latinský obdelník.](lat-rect.svg)
+![Latinský obdélník.](lat-rect.svg)
 
 - stupně: každý sloupec má stupeň \(n - k\) (počet nepoužitých symbolů)
 - symboly: každý symbol se vyskytuje v řádku právě jednou, tedy ještě není v \(n - k\) sloupcích
@@ -1144,7 +1144,7 @@ vycházíme z Fanovy roviny a o přímkách uvažujeme jako o prvcích \(\mathbb
 
 {{< math "observation" >}}
 \(\forall d \le n, d \ge 2: A(n, d) \le A(n - 1, d - 1)\){{< /math >}}
-- po odstranění bitu vzdálenost slov klesne nejvýše o \(1\) (pokud se slova v bytu liší); velikost nového kódu \(|C'| = |C|\)
+- po odstranění bitu vzdálenost slov klesne nejvýše o \(1\) (pokud se slova v bitu liší); velikost nového kódu \(|C'| = |C|\)
 	- funguje pouze díky předpokladu -- pro \(d \ge 2\) se žádná slova nesloučí (pro \(d=1\) už ano)
 
 {{< math "consequence" "Singletonův odhad" >}}
@@ -1170,7 +1170,7 @@ kód \(C\) nad \(\mathbb{Z}_2^n\) je lineární kód, pokud tvoří vektorový p
 pokud \(C\) je dimenze \(k\), pak má \(2^k\) prvků, ale k jeho popisu stačí nějaká báze \(C, |C| = k\) (ostatní dostanu lineárními kombinacemi).{{< /math >}}
 
 {{< math "observation" >}}
-Hammingův kód \(\mathcal{H}\) je lineární a generuje ho jeho **generujicí matice**{{< /math >}}
+Hammingův kód \(\mathcal{H}\) je lineární a generuje ho jeho **generující matice**{{< /math >}}
 \[
 \begin{matrix}
 	v_1 \\
@@ -1356,7 +1356,7 @@ Hadamardův kód je \(\left[2^r, r, 2^{r - 1}\right]\)-kód.{{< /math >}}
 ![](ramsey-motivace.svg)
 
 {{< math "theorem" >}}
-pro každý graf na \(\ge 6\) vrcholech \(\exists\) podrgraf \(E_3\) (prázdný graf) nebo \(K_3\).{{< /math >}}
+pro každý graf na \(\ge 6\) vrcholech \(\exists\) podgraf \(E_3\) (prázdný graf) nebo \(K_3\).{{< /math >}}
 - \(\omega(G) \ge 3\) -- velikost maximální kliky
 - \(\alpha(G) \ge 3\) -- velikost maximální nezávislé množiny
 
@@ -1405,7 +1405,7 @@ indukcí podle \(k + l\){{< /math >}}
 Zvolím \(u \in G\) libovolně a opět rozdělím graf na nesousedy \(A\) a sousedy \(B\) vrcholu \(u\). Z principu holubníku je \(|A| \ge n_1\) nebo  \(|B| \ge n_2\) (jsou-li obě množiny ostře menší, tak jejich součet dá nejvýše \(n - 2\), ale sousedů + nesousedů \(u\) je právě \(n - 1\))
 1. \(|A| \ge n_1\), použijeme IP na \(A\):
 	- \(\omega(G[A]) \ge k\) a jsem hotov
-	- \(\alpha(G[A]) \ge l - 1\), pak tato nezávislá množina spolu s \(u\) dává nezávislou mnozinu velikosti \(\ge l\)
+	- \(\alpha(G[A]) \ge l - 1\), pak tato nezávislá množina spolu s \(u\) dává nezávislou množinu velikosti \(\ge l\)
 2. analogicky: \(|B| \ge n_2\), použijeme IP na \(B\):
 	- \(\omega(G[B]) \ge k - 1\), pak tato klika spolu s \(u\) dává kliku velikosti \(\ge k\)
 	- \(\alpha(G[B]) \ge l\) a jsem hotov
@@ -1429,7 +1429,7 @@ Kde poslední rovnost platí, protože:
 - dosadíme \(n = 2^{k/2}\) do předchozího (předchozí je ostrý odhad, takže \(1^k < 1\) funguje)
 
 {{< math "proof" >}}
-vezmu náhodný graf \(G\) t. ž. každá z \(\binom{n}{2}\) hran má pravděpodobnost \(1/2\), nezávisle na ostatních. Nechť \(K \subseteq V, |K| = k\). \(A_K \ldots\) jev, že \(G[K]\) je klika. \(\Pr[A_K] = \left(\frac{1}{2}\right)^{\binom{k}{2}} = 2^{-\binom{k}{2}}\). Obdobně \(B_K\) jev, že vznikla nezávislá množina a \(C_K \ldots A_K \cup B_K \ldots \Pr[C_K] = 2 \cdot 2^{-\binom{k}{2}} = 2^{1 - \binom{k}{2}}\). \(p \ldots\) pravděpodobnost, že \(\exists K \subseteq V\) t. ž. nastal jev \(C_K\). Je ji těžké určit, protože jevy nejsou nezavislé (množiny se mohou překrývat), nám ale stačí odhad který předpokládá, že jsou jevy nezávislé:{{< /math >}}
+vezmu náhodný graf \(G\) t. ž. každá z \(\binom{n}{2}\) hran má pravděpodobnost \(1/2\), nezávisle na ostatních. Nechť \(K \subseteq V, |K| = k\). \(A_K \ldots\) jev, že \(G[K]\) je klika. \(\Pr[A_K] = \left(\frac{1}{2}\right)^{\binom{k}{2}} = 2^{-\binom{k}{2}}\). Obdobně \(B_K\) jev, že vznikla nezávislá množina a \(C_K \ldots A_K \cup B_K \ldots \Pr[C_K] = 2 \cdot 2^{-\binom{k}{2}} = 2^{1 - \binom{k}{2}}\). \(p \ldots\) pravděpodobnost, že \(\exists K \subseteq V\) t. ž. nastal jev \(C_K\). Je ji těžké určit, protože jevy nejsou nezávislé (množiny se mohou překrývat), nám ale stačí odhad který předpokládá, že jsou jevy nezávislé:{{< /math >}}
 
 \[\Pr[C] \le \sum_{K \in V, |K| = k} \Pr[C_K] = \binom{n}{k} \cdot 2^{1 - \binom{k}{2}} < 1\]
 - předposlední rovnost je z definice -- všechny možné \(K\)-tice
@@ -1566,7 +1566,7 @@ Sporem: předpokládejme, že pro nekonečně mnoho \(n\) \(\exists\) _špatné_
 
 {{< math "observation" >}}
 Pokud \(S_n\) je množina _špatných_ obarvení a \(S_n\) je neprázdné, pak \(S_{n - 1}\) je neprázdné, protože mám-li _špatné_ obarvení \(p\)-tic nad \(n\), tak mohu zapomenout na \(n\)-tý prvek a tak dostanu _špatné_ obarvení i na \(n - 1\).{{< /math >}}
-- **zůžení** \(z(c)(Q) = c(Q), Q \subseteq [n - 1], |Q| = p\) (prostě odeberu vrchol)
+- **zúžení** \(z(c)(Q) = c(Q), Q \subseteq [n - 1], |Q| = p\) (prostě odeberu vrchol)
 
 Strukturu _špatných_ obarvení popíšeme stromem, kde hladiny jsou obarvení \(S_n\); platí:
 - všechny hladiny jsou neprázdné (předpoklad pro spor)

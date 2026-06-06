@@ -6,7 +6,7 @@ toc: true
 language: cs
 ---
 
-**Upozornění:** _Poznámky jsem vytvořil ke přípravě na státnice, takže jsou povrchní (obsahují pouze definice, tvrzení a příklady, žádné důkazy a velmi málo obsahu z konce semestru). Ke studiu na zkoušku se můžou hodit, ale rozhodně bych se neučil pouze z nich._
+**Upozornění:** _Poznámky jsem vytvořil k přípravě na státnice, takže jsou povrchní (obsahují pouze definice, tvrzení a příklady, žádné důkazy a velmi málo obsahu z konce semestru). Ke studiu na zkoušku se můžou hodit, ale rozhodně bych se neučil pouze z nich._
 
 {{< lecture_notes_preface "Roberta Šámala  |  2020/2021  | MFF" >}}
 
@@ -68,7 +68,7 @@ Věta řeší problém, kdy máme jev \(H\) (hypotézu), který chceme spočíta
 
 ### Diskrétní náhodné veličiny
 
-{{< math "definition" "diskrétní náhodná veličina" >}}Pro pravděpodobnostní prostor \(\Omega, \mathcal{F}, P\) mějme funkci \(X : \Omega \mapsto \mathbb{R}\) nazvene diskrétní náhodná veličina, pokud \(\mathrm{Im}(X)\) (obor hodnot) je spočetná množina a pokud \(\forall x\) platí \[\left\{\omega \in \Omega: X(\omega) = x\right\} \in \mathcal{F}\]{{< /math >}}
+{{< math "definition" "diskrétní náhodná veličina" >}}Pro pravděpodobnostní prostor \(\Omega, \mathcal{F}, P\) mějme funkci \(X : \Omega \mapsto \mathbb{R}\) nazveme diskrétní náhodná veličina, pokud \(\mathrm{Im}(X)\) (obor hodnot) je spočetná množina a pokud \(\forall x\) platí \[\left\{\omega \in \Omega: X(\omega) = x\right\} \in \mathcal{F}\]{{< /math >}}
 
 {{< math "example" "použití náhodných veličin" >}}
 - hodíme na terč a měříme vzdálenost od středu
@@ -222,7 +222,7 @@ pokud integrál dává smysl.{{< /math >}}
 ### Limitní věty
 {{< math "theorem" "zákon velkých čísel" >}}nechť \(X_1, \ldots, X_n\) jsou stejně rozdělené n.n.v. se stř. hodnotou \(\mu\) a rozptylem \(\sigma^2\). Označme \(S_n = \left(X_1 + \ldots + X_n\right) / n\) (tzv. výběrový průměr). Pak platí \[\lim_{n \to \infty} S_n = \mu\] skoro jistě (tj. s pravděpodobností \(1\)).
 
-Věta říká, že je smyslupné průměrovat n.n.v. (s větším \(n\) se přibližuje k \(\mu\)).
+Věta říká, že je smysluplné průměrovat n.n.v. (s větším \(n\) se přibližuje k \(\mu\)).
 {{< /math >}}
 
 

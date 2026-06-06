@@ -62,7 +62,7 @@ Console.WriteLine("{0}: Hello, " + s2 + "!", s1, s2);
 	- if assigned to a {{< inline_highlight "cs" >}}FormattableString{{< /inline_highlight >}}, its instance is created instead
 		- {{< inline_highlight "cs" >}}.GetArgument(i){{< /inline_highlight >}} returns the i-th argument
 		- {{< inline_highlight "cs" >}}.Format(){{< /inline_highlight >}} creates a string
-	- the {{< inline_highlight "cs" >}}{}{{< /inline_highlight >}} blocks can be additionaly formatted using {{< inline_highlight "cs" >}}:<format>{{< /inline_highlight >}} and {{< inline_highlight "cs" >}}, <format>{{< /inline_highlight >}}
+	- the {{< inline_highlight "cs" >}}{}{{< /inline_highlight >}} blocks can be additionally formatted using {{< inline_highlight "cs" >}}:<format>{{< /inline_highlight >}} and {{< inline_highlight "cs" >}}, <format>{{< /inline_highlight >}}
 
 ### Chars
 - {{< inline_highlight "cs" >}}System.Char{{< /inline_highlight >}} == {{< inline_highlight "cs" >}}char{{< /inline_highlight >}} (keyword)
@@ -273,7 +273,7 @@ pet.Name();              // prints Mammal
 | {{< inline_highlight "cs" >}}D.Name{{< /inline_highlight >}} |     |     | {{< inline_highlight "cs" >}}D{{< /inline_highlight >}} | {{< inline_highlight "cs" >}}B{{< /inline_highlight >}} |
 
 - if {{< inline_highlight "cs" >}}abstract{{< /inline_highlight >}} is used, an entry in VTM is created but no implementation is provided
-	- the entire class has to be {{< inline_highlight "cs" >}}abstract{{< /inline_highlight >}} so it can't be instantiated, since the method has to be overriden
+	- the entire class has to be {{< inline_highlight "cs" >}}abstract{{< /inline_highlight >}} so it can't be instantiated, since the method has to be overridden
 - virtual methods can be called from the constructor and act correctly, since {{< inline_highlight "cs" >}}Type{{< /inline_highlight >}} (and its VMT) must have been initialized by then
 - {{< inline_highlight "cs" >}}virtual{{< /inline_highlight >}} is essentially a promise to the user that it's fine to provide an alternate implementation in the child without breaking the entire class
 - {{< inline_highlight "cs" >}}base{{< /inline_highlight >}} can be used to call a method from the parent non-virtually (even if it were)
@@ -551,7 +551,7 @@ class File {
 	- enumerations
 	- is weird, since it's completely different to references that are allocated
 - **can implement interfaces**, but boxing happens when we assign to {{< inline_highlight "cs" >}}I var{{< /inline_highlight >}}
-	- watch out for passing stuctures to function and doing something to them, since they will be boxed and nothing will change...
+	- watch out for passing structures to function and doing something to them, since they will be boxed and nothing will change...
 
 ##### Simple types
 - things like {{< inline_highlight "cs" >}}byte{{< /inline_highlight >}}, {{< inline_highlight "cs" >}}short{{< /inline_highlight >}}, {{< inline_highlight "cs" >}}int{{< /inline_highlight >}}, {{< inline_highlight "cs" >}}char{{< /inline_highlight >}}, {{< inline_highlight "cs" >}}bool{{< /inline_highlight >}}...
@@ -559,7 +559,7 @@ class File {
 - sizes are (almost) always defined (not like C++), except:
 	- {{< inline_highlight "cs" >}}nint{{< /inline_highlight >}} and {{< inline_highlight "cs" >}}nuint{{< /inline_highlight >}} -- native, platform-dependent {{< inline_highlight "cs" >}}(u)int{{< /inline_highlight >}} (since C# 9.0)
 	- {{< inline_highlight "cs" >}}bool{{< /inline_highlight >}} is only {{< inline_highlight "cs" >}}true/false{{< /inline_highlight >}}, so it isn't defined too (implementation detail)
-- {{< inline_highlight "cs" >}}decimal{{< /inline_highlight >}} -- exponent is decimal, so numbers like {{< inline_highlight "cs" >}}0.1{{< /inline_highlight >}} are precies
+- {{< inline_highlight "cs" >}}decimal{{< /inline_highlight >}} -- exponent is decimal, so numbers like {{< inline_highlight "cs" >}}0.1{{< /inline_highlight >}} are precise
 	- the downside is that it is much slower
 - all of them are perpendicular to one another in the type hierarchy, but there **are conversions**
 	- it is an actual conversion, not like for reference types (just checks in that case)
@@ -581,7 +581,7 @@ class File {
 	- other suffixes include
 		- {{< inline_highlight "cs" >}}d{{< /inline_highlight >}} for {{< inline_highlight "cs" >}}double{{< /inline_highlight >}}
 		- {{< inline_highlight "cs" >}}m{{< /inline_highlight >}} for {{< inline_highlight "cs" >}}decimal{{< /inline_highlight >}}
-- when designing APIs, it might be a good idea to do {{< inline_highlight "cs" >}}Int32{{< /inline_highlight >}} instead of {{< inline_highlight "cs" >}}int{{< /inline_highlight >}}, so programmers from other languages now exactly what we mean
+- when designing APIs, it might be a good idea to do {{< inline_highlight "cs" >}}Int32{{< /inline_highlight >}} instead of {{< inline_highlight "cs" >}}int{{< /inline_highlight >}}, so programmers from other languages know exactly what we mean
 
 ##### Nullable types
 - {{< inline_highlight "cs" >}}int? x{{< /inline_highlight >}} is a nullable variable -- can contain its value, or {{< inline_highlight "cs" >}}null{{< /inline_highlight >}}
@@ -634,7 +634,7 @@ class File {
 	- {{< inline_highlight "cs" >}}int[,] a = new int[2, 3]{{< /inline_highlight >}}
 
 #### (un)boxing
-- crossing the bounday between a reference type and a value type
+- crossing the boundary between a reference type and a value type
 - {{< inline_highlight "cs" >}}object o = 5;{{< /inline_highlight >}} creates a new object on the heap where the reference points to
 - is immutable for simple value types, because... how would we modify it?
 
@@ -686,7 +686,7 @@ static class Program {
 
 - they can also be generic: {{< inline_highlight "cs" >}}delegate bool Condition<T>(T t){{< /inline_highlight >}}
 
-#### Lambda funtions
+#### Lambda functions
 - functions defined using an expression: {{< inline_highlight "cs" >}}parameters => expression{{< /inline_highlight >}}
 - can be converted into a delegate -- {{< inline_highlight "cs" >}}IsEven{{< /inline_highlight >}} above would be {{< inline_highlight "cs" >}}i => i % 2 == 0{{< /inline_highlight >}}
 

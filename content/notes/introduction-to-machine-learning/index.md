@@ -100,7 +100,7 @@ We usually (when Programming) want a **float matrix:** drop names, discretize la
 	- \(Y_i \in \mathbb{R}^M \ldots\)  \(Y \approx f_\theta(X)\) is **regression**
 	- \(Y_i = k; k \in \left\{1, \ldots, C\right\}\) for \(C\) number of categories \(\ldots\) **classification**
 		1. labels are _ordered_ ("tiny" < "small" < "medium" < "large") -- **ordinal classification**
-		2. labels are _unordered_ ("apples", "oranges") -- **categorial classification**
+		2. labels are _unordered_ ("apples", "oranges") -- **categorical classification**
 
 - **training set** \(\mathrm{TS} = \left\{(X_i, Y_i)\right\}_{i = 1}^N\) -- **supervised learning**
 	- \(Y_i\) is the known response for instance \(i\)
@@ -249,7 +249,7 @@ Gradient descent looks as follows: \[\beta^{(t)} = \beta^{(t - 1)} - \tau \under
 
 {{< math "algorithm" "Rosenblatt's algorithm" >}}
 
-1. initialzation of \(\beta^{(0)}\) -- random/uniform numbers
+1. initialization of \(\beta^{(0)}\) -- random/uniform numbers
 2. for \(t = 1, \ldots, T\) (or until convergence)
 	- update \(\beta\) using the gradient descent formula above, with minor changes:
 		- additionally, use \(\tau / N\) instead of \(\tau\) (so it doesn't change when learning set changes)
@@ -405,7 +405,7 @@ For \(\Sigma\), this will be a little more complicated. We'll do the partial der
 
 Again, in other words, the **variance** is the average over the squared vectors offset by the mean, which too makes sense.
 
-Now we have \(2\) clases but with same covariance (by assumption of LDA) and we can:
+Now we have \(2\) classes but with same covariance (by assumption of LDA) and we can:
 1. determine two means (\(\mu_1, \mu_{-1}\)) as \[\boxed{\mu_1 = \frac{1}{N_1} \sum_{i: Y_i^* = 1} X_i \qquad \mu_{-1} = \frac{1}{N_{-1}} \sum_{i: Y_i^* = -1}}\]
 2. to calculate covariance (which is the same for both classes): \[\boxed{\Sigma = \frac{1}{N} \left(\sum_{i: Y_i^* = 1} (X_i - \mu_1)^T (X_i - \mu_1) + \sum_{i: Y_i^* = -1} (X_i - \mu_{-1})^T (X_i - \mu_{-1})\right)}\]
 3. use Bayes RHS and our calculations to calculate the LHS: \[\boxed{\begin{aligned} \hat{Y}_i = \mathrm{sign}(X_i \beta + b) \quad \text{with} \quad &\beta = 2 \Sigma^{-1} (\mu_1 - \mu_{-1})^T \\ & b = \mu_{-1} \Sigma^{-1} \mu_{-1}^T - \mu_1 \Sigma^{-1} \mu_1^T \end{aligned}}\]
@@ -762,7 +762,7 @@ CNNs usually alternate between **convolution**, **non-linear layers** (ReLU), **
 - **stages** between pooling layers (image resolution _unchanged_ within the stage)
 - **block** -- sequence of layers + one skip connection (bridges the block):
 	- **batch normalization:** adjust mean and variance of pre-activations
-		- bad when pre-activations have an arbitrary mean and variance (data should be within the intersting region of the activation function)
+		- bad when pre-activations have an arbitrary mean and variance (data should be within the interesting region of the activation function)
 		- (\(\mu, \sigma\)) calculated for each batch 
 - **layers** -- do the actual work
 
@@ -793,7 +793,7 @@ CNNs usually alternate between **convolution**, **non-linear layers** (ReLU), **
 - use augmentation to avoid manual labelling
 - **strategy (1):** use augmentation that can be **labeled automatically**
 	- rotate by \(\alpha \implies\) predict \(\alpha\)
-	- to solve this, network learns features that are useful for other tasks -- cut out the angle detection and use the reset of the network for feature detection
+	- to solve this, network learns features that are useful for other tasks -- cut out the angle detection and use the rest of the network for feature detection
 - **strategy (2): contrastive learning**
 	- present augmented pairs; if it originated from the same image, features should be similar, else they should be different (ie. ignore data augmentations)
 	- **SIMCLR** network -- famous for doing this
@@ -844,7 +844,7 @@ CNNs usually alternate between **convolution**, **non-linear layers** (ReLU), **
 \[Y_i = X_i \beta^* + b^* + \varepsilon_i \qquad \varepsilon_i \sim \mathcal N(0, \sigma^2)\] (i.e. variance is fixed but unknown)
 - given \(\mathrm{TS} = \left\{(X_i Y_i)\right\}_{i = 1}^N\), find \(\hat \beta \approx \beta^*\) and \(\hat b = b^*\)
 - important: assume that **only \(Y\) is noisy, not \(X\)** (other variant also exists)
-- derive loss by maximum likelyhood principle and i.i.d. assumption: \[ \begin{aligned}
+- derive loss by maximum likelihood principle and i.i.d. assumption: \[ \begin{aligned}
 	\hat\beta, \hat b = \argmin_{\beta, b} p(\mathrm{TS}) &= \argmax_{\beta, b} \prod_{i = 1}^{N} p(Y_i \mid X_i) \\ 
 	                                                      &= \argmin_{\beta, b} \sum_{i = 1}^{N} -\log p(Y_i \mid X_i) \\ 
 	                                                      &= \argmin_{\beta, b} \sum_{i = 1}^{N} -\log N(Y_i \mid X_i \beta + b = \mu(x), \sigma^2) \\ 
@@ -882,7 +882,7 @@ which are called the **normal equations** of the OLS problem, since \(\beta\) is
 	- if \(\kappa(x) = 1 \implies X\) is nice (almost orthogonal features)
 	- if \(\kappa(x) \gg 1 \implies X\) has almost redundant features, \(\hat \beta\) becomes inaccurate
 	- if \(\kappa(x) = \infty \implies X\) has redundant features, \(\hat \beta\) doesn't exist
-		- infinity arrises from the norm of \(X^+\) (division by \(0\))
+		- infinity arises from the norm of \(X^+\) (division by \(0\))
 
 We can instead solve OLS **by SVD**:
 - every matrix \(X\) can be decomposed into \(X = U \Lambda V^T\) for
@@ -892,7 +892,7 @@ We can instead solve OLS **by SVD**:
 - using this we get \[\boxed{\beta = (V \Lambda^{-1} U^T) Y}\]
 	- if \(k\) features are redundant, \(k\) eigenvalues are \(0\)
 	- when we're doing \(\Lambda^{-1}\), this explores, set \(\Lambda' = \frac{1}{0} \mapsto 0\)
-	- this gives us the minimum norm solution of the degenrate OLS problem
+	- this gives us the minimum norm solution of the degenerate OLS problem
 - condition number for SVD is \(\kappa(X) = \frac{\max \lambda}{\min \lambda}\)
 - advantage: numerically very stable, even when \(X\) is almost degenerate
 - disadvantage: very complicated algorithm (500 LOC of Fortran); nowadays this is ok
@@ -912,7 +912,7 @@ _What do we do if \(N\) and \(D\) are very big?_
 - we don't access \(X\) directly, but via _subroutines_
 	- **vector-matrix product** \(b^T X \implies \mathtt{vector\_times\_X}(b)\)
 	- **matrix-vector product** \(Xa \implies \mathtt{X\_times\_vector}(a)\)
-	- all the tricks to exploit the special strucure of \(X\) hidden here:
+	- all the tricks to exploit the special structure of \(X\) hidden here:
 
 ##### LSQR
 1. trick: only use the subroutines to exploit the structure
@@ -1094,7 +1094,7 @@ Useful, because we can see that \(\tau\) (regularization) has **opposite effects
 		- squared loss (instead of cross-entropy)
 		- last layers is linear (no activation)
 2. design algorithms to solve non-linear least squares
-	- if \(\dim(\theta)\) is not very high (\(\mathcal{O}(100)\)), use **Levenberg-Markquart**
+	- if \(\dim(\theta)\) is not very high (\(\mathcal{O}(100)\)), use **Levenberg-Marquardt**
 	- **regression trees** and forests / **Gaussian processes**
 		- good results if \(\mathrm{TS}\) is small (so NN cannot be trained)
 
@@ -1114,7 +1114,7 @@ For regression/classification, we can build a tree on top of it by doing the fol
 
 {{< math "algorithm" "generic tree building" >}}
 
-1. create the root note with all data
+1. create the root node with all data
 	- also put all of the data on the stack
 2. while the stack is not empty:
 	- take the top node

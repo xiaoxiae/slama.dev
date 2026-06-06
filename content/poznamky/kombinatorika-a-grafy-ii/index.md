@@ -77,7 +77,7 @@ language: cs
 - pokud existuje hrana mezi (potenciálně různými) sudými hladinami různých stromů, pak máme volnou střídavou cestu, kterou zalterujeme a jsme hotovi (párování je o \(1\) větší)
 - pokud existuje hrana mezi (potenciálně různými) sudými hladinami jednoho stromu, máme květ \(C\) -- ten zkontrahujeme a rekurzivně se zavoláme
 	- vrátí-li \(M' = M\), pak nic dalšího neděláme
-	- vratí-li nějaké větší párování, tak z něho zkonstruujeme párování v \(G\)
+	- vrátí-li nějaké větší párování, tak z něho zkonstruujeme párování v \(G\)
 - neexistuje-li hrana mezi sudými hladinami, pak \(M' = M\)
 
 {{< math "claim" >}}Edmondsův algoritmus spuštěný na \(G\) a \(M\) doběhne v čase \(\mathcal{O}(n \cdot (n + m))\) a najde párování \(M'\) alespoň o \(1\) hranu větší než \(M\), případně oznámí, že \(M\) je největší \(\Rightarrow\) nejlepší párování lze nalézt v čase \(\mathcal{O}(n^2 (n + m))\).{{< /math >}}
@@ -282,7 +282,7 @@ Označme \(C\) kružnici ohraničující stěnu \(\mathcal{G}''\), v níž leže
 
 ![](p2.svg)
 
-- zbytek -- nenasatane ani (1), ani (2)
+- zbytek -- nenastane ani (1), ani (2)
 	- označme \(a_1, \ldots, a_k \in N(x) \cap C\) v pořadí, jak se objevují na \(C\)
 	- můžu nakreslit všechny hrany \(xa_1, \ldots xa_k\)
 	- \(a_1, \ldots, a_k\) rozdělují \(C\) na vnitřně disjunktní cesty \(P_1, \ldots P_k\) (\(k \ge 2\) protože \(G\) je \(3\)-souvislý... \(x\) sousedí s \(y\) a s \(\ge 2\) dalšími vrcholy)
@@ -300,7 +300,7 @@ Označme \(C\) kružnici ohraničující stěnu \(\mathcal{G}''\), v níž leže
 - např. sféra v \(\mathbb{R}^3\) nebo torus v \(\mathbb{R}^3\)
 - není to např.
 	- \(\mathbb{R}^2\), jelikož není kompaktní (omezená)
-	- čtverec s hranici, jelikož pro každý krajní body není homeomorfní \(\mathbb{R}^2\)
+	- čtverec s hranicí, jelikož pro každý krajní body není homeomorfní \(\mathbb{R}^2\)
 
 Operace s plochami, přes které umíme všechny zkonstruovat:
 
@@ -315,8 +315,8 @@ Operace s plochami, přes které umíme všechny zkonstruovat:
 
 - přidání ucha (od hrnku)
 	- vyříznu dva kruhy
-	- vezmu plášť pálce bez dna a vrchu
-	- ohnu a přílepím jej na díry po kruzích
+	- vezmu plášť válce bez dna a vrchu
+	- ohnu a přilepím jej na díry po kruzích
 	- {{< math "observation" >}}teleport, do kterého když vejdeme, tak na druhé straně vyjdeme opačně („otočeně“){{< /math >}}
 
 <!---MARKDOWN-->
@@ -330,9 +330,9 @@ Operace s plochami, přes které umíme všechny zkonstruovat:
 - přidání křížítka (cross-cupu):
 	- {{< math "observation" >}}teleport, do kterého když vejdeme, tak nás to přesune naproti{{< /math >}}
 
-Pro \(g \in \left\{0, 1, \ldots\right\}\) nechť \(\sum_g\) značí plochu zvniklou ze sféry přidáním \(g\) uší, tak říkáme, že \(\sum g\) je **orientovatelná plocha** rodu \(g\).
+Pro \(g \in \left\{0, 1, \ldots\right\}\) nechť \(\sum_g\) značí plochu vzniklou ze sféry přidáním \(g\) uší, tak říkáme, že \(\sum g\) je **orientovatelná plocha** rodu \(g\).
 
-Pro \(g \in \left\{1, 2, \ldots\right\}\) nechť \(\prod_g\) značí plochu zvniklou ze sféry přidáním \(g\) křížítek, tak říkáme, že \(\prod g\) je **neorientovatelná plocha** rodu \(g\).
+Pro \(g \in \left\{1, 2, \ldots\right\}\) nechť \(\prod_g\) značí plochu vzniklou ze sféry přidáním \(g\) křížítek, tak říkáme, že \(\prod g\) je **neorientovatelná plocha** rodu \(g\).
 
 {{< math "fact" >}}Každá plocha je homeomorfní právě jedné z posloupností \(\sum_0, \prod_1, \sum_1, \prod_2,\ldots\){{< /math >}}
 - máme tu skryté tvrzení, že žádné dvě z této posloupností nejsou homeomorfní.
@@ -463,7 +463,7 @@ Tedy \[\Chi(\Gamma) = L(G)\]
 
 {{< math "consequence" "Heawoodova formule, 1890" >}} Pokud \(\Gamma \not\cong \sum_0\), tak každý graf nakreslitelny na \(\Gamma\) je nejvýš \(H(\Gamma) = 1 + \left\lfloor \frac{5 + \sqrt{49 - 24 \Chi(\Gamma)}}{2} \right\rfloor = \left\lfloor \frac{7 + \sqrt{49 - 24 \Chi(\Gamma)}}{2} \right\rfloor\)-obarvitelný{{< /math >}}
 - vyplývá z předchozího důsledku -- pokud má graf stupeň nejvýše \(\delta\), tak je \(\delta+1\)-obarvitelný
-- platí i pro stéru: věta o \(4\)-barvách
+- platí i pro sféru: věta o \(4\)-barvách
 - tento odhad je těsný pro všechny plochy kromě \(\prod_2\)
 - na každou plochu \(\Gamma \not\cong \prod_2\) lze kreslit kliku velikosti \(H(\Gamma)\)
 	- (každý graf nakreslitelný na \(\prod_2\) je dokonce \(6\)-obarvitelný)
@@ -580,7 +580,7 @@ Tedy \[\Chi(\Gamma) = L(G)\]
 
 {{< math "theorem" "Vizing, 1964" >}}Pro každý graf \(G\) platí, že \(\Delta(G) \le \Chi'(G) \le \Delta(G) + 1\){{< /math >}}
 - grafy Vizingovy třídy \(1\) jsou grafy \(\Chi'(G) = \Delta(G)\), třídy \(2\) jsou \(\Chi'(G) = \Delta(G) + 1\)
-- je NP-úplné rozhodnout, zda daný graf \(G\) má VIzingovu třídu \(1\) (i pro grafy s \(\Delta(G) = 3\))
+- je NP-úplné rozhodnout, zda daný graf \(G\) má Vizingovu třídu \(1\) (i pro grafy s \(\Delta(G) = 3\))
 - důkaz jsem zpracoval do [YouTube videa](https://www.youtube.com/watch?v=OZWZpQmGp0g)
 
 #### Perfektní grafy
@@ -622,7 +622,7 @@ Pro spor: \(R\) není klika \(\Rightarrow\) obsahuje \(u, v\) nesousedy. Protož
 	- \(G\) je úplný, platí
 	- nebo nechť \(x, y\) nesousedi v \(G\) a \(R\) je \(x{\text -}y\)-řez tvořící kliku
 		- \(G_x^+ = \left(\text{komponenta $G \setminus R$ obsahující $x$}\right) \cup R\), obdobně \(G_y^+\)
-		- {{< math "observation" >}}pokud \(G\) byl chordální, pak \(H \le G\) je také chordalní{{< /math >}}
+		- {{< math "observation" >}}pokud \(G\) byl chordální, pak \(H \le G\) je také chordální{{< /math >}}
 		- použijeme IP na \(G_x^+\)
 			- pokud \(G_x^+\) klika, vezmi jako \(s_x\) libovolný vrchol \(G_x\) (např. \(x\))
 			- pokud \(G_x^+\) není klika, má dva simpliciální vrcholy; nejvýše jeden může ležet v \(R\), jelikož je to klika a za \(s_x\) zvolím ten druhý; analogicky pro \(G_y^+\)
@@ -804,7 +804,7 @@ Poté pro větu stačí následující:
 
 ### 10. přednáška
 
-#### Formální mocniné řady
+#### Formální mocninné řady
 {{< math "definition" >}}Pro posloupnost reálných čísel \(a_0, a_1, \ldots\) je formální mocninná řada (FMŘ) zápis tvaru \(a_0 + a_1x^1 + a_2x^2 + \ldots = \sum_{i = 0}^{\infty} a_i x^i\){{< /math >}}
 - \(\mathbb{R} \llbracket x \rrbracket \ldots\) všechny FMŘ nad \(x\)
 - pro \(A(x) = a_0 + a_1 x + a_2x^2 + \ldots\) je \([x^n]A(x) = a_n\)
@@ -816,7 +816,7 @@ Poté pro větu stačí následující:
 - \(0 = A(x)\) s nulovými koeficienty
 - \(1 = A(x)\) s \(a_0 = 1\) a zbytek nulové koeficienty
 
-{{< math "fact" >}} \(\mathbb{R}\llbracket x \rrbracket\) tvoří vektorový postor (násobení konstantou je FMŘ pro \(a_0 = c\){{< /math >}})
+{{< math "fact" >}} \(\mathbb{R}\llbracket x \rrbracket\) tvoří vektorový prostor (násobení konstantou je FMŘ pro \(a_0 = c\){{< /math >}})
 
 {{< math "definition" "převrácená hodnota" >}} FMŘ \(A(x)\) je taková FMŘ, že \(A(x) \cdot B(x) = 1\){{< /math >}}
 
@@ -854,7 +854,7 @@ Poté pro větu stačí následující:
 {{< math "example" >}} Můžu mít také FMŘ více proměnných, např. \(A(x, y) = \sum_{n \ge 0, m \ge 0} a_{n, m} \cdot x^n \cdot y^m \in \mathbb{R}\llbracket x, y \rrbracket\)
 {{< /math >}}
 
-#### Obyčejné vyvořující funkce
+#### Obyčejné vytvořující funkce
 {{< math "definition" "OVF" >}}Nechť \(\mathcal{A}\) je množina, jejíž každý prvek \(\alpha \in \mathcal{A}\) má definovanou velikost \(|\alpha| \in \mathbb{N}_0\), předpokládáme že \(\forall n \in \mathbb{N}_0\) je v \(\mathcal{A}\) konečně mnoho prvků velikosti \(n\).
 - \(\mathcal{A}_n = \left\{\alpha \in \mathcal{A} \mid |\alpha| = n\right\}, a_n = |\mathcal{A}_n|\)
 
@@ -970,7 +970,7 @@ Prvky \(x, y \in A\) jsou ekvivalentní (značím \(x \sim_{\Gamma} y\)), pokud 
 	- transitivní -- \(\gamma x = y \land \gamma y = z \Rightarrow (\delta \gamma)x = z\)
 
 {{< math "definition:" "orbita" >}} obsahující prvek \(x \in A\) je množina \[\left[x\right]_{\Gamma} = \left\{y \in A \mid x \sim_\Gamma y\right\} = \left\{\gamma x \mid \gamma \in \Gamma\right\}\]
-možinu orbit značíme \(A / \Gamma\).
+množinu orbit značíme \(A / \Gamma\).
 {{< /math >}}
 
 {{< math "example" >}}Koláčky (mák, tvaroh, povidla).
@@ -992,7 +992,7 @@ možinu orbit značíme \(A / \Gamma\).
 
 {{< math "theorem" "Burnsideovo lemma" >}}Nechť \(\Gamma\) je konečná grupa s akcí na \(A\)
 {{< /math >}}
-1. (jednoduchá) pokud \(A\) je konečná, pak \[|A / \Gamma| = \frac{1}{|\Gamma|} \sum_{\gamma \in \Gamma} |\mathrm{Fix}(\gamma)|\] \(=\) počet orbit je roven „průměrnému počtu pervných bodů“
+1. (jednoduchá) pokud \(A\) je konečná, pak \[|A / \Gamma| = \frac{1}{|\Gamma|} \sum_{\gamma \in \Gamma} |\mathrm{Fix}(\gamma)|\] \(=\) počet orbit je roven „průměrnému počtu pevných bodů“
 2. Nechť každá orbita \(o \in A / \Gamma\) má přiřazenou váhu \(w(o)\). Potom \[\sum_{o \in A/\Gamma} w(o) = \frac{1}{|\Gamma|} \sum_{\gamma \in \Gamma} \sum_{x \in \mathrm{Fix}(\gamma)} w([x])\]
 
 {{< math "proof" >}} \((2) \Rightarrow (1)\), když jsou váhy \(1\).

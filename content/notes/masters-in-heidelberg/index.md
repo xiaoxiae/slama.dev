@@ -114,7 +114,7 @@ It's fucked up.
 
 Your best bet is to start **really** early and try to apply for housing in Heidelberg's dorms (via [student union](https://stw.uni-heidelberg.de/en/) or privately-owned).
 If they're full, going in person and making sad eyes reportedly works, although I haven't tried.
-You should also try to periodically scour [wg-gesucht](https://wg-gesucht.de/), which is targeted at student housing -- this is how we got our appartment.
+You should also try to periodically scour [wg-gesucht](https://wg-gesucht.de/), which is targeted at student housing -- this is how we got our apartment.
 **Do not use [immobilienscout24](https://www.immobilienscout24.de/)** as they are an absolutely awful company, with most of the properties being spam or automated posts linking to the websites of other companies (not to mention their predatory Plus account).
 
 The text we usually sent, along with a **SCHUFA certificate** (which you can either buy or can actually get for free if you do some due diligence and are not as pressed for time as we were) is the following, both in English and in German:

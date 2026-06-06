@@ -95,7 +95,7 @@ _There was another example of a Gaussian PDF/CDF/PPF. Unlike the exponential, it
 
 We want to make it continuous, we do embedding via the \(\delta\)-distribution \[p(x) = (1 - \pi) \delta(x + 1) + \pi \delta (x - 1)\]
 
-- the delta funtion is very handy: for any function \(h(x)\), \[\int_{-\infty}^{\infty} h(x) \delta(x' - x) dx' = h(x)\]
+- the delta function is very handy: for any function \(h(x)\), \[\int_{-\infty}^{\infty} h(x) \delta(x' - x) dx' = h(x)\]
 - \(\pm 1\) are atoms -- their probability is not zero (unlike functions like Gaussian)
 
 ![Bernoulli example.](bernoulli.webp)
@@ -152,7 +152,7 @@ We want to make it continuous, we do embedding via the \(\delta\)-distribution \
         - define new coordinates \(\tilde{X} = \left(X - \mu\right) \cdot U \Lambda^{-1/2}\)
         - then \(\tilde{X}\tilde{X}^T = \left(X - \mu\right) \Sigma^{-1} \left(X - \mu\right)^T\)
     - we can sample \(D\) 1-D gaussians and put them in the \(\tilde{X}\) vector, which we invert
-        - \(X =\tilde{X} \Lambda^{1/2} U^T + \mu\): **reparametrization trick** (from arbitraty Gaussian to std. normal)
+        - \(X =\tilde{X} \Lambda^{1/2} U^T + \mu\): **reparametrization trick** (from arbitrary Gaussian to std. normal)
     - in our language: \[Z = \left(X - \mu\right) U \Lambda^{-1/2} \sim \mathcal{N}(0, \mathbb{I}) \implies X = f^{-1}(Z) = Z \Lambda^{1/2} U^T + \mu \sim \mathcal{N}(\mu, \Sigma)\]
 
 - similar for other analytic multi-variate distributions (`scipy.stats` offers ~16)
@@ -172,7 +172,7 @@ We want to make it continuous, we do embedding via the \(\delta\)-distribution \
 
 #### Reducing \(p(X)\) to many 1-D distributions
 - naive: \(p(X) = \prod_{i=1}^{D} p_j(X_j)\), learn a 1-D model for each coordinate \(X_j\)
-    - assumes variable indepence, we loose all coorelation (highly unrealistic)
+    - assumes variable independence, we lose all correlation (highly unrealistic)
 
 ![](naive-reduction.webp)
 
@@ -258,7 +258,7 @@ The idea is to use the **kernel trick**
         - \(\mathrm{MMD} = 0 \iff p(X) = p^*(X)\)
         - \(\mathrm{MMD}\) is a **metric**
     - \(\varphi\): **witness function** -- certifies that \(p\) and \(p^*\) are different when \(\mathrm{MMD}\) is big
-        - family function \(\mathcal{F}\) must be chosen s.t. we can't **cheat** (i.e. arbitratily add/multiply to increase -- e.g. conditions on variance)
+        - family function \(\mathcal{F}\) must be chosen s.t. we can't **cheat** (i.e. arbitrarily add/multiply to increase -- e.g. conditions on variance)
 - now **replace** explicit mapping \(\varphi(X)\) with a kernel function \(k(X, X')\): \[\begin{aligned}
     \mathrm{MMD}^2 &= \frac{1}{M(M-1)} \sum_{i=1}^{M} \sum_{i' \neq i} k(X_i, X_{i'}) \quad //\ \text{repulsion between synthetic $X_i$} \\
     &+ \frac{1}{N(N - 1)} \sum_{i=1}^{N} \sum_{i' \neq i} k(X_i^*, X_{i'}^*) \quad //\ \text{independent of $p(X)$} \\
@@ -458,7 +458,7 @@ Recall the \(1\)-D case: \(q(Z) = \text{uniform}(0, 1) \implies f(X) = \mathrm{C
     - we already talked about an instance of this: auto-regressive models -- since they rely on the previous terms, the Jacobian is triangular and the determinant is very easy
 
 If \(f(X)\) is a multi-layer network, \(f(X)\) is a composition of functions \(f^{(l)}\)
-- the Jacobian of comosition is the **product of all Jacobians** (consequence of chain)
+- the Jacobian of composition is the **product of all Jacobians** (consequence of chain)
 - the determinant is the **product of determinants** (consequence of linear algebra)
 - \(\Rightarrow\) determinant of multi-layer network is easy when layer determinants are
 - \(\Rightarrow\) popular architecture is to define all \(f^{(l)}\left(Z^{(l-1)}\right)\) as auto-regressive functions
@@ -553,7 +553,7 @@ TODO: add the drawing here
             - optionally \(\eta\): random variables for non-deterministic simulation
             - deterministic \(X = \phi(Y)\) (the simulation program) \(\Rightarrow p^{S}(X \mid Y) = \delta(X - \phi(Y))\)
             - non-deterministic \(X = \phi(Y, \eta)\) -- "noise outsourcing" \(\Rightarrow p^S(X \mid Y) = \phi_{\#}p^S(Y, \eta)\)
-- **simulation paradigm:** if we knew \(Y\), we could predit \(X\)
+- **simulation paradigm:** if we knew \(Y\), we could predict \(X\)
     - since we don't know \(Y\), try multiple \(Y\) and generate alternate scenarios
         - _during covid, get various assumptions about the virus and about prevention measures (\(Y\)) and simulate what happens (\(X\)), getting various scenarios_
     - it's hard to select a good set of \(Y\)s -- SBI improves upon this
@@ -587,16 +587,16 @@ TODO: add the drawing here
         - approximate true likelihood by \(p(X \mid Y) \approx p^S(X \mid Y)\)
 2. **inverse inference:** run the simulation backwards: \(Y = \phi^{-1}(X)\)
     - usually intractable (no analytic solution) and/or ill-posed (no inverse)
-    - _traditional solution would be to pick constrainst & regularization that select one_
+    - _traditional solution would be to pick constraints & regularization that select one_
     - SBI solution: pick probabilistic via Bayes rule \[p^S(Y \mid X) = \frac{p^S(Y) p^S(X \mid Y)}{p^S(X)}\]
         - define equivalence classes \(\mathcal{F}(X) = \left\{Y : \exists \eta \ \text{with}\ \phi(Y, \eta) = X\right\}\)
             - _all \(Y\)s that could have produced given \(X\)_
         - posterior \(p^S(Y \mid X)\) assigns a "possibility" to every \(Y \in \mathcal{F}(X)\)
         - problems:
-            - if likelihood \(p^S(X \mid Y)\) is only implicitly defined then Bayes rule canot be calculated (i.e. surrogate model above)
+            - if likelihood \(p^S(X \mid Y)\) is only implicitly defined then Bayes rule cannot be calculated (i.e. surrogate model above)
             - even if \(p^S(X \mid Y)\) (or a surrogate) is known, Bayes rule is usually intractable
                 - \(\Rightarrow\) learn generative model for posterior \(p(Y \mid X) \approx p^S(Y \mid X)\)
-3. **model missclasification & outliner detection** -- a simulation is **not** reality: \[\underbrace{p^S(Y) \cdot p^S(X \mid Y)}_{\text{simulation}} \approx \underbrace{p^*(Y)p^*(X \mid Y)}_{\text{reality}}\]
+3. **model misclassification & outlier detection** -- a simulation is **not** reality: \[\underbrace{p^S(Y) \cdot p^S(X \mid Y)}_{\text{simulation}} \approx \underbrace{p^*(Y)p^*(X \mid Y)}_{\text{reality}}\]
     - \(\Rightarrow\) use SBI to detect if \(p^S(X, Y) \neq p^*(X, Y)\)
     - this and observed outcome \(X^{\text{obs}} \sim p^*(X, Y)\) compatible with \(p^S(X, Y)\)
         - if not, the simulation is unrealistic -- "simulation gap"
@@ -814,7 +814,7 @@ _There is a missing lecture here! See slides for what was in it._
 <a href="3-5.pdf">slides</a>
 {{% /float_box %}}
 
-### Epidemology: SIR model
+### Epidemiology: SIR model
 - **an example of SBI**
 - _[Kermach & McKendrick 1927]_
 - Susceptible \(S\): people who are healthy but can get infected
@@ -836,7 +836,7 @@ _There is a missing lecture here! See slides for what was in it._
     - infected people are not isolated, but meet others as usual
         - \(\Rightarrow\) a fraction \(I/N\) of the \(\lambda_1\) meetings is potentially contagious
     - a fraction \(\lambda_2\) of all the dangerous meetings actually leads to transmissions
-    - if we observe a reduction in infections, we cannot distinguish if people became more cautious (\(\lambda_1\) goes down) or the virus is less infections (\(\lambda_2\) goes down)
+    - if we observe a reduction in infections, we cannot distinguish if people became more cautious (\(\lambda_1\) goes down) or the virus is less infectious (\(\lambda_2\) goes down)
         - \(\Rightarrow\) can only recover \(\lambda = \lambda_1 \lambda_2\)
     - nobody dies and infected people recover after \(\delta\) days
     - the rates are the following:
@@ -972,11 +972,11 @@ _Some more stuff was here but brain small._
 1. create synthetic training data \[TS_l = \left\{\left(Y_{il} \sim p(Y \mid \mathcal{M} = l), X_i \sim p(X \mid Y_{ill}, \mathcal{M} = l)\right)\right\}_{i=1}^{N_l}\]
 2. train a separate SBI model for each \(TS_l\) with \(\text{MMD}\) so that \(p(h_l(X)) = \mathcal{N}(0, \mathbb{I})\)
 3. perform internal validation for each \(l\), redesign \(\text{SBI}_l\) until successful
-4. train a sofmax classifier \(p(\mathcal{M} \mid X)\) using combined \(\mathrm{TS}\)
+4. train a softmax classifier \(p(\mathcal{M} \mid X)\) using combined \(\mathrm{TS}\)
     - \(\hat p(\mathcal{M} \mid X) = \argmin_P \frac{1}{L} \sum_{l=1}^{L} \frac{1}{N_l} \sum_{i=1}^{N_l} -\log p(\mathcal{M} = l \mid X = X_{il})\)
 5. external validation given \(X^{\text{obs}}\)
     - model misspecification detection
-    - compute logits of model classifier \(S_l\) (penultimate layer, before sofmax)
+    - compute logits of model classifier \(S_l\) (penultimate layer, before softmax)
     - define classifier \(p(\mathcal{M} \mid X^{\text{obs}}) = \mathrm{softmax}(S_l: l \in \mathcal{M}^{\mathrm{in}})\)
     - model comparison by posterior odds
 
@@ -986,7 +986,7 @@ _Some more stuff was here but brain small._
 - **example:** epidemiologist write SIR equations in terms of natural/conceptual parameters
     - \(\lambda_1\): average number of people a healthy person meets per day
     - \(\lambda_2\): fraction of meetings leading to transmission
-    - in SIR equatoins, we always have \(\lambda_1 \lambda_2 \implies\) cannot distinguish them, but can infer \(\lambda = \lambda_1 \lambda_2\)
+    - in SIR equations, we always have \(\lambda_1 \lambda_2 \implies\) cannot distinguish them, but can infer \(\lambda = \lambda_1 \lambda_2\)
     - if we still use \(\lambda_1, \lambda_2 \implies\) posterior shows the degeneracy (infinitely many pairs (\(\lambda_1, \lambda_2\)) for fixed \(\lambda = \lambda_1 \lambda_2\))
     - degeneracy is easy to spot, but generally difficult and hard to distinguish from bad convergence of neural network
 
@@ -1020,7 +1020,7 @@ _Here we discuss Estimation of a non-linear mixed effects model [Arruda et al 20
 {{% /float_box %}}
 
 ### SINDy-Autoencoders
-- "Sparse Identificator of Non-Linear Dynamics"
+- "Sparse Identification of Non-Linear Dynamics"
 - we have a dynamic system that produces real-world measurements
 - observation takes place in a **different coordinate system** (e.g. measurements of the planets from earth's perspective/unknown canonical coordinates)
 
@@ -1066,7 +1066,7 @@ TODO: image here
 - PINN approach to learning:
     - two bounds of points (later 3)
         - **data points** \(\hat =\) TS where \(f(t)\) is (approximately) known (at least the data for initial condition)
-        - **collocatoin points** where we apply the regularizer
+        - **collocation points** where we apply the regularizer
             - \(t \in \mathrm{CP}\): check if ODE is fulfilled at \(t\)
     - regularization term: \[\mathrm{loss}_{\mathrm{ODE}} = \frac{1}{M} \sum_{m=1}^{M} \left(\frac{\partial f(t_m)}{\partial t} - \lambda f(t_m)(1-f(t_m))\right)^2\]
         - if fulfilled then it should be zero for any \(t_m\) (ideally \(M \mapsto \infty\))
@@ -1088,7 +1088,7 @@ _The lecture talks here about the general case for ODEs._
 
 **Tips and tricks:**
 - use \(\tanh(u)\) activation or recently \(\mathrm{GELU}\)
-- standardize the problem (similar to sclaing features to unit variance)
+- standardize the problem (similar to scaling features to unit variance)
     - translate ODE into a "dimensionless" form (use fractions instead of absolutes)
         - nice constraint for \(0 \le f(t) \le 1\)
 - random Fourier features -- _convert features into the Fourier domain with random projections_
@@ -1163,11 +1163,11 @@ _Fever dream._
     - for non-linear pseudo-inverse pairs \(f(x), g(z)\), ambiguity is even worse
     - _open problem_ for higher dimensions
 
-We can formalize the quesiton:
+We can formalize the question:
 - encoder defines equivalence classes of data points \(x\) mapped to the same code \(z\) \[\mathcal{F}(z) = \left\{x \mid f(x) = z\right\}\]
 - decoder defines a representative \(\hat x = g(z)\) for each fiber \[\mathcal{M} = \left\{\hat x = g(z) \mid z \in \mathcal{Z}\right\}\]
 - with two constraints:
-    1. \(\hat x = g(z) \in \mathcal{F}(z)\), s othat \(f(g(z)) = z\)
+    1. \(\hat x = g(z) \in \mathcal{F}(z)\), so that \(f(g(z)) = z\)
     2. if \(g(z)\) is continuous, \(\mathcal{M}\) is also continuous
 - even if \(f(x)\) (and \(\mathcal{F}(z)\)) are fixed, infinitely many \(\mathcal{M}\) are still possible
     - same goes for \(\mathcal{M}\)

@@ -215,7 +215,7 @@ language: cs
 ![sběrnice](19-10-11_13-15-26.svg "sběrnice")
 
 - rozlišují se **adresou,** která je pro každé zařízení na sběrnici _unikátní_
-	- rozsahu těchto adres se říká **adresový prostor** (adress space)
+	- rozsahu těchto adres se říká **adresový prostor** (address space)
 - linky jsou half-duplexy bez floatingového stavu
 	- vždy se mezi sebou baví 2 zařízení
 
@@ -677,7 +677,7 @@ mov    %ax,-0x1e(%rbp)
 		- funguje také např. ASCII (`encoding="ascii"`)
 - `f.readline()` -- čtení jednoho řádku
 - `f.read(<bytes>)` -- čtení daného počtu bytů; volání bez parametru přečte vše
-	- může vrátit měně, když toho tam tolik není
+	- může vrátit méně, když toho tam tolik není
 	- pozor! u `b` módu vrací `bytes`, jinak `str`
 - `f.seek(pos)` -- nastavení offsetu od začátku souboru (v bytech)
 	- čtení ho mění
@@ -728,7 +728,7 @@ mov    %ax,-0x1e(%rbp)
 ![čípky v oku](20-19-01_20-15-41.svg "čípky v oku")
 
 - barevná bit depth:
-	- \(3b\) na pixel -- dost neúsporné (jen jestli je červelá/zelená/modrá) a blbě se rozděluje
+	- \(3b\) na pixel -- dost neúsporné (jen jestli je červená/zelená/modrá) a blbě se rozděluje
 	- \(4b\) na pixel -- poslední je intenzita (1 násobí vše 2x)
 	- \(2B\) na pixel -- 5R/5G/5B/1 nic
 		- někdy ten 1 bývá v zelené složce (oko je na ni citlivější)
@@ -766,8 +766,8 @@ mov    %ax,-0x1e(%rbp)
 	1. 1 znak \(\iff\) 1 kód (číslo)
 	2. kód \(\iff\) binární reprezentace
 		- zda bude 1 kód = \(1B\), \(2B\), proměnlivý...
-- ukládaní do paměti tak, jak by se text četl (latinka levo-pravo, arabština pravo-levo...)
-- historicky _nemívá metadata_ -- problematické (určovaní kódovaní)
+- ukládání do paměti tak, jak by se text četl (latinka levo-pravo, arabština pravo-levo...)
+- historicky _nemívá metadata_ -- problematické (určování kódování)
 
 ##### ASCII
 - _American Standard Code for Information Interchange_

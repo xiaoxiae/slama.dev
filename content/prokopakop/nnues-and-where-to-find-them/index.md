@@ -160,14 +160,14 @@ This usually involves captures, since these are at the heart of many tactics, so
 Until now, we've resolved them by simply playing them out as recursive quiescence search calls, but we can do better.
 There are many capture sequences that we don't ever need to consider, since they're obviously bad (think `Qxp` followed by `pxQ`) and do not warrant a function call.
 
-This is where [**static exchange evaluation**](https://www.chessprogramming.org/Static_Exchange_Evaluation) comes in handy -- instead of recursive calls, we will do the evaluation **statically**, calculating the **overal result** instead of recursing, since that's the only thing we need in quiescence search.
+This is where [**static exchange evaluation**](https://www.chessprogramming.org/Static_Exchange_Evaluation) comes in handy -- instead of recursive calls, we will do the evaluation **statically**, calculating the **overall result** instead of recursing, since that's the only thing we need in quiescence search.
 
 While the implementation is a bit tricky to get both right and fast, the core idea is simple: there are **pieces attacking a square with a piece**. We want to calculate what is the **material gain of the sequence** by iteratively **simulating the captures**.
 
 There are two observations that produce the algorithm that we'll use. The first observation is that each of the players can **stop** capturing at **any time**.
 This means that while one player might have overwhelming material advantage (i.e. 2 queens), they shouldn't capture a pawn if it's being protected by a bishop.
 
-The second observation is that it's **always optimal** to capture with your **lowest-value** piece[^checks], since the opponent can always chose to stop capturing and so you didn't help anything by sending higher-valued pieces earlier.
+The second observation is that it's **always optimal** to capture with your **lowest-value** piece[^checks], since the opponent can always choose to stop capturing and so you didn't help anything by sending higher-valued pieces earlier.
 
 [^checks]: This is not true, since we're ignoring checks, in-between moves (usually checks), sacrifices, and other tactics. However, quiescence search is not the right place to explore these and they will be explored properly in alpha-beta afterwards anyway, so we're fine.
 
@@ -315,7 +315,7 @@ It will of course be the neurons in the first layer corresponding to the changed
 Since we're dealing with a fully connected network, we only need to update the values of the neurons that the **changed input neuron is connected to** (and the subsequent layers), instead of having to re-calculate the entire network.
 If the network is shallow enough (i.e. 1 hidden layer), the number of operations needed for the evaluation then equals the **size of the hidden layer!**
 
-![](network.svg "**Basic NNEU architecture examples** <br> **A)** shows the portion of the network to be recalculated (blue),<br>**B)** shows an improved NNUE architecture with two accumulators, and<br>**C)** adds two [buckets](#buckets) for early/late game weights.")
+![](network.svg "**Basic NNUE architecture examples** <br> **A)** shows the portion of the network to be recalculated (blue),<br>**B)** shows an improved NNUE architecture with two accumulators, and<br>**C)** adds two [buckets](#buckets) for early/late game weights.")
 
 Since the first hidden layer repeatedly adds/subtracts values based on how the pieces move on the board, it is referred to as the **accumulator**.
 Usually, **two accumulators** are used instead, one for the **side to move** and the other for the **side not to move**, since this takes full advantage of the game symmetry and allows the network to learn different features for both the "player" (positive) and "opponent" (negative).

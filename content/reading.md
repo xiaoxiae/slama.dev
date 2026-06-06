@@ -39,7 +39,7 @@ If you have a good book for me to read, let me know and I'll be happy to check i
 - **The Rithmatist** <span class="half-visible">(2013)</span> [[Wikipedia](https://en.wikipedia.org/wiki/The_Rithmatist)] -- an excellent young adult fantasy novel. Although the target audience is teenagers (which is reflected mostly in character behavior and development), I still loved discovering yet another unique magic system that Sanderson created.
 
 - **Secret Projects** [[context video](https://www.youtube.com/watch?v=6a-k6eaT-jQ)]
-	1. **Tress of the Emerald Sea** <span class="half-visible">(2023)</span> -- a fascinating fairtale-like novel from the Cosmere.
+	1. **Tress of the Emerald Sea** <span class="half-visible">(2023)</span> -- a fascinating fairytale-like novel from the Cosmere.
 	2. **The Frugal Wizard's Handbook for Surviving Medieval England** <span class="half-visible">(2023)</span> -- a fun novel about multiverse traveling and... marketing?
 	3. **Yumi and the Nightmare Painter** <span class="half-visible">(2023)</span> -- very evocative and narrated by Hoid (who was a coatrack).
 	4. **The Sunlit Man** ⭐ <span class="half-visible">(2023)</span> -- a western by Brandon Sanderson? Not quite, but it has similar vibes.
@@ -96,5 +96,5 @@ If you have a good book for me to read, let me know and I'll be happy to check i
 
 - **Surely You're Joking, Mr. Feynman!** <span class="half-visible">(2008)</span> [[Wikipedia](https://en.wikipedia.org/wiki/Surely_You%27re_Joking,_Mr._Feynman!)] by _Ralph Leighton_ and _Richard Feynman_ -- an auto(sort-of)biography about the life of Richard Feynman. I honestly don't understand how this many interesting things can happen in the life of a single person, yet they have and are a joy to read.
 
-- **The Soul of a New Machine** ⭐ <span class="half-visible">(1981)</span> [[Wikipedia](https://en.wikipedia.org/wiki/The_Soul_of_a_New_Machine)] by _Tracy Kidder_ -- a story about the development of the [Data General Eclipse MV/8000](https://en.wikipedia.org/wiki/Data_General_Eclipse_MV/8000) machine. Both depressing and hearthwarming, it follows the lives and circumstances of the people developing the machine. No prior computer knowledge necessary (although it will probably be a more pleasant read), as the more technical parts of the book are explained really well.
+- **The Soul of a New Machine** ⭐ <span class="half-visible">(1981)</span> [[Wikipedia](https://en.wikipedia.org/wiki/The_Soul_of_a_New_Machine)] by _Tracy Kidder_ -- a story about the development of the [Data General Eclipse MV/8000](https://en.wikipedia.org/wiki/Data_General_Eclipse_MV/8000) machine. Both depressing and heartwarming, it follows the lives and circumstances of the people developing the machine. No prior computer knowledge necessary (although it will probably be a more pleasant read), as the more technical parts of the book are explained really well.
 {.spaced-list}

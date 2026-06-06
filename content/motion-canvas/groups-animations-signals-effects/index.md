@@ -120,7 +120,7 @@ Before trying to animate this, here are a few useful things:
 
 1. to move a circle along a nice path, you can define a **spline** between two points and then move along it using the {{< doc "motion-canvas" "getPointAtPercentage" "2d/components/Curve#getPointAtPercentage" >}} function (see the [documentation page for splines](https://motioncanvas.io/docs/spline))
 2. to animate a value from `0` to `1` that we can use for the percentage value, we can create and animate a new signal (more about what that is in the [next Motion Canvas post](/motion-canvas/2/))
-3. the {{< doc "motion-canvas" "easeInOutExpo" "core/tweening#easeInOutExpo" >}} easing curve is nicer for shuffing since it's more sudden than the default
+3. the {{< doc "motion-canvas" "easeInOutExpo" "core/tweening#easeInOutExpo" >}} easing curve is nicer for shuffling since it's more sudden than the default
 
 All of the above can be summarized in the following animation:
 

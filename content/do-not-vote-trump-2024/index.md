@@ -18,7 +18,7 @@ It will be updated with new information up until the election, so please let me 
 Let's get into it.
 
 
-### Trump **lead an insurrection**
+### Trump **led an insurrection**
 
 Trump has, without a doubt, **attempted to coup the government,** in a scheme that culminated in the January 6th Capitol riots.
 What is absolutely mind-melting is that if you ask most people what happened, they will respond with something akin to this:
@@ -33,7 +33,7 @@ The [actual plan](https://en.wikipedia.org/wiki/Trump_fake_electors_plot), outli
 The central idea was to submit [**fake slates of electors**](https://en.wikipedia.org/wiki/Trump_fake_electors_plot)[^fake] for 7 states where Trump lost, _along with the real ones_, which were Arizona, Georgia, Michigan, Nevada, New Mexico, Pennsylvania and Wisconsin (states where Biden won only by a narrow margin).
 The plan hinged on [Mike Pence](https://en.wikipedia.org/wiki/Mike_Pence) going along with this when counting the elector votes (could have gone many different ways, each resulting in Trump's re-election[^memo]).
 
-[^memo]: Taken directly from he [Eastman Memos](https://en.wikipedia.org/wiki/Eastman_memos):
+[^memo]: Taken directly from the [Eastman Memos](https://en.wikipedia.org/wiki/Eastman_memos):
     - VP Pence, presiding over the joint session, begins to open and count the ballots.
     - When he gets to Arizona, he announces that he has **multiple slates of electors,** and so is going to defer decision on that until finishing the other States.
     - At the end, he announces that because of the ongoing disputes in the 7 States, there are no electors that can be deemed validly appointed in those States. That means the total number of "electors appointed" – the language of the 12th Amendment – is 454. A "majority of the electors appointed" would therefore be 228. There are at this point 232 votes for Trump, 222 votes for Biden. **Pence then gavels President Trump as re-elected.**
@@ -65,9 +65,9 @@ Luckily, and despite [repeatedly being pressured](https://en.wikipedia.org/wiki/
 Note that this is only the most egregious part of the scheme -- I suggest you read through the [Wikipedia page](https://en.wikipedia.org/wiki/Attempts_to_overturn_the_2020_United_States_presidential_election) to get a quick summary as well as the **full [Jan 6th indictment](https://www.justice.gov/storage/US_v_Trump_23_cr_257.pdf)** to get the full scope.
 
 Here are some quick things to note to conclude this section:
-- [**the rioters broke into the capitol first**](https://www.youtube.com/watch?v=jWJVMoe7OY0) -- the footage of them being lead by the police was them being lead to areas where they couldn't harm the congresspeople (remember, that's why they broke inside -- to _stop the vote,_ which was being held inside)
+- [**the rioters broke into the capitol first**](https://www.youtube.com/watch?v=jWJVMoe7OY0) -- the footage of them being led by the police was them being led to areas where they couldn't harm the congresspeople (remember, that's why they broke inside -- to _stop the vote,_ which was being held inside)
 - [**all of Trump's allegations of fake/incorrect votes were ruled to be false**](https://en.wikipedia.org/wiki/Attempts_to_overturn_the_2020_United_States_presidential_election#Election_audits) -- audits were performed in most of the states, **many by Trump-appointed conservative judges**, and found virtually[^audits] no issues.
-- **[Trump does not deny any of this](https://www.youtube.com/watch?v=MXQ43yyJvgs)** -- his response was to have is lawyers go to the supreme court and ask for absolute criminal immunity for official acts, which he received due to the current 6/3 republican/democrat split.
+- **[Trump does not deny any of this](https://www.youtube.com/watch?v=MXQ43yyJvgs)** -- his response was to have his lawyers go to the supreme court and ask for absolute criminal immunity for official acts, which he received due to the current 6/3 republican/democrat split.
 
 [^audits]: No issues in some states, a tiny number of duplicate/deceased votes in others (at most 100 for a state with ~4 million ballots, i.e. an error of at most **0.0025%**).
 

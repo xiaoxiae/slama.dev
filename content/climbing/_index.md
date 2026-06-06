@@ -17,7 +17,7 @@ icon: fa-bolt
 The following contains my climbing journal -- how many new/old boulders have I done (and links to them).
 It also serves as a convenient way to view the most recently sent boulders (you can also see a list of **[all boulders by color](/climbing/videos/)**).
 
-Since there there are some other walls that I visit from time to time, the journal entries contain clickable icons to their websites.
+Since there are some other walls that I visit from time to time, the journal entries contain clickable icons to their websites.
 
 The format for **bouldering** is <mark class="climbing-diary-record climbing-black climbing-black-text"><strong>old sends/<span class="underline">new sends</span></strong> [<a>video links</a>]</mark>, left-to-right from easy to hard.
 Videos marked <mark class="climbing-diary-record climbing-other climbing-other-text"><a>F</a></mark> are flash sends while videos marked <mark class="climbing-diary-record climbing-other climbing-other-text"><a>A</a></mark> are just regular non-flash ascents.

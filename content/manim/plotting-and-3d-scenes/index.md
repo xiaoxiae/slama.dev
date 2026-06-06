@@ -135,7 +135,7 @@ In each step of the game, **all cells at once** change by the following rules:
 
 ##### Basic variant
 Implement a game with rules \(X = \left\{4, 5\right\}, Y = \left\{5\right\}\).
-Simulate it on a \(16^3\) board with a random initial state (\(p = 0.2\) for cells to be a live) and colors determining the position in 3D space.
+Simulate it on a \(16^3\) board with a random initial state (\(p = 0.2\) for cells to be alive) and colors determining the position in 3D space.
 
 {{< video "manim" "04-gol-first" >}}
 

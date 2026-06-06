@@ -10,7 +10,7 @@ language: cs
 Tento článek obsahuje mou přípravu na státní zkoušky z **Obecné informatiky** pro akademický rok **2021/2022** (tj. nová akreditace).
 Podrobné informace o všech specializacích jsou k dispozici v [tomto PDF](https://www.mff.cuni.cz/cs/studenti/bakalarske-studium/statni-zaverecne-zkousky/bakalarske-statni-zkousky-studijniho-programu-informatika/detailni-pozadavky.pdf) (informace na této stránce jsou z 1.6.2022 updatu tohoto dokumentu).
 
-U každé časti tématu je jeden nebo více odkazů (🔗) na zdroje, ze kterých je možné se téma učit.
+U každé části tématu je jeden nebo více odkazů (🔗) na zdroje, ze kterých je možné se téma učit.
 U celých předmětů jsou vždy odkazy na zdroje (ať už se jedná poznámky, slidy či skripta).
 Pokud je u předmětu symbol kartičky (🃏), tak je zahrnut v [tomto Anki balíčku](https://github.com/xiaoxiae/AnkiMFF), ze kterého může být dobré si celý předmět zopakovat.
 

@@ -82,7 +82,7 @@ We're using the optimal solution to the linear program (and generally the formul
 	- variables will be:
 		- \(y_i\) for _each literal_
 		- \(z_j\) for _each clause_
-	- inequalitites will be one for _each clause,_ in the form \[z_j \le \sum_{\text{positive}} y_i + \sum_{\text{negative}} (1 - y_i)\]
+	- inequalities will be one for _each clause,_ in the form \[z_j \le \sum_{\text{positive}} y_i + \sum_{\text{negative}} (1 - y_i)\]
 	- we'll _maximize_  the number of satisfied clauses \(\sum z_j\)
 3. relax the program (allow real variables instead of integers) and calculate the optimum \(y^*, z^*\)
 4. set literals \(x_i\) to \(1\) with probability \(y_i^*\)

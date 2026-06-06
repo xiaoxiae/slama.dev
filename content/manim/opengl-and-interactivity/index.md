@@ -79,7 +79,7 @@ We can do a similar thing for interactivity with the mouse:
 ### Camera
 The OpenGL camera [[source code](https://github.com/ManimCommunity/manim/blob/main/manim/renderer/opengl_renderer.py)] offers quite a few functions that work really well in combination with interactivity and can be combined in a really nice way.
 
-For example, one neat thing we can do is manually move camera into a number of positions and then smoothy interpolate among them using the following code:
+For example, one neat thing we can do is manually move camera into a number of positions and then smoothly interpolate among them using the following code:
 
 ```python {file="06-camera-example.py"}
 ```

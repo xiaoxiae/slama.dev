@@ -34,7 +34,7 @@ _A proof of Vizing's theorem about graph edge coloring._
 2023/07/03 -- **The Art of Linear Programming** [[YouTube](https://www.youtube.com/watch?v=E72DWgKP_1Y)]<br/>
 _A visual-heavy introduction to Linear Programming including basic definitions, solution via the Simplex method and the principle of duality._
 
-2023/01/20 -- **Thesesus and the Minotaur | Exploring State Space** [[YouTube](https://www.youtube.com/watch?v=umszOeerdsU)]<br/>
+2023/01/20 -- **Theseus and the Minotaur | Exploring State Space** [[YouTube](https://www.youtube.com/watch?v=umszOeerdsU)]<br/>
 _A visual introduction to algorithms that explore the state space (BFS, Dijkstra, A*)._
 
 2022/08/16 -- **The Remarkable BEST-SAT Algorithm** [[YouTube](https://www.youtube.com/watch?v=OV82ab-C85w)]<br/>

@@ -356,7 +356,7 @@ As we have reached the end of the move generation portion of this article, here 
 
 As we can see, three places stand out in this graph:
 - the **first major spike in speed** (commit [`f0253e`](https://github.com/xiaoxiae/Prokopakop/commit/f0253eebc1ee2ec9fdd17dde95d1b9b039ae073f)) was caused by **removing the attack bitboards;** since these were previously calculated every move and consisted of evaluating all attacks of all pieces on the board, this is not surprising
-- the **first major crash** (commit [`1d8e55`](https://github.com/xiaoxiae/Prokopakop/commit/1d8e55)) was caused by **starting to move away from the make/unmake-based move generation** by splitting each move generation into different functions based on the number of attacks; as this only included the spitting, but no optimized code, this introduced a large amount of branching that killed the speed
+- the **first major crash** (commit [`1d8e55`](https://github.com/xiaoxiae/Prokopakop/commit/1d8e55)) was caused by **starting to move away from the make/unmake-based move generation** by splitting each move generation into different functions based on the number of attacks; as this only included the splitting, but no optimized code, this introduced a large amount of branching that killed the speed
 - the **second major spike** (commits [`a67205`](https://github.com/xiaoxiae/Prokopakop/commit/a67205) and [`5bc16a`](https://github.com/xiaoxiae/Prokopakop/commit/5bc16a)) were caused by **finishing moving away from the make/unmake-based move generation** by introducing functions optimized for zero/one/two+ king attacks
 
 The engine is slower than Stockfish (\(9.74\text{s}\) for Prokopakop vs. \(8.71\text{s}\) for Stockfish on `perft(7)`), but this is simply a skill issue because I'm not spending more time on this when I haven't written any search & evaluation functionality yet.
@@ -399,7 +399,7 @@ Then we propagate these scores back up the tree: maximizing nodes take the maxim
 
 While minimax is an important foundation to our search functionality, we can greatly improve it, as the first commit in this part of the article does, by using **[alpha-beta pruning](https://www.chessprogramming.org/Alpha-Beta)**.
 
-Let's say that we we have just fully explored the move `A`, which was a regular move that gave us a slight advantage.
+Let's say that we have just fully explored the move `A`, which was a regular move that gave us a slight advantage.
 We then proceed to `B`, which is actually a blunder, and we find this out quickly after exploring the first opponent response, which is extremely strong.
 Since the opponent has a **strong response**, which if he were to play would put us in a **worse position than `A`**, we can **prune** the rest of `B` -- no matter what the other moves are, if the opponent picks this response, it will be worse for us than the output of `A`, so we won't bother exploring just how bad it is for us.
 

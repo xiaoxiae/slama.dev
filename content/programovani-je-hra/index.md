@@ -355,7 +355,7 @@ def mousePressed():
 
 - také je možné využít proměnné `mouseX` a `mouseY`, které udržují pozici kurzoru myši
 
-1. Naprogramujte kruh, který se vždy vykresuje na pozici myši. [[řešení](4.2.1-1.py)]
+1. Naprogramujte kruh, který se vždy vykresluje na pozici myši. [[řešení](4.2.1-1.py)]
 	- přidejte pohyb plynulý (aby se kruh plynule přibližoval k myši) [[řešení](4.2.1-2.py)]
 
 #### Barvičky!

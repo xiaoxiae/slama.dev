@@ -45,7 +45,7 @@ Note that vertices and edges need not be circles and segments -- we can use cust
 
 {{< video "manim" "03-starry-sky-example" >}}
 
-As the code suggests, the current implementation expects both `vertex_type` and `edge_type` to be functions returning a {{< doc "manim" "MObject" "reference/manim.mobject.mobject.html" >}}. Besides this, the `edge_type` function must have an optional `z_index` parameter, since the graph implementation sets it to a negative number to push the edges behind the vertices. Additionally, the edges must have a `put_start_and_end_on` function (which {{< doc "manim" "DashedLine" "reference/manim.mobject.geometry.line.DashedLine.html" >}} does), since this is what edge udaters call when vertices move.
+As the code suggests, the current implementation expects both `vertex_type` and `edge_type` to be functions returning a {{< doc "manim" "MObject" "reference/manim.mobject.mobject.html" >}}. Besides this, the `edge_type` function must have an optional `z_index` parameter, since the graph implementation sets it to a negative number to push the edges behind the vertices. Additionally, the edges must have a `put_start_and_end_on` function (which {{< doc "manim" "DashedLine" "reference/manim.mobject.geometry.line.DashedLine.html" >}} does), since this is what edge updaters call when vertices move.
 
 #### Random graphs
 If we don't want to create random graphs manually, we can use the popular [`networkx`](https://networkx.org/documentation/stable/reference/introduction.html) library, which contains a number of useful graph generators and graph-related functions.

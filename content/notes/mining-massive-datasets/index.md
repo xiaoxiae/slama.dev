@@ -33,7 +33,7 @@ _Note that the notes only cover the topics [required for the exam](exam.pdf), wh
 
 ### Lecture overview
 
-1. Spark architecture and RRDs [[slides](01.pdf)]
+1. Spark architecture and RDDs [[slides](01.pdf)]
 2. Spark Dataframes + Pipelines [[slides](02.pdf)]
 3. Recommender Systems 1 [[slides](03.pdf)]
 4. Recommender Systems 2 [[slides](04.pdf)]
@@ -279,7 +279,7 @@ We can bias the random page walk to teleport to relevant pages (from set \(S\)).
 \[A_{ij} = \beta M_{ij} + \begin{cases} (1 - \beta) / |S| & i \in S \\ 0 & \text{otherwise} \end{cases}\]
 
 #### TrustRank
-Adresses issues with spam farms, which are pages that just point to one another.
+Addresses issues with spam farms, which are pages that just point to one another.
 The general idea to fix this is to use a set of **seed pages** from the web and identify the ones that are „good“, i.e. **trusted**.
 Then perform topic-specific pagerank with \(S =\) trusted pages, which propagates the trust to other pages.
 After this, websites with trust below a certain threshold are spam.
@@ -452,7 +452,7 @@ We want to **respond to each search query** with a set of advertisers such that:
 **BALANCE:** pick the advertiser with the **largest unspent budget** (largest balance)
 - has a competitive ratio of \(\ge 3/4\)[^proof-balance] (for \(2\) advertisers and budget \(\ge 2\))
 - in general, has a competitive ratio of \(\ge 1 - 1/e \cong 0.63\) (same budget for advertisers, arbitrary number of advertisers, bids are 0 or 1)
-	- no online algorithm has better competitive ration for this case
+	- no online algorithm has better competitive ratio for this case
 
 [^proof-balance]:
 	Here is the proof from the lecture:

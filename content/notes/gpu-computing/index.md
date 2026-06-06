@@ -115,7 +115,7 @@ int main() {
 - **only accessible from the thread's block**
 - access costs is (in the best case) equal to register access
 - lifetime is same as thread block lifetime
-- can be around \(48 kB\) for a block (with SM having more to accomodate more blocks)
+- can be around \(48 kB\) for a block (with SM having more to accommodate more blocks)
 - organized into \(n\) **banks:**
 	- typically 16-**32** banks with 4B width
 	- parallel access if no conflict (otherwise results in serialization)
@@ -863,7 +863,7 @@ int main() {
 ```
 
 ##### `kernels` pragma
-- the compiler will let us now what it did
+- the compiler will let us know what it did
 	- which kernels it launched
 	- what it copied
 

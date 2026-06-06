@@ -14,7 +14,7 @@ A collection of my long-term goals and progress towards them.
 |             | <span class="silver">backflip</span> \| <span class="gold">frontflip</span>                    |               |
 |             | 10k <span class="silver">5:45/km</span> \| <span class="gold">5:30/km</span>                   | training! |
 |             |                                                                                                |               |
-| Programming | <span class="silver">3</span> \| <span class="gold">5</span> Poylog videos                     | 1 |
+| Programming | <span class="silver">3</span> \| <span class="gold">5</span> Polylog videos                     | 1 |
 |             |                                                                                                |               |
 |       Other | Read <span class="silver">12</span>\|<span class="gold">18</span> new books                    | 1 |
 |             | Release <span class="silver">12</span>\|<span class="gold">18</span> blog posts                | 3 |

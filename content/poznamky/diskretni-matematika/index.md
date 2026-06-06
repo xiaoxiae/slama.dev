@@ -76,7 +76,7 @@ Nechť \(R\) je ekvivalence na \(X\). Potom:
 {{< /math >}}
 
 {{< math "definition" "Hasseův diagram" >}}
-Uvažme uspořadání \(\left(\left\{1, 2, 3\right\}, \subseteq\right)\). Jeho Hasseův diagram bude vypadat následně:
+Uvažme uspořádání \(\left(\left\{1, 2, 3\right\}, \subseteq\right)\). Jeho Hasseův diagram bude vypadat následně:
 {{< /math >}}
 
 ![](hasse.svg)
@@ -89,7 +89,7 @@ Uvažme uspořadání \(\left(\left\{1, 2, 3\right\}, \subseteq\right)\). Jeho H
 	- silnější kritérium než minimální, jelikož musí se všemi být porovnatelný
 
 {{< math "definition" "lexikografické uspořádání" >}}
-Nechť \(X\) je abeceda a \(\le\) uspořadání na \(X\). Pak definujeme lexikografické uspořádání \(\left(X^2, \le_{LEX}\right)\) následně: \[\left(a, b\right) \le_{LEX} \left(a', b'\right) \equiv \left(a < a'\right) \lor \left(a = a' \land b \le b'\right)\]
+Nechť \(X\) je abeceda a \(\le\) uspořádání na \(X\). Pak definujeme lexikografické uspořádání \(\left(X^2, \le_{LEX}\right)\) následně: \[\left(a, b\right) \le_{LEX} \left(a', b'\right) \equiv \left(a < a'\right) \lor \left(a = a' \land b \le b'\right)\]
 - nejprve se rozhoduje podle prvního, pak podle druhého
 - lze generalizovat pro více (kartézský součin) množin
 {{< /math >}}
@@ -331,7 +331,7 @@ nechť \(d_1 \le d_2 \le \ldots \le d_n\) posloupnost přirozených čísel. Pak
 {{< /math >}}
 
 {{< math "proof" >}}
-- \(\Rightarrow\): víme, že \(d_1', d_2', \ldots d_{n - 1}' \) je skórem grafu, stačí tedy přilepit vrchol a propojit ho patřičnými hranamy k existujícímu grafu:
+- \(\Rightarrow\): víme, že \(d_1', d_2', \ldots d_{n - 1}' \) je skórem grafu, stačí tedy přilepit vrchol a propojit ho patřičnými hranami k existujícímu grafu:
 	- \(V\left(G\right) = \left\{v_1', \ldots, v_{n - 1}', v_n\right\}\)
 	- \(E\left(G\right) = E\left(G'\right) \cup \left\{\left\{v'i, v_n\right\} \mid n - d_n \le i \le n - 1\right\}\)
 	- pozor! opačně nefunguje, jelikož nemáme jistotu, že odebíráme od těch zprava
@@ -387,7 +387,7 @@ Graf \(G\) je _souvislý_ \(\ \equiv \forall u, v \in V\left(G\right) \exists\ \
 - relace dosažitelnosti: \(\sim\) na \(V\left(G\right)\): \(u \sim v \equiv \exists\) cesta z \(u\) do \(v\)
 	- je to ekvivalence: je _reflexivní_ (cesta z \(u\) do \(u\) velikosti 0), _symetrická_ (graf je neorientovaný) i _tranzitivní_ (jen pozor na to, že to po slepení může být sled -- je potřeba to ošetřit)
 
-V souvislém grafu \(G\) je vzdálenost vrcholu \(u, v\) _minimum_ z delek cest z \(u\) do \(v\) (značíme \(\rho\left(u, v\right)\)).
+V souvislém grafu \(G\) je vzdálenost vrcholu \(u, v\) _minimum_ z délek cest z \(u\) do \(v\) (značíme \(\rho\left(u, v\right)\)).
 - jedná se o _metriku_, jelikož splňuje následující:
 	1. \(\forall u, v: \rho\left(u, v\right) \ge 0\)
 	2. \(\forall u, v: \rho\left(u, v\right) = 0 \iff u = v\)
@@ -582,7 +582,7 @@ Graf je _rovinný_, pokud existuje nějaké jeho rovinné nakreslení.
 {{< math "definition" "topologický graf" >}}graf nakreslený do roviny.{{< /math >}}
 
 {{< math "theorem" "Jordanová věta" >}}
-Nechť \(T\) je topologická kružnice v \(\mathbb{R}^2\). Pak \(\mathbb{R}^2 \setminus T\) má právě 2 komponenty obloukové souvislosti: 1 omezenou, 1 neomezenou a \(T\) je jejich společnou hranicní.
+Nechť \(T\) je topologická kružnice v \(\mathbb{R}^2\). Pak \(\mathbb{R}^2 \setminus T\) má právě 2 komponenty obloukové souvislosti: 1 omezenou, 1 neomezenou a \(T\) je jejich společnou hranicí.
 {{< /math >}}
 - těžké dokázat
 
@@ -647,7 +647,7 @@ fixujeme \(v\), indukce podle \(e\):
 {{< /math >}}
 
 {{< math "theorem" >}}
-pro maximálné rovinný graf \(G\) s \(v \ge 3\) jsou všechny jeho stěny trojúhelníky.
+pro maximálně rovinný graf \(G\) s \(v \ge 3\) jsou všechny jeho stěny trojúhelníky.
 {{< /math >}}
 
 {{< math "definition" >}}
@@ -728,7 +728,7 @@ každý rovinný graf je 5-obarvitelný.
 - indukcí podle počtu vrcholů: uvažme \(v \in V\left(G\right)\) s minimálním stupněm -- ten odtrhneme, graf podle IP obarvíme a rozebereme případy:
 	- „každý podgraf \(d\)-degenerovaného grafu obsahuje vrchol stupně menšího než \(d\)“
 	- \(\mathrm{deg}(v) > 5\) nenastane (vztah \(e = 3v - 6\))
-	- pro \(\mathrm{deg}(v) = 5\): pokud jsou nějaké barvy stejné, tak obarvíme zbylou; jinak uvažme zeleno-červený podgaf vycházející z vrcholu \(a\)... pro ten mohou nastat dva případy:
+	- pro \(\mathrm{deg}(v) = 5\): pokud jsou nějaké barvy stejné, tak obarvíme zbylou; jinak uvažme zeleno-červený podgraf vycházející z vrcholu \(a\)... pro ten mohou nastat dva případy:
 		1. pokud \(c\) nepatří do podgrafu, tak prohodíme _všechny barvy v podgrafu_ a jedné se tím na problematickém vrcholu zbavíme
 		2. pokud patří, tak uděláme totéž s vrcholy \(b\) a \(d\); oba případy najednou nastat nemohou, jelikož by se křížily v hraně (nelze -- poruší rovinnost) nebo ve vrcholu (nelze, ten už má barvu)
 

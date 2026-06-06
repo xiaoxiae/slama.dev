@@ -7,7 +7,7 @@ toc: true
 ---
 
 **Update 19. 3. 2026:** while the core of the article holds, it's not quite using the state of the art.
-Since I wanted to put up some usable version of the subtitles, I used **[Bilbo](/bilbo/)** (one of my recent projects) which uses [`faster-whisper`](https://github.com/SYSTRAN/faster-whisper) with the `large-v3` model and [Silero VAD](https://github.com/snakers4/silero-vad) to get tighter timestamps, and ran the result though [Opus 4.6](https://www.anthropic.com/news/claude-opus-4-6) to both fix the miss-translated words, and to translate into English.
+Since I wanted to put up some usable version of the subtitles, I used **[Bilbo](/bilbo/)** (one of my recent projects) which uses [`faster-whisper`](https://github.com/SYSTRAN/faster-whisper) with the `large-v3` model and [Silero VAD](https://github.com/snakers4/silero-vad) to get tighter timestamps, and ran the result through [Opus 4.6](https://www.anthropic.com/news/claude-opus-4-6) to both fix the miss-translated words, and to translate into English.
 
 ---
 
@@ -18,7 +18,7 @@ Re-watching it recently, I wanted to show it to my friend who doesn't speak Czec
 Seeing as I don't have much time (master thesis), I decided to waste it by creating them.
 Further seeing as I am a programmer, I am not going to do this manually and, as the title suggests, will automate the process as much as I can.
 
-This short post covers what I did and could prove useful if case you have your own favorite movie/show that you'd like to create subtitles for.
+This short post covers what I did and could prove useful in case you have your own favorite movie/show that you'd like to create subtitles for.
 
 → [Here are the subtitles](/comeback/), if you're interested. ←
 {.center}

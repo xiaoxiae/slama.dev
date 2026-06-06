@@ -25,7 +25,7 @@ _All of the photos are licensed under **[CC-BY-NC-SA 4.0](https://creativecommon
 Me and <a class='secret' href='/assets/kacka.webp'>Kačka</a>'s trip to the USA to visit old friends and make new ones.
 
 #### [Austria 2023 🇦🇹](/photos/austria-2023/)
-Moutaineering/climbing with my Heidelberg friends.
+Mountaineering/climbing with my Heidelberg friends.
 
 #### [Tatras 2023 🇸🇰](/photos/tatras-2023/)
 5 programmers versus mountains: who would win?
