@@ -43,6 +43,12 @@ bison-boulders:
   colors: ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
   grading: number
 
+beta-boulders-sydhavn:
+  name: "Beta Boulders Sydhavn"
+  url: "http://betaboulders.com/"
+  colors: ["1", "2", "3", "4", "5", "6", "7", "8"]
+  grading: number
+
 boulder-bar:
   name: "Boulder Bar"
   url: "https://www.boulder.cz/"
@@ -107,8 +113,8 @@ mandala:
 studiobloc:
   name: "Studiobloc"
   url: "http://studiobloc.de/"
-  colors: []
-  grading: color
+  colors: ["1", "2", "3", "4", "5", "6", "7", "8"]
+  grading: number
 
 unknown:
   name: "Unknown"

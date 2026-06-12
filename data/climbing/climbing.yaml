@@ -4683,8 +4683,8 @@ sessions:
       - file: boulderhaus-mannheim-6-2026-06-02-xbsgrylp.mp4
       - file: boulderhaus-mannheim-6-2026-06-02-jldrdixn.mp4
       - file: boulderhaus-mannheim-6-2026-06-02-anyscbrr.mp4
-    wall: Boulderhaus Mannheim
     note: I feel extremely heavy. Need to lose some weight, it's not good.
+    wall: Boulderhaus Mannheim
   '2026-06-04':
     wall: Bison Boulders
     note: Copenhagen sesh; fun modern gym!
@@ -4697,3 +4697,31 @@ sessions:
       new: 1
       videos:
       - file: bison-boulders-9-2026-06-04-iaowhieb.mp4
+  '2026-06-07':
+    wall: Beta Boulders Sydhavn
+    6:
+      new: 1
+      videos:
+      - file: beta-boulders-sydhavn-6-2026-06-10-jvaafnor.mp4
+    7:
+      new: 2
+      videos:
+      - file: beta-boulders-sydhavn-7-2026-06-10-veyrsbwh.mp4
+      - file: beta-boulders-sydhavn-7-2026-06-10-gqgzuvka.mp4
+    note: Copenhagen sesh no 2.; weaker (both me and the rentals being much slippier), but some pretty fun setting.
+  '2026-06-10':
+    wall: Studiobloc
+    note: Comp sim, felt pretty decent tbh. Some really fun setting.
+    7:
+      new: 2
+      videos:
+      - file: studiobloc-7-2026-06-10-hdakdjrh.mp4
+      - file: studiobloc-7-2026-06-10-zbqhcoll.mp4
+    6:
+      new: 2
+      videos:
+      - file: studiobloc-6-2026-06-10-zkdsxfut.mp4
+      - file: studiobloc-6-2026-06-10-jgqgdntj.mp4
+  '2026-06-12':
+    note: The more I spend time in other gyms, the less I want to go to Boulderhaus.
+    wall: Boulderhaus
