@@ -4725,3 +4725,14 @@ sessions:
   '2026-06-12':
     note: The more I spend time in other gyms, the less I want to go to Boulderhaus.
     wall: Boulderhaus
+  '2026-06-15':
+    black:
+      new: 1
+      videos:
+      - file: crimp-black-2026-06-15-fqaqvzji.mp4
+    note: Fun pre-Berta prep sesh. Two good coordination jumps. Moonboard felt horrible, I'm so fat it's crazy.
+    purple:
+      new: 1
+      videos:
+      - file: crimp-purple-2026-06-15-azzqknkw.mp4
+    wall: Crimp
