@@ -4736,3 +4736,18 @@ sessions:
       videos:
       - file: crimp-purple-2026-06-15-azzqknkw.mp4
     wall: Crimp
+  '2026-06-17':
+    moon:
+      6c+:
+        new: 1
+        videos:
+        - file: moon-6cp-2026-06-17-dznzodzp.mp4
+      setup: 2024
+    other:
+      new: 3
+      videos:
+      - file: crimp-other-2026-06-17-qifdescz.mp4
+      - file: crimp-other-2026-06-17-pyppzqcy.mp4
+      - file: crimp-other-2026-06-17-zrrhwqhg.mp4
+    wall: Crimp
+    note: Anoda one with da boyz. Final sesh before da Bert.
