@@ -1,5 +1,5 @@
-import {Camera, FlexDirection, Latex, Layout, makeScene2D, Rect} from '@motion-canvas/2d';
-import {all, createRef, easeInOutExpo, Reference, Vector2, waitFor} from '@motion-canvas/core';
+import {Camera, FlexDirection, Latex, Layout, makeScene2D, Rect} from '@canvas-commons/2d';
+import {all, createRef, easeInOutExpo, Reference, Vector2, waitFor} from '@canvas-commons/core';
 
 
 function getSquare(ref: Reference<Rect>, value: number) {

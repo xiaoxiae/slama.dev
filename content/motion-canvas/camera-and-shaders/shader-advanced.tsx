@@ -1,5 +1,5 @@
-import {Circle, makeScene2D, Rect} from '@motion-canvas/2d';
-import {all, createRef, createSignal, easeInOutExpo, loop, sequence, Vector2} from '@motion-canvas/core';
+import {Circle, makeScene2D, Rect} from '@canvas-commons/2d';
+import {all, createRef, createSignal, easeInOutExpo, loop, sequence, Vector2} from '@canvas-commons/core';
 
 import shader from './shader-advanced.glsl';
 

@@ -29,14 +29,19 @@ def get_html_codepoints() -> set[int]:
 
 
 def get_fa_codepoints() -> set[int]:
-    """Get codepoints for FA icons used in HTML."""
+    """Get codepoints for FA icons used in HTML and JS.
+
+    JS is scanned too because some icons (e.g. the Halloween navbar/ghost
+    swaps in halloween.js) are only referenced as class names in scripts and
+    injected into the DOM at runtime, never appearing in the static HTML.
+    """
     css = FA_CSS.read_text(encoding="utf-8")
     skip = {"solid", "regular", "brands", "light", "thin", "duotone"}
 
-    # Find all fa-* classes in HTML
+    # Find all fa-* classes in HTML and JS
     icons = set()
-    for html_file in PUBLIC.rglob("*.html"):
-        content = html_file.read_text(encoding="utf-8", errors="ignore")
+    for src_file in [*PUBLIC.rglob("*.html"), *PUBLIC.rglob("*.js")]:
+        content = src_file.read_text(encoding="utf-8", errors="ignore")
         for match in re.finditer(r"fa-([a-z][-a-z0-9]+)", content):
             if match.group(1) not in skip:
                 icons.add(match.group(1))

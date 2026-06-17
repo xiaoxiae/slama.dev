@@ -1,4 +1,4 @@
-import {Circle, Curve, Layout, makeScene2D, Spline} from '@motion-canvas/2d';
+import {Circle, Curve, Layout, makeScene2D, Spline} from '@canvas-commons/2d';
 import {
     all,
     createRef,
@@ -8,7 +8,7 @@ import {
     ThreadGenerator,
     useRandom,
     Vector2
-} from '@motion-canvas/core';
+} from '@canvas-commons/core';
 import {appear} from "../../utilities";
 
 

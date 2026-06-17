@@ -1,5 +1,5 @@
-import {Circle, Layout, makeScene2D, Rect, Txt, Node, Latex} from '@motion-canvas/2d';
-import {all, createEaseInOutBack, createRef, sequence, useRandom, Vector2} from '@motion-canvas/core';
+import {Circle, Layout, makeScene2D, Rect, Txt, Node, Latex} from '@canvas-commons/2d';
+import {all, createEaseInOutBack, createRef, sequence, useRandom, Vector2} from '@canvas-commons/core';
 import {appear} from "../../utilities";
 
 export default makeScene2D(function* (view) {

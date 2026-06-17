@@ -1,5 +1,5 @@
-import {Camera, Circle, Layout, makeScene2D} from '@motion-canvas/2d';
-import {all, createRef, sequence, useRandom, Vector2} from '@motion-canvas/core';
+import {Camera, Circle, Layout, makeScene2D} from '@canvas-commons/2d';
+import {all, createRef, sequence, useRandom, Vector2} from '@canvas-commons/core';
 import chroma from 'chroma-js';
 
 

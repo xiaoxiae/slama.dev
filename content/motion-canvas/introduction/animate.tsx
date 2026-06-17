@@ -1,5 +1,5 @@
-import { Circle, makeScene2D, Rect, Shape } from "@motion-canvas/2d";
-import { all, Color, createRef, ThreadGenerator } from "@motion-canvas/core";
+import { Circle, makeScene2D, Rect, Shape } from "@canvas-commons/2d";
+import { all, Color, createRef, ThreadGenerator } from "@canvas-commons/core";
 
 /**
  * Animate appearance of an object.

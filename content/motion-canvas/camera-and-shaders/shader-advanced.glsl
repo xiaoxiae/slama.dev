@@ -1,7 +1,7 @@
 #version 300 es
 precision highp float;
 
-#include "@motion-canvas/core/shaders/common.glsl"
+#include "@canvas-commons/core/shaders/common.glsl"
 
 uniform vec2 aPos;
 uniform float aOpacity;

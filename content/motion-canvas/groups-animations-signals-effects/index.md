@@ -7,6 +7,8 @@ description: Groups of objects, animation flow, signals (Manim updaters on crack
 toc: true
 ---
 
+{{< motion_canvas_note >}}
+
 In this part of the series, we'll explore some more **layout-related animations**, explore the **animation flow** and discover **signals + effects**.
 
 We'll also play around with colors a bit 🙂.
@@ -14,7 +16,7 @@ We'll also play around with colors a bit 🙂.
 ### Grouping objects
 
 Motion Canvas doesn't fully support the same grouping as Manim (i.e. change the color of all objects in this particular group).
-Instead, we should always be working with the [**scene hierarchy**](https://motioncanvas.io/docs/hierarchy) and layout objects, which does support certain operations, mostly related to their position, scale/size and rotation.
+Instead, we should always be working with the [**scene hierarchy**](https://canvascommons.io/docs/hierarchy) and layout objects, which does support certain operations, mostly related to their position, scale/size and rotation.
 
 In this example, we're also using the fact that Motion Canvas supports any `X11` colors names -- feel free to [browse through them](https://x11.linci.co/) and pick the ones that you like!
 
@@ -41,7 +43,7 @@ To make the animation a bit more interesting, we can utilize the [**`chroma.js`*
 
 ### Add, remove and ordering
 
-The order in which the objects are rendered are based on the [scene hierarchy](https://motioncanvas.io/docs/hierarchy#modifying-the-hierarchy) -- the higher they are, the sooner they are rendered (i.e. the more _at the bottom_ they are).
+The order in which the objects are rendered are based on the [scene hierarchy](https://canvascommons.io/docs/hierarchy#modifying-the-hierarchy) -- the higher they are, the sooner they are rendered (i.e. the more _at the bottom_ they are).
 However, if they differ in their z-index, the one with a higher z-index will always be drawn on top of the other:
 
 ```tsx {file="add-remove.tsx"}
@@ -51,7 +53,7 @@ However, if they differ in their z-index, the one with a higher z-index will alw
 
 ### Animation flow
 
-We've already seen a few of these in the [previous post](/motion-canvas/1/), but we can use different functions for working with [animation flow](https://motioncanvas.io/docs/flow).
+We've already seen a few of these in the [previous post](/motion-canvas/1/), but we can use different functions for working with [animation flow](https://canvascommons.io/docs/flow).
 The main difference between Manim and one of the main features of Motion Canvas is that the animation model inherently allows for a lot of concurrency, since you can have multiple threads concurrently changing different properties, even of the same object:
 
 ```tsx {file="animation-flow.tsx"}
@@ -72,7 +74,7 @@ Sorry 🤷.
 
 
 ### Signals
-**[Signals](https://motioncanvas.io/docs/signals)** are Manim's updaters on crack.
+**[Signals](https://canvascommons.io/docs/signals)** are Manim's updaters on crack.
 
 Instead of object's characteristics being static values, they are usually **signals,** which are (as the documentation describes) values that can change over time and define dependencies between objects.
 
@@ -97,7 +99,7 @@ For that, we have **effects...**
 
 ### Effects
 
-**[Effects](https://motioncanvas.io/docs/effects)** are functions that are run on their dependency changes, but unlike signals are **no longer lazy.** _This means that all of their dependencies are no longer lazy as well,_ so if you have many things going on at the same time, things might run a bit slow...
+**[Effects](https://canvascommons.io/docs/effects)** are functions that are run on their dependency changes, but unlike signals are **no longer lazy.** _This means that all of their dependencies are no longer lazy as well,_ so if you have many things going on at the same time, things might run a bit slow...
 
 Effects come in two flavors; _directly quoting the documentation_:
 
@@ -118,7 +120,7 @@ For example, we could use it to create a simple particle simulation like this on
 
 Before trying to animate this, here are a few useful things:
 
-1. to move a circle along a nice path, you can define a **spline** between two points and then move along it using the {{< doc "motion-canvas" "getPointAtPercentage" "2d/components/Curve#getPointAtPercentage" >}} function (see the [documentation page for splines](https://motioncanvas.io/docs/spline))
+1. to move a circle along a nice path, you can define a **spline** between two points and then move along it using the {{< doc "motion-canvas" "getPointAtPercentage" "2d/components/Curve#getPointAtPercentage" >}} function (see the [documentation page for splines](https://canvascommons.io/docs/spline))
 2. to animate a value from `0` to `1` that we can use for the percentage value, we can create and animate a new signal (more about what that is in the [next Motion Canvas post](/motion-canvas/2/))
 3. the {{< doc "motion-canvas" "easeInOutExpo" "core/tweening#easeInOutExpo" >}} easing curve is nicer for shuffling since it's more sudden than the default
 
@@ -237,7 +239,7 @@ Here are some useful things:
 
 - the {{< doc "motion-canvas" "clone" "2d/components/Node/#clone" >}} function will be very useful here to create copies of an object
 - use the {{< doc "motion-canvas" "topLeft" "2d/components/Layout/#topLeft" >}}, {{< doc "motion-canvas" "topRight" "2d/components/Layout/#topRight" >}}, {{< doc "motion-canvas" "bottomLeft" "2d/components/Layout/#bottomLeft" >}} and {{< doc "motion-canvas" "bottomRight" "2d/components/Layout/#bottomRight" >}} cardinal directions for alignment
-- you can [define the spline using `<Knot>`](https://motioncanvas.io/docs/spline#using-knot-nodes), which allows you to access their {{< doc "motion-canvas" "absolutePosition" "2d/components/Layout/#absolutePosition" >}}, which will make the code a lot simpler (the clones will likely be scaled + rotated at this point, which doesn't change their relative {{< doc "motion-canvas" "position" "2d/components/Node#position" >}})
+- you can [define the spline using `<Knot>`](https://canvascommons.io/docs/spline#using-knot-nodes), which allows you to access their {{< doc "motion-canvas" "absolutePosition" "2d/components/Layout/#absolutePosition" >}}, which will make the code a lot simpler (the clones will likely be scaled + rotated at this point, which doesn't change their relative {{< doc "motion-canvas" "position" "2d/components/Node#position" >}})
 - setting the smoothness of a spline to `0` will make it line segments
 - you can animate drawing of a spline with the {{< doc "motion-canvas" "end" "2d/components/Curve#end" >}} signal
 

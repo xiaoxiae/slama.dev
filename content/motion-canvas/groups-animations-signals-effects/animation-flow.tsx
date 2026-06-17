@@ -1,5 +1,5 @@
-import {Layout, makeScene2D, Rect, Txt} from '@motion-canvas/2d';
-import {all, any, chain, createRef, delay, loop, sequence, waitFor} from '@motion-canvas/core';
+import {Layout, makeScene2D, Rect, Txt} from '@canvas-commons/2d';
+import {all, any, chain, createRef, delay, loop, sequence, waitFor} from '@canvas-commons/core';
 import {appear} from "../../utilities";
 
 export default makeScene2D(function* (view) {

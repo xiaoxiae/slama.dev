@@ -1,4 +1,4 @@
-import { Layout, makeScene2D, Rect, Shape } from "@motion-canvas/2d";
+import { Layout, makeScene2D, Rect, Shape } from "@canvas-commons/2d";
 import {
   all,
   createRef,
@@ -6,7 +6,7 @@ import {
   sequence,
   ThreadGenerator,
   useRandom,
-} from "@motion-canvas/core";
+} from "@canvas-commons/core";
 
 /**
  * Set colors for the rectangles.

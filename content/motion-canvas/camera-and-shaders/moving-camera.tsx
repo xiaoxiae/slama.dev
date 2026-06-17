@@ -1,5 +1,5 @@
-import {Camera, Circle, Layout, makeScene2D, Polygon, Rect} from '@motion-canvas/2d';
-import {all, createRef} from '@motion-canvas/core';
+import {Camera, Circle, Layout, makeScene2D, Polygon, Rect} from '@canvas-commons/2d';
+import {all, createRef} from '@canvas-commons/core';
 
 
 export default makeScene2D(function* (view) {

@@ -1,5 +1,5 @@
-import {makeScene2D, Rect} from '@motion-canvas/2d';
-import {all, createRef, delay} from '@motion-canvas/core';
+import {makeScene2D, Rect} from '@canvas-commons/2d';
+import {all, createRef, delay} from '@canvas-commons/core';
 import {appear} from "../../utilities";
 
 

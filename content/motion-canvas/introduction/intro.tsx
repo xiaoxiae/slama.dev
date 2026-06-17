@@ -1,5 +1,5 @@
-import {Circle, makeScene2D, Rect} from '@motion-canvas/2d';
-import {all, createRef, sequence} from '@motion-canvas/core';
+import {Circle, makeScene2D, Rect} from '@canvas-commons/2d';
+import {all, createRef, sequence} from '@canvas-commons/core';
 
 
 export default makeScene2D(function* (view) {

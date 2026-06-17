@@ -6,6 +6,8 @@ description: Camera controls, and a glimpse into the wonderful world of shaders.
 toc: true
 ---
 
+{{< motion_canvas_note >}}
+
 The following part of the series briefly covers **camera controls** and then delves into the wonderful world of **shaders** -- something that I had absolutely no experience with before Motion Canvas and am very sad that that's the case.
 
 The [3rd part of the Manim series](/manim/camera-and-graphs/) that this series aims to follow had a section on graphs (the computer science ones), but since Motion Canvas doesn't have native support for those, I decided to replace them with shaders instead (which Manim doesn't have).

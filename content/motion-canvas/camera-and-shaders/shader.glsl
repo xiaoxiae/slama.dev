@@ -2,7 +2,7 @@
 precision highp float;
 
 // use defaut inputs (called 'uniforms')
-#include "@motion-canvas/core/shaders/common.glsl"
+#include "@canvas-commons/core/shaders/common.glsl"
 
 
 void main() {

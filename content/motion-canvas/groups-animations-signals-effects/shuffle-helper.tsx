@@ -1,5 +1,5 @@
-import {Circle, makeScene2D, Spline} from '@motion-canvas/2d';
-import {createRef, createSignal, easeInOutExpo} from '@motion-canvas/core';
+import {Circle, makeScene2D, Spline} from '@canvas-commons/2d';
+import {createRef, createSignal, easeInOutExpo} from '@canvas-commons/core';
 
 export default makeScene2D(function* (view) {
     const spline = createRef<Spline>();

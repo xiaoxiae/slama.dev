@@ -1,5 +1,5 @@
-import {Knot, makeScene2D, Spline} from '@motion-canvas/2d';
-import {all, createRef, Reference, Vector2} from '@motion-canvas/core';
+import {Knot, makeScene2D, Spline} from '@canvas-commons/2d';
+import {all, createRef, Reference, Vector2} from '@canvas-commons/core';
 
 
 export default makeScene2D(function* (view) {

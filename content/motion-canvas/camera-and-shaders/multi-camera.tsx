@@ -1,4 +1,4 @@
-import {Camera, Circle, makeScene2D, Node, Rect, Spline} from '@motion-canvas/2d';
+import {Camera, Circle, makeScene2D, Node, Rect, Spline} from '@canvas-commons/2d';
 import {
     all,
     createDeferredEffect,
@@ -8,7 +8,7 @@ import {
     sequence,
     useRandom,
     Vector2
-} from '@motion-canvas/core';
+} from '@canvas-commons/core';
 import chroma from 'chroma-js';
 
 export default makeScene2D(function* (view) {

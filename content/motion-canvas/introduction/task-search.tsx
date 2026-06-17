@@ -1,5 +1,5 @@
-import {Curve, Latex, Layout, Line, makeScene2D, Rect, Txt} from '@motion-canvas/2d';
-import {all, createRef, createRefMap, delay, Reference, sequence, useRandom, Vector2} from '@motion-canvas/core';
+import {Curve, Latex, Layout, Line, makeScene2D, Rect, Txt} from '@canvas-commons/2d';
+import {all, createRef, createRefMap, delay, Reference, sequence, useRandom, Vector2} from '@canvas-commons/core';
 import {appear} from "../../utilities";
 
 

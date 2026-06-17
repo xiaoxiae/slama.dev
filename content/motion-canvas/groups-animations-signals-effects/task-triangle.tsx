@@ -1,5 +1,5 @@
-import {Circle, Latex, Line, makeScene2D, Txt} from '@motion-canvas/2d';
-import {all, createDeferredEffect, createRef, delay, Reference, sequence, Vector2} from '@motion-canvas/core';
+import {Circle, Latex, Line, makeScene2D, Txt} from '@canvas-commons/2d';
+import {all, createDeferredEffect, createRef, delay, Reference, sequence, Vector2} from '@canvas-commons/core';
 import {appear} from "../../utilities";
 
 /**
