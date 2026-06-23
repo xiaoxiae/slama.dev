@@ -1,6 +1,17 @@
-import {Curve, Latex, Layout, Line, makeScene2D, Rect, Txt} from '@canvas-commons/2d';
-import {all, createRef, createRefMap, delay, Reference, sequence, useRandom, Vector2} from '@canvas-commons/core';
-import {appear} from "../../utilities";
+import {Curve, Latex, Layout, Line, makeScene2D, Rect, Txt, Shape} from '@canvas-commons/2d';
+import {all, createRef, createRefMap, delay, Reference, sequence, useRandom, Vector2, ThreadGenerator} from '@canvas-commons/core';
+
+/**
+ * Animate the appearance of an object.
+ */
+function* appear(object: Shape, duration = 1): ThreadGenerator {
+    let scale = object.scale();
+
+    yield* all(
+        object.scale(0).scale(scale, duration),
+        object.opacity(0).opacity(1, duration),
+    );
+}
 
 
 /**

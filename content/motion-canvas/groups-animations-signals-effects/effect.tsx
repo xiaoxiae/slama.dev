@@ -1,7 +1,18 @@
-import {Circle, makeScene2D, Spline} from '@canvas-commons/2d';
-import {createDeferredEffect, createRef, createSignal, loop, sequence, useRandom, Vector2} from '@canvas-commons/core';
-import {appear} from "../../utilities";
+import {Circle, makeScene2D, Spline, Shape} from '@canvas-commons/2d';
+import {createDeferredEffect, createRef, createSignal, loop, sequence, useRandom, Vector2, all, ThreadGenerator} from '@canvas-commons/core';
 import chroma from 'chroma-js';
+
+/**
+ * Animate the appearance of an object.
+ */
+function* appear(object: Shape, duration = 1): ThreadGenerator {
+    let scale = object.scale();
+
+    yield* all(
+        object.scale(0).scale(scale, duration),
+        object.opacity(0).opacity(1, duration),
+    );
+}
 
 export default makeScene2D(function* (view) {
     let random = useRandom(0xdeadbef2);

@@ -1,4 +1,4 @@
-import {Circle, Curve, Layout, makeScene2D, Spline} from '@canvas-commons/2d';
+import {Circle, Curve, Layout, makeScene2D, Spline, Shape} from '@canvas-commons/2d';
 import {
     all,
     createRef,
@@ -9,7 +9,18 @@ import {
     useRandom,
     Vector2
 } from '@canvas-commons/core';
-import {appear} from "../../utilities";
+
+/**
+ * Animate the appearance of an object.
+ */
+function* appear(object: Shape, duration = 1): ThreadGenerator {
+    let scale = object.scale();
+
+    yield* all(
+        object.scale(0).scale(scale, duration),
+        object.opacity(0).opacity(1, duration),
+    );
+}
 
 
 /**

@@ -1,6 +1,17 @@
-import {Circle, Layout, makeScene2D, Polygon, Rect} from '@canvas-commons/2d';
-import {all, createRef, sequence, Vector2, waitFor} from '@canvas-commons/core';
-import {appear} from "../../utilities";
+import {Circle, Layout, makeScene2D, Polygon, Rect, Shape} from '@canvas-commons/2d';
+import {all, createRef, sequence, Vector2, waitFor, ThreadGenerator} from '@canvas-commons/core';
+
+/**
+ * Animate the appearance of an object.
+ */
+function* appear(object: Shape, duration = 1): ThreadGenerator {
+    let scale = object.scale();
+
+    yield* all(
+        object.scale(0).scale(scale, duration),
+        object.opacity(0).opacity(1, duration),
+    );
+}
 
 export default makeScene2D(function* (view) {
     // start with a square

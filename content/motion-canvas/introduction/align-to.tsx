@@ -1,6 +1,17 @@
-import {Circle, makeScene2D} from '@canvas-commons/2d';
-import {all, createRef, Vector2} from '@canvas-commons/core';
-import {appear} from "../../utilities";
+import {Circle, makeScene2D, Shape} from '@canvas-commons/2d';
+import {all, createRef, Vector2, ThreadGenerator} from '@canvas-commons/core';
+
+/**
+ * Animate the appearance of an object.
+ */
+function* appear(object: Shape, duration = 1): ThreadGenerator {
+    let scale = object.scale();
+
+    yield* all(
+        object.scale(0).scale(scale, duration),
+        object.opacity(0).opacity(1, duration),
+    );
+}
 
 export default makeScene2D(function* (view) {
     const circles = Array.from({length: 3}, () => createRef<Circle>());
