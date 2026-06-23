@@ -46,7 +46,7 @@ _This will make more sense in later examples._
 ### No `animate` syntax!
 
 To underline point `1)`, here is a more complex example of changing properties.
-_Note that I've factored out the animation of an object appearance into the `appear` function, which I'll be using throughout the rest of the examples._
+_Note the small `appear` function that animates an object's appearance -- I reuse it throughout the rest of the examples, with each one repeating the definition so it stays self-contained and copy-pasteable._
 
 {{< code_toggle "animate.tsx" "01-animate-example.py" >}}
 
