@@ -12,7 +12,6 @@ import os
 import shutil
 import sys
 import datetime
-from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from random import choice
 from string import ascii_lowercase
@@ -286,14 +285,13 @@ def cmd_add(args):
         print("No new videos found.")
 
 
-def process_video(
-    name: str, video: VideoMetadata, quiet: bool = False
-) -> tuple[str, VideoMetadata]:
+def process_video(name: str, video: VideoMetadata) -> tuple[str, VideoMetadata]:
     """Process a single video (rename, trim, encode, poster). Returns new name."""
     path = VIDEOS_FOLDER / name
 
-    # When processing in parallel, silence the (interleaved) subprocess output.
-    quiet_out = DEVNULL if quiet else None
+    # Silence the (verbose) ffmpeg/deface subprocess output; the script prints
+    # its own per-video progress lines.
+    quiet_out = DEVNULL
 
     # Rename new files
     if video.new:
@@ -559,13 +557,10 @@ def cmd_build(args):
                                     process_video(video_file, video)
             return
 
-        print(
-            f"Processing {pending_count} pending video(s) with {args.jobs} worker(s)..."
-        )
+        print(f"Processing {pending_count} pending video(s)...")
 
-        # Flatten every pending video across all sessions into a work list. Each
-        # video is fully independent (its own files), so processing is safe to
-        # run concurrently; assembly into the yaml happens afterwards.
+        # Flatten every pending video across all sessions into a work list;
+        # assembly into the yaml happens afterwards.
         tasks = []  # (session, video_entry, VideoMetadata)
         for session_date, session in data.get("sessions", {}).items():
             wall = session.get("wall", "Smíchoff")
@@ -586,19 +581,15 @@ def cmd_build(args):
                 )
                 tasks.append((session, video_entry, video))
 
-        quiet = args.jobs > 1
-
-        def _process(task):
+        # ffmpeg already saturates all cores on a single CPU encode, so running
+        # videos concurrently buys nothing on a CPU-only box; process serially in
+        # their original per-session sequence.
+        results = []
+        for task in tasks:
             _session, video_entry, video = task
-            new_name, _ = process_video(video_entry["file"], video, quiet=quiet)
+            new_name, _ = process_video(video_entry["file"], video)
             print(f"processed '{video_entry['file']}' -> '{new_name}'.", flush=True)
-            return task, new_name
-
-        # The heavy work runs in ffmpeg/deface subprocesses, so threads give real
-        # parallelism (the GIL is released while waiting on them). map() preserves
-        # input order, keeping videos in their original per-session sequence.
-        with ThreadPoolExecutor(max_workers=args.jobs) as pool:
-            results = list(pool.map(_process, tasks))
+            results.append((task, new_name))
 
         # Assemble processed videos into their sessions (sequential and cheap).
         for (session, video_entry, _video), new_name in results:
@@ -663,13 +654,6 @@ def main():
     add_parser.set_defaults(func=cmd_add)
 
     build_parser = subparsers.add_parser("build", help="Process videos")
-    build_parser.add_argument(
-        "-j",
-        "--jobs",
-        type=int,
-        default=4,
-        help="Number of videos to process in parallel (default: 4)",
-    )
     build_parser.set_defaults(func=cmd_build)
 
     args = parser.parse_args()
