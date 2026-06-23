@@ -4743,6 +4743,7 @@ sessions:
         videos:
         - file: moon-6cp-2026-06-17-dznzodzp.mp4
       setup: 2024
+    note: Anoda one with da boyz. Final sesh before da Bert.
     other:
       new: 3
       videos:
@@ -4750,4 +4751,28 @@ sessions:
       - file: crimp-other-2026-06-17-pyppzqcy.mp4
       - file: crimp-other-2026-06-17-zrrhwqhg.mp4
     wall: Crimp
-    note: Anoda one with da boyz. Final sesh before da Bert.
+  '2026-06-20':
+    6c:
+      new: 2
+      videos:
+      - file: berta-block-6c-2026-06-20-ltopyecf.mp4
+      - file: berta-block-6c-2026-06-20-vndelifd.mp4
+    6c+:
+      new: 1
+      videos:
+      - file: berta-block-6cp-2026-06-20-iaynjyoi.mp4
+    7a:
+      new: 3
+      videos:
+      - file: berta-block-7a-2026-06-20-doevqrel.mp4
+      - file: berta-block-7a-2026-06-20-vznyfeqr.mp4
+      - file: berta-block-7a-2026-06-20-ikitsuka.mp4
+    7a+:
+      new: 1
+      videos:
+      - file: berta-block-7ap-2026-06-20-jiyoahoo.mp4
+    note: Berta Block Masters 26 -- banger comp, fun bouders. Finished 5/169, we take those (probably 30ish overall considering the category above). Happy.
+    wall: Berta Block
+  '2026-06-22':
+    wall: Crimp
+    note: A few easier Moonboard benchies + training after. Literally fucking melting.
