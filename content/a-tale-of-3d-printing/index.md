@@ -48,7 +48,7 @@ The only bad thing is that the letters are facing away from the center of the ta
 Having basically no time today, <a class='secret' href='/assets/kacka.webp'>my girlfriend</a> suggested I print a small box to keep her jewelry in when she needs to remove it in her lab:
 
 {{< image_section caption="The Box (left render, right image) <a href=\"tank.zip\">[.STL model]</a>." >}}
-{{< image_row "tank-render.webp :: Render of the Bank. | tank-photo.png :: Photo of the Box." >}}
+{{< image_row "tank-render.webp :: Render of the Box. | tank-photo.png :: Photo of the Box." >}}
 {{< /image_section >}}
 
 Tank god it was simple.
@@ -95,7 +95,7 @@ This is entirely my bad -- not making sure that the first layer sticks, and goin
 To fix this self-induced fuck-up, I
 1. heated the nozzle again to 230°C and left it be for a while, eventually loosening the blob enough so I could get it off,
 2. followed these two manuals [[1]](https://help.prusa3d.com/guide/2a-mk3s-extruder-disassembly_188397) [[2]](https://help.prusa3d.com/guide/2b-mk3s-extruder-disassembly_181561) to take the extruder apart, clean it up and put it back,
-3. tried printing something, which resulted in filament leaking from the top of the heater block ([this video](https://www.youtube.com/watch?v=OzRAVkXjw3I) explains what happened quite well)
+3. tried printing something, which resulted in filament leaking from the top of the heater block ([this video](https://www.youtube.com/watch?v=OzRAVkXjw3I) explains what happened quite well),
 4. went back to step **2** but did it properly this time (_only once; no infinite loops here!_),
 
 **It works now.** _\*Happy Tom noises\*._
@@ -145,7 +145,7 @@ for file in Path(".").iterdir():
 {{< image_row "holds.png :: Photo of the holds." >}}
 {{< /image_section >}}
 
-The board design isn't anything too exciting -- it consists of the board the holds attach to, bottom part that holds the board in place and two sticks on each that hold it at the desired angle (35°/45°/55°).
+The board design isn't anything too exciting -- it consists of the board the holds attach to, a bottom part that holds the board in place and two sticks on each side that hold it at the desired angle (35°/45°/55°).
 
 {{< image_section caption="The Bilter Koard (left assembled, right disassembled) <a href=\"board.zip\">[.STL model]</a>." >}}
 {{< image_row "board-photo.png :: A photo of the board, along with a sample route. | board-parts.png :: A photo of the parts of the board, along with a sample route." >}}

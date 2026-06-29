@@ -22,7 +22,7 @@ So, without further ado, let's get some Elo and **kop some prokops**.
 {{< image_row "i-lied.png :: A meme about search." >}}
 {{< /image_section >}}
 
-Jokes aside, there are a few search techniques that I couldn't cover [in the previous blog post](/prokopakop/1/) because it was getting too long, so I'll sneak these in here and hope you won't mind.
+Jokes aside, there are a few search techniques that I couldn't cover [in the previous blog post](/prokopakop/a-chess-engine-commit-by-commit/) because it was getting too long, so I'll sneak these in here and hope you won't mind.
 
 <details class="skip-section" id="trap">
 <summary>If you do, feel free to <a href="#">skip to the next section</a>...</summary>
@@ -82,7 +82,7 @@ The **[history heuristic](https://www.chessprogramming.org/History_Heuristic)**[
 
 [^history-heuristic]: [This paper](https://webdocs.cs.ualberta.ca/~jonathan/publications/ai_publications/pami.pdf) by Jonathan Schaeffer gives a good overview of the history heuristic.
 
-Implementation-wise, we can store `[side][sq_from][sq_to]`, which will keep track of how good these moves were in the past, and will be updated as follows; if a move
+Implementation-wise, we can store `[side][sq_from][sq_to]`, which will keep track of how good these moves were in the past, and will be updated as follows: if a move
 - causes **beta cutoff**: `[side][from][to] += depth * depth`
 - **doesn't improve alpha**: `[side][from][to] -= (depth * depth) / 2`
 
@@ -132,7 +132,7 @@ What this commit does to prevent this is to first calculate an **estimate** on h
 If the estimate exceeds the remaining time, the engine will **skip the next iteration** and **return the current best result**, since it's likely that the time would be wasted as the iteration wouldn't have completed.
 
 While crude, it matches the search quite well, as seen on a plot of time vs. depth when searching from the starting position.
-Although there are positions more/less complex than this, even a rough estimate is a good improvement over the naive kill+discard approach method.
+Although there are positions more/less complex than this, even a rough estimate is a good improvement over the naive kill+discard approach.
 
 {{< image_section caption="Search time / nodes vs. depth from the starting position." >}}
 {{< image_row "scaling.png :: Search time / nodes vs. depth." >}}
@@ -212,7 +212,7 @@ gains[1]
 ```
 
 The core of the algorithm is in the final while loop -- going from the end, **each player** makes the decision to **stop capturing** at that point if it's not optimal for them (this is what `max` is doing).
-Since we're doing this as [negamax](/prokopakop/1#alpha-beta-search) (always subtracting and thus swapping between the colors), the player will **never** want to play out a sequence that will yield a **negative score**, which is what we're calculating by accumulating it from the end.
+Since we're doing this as [negamax](/prokopakop/a-chess-engine-commit-by-commit/#alpha-beta-search) (always subtracting and thus swapping between the colors), the player will **never** want to play out a sequence that will yield a **negative score**, which is what we're calculating by accumulating it from the end.
 
 Besides quiescence search, you can use SEE to [**order capture moves**](https://www.chessprogramming.org/Static_Exchange_Evaluation#Move_Ordering) -- a lot of engines (mine included) do
 
@@ -298,7 +298,7 @@ This can work fine initially, but as the complexity of the function and the numb
 With the advent of [AlphaZero](https://www.chessprogramming.org/AlphaZero), neural networks came into the chess engine scene in a big way, as AlphaZero [decisively defeated Stockfish](https://en.wikipedia.org/wiki/AlphaZero#Final_results), the best chess engine in the world at the time.
 It used [Monte-Carlo Tree Search](https://en.wikipedia.org/wiki/Monte_Carlo_tree_search) instead of alpha-beta, since the evaluation was significantly slower than a standard evaluation function (around **1000x**), and it wouldn't get too far going layer-by-layer.
 
-Although the AlphaZero architecture was markedly different from classical chess engines and so couldn't be immediately applied, its massive success raised an important question -- would a small, carefully designed neural network, outperform hand-crafted evaluations?
+Although the AlphaZero architecture was markedly different from classical chess engines and so couldn't be immediately applied, its massive success raised an important question -- would a small, carefully designed neural network outperform hand-crafted evaluations?
 
 Spoiler alert: **yes.**
 
@@ -315,7 +315,7 @@ It will of course be the neurons in the first layer corresponding to the changed
 Since we're dealing with a fully connected network, we only need to update the values of the neurons that the **changed input neuron is connected to** (and the subsequent layers), instead of having to re-calculate the entire network.
 If the network is shallow enough (i.e. 1 hidden layer), the number of operations needed for the evaluation then equals the **size of the hidden layer!**
 
-![](network.svg "**Basic NNUE architecture examples** <br> **A)** shows the portion of the network to be recalculated (blue),<br>**B)** shows an improved NNUE architecture with two accumulators, and<br>**C)** adds two [buckets](#buckets) for early/late game weights.")
+![](network.svg "**Basic NNUE architecture examples** <br> **A)** shows the portion of the network to be recalculated (blue),<br>**B)** shows an improved NNUE architecture with two accumulators, and<br>**C)** adds two [buckets](#output-buckets) for early/late game weights.")
 
 Since the first hidden layer repeatedly adds/subtracts values based on how the pieces move on the board, it is referred to as the **accumulator**.
 Usually, **two accumulators** are used instead, one for the **side to move** and the other for the **side not to move**, since this takes full advantage of the game symmetry and allows the network to learn different features for both the "player" (positive) and "opponent" (negative).
@@ -401,11 +401,11 @@ While this will work and you can train a really good chess engine this way, NNUE
 By quantizing a network, we are converting the network layers to use **integer types** (i.e. `f32 -> i16`), since they have **faster multiplication**.
 This can be done by simply **multiplying by a constant factor** (say `Q`) and **rounding** to the nearest integer.
 
-This will mean that we have to **keep track** of the current quantization factor so we can de-quantize as we go through the layers, and that the more layers the network has, the more the quantization errors propagate though the network.
+This will mean that we have to **keep track** of the current quantization factor so we can de-quantize as we go through the layers, and that the more layers the network has, the more the quantization errors propagate through the network.
 Luckily, these are non-issues since our network is very shallow -- it's not difficult to track it and the errors will be negligible.
 
 While the details are heavily dependent on the network architecture, I'll walk through how the one in Prokopakop works.
-I'm using the **[Bullet library](https://github.com/jw1912/bullet)** for training NNUEs (Rust), although you could just as well use Pytorch (Python) or some other ML library.
+I'm using the **[Bullet library](https://github.com/jw1912/bullet)** for training NNUEs (Rust), although you could just as well use PyTorch (Python) or some other ML library.
 We'll be quantizing the input layer to `QA` and the hidden layer to `QB`, and will use **SCReLU** as the activation function, yielding the following network architecture:
 
 {{< chess >}}   side        side
@@ -475,7 +475,7 @@ impl Network {
 ##### Output Buckets
 
 I feel like I say this all the time in the chess articles that I write, but the core idea behind this is rather simple.
-The evaluation priorities based on the current phase of the game change drastically, which was reflected in our previous hand-crafted evaluation function in a number of ways, such as the [changing piece table values](/prokopakop/1#piece-square-tables).
+The evaluation priorities based on the current phase of the game change drastically, which was reflected in our previous hand-crafted evaluation function in a number of ways, such as the [changing piece table values](/prokopakop/a-chess-engine-commit-by-commit/#piece-square-tables).
 
 [**Output Buckets**](https://www.chessprogramming.org/NNUE#Output_Buckets) are just a fancy way of doing this for NNUEs, where we have **multiple output weights/biases** and pick one **based on the current phase of the game** (determined by remaining material).
 Prokopakop uses 8, but any reasonable number will do -- increasing will give you more granular weights for different stages of the game, but also increase the size of the network which may not be desirable since it will be harder to train.
@@ -498,7 +498,7 @@ While the parameters will heavily depend on your particular network architecture
 
 ##### Results
 
-Looking at the Elo progression below, it is safe to say that NNUEs helped, achieving a **+200 elo** increase over the non-NNUE version, which is almost the same as the increase of **all of the search techniques combined** (as the first functional state the engine was in was around ~1800).
+Looking at the Elo progression below, it is safe to say that NNUEs helped, achieving a **+200 Elo** increase over the non-NNUE version, which is almost the same as the increase of **all of the search techniques combined** (as the first functional state the engine was in was around ~1800).
 
 {{< image_section caption="Prokopakop's Elo progression for bullet." >}}
 {{< image_row "elo-bullet.svg :: Bullet rating progression." >}}
@@ -509,4 +509,4 @@ I am not sure if this is because the engine still sucks or because NNUEs are jus
 ### Resources
 
 - **[Chess Programming Wiki](https://www.chessprogramming.org/Main_Page)** -- an extremely well-written wiki that I took the vast majority of algorithms and techniques from.
-- **[Bullet](https://github.com/jw1912/bullet)** and its [examples](https://github.com/jw1912/bullet/tree/main/examples) -- a ML library for training NNUEs.
+- **[Bullet](https://github.com/jw1912/bullet)** and its [examples](https://github.com/jw1912/bullet/tree/main/examples) -- an ML library for training NNUEs.

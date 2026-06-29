@@ -79,7 +79,7 @@ int main() {
 	// the thread grid and block structure is 2D, 2D
 	// adding more/less changes the structure
 	dim3 dimBlock(16, 16);
-	dim3 dimGrid((N + dimBlock.x – 1) / dimBlock.x, (N + dimBlock.y – 1) / dimBlock.y);
+	dim3 dimGrid((N + dimBlock.x - 1) / dimBlock.x, (N + dimBlock.y - 1) / dimBlock.y);
 	matAdd <<<dimGrid, dimBlock>>> (A, B, C);
 }
 ```
@@ -113,7 +113,7 @@ int main() {
 
 ##### Shared memory
 - **only accessible from the thread's block**
-- access costs is (in the best case) equal to register access
+- access cost is (in the best case) equal to register access
 - lifetime is same as thread block lifetime
 - can be around \(48 kB\) for a block (with SM having more to accommodate more blocks)
 - organized into \(n\) **banks:**
@@ -137,7 +137,7 @@ extern __shared__ int s[];
 - depend on run-time configuration
 - max. 255 registers/thread
 - we can't really specify what will become a register
-- **register spilling:** if source core exceeds the usage of registers, they spill into local memory
+- **register spilling:** if source code exceeds the usage of registers, they spill into local memory
 
 ##### Host memory
 - **pinned** (i.e. can't be paged out by the system)
@@ -302,7 +302,7 @@ __global__ void MM_NAIVE (float* Md, float* Nd, float* Pd, int Width) {
 ```
 
 #### Multiple thread blocks (GPU)
-- we can split the matrix by thread blocks so each thread block does a single index
+- we can split the matrix by thread blocks so each thread does a single index
 - no longer limits us to arrays of size \(\sqrt{1024}\) (max TPB)
 
 ```cpp
@@ -343,7 +343,7 @@ __global__ void MM_SM (float* Md, float* Nd, float* Pd, int Width) {
 	__shared__ float Mds[TILEWIDTH][TILEWIDTH];
 	__shared__ float Nds[TILEWIDTH][TILEWIDTH];
 	
-	float Pvalue = 0
+	float Pvalue = 0;
 	int tx = threadIdx.x;
 	int ty = threadIdx.y;
 	int row = blockIdx.y * TILEWIDTH + ty;
@@ -415,9 +415,9 @@ _The lecture goes into theoretical parallel algorithm design._
 ### Profiling
 {{< math "definition:" "arithmetic density" >}}, sometimes called **computational intensity** \(r\) is the ratio between floating point operations and data movements, i.e. \[r = \frac{\mathrm{FLOPs}}{\mathrm{Byte}}\]{{< /math >}}
 
-To evaluate a performance, we use the **roofline model:**
+To evaluate performance, we use the **roofline model:**
 - the performance is limited by its weakest link -- either **memory-bound** or **compute-bound**
-- obviously **depends on the hardware** (memory-bound program can become compute-bound when ran on a different machine)
+- obviously **depends on the hardware** (memory-bound program can become compute-bound when run on a different machine)
 - by optimizing performance, the line can be stretched in both directions
 
 ![Roofline model illustration.](roofline.png)
@@ -738,16 +738,16 @@ float *d_A1, *d_B1, *d_C1;
 
 for (int i = 0; i < n; i += segSize * 2) {
 	// stream 0
-	cudaMemCpyAsync ( d_A0, h_A + i, segSize * sizeof(float), ... , stream0 );
-	cudaMemCpyAsync ( d_B0, h_B + i, segSize * sizeof(float), ... , stream0 );
+	cudaMemcpyAsync ( d_A0, h_A + i, segSize * sizeof(float), ... , stream0 );
+	cudaMemcpyAsync ( d_B0, h_B + i, segSize * sizeof(float), ... , stream0 );
 	saxpy <<< segSize/256, 256, 0, stream0 >>> ( ... );
-	cudaMemCpyAsync ( d_C0, h_C + i, segSize * sizeof(float), ... , stream0 );
+	cudaMemcpyAsync ( d_C0, h_C + i, segSize * sizeof(float), ... , stream0 );
 
 	// stream 1
-	cudaMemCpyAsync ( d_A1, h_A + i + segSize, segSize * sizeof(float), ..., stream1 );
-	cudaMemCpyAsync ( d_B1, h_B + i + segSize, segSize * sizeof(float), ..., stream1 );
+	cudaMemcpyAsync ( d_A1, h_A + i + segSize, segSize * sizeof(float), ..., stream1 );
+	cudaMemcpyAsync ( d_B1, h_B + i + segSize, segSize * sizeof(float), ..., stream1 );
 	saxpy <<< segSize/256, 256, 0, stream1 >>> ( ... );
-	cudaMemCpyAsync ( d_C1, h_C + i + segSize, segSize * sizeof(float), ..., stream1 );
+	cudaMemcpyAsync ( d_C1, h_C + i + segSize, segSize * sizeof(float), ..., stream1 );
 }
 ```
 
@@ -771,16 +771,16 @@ float *d_A1, *d_B1, *d_C1;
 // cudaMallocs go here
 
 for (int i = 0; i < n; i += segSize * 2) {
-	cudaMemCpyAsync ( d_A0, h_A + i, segSize * sizeof(float), ... , stream0 );
-	cudaMemCpyAsync ( d_B0, h_B + i, segSize * sizeof(float), ... , stream0 );
-	cudaMemCpyAsync ( d_A1, h_A + i + segSize, segSize * sizeof(float), ..., stream1 );
-	cudaMemCpyAsync ( d_B1, h_B + i + segSize, segSize * sizeof(float), ..., stream1 );
+	cudaMemcpyAsync ( d_A0, h_A + i, segSize * sizeof(float), ... , stream0 );
+	cudaMemcpyAsync ( d_B0, h_B + i, segSize * sizeof(float), ... , stream0 );
+	cudaMemcpyAsync ( d_A1, h_A + i + segSize, segSize * sizeof(float), ..., stream1 );
+	cudaMemcpyAsync ( d_B1, h_B + i + segSize, segSize * sizeof(float), ..., stream1 );
 
 	saxpy <<< segSize/256, 256, 0, stream0 >>> ( ... );
 	saxpy <<< segSize/256, 256, 0, stream1 >>> ( ... );
 
-	cudaMemCpyAsync ( d_C0, h_C + i, segSize * sizeof(float), ... , stream0 );
-	cudaMemCpyAsync ( d_C1, h_C + i + segSize, segSize * sizeof(float), ..., stream1 );
+	cudaMemcpyAsync ( d_C0, h_C + i, segSize * sizeof(float), ... , stream0 );
+	cudaMemcpyAsync ( d_C1, h_C + i + segSize, segSize * sizeof(float), ..., stream1 );
 }
 ```
 
@@ -1014,7 +1014,7 @@ _Read the slides, I'm fairly certain this isn't too important._
 ##### Platform model
 - **host** stays host
 - **compute devices** are things like GPUs
-	- contain **compute units** (SMs), which have **processing elements** (thread blocks/warps)
+	- contain **compute units** (SMs), which have **processing elements** (≈ CUDA cores / threads)
 
 ##### Execution model
 - host code (sequential parts, control)

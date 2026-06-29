@@ -22,7 +22,7 @@ As I like to push myself to climb better, I've set a few goals that I wanted to 
 #### <span class="silver">All 2019 Moonboard 7a|7a+ benchmarks</span>
 
 I **managed to do all 7a**s, but have a few 7a+s remaining.
-I'm extremely happy with this one, because [the last 7a](/climbing/videos/moon-7a-2025-10-17-lbrmzwic.mp4) has less attempts than some 7b+s I've seen and was a genuine longterm project.
+I'm extremely happy with this one, because [the last 7a](/climbing/videos/moon-7a-2025-10-17-lbrmzwic.mp4) has fewer attempts than some 7b+s I've seen and was a genuine long-term project.
 
 I won't be coming back for the gold as I've switched to the 2024 setup, but I'm super happy with this one.
 

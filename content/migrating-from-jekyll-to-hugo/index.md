@@ -77,7 +77,7 @@ This makes writing posts significantly easier, as you just plop the image in the
 ### [Image Processing](https://gohugo.io/content-management/image-processing/)
 
 Working with images in Jekyll is absolutely atrocious.
-Besides the [aforementioned path shenanigans](#page-bundles), I try to keep my website relatively lean, clocking in at a little over `500 kB` for the home page, which I think is reasonable in the current age of JavaScript monstrosities.
+Besides the [aforementioned path shenanigans](#page-bundles), I try to keep my website relatively lean, clocking in at a little over `500 KB` for the home page, which I think is reasonable in the current age of JavaScript monstrosities.
 
 ![](time.png)
 {.inverse-invert}
@@ -99,11 +99,11 @@ Here is a nice [blog post](https://blog.nathanv.me/posts/hugo-resources/) by [Na
 #### A Subfonting Intermezzo
 
 While writing the above section to boast about how fast my website is, I ran the test above and discovered, to my shock, that the website actually loads over `1 MB` of data, with around `650 KB` being **fonts**.
-The reason for this is that the website uses **4 variants** of [Fira Sans](https://github.com/mozilla/Fira) (sans/code \(\times\) light/medium), and [FontAwesome](https://fontawesome.com/), which is notoriously fat.
+The reason for this is that the website uses **4 variants** of [Fira Sans](https://github.com/mozilla/Fira) (sans light/medium and code regular/medium), and [FontAwesome](https://fontawesome.com/), which is notoriously fat.
 
 But do we actually need all of the data the fonts contain?
 
-Fonts include characters in a number of alphabets, most of which this latin website will never use, so we can **discard them** and **only keep the relevant characters** (in the case of FontAwesome, only the used icons).
+Fonts include characters in a number of alphabets, most of which this Latin website will never use, so we can **discard them** and **only keep the relevant characters** (in the case of FontAwesome, only the used icons).
 
 We do this with `pyftsubset` (a part of [fonttools](https://github.com/fonttools/fonttools)), reducing the size to **less than `100 KB`** (an 85% reduction)!
 
@@ -124,7 +124,7 @@ Subsetting FA fonts...
 Although [data files](https://jekyllrb.com/docs/datafiles/) do exist in Jekyll, I didn't make great use of them so I can't blame this on Jekyll.
 Over time, however, I've added a few features to the website like my [climbing diary](/climbing), a [photo gallery](/photos) and even a <a href="/tboi" class="secret" >hidden TBOI page</a>, which are ripe for this feature.
 
-Datafiles are exactly what the name suggests -- files with data that can be used to generate the website.
+Data files are exactly what the name suggests -- files with data that can be used to generate the website.
 Many datatypes are supported, but this website uses YAML since it's a good combination of human/machine readability.
 
 As an example, the [photos](/photos) page is generated from a YAML file that looks like this:

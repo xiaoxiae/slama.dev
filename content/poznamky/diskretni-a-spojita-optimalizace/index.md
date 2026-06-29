@@ -34,7 +34,7 @@ Pak podmínka dědičnosti říká, že acyklické podgrafy jsou rovněž acykli
 
 {{< math "proof" >}}\((3) \implies (3')\) sporem:
 
-- nechť platí \((3)\) ale existuje \(A \subseteq X\) t. ž. pro nějaké \(U, V \subseteq \mathcal{S}\) platí \(U, V \subseteq A\), \(U, V\) jsou do inkluze maximální ale \(|U| > |V|\)
+- nechť platí \((3)\) ale existuje \(A \subseteq X\) t. ž. pro nějaké \(U, V \in \mathcal{S}\) platí \(U, V \subseteq A\), \(U, V\) jsou do inkluze maximální ale \(|U| > |V|\)
 - díky \((3)\) \((\exists u \in U \setminus V)\) t. ž. \(V \cup \left\{u\right\} \in \mathcal{S}\), což je spor s maximalitou \(V\).
 {{< /math >}}
 
@@ -132,7 +132,7 @@ r(V) &= r(V \cup \left\{x\right\}) = r(V \cup \left\{y\right\}) \\
 &\Rightarrow r(V \cup (U \setminus V)) = r(U \cup V) \ge r(U) = |U| & \Rightarrow\!\Leftarrow
 \end{aligned}\]
 
-{{< math "remark" "alternativní znění důkazu 2" >}}díky R2 víme, že odebráním prvku z \(A\) se může \(r(A)\) buď o 1 snížit, nebo zůstat stejný. Zůstat stejný být však nemůže (z definice řádové funkce), musí se tedy o \(1\) snížit a v tom případě je rovněž v \(\mathcal{S}\).
+{{< math "remark" "alternativní znění důkazu 2" >}}díky R2 víme, že odebráním prvku z \(A\) se může \(r(A)\) buď o 1 snížit, nebo zůstat stejný. Zůstat stejný však nemůže (z definice řádové funkce), musí se tedy o \(1\) snížit a v tom případě je rovněž v \(\mathcal{S}\).
 {{< /math >}}
 
 {{< /math >}}
@@ -188,7 +188,7 @@ Nyní můžeme dokončit důkaz:
 	- z monotonie dostáváme první část: \(Y \subseteq Y \cup \left\{y, z\right\} \implies r(Y) \le r(Y \cup \left\{y, z\right\})\)
 	- nyní použijeme submodularitu na \(A = Y \cup \left\{y\right\}, B = Y \cup \left\{z\right\}\)
 		- předpokládáme, že \(y \neq z\) a že \(x, y \not\in Y\), jinak platí triviálně \[r(\underbrace{Y \cup \left\{y, z\right\}}_{A \cup B}) + r(\underbrace{Y}_{A \cap B}) \le r(\underbrace{Y \cup \left\{y\right\}}_{A}) + r(\underbrace{Y \cup \left\{z\right\}}_{B})\]
-		- pokud tedy platí \(r(Y) \cup \left\{y\right\} = r(Y \cup \left\{z\right\}) = r(Y)\), tak dostáváme druhou část:
+		- pokud tedy platí \(r(Y \cup \left\{y\right\}) = r(Y \cup \left\{z\right\}) = r(Y)\), tak dostáváme druhou část:
 \[r(Y \cup \left\{y, z\right\}) \le r(Y)\]
 {{< /math >}}
 
@@ -229,8 +229,8 @@ To je skoro submodularita!
 - zkonstruujeme \(f(Y)\) a \(f(Z)\) z \(f(S)\) za pomocí posloupností marginálních hodnot:
   - rozepišme definici marginální hodnoty jako \(f(X \cup \{y_1\}) = f(X) + \Delta f_{y_1}(X)\)
     - dvojím rozepsáním dostaneme:
-      \[ f(X \cup \{y_1,y_2\}) = f(X \cup \{y_1\}) + \Delta f_{y_2}(X \cup \{y_1\}) = f(X) + \Delta f_{y_1}(X) + \Delta(X \cup \{y_1\}) \]
-    - opakovaným rozepsáním pro \(Y = \{y_1, y_2, \dots , y_k\}\) dostaneme: \[ f(X \cup Y) = f(X) + \sum_{i = 1}^k f_{y_i}(X \cup \{y_1, \dots y_{i-1}\}) \]
+      \[ f(X \cup \{y_1,y_2\}) = f(X \cup \{y_1\}) + \Delta f_{y_2}(X \cup \{y_1\}) = f(X) + \Delta f_{y_1}(X) + \Delta f_{y_2}(X \cup \{y_1\}) \]
+    - opakovaným rozepsáním pro \(Y = \{y_1, y_2, \dots , y_k\}\) dostaneme: \[ f(X \cup Y) = f(X) + \sum_{i = 1}^k \Delta f_{y_i}(X \cup \{y_1, \dots y_{i-1}\}) \]
   - zafixujme pořadí prvků v \(A \cup B\): \((a_1, a_2, \dots , a_k)\) a BÚNO \((A = \{a_1, \dots , a_r\})\) a \((B = \{a_{r+1}, \dots, a_k\})\), potom:
     \[ \begin{aligned}
     f(Y) = f(S \cup A) &= f(S) + \sum_{i=1}^r \Delta f_{a_i}(S \cup\{a_1, \dots a_{i-1}\}) \\
@@ -265,11 +265,11 @@ To je skoro submodularita!
 
 {{< math "example" >}}
 1. maximální párování v \(G\)
-2. minimální Hamiltonovská kružnice
+2. minimální hamiltonovská kružnice
 3. minimální hranový řez
 {{< /math >}}
 
-{{< math "algorithm" "hladový" >}} nechť že \(w_1 \ge \ldots \ge w_n\) a \(m = \max \left\{i \in X \mid w_i \ge 0\right\}\); pak:
+{{< math "algorithm" "hladový" >}} nechť \(w_1 \ge \ldots \ge w_n\) a \(m = \max \left\{i \in X \mid w_i \ge 0\right\}\); pak:
 1. nastav \(J = \emptyset\)
 2. pro \(i = \left\{1, \ldots, n\right\}\)
 	- je-li \(J \cup \left\{i\right\} \in \mathcal{S}\), pak \(i\) přidej do \(J\)
@@ -314,8 +314,8 @@ Nyní k původnímu důkazu: označíme \(z^*\) charakteristický vektor optima.
 	w^T z^* &= \sum w_i \cdot z^*_i \\
 	&= \sum w_i (z^*(T_i) - z^*(T_{i - 1})) & \qquad T_0 = \emptyset, * \\
 	&= \sum \underbrace{(w_i - w_{i + 1})}_{\ge 0} z^* (T_i) + \underbrace{w_m}_{> 0} z^*(T_m) & ** \\
-	&\le \sum (w_i - w_{i + 1}) r (T_i)_i + w_m r(T_m) \\
-	&= \sum (w_i - w_{i + 1}) z' (T_i)_i + w_m z'(T_m) & \text{lemma výše} \\
+	&\le \sum (w_i - w_{i + 1}) r (T_i) + w_m r(T_m) \\
+	&= \sum (w_i - w_{i + 1}) z' (T_i) + w_m z'(T_m) & \text{lemma výše} \\
 	&= w^T z' \\
 \end{aligned}\]
 
@@ -323,7 +323,7 @@ Nyní k původnímu důkazu: označíme \(z^*\) charakteristický vektor optima.
 
 \(**\) tohle vypadá magicky, ale dává to smysl -- \(z^*(T_i)\) v jednom cyklu smyčky přičítáme a ve druhém odčítáme, tak jsme to jen posunuli do \(w_i - w_{i + 1}\), navíc také započteme poslední část součtu, na který se nedostane. Navíc právě v tomhle kroku používáme **předpoklad setřízenosti.**
 
-Jelikož navíc triviálně \(w^T z* \ge w^T z'\) (je to optimum), tak věta platí.
+Jelikož navíc triviálně \(w^T z^* \ge w^T z'\) (je to optimum), tak věta platí.
 {{< /math >}}
 
 {{< math "consequence" "grafy" >}}poštvání HA na grafový matroid vrátí maximální (minimální pro \(-w\)) kostru. Poštvání na duál vrátí maximální množinu hran, kterou když odstraníme tak graf zůstane souvislý.{{< /math >}}
@@ -334,7 +334,7 @@ Jelikož navíc triviálně \(w^T z* \ge w^T z'\) (je to optimum), tak věta pla
 ##### Operace na matroidech
 
 **Součet** -- pro matroidy \(\mathcal{M_1} = (X_1, \mathcal{S}_1), \mathcal{M_2} = (X_2, \mathcal{S}_2), X_1 \cap X_2 = \emptyset\)
-\[\mathcal{M}_1 + \mathcal{M}_2 = (X = X_1 \cup X_2, \left\{A \in X \mid A \cap X_1 \in \mathcal{S}_1 \land A \cap X_2 \in \mathcal{S}_2\right\})\]
+\[\mathcal{M}_1 + \mathcal{M}_2 = (X = X_1 \cup X_2, \left\{A \subseteq X \mid A \cap X_1 \in \mathcal{S}_1 \land A \cap X_2 \in \mathcal{S}_2\right\})\]
 
 {{< math "example" "mazání a kontrakce v grafovém matroidu" >}}
 ![](sumcontex.svg)
@@ -342,7 +342,7 @@ Jelikož navíc triviálně \(w^T z* \ge w^T z'\) (je to optimum), tak věta pla
 
 **Sjednocení** -- zobecnění součtu. Definice je stejná, ale nepředpokládáme různé \(X_1, X_2\).
 
-{{< math "theorem" "sjednocení matroidů je matroid)" >}} sjednocení matroidů je matroid s řádovou funkcí \[r(U) = \min_{T \subseteq U} \left\{|U - T| + r_1(T \cap X_1) + \ldots + r_k(T \cap X_k)\right\}\]{{< /math >}}
+{{< math "theorem" "sjednocení matroidů je matroid" >}} sjednocení matroidů je matroid s řádovou funkcí \[r(U) = \min_{T \subseteq U} \left\{|U - T| + r_1(T \cap X_1) + \ldots + r_k(T \cap X_k)\right\}\]{{< /math >}}
 
 {{< math "proof" "náznak" >}}matroidy zdisjunktníme (\(X'_i = X_i
 \times \left\{i\right\}\)), sečteme a pak zobrazíme.{{< /math >}}
@@ -382,7 +382,7 @@ Podobné jako mazání, ale chová se dost jinak (viz kontrakce/mazání hran v 
 
 **Partition matroid** -- nechť \(X_1, \ldots, X_n\) jsou disjunktní množiny a \(\mathcal{S}_i = \left\{A \subseteq X_i \mid |A| \le 1\right\}\). Pak \(\sum_{i} (X_i, \mathcal{S}_i)\) je partiční matroid.
 
-{{< math "theorem" "Edmondsova MiniMaxová o průniku matroidů" >}}nechť \(\mathcal{M}_1 = \left(X, \mathcal{S}_1\right)\) a \(\mathcal{M_2} = \left(X, \mathcal{S_2}\right)\) jsou matroidy. Pak
+{{< math "theorem" "Edmondsova minimaxová věta o průniku matroidů" >}}nechť \(\mathcal{M}_1 = \left(X, \mathcal{S}_1\right)\) a \(\mathcal{M_2} = \left(X, \mathcal{S_2}\right)\) jsou matroidy. Pak
 \[\max \left\{|Y| \mid Y \in \mathcal{S_1} \cap \mathcal{S}_2\right\} = \min_{A \subseteq X} r_1(A) + r_2(X \setminus A)\]
 {{< /math >}}
 
@@ -397,7 +397,7 @@ A tedy
 
 {{< math "proof" "\(\ge\)" >}}TODO, tenhle důkaz je naprosto brutální{{< /math >}}
 
-{{< math "consequence" "obraz matroidu je matroid" >}}mějme matroid \(\mathcal{M}' = (X', \mathcal{S}')\) a funkci \(f: X' \implies X\). Definujme \[\mathcal{S} = \left\{f[I] \mid I \in \mathcal{S}'\right\}\]
+{{< math "consequence" "obraz matroidu je matroid" >}}mějme matroid \(\mathcal{M}' = (X', \mathcal{S}')\) a funkci \(f: X' \mapsto X\). Definujme \[\mathcal{S} = \left\{f[I] \mid I \in \mathcal{S}'\right\}\]
 Potom \((X, \mathcal{S})\) je také matroid a navíc pro \(T \subseteq U\) platí \[r(U) = \min_{T \subseteq U} \left\{|U - T| + r'(f^{-1} (T))\right\}\]{{< /math >}}
 
 ![](matroid-obraz.svg)
@@ -439,7 +439,7 @@ Jestli existuje \(x \in (A - J) - B\), pak \(r(X - (J \cup \left\{x\right\})) = 
 \end{aligned}\]
 {{< /math >}}
 
-{{< math "remark" >}}Matroid může být [duální sám sobě](https://en.wikipedia.org/wiki/Dual_matroid#Self-dual_matroids) (v tom smyslu, že \(\mathcal{M}_1\) a \(\mathcal{M}_2\) jsou izomorfní).{{< /math >}}
+{{< math "remark" >}}Matroid může být [duální sám sobě](https://en.wikipedia.org/wiki/Dual_matroid#Self-dual_matroids) (v tom smyslu, že \(\mathcal{M}\) a \(\mathcal{M}^*\) jsou izomorfní).{{< /math >}}
 
 {{< math "definition" "Cobáze, conezávislost" >}}nechť \(\mathcal{M}\) je matroid a \(\mathcal{M}^*\) jeho duální matroid. Pak \(Y \subseteq X\) je
 - **cobáze**, pokud je báze v \(M^*\)
@@ -491,7 +491,7 @@ V grafu jsou to kružnice.
 
 {{< math "proof" >}}
 - \(\Leftarrow\) pokud má zlepšující cestu, tak párování můžeme zlepšit a není tedy maximální
-- \(\Rightarrow\) pokud \(G\) není maximální tak existuje párování \(M'\) t. ž. \(M' > |M|\)
+- \(\Rightarrow\) pokud \(M\) není největší tak existuje párování \(M'\) t. ž. \(|M'| > |M|\)
 	- uvažme graf \(M \Delta M'\) -- stupně mají vrcholy nejvýše dva, komponenty jsou tedy buď alternující cykly nebo cesty -- díky tomu, že nám jedna hrana přebývá, tak alespoň jedna komponenta je cesta
 {{< /math >}}
 
@@ -541,7 +541,7 @@ Postup pro \(B-B\) hrany je tedy ten, že zkontrahujeme \(C\), vyřešíme páro
 
 {{< math "proof" >}}vychází přímo z Tutte-Berge dosazením \(|M| = |V|/2\) (jedná se  o perfektní párování).{{< /math >}}
 
-{{< math "theorem" "Edmonds-Gallai dekompozice" >}}\(G\) graf, \(G = (V, E)\), \(B \subseteq V\) vrcholů nepokrytých nějakým maximálním párovaním. Nechť \(A \subseteq V - B\) sousedé vrcholů z \(B\), \(C = V - \left(B \cup A\right)\). Pak
+{{< math "theorem" "Edmonds-Gallai dekompozice" >}}\(G\) graf, \(G = (V, E)\), \(B \subseteq V\) vrcholů nepokrytých nějakým maximálním párováním. Nechť \(A \subseteq V - B\) sousedé vrcholů z \(B\), \(C = V - \left(B \cup A\right)\). Pak
 1. každá komponenta \(G - \left(A \cup C\right)\) je kritická (\(\forall v \in K: K - \left\{v\right\}\) má perfektní párování)
 	- \(G\) kritický \(\iff\) \(G\) lze zkonstruovat z liché kružnice lepením lichých uší
 2. každé maximální párování \(M\) splňuje:
@@ -610,7 +610,7 @@ kde \[\mathrm{sign}(D, M_0, P) = (-1)^{\#\ \text{$D$-sudých cyklů $M_0\ \Delta
 - \(D\)-sudý je, když v \(D\) má sudý počet hran orientovaných jedním směrem; nezáleží na tom, jakou stranou jdeme, jelikož symetrická diference perfektních párování tvoří jen sudé cykly
 
 Postup důkazu:
-- \(\mathcal{P}(G, D, M_0, x, w)\) lze pro obecné grafy spočítat variantou Gaussovské eliminace (Pfaffaon)
+- \(\mathcal{P}(G, D, M_0, x, w)\) lze pro obecné grafy spočítat variantou Gaussovské eliminace (Pfaffián)
 - Existuje orientace \(D^K\), že všechna znaménka \(\mathrm{sign}(D^K, M_0, P)\) jsou stejná, tedy \[\mathcal{P}(G, D^K, M_0, *, w) = \pm \mathcal{P}(G, x, w)\]
 - Tuhle \(D^K\) lze zkonstruovat v polynomiálním čase.
 {{< /math >}}
@@ -683,7 +683,7 @@ Na obou částech jsem si vytáhl okruh, o kterém jsem napsal co vím a pak jse
 3. Kontrakce, dualita.
 4. Hladový algoritmus.
 5. Průnik matroidů, obraz, sjednocení.
-6. Edmondsův algoritmus na maximální párování, Tuttova věta.
+6. Edmondsův algoritmus na maximální párování, Tutteova věta.
 7. Problém Obchodního cestujícího a Čínského pošťáka.
 
 #### Spojitá část

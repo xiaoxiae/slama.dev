@@ -2,7 +2,7 @@
 date: '2020-08-11'
 title: <code>pacman</code>
 hidden: true
-description: An overview of how the Linux' `pacman` command can be used.
+description: An overview of how the `pacman` command can be used on Linux.
 htmlTitle: pacman
 toc: true
 ---
@@ -19,7 +19,7 @@ toc: true
 | `-R`, `--remove`  | Remove package(s) from the system.           |
 | `-Q`, `--query`   | View information about installed package(s). |
 
-There are some other action that can be performed, but they are not as useful as the ones above. Consult the manpage or the sources of this article if you wish to know more.
+There are some other actions that can be performed, but they are not as useful as the ones above. Consult the manpage or the sources of this article if you wish to know more.
 
 #### Install/upgrade packages
 To install/upgrade packages, use the `-S` flag. Here are some possible syntaxes:
@@ -72,7 +72,7 @@ Keep in mind that the flags are very important here, since there are a lot of po
 | `-o <f>`, `--owns <f>`   | List, which package owns the specified file.             |
 | `-m`, `--foreign`        | List packages not found in the sync database.[^2]        |
 | `-n`, `--native`        | Opposite of `-m`.                                        |
-| `-s <r>`, `--search <r>` | List packages, whose names/descriptions matches a regex. |
+| `-s <r>`, `--search <r>` | List packages, whose names/descriptions match a regex. |
 | `-u`, `--upgrades`       | List out-of-date packages. Good to prepend with `-y`.    |
 
 [^1]: For some reason, I had quite a difficulty understanding what "explicitly" actually means here. For clarification: packages are explicit, when they are installed by the user using a command, or when installed with the `--asexplicit` flag.

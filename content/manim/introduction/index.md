@@ -35,8 +35,8 @@ The classes/methods discussed in the series are accompanied by the links to thei
 
 
 ### First animations
-The basic building block of Manim are **scenes**, which are Python classes inheriting the {{< doc "manim" "Scene" "reference/manim.scene.scene.Scene.html" >}} class.
-Each of the scenes must implement the {{< doc "manim" "construct" "reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.construct" >}} method, which contains information about what the scene looks like (creating shapes, moving them, changing, color and size, etc.).
+The basic building blocks of Manim are **scenes**, which are Python classes inheriting the {{< doc "manim" "Scene" "reference/manim.scene.scene.Scene.html" >}} class.
+Each of the scenes must implement the {{< doc "manim" "construct" "reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.construct" >}} method, which contains information about what the scene looks like (creating shapes, moving them, changing color and size, etc.).
 
 Here is an example of a simple scene that creates a red {{< doc "manim" "Square" "reference/manim.mobject.geometry.polygram.Square.html" >}} and then a blue {{< doc "manim" "Circle" "reference/manim.mobject.geometry.arc.Circle.html" >}}.
 
@@ -127,7 +127,7 @@ If you're not familiar with setting math in \(\TeX\), you can use one of many on
 
 {{< video "manim" "01-text-and-math-example" >}}
 
-An alternative to using the {{< doc "manim" "Tex" "reference/manim.mobject.text.tex_mobject.Tex.html" >}} class is the {{< doc "manim" "Text" "reference/manim.mobject.text.text_mobject.Text.html" >}} class, which internally doesn't use \(\TeX\) and thus renders a(n arguably) worse-looking text, but is easier to work with when dealing with non-english characters.
+An alternative to using the {{< doc "manim" "Tex" "reference/manim.mobject.text.tex_mobject.Tex.html" >}} class is the {{< doc "manim" "Text" "reference/manim.mobject.text.text_mobject.Text.html" >}} class, which internally doesn't use \(\TeX\) and thus renders a(n arguably) worse-looking text, but is easier to work with when dealing with non-English characters.
 
 ### Tasks
 

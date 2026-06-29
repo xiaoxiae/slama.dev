@@ -43,7 +43,7 @@ _Note that the notes only cover the topics [required for the exam](exam.pdf), wh
 8. Locality Sensitive Hashing 2 [[slides](08.pdf)]
 9. Frequent itemsets + A-Priori algorithm [[slides](09.pdf)]
 10. PCY extensions [[slides](10.pdf)]
-10. Online bipartite matching + BALANCE [[slides](11.pdf)]
+11. Online bipartite matching + BALANCE [[slides](11.pdf)]
 12. Mining data streams 1 [[slides](12.pdf)]
 13. Mining data streams 2 [[slides](13.pdf)]
 
@@ -82,7 +82,7 @@ PySpark's other main data structure are **DataFrames**:
 
 {{< math "definition" "Estimator" >}}an algorithm which can be fit on a DataFrame to produce a **Transformer**{{< /math >}}
 - abstracts the concept of a learning algorithm
-- contains a `fit()` function, which when call produces a **Transformer**
+- contains a `fit()` function, which when called produces a **Transformer**
 
 {{< math "definition" "Pipeline" >}}an object which contains multiple **Transformers** and **Estimators**{{< /math >}}
 - a complete **untrained** pipeline is an **Estimator**
@@ -113,7 +113,7 @@ lines = ssc.socketTextStream("localhost", 9999)
 # lines is an RDD (kinda) and we can behave as such
 words = lines.flatMap(lambda line: line.split(" "))
 pairs = words.map(lambda word: (word, 1))
-wordCounts = words.reduceByKey(lambda x, y: x + y)
+wordCounts = pairs.reduceByKey(lambda x, y: x + y)
 
 wordCounts.pprint()
 
@@ -167,7 +167,7 @@ To calculate neighbourhood, we can do a few things:
 - take the top \(k\) similar users, whatever their similarities are
 
 ##### Item-item CF
-Analogous to User-user: for rating item \(i\), we're find items rated by user \(x\) that are similar (as in rated similarly by other users). To do this, we can again use \(\mathrm{sim}\), obtaining \[r_{xi} = \frac{\sum_{j \in N} \mathrm{sim}(i, j) \cdot r_{xj}}{\sum_{j \in N} \mathrm{sim}(i, j)}\]
+Analogous to User-user: for rating item \(i\), we find items rated by user \(x\) that are similar (as in rated similarly by other users). To do this, we can again use \(\mathrm{sim}\), obtaining \[r_{xi} = \frac{\sum_{j \in N} \mathrm{sim}(i, j) \cdot r_{xj}}{\sum_{j \in N} \mathrm{sim}(i, j)}\]
 
 The improved version has a slightly different baseline to User-User, namely  \[r_{xi} = b_{xi} + \frac{\sum_{j \in N} \mathrm{sim}(i, j) \cdot (r_{xj} - b_{xj})}{\sum_{j \in N} \mathrm{sim}(i, j)}\]
 where \(b_{xi} =\) mean item rating \(+\) rating deviation of user \(x\) \(+\) rating deviation of item \(i\).
@@ -203,7 +203,7 @@ For matching User and Item (i.e. determining rating), we can again use **cosine 
 
 #### Latent factor models
 Merges Content-Based Recommenders (rating is a product of vectors) and Collaborative filtering (weighted sum of other ratings from the utility matrix) -- use user data to create the item profiles!
-We'll do this by factorizing the matrix into user matrix \(P\) and item matrix \(Q\) such that we minimize SSE \[\min_{P, Q} \sum_{\left(i, x\right) \in R} (r_{xi} - q_{i} \cdot p_x)^2\]
+We'll do this by factorizing the matrix into user matrix \(P\) and item matrix \(Q\) such that we minimize SSE \[\min_{P, Q} \sum_{\left(x, i\right) \in R} (r_{xi} - q_{i} \cdot p_x)^2\]
 
 ![Latent factors illustration.](lf.svg)
 
@@ -241,7 +241,7 @@ To reduce the matrix operations, we can rearrange the matrix equation and get \[
 {{< math "algorithm" "PageRank" >}}
 - set \(r^{\mathrm{old}}_j = \frac{1}{N}\)
 - repeat until \(\sum_{j} |r^{\mathrm{new}}_j - r^{\mathrm{old}}_j| < \varepsilon\):
-	- _power method iteration:_ \(\forall j: r^{\mathrm{new}}_j = \sum_{i \rightarrow j} \beta \frac{r^{\mathrm{old}_i}}{d^{\mathrm{out}}_i}\), otherwise \(0\) if in-degree of \(j\) is \(0\)
+	- _power method iteration:_ \(\forall j: r^{\mathrm{new}}_j = \sum_{i \rightarrow j} \beta \frac{r^{\mathrm{old}}_i}{d^{\mathrm{out}}_i}\), otherwise \(0\) if in-degree of \(j\) is \(0\)
 	- _vector normalization:_ \(\forall j: r^{\mathrm{new}}_j = r^{\mathrm{new}}_j + \frac{1 - \sum_{j} r^{\mathrm{new}}_j}{N}\)
 	- \(r^{\mathrm{old}} = r^{\mathrm{new}}\)
 {{< /math >}}
@@ -289,7 +289,7 @@ After this, websites with trust below a certain threshold are spam.
 
 We can use TrustRank for **spam mass estimation** (i.e. estimate how much rank of a page comes from spammers):
 - \(r_p\): PageRank of page \(p\)
-- \(r_p^+\)s PageRank of page \(p\) with teleport into _trusted pages only_
+- \(r_p^+\): PageRank of page \(p\) with teleport into _trusted pages only_
 - \(r_p^- = r_p - r_p^+\): how much rank comes from spam pages
 - **Spam mass of \(p\)**: \[\frac{r_p^-}{r_p} = \frac{r_p - r_p^+}{r_p}\]
 
@@ -433,7 +433,7 @@ Plotting the probabilities with variable \(s\), we get the **S-curve:**
 **Initial problem:** find a maximum matching for a bipartite graph where we're only given the left side and the right side is revealed one-by-one. The obvious first try is a **greedy** algorithm (match with first available)
 - has a competitive ratio of \(\ge 1/2\)[^proof-greedy]
 
-[^proof-greedy]: let \(L\) be left side and \(R\) the right. If \(M_{\mathrm{greedy}} \neq M_{\mathrm{optional}}\), consider set \(G \subseteq R\) matched in \(M_{\mathrm{optional}}\) but not in \(M_{\mathrm{greedy}}\). Now consider \(B \subseteq L\) adjacent to \(G\): every one of those must be matched in \(M_{\mathrm{greedy}}\) (for those \(G\) not to be) so \(|B| \le |M_{\mathrm{greedy}}|.\). Also, \(|B| \ge |G|\), since otherwise the optimal algorithm couldn't have matched all girls in \(G\). Since \(|M_{\mathrm{opt}}| \le |M_{\mathrm{greedy}}| + |G|\), we get the desired bound after substituting for \(|G|\).
+[^proof-greedy]: let \(L\) be left side and \(R\) the right. If \(M_{\mathrm{greedy}} \neq M_{\mathrm{opt}}\), consider set \(G \subseteq R\) matched in \(M_{\mathrm{opt}}\) but not in \(M_{\mathrm{greedy}}\). Now consider \(B \subseteq L\) adjacent to \(G\): every one of those must be matched in \(M_{\mathrm{greedy}}\) (for those \(G\) not to be) so \(|B| \le |M_{\mathrm{greedy}}|.\). Also, \(|B| \ge |G|\), since otherwise the optimal algorithm couldn't have matched all girls in \(G\). Since \(|M_{\mathrm{opt}}| \le |M_{\mathrm{greedy}}| + |G|\), we get the desired bound after substituting for \(|G|\).
 
 **Revised problem:** left side are advertisers, right side terms to advertise on; we know
 - the bids advertisers have on the queries,
@@ -493,7 +493,7 @@ The **minimum** of this function (wrt. \(k\)) is \(n/m \ln(2)\):
 
 **Naive solution:** pick randomly and hope for the best
 - really bad idea -- what if we want to know, how many queries are duplicates?
-	- we'd have to pick both, the probability of which is not as picking one
+	- we'd have to pick both, the probability of which is not the same as picking one
 
 **Better solution:** pick by value, _not by position_ (i.e. pick 1/10 of users)
 - generalized: key is some subset of the tuple, for ex. (**user**; search; time)
@@ -510,7 +510,7 @@ The **minimum** of this function (wrt. \(k\)) is \(n/m \ln(2)\):
 This ensures that after \(n\) elements, all elements have a \(s/n\) probability to be currently sampled[^proof-sampling].
 
 [^proof-sampling]: Shown by induction -- after element \(n + 1\) arrives:
-    - for element \(x\) in \(S\), in the probability that the algorithm keeps it this iteration is \[\underbrace{\left(1 - \frac{s}{n + 1}\right)}_{\text{new one is discarded}} + \underbrace{\left(\frac{s}{n + 1}\right) \left(\frac{s - 1}{s}\right)}_{\text{new one is not discarded} \atop \text{but replaces a different one}} = \frac{n}{n + 1}\]
+    - for element \(x\) in \(S\), the probability that the algorithm keeps it this iteration is \[\underbrace{\left(1 - \frac{s}{n + 1}\right)}_{\text{new one is discarded}} + \underbrace{\left(\frac{s}{n + 1}\right) \left(\frac{s - 1}{s}\right)}_{\text{new one is not discarded} \atop \text{but replaces a different one}} = \frac{n}{n + 1}\]
     - the probability that the element \(x\) is in \(S\) at time \(n + 1\) is therefore \[\underbrace{\frac{s}{n}}_{\text{induction}} \cdot \frac{n}{n + 1} = \frac{s}{n + 1}\]
 
 #### Stream Counting
@@ -535,7 +535,7 @@ We can **generalize this** concept to counting **moments:** for \(m_a\) being th
 	- for sequence \(90, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1\), \(S = 8110\)
 
 ##### AMS Algorithm
-{{< math "algorithm" "AMS (Alton-Matias-Szegedy)" >}}
+{{< math "algorithm" "AMS (Alon-Matias-Szegedy)" >}}
 - pick and keep track of „approximate“ variables \(X\)
 	- the more variables there are (say \(k\)), the more precise the approximation is
 	- for each \(X\), we store the ID and the count of the given item

@@ -17,10 +17,10 @@ Certain apps (Firefox, Beeper, Thunderbird) would occasionally crash.
 This was especially annoying and frequent for Firefox, since it most often happened when opening a new tab for certain more demanding websites (i.e. YouTube).
 Furthermore, re-launching the app would sometimes make it crash again and again, whereas other times it would start without any issues.
 
-For FireFox, my first thought was that it had something to do with the large collection of add-ons I've accumulated over the years, but disabling them made no difference -- it kept crashing.
+For Firefox, my first thought was that it had something to do with the large collection of add-ons I've accumulated over the years, but disabling them made no difference -- it kept crashing.
 Looking through other general fixes (you can't find very many quality answers when the question is _"Firefox keeps crashing"_) didn't help either.
 
-Since Beeper is still in beta, I chalked its crashes to this fact and left it at that.
+Since Beeper is still in beta, I chalked its crashes up to this fact and left it at that.
 
 ### 2. Can't Pull a Docker Image
 Pulling a Docker image from Docker Hub would fail every time, for various different (yet equally strange) reasons.
@@ -41,7 +41,7 @@ I almost cried when trying to debug this, since there was quite literally nothin
 What the fuck.
 
 ### 4. Jupyter Kernel Crashes
-Working on homework for [Generative Neural Networks](/notes/generative-neural-networks/) involved a lot of Pytorch work in Jupyter.
+Working on homework for [Generative Neural Networks](/notes/generative-neural-networks/) involved a lot of PyTorch work in Jupyter.
 Doing this on my desktop was not an issue and was much faster since it was GPU-enabled, but running the same code on the laptop (with the `cpu` device) would result in the kernel frequently crashing, namely:
 - after model is done training (crashes in the middle were extremely infrequent),
 - when creating larger datasets (that didn't take a trivial amount of memory),

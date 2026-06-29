@@ -31,4 +31,4 @@ I used the [StippleGen](https://www.evilmadscientist.com/2012/stipplegen-weighte
 
 As for updating the image after being productive, I created a simple script that does this automatically, selecting the one that is closest to the center.
 
-[^1]: If your system prefers dark theme, the dots will yellow/white, since the colors are inverted.
+[^1]: If your system prefers dark theme, the dots will be yellow/white, since the colors are inverted.

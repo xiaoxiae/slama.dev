@@ -67,7 +67,7 @@ We also assume that:
 {{< math "proof" >}}we'll create an indicator variable \(Y_j\) for each clause
 - the chance that \(C_j\) is not satisfied is \(\frac{1}{2^k}\)
 
-Since the size of the clause \(k \ge 1\), we get \(\mathbb{E}\left[Y_j\right] = \mathrm{Pr}\left[C_j\ \text{is satistied}\right] = 1 - \frac{1}{2^k} \ge \frac{1}{2} \), thus
+Since the size of the clause \(k \ge 1\), we get \(\mathbb{E}\left[Y_j\right] = \mathrm{Pr}\left[C_j\ \text{is satisfied}\right] = 1 - \frac{1}{2^k} \ge \frac{1}{2} \), thus
 \[\mathbb{E}\left[\sum_{j = 1}^{n} Y_j\right] \overset{\text{linearity} \atop \text{of expectation}}{=} \sum_{j = 1}^{n} \mathbb{E}\left[Y_j\right] \ge \sum_{j = 1}^{n}\frac{1}{2} \ge \frac{1}{2}\mathrm{OPT} \]
 {{< /math >}}
 
@@ -84,8 +84,8 @@ We're using the optimal solution to the linear program (and generally the formul
 		- \(z_j\) for _each clause_
 	- inequalities will be one for _each clause,_ in the form \[z_j \le \sum_{\text{positive}} y_i + \sum_{\text{negative}} (1 - y_i)\]
 	- we'll _maximize_  the number of satisfied clauses \(\sum z_j\)
-3. relax the program (allow real variables instead of integers) and calculate the optimum \(y^*, z^*\)
-4. set literals \(x_i\) to \(1\) with probability \(y_i^*\)
+2. relax the program (allow real variables instead of integers) and calculate the optimum \(y^*, z^*\)
+3. set literals \(x_i\) to \(1\) with probability \(y_i^*\)
 {{< /math >}}
 
 {{< math "theorem" >}}LP-SAT is a \(\left(1 - \frac{1}{e}\right)\)-approximation algorithm.{{< /math >}}

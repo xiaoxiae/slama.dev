@@ -16,7 +16,7 @@ Books:
 - The Lies of Locke Lamora
 - Red Seas Under Red Skies
 - The Republic of Thieves
-- Rythm of War (to refresh)
+- Rhythm of War (to refresh)
 - Wind and Truth (banger)
 - Ball Lightning (amazing!!!)
 - Isles of the Emberdark (also amazing!!!)
@@ -27,7 +27,7 @@ Books:
 - Starsight (still ass, not reading the rest)
 - Lost Metal (yes I read it again)
 - The Tapestry 4 (comfy)
-- Alloy of Low (hyper super duper comfy)
+- Alloy of Law (hyper super duper comfy)
 -->
 
 <!--

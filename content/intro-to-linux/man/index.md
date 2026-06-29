@@ -12,7 +12,7 @@ toc: true
 ### Usage
 Let's use `man` to examine what `ls` does. To do this, run `man ls` -- a window should open with the documentation of the command `ls`.
 
-This is the default way to use `man` -- it tries to look for a manual page(s), whose name matches the provided argument(s). However, it can also do different things, depending on if the following flags are specified:
+This is the default way to use `man` -- it tries to look for manual page(s) whose name matches the provided argument(s). However, it can also do different things, depending on if the following flags are specified:
 
 | Flag                     | Description                                                |
 | ---                      | ---                                                        |
@@ -45,7 +45,7 @@ Some common sections include:
 | `l`     | Local documentation                                   |
 | `n`     | Tcl/Tk keywords                                       |
 
-To specify, which section the page should be displayed from, either of the following works:
+To specify which section the page should be displayed from, either of the following works:
 - `man <page>.<section>`
 - `man <page>(<section>)`
 
@@ -67,7 +67,7 @@ One can use the `-T` option to convert a manpage to a different format. For exam
 #### Adding color
 In my opinion, `man` pages are, by default, rather dull-looking. They use `less` by default to do the displaying and while it does offer some forms of highlighting (bold, italics,...), it is quite limited and not nearly as nice as it could be.
 
-One way to change this is to use `most` comes in -- it's also a pager, similar to `less`, but offers nice coloring out-of-the-box. To use it, first install it using your package manager and then use the `-P` flag: `man -Pmost ls`. A good idea to make this change persistent would either be to create an alias, or to change the `PAGER`/`MANPAGER` variable in your shell to `most`.
+One way to change this is to use `most` -- it's also a pager, similar to `less`, but offers nice coloring out-of-the-box. To use it, first install it using your package manager and then use the `-P` flag: `man -Pmost ls`. A good idea to make this change persistent would either be to create an alias, or to change the `PAGER`/`MANPAGER` variable in your shell to `most`.
 
 #### Changing the language
 The language that `man` uses is determined by the `LANG` and `LC_MESSAGES` environment variables. If you prefer to display the manual pages in other languages[^1], use the `-L` flag: `man -Lcs gpasswd` -- `man` will try to open the page in the language of your choice and will default to English if it isn't successful.
@@ -77,7 +77,7 @@ The language that `man` uses is determined by the `LANG` and `LC_MESSAGES` envir
 ### Internals
 `man` internally uses `/etc/man_db.conf` for configuration. Examining the file can tell you where `man` looks for the reference pages that it can display, and also the order in which sections are searched for your manpage.
 
-The manual files are (normally) stored in the `nroff` format (compressed in the `.gz` format) and are then processed using various pre-processors, followed by the `groff` formatting system and then either ran through additional post-processors, or presented to the user via a pager (`less` by default).
+The manual files are (normally) stored in the `nroff` format (compressed in the `.gz` format) and are then processed using various pre-processors, followed by the `groff` formatting system and then either run through additional post-processors, or presented to the user via a pager (`less` by default).
 
 A sample page's source file (`ls`, for example, found in `/usr/share/man/man1/ls.1.gz` on my machine) looks something like this:
 ```text
@@ -103,7 +103,7 @@ do not ignore entries starting with .
 do not list implied . and ..
 ```
 
-Interestingly enough, this particular man page is actually auto-generated from `ls`'s `--help` and `--version` flags using the `help2man`. I found that some other commands (`uname`, `printf`, `chroot`, `date`) also do it, but a lot of them don't.
+Interestingly enough, this particular man page is actually auto-generated from `ls`'s `--help` and `--version` flags using `help2man`. I found that some other commands (`uname`, `printf`, `chroot`, `date`) also do it, but a lot of them don't.
 
 The above results in the following output:
 ```text

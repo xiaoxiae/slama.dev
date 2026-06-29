@@ -11,7 +11,7 @@ You can either
 1. **fold the monitor** to have a comfortable arm position, distorting the display 🤏, or
 2. **bring the laptop closer** and raise your arms like Dracula to be able to type 🧛
 
-What the global elites are not telling you is that there is a **third option:** combine the comfort of a non-vampiric hand position and an undistorted display by folding it and **stretching the screen** to accommodate for the distortion -- all for the low low price of a single magical `xrandr` incantation:
+What the global elites are not telling you is that there is a **third option:** combine the comfort of a non-vampiric hand position and an undistorted display by folding it and **stretching the screen** to compensate for the distortion -- all for the low low price of a single magical `xrandr` incantation:
 
 ```fish
 xrandr --output <your monitor> --transform 1,0,0,0,0.6,0,0,0,1

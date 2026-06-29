@@ -72,7 +72,7 @@ It will also not jump all over the disk, doing mostly sequential reads that don'
 
 ### Reading the SD card!
 
-After **~300** hours of reading, the reading speed dropped to about `1 B/s` we have managed to recover **94.5%** of data, with the graph and recovered sector visualizations (using **[`ddrescueview`](https://sourceforge.net/projects/ddrescueview/)**) looking like this:
+After **~300** hours of reading, during which the reading speed dropped to about `1 B/s`, we have managed to recover **94.5%** of data, with the graph and recovered sector visualizations (using **[`ddrescueview`](https://sourceforge.net/projects/ddrescueview/)**) looking like this:
 
 {{< image_section caption="<strong>Graph of recovery</strong> from 86% onward (left) and <strong>recovered sectors</strong> (right)." >}}
 {{< image_row "graph.webp :: Graph of recovery from 86%. | recovered.webp :: Recovered sectors visualization." >}}

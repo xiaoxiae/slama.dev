@@ -15,7 +15,7 @@ Since I am a complete beginner, take everything written here with a huge grain o
 
 ---
 
-1. **day:** spent comfortable with Furnace; playing around with inputting notes
+1. **day:** spent getting comfortable with Furnace; playing around with inputting notes
     - _the target device is the NES since its channels are pretty limited_
 2. **day:** figured out a simple progression that sounds interesting
 3. **day:** fleshed out the progression and added fluff around to make it interesting
@@ -83,7 +83,7 @@ Since I am a complete beginner, take everything written here with a huge grain o
 - `Ctrl+F1`/`Ctrl+F2` -- Transpose -1/+1 note
 - `Ctrl+F3`/`Ctrl+F4` -- Transpose -1/+1 octave
 
-- **notes** can be input either with a MIDI controller (oof) or via a the keyboard:
+- **notes** can be input either with a MIDI controller (oof) or via the keyboard:
     - `space` -- disable/enable note input
     - `1` -- note cut (`OFF`)
     - `zsxdcvgbhnmq` (first octave)
@@ -93,4 +93,4 @@ Since I am a complete beginner, take everything written here with a huge grain o
     - these are _not tied to one note_ but to the _whole channel_!
     - certain individual effects have to be turned off!
     - `ECxx` -- note cut
-    - `F3xx`/`F4xx` -- volume slide up/down
+    - `F3xx`/`F4xx` -- fine volume slide up/down

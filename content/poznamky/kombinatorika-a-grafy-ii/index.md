@@ -47,7 +47,7 @@ language: cs
 - \(\Leftarrow\) pro spor nechť \(M'\) je párování v \(G\) t. ž \(|M'| \ge |M|\)
 	- uvažme \(H = \left(V, M \cup M'\right)\); pak má každý vrchol stupeň \(0, 1\) nebo \(2\) \(\Rightarrow\) komponenty souvislosti jsou kružnice sudé délky a cesty (navíc jsou střídavé)
 	- {{< math "observation" >}}musí existovat komponenta, která má více hran z \(M'\) (je větší){{< /math >}}
-		- není to kružnice (musela by být lichá a měli bychom máme kolizi ve vrcholu)
+		- není to kružnice (musela by být lichá a měli bychom kolizi ve vrcholu)
 		- je to volná (z definice, vzhledem k \(M\)) střídavá (jinak by měly stejný počet hran) cesta
 
 {{< math "definition" "květ" >}} lichá „střídavá“ kružnice s vrcholem \(v_1\), ke kterému přiléhají dvě hrany \(\not\in M\){{< /math >}}
@@ -69,7 +69,7 @@ language: cs
 
 {{< math "algorithm" "Edmondsův „zahradní/blossom“" >}} vstupem je graf \(G\) a jeho libovolné párování \(M\), třeba prázdné. Výstupem je párování \(M'\), které je alespoň o \(1\) větší, než \(M\), případně \(M\) pokud bylo maximální.{{< /math >}}
 
-- zkonstruujeme maximální možný **Edmondsův les** vzhledem k aktuálnímu \(M\) tím, že z volných vrcolů pustíme BFS a střídavě přidáváme vrcholy
+- zkonstruujeme maximální možný **Edmondsův les** vzhledem k aktuálnímu \(M\) tím, že z volných vrcholů pustíme BFS a střídavě přidáváme vrcholy
 	- hranám, které se v lese neobjeví, se říká kompost a nebudou pro nás důležité
 
 ![](les.svg)
@@ -100,7 +100,7 @@ language: cs
 \(\Leftarrow\) nechť \(G\) splňuje Tutteovu podmínku. \(|V|\) je sudá (nastavíme \(S\) prázdnou). Dokážeme, že \(G\) má PP indukcí podle počtu nehran.
 
 - **základ:** \(G = K_{2n}\), ten PP má
-- **indukční podmínka:** \(G\) má nehranu a každý graf na \(V\)s počtem hran alespoň o 1 větší než \(|E|\) a platí TP, pak má perfektní párování
+- **indukční podmínka:** \(G\) má nehranu a každý graf na \(V\) s počtem hran alespoň o 1 větší než \(|E|\) a platí TP, pak má perfektní párování
 
 Nechť \(S = \left\{v \in V\ |\ \deg(v) = n - 1\right\} = \left\{v \mid \text{$v$ je spojený se všemi vrcholy} \right\}\)
 - lehký případ: každá komponenta \(G - S\) je klika
@@ -185,7 +185,7 @@ Označme řez \(v_e, z_e\). Po rozkontrahování vidíme, že \(\forall \left\{x
 {{< math "proof" "moje intuice" >}}Pokud by neplatilo (existovala by taková hrana), tak máme hranu, přes kterou kontrahujeme. Jelikož pro tu hranu platí, že neexistuje \(z\), které spolu s jejími vrcholy tvoří řez, tak bude graf i po kontrakci \(3\)-souvislý.
 {{< /math >}}
 
-Pro důkaz původního lemmatu si zvolím \(e = \left\{x, y \right\} \in E\) a \(z_e\) z pomocného tvrzení tak, aby nejmenší komponenta \(G - z, y, z_e\) byla co nejmenší (co do počtu vrcholů).
+Pro důkaz původního lemmatu si zvolím \(e = \left\{x, y \right\} \in E\) a \(z_e\) z pomocného tvrzení tak, aby nejmenší komponenta \(G - x, y, z_e\) byla co nejmenší (co do počtu vrcholů).
 
 Protože \(z_e\) má souseda ve všech komponentách, má nějakého souseda \(u \in C, f = \left\{z_e, u\right\}\) (kde \(C\) je naše nejmenší komponenta). Pomocné tvrzení pro \(f\) dá nějaký \(z_f \in V\) t. ž. \(\left\{z_e, z_f, u\right\}\) je vrcholový řez \(G\). Chceme dokázat, že \(G - z_e, z_f, u\) má menší komponentu než \(C\).
 
@@ -233,7 +233,7 @@ Pak ale \(G_{i - 1}\) nebyl 3-souvislý, rozborem toho, kde vznikla hrana:
 
 {{< math "theorem" "Kuratowského" >}} \(G\) rovinný \(\iff\) neobsahuje dělení \(K_5\) ani \(K_{3, 3}\){{< /math >}}
 
-{{< math "theorem" "Kuratowski 1930, Warner 1937" >}} Následující jsou ekvivalentní:{{< /math >}}
+{{< math "theorem" "Kuratowski 1930, Wagner 1937" >}} Následující jsou ekvivalentní:{{< /math >}}
 1. \(G\) je rovinný
 2. \(G\) neobsahuje dělení \(K_5\) ani \(K_{3, 3}\) jako podgraf
 3. \(G\) neobsahuje \(K_5\) ani \(K_{3, 3}\) jako minor.
@@ -252,7 +252,7 @@ Pak ale \(G_{i - 1}\) nebyl 3-souvislý, rozborem toho, kde vznikla hrana:
 		- \(k_v(G) = 2\Rightarrow\), rozložení podél dvou vrcholů tvořících řez, ale opatrně -- musíme si rozmyslet, že můžeme obě části zkontrahovat do hrany mezi vrcholy, aby poté v nakreslení šly spojit
 {{< /math >}}
 
-[^1]: Chceme ukázat, že obsahuje-li graf \(K_5\) nebo \(K_{3,3}\) jako minor, obsahuje i dělení nějakého z těchto grafů jako podgraf. Uvažme nejdřív obecně graf \(G\) obsahující jak podgraf dělení \(H'\) grafu \(H\). \(H'\) dostaneme z \(G\) posloupností mazání vrcholů a mazání hran. \(H\) pak dostaneme z \(H'\) posloupností operací inverzních k dělení hran, což jsou právě kontrakce hran, při nichž má výsledný vrchol stejný stupeň, jako jeden z kontrahovaných vrcholů (a zároveň nekontrahujeme vrchol stupně 1, což je ale to samé jako mazání). Všimněme si, že tento speciální tvar má mimo jiné každá kontrakce, při níž nevznikne větší stupeň než 3.  Co kdyby tedy \(G\) obsahoval minor \(K\) a navíc \(\Delta(K) \leq 3\)? Od \(G\) ke \(K\) se můžeme dostat posloupností mazání vrcholů, mazání hran a kontrakcí hran. Všimněme si ale, že nikdy nemusíme použít kontrakci, při které vznikne větší stupeň než 3, protože vzniklý vrchol musí být stejně následně smazán. To můžeme nahlédnout i tak, že v posloupnosti operací se mohou operace libovolně předbíhat (pokud je přitom patřičně pozměníme), a tedy všechny kontrakce si můžeme nechat nakonec. Z předchozích pozorování vidíme, že minory maximálního stupně nejvýše 3 a dělení jako podgrafy jsou generované stejnými typy operací a tedy speciálně obsahuje-li graf \(K_{3,3}\) jako minor, obsahuje i nějaké jeho dělení jako podgraf.  Zbytek důkazu pro \(K_5\) je lepší s obrázkem a lze najít [na tomhle odkazu](https://www.math.uni-hamburg.de/home/diestel/books/graph.theory/preview/Ch4.pdf) (Lemma 4.4.2).
+[^1]: Chceme ukázat, že obsahuje-li graf \(K_5\) nebo \(K_{3,3}\) jako minor, obsahuje i dělení nějakého z těchto grafů jako podgraf. Uvažme nejdřív obecně graf \(G\) obsahující jako podgraf dělení \(H'\) grafu \(H\). \(H'\) dostaneme z \(G\) posloupností mazání vrcholů a mazání hran. \(H\) pak dostaneme z \(H'\) posloupností operací inverzních k dělení hran, což jsou právě kontrakce hran, při nichž má výsledný vrchol stejný stupeň, jako jeden z kontrahovaných vrcholů (a zároveň nekontrahujeme vrchol stupně 1, což je ale to samé jako mazání). Všimněme si, že tento speciální tvar má mimo jiné každá kontrakce, při níž nevznikne větší stupeň než 3.  Co kdyby tedy \(G\) obsahoval minor \(K\) a navíc \(\Delta(K) \leq 3\)? Od \(G\) ke \(K\) se můžeme dostat posloupností mazání vrcholů, mazání hran a kontrakcí hran. Všimněme si ale, že nikdy nemusíme použít kontrakci, při které vznikne větší stupeň než 3, protože vzniklý vrchol musí být stejně následně smazán. To můžeme nahlédnout i tak, že v posloupnosti operací se mohou operace libovolně předbíhat (pokud je přitom patřičně pozměníme), a tedy všechny kontrakce si můžeme nechat nakonec. Z předchozích pozorování vidíme, že minory maximálního stupně nejvýše 3 a dělení jako podgrafy jsou generované stejnými typy operací a tedy speciálně obsahuje-li graf \(K_{3,3}\) jako minor, obsahuje i nějaké jeho dělení jako podgraf.  Zbytek důkazu pro \(K_5\) je lepší s obrázkem a lze najít [na tomhle odkazu](https://www.math.uni-hamburg.de/home/diestel/books/graph.theory/preview/Ch4.pdf) (Lemma 4.4.2).
 
 Pokračování v další přednášce...
 
@@ -342,7 +342,7 @@ Pro \(g \in \left\{1, 2, \ldots\right\}\) nechť \(\prod_g\) značí plochu vzni
 - \(\sum_0 \ldots\) sféra
 - \(\prod_1 \ldots\) projektivní rovina
 - \(\sum_1 \ldots\) torus
-- \(\prod_2 \ldots\) kleinova láhev
+- \(\prod_2 \ldots\) Kleinova láhev
 
 ### 5. přednáška
 {{< math "definition" "nakreslení grafu" >}} \(G = (V, E)\) na plochu \(\Gamma\) je zobrazení \(\varphi\) t. ž.:
@@ -516,7 +516,7 @@ Tedy \[\Chi(\Gamma) = L(G)\]
 
 {{< math "theorem" "Brooks, 1941" >}}Nechť \(G\) je souvislý graf který není úplný a není lichá kružnice. Pak \[\Chi(G) \le \Delta(G)\]{{< /math >}}
 
-{{< math "proof" >}}nechť \(\Chi = \Chi(G), \Delta = \Delta(G)\) a navíc předpokládám, že \(G\) je \(\Delta\)-regulární (jinak viz předchozí lemma.
+{{< math "proof" >}}nechť \(\Chi = \Chi(G), \Delta = \Delta(G)\) a navíc předpokládám, že \(G\) je \(\Delta\)-regulární (jinak viz předchozí lemma).
 
 - \(\Delta = 1\)
 	- \(K_2\): zakázané
@@ -526,7 +526,7 @@ Tedy \[\Chi(\Gamma) = L(G)\]
 - \(\Delta \ge 3\); označme \(k_V(G) = \) vrcholová souvislost \(G\) a opět rozebereme případy
 
 1. \(k_V(G) = 1\)
-	- máme artikulaci, vrchol artikulace \(v\) měl souseda v obou částech grafu, proto \(\deg_{G_1}(v), \deg_{G_2}(V) < \Delta\)
+	- máme artikulaci, vrchol artikulace \(v\) měl souseda v obou částech grafu, proto \(\deg_{G_1}(v), \deg_{G_2}(v) < \Delta\)
 	- podle lemmatu (\(G_1\) a \(G_2\) nejsou regulární) lze \(G_1\) i \(G_2\) \(\Delta\)-obarvit a stačí přepermutovat barvy, aby měl v obou obarveních stejnou
 
 2. \(k_V(G) = 2\)
@@ -567,11 +567,12 @@ Tedy \[\Chi(\Gamma) = L(G)\]
 {{< math "claim" >}}\(G\) nakreslitelný na Kleinovu láhev \(\Rightarrow G\) je \(6\)-obarvitelný.{{< /math >}}
 
 {{< math "proof" >}}Z Eulerovy formule plyne, že platí jedno z následujících:
-- \(\delta(G)\le 5 \Rightarrow \exists v: \deg(v) \le 5\){{< /math >}}
+- \(\delta(G)\le 5 \Rightarrow \exists v: \deg(v) \le 5\)
 	- \(G - v \ldots\)  obarvím z indukce, přidám \(v\) a mám volnou barvu
 - \(G\) je \(6\)-regulární:
 	- \(G \cong K_7\) -- nesmí, protože nejde nakreslit (je potřeba si rozmyslet)
 	- \(G \not\cong K_7\) -- přímo Brooksova věta
+{{< /math >}}
 
 #### Hranové obarvení
 {{< math "definition" >}}\(b: E \mapsto B\) (barvy) t. ž. \(\forall e \neq f \in E, e \cap f \neq \emptyset \Rightarrow b(e) \neq b(f)\). Hranová barevnost \(G\) ("chromatic index") \(\Chi'(G)\) je min. počet barev pro hranové barvení \(G\).{{< /math >}}
@@ -626,7 +627,7 @@ Pro spor: \(R\) není klika \(\Rightarrow\) obsahuje \(u, v\) nesousedy. Protož
 		- použijeme IP na \(G_x^+\)
 			- pokud \(G_x^+\) klika, vezmi jako \(s_x\) libovolný vrchol \(G_x\) (např. \(x\))
 			- pokud \(G_x^+\) není klika, má dva simpliciální vrcholy; nejvýše jeden může ležet v \(R\), jelikož je to klika a za \(s_x\) zvolím ten druhý; analogicky pro \(G_y^+\)
-			- {{< math "observation" >}}jelikož \(R\) je řez, tak se sousedství nezmění: \(N_{G_x^+}(s_x) = N_{G}(s_x)\) (proto vlastně děláme indukci přes \(G_x^+\), né jen přes \(G_x\){{< /math >}}
+			- {{< math "observation" >}}jelikož \(R\) je řez, tak se sousedství nezmění: \(N_{G_x^+}(s_x) = N_{G}(s_x)\) (proto vlastně děláme indukci přes \(G_x^+\), ne jen přes \(G_x\)){{< /math >}}
 
 ![](another2.svg)
 {{< /math >}}
@@ -674,11 +675,11 @@ Pro spor: \(R\) není klika \(\Rightarrow\) obsahuje \(u, v\) nesousedy. Protož
 		- povoluji vrcholy \(v_3, \ldots, v_{n-1}\), viz indexování
 	- \(I_2 := \left\{i \in \left\{2, \ldots, n - 2\right\}\ \text{t. ž. }\left\{y, v_i\right\} \in E\right\}\) (vrcholy dobré pro \(y\))
 		- povoluji vrcholy \(v_2, \ldots, v_{n - 2}\), viz indexování
-	- \(|I_1 \cup I_2| \le n - 3\) (pozor, indexování je posunuté!
+	- \(|I_1 \cup I_2| \le n - 3\) (pozor, indexování je posunuté!)
 	- \(|I_1| = \deg_G(x) - 1\) (nesmím použít \(v_2\))
 	- \(|I_2| = \deg_G(y) - 1\) (nesmím použít \(v_{n - 1}\))
 	- \(|I_1| + |I_2| = \deg_G(x) - 1 + \deg_G(y) - 1 \ge n - 2\) (z předpokladu)
-	- \(|I_1 \cup I_2| \le n - 3\) ale \(|I_1 + I_2| \ge n - 2\) znamená, že se překrývají
+	- \(|I_1 \cup I_2| \le n - 3\) ale \(|I_1| + |I_2| \ge n - 2\) znamená, že se překrývají
 
 ![](another3.svg)
 {{< /math >}}
@@ -737,7 +738,7 @@ Spojením dostáváme \(r(F) = |F| = |V| - k(F) = |V| - k(G) = r(E)\).
 - kombinace počtu hran a souvislosti dává, že je to strom a tedy kostra
 {{< /math >}}
 
-{{< math "claim" >}}Nechť \(G_1 = (V_1, E_1), G_2 = (V_2, G_2)\) jsou multigrafy, t. ž. \(|V_1 \cap V_2| \le 1\), \(|E_1 \cap E_2| = 0\) (protínají se nejvýše v jednom vrcholu a v žádné hraně). Definujeme \(G = (V, E)\), kde \(V = V_1 \cup V_2\) a \(E = E_1 \cup E_2\). Potom \(T_G(x, y) = T_{G_1}(x, y) \cdot T_{G_2}(x, y)\)
+{{< math "claim" >}}Nechť \(G_1 = (V_1, E_1), G_2 = (V_2, E_2)\) jsou multigrafy, t. ž. \(|V_1 \cap V_2| \le 1\), \(|E_1 \cap E_2| = 0\) (protínají se nejvýše v jednom vrcholu a v žádné hraně). Definujeme \(G = (V, E)\), kde \(V = V_1 \cup V_2\) a \(E = E_1 \cup E_2\). Potom \(T_G(x, y) = T_{G_1}(x, y) \cdot T_{G_2}(x, y)\)
 {{< /math >}}
 
 {{< math "proof" >}}V definici kvantifikuji přes podmnožiny hran. Ty ale můžu vždy rozdělit na disjunktní sjednocení podle \(E_1\) a \(E_2\). Navíc:
@@ -779,13 +780,13 @@ Pak rozepíšu:
 
 Stačí dokázat následující (a dosazení do výrazu výše):
 1. pokud \(e\) není most, tak \(s_1 = T_{G - e}(x, y)\)
-	- \(e\) není most, jeho odebráním se rank nezmění, tedy \(r(E) = r(E \setminus \left\{x\right\})\)
+	- \(e\) není most, jeho odebráním se rank nezmění, tedy \(r(E) = r(E \setminus \left\{e\right\})\)
 2. pokud \(e\) je most, tak \(s_1 = (x - 1) \cdot T_{G - e}(x, y)\)
-	- \(e\) je most, jeho odebráním se rank zmenší o \(1\), tedy \(r(E) = r(E \setminus \left\{x\right\}) + 1\)
+	- \(e\) je most, jeho odebráním se rank zmenší o \(1\), tedy \(r(E) = r(E \setminus \left\{e\right\}) + 1\)
 3. pokud \(e\) není smyčka, tak \(s_2 = T_{G \setminus e}(x, y)\)
 	- \(e\) není smyčka, kontrakce však zachová zbylé hrany (jsme v multigrafu) jako smyčky a nulita se tedy nezmění (jelikož, pokud to chápu správně, se spojením vlastně zmenší jak počet hran, tak vrcholů)
 4. pokud \(e\) je smyčka, tak \(s_2 = (y - 1) \cdot T_{G \setminus e}(x, y)\)
-	- \(e\) je smyčka, kontrakcí se nulita zmenší o \(1\), tedy \(\)
+	- \(e\) je smyčka, kontrakcí se nulita zmenší o \(1\), tedy \(n(E) = n(E \setminus \left\{e\right\}) + 1\)
 
 Poté pro větu stačí následující:
 - \(e\) je most: (2) + (3)
@@ -833,7 +834,7 @@ Poté pro větu stačí následující:
 \begin{aligned}
 	a_0 b_0 = 1 &\qquad b_0 = \frac{1}{a_0} \\
 	a_0 b_1 + a_1b_0 = 0 &\qquad b_1 = \frac{1}{a_0}(-a_1 b_0)\\
-	a_0 b_2 + a_1b_1 + a_2b_0 = 0 &\qquad b_2 = \frac{1}{a_0} (-a_1 b_1 - a_2b_2) \\
+	a_0 b_2 + a_1b_1 + a_2b_0 = 0 &\qquad b_2 = \frac{1}{a_0} (-a_1 b_1 - a_2b_0) \\
 	                          &\;\;\;\vdots \\
 \end{aligned}
 \]
@@ -849,7 +850,7 @@ Poté pro větu stačí následující:
 		- \(B(x) = x \tilde{B}(x)\) pro \(\tilde{B}(x)\) FMŘ
 		- \(B(x)^k = x^k \tilde{B}(x)^k\), koeficient u \(x^{k - 1}, x^{k - 2}, \ldots, x^0\) je nulový, tedy všechny koeficienty \(\left[x^k\right] A(B(x))\) pro \(k > n\) jsou nulové
 
-{{< math "definition:" "derivace" >}}FMŘ \(A(x)\) značená \(\frac{d}{dx}A(x) = \sum a_{n + 1}(n + 1)x^n = a_1 + 2a_2x + 3a_3x^3 + \ldots\){{< /math >}}
+{{< math "definition:" "derivace" >}}FMŘ \(A(x)\) značená \(\frac{d}{dx}A(x) = \sum a_{n + 1}(n + 1)x^n = a_1 + 2a_2x + 3a_3x^2 + \ldots\){{< /math >}}
 
 {{< math "example" >}} Můžu mít také FMŘ více proměnných, např. \(A(x, y) = \sum_{n \ge 0, m \ge 0} a_{n, m} \cdot x^n \cdot y^m \in \mathbb{R}\llbracket x, y \rrbracket\)
 {{< /math >}}
@@ -910,7 +911,7 @@ Definujeme \(B(x) = S(x)^2\) a \(b_0, b_1, \ldots\) tak, aby \(B(x) = \sum_{n \g
 Dále definujeme hromadu dalších věcí:
 - \(C(x)\) jako \(c_n = \frac{b_n}{2}\), abychom měli počet lesů se dvěma komponentami, tedy \(C(x) = \frac{1}{2} B(x) = \frac{1}{2} S^2(x)\).
 - \(D(x) = S^k(x)\), tedy \(d_n\) je počet uspořádaných \(k\)-tic stromů tvořící rozklad vrcholů
-- \(E(x) = \frac{S^k(x)}{k!}\), tedy \(e_x\) je počet lesů s \(k\) komponentami
+- \(E(x) = \frac{S^k(x)}{k!}\), tedy \(e_n\) je počet lesů s \(k\) komponentami
 
 Konečně vyjádříme \[L(x) = 1 + S(x) + \frac{S^2(x)}{2!} + \ldots = \sum_{n \ge 0} \frac{S^n(x)}{n!} = \mathrm{exp}(S(x)) = e^{S(x)}\]
 
@@ -930,7 +931,7 @@ Potom **exponenciální vytvořující funkce** pro \(\mathcal{A}\) je \[\mathrm
 
 {{< math "observation" >}}Nechť \(A(x)\) je \(\mathrm{EVF(\mathcal{A})}, B(x) = \mathrm{EVF}(\mathcal{B})\), potom:
 1. pokud \(\mathcal{A}, \mathcal{B}\) jsou disjunktní (příklad výše), pak \(A(x) + B(x)\) je \(\mathrm{EVF}(\mathcal{A} \cup \mathcal{B})\)
-	- stejné jako u \(\mathrm{OFV}\), protože \(\left[x^n\right] \left(A(x) + B(x)\right) = \frac{a_n}{n!} + \frac{b_n}{n!} = \frac{a_n + b_n}{n!}\)
+	- stejné jako u \(\mathrm{OVF}\), protože \(\left[x^n\right] \left(A(x) + B(x)\right) = \frac{a_n}{n!} + \frac{b_n}{n!} = \frac{a_n + b_n}{n!}\)
 2. \(A(x) \cdot B(x) = \sum c_n \frac{x^n}{n!}\), kde \(c_n\) je počet uspořádaných dvojic \(\left(\alpha, \beta\right)\) t.ž. \(\alpha \in \mathcal{A}, \beta \in \mathcal{B}, V(\alpha) \cup V(\beta) = \left\{1, \ldots, n\right\}\) (tvoří rozklad)
 3. \(A^k(x) = \sum d_n \frac{x^n}{n!}\), kde \(d_n\) je počet uspořádaných \(k\)-tic \((\alpha_1, \ldots, \alpha_k)\), kde
 \[\alpha_1, \ldots, \alpha_k \in \mathcal{A} \text{ t.ž. } V(\alpha_1) \cup \ldots \cup V(\alpha_k) = \left\{1, \ldots, n\right\} \qquad \star\]
@@ -967,7 +968,7 @@ Prvky \(x, y \in A\) jsou ekvivalentní (značím \(x \sim_{\Gamma} y\)), pokud 
 - {{< math "observation" >}}\(\sim_{\Gamma}\) je to ekvivalence:{{< /math >}}
 	- reflexivní -- \(x = 1_\Gamma x\)
 	- symetrická -- \(\gamma x = y \iff \gamma^{-1}y = x\)
-	- transitivní -- \(\gamma x = y \land \gamma y = z \Rightarrow (\delta \gamma)x = z\)
+	- transitivní -- \(\gamma x = y \land \delta y = z \Rightarrow (\delta \gamma)x = z\)
 
 {{< math "definition:" "orbita" >}} obsahující prvek \(x \in A\) je množina \[\left[x\right]_{\Gamma} = \left\{y \in A \mid x \sim_\Gamma y\right\} = \left\{\gamma x \mid \gamma \in \Gamma\right\}\]
 množinu orbit značíme \(A / \Gamma\).
@@ -987,7 +988,7 @@ množinu orbit značíme \(A / \Gamma\).
 
 {{< math "lemma" "o orbitě stabilizátoru" >}}Nechť \(\Gamma\) je konečná grupa s akcí na množině \(A\). Potom \[\forall x \in A: |\mathrm{Stab(x)}| \cdot |\left[x\right]| = |\Gamma|\] {{< /math >}}
 
-{{< math "proof" >}}Nechť množina \(\mathrm{Map}(x, y)\) je množina akcí \(a\), pro které \(a \cdot x = y\). Pro akce \(\sigma \in \mathrm{Map}(x, y)\) pomocí \(\sigma a \sigma^{-1}\) lze definovat bijekci mezi \(\mathrm{Map}(x, x)\). Poté \[\forall x \in A, |\Gamma| = \sum_{y \in [x]} |\mathrm{Map}(x, y)| = \sum_{y \in [x]} |\mathrm{Stab}(x)| = |[x]| |\mathrm{Stab}(x)|\]
+{{< math "proof" >}}Nechť množina \(\mathrm{Map}(x, y)\) je množina akcí \(a\), pro které \(a \cdot x = y\). Pro akce \(\sigma \in \mathrm{Map}(x, y)\) pomocí \(\sigma a \sigma^{-1}\) lze definovat bijekci mezi \(\mathrm{Map}(x, y)\) a \(\mathrm{Map}(x, x)\). Poté \[\forall x \in A, |\Gamma| = \sum_{y \in [x]} |\mathrm{Map}(x, y)| = \sum_{y \in [x]} |\mathrm{Stab}(x)| = |[x]| |\mathrm{Stab}(x)|\]
 {{< /math >}}
 
 {{< math "theorem" "Burnsideovo lemma" >}}Nechť \(\Gamma\) je konečná grupa s akcí na \(A\)
@@ -1044,7 +1045,7 @@ Tedy dostáváme, že \[A(x) = \frac{1}{4} \left(\left(\frac{1}{1 - x}\right)^4 
 {{< /math >}}
 - \(\mathrm{ex}(n, K_3) = |E(K_{\left\lfloor \frac{n}{2} \right\rfloor, \left\lceil \frac{n}{2} \right\rceil})| = \left\lfloor \frac{n}{2} \right\rfloor \cdot \left\lceil \frac{n}{2} \right\rceil \cong n^2\)
 - \(\mathrm{ex}(n, C_4) = \mathcal{O}(n^{3/2}) = \mathcal{O}(n \sqrt{n})\)
-	- viz poznámky z [Kombinatoriky a Grafů I](/lecture-notes/kombinatorika-a-grafy-i/#grafy-bez-ckc_kck)
+	- viz poznámky z [Kombinatoriky a Grafů I](/poznamky/kombinatorika-a-grafy-i/#grafy-bez)
 
 {{< math "definition" >}}\(k, n \in \mathbb{N}\), označme \(T_k(n)\) úplný \(k\)-partitní graf na \(n\) vrcholech, jehož všechny partity mají velikost \(\left\lfloor \frac{n}{k} \right\rfloor\) nebo \(\left\lceil \frac{n}{k} \right\rceil\). Nechť \(t_k(n) = |E(T_k(n))|\){{< /math >}}
 - úplný \(k\)-partitní znamená, že každé \(2\) partity jsou úplný bipartitní graf
@@ -1079,9 +1080,9 @@ Tedy dostáváme, že \[A(x) = \frac{1}{4} \left(\left(\frac{1}{1 - x}\right)^4 
 Nechť \(x \in V(G)\) je vrchol max. stupně v \(G\)
 - \(S = N_G(x)\) (sousedství)
 - \(G_S = G\left[S\right]\) (podgraf indukovaný \(S\))
-	- {{< math "observation" >}}\(G_S\) neobsahuje \(k_{r - 1}\), jinak \(G\left[S \cup \left\{x\right\}\right]\) obsahuje \(k_r\){{< /math >}}
+	- {{< math "observation" >}}\(G_S\) neobsahuje \(K_{r - 1}\), jinak \(G\left[S \cup \left\{x\right\}\right]\) obsahuje \(K_r\){{< /math >}}
 	- využijeme IP: \(\exists (r - 2)\)-partitní graf \(H_S = (S, E_{H_{S}})\)
-		- splňuje (dle IP), že \(\forall y \in s: \deg_{H_S} (y) \ge \deg_{G_S}(y)\)
+		- splňuje (dle IP), že \(\forall y \in S: \deg_{H_S} (y) \ge \deg_{G_S}(y)\)
 		- \(V \setminus S\) zadefinuji jako (\((r-1)\).) partitu a vše patřičně spojím, čímž získám \(H\)
 
 ![](lol.svg)
@@ -1140,7 +1141,7 @@ K důkazu původního vyberu \(x \in V(G)\), \(S = N_G(x), G_S = G\left[S\right]
 - \(|E(G_S)| \ge \frac{c_r}{2} \cdot |S| = \frac{2^{r - 3}}{2} |S| = c_{r - 1} |S|\)
 	- dle IP musí \(G_S\) obsahovat \(K_{r - 1}\) minor a ten spolu s \(x\) tvoří v \(G\) \(K_r\)-minor, což je spor
 
-{{< math "remark" >}}odhad byl dost hrubý, věta platí dokonce pro \(c_r = \mathcal{O}(r \cdot \sqrt{\log r}\)){{< /math >}}
+{{< math "remark" >}}odhad byl dost hrubý, věta platí dokonce pro \(c_r = \mathcal{O}(r \cdot \sqrt{\log r})\){{< /math >}}
 {{< /math >}}
 
 #### Pronikající systémy množin
@@ -1166,7 +1167,7 @@ K důkazu původního vyberu \(x \in V(G)\), \(S = N_G(x), G_S = G\left[S\right]
 - horní odhad \(f(k, n) \le \binom{n - 1}{k - 1}\): máme \(H = (V, E)\) \(k\)-uniformní hypergraf t.ž. \(E\) je protínající systém množin
 
 {{< math "definition" >}}cyklické pořadí \(\left\{1, \ldots, n\right\}\) je nějaká \(1\)-cyklová permutace \(\left\{1, \ldots, n\right\}\){{< /math >}}
-- \(k\)-intervaly (v tomhle příkladě \(3\)-intervaly) permutace \(C = (3, 1, 5, 4, 2, 7, 6, 8)\) jsou \(315, 154, 542, 768, 683, 831\)
+- \(k\)-intervaly (v tomhle příkladě \(3\)-intervaly) permutace \(C = (3, 1, 5, 4, 2, 7, 6, 8)\) jsou \(315, 154, 542, 427, 276, 768, 683, 831\)
 
 {{< math "observation" >}}intervalů daného pořadí \(C\) je \(n\){{< /math >}}
 

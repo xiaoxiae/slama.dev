@@ -17,7 +17,7 @@ Pokud byste se chtěli na cokoliv zeptat, tak jsem k zastižení tady:
 - **Discord:** `Tomáš Sláma#6609`
 
 ### Příklady
-Příklady jsou **nepovinné**, nejsme ve škole. Jsou tu hlavně pro to, abyste se lépe pochopili probíranou látku a rozhodně se nebudu zlobit, když za kurz nesplníte všechny. Na druhou stranu budu rád, když se alespoň část pokusíte vyřešit 🙂. Těžké příklady jsou označené hvězdičkou (⭐).
+Příklady jsou **nepovinné**, nejsme ve škole. Jsou tu hlavně proto, abyste lépe pochopili probíranou látku a rozhodně se nebudu zlobit, když za kurz nesplníte všechny. Na druhou stranu budu rád, když se alespoň část pokusíte vyřešit 🙂. Těžké příklady jsou označené hvězdičkou (⭐).
 
 ### 1. hodina (10. 12. 2020)
 
@@ -217,7 +217,7 @@ print(len(x))  # vypíše délku pole (3)
 4. restartuj a Python mód vyber
 
 ##### Odbočka: funkce
-- „krabička“, která vezme nějaké hodnoty, vykoná kus kódu poté něco vrátí
+- „krabička“, která vezme nějaké hodnoty, vykoná kus kódu a poté něco vrátí
 
 ```py
 def funkce(x):    # bere nějakou hodnotu
@@ -318,7 +318,7 @@ def draw():  # kód, který se dokola opakuje
 	rect(-1, 300, 401, 401)
 ```
 
-1. Naprogramuje animaci panáčka, jak:
+1. Naprogramujte animaci panáčka, jak:
 	- se točí dokola. [[řešení](3.3.1-1.py)]
 	- mává rukou tam a zpět. [[řešení](3.3.1-2.py)]
 
@@ -327,7 +327,7 @@ def draw():  # kód, který se dokola opakuje
 
 #### Zmáčknutí klávesy
 
-```cpp
+```py
 def keyPressed():
 	if key == 'a':
 		# vykoná se po zmáčknutí klávesy 'a'
@@ -345,7 +345,7 @@ def keyPressed():
 	- udělejte pohyb plynulý (brždění, když pustíme klávesu) ⭐ [[řešení](4.1.1-2.py)]
 
 #### Zmáčknutí myši
-```cpp
+```py
 def mousePressed():
 	if mouseButton == LEFT:
 		# vykoná se po zmáčknutí levého tlačítka myši
@@ -391,7 +391,7 @@ for x in range(0, 10):
 #### Třídy
 
 {{% float_box %}}
-**Zajímavost:** metodám tvaru `__jméno__` se říká „magické." Umí s objekty dělat řadu věcí, jako např. definovat, co znamená je sčítat, násobit, apod.
+**Zajímavost:** metodám tvaru `__jméno__` se říká „magické“. Umí s objekty dělat řadu věcí, jako např. definovat, co znamená je sčítat, násobit, apod.
 {{% /float_box %}}
 
 - **předpisy** věcí -- jaké mají vlastnosti, jak se chovají...
@@ -430,7 +430,7 @@ bob.vyrost()
 
 1. Přidejte funkci `vyrost_o`, která bere parametr `o` a přidá danému člověku tolik let. [[řešení](6.1.1.py)]
 2. Přidejte člověku proměnnou `vaha` a funkce `ztloustni` a `zhubni`, které váhu o `1` zvyšují/snižují. [[řešení](6.1.2.py)]
-3. Vytvořte Processing sketch, kde bude po obrazovce létat míče (vytvořené myší). [[řešení](6.1.3-1.py)]
+3. Vytvořte Processing sketch, kde budou po obrazovce létat míče (vytvořené myší). [[řešení](6.1.3-1.py)]
 	- hint: vytvořte třídu `Ptak`, nově vytvořené ptáky ukládejte do pole; každé pole má funkci `append(věc)`, která na jeho konec přidá věc
 	- upravte pohyb tak, [aby byl realistický](https://www.youtube.com/watch?v=QbUPfMXXQIY)  ⭐⭐  [[nedokončeno](6.1.3-2.py)]
 		- hint: inspirujte se [tímhle článkem](https://gamedevelopment.tutsplus.com/tutorials/3-simple-rules-of-flocking-behaviors-alignment-cohesion-and-separation--gamedev-3444)
@@ -575,8 +575,8 @@ sys.exit(app.exec_())
 ##### `QPushButton` [[dokumentace](https://doc.qt.io/qt-5/qpushbutton.html)]
 - tlačítko s textem
 - `button.setText("nějaký text")` -- nastavení textu tlačítka
-- `button.clicked` -- signál, který se zavolá, když stiskneme tlačítko (viz. další odstavec)
-- `button.setEnabled(True/False)` -- zapnutí/vypnutí(zešednutí) tlačítka
+- `button.clicked` -- signál, který se zavolá, když stiskneme tlačítko (viz další odstavec)
+- `button.setEnabled(True/False)` -- zapnutí/vypnutí (zešednutí) tlačítka
 
 ##### Signál
 - hlavní princip [Event-driven programování](https://en.wikipedia.org/wiki/Event-driven_programming)

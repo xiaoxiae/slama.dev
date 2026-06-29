@@ -25,7 +25,7 @@ language: cs
 	- z dnešního pohledu plnohodnotný počítač
 	- byl Turingovsky úplný!
 	- nebyl nikdy fyzicky postaven
-	- měl usnadnit počítání tehdy komplexního systému daní v Británii
+	- měl usnadnit počítání tehdy komplexních matematických tabulek (pro navigaci a astronomii)
 
 #### Ada Lovelace
 - dcera G. G. Byrona
@@ -121,7 +121,7 @@ language: cs
 1. **half-duplex**: 1 datový vodič -- zařízení se v přenosu střídají
 	- komplikované
 	- nikdy nelze posílat najednou oběma směry
-2. **full duplex**: 2 nezávislé simplexí linky
+2. **full duplex**: 2 nezávislé simplexní linky
 	- např. RS-232 -- 2 datové + 1 zem
 
 ![RS-232](19-18-10_11-18-27.svg "RS-232")
@@ -170,7 +170,7 @@ language: cs
 2. **one's complement** (jedničkový doplněk) -- u záporných se prohodí 1 a 0
 	- funguje porovnání (kladné x kladné a záporné x záporné) a sčítání
 	- problematické: máme _dvě nuly_
-3. **two's complement** (dvojkový doplňek) -- MSb je znaménkový bit, záporných je o **1 víc**
+3. **two's complement** (dvojkový doplněk) -- MSb je znaménkový bit, záporných je o **1 víc**
 	- negace čísla je **flipnutí všech bitů** a **přičtení jedničky**
 	- řeší to problém se dvěma nulami (negace dá jedničky a přičtení overflowne zpět na \(0\))
 	- rozsah je \(-2^{n - 1}\) až \(2^{n - 1} - 1\) (asymetrické...)
@@ -207,7 +207,7 @@ language: cs
 #### Připojení
 - **point-to-point** linka:
 	- z bodu do bodu -- 1 master a 1 slave
-	- nepraktické -- reálně je procesor pořád master a museli bychom do něj vézt trilión linek
+	- nepraktické -- reálně je procesor pořád master a museli bychom do něj vést trilión linek
 - **multidrop/bus** (sběrnice)
 	- více slavů na jedné lince
 	- pozor -- sběrnice znamená něco jiného, ale dnes se to takhle říká
@@ -223,12 +223,12 @@ language: cs
 
 - když nevysílá nikdo, je tam díky pull-up rezistoru \(1\); když někdo \(0\), tak \(0\)
 	- rezistor zařídí to, aby stav na lince nebyl plovoucí
-- to, že se to spolu vlastně mlátí budeme řešit až na vyšší úrovni
+- to, že se to spolu vlastně mlátí, budeme řešit až na vyšší úrovni
 
 ##### \(\text{I}^2 \text{C}\) (Inter Integrated Circuit)
 - je to opravdová sběrnice
 - podporuje **multimaster** -- více zařízení mohou být master najednou
-	- že musí se detekovat srážky, když chtějí 2 masterové vysílat najednou
+	- musí se detekovat srážky, když chtějí 2 masterové vysílat najednou
 	- rozdílné od USB (universal serial bus) -- to je single master
 
 ![I2C sběrnice](19-10-11_13-25-36.svg "I2C sběrnice")
@@ -316,7 +316,7 @@ language: cs
 #### Rozbor PCF8570 SRAM paměti
 - \(3b\) programovatelná adresa, `1010` vestavěná
 - rychlost přenosu přes \(\text{I}^2 \text{C}\) je cca. \(100000Hz \sim 100000 bps\)
-	- \(\text{I}^2 \text{C}\) overhead je \(x / \left(3 \cdot 9\right) \rightarrow 3708 Bps\)
+	- \(\text{I}^2 \text{C}\) overhead je \(x / \left(3 \cdot 9\right) \rightarrow 3704 Bps\)
 		- na každou transakci (\(8b\) + ack) přeneseme 3B, z toho jen 1 jsou data
 		- jde to zlepšit -- burst přenos (nezačínáme další přenosy, jen sekvenčně čteme/zapisujeme): \(\left(x - \left(2 \cdot 9\right)\right) /  9 \rightarrow 11109 Bps\)
 - zápis -- 1 transakce
@@ -467,12 +467,12 @@ A + NOT(X) + C
 | //      | ano     | možná        | ne        | lmao |
 
 - je potřeba to na architekturách, které to nemají, softwarově implementovat
-	- `SHL` je násobení 2 je `SHL`; dělení 2 je `SHR`
+	- násobení 2 je `SHL`; dělení 2 je `SHR`
 		- násobení a dělení jinými čísly lze rozdělit na posuny a součty (pokročilé, nebrali jsme; je na to ale úžasná knížka _[Computer Systems: A Programmer's Perspective](https://www.cs.sfu.ca/~ashriram/Courses/CS295/assets/books/CSAPP_2016.pdf#page=131)_)
 	- pozor na signed čísla -- `SHL` funguje jen pro menší čísla a `SHR` nefunguje vůbec (vytváří nuly)
 		- je potřeba `SAR` (kopíruje MSb), ale pořád to není ono (`-5 // 2 = -3`)
 
-#### Tomášovo odbočka (příklady instrukcí)
+#### Tomášova odbočka (příklady instrukcí)
 - v rámci přípravy na zkoušku je naprosto super si zkusit generovat z Cčkových zdrojáku assembler:
 	- na Linuxu `gcc -g -c soubor.c; objdump -S soubor.o;` dělá přesně tohle
 	- pozn.: není to Intel syntax -- pro ten je třeba k `objdump` přidat `-d` a `--disassembler-options=intel`
@@ -558,10 +558,10 @@ mov    %ax,-0x1e(%rbp)
 | HW      | HW/SW        | SW                             | SW   |
 
 ##### IEEE 754
-- standarta definující \(32b\) a \(64b\) floating point čísla
+- standard definující \(32b\) a \(64b\) floating point čísla
 - pro \(32b\) (float) je \(1b/8b/23b\)
 - pro \(64b\) (double) je \(1b/11b/52b\)
-	- takhle je to ukládané Pythonu
+	- takhle je to ukládané v Pythonu
 
 ##### Ošklivá čísla
 - \(0.1\) nelze reprezentovat jako floating-point číslo (nekonečný dvojkový zápis)
@@ -585,7 +585,7 @@ mov    %ax,-0x1e(%rbp)
 | typ                         | write                                 | read                            |
 | ---                         | ---                                   | ---                             |
 | ROM (Read Only Memory)      | \(1\) (výrobce)  | \(\infty\) |
-| PROM (Programable ROM)      | \(1\) (vypálení) | \(\infty\) |
+| PROM (Programmable ROM)      | \(1\) (vypálení) | \(\infty\) |
 | EPROM (Erasable PROM)       | „\(\infty\)“     | \(\infty\) |
 | EEPROM (Electrically EPROM) | „\(\infty\)“     | \(\infty\) |
 
@@ -602,7 +602,7 @@ mov    %ax,-0x1e(%rbp)
 
 - **GPIO** = General Purpose Input and Output
 	- slouží jak pro vstup, tak pro výstup
-	- `DIR` registry určuje směr pinů, `IN` a `OUT` jsou hodnoty na vstupu/výstupu
+	- `DIR` registr určuje směr pinů, `IN` a `OUT` jsou hodnoty na vstupu/výstupu
 
 #### Permanentní datové úložiště
 
@@ -624,7 +624,7 @@ mov    %ax,-0x1e(%rbp)
 ###### Nevýhody
 - náchylné na poškození
 - sekvenční přístup je fajn (disk se otáčí), obráceny je příšerný
-- docela pomalé... \(10 ms\) sekvenční / \(0.5 MBs\) obrácený sekvenční
+- docela pomalé... \(10 ms\) sekvenční / \(0.5 MBps\) obrácený sekvenční
 
 ##### CD / DVD / BLURAY
 - jsou **optické** -- pokud se světlo odrazí tak \(1\); jinak \(0\)
@@ -633,7 +633,7 @@ mov    %ax,-0x1e(%rbp)
 
 ![CD](20-19-01_19-22-10.svg "CD")
 
-- používají **LBA** -- linear block addressing (není to už trojice -- lehčí na programování)
+- používají **LBA** -- logical block addressing (není to už trojice -- lehčí na programování)
 - přenosová rychlost je menší (\(10 MBps\)), přístupová také (\(100 ms\))
 
 ##### Řadiče pro úložiště
@@ -753,7 +753,7 @@ mov    %ax,-0x1e(%rbp)
 - první \(2B\) jsou **magic** (signature) znaky
 	- měly by být unikátní pro typy souborů
 	- dány autorem
-	- zajímavost -- exe má `5a 4d`, což je v ASCII `MZ` -- iniciály Marka Zbikowskiho (autor)
+	- zajímavost -- exe má `4d 5a`, což je v ASCII `MZ` -- iniciály Marka Zbikowskiho (autor)
 
 #### Reprezentace textu
 - **string** -- posloupnost znaků
@@ -771,7 +771,7 @@ mov    %ax,-0x1e(%rbp)
 
 ##### ASCII
 - _American Standard Code for Information Interchange_
-- standardizování v 80. letech
+- standardizování v 60. letech
 - \(7b\) kódování (\(0\)-\(127\))
 - číslice i písmena jsou v kódování blízko sebe -- lze je dobře vyčíst, převádět...
 - **extended** -- rozšíření
@@ -828,7 +828,7 @@ mov    %ax,-0x1e(%rbp)
 		1. CPU pošle **MRd** (Memory Read packet)
 			- cílová adresa je adresa paměti
 			- musí tam být uložena i adresa procesoru, aby mohl přijít packet zpět
-		2. memory controller vykoná požadavek, pošle **CpID** (Completion with data)
+		2. memory controller vykoná požadavek, pošle **CplD** (Completion with data)
 			- cílová adresa je adresa procesoru (aby to došlo správnému procesoru)
 
 ##### Memory/mapped I/O [[wiki](https://en.wikipedia.org/wiki/Memory-mapped_I/O)]
@@ -847,7 +847,7 @@ mov    %ax,-0x1e(%rbp)
 		- další rom -- **option ROM**
 			- mívaly starší systémy
 			- bootuje instantně (je to ROM...)
-			- princip cartrigových her -- instantní spuštění
+			- princip cartridgových her -- instantní spuštění
 			- bývá např. u grafických karet -- počáteční nastavení
 		- **pevný disk** -- mívá boot sector, který je uzpůsobený k načtení do paměti a spuštění
 			- je tu tzv. **bootloader** -- menší prográmek, který hledá na disku zbylá data

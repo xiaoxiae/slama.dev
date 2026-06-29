@@ -12,9 +12,9 @@ language: cs
 ![Obrázek hlenky.](tribute.png)
 {.no-invert}
 
-Jedná se o kolonii amoéb, která tím, jak postupně roste, tvoří mezi zdroji jídla nejkratší možná spojení. [Tento TED talk](https://www.ted.com/talks/heather_barnett_what_humans_can_learn_from_semi_intelligent_slime/transcript) moc hezky shrnuje nejpodstatnější informace o hlenkách.
+Jedná se o kolonii améb, která tím, jak postupně roste, tvoří mezi zdroji jídla nejkratší možná spojení. [Tento TED talk](https://www.ted.com/talks/heather_barnett_what_humans_can_learn_from_semi_intelligent_slime/transcript) moc hezky shrnuje nejpodstatnější informace o hlenkách.
 
-_Update (10. 3. 2021): do té doby, než se rozhodneme, co udělat s další hlenkou (jak upravit prostředí, aby nedělala spory, dařilo se jí a byla dobře vidět) je výše pouze statický obrázek toho, když hlenka vypadala nejlépe._
+_Update (10. 3. 2021): do té doby, než se rozhodneme, co udělat s další hlenkou (jak upravit prostředí, aby nedělala spory, dařilo se jí a byla dobře vidět), je výše pouze statický obrázek toho, když hlenka vypadala nejlépe._
 
 _Update (8. 3. 2021, večer): druhá hlenka umřela! Teda... Kačka říká, že zasporulovala, ale všichni víme, co to znamená. [Zde je timelapse](tribute.mp4) jejího ~~krátkého~~ krásného života, omlouváme se za zamlžené sklíčko._
 

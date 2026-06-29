@@ -20,17 +20,17 @@ Suddenly, something that would take other people **minutes** and **very little m
 {{< /image_section >}}
 
 {{< image_section caption="The dense pointcloud (left) and its corresponding 3D mesh (right), created from 76 images via <a href=\"https://colmap.github.io/\">colmap</a> (top)." >}}
-{{< image_row "mosaic.png :: A working holder, and the broken one." >}}
-{{< image_row "pointcloud.png :: A working holder, and the broken one. | mesh.png :: The working holder in action." >}}
+{{< image_row "mosaic.png :: A mosaic of the colmap input images." >}}
+{{< image_row "pointcloud.png :: The dense point cloud. | mesh.png :: The reconstructed 3D mesh." >}}
 {{< /image_section >}}
 
 Initially, I tried to print with PLA, but unfortunately it is too rigid to work well for situations like these.
 Instead, I opted for TPU, which is significantly more elastic and thus more suitable for this use case; it is still a bit too elastic, but I don't own any other filament types, so this will have to do.
 
 {{< image_section caption="The first print attempt with PLA (left), and the second with TPU (right)." >}}
-{{< image_row "3d-print-pla.png :: A working holder, and the broken one. | 3d-print-tpu.png :: The working holder in action." >}}
+{{< image_row "3d-print-pla.png :: The first print attempt in PLA. | 3d-print-tpu.png :: The second print attempt in TPU." >}}
 {{< /image_section >}}
 
-While the model itself could be cleaner (the Meshlab/Blender post-processing was rather hasty), the important part is that the component functions as it should, and that this approach works really well if small things around the house break.
+While the model itself could be cleaner (the MeshLab/Blender post-processing was rather hasty), the important part is that the component functions as it should, and that this approach works really well if small things around the house break.
 
 Stay tuned for the next post, where I 3D print a **blind holder holder,** which will hold up to **7 additional blind holders,** in case we decide to obtain more blinds. 🙃

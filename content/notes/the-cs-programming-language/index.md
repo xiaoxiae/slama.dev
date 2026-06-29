@@ -15,7 +15,7 @@ Besides this, they have been slightly extended by some C#-specific questions for
 - internally an array of chars
 - **immutable** (neither length nor contents)
 	- concatenation creates new strings
-		- {{< inline_highlight "cs" >}}String.concat(s1, s2, s3, ...);{{< /inline_highlight >}} is good for concatenating a lot of them
+		- {{< inline_highlight "cs" >}}String.Concat(s1, s2, s3, ...);{{< /inline_highlight >}} is good for concatenating a lot of them
 			- {{< inline_highlight "cs" >}}s = "a" + "bcd" + "ef";{{< /inline_highlight >}} internally uses this method, so it isn't slow
 - {{< inline_highlight "cs" >}}System.String{{< /inline_highlight >}} is the same as {{< inline_highlight "cs" >}}string{{< /inline_highlight >}}
 	- can't ever be a name of a variable!
@@ -45,7 +45,7 @@ Besides this, they have been slightly extended by some C#-specific questions for
 	- if we were to modify the string builder again, it gets copied
 
 #### Interpolation
-- {{< inline_highlight "cs" >}}Console.Write("cislo = {0} a {1}", i, j");{{< /inline_highlight >}}
+- {{< inline_highlight "cs" >}}Console.Write("cislo = {0} a {1}", i, j);{{< /inline_highlight >}}
 	- same as {{< inline_highlight "cs" >}}Console.Write("cislo = " + i.ToString() + " a " + j.ToString()){{< /inline_highlight >}},
 	- calls {{< inline_highlight "cs" >}}String.Format("format string", i, j){{< /inline_highlight >}}
 		- creates new string
@@ -228,7 +228,7 @@ class A {
 class B : A {
 	public override void f() { Console.WriteLine("B"); }
 
-	// new is optinal, suppresses a warning
+	// new is optional, suppresses a warning
 	public new void g() { Console.WriteLine("B"); }
 }
 
@@ -249,7 +249,7 @@ class Mammal: Animal {
 }
 
 class Dog: Mammal {
-	// new is optinal, suppresses a warning
+	// new is optional, suppresses a warning
 	public new virtual void Name() { Console.WriteLine("Dog"); }
 }
 
@@ -272,7 +272,7 @@ pet.Name();              // prints Mammal
 | {{< inline_highlight "cs" >}}A.Name{{< /inline_highlight >}} | {{< inline_highlight "cs" >}}A{{< /inline_highlight >}} | {{< inline_highlight "cs" >}}M{{< /inline_highlight >}} | {{< inline_highlight "cs" >}}M{{< /inline_highlight >}} | {{< inline_highlight "cs" >}}M{{< /inline_highlight >}} |
 | {{< inline_highlight "cs" >}}D.Name{{< /inline_highlight >}} |     |     | {{< inline_highlight "cs" >}}D{{< /inline_highlight >}} | {{< inline_highlight "cs" >}}B{{< /inline_highlight >}} |
 
-- if {{< inline_highlight "cs" >}}abstract{{< /inline_highlight >}} is used, an entry in VTM is created but no implementation is provided
+- if {{< inline_highlight "cs" >}}abstract{{< /inline_highlight >}} is used, an entry in VMT is created but no implementation is provided
 	- the entire class has to be {{< inline_highlight "cs" >}}abstract{{< /inline_highlight >}} so it can't be instantiated, since the method has to be overridden
 - virtual methods can be called from the constructor and act correctly, since {{< inline_highlight "cs" >}}Type{{< /inline_highlight >}} (and its VMT) must have been initialized by then
 - {{< inline_highlight "cs" >}}virtual{{< /inline_highlight >}} is essentially a promise to the user that it's fine to provide an alternate implementation in the child without breaking the entire class
@@ -315,7 +315,7 @@ if (a is B b) {
 		- doesn't make much sense for reference types
 		- note that it is protected!
 			- implement {{< inline_highlight "cs" >}}public A Clone() {...}{{< /inline_highlight >}} to make it public
-			- there is an {{< inline_highlight "cs" >}}IClonable{{< /inline_highlight >}} interface, but it was before {{< inline_highlight "cs" >}}<T>{{< /inline_highlight >}}...
+			- there is an {{< inline_highlight "cs" >}}ICloneable{{< /inline_highlight >}} interface, but it was before {{< inline_highlight "cs" >}}<T>{{< /inline_highlight >}}...
 	- {{< inline_highlight "cs" >}}public Type GetType();{{< /inline_highlight >}}
 		- done for all types ({{< inline_highlight "cs" >}}new Type("A"){{< /inline_highlight >}},...)
 		- contains {{< inline_highlight "cs" >}}.Name{{< /inline_highlight >}} and other stuff for reflection
@@ -331,7 +331,7 @@ if (a is B b) {
 		- whether the two objects are equal by reference
 
 ##### {{% inline_highlight "cs" %}}System.ValueType{{% /inline_highlight %}}
-- is inherited by all types ({{< inline_highlight "cs" >}}int{{< /inline_highlight >}}, {{< inline_highlight "cs" >}}Nullable{{< /inline_highlight >}}, {{< inline_highlight "cs" >}}bool{{< /inline_highlight >}}, user-defined structures...)
+- is inherited by all value types ({{< inline_highlight "cs" >}}int{{< /inline_highlight >}}, {{< inline_highlight "cs" >}}Nullable{{< /inline_highlight >}}, {{< inline_highlight "cs" >}}bool{{< /inline_highlight >}}, user-defined structures...)
 - overrides {{< inline_highlight "cs" >}}Equals{{< /inline_highlight >}} to be byte-equal (since it is a value type)
 	- if it has reference members, **uses reflection to check their values too** -- string, for example
 		- better to implement it ourselves in this case
@@ -503,7 +503,7 @@ T Property {
 
 #### Instantiating objects with properties
 ```cs
-A a = new A { x = 3; y = 6 };
+A a = new A { x = 3, y = 6 };
 
 // is literally the same as
 
@@ -555,7 +555,7 @@ class File {
 
 ##### Simple types
 - things like {{< inline_highlight "cs" >}}byte{{< /inline_highlight >}}, {{< inline_highlight "cs" >}}short{{< /inline_highlight >}}, {{< inline_highlight "cs" >}}int{{< /inline_highlight >}}, {{< inline_highlight "cs" >}}char{{< /inline_highlight >}}, {{< inline_highlight "cs" >}}bool{{< /inline_highlight >}}...
-- CLR and JIT knows about it, so operators (think {{< inline_highlight "cs" >}}+{{< /inline_highlight >}}) is not a function call
+- CLR and JIT know about it, so operators (think {{< inline_highlight "cs" >}}+{{< /inline_highlight >}}) are not function calls
 - sizes are (almost) always defined (not like C++), except:
 	- {{< inline_highlight "cs" >}}nint{{< /inline_highlight >}} and {{< inline_highlight "cs" >}}nuint{{< /inline_highlight >}} -- native, platform-dependent {{< inline_highlight "cs" >}}(u)int{{< /inline_highlight >}} (since C# 9.0)
 	- {{< inline_highlight "cs" >}}bool{{< /inline_highlight >}} is only {{< inline_highlight "cs" >}}true/false{{< /inline_highlight >}}, so it isn't defined too (implementation detail)
@@ -792,7 +792,7 @@ class A {
 #### Arithmetic overflows
 ```cs
 checked {
-	// kód
+	// code
 }
 ```
 - is not controlled when functions are called from this block (how could it, when they're probably already translated...)
@@ -888,7 +888,7 @@ interface Shape {
 	- happens easily when resizing (dynamic array, for example), since we're creating a new array of twice the size, that has to co-exist with the old one for a bit
 - **segment** -- reservation (virtual memory); around \(~16\ MB\)
 	- varies greatly on the architecture and GC configuration!
-- **kvantum** -- commit (physical memory); around \(~8\ kB\)
+- **quantum** -- commit (physical memory); around \(~8\ kB\)
 	- varies greatly on the architecture and GC configuration!
 - GC is **generational**
 	- gen 0 -- allocated just now
@@ -921,7 +921,7 @@ interface Shape {
 
 #### CIL
 - **common intermediate language**
-- formerly known Microsoft Intermediate Language (MSIL) or Intermediate Language (IL)
+- formerly known as Microsoft Intermediate Language (MSIL) or Intermediate Language (IL)
 - intermediate language binary instruction set for the CLI specification
 - executed by CLI-compatible runtime like **CLR**
 - object-oriented, stack-based, typically JITted into native code
@@ -1036,7 +1036,7 @@ public class Tests
 | ---    | ---                                          |
 | create | {{< inline_highlight "cs" >}}Queue<string> q = new Queue<string>();{{< /inline_highlight >}}     |
 | add    | {{< inline_highlight "cs" >}}q.Enqueue(element);{{< /inline_highlight >}}                        |
-| pop    | {{< inline_highlight "cs" >}}q.Dequeue(element);{{< /inline_highlight >}}                        |
+| pop    | {{< inline_highlight "cs" >}}q.Dequeue();{{< /inline_highlight >}}                        |
 | size   | {{< inline_highlight "cs" >}}q.Count;{{< /inline_highlight >}}                                   |
 | peek   | {{< inline_highlight "cs" >}}q.Peek();{{< /inline_highlight >}}                                  |
 

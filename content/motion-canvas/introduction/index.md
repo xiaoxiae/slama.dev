@@ -21,7 +21,7 @@ Since I have spent a significant amount of time in Manim (even writing a [series
 **If you are a Manim user, this series of articles is for you** -- it is a re-creation of [my Manim tutorial series](/manim/introduction/), written from a perspective of a long-time Manim user and focused on the differences between the two.
 
 ### Setting up
-Follow the [quickstart](https://canvascommons.io/docs/quickstart) page to setup your development environment.
+Follow the [quickstart](https://canvascommons.io/docs/quickstart) page to set up your development environment.
 
 Personally, I am using the [WebStorm](https://www.jetbrains.com/webstorm/) IDE on one monitor, with the Motion Canvas editor open on the other, allowing for instant preview of the animations that I'm currently working on (you should be writing this down, Manim; live animations!).
 
@@ -36,7 +36,7 @@ _Whenever you see something like this, the Manim code will produce an animation 
 
 {{< video "motion-canvas" "01-intro" >}}
 
-Instead of going through what each of the line of code does (again, the [explanation section](https://canvascommons.io/docs/quickstart#explanation) does a great job at doing this), I'll make a few observations on how Motion Canvas differs from Manim.
+Instead of going through what each of the lines of code does (again, the [explanation section](https://canvascommons.io/docs/quickstart#explanation) does a great job at doing this), I'll make a few observations on how Motion Canvas differs from Manim.
 
 `1)` we are animating **properties, not objects** -- for Manim, what we're conceptually doing is transforming an object from one state to another and things magically happen; for Motion Canvas, we are **animating individual properties.**
 
@@ -116,7 +116,7 @@ To create our animation, we can rely on the {{< doc "motion-canvas" "save" "2d/c
 ### Typesetting text and math
 
 For typesetting \(\LaTeX\) and regular text, we can use the {{< doc "motion-canvas" "<Txt>" "2d/components/Txt" >}} and [`<Latex>`](https://canvascommons.io/docs/latex) nodes.
-We can also rejoice, since they support diffing between different contents, which was one of my largest Manim painpoints!
+We can also rejoice, since they support diffing between different contents, which was one of my largest Manim pain points!
 
 {{< code_toggle "text-and-math.tsx" "01-text-and-math-example.py" >}}
 

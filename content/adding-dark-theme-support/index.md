@@ -7,7 +7,7 @@ toc: true
 
 I've been meaning to add dark theme support to this website for quite a while. I even made a whole CSS class, but didn't know how to actually integrate it into the website (having both the light and the dark theme, that is). All of the options that I thought about (cookie, local storage, weird CSS hacks) were ugly, complicated, involved JavaScript, and were an overall no-no for a website that aims to be as simple as possible.
 
-After some time and a bit more research, I stumbled upon the miraculous [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme#Result) CSS media query that triggers depending on the color scheme preferences of the user's browser -- exactly what I wanted!
+After some time and a bit more research, I stumbled upon the miraculous [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme#result) CSS media query that triggers depending on the color scheme preferences of the user's browser -- exactly what I wanted!
 
 Here is an example that sets the background to black and text to white when the dark theme preference is specified:
 
@@ -23,7 +23,7 @@ Here is an example that sets the background to black and text to white when the 
 ### Setting the browser theme
 It seems that setting dark theme for a given system will set up the browser theme preference automatically, but if your system doesn't support this or you prefer to only set the browser theme, here is how:
 
-#### FireFox (>= 67)
+#### Firefox (>= 67)
 1. go to `about:config`
 2. create a new variable `ui.systemUsesDarkTheme` and set it to `1`
 

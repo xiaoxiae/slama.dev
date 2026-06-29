@@ -29,7 +29,7 @@ Množině \(\Omega\) říkáme prostor elementárních jevů.
 - \(\mathcal{F} \subseteq \mathcal{P}(\Omega)\) je prostor jevů, a
 - \(P\) je pravděpodobnost přiřazující každému jevu pravděpodobnost.{{< /math >}}
 
-{{< math "example" "pravděpodobností prostory" >}}
+{{< math "example" "pravděpodobnostní prostory" >}}
 - **konečný s uniformní pravděpodobností:** \(\Omega\) je libovolná konečná množina, \(P(A) = |A| / |\Omega|\)
 - **diskrétní:** \(\Omega\) je libovolná _spočetná_ množina
 - **spojitý:** \(\Omega \subseteq \mathbb{R}^n\), \(\mathcal{F}\) vhodná, \(P\) definován přes integrál (viz dále)
@@ -62,13 +62,12 @@ Věta řeší problém, kdy máme jev \(H\) (hypotézu), který chceme spočíta
 {.inverse-invert}
 
 {{< math "remark" >}}3b1b udělal o Bayesově větě [pěkné video](https://www.youtube.com/watch?v=HZGCoVF3YvM), ze kterého jsem vykradl obrázek výše.{{< /math >}}
-{{< math "example" >}}{{< /math >}}
 
 {{< math "definition" "nezávislost jevů" >}}dva jevy jsou nezávislé, pokud \(P(A \cap B) = P(A) P(B)\){{< /math >}}
 
 ### Diskrétní náhodné veličiny
 
-{{< math "definition" "diskrétní náhodná veličina" >}}Pro pravděpodobnostní prostor \(\Omega, \mathcal{F}, P\) mějme funkci \(X : \Omega \mapsto \mathbb{R}\) nazveme diskrétní náhodná veličina, pokud \(\mathrm{Im}(X)\) (obor hodnot) je spočetná množina a pokud \(\forall x\) platí \[\left\{\omega \in \Omega: X(\omega) = x\right\} \in \mathcal{F}\]{{< /math >}}
+{{< math "definition" "diskrétní náhodná veličina" >}}Pro pravděpodobnostní prostor \(\Omega, \mathcal{F}, P\) nazveme funkci \(X : \Omega \mapsto \mathbb{R}\) diskrétní náhodnou veličinou, pokud \(\mathrm{Im}(X)\) (obor hodnot) je spočetná množina a pokud \(\forall x\) platí \[\left\{\omega \in \Omega: X(\omega) = x\right\} \in \mathcal{F}\]{{< /math >}}
 
 {{< math "example" "použití náhodných veličin" >}}
 - hodíme na terč a měříme vzdálenost od středu
@@ -80,7 +79,7 @@ Věta řeší problém, kdy máme jev \(H\) (hypotézu), který chceme spočíta
 #### Rozdělení
 
 ##### Bernoulli
-- \(X \cdot\) počet orlů při jednom hodu nespravedlivou mincí (značíme \(X \sim \mathrm{Bern}(p)\))
+- \(X \ldots\) počet orlů při jednom hodu nespravedlivou mincí (značíme \(X \sim \mathrm{Bern}(p)\))
 - \(p_X (1) = p\) a \(p_X(0) = 1 - p\), jinak \(p_X(k) = 0\)
 
 ##### Binomiální
@@ -112,7 +111,7 @@ pokud součet dává smysl.
 {{< math "definition:" "rozptyl/variance" >}}n.v. nazveme \[var(X) = \mathbb{E}\left(\left(X - \mathbb{E}X\right)^2\right)\]{{< /math >}}
 - má intuitivní význam -- jedná se o očekávanou vzdálenost (\(^2\)) od střední hodnoty
 
-{{< math "definition:" "směrodatná odchylka" >}} je \[\sqrt{var(x)}\]{{< /math >}}
+{{< math "definition:" "směrodatná odchylka" >}} je \[\sqrt{var(X)}\]{{< /math >}}
 
 {{< math "theorem" >}}\[var(X) = \mathbb{E}(X^2) - \mathbb{E}(X)^2\]{{< /math >}}
 
@@ -169,7 +168,7 @@ neboli
 
 {{< math "observation" >}}diskrétní n.v. je náhodná veličina (pro tu platí rovnost, kterou posčítáme).{{< /math >}}
 
-{{< math "definition:" "distribuční funkce" >}} (DNF) n.v. je funkce \[F_X(x) = P(X \le x) = P(\left\{\omega \in \Omega : X(\omega) \le x\right\})\]{{< /math >}}
+{{< math "definition:" "distribuční funkce" >}} (DF) n.v. je funkce \[F_X(x) = P(X \le x) = P(\left\{\omega \in \Omega : X(\omega) \le x\right\})\]{{< /math >}}
 
 {{< math "observation" >}}
 - \(F_X\) je neklesající
@@ -178,7 +177,7 @@ neboli
 - \(F_X\) je zprava spojitá
 {{< /math >}}
 
-{{< math "definition" "spojitá náhodná veličina" >}}n.n.v. je spojitá, pokud existuje nezáporná reálná funkce \(f_x\) (hustota) t.ž. \[F_X(x) = P(X \le x) = \int_{-\infty}^{x} f_X(t)\ dt\]{{< /math >}}
+{{< math "definition" "spojitá náhodná veličina" >}}n.n.v. je spojitá, pokud existuje nezáporná reálná funkce \(f_X\) (hustota) t.ž. \[F_X(x) = P(X \le x) = \int_{-\infty}^{x} f_X(t)\ dt\]{{< /math >}}
 
 #### Rozdělení
 {{< math "example" "uniformní rozdělení" >}}n.v. \(X\) má na \(\left[a, b\right]\) uniformní rozdělení, pokud má hustotní funkci \[f_X(x) = \begin{cases} \frac{1}{b-a} & x \in \left[a, b\right] \\ 0 & \text{jindy} \end{cases}\]
@@ -227,7 +226,7 @@ Věta říká, že je smysluplné průměrovat n.n.v. (s větším \(n\) se při
 
 
 
-{{< math "theorem" "centrální limitní věta" >}}nechť \(X-1, \ldots, X_n\) jsou n.n.v. se střední hodnotou \(\mu\) a rozptylem \(\sigma^2\). Označme \(Y_n = \left(\left(X_1 + \ldots + X_n\right) - n \mu\right) / \left(\sqrt{n} \sigma\right)\). Pak \(Y_n \overset{d}{\rightarrow} N(0, 1)\). Neboli pokud \(F_n\) je distribuční funkce \(Y_n\), tak \[\lim_{n \to \infty} F_n(x) = \Phi(x) \quad \forall x \in \mathbb{R}\]
+{{< math "theorem" "centrální limitní věta" >}}nechť \(X_1, \ldots, X_n\) jsou n.n.v. se střední hodnotou \(\mu\) a rozptylem \(\sigma^2\). Označme \(Y_n = \left(\left(X_1 + \ldots + X_n\right) - n \mu\right) / \left(\sqrt{n} \sigma\right)\). Pak \(Y_n \overset{d}{\rightarrow} N(0, 1)\). Neboli pokud \(F_n\) je distribuční funkce \(Y_n\), tak \[\lim_{n \to \infty} F_n(x) = \Phi(x) \quad \forall x \in \mathbb{R}\]
 
 Tedy (vhodně přeškálovaný) součet n.n.v. \(X_i\) konverguje ke standardnímu normálnímu rozdělení.
 {{< /math >}}

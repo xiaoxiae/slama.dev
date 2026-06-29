@@ -8,7 +8,7 @@ I have been trying to learn German without much success for a while now.
 The main issue I run into is motivation -- I speak English at work, Czech at home and German... well, not many places, as most of my friends are either international, or speak English just fine.
 
 Since I listen to audiobooks quite a bit, I thought of the following: **combine the English and the German version**, so I can hear the English part first, and thus know what the German part means!
-While not a particularly revolutionary idea, I haven't been able to find a project that does this, so I implemented [**Bilbo** -- the **Bil**ingual audio**bo**ook interleaver](https://github.com/xiaoxiae/Bilbo).
+While not a particularly revolutionary idea, I haven't been able to find a project that does this, so I implemented [**Bilbo** -- the **Bil**ingual audio**bo**ok interleaver](https://github.com/xiaoxiae/Bilbo).
 
 Here is an example:
 

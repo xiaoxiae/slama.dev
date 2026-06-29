@@ -30,7 +30,7 @@ In the former case, you have to
 In the latter case, there was no interview so you could skip directly to sending the application documents (required by both).
 This includes (but is not limited to):
 - a filled-in **application**,
-- a certificate of **English proficiency** (at least B2)[^german]
+- a certificate of **English proficiency** (at least B2),[^german]
 - a transcript of **completed study requirements** (I hadn't received my degree at the time),
 - a certified copy of a **high-school diploma** and
 - a copy of my **ID** (or a VISA, if you're not a European citizen).
@@ -40,7 +40,7 @@ This includes (but is not limited to):
 Once the admissions are opened (~March 2022 for our programmes), the specific list will be at the respective degree's website.
 You might have to do a little bit of digging and translating, though (the study requirements might be in German even if the degree isn't).
 
-Sending the documents by post is best done by private carriers such as [UPS](https://www.ups.com/us/en/global.page) instead of the post, because they're faster, more liable and will notify you when the documents arrived, albeit a little more costly (~€30 from the Czech Republic).
+Sending the documents by post is best done by private carriers such as [UPS](https://www.ups.com/us/en/global.page) instead of the post, because they're faster, more reliable and will notify you when the documents arrived, albeit a little more costly (~€30 from the Czech Republic).
 
 
 #### Immatriculation
@@ -94,8 +94,8 @@ Outgoing: # SMTP
 ### Money
 If Euros aren't your nation's currency (which was the case for me as we use Czech Korunas), there is a chance that paying using your bank's card will include additional fees and unfavorable conversion rates of your central bank.
 If that is the case, it might be advisable to either
-- set-up an account at a German bank or
-- use a service like [Revolut](https://www.revolut.com/) that facilitate currency conversions without additional fees[^revolut].
+- set up an account at a German bank or
+- use a service like [Revolut](https://www.revolut.com/) that facilitates currency conversions without additional fees[^revolut].
 
 [^revolut]: As of 11/2022, Revolut allows free monthly conversions of around €1000, if you don't have a premium account. This will most likely be enough for you, depending on your housing and lifestyle.
 
@@ -104,7 +104,7 @@ If you'd like to try it too, **let someone who already has Revolut know[^noone]*
 
 [^noone]: If you don't know anyone and would like to help me out, let me know.
 
-Getting either of those is also quite important for signing up for services memberships for places like the Boulderhaus, [getting a German phone number](https://www.expatica.com/de/living/household/german-sim-card-244240/) or even paying rent, since a lot of them use **direct debit** -- if you don't do so, make sure your bank supports this type of payment.
+Getting either of those is also quite important for signing up for service memberships for places like the Boulderhaus, [getting a German phone number](https://www.expatica.com/de/living/household/german-sim-card-244240/) or even paying rent, since a lot of them use **direct debit** -- if you don't do so, make sure your bank supports this type of payment.
 
 Also, most places in Heidelberg accept cards, so you don't need to have a lot of cash on-hand.
 
@@ -229,5 +229,5 @@ For each course, there is usually a sign-up link, leading to one of the many e-l
 You will receive a warning and will have to pay (either a lot directly or a little less when going through a mediation company).
 If this has already happened, [read this article](https://www.settle-in-berlin.com/illegal-file-sharing-germany-letter-cease-desist-warning/) and follow the advice.
 
-I'm adding this here since Germany's stance to torrenting is quite different (there is a whole industry around this) to that of some other European countries and might catch you off guard like it did us.
+I'm adding this here since Germany's stance on torrenting is quite different (there is a whole industry around this) to that of some other European countries and might catch you off guard like it did us.
 It is absolutely nonsensical and predatory, but unfortunately not much can be done.

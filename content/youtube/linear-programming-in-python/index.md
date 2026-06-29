@@ -20,7 +20,7 @@ You have \(3\) tons of potato seeds and \(4\) tons of carrot seeds.
 To grow the crops efficiently, you also have \(5\) tons of fertilizer, which has to be used when planting in a \(1:1\) ratio (i.e. \(1\) kilogram of potatoes or carrots requires \(1\) kilogram of fertilizer).
 The profit is \(1.2\$/\mathrm{kg}\) for potato seeds and \(1.7\$/\mathrm{kg}\) for carrot seeds.
 
-How much potatoes and carrots should you plant to maximize your profit this season?
+How many potatoes and carrots should you plant to maximize your profit this season?
 
 {{< details "Source code" "farmer.py" >}}{{< /details >}}
 

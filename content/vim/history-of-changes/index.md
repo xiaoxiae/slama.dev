@@ -38,7 +38,7 @@ You can also use the commands to move based on **chronological order** of the ch
 ```
 will move the file to `num` changes before, based on when they were made. This solves our problem from the previous section, since you can use {{< inline_highlight "vim" >}}earlier{{< /inline_highlight >}} (possibly repeatedly) to switch back to the branch that you decided was actually the one you wanted to keep.
 
-Last way to use the commands is to move based on **writes to file**:
+The last way to use the commands is to move based on **writes to file**:
 ```vim
 :earlier {num}f
 :later   {num}f
@@ -54,5 +54,5 @@ The {{< inline_highlight "vim" >}}<`.>{{< /inline_highlight >}} command is nice,
 If the commands and techniques mentioned above weren't enough for you, there are a number of plugins that make it easy to view and traverse the graph. I've personally used [UndoTree](https://github.com/mbbill/undotree) and found it quite nice, but there are other alternatives (like [Mundo](https://github.com/simnalamburt/vim-mundo), for example). Give them a try and see for yourself!
 
 ### Additional resources
-- [Undo and Redo](https://vim.fandom.com/wiki/Undo_and_Redo) and [Using undo branches](https://vim.fandom.com/wiki/Using_undo_branches) from Vim Wikipedia.
+- [Undo and Redo](https://vim.fandom.com/wiki/Undo_and_Redo) and [Using undo branches](https://vim.fandom.com/wiki/Using_undo_branches) from the Vim Fandom wiki.
 - Vim's built-in documentation (invoke using {{< inline_highlight "vim" >}}:help {something}{{< /inline_highlight >}})

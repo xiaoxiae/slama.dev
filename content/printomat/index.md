@@ -14,10 +14,10 @@ Send me a message that will get [printed on my home receipt printer](https://git
 
 ### Send a message!
 
-<form id="printForm" hx-post="https://printomat.slama.dev/submit" hx-target="#printForm" hx-swap="outerHTML" hx-request="true">
+<form id="printForm" hx-post="https://printomat.slama.dev/submit" hx-target="#printForm" hx-swap="outerHTML">
 <fieldset>
 <div>
-<label for="content"><strong>Message</strong></label>
+<label for="message"><strong>Message</strong></label>
 <textarea id="message" name="message" placeholder="Enter the content you want to print..."></textarea>
 </div>
 <div>

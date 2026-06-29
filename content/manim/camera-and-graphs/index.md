@@ -10,7 +10,7 @@ This part of the series covers mainly two topics -- the camera and (combinatoria
 Besides this, it also includes some useful concepts for more advanced animations.
 
 ### `save` and `restore`
-Each Manim object ({{< doc "manim" "MObject" "reference/manim.mobject.mobject.Mobject.html" >}}) contains the {{< doc "manim" "save_state" "reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.save_state" >}} function that allows to save the current state of the object, which it can later go back to using the {{< doc "manim" "restore" "reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.restore" >}} function (possibly using the animate syntax).
+Each Manim object ({{< doc "manim" "MObject" "reference/manim.mobject.mobject.Mobject.html" >}}) contains the {{< doc "manim" "save_state" "reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.save_state" >}} function that allows saving the current state of the object, which it can later go back to using the {{< doc "manim" "restore" "reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.restore" >}} function (possibly using the animate syntax).
 This makes the code, in certain situations, much more compact and readable.
 
 ```python {file="03-save-and-restore-example.py"}
@@ -45,7 +45,7 @@ Note that vertices and edges need not be circles and segments -- we can use cust
 
 {{< video "manim" "03-starry-sky-example" >}}
 
-As the code suggests, the current implementation expects both `vertex_type` and `edge_type` to be functions returning a {{< doc "manim" "MObject" "reference/manim.mobject.mobject.html" >}}. Besides this, the `edge_type` function must have an optional `z_index` parameter, since the graph implementation sets it to a negative number to push the edges behind the vertices. Additionally, the edges must have a `put_start_and_end_on` function (which {{< doc "manim" "DashedLine" "reference/manim.mobject.geometry.line.DashedLine.html" >}} does), since this is what edge updaters call when vertices move.
+As the code suggests, the current implementation expects both `vertex_type` and `edge_type` to be functions returning a {{< doc "manim" "MObject" "reference/manim.mobject.mobject.Mobject.html" >}}. Besides this, the `edge_type` function must have an optional `z_index` parameter, since the graph implementation sets it to a negative number to push the edges behind the vertices. Additionally, the edges must have a `put_start_and_end_on` function (which {{< doc "manim" "DashedLine" "reference/manim.mobject.geometry.line.DashedLine.html" >}} does), since this is what edge updaters call when vertices move.
 
 #### Random graphs
 If we don't want to create random graphs manually, we can use the popular [`networkx`](https://networkx.org/documentation/stable/reference/introduction.html) library, which contains a number of useful graph generators and graph-related functions.
@@ -89,7 +89,7 @@ Besides moving and zooming, we can also do things like changing the color of the
 
 ### Rate functions
 For fine-tuning animations, it is sometimes desirable to change the functions that time them.
-We've already seen
+We've already seen rate functions in action; here is how to set them explicitly.
 
 ```python {file="03-rate-functions-example.py"}
 ```
@@ -140,7 +140,7 @@ class RateFuncExample(Scene):
         x.width = config.frame_width
         x.move_to(ORIGIN).scale(0.95)
 
-        self.add(VGroup(Tex("Manim Rate Funtions").scale(1.25), x).arrange(DOWN, buff=0.75))
+        self.add(VGroup(Tex("Manim Rate Functions").scale(1.25), x).arrange(DOWN, buff=0.75))
 ```
 -->
 
@@ -183,7 +183,7 @@ There is, however, a slight catch: using {{< doc "manim" "TracedPath" "reference
 {{< details "Author's Solution" "03-fibonacci-sequence.py" >}}{{< /details >}}
 
 #### Langton's ant
-Create an animation of [Langton's ant](https://en.wikipedia.org/wiki/Langton%27s_ant) (or one of it's color variants).
+Create an animation of [Langton's ant](https://en.wikipedia.org/wiki/Langton%27s_ant) (or one of its color variants).
 
 {{< video "manim" "03-langton-ant" >}}
 

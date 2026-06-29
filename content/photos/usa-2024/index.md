@@ -24,7 +24,7 @@ centerTitle: true
 {{< image_row "DSC6098.jpg :: Day 3, image 6 | DSC6144.jpg :: Day 3, image 7" >}}
 {{< /image_section >}}
 
-{{< image_section caption="**Day 4:** First: farm. Also went to the Brandywine art gallery (nice local paintings) and the Downington climbing gym – the locals had a lot of fun watching me climb with rental shoes." >}}
+{{< image_section caption="**Day 4:** First: farm. Also went to the Brandywine art gallery (nice local paintings) and the Downingtown climbing gym – the locals had a lot of fun watching me climb with rental shoes." >}}
 {{< image_row "DSC6468.jpg :: Day 4, image 1 | DSC6352.jpg :: Day 4, image 2" >}}
 {{< image_row "DSC6380.jpg :: Day 4, image 3 | DSC6455.jpg :: Day 4, image 4" >}}
 {{< /image_section >}}
@@ -72,7 +72,7 @@ centerTitle: true
 {{< image_row "DSC7856.jpg :: Day 13, image 4 | DSC7889.jpg :: Day 13, image 5" >}}
 {{< /image_section >}}
 
-{{< image_section caption="**Day 14:** Ferry to Staten Island to see the statue of Liberty. Then another photogenic squirrel (Barry) appeared!" >}}
+{{< image_section caption="**Day 14:** Ferry to Staten Island to see the Statue of Liberty. Then another photogenic squirrel (Barry) appeared!" >}}
 {{< image_row "DSC8071.jpg :: Day 14, image 1 | DSC8138.jpg :: Day 14, image 2" >}}
 {{< image_row "DSC8251.jpg :: Day 14, image 3" >}}
 {{< image_row "DSC8316.jpg :: Day 14, image 4 | DSC8319.jpg :: Day 14, image 5" >}}

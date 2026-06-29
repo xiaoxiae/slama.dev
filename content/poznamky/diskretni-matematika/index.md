@@ -255,10 +255,10 @@ Důkaz, toho proč ten výraz \(\le 1\):
 Nechť \(A_1, \ldots, A_n\) jsou konečné množiny. Potom:
 {{< /math >}}
 
-\[\left|\bigcup_{i = 0}^{n} A_i\right| = \sum_{k = 1}^{n} \left(-1\right)^{k + 1} \sum_{I \in \binom{\left[n\right]}{k}} \left|\bigcap_{i \in I} A_i\right|\]
+\[\left|\bigcup_{i = 1}^{n} A_i\right| = \sum_{k = 1}^{n} \left(-1\right)^{k + 1} \sum_{I \in \binom{\left[n\right]}{k}} \left|\bigcap_{i \in I} A_i\right|\]
 
 Také lze zapsat jako
-\[\left|\bigcup_{i = 0}^{n} A_i\right| = \sum_{\emptyset \neq I \subseteq \left[n\right]} \left(-1\right)^{\left|I\right| + 1} \left|\bigcap_{i \in I} A_i\right|\]
+\[\left|\bigcup_{i = 1}^{n} A_i\right| = \sum_{\emptyset \neq I \subseteq \left[n\right]} \left(-1\right)^{\left|I\right| + 1} \left|\bigcap_{i \in I} A_i\right|\]
 
 {{< math "proof" "počítací" >}}
 kolikrát se prvek \(x\) nachází nalevo a napravo:
@@ -277,7 +277,7 @@ graf je _uspořádaná dvojice_ množin \(\left(V, E\right)\), kde \(V\) je _kon
 {{< /math >}}
 
 #### Odrůdy
-- **úplný** \(K_n \equiv \left(\left[n\right], \binom{V}{2}\right)\)
+- **úplný** \(K_n \equiv \left(\left[n\right], \binom{\left[n\right]}{2}\right)\)
 	- opak je **diskrétní**
 - **úplný bipartitní** \(K_{m, n}\):
 	- \(V\left(K_{m, n}\right) = \left\{a_1, \ldots, a_m, b_1, \ldots, b_n\right\}\) (rozdělíme na 2 části)
@@ -303,7 +303,7 @@ Nechť \(V = \left\{v_1, \ldots, v_n\right\}\).
 \begin{aligned}
 \log \frac{2^\binom{n}{2}}{n!}  &\ge \binom{n}{2} - n \log n \\
 &= \frac{n \left(n - 1\right)}{2} - n \log n \\
-& = \frac{n^2}{2} \left(1 - \frac{1}{n} - \frac{2 \cdot \log{2}{n}}{n}\right)
+& = \frac{n^2}{2} \left(1 - \frac{1}{n} - \frac{2 \cdot \log n}{n}\right)
 \end{aligned}
 \]
 
@@ -323,17 +323,17 @@ Nechť \(V = \left\{v_1, \ldots, v_n\right\}\).
 nechť \(K\) je \(\left\{\left(v, e\right) \mid e \in E\left(G\right) \land v \in e\right\}\); pak \[\left|K\right| = 2 \cdot \left|E\left(G\right)\right| = \sum_{v} \mathrm{deg}(v)\]
 - první rovnost platí, jelikož každá hrana přispěje 2x
 - druhá rovnost platí, jelikož každý vrchol přispěje všemi hranami, které do něj jdou (tj. svým stupňem)
-- vyplývá z toho _princip sudosti_: počet vrcholů lichého stupně je sudý (jinak by se to nesečetlo na sudé číslo
+- vyplývá z toho _princip sudosti_: počet vrcholů lichého stupně je sudý (jinak by se to nesečetlo na sudé číslo)
 {{< /math >}}
 
 {{< math "theorem" "testování skóre" >}}
-nechť \(d_1 \le d_2 \le \ldots \le d_n\) posloupnost přirozených čísel. Pak \(d_1', d_2', \ldots d_{n - 1}' \) vznikne smazáním posledního prvku a odečtením \(1\) od \(d_n\) předchozích. Pak \(d_1 \le d_2 \le \ldots d_n\) je skórem grafu, když \(d_1', d_2', \ldots d_{n - 1}' \) je skórem grafu.
+nechť \(d_1 \le d_2 \le \ldots \le d_n\) posloupnost přirozených čísel. Pak \(d_1', d_2', \ldots d_{n - 1}' \) vznikne smazáním posledního prvku a odečtením \(1\) od \(d_n\) předchozích. Pak \(d_1 \le d_2 \le \ldots d_n\) je skórem grafu právě tehdy, když \(d_1', d_2', \ldots d_{n - 1}' \) je skórem grafu.
 {{< /math >}}
 
 {{< math "proof" >}}
 - \(\Rightarrow\): víme, že \(d_1', d_2', \ldots d_{n - 1}' \) je skórem grafu, stačí tedy přilepit vrchol a propojit ho patřičnými hranami k existujícímu grafu:
 	- \(V\left(G\right) = \left\{v_1', \ldots, v_{n - 1}', v_n\right\}\)
-	- \(E\left(G\right) = E\left(G'\right) \cup \left\{\left\{v'i, v_n\right\} \mid n - d_n \le i \le n - 1\right\}\)
+	- \(E\left(G\right) = E\left(G'\right) \cup \left\{\left\{v_i', v_n\right\} \mid n - d_n \le i \le n - 1\right\}\)
 	- pozor! opačně nefunguje, jelikož nemáme jistotu, že odebíráme od těch zprava
 - \(\Leftarrow\):
 	- nechť \(\mathcal{G} := \left\{G\ \text{na}\ \left\{v_1, \ldots, v_n\right\}, \mid \forall i: \mathrm{deg}_G\left(v_i\right) = d_i\right\}\)
@@ -369,8 +369,8 @@ v grafu délky \(k\) je (2 pohledy):
 1. \(H \subseteq G\) t. ž. \(H \cong P_k\)
 2. \(v_0, e_1, v_1, \ldots, e_k, v_k\) t. ž.:
 	- \(\forall i: v_i \in V\left(G\right)\) + všechny \(v_i\) jsou různé vrcholy
-	- \(\forall j: e_j \in E\left(G\right) \land e_j = \left\{v_{j - i}, v_j\right\}\)
-- obdobně lze definovat kružnici, jen \(v_e = v_k\)
+	- \(\forall j: e_j \in E\left(G\right) \land e_j = \left\{v_{j - 1}, v_j\right\}\)
+- obdobně lze definovat kružnici, jen \(v_0 = v_k\)
 {{< /math >}}
 
 {{< math "definition:" "sled" >}}
@@ -399,7 +399,7 @@ V souvislém grafu \(G\) je vzdálenost vrcholu \(u, v\) _minimum_ z délek cest
 - _přidání_ hrany/vrcholu: \(G + v\), \(G + h\)
 - _smazání_ hrany/vrcholu:
 	- \(G - e := G\left(V, E \setminus \left\{e\right\}\right)\)
-	- \(G - v := G\left(V \setminus v, E \setminus \left\{e \in E \mid v \not\in e\right\}\right)\)
+	- \(G - v := G\left(V \setminus v, E \setminus \left\{e \in E \mid v \in e\right\}\right)\)
 - _dělení_ hrany \(G\ \%\ e := \left(V \cup \left\{z\right\}, \left(E \setminus \left\{x, y\right\}\right) \cup \left(\left\{x, z\right\}, \left\{z, y\right\}\right)\right)\)
 - kontrakce hrany \( G/e := \left(\left(V \setminus \left\{x, y\right\}\right) \cup \left\{z\right\}, \\ \left\{e \in E \mid e \cap \left\{x, y\right\} \neq \emptyset\right\} \cup \left\{\left(e \setminus \left\{x, y\right\}\right) \cup \left\{z\right\} \mid e \in E \land \left|e \cup \left\{x, y\right\}\right| = 1\right\}\right) \)
 
@@ -432,7 +432,7 @@ nechť \(v\) je list grafu \(G\). Pak \(G\) je strom \(\iff G - v\) je strom.
 {{< math "theorem" "charakteristika stromu" >}}
 následující tvrzení jsou ekvivalentní:
 1. **standardní:** \(G\) je souvislý a acyklický
-2. **jednoznačná souvislost:** mezi každými vrcholem \(x, y\) vede _právě 1 cesta_
+2. **jednoznačná souvislost:** mezi každými vrcholy \(x, y\) vede _právě 1 cesta_
 3. **minimální souvislost:** \(G\) je souvislý a \(\forall e \in E\left(G\right): G - e\) souvislý není
 4. **maximální acykličnost:** \(G\) je acyklický a \(\forall e \in \binom{V\left(G\right)}{2} \setminus E\left(G\right): G + e\) obsahuje cyklus
 5. **Eulerova formule:** \(G\) je souvislý a \(\left|E\left(G\right)\right| = \left|V\left(G\right)\right| - 1\)
@@ -581,15 +581,15 @@ Graf je _rovinný_, pokud existuje nějaké jeho rovinné nakreslení.
 
 {{< math "definition" "topologický graf" >}}graf nakreslený do roviny.{{< /math >}}
 
-{{< math "theorem" "Jordanová věta" >}}
+{{< math "theorem" "Jordanova věta" >}}
 Nechť \(T\) je topologická kružnice v \(\mathbb{R}^2\). Pak \(\mathbb{R}^2 \setminus T\) má právě 2 komponenty obloukové souvislosti: 1 omezenou, 1 neomezenou a \(T\) je jejich společnou hranicí.
 {{< /math >}}
 - těžké dokázat
 
-{{< math "theorem" >}}\(K_5\) není rovinná.{{< /math >}}
+{{< math "theorem" >}}\(K_5\) není rovinný.{{< /math >}}
 
 {{< math "proof" >}}
-Po rovinném nakreslení \(K_4\) je zřejmé, že z každé stěny jsou dosažitelné právě 3 vrcholy -- \(K_5\) proto rovinná být nemůže.
+Po rovinném nakreslení \(K_4\) je zřejmé, že z každé stěny jsou dosažitelné právě 3 vrcholy -- \(K_5\) proto rovinný být nemůže.
 {{< /math >}}
 
 {{< math "definition:" "křížící číslo" >}} je min. počet křížení.{{< /math >}}
@@ -626,7 +626,7 @@ uděláme _stereografickou projekci_... jedná se o bijekci
 {{< /math >}}
 
 {{< math "theorem" "Kuratowského" >}}
-\(G\) není rovinný \(\iff \exists H \cong G\) t. ž.: \(H \cong\) nějakému dělení \(K_5\) nebo \(K_{3, 3}\)
+\(G\) není rovinný \(\iff \exists H \subseteq G\) t. ž.: \(H \cong\) nějakému dělení \(K_5\) nebo \(K_{3, 3}\)
 {{< /math >}}
 
 {{< math "theorem" "Eulerova formule" >}}
@@ -650,7 +650,7 @@ fixujeme \(v\), indukce podle \(e\):
 pro maximálně rovinný graf \(G\) s \(v \ge 3\) jsou všechny jeho stěny trojúhelníky.
 {{< /math >}}
 
-{{< math "definition" >}}
+{{< math "proof" >}}
 1. každý maximální graf je souvislý (pokud ne, tak lze nesouvislé komponenty spojit)
 2. kdyby existovala stěna s hranicí \(C_n\) pro \(n > 3\), pak můžeme v rámci stěny přidat hranu
 3. strana, jejíž hranice není kružnice neexistuje (mohli bychom přidat stěnu)
@@ -712,7 +712,7 @@ graf je souvislý \(\implies\) má kostru \(T\). Nechť \(C\) je 2-obarvení \(T
 {{< /math >}}
 
 {{< math "claim" >}}
-Je-li T strom s alespoň 2 vrcholy. pak \(\chi\left(T\right) = 2\)
+Je-li T strom s alespoň 2 vrcholy, pak \(\chi\left(T\right) = 2\)
 {{< /math >}}
 
 {{< math "proof" >}}
@@ -741,10 +741,10 @@ každý rovinný graf je 5-obarvitelný.
 graf \(G\) je \(d\)-degenerovaný \(\equiv \forall H \subseteq G\ \exists v \in V\left(H\right): \mathrm{deg}_H\left(v\right) \le d\)
 - pozor! neříká to, že \(\forall v \in V\left(G\right): \mathrm{deg}\left(v\right) \le 5\), jelikož podgrafy trhají vrcholy a hrany
 - každý strom je 1-degenerovaný
-- rovinné grafy jsou 5-degenerované (viz. důkaz kousek zpět -- stupně rovinných grafů)
+- rovinné grafy jsou 5-degenerované (viz důkaz kousek zpět -- stupně rovinných grafů)
 - graf s max. stupněm \(\Delta\) je \(\Delta\)-degenerovaný
 - obecně platí \(\chi\left(G\right) \le d + 1\)
-	- důkaz indukcí: odstranění má obarvení a ke přidání zpět je potřeba alespoň 1 volná barva
+	- důkaz indukcí: odstranění má obarvení a k přidání zpět je potřeba alespoň 1 volná barva
 {{< /math >}}
 
 ![](chi.svg)
@@ -759,7 +759,7 @@ Pro \(G\) _nakreslený do roviny_ definujeme \(G^*\) duální graf:
 
 {{< math "definition:" "klikovost" >}}
 \(\omega\left(G\right)\) je maximální \(k\) t. ž. \(G\) obsahuje \(K_k\).
-- \(\chi\left(G\right) \ge \omega\left(G\right)\) (na \(K_k\) je potřeba \(k\) barev...
+- \(\chi\left(G\right) \ge \omega\left(G\right)\) (na \(K_k\) je potřeba \(k\) barev...)
 {{< /math >}}
 
 ### Pravděpodobnost
@@ -812,7 +812,7 @@ Obecněji: jevy \(A_1, \ldots, A_n\) jsou po \(k\) nezávislé \[\iff \forall I 
 \(P\left(\Omega_1, P_1\right)\) a \(\left(\Omega_2, P_2\right)\) je pravděpodobnostní prostor \(\left(\Omega, P\right)\) t. ž.:
 - \(\Omega := \Omega_1 \times \Omega_2\)
 - \(P\left(\left(x_1, x_2\right)\right) = P_1\left(x_1\right) \cdot P_2\left(x_2\right)\)
-- pozn.: stále se pravděpodobnost sečte na jedničku: \(\sum_{x1, x2} P_1\left(x_1\right) P_2\left(x_2\right) = 1 \cdot 1 = 1\)
+- pozn.: stále se pravděpodobnost sečte na jedničku: \(\sum_{x_1, x_2} P_1\left(x_1\right) P_2\left(x_2\right) = 1 \cdot 1 = 1\)
 {{< /math >}}
 
 {{< math "definition:" "náhodná veličina" >}}
@@ -840,7 +840,7 @@ vycházíme ze střední hodnoty; iterujeme přes všechna \(a \in R\)
 \begin{aligned}
 	\mathbb{E}\left[x\right] &= \sum_{a} P\left[x = a\right] \cdot a \qquad // \text{definice}\\
 	&\ge \sum_{a \ge k} P\left[x = a\right] \cdot a  \qquad // \text{iterujeme přes více hodnot}\\
-	&\ge \sum_{a \ge k} P\left[x = a\right] \cdot k \qquad //k \ge a\\
+	&\ge \sum_{a \ge k} P\left[x = a\right] \cdot k \qquad //a \ge k\\
 	&= k \cdot \sum_{a \ge k} P\left[x = a\right] \\
 	&= k \cdot P\left[x \ge k\right]
 \end{aligned}

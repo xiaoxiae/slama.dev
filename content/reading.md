@@ -20,8 +20,8 @@ If you have a good book for me to read, let me know and I'll be happy to check i
 	1. **The Way of Kings** <span class="half-visible">(2010)</span>
 	2. **Words of Radiance** <span class="half-visible">(2014)</span>
 	3. **Oathbringer** <span class="half-visible">(2017)</span>
-	4. **The Rhythm of War** ⭐ <span class="half-visible">(2020)</span>
-	5. **The Wind and Truth** ⭐ <span class="half-visible">(2024)</span>
+	4. **Rhythm of War** ⭐ <span class="half-visible">(2020)</span>
+	5. **Wind and Truth** ⭐ <span class="half-visible">(2024)</span>
 
 - **Mistborn** [[Wikipedia](https://en.wikipedia.org/wiki/Mistborn_series)] -- another amazing series from Brandon Sanderson with another well thought-out magic system. The first and the second eras vary greatly in their setting (medieval × industrial revolution), but I would argue that they both work extremely well.
 	- The First Era:
@@ -43,13 +43,13 @@ If you have a good book for me to read, let me know and I'll be happy to check i
 	2. **The Frugal Wizard's Handbook for Surviving Medieval England** <span class="half-visible">(2023)</span> -- a fun novel about multiverse traveling and... marketing?
 	3. **Yumi and the Nightmare Painter** <span class="half-visible">(2023)</span> -- very evocative and narrated by Hoid (who was a coatrack).
 	4. **The Sunlit Man** ⭐ <span class="half-visible">(2023)</span> -- a western by Brandon Sanderson? Not quite, but it has similar vibes.
-  5. **Isles of the Emberdark** ⭐ <span class="half-visible">(2025)</span> -- I absolutely loved **Sixth of the Dusk** <span class="half-visible">(2015)</span>, which was one of Brandon's short stories. Despite him saying that there likely won't be a full novel from that particular universe, here we are, and it's great.
+	5. **Isles of the Emberdark** ⭐ <span class="half-visible">(2025)</span> -- I absolutely loved **Sixth of the Dusk** <span class="half-visible">(2015)</span>, which was one of Brandon's short stories. Despite him saying that there likely won't be a full novel from that particular universe, here we are, and it's great.
 {.spaced-list}
 
 #### Leigh Bardugo
 
-- **The Six of Crows** duology [[Wikipedia](https://en.wikipedia.org/wiki/Six_of_Crows)] -- if you think that "Ocean's Eleven meets Game of Thrones" sounds good, you have to read this. The books are stellarly written and very well narrated (even for Audible standards) and contain a sequel duology and prequel trilogy, both of which I'll add here once I see that they're as good as this one.
-	1. **The Six of Crows** ⭐ <span class="half-visible">(2015)</span>
+- **Six of Crows** duology [[Wikipedia](https://en.wikipedia.org/wiki/Six_of_Crows)] -- if you think that "Ocean's Eleven meets Game of Thrones" sounds good, you have to read this. The books are stellarly written and very well narrated (even for Audible standards) and contain a sequel duology and prequel trilogy, both of which I'll add here once I see that they're as good as this one.
+	1. **Six of Crows** ⭐ <span class="half-visible">(2015)</span>
 	2. **Crooked Kingdom** <span class="half-visible">(2016)</span>
 
 - **King of Scars** duology [[Wikipedia](https://en.wikipedia.org/wiki/King_of_Scars)] -- another excellent duology by Leigh Bardugo. It is much more fantasy-ish than the Six of Crows and focuses more heavily on the magical aspect of the world that Leigh is building (so it reads quite differently) but I enjoyed it nonetheless.
@@ -79,7 +79,7 @@ If you have a good book for me to read, let me know and I'll be happy to check i
 
 #### Isaac Asimov
 
-- **The Foundation Series** <span class="half-visible">(1951)</span> [[Wikipedia](https://en.wikipedia.org/wiki/Foundation_series)] (books 1-4) -- a series of sci-fi novels set in a long-distant, future where humanity controls the entire galaxy through the means of an overarching Galactic Empire, but which is predicted to fall through the mathematics of psychohistory. Despite the series being written many decades ago, it holds up well and was truly a joy to read, with each book having a distinct style and feel.
+- **The Foundation Series** <span class="half-visible">(1951)</span> [[Wikipedia](https://en.wikipedia.org/wiki/Foundation_series)] (books 1-4) -- a series of sci-fi novels set in a long-distant future where humanity controls the entire galaxy through the means of an overarching Galactic Empire, but which is predicted to fall through the mathematics of psychohistory. Despite the series being written many decades ago, it holds up well and was truly a joy to read, with each book having a distinct style and feel.
 {.spaced-list}
 
 #### Liu Cixin

@@ -49,7 +49,7 @@ Setting:
 - reality is often more complicated
 - no unique true response \(Y^*\), instead set of possible values (possibly infinite)
 - in that case we learn a conditional probability (instead of a function): \[\hat{Y} \sim p(Y \mid X)\]
-- to learn this, we define a "universal probability family" with parameters \(\theta\) and chose \(\hat{\theta}\) such that \[Y \sim p_{\hat{\theta}}(Y \mid X)\] matches the data
+- to learn this, we define a "universal probability family" with parameters \(\theta\) and choose \(\hat{\theta}\) such that \[Y \sim p_{\hat{\theta}}(Y \mid X)\] matches the data
 - strict generalization: deterministic case is recovered by defining \(p(Y \mid X) = \delta(Y - f(X))\)
 	- \(\delta\) distribution has only one value
 - often we derive deterministic results from probabilistic predictions (eg. mode/median/random sample of the distribution)
@@ -59,7 +59,7 @@ Setting:
 - nature is not fully predictable
 	- _quantum physics_ (randomness)
 	- _deterministic chaos_ (pendulum)
-	- _combinatorial explosion_ (aminoacids)
+	- _combinatorial explosion_ (amino acids)
 - data:
 	- finite
 	- noisy
@@ -85,7 +85,7 @@ Setting:
 | \(2\)             | Bob          | \(1.8\)m       | m              |
 | \(3\)             | Max          | \(1.9\)m       | m              |
 
-We usually (when Programming) want a **float matrix:** drop names, discretize labels and use one-hot encoding (one-hot because there is only ones in the particular features).
+We usually (when Programming) want a **float matrix:** drop names, discretize labels and use one-hot encoding (one-hot because there are only ones in the particular features).
 
 | \(i \setminus j\) | \(1\) (height) | \(2\) (f) | \(3\) (m) | \(4\) (o) |
 | ---               | ---            | ---       | ---       | ---       |
@@ -203,7 +203,7 @@ Is hugely important for a number of reasons:
 Some history behind ML:
 - traditional science seeks generative models (we can create synthetic data that are indistinguishable from real data)
 	- physics understand the movement of an object, so a game can use this to appear real
-- ~1930: ML researches realized that their models were too weak to do this \(\implies\) field switched to discriminative models
+- ~1930: ML researchers realized that their models were too weak to do this \(\implies\) field switched to discriminative models
 - ~2012: neural networks solved many hard discriminative tasks \(\implies\) the field is again interested in generative models (Midjourney, ChatGPT, etc.)
 	- subfield "explainable/interpretable ML"
 
@@ -262,7 +262,7 @@ Gradient descent looks as follows: \[\beta^{(t)} = \beta^{(t - 1)} - \tau \under
 ![Linear classifier.](linear-classifier.svg)
 
 - **(+)** first practical learning algorithm, established the gradient descent principle
-- **(-)** only converges when the training set area linearly separable
+- **(-)** only converges when the training set is linearly separable
 - **(-)** tends to overfit, bad at generalization
 
 ##### Support Vector Machine (SVM)
@@ -275,13 +275,13 @@ Improved algorithm (popular around 1995): **(Linear) Support Vector Machine** (S
 Reminder: distance of a point \(X_i\) and plane \(\beta, b\) is \[d(X_i, (\beta, b)) = \left| \frac{ X_i \beta + b}{|| \beta ||} \right|\]
 - notice that scaling \(\beta\) doesn't change the distance -- pairs \((\tau \beta, \tau b)\) define the same plane -- we can therefore define an equivalence class \[H = \left\{\beta', b' \mid \beta' = \tau \beta_H, b' = \tau b_H\right\}\] for \(\beta_H, b_H\) representatives (can be chosen arbitrarily)
 
-Radius of the safety region (**margin**) is the **smallest distance** distance of a point to the decision plane (also called the "Hausdorff distance between H and TS"): \[m_H = \min_{i = 1}^N d(X_i, (\beta_H, b_H))\]
+Radius of the safety region (**margin**) is the **smallest distance** of a point to the decision plane (also called the "Hausdorff distance between H and TS"): \[m_H = \min_{i = 1}^N d(X_i, (\beta_H, b_H))\]
 
 Let \(\hat{i}\) be the closest point. Then \[Y_{\hat{i}}^* (X_{\hat{i}} \beta_H + b_H) = m_H || \beta_H || \]
 - we don't use minus because we want distance, not penalty (like perceptron)
-- we again use the trick with multiplying by the label and brought the norm to the other side
+- we again use the trick with multiplying by the label and bring the norm to the other side
 
-Now we chose a representative such that the equation above is \(1\).
+Now we choose a representative such that the equation above is \(1\).
 The decision plane is then correct when \[\forall i: Y_i^* (X_i \beta_H + b_H) \ge 1\] (specifically \(1\) for \(\hat{i}\)). To make it as general as possible, we want one that maximizes the distance \[
 \begin{aligned}
 	H &= \argmax_H m_H \\
@@ -344,14 +344,14 @@ To get any ellipse, we start with a unit circle \(z\) and stretch (\(\lambda\)),
 Solving for \(z\) (and using the fact that \(Q\) is orthogonal), we get \[z = \lambda^{-1} Q^{-1} (X - \mu) = \lambda^{-1} Q^T (X - \mu)\]
 
 **Gaussian distribution** can be defined as\[\mathcal{N}(x \mid \mu, \sigma) = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(-\frac{1}{2} \left((x - \mu)\sigma^{-1}\right)^2\right)\]
-- for \(\mu \ldots\) **mean**, \(\sigma \ldots\) **variance**
+- for \(\mu \ldots\) **mean**, \(\sigma \ldots\) **standard deviation**
 - **standard normal distribution** is for \(\mu = 0\) and \(\sigma = 1\)
 
 For higher dimensions (with our circle \(z\)), we get the generalized Gaussian \[\mathcal{N}(z \mid \mu, \Sigma) = \frac{1}{\sqrt{\det\left(2 \pi \Sigma\right)}} \exp\left(-\frac{1}{2} (x - \mu) \underbrace{Q^{-1}\lambda^{-1}\lambda^{-1}Q^{-T}}_{\Sigma^{-1}} (x - \mu)^T\right)\]
 - \(\Sigma^{-1} = K\) is the **precision matrix**
 - since \(\Sigma^{-1} = Q^{-1}\lambda^{-1}\lambda^{-1}Q^{-T}\), we see a decomposition to eigenvalues (correspond to square of radii of the ellipse) and eigenvectors (the corresponding radii vectors)
 
-Let \(\left\{X-i\right\}_{i = 1}^{N_1}\) be features of class \(1\). Then \[N(X \mid \mu_1, \Sigma_1) = \frac{1}{\sqrt{\det(2 \pi \Sigma_1)}} \exp\left(-\frac{1}{2} (x_1 - \mu_1) \Sigma_1^{-1} (x_1 - \mu_1)^T\right)\]
+Let \(\left\{X_i\right\}_{i = 1}^{N_1}\) be features of class \(1\). Then \[N(X \mid \mu_1, \Sigma_1) = \frac{1}{\sqrt{\det(2 \pi \Sigma_1)}} \exp\left(-\frac{1}{2} (x_1 - \mu_1) \Sigma_1^{-1} (x_1 - \mu_1)^T\right)\]
 - **learning:** find \(\mu_1\) and \(\Sigma_1\)
 
 To derive the learning method, we'll use two things:
@@ -365,7 +365,7 @@ For the probability, we get \[
 	p(\mathrm{TS}) &= p(X_1, \ldots, X_n) \\
 	               &= \prod_{i = 1}^{N} p_i(X_i) \qquad \text{independently} \\
 	               &= \prod_{i = 1}^{N} p(X_i) \qquad \text{identically distributed} \\
-	               &= \prod_{i = 1}^{N} \mathcal{N(X_i \mid \mu, \Sigma)}
+	               &= \prod_{i = 1}^{N} \mathcal{N}(X_i \mid \mu, \Sigma)
 \end{aligned}\]
 
 Using the maximum likelihood principle, the problem becomes \[\hat{\mu}, \hat{\Sigma} = \argmax_{\mu, \Sigma} p(\mathrm{TS})\]
@@ -406,7 +406,7 @@ For \(\Sigma\), this will be a little more complicated. We'll do the partial der
 Again, in other words, the **variance** is the average over the squared vectors offset by the mean, which too makes sense.
 
 Now we have \(2\) classes but with same covariance (by assumption of LDA) and we can:
-1. determine two means (\(\mu_1, \mu_{-1}\)) as \[\boxed{\mu_1 = \frac{1}{N_1} \sum_{i: Y_i^* = 1} X_i \qquad \mu_{-1} = \frac{1}{N_{-1}} \sum_{i: Y_i^* = -1}}\]
+1. determine two means (\(\mu_1, \mu_{-1}\)) as \[\boxed{\mu_1 = \frac{1}{N_1} \sum_{i: Y_i^* = 1} X_i \qquad \mu_{-1} = \frac{1}{N_{-1}} \sum_{i: Y_i^* = -1} X_i}\]
 2. to calculate covariance (which is the same for both classes): \[\boxed{\Sigma = \frac{1}{N} \left(\sum_{i: Y_i^* = 1} (X_i - \mu_1)^T (X_i - \mu_1) + \sum_{i: Y_i^* = -1} (X_i - \mu_{-1})^T (X_i - \mu_{-1})\right)}\]
 3. use Bayes RHS and our calculations to calculate the LHS: \[\boxed{\begin{aligned} \hat{Y}_i = \mathrm{sign}(X_i \beta + b) \quad \text{with} \quad &\beta = 2 \Sigma^{-1} (\mu_1 - \mu_{-1})^T \\ & b = \mu_{-1} \Sigma^{-1} \mu_{-1}^T - \mu_1 \Sigma^{-1} \mu_1^T \end{aligned}}\]
 
@@ -414,8 +414,8 @@ The derivation of (3) looks as follows: assuming \(p(Y = 1) = p(Y = -1) = \frac{
 
 \[
 \begin{aligned}
- p(Y=1|X)&=\frac{p(Y=1|X){p(Y=1)}}{p(Y=1|X){p(Y=1)}+p(Y=-1|X){p(Y=-1)}}\\            
- &=\frac{p(Y=1|X)}{p(Y=1|X)+p(Y=-1|X)}\\                                              
+ p(Y=1|X)&=\frac{p(X|Y=1){p(Y=1)}}{p(X|Y=1){p(Y=1)}+p(X|Y=-1){p(Y=-1)}}\\            
+ &=\frac{p(X|Y=1)}{p(X|Y=1)+p(X|Y=-1)}\\                                              
  &=\frac{1}{1+\frac{p(X|Y=-1)}{p(X|Y=1)}}
 \end{aligned}
 \]
@@ -448,7 +448,7 @@ Doing an analogous derivation for \(p(Y = -1 \mid X)\), we get \[
 **Alternatives to training beta and b:**
 1. fit mean and covariance of clusters
 2. least-squares regression: \(\mathcal{L}(Y_i^*, \hat{Y}_i) = (Y_i^* - (X \beta + b))^2\) (same solution as \(1\))
-3. Fisher's idea: define 1D scores \(Z_i = X_i \beta\) and chose \(\beta\) such that a threshold on \(Z_i\) has minimum error
+3. Fisher's idea: define 1D scores \(Z_i = X_i \beta\) and choose \(\beta\) such that a threshold on \(Z_i\) has minimum error
 	- define projection of the means \(\hat{\mu_{1}} = \mu_1 \beta, \hat{\mu_{-1}} = \mu_{-1}\beta\)
 	- **intuition:** \(\hat{\mu}_1\) and \(\hat{\mu_{-1}}\) should be as far away as possible \[\beta = \argmax_\beta (\hat{\mu}_1 - \hat{\mu}_{-1})^2\]
 	- doesn't quite work, because \(\tau \beta \implies \tau^2 (\hat{\mu}_{1} \hat{\mu}_{-1})\)
@@ -489,7 +489,7 @@ Simplifying for \(b = 0\) and using the following properties:
 We get the derivatives \(\beta\):
 \[
 \begin{aligned}
-\frac{\partial \mathcal Loss(T S)}{\partial \beta}&=-\sum_{i=1}^N\left[Y_i^* \underbrace{\sigma\left(-X_i \beta\right)}_{1-\sigma\left(X_i \beta\right)} \cdot X_i+\left(1-Y_i^*\right) \sigma\left(X_{i \beta}\right) \cdot\left(-X_i\right)\right] \\
+\frac{\partial \mathcal Loss(T S)}{\partial \beta}&=-\sum_{i=1}^N\left[Y_i^* \underbrace{\sigma\left(-X_i \beta\right)}_{1-\sigma\left(X_i \beta\right)} \cdot X_i+\left(1-Y_i^*\right) \sigma\left(X_i \beta\right) \cdot\left(-X_i\right)\right] \\
 & =-\sum_{i=1}^N\left[Y_i^* X_i-\cancel{Y_i^* \sigma\left(X_i \beta\right) X_i}-\sigma\left(X_i \beta\right) X_i+\cancel{Y_i^* \sigma\left(X_i \beta\right) X_i}\right]
 \end{aligned}
 \]
@@ -536,7 +536,7 @@ The four cases that can occur are as follows:
 	- \(s_{k, k'} = X_i \beta_{k, k'} + b_{k, k'},\ \forall k \neq k'\)
 	- if \(s_{k, k'} > 0\) then one vote for class \(k\), if \(s_{k, k'} < 0\) then one vote for \(k'\)
 	- \(\hat{Y}_i\) is the label with most votes (or "unknown" for ties)
-3. define posterior as "softmax-function" scores as in (1): \[\boxed{p(\hat Y_i = k \mid X_i) = \frac{\exp(s_k)}{\sum_{k' = 1}^{C} \exp(s_k')} = \mathrm{softmax}(s_i, s_k)}\]
+3. define posterior as "softmax-function" scores as in (1): \[\boxed{p(\hat Y_i = k \mid X_i) = \frac{\exp(s_k)}{\sum_{k' = 1}^{C} \exp(s_{k'})} = \mathrm{softmax}(s_i, s_k)}\]
 	- standard for neural network classification
 	- easily provable: \(\mathrm{softmax}(s_1, s_2) = \sigma(s_1 - s_2)\)
 	- new: train all \(\beta_k, b_k\) **jointly** (at the same time)
@@ -680,10 +680,10 @@ Why is this useful? -- "matched filter principle"
 
 If we repeat this in multiple layers and learn the \(g\)s, we can do very powerful things.
 
-Fun fact: in practice, CNNs do _not_ implement convolution but instead **correlation** \[\tilde f(t) = \int_{\infty}^{\infty} f(t + t') \cdot g(t') dt'\]
+Fun fact: in practice, CNNs do _not_ implement convolution but instead **correlation** \[\tilde f(t) = \int_{-\infty}^{\infty} f(t + t') \cdot g(t') dt'\]
 for maths reasons (the maths requires the mirrored convolution, which is correlation).
 
-**To build a CNN (3-top):**
+**To build a CNN (3-tap):**
 1. each neuron only connects to 3 neurons of previous layer
 	- image boundaries have to be resolved:
 		- _cut off the offending neurons_
@@ -736,7 +736,7 @@ CNNs usually alternate between **convolution**, **non-linear layers** (ReLU), **
 	- **pooling** is **multiplicative** (wrt. pooling size)
 
 #### Some history
-- ImageNet (2008) ~14 mil. images, more than 1000 classes (224x224x3)
+- ImageNet (2009) ~14 mil. images, more than 1000 classes (224x224x3)
 	- 1st public challenge (2010)
 		- predict 5 guesses for the object class
 		- correct if true label is within top 5 ("top-5 acc.")
@@ -748,7 +748,7 @@ CNNs usually alternate between **convolution**, **non-linear layers** (ReLU), **
 		- _runner-up:_ VGG -- upscaling of LeNet (7.3% top-5 error)
 			- clean and popular (compared to winner, which was quite hacky)
 			- used as a comparison metric for things like Midjourney/DALL-E (FID score)
-			- making VGG bigger did not work (vanishing gradient problem) -- magnitude of gradient at the prompt decreases with the number of layers and the network doesn't converge
+			- making VGG bigger did not work (vanishing gradient problem) -- magnitude of gradient at the earliest layers decreases with the number of layers and the network doesn't converge
 	- 2015: Residual Network (ResNets)
 		- instead of learning a function per layer, learn weights wrt. the input layer
 		- also skip connections as identity mappings, preventing vanishing gradients
@@ -775,11 +775,11 @@ CNNs usually alternate between **convolution**, **non-linear layers** (ReLU), **
 - popular augmentations:
 	- **geometric** distortions:
 		- mirroring, 90deg rotations
-		- shearing % small angle rotations
+		- shearing & small angle rotations
 		- crop regions & resize to original size
 	- **image quality** distortions:
 		- add noise -- Gaussian / salt & pepper (random 0/1 pixels)
-		- mash out regions (set to gray)
+		- mask out regions (set to gray)
 	- **color** distortions:
 		- transform to gray
 		- transform color space (eg. LAB)
@@ -796,7 +796,7 @@ CNNs usually alternate between **convolution**, **non-linear layers** (ReLU), **
 	- to solve this, network learns features that are useful for other tasks -- cut out the angle detection and use the rest of the network for feature detection
 - **strategy (2): contrastive learning**
 	- present augmented pairs; if it originated from the same image, features should be similar, else they should be different (ie. ignore data augmentations)
-	- **SIMCLR** network -- famous for doing this
+	- **SimCLR** network -- famous for doing this
 - **strategy (3): semi-supervised learning**
 	- subset of the training set is labeled and rest is unlabeled
 	- **student-teacher** approach:
@@ -838,7 +838,7 @@ CNNs usually alternate between **convolution**, **non-linear layers** (ReLU), **
 	- much more convenient since the distribution is fixed (not dependent on \(X\))
 
 #### Linear regression
-- easy case, just like linear regression
+- easy case, just like linear classification
 - assume that data is generated by some true (but unknown) generative process
 	- in this case linear model with additive Gaussian noise, for simplicity assume \(y \in \mathbb{R}\)
 \[Y_i = X_i \beta^* + b^* + \varepsilon_i \qquad \varepsilon_i \sim \mathcal N(0, \sigma^2)\] (i.e. variance is fixed but unknown)
@@ -891,7 +891,7 @@ We can instead solve OLS **by SVD**:
 	- \(U \in \mathbb{R}^{N \times D}\) quasi-orthonormal matrix
 - using this we get \[\boxed{\beta = (V \Lambda^{-1} U^T) Y}\]
 	- if \(k\) features are redundant, \(k\) eigenvalues are \(0\)
-	- when we're doing \(\Lambda^{-1}\), this explores, set \(\Lambda' = \frac{1}{0} \mapsto 0\)
+	- when we're doing \(\Lambda^{-1}\), this explodes, set \(\Lambda' = \frac{1}{0} \mapsto 0\)
 	- this gives us the minimum norm solution of the degenerate OLS problem
 - condition number for SVD is \(\kappa(X) = \frac{\max \lambda}{\min \lambda}\)
 - advantage: numerically very stable, even when \(X\) is almost degenerate
@@ -902,7 +902,7 @@ Third solution: **QR decomposition**
 - uses a different decomposition \(X = Q \cdot R\) for
 	- \(Q \in \mathbb{R}^{N \times D}\) orthonormal
 	- \(R \in \mathbb{R}^{D \times D}\) upper triangular
-- using this, we get \[\boxed{\hat \beta R^{-1} Q^T Y} \quad \text{or alternatively} \quad \boxed{R \hat\beta = Q^T Y}\] which can be solved by a simple algorithm -- \(R\) is upper triangular so we can use substitution from the last row of \(R \hat\beta\) upward
+- using this, we get \[\boxed{\hat \beta = R^{-1} Q^T Y} \quad \text{or alternatively} \quad \boxed{R \hat\beta = Q^T Y}\] which can be solved by a simple algorithm -- \(R\) is upper triangular so we can use substitution from the last row of \(R \hat\beta\) upward
 
 _What do we do if \(N\) and \(D\) are very big?_
 - in theory, we're screwed (SVD complexity \(\mathcal{O}(N \times D^2)\))
@@ -948,7 +948,7 @@ Here we distinguish multiple cases:
 	- the \(\sigma\)s act as weights for the residuals
 	- we can rewrite in matrix notation (\(\sigma\)s as a diagonal) and get \[\hat \beta = \argmin_\beta (Y - X \beta)^T \Sigma^{-1} (Y - X \beta)\]
 	- this can be solved by setting the derivative to zero and we get a **weighted pseudo-inverse** \[\boxed{\hat \beta = \left(X^T \Sigma^{-1} X\right)^{-1} X^T \Sigma^{-1} Y}\]
-3. **iteratively reweighed LS** (\(\sigma_i\) are not constant and unknown) -- learn the \(\sigma\)s jointly with \(\beta\))
+3. **iteratively reweighted LS** (\(\sigma_i\) are not constant and unknown) -- learn the \(\sigma\)s jointly with \(\beta\))
 	- \(\sigma_i\) is **unsupervised**, \(\beta\) is **supervised** -- gives rise to interesting algorithms
 	- the problem can be formulated as \[\argmin_\theta \sum_{i = 1}^{N} \left[\log \sigma_i^2 + \frac{\left(Y_i - X_i \beta\right)^2}{\sigma_i^2} \right]\] usually called David-Sebastian score or hetero-scedastic loss
 	- if \((Y_i - X_i \beta)^2\) is big \(\implies\) increase \(\sigma_i\) to make the loss smaller, but we pay the penalty of \(\log \sigma_i^2\) for big \(\sigma\)s (optimal solution selects \(\sigma_i^2\) for the best trade-off)
@@ -971,7 +971,7 @@ To solve IRLS using this method, we do the following
 1. define initial guess as \(\tau_i = 1\) (\(\tau_i = \sigma_i^2\)
 2. for \(t = 1, \ldots, T\) (or until convergence)
 	- obtain \(\beta^{(t)}\) via **weighted least squares** (since \(\sigma\)s are known and fixed)
-	- since \(\beta\) is fixed, we get \[\left\{\tau_i^{(t)}\right\} = \argmin_{\left\{\tau_i\right\}} \sum_{i = 1}^{N} \frac{Y_i - X_i \beta^{(t)}}{\tau_i} + \log \tau_i\] which we can solve by setting the derivative to \(0\) and obtain \[\boxed{\tau_i^{(t)} = (Y_i - X_i \beta^{(t)})^2}\] i.e. _standard derivations are equal to the magnitude of the error_
+	- since \(\beta\) is fixed, we get \[\left\{\tau_i^{(t)}\right\} = \argmin_{\left\{\tau_i\right\}} \sum_{i = 1}^{N} \frac{Y_i - X_i \beta^{(t)}}{\tau_i} + \log \tau_i\] which we can solve by setting the derivative to \(0\) and obtain \[\boxed{\tau_i^{(t)} = (Y_i - X_i \beta^{(t)})^2}\] i.e. _standard deviations are equal to the magnitude of the error_
 
 How many iterations are required?
 - in theory (with infinite accuracy) **two** iterations are sufficient
@@ -982,10 +982,10 @@ How many iterations are required?
 - we already saw penalties \(||\beta^2||\) in SVM and \(\log \sigma_i^2\) in IRLS
 - we need regularization in two cases
 	1. more features than observations (\(D > N\))
-	2. condition of matrix \(X\) is bad (\(\kappa(X) \gg 1\))o
+	2. condition of matrix \(X\) is bad (\(\kappa(X) \gg 1\))
 		- features are almost redundant, \(\hat \beta\) tends to overfit
 		- assume feature \(j\) and \(j'\) are identical in TS (\(X_j = X_{j'}\))
-		- if \(\hat \beta\) is a solution, so it \(\hat \beta'\) with \(\hat \beta_j' = \hat \beta_j' + \gamma\) and \(\hat \beta_j' = \hat \beta_j' - \gamma\)
+		- if \(\hat \beta\) is a solution, so is \(\hat \beta'\) with \(\hat \beta_j' = \hat \beta_j + \gamma\) and \(\hat \beta_{j'}' = \hat \beta_{j'} - \gamma\)
 		- this also works for very large \(\gamma\), which is a problem since the features might be different in test instances (i.e. overfitting)
 		- _in practice, usually more features and only near cancelation_
 
@@ -1092,7 +1092,7 @@ Useful, because we can see that \(\tau\) (regularization) has **opposite effects
 	- hand-crafted
 	- learned (first layer of a NN learns the parameters) - same as classification, except
 		- squared loss (instead of cross-entropy)
-		- last layers is linear (no activation)
+		- last layer is linear (no activation)
 2. design algorithms to solve non-linear least squares
 	- if \(\dim(\theta)\) is not very high (\(\mathcal{O}(100)\)), use **Levenberg-Marquardt**
 	- **regression trees** and forests / **Gaussian processes**

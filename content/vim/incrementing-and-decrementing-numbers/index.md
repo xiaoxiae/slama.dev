@@ -9,14 +9,14 @@ description: A short post about how to increment/decrement numbers in Vim.
 Some of you might know that pressing `<C-a>`/`<C-x>` in normal mode _increases/decreases the next number on the line the cursor is currently on_:
 
 ```text
-There is 12 apples. -<C-a>-> There is 13 apples.
+There are 12 apples. -<C-a>-> There are 13 apples.
 ```
 
 But did you also know that it can handle other bases and even alphabetical characters (worked for me but might need to be configured -- see [this wiki article](https://vim.fandom.com/wiki/Increasing_or_decreasing_numbers)):
 
 ```text
-There is 0b1100 apples. -<C-a>-> There is 0b1101 apples.
-There is 0xc apples. -<C-x>-> There is 0xb apples.
+There are 0b1100 apples. -<C-a>-> There are 0b1101 apples.
+There are 0xc apples. -<C-x>-> There are 0xb apples.
 This is 'a'. -<C-a>-> This is 'b'.
 ```
 

@@ -27,14 +27,14 @@ We'll be mainly using the {{< doc "manim" "Axes" "reference/manim.mobject.graphi
 
 #### Using expressions
 
-The simplest way to plot a graph of a function using an expression via the {{< doc "manim" "plot" "reference/manim.mobject.graphing.coordinate_systems.CoordinateSystem.html#manim.mobject.graphing.coordinate_systems.CoordinateSystem.plot" >}} function.
+The simplest way to plot a graph of a function is using an expression via the {{< doc "manim" "plot" "reference/manim.mobject.graphing.coordinate_systems.CoordinateSystem.html#manim.mobject.graphing.coordinate_systems.CoordinateSystem.plot" >}} function.
 
 ```python {file="04-graph-example.py"}
 ```
 
 {{< video "manim" "04-graph-example" >}}
 
-When drawing this way, it is important for the functions to be **continuous** (and when they are not, draw them by part).
+When drawing this way, it is important for the functions to be **continuous** (and when they are not, draw them part by part).
 This is due to the fact that Manim draws them by sampling their function values which it then interpolates via a curve (a polynomial passing through the sampled points) and thus cannot know about the discontinuity.
 
 ```python {file="04-discontinuous-graph-example.py"}
@@ -76,7 +76,7 @@ To render the scene in 3D, we'll have to use {{< doc "manim" "ThreeDScene" "refe
 
 As you can see, the initial camera position assumes that we're working in 2D.
 To control it, we used the {{< doc "manim" "set_camera_orientation" "reference/manim.scene.three_d_scene.ThreeDScene.html#manim.scene.three_d_scene.ThreeDScene.set_camera_orientation" >}} to set its position and {{< doc "manim" "begin_ambient_camera_rotation" "reference/manim.scene.three_d_scene.ThreeDScene.html#manim.scene.three_d_scene.ThreeDScene.begin_ambient_camera_rotation" >}} to begin an ambient rotation.
-The used arguments `phi` (\(\varphi\)) a `theta` (\(\vartheta\)) determine the position.
+The used arguments `phi` (\(\varphi\)) and `theta` (\(\vartheta\)) determine the position.
 
 ![Meaning of the phi and theta arguments for 3D camera positioning.](04-camera.svg)
 
@@ -91,7 +91,7 @@ Besides the {{< doc "manim" "ThreeDAxes" "reference/manim.mobject.graphing.coord
 
 Translating and rotating objects in 3D behaves just like you would expect (again using {{< doc "manim" "shift" "reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.shift" >}} and {{< doc "manim" "scale" "reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.scale" >}}).
 Rotation is a bit trickier, since it isn't entirely clear what should happen when rotating an object by a certain amount of degrees.
-It is quite an interesting topic and has a number of solutions (see [Euler angles](https://en.wikipedia.org/wiki/Euler_angles) and [Quaternions](https://en.wikipedia.org/wiki/Quaternion)) if you're interested, we'll however use the most simple one: specify an axis that the object will rotate about.
+It is quite an interesting topic and has a number of solutions (see [Euler angles](https://en.wikipedia.org/wiki/Euler_angles) and [Quaternions](https://en.wikipedia.org/wiki/Quaternion)) if you're interested; we'll, however, use the most simple one: specify an axis that the object will rotate about.
 
 ```python {file="04-basic-3d-example.py"}
 ```

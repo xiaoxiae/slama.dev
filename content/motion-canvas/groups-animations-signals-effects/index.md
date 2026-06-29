@@ -18,7 +18,7 @@ We'll also play around with colors a bit 🙂.
 Motion Canvas doesn't fully support the same grouping as Manim (i.e. change the color of all objects in this particular group).
 Instead, we should always be working with the [**scene hierarchy**](https://canvascommons.io/docs/hierarchy) and layout objects, which does support certain operations, mostly related to their position, scale/size and rotation.
 
-In this example, we're also using the fact that Motion Canvas supports any `X11` colors names -- feel free to [browse through them](https://x11.linci.co/) and pick the ones that you like!
+In this example, we're also using the fact that Motion Canvas supports any `X11` color names -- feel free to [browse through them](https://x11.linci.co/) and pick the ones that you like!
 
 {{< code_toggle "vgroup.tsx" "02-vgroup-example.py" >}}
 
@@ -43,7 +43,7 @@ To make the animation a bit more interesting, we can utilize the [**`chroma.js`*
 
 ### Add, remove and ordering
 
-The order in which the objects are rendered are based on the [scene hierarchy](https://canvascommons.io/docs/hierarchy#modifying-the-hierarchy) -- the higher they are, the sooner they are rendered (i.e. the more _at the bottom_ they are).
+The order in which the objects are rendered is based on the [scene hierarchy](https://canvascommons.io/docs/hierarchy#modifying-the-hierarchy) -- the higher they are, the sooner they are rendered (i.e. the more _at the bottom_ they are).
 However, if they differ in their z-index, the one with a higher z-index will always be drawn on top of the other:
 
 ```tsx {file="add-remove.tsx"}
@@ -104,7 +104,7 @@ For that, we have **effects...**
 Effects come in two flavors; _directly quoting the documentation_:
 
 - {{< doc "motion-canvas" "createEffect()" "core/signals#createEffect" >}} runs immediately after any of its dependencies changes.
-- {{< doc "motion-canvas" "createDeferredEffect" "core/signals#createDeferredEffect" >}} runs at the end of each frame if any of its dependencies changed
+- {{< doc "motion-canvas" "createDeferredEffect" "core/signals#createDeferredEffect" >}} runs at the end of each frame if any of its dependencies changed.
 
 For example, we could use it to create a simple particle simulation like this one:
 ```tsx {file="effect.tsx"}

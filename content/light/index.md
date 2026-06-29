@@ -42,7 +42,7 @@ While the meager amount of light from the setting sun kept his senses dull, each
 His reflexes were nowhere near fast enough to react to the creature's actions, but that is all he would get, and he prayed that it was all that he would need.
 
 The pulse-claw began to close the distance in a series of alternating dashes and pauses, accentuating its movement by blinding flashes of white light.
-The trees around responded in kind, sending the light rays through its reflective leaves around the clearing, cascading deeper into the forest and sending a warning to the forest's inhabitants.
+The trees around responded in kind, sending the light rays through their reflective leaves around the clearing, cascading deeper into the forest and sending a warning to the forest's inhabitants.
 The creature made little sound as it moved, as the light conveyed all necessary information.
 
 With every movement, Khast's muscles tensed with fear and anticipation.
@@ -108,7 +108,7 @@ He was in one of the village's medical tents on the south side, likely because i
 As he began to rise, pain flared up immediately from his right leg and he collapsed back onto the bed.
 "Don't move," a familiar voice said. "Shir spotted you near the gates and dragged you in. He almost didn't make it back in time."
  
-"Lira?", Khast asked as he turned his head towards the entrance.
+"Lira?" Khast asked as he turned his head towards the entrance.
 
 </div>
 

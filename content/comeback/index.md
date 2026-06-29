@@ -6,7 +6,7 @@ description: Subtitles for all Comeback episodes, both in Czech and in English
 ---
 
 
-**CZ:** Tato stránka obsahuje České a Anglické titulky k seriálu Comeback, jelikož je jejich oficiální distribuce [Voyo.cz](https://tv.nova.cz/porad/comeback/videa/cele-dily) nemá.
+**CZ:** Tato stránka obsahuje české a anglické titulky k seriálu Comeback, jelikož je jejich oficiální distribuce [Voyo.cz](https://tv.nova.cz/porad/comeback/videa/cele-dily) nemá.
 
 _Aktuálně obsahuje pouze část z epizod, chybějící jsou překládány v závislosti na mém volném čase.
 Jelikož je ho teď aktuálně málo, titulky označené hvězdičkou<sup>★</sup> nebyly po automatickém překladu manuálně kontrolovány a potenciálně obsahují chyby._
@@ -17,7 +17,7 @@ Pokud objevíte chybu, dejte mi prosím vědět na email: **[tomas@slama.dev](ma
 **EN:** This page contains Czech and English subtitles for the Czech TV show Comeback, since their official distributor [Voyo.cz](https://tv.nova.cz/porad/comeback/videa/cele-dily) doesn't have them.
 
 _Currently, it only contains a portion of the episodes, with the missing ones being translated based on my free time.
-Since I don't have a lot of it these days, subtitles with a star<sup>★</sup> were not checked after their automatic conversion and potentially contain errors._
+Since I don't have a lot of it these days, subtitles with a star<sup>★</sup> were not checked after their automatic translation and potentially contain errors._
 
 If you find a mistake, please let me know via email: **[tomas@slama.dev](mailto:tomas@slama.dev).**
 
@@ -28,7 +28,7 @@ If you find a mistake, please let me know via email: **[tomas@slama.dev](mailto:
 | `2.` | _Gott Ex Machina_ | <a href="cz/02 - Gott Ex Machina.srt">České</a> / <a href="en/02 - Gott Ex Machina.srt">English</a><sup>★</sup> |
 | `3.` | _Souboj titánů_ | <a href="cz/03 - Souboj titánů.srt">České</a> / <a href="en/03 - Souboj titánů.srt">English</a><sup>★</sup> |
 | `4.` | _Pomáhat a chránit_ | <a href="cz/04 - Pomáhat a chránit.srt">České</a> / <a href="en/04 - Pomáhat a chránit.srt">English</a><sup>★</sup> |
-| `5.` | _Pravidla rodinného provozu_ | <a href="cz/05 - Pravidla rodinného provozzu.srt">České</a> / <a href="en/05 - Pravidla rodinného provozzu.srt">English</a><sup>★</sup> |
+| `5.` | _Pravidla rodinného provozu_ | <a href="cz/05 - Pravidla rodinného provozu.srt">České</a> / <a href="en/05 - Pravidla rodinného provozu.srt">English</a><sup>★</sup> |
 | `6.` | _Je jaro..._ | <a href="cz/06 - Je jaro.srt">České</a> / <a href="en/06 - Je jaro....srt">English</a><sup>★</sup> |
 | `7.` | _Lupiči_ | <a href="cz/07 - Lupiči.srt">České</a> / <a href="en/07 - Lupiči.srt">English</a><sup>★</sup> |
 | `8.` | _Zdravý a nemocný_ | <a href="cz/08 - Zdravý a nemocný.srt">České</a> / <a href="en/08 - Zdravý a nemocný.srt">English</a><sup>★</sup> |
@@ -46,9 +46,9 @@ If you find a mistake, please let me know via email: **[tomas@slama.dev](mailto:
 | `20.` | _Berňák_ | <a href="cz/20 - Berňák.srt">České</a><sup>★</sup> / <a href="en/20 - Berňák.srt">English</a><sup>★</sup> |
 | `21.` | _Scrabble trable_ | <a href="cz/21 - Scrabble trable.srt">České</a><sup>★</sup> / <a href="en/21 - Scrabble trable.srt">English</a><sup>★</sup> |
 | `22.` | _Koprovka_ | <a href="cz/22 - Koprovka.srt">České</a><sup>★</sup> / <a href="en/22 - Koprovka.srt">English</a><sup>★</sup> |
-| `23.` | _Narozzeniny_ | <a href="cz/23 - Narozzeniny.srt">České</a><sup>★</sup> / <a href="en/23 - Narozzeniny.srt">English</a><sup>★</sup> |
-| `24.` | _Rozzvod_ | <a href="cz/24 - Rozzvod.srt">České</a><sup>★</sup> / <a href="en/24 - Rozzvod.srt">English</a><sup>★</sup> |
-| `25.` | _Prohozz_ | <a href="cz/25 - Prohozz.srt">České</a><sup>★</sup> / <a href="en/25 - Prohozz.srt">English</a><sup>★</sup> |
+| `23.` | _Narozeniny_ | <a href="cz/23 - Narozeniny.srt">České</a><sup>★</sup> / <a href="en/23 - Narozeniny.srt">English</a><sup>★</sup> |
+| `24.` | _Rozvod_ | <a href="cz/24 - Rozvod.srt">České</a><sup>★</sup> / <a href="en/24 - Rozvod.srt">English</a><sup>★</sup> |
+| `25.` | _Prohoz_ | <a href="cz/25 - Prohoz.srt">České</a><sup>★</sup> / <a href="en/25 - Prohoz.srt">English</a><sup>★</sup> |
 | `26.` | _Těžká hodina_ | <a href="cz/26 - Těžká hodina.srt">České</a><sup>★</sup> / <a href="en/26 - Těžká hodina.srt">English</a><sup>★</sup> |
 | `27.` | _Pan Prase odchází_ | <a href="cz/27 - Pan Prase odchází.srt">České</a><sup>★</sup> / <a href="en/27 - Pan Prase odchází.srt">English</a><sup>★</sup> |
 | `28.` | _Absťák_ | <a href="cz/28 - Absťák.srt">České</a><sup>★</sup> / <a href="en/28 - Absťák.srt">English</a><sup>★</sup> |
@@ -59,11 +59,11 @@ If you find a mistake, please let me know via email: **[tomas@slama.dev](mailto:
 | `33.` | _Komu zvoní hrany_ | <a href="cz/33 - Komu zvoní hrany.srt">České</a><sup>★</sup> / <a href="en/33 - Komu zvoní hrany.srt">English</a><sup>★</sup> |
 | `34.` | _Zlatá ledvina_ | <a href="cz/34 - Zlatá ledvina.srt">České</a><sup>★</sup> / <a href="en/34 - Zlatá ledvina.srt">English</a><sup>★</sup> |
 | `35.` | _Boží frisbee_ | <a href="cz/35 - Boží frisbee.srt">České</a><sup>★</sup> / <a href="en/35 - Boží frisbee.srt">English</a><sup>★</sup> |
-| `36.` | _Cesta do vtelna_ | <a href="cz/36 - Cesta do vtelna.srt">České</a><sup>★</sup> / <a href="en/36 - Cesta do vtelna.srt">English</a><sup>★</sup> |
+| `36.` | _Cesta do Vtelna_ | <a href="cz/36 - Cesta do Vtelna.srt">České</a><sup>★</sup> / <a href="en/36 - Cesta do Vtelna.srt">English</a><sup>★</sup> |
 | `37.` | _Sbohem Káhiro_ | <a href="cz/37 - Sbohem Káhiro.srt">České</a><sup>★</sup> / <a href="en/37 - Sbohem Káhiro.srt">English</a><sup>★</sup> |
 | `38.` | _Bejk_ | <a href="cz/38 - Bejk.srt">České</a><sup>★</sup> / <a href="en/38 - Bejk.srt">English</a><sup>★</sup> |
-| `39.` | _Krik kormorána_ | <a href="cz/39 - Krik kormorána.srt">České</a><sup>★</sup> / <a href="en/39 - Krik kormorána.srt">English</a><sup>★</sup> |
-| `40.` | _Třinácte pivo_ | <a href="cz/40 - Třinácte pivo.srt">České</a><sup>★</sup> / <a href="en/40 - Třinácte pivo.srt">English</a><sup>★</sup> |
+| `39.` | _Křik kormorána_ | <a href="cz/39 - Křik kormorána.srt">České</a><sup>★</sup> / <a href="en/39 - Křik kormorána.srt">English</a><sup>★</sup> |
+| `40.` | _Třinácté pivo_ | <a href="cz/40 - Třinácté pivo.srt">České</a><sup>★</sup> / <a href="en/40 - Třinácté pivo.srt">English</a><sup>★</sup> |
 | `41.` | _Bez kláves neodjedu_ | <a href="cz/41 - Bez kláves neodjedu.srt">České</a><sup>★</sup> / <a href="en/41 - Bez kláves neodjedu.srt">English</a><sup>★</sup> |
 | `42.` | _Let mouchy_ | <a href="cz/42 - Let mouchy.srt">České</a><sup>★</sup> / <a href="en/42 - Let mouchy.srt">English</a><sup>★</sup> |
 | `43.` | _Obraz paní Rybkové_ | <a href="cz/43 - Obraz paní Rybkové.srt">České</a><sup>★</sup> / <a href="en/43 - Obraz paní Rybkové.srt">English</a><sup>★</sup> |
@@ -72,6 +72,6 @@ If you find a mistake, please let me know via email: **[tomas@slama.dev](mailto:
 | `46.` | _Holter_ | <a href="cz/46 - Holter.srt">České</a><sup>★</sup> / <a href="en/46 - Holter.srt">English</a><sup>★</sup> |
 | `47.` | _Strakonický bubák_ | <a href="cz/47 - Strakonický bubák.srt">České</a><sup>★</sup> / <a href="en/47 - Strakonický bubák.srt">English</a><sup>★</sup> |
 | `48.` | _Havárie_ | <a href="cz/48 - Havárie.srt">České</a><sup>★</sup> / <a href="en/48 - Havárie.srt">English</a><sup>★</sup> |
-| `49.` | _Francouzká restaurace_ | <a href="cz/49 - Francouzká restaurace.srt">České</a><sup>★</sup> / <a href="en/49 - Francouzká restaurace.srt">English</a><sup>★</sup> |
-| `50.` | _Snáď to vyjde příště_ | <a href="cz/50 - Snáď to vyjde příště.srt">České</a><sup>★</sup> / <a href="en/50 - Snáď to vyjde příště.srt">English</a><sup>★</sup> |
+| `49.` | _Francouzská restaurace_ | <a href="cz/49 - Francouzská restaurace.srt">České</a><sup>★</sup> / <a href="en/49 - Francouzská restaurace.srt">English</a><sup>★</sup> |
+| `50.` | _Snad to vyjde příště_ | <a href="cz/50 - Snad to vyjde příště.srt">České</a><sup>★</sup> / <a href="en/50 - Snad to vyjde příště.srt">English</a><sup>★</sup> |
 | `51.` | _Slepák_ | <a href="cz/51 - Slepák.srt">České</a><sup>★</sup> / <a href="en/51 - Slepák.srt">English</a><sup>★</sup> |

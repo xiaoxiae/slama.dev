@@ -23,7 +23,7 @@ _Click on tasks to see the solutions._
 {{< details "**Task:** accept the input \(\iff\) it contains balanced parentheses" >}}
 A simple solution that has the time complexity \(\mathcal{O}(n)\) can be found in the video, so this solution concerns only the faster \(\mathcal{O}(\log n)\) one, which is asymptotically optimal.
 
-The idea is to count, how many parentheses we've seen so far and store it in the columns of the tiling as a binary number. When we see a one, we increment -- if the previous bit was 0, we put 1 to the right and don't carry. If it was a 1, we put 0 and do carry (see the diagram above). Same goes for decrementing:
+The idea is to count how many parentheses we've seen so far and store it in the columns of the tiling as a binary number. When we see a one, we increment -- if the previous bit was 0, we put 1 to the right and don't carry. If it was a 1, we put 0 and do carry (see the diagram above). Same goes for decrementing:
 
 ![Parentheses tiling](parentheses.webp)
 {.inverse-invert}
@@ -38,7 +38,7 @@ If we wanted to make the tileset a little more concise, we could exchange the co
 {{< details "**Task:** accept the input \(\iff\) it contains the same number of zeroes and ones" >}}
 The solution is very similar to the previous example. We're again counting in binary. The main difference is that we can go "negative" (since there can sometimes be more zeroes and sometimes more ones), which we handle by counting with two different sets of tiles for positive and negative numbers.
 
-I'm not including the exact solution, since it's essentially the same as the previous one, only with twice as much tiles.
+I'm not including the exact solution, since it's essentially the same as the previous one, only with twice as many tiles.
 
 The time complexity is \(\mathcal{O}(\log n)\).
 {{< /details >}}
@@ -57,7 +57,7 @@ The time complexity is \(\mathcal{O}(\log n)\).
 {{< /details >}}
 
 {{< details "**Task:** accept the input \(\iff\) it's a palindrome (of zeroes and ones)" >}}
-The idea behind the solution is to connect the first and last character and move the rest of the string to the next level. The side colors are there for the odd-size blocks end up in the middle (if the length of the palindrome is odd).
+The idea behind the solution is to connect the first and last character and move the rest of the string to the next level. The side colors are there so that the odd-size block ends up in the middle (if the length of the palindrome is odd).
 
 ![Palindrome tiling](palindrome.webp)
 {.inverse-invert}

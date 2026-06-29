@@ -122,7 +122,7 @@ Pro připomenutí:
 
 {{< math "lemma" >}}nechť \(i < j\). Pak \(\mathrm{Pr}\left[A_{i, j}\right] = \frac{2}{j - i + 1}\){{< /math >}}
 
-{{< math "proof" >}}to, že se dva prvky porovnají musí znamenat, že jeden z jich byl pivot, ale žádný mezi nimi pivot nebyl (jelikož by je to rozdělilo). Musíme tedy vybrat právě jeden z těchto dvou z intervalu \(\left[i, j\right]\), kde je celkově \(j - i + 1\) čísel.{{< /math >}}
+{{< math "proof" >}}to, že se dva prvky porovnají musí znamenat, že jeden z nich byl pivot, ale žádný mezi nimi pivot nebyl (jelikož by je to rozdělilo). Musíme tedy vybrat právě jeden z těchto dvou z intervalu \(\left[i, j\right]\), kde je celkově \(j - i + 1\) čísel.{{< /math >}}
 
 Sečtením přes všechny dvojice \(i < j\) dostáváme následující:
 \[
@@ -130,7 +130,7 @@ Sečtením přes všechny dvojice \(i < j\) dostáváme následující:
 	\mathbb{E}\left[\#\ \text{porovnání}\right] &= \sum_{i = 1}^{n - 1} \sum_{j = i + 1}^{n} X_{i, j} \\
 	&= \sum_{i = 1}^{n - 1} \sum_{j = i + 1}^{n} \frac{2}{j - i + 1} \\
 	& = \sum_{i = 1}^{n - 1} \sum_{k = 2}^{n - i} \frac{2}{k} \\
-	& \cong n \cdot H_n  \qquad H_n \ldots \text{harmonická posloupnost}\\
+	& \cong n \cdot H_n  \qquad H_n \ldots \text{harmonické číslo}\\
 	& \cong n \cdot \log n
 \end{aligned}
 \]
@@ -230,7 +230,7 @@ Po \(i\) iteracích máme \(n-i\) vrcholů a minimální globální řez má vel
 ### Rozvrhování
 - _Vstup:_ \(m\) strojů, \(n\) úloh, každá o délce \(p_i\)
 - _Výstup:_ rozklad \(\left\{1, \ldots, n\right\} = I_1 \cup I_2 \cup \ldots \cup I_m\) (rozvržení úloh na stroje)
-- _Cíl:_ minimalizovat \(\max_{i=1}^{m} \sum_{j \in I_i}^{p_j}\) (délka nejdelšího stroje)
+- _Cíl:_ minimalizovat \(\max_{i=1}^{m} \sum_{j \in I_i} p_j\) (délka nejdelšího stroje)
 
 #### Hladový algoritmus
 {{< math "algorithm" "hladový" >}}
@@ -290,7 +290,7 @@ Pro lokální algoritmus potřebujeme s rozvrhem pracovat formálněji:
 - _Vstup:_ \(m\) strojů, \(n\) úloh, každá o délce \(p_i\)
 - _Výstup:_ funkce přiřazující každé úloze startovní čas \(s_i\), koncový čas \(c_i\) a stroj \(i\)
 	- musí platit že \(c_i = s_i + p_i\) a že se úlohy nepřekrývají
-- _Cíl:_ minimalizovat \(\max_{i=1}^{m} \sum_{j \in I_i}^{p_j}\) (délka nejdelšího stroje)
+- _Cíl:_ minimalizovat \(\max_{i=1}^{m} \sum_{j \in I_i} p_j\) (délka nejdelšího stroje)
 
 {{% float_box %}}
 Prostě přesouváme stroje, které končí nejpozději někam, aby začínaly dříve a zlepšujeme tím maximum.
@@ -359,7 +359,7 @@ BUNO předpokládejme, že \(p_n\) určuje délku rozvrhu (kdyby ne tak na dalš
 
 {{< math "theorem" >}}oba algoritmy jsou \(1.7\)-aproximační (a je to těsný odhad).{{< /math >}}
 
-{{< math "theorem" >}}Je NP těžké najít \(R\)-aproximační algoritmus pro \(R \le 3/2\){{< /math >}}
+{{< math "theorem" >}}Je NP těžké najít \(R\)-aproximační algoritmus pro \(R < 3/2\){{< /math >}}
 
 {{< math "proof" >}}Je NP těžké rozhodnout, zda \(\mathrm{OPT} = 2\), jelikož pomocí něho můžeme přímočaře vyřešit problém dělení množiny na dvě části se stejným součtem (nastavíme velikost košů na tenhle součet), což je NP těžké.{{< /math >}}
 
@@ -377,12 +377,12 @@ BUNO předpokládejme, že \(p_n\) určuje délku rozvrhu (kdyby ne tak na dalš
 ### Hledání disjunktních cest
 - _Vstup:_
 	- graf \(G = (V, E)\) (orientovaný/neorientovaný)
-	- dvojice vrcholů \((s, t), \ldots, (s_k, t_k)\)
+	- dvojice vrcholů \((s_1, t_1), \ldots, (s_k, t_k)\)
 	- kapacita hran \(c\)
 - _Výstup:_
 	- \(I \subseteq \left\{1, \ldots, k\right\}\) (dvojice které spojíme cestou)
 	- cesty \(P_i, i \in I, P_i\) cesta z \(s_i\) do \(t_i\) tak, že každá hrana \(e \in E\) leží na nejvýše \(c\) cestách \(P_i\)
-- _Cíl:_ minimalizovat \(|I|\)
+- _Cíl:_ maximalizovat \(|I|\)
 
 #### Jednotkové kapacity
 {{< math "algorithm" "hladový" >}}
@@ -470,7 +470,7 @@ Po spojení nerovnic dostáváme:
 {{< /math >}}
 
 ### Splnitelnost (MAX-SAT)
-- _Vstup:_ \(C_1 \land \ldots \land C_n\), každá klauzule je disjunkcí \(k_j \ge 1\) literálů
+- _Vstup:_ \(C_1 \land \ldots \land C_m\), každá klauzule je disjunkcí \(k_j \ge 1\) literálů
 	- každá \(C_j\) má váhu \(w_j\) (\(= 1\) by default)
 - _Výstup:_ ohodnocení \(a \in \left\{0, 1\right\}^n\)
 - _Cíl:_ maximalizovat \(\sum w_i\) (pro \(w_j = 1\) je to počet splněných klauzulí)
@@ -478,8 +478,8 @@ Po spojení nerovnic dostáváme:
 {{< math "remark" >}}
 - MAX-3SAT: \(k_j \le 3\): NP těžké
 - 2SAT: orientovaný graf, ve kterém různé literály implikují jiné
-	- \(x_1 \land x_2\) implikuje \(\overline{x}_1 \implies x_2\) (a obrácené)
-	- testujeme tedy, zda graf neobsahuje cyklus (protože by pak nešel splnit)
+	- \(x_1 \lor x_2\) implikuje \(\overline{x}_1 \implies x_2\) (a obrácené)
+	- testujeme tedy, zda jsou \(x_i\) a \(\overline{x}_i\) ve stejné silně souvislé komponentě (protože by pak nešel splnit)
 - MAX-2SAT: NP těžké
 {{< /math >}}
 
@@ -496,7 +496,7 @@ Předpokládáme:
 {{< math "theorem" >}}RAND-SAT je \(2\)-aproximační algoritmus.{{< /math >}}
 
 {{< math "proof" >}}pro každou klauzuli zavedeme indikátorovou proměnnou \(Y_j\).
-- pravděpodobnost, že \(C_j\) není splňená je \(\frac{1}{2^{k_j}}\)
+- pravděpodobnost, že \(C_j\) není splněná je \(\frac{1}{2^{k_j}}\)
 
 Díky tomu, že \(k_j \ge 1\) máme \(\mathbb{E}\left[Y_j\right] = \mathrm{Pr}\left[C_j\ \text{is satisfied}\right] = 1 - \frac{1}{2^{k_j}} \ge \frac{1}{2} \) a tedy:
 \[\mathbb{E}\left[\sum_{j = 1}^{m} w_j Y_j\right] \overset{\text{linearita}}{=} \frac{1}{2} \sum_{j = 1}^{m} w_j \ge \frac{1}{2}\mathrm{OPT} \]
@@ -596,7 +596,7 @@ Pro fakt \(B\) jsme pozorovali, že \(a = f(0) = 0\) a také že druhá derivace
 {{< math "proof" >}} chceme dokázat, že \( \mathrm{Pr}\left[C_j\ \text{je splněná}\right] \ge \frac{3}{4} z^*_j \).
 
 Podívejme se, s jakou pravděpodobností splní klauzuli algoritmy:
-- RAND-SAT: \(1 - \frac{1}{2^k}\) (alespoň jedna musí být splněná a volíme s \(p = 1\))
+- RAND-SAT: \(1 - \frac{1}{2^k}\) (alespoň jedna musí být splněná a volíme s \(p = 1/2\))
 - LP-SAT: \(\left[1 - \left(1 - \frac{1}{k}\right)^{k}\right] z_j^*\) (formulka z minulého důkazu těsně před odhadem)
 
 | \(k_j\) | RAND-SAT                              | LP-SAT                                       | BEST-SAT                                                              |
@@ -657,7 +657,7 @@ Program pro vrcholové pokrytí:
 {{< math "algorithm" "LP relaxace" >}}
 1. vytvoř celočíselný lineární program:
 	- proměnné jsou \(x_1, \ldots, x_m \ge 0\) podle **množin**
-	- podmínky jsou \(\forall e \in \left\{1, \ldots, n\right\}: \sum_{j \mid e \in S_i} x_j \ge 1\) (chceme pokrýt všechny prvky univerza)
+	- podmínky jsou \(\forall e \in \left\{1, \ldots, n\right\}: \sum_{j \mid e \in S_j} x_j \ge 1\) (chceme pokrýt všechny prvky univerza)
 	- minimalizujeme \(\sum_{i \in \left\{1, \ldots, m\right\}} x_i c_i\)
 2. zrelaxuj lineární program (proměnné jsou teď reálné)
 3. použij ho při řešení -- zvol \(v\) když \(x_v \ge \frac{1}{f}\)
@@ -677,7 +677,7 @@ Program pro vrcholové pokrytí:
 {{< math "observation" >}}duál programu vypadá následně:
 - proměnné jsou \(y_1, \ldots, y_n \ge 0\) pro každý **prvek**
 - podmínky jsou \(\forall j \in \left\{1, \ldots, m\right\}: \sum_{e \in S_j} y_e \le c_j\)
-- maximalizujeme \(\sum_{e \in S_j} y_e\)
+- maximalizujeme \(\sum_{e = 1}^{n} y_e\)
 {{< /math >}}
 
 {{< math "observation" >}}podmínky komplementarity:
@@ -773,8 +773,8 @@ Nás zajímá najít rychlý paralelní algoritmus:
 {{< math "algorithm" "rychlý paralelní" >}}
 1. \(I = \emptyset\)
 2. dokud \(V \neq \emptyset\), tak každý následující krok děláme paralelně:
-	- \(\forall v \in E\) pokud je stupeň \(0\), pak přidáme do \(I\) a vymažeme z \(V\)
-	- \(\forall v \in E\) označ \(v\) (přidej do \(S\)) s pravděpodobností \(\frac{1}{2 d_v}\) (nezávisle)
+	- \(\forall v \in V\) pokud je stupeň \(0\), pak přidáme do \(I\) a vymažeme z \(V\)
+	- \(\forall v \in V\) označ \(v\) (přidej do \(S\)) s pravděpodobností \(\frac{1}{2 d_v}\) (nezávisle)
 	- \(\forall u, v \in E\) pokud \(u\) i \(v\) jsou označené, odeber značku u vrcholu nižšího stupně
 		- nižší stupeň proto, abychom odebírali hran co nejvíce
 	- přidej označené vrcholy do \(I\) a odeber je **a jejich sousedy** (a odpovídající hrany) z \(V\)
@@ -805,7 +805,7 @@ Nyní počítáme
 \begin{aligned}
 	|\text{špatné hrany}| &\le \sum_{v\ \text{špatný}} d_v^{\mathrm{in}} &\qquad //\text{špatná hrana jde do špatného vrcholu} \\
 	&\le \sum_{v\ \text{špatný}} \frac{1}{2} d_v^{\mathrm{out}} &\qquad //\text{nerovnost výše} \\
-	&\le \sum_{v \in E} \frac{1}{2} d_v^{\mathrm{out}} \\
+	&\le \sum_{v \in V} \frac{1}{2} d_v^{\mathrm{out}} \\
 	&\le \frac{1}{2}|E|
 \end{aligned}
 \]
@@ -837,7 +837,7 @@ Může být špatné, když by se hodně ze sousedů dobrého vrcholu odstranilo
 \[
 \begin{aligned}
 	\mathrm{Pr}\left[\text{odstraníme značku}\right] &= \mathrm{Pr}\left[\text{je označený soused s větším stupněm}\right] \\
-	&= \mathrm{Pr}\left[\exists u \in N(v): d_u \ge d_w \land u\ \text{byl označený}\right] \\
+	&= \mathrm{Pr}\left[\exists u \in N(v): d_u \ge d_v \land u\ \text{byl označený}\right] \\
 	&\le \sum_{u \in N(v) \mid d_u \ge d_v} \mathrm{Pr}\left[u\ \text{byl označený}\right] \\
   &= \sum_{u \in N(v) \mid d_u \ge d_v}\frac 1 {2d_u} \\
   &\le \sum_{u \in N(v) \mid d_u \ge d_v}\frac 1 {2d_v} \\
@@ -877,7 +877,7 @@ Aby \(\mathbb{E}[M_k] \le \frac 1 2\), pak musí platit
 {{% float_box %}}
 **2-Univerzalita:** pro dva rozdílné prvky máme pro náhodnou hashovací funkci z rodiny omezenou pravděpodobnost, že se namatchují na stejnou hodnotu.
 
-**Silná 2-univerzalita:** zahashované hodnoty \(x_1, x_2\) tvoří dvě náhodné po dvou nezávislé veličiny. Takže kromě toho, že jsou univerzální (když zafixuju jeden, tak se tím druhým trefím s pravděpodobností \(\frac{1}{n}\) to platí i pro libovolnou dvojici, na kterou prvky mapuju.
+**Silná 2-univerzalita:** zahashované hodnoty \(x_1, x_2\) tvoří dvě náhodné po dvou nezávislé veličiny. Takže kromě toho, že jsou univerzální (když zafixuju jeden, tak se tím druhým trefím s pravděpodobností \(\frac{1}{n}\)). To platí i pro libovolnou dvojici, na kterou prvky mapuju.
 {{% /float_box %}}
 
 {{< math "definition" >}}nechť \(M, |M| = m, N, |N| = n, H \subseteq \left\{f \mid f : M \mapsto N\right\}\)
@@ -891,7 +891,7 @@ Aby \(\mathbb{E}[M_k] \le \frac 1 2\), pak musí platit
 
 {{< /math >}}
 
-{{< math "example" >}}pro \(M = N\) je těleso máme silně 2-univerzální systém
+{{< math "example" >}}pro \(M = N\), které je těleso, máme silně 2-univerzální systém
 \[H = \left\{h_{a,b} \mid a, b \in N\right\} \quad h_{a, b}: x \mapsto ax + b\]
 {{< /math >}}
 
@@ -963,7 +963,7 @@ Výpočtem dostáváme \(\sum n_i^2 \le 2 |C| + \sum n_i \le 2n + s = \mathcal{O
 - nejlepší známé: \(\mathcal{O}(n^{\omega})\)
 	- \(\omega = 2.37\)
 
-- _Vstup:_ \(A, B, C \subseteq K^{n \times n}\) (pro těleso \(K\))
+- _Vstup:_ \(A, B, C \in K^{n \times n}\) (pro těleso \(K\))
 - _Výstup:_ ANO, pokud \(A \cdot B = C\), jinak NE
 
 {{< math "lemma" >}}nechť \(\vec{a} \in K^n, \vec{a} \neq 0\) a \(\vec{x} \in \left\{0, 1\right\}^n\) uniformně náhodný. Pak \[\mathrm{Pr}_{\vec{x}} \left[\vec{a}^T \cdot \vec{x} \neq 0\right] \ge \frac{1}{2}\]{{< /math >}}
@@ -1000,12 +1000,12 @@ Budeme používat trochu divný vstup:
 - _Vstup:_ matice polynomů proměnných, determinant určuje náš polynom
 - _Výstup:_ ANO, jestliže je polynom identicky nulový, jinak NE
 
-{{< math "lemma" >}}nechť \(P(x_1, \ldots, x_n)\) je **nenulový** polynom nad \(K\) stupně \(\le d_i\) a \(S \subseteq K\) konečná. Nechť \(x_1, \ldots, x_n \in S\) unif. náhodně. Pak pravděpodobnost, že jsme se trefili do jednoho z kořenů z \(S\), je \[\mathrm{Pr}_{\vec{x}} \left[P(\vec{x}) = 0\right] \le \frac{d}{|S|}\]
+{{< math "lemma" >}}nechť \(P(x_1, \ldots, x_n)\) je **nenulový** polynom nad \(K\) stupně \(\le d\) a \(S \subseteq K\) konečná. Nechť \(x_1, \ldots, x_n \in S\) unif. náhodně. Pak pravděpodobnost, že jsme se trefili do jednoho z kořenů z \(S\), je \[\mathrm{Pr}_{\vec{x}} \left[P(\vec{x}) = 0\right] \le \frac{d}{|S|}\]
 - \(n = 1 \ldots\ \) polynom má nejvýše \(d\) kořenů, ať zvolíme \(s\) jakkoliv
 - je to dost šikovné, protože podle \(|S|\) si volíme přesnost algoritmu (pro \(|S| \ge 2d\) máme \(\ge \frac{1}{2}\))
 {{< /math >}}
 
-{{< math "proof" >}}pro \(n =1\) platí. Nyní indukcí podle \(n\). Rozdělíme polynom na \(A\) a \(B\), kde stupeň v \(B\) je ostře menší \(k\). To umíme tím, že vytkneme nějakou proměnnou:
+{{< math "proof" >}}pro \(n =1\) platí. Nyní indukcí podle \(n\). Rozdělíme polynom na \(A\) a \(B\), kde stupeň v \(B\) je ostře menší než \(k\). To umíme tím, že vytkneme nějakou proměnnou:
 - \(P(\vec{x}) = x_1^k \cdot A(x_2, \ldots, x_n) + B(\vec{x})\)
 	- \(A\) je identicky nulový (podle IP) s pravděpodobností \(\le \frac{d - k}{|S|}\)
 	- chci dokázat, že \(\mathrm{Pr}\left[P(\vec{x}) = 0 \mid A(x_2, \ldots, x_n) \neq 0\right] \le \frac{k}{|S|}\)
@@ -1084,7 +1084,7 @@ Součtem pro všechny množiny, dostáním opačného jevu a aplikací union bou
 4. \(\forall uv \in E\) spočítáme \(d = \mathrm{det}(C^{uv})\)
 	- jestliže \(2^{W - w(uv)}\) je max. číslo tvaru \(2^{\alpha}\) dělící \(d\), pak přidáme \(uv\) do \(M\)
 		- odpovídá tomu, zda párování přežilo odstranění hrany -- pokud ne, tak ho přidáme
-6. zkontrolujeme, že \(M\) je PP (mohli jsme vygenerovat nesmysl)
+5. zkontrolujeme, že \(M\) je PP (mohli jsme vygenerovat nesmysl)
 {{< /math >}}
 
 ### Odkazy

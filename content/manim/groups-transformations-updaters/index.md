@@ -56,7 +56,7 @@ For now, it's sufficient to know that the scene objects have a set order in whic
 {{< video "manim" "02-z-index-example" >}}
 
 ### Overlapping animations
-We've seen how to start animations concurrently, but it is often prettier to run them with a certain overlap (especially when there is a lot of them), which makes them look smoother.
+We've seen how to start animations concurrently, but it is often prettier to run them with a certain overlap (especially when there are a lot of them), which makes them look smoother.
 To achieve this, we'll use the {{< doc "manim" "AnimationGroup" "reference/manim.animation.composition.AnimationGroup.html" >}} object with a `lag_ratio` parameter, which determines the part of a given animation when the next one is started.
 
 ```python {file="02-animation-group-example.py"}
@@ -73,7 +73,7 @@ Animation overlap also works for objects in a {{< doc "manim" "VGroup" "referenc
 
 ### Working with attention
 When creating animations, it is sometimes necessary to draw attention to a certain part of the screen where the viewer's focus should be.
-Manim offers a number of ways how to do this, the most common of which are {{< doc "manim" "Flash" "reference/manim.animation.indication.Flash.html" >}}, {{< doc "manim" "Indicate" "reference/manim.animation.indication.Indicate.html" >}}, {{< doc "manim" "Wiggle" "reference/manim.animation.indication.Wiggle.html" >}}, {{< doc "manim" "FocusOn" "reference/manim.animation.indication.FocusOn.html" >}} and {{< doc "manim" "Circumscribe" "reference/manim.animation.indication.Circumscribe.html" >}}.
+Manim offers a number of ways to do this, the most common of which are {{< doc "manim" "Flash" "reference/manim.animation.indication.Flash.html" >}}, {{< doc "manim" "Indicate" "reference/manim.animation.indication.Indicate.html" >}}, {{< doc "manim" "Wiggle" "reference/manim.animation.indication.Wiggle.html" >}}, {{< doc "manim" "FocusOn" "reference/manim.animation.indication.FocusOn.html" >}} and {{< doc "manim" "Circumscribe" "reference/manim.animation.indication.Circumscribe.html" >}}.
 
 ```python {file="02-attention-example.py"}
 ```
@@ -81,7 +81,7 @@ Manim offers a number of ways how to do this, the most common of which are {{< d
 {{< video "manim" "02-attention-example" >}}
 
 The {{< doc "manim" "Flash" "reference/manim.animation.indication.Flash.html" >}}, {{< doc "manim" "Indicate" "reference/manim.animation.indication.Indicate.html" >}} and {{< doc "manim" "Circumscribe" "reference/manim.animation.indication.Circumscribe.html" >}} animations have a useful optional `color` parameter, which changes the default color from yellow to whatever you prefer.
-Also, notice that we used an optional `shift` parameter for {{< doc "manim" "FadeIn" "reference/manim.animation.fading.FadeIn.html#manim.animation.fading.FadeIn" >}} and {{< doc "manim" "FadeOut" "reference/manim.animation.fading.FadeOut.html#manim.animation.fading.FadeOut" >}} which specify the direction in which the fade should occur.
+Also, notice that we used an optional `shift` parameter for {{< doc "manim" "FadeIn" "reference/manim.animation.fading.FadeIn.html#manim.animation.fading.FadeIn" >}} and {{< doc "manim" "FadeOut" "reference/manim.animation.fading.FadeOut.html#manim.animation.fading.FadeOut" >}} which specifies the direction in which the fade should occur.
 
 ### Transformations
 Manim can animate the transformation of one object to another in a number of different ways.
@@ -205,7 +205,7 @@ Here is the text input that I used to generate the maze, if you wish to use it.
 {{< details "Author's Solution" "02-wave.py" >}}{{< /details >}}
 
 #### Hilbert
-Create an animation of the Hilbert's (or any other space-filling) curve.
+Create an animation of Hilbert's (or any other space-filling) curve.
 
 {{< video "manim" "02-hilbert" >}}
 

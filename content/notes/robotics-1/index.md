@@ -58,8 +58,8 @@ where
 	- in 3D it's \(3\) for orientation and \(3\) for position
 - \(n \ldots\) number of **links**
 - \(j \ldots\) number of **kinematic pairs**
-	- notice that this is **not the number of joints** -- if a joint includes more kinematics pairs, it needs to be split for the equation to work (see coincident joints below)
-- \(c_j \ldots\) degree of constraint of the \(i\)-th kinematic pair
+	- notice that this is **not the number of joints** -- if a joint includes more kinematic pairs, it needs to be split for the equation to work (see coincident joints below)
+- \(c_i \ldots\) degree of constraint of the \(i\)-th kinematic pair
 	- eg. a revolute joint in 2D takes away \(2\) DOF (we can only rotate)
 
 For example, the following has \(3 ({\color{red}{4}} - 1) - 2 \cdot {\color{blue}{4}} = 1\) DOF:
@@ -78,7 +78,7 @@ _If you're viewing this in dark theme, the links are colored light blue (red in 
 - **DC brushed motor**: based on Lorentz' force law (electromagnetic fields)
 	- **brushed** because the metal brush powers the magnets (they're turning)
 	- **brushless** uses the position of the motor to turn on/off currents for specific windings
-	- usually contains **gears reductions** to trade torque for speed and **sensors** to measure the position of the motor (see further)
+	- usually contains **gear reductions** to trade torque for speed and **sensors** to measure the position of the motor (see further)
 
 ![DC motor illustration.](dc-motor.svg)
 
@@ -149,7 +149,7 @@ p_0 &= R^0_2 \cdot p_2 = R^0_1 \left(R^1_2 \cdot p_2\right)
 \end{aligned}
 \]
 
-For representing any rotation, we use **Euler's ZYZ angles**, which composes three rotations (Z, Y, Z):
+For representing any rotation, we use **Euler's ZYZ angles**, which compose three rotations (Z, Y, Z):
 
 \[
 \begin{aligned}
@@ -212,7 +212,7 @@ We then get the following transformations:
 \[
 \begin{aligned}
 	A^0_1 (\vartheta_1) &= \begin{bmatrix} c_1 & 0 & s_1 & 0 \\ s_1 & 0 & -c_1 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \quad R = R_z(\vartheta_1) \cdot R_x(\pi / 2) \\
-	A^{i-1}_i (\vartheta_1) &= \begin{bmatrix} c_i & -s_i & 0 & a_i c_i \\ s_i & c_i & 0 & a_i s_i \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \quad i = 2, 3\\
+	A^{i-1}_i (\vartheta_i) &= \begin{bmatrix} c_i & -s_i & 0 & a_i c_i \\ s_i & c_i & 0 & a_i s_i \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \quad i = 2, 3\\
 \end{aligned}
 \]
 
@@ -358,7 +358,7 @@ For calculating other differential relations, we can just continue to derivate:
 | ---          | ---                                                                                                  |
 | velocity     | \(\dot{r} = J_r(q) \dot{q}\)                                                                         |
 | acceleration | \(\ddot{r} = J_r(q) \ddot{q} + \dot{J_r}(q) \dot{q}\)                                                |
-| jerk         | \(\overset{\ldots}{r} = J_r(q) \overset{\ldots}{q} + \dot{J_r}(q) \ddot{q} + \ddot{J_r}(q) \dot{q}\) |
+| jerk         | \(\overset{\ldots}{r} = J_r(q) \overset{\ldots}{q} + 2\dot{J_r}(q) \ddot{q} + \ddot{J_r}(q) \dot{q}\) |
 | snap         | \(\ldots\)                                                                                           |
 
 #### Inverse Velocity Kinematics
@@ -391,7 +391,7 @@ This turns out to be the vector \(\dot{q} = J^\# \dot{p}\), where \(J^\#\) is th
 #### Force Kinematics
 We can again use the Jacobian to relate **forces** of the end effector to those of the joints.
 
-Given \(\tau \in \mathbb{R}^{n \times 1}\) as the vector of infinitesimal joint forces/torques and \(\gamma \in \mathbb{R}^{m \times 1}\) as the vector of infinitesimal end effector forces/torques. Applying the principle of **virtual work** (the work of the forces applied to the system are zero: (\(dW = dF\ dx = 0\))), we get
+Given \(\tau \in \mathbb{R}^{n \times 1}\) as the vector of infinitesimal joint forces/torques and \(\gamma \in \mathbb{R}^{m \times 1}\) as the vector of infinitesimal end effector forces/torques. Applying the principle of **virtual work** (the work of the forces applied to the system is zero: (\(dW = F\ dx = 0\))), we get
 \[
 \begin{aligned}
 	dW_\tau &= \tau^T\ dq \qquad & \text{\# joints} \\
@@ -507,7 +507,7 @@ For a **linear** path from \(p_i\) to \(p_f\):
 	- setting \(s = \sigma / L, \sigma \in \left[0, L\right] \) (given the length of the path)
 - we can differentiate to get velocity and acceleration: \[\begin{aligned}
 	\dot{p} &= \frac{dp}{ds}\dot{s} &= (p_f - p_i) \dot{s} = \frac{p_f - p_i}{L} \dot{\sigma} \\
-	\ddot{p} &= \frac{d^2s}{ds^2} \dot{s}^2 + \frac{dp}{ds}\ddot{s} &= (p_f - p_i) \ddot{s} = \frac{p_f - p_i}{L} \ddot{\sigma} \\
+	\ddot{p} &= \frac{d^2p}{ds^2} \dot{s}^2 + \frac{dp}{ds}\ddot{s} &= (p_f - p_i) \ddot{s} = \frac{p_f - p_i}{L} \ddot{\sigma} \\
 \end{aligned}\]
 
 For the motion, we use the **trapezoidal speed** (bang-coast-bang):
@@ -516,7 +516,7 @@ For the motion, we use the **trapezoidal speed** (bang-coast-bang):
 {.no-invert}
 
 To generalize this (i.e. concatenate the paths), we can **over-fly** the point in between.
-A specific example of how this would look like is the following:
+A specific example of what this would look like is the following:
 
 ![Fly-over analysis illustration.](fly-over.png)
 {.no-invert}

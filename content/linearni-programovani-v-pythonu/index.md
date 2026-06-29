@@ -8,7 +8,7 @@ language: cs
 ---
 
 ### Úvodní informace
-Tato stránka obsahuje náhodné programy ze cvičení/přednášky předmětu Lineární programování a kombinatorická optimalizace, a zároveň jako dodatečné materiály k mému **[nově vydanému videu](https://youtu.be/E72DWgKP_1Y)** o lineárním programování.
+Tato stránka obsahuje náhodné programy ze cvičení/přednášky předmětu Lineární programování a kombinatorická optimalizace, a zároveň slouží jako dodatečné materiály k mému **[nově vydanému videu](https://youtu.be/E72DWgKP_1Y)** o lineárním programování.
 Ke spuštění programů je potřeba nainstalovat Pythoní knihovnu `pulp` (přes `pip install pulp`), kterou k řešení problémů používám.
 
 Pokud s `pulp`em také vyřešíte nějaký problém, tak budu moc rád za email/pull request, ať tu máme příkladů co možná nejvíce 🙂.
@@ -42,7 +42,7 @@ Pro \(n\) předmětů, kde \(i\)-tý má nějakou váhu \(v_i\) a cenu \(c_i\),
 
 #### Prokládání přímkou
 
-Máme-li \(n\) bodů \((x_1 , y_1 ), \ldots, (x_n , y_n )\) v rovině, tak najděte přímku \(\left\{x \in \mathbb{R}: y = ax + b\right\}\), která minimalizuje součet vertikálních vzdáleností bodů od výsledné přímky. Vertikální vzdálenost je vzdálenost měřena pouze na ose \(y\). Pro jednoduchost předpokládejte, že výsledná přímka není kolmá na osu \(x\).
+Máme-li \(n\) bodů \((x_1 , y_1 ), \ldots, (x_n , y_n )\) v rovině, tak najděte přímku \(\left\{x \in \mathbb{R}: y = ax + b\right\}\), která minimalizuje součet vertikálních vzdáleností bodů od výsledné přímky. Vertikální vzdálenost je vzdálenost měřená pouze na ose \(y\). Pro jednoduchost předpokládejte, že výsledná přímka není kolmá na osu \(x\).
 
 {{< details "Zdrojový kód" "prokladani.py" >}}{{< /details >}}
 
@@ -65,35 +65,35 @@ Nalezněte minimální \(k\) takové, že hrany grafu \(G\) lze korektně obarv
 {{< details "Výpis" "obarvitelnost2.out" >}}{{< /details >}}
 
 #### Problém obchodního cestujícího
-Pro daný ohodnocený neorientovaný graf \(G = (V, E, f)\), kde \(f : E \mapsto \mathbb{R}^+_0\), chceme najít Hamiltonovskou kružnici v \(G\) s nejmenším ohodnocením.
+Pro daný ohodnocený neorientovaný graf \(G = (V, E, f)\), kde \(f : E \to \mathbb{R}^+_0\), chceme najít Hamiltonovskou kružnici v \(G\) s nejmenším ohodnocením.
 
 {{< details "Zdrojový kód" "tsp.py" >}}{{< /details >}}
 
 {{< details "Výpis" "tsp.out" >}}{{< /details >}}
 
 #### Bin packing
-Zjistěte, do kolika nejméně krabic lze rozdělit množinu \(n\) předmětů s vahami \(w_1, \ldots, w_i\). Do každého koše lze umístit předměty o celkové váze nejvýše \(C\).
+Zjistěte, do kolika nejméně krabic lze rozdělit množinu \(n\) předmětů s vahami \(w_1, \ldots, w_n\). Do každého koše lze umístit předměty o celkové váze nejvýše \(C\).
 
 {{< details "Zdrojový kód" "bin.py" >}}{{< /details >}}
 
 {{< details "Výpis" "bin.out" >}}{{< /details >}}
 
 #### Partition problem
-Zjistěte, zda množinu \(n\) předmětů s vahami \(w_1, \ldots, w_i\) jde rozdělit na dvě části tak, aby součty vah těchto částí byly stejné.
+Zjistěte, zda množinu \(n\) předmětů s vahami \(w_1, \ldots, w_n\) jde rozdělit na dvě části tak, aby součty vah těchto částí byly stejné.
 
 {{< details "Zdrojový kód" "partition.py" >}}{{< /details >}}
 
 {{< details "Výpis" "partition.out" >}}{{< /details >}}
 
 #### Pekárny a obchody (a)
-V Kocourkově je \(n\) pekáren a \(m\) obchodů. Každý den \(i\)-tá pekárna upeče \(p_i \in \mathbb{N}\) rohlíků \(n\) a \(j\)-tý obchod prodá \(o_j \in \mathbb{N}\) rohlíků, kde \(\sum_{i = 1}^{n} p_i = \sum_{j = 1}^{m} o_j\). Převoz jednoho rohlíku z \(i\)-té pekárny do \(j\)-tého obchodu stojí \(c_{ij}\) korun.
+V Kocourkově je \(n\) pekáren a \(m\) obchodů. Každý den \(i\)-tá pekárna upeče \(p_i \in \mathbb{N}\) rohlíků a \(j\)-tý obchod prodá \(o_j \in \mathbb{N}\) rohlíků, kde \(\sum_{i = 1}^{n} p_i = \sum_{j = 1}^{m} o_j\). Převoz jednoho rohlíku z \(i\)-té pekárny do \(j\)-tého obchodu stojí \(c_{ij}\) korun.
 
 {{< details "Zdrojový kód" "ukol01-a.py" >}}{{< /details >}}
 
 {{< details "Výpis" "ukol01-a.out" >}}{{< /details >}}
 
 #### Pekárny a obchody (b)
-Praxe v Kocourkově ukázala, že když \(i\)-tá pekárna zásobuje \(j\)-tý obchod, tak musí pro tuto trasu zajistit logistiku, která je stojí \(l_{ij}\). Logistiku \(l_{ij} \ge 0\) je nutné platit pouze tehdy, když \(i\)-tá pekárna zásobuje \(j\)-tý obchod nenulovým počtem rohlíků, a její cena nezávisí na počtu převážených rohlíků. I nadále je nutné platit přepravné \(c_{ij}\). Zformulujte příslušnou úlohu LP.
+Praxe v Kocourkově ukázala, že když \(i\)-tá pekárna zásobuje \(j\)-tý obchod, tak musí pro tuto trasu zajistit logistiku, která ji stojí \(l_{ij}\). Logistiku \(l_{ij} \ge 0\) je nutné platit pouze tehdy, když \(i\)-tá pekárna zásobuje \(j\)-tý obchod nenulovým počtem rohlíků, a její cena nezávisí na počtu převážených rohlíků. I nadále je nutné platit přepravné \(c_{ij}\). Zformulujte příslušnou úlohu LP.
 
 {{< details "Zdrojový kód" "ukol01-b.py" >}}{{< /details >}}
 

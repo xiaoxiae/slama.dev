@@ -89,7 +89,7 @@ For example, one neat thing we can do is manually move camera into a number of p
 
 ### Mobject → OpenGLMobject
 
-Since Cairo and OpenGL's Mobject implementations are incompatible, Manim uses [magic](https://www.aquabeam.me/manim/opengl_guide/#will-my-code-work-with-opengl) to make classes like `Square` and `Circle` usable. This means that if you wish to use the base classes like `Mobject`, `VMobject` and `Surface`, you'll have to use their OpenGL counterparts (`OpenGLVMobject` and `OpenGLSurface` respectively).
+Since Cairo and OpenGL's Mobject implementations are incompatible, Manim uses [magic](https://www.aquabeam.me/manim/opengl_guide/#will-my-code-work-with-opengl) to make classes like `Square` and `Circle` usable. This means that if you wish to use the base classes like `Mobject`, `VMobject` and `Surface`, you'll have to use their OpenGL counterparts (`OpenGLMobject`, `OpenGLVMobject` and `OpenGLSurface` respectively).
 
 Since none of this is really documented, you'll have to look at the [source code](https://github.com/ManimCommunity/manim/tree/main/manim/mobject/opengl).
 

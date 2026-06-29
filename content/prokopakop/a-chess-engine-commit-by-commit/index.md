@@ -121,7 +121,7 @@ pub struct Game {
 }
 ```
 
-Although this is a bit wasteful since we could just store the column (chess people call them files, but I'm not falling for the propaganda), but having a bitmap is nice since we can more easily check if a pawn can "capture" that square.
+This is a bit wasteful since we could just store the column (chess people call them files, but I'm not falling for the propaganda), but having a bitmap is nice since we can more easily check if a pawn can "capture" that square.
 
 [`178193`](https://github.com/xiaoxiae/Prokopakop/commit/178193d3b18c50a8084af5149ca03ca331438f78)
 {.commit-header}
@@ -272,7 +272,7 @@ Also does a bit of refactoring, but nothing too exciting.
 {.commit-header}
 
 Compacts a board move to \(16\) bits -- \(6 * 2\) for source + destination square indexes, and \(4\) for identifying a promotion piece (if applicable).
-Might not seem like a big change, but board moves are used ubiquitously though the engine, so making them as compact as possible while not sacrificing too much speed is generally a good idea.
+Might not seem like a big change, but board moves are used ubiquitously throughout the engine, so making them as compact as possible while not sacrificing too much speed is generally a good idea.
 
 [`dda91d`](https://github.com/xiaoxiae/Prokopakop/commit/dda91d360500421c914d4310b4070b2c20898ff5)
 {.commit-header}
@@ -308,7 +308,7 @@ There is a slight catch: to obtain the positions of the blockers, we need either
 As we've already discussed, we are currently generating legal moves by first **generating all [pseudo-legal moves](https://www.chessprogramming.org/Pseudo-Legal_Move)** (those where king can be under attack afterwards), **making** them, **checking** whether the king is in check afterwards, and finally **unmaking** them.
 
 A faster approach is to generate [legal moves](https://www.chessprogramming.org/Legal_Move) directly, without having to modify the board state.
-This, however, is much more complicated, as the king can come under attack in a number of tricky ways (most of which having to do with en-passant; curse the French!).
+This, however, is much more complicated, as the king can come under attack in a number of tricky ways (most of which have to do with en-passant; curse the French!).
 In Prokopakop, I distinguish between three cases, depending on the **number of attacks** the king is under:
 - **0 attacks**: normal generation; just watch for pins
 - **1 attack**: king has to either **move away,** or the attacker must be **captured**; also watch for pins
@@ -532,7 +532,7 @@ This, combined with always searching the moves from the **p**rincipal **v**ariat
 #### Quiescence Search
 
 Using alpha-beta search with iterative deepening means that we always, for depths \(1, \ldots, n\), explore until a certain depth and then evaluate the position.
-This has an obvious flaw: what if we make blunder, like taking a queen for a pawn, in the final depth?
+This has an obvious flaw: what if we make a blunder, like taking a queen for a pawn, in the final depth?
 Since this was the last depth that we were searching, this wouldn't get caught, and we'd happily return positive evaluation, since we're up a pawn!
 
 This is where [quiescence search](https://www.chessprogramming.org/Quiescence_Search)[^quiescence] comes in -- when reaching the final depth of the iteration, it **extends the search** until **all remaining captures** (and possibly **checks**) are resolved, so that we are **only evaluating quiet positions** (i.e. those where there are no tactical sequences that can severely impact the score).
@@ -575,7 +575,7 @@ pub struct TTEntry {
     pub node_type: NodeType,  // what type of information we obtained
 
     // These are not required, but useful
-    pub best_move: Move,      // best move found
+    pub best_move: BoardMove,  // best move found
     pub age: u8,              // age of this entry, so we can clear the old ones
 }
 ```
@@ -585,12 +585,12 @@ For implementing the TT itself, we can use a nice trick: instead of using a hash
 There are many other things to consider like [replacement strategies](https://www.chessprogramming.org/Transposition_Table#Replacement_Strategies) and more advanced TT implementations, such as using  [buckets](https://www.chessprogramming.org/Transposition_Table#Bucket_Systems), but I won't go into detail on those as we've covered the core concepts behind TTs.
 
 _A small terminology note: when doing research for this article, I found that the three [node categories](https://www.chessprogramming.org/Node_Types) described above are sometimes called **PV** (exact), **Cut** (lower bound) and **All** (upper bound) nodes, so don't be surprised when you see these terms used; they refer to the node types.
-This mainly originates from a [2003 paper](https://dke.maastrichtuniversity.nl/m.winands/documents/Enhanced%20forward%20pruning.pdf) about pruning methods[^alpha-beta]._
+I came across these terms in a [2003 paper](https://dke.maastrichtuniversity.nl/m.winands/documents/Enhanced%20forward%20pruning.pdf) about pruning methods[^alpha-beta], though they originate from much earlier work._
 
 [`ff14c29`](https://github.com/xiaoxiae/Prokopakop/commit/ff14c29)~[`6c4e7ee`](https://github.com/xiaoxiae/Prokopakop/commit/6c4e7ee)
 {.commit-header}
 
-I've added threefold repetition detection, but only for the first few [plys](https://www.chessprogramming.org/Ply) (this is what the chess people call turns, and corresponds to the current depth we're in[^ply]), since the check can be rather expensive.
+I've added threefold repetition detection, but only for the first few [plies](https://www.chessprogramming.org/Ply) (this is what the chess people call turns, and corresponds to the current depth we're in[^ply]), since the check can be rather expensive.
 In addition, I've improved the evaluation function to incentivize [passed pawns](https://www.chessprogramming.org/Passed_Pawn), penalize [doubled pawns](https://www.chessprogramming.org/Doubled_Pawn), and account for [piece mobility](https://www.chessprogramming.org/Mobility) by counting moves available to each piece from both sides.
 
 [`2c1a839`](https://github.com/xiaoxiae/Prokopakop/commit/2c1a839)
@@ -643,7 +643,7 @@ Therefore, it's a relatively safe assumption that if making a null move causes a
 
 Implementation-wise, two things to mention:
 - The search on the null move uses a **reduced depth** (either flat or progressive), because it should usually be apparent quite quickly whether a beta cut-off will occur or not.
-- If the evaluation of the current position is **below beta** (with some margin), we **don't need to try null move pruning**, since it extremely unlikely to result in a beta cut-off anyway.
+- If the evaluation of the current position is **below beta** (with some margin), we **don't need to try null move pruning**, since it's extremely unlikely to result in a beta cut-off anyway.
 
 [`5047857`](https://github.com/xiaoxiae/Prokopakop/commit/5047857)
 {.commit-header}

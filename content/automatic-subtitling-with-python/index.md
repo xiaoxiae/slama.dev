@@ -7,7 +7,7 @@ toc: true
 ---
 
 **Update 19. 3. 2026:** while the core of the article holds, it's not quite using the state of the art.
-Since I wanted to put up some usable version of the subtitles, I used **[Bilbo](/bilbo/)** (one of my recent projects) which uses [`faster-whisper`](https://github.com/SYSTRAN/faster-whisper) with the `large-v3` model and [Silero VAD](https://github.com/snakers4/silero-vad) to get tighter timestamps, and ran the result through [Opus 4.6](https://www.anthropic.com/news/claude-opus-4-6) to both fix the miss-translated words, and to translate into English.
+Since I wanted to put up some usable version of the subtitles, I used **[Bilbo](/bilbo/)** (one of my recent projects) which uses [`faster-whisper`](https://github.com/SYSTRAN/faster-whisper) with the `large-v3` model and [Silero VAD](https://github.com/snakers4/silero-vad) to get tighter timestamps, and ran the result through [Opus 4.6](https://www.anthropic.com/news/claude-opus-4-6) to both fix the mistranslated words, and to translate into English.
 
 ---
 

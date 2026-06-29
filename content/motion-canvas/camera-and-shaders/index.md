@@ -12,7 +12,7 @@ The following part of the series briefly covers **camera controls** and then del
 
 The [3rd part of the Manim series](/manim/camera-and-graphs/) that this series aims to follow had a section on graphs (the computer science ones), but since Motion Canvas doesn't have native support for those, I decided to replace them with shaders instead (which Manim doesn't have).
 
-_Special thanks for my friend Jakub Pelc for helpful pointers to shader resources.
+_Special thanks to my friend Jakub Pelc for helpful pointers to shader resources.
 If you happen to speak Czech, his **[series about shaders](https://ksp.mff.cuni.cz/h/ulohy/33/zadani1.html#task-33-1-S)** from [KSP](https://ksp.mff.cuni.cz/) is a great read._
 
 ### Camera
