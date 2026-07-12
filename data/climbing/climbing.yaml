@@ -4774,15 +4774,48 @@ sessions:
     note: Berta Block Masters 26 -- banger comp, fun bouders. Finished 5/169, we take those (probably 30ish overall considering the category above). Happy.
     wall: Berta Block
   '2026-06-22':
-    wall: Crimp
     note: A few easier Moonboard benchies + training after. Literally fucking melting.
+    wall: Crimp
   '2026-06-24':
     black:
       new: 3
+    note: New set; nice coordination boulder and some other random stuff. Still fucking melting.
     red:
       new: 4
-    note: New set; nice coordination boulder and some other random stuff. Still fucking melting.
     wall: Boulderhaus
   '2026-06-26':
     note: Honestly felt like I was melting a little less. Got one of the hard slabs in a fun way. No bad.
     wall: Boulderhaus
+  '2026-06-27':
+    note: Holiday. Ate a lot, surely won't regret this.
+    placeholder: true
+  '2026-07-04':
+    note: First sesh back. Friendly duels, some banger and some ass boulders, felt decent.
+    wall: Boulderhaus
+  '2026-07-06':
+    note: Comp sim (some actually good boulders) + some easy Moonboard benchies.
+    wall: Crimp
+  '2026-07-08':
+    note: Comp sim (less good boulders), some Moonboarding; felt heavy.
+    wall: Crimp
+  '2026-07-11':
+    black:
+      new: 2
+      videos:
+      - file: boulderhaus-black-2026-07-11-lifswhor.mp4
+      - file: boulderhaus-black-2026-07-11-zzsechww.mp4
+    note: 'Two more comp sims, some nice flashes and boulders; for future reference: 4 boulders / 2 attempts on each are TOO MANY.'
+    other:
+      new: 2
+      videos:
+      - file: boulderhaus-other-2026-07-11-vrnhnlxl.mp4
+      - file: boulderhaus-other-2026-07-11-fftdwrsq.mp4
+    re:
+      new: 1
+      videos:
+      - file: boulderhaus-re-2026-07-11-rslwmotd.mp4
+    red:
+      new: 1
+      videos:
+      - file: boulderhaus-red-2026-07-11-ndxddqff.mp4
+    wall: boulderhaus
