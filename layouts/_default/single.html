@@ -2,7 +2,8 @@
 post) and is not a redirect */}} {{ if and (ne .Date (time "0001-01-01")) (not
 .Params.redirect) }} {{- $lang := .Params.language | default "en" -}} {{-
 $olderPost := false -}} {{- $newerPost := false -}} {{- $foundCurrent := false
--}} {{- range site.RegularPages -}} {{- if not .Params.redirect -}} {{- if eq
+-}} {{- range site.RegularPages -}} {{- if and (not .Params.redirect) (or (not
+.Params.hidden) (eq .Permalink $.Permalink)) -}} {{- if eq
 .Permalink $.Permalink -}} {{- $foundCurrent = true -}} {{- else -}} {{- if
 $foundCurrent -}} {{- if not $olderPost -}} {{- $olderPost = . -}} {{- end -}}
 {{- else -}} {{- $newerPost = . -}} {{- end -}} {{- end -}} {{- end -}} {{- end
@@ -27,7 +28,8 @@ $foundCurrent -}} {{- if not $olderPost -}} {{- $olderPost = . -}} {{- end -}}
   <strong><a href="{{ .RelPermalink }}">{{ .Title }}</a></strong>
   {{ end }} {{ end }}{{ if .Params.categoryPart }} {{- $currentPart :=
   .Params.categoryPart -}} {{- $seriesParts := slice -}} {{- range
-  .CurrentSection.Pages -}} {{- if .Params.categoryPart -}} {{- $seriesParts =
+  .CurrentSection.Pages -}} {{- if and .Params.categoryPart (or (not
+  .Params.hidden) (eq .Permalink $.Permalink)) -}} {{- $seriesParts =
   $seriesParts | append . -}} {{- end -}} {{- end -}} {{- $seriesParts = sort
   $seriesParts ".Params.categoryPart" -}}
   {{ $prevPart := false -}}{{- $nextPart := false -}}{{- $total := len $seriesParts -}}{{- range
