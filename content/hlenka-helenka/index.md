@@ -20,4 +20,4 @@ _Update (8. 3. 2021, večer): druhá hlenka umřela! Teda... Kačka říká, že
 
 _Update (7. 3. 2021, večer): druhá hlenka se chytila! Prozatím nahoře necháme sklo, ale přes noc světlo pustíme._
 
-_Update (7. 3. 2021, ráno): první hlenka se bohužel nechytila, zkoušíme teď oživit druhou. Je za sklem, aby nechytila nějakou plíseň a v noci na ní nebude vidět (alespoň prozatím)._
+_Update (7. 3. 2021, ráno): první hlenka se bohužel nechytila, zkoušíme teď oživit druhou. Je za sklem, aby nechytila nějakou plíseň, a v noci na ni nebude vidět (alespoň prozatím)._

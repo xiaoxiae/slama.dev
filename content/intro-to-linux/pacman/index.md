@@ -69,13 +69,13 @@ Keep in mind that the flags are very important here, since there are a lot of po
 | --- | --- |
 | `-i`, `--info`           | List information about the package.                      |
 | `-l`, `--list`           | List files owned by this package.                        |
-| `-o <f>`, `--owns <f>`   | List, which package owns the specified file.             |
+| `-o <f>`, `--owns <f>`   | List which package owns the specified file.             |
 | `-m`, `--foreign`        | List packages not found in the sync database.[^2]        |
 | `-n`, `--native`        | Opposite of `-m`.                                        |
-| `-s <r>`, `--search <r>` | List packages, whose names/descriptions match a regex. |
+| `-s <r>`, `--search <r>` | List packages whose names/descriptions match a regex. |
 | `-u`, `--upgrades`       | List out-of-date packages. Good to prepend with `-y`.    |
 
-[^1]: For some reason, I had quite a difficulty understanding what "explicitly" actually means here. For clarification: packages are explicit, when they are installed by the user using a command, or when installed with the `--asexplicit` flag.
+[^1]: For some reason, I had quite some difficulty understanding what "explicitly" actually means here. For clarification: packages are explicit when they are installed by the user using a command, or when installed with the `--asexplicit` flag.
 
 [^2]: This can happen either when installing packages using `-U`, or through programs like `yay`, `yaourt`,... that use [AUR](https://aur.archlinux.org/) to get the packages from.
 
@@ -96,7 +96,7 @@ The packages themselves are stored in tar archives, mainly containing the follow
 
 The fact that `pacman` doesn't compile the packages but instead installs binaries is quite important, since this makes it much faster and easier. Although this means that you don't have the source code at hand, you can use [`asp`](https://github.com/archlinux/asp) to retrieve source files for `pacman` packages.
 
-The log files are stored in `/var/log/pacman.log`, in case you need to undo some bad decision (adding/removing packages that you shouldn't have, for example). This saved me on multiple occasions, when I didn't pay enough attention to what Pacman was saying and rebooted the system, only to find everything completely broken.
+The log file is stored in `/var/log/pacman.log`, in case you need to undo some bad decision (adding/removing packages that you shouldn't have, for example). This saved me on multiple occasions, when I didn't pay enough attention to what Pacman was saying and rebooted the system, only to find everything completely broken.
 
 ### Useful commands
 
@@ -111,5 +111,5 @@ sudo pacman -Sc
 	- [Pacman](https://wiki.archlinux.org/index.php/Pacman)
 	- [Pacman's Tips and Tricks](https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks)
 	- [Color output in console](https://wiki.archlinux.org/index.php/Color_output_in_console)
-- StackOverflow:
+- Unix & Linux Stack Exchange:
 	- [Is using `--noconfirm` a good idea?](https://unix.stackexchange.com/questions/52277/pacman-option-to-assume-yes-to-every-question)

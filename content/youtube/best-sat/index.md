@@ -48,9 +48,9 @@ _For maximization problem, we ensure that the solution is always large enough._
 {{< /math >}}
 
 ### MAX-SAT
-- _Input:_ \(C_1 \land \ldots \land C_n\), each clause is a disjunction of \(k_j \ge 1\) literals
+- _Input:_ \(C_1 \land \ldots \land C_m\), each clause is a disjunction of \(k_j \ge 1\) literals
 - _Output:_ evaluation \(a \in \left\{0, 1\right\}^n\) of the variables (sometimes called literals)
-- _Goal:_ maximize the number of satisfied clauses \(\sum w_j\)
+- _Goal:_ maximize the number of satisfied clauses
 
 We also assume that:
 - no literal repeats in a clause
@@ -68,7 +68,7 @@ We also assume that:
 - the chance that \(C_j\) is not satisfied is \(\frac{1}{2^k}\)
 
 Since the size of the clause \(k \ge 1\), we get \(\mathbb{E}\left[Y_j\right] = \mathrm{Pr}\left[C_j\ \text{is satisfied}\right] = 1 - \frac{1}{2^k} \ge \frac{1}{2} \), thus
-\[\mathbb{E}\left[\sum_{j = 1}^{n} Y_j\right] \overset{\text{linearity} \atop \text{of expectation}}{=} \sum_{j = 1}^{n} \mathbb{E}\left[Y_j\right] \ge \sum_{j = 1}^{n}\frac{1}{2} \ge \frac{1}{2}\mathrm{OPT} \]
+\[\mathbb{E}\left[\sum_{j = 1}^{m} Y_j\right] \overset{\text{linearity} \atop \text{of expectation}}{=} \sum_{j = 1}^{m} \mathbb{E}\left[Y_j\right] \ge \sum_{j = 1}^{m}\frac{1}{2} \ge \frac{1}{2}\mathrm{OPT} \]
 {{< /math >}}
 
 ### LP-SAT
@@ -133,7 +133,7 @@ We're interested in the satisfied ones, so
 \end{aligned}
 \]
 
-To use fact \(B\), we observed that \(a = f(0) = 0\) and that the second derivative is non-positive (so the function is concave). Now to formally count how many our program satisfies:
+To use fact \(B\), we observed that \(a = f(0) = 0\) and that the second derivative is non-positive (so the function is concave). Now to formally count how many clauses our program satisfies:
 \[
 \begin{aligned}
 	\mathbb{E}\left[\sum_{j = 1}^{m} Y_j\right] &= \sum_{j = 1}^{m} \mathbb{E}\left[Y_j\right] \\
@@ -150,7 +150,7 @@ To use fact \(B\), we observed that \(a = f(0) = 0\) and that the second derivat
 2. have an existential crisis about the fact that this works and is asymptotically optimal
 {{< /math >}}
 
-{{< math "theorem" >}}BEST-SAT is \(\frac{3}{4}\)-approximation.{{< /math >}}
+{{< math "theorem" >}}BEST-SAT is a \(\frac{3}{4}\)-approximation algorithm.{{< /math >}}
 
 {{< math "proof" >}} we want to prove that \( \mathrm{Pr}\left[C_j\ \text{is satisfied}\right] \ge \frac{3}{4} z^*_j \).
 

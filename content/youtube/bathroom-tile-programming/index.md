@@ -7,10 +7,6 @@ description: Follow-up to a video I released about bathroom tile programming, co
 ---
 
 
-<styles>
-
-</styles>
-
 This post is a follow-up to the [video I released](https://www.youtube.com/watch?v=KlaEp6ydVhA) on [my YouTube channel](https://www.youtube.com/channel/UC_IaBSHmisYbiYlv32EeNkQ) about bathroom tile programming. It contains a few other problems that didn't make it into the video (so it wouldn't be too long), but are interesting to try to solve on your own.
 
 If you have any other interesting problems to share (or you think some of the solutions I have could be improved/are not correct), please let me know 🙂.
@@ -23,7 +19,7 @@ _Click on tasks to see the solutions._
 {{< details "**Task:** accept the input \(\iff\) it contains balanced parentheses" >}}
 A simple solution that has the time complexity \(\mathcal{O}(n)\) can be found in the video, so this solution concerns only the faster \(\mathcal{O}(\log n)\) one, which is asymptotically optimal.
 
-The idea is to count how many parentheses we've seen so far and store it in the columns of the tiling as a binary number. When we see a one, we increment -- if the previous bit was 0, we put 1 to the right and don't carry. If it was a 1, we put 0 and do carry (see the diagram above). Same goes for decrementing:
+The idea is to count how many parentheses we've seen so far and store it in the columns of the tiling as a binary number. When we see a one, we increment -- if the previous bit was 0, we put 1 to the right and don't carry. If it was a 1, we put 0 and do carry (see the diagram below). Same goes for decrementing:
 
 ![Parentheses tiling](parentheses.webp)
 {.inverse-invert}

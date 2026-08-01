@@ -53,7 +53,7 @@ To achieve this, we need to store everything we want to display in a single {{< 
 - can only communicate by taking **inputs** and producing **outputs** (no cross-communication!)
 
 For Motion Canvas, they are written in `glsl`, which is a C-like shader language.
-If you aren't familiar with it, I'd suggest to [read the following short tutorial](https://learnopengl.com/Getting-started/Shaders), but you should be able to read through the examples here without issues since the language is very simple.
+If you aren't familiar with it, I'd suggest [reading the following short tutorial](https://learnopengl.com/Getting-started/Shaders), but you should be able to read through the examples here without issues since the language is very simple.
 
 _Also, if you find the following examples interesting, make sure to read the incredible [**Book of Shaders**](https://thebookofshaders.com/examples/) -- an online book that dives deep into the world of pixel shaders, and is a must-read for anyone with eyes._
 
@@ -84,7 +84,7 @@ out vec4 outColor;
 
 #### Uniforms
 
-Each shader also receives a set of values called `uniforms` (since their value stays the same for all shaders in a single render) of a number of useful things:
+Each shader also receives a set of values called `uniforms` (since their value stays the same for all shaders in a single render), describing a number of useful things:
 
 ```glsl
 uniform float time;

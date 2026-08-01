@@ -5,7 +5,7 @@ description: A summary of the (new) year's resolutions I worked on this year.
 toc: true
 ---
 
-Over the course of this year, I've been maintaining a page with **[resolutions](/resolutions/2024/)** to complete until the end of the year.
+Over the course of this year, I've been maintaining a page with **[resolutions](/resolutions/2024/)** to complete by the end of the year.
 They weren't new year's per se, as I've been adding/updating them throughout the year, but they were close enough.
 
 To make them unique, I've added an <span class="silver">easy</span> and a <span class="gold">hard</span> version to each, so I push further after achieving the easy version.
@@ -108,7 +108,7 @@ Cinema.
 
 #### <span class="gold">Read 12 | 18 books</span>
 
-Might have been cheating on this one a bit as I do audio books, but I've managed to sneak in **18**.
+Might have been cheating on this one a bit as I do audiobooks, but I've managed to sneak in **18**.
 I also might have double-cheated, as a few of those are re-reads, which likely shouldn't count when I repeat this resolution for next year.
 
 Who knows, maybe I'll actually _read_ one too, but it's hard when audiobooks are so convenient.
@@ -123,8 +123,8 @@ A win is a win?
 
 This one sucks.
 
-I managed to stick with it for about a month, and then I got lazy, fell out of the habit and didn't recover ever since.
-I'm really not happy about this, and will do some more drastic measures starting next year to make sure that this goes better (most likely restricting access to certain applications/websites until this succeeds).
+I managed to stick with it for about a month, and then I got lazy, fell out of the habit and haven't recovered ever since.
+I'm really not happy about this, and will take some more drastic measures starting next year to make sure that this goes better (most likely restricting access to certain applications/websites until this succeeds).
 
 #### <span class="silver">Make latte art of not just a heart</span>
 

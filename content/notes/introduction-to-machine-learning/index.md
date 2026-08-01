@@ -31,7 +31,7 @@ Setting:
 
 **Machine learning:**
 - choose a universal function family \(F\) with parameters \(\theta\)
-	- ex. \(F = \left\{ax^2 + b + c\right\}, \theta = \left\{a, b, c\right\}\)
+	- ex. \(F = \left\{ax^2 + bx + c\right\}, \theta = \left\{a, b, c\right\}\)
 - find parameters \(\hat{\theta}\) that fit the data, so \[\hat{Y} = f_{\hat{\theta}}(X) \qquad \text{and} \qquad \hat{Y}_i \approx Y_i^*\]
 
 **Basic ML workflow:**
@@ -85,7 +85,7 @@ Setting:
 | \(2\)             | Bob          | \(1.8\)m       | m              |
 | \(3\)             | Max          | \(1.9\)m       | m              |
 
-We usually (when Programming) want a **float matrix:** drop names, discretize labels and use one-hot encoding (one-hot because there are only ones in the particular features).
+We usually (when programming) want a **float matrix:** drop names, discretize labels and use one-hot encoding (one-hot because there are only ones in the particular features).
 
 | \(i \setminus j\) | \(1\) (height) | \(2\) (f) | \(3\) (m) | \(4\) (o) |
 | ---               | ---            | ---       | ---       | ---       |
@@ -141,7 +141,7 @@ We usually (when Programming) want a **float matrix:** drop names, discretize la
 - more general than hard classification -- can recover decision function by returning the most probable label by using \(\arg \max\): \[p(Y = k \mid X) \implies f(X) = \arg \max_k\ p(Y = k \mid X)\]
 
 **Quality** measured by "calibration"
-- if \(p(Y = k \mid X) = v\), then label \(k\) should be correct \(v\%\) of the times
+- if \(p(Y = k \mid X) = v\), then label \(k\) should be correct \(v\%\) of the time
 	- if actual accuracy is **higher**, then the classifier is "under confident"
 	- otherwise it's "over confident" (often happens)
 
@@ -174,7 +174,7 @@ We usually (when Programming) want a **float matrix:** drop names, discretize la
 - for classification, we want to use **Bayes rule** \[\boxed{\underbrace{p(Y = k \mid X)}_{\text{posterior}} = \frac{  \overbrace{p(X \mid Y = k)}^{\text{likelihood}}\ \overbrace{p(Y = k)}^{\text{prior}} }{\underbrace{p(X)}_{\text{marginal}}}}\]
 	- **posterior** -- we want to update our judgement based on measuring the features
 	- **prior** -- we know this (1% for a disease in the general population)
-	- **likelihood** -- the likelihood of the disease given features (fever, cough)
+	- **likelihood** -- the likelihood of the features (fever, cough) given the disease (fever, cough)
 	- **marginal** -- can be recovered by summing over possibilities: \[p(X) = \sum_{k = 1}^{C} p(X \mid Y = k) p(Y = k)\]
 
 Is hugely important for a number of reasons:
@@ -202,7 +202,7 @@ Is hugely important for a number of reasons:
 
 Some history behind ML:
 - traditional science seeks generative models (we can create synthetic data that are indistinguishable from real data)
-	- physics understand the movement of an object, so a game can use this to appear real
+	- physics understands the movement of an object, so a game can use this to appear real
 - ~1930: ML researchers realized that their models were too weak to do this \(\implies\) field switched to discriminative models
 - ~2012: neural networks solved many hard discriminative tasks \(\implies\) the field is again interested in generative models (Midjourney, ChatGPT, etc.)
 	- subfield "explainable/interpretable ML"
@@ -216,7 +216,7 @@ Some history behind ML:
 
 ##### How bad can it be?
 - case 1: **all classes are equally probable** (\(p(Y = k) = \frac{1}{C}\))
-	- worst classifier: pure guessing -- correct \(50\%\) of the time
+	- worst classifier: pure guessing -- correct \(\frac{1}{C}\) of the time
 - case 2: **unbalanced classes**
 	- worst classifier: always return the majority label
 
@@ -239,11 +239,11 @@ for feature weights \(\beta\) and intercept \(b\).
 - first neural network (1 neuron)
 - idea: improve \(\beta\) when model makes mistakes
 	- **naive approach** -- **0/1 loss:** \[\mathcal{L}(\hat{Y}_i, Y^*_i) = \begin{cases} 0 & \hat{Y}_i = Y^*_i \\ 1 & \hat{Y}_i \neq Y^*_i \end{cases}\]
-		- can be used to **evaluate** but **doesn't tell us how to improve** (and how)
+		- can be used to **evaluate** but **doesn't tell us how to improve**
 	- **better idea** -- **perceptron loss:** weigh penalty by error magnitude (and use \(\mathrm{ReLU}\)) \[\mathcal{L}(\hat{Y}_i, Y^*_i) = \mathrm{ReLU}(-Y_i X_i \beta) = \begin{cases} 0 & \hat{Y}_i = Y^*_i \\ |X_i \beta| = -Y_i X_i \beta & \hat{Y}_i \neq Y^*_i \end{cases}\]
 		- note that these are only for one instance, for all the average error is \[\frac{1}{N} \sum_{i = 1}^{N} \mathrm{ReLU} (-Y_i^* X_i \beta) = \frac{1}{N} \sum_{i: \hat{Y}_i \neq Y_i^*} -Y_i^* X_i \beta\]
 
-Gradient descent looks as follows: \[\beta^{(t)} = \beta^{(t - 1)} - \tau \underbrace{\frac{\partial \mathcal{L}^{(t - 1)}}{\partial \beta}}_{\text{loss derivative}}\] for **learning rate** \(\tau \ll 1\) In our case, the derivative (for a single instance) is \[\frac{\partial \mathcal{L}^{(t - 1)}}{\partial \beta} = \frac{\partial \mathrm{ReLU} (-Y_i X_i \beta)}{\partial \beta} = \begin{cases} 0 & -Y_i^* X_i \beta < 0\ \ \text{(correct)} \\ -Y_i^* X_i^T & \text{otherwise} \end{cases}\]
+Gradient descent looks as follows: \[\beta^{(t)} = \beta^{(t - 1)} - \tau \underbrace{\frac{\partial \mathcal{L}^{(t - 1)}}{\partial \beta}}_{\text{loss derivative}}\] for **learning rate** \(\tau \ll 1\). In our case, the derivative (for a single instance) is \[\frac{\partial \mathcal{L}^{(t - 1)}}{\partial \beta} = \frac{\partial \mathrm{ReLU} (-Y_i X_i \beta)}{\partial \beta} = \begin{cases} 0 & -Y_i^* X_i \beta < 0\ \ \text{(correct)} \\ -Y_i^* X_i^T & \text{otherwise} \end{cases}\]
 
 ##### Rosenblatt's algorithm
 
@@ -286,7 +286,7 @@ The decision plane is then correct when \[\forall i: Y_i^* (X_i \beta_H + b_H) \
 \begin{aligned}
 	H &= \argmax_H m_H \\
 	&= \argmax_H \left(\min_i \frac{Y_i^* (X_i \beta_H + b_H)}{ ||\beta_H ||}\right) \\
-	&= \argmax_H \left(\frac{1}{|| \beta_H  ||} \min_i Y_i^* (X_i \beta_H + b_H))\right) \\
+	&= \argmax_H \left(\frac{1}{|| \beta_H  ||} \min_i Y_i^* (X_i \beta_H + b_H)\right) \\
 	&= \arg \max_H \frac{1}{|| \beta_H || }
 \end{aligned}
 \]
@@ -328,7 +328,7 @@ The iteration step for \(\beta\) looks as follows: \[
 \end{aligned}
 }
 \]
-- note that we can't get stuck in a minimum, since the objective function is convex
+- note that we can't get stuck in a local minimum, since the objective function is convex
 
 ##### Linear Discriminant Analysis (LDA)
 - idea: assume that features for each class form a cluster
@@ -452,14 +452,14 @@ Doing an analogous derivation for \(p(Y = -1 \mid X)\), we get \[
 	- define projection of the means \(\hat{\mu_{1}} = \mu_1 \beta, \hat{\mu_{-1}} = \mu_{-1}\beta\)
 	- **intuition:** \(\hat{\mu}_1\) and \(\hat{\mu_{-1}}\) should be as far away as possible \[\beta = \argmax_\beta (\hat{\mu}_1 - \hat{\mu}_{-1})^2\]
 	- doesn't quite work, because \(\tau \beta \implies \tau^2 (\hat{\mu}_{1} \hat{\mu}_{-1})\)
-	- solution: scale by the variance \(\hat{\sigma}\): \(\hat{\sigma}_1 = \mathrm{Var}\left(Z_1 \mid Y_i^* = 1\right), \hat{\sigma}_{-1} \mathrm{Var}\left(Z_i \mid Y_i^* = -1\right)\), then we get \[\hat{\beta} = \argmax_{\beta} \frac{\left(\hat{\mu}_1 - \hat{\mu_{-1}}\right)^2}{\hat{\sigma}_1^2 + \hat{\sigma}_{-1}^2}\]
+	- solution: scale by the variance \(\hat{\sigma}\): \(\hat{\sigma}_1 = \mathrm{Var}\left(Z_1 \mid Y_i^* = 1\right), \hat{\sigma}_{-1} = \mathrm{Var}\left(Z_i \mid Y_i^* = -1\right)\), then we get \[\hat{\beta} = \argmax_{\beta} \frac{\left(\hat{\mu}_1 - \hat{\mu_{-1}}\right)^2}{\hat{\sigma}_1^2 + \hat{\sigma}_{-1}^2}\]
 	- again gives the same solution as \(1\) and \(2\)
 4. **Logistic regression (LR):** same posterior as LDA, but learn LHS of Bayes rule
 	- gives different solution to LDA
 
 ##### Logistic regression (LR)
 
-We again have i.i.d. assumptions -- all labels are drawn independently form the same posterior: \[p\left(\left(Y_i^*\right)_{i = 1}^N \mid \left(X_i\right)_{i = 1}^N\right) = \prod_{i = 1}^{N} p(Y_i^* \mid X_i)\]
+We again have i.i.d. assumptions -- all labels are drawn independently from the same posterior: \[p\left(\left(Y_i^*\right)_{i = 1}^N \mid \left(X_i\right)_{i = 1}^N\right) = \prod_{i = 1}^{N} p(Y_i^* \mid X_i)\]
 - as a reminder, this was **swapped for LDA** (we had \(p(X \mid Y)\))
 - use **maximum likelihood**: choose \(\hat{\beta}, \hat{b}\) such that posterior of TS is maximized: \[
 \begin{aligned}
@@ -468,20 +468,20 @@ We again have i.i.d. assumptions -- all labels are drawn independently form the 
 \end{aligned}\]
 
 For LR, \(Y^*_i \in \left\{0, 1\right\}\), which allows us to rewrite (with the \(\sigma\) results from LDA) like so: \[
-\boxed{\ \hat{\beta}, \hat{b}=\arg\min_{\beta, b}-\sum_{i=1}^N\Big[Y_i^* \log \sigma\left(X\beta+b\right)+\left(1-Y_i^*\right) \log \left(\sigma\left(-\left(X\beta+b\right)\right)\Big]\right.\ }
+\boxed{\ \hat{\beta}, \hat{b}=\arg\min_{\beta, b}-\sum_{i=1}^N\Big[Y_i^* \log \sigma\left(X\beta+b\right)+\left(1-Y_i^*\right) \log \left(\sigma\left(-\left(X\beta+b\right)\right)\right)\Big]\ }
 \]
 - no analytic solution but **is convex** (local extreme = global extreme, solve via GD)
 
 Here we have \(-\log(\sigma(-t)) = \log(1 + \exp(t))\), which is called the **softplus** function:
 
-![ReLu + Softplus graphs.](relu-softplus.svg)
+![ReLU + Softplus graphs.](relu-softplus.svg)
 
 Simplifying for \(b = 0\) and using the following properties:
 
 \[
 \begin{aligned}
 \frac{\partial \sigma\left(X\beta\right)}{\partial \beta}&=\sigma^{\prime}\left(X\beta\right) X=\sigma(X \beta) \sigma\left(-X\beta\right) \cdot X \\
-\frac{\partial \log \sigma\left(X\beta\right)}{\partial \beta}&=\frac{1}{\sigma\left(X\beta\right)} \sigma\left(X\beta\right) \sigma\left(-X\beta\right) \cdot X=\sigma\left(X\beta\right) \cdot X \\
+\frac{\partial \log \sigma\left(X\beta\right)}{\partial \beta}&=\frac{1}{\sigma\left(X\beta\right)} \sigma\left(X\beta\right) \sigma\left(-X\beta\right) \cdot X=\sigma\left(-X\beta\right) \cdot X \\
 \frac{\partial \log \sigma\left(-X\beta\right)}{\partial \beta}&=\frac{1}{\sigma\left(-X\beta\right)} \sigma\left(X\beta\right) \sigma\left(-X\beta\right) \cdot(-X)=-\sigma\left(X\beta\right) \cdot X
 \end{aligned}
 \]
@@ -509,7 +509,7 @@ The four cases that can occur are as follows:
 
 ##### Summary
 - with \(Y \in \left\{-1, 1\right\}\), all methods have same decision rule \[\hat Y_i = \mathrm{sign}(X_i \beta + b)\] but the methods differ by how they define & find optimal \(\beta, b\)
-- common objective function \[\hat \beta, \hat b = \argmin_{\beta, b} = \frac{\lambda}{2} \underbrace{\beta^T \beta}_{\text{regularization}} + \frac{1}{N} \sum_{i = 1}^{N} \underbrace{\mathcal{Loss} (Y_i^*, X_i \beta + b)}_{\text{data term}} \]
+- common objective function \[\hat \beta, \hat b = \argmin_{\beta, b} \frac{\lambda}{2} \underbrace{\beta^T \beta}_{\text{regularization}} + \frac{1}{N} \sum_{i = 1}^{N} \underbrace{\mathcal{Loss} (Y_i^*, X_i \beta + b)}_{\text{data term}} \]
 
 **Perceptron:** \[\mathrm{ReLU}(-Y_i^* (X_i \beta + b)) \qquad \lambda = 0\]
 
@@ -613,7 +613,7 @@ Previously, NN were believed to not be a good idea, but
 
 1. \(\frac{\partial \mathcal{Loss}}{\partial z_L}\) (application-dependent loss)
 	- **regression:** \[\begin{aligned} \mathcal{Loss} &= \frac{1}{2} \left(z_L - Y_i^*\right)^2 \\ \frac{\partial \mathcal{Loss}}{\partial z_L} &= z_L - Y_i^* \end{aligned}\]
-	- **classification:** \[\begin{aligned} \mathcal{Loss} &= \sum_{k = 1}^{C} \mathbb{1} \mathbb{I} \left[k = Y_i^*\right] -\log \underbrace{p(Y = k \mid X)}_{z_{Lk}} \\ \frac{\partial \mathcal{Loss}}{\partial z_{Lk}} &= \begin{cases} - \frac{1}{z_{Lk}} & k = Y_i^* \\ 0 & \text{otherwise} \end{cases} \end{aligned}\]
+	- **classification:** \[\begin{aligned} \mathcal{Loss} &= \sum_{k = 1}^{C} \mathbb{1} \left[k = Y_i^*\right] -\log \underbrace{p(Y = k \mid X)}_{z_{Lk}} \\ \frac{\partial \mathcal{Loss}}{\partial z_{Lk}} &= \begin{cases} - \frac{1}{z_{Lk}} & k = Y_i^* \\ 0 & \text{otherwise} \end{cases} \end{aligned}\]
 
 2. back-propagate through output activation \(\varphi_L (\tilde z_L)\)
 	- here we define \(\tilde{\delta}_L = \frac{\partial \mathcal{Loss}}{\partial \tilde z_L}\) since we'll use it a lot
@@ -704,7 +704,7 @@ Comparing a CNN to a fully-connected (FC) network, the weight matrices look like
 	\beta_{1,1} & \beta_{1,2} & \ldots & \beta_{1,6} \\
 	\beta_{2,1} & \beta_{2,2} & \ldots & \beta_{2,6} \\
 	\vdots & \vdots & \ddots & \vdots \\
-	\beta_{6,1} & \beta_{6,2} & \ldots & \beta_{1,6} \\
+	\beta_{6,1} & \beta_{6,2} & \ldots & \beta_{6,6} \\
 \end{pmatrix} \qquad B_{\text{CNN}} = \begin{pmatrix}
 	w_2 & w_1 & 0 & 0 & 0 & 0 \\
 	w_3 & w_2 & w_1 & 0 & 0 & 0 \\
@@ -754,7 +754,7 @@ CNNs usually alternate between **convolution**, **non-linear layers** (ReLU), **
 		- also skip connections as identity mappings, preventing vanishing gradients
 		- reaches superhuman performance (humans 4/5%, ResNet 3.6%)
 		- for top-1, they had 25% error (nowadays ~10%)
-	- nowadays, use two tricks:
+	- nowadays, use the following trick:
 		- train on _much larger datasets_ (up to 3B images)
 
 #### Residual Networks (ResNet)
@@ -790,7 +790,7 @@ CNNs usually alternate between **convolution**, **non-linear layers** (ReLU), **
 	- **number** of **simultaneous** distortions (\(\ge 2\) works good)
 
 ##### Self-supervised training
-- use augmentation to avoid manual labelling
+- use augmentation to avoid manual labeling
 - **strategy (1):** use augmentation that can be **labeled automatically**
 	- rotate by \(\alpha \implies\) predict \(\alpha\)
 	- to solve this, network learns features that are useful for other tasks -- cut out the angle detection and use the rest of the network for feature detection
@@ -823,7 +823,7 @@ CNNs usually alternate between **convolution**, **non-linear layers** (ReLU), **
 	- won about 30 medical benchmark competitions
 
 - U-net is a specific example of an **auto-encoder:**
-	- takes in a \(D\)-dimensional data
+	- takes in \(D\)-dimensional data
 	- then uses an **encoder** to convert to \(C\)-dimensional codes
 	- lastly uses a **decoder** to convert back to the ~original data
 	- since \(D \gg C\), this is lossy, but works really well
@@ -842,10 +842,10 @@ CNNs usually alternate between **convolution**, **non-linear layers** (ReLU), **
 - assume that data is generated by some true (but unknown) generative process
 	- in this case linear model with additive Gaussian noise, for simplicity assume \(y \in \mathbb{R}\)
 \[Y_i = X_i \beta^* + b^* + \varepsilon_i \qquad \varepsilon_i \sim \mathcal N(0, \sigma^2)\] (i.e. variance is fixed but unknown)
-- given \(\mathrm{TS} = \left\{(X_i Y_i)\right\}_{i = 1}^N\), find \(\hat \beta \approx \beta^*\) and \(\hat b = b^*\)
+- given \(\mathrm{TS} = \left\{(X_i Y_i)\right\}_{i = 1}^N\), find \(\hat \beta \approx \beta^*\) and \(\hat b \approx b^*\)
 - important: assume that **only \(Y\) is noisy, not \(X\)** (other variant also exists)
 - derive loss by maximum likelihood principle and i.i.d. assumption: \[ \begin{aligned}
-	\hat\beta, \hat b = \argmin_{\beta, b} p(\mathrm{TS}) &= \argmax_{\beta, b} \prod_{i = 1}^{N} p(Y_i \mid X_i) \\ 
+	\hat\beta, \hat b = \argmax_{\beta, b} p(\mathrm{TS}) &= \argmax_{\beta, b} \prod_{i = 1}^{N} p(Y_i \mid X_i) \\ 
 	                                                      &= \argmin_{\beta, b} \sum_{i = 1}^{N} -\log p(Y_i \mid X_i) \\ 
 	                                                      &= \argmin_{\beta, b} \sum_{i = 1}^{N} -\log N(Y_i \mid X_i \beta + b = \mu(x), \sigma^2) \\ 
 	                                                      &= \argmin_{\beta, b} \sum_{i = 1}^{N} -\log \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(-\frac{1}{2} \frac{(Y_i - X_i \beta - b)^2}{\sigma^2}\right) \\ 
@@ -948,9 +948,9 @@ Here we distinguish multiple cases:
 	- the \(\sigma\)s act as weights for the residuals
 	- we can rewrite in matrix notation (\(\sigma\)s as a diagonal) and get \[\hat \beta = \argmin_\beta (Y - X \beta)^T \Sigma^{-1} (Y - X \beta)\]
 	- this can be solved by setting the derivative to zero and we get a **weighted pseudo-inverse** \[\boxed{\hat \beta = \left(X^T \Sigma^{-1} X\right)^{-1} X^T \Sigma^{-1} Y}\]
-3. **iteratively reweighted LS** (\(\sigma_i\) are not constant and unknown) -- learn the \(\sigma\)s jointly with \(\beta\))
+3. **iteratively reweighted LS** (\(\sigma_i\) are not constant and unknown) -- learn the \(\sigma\)s jointly with \(\beta\)
 	- \(\sigma_i\) is **unsupervised**, \(\beta\) is **supervised** -- gives rise to interesting algorithms
-	- the problem can be formulated as \[\argmin_\theta \sum_{i = 1}^{N} \left[\log \sigma_i^2 + \frac{\left(Y_i - X_i \beta\right)^2}{\sigma_i^2} \right]\] usually called David-Sebastian score or hetero-scedastic loss
+	- the problem can be formulated as \[\argmin_\theta \sum_{i = 1}^{N} \left[\log \sigma_i^2 + \frac{\left(Y_i - X_i \beta\right)^2}{\sigma_i^2} \right]\] usually called Dawid-Sebastiani score or hetero-scedastic loss
 	- if \((Y_i - X_i \beta)^2\) is big \(\implies\) increase \(\sigma_i\) to make the loss smaller, but we pay the penalty of \(\log \sigma_i^2\) for big \(\sigma\)s (optimal solution selects \(\sigma_i^2\) for the best trade-off)
 
 #### Alternating optimization
@@ -968,10 +968,10 @@ Here we distinguish multiple cases:
 
 To solve IRLS using this method, we do the following
 
-1. define initial guess as \(\tau_i = 1\) (\(\tau_i = \sigma_i^2\)
+1. define initial guess as \(\tau_i = 1\) (\(\tau_i = \sigma_i^2\))
 2. for \(t = 1, \ldots, T\) (or until convergence)
 	- obtain \(\beta^{(t)}\) via **weighted least squares** (since \(\sigma\)s are known and fixed)
-	- since \(\beta\) is fixed, we get \[\left\{\tau_i^{(t)}\right\} = \argmin_{\left\{\tau_i\right\}} \sum_{i = 1}^{N} \frac{Y_i - X_i \beta^{(t)}}{\tau_i} + \log \tau_i\] which we can solve by setting the derivative to \(0\) and obtain \[\boxed{\tau_i^{(t)} = (Y_i - X_i \beta^{(t)})^2}\] i.e. _standard deviations are equal to the magnitude of the error_
+	- since \(\beta\) is fixed, we get \[\left\{\tau_i^{(t)}\right\} = \argmin_{\left\{\tau_i\right\}} \sum_{i = 1}^{N} \frac{\left(Y_i - X_i \beta^{(t)}\right)^2}{\tau_i} + \log \tau_i\] which we can solve by setting the derivative to \(0\) and obtain \[\boxed{\tau_i^{(t)} = (Y_i - X_i \beta^{(t)})^2}\] i.e. _standard deviations are equal to the magnitude of the error_
 
 How many iterations are required?
 - in theory (with infinite accuracy) **two** iterations are sufficient
@@ -1028,13 +1028,13 @@ Definitions:
 - \(\beta^*\): weights of the true generative process \(Y^* = X \beta^* + \varepsilon\)
 - \(\hat \beta_m\): results of team \(m\)
 - \(\mathbb{E}_m [\hat \beta_m] \approx \frac{1}{M} \sum_{m = 1}^{M} \hat \beta_m\): average result of all teams
-- \(\mathrm{Cov(\hat \beta_m}) = \mathbb{E}_m \left[\left(\hat \beta_m - \mathbb{E}[\hat \beta_m]\right)\left(\hat \beta_m - \mathbb{E}[\hat \beta_m]\right)^T\right] \): 
+- \(\mathrm{Cov(\hat \beta_m}) = \mathbb{E}_m \left[\left(\hat \beta_m - \mathbb{E}[\hat \beta_m]\right)\left(\hat \beta_m - \mathbb{E}[\hat \beta_m]\right)^T\right] \): covariance of the team results 
 - \(\mathrm{bias} = \beta^* - \mathbb{E}_m [\hat \beta_m]\): systematic error after combining team results
 
 Now we'll measure the quality of outcomes by \[
 \begin{aligned}
 \mathrm{MSE} &= \mathbb{E}_m \left[\left(\hat \beta_m - \beta^*\right)^2\right] \\
-&= \mathbb{E}_m \left[\left(\hat \beta_m - \mathbb{E}[\hat \beta_m] + \mathbb{E}[\hat \beta_m] + \beta^*\right)^2\right] \\ 
+&= \mathbb{E}_m \left[\left(\hat \beta_m - \mathbb{E}[\hat \beta_m] + \mathbb{E}[\hat \beta_m] - \beta^*\right)^2\right] \\ 
 &= \underbrace{\mathbb{E}_m \left[\left(\hat \beta_m - \mathbb{E}_m (\hat \beta_m)\right)^2\right]}_{\text{covariance}} + \underbrace{\mathbb{E}_m \left[\left(\beta^* - \mathbb{E}_m [\hat\beta_m]\right)^2\right]}_{\text{bias}^2} \\
 \end{aligned}
 \]
@@ -1082,10 +1082,10 @@ Useful, because we can see that \(\tau\) (regularization) has **opposite effects
 	- compute new guess by solving OLS only with active features
 
 #### Non-linear regression
-- keep squared loss \(\implies \hat \theta = \argmin_\theta \sum_{i = 1}^{N } \left(Y_i^* - f_\theta (X_i)^2\right)\)
+- keep squared loss \(\implies \hat \theta = \argmin_\theta \sum_{i = 1}^{N } \left(Y_i^* - f_\theta (X_i)\right)^2\)
 	- \(f_\theta(X) = X \beta \implies\) linear regression
 	- \(f_\theta(X)\) neural network with parameters \(\theta\)
-- true generative process \(Y_i^* = f_{\theta^*} (X_i) + \varepsilon_i \quad \varepsilon_i ~ N(0, \sigma^2)\)
+- true generative process \(Y_i^* = f_{\theta^*} (X_i) + \varepsilon_i \quad \varepsilon_i \sim N(0, \sigma^2)\)
 
 **Two general approaches:**
 1. transform features such that we can run linear regression (and use OLS)
@@ -1143,7 +1143,7 @@ For specific problems:
 For **classification** trees:
 - the **prediction** is the majority class in the leaf node
 - the **split criterion** prefers splits that separate classes well... given a node \(m\):
-	- **C4.5** algorithm: measure the entropy by iterating over all classes: \[H_m = -\sum_{k = 1}^{C} \hat p_{m, k} \log \hat p_{m, k} \qquad \hat p_{m, k} = \frac{N_{m, k}}{N}\]
+	- **C4.5** algorithm: measure the entropy by iterating over all classes: \[H_m = -\sum_{k = 1}^{C} \hat p_{m, k} \log \hat p_{m, k} \qquad \hat p_{m, k} = \frac{N_{m, k}}{N_m}\]
 	- **CART** algorithm: uses Gini impurity: \[G_m = 1 - \sum_{k = 1}^{C} \hat p_{m, k}^2\]
 	- in either case, the loss of a given split is \(N_l H_l + N_r H_r\) (or \(G\) if we use CART)
 

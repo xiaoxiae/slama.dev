@@ -43,7 +43,7 @@ Dostáváme:
 {{< math "proof" "\(\le\)" >}}
 \(n \le i (n - i + 1), \forall i \in [n]\):
 - \(i = 1\) platí
-- \(i = 2 \rightarrow\)  jeden člen je vždy \(\ge 2\), druhý \(\ge n/2\)
+- \(i \ge 2 \rightarrow\)  jeden člen je vždy \(\ge 2\), druhý \(\ge n/2\)
 
 \[
 \begin{aligned}
@@ -199,9 +199,9 @@ nechť \(\left(a_0, a_1, \ldots\right)\) je posloupnost reálných čísel. Vytv
 | substituce \(x^n\)      | \(a_0, 0, \overset{n - 1}{\ldots}, 0, a_1, 0, \overset{n - 1}{\ldots}, 0, a_2, \ldots \) | \(a(x^n)\)                |
 |                         |                                                                                          |                           |
 | derivace                | \(a_1, 2a_2, 3a_3, \ldots \)                                                             | \( a'(x)\)                |
-| integrování             | \(0, a_1, a_2/2, a_3/3, \ldots \)                                                        | \( \int_{0}^{x} a(t) dt\) |
+| integrování             | \(0, a_0, a_1/2, a_2/3, \ldots \)                                                        | \( \int_{0}^{x} a(t) dt\) |
 |                         |                                                                                          |                           |
-| konvoluce               | \(a_n = \sum_{k = 0}^{n} a_k \cdot b_{n - k} \)                                          | \( a(x) \cdot b(x)\)      |
+| konvoluce               | \(c_n = \sum_{k = 0}^{n} a_k \cdot b_{n - k} \)                                          | \( a(x) \cdot b(x)\)      |
 
 Zde je několik příkladů řad a výrazů, kterým odpovídají (hodí se v důkazech): \[
 \begin{aligned}
@@ -286,7 +286,7 @@ Pro daný koeficient vytvořující funkce tedy máme:
 		- \(x\) je tam kvůli posunu, aby vycházelo správně indexování (suma nejde do \(n\))
 		- \(1\) je tam kvůli tomu, aby nultý člen správně vycházel
 
-[^1]: Rekurence pro \(b_n\) vypadá skoro jako konvoluce sama sebe, takže by se nám líbilo něco jako \(b(x) = b(x)^2\). Jenže narozdíl od konvoluce pronásobujeme jen prvních \(n-1\) prvků. Uvažme tedy posloupnost \(0, b_0, b_1, b_2, \ldots\) generovanou funkcí \(x b(x)\). Ta je již skoro konvolucí sama sebe -- \(n\)-tý prvek se v sumě požere s nulou.  Jediná nepřesnost je u \(b_0\), protože podle definice konvoluce \(b_0 = 0 \cdot b_0 + b_0 \cdot 0 = 0\), ale my víme \(b_0 = 1\). Stačí tedy přičíst jedničku posunutou o jedna doprava, čímž dostaneme \(x b(x) = (x b(x))^2 + x\). Jinými slovy \(b(x) = x b(x)^2 + 1\).
+[^1]: Rekurence pro \(b_n\) vypadá skoro jako konvoluce sama sebe, takže by se nám líbilo něco jako \(b(x) = b(x)^2\). Jenže na rozdíl od konvoluce pronásobujeme jen prvních \(n-1\) prvků. Uvažme tedy posloupnost \(0, b_0, b_1, b_2, \ldots\) generovanou funkcí \(x b(x)\). Ta je již skoro konvolucí sama sebe -- \(n\)-tý prvek se v sumě požere s nulou.  Jediná nepřesnost je u \(b_0\), protože podle definice konvoluce \(b_0 = 0 \cdot b_0 + b_0 \cdot 0 = 0\), ale my víme \(b_0 = 1\). Stačí tedy přičíst jedničku posunutou o jedna doprava, čímž dostaneme \(x b(x) = (x b(x))^2 + x\). Jinými slovy \(b(x) = x b(x)^2 + 1\).
 
 \[
 \begin{aligned}
@@ -376,8 +376,8 @@ jejích bodů.
 {{% /float_box %}}
 
 1. triviálně z definice.
-2. viz. níže.
-3. vychází z duality (viz. další kapitola).
+2. viz níže.
+3. vychází z duality (viz další kapitola).
 
 Vezměme libovolné \(x \in X\). Pak \(\exists P \in \mathcal{P}: x \not\in P\), protože vezmeme-li body \(a, b, c \in \mathcal{C}\), pak přímky \(ab\) a \(ac\) nemohou mít další společný bod než \(a\) (došlo by ke sporu s některým z axiomů).
 
@@ -428,7 +428,7 @@ ověření axiomů v duálním světě:
 	- zvolím \(\mathcal{C} = \left\{ab, cd, ad, bc\right\}\), což funguje (zkusit si rozkreslit)
 2. \(\forall x, y \in X, x \neq y: \exists! P \in \mathcal{P}\) t. ž. jimi prochází právě \(1\) přímka
 	- stejné jako původní axiom o přímkách
-3. analogicky viz. ^
+3. analogicky viz ^
 {{< /math >}}
 
 {{< math "consequence" >}}
@@ -607,7 +607,7 @@ počet podmnožin \(X = \left| \binom{X}{k}\right| = \binom{|X|}{k}\){{< /math >
 {{< math "proof" >}}
 nechť máme bublinu s tečkami, každá reprezentuje uspořádanou \(k\)-tici prvků z \(X\).{{< /math >}}
 - počet teček \(= n (n -1) (n-2) \ldots (n - k + 1) = \frac{n!}{(n - k)!}\) (vyberu \(1.\) prvek, \(2.\) prvek,...)
-- v každé buňce \(k\)-tic (ekvivalenční třídě přes příslušnou relaci) se stejnými prvky je \(k!\) prvků, počet buňek je to, co chceme (neuspořádaná \(k\)-tice)
+- v každé buňce \(k\)-tic (ekvivalenční třídě přes příslušnou relaci) se stejnými prvky je \(k!\) prvků, počet buněk je to, co chceme (neuspořádaná \(k\)-tice)
 
 \[
 \begin{aligned}
@@ -625,7 +625,7 @@ nechť \((\mathcal{P}, \subseteq)\) je částečné uspořádání, kde \(\mathc
 \(\sum_{M \in \mathcal{M}} \left|M\right|! (n - \left|M\right|)! \le n!\). Přes dvojí počítání počtu permutací na \(X\):{{< /math >}}
 - počet permutací \(= n!\) (očividné)
 - počet permutací \(\ge \sum_{M \in \mathcal{M}} |M|! (n - |M|)! \), protože:
-	- pro každé \(M\) dostanu jinou množinu permutaci
+	- pro každé \(M\) dostanu jinou množinu permutací
 	- \(M\) určuje množinu permutací takovou, že nejprve permutuji \(M\), potom \(X \setminus M\):
 
 ![](sperner.svg)
@@ -668,7 +668,7 @@ graf \(G\) s \(n\) vrcholy bez \(C_4\) má nejvýše \(\frac{1}{2} \left(n^{3/2}
 -->
 
 {{< math "proof" >}}
-dvojí počítání „vidliček“ (cest delky \(2\)):{{< /math >}}
+dvojí počítání „vidliček“ (cest délky \(2\)):{{< /math >}}
 1. pro pevnou dvojici \(\left\{u, u'\right\}\) mám nanejvýš 1 vidličku (dvě by tvořily čtyřcyklus), tedy \(\#\ \text{vidliček}\ \le \binom{n}{2}\)
 2. pro pevný vrchol \(v\) máme \(\#\ \text{vidliček}\ = \binom{d_i}{2}\)
 
@@ -720,7 +720,7 @@ počítání \((T, r, c)\), kde:{{< /math >}}
 1. \(\#(T, r, c) = \kappa(n) \cdot n \cdot \left(n - 1\right)!\)
 	- \(T\) je to, co hledáme
 	- \(r\) volíme libovolně z \(n\) vrcholů
-	- \(c\) je prostě random očíslovaní na \(n - 1\) hranách
+	- \(c\) je prostě random očíslování na \(n - 1\) hranách
 2. představa: přidávám hrany, až nakonec dojdu k \((T, r, c)\) a jsem v \(k\)-tém kroce:
 	- {{< math "observation" >}}nesmím vést hranu uvnitř komponenty (cykly){{< /math >}}
 	- {{< math "observation" >}}musím vést hranu pouze z kořene dané komponenty (jeden vrchol by měl 2 rodiče){{< /math >}}
@@ -766,7 +766,7 @@ To, co teče ven ze zdroje.
 {{< math "theorem" >}}
 existuje maximální tok.{{< /math >}}
 
-{{< math "definition" "pseudo" >}}
+{{< math "proof" "pseudo" >}}
 Nástin je takový, že množina toků je kompaktní a obsahuje tedy i maximum (nevznikne nám tam nějaká divnost).{{< /math >}}
 
 {{< math "definition" "řez" >}}
@@ -827,7 +827,7 @@ je tok takový, že každá (neorientovaná) cesta ze \(z\) do \(s\) je nasycen�
 - uvážíme množinu vrcholů, do kterých se lze dostat ze \(z\) po nenasycené cestě -- \(A = \left\{v \in V\ |\ \exists\ \text{nenasycená cesta }\right\}\)
 	- \(s \notin A\) (jinak \(f\) není nasycený)
 	- \(\forall e \in S(A, V \setminus A)\) platí \(f(e) = c(e)\)
-	- \(\forall e \in S(V \setminus A, A)\) platí \(f(e) = 0\) (jinak bychom nenasycenou cestu mohli prodloužit
+	- \(\forall e \in S(V \setminus A, A)\) platí \(f(e) = 0\) (jinak bychom nenasycenou cestu mohli prodloužit)
 
 \[
 \begin{aligned}
@@ -878,7 +878,7 @@ Z toku získávám minimální \(z-s\) řez \(R\). Ten upravíme na minimální 
 
 Tento řez určuje velikost minimálního vrcholového pokrytí (pokud by tomu tak nebylo, tak nemáme minimální řez).
 
-Nyní chceme ukázat, že velikost \(R'\) je rovná velikosti nějakého vrcholového pokrytí, a že velikost min. pokrytí je rovna velikosti nějakému řezu, což k důkazu věty stačí.
+Nyní chceme ukázat, že velikost \(R'\) je rovná velikosti nějakého vrcholového pokrytí, a že velikost min. pokrytí je rovna velikosti nějakého řezu, což k důkazu věty stačí.
 
 Najdeme vrcholové pokrytí stejně veliké jako \(R'\):
 - \(W = \left\{u \in L\ |\ (z, u) \in R'\right\} \cup \left\{v \in P\ |\ (v, s) \in R'\right\}\)
@@ -1087,7 +1087,7 @@ vycházíme z Fanovy roviny a o přímkách uvažujeme jako o prvcích \(\mathbb
 	- nějak rozumně očísluj kódová slova!
 4. profit?
 
-**Výsledek:** zpráva je o \(7/4\) delší, ale pro \(p\) šanci otočení bitu získáváme následující:
+**Výsledek:** zpráva je \(7/4\)krát delší, ale pro \(p\) šanci otočení bitu získáváme následující:
 
 \[
 \begin{aligned}
@@ -1220,7 +1220,7 @@ nechť \(G\) je generující matice kódu \(C\){{< /math >}}
 
 ##### Dekódování
 
-Mějme \(C\) lineární kód délky \(n\) nad \(\mathbb{Z}_2^4\). Bylo odesláno slovo \(x \in C\) a přijato slovo \(\tilde{x}\).
+Mějme \(C\) lineární kód délky \(n\) nad \(\mathbb{Z}_2^n\). Bylo odesláno slovo \(x \in C\) a přijato slovo \(\tilde{x}\).
 - mohly nastat chyby \(e = \tilde{x} - x\) (chybový vektor)
 	- chceme ho objevit, abychom rozluštili \(x\)
 
@@ -1228,7 +1228,7 @@ Mějme \(C\) lineární kód délky \(n\) nad \(\mathbb{Z}_2^4\). Bylo odesláno
 
 {{< math "definition" "syndrom" >}}
 slova \(z\) je \(Pz\), kde \(P\) je paritní matice kódu \(C\).{{< /math >}}
-- {{< math "observation" >}}kódová slova \(\equiv\) slova se syndromem \(0\) (viz. definice \(P\)...){{< /math >}}
+- {{< math "observation" >}}kódová slova \(\equiv\) slova se syndromem \(0\) (viz definice \(P\)...){{< /math >}}
 
 **Předpoklad:** chybový vektor \(e\) je slovo s nejmenší vahou ve své třídě
 - **třída** \(= \left\{e'\ |\ Pe' = P\tilde{x} = P(x + e) = Px + Pe = Pe\right\}\) (slova se stejným syndromem)
@@ -1263,7 +1263,7 @@ slova \(z\) je \(Pz\), kde \(P\) je paritní matice kódu \(C\).{{< /math >}}
 kódová slova \(\equiv Pc = 0\). Nechť sloupce \(P\) jsou \(p_1, \ldots, p_n\). Pak{{< /math >}}
 \[\sum_{i = 1}^{n} c_i p_i = 0\]
 
-Pro spor nechť \(\exists x\) t. ž. \(\sum x_i p_i = 0\) (je tedy kódové slovo) a \(w(x) < d \rightarrow\). To je spor, \(\Delta(C) = d\) ale tohle slovo má \(w(x) < d\). To musí nutně znamenat, že \(\forall x: w(x) < d \rightarrow \sum_{i = 1}^{n}x_i p_i \neq 0 \rightarrow\) každých \(\le d - 1\) sloupců je tedy lineárně nezávislých.
+Pro spor nechť \(\exists x\) t. ž. \(\sum x_i p_i = 0\) (je tedy kódové slovo) a \(w(x) < d\). To je spor, \(\Delta(C) = d\) ale tohle slovo má \(w(x) < d\). To musí nutně znamenat, že \(\forall x: w(x) < d \rightarrow \sum_{i = 1}^{n}x_i p_i \neq 0 \rightarrow\) každých \(\le d - 1\) sloupců je tedy lineárně nezávislých.
 
 {{< math "consequence" >}}
 pokud chci \(d = 3\), potřebuji co největší matici \(P\) t. ž. \(\forall 2\) sloupce jsou lineárně nezávislé. To v \(\mathbb{Z}_2\) znamená, že musí být různé a žádný z nich není nulový.{{< /math >}}
@@ -1317,7 +1317,7 @@ mám na \(2^n\) prvcích \(|C|\) disjunktních koulí objemu \(V(n, t)\)... koul
 kód \(C\) je perfektní, pokud pro něj platí Hammingův odhad s rovností.{{< /math >}}
 
 {{< math "example" "perfektních kódů" >}}
-- totální (koule o poloměru 1)
+- totální (koule o poloměru 0)
 - opakovací kód liché délky
 - jednoprvkový kód (koule zaplňuje celý prostor)
 {{< /math >}}
@@ -1483,7 +1483,7 @@ pro každé \(t \in \mathbb{N}\) a každé \(c: \mathbb{N} \mapsto [t]\) existuj
 - z „existuje holubník s hodně holuby“ máme „existuje holubník s nekonečně holuby“
 
 {{< math "proof" >}}
-rozdělím \(\mathbb{N}\) na \(B_1, \ldots, B_t\), kde \(B_i = \left\{m \in \mathbb{N}\ |\ c(m) = i\right\}\). Protože sjednocením je nekonečná množina pak alespoň jedna musí být nekonečná.{{< /math >}}
+rozdělím \(\mathbb{N}\) na \(B_1, \ldots, B_t\), kde \(B_i = \left\{m \in \mathbb{N}\ |\ c(m) = i\right\}\). Protože sjednocením je nekonečná množina, pak alespoň jedna musí být nekonečná.{{< /math >}}
 
 {{% float_box %}}
 Na každém nekonečném úplném grafu existuje nekonečná klika s jednobarevnými hranami.
@@ -1504,7 +1504,7 @@ posloupnost vrcholů \(v_1, v_2, \ldots\) má vlastnost, že pokud \(i < j\), pa
 - to, že \(v_j\) přežil zanoření se mohlo stát pouze tak, že s \(v_i\) byl spojen barvou \(b_i\)
 
 {{< math "observation" >}} posloupnost barev \(b_1, b_2, b_3, \ldots\) je nekonečná, ale opakuje se tu konečně mnoho hodnot
-- aplikuji nekonečný holubník \(\implies \exists j \in [t]\) opakující-se [nekonečněkrát](https://www.youtube.com/watch?v=tLN3cZbFBxg) a takové vrcholy tvoří hledanou nekonečnou kliku (viz pozorování výše)
+- aplikuji nekonečný holubník \(\implies \exists j \in [t]\) opakující se [nekonečněkrát](https://www.youtube.com/watch?v=tLN3cZbFBxg) a takové vrcholy tvoří hledanou nekonečnou kliku (viz pozorování výše)
 {{< /math >}}
 
 (\(t\) počet barev, \(k\) velikost kliky)
@@ -1550,7 +1550,7 @@ Pomocné obarvení \((p-1)\)-tic -- každá má barvu, kterou měla v \(p\)-tici
 
 {{< math "observation" >}}
 barva \(p\)-tice \(\left\{v_{i_1}, \ldots, v_{i_p}\right\}\) (vzhledem k vzniklé posloupnosti \(v_1, v_2, \ldots\)), kde \(i_1 < i_2 < i_3 < \ldots < i_p\) závisí pouze na barvě prvku \(v_{i_1}\) (stejný argument jako u věty výše){{< /math >}}
-- vyberu z barev nějakou opakující-se [nekonečněkrát](https://www.youtube.com/watch?v=tLN3cZbFBxg) a vrcholy s příslušnými indexy tvoří \(A\)
+- vyberu z barev nějakou opakující se [nekonečněkrát](https://www.youtube.com/watch?v=tLN3cZbFBxg) a vrcholy s příslušnými indexy tvoří \(A\)
 
 {{% float_box %}}
 Stejné jako nekonečná věta, ale máme fixní velikost kliky a konečně mnoho vrcholů.
@@ -1560,7 +1560,7 @@ Stejné jako nekonečná věta, ale máme fixní velikost kliky a konečně mnoh
 \(\forall p, t, k \in \mathbb{N} \exists N \in \mathbb{N}\) t. ž. \(\forall n \ge N, \forall c: \binom{[n]}{p} \mapsto [t]\ \exists A \subseteq [n], |A| = k\) t. ž. \(c\) je na \(\binom{A}{p}\) konstantní.{{< /math >}}
 
 {{< math "proof" >}}
-mějme \(p, k, t\) z předpokladu. Uvažme \(c_i: \binom{[n]}{p} \mapsto [t]\). To je _dobré_, pokud \(\exists \) \(k\)-prvková jednobarevná podmnožina, jinak je _špatné_. Věta tedy tvrdí, že \(n \ge N\) jsou všechna \(c\) _dobrá_.{{< /math >}}
+mějme \(p, k, t\) z předpokladu. Uvažme \(c_i: \binom{[n]}{p} \mapsto [t]\). To je _dobré_, pokud \(\exists \) \(k\)-prvková jednobarevná podmnožina, jinak je _špatné_. Věta tedy tvrdí, že pro \(n \ge N\) jsou všechna \(c\) _dobrá_.{{< /math >}}
 
 Sporem: předpokládejme, že pro nekonečně mnoho \(n\) \(\exists\) _špatné_ obarvení.
 

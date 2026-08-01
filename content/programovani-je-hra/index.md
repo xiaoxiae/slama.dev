@@ -8,7 +8,7 @@ language: cs
 
 Vítejte na stránce kurzu Programování je Hra!
 
-Kurz bude vyučovaný online formou, každý čtvrtek od **15:30** do **17:00** na stránce **[https://meet.jit.si/programovani-je-hra](https://meet.jit.si/programovani-je-hra)**. Cílem je se seznámit se základy programování v jazyce Python.
+Kurz bude vyučován online formou, každý čtvrtek od **15:30** do **17:00** na stránce **[https://meet.jit.si/programovani-je-hra](https://meet.jit.si/programovani-je-hra)**. Cílem je se seznámit se základy programování v jazyce Python.
 
 ### Kontakt
 Pokud byste se chtěli na cokoliv zeptat, tak jsem k zastižení tady:
@@ -55,7 +55,7 @@ a+b = 123 # neplatné, jméno nesmí obsahovat +
 **Zajímavost:** místo `a = a + 3` můžeme používat `a += 3` (funguje i pro ostatní operátory). Zápis je tak stručnější a přehlednější.
 {{% /float_box %}}
 
-- s proměnnými toho příliš nezvládneme, umět počítat
+- s proměnnými toho příliš nezvládneme, chceme umět počítat
 - Python umí vyhodnocovat aritmetické výrazy
 	- běžné jsou `+`, `-`, `*`, `/`
 	- umí používat také závorky `(`, `)`
@@ -80,7 +80,7 @@ print(e)
 print(f)
 ```
 
-1. Máte proměnnou `a`, která udává délku strany kostky. Vypište její obsah. [[řešení](1.2.1.py)]
+1. Máte proměnnou `a`, která udává délku strany kostky. Vypište její objem. [[řešení](1.2.1.py)]
 	* Vypište její plochu. [[řešení](1.2.1-1.py)]
 	* Vypište plochu největší koule, která se do kostky vejde. [[řešení](1.2.1-2.py)]
 	* Vypište plochu největší koule, do které se kostka vejde. ⭐ [[řešení](1.2.1-3.py)]
@@ -89,7 +89,7 @@ print(f)
 #### `if`, `else`
 
 {{% float_box %}}
-**Zajímavost:** existuje také `elif`, které je možné zapojit za `if`, které se zkusí vykonat jen pokud se `if` nevykoná.
+**Zajímavost:** existuje také `elif`, které je možné zapojit za `if`, které se zkusí vykonat, jen pokud se `if` nevykoná.
 {{% /float_box %}}
 
 - vykonávání kódu, pokud něco platí/neplatí
@@ -123,7 +123,7 @@ else:
 ```
 
 1. Máte číselné proměnné `a` a `b`. Vypište `<`, `>` nebo `=` podle toho, zda je `a` menší/větší/rovné. [[řešení](1.3.1.py)]
-2. Máte číselnou proměnnou `a`. Napište program, který vypíše `Sudé!` když je `a` sudé a `Liché!`, když je `a` liché. Použijte operátor `%` (zbytek po dělení). [[řešení](1.3.2.py)]
+2. Máte číselnou proměnnou `a`. Napište program, který vypíše `Sudé!`, když je `a` sudé a `Liché!`, když je `a` liché. Použijte operátor `%` (zbytek po dělení). [[řešení](1.3.2.py)]
 	- Zvládnete to i bez operátoru `%`? [[řešení](1.3.2-1.py)]
 3. Máte číselné proměnné `a`, `b` a `c`, které mají různé hodnoty. Vypište tato čísla od nejmenšího po největší. Využijte toho, že `if`y mohou být vnořené. ⭐ [[řešení](1.3.3.py)]
 
@@ -505,7 +505,7 @@ print(c)
 ### 9. hodina (25. 2. 2021)
 
 
-#### rekurze
+#### Rekurze
 - funkce, která odkazuje „sama na sebe“
 - dokáže výrazně zjednodušit kód
 
@@ -541,13 +541,13 @@ print(factorial(5))
 
 ```py
 import sys
-from PyQt5.QtWidgets import *  # import VŠEHO z Pyqt5.QtWidgets
+from PyQt5.QtWidgets import *  # import VŠEHO z PyQt5.QtWidgets
 
 class MyWindow(QWidget):
     def __init__(self):
         super().__init__()  # magie
 
-		# vytvoření labelu (nápisu) a buttonu (tlačítka)
+        # vytvoření labelu (nápisu) a buttonu (tlačítka)
         self.label = QLabel('Ahoj, světe!')
         self.button = QPushButton('Stiskni mě!')
 

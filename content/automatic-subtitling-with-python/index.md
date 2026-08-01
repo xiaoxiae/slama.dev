@@ -7,7 +7,7 @@ toc: true
 ---
 
 **Update 19. 3. 2026:** while the core of the article holds, it's not quite using the state of the art.
-Since I wanted to put up some usable version of the subtitles, I used **[Bilbo](/bilbo/)** (one of my recent projects) which uses [`faster-whisper`](https://github.com/SYSTRAN/faster-whisper) with the `large-v3` model and [Silero VAD](https://github.com/snakers4/silero-vad) to get tighter timestamps, and ran the result through [Opus 4.6](https://www.anthropic.com/news/claude-opus-4-6) to both fix the mistranslated words, and to translate into English.
+Since I wanted to put up some usable version of the subtitles, I used **[Bilbo](/bilbo/)** (one of my recent projects) which uses [`faster-whisper`](https://github.com/SYSTRAN/faster-whisper) with the `large-v3` model and [Silero VAD](https://github.com/snakers4/silero-vad) to get tighter timestamps, and ran the result through [Opus 4.6](https://www.anthropic.com/news/claude-opus-4-6) to both fix the mistranscribed words, and to translate into English.
 
 ---
 
@@ -42,7 +42,7 @@ pip install git+https://github.com/m-bain/whisperx.git
 ```
 
 To automatically create the subtitles, we can use `ffmpeg` to extract the audio, and subsequently run the `whisperx` command with appropriate parameters.
-_Assuming you are in the directory with your audio files, you can run the following script:_
+_Assuming you are in the directory with your video files, you can run the following script:_
 
 {{< details "Code" "transcribe.sh" >}}{{< /details >}}
 
@@ -52,7 +52,7 @@ If you don't have this, use `medium`, which requires ~6 GB and is quite a bit wo
 If you don't have a GPU at all, I would recommend using [Runpod](https://www.runpod.io/), which offers cheap GPU devices with custom Docker images.
 _This is not a sponsored post but I am a very happy customer, and if you'd like to support me, [here is my referral link](https://runpod.io?ref=zqgj8it7)._
 
-If you only need to transcribe a short video, you can also use [Google Colab](https://colab.research.google.com/) for free, since it offers a few hours of GPU access for free.
+If you only need to transcribe a short video, you can also use [Google Colab](https://colab.research.google.com/) for free, since it offers a few hours of GPU access.
 
 ### 2) Manual Transcription Fixes
 
@@ -79,7 +79,7 @@ Yet again, here is a Python script that automatically does this for subtitle fil
 For a reasonably fast and accurate Czech to English translation, one way is to use a local LLM model for line-by-line translation.
 I've experimented with Whisper's translation functionality, but it creates problems with timing (since I wanted it to be the same as the Czech subtitles), as well as not being too good.
 
-I will be using [ollama](https://ollama.com/) with the [Mistral 7B](https://mistral.ai/news/announcing-mistral-7b/), which again requires **around ~8 GB of VRAM**.
+I will be using [ollama](https://ollama.com/) with the [Mistral 7B](https://mistral.ai/news/announcing-mistral-7b/) model, which again requires **~8 GB of VRAM**.
 _If you don't have this, I would again recommend using [Runpod](https://runpod.io?ref=zqgj8it7)._
 
 To install, run the following (ideally read what the script does first before you pipe it to `sh`):
@@ -99,7 +99,7 @@ Open the subtitles in your favorite text editor (`vim`) and fix away.
 
 ### 5) Credits
 
-I also added a link to the page with all Comeback subtitles at the beginning of each individual subtitles, in case people obtain them from somewhere else and would like to get them for other episodes:
+I also added a link to the page with all Comeback subtitles at the beginning of each individual subtitle file, in case people obtain them from somewhere else and would like to get them for other episodes:
 
 {{< details "Code" "credits.py" >}}{{< /details >}}
 

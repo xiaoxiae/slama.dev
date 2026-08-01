@@ -8,7 +8,7 @@ htmx: true
 
 Send me a message that will get [printed on my home receipt printer](https://github.com/xiaoxiae/Printomat/). No, I'm not kidding.
 
-{{< image_section caption="The printer in action - prints text, images, and occasionally bugs." >}}
+{{< image_section caption="The printer in action -- prints text, images, and occasionally bugs." >}}
 {{< image_row "printer-1.png :: Receipt printer with a sample print. | printer-2.png :: Receipt printer with a sample print. | printer-3.png :: Receipt printer with a sample print." >}}
 {{< /image_section >}}
 
@@ -32,7 +32,7 @@ Send me a message that will get [printed on my home receipt printer](https://git
 <label for="token"><strong>Friendship Token</strong>:</label>
 <input type="text" id="token" name="token" placeholder="Enter a token if you have one...">
 </div>
-<p class="small"><em>While I have implemented detections on both the server request side (timeouts, sane defaults) and the client side (hard limits on print frequency), it is possible for a motivated attacker to bypass those.
+<p class="small"><em>While I have implemented protections on both the server request side (timeouts, sane defaults) and the client side (hard limits on print frequency), it is possible for a motivated attacker to bypass those.
 In that case, the worst thing that can happen is that there will be a stack of paper at my desk in the morning, a scowl on my face, and a swift disappearance of this fun project from my website.
 <strong>Don't be a jerk</strong>.</em></p>
 <div>

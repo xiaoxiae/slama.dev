@@ -16,7 +16,7 @@ _**27/12/2023 update:**_
 
 ---
 
-_Over the course of this year (2021/2022), I created a well-received "Introduction to Manim" series for [KSP](https://ksp.mff.cuni.cz/) (Czech CS-oriented correspondence seminar), so it made sense to make it more accessible by translating it to English and publish it here._
+_Over the course of this year (2021/2022), I created a well-received "Introduction to Manim" series for [KSP](https://ksp.mff.cuni.cz/) (Czech CS-oriented correspondence seminar), so it made sense to make it more accessible by translating it to English and publishing it here._
 
 
 Animations are better than pictures, be it when presenting interesting ideas or visualizing algorithms.

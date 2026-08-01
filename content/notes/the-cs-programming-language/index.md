@@ -9,7 +9,7 @@ toc: true
 
 {{< lecture_notes_preface "Pavel Ježek | 2020/2021 | MFF" >}}
 
-Besides this, they have been slightly extended by some C#-specific questions for my [Bachelor's state exam](https://slama.dev/vzdelani/priprava-na-statnice-mff-uk/) that were not covered in the lecture, namely generics and functional elements.
+Besides this, they have been slightly extended by some C#-specific questions for my [Bachelor's state exam](/poznamky/priprava-na-statnice-mff-uk/) that were not covered in the lecture, namely generics and functional elements.
 
 ### Strings
 - internally an array of chars
@@ -139,7 +139,7 @@ class B : A {
 }
 ```
 
-If no constructor without parameters exist (for example when a class contains one with parameters, which makes the one without parameters not generate) and we inherit the class without calling it, it won't compile:
+If no constructor without parameters exists (for example when a class contains one with parameters, which makes the one without parameters not generate) and we inherit the class without calling it, it won't compile:
 
 ```cs
 // THIS WON'T COMPILE!
@@ -284,7 +284,7 @@ pet.Name();              // prints Mammal
 - if it's wrong {{< inline_highlight "cs" >}}InvalidCastException{{< /inline_highlight >}} is thrown, so test the code!
 
 ###### {{% inline_highlight "cs" %}}is{{% /inline_highlight %}}
-- checks, whether {{< inline_highlight "cs" >}}object{{< /inline_highlight >}} is of the given {{< inline_highlight "cs" >}}Type{{< /inline_highlight >}} (or type of any of its children)
+- checks whether {{< inline_highlight "cs" >}}object{{< /inline_highlight >}} is of the given {{< inline_highlight "cs" >}}Type{{< /inline_highlight >}} (or type of any of its children)
 - runtime calls a method, not too quick of an operation -- has to go through the class tree!
 - if {{< inline_highlight "cs" >}}object{{< /inline_highlight >}} is {{< inline_highlight "cs" >}}null{{< /inline_highlight >}}, {{< inline_highlight "cs" >}}false{{< /inline_highlight >}} is always returned, though it seems that {{< inline_highlight "cs" >}}null{{< /inline_highlight >}} can be anything
 
@@ -321,7 +321,7 @@ if (a is B b) {
 		- contains {{< inline_highlight "cs" >}}.Name{{< /inline_highlight >}} and other stuff for reflection
 		- also contains a **virtual method table** (VMT)
 	- {{< inline_highlight "cs" >}}public virtual bool Equals(object o);{{< /inline_highlight >}}
-		- for checking, whether two objects are equal
+		- for checking whether two objects are equal
 	- {{< inline_highlight "cs" >}}public virtual string ToString();{{< /inline_highlight >}}
 		- the string representation of the object
 		- shouldn't be something too complicated (like a giant recursive function)
@@ -482,7 +482,7 @@ T Property {
 }
 ```
 
-- syntactic sugar for defining a {{< inline_highlight "cs" >}}T get(){{< /inline_highlight >}} and {{< inline_highlight "cs" >}}void set(T value){{< /inline_highlight >}} methods
+- syntactic sugar for defining {{< inline_highlight "cs" >}}T get(){{< /inline_highlight >}} and {{< inline_highlight "cs" >}}void set(T value){{< /inline_highlight >}} methods
 	- must be used with {{< inline_highlight "cs" >}}={{< /inline_highlight >}}, although it does generate methods {{< inline_highlight "cs" >}}get_*{{< /inline_highlight >}} and {{< inline_highlight "cs" >}}set_*{{< /inline_highlight >}} (so don't name other methods like that)
 - is nice when we want to let the programmer know that we're just setting/getting something (although it may do something more complex)
 	- it's generally a good idea to not make it too slow, since the syntax looks instant
@@ -551,14 +551,14 @@ class File {
 	- enumerations
 	- is weird, since it's completely different to references that are allocated
 - **can implement interfaces**, but boxing happens when we assign to {{< inline_highlight "cs" >}}I var{{< /inline_highlight >}}
-	- watch out for passing structures to function and doing something to them, since they will be boxed and nothing will change...
+	- watch out for passing structures to functions and doing something to them, since they will be boxed and nothing will change...
 
 ##### Simple types
 - things like {{< inline_highlight "cs" >}}byte{{< /inline_highlight >}}, {{< inline_highlight "cs" >}}short{{< /inline_highlight >}}, {{< inline_highlight "cs" >}}int{{< /inline_highlight >}}, {{< inline_highlight "cs" >}}char{{< /inline_highlight >}}, {{< inline_highlight "cs" >}}bool{{< /inline_highlight >}}...
 - CLR and JIT know about it, so operators (think {{< inline_highlight "cs" >}}+{{< /inline_highlight >}}) are not function calls
 - sizes are (almost) always defined (not like C++), except:
 	- {{< inline_highlight "cs" >}}nint{{< /inline_highlight >}} and {{< inline_highlight "cs" >}}nuint{{< /inline_highlight >}} -- native, platform-dependent {{< inline_highlight "cs" >}}(u)int{{< /inline_highlight >}} (since C# 9.0)
-	- {{< inline_highlight "cs" >}}bool{{< /inline_highlight >}} is only {{< inline_highlight "cs" >}}true/false{{< /inline_highlight >}}, so it isn't defined too (implementation detail)
+	- {{< inline_highlight "cs" >}}bool{{< /inline_highlight >}} is only {{< inline_highlight "cs" >}}true/false{{< /inline_highlight >}}, so it isn't defined either (implementation detail)
 - {{< inline_highlight "cs" >}}decimal{{< /inline_highlight >}} -- exponent is decimal, so numbers like {{< inline_highlight "cs" >}}0.1{{< /inline_highlight >}} are precise
 	- the downside is that it is much slower
 - all of them are perpendicular to one another in the type hierarchy, but there **are conversions**
@@ -594,7 +594,7 @@ class File {
 - can only ever be assigned a reference to the heap
 - can be {{< inline_highlight "cs" >}}null{{< /inline_highlight >}}
 	- actually, since C# 8.0, we can toggle this behavior and forbid it to contain a {{< inline_highlight "cs" >}}null{{< /inline_highlight >}}
-	- only gives warnings, since the compiler can't always determine that it's not from static analysis (although we can specify to treat certain warnings as errors)
+	- only gives warnings, since the compiler can't always determine that it's not null from static analysis (although we can specify to treat certain warnings as errors)
 - contains:
 	- {{< inline_highlight "cs" >}}class{{< /inline_highlight >}}es
 	- {{< inline_highlight "cs" >}}interface{{< /inline_highlight >}}s
@@ -746,7 +746,7 @@ static class Program {
 | --:                  | ---                                                     |
 | {{< inline_highlight "cs" >}}public{{< /inline_highlight >}}             | not restricted.                                         |
 | {{< inline_highlight "cs" >}}private{{< /inline_highlight >}}            | limited to the containing type.                         |
-| {{< inline_highlight "cs" >}}protected{{< /inline_highlight >}}          | limited to the containing class derived types.          |
+| {{< inline_highlight "cs" >}}protected{{< /inline_highlight >}}          | limited to the containing class and derived types.          |
 | {{< inline_highlight "cs" >}}internal{{< /inline_highlight >}}           | limited to the current assembly.                        |
 | {{< inline_highlight "cs" >}}protected internal{{< /inline_highlight >}} | limited to the current assembly OR same/derived types.  |
 | {{< inline_highlight "cs" >}}private protected{{< /inline_highlight >}}  | limited to the current assembly AND same/derived types. |
@@ -785,7 +785,7 @@ class A {
 ### {{% inline_highlight "cs" %}}??{{% /inline_highlight %}}, {{% inline_highlight "cs" %}}??={{% /inline_highlight %}}, {{% inline_highlight "cs" %}}?.{{% /inline_highlight %}}
 - conditional code execution, depending on whether something is {{< inline_highlight "cs" >}}null{{< /inline_highlight >}} or not
 - {{< inline_highlight "cs" >}}a ?? b{{< /inline_highlight >}} returns {{< inline_highlight "cs" >}}a{{< /inline_highlight >}}, if it isn't {{< inline_highlight "cs" >}}null{{< /inline_highlight >}}, else {{< inline_highlight "cs" >}}b{{< /inline_highlight >}}
-- {{< inline_highlight "cs" >}}x ??= y{{< /inline_highlight >}} will be assigned if {{< inline_highlight "cs" >}}y{{< /inline_highlight >}} isn't {{< inline_highlight "cs" >}}null{{< /inline_highlight >}}
+- {{< inline_highlight "cs" >}}x ??= y{{< /inline_highlight >}} assigns {{< inline_highlight "cs" >}}y{{< /inline_highlight >}} to {{< inline_highlight "cs" >}}x{{< /inline_highlight >}} if {{< inline_highlight "cs" >}}x{{< /inline_highlight >}} is {{< inline_highlight "cs" >}}null{{< /inline_highlight >}}
 - {{< inline_highlight "cs" >}}x?.m(){{< /inline_highlight >}} will call the method if {{< inline_highlight "cs" >}}x{{< /inline_highlight >}} isn't {{< inline_highlight "cs" >}}null{{< /inline_highlight >}}
 - {{< inline_highlight "cs" >}}x?.f{{< /inline_highlight >}} will get the field value, if {{< inline_highlight "cs" >}}x{{< /inline_highlight >}} isn't {{< inline_highlight "cs" >}}null{{< /inline_highlight >}}
 
@@ -820,7 +820,7 @@ void f() {
 #### {{% inline_highlight "cs" %}}out{{% /inline_highlight %}}
 - an alternative to {{< inline_highlight "cs" >}}ref{{< /inline_highlight >}}
 - useful for returning/setting multiple things in a function
-- the CIL code is exactly the same, but the compiler checks, whether each {{< inline_highlight "cs" >}}out{{< /inline_highlight >}} parameter has been assigned to (since the caller wouldn't know about the state of the variable)
+- the CIL code is exactly the same, but the compiler checks whether each {{< inline_highlight "cs" >}}out{{< /inline_highlight >}} parameter has been assigned to (since the caller wouldn't know about the state of the variable)
 	- we must assign the parameters (at least dummy values)
 
 ```cs
@@ -860,7 +860,7 @@ Console.WriteLine("We didn't fail: " + a);
 	- {{< inline_highlight "cs" >}}var z = null{{< /inline_highlight >}}
 - the declaration is a comment -- it's unwise to write {{< inline_highlight "cs" >}}var{{< /inline_highlight >}} everywhere:
 	- {{< inline_highlight "cs" >}}var name = GetName();{{< /inline_highlight >}} -- what does it return?
-	- {{< inline_highlight "cs" >}}var d = new List<int>();{{< /inline_highlight >}} --  what if I want to change List to a HashSet later (and interface would thus be better to use)?
+	- {{< inline_highlight "cs" >}}var d = new List<int>();{{< /inline_highlight >}} --  what if I want to change List to a HashSet later (and an interface would thus be better to use)?
 
 ### Interfaces
 - a **contract** -- we can assign any {{< inline_highlight "cs" >}}class{{< /inline_highlight >}} that implements an interface to variables with an interface (when we only require the functionality of the given interface)
@@ -875,7 +875,7 @@ interface Shape {
 
 - **can't be instantiated** (it has no code)
 - not entirely an abstract class
-	- classes/interface can implement multiple interfaces
+	- classes/interfaces can implement multiple interfaces
 	- classes can inherit only a single class
 	- interfaces can't have code, abstract classes can
 
@@ -973,7 +973,7 @@ interface Shape {
 	- {{< inline_highlight "cs" >}}sbyte{{< /inline_highlight >}}, {{< inline_highlight "cs" >}}ushort{{< /inline_highlight >}} are not compliant, so making them parameters of a function called from some other DLL might not be the best idea; on the other hand, implementation details are quite fine
 
 #### {{% inline_highlight "cs" %}}typeof(Class){{% /inline_highlight %}}
-- return the {{< inline_highlight "cs" >}}Type{{< /inline_highlight >}} instance of the class
+- returns the {{< inline_highlight "cs" >}}Type{{< /inline_highlight >}} instance of the class
 - useful when we're comparing types of variables
 
 #### {{% inline_highlight "cs" %}}nameof(x){{% /inline_highlight %}} [[Microsoft Docs](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/nameof)]
@@ -1013,7 +1013,7 @@ public class Tests
 
 		Assert.Throws<ArgumentException>(() =>
 		{
-			This doesn't throw!
+			// this doesn't throw!
 		});
 	}
 }

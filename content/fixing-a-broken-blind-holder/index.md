@@ -6,7 +6,7 @@ categoryIcon: /assets/category-icons/3d-print.webp
 bluesky_url: https://bsky.app/profile/tomas.slama.dev/post/3lxfbgjnk5k26
 ---
 
-A blind holder, as pictured on the image below, recently broke in our apartment.
+A blind holder, as pictured in the image below, recently broke in our apartment.
 Naturally, the only reasonable thing to do was to ~~go to Obi and buy a new one for 3 euros~~
 - take ~80 images of the working one from various angles,
 - use [`colmap`](https://colmap.github.io/) to reconstruct the 3D model,
@@ -19,7 +19,7 @@ Suddenly, something that would take other people **minutes** and **very little m
 {{< image_row "working-and-broken.png :: A working holder, and the broken one. | working-in-action.png :: The working holder in action." >}}
 {{< /image_section >}}
 
-{{< image_section caption="The dense pointcloud (left) and its corresponding 3D mesh (right), created from 76 images via <a href=\"https://colmap.github.io/\">colmap</a> (top)." >}}
+{{< image_section caption="The dense point cloud (left) and its corresponding 3D mesh (right), created from 76 images via <a href=\"https://colmap.github.io/\">colmap</a> (top)." >}}
 {{< image_row "mosaic.png :: A mosaic of the colmap input images." >}}
 {{< image_row "pointcloud.png :: The dense point cloud. | mesh.png :: The reconstructed 3D mesh." >}}
 {{< /image_section >}}

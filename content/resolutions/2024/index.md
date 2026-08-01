@@ -34,7 +34,7 @@ Books:
 Resolution Graveyard, because some things didn't make sense and couldn't hack others
 |             | ~~Kilter <span class="silver">8a</span>\|<span class="gold">8a+</span>~~                           | 7c+ flash, but it turns out that I really hate Kilter                                       |
 |             | ~~Release a <span class="silver">short story</span> <span class="gold">with illustrations</span>~~ | this is hard                                                                                |
-|to do this.             | ~~<span class="silver">&lt;15m</span>\|<span class="gold">&lt;30m</span> Anki time~~               | replaced by German; going well                                                              |
+|                          | ~~<span class="silver">&lt;15m</span>\|<span class="gold">&lt;30m</span> Anki time~~               | replaced by German; going well                                                              |
 |             | Boulder <span class="silver">7c+</span>\|<span class="gold">8a</span> outside                 |                                                                                             |
 
 -->
@@ -43,7 +43,7 @@ Resolution Graveyard, because some things didn't make sense and couldn't hack ot
 | ----------: | :-------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------- |
 |     Fitness | All 2019 Moonboard <span class="silver">7a</span>\|<span class="gold">7a+</span> benchmarks   | got <span class="silver">all 7as</span>, 9 7a+ remaining                         |
 |             | 2024 Moonboard <span class="silver">7b+</span>\|<span class="gold">7c</span> benchmark        | got 2x <span class="silver">7b+</span>                                                            |
-|             | <span class="silver">10s one-arm lockoff</span> \| <span class="gold">one-arm pull-up</span>  | <span class="silver">10 seconds</span>, training for the lockoff..                            |
+|             | <span class="silver">10s one-arm lockoff</span> \| <span class="gold">one-arm pull-up</span>  | <span class="silver">10 seconds</span>, training for the pull-up..                            |
 |             | <span class="silver">100kg</span> \| <span class="gold">110kg</span> bench                    | <span class="silver">100kg</span>, good enough                                                |
 |             | <span class="silver">backflip</span> \| <span class="gold">frontflip</span>                   | still too scared                                                                              |
 |             | <span class="silver">1x</span>\|<span class="gold">5x</span> muscle-up                        | <strong><span class="silver">\*</span></strong> <strong><span class="gold">\*</span></strong> |

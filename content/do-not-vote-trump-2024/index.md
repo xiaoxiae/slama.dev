@@ -7,7 +7,7 @@ toc: true
 
 I bet you didn't expect a post about politics on here.
 
-I've been thinking for quite a while to start writing about my opinions on issues like these, but thought that this website is not the place.
+I've been meaning for quite a while to start writing about my opinions on issues like these, but thought that this website is not the place.
 Thinking it over, however, I don't see a better one -- social media has become a cesspool oriented towards punchy one-liners instead of researched opinions, so writing a post about a topic that I feel strongly about is probably the way to go.
 
 Since **I am not a US citizen,** this post serves mostly as a plea toward my US readers (and anyone else who stumbles upon it) -- you might not realize this, but your influence on other countries around the world is significant, so having a competent non-pro-Russia leader would be nice.
@@ -23,14 +23,14 @@ Let's get into it.
 Trump has, without a doubt, **attempted to coup the government,** in a scheme that culminated in the January 6th Capitol riots.
 What is absolutely mind-melting is that if you ask most people what happened, they will respond with something akin to this:
 
-> Trump told the supporters that they should march peacefully. Then there were some bad people that turned it into a riot. Oh and the protesters were led into the capitol by the police. Also, Ray Epps...
+> Trump told the supporters that they should march peacefully. Then there were some bad people that turned it into a riot. Oh and the protesters were led into the Capitol by the police. Also, Ray Epps...
 {.half-visible}
 
 Let's speak facts.
 
 The [actual plan](https://en.wikipedia.org/wiki/Trump_fake_electors_plot), outlined by [John Eastman](https://en.wikipedia.org/wiki/John_Eastman) (likely to be disbarred for this) in the [Eastman Memos](https://en.wikipedia.org/wiki/Eastman_memos) and facilitated mainly by [Rudy Giuliani](https://en.wikipedia.org/wiki/Rudy_Giuliani) (actually disbarred for this) paints a very different picture.
 
-The central idea was to submit [**fake slates of electors**](https://en.wikipedia.org/wiki/Trump_fake_electors_plot)[^fake] for 7 states where Trump lost, _along with the real ones_, which were Arizona, Georgia, Michigan, Nevada, New Mexico, Pennsylvania and Wisconsin (states where Biden won only by a narrow margin).
+The central idea was to submit [**fake slates of electors**](https://en.wikipedia.org/wiki/Trump_fake_electors_plot)[^fake] for 7 states where Trump lost, _along with the real ones_, which were Arizona, Georgia, Michigan, Nevada, New Mexico, Pennsylvania and Wisconsin (most of which Biden won only by a narrow margin).
 The plan hinged on [Mike Pence](https://en.wikipedia.org/wiki/Mike_Pence) going along with this when counting the elector votes (could have gone many different ways, each resulting in Trump's re-election[^memo]).
 
 [^memo]: Taken directly from the [Eastman Memos](https://en.wikipedia.org/wiki/Eastman_memos):
@@ -65,7 +65,7 @@ Luckily, and despite [repeatedly being pressured](https://en.wikipedia.org/wiki/
 Note that this is only the most egregious part of the scheme -- I suggest you read through the [Wikipedia page](https://en.wikipedia.org/wiki/Attempts_to_overturn_the_2020_United_States_presidential_election) to get a quick summary as well as the **full [Jan 6th indictment](https://www.justice.gov/storage/US_v_Trump_23_cr_257.pdf)** to get the full scope.
 
 Here are some quick things to note to conclude this section:
-- [**the rioters broke into the capitol first**](https://www.youtube.com/watch?v=jWJVMoe7OY0) -- the footage of them being led by the police was them being led to areas where they couldn't harm the congresspeople (remember, that's why they broke inside -- to _stop the vote,_ which was being held inside)
+- [**the rioters broke into the Capitol first**](https://www.youtube.com/watch?v=jWJVMoe7OY0) -- the footage of them being led by the police was them being led to areas where they couldn't harm the congresspeople (remember, that's why they broke inside -- to _stop the vote,_ which was being held inside)
 - [**all of Trump's allegations of fake/incorrect votes were ruled to be false**](https://en.wikipedia.org/wiki/Attempts_to_overturn_the_2020_United_States_presidential_election#Election_audits) -- audits were performed in most of the states, **many by Trump-appointed conservative judges**, and found virtually[^audits] no issues.
 - **[Trump does not deny any of this](https://www.youtube.com/watch?v=MXQ43yyJvgs)** -- his response was to have his lawyers go to the supreme court and ask for absolute criminal immunity for official acts, which he received due to the current 6/3 republican/democrat split.
 
@@ -86,7 +86,7 @@ This is supported by the already mentioned [phone conversation transcript](zelen
 >
 > **Given the sensitive nature of the request, I appreciate your keeping that information closely held to those who need to know to execute the direction. Please let me know if you have any questions.**
 
-and additionally by the [transcript of William Taylor's testimony](https://www.nytimes.com/interactive/2019/11/06/us/politics/william-taylor-ukraine-transcript.html) (starting at page 17), who was a top US diplomat in Ukraine during this time and testified under oath that both aid and white house meetings were conditioned on cooperation with the investigations.
+and additionally by the [transcript of William Taylor's testimony](https://www.nytimes.com/interactive/2019/11/06/us/politics/william-taylor-ukraine-transcript.html) (starting at page 17); Taylor was a top US diplomat in Ukraine during this time and testified under oath that both aid and white house meetings were conditioned on cooperation with the investigations.
 
 Oh, and he also did similar things publicly with [Australia](https://archive.ph/20191003014641/https://www.nytimes.com/2019/09/30/us/politics/trump-australia-barr-mueller.html) and [China](https://archive.today/20191003161404/https://www.nytimes.com/2019/10/03/us/politics/trump-china-bidens.html) 🙂.
 
@@ -107,7 +107,7 @@ Trump's relationship with women is revolting: Trump
     > I better use some Tic Tacs just in case I start kissing her. You know I'm automatically attracted to beautiful—I just start kissing them. It's like a magnet. Just kiss. I don't even wait. And when you're a star, they let you do it. You can do anything. Grab 'em by the pussy. You can do anything.
     {.half-visible}
 
-- has **[exceedingly creepy remarks about his daughter](https://www.the-independent.com/news/world/americas/us-politics/donald-trump-ivanka-trump-creepiest-most-unsettling-comments-a-roundup-a7353876.html)**:
+- has made **[exceedingly creepy remarks about his daughter](https://www.the-independent.com/news/world/americas/us-politics/donald-trump-ivanka-trump-creepiest-most-unsettling-comments-a-roundup-a7353876.html)**:
     > If she wasn't my daughter, you know, I'd date her.
     >
     > My daughter, Ivanka. She’s 6 feet tall, she’s got the best body. She made a lot of money as a model—a tremendous amount.

@@ -65,14 +65,14 @@ Nalezněte minimální \(k\) takové, že hrany grafu \(G\) lze korektně obarv
 {{< details "Výpis" "obarvitelnost2.out" >}}{{< /details >}}
 
 #### Problém obchodního cestujícího
-Pro daný ohodnocený neorientovaný graf \(G = (V, E, f)\), kde \(f : E \to \mathbb{R}^+_0\), chceme najít Hamiltonovskou kružnici v \(G\) s nejmenším ohodnocením.
+Pro daný ohodnocený neorientovaný graf \(G = (V, E, f)\), kde \(f : E \to \mathbb{R}^+_0\), chceme najít hamiltonovskou kružnici v \(G\) s nejmenším ohodnocením.
 
 {{< details "Zdrojový kód" "tsp.py" >}}{{< /details >}}
 
 {{< details "Výpis" "tsp.out" >}}{{< /details >}}
 
 #### Bin packing
-Zjistěte, do kolika nejméně krabic lze rozdělit množinu \(n\) předmětů s vahami \(w_1, \ldots, w_n\). Do každého koše lze umístit předměty o celkové váze nejvýše \(C\).
+Zjistěte, do kolika nejméně krabic lze rozdělit množinu \(n\) předmětů s vahami \(w_1, \ldots, w_n\). Do každé krabice lze umístit předměty o celkové váze nejvýše \(C\).
 
 {{< details "Zdrojový kód" "bin.py" >}}{{< /details >}}
 

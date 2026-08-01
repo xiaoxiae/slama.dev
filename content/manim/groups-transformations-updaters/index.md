@@ -143,7 +143,7 @@ Dots and segments can be defined using the {{< doc "manim" "Dot" "reference/mani
 
 {{< video "manim" "02-line-example" >}}
 
-To create a circle given three of its points, the {{< doc "manim" "Circle.from_three_points" "reference/manim.mobject.geometry.arc.Circle.html#manim.mobject.geometry.arc.Circle.from_three_points" >}} may be used.
+To create a circle given three of its points, the {{< doc "manim" "Circle.from_three_points" "reference/manim.mobject.geometry.arc.Circle.html#manim.mobject.geometry.arc.Circle.from_three_points" >}} function may be used.
 
 ```python {file="02-circle-from-points-example.py"}
 ```
@@ -158,8 +158,8 @@ Create an animation of a smooth wave running through a maze.
 
 {{< video "manim" "02-wave" >}}
 
-The {{< doc "manim" "arrange_in_grid" "reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.arrange_in_grid" >}} will be useful to position the squares.
-To overlap the coloring of each layer in the maze, nested {{< doc "manim" "AnimationGroup" "reference/manim.animation.composition.AnimationGroup.html" >}} can be used.
+The {{< doc "manim" "arrange_in_grid" "reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.arrange_in_grid" >}} function will be useful to position the squares.
+To overlap the coloring of each layer in the maze, nested {{< doc "manim" "AnimationGroup" "reference/manim.animation.composition.AnimationGroup.html" >}} objects can be used.
 For creating a smooth gradient from the input colors, the {{< doc "manim" "color_gradient" "reference/manim.utils.color.html#manim.utils.color.color_gradient" >}} utility function is quite useful.
 
 ```python {file="02-color-gradient-example.py"}

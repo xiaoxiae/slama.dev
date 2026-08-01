@@ -6,7 +6,7 @@ toc: true
 ---
 
 I recently went through a box of electronics that me and my <a class='secret' href='/assets/kacka.webp'>girlfriend Kačka</a> no longer use in the hopes of finding something worth salvaging and stumbled upon her old camera.
-When asking about why it's there, <a class='secret' href='/assets/kacka.webp'>she</a> told me that <a class='secret' href='/assets/kacka.webp'>she</a> no longer uses it since _"it doesn't turn on"_, which piqued my interest because it could be fun to fix and could contain a lot of awesome pictures from when we were growing up.
+When I asked about why it's there, <a class='secret' href='/assets/kacka.webp'>she</a> told me that <a class='secret' href='/assets/kacka.webp'>she</a> no longer uses it since _"it doesn't turn on"_, which piqued my interest because it could be fun to fix and could contain a lot of awesome pictures from when we were growing up.
 
 {{< image_section caption="<strong>Nikon Coolpix S5100</strong> handheld camera." >}}
 {{< image_row "camera.png :: Image of a Nikon Coolpix S5100 handheld camera." >}}
@@ -28,7 +28,7 @@ Well, that was a relatively easy fix... 🎉?
 
 While the camera itself definitely has some sentimental value, the main target is the **data on the card**, so let's see what we can do about recovering it.
 
-The first thing I tried is to plug the SD card in and run `lsblk`, getting
+The first thing I tried was to plug the SD card in and run `lsblk`, getting
 
 ```text
 sdb           8:16   1   3.7G  0 disk

@@ -22,19 +22,3 @@ xrandr --output <your monitor> --transform 1,0,0,0,0.6,0,0,0,1
 {{< /image_section >}}
 
 Beautiful. Pristine. Like bus rides were always meant to be experienced.
-
-<!--
-
-Leaving a note for future follow-up: I think it would be super cool to make a project that tracks where your eyes are, calculates what the transformation of the display should be in order to see a perfect rectangle, and then apply it; a few things:
-- should only transform to nearest multiples of the angle, so we don't keep jittering as the eye tracking stabilizes
-- if we go off the screen, it should stay there, since it was likely because we went too high
-
-Math-wise:
-- detection gives you a line, but you need distance for the rectangle to know where to project itself to; can just be estimated from eye distance?
-- we can also rotate so the screen is level with the eyes
-- when we know the point + rotation about it, we have our transformation
-- the only difficult part is fitting the transform into the infinite triangle that goes through the point -- can this even be calculated algebraically? When we rotate towards the origin and move it to fit within the rectangle, this already changes the transform to look somewhere slightly else; an iterative method should be fine?
-
-Now that I think of it, that has to already exist... but maybe not on the level of the display?
-
--->

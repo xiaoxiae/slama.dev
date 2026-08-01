@@ -25,7 +25,7 @@ Thanks to Pascal Hansen and Kiryl Kiril for corrections.
 10. Trajectory Planning in Cartesian Space [[slides](slides/10_trajectory_planning_in_cartesian_space.pdf)] [[tutorial -- Grübler, DH](exercises/10.pdf)]
 11. Manipulability [[slides](slides/11_manipulability.pdf)] [[tutorial -- Jacobian, Lagrangian](exercises/11.pdf)]
 
-An **excellent resource** for more formal and in-depth study is **[Robot modeling and Control](https://www.wiley.com/en-us/Robot+Modeling+and+Control%2C+2nd+Edition-p-9781119524045)** by Mark W. Spong, which the lecture frequently references.
+An **excellent resource** for more formal and in-depth study is **[Robot Modeling and Control](https://www.wiley.com/en-us/Robot+Modeling+and+Control%2C+2nd+Edition-p-9781119524045)** by Mark W. Spong, which the lecture frequently references.
 The first edition can be [downloaded for free](https://www.researchgate.net/profile/Mohamed_Mourad_Lafifi/post/How_to_avoid_singular_configurations/attachment/59d6361b79197b807799389a/AS%3A386996594855942%401469278586939/download/Spong+-+Robot+modeling+and+Control.pdf), while the second needs to be purchased (or downloaded too, if you know [where to look](https://www.youtube.com/watch?v=dQw4w9WgXcQ)).
 
 
@@ -36,7 +36,7 @@ The first edition can be [downloaded for free](https://www.researchgate.net/prof
 
 {{< math "definition" "kinematic pair" >}}two links in contact such that it limits their relative movement{{< /math >}}
 
-- **low-order** kinematic pairs: point of contact is a surface (eg. revolute/prismatic/spherical)
+- **low-order** kinematic pairs: point of contact is a surface (e.g. revolute/prismatic/spherical) -- also apply to lines 40 and 63
 - **high-order** kinematic pairs: point of contact is a dot/line (eg. gears)
 
 {{< math "definition" "kinematic chain" >}}assembly of links connected by joints{{< /math >}}
@@ -91,7 +91,7 @@ _If you're viewing this in dark theme, the links are colored light blue (red in 
 ![Incremental and absolute optical encoders.](optical-encoders.svg)
 
 ### Kinematics
-- establishment of various coordinate systems to represent the positions and orientations of rigid objects and with transformations among these coordinate systems
+- establishment of various coordinate systems to represent the positions and orientations of rigid objects, and the transformations among these coordinate systems
 
 ![Kinematic spaces.](kinematic-spaces.svg)
 
@@ -217,7 +217,7 @@ We then get the following transformations:
 \]
 
 To get the final transformations, we can multiply the matrices and get \[T^0_3 (q) = A^0_1 A^1_2 A^2_3\]
-This will yield the entire homogeneous matrix -- if we only want position (in this case a homogeneous one with the last element being \(1\)), we can only focus on the last row, which can simplify the computation: \[p^0_3 (q) = A^0_1 A^1_2 A^2_3 \cdot (0, 0, 0, 1)^T\]
+This will yield the entire homogeneous matrix -- if we only want position (in this case a homogeneous one with the last element being \(1\)), we can only focus on the last column, which can simplify the computation: \[p^0_3 (q) = A^0_1 A^1_2 A^2_3 \cdot (0, 0, 0, 1)^T\]
 
 
 Things to keep in mind:
@@ -232,7 +232,7 @@ Things to keep in mind:
 
 {{< math "definition" "redundancy" >}}arises when there are _multiple inverse solutions_{{< /math >}}
 
-When dealing with inverse kinematics, an important notion are **workspaces:**
+When dealing with inverse kinematics, an important notion is that of **workspaces:**
 - **primary workspace:** set \(\mathrm{WS}_1\) of positions \(p\) that can be reached with _at least one_ orientation
 - **secondary workspace:** set \(\mathrm{WS}_2\) of positions \(p\) that can be reached with _all_ orientations
 
@@ -264,7 +264,7 @@ For solving various manipulators (SCARA, for example), the **law of cosines** mi
 	b^2 &= a^2 + c^2 - 2\ ac \cos \beta
 \end{aligned}\]
 
-{{< math "definition" "decoupling" >}}dividing inverse kinematics problem for two simpler problems, inverse **position** kinematics and inverse **orientation** kinematics{{< /math >}}
+{{< math "definition" "decoupling" >}}dividing the inverse kinematics problem into two simpler problems, inverse **position** kinematics and inverse **orientation** kinematics{{< /math >}}
 - is applicable for manipulators with _at least 6 joints_ where the _last 3 intersect at a point_
 - the general approach is the following:
 	1. calculate the orientations and position where the wrist needs to be
@@ -282,7 +282,7 @@ Two major ways of solving it, namely:
 
 2. **Gradient method:**
 	- aims to minimize the squared error (the \(1/2\) is there for nicer calculations): \[H(q) = \frac{1}{2} ||F(q) - r||^2 = \frac{1}{2} [F(q) - r]^T [F(q) - r]\]
-	- the gradient of \(\nabla_q H(q)\) is the steepest direction to minimize this error: \[ \nabla_q H(q) = J(q)^T [F(q) - r] \]
+	- the gradient \(\nabla_q H(q)\) is the steepest direction to minimize this error: \[ \nabla_q H(q) = J(q)^T [F(q) - r] \]
 	- to move in this direction (given the current solution), we do the following: \[\begin{aligned} q_{k + 1} &= q_k - \alpha \nabla_q H(q_k) \\           &= q_k - \alpha J(q)^T [F(q) - r] \end{aligned}\]
 		- \(\alpha\) should be chosen appropriately (dictates the size of iteration steps)
 	- we don't use the inverse but the transpose, which is nice!
@@ -307,11 +307,11 @@ Two main cases when calculating the geometric Jacobian are the following:
 |                   |                                                  |                                                                                                |
 |                   | **Angular Joint \(i\)**                          |                                                                                                |
 | \(J_{L_i} (q) \)  | \(z_{i - 1} \times p_{i - 1, EE}\) | changes linear velocity too -- moves next link<br>\(p\) is the vector from \(i - 1\) to \(EE\) |
-| \(J_{A_i} (q)  \) | \(z_{i - 1} \)                                   | changes angular velocity (next joint rotates linearly)                                         |
+| \(J_{A_i} (q)  \) | \(z_{i - 1} \)                                   | changes angular velocity (next joint rotates)                                         |
 
 Where
 - \(z_{i - 1}\) is the orientation of the \(z\) axis in the \((i - 1)\)th frame and
-- \(p_{i-1, EE}\) is the distance from the center of the \((i - 1)\)th frame to the end-effector
+- \(p_{i-1, EE}\) is the vector from the center of the \((i - 1)\)th frame to the end-effector
 - \(a \times b\) is the cross product between the vectors \(a, b\), defined like this (_just remember 2-3-1_): \[a \times b = \begin{pmatrix}
 	a_2 b_3 - a_3 b_2 \\
 	a_3 b_1 - a_1 b_3 \\
@@ -322,7 +322,7 @@ And they can be calculated from the forward kinematics matrix (namely the DH mat
 \[
 \begin{aligned}
 	z_{i - 1} &= (\overbrace{R^0_1(q_1, \ldots, q_n)}^{\text{rotation part} \atop {\text{of matrix}\ A^0_1} } \cdot \ldots \cdot \overbrace{R^{i-2}_{i-1}(q_1, \ldots, q_n)}^{\text{rotation part} \atop {\text{of matrix}\ A^{i-2}_{i-1}} }) \overbrace{(0, 0, 1)^T}^{\text{just get\ }z} \\
-	p_{i - 1, EE} &= \underbrace{p_{0,EE} (q_1, \ldots, q_n)}_{\text{in last column of} \atop {\text{matrix}\ A^0_{EE} } } - \underbrace{p_{0, i - 1}(q_1, \ldots, q_{i - 1}}_{\text{in last column of} \atop {\text{matrix}\ A^0_{i - 1} } })
+	p_{i - 1, EE} &= \underbrace{p_{0,EE} (q_1, \ldots, q_n)}_{\text{in last column of} \atop {\text{matrix}\ A^0_{EE} } } - \underbrace{p_{0, i - 1}(q_1, \ldots, q_{i - 1})}_{\text{in last column of} \atop {\text{matrix}\ A^0_{i - 1} } }
 \end{aligned}
 \]
 
@@ -352,7 +352,7 @@ The full Jacobian matrix looks like this:
 The rank of the matrix is between \(1\) and \(2\), depending on the joint configuration.
 
 ##### Higher-orders
-For calculating other differential relations, we can just continue to derivate:
+For calculating other differential relations, we can just continue to differentiate:
 
 | Relation     | Equation                                                                                             |
 | ---          | ---                                                                                                  |
@@ -391,7 +391,7 @@ This turns out to be the vector \(\dot{q} = J^\# \dot{p}\), where \(J^\#\) is th
 #### Force Kinematics
 We can again use the Jacobian to relate **forces** of the end effector to those of the joints.
 
-Given \(\tau \in \mathbb{R}^{n \times 1}\) as the vector of infinitesimal joint forces/torques and \(\gamma \in \mathbb{R}^{m \times 1}\) as the vector of infinitesimal end effector forces/torques. Applying the principle of **virtual work** (the work of the forces applied to the system is zero: (\(dW = F\ dx = 0\))), we get
+Given \(\tau \in \mathbb{R}^{n \times 1}\) as the vector of infinitesimal joint forces/torques and \(\gamma \in \mathbb{R}^{m \times 1}\) as the vector of infinitesimal end effector forces/torques. Applying the principle of **virtual work** (the work of the forces applied to the system is zero: \(dW = F\ dx = 0\)), we get
 \[
 \begin{aligned}
 	dW_\tau &= \tau^T\ dq \qquad & \text{\# joints} \\
@@ -534,11 +534,11 @@ For **Cartesian robots** (PPP):
 2. optimal timing law is the bang-coast-bang
 
 For **articulated robots** (at least one R):
-- 1. and 2. are no longer true in general case, but time-optimality still holds in the _joint space_
+- 1. and 2. are no longer true in the general case, but time-optimality still holds in the _joint space_
 	- note that straight lines in joint space don't correspond to those in Cartesian space!
 
 ##### Uniform time scaling
-Say we want to slow a given timing law down or speed it up because of constraints, we don't need to recalculate all of the motion profiles: velocity scales **linearly**, acceleration scales **quadratically**:
+If we want to slow a given timing law down or speed it up because of constraints, we don't need to recalculate all of the motion profiles: velocity scales **linearly**, acceleration scales **quadratically**:
 \[
 \begin{aligned}
 dp/dt &= dp/ds \cdot ds/d\tau \cdot {\color{red}{1/T}} \\
@@ -552,10 +552,10 @@ d^2p/dt^2 &= (d^2p/ds^2 \cdot (ds/d\tau)^2 + dp/ds \cdot d^2s/d\tau^2) \cdot {\c
 Minimum uniform time scaling is therefore \[k = \max \left\{1, k_{\text{vel}}, \sqrt{k_{\text{acc}}}\right\}\]
 
 
-#### Manipulability
+### Manipulability
 
 ##### Velocity manipulability
-In a given configuration, we want to evaluate how „effective“ is the mechanical transformation between joint velocities and EE velocities (how „easily“ can EE move in various directions of the task space).
+In a given configuration, we want to evaluate how "effective" the mechanical transformation between joint velocities and EE velocities is (how "easily" EE can move in various directions of the task space).
 - we consider all EE velocities that can be obtained by choosing joint velocities of **unit norm**:
 
 \[\dot{q}^T \dot{q} = \underbrace{v^T J^{\#T}J^\#v}_{\text{ellipsoid}} = 1\]
@@ -570,7 +570,7 @@ We can apply the exact same concept to forces:
 
 The comparison between the two is interesting -- they are **orthogonal** (velocity left; force right):
 
-![Cubic spline illustration](force-vector-manipulability-comparison.png)
+![Force and velocity manipulability comparison.](force-vector-manipulability-comparison.png)
 {.no-invert}
 
 The explanation that the teacher gave in class is pretty good: if your arm is almost stretched, it can move very quickly up and down but not too quickly forward/backward. On the other hand (pun not intended), the forces you can apply up/down are not nearly as large as when pushing/pulling.

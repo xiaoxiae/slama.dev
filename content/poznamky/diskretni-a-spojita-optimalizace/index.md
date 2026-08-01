@@ -27,7 +27,7 @@ language: cs
 
 {{< math "remark" >}}
 Při definici matroidu je dobré si představit graf. \(X\) je tu množina hran a \(\mathcal{S}\) všechny acyklické podgrafy.
-Pak podmínka dědičnosti říká, že acyklické podgrafy jsou rovněž acyklické a axiom \(3'\) to, že maximální kostry (co do inkluze) mají stejnou velikost.
+Pak podmínka dědičnosti říká, že podgrafy acyklických podgrafů jsou rovněž acyklické a axiom \(3'\) to, že maximální kostry (co do inkluze) mají stejnou velikost.
 {{< /math >}}
 
 {{< math "lemma" "stejná definice" >}}Axiomy \((1, 2, 3)\) a \((1, 2, 3')\) definují stejný objekt.{{< /math >}}
@@ -192,7 +192,7 @@ Nyní můžeme dokončit důkaz:
 \[r(Y \cup \left\{y, z\right\}) \le r(Y)\]
 {{< /math >}}
 
-{{< math "observation" >}}matroidy jsou systémy podmnožiny, kde řádová funkce je **monotonní** a **submodulární**.{{< /math >}}
+{{< math "observation" >}}matroidy jsou systémy podmnožin, kde řádová funkce je **monotonní** a **submodulární**.{{< /math >}}
 
 
 {{% float_box %}}
@@ -288,7 +288,7 @@ Jelikož \((X, \mathcal{S})\) není matroid, tak neplatí \(3, 3'\) a tedy \(\ex
 
 ![](ha-spor.svg)
 
-V takovém případě hladový algoritmus najde \(U\), i když \(V\) je větší.
+V takovém případě hladový algoritmus najde \(V\), i když \(U\) je větší.
 {{< /math >}}
 
 {{< math "proof" "\(\Leftarrow\)" >}} nejprve dokážeme pomocné lemma.
@@ -326,7 +326,7 @@ Nyní k původnímu důkazu: označíme \(z^*\) charakteristický vektor optima.
 Jelikož navíc triviálně \(w^T z^* \ge w^T z'\) (je to optimum), tak věta platí.
 {{< /math >}}
 
-{{< math "consequence" "grafy" >}}poštvání HA na grafový matroid vrátí maximální (minimální pro \(-w\)) kostru. Poštvání na duál vrátí maximální množinu hran, kterou když odstraníme tak graf zůstane souvislý.{{< /math >}}
+{{< math "consequence" "grafy" >}}poštvání HA na grafový matroid vrátí maximální (minimální pro \(-w\)) kostru. Poštvání na duál vrátí maximální množinu hran, kterou když odstraníme, tak graf zůstane souvislý.{{< /math >}}
 
 {{< math "consequence" "lineární programy" >}}nechť \((X, \mathcal{S})\) je matroid a \(w \in \mathbb{Q}^X\). Pak HA vyřeší následující lineární program \[\max \sum_{i \in X} w_i z_i\] za podmínek \(z(A) \le r(A), z \ge 0\) pro \(\forall A \subseteq X\)
 {{< /math >}}
@@ -408,7 +408,7 @@ Potom \((X, \mathcal{S})\) je také matroid a navíc pro \(T \subseteq U\) plat�
 ##### Dualita matroidu
 
 {{% float_box %}}
-Duální matroid grafového matroidu je matroid množin hran, které když odebereme tak graf zůstane spojitý.
+Duální matroid grafového matroidu je matroid množin hran, které když odebereme, tak graf zůstane souvislý.
 {{% /float_box %}}
 
 {{< math "definition" "duální matroid" >}}nechť \(\mathcal{M} = \left(X, \mathcal{S}\right)\) je matroid. Definujeme duální matroid jako \(\mathcal{M}^* = (X, \mathcal{S}^*)\) t.ž. \(B^*\) je báze \(\mathcal{M}^* \iff (X - B^*)\) je báze \(\mathcal{M}\) (s tím, že \(\mathcal{S}^*\) jsou všechny podmnožiny bází).
@@ -490,8 +490,8 @@ V grafu jsou to kružnice.
 {{< math "theorem" >}}graf \(G = (V, E)\), \(M\) párování. Pak \(M\) je největší \(\iff\) \(G\) nemá zlepšující cestu.{{< /math >}}
 
 {{< math "proof" >}}
-- \(\Leftarrow\) pokud má zlepšující cestu, tak párování můžeme zlepšit a není tedy maximální
-- \(\Rightarrow\) pokud \(M\) není největší tak existuje párování \(M'\) t. ž. \(|M'| > |M|\)
+- \(\Leftarrow\) pokud má zlepšující cestu, tak párování můžeme zlepšit a není tedy největší
+- \(\Rightarrow\) pokud \(M\) není největší, tak existuje párování \(M'\) t. ž. \(|M'| > |M|\)
 	- uvažme graf \(M \Delta M'\) -- stupně mají vrcholy nejvýše dva, komponenty jsou tedy buď alternující cykly nebo cesty -- díky tomu, že nám jedna hrana přebývá, tak alespoň jedna komponenta je cesta
 {{< /math >}}
 
@@ -519,13 +519,13 @@ Najdeme algoritmem (Edmonds), který najde maximální párování
 	- zastavíme se, když:
 		- existuje \(w \not\in T, \{v, w\} \in E\) a \(w\) je nepokrytý -- pak jsme našli alternující cestu
 		- neexistuje \(w\)
-			- pokud je graf bipartitní, tak nemáme žádné \(B-B\) hrany a všechny zbývající hrany z \(B\)-vrcholů vedou do \(A\)-vrcholů -- poté když uvážíme \(G - A\), tak liché komponenty vedou pouze do \(A\) vrcholů ale \(B\) je o jedna více (máme \(r\)), tedy \(|B| = |A| + 1\) a \(G\) nemá perfektní párování a **našli jsme defektní vrchol**
+			- pokud je graf bipartitní, tak nemáme žádné \(B-B\) hrany a všechny zbývající hrany z \(B\)-vrcholů vedou do \(A\)-vrcholů -- poté když uvážíme \(G - A\), tak liché komponenty vedou pouze do \(A\) vrcholů, ale \(B\) je o jedna více (máme \(r\)), tedy \(|B| = |A| + 1\) a \(G\) nemá perfektní párování a **našli jsme defektní vrchol**
 
 Pro **bipartitní grafy** můžeme algoritmus výše opakovat (opakovaně stavíme stromy z vrcholů, které nejsou v párování), najít všechny defektní vrcholy a věta výše platí (máme množinu defektních vrcholů a párování splňující rovnost).
 
 Pro **nebipartitní grafy** může existovat hrana mezi \(B-B\) vrcholy (lichá kružnice).
 
-{{< math "observation" >}}nechť \(C\) lichá kružnice v \(G\), \(G'\) vznikne kontrakcí \(C\) do jednoho (pseudo)vrcholu a \(M'\) je párování v \(G'\). Potom existuje párování \(M\) v \(G\), že počet \(M'\)-nepokrytých vrcholů je stejný jako počet \(M\)-nepokrytých.
+{{< math "observation" >}}nechť \(C\) lichá kružnice v \(G\), \(G'\) vznikne kontrakcí \(C\) do jednoho (pseudo)vrcholu a \(M'\) je párování v \(G'\). Potom existuje párování \(M\) v \(G\) takové, že počet \(M'\)-nepokrytých vrcholů je stejný jako počet \(M\)-nepokrytých.
 {{< /math >}}
 
 Podgrafy \(G\) reprezentované pseudovrcholy mají lichý počet vrcholů (chceme opět dostat \(M\) a \(A\), abychom větu dokázali). To platí, protože pseudovrcholy vznikly kontrakcí liché kružnice na vrchol a tedy přišly o sudý počet vrcholů.
@@ -546,7 +546,7 @@ Postup pro \(B-B\) hrany je tedy ten, že zkontrahujeme \(C\), vyřešíme páro
 	- \(G\) kritický \(\iff\) \(G\) lze zkonstruovat z liché kružnice lepením lichých uší
 2. každé maximální párování \(M\) splňuje:
 	- \(e \in M, e \cap A \neq \emptyset \implies |e \cap A| = 1\) a \(e\) vede do \(B\)
-		- tohle nezamezuje, že by dvě hrany z \(A\) nevedly do jedné z \(B\)
+		- tohle nezamezuje tomu, aby dvě hrany z \(A\) vedly do jedné z \(B\) z \(A\) nevedly do jedné z \(B\)
 	- do každé komponenty \(B\) vede \(\le 1\) hrana \(M\)
 
 ![](dekompozice.svg)
@@ -556,7 +556,7 @@ Postup pro \(B-B\) hrany je tedy ten, že zkontrahujeme \(C\), vyřešíme páro
 
 ![](strom.svg)
 
-Každá hrana s koncem v \(A\) vede do \(B\) (s tím, že vrcholy v \(B\) jsou (pseudo)vrcholy vzniklé operací kontrakce. Defekt \(\mathrm{def}(M)\) je počet komponent v tomto lese.
+Každá hrana s koncem v \(A\) vede do \(B\) (s tím, že vrcholy v \(B\) jsou (pseudo)vrcholy vzniklé operací kontrakce). Defekt \(\mathrm{def}(M)\) je počet komponent v tomto lese.
 
 Nepokryté vrcholy žádným maximálním párováním:
 - ne v \(A\), jelikož všechny musí být pokryté každým maximálním párováním
@@ -570,7 +570,7 @@ Takové vrcholy tedy mohou být pouze v \(B\), čímž jsme dokázali (1).
 #### Generující funkce magic
 
 Nechť \(G = (V, E)\) rovinný, \(w : E \mapsto \mathbb{Q}\) váhová funkce
-1. **maximální perfektní párování** -- najdi \(M\) perfektní párování t.ž. \(w(E)\) je maximální
+1. **maximální perfektní párování** -- najdi \(M\) perfektní párování t.ž. \(w(M)\) je maximální
 	- polynomiální (pro všechny grafy)
 2. **maximální hranový řez** -- najdi \(E'\) hranový řez t.ž. \(w(E')\) je maximální
 	- obecně je NP-těžný, pro grafy na 2D plochách polynomiální
@@ -627,7 +627,7 @@ Postup důkazu:
 
 {{< math "problem" "čínského pošťáka" >}}
 1. \(G = (V, E)\) má **všechny stupně sudé** \( \implies \) řešení je uzavřený eulerovský tah
-	- {{< math "observation" >}}když \(H = (W, F)\) má všechny stupně sudé a \(F \neq \emptyset\) je neprázdná, pak \(F\) má cyklus; odstraněním cyklu má opět všechny stupně sudé; opakováním dostaneme disjunktní sjednocení cyklů, což jde do eulerovského tahu udělat trivialně{{< /math >}}
+	- {{< math "observation" >}}když \(H = (W, F)\) má všechny stupně sudé a \(F \neq \emptyset\) je neprázdná, pak \(F\) má cyklus; odstraněním cyklu má opět všechny stupně sudé; opakováním dostaneme disjunktní sjednocení cyklů, což jde do eulerovského tahu udělat triviálně{{< /math >}}
 2. nechť \(T = \left\{v \mid \mathrm{deg}_G(v)\ \text{lichý}\right\}\)
 {{< /math >}}
 
@@ -637,7 +637,7 @@ Postup důkazu:
 Je to taková množina vrcholů a hran, na kterou když se omezíme, tak všechny stupně vrcholů v \(T\) jsou liché a ostatní jsou sudé.
 {{% /float_box %}}
 
-{{< math "definition" "T-join" >}}\(E' \subseteq E\) je \(T\)-join (pro množinu vrcholů \(T\)), pokud \(G_T = (V, E')\) platí \[\left(\forall v \in V\right) \left(\mathrm{deg}_{G_T} (v)\ \text{lichý} \iff v \in T\right)\]{{< /math >}}
+{{< math "definition" "T-join" >}}\(E' \subseteq E\) je \(T\)-join (pro množinu vrcholů \(T\)), pokud pro \(G_T = (V, E')\) platí \[\left(\forall v \in V\right) \left(\mathrm{deg}_{G_T} (v)\ \text{lichý} \iff v \in T\right)\]{{< /math >}}
 
 {{< math "theorem" >}}nechť \(E' \subseteq E\) je množina hran min. trasy čínského pošťáka, které se projdou více než jednou. Pak se projdou **právě \(2\)-krát** a \(E'\) je **min. \(T\)-join** (kde \(T\) je výše definovaná množina).{{< /math >}}
 
@@ -648,7 +648,7 @@ Je to taková množina vrcholů a hran, na kterou když se omezíme, tak všechn
 
 Z pozorování plyne (1), jelikož \(F\) spolu s původními hranami dává \(2\) průchody.
 
-Navíc jelikož \(E(G') = E(G) \cup F\) je \(T\)-join, jelikož přesné splňuje definici (stupně budou liché v \(G'\), protože musí být sudé po přidaní do \(G\)). Navíc \(E(G) \cup \overline{F}\) rozhodně nebude lepší než minimální cesta čínského pošťáka a tedy naše \(F\).
+Navíc \(E(G') = E(G) \cup F\) je \(T\)-join, jelikož přesně splňuje definici (stupně budou liché v \(G'\), protože musí být sudé po přidání do \(G\)). Navíc \(E(G) \cup \overline{F}\) rozhodně nebude lepší než minimální cesta čínského pošťáka a tedy naše \(F\).
 {{< /math >}}
 
 {{< math "algorithm" "čínský pošťák" >}}
@@ -673,7 +673,7 @@ Navíc jelikož \(E(G') = E(G) \cup F\) je \(T\)-join, jelikož přesné splňuj
 Má [pěkná skripta](spojita.pdf).
 
 ### Zkouška
-Na obou částech jsem si vytáhl okruh, o kterém jsem napsal co vím a pak jsem to se zkoušejícím probíral.
+Na obou částech jsem si vytáhl okruh, o kterém jsem napsal, co vím, a pak jsem to se zkoušejícím probíral.
 
 #### Diskrétní část
 

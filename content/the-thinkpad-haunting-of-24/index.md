@@ -1,6 +1,6 @@
 ---
 date: '2024-02-07'
-title: The Thinkpad Haunting of '24
+title: The ThinkPad Haunting of '24
 description: When strange things happen to laptops.
 toc: true
 ---
@@ -14,7 +14,7 @@ You can [skip to the end](#the-culprit--solution) if you want to find out what c
 
 ### 1. App Crashes
 Certain apps (Firefox, Beeper, Thunderbird) would occasionally crash.
-This was especially annoying and frequent for Firefox, since it most often happened when opening a new tab for certain more demanding websites (i.e. YouTube).
+This was especially annoying and frequent for Firefox, since it most often happened when opening a new tab for certain more demanding websites (e.g. YouTube).
 Furthermore, re-launching the app would sometimes make it crash again and again, whereas other times it would start without any issues.
 
 For Firefox, my first thought was that it had something to do with the large collection of add-ons I've accumulated over the years, but disabling them made no difference -- it kept crashing.
@@ -34,7 +34,7 @@ Looking at the specific errors in question yielded answers where this happened d
 When making this website, certain images would, from time to time, **contain flipped bits.**
 This was extremely strange since (theoretically) they should have just been copied straight from the source without any modification, yet this was clearly not happening.
 
-I almost cried when trying to debug this, since there was quite literally nothing to go off of
+I almost cried when trying to debug this, since there was quite literally nothing to go off of:
 - the issue would immediately go away with a rebuild (it happened very infrequently)
 - nobody experienced anything even remotely close to this when using Jekyll
 
@@ -43,7 +43,7 @@ What the fuck.
 ### 4. Jupyter Kernel Crashes
 Working on homework for [Generative Neural Networks](/notes/generative-neural-networks/) involved a lot of PyTorch work in Jupyter.
 Doing this on my desktop was not an issue and was much faster since it was GPU-enabled, but running the same code on the laptop (with the `cpu` device) would result in the kernel frequently crashing, namely:
-- after model is done training (crashes in the middle were extremely infrequent),
+- after the model is done training (crashes in the middle were extremely infrequent),
 - when creating larger datasets (that didn't take a trivial amount of memory),
 - _if I looked at it in a funny way_ 👀
 
@@ -53,7 +53,7 @@ Probably just my laptop not being powerful enough, I guess?
 
 Running `memtester 1G 5` revealed this very quickly:
 
-```html
+```text
 memtester version 4.6.0 (64-bit)
 Copyright (C) 2001-2020 Charles Cazabon.
 Licensed under the GNU General Public License version 2 (only).
@@ -107,7 +107,7 @@ To disable using the bad part of the memory, I did the following:
     - open `/etc/default/grub`
     - add `memmap=0x10000\\\$0x316C50000` to `GRUB_CMDLINE_LINUX_DEFAULT`
         - the syntax is `size$start`, so this covers all of the bad addresses
-        - note the triple escape: one for the Markdown code span, one for the shell that parses `GRUB_CMDLINE_LINUX_DEFAULT`, and one to keep the literal `$` the kernel argument needs
+        - note the escaping: one level for the shell that sources `/etc/default/grub`, and one for GRUB's own parser, so that the kernel ends up receiving the literal `$` it needs
     - run `update-grub`
     - reboot
 3. **run `memtester` with as much RAM as possible**

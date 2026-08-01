@@ -2,7 +2,7 @@
 date: '2020-08-09'
 title: <code>man</code>
 hidden: true
-description: An overview of how the Linux' `man` command can be used.
+description: An overview of how the Linux `man` command can be used.
 htmlTitle: man
 toc: true
 ---
@@ -54,15 +54,15 @@ To specify which section the page should be displayed from, either of the follow
 
 | Flag    | Description                                              |
 | ---     | ---                                                      |
-| `-E`,   | Set the encoding of the displayed page.                  |
-| `--nh`, | Prevent line breaks on words that don't contain hyphens. |
-| `--nj`, | Don't justify to both margins.                           |
+| `-E`    | Set the encoding of the displayed page.                  |
+| `--nh`  | Prevent line breaks on words that don't contain hyphens. |
+| `--nj`  | Don't justify to both margins.                           |
 
 Also, if you set the `MANWIDTH` environment variable, the width of the page will be automatically adjusted to its value. If not, it will default to taking up the whole terminal window width.
 
 
 #### Exporting to other formats
-One can use the `-T` option to convert a manpage to a different format. For example, `man -Tpdf ls > ls_man_page.pdf` will generate a neat-looking PDF. Other formats like PS and HTML are also supported -- to see the full list, see `groff`'s documentation (namely the `-T` flag).
+One can use the `-T` option to convert a manpage to a different format. For example, `man -Tpdf ls > ls_man_page.pdf` will generate a neat-looking PDF. Other formats like PS and HTML are also supported -- for the full list, see `groff`'s documentation (namely the `-T` flag).
 
 #### Adding color
 In my opinion, `man` pages are, by default, rather dull-looking. They use `less` by default to do the displaying and while it does offer some forms of highlighting (bold, italics,...), it is quite limited and not nearly as nice as it could be.

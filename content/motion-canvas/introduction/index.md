@@ -18,7 +18,7 @@ The remedies to this are twofold: first off, I will be working with/joining the 
 
 Since I have spent a significant amount of time in Manim (even writing a [series of Manim tutorials](/manim/introduction/) about how to use it), I think it's valuable to document the process of learning Motion Canvas as a former Manim user.
 
-**If you are a Manim user, this series of articles is for you** -- it is a re-creation of [my Manim tutorial series](/manim/introduction/), written from a perspective of a long-time Manim user and focused on the differences between the two.
+**If you are a Manim user, this series of articles is for you** -- it is a re-creation of [my Manim tutorial series](/manim/introduction/), written from the perspective of a long-time Manim user and focused on the differences between the two.
 
 ### Setting up
 Follow the [quickstart](https://canvascommons.io/docs/quickstart) page to set up your development environment.
@@ -40,7 +40,7 @@ Instead of going through what each of the lines of code does (again, the [explan
 
 `1)` we are animating **properties, not objects** -- for Manim, what we're conceptually doing is transforming an object from one state to another and things magically happen; for Motion Canvas, we are **animating individual properties.**
 
-`2)` things are **always relative to the parent** -- when using Manim, properties of things like translation, rotation are absolute; for Motion Canvas, things are always relative to the object hierarchy.
+`2)` things are **always relative to the parent** -- when using Manim, properties of things like translation and rotation are absolute; for Motion Canvas, things are always relative to the object hierarchy.
 _This will make more sense in later examples._
 
 ### No `animate` syntax!

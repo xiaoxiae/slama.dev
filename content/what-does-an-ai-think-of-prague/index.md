@@ -11,7 +11,7 @@ _Each of the images is licensed under **[CC-BY-NC-SA 4.0](https://creativecommon
 
 {{% image_section %}}
   {{< image_row "ai/fantasy.png | ai/flowers-on-the-charles-bridge.png" >}}
-  {{< image_row "ai/lithnograph.png | ai/tree-of-life.png | ai/in-broken-glass.png" >}}
+  {{< image_row "ai/lithnograph.png :: lithograph | ai/tree-of-life.png | ai/in-broken-glass.png" >}}
   {{< image_row "ai/with-the-aurora.png" >}}
   {{< image_row "ai/cosmic-city-1.png | ai/cosmic-city-2.png" >}}
   {{< image_row "ai/demon-city.png" >}}

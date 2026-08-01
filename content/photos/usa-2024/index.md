@@ -79,6 +79,6 @@ centerTitle: true
 {{< image_row "DSC8328.jpg :: Day 14, image 6" >}}
 {{< /image_section >}}
 
-{{< image_section caption="**Day 15:** Visited the MET (the art museum) and see you back some day!" >}}
+{{< image_section caption="**Day 15:** Visited the MET (the art museum). See you back some day!" >}}
 {{< image_row "DSC8416.jpg :: Day 15, image 1 | DSC8436.jpg :: Day 15, image 2" >}}
 {{< /image_section >}}

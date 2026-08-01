@@ -52,10 +52,10 @@ to swap the colors of the background objects. Pretty awesome, right?
 
 We can of course use `self.interactive_embed()` as many times as we like -- to exit the current interactive session and continue onto the next one, we can either type `exit`, or just `Ctrl+D`.
 
-To render to file, we can additionally pass the `--write_to_movie` flag, which will render to file **but disable interactivity**, so if you want to record the interactive animations, I'd suggest to record the window/screen using software like [OBS](https://obsproject.com/).
+To render to file, we can additionally pass the `--write_to_movie` flag, which will render to file **but disable interactivity**, so if you want to record the interactive animations, I'd suggest recording the window/screen using software like [OBS](https://obsproject.com/).
 
 ### Mouse and Keyboard
-Now this in and of itself is incredible (at least for a long-time user of Manim like me), but we can take this to a whole another level by introducing keyboard and mouse interactivity.
+Now this in and of itself is incredible (at least for a long-time user of Manim like me), but we can take this to a whole other level by introducing keyboard and mouse interactivity.
 
 This comes in the form of `on_key_{press/release}` and `on_mouse_{press/motion/scroll/drag}` functions [[source code](https://github.com/ManimCommunity/manim/blob/main/manim/scene/scene.py)], which we can override in our scene and achieve further interactivity.
 
@@ -79,7 +79,7 @@ We can do a similar thing for interactivity with the mouse:
 ### Camera
 The OpenGL camera [[source code](https://github.com/ManimCommunity/manim/blob/main/manim/renderer/opengl_renderer.py)] offers quite a few functions that work really well in combination with interactivity and can be combined in a really nice way.
 
-For example, one neat thing we can do is manually move camera into a number of positions and then smoothly interpolate among them using the following code:
+For example, one neat thing we can do is manually move the camera into a number of positions and then smoothly interpolate among them using the following code:
 
 ```python {file="06-camera-example.py"}
 ```

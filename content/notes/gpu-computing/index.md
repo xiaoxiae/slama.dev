@@ -222,10 +222,10 @@ Combining fine-grain access by multiple threads **into a single operation.**
 - threads in a block grouped into **warps of \(32\)** (scheduling units of GPU)
 	- implementation decision, not CUDA
 	- **all threads in a warp execute the same instruction** (on their own data and registers)
-		- for conditionals, a **mask** is used (all of them still execute the same instruction but only the result of those with the mask are written to the memory)
+		- for conditionals, a **mask** is used (all of them still execute the same instruction but only the results of those with the mask are written to the memory)
 
 ```cpp
-__global__ badKernel (...) {
+__global__ void badKernel (...) {
 	id = threadIdx.x;
 
 	// not a great idea, use < instead!
@@ -240,7 +240,7 @@ During execution, the hardware **schedules blocks to SMs**
 - happens repeatedly -- when some blocks terminate, others will be distributed
 - the number depends on a block's resources (for ex. allocated shared memory)
 
-A SM has multiple **warp schedulers** that can execute multiple warps concurrently:
+An SM has multiple **warp schedulers** that can execute multiple warps concurrently:
 - **context switching is fast** (as opposed to CPU), since the data stays on-chip
 - if a warp doesn't have resources, it is **stalled** while they are fetched
 	- this happens really fast because the data stays in registers
@@ -413,7 +413,7 @@ _The lecture goes into theoretical parallel algorithm design._
 - **MIMD:** synchronization necessary (shared variables, process synchronization, etc.)
 
 ### Profiling
-{{< math "definition:" "arithmetic density" >}}, sometimes called **computational intensity** \(r\) is the ratio between floating point operations and data movements, i.e. \[r = \frac{\mathrm{FLOPs}}{\mathrm{Byte}}\]{{< /math >}}
+{{< math "definition:" "arithmetic density" >}}, sometimes called **computational intensity** \(r\), is the ratio between floating point operations and data movements, i.e. \[r = \frac{\mathrm{FLOPs}}{\mathrm{Byte}}\]{{< /math >}}
 
 To evaluate performance, we use the **roofline model:**
 - the performance is limited by its weakest link -- either **memory-bound** or **compute-bound**
@@ -428,7 +428,7 @@ _The lecture goes into CUDA profiling. Here are some important concepts:_
 	- compute/memory graphs, roofline analysis, etc.
 
 ### Scheduling optimizations
-- common and important data parallel primitive (sum, histogram, etc.)
+- **reduction** -- a common and important data parallel primitive (sum, histogram, etc.)
 - easy to implement but hard to implement fast
 - to process very large arrays, we will require more than one SM -- synchronization problem
 	- solution: _one reduction layer will be one kernel launch_
@@ -559,7 +559,7 @@ Here is an overview of the versions we have implemented so far (the values in th
 _I'm not writing the formulas from the slides, this isn't a physics course._
 
 #### AOS vs SOA
-- AOS:  **Arrays of Structures**
+- AOS: **Array of Structures**
 	- data grouped per element _index,_ different element types next to each other
 	- typical in most applications
 	- _consecutive threads won't access consecutive places in memory_
@@ -575,7 +575,7 @@ struct {
 p_t particles [MAX_SIZE];
 ```
 
-- SOA: **Structures of Arrays**
+- SOA: **Structure of Arrays**
 	- data grouped per element _type,_ elements distributed among different arrays
 	- typical in GPU applications (where multiple threads are accessing memory concurrently)
 
@@ -704,7 +704,7 @@ __global__ void ComputeNBodyGravitation_Shared (...) {
 
 - **streams** -- CPU/GPU concurrency!
 	- concurrent copy & execute (memcpy & kernel execute)
-	- here is a [nice presentation](https://developer.download.nvidia.com/CUDA/training/StreamsAndConcurrencyWebinar.pdf) that sums them well
+	- here is a [nice presentation](https://developer.download.nvidia.com/CUDA/training/StreamsAndConcurrencyWebinar.pdf) that sums them up well
 
 #### Host-device synchronization
 - **context-based** -- block until all outstanding CUDA operations have completed
@@ -829,7 +829,7 @@ for (int i = 0; i < n; i += segSize * 2) {
 - is implemented using **directives**
 	- `#pragma acc directive-name [clauses]`
 		- `parallel` -- user responsible for finding parallelisms
-		- `kernel` -- compiler responsible for finding parallelisms
+		- `kernels` -- compiler responsible for finding parallelisms
 		- `loop [clause]` -- share among threads/execute sequentially
 			- `gang` -- among _thread blocks_
 			- `worker` -- among _thread warps_ of a block
@@ -989,7 +989,7 @@ for ( int i = 0; i < n; ++i ) {
 	- \(4\)-way or \(8\)-way connectivity (we do \(4\))
 	- for an image, we apply a threshold to create a black/white image
 
-_Note: I am beyond confused to what the algorithm actually is, this is my best guess:_
+_Note: I am beyond confused as to what the algorithm actually is, this is my best guess:_
 - parallelly set labels to the entire stencil (taking threshold into account)
 - parallelly (repeatedly) merge labels (taking the minimum)
 	- will be done diagonally
@@ -1034,7 +1034,7 @@ _Read the slides, I'm fairly certain this isn't too important._
 | Thread Block | Work group |
 | Thread       | Work item  |
 | Thread ID    | Global ID  |
-| Block index  | Block ID   |
+| Block index  | Work group ID |
 | Thread index | Local ID   |
 
 Different types of kernels exist:
@@ -1058,19 +1058,19 @@ Different types of kernels exist:
 ### Consistency & Coherence
 **Ordering problem:** threads operate independently: which order to apply?
 
-**Cache coherence:** two threads write to **same variable**, which gets written to cache:
+**Cache coherence:** two threads write to the **same variable**, which gets written to cache:
 - caches have to be **coherent** (all threads see the same value)
 - different cache policies:
 	- **write-back**: write to cache, at some later point write to memory
-	- **write-through** write to cache and immediately to memory too
+	- **write-through**: write to cache and immediately to memory too
 	- _both cases have coherence problems,_ if we don't update caches of other threads
 - _a microarchitectural feature_
 
 **Memory consistency:** the order in which memory operations appear to be performed
 - as opposed to coherence, focuses on the _order of execution_
 - **strict**: any write seen immediately
-- **sequential:** write by different processors needs to be seen in the same order by all processors
+- **sequential:** writes by different processors need to be seen in the same order by all processors
 - highly relaxed for GPU, few guarantees
-	- `__threadfence()` stalls current thread until **all writes to shared/global memory are visible** to other threads (if `_threadfence_block()` then only shared memory)
+	- `__threadfence()` stalls current thread until **all writes to shared/global memory are visible** to other threads (if `__threadfence_block()` then only shared memory)
 	- `__syncthreads()` is a stronger version since it also **synchronizes thread execution**
 - _an architectural feature_

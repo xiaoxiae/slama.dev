@@ -59,7 +59,7 @@ Apply to probability distribution:
 - for the Gaussian distribution, \(m(-\sigma, \sigma)\) gives about \(0.68\) (\(-2\sigma\) gives \(0.95\))
 - \(f(x)\) is permissible, if for every interval \((x_0, x_1)\): \[\int_{x_0}^{x_1}p(x)\;dx=\int_{f(x_0)}^{f(x_1)}q(z)\;dz\]
 
-Now we can substitute \(z = f(z), dz = f'(x) dx, x_0 = f^{-1}(z_0), x_1 = f^{-1}(z_1)\), getting \[\int_{f^{-1}(f(x_0))}^{f^{-1}(f(x_1))} q(z=f(x)) f'(x)\;dx\]
+Now we can substitute \(z = f(x), dz = f'(x) dx, x_0 = f^{-1}(z_0), x_1 = f^{-1}(z_1)\), getting \[\int_{f^{-1}(f(x_0))}^{f^{-1}(f(x_1))} q(z=f(x)) f'(x)\;dx\]
 which must hold for any interval \(x_0, x_1\), meaning \[\boxed{p(x) = q(z=f(x)) f'(x)}\]
 which is called the **change-of-variables** formula, allowing us to express the complex distribution in terms of the simple distribution, transformation and its derivative (this is where the fact that it's always positive comes in handy, since it's just a scaling factor).
 
@@ -159,7 +159,7 @@ We want to make it continuous, we do embedding via the \(\delta\)-distribution \
 
 #### What if \(p(X)\) must be learned?
 **Mixture model** idea naturally generalizes to \(D\) dimensions:
-1. **histograms** are defined by a regular grid with \(K\) levels per dimension \(\implies L = k^D\) (exponential, does not scale)
+1. **histograms** are defined by a regular grid with \(k\) levels per dimension \(\implies L = k^D\) (exponential, does not scale)
     - solution: define bins by **recursive subdivision** (eg. density tree)
     - quality of the models is only medium -- each subdivision doubles the number but looks at only one variable, which is bad if you have 100s of variables... the number of correlations to be considered is bounded by tree depth, which must be \(\mathcal{O}\left(\log N\right)\)
 2. for **Gaussians**, we have to learn co-variance (instead of variance) \(\implies\) change the EM algorithm accordingly
@@ -178,7 +178,7 @@ We want to make it continuous, we do embedding via the \(\delta\)-distribution \
 
 - exact: **auto-regressive model** -- decompose \(p(X)\) by Bayesian chain rule: \[p(X) = p_1(X_1) p_2(X_2 \mid X_1) p_3(X_3 \mid X_1, X_2) \ldots\]
     - any ordering of the chain rule also works (variable order is interchangeable)
-    - each \(p_i(X_j \mid X_{<j})\) is a collection of 1-D distributions (one distribution per value of \(X_{<j}\))
+    - each \(p_j(X_j \mid X_{<j})\) is a collection of 1-D distributions (one distribution per value of \(X_{<j}\))
         - \(\Rightarrow\) use **conditional inverse transform method** \[x_j \sim p(X_j \mid X_{<j}) \iff z_j \sim q(z_j)\ ,\quad x_j = f^{-1}_j (z_j ; X_{<j})\]
         - then \[f^{-1}(X) = \begin{pmatrix}
             x_1 = f^{-1}_1(z_1) \\
@@ -188,7 +188,7 @@ We want to make it continuous, we do embedding via the \(\delta\)-distribution \
         \end{pmatrix}\] which is **auto-regressive** (values rely on the previous ones)
 - problem: \(f_j^{-1} (z_j; x_{<j})\) is a different 1-D function for each value of \(X_{<j}\)
     - eg. if \(X_{<j}\) is defined on a regular grid with \(k\) levels per dimension, then we have \(k^{j-1}\) different values \(\implies\) does not scale
-    - **general** solution: learn \(f_j^{-1}\) with a neural networks
+    - **general** solution: learn \(f_j^{-1}\) with a neural network
         - generalizes from a few seen (TS) values of \(X_{<j}\) to all possible values
     - **simpler** solution: if \(X_j \perp X_{j' < j}\) (independent) then \(X_{j'}\) can be dropped
         - also, if \(X_j \perp X_{j''} \mid X_{j'}\) for \(j', j'' < j\) then \(X_{j''}\) can be dropped
@@ -216,7 +216,7 @@ A few useful properties:
 - \(\mathrm{KL}\left[p^* \mid\mid p\right] = 0 \iff p^*(X) = p(X)\)
 - \(\mathrm{KL}\left[p^* \mid\mid p \right] \ge 0\)
 
-It's a **divergence** and **not a distance** (i.e. a metric) -- not symmetric, triangular inequality doesn't hold
+It's a **divergence** and **not a distance** (i.e. a metric) -- not symmetric, triangle inequality doesn't hold
 
 _There was an example here with a discrete distribution._
 
@@ -224,20 +224,20 @@ _There was an example here with a discrete distribution._
 - \(\Rightarrow\) can't be used as training gradient (since it's infinity)
 - \(\Rightarrow\) use model families s.t. \(\mathrm{dom}(p^*(X)) \subseteq \mathrm{dom}(p(X))\)
 
-Relationship between forward KL and maximum likelihood training: \[\mathrm{KL}\left[p^* \mid \mid p\right] = \underbrace{\int p^*(X) \log p^*(X) dx}_{-H\left[p^*\right] \text{(neg. entropy)}} - \underbrace{\int p^*(X) \log p(X) dx}_{\mathbb{E}_{X \sim p^*(X) \left[-\log p(X)\right]}}\]
-- entropy is independent of \(p(X)\) and can be dropped, so get an **optimization problem** \[\hat p(X) = \argmin_{p(X) \in \mathcal{f}} \mathbb{E}_{X \sim p^*(X)} \left[-\log p(X)\right]\]
+Relationship between forward KL and maximum likelihood training: \[\mathrm{KL}\left[p^* \mid \mid p\right] = \underbrace{\int p^*(X) \log p^*(X) dx}_{-H\left[p^*\right] \text{(neg. entropy)}} - \underbrace{\int p^*(X) \log p(X) dx}_{\mathbb{E}_{X \sim p^*(X)} \left[-\log p(X)\right]}\]
+- entropy is independent of \(p(X)\) and can be dropped, so get an **optimization problem** \[\hat p(X) = \argmin_{p(X) \in \mathcal{F}} \mathbb{E}_{X \sim p^*(X)} \left[-\log p(X)\right]\]
     - minimize KL \(\iff\) minimize NLL \(\iff\) maximize \(p(X)\) for \(TS\)
 
 Given \(TS = \left\{X_i \sim p^*(X)\right\}_{i=1}^N\), \[\boxed{\hat p(X) \approx \argmin_{p(X)} \frac{1}{N} \sum_{i=1}^{N} -\log p(X_i)}\]
 - does not contain \(p^*(X) \implies\) we can optimize **without** knowing \(p^*(X)\) (samples sufficient)
-- **but** we need to calculate \(p(X_i)\) during training \(\implies\) must be capable to do "inference"
+- **but** we need to calculate \(p(X_i)\) during training \(\implies\) must be capable of doing "inference"
 
 #### Reverse KL divergence
 
 \[\mathrm{KL}\left[p \mid\mid p^*\right] = \int p(X) \log \frac{p(X)}{p^*(X)}\ dx = \mathbb{E}_{\underbrace{x \sim p(X)}_{\text{reverse}}} \left[\log \frac{p(X)}{p^*(X)}\right]\]
 - **empirical approximation:** iterate  \(t = 1 \ldots T\):
     - current guess \(p^{(t-1)}(X)\): draw batch \(\left\{X_i \sim p^{(t-1)} (X)\right\}_{i=1}^N\)
-    - \(p^{(t)}(X) \argmin_{p(X)} \frac{1}{N} \sum_{i=1}^{N} \log \frac{p(X_i)}{p^*(X_i)}\)
+    - \(p^{(t)}(X) = \argmin_{p(X)} \frac{1}{N} \sum_{i=1}^{N} \log \frac{p(X_i)}{p^*(X_i)}\)
         - \(\Rightarrow\) need to know \(p^*(X)\)... cannot be used in many applications
         - useful when we know the distribution but it's intractable (ex. Gibbs distribution)
 
@@ -251,7 +251,7 @@ Given \(TS = \left\{X_i \sim p^*(X)\right\}_{i=1}^N\), \[\boxed{\hat p(X) \appro
 The idea is to use the **kernel trick**
 
 - without kernel:
-    - define \(\varphi: \mathrm{dom}(X) \implies \mathbb{R}\)
+    - define \(\varphi: \mathrm{dom}(X) \to \mathbb{R}\)
     - two data sets \(\left\{X_i^* \sim p^*(X)\right\}_{i=1}^N, \left\{X_i \sim p(X)\right\}_{i=1}^M\)
     - calculate \(\tilde X_i = \varphi(X_i), \tilde X_i^* = \varphi(X_i^*)\) \[\mathrm{MMD} = \max_{\varphi \in \mathcal{F}} \left[\frac{1}{M} \sum_{i=1}^{M} \varphi(X_i) - \frac{1}{N} \sum_{i=1}^{N} \varphi (X_i^*)\right]\]
         - \(\mathrm{MMD} \ge 0\) (if \(-\varphi \in \mathcal{F}\) when \(\varphi \in \mathcal{F}\))
@@ -292,7 +292,7 @@ Note that \(3 \not\Rightarrow 2\) (shown during lecture).
 {{% /float_box %}}
 
 #### Autoencoder
-- _learned compression_: \(f(X)\) and \(q(Z)\) are neural networks
+- _learned compression_: \(f(X)\) and \(g(Z)\) are neural networks
     - lossy compression because usually \(d = \dim(Z) \ll \dim(X) = D\)
         - "bottleneck" is a hyperparameter
     - train by **reconstruction error** \[\hat f, \hat g = \argmin_{f, g} \mathbb{E}_{X \sim p^*(X)} \left[||X - q(f(X))||^2\right]\]
@@ -318,7 +318,7 @@ Note that \(3 \not\Rightarrow 2\) (shown during lecture).
 1. **expert learning** of \(p_E(Z)\) by a second generative model
     - often simpler than learning \(p^*(X)\) directly (e.g. \(d < D\))
     - Stable Diffusion (image generation) does this
-2. **joined optimization**:
+2. **joint optimization**:
     - predefine \(q(Z)\) (desired code dimension)
     - measure \(\mathrm{MMD}\left(p_E(Z), q(Z)\right) \implies\) add new loss term
         - _choosing a kernel is another hyperparameter_
@@ -356,7 +356,7 @@ Note that \(3 \not\Rightarrow 2\) (shown during lecture).
         - \(\beta^2 \gg 1\) downscales squared loss \(\implies \) reconstruction error unimportant
         - \(\beta^2 \ll 1\) upscales squared loss \(\implies \) reconstruction error dominant
           ![](diag-gauss.webp)
-        - **generation:** \(Z \sim q(Z), X \sim p_D(X \mid Z) \iff \mu_D(Z) + \overbrace{\beta^2 \varepsilon}^{\text{noise}}\)
+        - **generation:** \(Z \sim q(Z), X \sim p_D(X \mid Z) \iff \mu_D(Z) + \overbrace{\beta \varepsilon}^{\text{noise}}\)
         - **inference:** if \(p(X) = p^*(X)\) and \(p_E(X, Z) = p_D(X, Z)\) then \[p_E(X, Z) = p(X) p_E(Z \mid X) = q(Z) p_D(X \mid Z) = p_D(X, Z)\] \[\implies p(X) = \frac{q(Z) p_D(X \mid Z)}{p_E(Z \mid X)}\] must give the same value for all \(Z \sim p_E(Z \mid X)\)
 
 4. **conditional VAE**
@@ -431,7 +431,7 @@ Note that \(3 \not\Rightarrow 2\) (shown during lecture).
 - let \(Z = f(X)\) an invertible encoding, \(X = f^{-1}(Z) := g(Z)\)
 - \(\tilde A = f(A)\) the image of \(A\) in \(Z\)-space: \[\tilde A = \left\{Z: Z=f(X)\ \text{for}\ X \in A\right\}\]
 - we want **consistency:** for all \[A: \mathrm{Pr}[Z \in \tilde A] = \int_{\tilde A} q(Z)\;dz \overset{!}{=} \mathrm{Pr}\left[X \in A\right]\]
-- apply the multi-dimensional change-of-variables formula: \[\int_{\tilde A = f(A)} q(Z)\;dz = \int_{q(\tilde A)} q(Z=f(X))\; | \det \mathcal{J}_{f} |\;dx\]
+- apply the multi-dimensional change-of-variables formula: \[\int_{\tilde A = f(A)} q(Z)\;dz = \int_{A} q(Z=f(X))\; | \det \mathcal{J}_{f} |\;dx\]
   for the Jacobian (matrix of partial derivatives) \(\mathcal{J}_f\) of \(f\)
 
 Since consistency must hold for any \(A\), the integrals must be equal, we get the **multi-variate change-of-variables** formula \[\boxed {p(X) = q(Z = f(X))\; | \det \mathcal{J}_f (X) | }\]
@@ -454,11 +454,11 @@ Recall the \(1\)-D case: \(q(Z) = \text{uniform}(0, 1) \implies f(X) = \mathrm{C
 - for higher cases, we can calculate determinants recursively, which grows **exponentially**
 - **general solution** with SVD: \(\mathcal{J} = U \cdot \Lambda \cdot V^T \implies |\det \mathcal{J}| = |\det \Lambda| = \prod_j \lambda_j\)
     - effort of \(\mathcal{O}(D^3)\), which is a little better than exponential
-- we can also expoit special case if \(\mathcal{J}\) is triangular (and the diagonal is non-zero, otherwise the determinant is zero), in which case \(\det \mathcal{J}\) is just the product of the diagonal elements
+- we can also exploit a special case if \(\mathcal{J}\) is triangular (and the diagonal is non-zero, otherwise the determinant is zero), in which case \(\det \mathcal{J}\) is just the product of the diagonal elements
     - we already talked about an instance of this: auto-regressive models -- since they rely on the previous terms, the Jacobian is triangular and the determinant is very easy
 
 If \(f(X)\) is a multi-layer network, \(f(X)\) is a composition of functions \(f^{(l)}\)
-- the Jacobian of composition is the **product of all Jacobians** (consequence of chain)
+- the Jacobian of composition is the **product of all Jacobians** (consequence of the chain rule)
 - the determinant is the **product of determinants** (consequence of linear algebra)
 - \(\Rightarrow\) determinant of multi-layer network is easy when layer determinants are
 - \(\Rightarrow\) popular architecture is to define all \(f^{(l)}\left(Z^{(l-1)}\right)\) as auto-regressive functions
@@ -508,7 +508,7 @@ TODO: add the drawing here
 - it turned out experimentally that learning \(Q\) is not necessary, no one knows why
     - fixed matrices are sufficient / may change with new learning algorithm
 - final architecture: \[f = f^{(L)} \circ Q^{(L - 1)} \circ f^{(L - 1)} \circ \ldots \circ Q^{(1)} \circ f^{(1)}\]
-- training algorithm: minimize negative likelihod of data (derivation in slides): \[\boxed{\hat f = \argmin_f \frac{1}{N} \sum_{i=1}^{N} \left(\frac{f(X_i)^2}{2} - \sum_{l=1}^{L} \sum_{j=\tilde D + 1}^{D} \tilde s_{j}^{(l)} \left(Z_{i, 1:\tilde D}^{(l-1)}\right)\right)}\]
+- training algorithm: minimize negative likelihood of data (derivation in slides): \[\boxed{\hat f = \argmin_f \frac{1}{N} \sum_{i=1}^{N} \left(\frac{f(X_i)^2}{2} - \sum_{l=1}^{L} \sum_{j=\tilde D + 1}^{D} \tilde s_{j}^{(l)} \left(Z_{i, 1:\tilde D}^{(l-1)}\right)\right)}\]
 - _the slides here explain why affine coupling works_
 
 #### Spline coupling
@@ -523,7 +523,7 @@ TODO: add the drawing here
 #### Conditional derivatives
 - e.g. \(Y\) is digit label, \(X\) is MNIST
     - \(X \sim p(X)\): sample any digit
-    - \(X \sim p(X \mid Y = Z)\): sample only \(2\)s
+    - \(X \sim p(X \mid Y = 2)\): sample only \(2\)s
 - typical setup for supervised learning:
     - **traditional networks** point estimates \(\hat X = r(Y)\) (regression or classification)
     - **conditional NFs**: distribution of \(X \hat=\) estimate uncertainty of \(X\)
@@ -531,7 +531,7 @@ TODO: add the drawing here
     - \(Y\) can be added as an input to all nested networks \(s^{(l)}, t^{(l)}\)
     - _works if \(Y\) is known for both forward and backward network execution_
 - if \(Y\) is complicated (e.g. high dimensional image), we have **shared preprocessing network** \(\tilde Y = h(Y)\) (feature detector / summary network), which can
-    - use architecture of an existing regression networks minus the last layer
+    - use architecture of an existing regression network minus the last layer
     - use a foundational model \(\phi(Y)\) trained by the big guys on big data
 
 {{% float_box %}}
@@ -544,7 +544,7 @@ TODO: add the drawing here
     - \(Y\) are hidden properties, i.e. variables we'd like to know but can't measure
 - **assumptions:**
     1. hidden variables are more fundamental, e.g. \(X\) is caused by \(Y\)
-    2. we have a scientific theory how the \(X\) arise from the \(Y\) (forward process)
+    2. we have a scientific theory of how the \(X\) arise from the \(Y\) (forward process)
     3. theory is implemented as an algorithm \(\hat=\) computer **simulation**
         - \(\Rightarrow\) we can do "in-silico experiments" (as opposed to "in-vivo" and "in-vitro")
         - three types of variables:
@@ -563,7 +563,7 @@ TODO: add the drawing here
         Y_G & \text{global properties (same for all members)} \\
         Y_L & \text{local properties (differs for all members)} \\
     \end{cases}\]
-        - \(Y_G \sim p^S(Y_G))\)
+        - \(Y_G \sim p^S(Y_G)\)
         - for \(i=1, \ldots, N\), sample \(Y_{Li} \sim p^S(Y_L \mid Y_G)\) and \(X_i \sim p^S(X \mid Y_G, Y_{Li})\)
         - _look at the group first, then differentiate for each individual_
         - \(X_i \not\perp X_{i'}\), but \(X_i \perp X_{i'} \mid Y_G\) (independent conditionally based on the global assumptions)
@@ -582,7 +582,7 @@ TODO: add the drawing here
 #### Main tasks of SBI
 1. **surrogate modelling:** train a model \(p(X \mid Y)\) that emulates the simulation
     - good for speed-up (since \(X = \phi(Y, \eta)\) is often slow)
-    - forward inference: often, \(X = \phi(Y, \eta)\) only defines \(p^S(X \mid Y) = \phi_{\#} (Y, \eta)\) implicitly, but doesn't allow to calculate \(p^{S}(X=X \mid Y)\) ("likelihood-free inference, implicit likelihood")
+    - forward inference: often, \(X = \phi(Y, \eta)\) only defines \(p^S(X \mid Y) = \phi_{\#} (Y, \eta)\) implicitly, but doesn't allow us to calculate \(p^{S}(X=X \mid Y)\) ("likelihood-free inference, implicit likelihood")
         - approximate true likelihood by \(p(X \mid Y) \approx p^S(X \mid Y)\)
 2. **inverse inference:** run the simulation backwards: \(Y = \phi^{-1}(X)\)
     - usually intractable (no analytic solution) and/or ill-posed (no inverse)
@@ -597,14 +597,14 @@ TODO: add the drawing here
                 - \(\Rightarrow\) learn generative model for posterior \(p(Y \mid X) \approx p^S(Y \mid X)\)
 3. **model misspecification & outlier detection** -- a simulation is **not** reality: \[\underbrace{p^S(Y) \cdot p^S(X \mid Y)}_{\text{simulation}} \approx \underbrace{p^*(Y)p^*(X \mid Y)}_{\text{reality}}\]
     - \(\Rightarrow\) use SBI to detect if \(p^S(X, Y) \neq p^*(X, Y)\)
-    - this and observed outcome \(X^{\text{obs}} \sim p^*(X, Y)\) compatible with \(p^S(X, Y)\)
+    - is this observed outcome \(X^{\text{obs}} \sim p^*(X, Y)\) compatible with \(p^S(X, Y)\)?
         - if not, the simulation is unrealistic -- "simulation gap"
         - _is a set of outcomes \(\left\{X_{i}^{\text{obs}}\right\}_{i=1}^N\) compatible with \(p^S(X, Y)\)?_
 4. **model comparison and selection**
     - if we have competing theories \(X = \phi^{(l)}(Y^{(l)}, \eta^{(l)})\)
     - \(\Rightarrow\) determine which \(l\) describes \(X^{\text{obs}}\) best (if any)
 5. **digital twins:** in a mixed effects setting, given \(\left\{X_i^{\text{obs}}\right\}_{i=1}^N\)
-    - determine \(Y_n\) and \(Y_{Li}\) accurately enough to predict \(X_i^{\text{future}} = \phi(Y_G, Y_{Li}, \eta)\)
+    - determine \(Y_G\) and \(Y_{Li}\) accurately enough to predict \(X_i^{\text{future}} = \phi(Y_G, Y_{Li}, \eta)\)
         - _the same treatment that worked on this patient will work on this one too_
     - _classical:_ base treatment decisions mainly on \(Y_G\) ("treatment guidelines") after an appropriate stratification of population into subgroups
     - _desired:_ "precision medicine" -- use \(Y_G\) and \(Y_{Li}\)
@@ -630,7 +630,7 @@ TODO: add the drawing here
     - \(-\) often, a long "burn-in" phase is needed to forget a bad initial guess
         - throw away \(Y^{(0)} \ldots Y^{(T_0)}\)
     - \(-\) samples \(Y^{(t)}\) and \(Y^{(t-1)}\) are close to each other (chain moves slightly away from the previous guess) -- may bias derived statistics of the chain (i.e. both are rejected)
-        - skip each \(k\)th samples in the chain
+        - skip each \(k\)th sample in the chain
     - \(-\) often difficult to define proposal distribution \(p(Y' \mid Y^{(t-1)})\) that has low rejection rate
     - \(\Rightarrow\) only applicable when \(\mathrm{dim}(Y)\) is not large and \(p^S(X \mid Y)\) not too slow
 
@@ -659,7 +659,7 @@ TODO: add the drawing here
     - \(\Rightarrow\) only applicable when \(\mathrm{dim}(Y)\) is not large
 
 {{< math "algorithm" "ABC" >}}
-1. \(t=0\), sample \(\left\{\right\}\) (we later become \(\left\{Y^{(t)} \sim p^S(Y \mid X^{\text{obs}})\right\}_{t=1}^T\)
+1. \(t=0\), sample \(\left\{\right\}\) (will later become \(\left\{Y^{(t)} \sim p^S(Y \mid X^{\text{obs}})\right\}_{t=1}^T\))
 2. repeat until \(t=T\)
     - sample \(Y, \eta \sim p^S(Y, \eta)\), simulate \(X \sim \phi(Y, \eta)\)
     - if \(\mathrm{dist}(X, X^{\text{obs}}) \le \varepsilon\), add \(Y\) to samples and increase \(t\), else reject
@@ -674,7 +674,7 @@ TODO: add the drawing here
 - **amortized SBI** -- given \(\mathrm{TS} = \left\{Y_i \sim p^S(Y), X_i = \phi(Y_i, \eta_i)\right\}_{i=1}^N, \eta_i \sim p^S(\eta \mid Y_i)\)
     - noise often independent of \(Y_i\) (i.e. just a random number)
     - easy to create when we know \(p^S(Y)\) and \(\phi(Y, \eta)\)
-    - we can train conditional normalized flows for
+    - we can train conditional normalizing flows for
         - \(p(X \mid Y) \approx p^S(X \mid Y)\) (forward surrogate)
         - \(p(Y \mid X) \approx p^S(Y \mid X)\) (inverse posterior)
     - \(+\) likelihood-free -- \(p^S(X \mid Y)\) not needed, \(X \sim \phi(Y, \eta)\) suffices
@@ -685,7 +685,7 @@ TODO: add the drawing here
         - training amortizes if one analyzes many \(X^{\text{obs}}\)
     - \(+\) prediction is very cheap (just NN evaluation on the GPU)
     - \(+\) generalization: networks generalize to unseen \((X, Y)\) pairs
-        - even \(X\) far from \(X^{\text{obs}}\) which would normally be rejected contribute to accuracy
+        - even \(X\) far from \(X^{\text{obs}}\) which would normally be rejected contributes to accuracy
     - \(-\) (so far) no theoretical performance guarantees
     - \(-\) (so far) no cheap way to finetune networks when \(p^S(Y)\) or \(\phi(Y, \eta)\) change slightly
 
@@ -713,13 +713,13 @@ TODO: add the drawing here
 #### Validation of generative models (especially SBI)
 - **fundamental problem:** if \(X \sim p(X)\), there is no single correct outcome
     - \(\Rightarrow\) traditional testing \(\hat X_i = X^*_i\) doesn't work
-    - \(\Rightarrow\) must compare distributions, no individual outcomes
+    - \(\Rightarrow\) must compare distributions, not individual outcomes
 1. **case:** for prior, we have \(\left\{X_i^* \sim p^*(X)\right\}_{i=1}^N\) for fixed \(Y\)
     - easily generated by simulation
 2. **case:** for posterior, we have \(p(Y \mid X) \approx p^*(Y \mid X)\)
     - to generate \(\left\{Y_i \sim p^*(Y \mid X)\right\}_{i=1}^N\) for fixed \(X^{\text{obs}}\), we need a classical algorithm (like MCMC or ABC)
 - we can compare means/covariances of \({\hat X_i}\) and \(\left\{X_i^*\right\}\) -- quick check, complete if \(p\) is Gauss
-    - can also compare higher order momentums but this tends to be expensive
+    - can also compare higher order moments but this tends to be expensive
 - plot marginal distributions in 1D and 2D for features \(j, j' = 1, \ldots, D\)
       ![Marginal.](marginal.webp)
     - we don't see correlations for higher dimensions but errors here can already be apparent
@@ -733,7 +733,7 @@ TODO: add the drawing here
             - if no pre-trained model available, we can still use a random(ly initialized) network
     - **density & coverage** (heuristic version of MMD?) [Naeem et al 2020]
         - use nearest neighbor method, usually applied in a feature space to make Euclidean distance plausible
-        - define \(B_n(X_i)\) ball with center \(X_i\) and radius \(||X_i - X_{i_k}||_2\) for \(i\) of the \(k\)-th nearest neighbour of \(X_i\)
+        - define \(B_k(X_i)\) ball with center \(X_i\) and radius \(||X_i - X_{i_k}||_2\) for \(i\) of the \(k\)-th nearest neighbour of \(X_i\)
             - \(\Rightarrow \mathbf{1}\left[X' \in B_k(X_i)\right]\)  is a kernel (the relation to MMD)
             - density = \(\frac{1}{kN'} \sum_{i'=1}^{N'} \sum_{i=1}^{N} \mathbf{1}\left[\hat X_{i'} \in B_k(X_i^*)\right]\)
                 - high when the \(\hat X_i\) are close to the \(X_i^*\)
@@ -741,7 +741,7 @@ TODO: add the drawing here
             - coverage = \(\frac{1}{N} \sum_{i'=1}^{N'} \mathrm{1}\left[\exists i\ \text{such that}\ \hat X_i \in B_k(X_{i'}^*)\right]\)
                 - counts how many of the balls around \(X_i^*\) contain a \(\hat X_i\)
                 - \(\mathbb{E}[\text{coverage}] = 1 - \frac{1}{2^{k}}\) if the synthesized data nicely covers the real data
-2. **case** but we also don't have \(\left\{X_i^*\right\}_{i=1}^N\)
+3. **case** but we also don't have \(\left\{X_i^*\right\}_{i=1}^N\)
     - \(\Rightarrow\) must evaluate on the basis of \(\left\{\hat X_i\right\}_{i=1}^N\) only, possibly with a single instance \(X^* \sim p(X^*)\)
         - _e.g. grayscale coloring -- we only have one GT image that we created the grayscale one from_
     - check the diversity of the generated sample (always possible without any GT)
@@ -751,7 +751,7 @@ TODO: add the drawing here
                 - \(G_{i, i'} = \frac{1}{N} k(\hat X_i, \hat X_{i'})\) (can also be done in a feature space)
                 - (missing in the paper) centralize \(G\) as in kernel PCA (see MLE)
             2. calculate eigenvalues \(\lambda_i\) of \(G\)
-            3. calculate eigenvalue entropy \(H(G) = -\sum_{i} \lambda_i \log \lambda_i\) (with \(0 - \log 0 = 0\))
+            3. calculate eigenvalue entropy \(H(G) = -\sum_{i} \lambda_i \log \lambda_i\) (with \(0 \cdot \log 0 = 0\))
             4. \(VS = \exp(H(G)) \le N\)
             5. profit?
             - acts as an effective rank of \(G\)
@@ -880,7 +880,7 @@ _There is a missing lecture here! See slides for what was in it._
         - \(X = \Theta(Y, \eta)\)
             - TODO: equations for the simulation
             - get the true values from ODE, calculate noise from the observables (diff between truth and what we can measure)
-            - we can't observe the actual state (ODES) but only the noise
+            - we can't observe the actual state (ODEs) but only the noise
         - full algorithm:
             1. define the simulation \(\Theta(Y, \eta)\) and priors \(p^S(Y)\) and \(p^S(\eta)\)
             2. use the simulation to generate synthetic TS
@@ -899,7 +899,7 @@ _There is a missing lecture here! See slides for what was in it._
 
 _New lecture here, we're doing SBI for epidemiology again._
 
-- a typical person will on average transmit to \[\delta \lambda \cdot \overline{[S(t)]}\] healthy people _(duration times change of infection times average number of healthy people the person meets in those days)_
+- a typical person will on average transmit to \[\delta \lambda \cdot \overline{[S(t)]}\] healthy people _(duration times chance of infection times average number of healthy people the person meets in those days)_
 - basic reproduction number is \[R_0(t) = \delta \lambda(t) \begin{cases}
     >1 & \text{new infections go up} \\
     <1 & \text{new infections go down}
@@ -927,7 +927,7 @@ _New lecture here, we're doing SBI for epidemiology again._
     - incubation period (carrier) -- infected but cannot transmit
         - \(S \rightarrow C \rightarrow I\) (with new variable \(\kappa\) for when they can transmit)
     - some (many) infections are undetected
-        - split \(I\) into "treated" (knows its infected) and "spreader" (can transmit without knowing it)
+        - split \(I\) into "treated" (knows it's infected) and "spreader" (can transmit without knowing it)
 - further refinements:
     - _split into risk groups_ (e.g. by age, sex, etc.)
     - _spatial relations_ (hot spots, travel)
@@ -982,7 +982,7 @@ _Some more stuff was here but brain small._
 **Parameter degeneracy**
 - sometimes, some elements in \(Y\) cannot be fully identified from \(X\)
     - correlations in the posteriors
-- **example:** epidemiologist write SIR equations in terms of natural/conceptual parameters
+- **example:** epidemiologists write SIR equations in terms of natural/conceptual parameters
     - \(\lambda_1\): average number of people a healthy person meets per day
     - \(\lambda_2\): fraction of meetings leading to transmission
     - in SIR equations, we always have \(\lambda_1 \lambda_2 \implies\) cannot distinguish them, but can infer \(\lambda = \lambda_1 \lambda_2\)
@@ -1063,7 +1063,7 @@ TODO: image here
     - we may or may not know \(\lambda\) (depending on the problem)
     - _special case of SIR equations -- the lecture has a derivation here_
 - PINN approach to learning:
-    - two bounds of points (later 3)
+    - two kinds of points (later 3)
         - **data points** \(\hat =\) TS where \(f(t)\) is (approximately) known (at least the data for initial condition)
         - **collocation points** where we apply the regularizer
             - \(t \in \mathrm{CP}\): check if ODE is fulfilled at \(t\)
@@ -1083,7 +1083,7 @@ _The lecture talks here about the general case for ODEs._
 
 **Disadvantages of using NNs:**
 - for each set of data points and parameters, training must be restarted (no amortization)
-    - problem is currently addressed (later
+    - problem is currently addressed (later)
 
 **Tips and tricks:**
 - use \(\tanh(u)\) activation or recently \(\mathrm{GELU}\)
@@ -1101,7 +1101,7 @@ _The lecture talks here about the general case for ODEs._
 _PINN-related things (training, variants)._
 
 ### State-of-the-art generative modeling
-- our current workhorse are invertible neural networks (affine or spline coupling flows)
+- our current workhorses are invertible neural networks (affine or spline coupling flows)
 - the directions of improvement:
     1. **lift architectural restrictions** that only facilitate efficient training
         - _free-form flows_
@@ -1126,9 +1126,9 @@ _PINN-related things (training, variants)._
 - coupling flows exist to make \(\left| \det \frac{\partial f(x)}{\partial x} \right|\) tractable
 - two types of layers in coupling flows
     - rotation / permutation layers: \(z^{(l)} = Qz^{(l-1)}\) for \(Q\) orthonormal
-        - \(\frac{\partial z^{(l)}}{\partial z^{(l-1)}} = Q \implies \left|\det \frac{\partial z^{(l)}}{\partial z^{(l-1)}} = 1\right|\)
+        - \(\frac{\partial z^{(l)}}{\partial z^{(l-1)}} = Q \implies \left|\det \frac{\partial z^{(l)}}{\partial z^{(l-1)}}\right| = 1\)
     - coupling layers (generally auto-regressive blocks)
-        - \(\frac{\partial z^{(l)}}{\partial z^{(l-1)}} = \mathcal{J}^{(l)}\) is triangular \(\implies \left|\det \frac{\partial z^{(l)}}{\partial z^{(l-1)}} = \prod_{j=1}^{D} \mathcal{J}^(l)_{jj}\right|\)
+        - \(\frac{\partial z^{(l)}}{\partial z^{(l-1)}} = \mathcal{J}^{(l)}\) is triangular \(\implies \left|\det \frac{\partial z^{(l)}}{\partial z^{(l-1)}}\right| = \prod_{j=1}^{D} \mathcal{J}^{(l)}_{jj}\)
 - if layer architecture is free, these tricks no longer work \(\implies\) must calculate \(\frac{\partial f(x)}{\partial x}\) by autodiff
     - modern autodiff can do this reasonably but for \(D \in \mathcal{O}\left(10^2 \ldots 10^3\right)\)
     - autodiff offers library functions for Jacobian-vector products (`jvp`) and vector-Jacobian products (`vjp`)
@@ -1176,13 +1176,13 @@ We can formalize the question:
     - _rectangular/injective c-o-v formula for decoder_ \[p(\hat x = g(z)) = g(z) \cdot \left| \det\left(\underbrace{\left(\frac{\partial g}{\partial z}\right)\cdot \left(\frac{\partial g}{\partial z}\right)^T}_{d\times D \cdot D \times d}\right)\right|^{- \frac{1}{2}}\]
         - this is a probability on \(\mathcal{M}\); says nothing about \(x \in \mathcal{M}\)
 - need to learn three things:
-    1. manifold \(\mathcal{M}\) that represents well under lossy compression
+    1. manifold \(\mathcal{M}\) that represents the data well under lossy compression
     2. fibers \(\mathcal{F}(z)\) which differences between \(x\) and \(x'\) we choose to ignore
     3. \(p(\hat x)\) as distribution of points after projection \(g(f(x))\)
 - much more difficult than NF, which only learn \(p(x)\)
 - the squared reconstruction loss \[\mathbb{E}_{x \sim p^*(x)} \left[||x - g(f(x))||^2_2\right]\] gives reasonable \(\mathcal{M}\) and \(\mathcal{F}(z)\) in practice
-    - \(\mathcal{M}\)is a kind of average of the original \(\mathrm{TS}\) (in lower dimension)
-    - \(\mathcal{F}(z)\) tend to be orthogonal to \(\mathcal{M}\)(in Euclidean norm)
+    - \(\mathcal{M}\) is a kind of average of the original \(\mathrm{TS}\) (in lower dimension)
+    - \(\mathcal{F}(z)\) tend to be orthogonal to \(\mathcal{M}\) (in Euclidean norm)
 - \(\nabla_\Theta \mathcal{L}_{\mathrm{NLL}}\) can be computed by an adapted version of FFF
     - training only with \(\mathcal{L}_{\mathrm{NLL}}\) (as in standard NF) is impossible (leads to degenerate solutions)
 

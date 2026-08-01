@@ -27,7 +27,7 @@ The stack consists of other Manim objects, added to it via the {{< doc "manim" "
 And, since it's a regular Manim object, we can interact with it like we would with any other Manim object.
 
 ### Custom animations
-Custom animations are again very useful when you are dealing with more complex scenes or encounter the limitations of the builtin ones (like our `MoveAndFade` animation from the [previous part](/manim/4/)).
+Custom animations are again very useful when you are dealing with more complex scenes or encounter the limitations of the builtin ones (like our `MoveAndFade` animation from the [previous part](/manim/plotting-and-3d-scenes/)).
 
 To see how to create them, it is again best to look at an example:
 

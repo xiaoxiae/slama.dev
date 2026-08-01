@@ -7,7 +7,7 @@ toc: true
 
 I've been working on this website for a few years now.
 
-Looking at the [Wayback machine](https://web.archive.org/web/20250101000000*/slama.dev), the oldest available snapshot is from **[23. 10. 2019](https://web.archive.org/web/20191023024113/http://slama.dev/)**, which itself is not far off from the [initial commit](https://github.com/xiaoxiae/slama.dev/commit/b7e9db8), which was 4. 5. 2019 -- **over 6 years ago**.
+Looking at the [Wayback Machine](https://web.archive.org/web/20250101000000*/slama.dev), the oldest available snapshot is from **[23. 10. 2019](https://web.archive.org/web/20191023024113/http://slama.dev/)**, which itself is not far off from the [initial commit](https://github.com/xiaoxiae/slama.dev/commit/b7e9db8), which was 4. 5. 2019 -- **over 6 years ago**.
 
 Over time, I've added lecture notes ([Czech](/poznamky)/[English](/notes)), a [climbing diary](/climbing), some [pretty neat photos](/photos), and much more.
 While I'm really happy with how the website grew, it was like building a ship as it's sailing the ocean -- add a sail here, patch the hull there, sprinkle some duct tape and hope it holds.
@@ -88,7 +88,7 @@ The Jekyll version of the website handled this via a [custom automated script](h
 This was unmaintainable.
 
 Fortunately, Hugo has built-in [image processing](https://gohugo.io/content-management/image-processing/), which allows you to resize, crop, and manipulate images automatically.
-This, in combination with a [render hook](https://gohugo.io/render-hooks/) that overwrites what HTML gets generated from Markdown's `![image](syntax)` means that we can automatically convert and resize **all images** on the **entire website** without the need for custom scripts, with something as simple as this in the image render hook:
+This, in combination with a [render hook](https://gohugo.io/render-hooks/) that overwrites what HTML gets generated from Markdown's `![image](syntax)`, means that we can automatically convert and resize **all images** on the **entire website** without the need for custom scripts, with something as simple as this in the image render hook:
 
 ```go
 {{- $img = $img.Process "resize 800x webp" -}}
@@ -125,7 +125,7 @@ Although [data files](https://jekyllrb.com/docs/datafiles/) do exist in Jekyll, 
 Over time, however, I've added a few features to the website like my [climbing diary](/climbing), a [photo gallery](/photos) and even a <a href="/tboi" class="secret" >hidden TBOI page</a>, which are ripe for this feature.
 
 Data files are exactly what the name suggests -- files with data that can be used to generate the website.
-Many datatypes are supported, but this website uses YAML since it's a good combination of human/machine readability.
+Many data formats are supported, but this website uses YAML since it's a good combination of human/machine readability.
 
 As an example, the [photos](/photos) page is generated from a YAML file that looks like this:
 
@@ -182,7 +182,7 @@ which is then used in generating the photos page as
 </div>
 ```
 
-### [Tags](https://jekyllrb.com/docs/plugins/tags/) vs. [Shortcodes](https://gohugo.io/shortcodes/highlight/)
+### [Tags](https://jekyllrb.com/docs/plugins/tags/) vs. [Shortcodes](https://gohugo.io/content-management/shortcodes/)
 
 Jekyll's tags (plugins) are essentially Ruby function calls that return arbitrary HTML.
 
@@ -206,14 +206,14 @@ In the end, the **rewrite went great** -- the website feels the same, the deploy
 
 While page-level redirects were not necessary, **file-level redirects were**.
 It turns out that people link assets from my website in other places, and since I moved most assets from `/assets/<post>/...` to `/<post>/...`, all of these would break.
-To fix this, I wrote a small script to match files from old assets folder to the path in the new website, and these should now be functional 🙂.
+To fix this, I wrote a small script to match files from the old assets folder to the path in the new website, and these should now be functional 🙂.
 
 To be fully transparent, the vast majority was done via [Claude Code](https://claude.com/product/claude-code) (no vibe, just supervision), as it was more laborious than interesting -- a pinch of SED calls, a sprinkle of Ruby-to-Go-template rewrites, a few hours wasted on a [bug in Hugo's markdown parser](https://github.com/gohugoio/hugo-goldmark-extensions/issues/40)... nothing out of the ordinary.
 
 There were a few breaking changes that needed to be fixed, namely
 - **no `<div markdown="1">`** -- this is honestly for my own good, because I completely abused this [Kramdown-only feature](https://kramdown.gettalong.org/syntax.html) when I should have been using tags,
 - **broken code highlights** due to Hugo's different syntax highlighter -- since Hugo uses [Chroma](https://github.com/alecthomas/chroma), which generates different HTML structure/tags, a lot of highlighting on the website (not just code) broke; expected but annoying,
-- things like the [PDF generation](https://github.com/xiaoxiae/slama.dev/blob/master/_plugins/pdf.py) were deprecated, since it was in a terrible state to begin with and the minor changes that those PDFs may receive in the future do not warrant another day spent on porting it to work with Hugo
+- things like the [PDF generation](https://github.com/xiaoxiae/slama.dev/blob/master/_plugins/pdf.py) were deprecated, since it was in a terrible state to begin with and the minor changes that those PDFs may receive in the future do not warrant another day spent on porting it to work with Hugo.
 
 I will now embark upon a crusade to convince my friends, many of whom I convinced to create a personal website in Jekyll, to switch to Hugo.
 

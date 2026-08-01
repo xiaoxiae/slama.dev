@@ -56,7 +56,7 @@ If we don't want to create random graphs manually, we can use the popular [`netw
 {{< video "manim" "03-graph-generation-example" >}}
 
 ### Camera
-In Manim, each camera scene contains a camera object (implemented via the {{< doc "manim" "Camera" "reference/manim.camera.camera.Camera.html" >}}).
+In Manim, each scene contains a camera object (implemented via the {{< doc "manim" "Camera" "reference/manim.camera.camera.Camera.html" >}}).
 So far, it wasn't very useful, because we've implemented all object transformations by changing the objects themselves.
 In certain cases, however, it is much more convenient to just move/zoom the camera to achieve the same result.
 
@@ -77,7 +77,7 @@ This also means that we can use updaters exactly how one would expect.
 {{< video "manim" "03-moving-camera-updater-example" >}}
 
 As the code mentions, it is very important to pay attention to whether the updated object has been added to the scene.
-In this case, the updater hasn't been animated yet (which implicitly adds it to the scene), meaning that we had to add it manually.
+In this case, the updated object hasn't been animated yet (which implicitly adds it to the scene), meaning that we had to add it manually.
 
 Besides moving and zooming, we can also do things like changing the color of the background.
 
@@ -97,7 +97,7 @@ We've already seen rate functions in action; here is how to set them explicitly.
 {{< video "manim" "03-rate-functions-example" >}}
 
 Below is the (almost) complete list of curves that are frequently used in animations.
-There also exists a [wonderful website](https://easings.net/) which contains a number of these functions, including an interactive visualisation of their progress, if you want to experiment with them outside of Manim.
+There also exists a [wonderful website](https://easings.net/) which contains a number of these functions, including an interactive visualization of their progress, if you want to experiment with them outside of Manim.
 
 <!--
 ```py
@@ -165,7 +165,7 @@ for v in graph.vertices:
 {{< details "Author's Solution" "03-graph-algorithm.py" >}}{{< /details >}}
 
 #### Fibonacci sequence
-Create animation of the Fibonacci sequence (or some other similar sequence like [Pell](https://en.wikipedia.org/wiki/Pell_number)'s numbers or [Lucas](https://en.wikipedia.org/wiki/Lucas_number)' numbers).
+Create an animation of the Fibonacci sequence (or some other similar sequence like [Pell](https://en.wikipedia.org/wiki/Pell_number)'s numbers or [Lucas](https://en.wikipedia.org/wiki/Lucas_number)' numbers).
 
 {{< video "manim" "03-fibonacci-sequence" >}}
 
@@ -200,7 +200,7 @@ To create the ant object, you can use the {{< doc "manim" "SVGMobject" "referenc
 {{< video "manim" "03-svg-example" >}}
 
 There is one trap in this task, which is using updaters on the ant to track it while moving.
-This won't move due to how a center of an object is calculated -- by default, it is simply the center of the bounding rectangle of the object, which fails for shapes like the ant.
+This won't work due to how the center of an object is calculated -- by default, it is simply the center of the bounding rectangle of the object, which fails for shapes like the ant.
 
 {{< video "manim" "03-get-center-example" >}}
 

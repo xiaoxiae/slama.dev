@@ -16,7 +16,7 @@ We'll also play around with colors a bit 🙂.
 ### Grouping objects
 
 Motion Canvas doesn't fully support the same grouping as Manim (i.e. change the color of all objects in this particular group).
-Instead, we should always be working with the [**scene hierarchy**](https://canvascommons.io/docs/hierarchy) and layout objects, which does support certain operations, mostly related to their position, scale/size and rotation.
+Instead, we should always be working with the [**scene hierarchy**](https://canvascommons.io/docs/hierarchy) and layout objects, which do support certain operations, mostly related to their position, scale/size and rotation.
 
 In this example, we're also using the fact that Motion Canvas supports any `X11` color names -- feel free to [browse through them](https://x11.linci.co/) and pick the ones that you like!
 
@@ -34,14 +34,14 @@ In Motion Canvas, we again utilize the almighty flexbox... well, kind of -- anim
 For grids, Manim's {{< doc "manim" "arrange_in_grid" "reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.arrange_in_grid" >}} is just a special case of Motion Canvas' flexbox shenanigans.
 The only difference here is that we're newly using the `wrap` property, since the circles would otherwise be squished and not wrapped to form a grid.
 
-To make the animation a bit more interesting, we can utilize the [**`chroma.js`**](https://gka.github.io/chroma.js/) (which Motion Canvas internally uses to work with colors) to assign colors using a color scale.
+To make the animation a bit more interesting, we can utilize the [**`chroma.js`**](https://gka.github.io/chroma.js/) library (which Motion Canvas internally uses to work with colors) to assign colors using a color scale.
 
 ```tsx {file="arrange-in-grid.tsx"}
 ```
 
 {{< video "motion-canvas" "02-arrange-in-grid" >}}
 
-### Add, remove and ordering
+### Adding, removing and ordering
 
 The order in which the objects are rendered is based on the [scene hierarchy](https://canvascommons.io/docs/hierarchy#modifying-the-hierarchy) -- the higher they are, the sooner they are rendered (i.e. the more _at the bottom_ they are).
 However, if they differ in their z-index, the one with a higher z-index will always be drawn on top of the other:
@@ -54,7 +54,7 @@ However, if they differ in their z-index, the one with a higher z-index will alw
 ### Animation flow
 
 We've already seen a few of these in the [previous post](/motion-canvas/1/), but we can use different functions for working with [animation flow](https://canvascommons.io/docs/flow).
-The main difference between Manim and one of the main features of Motion Canvas is that the animation model inherently allows for a lot of concurrency, since you can have multiple threads concurrently changing different properties, even of the same object:
+One of the main differences between Manim and Motion Canvas is that the animation model inherently allows for a lot of concurrency, since you can have multiple threads concurrently changing different properties, even of the same object:
 
 ```tsx {file="animation-flow.tsx"}
 ```
@@ -76,16 +76,16 @@ Sorry 🤷.
 ### Signals
 **[Signals](https://canvascommons.io/docs/signals)** are Manim's updaters on crack.
 
-Instead of object's characteristics being static values, they are usually **signals,** which are (as the documentation describes) values that can change over time and define dependencies between objects.
+Instead of an object's characteristics being static values, they are usually **signals,** which are (as the documentation describes) values that can change over time and define dependencies between objects.
 
-This means that, as opposed to Manim's updater we **don't need to explicitly say** that an object's attribute should be set to this value at every frame -- we say that **it is that value:**
+This means that, as opposed to Manim's updaters, we **don't need to explicitly say** that an object's attribute should be set to this value at every frame -- we say that **it is that value:**
 
 ```tsx {file="simple-signal.tsx"}
 ```
 
 {{< video "motion-canvas" "02-simple-signal" >}}
 
-Note that we don't necessarily need to only assign one signal to another -- we can assign a function that takes the value of the signal and modifies it how we want, for example taking the position of an object and converting it to a text to display it:
+Note that we don't necessarily need to only assign one signal to another -- we can assign a function that takes the value of the signal and modifies it how we want, for example taking the position of an object and converting it to text to display it:
 
 
 ```tsx {file="become-signal.tsx"}
@@ -121,7 +121,7 @@ For example, we could use it to create a simple particle simulation like this on
 Before trying to animate this, here are a few useful things:
 
 1. to move a circle along a nice path, you can define a **spline** between two points and then move along it using the {{< doc "motion-canvas" "getPointAtPercentage" "2d/components/Curve#getPointAtPercentage" >}} function (see the [documentation page for splines](https://canvascommons.io/docs/spline))
-2. to animate a value from `0` to `1` that we can use for the percentage value, we can create and animate a new signal (more about what that is in the [next Motion Canvas post](/motion-canvas/2/))
+2. to animate a value from `0` to `1` that we can use for the percentage value, we can create and animate a new signal (more about what that is in the [signals section](#signals) above)
 3. the {{< doc "motion-canvas" "easeInOutExpo" "core/tweening#easeInOutExpo" >}} easing curve is nicer for shuffling since it's more sudden than the default
 
 All of the above can be summarized in the following animation:
@@ -214,7 +214,7 @@ Here is the text input that I used to generate the maze, if you wish to use it.
 #    ######     ############     #############        #
 # #########  ## ###########     #########    #        #
 # ############### #########     #######               #
-# ###############   ######      #####f                #
+# ###############   ######      ######                #
 # ###############    #####       ####                 #
 #   #############      #                ##            #
 #     #  #######                       ########### ####

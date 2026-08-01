@@ -76,7 +76,7 @@ Nechť \(R\) je ekvivalence na \(X\). Potom:
 {{< /math >}}
 
 {{< math "definition" "Hasseův diagram" >}}
-Uvažme uspořádání \(\left(\left\{1, 2, 3\right\}, \subseteq\right)\). Jeho Hasseův diagram bude vypadat následně:
+Uvažme uspořádání \(\left(2^{\left\{1, 2, 3\right\}}, \subseteq\right)\). Jeho Hasseův diagram bude vypadat následně:
 {{< /math >}}
 
 ![](hasse.svg)
@@ -97,7 +97,7 @@ Nechť \(X\) je abeceda a \(\le\) uspořádání na \(X\). Pak definujeme lexiko
 #### Dlouhý a široký
 {{< math "definition" "(anti)řetězec" >}}
 pro \(\left(X, \le\right)\) ČUM (částečně uspořádaná množina):
-- \(A \subseteq X\) je _řetězec_ \(\forall a, b \in A\) jsou porovnatelné
+- \(A \subseteq X\) je _řetězec_ \(\equiv\) \(\forall a, b \in A\) jsou porovnatelné
 	- \(\omega\left(X, \le\right) :=\) délka nejdelšího řetězce
 - \(A \subseteq X\) je _antiřetězec_ \(\equiv\) žádné 2 prvky nejsou porovnatelné (nezávislá množina)
 	- \(\alpha\left(X, \le\right) :=\) délka nejdelšího antiřetězce
@@ -119,7 +119,7 @@ nechť \(x_1, \ldots, x_{n^2 + 1}\) jsou navzájem různé. Pak existuje buď ro
 {{< /math >}}
 
 {{< math "proof" >}}
-Na \(\left\{1, \ldots, n^2 + 1\right\}\) definujme uspořádání \(i < j \iff i < j \land x_i < x_j\). Rostoucí odpovídají řetězcům, nerostoucí antiřetězcům.
+Na \(\left\{1, \ldots, n^2 + 1\right\}\) definujme uspořádání \(i \prec j \iff i < j \land x_i < x_j\). Rostoucí odpovídají řetězcům, nerostoucí antiřetězcům.
 {{< /math >}}
 
 #### Počítání funkcí
@@ -197,7 +197,7 @@ budeme počítat dvěma způsoby:
 {{< math "proof" >}}
 - jedná se o _součty součinů_, které si ze závorek vybírají \(a\) nebo \(b\)
 	- \(a^{n - k}b^k\) -- celkově jich musí být \(n\)
-	- \(\binom{n}{k}\) -- kolika způsoby si lze z \(n\) závorek vybrat k znaků
+	- \(\binom{n}{k}\) -- kolika způsoby si lze z \(n\) závorek vybrat \(k\) znaků
 {{< /math >}}
 
 {{< math "remark" >}}
@@ -239,7 +239,7 @@ budeme počítat dvěma způsoby:
 &= en \left(\frac{n}{e}\right)^n \underbrace{\left(\frac{n - 1}{n}\right)^n e}_{\le 1}
 \end{aligned}\]
 
-Důkaz, toho proč ten výraz \(\le 1\):
+Důkaz toho, proč ten výraz \(\le 1\):
 
 \[
 \begin{aligned}
@@ -262,7 +262,7 @@ Také lze zapsat jako
 
 {{< math "proof" "počítací" >}}
 kolikrát se prvek \(x\) nachází nalevo a napravo:
-- nalevo: 1 (ve sjednocení je jednou právě)
+- nalevo: 1 (ve sjednocení je právě jednou)
 - napravo:
 	- předpokládejme, že se vyskytne v \(j\) množinách -- vyskytuje se tedy v každé \(k\)-tici z těchto \(j\) množin (\(k \le j\))
 	- existuje \(\binom{j}{k}\) \(k\)-prvkových podmnožin \(j\)-prvkové množiny (a ve vzorci se znaménka střídají), lze počet výskytů vyjádřit následovně:
@@ -283,7 +283,7 @@ graf je _uspořádaná dvojice_ množin \(\left(V, E\right)\), kde \(V\) je _kon
 	- \(V\left(K_{m, n}\right) = \left\{a_1, \ldots, a_m, b_1, \ldots, b_n\right\}\) (rozdělíme na 2 části)
 	- \(E\left(K_{m, n}\right) = \left\{\left\{a_i, b_j\right\} \mid i \in \left[m\right], j \in \left[n\right]\right\}\)
 	- bipartitní -- \(E \subseteq\ \) úplného bipartitního
-- **cesta** \(P_n \equiv \left(\left[n\right], \left\{\left\{i, i + 1\right\} \mid 0 \le i < n\right\}\right) \)
+- **cesta** \(P_n \equiv \left(\left[n\right], \left\{\left\{i, i + 1\right\} \mid 0 \le i < n - 1\right\}\right) \)
 - **cyklus** \(C_n \equiv \left(\left[n\right], \left\{\left\{i, \left(i + 1\right)\ \mathrm{mod}\ n\right\} \mid 0 \le i < n\right\}\right)\)
 
 {{< math "definition" "izomorfismus" >}}
@@ -327,7 +327,7 @@ nechť \(K\) je \(\left\{\left(v, e\right) \mid e \in E\left(G\right) \land v \i
 {{< /math >}}
 
 {{< math "theorem" "testování skóre" >}}
-nechť \(d_1 \le d_2 \le \ldots \le d_n\) posloupnost přirozených čísel. Pak \(d_1', d_2', \ldots d_{n - 1}' \) vznikne smazáním posledního prvku a odečtením \(1\) od \(d_n\) předchozích. Pak \(d_1 \le d_2 \le \ldots d_n\) je skórem grafu právě tehdy, když \(d_1', d_2', \ldots d_{n - 1}' \) je skórem grafu.
+nechť \(d_1 \le d_2 \le \ldots \le d_n\) je posloupnost přirozených čísel. Pak \(d_1', d_2', \ldots d_{n - 1}' \) vznikne smazáním posledního prvku a odečtením \(1\) od \(d_n\) předchozích. Pak \(d_1 \le d_2 \le \ldots d_n\) je skórem grafu právě tehdy, když \(d_1', d_2', \ldots d_{n - 1}' \) je skórem grafu.
 {{< /math >}}
 
 {{< math "proof" >}}
@@ -346,7 +346,7 @@ nechť \(d_1 \le d_2 \le \ldots \le d_n\) posloupnost přirozených čísel. Pak
 
 - nechť \(G \in \mathcal{G}\) má minimální \(j\left(G\right)\)... pak \(j < n - d_n\)
 	- důkaz sporem: kdyby \(j \ge n - d_n\), pak \(\exists i\) a \(\exists k: \left\{v_j, v_k\right\} \in E\left(G\right) \land \left\{v_i, v_k\right\} \not\in E\left(G\right)	\)
-		- pro \(d_i < d_j\) -- z \(v_j\) jich vede více než s \(d_i\) (takže do nějaké do které \(d_j\) vede \(d_i\) nevede)
+		- pro \(d_i < d_j\) -- z \(v_j\) jich vede více než s \(d_i\) (takže do nějaké, do které \(d_j\) vede, \(d_i\) nevede)
 		- \(d_i = d_j\) je taky ok... jedna z \(v_i\) vede do \(v_n\)
 
 ![](score_2.svg)
@@ -356,12 +356,12 @@ nechť \(d_1 \le d_2 \le \ldots \le d_n\) posloupnost přirozených čísel. Pak
 
 {{< math "definition" "podgraf" >}}
 Graf \(H\) je _podgrafem_ grafu \(G \left(H \subseteq G\right) \equiv V\left(H\right) \subseteq V\left(G\right) \land E\left(H\right) \subseteq E\left(G\right)\).
-- vznik tak, že z grafu odebíráme hrany/vrcholy
+- vznikne tak, že z grafu odebíráme hrany/vrcholy
 {{< /math >}}
 
 {{< math "definition" "indukovaný podgraf" >}}
 Graf \(H\) je _indukovaným podgrafem_ grafu \(G \left(H \subseteq G\right) \equiv V\left(H\right) \subseteq V\left(G\right) \land E\left(H\right) = E\left(G\right) \cap \binom{V\left(H\right)}{2}\).
-- vznik tak, že z grafu odebíráme pouze vrcholy (a s nimi spojené hrany)
+- vznikne tak, že z grafu odebíráme pouze vrcholy (a s nimi spojené hrany)
 {{< /math >}}
 
 {{< math "definition:" "cesta" >}}
@@ -387,7 +387,7 @@ Graf \(G\) je _souvislý_ \(\ \equiv \forall u, v \in V\left(G\right) \exists\ \
 - relace dosažitelnosti: \(\sim\) na \(V\left(G\right)\): \(u \sim v \equiv \exists\) cesta z \(u\) do \(v\)
 	- je to ekvivalence: je _reflexivní_ (cesta z \(u\) do \(u\) velikosti 0), _symetrická_ (graf je neorientovaný) i _tranzitivní_ (jen pozor na to, že to po slepení může být sled -- je potřeba to ošetřit)
 
-V souvislém grafu \(G\) je vzdálenost vrcholu \(u, v\) _minimum_ z délek cest z \(u\) do \(v\) (značíme \(\rho\left(u, v\right)\)).
+V souvislém grafu \(G\) je vzdálenost vrcholů \(u, v\) _minimum_ z délek cest z \(u\) do \(v\) (značíme \(\rho\left(u, v\right)\)).
 - jedná se o _metriku_, jelikož splňuje následující:
 	1. \(\forall u, v: \rho\left(u, v\right) \ge 0\)
 	2. \(\forall u, v: \rho\left(u, v\right) = 0 \iff u = v\)
@@ -400,11 +400,11 @@ V souvislém grafu \(G\) je vzdálenost vrcholu \(u, v\) _minimum_ z délek cest
 - _smazání_ hrany/vrcholu:
 	- \(G - e := G\left(V, E \setminus \left\{e\right\}\right)\)
 	- \(G - v := G\left(V \setminus v, E \setminus \left\{e \in E \mid v \in e\right\}\right)\)
-- _dělení_ hrany \(G\ \%\ e := \left(V \cup \left\{z\right\}, \left(E \setminus \left\{x, y\right\}\right) \cup \left(\left\{x, z\right\}, \left\{z, y\right\}\right)\right)\)
-- kontrakce hrany \( G/e := \left(\left(V \setminus \left\{x, y\right\}\right) \cup \left\{z\right\}, \\ \left\{e \in E \mid e \cap \left\{x, y\right\} \neq \emptyset\right\} \cup \left\{\left(e \setminus \left\{x, y\right\}\right) \cup \left\{z\right\} \mid e \in E \land \left|e \cup \left\{x, y\right\}\right| = 1\right\}\right) \)
+- _dělení_ hrany \(G\ \%\ e := \left(V \cup \left\{z\right\}, \left(E \setminus \left\{x, y\right\}\right) \cup \left\{\left\{x, z\right\}, \left\{z, y\right\}\right\}\right)\)
+- kontrakce hrany \( G/e := \left(\left(V \setminus \left\{x, y\right\}\right) \cup \left\{z\right\}, \\ \left\{e \in E \mid e \cap \left\{x, y\right\} = \emptyset\right\} \cup \left\{\left(e \setminus \left\{x, y\right\}\right) \cup \left\{z\right\} \mid e \in E \land \left|e \cap \left\{x, y\right\}\right| = 1\right\}\right) \)
 
 #### Stromy
-{{< math "definition" "strom les, list" >}}
+{{< math "definition" "strom, les, list" >}}
 - strom je _souvislý acyklický graf_
 - les je _acyklický graf_ (soubor stromů)
 - list -- vrchol stromu s \(\mathrm{deg}\left(v\right) = 1\)
@@ -452,7 +452,7 @@ následující tvrzení jsou ekvivalentní:
 
 \(1 \implies 3\): indukcí:
 - pro \(n = 2\) platí (odebráním hrany se vrcholy rozpadnou)
-- indukce \(n + 1 \rightarrow n\):
+- indukce \(n \rightarrow n + 1\):
 	- IP: graf \(n\) se rozpadne
 	- po odebrání \(n+1\) hrany se graf také rozpadne
 
@@ -594,7 +594,7 @@ Po rovinném nakreslení \(K_4\) je zřejmé, že z každé stěny jsou dosažit
 
 {{< math "definition:" "křížící číslo" >}} je min. počet křížení.{{< /math >}}
 
-{{< math "definition:" "stěny nakreslení" >}} jsou komponenty obloukové souvislosti: \[\mathbb{R}^2 \setminus \left(\left\{\nu\left(v\right) \mid v \in V \right\} \bigcup_{e \in E} C(e)\right)\]
+{{< math "definition:" "stěny nakreslení" >}} jsou komponenty obloukové souvislosti: \[\mathbb{R}^2 \setminus \left(\left\{\nu\left(v\right) \mid v \in V \right\} \cup \bigcup_{e \in E} C(e)\right)\]
 {{< /math >}}
 
 ![](komponenty.svg)
@@ -653,7 +653,7 @@ pro maximálně rovinný graf \(G\) s \(v \ge 3\) jsou všechny jeho stěny troj
 {{< math "proof" >}}
 1. každý maximální graf je souvislý (pokud ne, tak lze nesouvislé komponenty spojit)
 2. kdyby existovala stěna s hranicí \(C_n\) pro \(n > 3\), pak můžeme v rámci stěny přidat hranu
-3. strana, jejíž hranice není kružnice neexistuje (mohli bychom přidat stěnu)
+3. stěna, jejíž hranice není kružnice, neexistuje (mohli bychom přidat stěnu)
 {{< /math >}}
 
 {{< math "theorem" >}}
@@ -727,7 +727,7 @@ každý rovinný graf je 5-obarvitelný.
 - pro \(\left|V\right| \le 5\) lze triviálně (prostě přiřadíme všechny barvy)
 - indukcí podle počtu vrcholů: uvažme \(v \in V\left(G\right)\) s minimálním stupněm -- ten odtrhneme, graf podle IP obarvíme a rozebereme případy:
 	- „každý podgraf \(d\)-degenerovaného grafu obsahuje vrchol stupně menšího než \(d\)“
-	- \(\mathrm{deg}(v) > 5\) nenastane (vztah \(e = 3v - 6\))
+	- \(\mathrm{deg}(v) > 5\) nenastane (vztah \(e \le 3v - 6\))
 	- pro \(\mathrm{deg}(v) = 5\): pokud jsou nějaké barvy stejné, tak obarvíme zbylou; jinak uvažme zeleno-červený podgraf vycházející z vrcholu \(a\)... pro ten mohou nastat dva případy:
 		1. pokud \(c\) nepatří do podgrafu, tak prohodíme _všechny barvy v podgrafu_ a jedné se tím na problematickém vrcholu zbavíme
 		2. pokud patří, tak uděláme totéž s vrcholy \(b\) a \(d\); oba případy najednou nastat nemohou, jelikož by se křížily v hraně (nelze -- poruší rovinnost) nebo ve vrcholu (nelze, ten už má barvu)
@@ -739,7 +739,7 @@ každý rovinný graf je 5-obarvitelný.
 
 {{< math "definition" >}}
 graf \(G\) je \(d\)-degenerovaný \(\equiv \forall H \subseteq G\ \exists v \in V\left(H\right): \mathrm{deg}_H\left(v\right) \le d\)
-- pozor! neříká to, že \(\forall v \in V\left(G\right): \mathrm{deg}\left(v\right) \le 5\), jelikož podgrafy trhají vrcholy a hrany
+- pozor! neříká to, že \(\forall v \in V\left(G\right): \mathrm{deg}\left(v\right) \le d\), jelikož podgrafy trhají vrcholy a hrany
 - každý strom je 1-degenerovaný
 - rovinné grafy jsou 5-degenerované (viz důkaz kousek zpět -- stupně rovinných grafů)
 - graf s max. stupněm \(\Delta\) je \(\Delta\)-degenerovaný
@@ -780,7 +780,7 @@ je \(\left(\Omega, P\right)\).
 #### Podmíněná pravděpodobnost
 \[P\left[A \mid B\right] := \frac{P\left[A \cap B\right]}{P\left[B\right]}\]
 - podmínkou vytváříme novou množinu elementárních jevů, která ale není normalizovaná (to zajišťuje dělení)
-- vlastně to po přepsání na \(P\left[A \mid B\right] \cdot P\left[B\right] = P\left[A \cap B\right]\) znamená: pravděpodobnost \(B\) krát pravděpodobnost, že v rámci \(B\) nastane \(A\) je šance jejich průniku (\(P\left[A \cap B\right]\)):
+- vlastně to po přepsání na \(P\left[A \mid B\right] \cdot P\left[B\right] = P\left[A \cap B\right]\) znamená: pravděpodobnost \(B\) krát pravděpodobnost, že v rámci \(B\) nastane \(A\), je šance jejich průniku (\(P\left[A \cap B\right]\)):
 
 ![](podminena.svg)
 
@@ -809,7 +809,7 @@ Obecněji: jevy \(A_1, \ldots, A_n\) jsou po \(k\) nezávislé \[\iff \forall I 
 {{< /math >}}
 
 {{< math "definition:" "součin pravděpodobnostních prostorů" >}}
-\(P\left(\Omega_1, P_1\right)\) a \(\left(\Omega_2, P_2\right)\) je pravděpodobnostní prostor \(\left(\Omega, P\right)\) t. ž.:
+\(\left(\Omega_1, P_1\right)\) a \(\left(\Omega_2, P_2\right)\) je pravděpodobnostní prostor \(\left(\Omega, P\right)\) t. ž.:
 - \(\Omega := \Omega_1 \times \Omega_2\)
 - \(P\left(\left(x_1, x_2\right)\right) = P_1\left(x_1\right) \cdot P_2\left(x_2\right)\)
 - pozn.: stále se pravděpodobnost sečte na jedničku: \(\sum_{x_1, x_2} P_1\left(x_1\right) P_2\left(x_2\right) = 1 \cdot 1 = 1\)
@@ -817,7 +817,7 @@ Obecněji: jevy \(A_1, \ldots, A_n\) jsou po \(k\) nezávislé \[\iff \forall I 
 
 {{< math "definition:" "náhodná veličina" >}}
 je \(f: \Omega \mapsto \mathbb{R}\) (ale klidně i do jiné množiny... je to dost jedno)
-- \(P\left[f \ge 7\right] = \left\{\omega \in \Omega \mid f\left(\omega\right) \ge 7\right\}\)
+- \(\left[f \ge 7\right] = \left\{\omega \in \Omega \mid f\left(\omega\right) \ge 7\right\}\)
 - _střední hodnota_ náhodné veličiny \(X\) je \(\mathbb{E}\left[X\right] := \sum_{\omega \in \Omega}X\left(\omega\right) \cdot P\left(\omega\right)\)
 - linearita střední hodnoty: \(\forall X, Y\) náhodné veličiny platí:
 	- \(\mathbb{E}\left[X + Y\right] = \mathbb{E}\left[X\right] + \mathbb{E}\left[Y\right]\)
@@ -850,7 +850,7 @@ vycházíme ze střední hodnoty; iterujeme přes všechna \(a \in R\)
 
 {{< math "definition" "variance = rozptyl" >}}
 \(\mathrm{var}\ X := \mathbb{E}\left[\left(X - \mathbb{E}\left[X\right]\right)^2\right]\)
-- \(\sqrt{\mathrm{var}\ X}\) je _střední hodnota odchylky_
+- \(\sqrt{\mathrm{var}\ X}\) je _směrodatná odchylka_
 {{< /math >}}
 
 {{< math "theorem" "Čebyševova nerovnost" >}}

@@ -9,7 +9,7 @@ description: Subtitles for all Comeback episodes, both in Czech and in English
 **CZ:** Tato stránka obsahuje české a anglické titulky k seriálu Comeback, jelikož je jejich oficiální distribuce [Voyo.cz](https://tv.nova.cz/porad/comeback/videa/cele-dily) nemá.
 
 _Aktuálně obsahuje pouze část z epizod, chybějící jsou překládány v závislosti na mém volném čase.
-Jelikož je ho teď aktuálně málo, titulky označené hvězdičkou<sup>★</sup> nebyly po automatickém překladu manuálně kontrolovány a potenciálně obsahují chyby._
+Jelikož je ho teď málo, titulky označené hvězdičkou<sup>★</sup> nebyly po automatickém překladu manuálně kontrolovány a potenciálně obsahují chyby._
 
 Pokud objevíte chybu, dejte mi prosím vědět na email: **[tomas@slama.dev](mailto:tomas@slama.dev).**
 

@@ -12,7 +12,7 @@ And thus **[Prokopakop](https://github.com/xiaoxiae/prokopakop)** (literally tra
 
 It (unsurprisingly) turns out that there are a lot of things that go into making a chess engine, and I thought it would be interesting to cover my journey of writing the bot in the commits that I made, since they correspond to the order in which I learned the various techniques and algorithms that a chess engine uses.
 
-While this article is intended to be read top-to-bottom for beginners to chess-bot-related things, I've also added headings for specific topics so that people who are only interested in those can skip around -- **all sections are self-sustained** (as much as they can be), so skipping around is very much encouraged.
+While this article is intended to be read top-to-bottom for beginners to chess-bot-related things, I've also added headings for specific topics so that people who are only interested in those can skip around -- **all sections are self-contained** (as much as they can be), so skipping around is very much encouraged.
 
 If you'd like to play it, you can [**challenge it on Lichess**](https://lichess.org/@/prokopakop); just keep in mind that it **won't play more than one game at a time,** because the server it's running on only has two cores, and using both would take this website down.
 
@@ -167,7 +167,7 @@ about         number       about,
 {{< /chess >}}
 
 Finally, we **shift right** to obtain only the bits we care about, obtaining the key we will use to access the precomputed array of rook/bishop moves.
-This is the reason for why we'd like the consecutive positions to start from the **most significant bits** -- that way a single `shr` operation is enough to obtain the index (otherwise we'd need two shifts, or some masking).
+This is the reason why we'd like the consecutive positions to start from the **most significant bits** -- that way a single `shr` operation is enough to obtain the index (otherwise we'd need two shifts, or some masking).
 
 {{< chess >}}( bits we       cool   )      (64 - num)     key for
 ( care      *   magic  )  >>  (of bits )  =  indexing
@@ -204,7 +204,7 @@ These changes expand our `Game` struct:
 pub struct Game {
     // ...
 
-    // 0x0000KQkq, where kq/KQ is one if black/white king and queen
+    // 0b0000KQkq, where kq/KQ is one if black/white king and queen
     castling_flags: u8,
 
     // store the move, which piece was there, and en-passant + castling flags
@@ -311,7 +311,7 @@ A faster approach is to generate [legal moves](https://www.chessprogramming.org/
 This, however, is much more complicated, as the king can come under attack in a number of tricky ways (most of which have to do with en-passant; curse the French!).
 In Prokopakop, I distinguish between three cases, depending on the **number of attacks** the king is under:
 - **0 attacks**: normal generation; just watch for pins
-- **1 attack**: king has to either **move away,** or the attacker must be **captured**; also watch for pins
+- **1 attack**: king has to **move away,** the attacker must be **captured**, or the check must be **blocked**; also watch for pins
 - **2 attacks+**: king can **only move away**
 
 Separating the cases makes legal move generation more manageable, and makes it much faster than make/unmake-based move generation.
@@ -357,7 +357,7 @@ As we have reached the end of the move generation portion of this article, here 
 As we can see, three places stand out in this graph:
 - the **first major spike in speed** (commit [`f0253e`](https://github.com/xiaoxiae/Prokopakop/commit/f0253eebc1ee2ec9fdd17dde95d1b9b039ae073f)) was caused by **removing the attack bitboards;** since these were previously calculated every move and consisted of evaluating all attacks of all pieces on the board, this is not surprising
 - the **first major crash** (commit [`1d8e55`](https://github.com/xiaoxiae/Prokopakop/commit/1d8e55)) was caused by **starting to move away from the make/unmake-based move generation** by splitting each move generation into different functions based on the number of attacks; as this only included the splitting, but no optimized code, this introduced a large amount of branching that killed the speed
-- the **second major spike** (commits [`a67205`](https://github.com/xiaoxiae/Prokopakop/commit/a67205) and [`5bc16a`](https://github.com/xiaoxiae/Prokopakop/commit/5bc16a)) were caused by **finishing moving away from the make/unmake-based move generation** by introducing functions optimized for zero/one/two+ king attacks
+- the **second major spike** (commits [`a67205`](https://github.com/xiaoxiae/Prokopakop/commit/a67205) and [`5bc16a`](https://github.com/xiaoxiae/Prokopakop/commit/5bc16a)) was caused by **finishing moving away from the make/unmake-based move generation** by introducing functions optimized for zero/one/two+ king attacks
 
 The engine is slower than Stockfish (\(9.74\text{s}\) for Prokopakop vs. \(8.71\text{s}\) for Stockfish on `perft(7)`), but this is simply a skill issue because I'm not spending more time on this when I haven't written any search & evaluation functionality yet.
 Maybe I'll revisit to take my revenge on Stockfish at some point in the future, but this will have to do for now.
@@ -533,7 +533,7 @@ This, combined with always searching the moves from the **p**rincipal **v**ariat
 
 Using alpha-beta search with iterative deepening means that we always, for depths \(1, \ldots, n\), explore until a certain depth and then evaluate the position.
 This has an obvious flaw: what if we make a blunder, like taking a queen for a pawn, in the final depth?
-Since this was the last depth that we were searching, this wouldn't get caught, and we'd happily return positive evaluation, since we're up a pawn!
+Since this was the last depth that we were searching, this wouldn't get caught, and we'd happily return a positive evaluation, since we're up a pawn!
 
 This is where [quiescence search](https://www.chessprogramming.org/Quiescence_Search)[^quiescence] comes in -- when reaching the final depth of the iteration, it **extends the search** until **all remaining captures** (and possibly **checks**) are resolved, so that we are **only evaluating quiet positions** (i.e. those where there are no tactical sequences that can severely impact the score).
 This way, we don't make obvious blunders because of a search cut short.
@@ -555,7 +555,7 @@ This means that while we sometimes only get **bounds** on the evaluation, this i
 We distinguish two new cases:
 
 1. If we **prune** a branch (i.e. cause a **beta cut-off**), it is because we found a move that is **too good** and the **other player** won't allow us to play it because they'll play something elsewhere in the tree (the move **fails high**).
-   This means that the evaluation of this branch can **only get better** for us as we go through the moves, so we get a **lower bound** (/).
+   This means that the evaluation of this branch can **only get better** for us as we go through the moves, so we get a **lower bound**.
 2. If we, on the other hand, go through **all moves** and **none of them improve alpha** (the move **fails low**), it means that the position can't score better than what we have found, and we have thus found an **upper bound**.
 
 Adding these two cases, we store **three types** of nodes -- **exact**, **lower bound** and **upper bound**.
@@ -624,7 +624,7 @@ Up until now, all of the things[^quiescence-is-not-exact] that we implemented we
 Let's start cutting corners 😎.
 
 We'll begin by implementing [**delta pruning**](https://www.chessprogramming.org/Delta_Pruning) for quiescence search.
-It's a rather intuitive heuristic on whether we should explore a particular move -- if **capturing the piece** + some **safety margin** (usually two pawns), is **not sufficient to raise alpha**, then we don't bother exploring the move at all since we are, as the kids say, beyond cooked and the position is hopeless.
+It's a rather intuitive heuristic on whether we should explore a particular move -- if **capturing the piece** + some **safety margin** (usually two pawns) is **not sufficient to raise alpha**, then we don't bother exploring the move at all since we are, as the kids say, beyond cooked and the position is hopeless.
 
 While this will speed up the search because we're no longer exploring likely hopeless positions, we can miss certain tactical sequences, especially those that swing the evaluation by more than the safety margin (since that's the maximum we're assuming we could gain).
 It is therefore recommended to **not use this heuristic when approaching the endgame**, because we might need to sacrifice some material for positional advantage and conversion.
@@ -639,7 +639,7 @@ Techniques that prune branches with the risk of overlooking things are referred 
 Let's cut the corners even further!
 
 **[Null move pruning](https://www.chessprogramming.org/Null_Move_Pruning)** uses the simple observation that **skipping a turn** (i.e. making a null move) is almost[^nmp] always worse than **making the best move** in the position.
-Therefore, it's a relatively safe assumption that if making a null move causes a **beta cut-off** (i.e. even not making any move is so good and the opponent wouldn't let us play it), we can **prune this entire branch** without exploring any of the moves, since the best move is bound to be better than no move at all.
+Therefore, it's a relatively safe assumption that if making a null move causes a **beta cut-off** (i.e. even not making any move is so good that the opponent wouldn't let us play it), we can **prune this entire branch** without exploring any of the moves, since the best move is bound to be better than no move at all.
 
 Implementation-wise, two things to mention:
 - The search on the null move uses a **reduced depth** (either flat or progressive), because it should usually be apparent quite quickly whether a beta cut-off will occur or not.
@@ -680,15 +680,15 @@ This is because we found a line that leads to a position with the expected evalu
 
 If we misjudge the position, and there is a line outside of this evaluation, then this will lead to a fail (low or high) and the aspiration window search will return only a bound -- since we don't know what the actual value is, we have to re-run.
 
-{.commit-header}
 **To be continued?**
+{.commit-header}
 
 #### Summary
 
 I'll end the article here (at least for now), since I'm still actively developing the engine, so waiting until it's complete would likely mean that I would take this to my grave.
 If people find this interesting, I'll keep updating it as more commits come in, but this is definitely more than enough to write an engine that will beat most chess players with relative ease.
 
-Here is a table of engine performance across different versions (**100** games between each pair), using [**fastchess**](https://github.com/Disservin/fastchess) to facilitate the matches via the [UCI protocol](https://official-stockfish.github.io/docs/stockfish-wiki/UCI-&-Commands.html) that the engine implements.
+Here is a table of engine performance across different versions (**200** games between each pair), using [**fastchess**](https://github.com/Disservin/fastchess) to facilitate the matches via the [UCI protocol](https://official-stockfish.github.io/docs/stockfish-wiki/UCI-&-Commands.html) that the engine implements.
 The named versions are commits implementing things we described in the article, while [`master`](https://github.com/xiaoxiae/Prokopakop) ([~2000 on Lichess](https://lichess.org/@/prokopakop)) is the latest version that contains a bunch more that I couldn't cover.
 
 
@@ -706,7 +706,7 @@ bbef3be-0    -708.33    21.53     8.8%     4.4%    [349, 128,  22,   1,   0]
 
 In the table, `Ptnml(0-2)` is short for [**pentanomial model**](https://www.chessprogramming.org/Match_Statistics#Statistical_Analysis), which is used to evaluate the engine performances.
 Engines are repeatedly played against each other for random opening positions, and in each case play **two games** (one with white, one with black).
-The results are then `[ll, dl, dd/wl, wd, ww]` for `w`in, `d`raw and `l`oss respectively, which is better for measuring the performances than a simple win/draw/loss ratio, especially for uneven positions
+The results are then `[ll, dl, dd/wl, wd, ww]` for `w`in, `d`raw and `l`oss respectively, which is better for measuring the performances than a simple win/draw/loss ratio, especially for uneven positions.
 
 That's it. Thanks for reading! ❤️
 

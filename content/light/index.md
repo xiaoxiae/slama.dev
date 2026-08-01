@@ -39,9 +39,9 @@ From the shorter delay between the flashes, Khast could tell that this specimen 
 
 As the light from the flashes hit Khast, his body felt, for a brief moment, ready and alert.
 While the meager amount of light from the setting sun kept his senses dull, each flash from the pulse-claw brought him back to reality and to the gravity of the situation.
-His reflexes were nowhere near fast enough to react to the creature's actions, but that is all he would get, and he prayed that it was all that he would need.
+His reflexes were nowhere near fast enough to react to the creature's actions, but that was all he would get, and he prayed that it was all that he would need.
 
-The pulse-claw began to close the distance in a series of alternating dashes and pauses, accentuating its movement by blinding flashes of white light.
+The pulse-claw began to close the distance in a series of alternating dashes and pauses, accentuating its movement with blinding flashes of white light.
 The trees around responded in kind, sending the light rays through their reflective leaves around the clearing, cascading deeper into the forest and sending a warning to the forest's inhabitants.
 The creature made little sound as it moved, as the light conveyed all necessary information.
 
@@ -49,7 +49,7 @@ With every movement, Khast's muscles tensed with fear and anticipation.
 Being only able to move in concert with the much faster and deadly predator meant that escape was out of the question.
 The only thing he could do was wait for the creature to get closer and hope that his plan worked.
 
-Nearing ten paces, the creature's dashes became shorter and more measured, as it prepared for a final burst to capture its prey.
+As it neared ten paces, the creature's dashes became shorter and more measured, as it prepared for a final burst to capture its prey.
 
 A loud growl.
 
@@ -57,16 +57,16 @@ One last pulse.
 
 *Now*, Khast thought, as he slid his knife across the tensioned rope, closed his eyes and stepped aside.
 With a loud snap, the rope gave way and shot up, revealing a reflective shield suspended in the branches above the pulse-claw.
-As the creature pounced, the noise drew its attention upward, reflecting a concentrated wave of light back into its eyes.
+As the creature pounced, the noise drew its attention upward, and the shield reflected a concentrated wave of light back into its eyes.
 
 Khast stabbed.
 
 The knife, driven by the creature's light and its brief disorientation, found its mark, piercing the creature's neck and severing the main artery.
 With a quick flash and a high whine, the creature retreated from Khast, but the damage had been done.
-Gushing blood from the wound, it made a few shuddering movements and pulses as it attempted to flee, but with each dimming pulse its moves grew lethargic, until it eventually slumped down in the middle of the clearing and stilled.
+Gushing blood from the wound, it made a few shuddering movements and pulses as it attempted to flee, but with each dimming pulse it grew more lethargic, until it eventually slumped down in the middle of the clearing and stilled.
 
 Khast's knife clattered to the floor, his senses immediately dulling.
-Staring at the pulse-claw's lifeless body in sheer disbelief, he couldn't believe that his plan had actually worked.
+Staring at the pulse-claw's lifeless body, he couldn't believe that his plan had actually worked.
 
 Despite the fatigue, he willed himself to focus, picked up the knife and began the gruesome work of dissecting the body.
 Extracting the vitals and placing them into the flask he had prepared earlier in the day, he knew that getting back to the village in time was going to be close.
@@ -87,6 +87,8 @@ Just one more st...
 
 *Darkness.*
 
+</div>
+
 <!--
 
 {{< pause >}}
@@ -97,7 +99,7 @@ Khast woke up.
 
 Opening his eyes slowly, he found himself staring at a wooden ceiling.
 His head ached and his limbs felt like lead, but at least he was breathing.
-Despite everything that went horribly last night, he was alive.
+Despite everything that went horribly wrong last night, he was alive.
 
 Turning his head around the room, his eyes fell on layers of lightleaf that covered the walls.
 The reflective leaves sent rays of light across the room, lighting it up despite the meager morning rays that shone through the window.

@@ -20,7 +20,7 @@ language: cs
 
 Množině \(\Omega\) říkáme prostor elementárních jevů.
 
-{{< math "definition:" "pravděpodobnost" >}} je funkce \(P : \mathcal{F} \mapsto \left[0, 1\right]\) se nazývá pravděpodobnost, pokud
+{{< math "definition:" "pravděpodobnost" >}} je funkce \(P : \mathcal{F} \mapsto \left[0, 1\right]\), pokud
 - \(P(\emptyset) = 0, P(\Omega) = 1\) a
 - \(P\left(\bigcup_{i = 1}^{\infty} A_i\right) = \sum_{i = 1}^{\infty} P(A_i)\) pro libovolnou posloupnost **po dvou** disjunktních jevů \(A_1, A_2, \ldots \in \mathcal{F}\){{< /math >}}
 
@@ -40,7 +40,7 @@ Množině \(\Omega\) říkáme prostor elementárních jevů.
 {{< math "lemma" "základní vlastnosti" >}} \(\forall A, B \in \mathcal{F}\) platí
 - \(P(A) + P(A^C) = 1\)
 - \(A \subseteq B \implies P(A) \le P(B)\)
-- \(P(A \cup B)\) = \(P(A) + P(B) - P(A \cap B)\)
+- \(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)
 - \(P(A_1 \cup A_2 \cup \ldots) \le \sum P(A_i)\){{< /math >}}
 
 {{< math "definition" "podmíněná pravděpodobnost" >}}pokud \(A, B \in \mathcal{F}\) a \(P(B) > 0\), tak definujeme podmíněnou pravděpodobnost \(A\) při \(B\) jako \[P(A \mid B) = \frac{P(A \cap B)}{P(B)}\]{{< /math >}}
@@ -71,7 +71,7 @@ Věta řeší problém, kdy máme jev \(H\) (hypotézu), který chceme spočíta
 
 {{< math "example" "použití náhodných veličin" >}}
 - hodíme na terč a měříme vzdálenost od středu
-- házíme kostkou, dokud nepadne šestka a pak nás zajímá počet hodů
+- házíme kostkou, dokud nepadne šestka, a pak nás zajímá počet hodů
 {{< /math >}}
 
 {{< math "definition:" "pravděpodobnostní funkce" >}} (pmf) diskrétní náhodné veličiny \(X\) je funkce \(p_X : \mathbb{R} \mapsto \left[0, 1\right]\) taková, že \[p_X(x) = P(X = x) = P(\left\{\omega \in \Omega : X (\omega) = x\right\})\]{{< /math >}}
@@ -93,7 +93,7 @@ Věta řeší problém, kdy máme jev \(H\) (hypotézu), který chceme spočíta
 ##### Geometrické
 - \(X \ldots\) kolikátým hodem mincí padl první orel (značíme \(X \sim \mathrm{Geom}(p)\))
 - \(p_X(k) = (1 - p)^{k-1} p\)
-	- chceme, aby se prvních \(k\) hodů trefilo a poslední netrefil
+	- chceme, aby se prvních \(k - 1\) hodů netrefilo a poslední trefil
 
 #### Střední hodnota
 {{< math "definition:" "střední hodnota diskrétní n.v." >}} \(\mathbb{E}(X)\) je definována jako \[\mathbb{E}(X) = \sum_{x \in \mathrm{Im}(X)} x P(X = x)\]
@@ -128,7 +128,7 @@ Přehled parametrů známých rozdělení:
 #### Sdružené rozdělení
 {{< math "definition" >}}pro diskrétní n.v. \(X, Y\) definujeme jejich sdruženou pravděpodobnostní funkci (joint pmf) \(p_{X, Y} : \mathbb{R}^2 \mapsto \left[0, 1\right]\) jako \[p_{X, Y} (x, y) = P(\left\{\omega \in \Omega : X(\omega) = x \land Y(\omega) = y\right\})\]{{< /math >}}
 
-{{< math "observation" >}}z \(p_{X, Y}\) (**sdruženého**) jde \(p_X, p_Y\) (**marginální**) zjistit, jednoduše, zpětně ne vždy.{{< /math >}}
+{{< math "observation" >}}z \(p_{X, Y}\) (**sdruženého**) jde \(p_X, p_Y\) (**marginální**) zjistit jednoduše, zpětně ne vždy.{{< /math >}}
 
 {{< math "definition" "nezávislé náhodné veličiny" >}} veličiny \(X, Y\) jsou nezávislé, pokud \(\forall x, y \in \mathbb{R}\) platí \[P(X = x, Y = y) = P(X = x) P(Y = y)\]
 neboli
@@ -177,7 +177,7 @@ neboli
 - \(F_X\) je zprava spojitá
 {{< /math >}}
 
-{{< math "definition" "spojitá náhodná veličina" >}}n.n.v. je spojitá, pokud existuje nezáporná reálná funkce \(f_X\) (hustota) t.ž. \[F_X(x) = P(X \le x) = \int_{-\infty}^{x} f_X(t)\ dt\]{{< /math >}}
+{{< math "definition" "spojitá náhodná veličina" >}}n.v. je spojitá, pokud existuje nezáporná reálná funkce \(f_X\) (hustota) t.ž. \[F_X(x) = P(X \le x) = \int_{-\infty}^{x} f_X(t)\ dt\]{{< /math >}}
 
 #### Rozdělení
 {{< math "example" "uniformní rozdělení" >}}n.v. \(X\) má na \(\left[a, b\right]\) uniformní rozdělení, pokud má hustotní funkci \[f_X(x) = \begin{cases} \frac{1}{b-a} & x \in \left[a, b\right] \\ 0 & \text{jindy} \end{cases}\]
@@ -214,9 +214,9 @@ pokud integrál dává smysl.{{< /math >}}
 ### Nerovnosti
 {{< math "theorem" "Markovova nerovnost" >}}nechť náhodná veličina splňuje \(X \ge 0\); pak \[P(X \ge a) \le \frac{\mathbb{E}(X)}{a}\]{{< /math >}}
 
-{{< math "observation" >}}říká, že pravděpodobnost, že \(X\) je alespoň \(a\) je nejvýše \(\mathbb{E} / a\), což intuitivně dává smysl
+{{< math "observation" >}}říká, že pravděpodobnost, že \(X\) je alespoň \(a\), je nejvýše \(\mathbb{E} / a\), což intuitivně dává smysl
 - pro \(a = \mathbb{E}\) může být \(X\) střední hodnota nejhůř vždy
-- pro \(a = \mathbb{E} / 2\) dostáváme \(\frac{1}{2}\) -- kdyby byla \(X\) střední hodnota častěji než \(\frac{1}{2}\), tak posčítáním přes všechny hodnoty dostáváme spor, střední hodnota by musela být vyšší{{< /math >}}
+- pro \(a = 2\mathbb{E}\) dostáváme \(\frac{1}{2}\) -- kdyby byla \(X\) střední hodnota častěji než \(\frac{1}{2}\), tak posčítáním přes všechny hodnoty dostáváme spor, střední hodnota by musela být vyšší{{< /math >}}
 
 ### Limitní věty
 {{< math "theorem" "zákon velkých čísel" >}}nechť \(X_1, \ldots, X_n\) jsou stejně rozdělené n.n.v. se stř. hodnotou \(\mu\) a rozptylem \(\sigma^2\). Označme \(S_n = \left(X_1 + \ldots + X_n\right) / n\) (tzv. výběrový průměr). Pak platí \[\lim_{n \to \infty} S_n = \mu\] skoro jistě (tj. s pravděpodobností \(1\)).

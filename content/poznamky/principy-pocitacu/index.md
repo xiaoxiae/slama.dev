@@ -76,7 +76,7 @@ language: cs
 ##### MSb/LSb odbočka
 - je potřeba se dohodnout, jak říkat různým bitům dvojkových čísel
 ![](19-07-10_23-23-44.svg)
-- **LSb-first** -- první v komunikaci přijde LSb, poslední MSb (MSB-first funguje analogicky)
+- **LSb-first** -- první v komunikaci přijde LSb, poslední MSb (MSb-first funguje analogicky)
 
 ### Dohoda přenosu
 - problém: hodiny se časem kvůli HW rozejdou -- data pak stranám nedávají smysl
@@ -111,7 +111,7 @@ language: cs
 		- problém to hardwarově detekovat -- používané jen tam, kde je rychlost nezbytná
 
 #### Řešení (3): průběžná korekce
-- bylo by fajn průběžné synchronizovat na rising edge... co když ale chodí samé nuly (nebo jedničky)?
+- bylo by fajn průběžně synchronizovat na rising edge... co když ale chodí samé nuly (nebo jedničky)?
 - **clock recovery** (obnova hodinového signálu) -- převod dat z \(8b \rightarrow 10b\):
 	- 4krát více možností -- vyberou se jen ty „hezké“ (kde se střídají \(1\) a \(0\))
 	- kódování/dekódování je prováděno pomocí tabulky
@@ -121,7 +121,7 @@ language: cs
 1. **half-duplex**: 1 datový vodič -- zařízení se v přenosu střídají
 	- komplikované
 	- nikdy nelze posílat najednou oběma směry
-2. **full duplex**: 2 nezávislé simplexní linky
+2. **full-duplex**: 2 nezávislé simplexní linky
 	- např. RS-232 -- 2 datové + 1 zem
 
 ![RS-232](19-18-10_11-18-27.svg "RS-232")
@@ -136,7 +136,7 @@ language: cs
 
 ![inverzní logika](19-18-10_11-23-35.svg "inverzní logika")
 
-- někdy je také potřeba rozlišovat soustav, ve kterém číslo je:
+- někdy je také potřeba rozlišovat soustavu, ve které číslo je:
 \[\text{desítková}\ldots 23 = 23_d = 23_{10} = 23_{dec}\] \[\text{šestnáctková}\ldots \$23 = 0x23 = 23h = 23H = 23_{16} = 23_{hex}\]
 
 ### Komunikační protokol
@@ -148,7 +148,7 @@ language: cs
 ![řadič (controller)](19-18-10_12-42-10.svg "řadič (controller)")
 
 - config register -- nastavení přenosové rychlosti, parity,...
-- stav register -- zda se načetl celý byte
+- status register -- zda se načetl celý byte
 
 ### Binární odbočka
 
@@ -157,7 +157,7 @@ language: cs
 	- `OR`: `|` -- alespoň jedno
 	- `AND`: `&` -- oboje
 	- `XOR`: `^` -- právě jedno
-	- `SHL` a `SHR`: `<<` a `>>` -- **posouvá k MSb, ne doleva/doprava**
+	- `SHL` a `SHR`: `<<` a `>>` -- **posouvá k MSb/LSb, ne doleva/doprava**
 		- `ROL`, `ROR` (_bit rotation_) -- jako posun, ale cyklí čísla; opět k MSb
 - unární:
 	- `NOT`: `~` -- opak
@@ -240,13 +240,13 @@ language: cs
 
 ![komunikace v I2C](19-10-11_13-27-58.svg "komunikace v I2C")
 
-- \(9\) bit na byte
+- \(9\) bitů na byte
 	- \(8\) data (MSb-first)
 	- \(1\) acknowledgement bit (ack = ano; nak = ne)
 		- pro \(0\) je ACK, \(1\) je NAK, jelikož \(0\) stahuje... pokud tam slave není, tak tam bude \(1\)
 	- pořadí při přenosu vypadá následně:
-		- write: `M/S/M/S/M/S...` (slave neustále potvrzuje že přečetl)
-		- read: `M/S/S/M/S/S/M...` (slave potvrzuje že posílá a pak začne posílat)
+		- write: `M/S/M/S/M/S...` (slave neustále potvrzuje, že přečetl)
+		- read: `M/S/S/M/S/S/M...` (slave potvrzuje, že posílá a pak začne posílat)
 - pro clock jsou dány standardizované rozsahy, aby to slave ustál
 	- má možnost dělat **clock stretching** -- pokud by nestíhal, tak může hodiny podržet na \(0\) (hold low)
 
@@ -329,7 +329,7 @@ language: cs
 - **instrukční sada** (instruction set) -- instrukce podporované daným CPU
 - **strojový kód** -- posloupnost instrukcí  (machine code)
 - **instruction pointer** (IP) -- pozice aktuálně ukazované instrukce
-	- zpravidla ukazuje na první bit (vícebitové) instrukce
+	- zpravidla ukazuje na první byte (vícebytové) instrukce
 	- je \(x\)-bitový (logicky stejně jako code memory)
 
 ![architektura s instrukcemi](19-24-11_22-40-04.svg "architektura s instrukcemi")
@@ -473,7 +473,7 @@ A + NOT(X) + C
 		- je potřeba `SAR` (kopíruje MSb), ale pořád to není ono (`-5 // 2 = -3`)
 
 #### Tomášova odbočka (příklady instrukcí)
-- v rámci přípravy na zkoušku je naprosto super si zkusit generovat z Cčkových zdrojáku assembler:
+- v rámci přípravy na zkoušku je naprosto super si zkusit generovat z Cčkových zdrojáků assembler:
 	- na Linuxu `gcc -g -c soubor.c; objdump -S soubor.o;` dělá přesně tohle
 	- pozn.: není to Intel syntax -- pro ten je třeba k `objdump` přidat `-d` a `--disassembler-options=intel`
 
@@ -535,9 +535,9 @@ mov    %ax,-0x1e(%rbp)
 ### Reálná čísla
 
 #### Fixed-point
-- pevný počet bitů pro části před a za desetinou čárkou
+- pevný počet bitů pro části před a za desetinnou čárkou
 - hezky na tom funguje aritmetika -- můžeme normálně sčítat, odčítat, porovnávat...
-	- výrazně rychlejší než floating-point (viz. dále)
+	- výrazně rychlejší než floating-point (viz dále)
 - problém na operacích s hodně velkými a hodně malými čísly -- přesnost...
 
 #### Floating-point
@@ -623,11 +623,11 @@ mov    %ax,-0x1e(%rbp)
 
 ###### Nevýhody
 - náchylné na poškození
-- sekvenční přístup je fajn (disk se otáčí), obráceny je příšerný
+- sekvenční přístup je fajn (disk se otáčí), obrácený je příšerný
 - docela pomalé... \(10 ms\) sekvenční / \(0.5 MBps\) obrácený sekvenční
 
 ##### CD / DVD / BLURAY
-- jsou **optické** -- pokud se světlo odrazí tak \(1\); jinak \(0\)
+- jsou **optické** -- pokud se světlo odrazí, tak \(1\); jinak \(0\)
 - nejsou optimální pro archivační účely -- vrací se do svého původního stavu
 - oproti pevným diskům jsou data ukládána do **spirály** (stejně jako gramofonová deska)
 
@@ -659,7 +659,7 @@ mov    %ax,-0x1e(%rbp)
 	- velikost
 	- obecně: volné sektory
 - **OS** -- abstrakce nad disky
-	- stejné API pro čtení, psaní, práce s metadaty...
+	- stejné API pro čtení, psaní, práci s metadaty...
 	- používají všechny programy -- `open()` volá (_C_-čkovou funkci, která volá) systémovou funkci
 
 #### V Pythonu
@@ -722,7 +722,7 @@ mov    %ax,-0x1e(%rbp)
 	- floating pointy -- větší rozsah (HDR)
 		- problémy: lidské oko to neumí dobře zpracovávat a foťáky to neumí dobře fotit
 - není foton jako foton: frekvence určuje barvu
-	- vnímáme malé spektrum (viditelně světlo)
+	- vnímáme malé spektrum (viditelné světlo)
 	- tyčinky (rozsah) x čípky (frekvence -- 3 barvy)
 
 ![čípky v oku](20-19-01_20-15-41.svg "čípky v oku")
@@ -735,7 +735,7 @@ mov    %ax,-0x1e(%rbp)
 	- \(3B\) na pixel (true color; 16777216 barev)
 		- je to ošklivě nesoudělné; ukládá se většinou do \(32b\)... co se zbylými \(8b\)?
 			- plýtvat
-			- vytvořit na alpha kanál určující (ne)průhlednost pixelu (255 je neprůhledné, 0 transparentní)
+			- použít na alpha kanál určující (ne)průhlednost pixelu (255 je neprůhledné, 0 transparentní)
 
 ##### Ukládání do paměti
 - nestačí je jen uložit za sebe -- potřebujeme metadata (obrázku, ne souboru), jako např.:
@@ -744,7 +744,7 @@ mov    %ax,-0x1e(%rbp)
 	3. pořadí barev (endianita) -- `RGB(A)` / `(A)BGR` (populárnější)
 	4. offset, na kterém začínají data
 
-- obecně metadata (hlavička) bývají na začátku souboru, abychom ji přečetli první
+- obecně metadata (hlavička) bývají na začátku souboru, abychom je přečetli první
 
 ###### BMP
 - původně Windows formát
@@ -757,7 +757,7 @@ mov    %ax,-0x1e(%rbp)
 
 #### Reprezentace textu
 - **string** -- posloupnost znaků
-	- písmena (abcdegh)
+	- písmena (abcdefgh)
 	- číslice (123456789)
 	- symboly (@#$%^&*)
 	- whitespace (mezera, tabulátor)
@@ -785,11 +785,11 @@ mov    %ax,-0x1e(%rbp)
 - \(128\)-\(\$FFFF\) -- běžně znaky
 - problém -- neurčili binární reprezentaci, takže vznikly různé:
 	- **UTF-32** -- každý znak je \(4B\)
-		- 2 verze UTF32 LE a UTF32 BE... guláš
+		- 2 verze UTF-32 LE a UTF-32 BE... guláš
 		- paměťově ne moc příjemné
 	- **UCS-2** -- jednoduché (a debilní)
 		- podporuje pevné \(2B\)... dokážeme reprezentovat pouze znaky v téhle mezi
-	- **UTF-16** - proměnlivá délka znaku (\(2B\)/\(4B\))
+	- **UTF-16** -- proměnlivá délka znaku (\(2B\)/\(4B\))
 		- 4B... **surrogates** (náhradníci): pro určité hodnoty prvních \(2B\) musí být přečteny druhé \(2B\)
 			- výsledek se dohromady skládá magií
 		- nelze přesně říct, kolik znaků je v souboru s tímhle kódováním uloženo
@@ -844,7 +844,7 @@ mov    %ax,-0x1e(%rbp)
 	1. test a konfigurace HW
 		- mapování (nekonfliktních) adres pro zařízení
 	2. hledání užitečného softwaru (**bootování**)
-		- další rom -- **option ROM**
+		- další ROM -- **option ROM**
 			- mívaly starší systémy
 			- bootuje instantně (je to ROM...)
 			- princip cartridgových her -- instantní spuštění

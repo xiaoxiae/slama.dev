@@ -75,7 +75,7 @@ To render the scene in 3D, we'll have to use {{< doc "manim" "ThreeDScene" "refe
 {{< video "manim" "04-axes3d-example" >}}
 
 As you can see, the initial camera position assumes that we're working in 2D.
-To control it, we used the {{< doc "manim" "set_camera_orientation" "reference/manim.scene.three_d_scene.ThreeDScene.html#manim.scene.three_d_scene.ThreeDScene.set_camera_orientation" >}} to set its position and {{< doc "manim" "begin_ambient_camera_rotation" "reference/manim.scene.three_d_scene.ThreeDScene.html#manim.scene.three_d_scene.ThreeDScene.begin_ambient_camera_rotation" >}} to begin an ambient rotation.
+To control it, we used {{< doc "manim" "set_camera_orientation" "reference/manim.scene.three_d_scene.ThreeDScene.html#manim.scene.three_d_scene.ThreeDScene.set_camera_orientation" >}} to set its position and {{< doc "manim" "begin_ambient_camera_rotation" "reference/manim.scene.three_d_scene.ThreeDScene.html#manim.scene.three_d_scene.ThreeDScene.begin_ambient_camera_rotation" >}} to begin an ambient rotation.
 The used arguments `phi` (\(\varphi\)) and `theta` (\(\vartheta\)) determine the position.
 
 ![Meaning of the phi and theta arguments for 3D camera positioning.](04-camera.svg)
@@ -89,8 +89,8 @@ Besides the {{< doc "manim" "ThreeDAxes" "reference/manim.mobject.graphing.coord
 
 #### Operations
 
-Translating and rotating objects in 3D behaves just like you would expect (again using {{< doc "manim" "shift" "reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.shift" >}} and {{< doc "manim" "scale" "reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.scale" >}}).
-Rotation is a bit trickier, since it isn't entirely clear what should happen when rotating an object by a certain amount of degrees.
+Translating and scaling objects in 3D behave just like you would expect (again using {{< doc "manim" "shift" "reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.shift" >}} and {{< doc "manim" "scale" "reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.scale" >}}).
+Rotation is a bit trickier, since it isn't entirely clear what should happen when rotating an object by a certain number of degrees.
 It is quite an interesting topic and has a number of solutions (see [Euler angles](https://en.wikipedia.org/wiki/Euler_angles) and [Quaternions](https://en.wikipedia.org/wiki/Quaternion)) if you're interested; we'll, however, use the most simple one: specify an axis that the object will rotate about.
 
 ```python {file="04-basic-3d-example.py"}
@@ -100,7 +100,7 @@ It is quite an interesting topic and has a number of solutions (see [Euler angle
 
 ### Tasks
 
-#### Binomial Distribution Simulation
+#### Binomial distribution simulation
 Create an animation of the [Galton board](https://en.wikipedia.org/wiki/Galton_board).
 
 {{< video "manim" "04-binomial-distribution-simulation" >}}
@@ -125,12 +125,12 @@ For additional information about the behavior of Bézier curves, I highly recomm
 Create an animation of a 3D variant of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway's_Game_of_Life).
 
 The rules are simple: we start in an initial state where some cells are dead and some are alive.
-Each (besides the ones on the boundary) has 26 neighbours (all cells 1 away in space).
+Each cell (besides the ones on the boundary) has 26 neighbours (all cells 1 away in space).
 For each game, we define sets of rules \(X\) and \(Y\), which determine when cells live and die.
 In each step of the game, **all cells at once** change by the following rules:
 
-- if cell is **alive** and its number of alive neighbours is in \(X\), it **survives**, otherwise it **dies**
-- if cell is **dead** and its number of alive neighbours is in \(Y\), it gets **revived**, otherwise it **stays dead**
+- if a cell is **alive** and its number of alive neighbours is in \(X\), it **survives**, otherwise it **dies**
+- if a cell is **dead** and its number of alive neighbours is in \(Y\), it gets **revived**, otherwise it **stays dead**
 
 
 ##### Basic variant

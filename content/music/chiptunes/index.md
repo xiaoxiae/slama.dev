@@ -42,7 +42,7 @@ Since I am a complete beginner, take everything written here with a huge grain o
 **Chiptune music** [[wikipedia](https://en.wikipedia.org/wiki/Chiptune)]:
 - music created using **PSG**s (programmable sound generators)
     - chips that create/synthesize audio waves from basic waveforms
-    - usually a basic wave like **square/triangle/saw-tooth/sin/noise**
+    - usually a basic wave like **square/triangle/saw-tooth/sine/noise**
         - [here is what some of them sound like](https://www.youtube.com/watch?v=VRD9Uj2YTBk)
     - can be used in **FM synthesis** to create more general sounds by _modulating waves with one another_ ([neatly explained in this video](https://www.youtube.com/watch?v=vvBl3YUBUyY))
 
@@ -86,8 +86,8 @@ Since I am a complete beginner, take everything written here with a huge grain o
 - **notes** can be input either with a MIDI controller (oof) or via the keyboard:
     - `space` -- disable/enable note input
     - `1` -- note cut (`OFF`)
-    - `zsxdcvgbhnmq` (first octave)
-    - `q2w3er5t6yui` (second octave)
+    - `zsxdcvgbhnjmq` (first octave)
+    - `q2w3er5t6y7ui` (second octave)
 
 - **effects** can be input by writing their code in the rightmost two columns
     - these are _not tied to one note_ but to the _whole channel_!

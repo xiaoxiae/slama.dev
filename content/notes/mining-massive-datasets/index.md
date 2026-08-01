@@ -9,7 +9,7 @@ toc: true
 
 
 <style>
-    // Progressive text shrinking classes (used for what?)
+    /* Progressive text shrinking classes */
     span.brr-1 {
     font-size: 90%;
     }
@@ -53,7 +53,7 @@ _Note that the notes only cover the topics [required for the exam](exam.pdf), wh
 
 ##### RDDs [[cheatsheet](rdd-cheatsheet.pdf)]
 
-Main data structure are **RDDs** (resilient distributed datasets):
+Main data structures are **RDDs** (resilient distributed datasets):
 - collection of records spread across a cluster
 - can be text line, string, key-value pair, etc.
 
@@ -62,7 +62,7 @@ Two operation types:
 - **actions:** return a result or write it to storage
 
 ##### DataFrames [[cheatsheet](sql-df-cheatsheet.pdf)]
-PySpark's other main data structure are **DataFrames**:
+PySpark's other main data structures are **DataFrames**:
 - table of data with rows and (named) columns
 - has a set **schema** (definition of column names and types)
 - lives in **partitions** (collections of rows on one physical machine)
@@ -162,14 +162,14 @@ To calculate similarity, we can use a few things:
 
 This way of writing Pearson is hiding what's really going on, so here is a nicer way: let \(s_x\) and \(s_y\) be formed from vectors \(r_x, r_y\) by removing the indexes where either one is zero. Then the **Pearson similarity measure** can be calculated like such: \[\mathrm{sim}(r_x, r_y) = \cos(s_x - \mathrm{avg}(r_x), s_y - \mathrm{avg}(r_y))\]
 
-To calculate neighbourhood, we can do a few things:
+To calculate the neighborhood, we can do a few things:
 - set a threshold for similarity and only take those above
 - take the top \(k\) similar users, whatever their similarities are
 
 ##### Item-item CF
 Analogous to User-user: for rating item \(i\), we find items rated by user \(x\) that are similar (as in rated similarly by other users). To do this, we can again use \(\mathrm{sim}\), obtaining \[r_{xi} = \frac{\sum_{j \in N} \mathrm{sim}(i, j) \cdot r_{xj}}{\sum_{j \in N} \mathrm{sim}(i, j)}\]
 
-The improved version has a slightly different baseline to User-User, namely  \[r_{xi} = b_{xi} + \frac{\sum_{j \in N} \mathrm{sim}(i, j) \cdot (r_{xj} - b_{xj})}{\sum_{j \in N} \mathrm{sim}(i, j)}\]
+The improved version has a slightly different baseline to User-user, namely  \[r_{xi} = b_{xi} + \frac{\sum_{j \in N} \mathrm{sim}(i, j) \cdot (r_{xj} - b_{xj})}{\sum_{j \in N} \mathrm{sim}(i, j)}\]
 where \(b_{xi} =\) mean item rating \(+\) rating deviation of user \(x\) \(+\) rating deviation of item \(i\).
 
 ##### Pros/Cons
@@ -214,7 +214,7 @@ for \(\lambda_1, \lambda_2\) user-set regularization parameters.
 ### Link Analysis
 
 #### Flow formulation
-**Problem:** we have pages as a directed graph. We want to determine the importance of pages based on how many links lead to it. I.e. if page \(j\) of importance \(r_j\) has \(n\) outgoing links, each link gets importance \(r_j / n\).
+**Problem:** we have pages as a directed graph. We want to determine the importance of pages based on how many links lead to them. I.e. if page \(j\) of importance \(r_j\) has \(n\) outgoing links, each link gets importance \(r_j / n\).
 Formally:
 \[r_j = \sum_{i \rightarrow j} \frac{r_i}{ d^{\mathrm{out}}_i}\]
 
@@ -281,7 +281,7 @@ We can bias the random page walk to teleport to relevant pages (from set \(S\)).
 #### TrustRank
 Addresses issues with spam farms, which are pages that just point to one another.
 The general idea to fix this is to use a set of **seed pages** from the web and identify the ones that are „good“, i.e. **trusted**.
-Then perform topic-specific pagerank with \(S =\) trusted pages, which propagates the trust to other pages.
+Then perform topic-specific PageRank with \(S =\) trusted pages, which propagates the trust to other pages.
 After this, websites with trust below a certain threshold are spam.
 
 - to pick seed pages, we can use PageRank and pick the top \(k\), or use trusted domains
@@ -320,7 +320,7 @@ The shingling sets are very large, so we have to find a way to measure how simil
 What we want to measure is their **Jaccard similarity**, which is \[\mathrm{sim}(S_1, S_2) = |S_1 \cap S_2|\ /\ |S_1 \cup S_2|\]
 
 To do this, we'll compute **signatures**, which are shorter but should have the same Jaccard similarity as the original set.
-To compute a signature, we take many random hash function (for example random permutations), hash all values from the set of shingles and take the minimum.
+To compute a signature, we take many random hash functions (for example random permutations), hash all values from the set of shingles and take the minimum.
 Then the list of all those minimal values is the signature.
 - in practice, we do \(((a \cdot x + b) \mod p) \mod N\) for \(a, b\) random integers, \(p\) prime and \(N\) size of shingles
 
@@ -350,15 +350,15 @@ We want to tune \(b\) and \(r\) to catch most similar pairs but few non-similar 
 		- i.e. \(0.035\%\) of similar pairs are not found -- **false negatives**
 - \(S_1, S_2\) are \(30\%\) similar:
 	- probability for one band to hash to the same bucket is \(0.3^{5} = 0.00243\)
-	- probability that \(S_1\) and \(S_2\) ARE similar is \(1 - (1 - 0.00243)^{20} = 0.047\)
-		- i.e. \(4.74\%\) pairs of docs with similarity \(0.3\) become candidate pairs -- **false positives**
+	- probability that \(S_1\) and \(S_2\) ARE found is \(1 - (1 - 0.00243)^{20} = 0.047\)
+		- i.e. \(4.74\%\) of pairs of docs with similarity \(0.3\) become candidate pairs -- **false positives**
 
 Plotting the probabilities with variable \(s\), we get the **S-curve:**
 
 ![S-Curve illustration.](s-curve.svg)
 
 ### Association Rule Discovery
-**Goal (the market-basket model):** identify items that are bought together by sufficiently many customers _(if someone buys diaper and baby milk, they will also buy vodka since the baby is probably driving them crazy)_.
+**Goal (the market-basket model):** identify items that are bought together by sufficiently many customers _(if someone buys diapers and baby milk, they will also buy vodka since the baby is probably driving them crazy)_.
 
 **Approach:** process the sales data to find dependencies among items
 
@@ -373,7 +373,7 @@ Plotting the probabilities with variable \(s\), we get the **S-curve:**
 {{< math "definition" "frequent itemsets" >}}sets of items that frequently appear together{{< /math >}}
 - **support** for itemset \(I\): number of baskets containing all \(I\) items
 	- i.e. support for \(\left\{\text{Vodka}, \text{Bread}\right\}\) from the table above is \(2\)
-	- given a **support threshold \(s\)**, we call a set **frequent**, if they appear in at least \(s\) baskets
+	- given a **support threshold \(s\)**, we call a set **frequent** if it appears in at least \(s\) baskets
 
 {{< math "definition" "association rule" >}}an association rule \(R\) has the form \[\left\{i_1, i_2, \ldots, i_k\right\} \implies \left\{j_1, j_2, \ldots, j_m\right\}\] and essentially states that _if_ a basket contains the set \(I\), then it also contains set \(J\){{< /math >}}
 - we want high **confidence**: if \(I \subseteq B\) then \(J \subseteq B\)
@@ -381,11 +381,11 @@ Plotting the probabilities with variable \(s\), we get the **S-curve:**
 
 {{< math "definition" "confidence" >}}of an association rule is the probability that it applies if \(I \subseteq B\), namely \[\mathrm{confidence}(I \rightarrow J) = \frac{\mathrm{support}(I \cup J)}{\mathrm{support}(I)}\]{{< /math >}}
 
-{{< math "definition" "interest" >}}of an association rule is the difference between confidence and the fraction of baskets that contain \(J\), namely \[\mathrm{interest}(I \rightarrow J) = \mathrm{confidence}(I \rightarrow J) - \mathrm{Pr}[J \in B] \]{{< /math >}}
+{{< math "definition" "interest" >}}of an association rule is the difference between confidence and the fraction of baskets that contain \(J\), namely \[\mathrm{interest}(I \rightarrow J) = \mathrm{confidence}(I \rightarrow J) - \mathrm{Pr}[J \subseteq B] \]{{< /math >}}
 
 **Problem:** we want to find all association rules with \(\mathrm{support} \ge s\) and \(\mathrm{confidence} \ge c\).
 1. find all frequent itemsets \(I\) (those with \(\mathrm{support} \ge s\))
-	- recipes are usually stored on disks (they won't fit into memory)
+	- baskets are usually stored on disks (they won't fit into memory)
 	- association-rule algorithms read data in **passes** -- this is the true cost
 	- hardest is **finding frequent pairs** (number of larger tuples drops off)
 		- _approach 1:_ count all pairs using a matrix \(\rightarrow 4\) bytes per pair
@@ -424,7 +424,7 @@ Plotting the probabilities with variable \(s\), we get the **S-curve:**
 		- \(0\) if it did not
 2. pass: count only pairs where
 	- **both elements are frequent** (same as A-Priori) and
-	- the pair **hashes to a bucket whose bit is frequent**
+	- the pair **hashes to a bucket whose bit is \(1\)**
 {{< /math >}}
 
 ![PCY memory layout illustration.](pcy.svg)
@@ -433,7 +433,7 @@ Plotting the probabilities with variable \(s\), we get the **S-curve:**
 **Initial problem:** find a maximum matching for a bipartite graph where we're only given the left side and the right side is revealed one-by-one. The obvious first try is a **greedy** algorithm (match with first available)
 - has a competitive ratio of \(\ge 1/2\)[^proof-greedy]
 
-[^proof-greedy]: let \(L\) be left side and \(R\) the right. If \(M_{\mathrm{greedy}} \neq M_{\mathrm{opt}}\), consider set \(G \subseteq R\) matched in \(M_{\mathrm{opt}}\) but not in \(M_{\mathrm{greedy}}\). Now consider \(B \subseteq L\) adjacent to \(G\): every one of those must be matched in \(M_{\mathrm{greedy}}\) (for those \(G\) not to be) so \(|B| \le |M_{\mathrm{greedy}}|.\). Also, \(|B| \ge |G|\), since otherwise the optimal algorithm couldn't have matched all girls in \(G\). Since \(|M_{\mathrm{opt}}| \le |M_{\mathrm{greedy}}| + |G|\), we get the desired bound after substituting for \(|G|\).
+[^proof-greedy]: let \(L\) be left side and \(R\) the right. If \(M_{\mathrm{greedy}} \neq M_{\mathrm{opt}}\), consider set \(G \subseteq R\) matched in \(M_{\mathrm{opt}}\) but not in \(M_{\mathrm{greedy}}\). Now consider \(B \subseteq L\) adjacent to \(G\): every one of those must be matched in \(M_{\mathrm{greedy}}\) (for those \(G\) not to be) so \(|B| \le |M_{\mathrm{greedy}}|\). Also, \(|B| \ge |G|\), since otherwise the optimal algorithm couldn't have matched all vertices in \(G\). Since \(|M_{\mathrm{opt}}| \le |M_{\mathrm{greedy}}| + |G|\), we get the desired bound after substituting for \(|G|\).
 
 **Revised problem:** left side are advertisers, right side terms to advertise on; we know
 - the bids advertisers have on the queries,
@@ -476,13 +476,13 @@ For our purposes, a **stream** is a long list of tuples of some values.
 The probability that a target gets at least one hash (which equals the _false positive rate_) is \[1 - \overbrace{ { {\underbrace{(1 - 1/n)}_{\text{one doesn't hit}}}^m} }^{\text{none of them hit}} = 1 - \left(1 - 1/n\right)^{n (m / n)} \approx 1 - e^{-m/n}\]
 
 ##### Bloom filter
-Create **\(k\) independent hash functions**, setting \(1\)s for all element's hashes:
+Create **\(k\) independent hash functions**, setting \(1\)s for all elements' hashes:
 \[1 - (1 - 1/n)^{km} \approx 1 - e^{-km/n}\]
 
-However, to generate a _false positive rate_, all of the hash functions have to get a hit, so:
+However, to generate a _false positive_, all of the hash functions have to get a hit, so:
 \[(1 - (1 - 1/n)^{km})^k \approx (1 - e^{-km / n})^k\]
 
-The **minimum** of this function (wrt. \(k\)) is \(n/m \ln(2)\):
+The **minimum** of this function is at \(k = (n/m) \ln(2)\):
 
 ![Bloom filter graph.](bf.svg)
 
@@ -492,7 +492,7 @@ The **minimum** of this function (wrt. \(k\)) is \(n/m \ln(2)\):
 **Goal:** store a fixed portion of the stream (for ex. 1/10)
 
 **Naive solution:** pick randomly and hope for the best
-- really bad idea -- what if we want to know, how many queries are duplicates?
+- really bad idea -- what if we want to know how many queries are duplicates?
 	- we'd have to pick both, the probability of which is not the same as picking one
 
 **Better solution:** pick by value, _not by position_ (i.e. pick 1/10 of users)

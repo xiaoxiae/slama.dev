@@ -54,7 +54,7 @@ We can do this by doing two things:
 - for **subsequent moves**, search with a **null window** (`[alpha, alpha + 1]`), and **re-search** if it fails high
 
 A null-window search only answers the question _is this better than what I already have_, which is exactly what we want in this case to confirm that the PV is the best.
-Since we're usually right and null-window searches are much faster (only answers yes/no, not by how much better), this saves time, even though we sometimes have to re-search if we're wrong about PV.
+Since we're usually right and null-window searches are much faster (they only answer yes/no, not by how much better), this saves time, even though we sometimes have to re-search if we're wrong about PV.
 
 <!--
 [`5ddad41`](https://github.com/xiaoxiae/Prokopakop/commit/5ddad41)
@@ -74,10 +74,10 @@ https://www.chessprogramming.org/Transposition_Table
 > Back in my day...
 -->
 
-In the [previous article](/a-chess-engine-commit-by-commit), we have implemented many move ordering heuristics, such as [MVV-LVA](/a-chess-engine-commit-by-commit/#move-ordering).
+In the [previous article](/prokopakop/a-chess-engine-commit-by-commit/), we have implemented many move ordering heuristics, such as [MVV-LVA](/prokopakop/a-chess-engine-commit-by-commit/#move-ordering).
 While these were all useful in their own right, quiet moves have remained mostly untouched, since they're... well... quiet, so it's hard to judge whether one is better than another.
 
-The only thing we're doing right now for ordering quiet moves is the [killer heuristic](/a-chess-engine-commit-by-commit/#killer-moves), which remembers **moves** that **caused a beta cut-off** in other branches in the **same ply** of the search tree.
+The only thing we're doing right now for ordering quiet moves is the [killer heuristic](/prokopakop/a-chess-engine-commit-by-commit/#killer-moves), which remembers **moves** that **caused a beta cut-off** in other branches in the **same ply** of the search tree.
 The **[history heuristic](https://www.chessprogramming.org/History_Heuristic)**[^history-heuristic] is what you get when you take this to the extreme --  if a move was **good** (i.e. caused a beta cut-off), we should **prioritize** it over **other quiet moves in ALL future searched positions**.
 
 [^history-heuristic]: [This paper](https://webdocs.cs.ualberta.ca/~jonathan/publications/ai_publications/pami.pdf) by Jonathan Schaeffer gives a good overview of the history heuristic.
@@ -102,7 +102,7 @@ To make sure entry values don't explode, we can **decay** all entries over time 
 **[Futility pruning](https://www.chessprogramming.org/Futility_Pruning),** as well as its **[Reverse Futility Pruning](https://www.chessprogramming.org/Reverse_Futility_Pruning)** counterpart, prune positions that are **futile** (for either side), since they're unlikely to change the outcome at that point.
 
 What this means is that if we're in a quiet position which, according to static evaluation, is **hopeless** and we are looking at a **quiet** move, it's a reasonable assumption that it's not going to help us and we can **skip it**, i.e. `static eval + margin(depth) <= alpha`.
-The higher depth we have remaining, the larger the margin should be for us to not miss tactics (i.e. `[0, 100, 200, 300, ...]`).
+The higher the depth we have remaining, the larger the margin should be for us to not miss tactics (i.e. `[0, 100, 200, 300, ...]`).
 
 Similarly, if our position is **amazing** (`static eval - reverse_margin(depth) >= beta`), we can **skip the branch entirely** since, no matter the type of move, we will not get to play it anyway (again setting margins depending on the remaining depth).
 
@@ -115,7 +115,7 @@ Similarly, if our position is **amazing** (`static eval - reverse_margin(depth) 
 > Time goes by. So slowly. (Britney Spears)
 -->
 
-I skipped this entirely in the [previous post](/a-chess-engine-commit-by-commit/) since I didn't have time (heh, get it?), but since this commit makes significant improvements in how time per move is allotted, it's a good idea to mention it here.
+I skipped this entirely in the [previous post](/prokopakop/a-chess-engine-commit-by-commit/) since I didn't have time (heh, get it?), but since this commit makes significant improvements in how time per move is allotted, it's a good idea to mention it here.
 
 This is how much time Prokopakop currently assigns to each move:
 
@@ -264,7 +264,7 @@ and the area around consisting of a \(3 \times 4\) square like so:
   abcdefgh
 {{< /chess >}}
 
-To further emphasise that king safety is important, the penalty increases quadratically since danger doesn't increase linearly -- the more attackers, the worse it gets, _by a lot._
+To further emphasize that king safety is important, the penalty increases quadratically since danger doesn't increase linearly -- the more attackers, the worse it gets, _by a lot._
 
 #### Removing Schizophrenia
 I found this commit when looking through the Git history and thought it was funny.
@@ -281,7 +281,7 @@ Running `git show` revealed the following:
 +    -(danger * danger) * SQUARE_ATTACK_FACTOR
 ```
 
-This, with `SQUARE_ATTACK_FACTOR` being `1/50` effectively meant that before this commit, the engine was **extremely paranoid** about king safety and would do anything to keep the king safe.
+This, with `SQUARE_ATTACK_FACTOR` being `1/50`, effectively meant that before this commit, the engine was **extremely paranoid** about king safety and would do anything to keep the king safe.
 
 I stand by the commit message.
 
@@ -307,7 +307,7 @@ Spoiler alert: **yes.**
 Let's say we want to evaluate a chess position using a neural network.
 The simplest thing we could do is to use a **fully-connected network** (see my [ML course lecture notes](/notes/introduction-to-machine-learning/#neural-networks) for more details) with a suitable input and a single scalar output, which would tell us how good the position is.
 
-The input can take many shapes, but the easiest would be a **one-hot encoding** of the board state, with each combination of square/piece/color corresponding to a single neuron, for a total of \[6 \times 2 \times 8 \times 8 = \mathbf{768}\] input neurons.
+The input can take many shapes, but the easiest would be a **one-hot encoding** of the board state, with each combination of square/piece/color corresponding to a single neuron, for a total of \(6 \times 2 \times 8 \times 8 = \mathbf{768}\) input neurons.
 
 The core idea behind NNUEs is the following: after a move is made, **what values do we actually need to change to update the network**?
 It will of course be the neurons in the first layer corresponding to the changed pieces, but how about the others?
@@ -480,7 +480,7 @@ The evaluation priorities based on the current phase of the game change drastica
 [**Output Buckets**](https://www.chessprogramming.org/NNUE#Output_Buckets) are just a fancy way of doing this for NNUEs, where we have **multiple output weights/biases** and pick one **based on the current phase of the game** (determined by remaining material).
 Prokopakop uses 8, but any reasonable number will do -- increasing will give you more granular weights for different stages of the game, but also increase the size of the network which may not be desirable since it will be harder to train.
 
-There are similar more advanced techniques that can do this for input such as [king input buckets](https://www.chessprogramming.org/NNUE#King_Input_Buckets) and, to some extent, [horizontal mirroring](https://www.chessprogramming.org/NNUE#Horizontal_Mirroring), but these usually only pay off, as I've mentioned, if you have massive amounts of training data.
+There are similar more advanced techniques that can do this for input such as [king input buckets](https://www.chessprogramming.org/NNUE#King_Input_Buckets) and, to some extent, [horizontal mirroring](https://www.chessprogramming.org/NNUE#Horizontal_Mirroring), but these usually only pay off if you have massive amounts of training data.
 
 Speaking of which...
 
