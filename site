@@ -55,6 +55,10 @@ function build
 
     echo "Generating honeypot files..."
     uv run python scripts/secrets.py
+
+    # Must stay last: anything writing into public/ after this re-stamps it.
+    echo "Restoring mtimes on unchanged output..."
+    uv run python scripts/restore_mtimes.py
 end
 
 function check
@@ -142,17 +146,16 @@ function upload
         return 1
     end
 
-    # Hugo restamps mtimes on every build even when content is identical, so the
-    # default mtime quick-check makes rsync re-read ~2.3 GB of unchanged media on
-    # both ends each upload. --size-only compares by size alone and skips those
-    # instantly; every real content change also changes byte size, so it's safe
-    # here. Use `upload --full` (--checksum) for a periodic content-verified pass.
+    # Never add --size-only here: a fingerprint change swaps 64 hex chars for
+    # 64 others, so a page whose only change is its CSS/JS URL keeps the same
+    # byte count and gets skipped, leaving it pointing at an asset --delete just
+    # removed. restore_mtimes.py keeps the default quick check honest instead.
     if test "$mode" = "--full"
         echo "Syncing files to VPS (full checksum verification)..."
         rsync -av --checksum --delete public/ slama-deploy@slama.dev:/var/www/slama.dev/
     else
         echo "Syncing files to VPS..."
-        rsync -av --size-only --delete public/ slama-deploy@slama.dev:/var/www/slama.dev/
+        rsync -av --delete public/ slama-deploy@slama.dev:/var/www/slama.dev/
     end
 
     echo "Upload complete!"
@@ -182,7 +185,7 @@ switch $argv[1]
         echo "  clean   - Clean generated files"
         echo "  build   - Build the site (minified)"
         echo "  check   - Run all checks (html-validate, lychee, pa11y)"
-        echo "  upload  - Check for localhost and upload to VPS (size-only sync)"
+        echo "  upload  - Check for localhost and upload to VPS"
         echo "            add --full for a checksum-verified pass"
         echo "  all     - Build and upload (default)"
 end
