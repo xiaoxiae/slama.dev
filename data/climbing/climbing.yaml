@@ -4868,3 +4868,35 @@ sessions:
       - file: boulderwelt-karlsruhe-7-2026-07-25-xpnlhqeq.mp4
       - file: boulderwelt-karlsruhe-7-2026-07-25-aozfwrdo.mp4
       - file: boulderwelt-karlsruhe-7-2026-07-25-kpzrwqee.mp4
+  '2026-08-15':
+    black:
+      new: 3
+      videos:
+      - file: boulderhaus-black-2026-08-15-kdlajzit.mp4
+      - file: boulderhaus-black-2026-08-15-buowqnsw.mp4
+      - file: boulderhaus-black-2026-08-15-pqblupgb.mp4
+    note: Back after a while. Better than expected? Weak but not rusty.
+    wall: Boulderhaus
+  '2026-08-17':
+    note: First sesh on the TensionBoard. Pretty sick, looking towards more sessions once I get stronger again.
+    wall: Crimp
+  '2026-08-19':
+    note: A bit disappointing -- couldn't focus properly on boulders I should have sent, but I went climbing and that counts.
+    wall: Boulderhaus
+  '2026-08-22':
+    note: First proper TB sesh. Honestly decent. Feel weak and heavy, my shoulder was killing me the second half of the session, but it was definitely better than the first one, and I feel like I'm slowly getting back.
+    tension:
+      7a:
+        new: 6
+        videos:
+        - file: tension-7a-2026-08-22-lvzwjall.mp4
+        - file: tension-7a-2026-08-22-pkmcfkxy.mp4
+        - file: tension-7a-2026-08-22-vbhrnuml.mp4
+        - file: tension-7a-2026-08-22-bafcfstx.mp4
+        - file: tension-7a-2026-08-22-igqsvpyq.mp4
+        - file: tension-7a-2026-08-22-sogdlomk.mp4
+      7a+:
+        new: 1
+        videos:
+        - file: tension-7ap-2026-08-22-lbevaiqg.mp4
+      angle: 40
