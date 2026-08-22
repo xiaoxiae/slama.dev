@@ -132,6 +132,30 @@
       {{- end -}}
     {{- end -}}
   {{- end -}}
+
+  {{- /* Tension */ -}}
+  {{- with $session.tension -}}
+    {{- range $grade, $gradeData := . -}}
+      {{- if and (ne $grade "angle") (reflect.IsMap $gradeData) -}}
+        {{- with $gradeData.videos -}}
+          {{- range . -}}
+            {{- $key := "Tension Board" -}}
+            {{- if not (index $videosByWall $key) -}}
+              {{- $videosByWall = merge $videosByWall (dict $key (dict)) -}}
+            {{- end -}}
+            {{- $wallDict := index $videosByWall $key -}}
+            {{- if not (index $wallDict $grade) -}}
+              {{- $wallDict = merge $wallDict (dict $grade slice) -}}
+            {{- end -}}
+            {{- $colorVids := index $wallDict $grade -}}
+            {{- $colorVids = $colorVids | append . -}}
+            {{- $wallDict = merge $wallDict (dict $grade $colorVids) -}}
+            {{- $videosByWall = merge $videosByWall (dict $key $wallDict) -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
 {{- end -}}
 
 {{- /* Merge orphaned videos (pre-journal) into $videosByWall */ -}}
@@ -180,7 +204,8 @@
   {{- end -}}
   {{- $isKilter := eq $wallName "Kilter Board" -}}
   {{- $isMoon := eq $wallName "MoonBoard" -}}
-  {{- if or $isKilter $isMoon -}}
+  {{- $isTension := eq $wallName "Tension Board" -}}
+  {{- if or $isKilter $isMoon $isTension -}}
     {{- $grading = "french" -}}
   {{- end -}}
 

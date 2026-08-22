@@ -12,7 +12,7 @@
           {{- $allVideos = $allVideos | append (dict "file" .file "date" $date "sotm" (default false .sotm)) -}}
         {{- end -}}
       {{- end -}}
-      {{- /* Handle nested grades in kilter/moon */ -}}
+      {{- /* Handle nested grades in kilter/moon/tension */ -}}
       {{- range $grade, $gradeData := $val -}}
         {{- if reflect.IsMap $gradeData -}}
           {{- with $gradeData.videos -}}
@@ -159,7 +159,8 @@
   {{- /* Kilter Board */ -}}
   {{- with $session.kilter -}}
     {{- if $someColorAdded }}/ {{ end -}}
-<strong>Kilter Board ({{ .angle }}°): </strong>
+    {{- $someColorAdded = true -}}
+<img class='climbing-wall-logo' src='/climbing/wall-logos/kilter-board.svg' alt='Logo of the Kilter Board.'/> <strong>Kilter Board ({{ .angle }}°): </strong>
     {{- range $grade, $gradeData := . -}}
       {{- if ne $grade "angle" -}}
         {{- if reflect.IsMap $gradeData -}}
@@ -175,9 +176,27 @@
   {{- /* MoonBoard */ -}}
   {{- with $session.moon -}}
     {{- if $someColorAdded }}/ {{ end -}}
-<strong>MoonBoard ({{ .setup }}): </strong>
+    {{- $someColorAdded = true -}}
+<img class='climbing-wall-logo' src='/climbing/wall-logos/moonboard.svg' alt='Logo of the MoonBoard.'/> <strong>MoonBoard ({{ .setup }}): </strong>
     {{- range $grade, $gradeData := . -}}
       {{- if ne $grade "setup" -}}
+        {{- if reflect.IsMap $gradeData -}}
+          {{- $oc := $gradeData.old | default 0 -}}
+          {{- $nc := $gradeData.new | default 0 -}}
+          {{- $vs := $gradeData.videos | default slice -}}
+          {{- template "colorMark" (dict "color" $grade "old" $oc "new" $nc "videos" $vs "wallStub" "" "walls" $walls "grading" "french") -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- /* Tension Board */ -}}
+  {{- with $session.tension -}}
+    {{- if $someColorAdded }}/ {{ end -}}
+    {{- $someColorAdded = true -}}
+<img class='climbing-wall-logo' src='/climbing/wall-logos/tension-board.svg' alt='Logo of the Tension Board.'/> <strong>Tension Board ({{ .angle }}°): </strong>
+    {{- range $grade, $gradeData := . -}}
+      {{- if ne $grade "angle" -}}
         {{- if reflect.IsMap $gradeData -}}
           {{- $oc := $gradeData.old | default 0 -}}
           {{- $nc := $gradeData.new | default 0 -}}

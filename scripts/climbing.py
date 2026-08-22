@@ -34,7 +34,7 @@ class VideoMetadata(BaseModel):
     sotm: bool = False  # Send of the month
     attempts: int | None = None
 
-    type: Literal["indoor", "outdoor", "kilter", "moon"] = "indoor"
+    type: Literal["indoor", "outdoor", "kilter", "moon", "tension"] = "indoor"
     wall: str | None = None
     location: str | None = None
     color: str | int | None = None
@@ -61,6 +61,23 @@ VIDEOS_FOLDER = STATIC_DIR / "videos"
 
 # Legacy paths (for migration period)
 VIDEOS_YAML = DATA_DIR / "videos.yaml"
+
+# Training boards, mapped to the per-session setting they're recorded with.
+# Videos end up under a session key of the same name, grouped by grade instead
+# of color.
+BOARD_PARAMETER = {"kilter": "angle", "moon": "setup", "tension": "angle"}
+
+# Board settings that don't need filling in by hand (the Tension Board is
+# always at 40°); anything else starts as TODO.
+BOARD_DEFAULT = {"tension": 40}
+
+# Filename prefixes that mark a board video, mapped to the board type.
+BOARD_PREFIX = {
+    "kilter": "kilter",
+    "moon": "moon",
+    "tension": "tension",
+    "tb": "tension",
+}
 
 HAS_CUDA = shutil.which("nvidia-smi") is not None
 
@@ -152,6 +169,24 @@ def collect_known_files(data) -> set[str]:
     return found
 
 
+def resolve_wall_name(name: str) -> str:
+    """Map a wall argument to its display name from walls.yaml (crimp -> Crimp).
+
+    Matched on the stub, so both the walls.yaml key and the display name work,
+    with or without diacritics. Unknown walls just get their first letter
+    capitalized.
+    """
+    stub = stubify(name)
+
+    for key, wall in load_yaml(WALLS_YAML).items():
+        display = wall.get("name") if isinstance(wall, dict) else None
+
+        if stub in (stubify(key), stubify(display or "")):
+            return display or key
+
+    return name[:1].upper() + name[1:]
+
+
 def cmd_add(args):
     """Add new videos to today's session in climbing.yaml."""
     # Check if we're using new or legacy format
@@ -170,6 +205,7 @@ def cmd_add(args):
     added = 0
 
     known_files = collect_known_files(data) if use_new_format else set()
+    wall_name = resolve_wall_name(args.wall) if args.wall else "Boulderhaus"
 
     for file in files:
         if not file.lower().endswith((".mp4", ".avi")):
@@ -187,8 +223,9 @@ def cmd_add(args):
                 continue
 
         # Detect video type
-        is_kilter = file.lower().startswith("kilter")
-        is_moon = file.lower().startswith("moon")
+        board_type = next(
+            (t for p, t in BOARD_PREFIX.items() if file.lower().startswith(p)), None
+        )
 
         if use_new_format:
             # New format: we need to mark video as needing processing
@@ -202,8 +239,8 @@ def cmd_add(args):
             session = data["sessions"][today]
 
             # Set wall if not already set
-            if "wall" not in session and not is_kilter and not is_moon:
-                session["wall"] = args.wall or "Boulderhaus"
+            if "wall" not in session and board_type is None:
+                session["wall"] = wall_name
 
             # Add video entry under _pending_videos for processing
             if "_pending_videos" not in session:
@@ -216,15 +253,11 @@ def cmd_add(args):
                 "trim": "TODO",
             }
 
-            if is_kilter:
-                video_entry["type"] = "kilter"
+            if board_type:
+                video_entry["type"] = board_type
                 video_entry.pop("color")
                 video_entry["grade"] = "TODO"
-            elif is_moon:
-                video_entry["type"] = "moon"
-                video_entry.pop("color")
-                video_entry["grade"] = "TODO"
-            elif args.wall and args.wall.lower() == "crimp":
+            elif wall_name == "Crimp":
                 video_entry.pop("color")  # Crimp doesn't use colors
             else:
                 video_entry["encode"] = True
@@ -233,19 +266,19 @@ def cmd_add(args):
             session["_pending_videos"].append(video_entry)
 
             print(
-                f"adding new {'Kilter' if is_kilter else 'Moon' if is_moon else ''} file {file}."
+                f"adding new {board_type.capitalize() + ' ' if board_type else ''}file {file}."
             )
             added += 1
 
         else:
             # Legacy format
-            if args.wall and args.wall.lower() == "crimp":
+            if wall_name == "Crimp":
                 data[file] = {
                     "date": datetime.date.fromtimestamp(os.path.getmtime(full_path)),
                     "new": True,
                     "encode": True,
                     "trim": "TODO",
-                    "wall": "Crimp",
+                    "wall": wall_name,
                 }
             else:
                 data[file] = {
@@ -255,14 +288,14 @@ def cmd_add(args):
                     "encode": True,
                     "trim": "TODO",
                     "deface": True,
-                    "wall": args.wall or "Boulderhaus",
+                    "wall": wall_name,
                 }
 
-            if is_kilter or is_moon:
+            if board_type:
                 data[file].pop("wall", None)
                 data[file].pop("deface", None)
-                data[file]["type"] = "kilter" if is_kilter else "moon"
-                print(f"adding new {'Kilter' if is_kilter else 'Moon'} file {file}.")
+                data[file]["type"] = board_type
+                print(f"adding new {board_type.capitalize()} file {file}.")
             else:
                 print(f"adding new file {file}.")
 
@@ -299,10 +332,8 @@ def process_video(name: str, video: VideoMetadata) -> tuple[str, VideoMetadata]:
 
         if video.wall:
             location_stub = stubify(video.wall)
-        elif video.type == "kilter":
-            location_stub = "kilter"
-        elif video.type == "moon":
-            location_stub = "moon"
+        elif video.type in BOARD_PARAMETER:
+            location_stub = video.type
         elif video.location:
             location_stub = stubify(video.location)
         else:
@@ -602,27 +633,18 @@ def cmd_build(args):
             if video_entry.get("sotm"):
                 video_ref["sotm"] = video_entry["sotm"]
 
-            if video_type == "kilter":
-                if "kilter" not in session:
-                    session["kilter"] = {"angle": "TODO"}
-                if grade not in session["kilter"]:
-                    session["kilter"][grade] = {"new": 0, "videos": []}
-                if "videos" not in session["kilter"][grade]:
-                    session["kilter"][grade]["videos"] = []
-                session["kilter"][grade]["videos"].append(video_ref)
-                session["kilter"][grade]["new"] = (
-                    session["kilter"][grade].get("new", 0) + 1
+            if video_type in BOARD_PARAMETER:
+                board = session.setdefault(
+                    video_type,
+                    {
+                        BOARD_PARAMETER[video_type]: BOARD_DEFAULT.get(
+                            video_type, "TODO"
+                        )
+                    },
                 )
-
-            elif video_type == "moon":
-                if "moon" not in session:
-                    session["moon"] = {"setup": "TODO"}
-                if grade not in session["moon"]:
-                    session["moon"][grade] = {"new": 0, "videos": []}
-                if "videos" not in session["moon"][grade]:
-                    session["moon"][grade]["videos"] = []
-                session["moon"][grade]["videos"].append(video_ref)
-                session["moon"][grade]["new"] = session["moon"][grade].get("new", 0) + 1
+                grade_data = board.setdefault(grade, {"new": 0, "videos": []})
+                grade_data.setdefault("videos", []).append(video_ref)
+                grade_data["new"] = grade_data.get("new", 0) + 1
 
             else:
                 # Regular indoor climbing with color
