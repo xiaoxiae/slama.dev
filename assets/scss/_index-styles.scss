@@ -47,3 +47,54 @@
     background-color: #18bc9c;
   }
 }
+
+.me-flip {
+  float: right;
+  width: 200px;
+  max-width: 35%;
+  margin: 0 0 ($line-spacing * 0.5) $line-spacing;
+  perspective: 800px;
+
+  // no hover on touch devices
+  @media (max-width: $small-screen-threshold) {
+    display: none;
+  }
+
+  .me-flip-inner {
+    display: grid;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-in-out;
+  }
+
+  img {
+    grid-area: 1 / 1;
+    display: block;
+    width: 100%;
+    max-width: 100%; // overrides the global 90% cap on images
+    height: auto;
+    backface-visibility: hidden;
+  }
+
+  // these are photos, so skip the dark mode inversion
+  // (not .no-invert -- its invert(0%) flattens the 3D scene)
+  @media (prefers-color-scheme: dark) {
+    img {
+      filter: none;
+    }
+  }
+
+  // pre-flipped, so it lands correct after the rotation
+  .me-back {
+    transform: rotateY(180deg);
+  }
+
+  &:hover .me-flip-inner {
+    transform: rotateY(180deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .me-flip-inner {
+      transition: none;
+    }
+  }
+}
