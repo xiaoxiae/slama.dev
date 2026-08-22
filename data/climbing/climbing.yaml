@@ -757,7 +757,7 @@ sessions:
       old: 4
   '2022-01-07':
     note: An interesting climbing gym. The type of climbing is quite oldschool (so not my cup of tea), but still a nice change of pace.
-    wall: LokalBlok
+    wall: Lokalblok
   '2022-01-12':
     blue:
       new: 6
@@ -4674,7 +4674,7 @@ sessions:
       - file: boulderhaus-red-2026-05-30-tpnjnadi.mp4
       - file: boulderhaus-red-2026-05-30-cqlasbnm.mp4
       - file: boulderhaus-red-2026-05-30-pqdxaiju.mp4
-    wall: boulderhaus
+    wall: Boulderhaus
   '2026-06-02':
     '6':
       new: 4
@@ -4815,7 +4815,7 @@ sessions:
       videos:
       - file: boulderhaus-red-2026-07-11-ndxddqff.mp4
       - file: boulderhaus-red-2026-07-11-rslwmotd.mp4
-    wall: boulderhaus
+    wall: Boulderhaus
   '2026-07-18':
     note: Comp sims, absolute robbery on both from my end since I was barely holding on to the fucking holds. We still take those. And a 300-meter smoothie won. Easy business.
     wall: Boulderhaus Mannheim

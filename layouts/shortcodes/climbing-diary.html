@@ -1,6 +1,8 @@
 {{- $sessions := hugo.Data.climbing.climbing.sessions -}}
 {{- $walls := hugo.Data.climbing.walls -}}
 {{- $orphaned := hugo.Data.climbing.climbing.orphaned_videos -}}
+{{- /* Not in the `colorMark` define that emits the links -- it has no page context. */ -}}
+{{- $.Page.Store.Set "hasLightbox" true -}}
 
 {{- /* Collect all videos to find SOTM */ -}}
 {{- $allVideos := slice -}}
@@ -70,7 +72,7 @@
     {{- $monthKey := printf "%d-%02d" $d.Year $d.Month -}}
     {{- $sotm := index $sotmByMonth $monthKey -}}
     {{- $monthName := index (slice "" "January" "February" "March" "April" "May" "June" "July" "August" "September" "October" "November" "December") $d.Month -}}
-    </ul><h4>{{ $monthName }}{{ with $sotm }} (<a href='/climbing/videos/{{ . }}'>best send</a>){{ end }}</h4><ul>
+    </ul><h4>{{ $monthName }}{{ with $sotm }} (<a class='climbing-link' href='/climbing/videos/{{ . }}'>best send</a>){{ end }}</h4><ul>
     {{- $currentMonth = $d.Month -}}
   {{- end -}}
 
@@ -103,7 +105,10 @@
 <div class='climbing-bg-div' style='background-image: url(/climbing/images/{{ . }})'>
   {{- end -}}
 
-<li id='{{ $date }}'><ul class='climbing-entry-header'><li><strong>{{ $d.Day }}. {{ $d.Format "1" }}. {{ $d.Year }}</strong>
+{{- $whereLabel := $wallName -}}
+{{- with $wall -}}{{- $whereLabel = .name | default $wallName -}}{{- end -}}
+{{- with $session.location -}}{{- $whereLabel = replaceRE "<[^>]+>" "" . -}}{{- end -}}
+<li id='{{ $date }}' data-wall='{{ $whereLabel }}'><ul class='climbing-entry-header'><li><strong>{{ $d.Day }}. {{ $d.Format "1" }}. {{ $d.Year }}</strong>
   {{- if $session.location -}}
  (at {{ $session.location | safeHTML }})
     {{- with $session.guide -}}

@@ -199,6 +199,7 @@
 				<img id="lightbox-thumb" class="lightbox-thumbnail" src="" alt="Thumbnail">
 				<img id="lightbox-img" src="" alt="Enlarged image" style="display: none;">
 			</div>
+			<div id="lightbox-caption" class="lightbox-caption" style="display: none;"></div>
 		</div>
 		{{- $lightboxJS := resources.Get "js/lightbox.js" | minify | fingerprint }}
 		<script src="{{ $lightboxJS.RelPermalink }}"></script>

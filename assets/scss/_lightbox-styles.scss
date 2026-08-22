@@ -26,17 +26,49 @@
   object-fit: contain;
 }
 
-.lightbox-thumbnail {
+img.lightbox-thumbnail {
   filter: blur(5px);
+}
+
+// The poster still and the video it becomes share one rule, or the frame jumps
+// when playback starts. width/height reset the bare `video` rule in
+// _manim-styles.scss, which would otherwise stretch portrait clips.
+#lightbox-img.lightbox-media,
+.lightbox video {
+  width: auto;
+  height: auto;
+  max-width: 90vw;
+  max-height: 82vh;
+  display: block;
+  background: #000;
+  cursor: pointer;
+}
+
+.lightbox-caption {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 70vw;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 0.9rem;
+  text-align: center;
+  z-index: 1001;
+  pointer-events: none; // never a dead zone for close-on-backdrop
 }
 
 .lightbox-close,
 .lightbox-prev,
 .lightbox-next {
   position: fixed;
+  box-sizing: border-box; // so the padding nudge below cannot inflate the circle
   color: white;
   font-size: 40px;
   font-weight: bold;
+  line-height: 1;
   cursor: pointer;
   z-index: 1001;
   user-select: none;
@@ -51,6 +83,13 @@
   &:hover {
     opacity: 0.7;
   }
+}
+
+// Flexbox centres the glyph's line box, not its ink, and U+2770/U+2771 carry
+// more descent than ascent. Padding shifts centred content up by half its value.
+.lightbox-prev,
+.lightbox-next {
+  padding-bottom: 4px;
 }
 
 .lightbox-close {

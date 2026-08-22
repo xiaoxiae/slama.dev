@@ -1,6 +1,7 @@
 {{- $sessions := hugo.Data.climbing.climbing.sessions -}}
 {{- $walls := hugo.Data.climbing.walls -}}
 {{- $orphaned := hugo.Data.climbing.climbing.orphaned_videos -}}
+{{- $.Page.Store.Set "hasLightbox" true -}}
 
 {{- /* Collect all videos grouped by wall and color */ -}}
 {{- $videosByWall := dict -}}
@@ -18,6 +19,9 @@
   {{- $colors := slice -}}
   {{- with $wall -}}
     {{- $colors = .colors | default slice -}}
+    {{- /* Canonical name: session data spells some walls inconsistently
+           (`wall: boulderhaus`), which would split them into two sections. */ -}}
+    {{- $wallName = .name | default $wallName -}}
   {{- end -}}
 
   {{- range $colors -}}
@@ -195,7 +199,7 @@
     {{- continue -}}
   {{- end -}}
 
-<h3>{{ $wallName }}</h3><ul>
+<h3>{{ $wallName }}</h3><ul data-wall='{{ $wallName }}'>
   {{- $wallStub := $wallName | anchorize -}}
   {{- $wall := index $walls $wallStub -}}
   {{- $grading := "color" -}}
