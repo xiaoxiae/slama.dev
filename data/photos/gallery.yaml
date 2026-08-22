@@ -1,6 +1,12 @@
 # Photo gallery data
 # Each photo has: file (YYYY-MM-DD-name.ext), and optional social links
 photos:
+  - file: 2026-08-01-frog.jpg
+
+  - file: 2026-08-01-grasshopper.jpg
+
+  - file: 2026-08-01-spider.jpg
+
   - file: 2026-03-12-cat.jpg
 
   - file: 2025-09-13-rainbow.jpg
