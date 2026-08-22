@@ -28,6 +28,12 @@
     {{- $where = $session.location -}}
     {{- /* Strip HTML tags */ -}}
     {{- $where = replaceRE "<[^>]+>" "" $where -}}
+  {{- else if $session.kilter -}}
+    {{- $where = "Kilter Board" -}}
+  {{- else if $session.moon -}}
+    {{- $where = "MoonBoard" -}}
+  {{- else if $session.tension -}}
+    {{- $where = "Tension Board" -}}
   {{- else -}}
     {{- continue -}}
   {{- end -}}
