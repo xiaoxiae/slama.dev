@@ -9,19 +9,26 @@ Usage:
 
 import argparse
 import os
-import shutil
 import sys
 import datetime
 from pathlib import Path
-from random import choice
-from string import ascii_lowercase
-from subprocess import DEVNULL, Popen
 from typing import Literal
 
-import yaml
-from PIL import Image
 from pydantic import BaseModel, ConfigDict
-from unidecode import unidecode
+
+from video_common import (
+    HAS_CUDA,
+    NVIDIA_LIB_PATH,
+    collect_known_files,
+    generate_poster,
+    get_random_string,
+    load_yaml,
+    require_frames,
+    require_tools,
+    run,
+    save_yaml,
+    stubify,
+)
 
 
 # Type definitions
@@ -59,9 +66,6 @@ CLIMBING_YAML = DATA_DIR / "climbing.yaml"
 WALLS_YAML = DATA_DIR / "walls.yaml"
 VIDEOS_FOLDER = STATIC_DIR / "videos"
 
-# Legacy paths (for migration period)
-VIDEOS_YAML = DATA_DIR / "videos.yaml"
-
 # Training boards, mapped to the per-session setting they're recorded with.
 # Videos end up under a session key of the same name, grouped by grade instead
 # of color.
@@ -78,95 +82,6 @@ BOARD_PREFIX = {
     "tension": "tension",
     "tb": "tension",
 }
-
-HAS_CUDA = shutil.which("nvidia-smi") is not None
-
-
-def _nvidia_lib_path() -> str | None:
-    """LD_LIBRARY_PATH entries for the nvidia-*-cu12 pip packages, if installed.
-
-    onnxruntime-gpu needs the CUDA 12 runtime libs (cublasLt, cudnn, ...) on the
-    loader path; the pip packages ship them under nvidia/<component>/lib. Returns
-    None when they aren't installed, in which case deface stays on CPU.
-    """
-    try:
-        import nvidia
-    except ImportError:
-        return None
-    base = Path(nvidia.__file__).parent
-    libs = [str(d / "lib") for d in base.iterdir() if (d / "lib").is_dir()]
-    return os.pathsep.join(libs) if libs else None
-
-
-NVIDIA_LIB_PATH = _nvidia_lib_path()
-
-
-# External binaries the build shells out to, with install hints for the
-# "missing tool" error. deface ships as a project dependency (uv sync); the
-# others are system packages.
-TOOL_HINTS = {
-    "ffmpeg": "system package 'ffmpeg'",
-    "cwebp": "system package providing cwebp (on Arch: `sudo pacman -S libwebp-utils`)",
-    "deface": "project dependency (`uv sync`)",
-}
-
-
-def require_tools(*tools: str) -> None:
-    """Exit early with a clear message if any required external binary is missing.
-
-    The build shells out to these via Popen, which otherwise dies with a bare
-    FileNotFoundError mid-processing (after some videos have already been
-    renamed/encoded). Checking up front keeps that from happening.
-    """
-    missing = [t for t in tools if shutil.which(t) is None]
-    if missing:
-        print("ERROR: missing required tool(s):", file=sys.stderr)
-        for t in missing:
-            print(f"  - {t}: {TOOL_HINTS.get(t, 'not found on PATH')}", file=sys.stderr)
-        sys.exit(1)
-
-
-def stubify(string: str) -> str:
-    return unidecode(string).lower().replace(" ", "-")
-
-
-def get_random_string(length: int) -> str:
-    return "".join(choice(ascii_lowercase) for _ in range(length))
-
-
-def load_yaml(path: Path) -> dict:
-    if not path.exists():
-        return {}
-    with open(path) as f:
-        return yaml.safe_load(f) or {}
-
-
-def save_yaml(path: Path, data: dict):
-    with open(path, "w") as f:
-        yaml.dump(data, f, default_flow_style=False, allow_unicode=True, width=1000)
-
-
-def collect_known_files(data) -> set[str]:
-    """Recursively collect every video filename referenced anywhere in the data.
-
-    Covers sessions (including nested grades and _pending_videos) as well as
-    orphaned_videos, so already-archived clips are never re-detected as new.
-    """
-    found: set[str] = set()
-
-    def walk(node):
-        if isinstance(node, dict):
-            file = node.get("file")
-            if isinstance(file, str):
-                found.add(file)
-            for value in node.values():
-                walk(value)
-        elif isinstance(node, list):
-            for item in node:
-                walk(item)
-
-    walk(data)
-    return found
 
 
 def resolve_wall_name(name: str) -> str:
@@ -189,131 +104,66 @@ def resolve_wall_name(name: str) -> str:
 
 def cmd_add(args):
     """Add new videos to today's session in climbing.yaml."""
-    # Check if we're using new or legacy format
-    if CLIMBING_YAML.exists():
-        data = load_yaml(CLIMBING_YAML)
-        use_new_format = True
-    elif VIDEOS_YAML.exists():
-        # Legacy: still using videos.yaml
-        data = load_yaml(VIDEOS_YAML)
-        use_new_format = False
-    else:
-        data = {"sessions": {}, "orphaned_videos": {}}
-        use_new_format = True
+    data = load_yaml(CLIMBING_YAML) or {"sessions": {}, "orphaned_videos": {}}
 
     files = os.listdir(VIDEOS_FOLDER)
     added = 0
 
-    known_files = collect_known_files(data) if use_new_format else set()
+    known_files = collect_known_files(data)
     wall_name = resolve_wall_name(args.wall) if args.wall else "Boulderhaus"
 
     for file in files:
         if not file.lower().endswith((".mp4", ".avi")):
             continue
 
-        full_path = VIDEOS_FOLDER / file
-
-        if use_new_format:
-            # Skip videos already referenced anywhere (sessions or orphaned)
-            if file in known_files:
-                continue
-        else:
-            # Legacy format
-            if file in data:
-                continue
+        # Skip videos already referenced anywhere (sessions or orphaned)
+        if file in known_files:
+            continue
 
         # Detect video type
         board_type = next(
             (t for p, t in BOARD_PREFIX.items() if file.lower().startswith(p)), None
         )
 
-        if use_new_format:
-            # New format: we need to mark video as needing processing
-            # For now, add to a temporary processing list
-            today = str(datetime.date.today())
-            if "sessions" not in data:
-                data["sessions"] = {}
-            if today not in data["sessions"]:
-                data["sessions"][today] = {}
+        today = str(datetime.date.today())
+        session = data.setdefault("sessions", {}).setdefault(today, {})
 
-            session = data["sessions"][today]
+        # Set wall if not already set
+        if "wall" not in session and board_type is None:
+            session["wall"] = wall_name
 
-            # Set wall if not already set
-            if "wall" not in session and board_type is None:
-                session["wall"] = wall_name
+        video_entry = {
+            "file": file,
+            "color": "TODO",
+            "new": True,
+            "trim": "TODO",
+        }
 
-            # Add video entry under _pending_videos for processing
-            if "_pending_videos" not in session:
-                session["_pending_videos"] = []
-
-            video_entry = {
-                "file": file,
-                "color": "TODO",
-                "new": True,
-                "trim": "TODO",
-            }
-
-            if board_type:
-                video_entry["type"] = board_type
-                video_entry.pop("color")
-                video_entry["grade"] = "TODO"
-            elif wall_name == "Crimp":
-                video_entry.pop("color")  # Crimp doesn't use colors
-            else:
-                video_entry["encode"] = True
-                video_entry["deface"] = True
-
-            session["_pending_videos"].append(video_entry)
-
-            print(
-                f"adding new {board_type.capitalize() + ' ' if board_type else ''}file {file}."
-            )
-            added += 1
-
+        if board_type:
+            video_entry["type"] = board_type
+            video_entry.pop("color")
+            video_entry["grade"] = "TODO"
+        elif wall_name == "Crimp":
+            video_entry.pop("color")  # Crimp doesn't use colors
         else:
-            # Legacy format
-            if wall_name == "Crimp":
-                data[file] = {
-                    "date": datetime.date.fromtimestamp(os.path.getmtime(full_path)),
-                    "new": True,
-                    "encode": True,
-                    "trim": "TODO",
-                    "wall": wall_name,
-                }
-            else:
-                data[file] = {
-                    "color": "TODO",
-                    "date": datetime.date.fromtimestamp(os.path.getmtime(full_path)),
-                    "new": True,
-                    "encode": True,
-                    "trim": "TODO",
-                    "deface": True,
-                    "wall": wall_name,
-                }
+            video_entry["encode"] = True
+            video_entry["deface"] = True
 
-            if board_type:
-                data[file].pop("wall", None)
-                data[file].pop("deface", None)
-                data[file]["type"] = board_type
-                print(f"adding new {board_type.capitalize()} file {file}.")
-            else:
-                print(f"adding new file {file}.")
+        session.setdefault("_pending_videos", []).append(video_entry)
 
-            added += 1
+        print(
+            f"adding new {board_type.capitalize() + ' ' if board_type else ''}file {file}."
+        )
+        added += 1
 
-    if use_new_format:
-        # Keep pending videos sorted by filename for stable, readable diffs
-        for session in data.get("sessions", {}).values():
-            if "_pending_videos" in session:
-                session["_pending_videos"].sort(key=lambda v: v["file"])
-        save_yaml(CLIMBING_YAML, data)
-        target = CLIMBING_YAML
-    else:
-        save_yaml(VIDEOS_YAML, data)
-        target = VIDEOS_YAML
+    # Keep pending videos sorted by filename for stable, readable diffs
+    for session in data.get("sessions", {}).values():
+        if "_pending_videos" in session:
+            session["_pending_videos"].sort(key=lambda v: v["file"])
+    save_yaml(CLIMBING_YAML, data)
 
     if added:
-        print(f"\nAdded {added} new video(s). Edit {target} to fill in details.")
+        print(f"\nAdded {added} new video(s). Edit {CLIMBING_YAML} to fill in details.")
     else:
         print("No new videos found.")
 
@@ -321,10 +171,6 @@ def cmd_add(args):
 def process_video(name: str, video: VideoMetadata) -> tuple[str, VideoMetadata]:
     """Process a single video (rename, trim, encode, poster). Returns new name."""
     path = VIDEOS_FOLDER / name
-
-    # Silence the (verbose) ffmpeg/deface subprocess output; the script prints
-    # its own per-video progress lines.
-    quiet_out = DEVNULL
 
     # Rename new files
     if video.new:
@@ -365,18 +211,22 @@ def process_video(name: str, video: VideoMetadata) -> tuple[str, VideoMetadata]:
 
     tmp_path = VIDEOS_FOLDER / f"tmp_{name}"
 
+    def produce(command: list[str], label: str, env=None) -> None:
+        """Run a stage into tmp_path, or raise leaving nothing behind."""
+        try:
+            run(command, tmp_path, label=label, env=env)
+            require_frames(tmp_path, label)
+        except RuntimeError:
+            tmp_path.unlink(missing_ok=True)
+            raise
+
     # Trim
     if video.trim:
         start, end = video.trim.split(",")
-        Popen(
+        produce(
             ["ffmpeg", "-y", "-i", str(path), "-ss", start, "-to", end, str(tmp_path)],
-            stdout=quiet_out,
-            stderr=quiet_out,
-        ).communicate()
-        # Only replace the source once ffmpeg actually produced the trimmed file,
-        # so a failed run never destroys the original.
-        if not tmp_path.exists():
-            raise RuntimeError(f"ffmpeg trim produced no output for '{name}'")
+            f"{name} (trim {video.trim})",
+        )
         os.remove(path)
         os.rename(tmp_path, path)
         video.trim = None
@@ -393,16 +243,13 @@ def process_video(name: str, video: VideoMetadata) -> tuple[str, VideoMetadata]:
             if video.rotate
             else []
         )
-        Popen(
+        produce(
             ["ffmpeg", "-y", "-i", str(path)]
             + encode_cfg
             + rotate_cfg
             + [str(tmp_path)],
-            stdout=quiet_out,
-            stderr=quiet_out,
-        ).communicate()
-        if not tmp_path.exists():
-            raise RuntimeError(f"ffmpeg encode produced no output for '{name}'")
+            f"{name} (encode)",
+        )
         os.remove(path)
         os.rename(tmp_path, path)
         video.encode = None
@@ -420,61 +267,19 @@ def process_video(name: str, video: VideoMetadata) -> tuple[str, VideoMetadata]:
             deface_env["LD_LIBRARY_PATH"] = NVIDIA_LIB_PATH + (
                 os.pathsep + existing if existing else ""
             )
-        Popen(
-            deface_cmd, env=deface_env, stdout=quiet_out, stderr=quiet_out
-        ).communicate()
         # Only swap files if deface actually produced output, so a failed run
         # never strands the original outside of videos/.
-        if not tmp_path.exists():
-            raise RuntimeError(
-                f"deface produced no output for '{name}'; leaving original in place"
-            )
+        try:
+            produce(deface_cmd, name, env=deface_env)
+        except RuntimeError as error:
+            raise RuntimeError(f"{error}; leaving original in place") from error
         old_folder = VIDEOS_FOLDER / "unblurred"
         old_folder.mkdir(exist_ok=True)
         os.rename(path, old_folder / name)
         os.rename(tmp_path, path)
         video.deface = None
 
-    # Generate poster
-    poster_webp = VIDEOS_FOLDER / (path.stem + ".webp")
-    if not poster_webp.exists():
-        print(f"generating a poster for '{name}'.", flush=True)
-        poster_jpeg = VIDEOS_FOLDER / (path.stem + ".jpeg")
-        Popen(
-            [
-                "ffmpeg",
-                "-i",
-                str(path),
-                "-vf",
-                r"select=eq(n\,0)",
-                "-vframes",
-                "1",
-                "-y",
-                str(poster_jpeg),
-            ],
-            stdout=quiet_out,
-            stderr=quiet_out,
-        ).communicate()
-        im = Image.open(poster_jpeg)
-        width, height = im.size
-        new_width = 720
-        new_height = int(height * (new_width / width))
-        Popen(
-            [
-                "cwebp",
-                "-q",
-                "5",
-                "-resize",
-                str(new_width),
-                str(new_height),
-                str(poster_jpeg),
-                "-o",
-                str(poster_webp),
-            ],
-            stdout=quiet_out,
-            stderr=quiet_out,
-        ).communicate()
-        os.remove(poster_jpeg)
+    generate_poster(path)
 
     return name, video
 
@@ -483,188 +288,121 @@ def cmd_build(args):
     """Process videos (rename, trim, encode, generate posters)."""
     # ffmpeg (trim/encode/poster frame) and cwebp (poster encode) are always
     # needed; bail before touching any files if they're missing. deface is
-    # checked per-format below, only when a video actually requests it.
+    # checked below, only when a video actually requests it.
     require_tools("ffmpeg", "cwebp")
 
-    # Check which format we're using
-    if VIDEOS_YAML.exists():
-        # Legacy format: process videos.yaml
-        print("=== Processing videos (legacy format) ===")
+    if not CLIMBING_YAML.exists():
+        print(f"ERROR: no {CLIMBING_YAML} found, not generating.", file=sys.stderr)
+        sys.exit(1)
 
-        config: dict[str, VideoMetadata] = {}
-        with open(VIDEOS_YAML) as f:
-            raw_config = yaml.safe_load(f) or {}
-            for video_name, video_data in raw_config.items():
-                if "name" in video_data and video_data["name"] == video_name:
-                    video_data["name"] = None
-                config[video_name] = VideoMetadata(**video_data)
+    data = load_yaml(CLIMBING_YAML)
 
-        # Check for TODOs
-        for name in config:
-            video_dict = config[name].model_dump()
-            for attr, value in video_dict.items():
+    # Find all pending videos and check for TODOs
+    pending_count = 0
+    needs_deface = False
+    for session_date, session in data.get("sessions", {}).items():
+        pending = session.get("_pending_videos", [])
+        for video_entry in pending:
+            pending_count += 1
+            for key, value in video_entry.items():
                 if value == "TODO":
-                    print("ERROR: the videos.yaml file contains TODOs, not generating.")
-                    return
-
-            if not (VIDEOS_FOLDER / name).exists():
-                print(f"ERROR: nonexistent video '{name}', not generating.")
-                return
-
-        if any(v.deface for v in config.values()):
-            require_tools("deface")
-
-        # Process each video
-        new_config = {}
-        for name, video in config.items():
-            new_name, processed_video = process_video(name, video)
-            new_config[new_name] = processed_video
-
-        # Save back
-        config_dict = {
-            name: video.model_dump(
-                exclude_none=True,
-                exclude_defaults=True,
-                exclude={"new", "trim", "encode", "rotate", "deface"},
-            )
-            for name, video in new_config.items()
-        }
-        with open(VIDEOS_YAML, "w") as f:
-            f.write(yaml.dump(config_dict))
-
-        print("climbing videos generated (and reformatted).", flush=True)
-
-        # Warn about leftover files
-        files = set(os.listdir(VIDEOS_FOLDER))
-        for file in files:
-            if file.lower().endswith(".mp4") and file not in new_config:
-                print(f"WARNING: leftover file {file}.", flush=True)
-
-    elif CLIMBING_YAML.exists():
-        print("=== Processing videos (climbing.yaml format) ===")
-        data = load_yaml(CLIMBING_YAML)
-
-        # Find all pending videos and check for TODOs
-        pending_count = 0
-        needs_deface = False
-        for session_date, session in data.get("sessions", {}).items():
-            pending = session.get("_pending_videos", [])
-            for video_entry in pending:
-                pending_count += 1
-                for key, value in video_entry.items():
-                    if value == "TODO":
-                        print(
-                            f"ERROR: climbing.yaml contains TODOs in session {session_date}, not generating."
-                        )
-                        return
-                if not (VIDEOS_FOLDER / video_entry["file"]).exists():
                     print(
-                        f"ERROR: nonexistent video '{video_entry['file']}', not generating."
+                        f"ERROR: climbing.yaml contains TODOs in session {session_date}, not generating."
                     )
                     return
-                if video_entry.get("deface"):
-                    needs_deface = True
+            if not (VIDEOS_FOLDER / video_entry["file"]).exists():
+                print(
+                    f"ERROR: nonexistent video '{video_entry['file']}', not generating."
+                )
+                return
+            if video_entry.get("deface"):
+                needs_deface = True
 
-        if needs_deface:
-            require_tools("deface")
+    if needs_deface:
+        require_tools("deface")
 
-        if pending_count == 0:
-            print("No pending videos to process.")
-            # Still generate posters for any videos missing them
-            for session_date, session in data.get("sessions", {}).items():
-                for key, val in session.items():
-                    if isinstance(val, dict):
-                        for v in val.get("videos", []):
-                            video_file = v.get("file")
-                            if video_file:
-                                poster_webp = VIDEOS_FOLDER / (
-                                    Path(video_file).stem + ".webp"
-                                )
-                                if (
-                                    not poster_webp.exists()
-                                    and (VIDEOS_FOLDER / video_file).exists()
-                                ):
-                                    video = VideoMetadata()
-                                    process_video(video_file, video)
-            return
-
-        print(f"Processing {pending_count} pending video(s)...")
-
-        # Flatten every pending video across all sessions into a work list;
-        # assembly into the yaml happens afterwards.
-        tasks = []  # (session, video_entry, VideoMetadata)
+    if pending_count == 0:
+        print("No pending videos to process.")
+        # Still generate posters for any videos missing them
         for session_date, session in data.get("sessions", {}).items():
-            wall = session.get("wall", "Smíchoff")
-            for video_entry in session.get("_pending_videos", []):
-                video_type = video_entry.get("type", "indoor")
-                color = video_entry.get("color")
-                grade = video_entry.get("grade")
-                video = VideoMetadata(
-                    date=datetime.date.fromisoformat(session_date),
-                    type=video_type,
-                    wall=wall if video_type == "indoor" else None,
-                    color=color if video_type == "indoor" else grade,
-                    new=video_entry.get("new"),
-                    trim=video_entry.get("trim"),
-                    encode=video_entry.get("encode"),
-                    rotate=video_entry.get("rotate"),
-                    deface=video_entry.get("deface"),
-                )
-                tasks.append((session, video_entry, video))
+            for key, val in session.items():
+                if isinstance(val, dict):
+                    for v in val.get("videos", []):
+                        video_file = v.get("file")
+                        if video_file and (VIDEOS_FOLDER / video_file).exists():
+                            generate_poster(VIDEOS_FOLDER / video_file)
+        return
 
-        # ffmpeg already saturates all cores on a single CPU encode, so running
-        # videos concurrently buys nothing on a CPU-only box; process serially in
-        # their original per-session sequence.
-        results = []
-        for task in tasks:
-            _session, video_entry, video = task
-            new_name, _ = process_video(video_entry["file"], video)
-            print(f"processed '{video_entry['file']}' -> '{new_name}'.", flush=True)
-            results.append((task, new_name))
+    print(f"Processing {pending_count} pending video(s)...")
 
-        # Assemble processed videos into their sessions (sequential and cheap).
-        for (session, video_entry, _video), new_name in results:
+    # Flatten every pending video across all sessions into a work list;
+    # assembly into the yaml happens afterwards.
+    tasks = []  # (session, video_entry, VideoMetadata)
+    for session_date, session in data.get("sessions", {}).items():
+        wall = session.get("wall", "Smíchoff")
+        for video_entry in session.get("_pending_videos", []):
             video_type = video_entry.get("type", "indoor")
+            color = video_entry.get("color")
             grade = video_entry.get("grade")
+            video = VideoMetadata(
+                date=datetime.date.fromisoformat(session_date),
+                type=video_type,
+                wall=wall if video_type == "indoor" else None,
+                color=color if video_type == "indoor" else grade,
+                new=video_entry.get("new"),
+                trim=video_entry.get("trim"),
+                encode=video_entry.get("encode"),
+                rotate=video_entry.get("rotate"),
+                deface=video_entry.get("deface"),
+            )
+            tasks.append((session, video_entry, video))
 
-            video_ref = {"file": new_name}
-            if video_entry.get("attempts"):
-                video_ref["attempts"] = video_entry["attempts"]
-            if video_entry.get("sotm"):
-                video_ref["sotm"] = video_entry["sotm"]
+    # ffmpeg already saturates all cores on a single CPU encode, so running
+    # videos concurrently buys nothing on a CPU-only box; process serially in
+    # their original per-session sequence.
+    results = []
+    for task in tasks:
+        _session, video_entry, video = task
+        new_name, _ = process_video(video_entry["file"], video)
+        print(f"processed '{video_entry['file']}' -> '{new_name}'.", flush=True)
+        results.append((task, new_name))
 
-            if video_type in BOARD_PARAMETER:
-                board = session.setdefault(
-                    video_type,
-                    {
-                        BOARD_PARAMETER[video_type]: BOARD_DEFAULT.get(
-                            video_type, "TODO"
-                        )
-                    },
-                )
-                grade_data = board.setdefault(grade, {"new": 0, "videos": []})
-                grade_data.setdefault("videos", []).append(video_ref)
-                grade_data["new"] = grade_data.get("new", 0) + 1
+    # Assemble processed videos into their sessions (sequential and cheap).
+    for (session, video_entry, _video), new_name in results:
+        video_type = video_entry.get("type", "indoor")
+        grade = video_entry.get("grade")
 
-            else:
-                # Regular indoor climbing with color
-                color = video_entry.get("color") or "other"
-                if color not in session:
-                    session[color] = {"new": 0, "videos": []}
-                if "videos" not in session[color]:
-                    session[color]["videos"] = []
-                session[color]["videos"].append(video_ref)
-                session[color]["new"] = session[color].get("new", 0) + 1
+        video_ref = {"file": new_name}
+        if video_entry.get("attempts"):
+            video_ref["attempts"] = video_entry["attempts"]
+        if video_entry.get("sotm"):
+            video_ref["sotm"] = video_entry["sotm"]
 
-        # Remove _pending_videos from every session that had them
-        for session in data.get("sessions", {}).values():
-            session.pop("_pending_videos", None)
+        if video_type in BOARD_PARAMETER:
+            board = session.setdefault(
+                video_type,
+                {BOARD_PARAMETER[video_type]: BOARD_DEFAULT.get(video_type, "TODO")},
+            )
+            grade_data = board.setdefault(grade, {"new": 0, "videos": []})
+            grade_data.setdefault("videos", []).append(video_ref)
+            grade_data["new"] = grade_data.get("new", 0) + 1
 
-        save_yaml(CLIMBING_YAML, data)
-        print("climbing videos generated (and reformatted).", flush=True)
+        else:
+            # Regular indoor climbing with color
+            color = video_entry.get("color") or "other"
+            if color not in session:
+                session[color] = {"new": 0, "videos": []}
+            if "videos" not in session[color]:
+                session[color]["videos"] = []
+            session[color]["videos"].append(video_ref)
+            session[color]["new"] = session[color].get("new", 0) + 1
 
-    else:
-        print("ERROR: No climbing.yaml or videos.yaml found.")
+    # Remove _pending_videos from every session that had them
+    for session in data.get("sessions", {}).values():
+        session.pop("_pending_videos", None)
+
+    save_yaml(CLIMBING_YAML, data)
+    print("climbing videos generated (and reformatted).", flush=True)
 
 
 def main():

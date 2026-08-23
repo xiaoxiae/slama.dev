@@ -1,0 +1,12 @@
+# Flying spots for the drone journal.
+# A flight refers to a spot by its key here (`drone.py add <key>`), and the page
+# takes the name and map pin from this file. Paste `coords` from OpenStreetMap
+# as "lat,lon"; omit it for a place that shouldn't get a map pin.
+
+heidelberg-airfield:
+  name: "Heidelberg Airfield"
+  coords: "49.39403193368118, 8.656958854804826"
+
+heidelberg-farm:
+  name: "Heidelberg Farm / Field"
+  coords: "49.36566954120332, 8.643427389580834"

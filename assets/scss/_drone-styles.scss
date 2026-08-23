@@ -1,0 +1,35 @@
+@import "variables";
+
+.drone-entry {
+  padding-bottom: $line-spacing;
+}
+
+.drone-note {
+  margin-bottom: $line-spacing * 0.5;
+}
+
+.drone-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0.75rem;
+  // Stop the site-wide `video { height: 100% }` stretching figures to the row.
+  align-items: start;
+
+  @media (max-width: $small-screen-threshold) {
+    grid-template-columns: 1fr;
+  }
+
+  figure {
+    margin-bottom: 0;
+  }
+
+  video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  figcaption {
+    padding-top: $line-spacing * 0.25;
+  }
+}

@@ -18,6 +18,7 @@ assets/stickers/
 
 # Large static files
 static/climbing/
+static/drone/
 
 # Binary content files (images, media, documents)
 **/*.jpg
