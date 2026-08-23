@@ -2,12 +2,30 @@
 
 # Hugo site management script
 
+function stickers
+    echo "Building sticker sheet..."
+    # Inkscape is optional on purpose: without it the stickers still light up,
+    # dim the sheet and show their captions, they just don't grow or fly to the
+    # middle, and hovering only catches painted pixels. The script says so.
+    if not command -q inkscape
+        echo "  NOTE: inkscape is not installed, so the sticker sheet will be limited."
+        echo "        Install it (e.g. sudo pacman -S inkscape) for the full effect."
+    end
+    uv run python scripts/stickers.py
+end
+
 function serve
     echo "Starting Hugo development server..."
     if pgrep -f "hugo server" > /dev/null
         echo "ERROR: Hugo seems to be running already."
         return 1
     end
+
+    # Cheap, and the alternative is a stale sheet on every fresh checkout. Run
+    # `./site stickers` from another terminal to pick up Inkscape edits without
+    # restarting; Hugo live-reloads the regenerated fragment.
+    stickers
+
     hugo server -D -F --cleanDestinationDir
 end
 
@@ -44,6 +62,8 @@ function build
 
     echo "Generating lightext images..."
     uv run python scripts/lightext.py content/light/index.md
+
+    stickers
 
     echo "Generating CV PDF..."
     typst compile --root . content/cv/cv.typ static/cv.pdf
@@ -167,6 +187,8 @@ switch $argv[1]
         serve
     case "clean"
         clean
+    case "stickers"
+        stickers
     case "build"
         build
     case "check"
@@ -178,11 +200,12 @@ switch $argv[1]
     case ""
         build && upload $argv[2]
     case "*"
-        echo "Usage: ./site [serve|clean|build|check|upload|all]"
+        echo "Usage: ./site [serve|clean|stickers|build|check|upload|all]"
         echo ""
         echo "Commands:"
         echo "  serve   - Start development server with drafts and future posts"
         echo "  clean   - Clean generated files"
+        echo "  stickers - Rebuild the sticker sheet from content/stickers/stickers.svg"
         echo "  build   - Build the site (minified)"
         echo "  check   - Run all checks (html-validate, lychee, pa11y)"
         echo "  upload  - Check for localhost and upload to VPS"

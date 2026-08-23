@@ -13,6 +13,9 @@ _vendor/
 # Font subsetting cache
 .cache/
 
+# Generated sticker sheet (built from content/stickers/stickers.svg)
+assets/stickers/
+
 # Large static files
 static/climbing/
 

@@ -13,7 +13,6 @@ If I see someone on the bus, in the café or at the gym, with stickers on their 
 
 So why not also have them online? **Here are mine:**
 
-![Stickers](stickers.svg)
-{.full-width .no-invert}
+{{< stickers >}}
 
 If you see some that you vibe with, [**shoot me an email**](mailto:tomas@slama.dev) and let's talk about it!

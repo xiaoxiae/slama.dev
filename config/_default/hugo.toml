@@ -130,6 +130,14 @@ disableKinds = ["taxonomy", "term"]
     source = "static"
     target = "static"
     files = ["! climbing/videos/unblurred/**"]
+  # The sticker drawing is a build input, not content: scripts/stickers.py turns
+  # it into assets/stickers/stickers.html, which is what the page inlines. Left
+  # mounted, Hugo publishes a 3 MB copy nobody fetches, and every Inkscape save
+  # costs a full site rebuild -- which is how we kept hitting a rebuild panic.
+  [[module.mounts]]
+    source = "content"
+    target = "content"
+    files = ["! stickers/stickers.svg"]
 
 [outputs]
   home = ["HTML", "RSS"]

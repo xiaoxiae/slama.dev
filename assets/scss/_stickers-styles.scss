@@ -1,0 +1,126 @@
+@import "variables";
+
+/* ==========================================================================
+   STICKERS (/stickers/)
+   ========================================================================== */
+
+// Inlined so CSS can reach the stickers; scripts/stickers.py generates the
+// per-sticker rules. No JavaScript. See CLAUDE.md.
+
+// Captions count as engaged: pressing the mouse on one blurs the sticker.
+// Keep in step with the same condition in scripts/stickers.py.
+$engaged: ".sticker:hover, .sticker:focus, " +
+  ".stickers-caption-item:hover, .stickers-caption-item:focus-within";
+
+.stickers-sheet {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  // Otherwise the viewBox crops a sticker near the edge as it grows.
+  overflow: visible;
+
+  // Opt out of _dark_styles.scss inverting every svg.
+  @media (prefers-color-scheme: dark) {
+    filter: none;
+  }
+
+  // An <image> is hit-tested over its whole rect regardless of alpha, so a
+  // transparent margin would otherwise swallow its neighbours' hover.
+  pointer-events: none;
+
+  .sticker {
+    pointer-events: all; // not `auto`: these shapes have no fill to hit
+    cursor: pointer;
+    outline: none;
+  }
+
+  // `fill` inherits: must not reach a group standing in as its own hit target.
+  polygon.sticker,
+  rect.sticker {
+    fill: none;
+  }
+
+  [data-art] {
+    transition: opacity 0.15s ease;
+  }
+
+  // Appended last so it paints on top: SVG has no working z-index.
+  .sticker-front {
+    pointer-events: none;
+    opacity: 0;
+
+    transform-box: view-box;
+    transform-origin: 0 0;
+    transition:
+      transform 0.2s ease,
+      opacity 0.15s ease;
+  }
+}
+
+// The only dimming that works: a third of the drawing carries `opacity` inline,
+// which beats any rule here.
+.stickers-scrim {
+  fill: var(--background-color);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.stickers:has(#{$engaged}) .stickers-scrim {
+  opacity: 0.8;
+}
+
+// One cell for every caption: as tall as the tallest, never resizes.
+.stickers-captions {
+  display: grid;
+  margin-top: $line-spacing;
+  margin-bottom: $line-spacing;
+  text-align: center;
+}
+
+.stickers-caption-placeholder,
+.stickers-caption-item {
+  grid-area: 1 / 1;
+  justify-self: center;
+  width: 100%;
+  max-width: 40rem;
+}
+
+.stickers-caption-placeholder {
+  font-style: italic;
+  opacity: 0.5;
+  // Its opacity makes it a stacking context, so it paints above the caption
+  // sharing its cell and would swallow clicks meant for a link.
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+
+  .stickers:has(#{$engaged}) & {
+    opacity: 0;
+  }
+}
+
+.stickers-caption-item {
+  opacity: 0;
+  visibility: hidden; // hidden, not just transparent, so it takes no clicks
+  transition: opacity 0.15s ease;
+
+  strong {
+    display: block;
+  }
+
+  p {
+    margin: 0.25em 0 0;
+    text-align: center;
+    hyphens: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stickers-sheet .sticker,
+  .stickers-sheet .sticker-front,
+  .stickers-scrim,
+  .stickers-caption-placeholder,
+  .stickers-caption-item {
+    transition: none;
+  }
+}
