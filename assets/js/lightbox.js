@@ -148,10 +148,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (twin) return describe(twin);
         }
 
-        // scripts/climbing.py names files <wall>-<colour|grade>-<date>-<rand8>.mp4.
+        // scripts/climbing.py names files <date>-<wall>-<colour|grade>-<key>.mp4.
         // Reading the date from there works on both pages; the session <li id>
         // only exists on the diary.
-        const d = /(\d{4})-(\d{2})-(\d{2})-[a-z]{8}\.mp4$/.exec(href);
+        const d = /\/(\d{4})-(\d{2})-(\d{2})-[^/]*-[a-z]{8}\.mp4$/.exec(href);
         if (d) parts.push(Number(d[3]) + '. ' + Number(d[2]) + '. ' + d[1]);
 
         const mark = trigger.closest('mark.climbing-diary-record');

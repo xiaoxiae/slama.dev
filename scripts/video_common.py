@@ -7,7 +7,7 @@ import re
 import shutil
 import sys
 from pathlib import Path
-from random import choice
+from random import sample
 from string import ascii_lowercase
 from subprocess import DEVNULL, PIPE, Popen
 
@@ -105,8 +105,101 @@ def slugify(string: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", unidecode(string).lower()).strip("-")
 
 
-def get_random_string(length: int) -> str:
-    return "".join(choice(ascii_lowercase) for _ in range(length))
+# Video filenames end in a fixed-width base-26 key. Ordering the keys of one
+# session/flight orders its files, so `ls` reproduces the journal order that
+# would otherwise live only in the YAML list. Cameras are no help here: the
+# drone glasses have no clock (junk mtimes, no container tags at all), and a
+# climbing clip's position is likewise nowhere in its metadata.
+NAME_LENGTH = 8
+NAME_SPACE = 26**NAME_LENGTH
+NAME_RE = re.compile(rf"^[a-z]{{{NAME_LENGTH}}}$")
+
+
+def encode_key(value: int) -> str:
+    """The base-26 key for `value`, zero- (i.e. 'a'-) padded to NAME_LENGTH."""
+    letters = []
+    for _ in range(NAME_LENGTH):
+        value, digit = divmod(value, 26)
+        letters.append(ascii_lowercase[digit])
+    return "".join(reversed(letters))
+
+
+def decode_key(text: str) -> int | None:
+    """Inverse of encode_key; None for anything not shaped like a key."""
+    if not NAME_RE.match(text):
+        return None
+    value = 0
+    for character in text:
+        value = value * 26 + (ord(character) - ord("a"))
+    return value
+
+
+def file_key(filename: str) -> int | None:
+    """The key of a video filename, or None if it isn't named by us."""
+    return decode_key(Path(filename).stem.rsplit("-", 1)[-1])
+
+
+def allocate_sequence(
+    keys: list[int | None], taken: set[str] = frozenset()
+) -> list[str]:
+    """Fill every None with a key strictly between its neighbours.
+
+    Returns a key per slot, so the result read in order is always ascending
+    provided the keys that were passed in already were. `taken` is a set of
+    keys (not stems) that are already spoken for and must not be drawn again.
+
+    Naming is cosmetic, so this never raises: neighbours that don't ascend, or
+    a gap too narrow to hold the run, fall back to appending above everything
+    seen and then to an unconstrained draw.
+    """
+    result: list[str | None] = [
+        None if key is None else encode_key(key) for key in keys
+    ]
+
+    index = 0
+    while index < len(keys):
+        if keys[index] is not None:
+            index += 1
+            continue
+
+        end = index
+        while end < len(keys) and keys[end] is None:
+            end += 1
+
+        low = keys[index - 1] if index > 0 else -1
+        high = keys[end] if end < len(keys) else NAME_SPACE
+        count = end - index
+
+        drawn = _draw_between(low, high, count, taken)
+        if drawn is None:
+            known = [key for key in keys if key is not None]
+            drawn = _draw_between(max(known, default=-1), NAME_SPACE, count, taken)
+        if drawn is None:
+            drawn = _draw_between(-1, NAME_SPACE, count, taken)
+
+        for offset, name in enumerate(drawn):
+            result[index + offset] = name
+            taken = taken | {name}
+
+        index = end
+
+    return result
+
+
+def _draw_between(low: int, high: int, count: int, taken) -> list[str] | None:
+    """`count` distinct keys strictly between `low` and `high`, ascending."""
+    start, stop = low + 1, high
+    if stop - start < count:
+        return None
+
+    # The space is ~2e11 wide against a handful of names per session, so a few
+    # rejections is far cheaper than materialising the range.
+    for _ in range(16):
+        values = sample(range(start, stop), count)
+        names = sorted(encode_key(value) for value in values)
+        if len(set(names)) == count and not (set(names) & set(taken)):
+            return names
+    return None
 
 
 def load_yaml(path: Path) -> dict:

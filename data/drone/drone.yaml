@@ -2,8 +2,8 @@
 # Rendered by layouts/shortcodes/drone-journal.html.
 #
 # A flight is a `place` (a key of places.yaml), an optional `note`, and a list
-# of `clips`; each clip is an optional `description` plus an
-# ordered list of `cuts`, spliced into one video in the order written. A cut is
+# of `clips`; each clip is an optional `description` plus an ordered list of
+# `cuts`, spliced into one video in the order written. A cut is
 # "FILE: START,END" (timestamps as SS, M:SS or H:MM:SS), a range of a recording
 # in static/drone/videos/sources/. Either side may be left empty to run from the
 # start (",19") or to the end ("1:50,") of the recording.
@@ -16,31 +16,45 @@
 #
 # `add` seeds one clip per new recording spanning its whole length: trim it,
 # split it, or merge it into another. `build` cuts every clip of a flight,
-# records them here and only then deletes the recordings they used.
+# records them here and only then deletes the recordings they used, naming each
+# `<date>-<place>-<key>.mp4` with a key that ascends with the clip's position
+# below, so the videos folder sorts into journal order.
 flights:
   '2026-08-22':
     clips:
     - description: First clip of me flying!
-      file: heidelberg-airfield-2026-08-22-ticgcvsu.mp4
-    - file: heidelberg-airfield-2026-08-22-ryqnjxqz.mp4
-    - file: heidelberg-airfield-2026-08-22-cpqeyusp.mp4
-    - file: heidelberg-airfield-2026-08-22-zkfruwkw.mp4
-    - file: heidelberg-airfield-2026-08-22-meixtuzl.mp4
+      file: 2026-08-22-heidelberg-airfield-avxuioda.mp4
+    - file: 2026-08-22-heidelberg-airfield-evehxzyy.mp4
+    - file: 2026-08-22-heidelberg-airfield-onykjqje.mp4
+    - file: 2026-08-22-heidelberg-airfield-qhylvluk.mp4
+    - file: 2026-08-22-heidelberg-airfield-ttouyiqt.mp4
     note: First session! Got some fun clips at the end, but the recording broke the SD card so I couldn't really get those. In either case, getting more comfortable with flying and crashing.
     place: heidelberg-airfield
   '2026-08-23':
     clips:
-    - file: heidelberg-farm-2026-08-23-moamwdsm.mp4
-    - file: heidelberg-farm-2026-08-23-clbbyvak.mp4
-    - file: heidelberg-farm-2026-08-23-naolxaxj.mp4
-    - file: heidelberg-farm-2026-08-23-kwqmoloh.mp4
-    - file: heidelberg-farm-2026-08-23-uqqijfsu.mp4
+    - file: 2026-08-23-heidelberg-farm-aonzrqdo.mp4
+    - file: 2026-08-23-heidelberg-farm-dkbbxlmw.mp4
+    - file: 2026-08-23-heidelberg-farm-dshfjbdn.mp4
+    - file: 2026-08-23-heidelberg-farm-dxfioacs.mp4
+    - file: 2026-08-23-heidelberg-farm-hfxzejkf.mp4
     - description: A cool clip of flying through the frame of the bike and then through the fence a few times.
-      file: heidelberg-farm-2026-08-23-vuzbxyeq.mp4
-    - file: heidelberg-farm-2026-08-23-ajodogpm.mp4
-    - file: heidelberg-farm-2026-08-23-eoqtyelp.mp4
+      file: 2026-08-23-heidelberg-farm-hznizxlj.mp4
+    - file: 2026-08-23-heidelberg-farm-tmtjmpff.mp4
+    - file: 2026-08-23-heidelberg-farm-xxuxokcv.mp4
     - description: Pretty clean flying.
-      file: heidelberg-farm-2026-08-23-rufkciyd.mp4
-    - file: heidelberg-farm-2026-08-23-maaklmfy.mp4
-    place: heidelberg-farm
+      file: 2026-08-23-heidelberg-farm-yfltrvkb.mp4
+    - file: 2026-08-23-heidelberg-farm-yybjavli.mp4
     note: Found a pretty awesome location 6 bike minutes away from my apartment. Pretty fun lines, will definitely be back here soon.
+    place: heidelberg-farm
+  '2026-08-24':
+    clips:
+    - file: 2026-08-24-heidelberg-farm-jbyaaumm.mp4
+    - file: 2026-08-24-heidelberg-farm-kcqauhdl.mp4
+    - file: 2026-08-24-heidelberg-farm-mfhzkgiu.mp4
+    - file: 2026-08-24-heidelberg-farm-wetsdooo.mp4
+    - file: 2026-08-24-heidelberg-farm-wkbyxfeq.mp4
+    - file: 2026-08-24-heidelberg-farm-xblzqyiv.mp4
+    - file: 2026-08-24-heidelberg-farm-xdpsowyp.mp4
+    - file: 2026-08-24-heidelberg-farm-yldwusmm.mp4
+    note: Okay flying; a lot of wind as well. I'm a bit rash, I need to calm down, but definitely more confident than last time.
+    place: heidelberg-farm

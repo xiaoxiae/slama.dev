@@ -16,9 +16,10 @@ from typing import NoReturn
 import yaml
 
 from video_common import (
+    allocate_sequence,
+    file_key,
     find_todos,
     generate_poster,
-    get_random_string,
     load_yaml,
     probe,
     require_frames,
@@ -60,7 +61,9 @@ DRONE_YAML_HEADER = """\
 #
 # `add` seeds one clip per new recording spanning its whole length: trim it,
 # split it, or merge it into another. `build` cuts every clip of a flight,
-# records them here and only then deletes the recordings they used.
+# records them here and only then deletes the recordings they used, naming each
+# `<date>-<place>-<key>.mp4` with a key that ascends with the clip's position
+# below, so the videos folder sorts into journal order.
 """
 
 ENCODE_CRF = "30"
@@ -161,6 +164,36 @@ def is_pending(clip) -> bool:
 
 def pending_clips(flight: dict) -> list[dict]:
     return [clip for clip in flight.get("clips") or [] if is_pending(clip)]
+
+
+def clip_prefix(date: str, flight: dict) -> str:
+    """Everything before the key. Date first, so the folder sorts by flight."""
+    return f"{date}-{slugify(str(flight.get('place') or 'flight')) or 'flight'}"
+
+
+def plan_names(date: str, flight: dict, taken: set[str]) -> list[str]:
+    """A filename per pending clip, keyed so the flight sorts in list order.
+
+    Built clips pin the keys around each pending run, so a clip added to a
+    flight that was already built still lands in the right place.
+    """
+    prefix = clip_prefix(date, flight)
+    clips = flight.get("clips") or []
+    keys = [
+        None if is_pending(clip) else file_key(str(clip.get("file", "")))
+        for clip in clips
+    ]
+    allocated = allocate_sequence(keys, taken)
+    return [
+        f"{prefix}-{allocated[index]}.mp4"
+        for index, clip in enumerate(clips)
+        if is_pending(clip)
+    ]
+
+
+def existing_keys(folder: Path) -> set[str]:
+    """Keys already on disk, so a fresh draw can never collide with one."""
+    return {path.stem.rsplit("-", 1)[-1] for path in folder.glob("*.mp4")}
 
 
 def known_files(data: dict) -> set[str]:
@@ -318,20 +351,18 @@ def verify_clip(path: Path, expected_duration: float) -> None:
         )
 
 
-def process_flight(date: str, flight: dict, cuts_by_clip: list[list]) -> list[dict]:
+def process_flight(
+    date: str, flight: dict, cuts_by_clip: list[list], names: list[str]
+) -> list[dict]:
     """All-or-nothing: any failure removes every file this call created."""
-    place_slug = slugify(str(flight.get("place") or "flight")) or "flight"
-
     staged: list[tuple[Path, Path, dict]] = []
     created: list[Path] = []
     try:
         clips = [clip for clip in flight["clips"] if is_pending(clip)]
-        for clip, cuts in zip(clips, cuts_by_clip, strict=True):
+        for clip, cuts, name in zip(clips, cuts_by_clip, names, strict=True):
             duration = sum(end - start for _, start, end in cuts)
 
-            final_path = (
-                VIDEOS_FOLDER / f"{place_slug}-{date}-{get_random_string(8)}.mp4"
-            )
+            final_path = VIDEOS_FOLDER / name
             temp_path = VIDEOS_FOLDER / f"tmp_{final_path.name}"
             created.append(temp_path)
 
@@ -453,12 +484,15 @@ def cmd_build(args):
                 fail(f"'{file}' is used by both {owner[file]} and {date}")
             owner[file] = date
 
+    taken = existing_keys(VIDEOS_FOLDER)
     total = 0
     try:
         for date, cuts_by_clip in ready.items():
             flight = pending[date]
             used = {file for cuts in cuts_by_clip for file, _, _ in cuts}
-            entries = process_flight(date, flight, cuts_by_clip)
+            names = plan_names(date, flight, taken)
+            taken |= {Path(name).stem.rsplit("-", 1)[-1] for name in names}
+            entries = process_flight(date, flight, cuts_by_clip, names)
             built = iter(entries)
 
             flight["clips"] = [

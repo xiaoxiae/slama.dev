@@ -19,9 +19,10 @@ from pydantic import BaseModel, ConfigDict
 from video_common import (
     HAS_CUDA,
     NVIDIA_LIB_PATH,
+    allocate_sequence,
     collect_known_files,
+    file_key,
     generate_poster,
-    get_random_string,
     load_yaml,
     require_frames,
     require_tools,
@@ -168,40 +169,71 @@ def cmd_add(args):
         print("No new videos found.")
 
 
-def process_video(name: str, video: VideoMetadata) -> tuple[str, VideoMetadata]:
+def video_prefix(video: VideoMetadata) -> str:
+    """Everything before the key. Date first, so the folder sorts by session."""
+    if video.wall:
+        location_stub = stubify(video.wall)
+    elif video.type in BOARD_PARAMETER:
+        location_stub = video.type
+    elif video.location:
+        location_stub = stubify(video.location)
+    else:
+        location_stub = "smichoff"
+
+    if video.color is not None:
+        identifier_stub = str(video.color).replace("+", "p") + "-"
+    elif video.name:
+        identifier_stub = stubify(video.name) + "-"
+    else:
+        identifier_stub = ""
+
+    date_stub = "" if video.date is None else video.date.strftime("%Y-%m-%d") + "-"
+    return date_stub + location_stub + "-" + identifier_stub
+
+
+def session_files(session: dict) -> set[str]:
+    """Every video already recorded in a session (pending ones excluded)."""
+    return collect_known_files(
+        {key: value for key, value in session.items() if key != "_pending_videos"}
+    )
+
+
+def plan_session_names(session: dict, videos: list[VideoMetadata]) -> list[str]:
+    """A filename per new video, keyed to sort after the session's existing ones.
+
+    Allocated across the whole session rather than per colour, so sorting a
+    session's videos by name reproduces capture order even though the yaml
+    splits them into colour and grade buckets.
+    """
+    known = [key for key in map(file_key, session_files(session)) if key is not None]
+    keys = sorted(known) + [None] * len(videos)
+    allocated = allocate_sequence(keys, existing_keys())[len(known) :]
+    return [
+        f"{video_prefix(video)}{key}.mp4"
+        for video, key in zip(videos, allocated, strict=True)
+    ]
+
+
+def existing_keys() -> set[str]:
+    """Keys already on disk, so a fresh draw can never collide with one."""
+    folders = [VIDEOS_FOLDER, VIDEOS_FOLDER / "unblurred"]
+    return {
+        path.stem.rsplit("-", 1)[-1]
+        for folder in folders
+        if folder.is_dir()
+        for path in folder.glob("*.mp4")
+    }
+
+
+def process_video(
+    name: str, video: VideoMetadata, new_name: str | None = None
+) -> tuple[str, VideoMetadata]:
     """Process a single video (rename, trim, encode, poster). Returns new name."""
     path = VIDEOS_FOLDER / name
 
     # Rename new files
     if video.new:
         print(f"parsing new climb '{name}'.", flush=True)
-
-        if video.wall:
-            location_stub = stubify(video.wall)
-        elif video.type in BOARD_PARAMETER:
-            location_stub = video.type
-        elif video.location:
-            location_stub = stubify(video.location)
-        else:
-            location_stub = "smichoff"
-
-        random_string = get_random_string(8)
-
-        if video.color is not None:
-            color_str = str(video.color).replace("+", "p")
-            identifier_stub = color_str + "-"
-        elif video.name:
-            identifier_stub = stubify(video.name) + "-"
-        else:
-            identifier_stub = ""
-
-        new_name = (
-            f"{location_stub}-"
-            + identifier_stub
-            + ("" if video.date is None else video.date.strftime("%Y-%m-%d") + "-")
-            + random_string
-            + ".mp4"
-        )
 
         video.new = None
         new_path = VIDEOS_FOLDER / new_name
@@ -337,9 +369,10 @@ def cmd_build(args):
 
     # Flatten every pending video across all sessions into a work list;
     # assembly into the yaml happens afterwards.
-    tasks = []  # (session, video_entry, VideoMetadata)
+    tasks = []  # (session, video_entry, VideoMetadata, new_name)
     for session_date, session in data.get("sessions", {}).items():
         wall = session.get("wall", "Smíchoff")
+        session_tasks = []
         for video_entry in session.get("_pending_videos", []):
             video_type = video_entry.get("type", "indoor")
             color = video_entry.get("color")
@@ -355,20 +388,27 @@ def cmd_build(args):
                 rotate=video_entry.get("rotate"),
                 deface=video_entry.get("deface"),
             )
-            tasks.append((session, video_entry, video))
+            session_tasks.append((session, video_entry, video))
+
+        # Plan the whole session at once: each key has to land after the keys
+        # already in the session, and the run has to stay ascending.
+        names = plan_session_names(session, [video for _, _, video in session_tasks])
+        tasks.extend(
+            (*task, name) for task, name in zip(session_tasks, names, strict=True)
+        )
 
     # ffmpeg already saturates all cores on a single CPU encode, so running
     # videos concurrently buys nothing on a CPU-only box; process serially in
     # their original per-session sequence.
     results = []
     for task in tasks:
-        _session, video_entry, video = task
-        new_name, _ = process_video(video_entry["file"], video)
+        _session, video_entry, video, planned_name = task
+        new_name, _ = process_video(video_entry["file"], video, planned_name)
         print(f"processed '{video_entry['file']}' -> '{new_name}'.", flush=True)
         results.append((task, new_name))
 
     # Assemble processed videos into their sessions (sequential and cheap).
-    for (session, video_entry, _video), new_name in results:
+    for (session, video_entry, _video, _planned), new_name in results:
         video_type = video_entry.get("type", "indoor")
         grade = video_entry.get("grade")
 
