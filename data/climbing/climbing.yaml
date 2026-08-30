@@ -4913,3 +4913,51 @@ sessions:
         videos:
         - file: 2026-08-24-tension-7ap-scdwqxtd.mp4
       angle: 40
+  '2026-08-26':
+    note: Strong sesh.
+    tension:
+      7a:
+        new: 1
+        videos:
+        - file: 2026-08-26-tension-7a-tkgbzrjj.mp4
+      7a+:
+        new: 3
+        videos:
+        - file: 2026-08-26-tension-7ap-wdyoukcj.mp4
+        - file: 2026-08-26-tension-7ap-wgmxixiq.mp4
+        - file: 2026-08-26-tension-7ap-zpksuymg.mp4
+      7b:
+        new: 2
+        videos:
+        - file: 2026-08-26-tension-7b-oanmijex.mp4
+        - file: 2026-08-26-tension-7b-zdysqptl.mp4
+      angle: 40
+  '2026-08-29':
+    wall: Boulderwelt Karlsruhe
+    5:
+      new: 1
+      videos:
+      - file: 2026-08-29-boulderwelt-karlsruhe-5-fognmfoo.mp4
+    6:
+      new: 3
+      videos:
+      - file: 2026-08-29-boulderwelt-karlsruhe-6-guuthrzb.mp4
+      - file: 2026-08-29-boulderwelt-karlsruhe-6-iddccgmv.mp4
+      - file: 2026-08-29-boulderwelt-karlsruhe-6-iepejarl.mp4
+    8:
+      new: 4
+      videos:
+      - file: 2026-08-29-boulderwelt-karlsruhe-8-jvvvmwaj.mp4
+      - file: 2026-08-29-boulderwelt-karlsruhe-8-qsegesyu.mp4
+      - file: 2026-08-29-boulderwelt-karlsruhe-8-rjzinmxz.mp4
+      - file: 2026-08-29-boulderwelt-karlsruhe-8-uugtnpwy.mp4
+    7:
+      new: 3
+      videos:
+      - file: 2026-08-29-boulderwelt-karlsruhe-7-ksnmbzxw.mp4
+      - file: 2026-08-29-boulderwelt-karlsruhe-7-tyxdxxnb.mp4
+      - file: 2026-08-29-boulderwelt-karlsruhe-7-vchqeobl.mp4
+    other:
+      new: 1
+      videos:
+      - file: 2026-08-29-boulderwelt-karlsruhe-other-xuoaxlfg.mp4
