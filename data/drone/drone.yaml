@@ -58,3 +58,28 @@ flights:
     - file: 2026-08-24-heidelberg-farm-yldwusmm.mp4
     note: Okay flying; a lot of wind as well. I'm a bit rash, I need to calm down, but definitely more confident than last time.
     place: heidelberg-farm
+  '2026-08-26':
+    clips:
+    - file: 2026-08-26-heidelberg-farm-aqutjqvm.mp4
+    - file: 2026-08-26-heidelberg-farm-cdapyfao.mp4
+    - file: 2026-08-26-heidelberg-farm-ipymteyk.mp4
+    - file: 2026-08-26-heidelberg-farm-kolsxdsm.mp4
+    - file: 2026-08-26-heidelberg-farm-mybbdzsf.mp4
+    - file: 2026-08-26-heidelberg-farm-rgwadzbg.mp4
+    - file: 2026-08-26-heidelberg-farm-sftjrgei.mp4
+    - file: 2026-08-26-heidelberg-farm-tchvpuch.mp4
+    - description: Did a loop!
+      file: 2026-08-26-heidelberg-farm-yxplpdgl.mp4
+    note: Beautiful weather, getting more and more confidence; did a loop!
+    place: heidelberg-farm
+  '2026-08-27':
+    clips:
+    - file: 2026-08-27-heidelberg-farm-ceqztpvv.mp4
+    - file: 2026-08-27-heidelberg-farm-edufaagg.mp4
+    - file: 2026-08-27-heidelberg-farm-hmdehulw.mp4
+    - file: 2026-08-27-heidelberg-farm-ijsphifn.mp4
+    - file: 2026-08-27-heidelberg-farm-lmouxasw.mp4
+    - file: 2026-08-27-heidelberg-farm-loqvhtxi.mp4
+    - file: 2026-08-27-heidelberg-farm-qtcbhdjt.mp4
+    - file: 2026-08-27-heidelberg-farm-rzhqwafy.mp4
+    place: heidelberg-farm
