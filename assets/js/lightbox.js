@@ -17,8 +17,22 @@ document.addEventListener('DOMContentLoaded', function() {
         { type: 'video', selector: 'a.climbing-link[href$=".mp4"]' },
     ];
 
+    // Capture order, so right is forward in time. Not the filename: the colour
+    // or grade sorts before the key, which is what actually ascends with time.
+    function chronoKey(trigger) {
+        const m = /\/(\d{4}-\d{2}-\d{2})-.*-([a-z]{8})\.mp4$/.exec(trigger.getAttribute('href') || '');
+        return m ? m[1] + '-' + m[2] : '';
+    }
+
     const groups = GROUP_DEFS.map(function(def) {
-        return { type: def.type, items: Array.from(document.querySelectorAll(def.selector)) };
+        const items = Array.from(document.querySelectorAll(def.selector));
+        if (def.type === 'video') {
+            items.sort(function(a, b) {
+                const ka = chronoKey(a), kb = chronoKey(b);
+                return ka < kb ? -1 : ka > kb ? 1 : 0;
+            });
+        }
+        return { type: def.type, items: items };
     }).filter(function(group) {
         return group.items.length > 0;
     });
@@ -229,8 +243,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function navigate(direction) {
         if (!current) return;
-        const n = current.group.items.length;
-        current.index = (current.index + direction + n) % n;
+        const items = current.group.items;
+        const n = items.length;
+        const href = items[current.index].getAttribute('href');
+        let i = current.index;
+        // Sorting lands the "best send" link next to its in-session twin.
+        for (let step = 0; step < n; step++) {
+            i = (i + direction + n) % n;
+            if (items[i].getAttribute('href') !== href) break;
+        }
+        current.index = i;
         render();
         if (pushedHash && current.group.type === 'video') {
             const file = current.group.items[current.index].getAttribute('href').split('/').pop();
