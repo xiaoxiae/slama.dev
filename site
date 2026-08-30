@@ -4,9 +4,6 @@
 
 function stickers
     echo "Building sticker sheet..."
-    # Inkscape is optional on purpose: without it the stickers still light up,
-    # dim the sheet and show their captions, they just don't grow or fly to the
-    # middle, and hovering only catches painted pixels. The script says so.
     if not command -q inkscape
         echo "  NOTE: inkscape is not installed, so the sticker sheet will be limited."
         echo "        Install it (e.g. sudo pacman -S inkscape) for the full effect."
@@ -21,9 +18,6 @@ function serve
         return 1
     end
 
-    # Cheap, and the alternative is a stale sheet on every fresh checkout. Run
-    # `./site stickers` from another terminal to pick up Inkscape edits without
-    # restarting; Hugo live-reloads the regenerated fragment.
     stickers
 
     hugo server -D -F --cleanDestinationDir
@@ -42,9 +36,6 @@ function build
         return 1
     end
 
-    # Fail fast if a required external tool is missing, before any partial work
-    # (climbing.py and drone.py rename/encode/delete videos, so a mid-run crash
-    # leaves a mess).
     for tool in hugo uv typst ffmpeg ffprobe cwebp
         if not command -q $tool
             echo "ERROR: required tool '$tool' is not installed."
@@ -171,16 +162,23 @@ function upload
         return 1
     end
 
-    # Never add --size-only here: a fingerprint change swaps 64 hex chars for
-    # 64 others, so a page whose only change is its CSS/JS URL keeps the same
-    # byte count and gets skipped, leaving it pointing at an asset --delete just
-    # removed. restore_mtimes.py keeps the default quick check honest instead.
     if test "$mode" = "--full"
         echo "Syncing files to VPS (full checksum verification)..."
         rsync -av --checksum --delete public/ slama-deploy@slama.dev:/var/www/slama.dev/
     else
         echo "Syncing files to VPS..."
         rsync -av --delete public/ slama-deploy@slama.dev:/var/www/slama.dev/
+    end
+
+    if test $status -ne 0
+        echo "ERROR: rsync failed, not reloading nginx!"
+        return 1
+    end
+
+    echo "Reloading nginx..."
+    if not ssh slama-deploy@slama.dev 'sudo nginx -t && sudo systemctl reload nginx'
+        echo "ERROR: nginx did not reload; the new redirects are not live yet."
+        return 1
     end
 
     echo "Upload complete!"
