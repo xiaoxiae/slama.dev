@@ -53,7 +53,7 @@ However, if they differ in their z-index, the one with a higher z-index will alw
 
 ### Animation flow
 
-We've already seen a few of these in the [previous post](/motion-canvas/1/), but we can use different functions for working with [animation flow](https://canvascommons.io/docs/flow).
+We've already seen a few of these in the [previous post](/motion-canvas/introduction/), but we can use different functions for working with [animation flow](https://canvascommons.io/docs/flow).
 One of the main differences between Manim and Motion Canvas is that the animation model inherently allows for a lot of concurrency, since you can have multiple threads concurrently changing different properties, even of the same object:
 
 ```tsx {file="animation-flow.tsx"}

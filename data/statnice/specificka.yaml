@@ -94,7 +94,7 @@
       details:
         - "definice: aproximační poměr, aproximační schéma"
         - name: splnitelnost
-          links: [/lecture-notes/best-sat/]
+          links: [/youtube/best-sat/]
         - name: nezávislé množiny
           links: ["/poznamky/aproximacni-algoritmy/#maximální-nezávislá-množina"]
         - name: množinové pokrytí

@@ -667,7 +667,7 @@ Navíc \(E(G') = E(G) \cup F\) je \(T\)-join, jelikož přesně splňuje definic
 - trojúhelníková nerovnost \(\left(\forall u, v, w \in V\right) l(u, v) + l(v, w) \ge l(u, w)\)
 {{< /math >}}
 
-{{< math "algorithm" "Christofidesova heuristika" >}} viz moje [poznámky z aproximačních algoritmů](https://slama.dev/poznamky/aproximacni-algoritmy#christofides%C5%AFv-algoritmus){{< /math >}}
+{{< math "algorithm" "Christofidesova heuristika" >}} viz moje [poznámky z aproximačních algoritmů](https://slama.dev/poznamky/aproximacni-algoritmy/#christofides%C5%AFv-algoritmus){{< /math >}}
 
 ### Spojitá optimalizace
 Má [pěkná skripta](spojita.pdf).

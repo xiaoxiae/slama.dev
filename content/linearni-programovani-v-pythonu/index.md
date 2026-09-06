@@ -1,7 +1,7 @@
 ---
 date: '2021-03-21'
 title: Lineární programování v Pythonu
-end: <a href='/youtube/linear-programming-in-python'>English version of the article</a>
+end: <a href='/youtube/linear-programming-in-python/'>English version of the article</a>
 description: Sbírka praktických příkladů lineárních programů v Pythonu.
 toc: true
 language: cs

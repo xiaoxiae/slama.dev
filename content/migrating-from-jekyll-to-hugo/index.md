@@ -122,7 +122,7 @@ Subsetting FA fonts...
 ### [Data Files](https://gohugo.io/content-management/data-sources/)
 
 Although [data files](https://jekyllrb.com/docs/datafiles/) do exist in Jekyll, I didn't make great use of them so I can't blame this on Jekyll.
-Over time, however, I've added a few features to the website like my [climbing diary](/climbing), a [photo gallery](/photos) and even a <a href="/tboi" class="secret" >hidden TBOI page</a>, which are ripe for this feature.
+Over time, however, I've added a few features to the website like my [climbing diary](/climbing/), a [photo gallery](/photos/) and even a <a href="/tboi/" class="secret" >hidden TBOI page</a>, which are ripe for this feature.
 
 Data files are exactly what the name suggests -- files with data that can be used to generate the website.
 Many data formats are supported, but this website uses YAML since it's a good combination of human/machine readability.

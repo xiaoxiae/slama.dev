@@ -85,7 +85,7 @@
       links: [pruvodce.pdf#s1.3]
 
 - title: Programovací jazyky
-  resources: "Programko [[poznámky](prog2.pdf)], Java/C#/C++ [[C# poznámky](/lecture-notes/the-cs-programming-language/)]"
+  resources: "Programko [[poznámky](prog2.pdf)], Java/C#/C++ [[C# poznámky](/notes/the-cs-programming-language/)]"
   items:
     - name: Koncepty pro abstrakci, zapouzdření a polymorfismus.
       details:
