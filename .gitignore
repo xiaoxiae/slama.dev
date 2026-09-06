@@ -36,6 +36,10 @@ static/drone/
 **/*.pgn
 **/*.stl
 
+# Social-card source is a build input (assets/), not content media: it is
+# processed into a 1200x630 og:image by layouts/_default/baseof.html.
+!assets/og/*.png
+
 # Python (uv)
 .venv/
 

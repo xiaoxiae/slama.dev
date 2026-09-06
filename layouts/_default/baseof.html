@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ .Language.Lang }}">
+<html lang="{{ .Params.language | default .Language.Lang }}">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,26 +14,49 @@
 		<link rel="icon" type="image/png" href="{{ "/assets/favicon.png" | absURL }}" />
 
 		<!-- PAGE TITLE AND DESCRIPTION -->
-		{{ if .IsHome }}
-			<title>{{ site.Title }}</title>
-		{{ else if .Params.html_title }}
-			<title>{{ .Params.html_title }} – {{ site.Title }}</title>
-		{{ else }}
-			<title>{{ .Title }} – {{ site.Title }}</title>
-		{{ end }}
-		{{ if .Description }}
-		<meta name="description" content="{{ .Description | plainify | truncate 160 }}">
-		{{ else }}
-		<meta name="description" content="{{ site.Params.description }}">
+		{{- /* Titles are plainified: a `title:` may contain markup (e.g. <code>),
+		       which must never reach <title> or og:title as literal text. */ -}}
+		{{ $pageTitle := cond .IsHome site.Title (printf "%s – %s" (.Title | plainify) site.Title) }}
+		<title>{{ $pageTitle }}</title>
+		{{ $pageDesc := cond (ne .Description "") (.Description | plainify | truncate 160) site.Params.description }}
+		<meta name="description" content="{{ $pageDesc }}">
+
+		{{- /* Pages opting out of indexing (e.g. the /aok/ puzzle answers, whose
+		       slug IS the answer). layouts/sitemap.xml filters on the same param.
+		       The 404 page is never content, so it opts out too. */ -}}
+		{{ if or .Params.noindex (eq .RelPermalink "/404.html") }}
+		<meta name="robots" content="noindex">
 		{{ end }}
 
 		<!-- OPEN GRAPH -->
-		<meta property="og:title" content="{{ if .Title }}{{ .Title }} – {{ site.Title }}{{ else }}{{ site.Title }}{{ end }}">
-		<meta property="og:description" content="{{ if .Description }}{{ .Description | plainify | truncate 160 }}{{ else }}{{ site.Params.description }}{{ end }}">
+		{{- /* Social card: a page may override with `ogImage:` naming a bundle
+		       resource; otherwise the site logo. Both are fitted inside 1200x630
+		       (aspect preserved, so the result is usually narrower) and the real
+		       dimensions are reported -- og:image:width/height must not lie. */ -}}
+		{{- $ogImage := "" -}}
+		{{- with .Params.ogImage -}}
+			{{- with $.Resources.Get . -}}
+				{{- $ogImage = .Process "fit 1200x630 webp" -}}
+			{{- end -}}
+		{{- end -}}
+		{{- if not $ogImage -}}
+			{{- with resources.Get "og/card-source.png" -}}
+				{{- $ogImage = .Process "fit 1200x630 webp" -}}
+			{{- end -}}
+		{{- end -}}
+		<meta property="og:title" content="{{ $pageTitle }}">
+		<meta property="og:description" content="{{ $pageDesc }}">
 		<meta property="og:type" content="{{ if .Date }}article{{ else }}website{{ end }}">
 		<meta property="og:url" content="{{ .Permalink }}">
 		<meta property="og:site_name" content="{{ site.Title }}">
+		{{ with $ogImage }}
+		<meta property="og:image" content="{{ .Permalink }}">
+		<meta property="og:image:width" content="{{ .Width }}">
+		<meta property="og:image:height" content="{{ .Height }}">
+		<meta name="twitter:card" content="summary_large_image">
+		{{ else }}
 		<meta name="twitter:card" content="summary">
+		{{ end }}
 
 		<!-- FONT PRELOADS -->
 		<link rel="preload" href="{{ "/assets/css/fonts/FiraSans-Light.woff2" | absURL }}" as="font" type="font/woff2" crossorigin>
@@ -53,7 +76,33 @@
 		<link rel="stylesheet" href="{{ "/assets/css/katex.min.css" | absURL }}">
 
 		<!-- CANONICAL -->
+		{{- /* A `redirect:` stub already emitted its canonical (the external
+		       target) above; a second, self-referential one would conflict. The
+		       404 page gets none: it is noindex and stands for no URL. */ -}}
+		{{ if not (or (and .Params.redirect .Params.redirect.to) (eq .RelPermalink "/404.html")) }}
 		<link rel="canonical" href="{{ .Permalink }}">
+		{{ end }}
+
+		{{- /* A page naming its `translation:` (the content path of the same
+		       article in the other language) tells search engines the two are
+		       alternates, not duplicates. x-default is the English one. Only one
+		       pair on the site has a translation; the rest correctly get none. */ -}}
+		{{ with .Params.translation }}{{ with site.GetPage . }}
+		{{- $self := $ }}{{ $other := . -}}
+		{{- $selfLang := $self.Params.language | default site.Language.Lang -}}
+		{{- $otherLang := $other.Params.language | default site.Language.Lang }}
+		<link rel="alternate" hreflang="{{ $selfLang }}" href="{{ $self.Permalink }}">
+		<link rel="alternate" hreflang="{{ $otherLang }}" href="{{ $other.Permalink }}">
+		<link rel="alternate" hreflang="x-default" href="{{ if eq $selfLang "en" }}{{ $self.Permalink }}{{ else }}{{ $other.Permalink }}{{ end }}">
+		{{ end }}{{ end }}
+
+		<!-- FEED -->
+		{{ with site.Home.OutputFormats.Get "rss" }}
+		<link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .Permalink }}">
+		{{ end }}
+
+		<!-- STRUCTURED DATA -->
+		{{ partial "schema.html" . }}
 
 		<!-- HUMAN.JSON -->
 		<link rel="human-json" href="/human.json">
@@ -196,8 +245,8 @@
 			<span class="lightbox-prev" style="display: none;">&#10094;</span>
 			<span class="lightbox-next" style="display: none;">&#10095;</span>
 			<div class="lightbox-content">
-				<img id="lightbox-thumb" class="lightbox-thumbnail" src="" alt="Thumbnail">
-				<img id="lightbox-img" src="" alt="Enlarged image" style="display: none;">
+				<img id="lightbox-thumb" class="lightbox-thumbnail" alt="Thumbnail">
+				<img id="lightbox-img" alt="Enlarged image" style="display: none;">
 			</div>
 			<div id="lightbox-caption" class="lightbox-caption" style="display: none;"></div>
 		</div>

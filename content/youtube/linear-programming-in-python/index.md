@@ -1,6 +1,7 @@
 ---
 date: '2023-07-04'
 title: Linear Programming in Python
+translation: /linearni-programovani-v-pythonu
 end: <a href='/linearni-programovani-v-pythonu/'>Česká verze článku</a>
 description: Additional material to my newly released video about linear programming,
   namely a number of practical examples of how it can be used to solve a variety of

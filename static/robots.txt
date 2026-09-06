@@ -1,0 +1,21 @@
+# https://slama.dev/robots.txt
+
+# AI training crawlers.
+# These are distinct from the search crawlers below: blocking them does not
+# affect Google or Bing ranking or indexing. Google-Extended gates Gemini
+# training only; Applebot-Extended is separate from Applebot (Siri/Spotlight).
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: Bytespider
+User-agent: meta-externalagent
+Disallow: /
+
+# Everything else, including search engines and AI answer engines
+# (OAI-SearchBot, PerplexityBot, Claude-SearchBot), which send real traffic.
+User-agent: *
+Allow: /
+
+Sitemap: https://slama.dev/sitemap.xml

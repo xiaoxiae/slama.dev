@@ -1,0 +1,64 @@
+{{- /*
+  JSON-LD structured data.
+
+  - Person on the homepage, so search engines can tie the site to an entity.
+    sameAs mirrors the profile links in the baseof.html footer.
+  - BlogPosting on dated pages -- the same condition baseof.html uses to decide
+    og:type=article, kept deliberately in sync.
+  - BreadcrumbList on pages inside a section (/poznamky/*, /manim/*, ...).
+
+  Skipped entirely for `redirect:` stubs (the content is not ours) and for
+  noindex pages (nothing should describe what we ask not to be indexed).
+*/ -}}
+{{- $isRedirect := and .Params.redirect .Params.redirect.to -}}
+{{- if not (or $isRedirect .Params.noindex) -}}
+
+{{- if .IsHome -}}
+<script type="application/ld+json">
+{{- dict
+  "@context" "https://schema.org"
+  "@type" "Person"
+  "name" site.Params.author
+  "url" site.BaseURL
+  "sameAs" (slice
+    "https://www.youtube.com/channel/UC_IaBSHmisYbiYlv32EeNkQ"
+    "https://bsky.app/profile/tomas.slama.dev"
+    "https://github.com/xiaoxiae")
+  | jsonify (dict "indent" "  ") | safeJS }}
+</script>
+{{- end -}}
+
+{{- if and (not .IsHome) .Date (ne .Date.Unix 0) -}}
+{{- $post := dict
+  "@context" "https://schema.org"
+  "@type" "BlogPosting"
+  "headline" (.Title | plainify)
+  "url" .Permalink
+  "mainEntityOfPage" .Permalink
+  "datePublished" (.Date.Format "2006-01-02")
+  "inLanguage" (.Params.language | default site.Language.Lang)
+  "author" (dict "@type" "Person" "name" site.Params.author "url" site.BaseURL) -}}
+{{- with .Description }}{{ $post = merge $post (dict "description" (. | plainify)) }}{{ end -}}
+{{- if not .Lastmod.IsZero }}{{ $post = merge $post (dict "dateModified" (.Lastmod.Format "2006-01-02")) }}{{ end -}}
+<script type="application/ld+json">
+{{- $post | jsonify (dict "indent" "  ") | safeJS }}
+</script>
+{{- end -}}
+
+{{- with .Section -}}
+{{- $section := site.GetPage . -}}
+{{- if and $section (ne $.RelPermalink $section.RelPermalink) -}}
+<script type="application/ld+json">
+{{- dict
+  "@context" "https://schema.org"
+  "@type" "BreadcrumbList"
+  "itemListElement" (slice
+    (dict "@type" "ListItem" "position" 1 "name" site.Title "item" site.BaseURL)
+    (dict "@type" "ListItem" "position" 2 "name" ($section.Title | plainify) "item" $section.Permalink)
+    (dict "@type" "ListItem" "position" 3 "name" ($.Title | plainify) "item" $.Permalink))
+  | jsonify (dict "indent" "  ") | safeJS }}
+</script>
+{{- end -}}
+{{- end -}}
+
+{{- end -}}

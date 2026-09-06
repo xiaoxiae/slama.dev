@@ -14,7 +14,7 @@
     <div class="no-invert">
       <div class="date">{{ $date.Format "2006/01/02" }}</div>
       <a href="{{ $full }}" class="lightbox-trigger" data-thumb="{{ $thumb.RelPermalink }}">
-        <img src="{{ $thumb.RelPermalink }}" alt="Photo from {{ $date.Format "2006/01/02" }}">
+        <img src="{{ $thumb.RelPermalink }}" alt="Photo from {{ $date.Format "2006/01/02" }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" loading="lazy">
       </a>
       <div class="icons">
         <a href="{{ $full }}" download class="icon download">
