@@ -1,6 +1,7 @@
 ---
 date: '2025-10-07'
 title: A Chess Engine, Commit by Commit
+ogImage: "benchmark.png"
 description: Writing a chess engine from scratch, in Rust, commit by commit.
 categoryPart: 1
 toc: true

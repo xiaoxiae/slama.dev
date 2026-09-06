@@ -1,5 +1,6 @@
 ---
 title: "Tatras 2023"
+ogImage: "1.png"
 layout: photos
 centerTitle: true
 description: "Photos from a 2023 trip to the Tatra mountains."

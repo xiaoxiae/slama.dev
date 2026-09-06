@@ -1,6 +1,7 @@
 ---
 date: '2023-02-23'
 title: GPU Computing
+ogImage: "grid-block-thread.png"
 description: Lecture notes from the GPU Computing course (Kazem Shekofteh, 2022/2023).
 categoryIcon: /assets/category-icons/heidelberg.webp
 toc: true

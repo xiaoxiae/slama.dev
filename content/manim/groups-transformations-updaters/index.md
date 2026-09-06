@@ -2,6 +2,7 @@
 date: '2022-06-27'
 categoryPart: 2
 title: Groups, Transforms, Updaters
+ogImage: "02-add-remove-example.webp"
 description: Functions and classes for working with groups of objects, object transforms
   and updaters.
 toc: true

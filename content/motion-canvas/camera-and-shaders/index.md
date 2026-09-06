@@ -2,6 +2,7 @@
 date: '2024-10-28'
 categoryPart: 3
 title: Camera and Shaders
+ogImage: "03-moving-camera-follower.webp"
 description: Camera controls, and a glimpse into the wonderful world of shaders.
 toc: true
 ---

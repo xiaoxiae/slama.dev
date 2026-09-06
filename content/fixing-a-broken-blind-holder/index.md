@@ -1,6 +1,7 @@
 ---
 date: '2025-08-27'
 title: Fixing a Broken Blind Holder
+ogImage: "mosaic.png"
 description: How 3D reconstruction and 3D printing can fix broken things.
 categoryIcon: /assets/category-icons/3d-print.webp
 bluesky_url: https://bsky.app/profile/tomas.slama.dev/post/3lxfbgjnk5k26

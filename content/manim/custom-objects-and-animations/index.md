@@ -2,6 +2,7 @@
 date: '2022-11-27'
 categoryPart: 5
 title: Custom Objects and Animations
+ogImage: "05-chanim-example.webp"
 description: Custom objects and animations (and formerly plugins, but those are outdated
   now).
 toc: true

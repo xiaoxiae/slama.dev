@@ -1,6 +1,7 @@
 ---
 date: '2022-10-16'
 title: Master's in Heidelberg
+ogImage: "rhein-neckar-region.png"
 pdf: true
 description: Things we learned during our move to Heidelberg (Germany) for our master's
   degrees, including enrolment, housing, travel, torrenting, and more.

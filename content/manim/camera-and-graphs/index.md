@@ -2,6 +2,7 @@
 date: '2022-07-03'
 categoryPart: 3
 title: Camera and Graphs
+ogImage: "03-rate-function-list.webp"
 description: Camera controls, (combinatorial) graphs and rate functions.
 toc: true
 ---

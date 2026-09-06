@@ -1,6 +1,7 @@
 ---
 date: '2022-06-14'
 title: Pravděpodobnost a Statistika I
+ogImage: "bayes.webp"
 description: Poznámky z přednášky Pravděpodobnost a Statistika I (Robert Šámal, 2020/2021).
 toc: true
 language: cs

@@ -1,6 +1,7 @@
 ---
 date: '2026-05-13'
 title: "Stretching a Laptop Display on a Bus"
+ogImage: "unstretched.jpg"
 description: A surprisingly effective solution to an unsurprisingly uncommon problem.
 ---
 

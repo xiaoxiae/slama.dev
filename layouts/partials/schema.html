@@ -39,6 +39,9 @@
   "inLanguage" (.Params.language | default site.Language.Lang)
   "author" (dict "@type" "Person" "name" site.Params.author "url" site.BaseURL) -}}
 {{- with .Description }}{{ $post = merge $post (dict "description" (. | plainify)) }}{{ end -}}
+{{- /* Google prefers an image on article markup. Only the page's own card
+       qualifies -- the shared site logo describes nothing about the post. */ -}}
+{{- with partial "og-image.html" . }}{{ $post = merge $post (dict "image" .Permalink) }}{{ end -}}
 {{- if not .Lastmod.IsZero }}{{ $post = merge $post (dict "dateModified" (.Lastmod.Format "2006-01-02")) }}{{ end -}}
 <script type="application/ld+json">
 {{- $post | jsonify (dict "indent" "  ") | safeJS }}

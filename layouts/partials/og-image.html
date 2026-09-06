@@ -1,0 +1,10 @@
+{{- /* The page's own social card -- the `ogImage:` bundle resource cropped to
+  1200x630 (the summary_large_image ratio) -- or nothing. The logo fallback
+  is baseof.html's business; article markup must never get the logo. */ -}}
+{{- $img := "" -}}
+{{- with .Params.ogImage -}}
+	{{- with $.Resources.Get . -}}
+		{{- $img = .Process "fill 1200x630 webp" -}}
+	{{- end -}}
+{{- end -}}
+{{- return $img -}}

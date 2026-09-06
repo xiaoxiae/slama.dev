@@ -1,6 +1,7 @@
 ---
 date: '2026-03-17'
 title: "Learning German with Bilbo"
+ogImage: "alloy-of-law.webp"
 description: "Implementing an interleaver for audiobooks."
 ---
 

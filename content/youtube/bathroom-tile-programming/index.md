@@ -1,6 +1,7 @@
 ---
 date: '2021-11-20'
 title: Bathroom Tile Programming
+ogImage: "parentheses.webp"
 description: "A follow-up to my bathroom tile programming video, including a bunch more examples to try out."
 ---
 

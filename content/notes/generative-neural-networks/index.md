@@ -1,6 +1,7 @@
 ---
 date: '2023-10-18'
 title: Generative Neural Networks
+ogImage: "bernoulli.webp"
 description: Lecture notes from the Generative Neural Networks for the Sciences course
   (Ullrich Köthe, 2023/2024).
 categoryIcon: /assets/category-icons/heidelberg.webp

@@ -1,5 +1,6 @@
 ---
 title: Printomat
+ogImage: "printer-1.png"
 layout: default
 icon: fa-print
 htmx: true

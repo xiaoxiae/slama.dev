@@ -1,6 +1,7 @@
 ---
 date: '2026-01-07'
 title: NNUEs, and Where to Find Them
+ogImage: "scaling.png"
 description: "Writing more of my chess engine from scratch, in Rust, commit by commit; this time with 56% more NNUEs."
 categoryPart: 2
 toc: true

@@ -1,6 +1,7 @@
 ---
 date: '2023-04-21'
 title: Introduction to Machine Learning
+ogImage: "lenet.png"
 description: Lecture notes from the Introduction to Machine Learning course (Ullrich
   Köthe, 2022/2023).
 categoryIcon: /assets/category-icons/heidelberg.webp

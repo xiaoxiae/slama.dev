@@ -1,6 +1,7 @@
 ---
 date: '2026-03-11'
 title: "Hollow Knight Raspberry Pi 4 Case"
+ogImage: "example-1.jpg"
 description: "Making a Hollow Knight (Silksong) Raspberry Pi 4 case."
 categoryIcon: /assets/category-icons/hollow-knight.ico
 ---

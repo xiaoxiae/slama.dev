@@ -1,6 +1,7 @@
 ---
 date: '2021-03-05'
 title: Hlenka Helenka
+ogImage: "tribute.png"
 description: Diář naší nejoblíbenější améby.
 layout: default
 language: cs

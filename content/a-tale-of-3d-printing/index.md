@@ -1,6 +1,7 @@
 ---
 date: '2024-02-17'
 title: A tale of 3D Printing
+ogImage: "holds.png"
 description: A story of doing some 3D printing and failing miserably.
 categoryIcon: /assets/category-icons/3d-print.webp
 toc: true

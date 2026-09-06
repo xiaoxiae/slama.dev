@@ -1,6 +1,7 @@
 ---
 date: '2022-06-25'
 title: Introduction
+ogImage: "01-align-to-example.webp"
 categoryPart: 1
 description: An introduction to Manim, originally translated from a Czech CS-oriented correspondence seminar.
 slug: introduction

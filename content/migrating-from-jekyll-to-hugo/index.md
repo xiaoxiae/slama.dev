@@ -1,6 +1,7 @@
 ---
 date: '2026-01-03'
 title: "Migrating from Jekyll to Hugo"
+ogImage: "build_times.png"
 description: "A look into how I migrated this website from Jekyll to Hugo. 130x build time speedups included!"
 toc: true
 ---

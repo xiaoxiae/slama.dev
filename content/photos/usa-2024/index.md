@@ -1,5 +1,6 @@
 ---
 title: "USA 2024"
+ogImage: "DSC5584.jpg"
 layout: photos
 centerTitle: true
 description: "Photos from a 2024 trip across the USA."

@@ -2,6 +2,7 @@
 date: '2023-07-12'
 categoryPart: 6
 title: OpenGL and Interactivity
+ogImage: "06-camera-example.webp"
 description: Experimental OpenGL backend for faster GPU-based rendering in Manim Community.
 toc: true
 ---

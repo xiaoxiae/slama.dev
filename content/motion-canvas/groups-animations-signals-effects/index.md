@@ -2,6 +2,7 @@
 date: '2024-10-13'
 categoryPart: 2
 title: Groups, Animations, Signals, Effects
+ogImage: "02-add-remove.webp"
 description: Groups of objects, animation flow, signals (Manim updaters on crack),
   effects.
 toc: true

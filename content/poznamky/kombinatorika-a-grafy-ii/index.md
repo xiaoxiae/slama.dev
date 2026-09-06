@@ -1,6 +1,7 @@
 ---
 date: '2021-03-01'
 title: Kombinatorika a Grafy II
+ogImage: "degen.webp"
 pdf: true
 description: Poznámky z přednášky Kombinatorika a Grafy II (Martin Koutecký, 2020/2021).
 toc: true

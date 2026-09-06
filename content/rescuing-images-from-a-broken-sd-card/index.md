@@ -1,6 +1,7 @@
 ---
 date: '2024-07-31'
 title: Rescuing Images from a Broken SD Card
+ogImage: "camera.png"
 description: Write-up of an attempt to rescue images from my girlfriend's old camera.
 toc: true
 ---

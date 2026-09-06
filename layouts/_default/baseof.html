@@ -30,15 +30,13 @@
 
 		<!-- OPEN GRAPH -->
 		{{- /* Social card: a page may override with `ogImage:` naming a bundle
-		       resource; otherwise the site logo. Both are fitted inside 1200x630
-		       (aspect preserved, so the result is usually narrower) and the real
-		       dimensions are reported -- og:image:width/height must not lie. */ -}}
-		{{- $ogImage := "" -}}
-		{{- with .Params.ogImage -}}
-			{{- with $.Resources.Get . -}}
-				{{- $ogImage = .Process "fit 1200x630 webp" -}}
-			{{- end -}}
-		{{- end -}}
+		       resource, which is cropped (`fill`, smart anchor) to exactly the
+		       1200x630 that X, Facebook, LinkedIn and Slack render
+		       summary_large_image at, so a photo is never letterboxed by them.
+		       The logo fallback is fitted instead: cropping it to 1.91:1 zooms
+		       into the middle of the mark and leaves it unrecognisable. Its
+		       reported 837x630 is the real size -- the dimensions must not lie. */ -}}
+		{{- $ogImage := partial "og-image.html" . -}}
 		{{- if not $ogImage -}}
 			{{- with resources.Get "og/card-source.png" -}}
 				{{- $ogImage = .Process "fit 1200x630 webp" -}}

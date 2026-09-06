@@ -1,5 +1,6 @@
 ---
 title: "Austria 2023"
+ogImage: "s2.png"
 layout: photos
 centerTitle: true
 description: "Photos from a 2023 trip to Austria."

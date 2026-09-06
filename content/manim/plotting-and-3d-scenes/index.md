@@ -2,6 +2,7 @@
 date: '2022-07-19'
 categoryPart: 4
 title: Plotting and 3D Scenes
+ogImage: "04-axes3d-example.webp"
 description: 3D animations and graph plotting.
 toc: true
 ---
