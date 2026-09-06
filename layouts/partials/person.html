@@ -1,0 +1,24 @@
+{{- /* The site owner as a Person, from [params]. No "@context" so it can be
+  nested (/cv/ mainEntity) as well as emitted top-level (homepage). sameAs
+  takes only profiles flagged `sameAs = true` -- a playlist is not him. */ -}}
+{{- $sameAs := slice -}}
+{{- range site.Params.profiles -}}
+	{{- if .sameAs -}}{{- $sameAs = $sameAs | append .url -}}{{- end -}}
+{{- end -}}
+{{- $person := dict "@type" "Person" "@id" (printf "%s#person" site.BaseURL) "name" site.Params.author "url" site.BaseURL "sameAs" $sameAs -}}
+{{- with site.Params.jobTitle }}{{ $person = merge $person (dict "jobTitle" .) }}{{ end -}}
+{{- with site.Params.image }}{{ $person = merge $person (dict "image" (. | absURL)) }}{{ end -}}
+{{- with site.Params.knowsAbout }}{{ $person = merge $person (dict "knowsAbout" .) }}{{ end -}}
+{{- with site.Params.worksFor -}}
+	{{- $org := dict "@type" "Organization" "name" .name -}}
+	{{- with .url }}{{ $org = merge $org (dict "url" .) }}{{ end -}}
+	{{- $person = merge $person (dict "worksFor" $org) -}}
+{{- end -}}
+{{- $alumni := slice -}}
+{{- range site.Params.alumniOf -}}
+	{{- $school := dict "@type" "EducationalOrganization" "name" .name -}}
+	{{- with .url }}{{ $school = merge $school (dict "url" .) }}{{ end -}}
+	{{- $alumni = $alumni | append $school -}}
+{{- end -}}
+{{- with $alumni }}{{ $person = merge $person (dict "alumniOf" .) }}{{ end -}}
+{{- return $person -}}

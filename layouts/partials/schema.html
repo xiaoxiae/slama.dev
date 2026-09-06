@@ -1,56 +1,78 @@
-{{- /*
-  JSON-LD structured data.
-
-  - Person on the homepage, so search engines can tie the site to an entity.
-    sameAs mirrors the profile links in the baseof.html footer.
-  - BlogPosting on dated pages -- the same condition baseof.html uses to decide
-    og:type=article, kept deliberately in sync.
-  - BreadcrumbList on pages inside a section (/poznamky/*, /manim/*, ...).
-
-  Skipped entirely for `redirect:` stubs (the content is not ours) and for
-  noindex pages (nothing should describe what we ask not to be indexed).
-*/ -}}
+{{- /* JSON-LD: Person + WebSite on the homepage; BlogPosting/Article on dated
+  pages; a WebPage-ish type on everything else; BreadcrumbList inside a
+  section. Nothing for redirect stubs, noindex pages or the 404. The type
+  comes from partials/page-type.html, which baseof.html also reads for
+  og:type, so the two cannot disagree. */ -}}
 {{- $isRedirect := and .Params.redirect .Params.redirect.to -}}
-{{- if not (or $isRedirect .Params.noindex) -}}
+{{- $is404 := eq .RelPermalink "/404.html" -}}
+{{- if not (or $isRedirect .Params.noindex $is404) -}}
+{{- $personId := printf "%s#person" site.BaseURL -}}
+{{- $siteId := printf "%s#website" site.BaseURL -}}
 
 {{- if .IsHome -}}
 <script type="application/ld+json">
+{{- merge (dict "@context" "https://schema.org") (partial "person.html" .)
+  | jsonify (dict "indent" "  ") | safeJS }}
+</script>
+<script type="application/ld+json">
 {{- dict
   "@context" "https://schema.org"
-  "@type" "Person"
-  "name" site.Params.author
+  "@type" "WebSite"
+  "@id" $siteId
+  "name" site.Title
   "url" site.BaseURL
-  "sameAs" (slice
-    "https://www.youtube.com/channel/UC_IaBSHmisYbiYlv32EeNkQ"
-    "https://bsky.app/profile/tomas.slama.dev"
-    "https://github.com/xiaoxiae")
+  "inLanguage" site.Language.Lang
+  "publisher" (dict "@id" $personId)
   | jsonify (dict "indent" "  ") | safeJS }}
 </script>
 {{- end -}}
 
-{{- if and (not .IsHome) .Date (ne .Date.Unix 0) -}}
+{{- $kind := partial "page-type.html" . -}}
+{{- $type := $kind.type -}}
+{{- $isArticle := $kind.article -}}
+
+{{- if and (not .IsHome) $isArticle -}}
 {{- $post := dict
   "@context" "https://schema.org"
-  "@type" "BlogPosting"
+  "@type" $type
   "headline" (.Title | plainify)
   "url" .Permalink
   "mainEntityOfPage" .Permalink
   "datePublished" (.Date.Format "2006-01-02")
   "inLanguage" (.Params.language | default site.Language.Lang)
-  "author" (dict "@type" "Person" "name" site.Params.author "url" site.BaseURL) -}}
+  "author" (dict "@type" "Person" "@id" $personId "name" site.Params.author "url" site.BaseURL) -}}
 {{- with .Description }}{{ $post = merge $post (dict "description" (. | plainify)) }}{{ end -}}
-{{- /* Google prefers an image on article markup. Only the page's own card
-       qualifies -- the shared site logo describes nothing about the post. */ -}}
+{{- /* Only a card the page owns: the shared logo says nothing about the post. */ -}}
 {{- with partial "og-image.html" . }}{{ $post = merge $post (dict "image" .Permalink) }}{{ end -}}
-{{- if not .Lastmod.IsZero }}{{ $post = merge $post (dict "dateModified" (.Lastmod.Format "2006-01-02")) }}{{ end -}}
+{{- /* Only when the page states a `lastmod:`; otherwise .Lastmod is just .Date
+       and would falsely claim a revision on publish day. */ -}}
+{{- if and (not .Lastmod.IsZero) (ne .Lastmod .Date) }}{{ $post = merge $post (dict "dateModified" (.Lastmod.Format "2006-01-02")) }}{{ end -}}
 <script type="application/ld+json">
 {{- $post | jsonify (dict "indent" "  ") | safeJS }}
 </script>
 {{- end -}}
 
+{{- if and (not .IsHome) (not $isArticle) -}}
+{{- $page := dict
+  "@context" "https://schema.org"
+  "@type" $type
+  "name" (.Title | plainify)
+  "url" .Permalink
+  "inLanguage" (.Params.language | default site.Language.Lang)
+  "isPartOf" (dict "@type" "WebSite" "@id" $siteId "name" site.Title "url" site.BaseURL) -}}
+{{- with .Description }}{{ $page = merge $page (dict "description" (. | plainify)) }}{{ end -}}
+{{- with partial "og-image.html" . }}{{ $page = merge $page (dict "image" .Permalink) }}{{ end -}}
+{{- if eq $type "ProfilePage" }}{{ $page = merge $page (dict "mainEntity" (partial "person.html" .)) }}{{ end -}}
+<script type="application/ld+json">
+{{- $page | jsonify (dict "indent" "  ") | safeJS }}
+</script>
+{{- end -}}
+
 {{- with .Section -}}
 {{- $section := site.GetPage . -}}
-{{- if and $section (ne $.RelPermalink $section.RelPermalink) -}}
+{{- /* A section built with `render: never` (/resolutions/) has no title or
+       permalink; an empty crumb fails validation, so no breadcrumb at all. */ -}}
+{{- if and $section $section.Permalink (ne $.RelPermalink $section.RelPermalink) -}}
 <script type="application/ld+json">
 {{- dict
   "@context" "https://schema.org"

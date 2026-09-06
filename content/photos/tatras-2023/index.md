@@ -1,5 +1,6 @@
 ---
 title: "Tatras 2023"
+schemaType: ImageGallery
 ogImage: "1.png"
 layout: photos
 centerTitle: true

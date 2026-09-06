@@ -1,5 +1,6 @@
 ---
 date: '2024-05-06'
+lastmod: '2026-03-19'
 title: Comeback Titulky/Subtitles
 end: <a href="/automatic-subtitling-with-python/">How were these made?</a>
 description: Subtitles for all Comeback episodes, both in Czech and in English

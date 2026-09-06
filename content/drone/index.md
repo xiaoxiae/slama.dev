@@ -1,5 +1,6 @@
 ---
 title: Drone
+schemaType: CollectionPage
 layout: default
 noHeading: true
 description: "A journal of my FPV drone flights."

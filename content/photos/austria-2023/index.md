@@ -1,5 +1,6 @@
 ---
 title: "Austria 2023"
+schemaType: ImageGallery
 ogImage: "s2.png"
 layout: photos
 centerTitle: true

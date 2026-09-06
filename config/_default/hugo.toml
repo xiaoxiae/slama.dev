@@ -16,6 +16,71 @@ disableKinds = ["taxonomy", "term"]
   author = "Tomáš Sláma"
   halloween = true
 
+  # Feeds the JSON-LD Person (layouts/partials/person.html). Keep in step with data/cv.yaml.
+  jobTitle = "Full-stack developer"
+  image = "/assets/me.webp"
+  knowsAbout = [
+    "Computer science",
+    "Programming",
+    "Algorithms",
+    "Climbing",
+    "Bouldering",
+    "Photography",
+    "Gaming",
+  ]
+
+  [params.worksFor]
+    name = "MathGPT"
+    url = "https://math-gpt.org/"
+
+  [[params.alumniOf]]
+    name = "Heidelberg University"
+    url = "https://www.uni-heidelberg.de/en"
+
+  [[params.alumniOf]]
+    name = "Charles University"
+    url = "https://www.mff.cuni.cz/en"
+
+  [[params.alumniOf]]
+    name = "Westtown School"
+    url = "https://www.westtown.edu/"
+
+  # Footer icon links. `sameAs = true` also puts the URL in Person.sameAs --
+  # only for profiles that are Tomáš himself, not e.g. a playlist.
+  [[params.profiles]]
+    label = "YouTube"
+    url = "https://www.youtube.com/channel/UC_IaBSHmisYbiYlv32EeNkQ"
+    icon = "fa-brands fa-youtube"
+    sameAs = true
+
+  [[params.profiles]]
+    label = "Bluesky"
+    url = "https://bsky.app/profile/tomas.slama.dev"
+    icon = "fa-brands fa-bluesky"
+    sameAs = true
+
+  [[params.profiles]]
+    label = "GitHub"
+    url = "https://github.com/xiaoxiae"
+    icon = "fa-brands fa-github"
+    sameAs = true
+
+  [[params.profiles]]
+    label = "Spotify playlist"
+    url = "https://open.spotify.com/playlist/6tzOl4stxMsAClqNaUalBg?si=466aa28329d143fd"
+    icon = "fa-brands fa-spotify"
+
+  # Second footer group, after a wider separator.
+  [[params.contacts]]
+    label = "Email"
+    url = "mailto:tomas@slama.dev"
+    icon = "fa-solid fa-at"
+
+  [[params.contacts]]
+    label = "RSS feed"
+    url = "/feed.xml"
+    icon = "fa-solid fa-rss"
+
 # Main navigation menu
 [[menus.main]]
   name = "Home"

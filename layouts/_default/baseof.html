@@ -14,28 +14,20 @@
 		<link rel="icon" type="image/png" href="{{ "/assets/favicon.png" | absURL }}" />
 
 		<!-- PAGE TITLE AND DESCRIPTION -->
-		{{- /* Titles are plainified: a `title:` may contain markup (e.g. <code>),
-		       which must never reach <title> or og:title as literal text. */ -}}
+		{{- /* Plainified: a `title:` may contain markup that must not reach <title>. */ -}}
 		{{ $pageTitle := cond .IsHome site.Title (printf "%s – %s" (.Title | plainify) site.Title) }}
 		<title>{{ $pageTitle }}</title>
 		{{ $pageDesc := cond (ne .Description "") (.Description | plainify | truncate 160) site.Params.description }}
 		<meta name="description" content="{{ $pageDesc }}">
 
-		{{- /* Pages opting out of indexing (e.g. the /aok/ puzzle answers, whose
-		       slug IS the answer). layouts/sitemap.xml filters on the same param.
-		       The 404 page is never content, so it opts out too. */ -}}
+		{{- /* `noindex:` also drops the page from layouts/sitemap.xml. The 404 opts out too. */ -}}
 		{{ if or .Params.noindex (eq .RelPermalink "/404.html") }}
 		<meta name="robots" content="noindex">
 		{{ end }}
 
 		<!-- OPEN GRAPH -->
-		{{- /* Social card: a page may override with `ogImage:` naming a bundle
-		       resource, which is cropped (`fill`, smart anchor) to exactly the
-		       1200x630 that X, Facebook, LinkedIn and Slack render
-		       summary_large_image at, so a photo is never letterboxed by them.
-		       The logo fallback is fitted instead: cropping it to 1.91:1 zooms
-		       into the middle of the mark and leaves it unrecognisable. Its
-		       reported 837x630 is the real size -- the dimensions must not lie. */ -}}
+		{{- /* Per-page cards are cropped (fill); the logo fallback is fitted --
+		       cropped to 1.91:1 it is unrecognisable. */ -}}
 		{{- $ogImage := partial "og-image.html" . -}}
 		{{- if not $ogImage -}}
 			{{- with resources.Get "og/card-source.png" -}}
@@ -44,7 +36,7 @@
 		{{- end -}}
 		<meta property="og:title" content="{{ $pageTitle }}">
 		<meta property="og:description" content="{{ $pageDesc }}">
-		<meta property="og:type" content="{{ if .Date }}article{{ else }}website{{ end }}">
+		<meta property="og:type" content="{{ if (partial "page-type.html" .).article }}article{{ else }}website{{ end }}">
 		<meta property="og:url" content="{{ .Permalink }}">
 		<meta property="og:site_name" content="{{ site.Title }}">
 		{{ with $ogImage }}
@@ -74,17 +66,13 @@
 		<link rel="stylesheet" href="{{ "/assets/css/katex.min.css" | absURL }}">
 
 		<!-- CANONICAL -->
-		{{- /* A `redirect:` stub already emitted its canonical (the external
-		       target) above; a second, self-referential one would conflict. The
-		       404 page gets none: it is noindex and stands for no URL. */ -}}
+		{{- /* A redirect stub already emitted its external canonical above; the 404 gets none. */ -}}
 		{{ if not (or (and .Params.redirect .Params.redirect.to) (eq .RelPermalink "/404.html")) }}
 		<link rel="canonical" href="{{ .Permalink }}">
 		{{ end }}
 
-		{{- /* A page naming its `translation:` (the content path of the same
-		       article in the other language) tells search engines the two are
-		       alternates, not duplicates. x-default is the English one. Only one
-		       pair on the site has a translation; the rest correctly get none. */ -}}
+		{{- /* `translation:` is the content path of this article in the other
+		       language; x-default is the English one. */ -}}
 		{{ with .Params.translation }}{{ with site.GetPage . }}
 		{{- $self := $ }}{{ $other := . -}}
 		{{- $selfLang := $self.Params.language | default site.Language.Lang -}}
@@ -195,20 +183,14 @@
 		</main>
 
 		<footer>
-			<p>Maintained by <span id="author-name">Tomáš Sláma</span>.</p>
+			<p>Maintained by <span id="author-name">{{ site.Params.author }}</span>.</p>
 			<p class="large no-link-color">
-				<a href="https://www.youtube.com/channel/UC_IaBSHmisYbiYlv32EeNkQ" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
-				<span class="tiny-vspace"></span>
-				<a href="https://bsky.app/profile/tomas.slama.dev" rel="noopener noreferrer" aria-label="Bluesky"><i class="fa-brands fa-bluesky" aria-hidden="true"></i></a>
-				<span class="tiny-vspace"></span>
-				<a href="https://github.com/xiaoxiae" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
-				<span class="tiny-vspace"></span>
-				<a href="https://open.spotify.com/playlist/6tzOl4stxMsAClqNaUalBg?si=466aa28329d143fd" rel="noopener noreferrer" aria-label="Spotify playlist"><i class="fa-brands fa-spotify" aria-hidden="true"></i></a>
-				<span class="vspace"></span>
-				<a href="mailto: tomas@slama.dev" aria-label="Email"><i class="fa-solid fa-at" aria-hidden="true"></i></a>
-				<span class="tiny-vspace"></span>
-				<a href="/feed.xml" aria-label="RSS feed"><i class="fa-solid fa-rss" aria-hidden="true"></i></a>
-			</p>
+				{{ range $i, $p := site.Params.profiles }}{{ if $i }}<span class="tiny-vspace"></span>
+				{{ end }}<a href="{{ $p.url }}" rel="noopener noreferrer" aria-label="{{ $p.label }}"><i class="{{ $p.icon }}" aria-hidden="true"></i></a>
+				{{ end }}<span class="vspace"></span>
+				{{ range $i, $c := site.Params.contacts }}{{ if $i }}<span class="tiny-vspace"></span>
+				{{ end }}<a href="{{ $c.url }}" aria-label="{{ $c.label }}"><i class="{{ $c.icon }}" aria-hidden="true"></i></a>
+				{{ end }}			</p>
 			<p class="small">
 				<a href="https://github.com/xiaoxiae/slama.dev" rel="noopener noreferrer">source code</a>
 				<span class="half-visible vspace">·</span>

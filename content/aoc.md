@@ -1,5 +1,6 @@
 ---
 title: Advent of Code
+schemaType: CollectionPage
 layout: default
 noHeading: true
 hidden: true

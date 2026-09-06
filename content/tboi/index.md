@@ -1,5 +1,6 @@
 ---
 title: The Binding of Isaac
+schemaType: CollectionPage
 layout: default
 noHeading: true
 description: "My secret TBOI page."

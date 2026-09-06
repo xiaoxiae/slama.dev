@@ -1,0 +1,11 @@
+{{- /* Resolves a page's schema.org type: `schemaType:` front matter, else by
+  KIND -- dated regular page -> BlogPosting, section -> CollectionPage, else
+  WebPage. Not by date: Hugo gives a section its newest child's date. Also
+  says whether that is an article shape (needs datePublished, so an undated
+  page never is). Read by schema.html, and by baseof.html for og:type. */ -}}
+{{- $dated := and .Date (ne .Date.Unix 0) -}}
+{{- $default := "WebPage" -}}
+{{- if and $dated .IsPage }}{{ $default = "BlogPosting" }}{{ else if .IsSection }}{{ $default = "CollectionPage" }}{{ end -}}
+{{- $type := .Params.schemaType | default $default -}}
+{{- $article := and $dated (in (slice "Article" "BlogPosting" "NewsArticle" "ScholarlyArticle" "TechArticle") $type) -}}
+{{- return (dict "type" $type "article" $article) -}}

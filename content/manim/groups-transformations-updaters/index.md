@@ -1,5 +1,6 @@
 ---
 date: '2022-06-27'
+lastmod: '2023-12-27'
 categoryPart: 2
 title: Groups, Transforms, Updaters
 ogImage: "02-add-remove-example.webp"

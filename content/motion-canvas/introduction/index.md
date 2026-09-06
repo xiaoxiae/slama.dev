@@ -1,5 +1,6 @@
 ---
 date: '2024-10-04'
+lastmod: '2026-06-17'
 categoryPart: 1
 title: From Manim to Motion Canvas
 ogImage: "01-align-to.webp"

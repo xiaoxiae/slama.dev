@@ -1,5 +1,6 @@
 ---
 date: '2022-01-10'
+lastmod: '2026-02-13'
 title: Aproximační Algoritmy
 pdf: true
 description: Poznámky z přednášky Aproximační Algoritmy (Jiří Sgall, 2021/2022).

@@ -1,5 +1,6 @@
 ---
 title: Videos
+schemaType: CollectionPage
 layout: default
 noHeading: true
 icon: fa-brands fa-youtube

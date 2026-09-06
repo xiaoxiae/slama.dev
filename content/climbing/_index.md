@@ -1,5 +1,6 @@
 ---
 title: Climbing
+schemaType: CollectionPage
 layout: default
 noHeading: true
 icon: fa-bolt

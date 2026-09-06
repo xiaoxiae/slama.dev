@@ -1,5 +1,6 @@
 ---
 date: '2021-02-19'
+lastmod: '2022-06-07'
 title: The C# programming language
 description: Lecture notes from The C# programming language lecture (Pavel Ježek,
   2020/2021).

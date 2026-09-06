@@ -1,5 +1,6 @@
 ---
 date: '2022-06-25'
+lastmod: '2023-12-27'
 title: Introduction
 ogImage: "01-align-to-example.webp"
 categoryPart: 1

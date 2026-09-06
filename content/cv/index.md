@@ -1,5 +1,6 @@
 ---
 title: CV
+schemaType: ProfilePage
 layout: default
 noHeading: true
 icon: fa-id-card

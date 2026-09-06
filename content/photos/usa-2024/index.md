@@ -1,5 +1,6 @@
 ---
 title: "USA 2024"
+schemaType: ImageGallery
 ogImage: "DSC5584.jpg"
 layout: photos
 centerTitle: true

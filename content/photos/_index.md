@@ -1,5 +1,6 @@
 ---
 title: Photos
+schemaType: CollectionPage
 layout: default
 noHeading: true
 icon: fa-camera

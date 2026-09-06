@@ -1,5 +1,6 @@
 ---
 date: '2024-10-13'
+lastmod: '2026-06-17'
 categoryPart: 2
 title: Groups, Animations, Signals, Effects
 ogImage: "02-add-remove.webp"
