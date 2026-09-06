@@ -83,3 +83,23 @@ flights:
     - file: 2026-08-27-heidelberg-farm-qtcbhdjt.mp4
     - file: 2026-08-27-heidelberg-farm-rzhqwafy.mp4
     place: heidelberg-farm
+  '2026-08-30':
+    clips:
+    - file: 2026-08-30-heidelberg-farm-dmgeqghv.mp4
+    - file: 2026-08-30-heidelberg-farm-gkkalnmx.mp4
+    - file: 2026-08-30-heidelberg-farm-hzkbjbfc.mp4
+    - file: 2026-08-30-heidelberg-farm-tqjrdrbz.mp4
+    - file: 2026-08-30-heidelberg-farm-wnasouto.mp4
+    - file: 2026-08-30-heidelberg-farm-wouxljqv.mp4
+    - file: 2026-08-30-heidelberg-farm-yvydjggx.mp4
+    note: Fun day with Kačka, some okay flights.
+    place: heidelberg-farm
+  '2026-09-01':
+    clips:
+    - file: 2026-09-01-heidelberg-farm-aoojzbed.mp4
+    - file: 2026-09-01-heidelberg-farm-bxncdgxf.mp4
+    - file: 2026-09-01-heidelberg-farm-grvvusol.mp4
+    - file: 2026-09-01-heidelberg-farm-qzigqjku.mp4
+    - file: 2026-09-01-heidelberg-farm-stnqhsdt.mp4
+    note: A motor died :(. Otherwise pretty bad flying.
+    place: heidelberg-farm

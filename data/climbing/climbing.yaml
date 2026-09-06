@@ -4961,3 +4961,63 @@ sessions:
       new: 1
       videos:
       - file: 2026-08-29-boulderwelt-karlsruhe-other-xuoaxlfg.mp4
+    note: Great duels with friends, really proud of the last send.
+  '2026-08-31':
+    note: Short but sweet.
+    tension:
+      6c+:
+        new: 1
+        videos:
+        - file: 2026-08-31-tension-6cp-pgjgxctm.mp4
+      7a:
+        new: 1
+        videos:
+        - file: 2026-08-31-tension-7a-ipzfqyqm.mp4
+      7a+:
+        new: 3
+        videos:
+        - file: 2026-08-31-tension-7ap-ebwkhrvx.mp4
+        - file: 2026-08-31-tension-7ap-lavronmw.mp4
+        - file: 2026-08-31-tension-7ap-nyecrtfy.mp4
+      angle: 40
+  '2026-09-02':
+    note: I feel like I'm getting more comfortable on TB.
+    tension:
+      7a:
+        new: 1
+        videos:
+        - file: 2026-09-02-tension-7a-gsgiccgp.mp4
+      7a+:
+        new: 4
+        videos:
+        - file: 2026-09-02-tension-7ap-ahrfnqur.mp4
+        - file: 2026-09-02-tension-7ap-bqlsszip.mp4
+        - file: 2026-09-02-tension-7ap-lzhkzrhy.mp4
+        - file: 2026-09-02-tension-7ap-mfxsksdy.mp4
+      7b+:
+        new: 1
+        videos:
+        - file: 2026-09-02-tension-7bp-lnciexob.mp4
+      angle: 40
+  '2026-09-05':
+    wall: Boulderhaus Mannheim
+    6:
+      new: 5
+      videos:
+      - file: 2026-09-05-boulderhaus-mannheim-6-bjcrtyyp.mp4
+      - file: 2026-09-05-boulderhaus-mannheim-6-btsprlkf.mp4
+      - file: 2026-09-05-boulderhaus-mannheim-6-doegonrj.mp4
+      - file: 2026-09-05-boulderhaus-mannheim-6-gqvhuigu.mp4
+      - file: 2026-09-05-boulderhaus-mannheim-6-lrzuyzzz.mp4
+    other:
+      new: 5
+      videos:
+      - file: 2026-09-05-boulderhaus-mannheim-other-eqeljagj.mp4
+      - file: 2026-09-05-boulderhaus-mannheim-other-mpvigylo.mp4
+      - file: 2026-09-05-boulderhaus-mannheim-other-sakweqxf.mp4
+      - file: 2026-09-05-boulderhaus-mannheim-other-ulnnroxv.mp4
+      - file: 2026-09-05-boulderhaus-mannheim-other-wxuszlyf.mp4
+    7:
+      new: 1
+      videos:
+      - file: 2026-09-05-boulderhaus-mannheim-7-irauifri.mp4
