@@ -1,9 +1,7 @@
 ---
 date: '2021-11-20'
 title: Bathroom Tile Programming
-description: Follow-up to a video I released about bathroom tile programming, containing
-  a few problems that didn't make it into the video (so it wouldn't be too long),
-  but are interesting to try to solve on your own.
+description: "A follow-up to my bathroom tile programming video, including a bunch more examples to try out."
 ---
 
 

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Security
+description: "Security info about this website."
 ---
 
 

@@ -2,6 +2,7 @@
 title: "USA 2024"
 layout: photos
 centerTitle: true
+description: "Photos from a 2024 trip across the USA."
 ---
 
 {{< image_section caption="**Day 1:** met up with Dylan and went to the Franklin Institute in Philly – they had an awesome LEGO exhibition from a guy that is living the dream. Afterwards, we walked around the city." >}}

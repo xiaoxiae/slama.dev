@@ -2,6 +2,7 @@
 title: Resolutions 2025
 layout: default
 noHeading: True
+description: "My long-term goals for 2025."
 ---
 
 A collection of my long-term goals and progress towards them.

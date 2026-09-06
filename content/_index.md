@@ -1,5 +1,6 @@
 ---
 title: Home
+description: "I'm Tom. I like programming, taking photos, making educational videos, computer games, and rock climbing."
 noHeading: true
 icon: fa-house
 ---

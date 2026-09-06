@@ -3,6 +3,7 @@ title: Printomat
 layout: default
 icon: fa-print
 htmx: true
+description: "Send me a message and it gets printed on my receipt printer."
 ---
 
 

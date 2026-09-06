@@ -3,6 +3,7 @@ title: CV
 layout: default
 noHeading: true
 icon: fa-id-card
+description: "My CV. Also available as a PDF."
 ---
 
 

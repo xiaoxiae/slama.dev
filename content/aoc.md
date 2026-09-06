@@ -3,6 +3,7 @@ title: Advent of Code
 layout: default
 noHeading: true
 hidden: true
+description: "My Advent of Code progress."
 ---
 
 {{< aoc >}}

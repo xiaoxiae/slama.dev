@@ -3,6 +3,7 @@ title: Photos
 layout: default
 noHeading: true
 icon: fa-camera
+description: "Collections of my photos from trips and everyday life."
 ---
 
 

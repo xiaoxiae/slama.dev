@@ -2,6 +2,7 @@
 title: "Austria 2023"
 layout: photos
 centerTitle: true
+description: "Photos from a 2023 trip to Austria."
 ---
 
 {{< image_section caption="<strong>Summit attempt 1:</strong> almost made it, but the conditions were terrible – the last ~4 hours were a field of rocks covered by snow, each of which was extremely slippery. We gave up around 2 hours before the summit and went back." >}}

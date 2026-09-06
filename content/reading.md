@@ -3,6 +3,7 @@ title: Reading
 layout: default
 noHeading: true
 icon: fa-book
+description: "Books I think are worth reading."
 ---
 
 

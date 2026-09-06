@@ -2,7 +2,7 @@
 date: '2024-10-04'
 categoryPart: 1
 title: From Manim to Motion Canvas
-description: After a year-long break (master thesis + Manim burnout), I'm switching to Motion Canvas and documenting the transition for other Manim users through a series that recreates my original Manim tutorials.
+description: "After a year-long break (master thesis + Manim burnout), I'm switching to Motion Canvas and recreating my Manim tutorials along the way."
 toc: true
 ---
 

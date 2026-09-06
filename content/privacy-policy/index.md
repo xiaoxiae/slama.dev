@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Privacy Policy
+description: "Send me your personal data."
 ---
 
 

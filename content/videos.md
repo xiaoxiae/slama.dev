@@ -3,6 +3,7 @@ title: Videos
 layout: default
 noHeading: true
 icon: fa-brands fa-youtube
+description: "My YouTube videos about computer science."
 ---
 
 

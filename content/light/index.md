@@ -2,6 +2,7 @@
 title: "Project Light"
 noHeading: true
 hidden: true
+description: "An attempt at writing some fantasy."
 ---
 
 <div class="story">

@@ -1,6 +1,9 @@
 ---
-title: Advent of Kačka
+title: "Advent of Kačka: 1. problém 💰"
 layout: default
+language: cs
+cascade:
+  language: cs
 ---
 
 > Nazdar lemro.

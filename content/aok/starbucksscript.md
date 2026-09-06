@@ -1,6 +1,7 @@
 ---
 noHeading: true
-title: Advent of Kačka
+title: "Advent of Kačka: 4. problém ☕ (pokračování²)"
+noindex: true
 ---
 
 > <span class="large">**Gratulace!**</span>

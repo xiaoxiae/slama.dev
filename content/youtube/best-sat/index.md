@@ -2,9 +2,7 @@
 date: '2022-05-20'
 title: Best-SAT
 pdf: true
-description: Expanded translation of my lecture notes from a Randomized and Approximation
-  Algorithms course that I took, and a more detailed explanation of the topics covered
-  in my video about BEST-SAT.
+description: "A follow-up to the BEST-SAT video, taken from my Approximation Algorithms course notes."
 ---
 
 

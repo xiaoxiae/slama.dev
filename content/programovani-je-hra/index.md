@@ -4,6 +4,7 @@ title: Programování je Hra
 hidden: true
 toc: true
 language: cs
+description: "Materiály k online kurzu programování v Pythonu pro začátečníky (2020/2021)."
 ---
 
 Vítejte na stránce kurzu Programování je Hra!

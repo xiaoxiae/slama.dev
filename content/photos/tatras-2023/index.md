@@ -2,6 +2,7 @@
 title: "Tatras 2023"
 layout: photos
 centerTitle: true
+description: "Photos from a 2023 trip to the Tatra mountains."
 ---
 
 {{< image_section >}}

@@ -2,6 +2,7 @@
 title: The Binding of Isaac
 layout: default
 noHeading: true
+description: "My secret TBOI page."
 ---
 
 

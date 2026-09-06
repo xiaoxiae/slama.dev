@@ -1,5 +1,6 @@
 ---
 title: Sphagetti
+description: "Just don't ask about this one, please."
 layout: default
 noHeading: true
 ---

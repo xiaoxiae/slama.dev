@@ -3,6 +3,7 @@ title: Climbing
 layout: default
 noHeading: true
 icon: fa-bolt
+description: "A journal of my climbing life, including videos!"
 ---
 
 

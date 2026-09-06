@@ -3,6 +3,7 @@ title: Stickers
 layout: default
 noHeading: true
 icon: fa-note-sticky
+description: "I love stickers and wanted to show you some of mine."
 ---
 
 
