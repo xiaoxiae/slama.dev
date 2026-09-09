@@ -103,3 +103,37 @@ flights:
     - file: 2026-09-01-heidelberg-farm-stnqhsdt.mp4
     note: A motor died :(. Otherwise pretty bad flying.
     place: heidelberg-farm
+  '2026-09-06':
+    clips:
+    - file: 2026-09-06-vrat-bdyxelof.mp4
+    - file: 2026-09-06-vrat-comumqpg.mp4
+    - file: 2026-09-06-vrat-odkuyqin.mp4
+    - file: 2026-09-06-vrat-sbflqpwi.mp4
+    - file: 2026-09-06-vrat-yxmilnrn.mp4
+    note: Casual flying with family.
+    place: vrat
+  '2026-09-08':
+    clips:
+    - file: 2026-09-08-praha-hriste-akuyocck.mp4
+    - file: 2026-09-08-praha-hriste-bhlvjtug.mp4
+    - file: 2026-09-08-praha-hriste-bloydyyg.mp4
+    - file: 2026-09-08-praha-hriste-ckvzrcyh.mp4
+    - file: 2026-09-08-praha-hriste-cxwnhwtr.mp4
+    - file: 2026-09-08-praha-hriste-eqrkgxjw.mp4
+    - file: 2026-09-08-praha-hriste-fmrchfxn.mp4
+    - file: 2026-09-08-praha-hriste-igvcywhp.mp4
+    - file: 2026-09-08-praha-hriste-jgxfbjrb.mp4
+    - file: 2026-09-08-praha-hriste-kdjdsvos.mp4
+    - file: 2026-09-08-praha-hriste-kefdqazb.mp4
+    - file: 2026-09-08-praha-hriste-qdrblwbn.mp4
+    - file: 2026-09-08-praha-hriste-qfovlqpb.mp4
+    - file: 2026-09-08-praha-hriste-uivnuouw.mp4
+    - file: 2026-09-08-praha-hriste-uqgvrngd.mp4
+    - description: A pretty clean segment.
+      file: 2026-09-08-praha-hriste-wmmbtbit.mp4
+    - description: Genuinely nice.
+      file: 2026-09-08-praha-hriste-xdehsodk.mp4
+    - description: Flew through a tiny thing!
+      file: 2026-09-08-praha-hriste-yckwmkjj.mp4
+    note: Flying with friends; honestly not bad.
+    place: praha-hriste

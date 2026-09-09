@@ -10,3 +10,12 @@ heidelberg-airfield:
 heidelberg-farm:
   name: "Heidelberg Farm / Field"
   coords: "49.36566954120332, 8.643427389580834"
+
+vrat:
+  name: "Vrát"
+
+snehov:
+  name: "Sněhov"
+
+praha-hriste:
+  name: "Praha Hřiště"
