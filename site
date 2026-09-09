@@ -171,17 +171,11 @@ function upload
     end
 
     if test $status -ne 0
-        echo "ERROR: rsync failed, not reloading nginx!"
+        echo "ERROR: rsync failed!"
         return 1
     end
 
-    echo "Reloading nginx..."
-    if not ssh slama-deploy@slama.dev 'sudo nginx -t && sudo systemctl reload nginx'
-        echo "ERROR: nginx did not reload; the new redirects are not live yet."
-        return 1
-    end
-
-    echo "Upload complete!"
+    echo "Upload complete! (redirects live via the infra repo: tools/redirects.py + pyinfra)"
 end
 
 # Main script logic
