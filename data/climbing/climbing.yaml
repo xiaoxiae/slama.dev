@@ -5000,6 +5000,7 @@ sessions:
         - file: 2026-09-02-tension-7bp-lnciexob.mp4
       angle: 40
   '2026-09-05':
+    note: Good duel.
     wall: Boulderhaus Mannheim
     6:
       new: 5
@@ -5021,3 +5022,22 @@ sessions:
       new: 1
       videos:
       - file: 2026-09-05-boulderhaus-mannheim-7-irauifri.mp4
+  '2026-09-09':
+    note: Tweaked a finger, genuinely fuck my life. Otherwise fine.
+    tension:
+      7a:
+        new: 2
+        videos:
+        - file: 2026-09-09-tension-7a-jvccdlxe.mp4
+        - file: 2026-09-09-tension-7a-vfaimmwe.mp4
+      7a+:
+        new: 3
+        videos:
+        - file: 2026-09-09-tension-7ap-mkxcgzxo.mp4
+        - file: 2026-09-09-tension-7ap-rplwmcmd.mp4
+        - file: 2026-09-09-tension-7ap-uppprxcq.mp4
+      7b:
+        new: 1
+        videos:
+        - file: 2026-09-09-tension-7b-oloosbca.mp4
+      angle: 40
