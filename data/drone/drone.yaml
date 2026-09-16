@@ -145,9 +145,8 @@ flights:
     note: Flying with friends; honestly not bad.
     place: praha-hriste
   2026-09-11-1:
-    note: New location unlocked. Pretty nice, but the actually interesting spot has sand under... shame.
     clips:
-      file: 2026-09-11-heidelberg-playground-cuzaring-ejnebpew.mp4
+    - file: 2026-09-11-heidelberg-playground-cuzaring-ejnebpew.mp4
     - file: 2026-09-11-heidelberg-playground-cuzaring-fcdaejfp.mp4
     - file: 2026-09-11-heidelberg-playground-cuzaring-gapureit.mp4
     - file: 2026-09-11-heidelberg-playground-cuzaring-uvxaefsm.mp4
@@ -155,11 +154,11 @@ flights:
     - file: 2026-09-11-heidelberg-playground-cuzaring-yeztptdd.mp4
     - file: 2026-09-11-heidelberg-playground-cuzaring-zjrmzqut.mp4
     - file: 2026-09-11-heidelberg-playground-cuzaring-znefdoyi.mp4
+    note: New location unlocked. Pretty nice, but the actually interesting spot has sand under... shame.
     place: heidelberg-playground-cuzaring
   2026-09-11-2:
-    note: Incredible location; fun wooden beams with sawdust under, great to crash-flip from.
     clips:
-      file: 2026-09-11-flight-bnmacsnj.mp4
+    - file: 2026-09-11-flight-bnmacsnj.mp4
     - file: 2026-09-11-flight-ebishbco.mp4
     - file: 2026-09-11-flight-gytdfxsd.mp4
     - file: 2026-09-11-flight-ignvrzhi.mp4
@@ -167,17 +166,17 @@ flights:
     - file: 2026-09-11-flight-vcfwexgv.mp4
     - description: Broke a fan here lol.
       file: 2026-09-11-flight-yhokuuxj.mp4
+    note: Incredible location; fun wooden beams with sawdust under, great to crash-flip from.
   '2026-09-12':
-    note: Did NOT catch the sunset here, although we tried.
     clips:
-      file: 2026-09-12-flight-nmtlmhmu.mp4
+    - file: 2026-09-12-flight-nmtlmhmu.mp4
     - file: 2026-09-12-flight-qnjveitz.mp4
     - file: 2026-09-12-flight-vmfyueln.mp4
     - file: 2026-09-12-flight-wdimbjnl.mp4
     - description: It was completely dark here btw. It's insane how well the camera performs even in near-absolute darkness. Excuse the flying hihi.
       file: 2026-09-12-flight-ziuzrazu.mp4
+    note: Did NOT catch the sunset here, although we tried.
   '2026-09-13':
-    note: Nothing too crazy; flying after climbing, forests like this truly suck.
     clips:
     - file: 2026-09-13-flight-nllkvgio.mp4
     - file: 2026-09-13-flight-nngsijqi.mp4
@@ -188,45 +187,22 @@ flights:
     - file: 2026-09-13-flight-xgvejodz.mp4
     - description: First-ever send attempt recorder on a drone.
       file: 2026-09-13-flight-ylrhrelk.mp4
+    note: Nothing too crazy; flying after climbing, forests like this truly suck.
   '2026-09-16':
-    note: Turns out the chateau has an absolutely sick playground that you can do tricks on. I need to calm down and fly much slower, but I think I'm generally getting better (smoother / more confident flying). But I'm also getting lazy and I think the drone will not survive much longer if I keep crash-flipping in tall grass; also, I keep holding the controller very asymmetrically -- I just noticed it and need to get that sorted until it becomes a habit.
     clips:
-    - cuts:
-      - VID00003.AVI: 16.5,3:00.04
-      - VID00004.AVI: 0,1:22
-    - cuts:
-      - VID00006.AVI: 18,3:00.05
-      - VID00007.AVI: 0,2:37
-    - cuts:
-      - VID00008.AVI: 29,1:44
-    - cuts:
-      - VID00008.AVI: 2:18,
-      - VID00009.AVI: 0,2:42
-    - cuts:
-      - VID00010.AVI: 48,3:00.06
-      - VID00011.AVI: 0,8
-    - cuts:
-      - VID00011.AVI: 43,1:29
-    - cuts:
-      - VID00011.AVI: 2:42,
-      - VID00012.AVI: 0,49
-    - cuts:
-      - VID00012.AVI: 1:08,2:58
-    - cuts:
-      - VID00013.AVI: 39,
-      - VID00014.AVI: 0,44
-    - cuts:
-      - VID00014.AVI: 1:06,
-      - VID00015.AVI: 0,56
-    - cuts:
-      - VID00016.AVI: 3,46
-    - cuts:
-      - VID00016.AVI: 1:17,
-      - VID00017.AVI: 0,2
-    - cuts:
-      - VID00017.AVI: 1:27,
-      - VID00018.AVI: 0,45
-    - cuts:
-      - VID00018.AVI: 1:49,3:00.06
-      - VID00019.AVI: 0,2:23
+    - file: 2026-09-16-krimml-chateau-playground-ateblhkv.mp4
+    - file: 2026-09-16-krimml-chateau-playground-cnbhxhbw.mp4
+    - file: 2026-09-16-krimml-chateau-playground-hhwuylqy.mp4
+    - file: 2026-09-16-krimml-chateau-playground-hogiptqa.mp4
+    - file: 2026-09-16-krimml-chateau-playground-ibbszzit.mp4
+    - file: 2026-09-16-krimml-chateau-playground-kjwbhehk.mp4
+    - file: 2026-09-16-krimml-chateau-playground-qshxaihr.mp4
+    - file: 2026-09-16-krimml-chateau-playground-rbtxfmkn.mp4
+    - file: 2026-09-16-krimml-chateau-playground-rjxdwnzi.mp4
+    - file: 2026-09-16-krimml-chateau-playground-rqvqkrnb.mp4
+    - file: 2026-09-16-krimml-chateau-playground-sndgcbzi.mp4
+    - file: 2026-09-16-krimml-chateau-playground-vbgchesv.mp4
+    - file: 2026-09-16-krimml-chateau-playground-wcunwjsn.mp4
+    - file: 2026-09-16-krimml-chateau-playground-yzcazvvr.mp4
+    note: Turns out the chateau has an absolutely sick playground that you can do tricks on. I need to calm down and fly much slower, but I think I'm generally getting better (smoother / more confident flying). But I'm also getting lazy and I think the drone will not survive much longer if I keep crash-flipping in tall grass; also, I keep holding the controller very asymmetrically -- I just noticed it and need to get that sorted until it becomes a habit.
     place: krimml-chateau-playground
