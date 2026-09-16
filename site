@@ -152,8 +152,32 @@ function check_localhost
     end
 end
 
+function confirm_release
+    echo "Comparing feed and sitemap against the last upload..."
+    uv run python scripts/release_diff.py check
+    set -l question
+    switch $status
+        case 0
+            return 0
+        case 1
+            set question "Publish these changes?"
+        case '*'
+            set question "Continue without a baseline?"
+    end
+
+    if not isatty stdin
+        echo "ERROR: the release needs confirming but stdin is not a terminal (use --yes)."
+        return 1
+    end
+    read -l -P "$question [y/N] " answer
+    if not string match -qi y -- "$answer"
+        echo "Aborted."
+        return 1
+    end
+end
+
 function upload
-    set -l mode $argv[1]
+    set -l yes (contains -- --yes $argv; or contains -- -y $argv; and echo 1)
 
     echo "Uploading site to VPS..."
 
@@ -162,18 +186,24 @@ function upload
         return 1
     end
 
-    if test "$mode" = "--full"
-        echo "Syncing files to VPS (full checksum verification)..."
-        rsync -av --checksum --delete public/ slama-deploy@slama.dev:/var/www/slama.dev/
-    else
-        echo "Syncing files to VPS..."
-        rsync -av --delete public/ slama-deploy@slama.dev:/var/www/slama.dev/
+    # Then confirm what the upload publishes or unpublishes
+    if test -n "$yes"
+        uv run python scripts/release_diff.py check
+    else if not confirm_release
+        return 1
     end
+
+    echo "Syncing files to VPS..."
+    rsync -av --delete public/ slama-deploy@slama.dev:/var/www/slama.dev/
 
     if test $status -ne 0
         echo "ERROR: rsync failed!"
         return 1
     end
+
+    # What is live now is the baseline for the next upload's confirmation
+    uv run python scripts/release_diff.py record
+    or echo "WARNING: could not record the release baseline; the next upload will ask again."
 
     echo "Upload complete! (redirects live via the infra repo: tools/redirects.py + pyinfra)"
 end
@@ -191,11 +221,11 @@ switch $argv[1]
     case "check"
         check
     case "upload"
-        upload $argv[2]
+        upload $argv[2..]
     case "all"
-        build && upload $argv[2]
+        build && upload $argv[2..]
     case ""
-        build && upload $argv[2]
+        build && upload $argv[2..]
     case "*"
         echo "Usage: ./site [serve|clean|stickers|build|check|upload|all]"
         echo ""
@@ -205,7 +235,8 @@ switch $argv[1]
         echo "  stickers - Rebuild the sticker sheet from content/stickers/stickers.svg"
         echo "  build   - Build the site (minified)"
         echo "  check   - Run all checks (html-validate, lychee, pa11y)"
-        echo "  upload  - Check for localhost and upload to VPS"
-        echo "            add --full for a checksum-verified pass"
+        echo "  upload  - Check for localhost, confirm feed/sitemap changes since the"
+        echo "            last upload, then rsync to VPS"
+        echo "            add --yes/-y to skip the confirmation"
         echo "  all     - Build and upload (default)"
 end
