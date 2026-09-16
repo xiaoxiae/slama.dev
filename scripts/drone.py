@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Drone journal: `add <place>` registers recordings in sources/, `build` splices
+Drone journal: `add [place]` registers recordings in sources/, `build` splices
 each clip's cuts into a video and folds it into drone.yaml.
 """
 
@@ -46,7 +46,9 @@ DRONE_YAML_HEADER = """\
 # Drone journal, written by scripts/drone.py (see `add` / `build`).
 # Rendered by layouts/shortcodes/drone-journal.html.
 #
-# A flight is a `place` (a key of places.yaml), an optional `note`, and a list
+# A flight is an optional `place` (a key of places.yaml, or an `alias` set
+# there, which this script swaps for the key on its next run; leave it out for a
+# spot not worth naming), an optional `note`, and a list
 # of `clips`; each clip is an optional `description` plus an ordered list of
 # `cuts`, spliced into one video in the order written. A cut is
 # "FILE: START,END" (timestamps as SS, M:SS or H:MM:SS), a range of a recording
@@ -58,6 +60,11 @@ DRONE_YAML_HEADER = """\
 #     cuts:
 #     - VID00004.AVI: 0:12,0:31
 #     - VID00005.AVI: 0,10
+#
+# Flights are keyed by date. A day with several flights numbers them
+# `YYYY-MM-DD-1`, `YYYY-MM-DD-2`, ...; `add` does that itself, renaming the bare
+# date to `-1` when a second place is flown that day. The number is only part of
+# the key (and the page anchor), never of the filenames.
 #
 # `add` seeds one clip per new recording spanning its whole length: trim it,
 # split it, or merge it into another. `build` cuts every clip of a flight,
@@ -87,13 +94,86 @@ def fail(message: str) -> NoReturn:
     sys.exit(1)
 
 
-def normalized_flights(data: dict) -> dict:
+# A flight key is a date, numbered `-1`, `-2`, ... only when a day has several.
+FLIGHT_KEY = re.compile(r"^(\d{4}-\d{2}-\d{2})(?:-([1-9]\d*))?$")
+
+
+def flight_date(key: str) -> str:
+    return key[:10]
+
+
+def flight_index(key: str) -> int:
+    """0 for a bare date, else the flight's number within the day."""
+    match = FLIGHT_KEY.match(key)
+    return int(match.group(2) or 0) if match else 0
+
+
+def normalized_flights(data: dict, places: dict) -> dict:
+    """Flights keyed by str, validated, with place aliases swapped for keys."""
     flights = data.get("flights") or {}
     if not isinstance(flights, dict):
-        fail("'flights' in drone.yaml is not a mapping of date -> flight")
-    flights = {str(date): flight for date, flight in flights.items()}
+        fail("'flights' in drone.yaml is not a mapping of flight key -> flight")
+    flights = {str(key): flight for key, flight in flights.items()}
     data["flights"] = flights
+
+    bare: set[str] = set()
+    numbered: set[str] = set()
+    for key in flights:
+        if not FLIGHT_KEY.match(key):
+            fail(f"flight key '{key}' is not YYYY-MM-DD or YYYY-MM-DD-N")
+        (numbered if flight_index(key) else bare).add(flight_date(key))
+    for date in sorted(bare & numbered):
+        fail(f"{date} is both a flight of its own and numbered; rename it to {date}-1")
+
+    for key, flight in flights.items():
+        place = flight.get("place") if isinstance(flight, dict) else None
+        if isinstance(place, str) and place not in places:
+            canonical = place_key(place, places)
+            if canonical is not None:
+                print(f"{key}: place '{place}' is an alias of '{canonical}'.")
+                flight["place"] = canonical
+
     return flights
+
+
+def day_flights(flights: dict, date: str) -> list[str]:
+    """Keys of the flights on `date`, in flight order."""
+    keys = [key for key in flights if flight_date(key) == date]
+    return sorted(keys, key=flight_index)
+
+
+def rename_flight(flights: dict, old: str, new: str) -> None:
+    if new in flights:
+        fail(f"cannot rename flight {old} to {new}: it already exists")
+    renamed = {new if key == old else key: flight for key, flight in flights.items()}
+    flights.clear()
+    flights.update(renamed)
+    print(f"renaming flight {old} to {new}.")
+
+
+def choose_flight(
+    flights: dict, date: str, place: str | None, index: int | None
+) -> str:
+    """The key new recordings of `place` on `date` go under, renaming as needed.
+
+    Pure: `flights` is the mapping to be edited, and the chosen key may not
+    exist in it yet. With no explicit `index`, the day's latest flight is reused
+    when it is at the same place (so `add` can be re-run as recordings are
+    dropped in); a different place starts the next flight of the day.
+    """
+    existing = day_flights(flights, date)
+
+    if index is None:
+        if not existing:
+            return date
+        latest = existing[-1]
+        if flights[latest].get("place") == place:
+            return latest
+        index = flight_index(latest) + 1 if flight_index(latest) else 2
+
+    if existing == [date]:
+        rename_flight(flights, date, f"{date}-1")
+    return f"{date}-{index}"
 
 
 def parse_timestamp(value: str) -> float:
@@ -166,18 +246,19 @@ def pending_clips(flight: dict) -> list[dict]:
     return [clip for clip in flight.get("clips") or [] if is_pending(clip)]
 
 
-def clip_prefix(date: str, flight: dict) -> str:
-    """Everything before the key. Date first, so the folder sorts by flight."""
-    return f"{date}-{slugify(str(flight.get('place') or 'flight')) or 'flight'}"
+def clip_prefix(key: str, flight: dict) -> str:
+    """Everything before the key. Date first, so the folder sorts by day."""
+    place = slugify(str(flight.get("place") or "flight")) or "flight"
+    return f"{flight_date(key)}-{place}"
 
 
-def plan_names(date: str, flight: dict, taken: set[str]) -> list[str]:
+def plan_names(key: str, flight: dict, taken: set[str]) -> list[str]:
     """A filename per pending clip, keyed so the flight sorts in list order.
 
     Built clips pin the keys around each pending run, so a clip added to a
     flight that was already built still lands in the right place.
     """
-    prefix = clip_prefix(date, flight)
+    prefix = clip_prefix(key, flight)
     clips = flight.get("clips") or []
     keys = [
         None if is_pending(clip) else file_key(str(clip.get("file", "")))
@@ -222,18 +303,47 @@ def save_drone_yaml(data: dict) -> None:
     DRONE_YAML.write_text(DRONE_YAML_HEADER + text)
 
 
-def resolve_place(name: str) -> str:
-    slug = slugify(name)
+def load_places() -> dict:
+    """places.yaml, checked so no alias doubles as another place's key or alias."""
     places = load_yaml(PLACES_YAML)
+    owner: dict[str, str] = {}
     for key, place in places.items():
-        display = place.get("name") if isinstance(place, dict) else None
-        if slug in (slugify(str(key)), slugify(display or "")):
-            return str(key)
+        alias = place.get("alias") if isinstance(place, dict) else None
+        for label in (str(key), alias):
+            if not isinstance(label, str):
+                continue
+            slug = slugify(label)
+            if owner.get(slug, str(key)) != str(key):
+                fail(
+                    f"{PLACES_YAML.name}: '{label}' names both {owner[slug]} and {key}"
+                )
+            owner[slug] = str(key)
+    return places
 
-    fail(
-        f"'{name}' is not in {PLACES_YAML.name}; add it there first "
-        f"(known: {', '.join(str(k) for k in places)})"
-    )
+
+def place_key(name: str, places: dict) -> str | None:
+    """The key of the place `name` refers to: a key, display name or alias."""
+    slug = slugify(name)
+    for key in places:
+        if slugify(str(key)) == slug:
+            return str(key)
+    for key, place in places.items():
+        if not isinstance(place, dict):
+            continue
+        for label in (place.get("name"), place.get("alias")):
+            if isinstance(label, str) and slugify(label) == slug:
+                return str(key)
+    return None
+
+
+def resolve_place(name: str, places: dict) -> str:
+    key = place_key(name, places)
+    if key is None:
+        fail(
+            f"'{name}' is not in {PLACES_YAML.name}; add it there first "
+            f"(known: {', '.join(str(k) for k in places)})"
+        )
+    return key
 
 
 def cmd_add(args):
@@ -241,12 +351,14 @@ def cmd_add(args):
     SOURCES_FOLDER.mkdir(parents=True, exist_ok=True)
     VIDEOS_FOLDER.mkdir(parents=True, exist_ok=True)
 
+    places = load_places()
     data = load_drone_yaml()
-    flights = normalized_flights(data)
+    flights = normalized_flights(data, places)
     known = known_files(data)
 
-    date = args.date or str(datetime.date.today())
-    place = resolve_place(args.place)
+    date, index = args.date or (str(datetime.date.today()), None)
+    place = resolve_place(args.place, places) if args.place else None
+    key: str | None = None
     added = 0
 
     for file in sorted(os.listdir(SOURCES_FOLDER)):
@@ -258,8 +370,11 @@ def cmd_add(args):
             print(f"skipping {file} (already referenced in drone.yaml).")
             continue
 
-        flight = flights.setdefault(date, {})
-        flight.setdefault("place", place)
+        if key is None:
+            key = choose_flight(flights, date, place, index)
+        flight = flights.setdefault(key, {})
+        if place is not None:
+            flight["place"] = place
 
         try:
             length = float(
@@ -277,7 +392,7 @@ def cmd_add(args):
     save_drone_yaml(data)
 
     if added:
-        print(f"\nAdded {added} new recording(s) under {date}.")
+        print(f"\nAdded {added} new recording(s) under {key}.")
         print(f"Edit the cuts in {DRONE_YAML}, then run `build`.")
     else:
         print("No new recordings found.")
@@ -352,7 +467,7 @@ def verify_clip(path: Path, expected_duration: float) -> None:
 
 
 def process_flight(
-    date: str, flight: dict, cuts_by_clip: list[list], names: list[str]
+    key: str, flight: dict, cuts_by_clip: list[list], names: list[str]
 ) -> list[dict]:
     """All-or-nothing: any failure removes every file this call created."""
     staged: list[tuple[Path, Path, dict]] = []
@@ -389,28 +504,29 @@ def process_flight(
     return [entry for _, _, entry in staged]
 
 
-def validate_flight(date: str, flight: dict) -> list[list] | None:
+def validate_flight(key: str, flight: dict, places: dict) -> list[list] | None:
     todos = find_todos(flight)
     if todos:
-        print(f"WARNING: skipping {date}, it still contains placeholders:")
+        print(f"WARNING: skipping {key}, it still contains placeholders:")
         for todo in todos:
             print(f"  - {todo}")
         return None
 
-    if flight.get("place") not in load_yaml(PLACES_YAML):
-        fail(f"{date}: place '{flight.get('place')}' is not in {PLACES_YAML.name}")
+    place = flight.get("place")
+    if place is not None and place not in places:
+        fail(f"{key}: place '{place}' is not in {PLACES_YAML.name}")
 
     clips = pending_clips(flight)
     files: list[str] = []
     for clip in clips:
         cuts = clip.get("cuts")
         if not isinstance(cuts, list) or not cuts:
-            fail(f"{date}: clip {describe_clip(clip)} needs a non-empty list of cuts")
+            fail(f"{key}: clip {describe_clip(clip)} needs a non-empty list of cuts")
         for item in cuts:
             try:
                 file = cut_file(item)
             except ValueError as error:
-                fail(f"{date}: {error}")
+                fail(f"{key}: {error}")
             if file not in files:
                 files.append(file)
 
@@ -419,7 +535,7 @@ def validate_flight(date: str, flight: dict) -> list[list] | None:
     for file in files:
         source_path = SOURCES_FOLDER / file
         if not source_path.exists():
-            fail(f"{date}: nonexistent recording '{file}'")
+            fail(f"{key}: nonexistent recording '{file}'")
         try:
             lengths[file] = float(
                 probe(source_path).get("format", {}).get("duration", 0)
@@ -427,18 +543,18 @@ def validate_flight(date: str, flight: dict) -> list[list] | None:
             stream = video_stream(source_path)
             sizes[file] = (int(stream["width"]), int(stream["height"]))
         except RuntimeError as error:
-            fail(f"{date}: {file}: {error}")
+            fail(f"{key}: {file}: {error}")
 
     cuts_by_clip: list[list] = []
     for clip in clips:
         try:
             cuts = parse_clip(clip, lengths)
         except ValueError as error:
-            fail(f"{date}: {error}")
+            fail(f"{key}: {error}")
         cuts_by_clip.append(cuts)
         if len({sizes[file] for file, _, _ in cuts}) > 1:
             fail(
-                f"{date}: clip {describe_clip(clip)} mixes recordings of different "
+                f"{key}: clip {describe_clip(clip)} mixes recordings of different "
                 "resolutions: "
                 + ", ".join(
                     f"{file} {sizes[file][0]}x{sizes[file][1]}" for file, _, _ in cuts
@@ -447,7 +563,7 @@ def validate_flight(date: str, flight: dict) -> list[list] | None:
         for file, _, end in cuts:
             if end > lengths[file] + RANGE_EPSILON:
                 fail(
-                    f"{date}: a cut of clip {describe_clip(clip)} ends at {end:g}s "
+                    f"{key}: a cut of clip {describe_clip(clip)} ends at {end:g}s "
                     f"but '{file}' is only {lengths[file]:.1f}s long"
                 )
 
@@ -460,11 +576,12 @@ def cmd_build(args):
     VIDEOS_FOLDER.mkdir(parents=True, exist_ok=True)
     SOURCES_FOLDER.mkdir(parents=True, exist_ok=True)
 
+    places = load_places()
     data = load_drone_yaml()
-    flights = normalized_flights(data)
+    flights = normalized_flights(data, places)
     pending = {
-        date: flight
-        for date, flight in flights.items()
+        key: flight
+        for key, flight in flights.items()
         if isinstance(flight, dict) and pending_clips(flight)
     }
 
@@ -474,25 +591,25 @@ def cmd_build(args):
 
     ready: dict[str, list[list]] = {}
     owner: dict[str, str] = {}
-    for date, flight in pending.items():
-        cuts_by_clip = validate_flight(date, flight)
+    for key, flight in pending.items():
+        cuts_by_clip = validate_flight(key, flight, places)
         if cuts_by_clip is None:
             continue
-        ready[date] = cuts_by_clip
+        ready[key] = cuts_by_clip
         for file in {file for cuts in cuts_by_clip for file, _, _ in cuts}:
             if file in owner:
-                fail(f"'{file}' is used by both {owner[file]} and {date}")
-            owner[file] = date
+                fail(f"'{file}' is used by both {owner[file]} and {key}")
+            owner[file] = key
 
     taken = existing_keys(VIDEOS_FOLDER)
     total = 0
     try:
-        for date, cuts_by_clip in ready.items():
-            flight = pending[date]
+        for key, cuts_by_clip in ready.items():
+            flight = pending[key]
             used = {file for cuts in cuts_by_clip for file, _, _ in cuts}
-            names = plan_names(date, flight, taken)
+            names = plan_names(key, flight, taken)
             taken |= {Path(name).stem.rsplit("-", 1)[-1] for name in names}
-            entries = process_flight(date, flight, cuts_by_clip, names)
+            entries = process_flight(key, flight, cuts_by_clip, names)
             built = iter(entries)
 
             flight["clips"] = [
@@ -514,16 +631,32 @@ def cmd_build(args):
     print(f"\n{total} drone clip(s) generated.", flush=True)
 
 
+def parse_flight_key(value: str) -> tuple[str, int | None]:
+    match = FLIGHT_KEY.match(value)
+    if not match:
+        raise argparse.ArgumentTypeError(f"'{value}' is not YYYY-MM-DD or YYYY-MM-DD-N")
+    try:
+        date = str(datetime.date.fromisoformat(match.group(1)))
+    except ValueError as error:
+        raise argparse.ArgumentTypeError(str(error)) from None
+    return date, int(match.group(2)) if match.group(2) else None
+
+
 def main():
     parser = argparse.ArgumentParser(description="Drone content management")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     add_parser = subparsers.add_parser("add", help="Register new recordings")
-    add_parser.add_argument("place", help="Place key (see places.yaml)")
+    add_parser.add_argument(
+        "place",
+        nargs="?",
+        help="Place key or alias (see places.yaml); omit for a spot not worth naming",
+    )
     add_parser.add_argument(
         "--date",
-        type=lambda v: str(datetime.date.fromisoformat(v)),
-        help="Flight date (YYYY-MM-DD); defaults to today",
+        type=parse_flight_key,
+        help="Flight date (YYYY-MM-DD), or YYYY-MM-DD-N to target one flight of "
+        "a day with several; defaults to today",
     )
     add_parser.set_defaults(func=cmd_add)
 

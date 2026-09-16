@@ -1,24 +1,29 @@
 {{- $flights := and hugo.Data.drone hugo.Data.drone.drone hugo.Data.drone.drone.flights -}}
 {{- $places := and hugo.Data.drone hugo.Data.drone.places | default dict -}}
 
-{{- $dates := slice -}}
-{{- range $date, $flight := $flights -}}
+{{/* A flight is keyed by date, numbered `-1`, `-2`, ... when a day has several.
+     Sorted on a zero-padded number so ten flights a day still order numerically. */}}
+{{- $entries := slice -}}
+{{- range $key, $flight := $flights -}}
   {{- $built := gt (len $flight.clips) 0 -}}
   {{- range $flight.clips -}}
     {{- if not .file -}}{{- $built = false -}}{{- end -}}
   {{- end -}}
   {{- if $built -}}
-    {{- $dates = $dates | append $date -}}
+    {{- $n := 0 -}}
+    {{- with index (findRESubmatch `-(\d+)$` (substr $key 10)) 0 -}}{{- $n = int (index . 1) -}}{{- end -}}
+    {{- $entries = $entries | append (dict "key" $key "order" (printf "%s-%03d" (substr $key 0 10) $n)) -}}
   {{- end -}}
 {{- end -}}
-{{- $dates = sort $dates "value" "desc" -}}
+{{- $entries = sort $entries "order" "desc" -}}
 
 <div class='drone-journal'>
 {{- $currentYear := 0 -}}
 
-{{- range $dates -}}
-  {{- $date := . -}}
-  {{- $flight := index $flights $date -}}
+{{- range $entries -}}
+  {{- $key := .key -}}
+  {{- $flight := index $flights $key -}}
+  {{- $date := substr $key 0 10 -}}
   {{- $d := time $date -}}
 
   {{- if ne $currentYear $d.Year -}}
@@ -42,7 +47,7 @@
     {{- end -}}
   {{- end -}}
 
-<div class='drone-entry' id='{{ $date }}'>
+<div class='drone-entry' id='{{ $key }}'>
 <p class='drone-entry-header'><strong>{{ $d.Day }}. {{ $d.Format "1" }}. {{ $d.Year }}</strong>
   {{- with $location }} (at
     {{- if $lat }} <a href="{{ printf "https://www.openstreetmap.org/?mlat=%s&mlon=%s#map=15/%s/%s" $lat $lon $lat $lon }}">{{ . }}</a>
@@ -55,12 +60,12 @@
   {{- end -}}
 
 <div class='drone-grid'>
-  {{- range $flight.clips -}}
+  {{- range collections.Reverse $flight.clips -}}
     {{- $clip := . -}}
     {{- with $clip.file -}}
 <figure>
 <video poster='/drone/videos/{{ replaceRE `\.mp4$` ".webp" . }}' controls preload='none' aria-label='
-  {{- with $clip.description }}{{ . }}{{ else }}Drone clip from {{ $location }}, {{ $date }}{{ end }}'>
+  {{- with $clip.description }}{{ . }}{{ else }}Drone clip{{ with $location }} from {{ . }}{{ end }}, {{ $date }}{{ end }}'>
 <source src='/drone/videos/{{ . }}' type='video/mp4'>
 </video>
       {{- with $clip.description -}}

@@ -1,7 +1,9 @@
 # Drone journal, written by scripts/drone.py (see `add` / `build`).
 # Rendered by layouts/shortcodes/drone-journal.html.
 #
-# A flight is a `place` (a key of places.yaml), an optional `note`, and a list
+# A flight is an optional `place` (a key of places.yaml, or an `alias` set
+# there, which this script swaps for the key on its next run; leave it out for a
+# spot not worth naming), an optional `note`, and a list
 # of `clips`; each clip is an optional `description` plus an ordered list of
 # `cuts`, spliced into one video in the order written. A cut is
 # "FILE: START,END" (timestamps as SS, M:SS or H:MM:SS), a range of a recording
@@ -13,6 +15,11 @@
 #     cuts:
 #     - VID00004.AVI: 0:12,0:31
 #     - VID00005.AVI: 0,10
+#
+# Flights are keyed by date. A day with several flights numbers them
+# `YYYY-MM-DD-1`, `YYYY-MM-DD-2`, ...; `add` does that itself, renaming the bare
+# date to `-1` when a second place is flown that day. The number is only part of
+# the key (and the page anchor), never of the filenames.
 #
 # `add` seeds one clip per new recording spanning its whole length: trim it,
 # split it, or merge it into another. `build` cuts every clip of a flight,
@@ -137,3 +144,89 @@ flights:
       file: 2026-09-08-praha-hriste-yckwmkjj.mp4
     note: Flying with friends; honestly not bad.
     place: praha-hriste
+  2026-09-11-1:
+    note: New location unlocked. Pretty nice, but the actually interesting spot has sand under... shame.
+    clips:
+      file: 2026-09-11-heidelberg-playground-cuzaring-ejnebpew.mp4
+    - file: 2026-09-11-heidelberg-playground-cuzaring-fcdaejfp.mp4
+    - file: 2026-09-11-heidelberg-playground-cuzaring-gapureit.mp4
+    - file: 2026-09-11-heidelberg-playground-cuzaring-uvxaefsm.mp4
+    - file: 2026-09-11-heidelberg-playground-cuzaring-wfsqynzd.mp4
+    - file: 2026-09-11-heidelberg-playground-cuzaring-yeztptdd.mp4
+    - file: 2026-09-11-heidelberg-playground-cuzaring-zjrmzqut.mp4
+    - file: 2026-09-11-heidelberg-playground-cuzaring-znefdoyi.mp4
+    place: heidelberg-playground-cuzaring
+  2026-09-11-2:
+    note: Incredible location; fun wooden beams with sawdust under, great to crash-flip from.
+    clips:
+      file: 2026-09-11-flight-bnmacsnj.mp4
+    - file: 2026-09-11-flight-ebishbco.mp4
+    - file: 2026-09-11-flight-gytdfxsd.mp4
+    - file: 2026-09-11-flight-ignvrzhi.mp4
+    - file: 2026-09-11-flight-rybknigj.mp4
+    - file: 2026-09-11-flight-vcfwexgv.mp4
+    - description: Broke a fan here lol.
+      file: 2026-09-11-flight-yhokuuxj.mp4
+  '2026-09-12':
+    note: Did NOT catch the sunset here, although we tried.
+    clips:
+      file: 2026-09-12-flight-nmtlmhmu.mp4
+    - file: 2026-09-12-flight-qnjveitz.mp4
+    - file: 2026-09-12-flight-vmfyueln.mp4
+    - file: 2026-09-12-flight-wdimbjnl.mp4
+    - description: It was completely dark here btw. It's insane how well the camera performs even in near-absolute darkness. Excuse the flying hihi.
+      file: 2026-09-12-flight-ziuzrazu.mp4
+  '2026-09-13':
+    note: Nothing too crazy; flying after climbing, forests like this truly suck.
+    clips:
+    - file: 2026-09-13-flight-nllkvgio.mp4
+    - file: 2026-09-13-flight-nngsijqi.mp4
+    - description: An absolutely unhinged save.
+      file: 2026-09-13-flight-pfmdmwqo.mp4
+    - file: 2026-09-13-flight-vialnidf.mp4
+    - file: 2026-09-13-flight-vungrcby.mp4
+    - file: 2026-09-13-flight-xgvejodz.mp4
+    - description: First-ever send attempt recorder on a drone.
+      file: 2026-09-13-flight-ylrhrelk.mp4
+  '2026-09-16':
+    note: Turns out the chateau has an absolutely sick playground that you can do tricks on. I need to calm down and fly much slower, but I think I'm generally getting better (smoother / more confident flying). But I'm also getting lazy and I think the drone will not survive much longer if I keep crash-flipping in tall grass; also, I keep holding the controller very asymmetrically -- I just noticed it and need to get that sorted until it becomes a habit.
+    clips:
+    - cuts:
+      - VID00003.AVI: 16.5,3:00.04
+      - VID00004.AVI: 0,1:22
+    - cuts:
+      - VID00006.AVI: 18,3:00.05
+      - VID00007.AVI: 0,2:37
+    - cuts:
+      - VID00008.AVI: 29,1:44
+    - cuts:
+      - VID00008.AVI: 2:18,
+      - VID00009.AVI: 0,2:42
+    - cuts:
+      - VID00010.AVI: 48,3:00.06
+      - VID00011.AVI: 0,8
+    - cuts:
+      - VID00011.AVI: 43,1:29
+    - cuts:
+      - VID00011.AVI: 2:42,
+      - VID00012.AVI: 0,49
+    - cuts:
+      - VID00012.AVI: 1:08,2:58
+    - cuts:
+      - VID00013.AVI: 39,
+      - VID00014.AVI: 0,44
+    - cuts:
+      - VID00014.AVI: 1:06,
+      - VID00015.AVI: 0,56
+    - cuts:
+      - VID00016.AVI: 3,46
+    - cuts:
+      - VID00016.AVI: 1:17,
+      - VID00017.AVI: 0,2
+    - cuts:
+      - VID00017.AVI: 1:27,
+      - VID00018.AVI: 0,45
+    - cuts:
+      - VID00018.AVI: 1:49,3:00.06
+      - VID00019.AVI: 0,2:23
+    place: krimml-chateau-playground
