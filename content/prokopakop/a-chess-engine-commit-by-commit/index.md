@@ -316,7 +316,7 @@ In Prokopakop, I distinguish between three cases, depending on the **number of a
 - **2 attacks+**: king can **only move away**
 
 Separating the cases makes legal move generation more manageable, and makes it much faster than make/unmake-based move generation.
-Instead of going through the code (which, if you're interested, [can be found here](https://github.com/xiaoxiae/Prokopakop/blob/master/src/game/board.rs)), I'll point you towards **[Peter Ellis Jones' excellent blog post](https://peterellisjones.com/posts/generating-legal-chess-moves-efficiently/)** on legal move generation, as it was a great resource when implementing it myself.
+Instead of going through the code (which, if you're interested, [can be found here](https://github.com/xiaoxiae/Prokopakop/blob/main/src/game/board.rs)), I'll point you towards **[Peter Ellis Jones' excellent blog post](https://peterellisjones.com/posts/generating-legal-chess-moves-efficiently/)** on legal move generation, as it was a great resource when implementing it myself.
 
 [`990204`](https://github.com/xiaoxiae/Prokopakop/commit/99020474e514d47bc72b25f46bc77fbd804b5dd7)~[`3ff11a`](https://github.com/xiaoxiae/Prokopakop/commit/3ff11a44e6945f5de5cdded988b73f611b9e5f62)
 {.commit-header}
@@ -662,7 +662,7 @@ To not waste time, we explore them with a **reduced depth** and distinguish two 
 
 Take note that in this case, we **don't care about beta** when checking the result of the reduced search, since we're expecting the moves to be bad anyway -- we only care about checking that they're worse than alpha and so not worth consideration.
 
-[`da6dbb0`](https://github.com/xiaoxiae/Prokopakop/commit/da6dbb0)
+[`da6dbb0`](https://github.com/xiaoxiae/Prokopakop/commit/da6dbb0) · [v1.0.0](/prokopakop/v1.0.0.zip)
 {.commit-header}
 
 #### Aspiration Windows

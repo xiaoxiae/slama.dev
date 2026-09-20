@@ -43,7 +43,7 @@ T̶̩̏h̸̥̬̎͊̊̇͂̌̊ȩ̶̻̺̲̇͠r̵̢̛̺̥͖̟̙̫̆̂̑ę̷̘͔̼̤�
 Just kidding again, [here are the NNUEs](#evaluation).
 </details>
 
-[`7cfbb74`](https://github.com/xiaoxiae/Prokopakop/commit/7cfbb74)
+[`5d89ee3`](https://github.com/xiaoxiae/Prokopakop/commit/5d89ee3)
 {.commit-header}
 
 #### PV-search
@@ -58,7 +58,7 @@ A null-window search only answers the question _is this better than what I alrea
 Since we're usually right and null-window searches are much faster (they only answer yes/no, not by how much better), this saves time, even though we sometimes have to re-search if we're wrong about PV.
 
 <!--
-[`5ddad41`](https://github.com/xiaoxiae/Prokopakop/commit/5ddad41)
+[`3d80f40`](https://github.com/xiaoxiae/Prokopakop/commit/3d80f40)
 {.commit-header}
 
 #### Improved TT
@@ -66,7 +66,7 @@ Since we're usually right and null-window searches are much faster (they only an
 https://www.chessprogramming.org/Transposition_Table
 -->
 
-[`d00348d`](https://github.com/xiaoxiae/Prokopakop/commit/d00348d)
+[`8c110ce`](https://github.com/xiaoxiae/Prokopakop/commit/8c110ce)
 {.commit-header}
 
 #### History Heuristic
@@ -91,7 +91,7 @@ The reason for using depth squared instead of constant values is that deeper cut
 To make sure entry values don't explode, we can **decay** all entries over time (i.e. divide by 2 after each added move), or interpolate to some max value based on current value and depth (as Stockfish does).
 
 
-[`7490eba`](https://github.com/xiaoxiae/Prokopakop/commit/7490eba)
+[`1930e29`](https://github.com/xiaoxiae/Prokopakop/commit/1930e29)
 {.commit-header}
 
 #### (Reverse) Futility Pruning
@@ -107,7 +107,7 @@ The higher the depth we have remaining, the larger the margin should be for us t
 
 Similarly, if our position is **amazing** (`static eval - reverse_margin(depth) >= beta`), we can **skip the branch entirely** since, no matter the type of move, we will not get to play it anyway (again setting margins depending on the remaining depth).
 
-[`85e2dae`](https://github.com/xiaoxiae/Prokopakop/commit/85e2dae)
+[`8ca5817`](https://github.com/xiaoxiae/Prokopakop/commit/8ca5817) · [v1.1.0](/prokopakop/v1.1.0.zip)
 {.commit-header}
 
 #### Improving Time Management
@@ -146,7 +146,7 @@ Black won that game, because it's my engine and I wouldn't show you a loss.
 {{< image_row "time-management.png :: Time-per-move graph of two chess engines." >}}
 {{< /image_section >}}
 
-[`c056f9b`](https://github.com/xiaoxiae/Prokopakop/commit/c056f9b)
+[`ade21fd`](https://github.com/xiaoxiae/Prokopakop/commit/ade21fd) · [v1.3.0](/prokopakop/v1.3.0.zip)
 {.commit-header}
 
 #### Static Exchange Evaluation
@@ -228,7 +228,7 @@ With the search functionality working reasonably well, we can focus on improving
 The current way we're doing it will not scale well, as it's hand-crafted.
 We can improve it up to a point, but wouldn't it be so much easier to descend some gradients instead?
 
-[`a91a3f2`](https://github.com/xiaoxiae/Prokopakop/commit/a91a3f2)~[`5063949`](https://github.com/xiaoxiae/Prokopakop/commit/5063949)
+[`6d74d42`](https://github.com/xiaoxiae/Prokopakop/commit/6d74d42)~[`0f789ac`](https://github.com/xiaoxiae/Prokopakop/commit/0f789ac) · [v1.2.0](/prokopakop/v1.2.0.zip)
 {.commit-header}
 
 #### King Safety
@@ -286,7 +286,7 @@ This, with `SQUARE_ATTACK_FACTOR` being `1/50`, effectively meant that before th
 
 I stand by the commit message.
 
-[`9cfd936`](https://github.com/xiaoxiae/Prokopakop/commit/9cfd936)~**current**
+[`8dc0414`](https://github.com/xiaoxiae/Prokopakop/commit/8dc0414)~**current** · [v1.4.0](/prokopakop/v1.4.0.zip)
 {.commit-header}
 
 #### NNUEs

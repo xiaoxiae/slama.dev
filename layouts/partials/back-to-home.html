@@ -1,0 +1,6 @@
+{{- $lang := .lang | default "en" -}}
+<p>
+  <a href="/"
+    >← {{ partial "t.html" (dict "key" "back_to_home" "lang" $lang) }}</a
+  >
+</p>

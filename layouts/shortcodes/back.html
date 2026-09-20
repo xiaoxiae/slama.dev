@@ -1,0 +1,2 @@
+{{- .Page.Store.Set "backMarker" true -}}
+{{- partial "back-to-home.html" (dict "lang" (.Page.Params.language | default "en")) -}}
