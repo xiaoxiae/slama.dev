@@ -1,4 +1,5 @@
-{{- $videoServer := "https://tom.ggu.cz/big/tboi/" -}}
+{{- /* On the Storage Box, served by caddy from /mnt/media (see the slama-dev infra repo). */ -}}
+{{- $videoServer := "/tboi/videos/" -}}
 
 {{/* Sort runs by date descending (newest first) */}}
 {{- $runs := sort hugo.Data.tboi "date" "desc" -}}
