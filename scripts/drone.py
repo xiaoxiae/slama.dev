@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-"""
-Drone journal: `add [place]` registers recordings in sources/, `build` splices
-each clip's cuts into a video and folds it into drone.yaml.
-"""
+"""Drone journal: `add` registers recordings, `build` cuts them into clips."""
 
 import argparse
 import datetime
@@ -15,6 +12,7 @@ from typing import NoReturn
 
 import yaml
 
+from drone_osd import detect_flights
 from video_common import (
     allocate_sequence,
     file_key,
@@ -43,34 +41,18 @@ SOURCE_EXTENSIONS = (".mp4", ".mov", ".avi")
 
 # PyYAML drops comments, so the header is re-emitted on every save.
 DRONE_YAML_HEADER = """\
-# Drone journal, written by scripts/drone.py (see `add` / `build`).
-# Rendered by layouts/shortcodes/drone-journal.html.
+# Drone journal, written by scripts/drone.py (see CLAUDE.md).
 #
-# A flight is an optional `place` (a key of places.yaml, or an `alias` set
-# there, which this script swaps for the key on its next run; leave it out for a
-# spot not worth naming), an optional `note`, and a list
-# of `clips`; each clip is an optional `description` plus an ordered list of
-# `cuts`, spliced into one video in the order written. A cut is
-# "FILE: START,END" (timestamps as SS, M:SS or H:MM:SS), a range of a recording
-# in static/drone/videos/sources/. Either side may be left empty to run from the
-# start (",19") or to the end ("1:50,") of the recording.
+# A flight: optional `place` (key or alias from places.yaml), optional `note`,
+# `clips`, and `discard` (recordings deleted on build). A clip: optional
+# `description` and `cuts`, spliced in order. A cut is "FILE: START,END"; either
+# side may be empty to run from the start or to the end.
 #
 #   clips:
 #   - description: low pass over the dam, then the return
 #     cuts:
 #     - VID00004.AVI: 0:12,0:31
 #     - VID00005.AVI: 0,10
-#
-# Flights are keyed by date. A day with several flights numbers them
-# `YYYY-MM-DD-1`, `YYYY-MM-DD-2`, ...; `add` does that itself, renaming the bare
-# date to `-1` when a second place is flown that day. The number is only part of
-# the key (and the page anchor), never of the filenames.
-#
-# `add` seeds one clip per new recording spanning its whole length: trim it,
-# split it, or merge it into another. `build` cuts every clip of a flight,
-# records them here and only then deletes the recordings they used, naming each
-# `<date>-<place>-<key>.mp4` with a key that ascends with the clip's position
-# below, so the videos folder sorts into journal order.
 """
 
 ENCODE_CRF = "30"
@@ -94,7 +76,6 @@ def fail(message: str) -> NoReturn:
     sys.exit(1)
 
 
-# A flight key is a date, numbered `-1`, `-2`, ... only when a day has several.
 FLIGHT_KEY = re.compile(r"^(\d{4}-\d{2}-\d{2})(?:-([1-9]\d*))?$")
 
 
@@ -103,13 +84,11 @@ def flight_date(key: str) -> str:
 
 
 def flight_index(key: str) -> int:
-    """0 for a bare date, else the flight's number within the day."""
     match = FLIGHT_KEY.match(key)
     return int(match.group(2) or 0) if match else 0
 
 
 def normalized_flights(data: dict, places: dict) -> dict:
-    """Flights keyed by str, validated, with place aliases swapped for keys."""
     flights = data.get("flights") or {}
     if not isinstance(flights, dict):
         fail("'flights' in drone.yaml is not a mapping of flight key -> flight")
@@ -137,7 +116,6 @@ def normalized_flights(data: dict, places: dict) -> dict:
 
 
 def day_flights(flights: dict, date: str) -> list[str]:
-    """Keys of the flights on `date`, in flight order."""
     keys = [key for key in flights if flight_date(key) == date]
     return sorted(keys, key=flight_index)
 
@@ -154,13 +132,7 @@ def rename_flight(flights: dict, old: str, new: str) -> None:
 def choose_flight(
     flights: dict, date: str, place: str | None, index: int | None
 ) -> str:
-    """The key new recordings of `place` on `date` go under, renaming as needed.
-
-    Pure: `flights` is the mapping to be edited, and the chosen key may not
-    exist in it yet. With no explicit `index`, the day's latest flight is reused
-    when it is at the same place (so `add` can be re-run as recordings are
-    dropped in); a different place starts the next flight of the day.
-    """
+    """Reuses the day's latest flight at the same place, else starts the next."""
     existing = day_flights(flights, date)
 
     if index is None:
@@ -197,7 +169,8 @@ def parse_timestamp(value: str) -> float:
 
 
 def format_timestamp(seconds: float) -> str:
-    minutes, seconds = divmod(seconds, 60)
+    # Rounded first, or 59.996 would come out as "0:60.00".
+    minutes, seconds = divmod(round(seconds, 2), 60)
     return f"{int(minutes)}:{seconds:05.2f}"
 
 
@@ -247,17 +220,11 @@ def pending_clips(flight: dict) -> list[dict]:
 
 
 def clip_prefix(key: str, flight: dict) -> str:
-    """Everything before the key. Date first, so the folder sorts by day."""
     place = slugify(str(flight.get("place") or "flight")) or "flight"
     return f"{flight_date(key)}-{place}"
 
 
 def plan_names(key: str, flight: dict, taken: set[str]) -> list[str]:
-    """A filename per pending clip, keyed so the flight sorts in list order.
-
-    Built clips pin the keys around each pending run, so a clip added to a
-    flight that was already built still lands in the right place.
-    """
     prefix = clip_prefix(key, flight)
     clips = flight.get("clips") or []
     keys = [
@@ -273,8 +240,11 @@ def plan_names(key: str, flight: dict, taken: set[str]) -> list[str]:
 
 
 def existing_keys(folder: Path) -> set[str]:
-    """Keys already on disk, so a fresh draw can never collide with one."""
     return {path.stem.rsplit("-", 1)[-1] for path in folder.glob("*.mp4")}
+
+
+def discarded(flight: dict) -> list[str]:
+    return [str(file) for file in flight.get("discard") or []]
 
 
 def known_files(data: dict) -> set[str]:
@@ -282,6 +252,7 @@ def known_files(data: dict) -> set[str]:
     for flight in (data.get("flights") or {}).values():
         if not isinstance(flight, dict):
             continue
+        found.update(discarded(flight))
         for clip in flight.get("clips") or []:
             if isinstance(clip, dict):
                 for cut in clip.get("cuts") or []:
@@ -304,7 +275,6 @@ def save_drone_yaml(data: dict) -> None:
 
 
 def load_places() -> dict:
-    """places.yaml, checked so no alias doubles as another place's key or alias."""
     places = load_yaml(PLACES_YAML)
     owner: dict[str, str] = {}
     for key, place in places.items():
@@ -322,7 +292,6 @@ def load_places() -> dict:
 
 
 def place_key(name: str, places: dict) -> str | None:
-    """The key of the place `name` refers to: a key, display name or alias."""
     slug = slugify(name)
     for key in places:
         if slugify(str(key)) == slug:
@@ -346,8 +315,56 @@ def resolve_place(name: str, places: dict) -> str:
     return key
 
 
+def seed_clips(files: list[str], detect: bool) -> tuple[list[dict], list[str]]:
+    lengths = {}
+    for file in files:
+        try:
+            lengths[file] = float(
+                probe(SOURCES_FOLDER / file).get("format", {}).get("duration", 0)
+            )
+        except RuntimeError as error:
+            fail(f"{file}: {error}")
+
+    whole = {file: [{file: f"0,{format_timestamp(lengths[file])}"}] for file in files}
+    if not detect:
+        return [{"cuts": whole[file]} for file in files], []
+
+    try:
+        detection = detect_flights([SOURCES_FOLDER / file for file in files])
+    except (RuntimeError, ValueError) as error:
+        print(f"WARNING: could not find the flights ({error}); seeding whole files.")
+        return [{"cuts": whole[file]} for file in files], []
+
+    def edge(seconds: float | None) -> str:
+        return "" if seconds is None else format_timestamp(seconds)
+
+    clips = []
+    for cuts, (start, end) in zip(detection.clips, detection.spans):
+        clips.append(
+            {"cuts": [{file: f"{edge(low)},{edge(high)}"} for file, low, high in cuts]}
+        )
+        print(
+            f"flight {format_timestamp(start)}-{format_timestamp(end)} "
+            f"({end - start:.0f}s): {', '.join(file for file, _, _ in cuts)}"
+        )
+    flown = sum(end - start for start, end in detection.spans)
+    print(
+        f"{len(clips)} flight(s), {format_timestamp(flown)} of "
+        f"{format_timestamp(sum(lengths.values()))} recorded"
+        + (f"; dropped {detection.short} too short to count" if detection.short else "")
+        + "."
+    )
+
+    for file in detection.unread:
+        print(f"WARNING: no OSD readable in {file} (OSD off?); seeding it whole.")
+        clips.append({"cuts": whole[file]})
+    if detection.discard:
+        print(f"no flight in (to discard): {', '.join(detection.discard)}")
+    return clips, detection.discard
+
+
 def cmd_add(args):
-    require_tools("ffprobe")
+    require_tools("ffmpeg", "ffprobe")
     SOURCES_FOLDER.mkdir(parents=True, exist_ok=True)
     VIDEOS_FOLDER.mkdir(parents=True, exist_ok=True)
 
@@ -358,9 +375,8 @@ def cmd_add(args):
 
     date, index = args.date or (str(datetime.date.today()), None)
     place = resolve_place(args.place, places) if args.place else None
-    key: str | None = None
-    added = 0
 
+    new: list[str] = []
     for file in sorted(os.listdir(SOURCES_FOLDER)):
         if not file.lower().endswith(SOURCE_EXTENSIONS):
             if (SOURCES_FOLDER / file).is_file():
@@ -369,38 +385,46 @@ def cmd_add(args):
         if file in known:
             print(f"skipping {file} (already referenced in drone.yaml).")
             continue
+        print(f"adding {file}.")
+        new.append(file)
 
-        if key is None:
-            key = choose_flight(flights, date, place, index)
-        flight = flights.setdefault(key, {})
-        if place is not None:
-            flight["place"] = place
+    if not new:
+        save_drone_yaml(data)
+        print("No new recordings found.")
+        return
 
-        try:
-            length = float(
-                probe(SOURCES_FOLDER / file).get("format", {}).get("duration", 0)
-            )
-        except RuntimeError as error:
-            fail(f"{file}: {error}")
-        flight.setdefault("clips", []).append(
-            {"cuts": [{file: f"0,{format_timestamp(length)}"}]}
+    # Only recordings added together are read as one session.
+    previous = previous_chunk(new[0])
+    if previous in known:
+        print(
+            f"WARNING: {new[0]} continues {previous}, which was added before; "
+            "a flight running across the two will have been split in half."
         )
 
-        print(f"adding {file} ({format_timestamp(length)}).")
-        added += 1
+    key = choose_flight(flights, date, place, index)
+    flight = flights.setdefault(key, {})
+    if place is not None:
+        flight["place"] = place
+    clips, discard = seed_clips(new, not args.no_detect)
+    flight.setdefault("clips", []).extend(clips)
+    if discard:
+        flight["discard"] = discarded(flight) + discard
 
     save_drone_yaml(data)
+    print(f"\nAdded {len(new)} new recording(s) under {key}.")
+    print(f"Check the cuts in {DRONE_YAML}, then run `build`.")
 
-    if added:
-        print(f"\nAdded {added} new recording(s) under {key}.")
-        print(f"Edit the cuts in {DRONE_YAML}, then run `build`.")
-    else:
-        print("No new recordings found.")
+
+def previous_chunk(file: str) -> str | None:
+    match = re.fullmatch(r"(.*?)(\d+)(\.\w+)", file)
+    if not match or int(match.group(2)) == 0:
+        return None
+    prefix, number, suffix = match.groups()
+    return f"{prefix}{int(number) - 1:0{len(number)}d}{suffix}"
 
 
 def extract_clip(cuts: list[tuple[str, float, float]], target: Path) -> None:
-    # One pass with the concat filter: stream-copying separately cut parts breaks
-    # on the recorder's variable frame rate.
+    # One pass: stream-copying the cuts breaks on the variable frame rate.
     command = ["ffmpeg", "-nostdin", "-y"]
     for file, start, end in cuts:
         command += [
@@ -469,11 +493,10 @@ def verify_clip(path: Path, expected_duration: float) -> None:
 def process_flight(
     key: str, flight: dict, cuts_by_clip: list[list], names: list[str]
 ) -> list[dict]:
-    """All-or-nothing: any failure removes every file this call created."""
     staged: list[tuple[Path, Path, dict]] = []
     created: list[Path] = []
     try:
-        clips = [clip for clip in flight["clips"] if is_pending(clip)]
+        clips = pending_clips(flight)
         for clip, cuts, name in zip(clips, cuts_by_clip, names, strict=True):
             duration = sum(end - start for _, start, end in cuts)
 
@@ -530,6 +553,10 @@ def validate_flight(key: str, flight: dict, places: dict) -> list[list] | None:
             if file not in files:
                 files.append(file)
 
+    both = set(files) & set(discarded(flight))
+    if both:
+        fail(f"{key}: {', '.join(sorted(both))} is both discarded and cut from")
+
     lengths: dict[str, float] = {}
     sizes: dict[str, tuple[int, int]] = {}
     for file in files:
@@ -582,7 +609,7 @@ def cmd_build(args):
     pending = {
         key: flight
         for key, flight in flights.items()
-        if isinstance(flight, dict) and pending_clips(flight)
+        if isinstance(flight, dict) and (pending_clips(flight) or discarded(flight))
     }
 
     if not pending:
@@ -596,7 +623,8 @@ def cmd_build(args):
         if cuts_by_clip is None:
             continue
         ready[key] = cuts_by_clip
-        for file in {file for cuts in cuts_by_clip for file, _, _ in cuts}:
+        files = {file for cuts in cuts_by_clip for file, _, _ in cuts}
+        for file in files | set(discarded(flight)):
             if file in owner:
                 fail(f"'{file}' is used by both {owner[file]} and {key}")
             owner[file] = key
@@ -613,12 +641,15 @@ def cmd_build(args):
             built = iter(entries)
 
             flight["clips"] = [
-                next(built) if is_pending(clip) else clip for clip in flight["clips"]
+                next(built) if is_pending(clip) else clip
+                for clip in flight.get("clips") or []
             ]
+            used |= set(discarded(flight))
+            flight.pop("discard", None)
             save_drone_yaml(data)
 
             for file in sorted(used):
-                os.remove(SOURCES_FOLDER / file)
+                (SOURCES_FOLDER / file).unlink(missing_ok=True)
             total += len(entries)
     except RuntimeError as error:
         print(f"\nERROR: {error}", file=sys.stderr)
@@ -657,6 +688,12 @@ def main():
         type=parse_flight_key,
         help="Flight date (YYYY-MM-DD), or YYYY-MM-DD-N to target one flight of "
         "a day with several; defaults to today",
+    )
+    add_parser.add_argument(
+        "--no-detect",
+        action="store_true",
+        help="Seed one whole-length clip per recording instead of one per flight "
+        "found in the OSD",
     )
     add_parser.set_defaults(func=cmd_add)
 

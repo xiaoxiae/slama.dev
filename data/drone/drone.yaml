@@ -21,8 +21,11 @@
 # date to `-1` when a second place is flown that day. The number is only part of
 # the key (and the page anchor), never of the filenames.
 #
-# `add` seeds one clip per new recording spanning its whole length: trim it,
-# split it, or merge it into another. `build` cuts every clip of a flight,
+# `add` seeds one clip per flight it finds by reading the OSD (see
+# scripts/drone_osd.py), running across recordings where the flight does, and
+# one spanning the whole recording for any it can't read: trim, split or merge
+# them as needed. Recordings with no flight in them (a battery swap, static)
+# go under the flight's `discard`; move one into a clip to keep it. `build` cuts every clip of a flight,
 # records them here and only then deletes the recordings they used, naming each
 # `<date>-<place>-<key>.mp4` with a key that ascends with the clip's position
 # below, so the videos folder sorts into journal order.
@@ -206,3 +209,20 @@ flights:
     - file: 2026-09-16-krimml-chateau-playground-yzcazvvr.mp4
     note: Turns out the chateau has an absolutely sick playground that you can do tricks on. I need to calm down and fly much slower, but I think I'm generally getting better (smoother / more confident flying). But I'm also getting lazy and I think the drone will not survive much longer if I keep crash-flipping in tall grass; also, I keep holding the controller very asymmetrically -- I just noticed it and need to get that sorted until it becomes a habit.
     place: krimml-chateau-playground
+  '2026-09-22':
+    clips:
+    - file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-axwjgmhy.mp4
+    - file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-beiiywjy.mp4
+    - file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-dphwcing.mp4
+    - file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-dtexbbkm.mp4
+    - file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-eqwwglih.mp4
+    - file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-kxisjddd.mp4
+    - file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-lictjrbw.mp4
+    - file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-nulrllui.mp4
+    - file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-obkhygbs.mp4
+    - file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-pmmswvjr.mp4
+    - file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-thpdtphg.mp4
+    - file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-tifejirb.mp4
+    - file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-wpelsqjo.mp4
+    - file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-xxnnkewa.mp4
+    place: heidelberg-playground-kita-huttenbuhl
