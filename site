@@ -193,7 +193,7 @@ function upload
         return 1
     end
 
-    # Videos and the full-size photos live on the Storage Box, mounted on the VPS at /mnt/media
+    # Videos and the full-size photos live on the Storage Box, mounted on the VPS at /mnt/media.
     set -l originals '/photos/**.jpg' '/photos/**.jpeg' '/photos/**.png'
     set -l keep --exclude /climbing/videos/ --exclude /drone/videos/
     set -l media --include /climbing/ --include /drone/ --include /photos/ --include '/photos/*/' \
@@ -212,7 +212,7 @@ function upload
     end
 
     echo "Syncing videos and photos to the Storage Box..."
-    rsync -rtv -m $media --exclude '*' public/ slama-deploy@slama.dev:/mnt/media/
+    rsync -rtv -m $media --exclude '*' -e 'ssh -p 23' public/ u458483-sub1@u458483-sub1.your-storagebox.de:./
 
     if test $status -ne 0
         echo "ERROR: media rsync failed!"
