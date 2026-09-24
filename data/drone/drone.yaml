@@ -1,34 +1,15 @@
-# Drone journal, written by scripts/drone.py (see `add` / `build`).
-# Rendered by layouts/shortcodes/drone-journal.html.
+# Drone journal, written by scripts/drone.py (see CLAUDE.md).
 #
-# A flight is an optional `place` (a key of places.yaml, or an `alias` set
-# there, which this script swaps for the key on its next run; leave it out for a
-# spot not worth naming), an optional `note`, and a list
-# of `clips`; each clip is an optional `description` plus an ordered list of
-# `cuts`, spliced into one video in the order written. A cut is
-# "FILE: START,END" (timestamps as SS, M:SS or H:MM:SS), a range of a recording
-# in static/drone/videos/sources/. Either side may be left empty to run from the
-# start (",19") or to the end ("1:50,") of the recording.
+# A flight: optional `place` (key or alias from places.yaml), optional `note`,
+# `clips`, and `discard` (recordings deleted on build). A clip: optional
+# `description` and `cuts`, spliced in order. A cut is "FILE: START,END"; either
+# side may be empty to run from the start or to the end.
 #
 #   clips:
 #   - description: low pass over the dam, then the return
 #     cuts:
 #     - VID00004.AVI: 0:12,0:31
 #     - VID00005.AVI: 0,10
-#
-# Flights are keyed by date. A day with several flights numbers them
-# `YYYY-MM-DD-1`, `YYYY-MM-DD-2`, ...; `add` does that itself, renaming the bare
-# date to `-1` when a second place is flown that day. The number is only part of
-# the key (and the page anchor), never of the filenames.
-#
-# `add` seeds one clip per flight it finds by reading the OSD (see
-# scripts/drone_osd.py), running across recordings where the flight does, and
-# one spanning the whole recording for any it can't read: trim, split or merge
-# them as needed. Recordings with no flight in them (a battery swap, static)
-# go under the flight's `discard`; move one into a clip to keep it. `build` cuts every clip of a flight,
-# records them here and only then deletes the recordings they used, naming each
-# `<date>-<place>-<key>.mp4` with a key that ascends with the clip's position
-# below, so the videos folder sorts into journal order.
 flights:
   '2026-08-22':
     clips:
@@ -225,4 +206,25 @@ flights:
     - file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-tifejirb.mp4
     - file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-wpelsqjo.mp4
     - file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-xxnnkewa.mp4
+    note: Good weather, fun flying.
+    place: heidelberg-playground-kita-huttenbuhl
+  '2026-09-24':
+    clips:
+    - file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-adjfuxqp.mp4
+    - file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-axlgdlgu.mp4
+    - file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-bfwprito.mp4
+    - file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-crukiuxo.mp4
+    - file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-exjwwsct.mp4
+    - file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-gnzaxytp.mp4
+    - file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-idrlaeii.mp4
+    - file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-ndtvqkmz.mp4
+    - file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-olsgmsyg.mp4
+    - file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-qbbssxxe.mp4
+    - file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-qfzftiuz.mp4
+    - file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-qwrcdfmz.mp4
+    - file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-rhqgwjta.mp4
+    - file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-vnsrwlks.mp4
+    - file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-xopxxgsz.mp4
+    - file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-zgvjzoee.mp4
+    note: Got HDZero BoxPro+! It's awesome -- fits glasses, nice software, inputs/outputs (can use it to fly the sim!) and got antenas to go along with it; unfortunately I didn't superglue it to the drone and so it fell out during flying, I'll need to glue it properly before flying again. The flying itself was kind of meh, but I just need to put the hours in.
     place: heidelberg-playground-kita-huttenbuhl

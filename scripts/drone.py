@@ -12,7 +12,7 @@ from typing import NoReturn
 
 import yaml
 
-from drone_osd import detect_flights
+from drone_osd import detect_flights, profile_of
 from video_common import (
     allocate_sequence,
     file_key,
@@ -436,8 +436,10 @@ def extract_clip(cuts: list[tuple[str, float, float]], target: Path) -> None:
             str(SOURCES_FOLDER / file),
         ]
 
+    # A clip's recordings all share a resolution, so they share a profile.
+    picture = profile_of(SOURCES_FOLDER / cuts[0][0]).picture
     scale = f"scale=-2:'min({MAX_HEIGHT},ih)'"
-    graph = "".join(f"[{i}:v]{scale}[s{i}];" for i in range(len(cuts)))
+    graph = "".join(f"[{i}:v]{picture}{scale}[s{i}];" for i in range(len(cuts)))
     graph += "".join(f"[s{i}]" for i in range(len(cuts)))
     graph += f"concat=n={len(cuts)}:v=1:a=0,{DENOISE_FILTER}[v]"
 

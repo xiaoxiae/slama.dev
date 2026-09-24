@@ -7,6 +7,7 @@ import json
 import os
 import re
 import sys
+import time
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
@@ -20,19 +21,55 @@ import numpy as np  # noqa: E402
 from numpy.lib.stride_tricks import sliding_window_view  # noqa: E402
 from PIL import Image  # noqa: E402
 
-from video_common import probe  # noqa: E402
+from video_common import HAS_CUDA, probe, video_stream  # noqa: E402
 
 SCRIPT_DIR = Path(__file__).parent
 HUGO_ROOT = SCRIPT_DIR.parent
-TEMPLATES = SCRIPT_DIR / "drone_osd.npz"
 CACHE_DIR = HUGO_ROOT / ".cache" / "drone-osd"
 
 # Bump when the reading code changes, to invalidate cached readings.
-OSD_VERSION = 2
+OSD_VERSION = 3
 
 FPS = 5
 
 FRAME_W, FRAME_H = 640, 480
+
+
+@dataclass(frozen=True)
+class Profile:
+    """A kind of recording: how its frame maps onto the 640x480 OSD grid all
+    the positions below are in, and the templates its OSD font is matched to."""
+
+    name: str
+    to_frame: str
+    # What the journal keeps of a frame, as ffmpeg filters ending in a comma.
+    picture: str = ""
+
+    @property
+    def templates(self) -> Path:
+        return SCRIPT_DIR / f"drone_osd-{self.name}.npz"
+
+
+# Named after the recorder, not the video link: the HDZero goggles record
+# analog flights too.
+PROFILES = {
+    "analog": Profile("analog", f"scale={FRAME_W}:{FRAME_H}"),
+    # 1280x720, the grid spanning x 189-1097 (32 px columns, measured).
+    "hdzero-dvr": Profile(
+        "hdzero-dvr",
+        f"crop=ih*1.2611:ih:(iw-ih*1.2611)/2+ih*0.0042:0,scale={FRAME_W}:{FRAME_H}",
+        # The 4:3 picture, without the goggles' own icons in the bars aside.
+        picture="crop=ih*4/3:ih,",
+    ),
+}
+
+
+def profile_of(path: Path) -> Profile:
+    stream = video_stream(path)
+    widescreen = int(stream["width"]) / int(stream["height"]) > 1.5
+    return PROFILES["hdzero-dvr" if widescreen else "analog"]
+
+
 # Current is right-aligned in cells 21-26 as ` 6.12A` or `10.45A`.
 CELL_W, CELL_X0 = 22.4, 9.0
 CELL_Y, CELL_H = 404, 28
@@ -55,12 +92,13 @@ MATCH = 0.75
 
 # Detection, in seconds; see CLAUDE.md for how these were measured.
 FLY_AMPS = 1.0
-MIN_IDLE = 8.0
+MIN_IDLE = 7.0  # recoveries idled <= 6.0 s, pickups >= 7.6 s (2026-09-23, HDZero)
 MAX_BLACKOUT = 15.0
 PRE_ROLL = 1.0
 POST_ROLL = 2.0
-MIN_FLIGHT = 4.0
+MIN_FLIGHT = 8.0  # seconds flown; failed hops and flip attempts had <= 6 s
 MIN_PIECE = 0.5
+MAX_SEAM = 1.0  # a longer gap between two recordings ends any flight
 
 STATIC_DIFF = 22
 MOSTLY_STATIC = 0.5
@@ -123,17 +161,18 @@ class Templates:
     digest: str
 
     @classmethod
-    def load(cls) -> "Templates":
-        if not TEMPLATES.exists():
+    def load(cls, profile: Profile) -> "Templates":
+        path = profile.templates
+        if not path.exists():
             raise RuntimeError(
-                f"no OSD templates at {TEMPLATES.relative_to(HUGO_ROOT)}; "
+                f"no OSD templates at {path.relative_to(HUGO_ROOT)}; "
                 "see `uv run scripts/drone_osd.py learn --help`"
             )
-        data = np.load(TEMPLATES)
+        data = np.load(path)
         return cls(
             glyphs=[shifted(glyph, CELL_SLACK) for glyph in data["glyphs"]],
             words={word: shifted(data[word], WORD_SLACK) for word in WORDS},
-            digest=hashlib.sha1(TEMPLATES.read_bytes()).hexdigest(),
+            digest=hashlib.sha1(path.read_bytes()).hexdigest(),
         )
 
 
@@ -184,17 +223,26 @@ def classify(frames: np.ndarray, templates: Templates) -> list:
 
 
 def decode(
-    path: Path, fps: float = FPS, chunk: int = 256, seek: float = 0, limit: int = 0
+    path: Path,
+    fps: float = FPS,
+    chunk: int = 256,
+    seek: float = 0,
+    limit: int = 0,
+    threads: int = 1,
 ):
     x, y, w, h = CROP
-    command = ["ffmpeg", "-nostdin", "-v", "error", "-threads", "1"]
+    command = ["ffmpeg", "-nostdin", "-v", "error", "-threads", str(threads)]
+    # HEVC decodes 13x faster on the GPU; MJPEG, which NVDEC refuses here, just
+    # falls back to the CPU.
+    if HAS_CUDA:
+        command += ["-hwaccel", "cuda"]
     command += ["-ss", str(seek), "-i", str(path)]
     if limit:
         command += ["-frames:v", str(limit)]
     command += [
         "-an",
         "-vf",
-        f"fps={fps},scale={FRAME_W}:{FRAME_H},crop={w}:{h}:{x}:{y},format=gray",
+        f"fps={fps},{profile_of(path).to_frame},crop={w}:{h}:{x}:{y},format=gray",
         "-f",
         "rawvideo",
         "-",
@@ -216,12 +264,13 @@ def decode(
         raise RuntimeError(f"ffmpeg exited {proc.returncode} reading '{path.name}'")
 
 
-def cache_key(path: Path, templates: Templates) -> dict:
+def cache_key(path: Path, profile: Profile, templates: Templates) -> dict:
     stat = path.stat()
     return {
         "size": stat.st_size,
         # The goggles restart their numbering, so the name alone is not enough.
         "mtime": stat.st_mtime,
+        "profile": profile.to_frame,
         "templates": templates.digest,
         "version": OSD_VERSION,
         "tunables": [FPS, CELL_W, CELL_X0, CELL_Y, CELL_H, AMPS_CELLS.start]
@@ -230,9 +279,12 @@ def cache_key(path: Path, templates: Templates) -> dict:
     }
 
 
-def read_recording(path: Path, templates: Templates) -> list:
+def read_recording(path: Path, threads: int = 1) -> list:
+    profile = profile_of(path)
+    templates = Templates.load(profile)
     cache = CACHE_DIR / f"{path.name}.json"
-    key = cache_key(path, templates)
+    # As JSON stores it (tuples come back as lists), or it would never match.
+    key = json.loads(json.dumps(cache_key(path, profile, templates)))
     if cache.exists():
         try:
             cached = json.loads(cache.read_text())
@@ -242,7 +294,7 @@ def read_recording(path: Path, templates: Templates) -> list:
             pass
 
     readings: list = []
-    for frames in decode(path):
+    for frames in decode(path, threads=threads):
         readings += classify(frames, templates)
 
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
@@ -255,25 +307,59 @@ class Session:
     files: list[str]
     lengths: list[float]
     readings: list[list]
+    # When each recording ended by the clock, if the goggles keep time.
+    ends: list[float] | None = None
 
     @property
     def offsets(self) -> list[float]:
-        return list(np.cumsum([0.0] + self.lengths[:-1]))
+        """Where each recording starts on the session timeline: back to back,
+        or with the real gaps between them where the clock can be trusted."""
+        if self.ends is None:
+            return list(np.cumsum([0.0] + self.lengths[:-1]))
+        first = self.ends[0] - self.lengths[0]
+        return [end - length - first for end, length in zip(self.ends, self.lengths)]
+
+    @property
+    def seams(self) -> list[float]:
+        """Offsets of the recordings that start after a real gap."""
+        offsets = self.offsets
+        return [
+            offsets[i + 1]
+            for i in range(len(offsets) - 1)
+            if offsets[i + 1] - (offsets[i] + self.lengths[i]) > MAX_SEAM
+        ]
+
+
+def recording_ends(paths: list[Path], lengths: list[float]) -> list[float] | None:
+    """The mtimes, if they read as when each recording ended. The analog
+    goggles have no clock (2090 dates, overlapping recordings); HDZero does,
+    and splits a session into files wherever the video link dropped."""
+    ends = [path.stat().st_mtime for path in paths]
+    if max(ends) > time.time():
+        return None
+    for i in range(len(ends) - 1):
+        if ends[i + 1] - lengths[i + 1] < ends[i] - MAX_SEAM:
+            return None
+    return ends
 
 
 def read_session(paths: list[Path]) -> Session:
-    templates = Templates.load()
+    cores = os.cpu_count() or 4
+    # Without a GPU, a few long HEVC files would otherwise leave cores idle.
+    threads = max(1, cores // max(len(paths), 1))
 
     def work(path: Path) -> tuple[float, list]:
         length = float(probe(path).get("format", {}).get("duration", 0))
-        return length, read_recording(path, templates)
+        return length, read_recording(path, threads)
 
-    with ThreadPoolExecutor(max_workers=os.cpu_count() or 4) as pool:
+    with ThreadPoolExecutor(max_workers=cores) as pool:
         results = list(pool.map(work, paths))
+    lengths = [length for length, _ in results]
     return Session(
         files=[path.name for path in paths],
-        lengths=[length for length, _ in results],
+        lengths=lengths,
         readings=[readings for _, readings in results],
+        ends=recording_ends(paths, lengths),
     )
 
 
@@ -297,7 +383,9 @@ def is_break(states: str, times: np.ndarray) -> bool:
     return any(len(run) * step > MAX_BLACKOUT for run in re.findall(r"\?+", states))
 
 
-def split_flights(times: np.ndarray, readings: list) -> tuple[list, int]:
+def split_flights(
+    times: np.ndarray, readings: list, seams: list[float] = ()
+) -> tuple[list, int]:
     step = 1 / FPS
     states = list(state(reading) for reading in readings)
     # A lone flying sample is a misread.
@@ -309,9 +397,17 @@ def split_flights(times: np.ndarray, readings: list) -> tuple[list, int]:
 
     runs: list[list[int]] = []
     previous = -1
+
+    def across(a: float, b: float) -> bool:
+        return any(a < seam <= b for seam in seams)
+
     for index in (match.start() for match in re.finditer("F", states)):
         gap = slice(previous + 1, index)
-        if not runs or is_break(states[gap], times[gap]):
+        if (
+            not runs
+            or across(times[previous], times[index])
+            or is_break(states[gap], times[gap])
+        ):
             runs.append([index, index])
         else:
             runs[-1][1] = index
@@ -320,18 +416,22 @@ def split_flights(times: np.ndarray, readings: list) -> tuple[list, int]:
     flights = []
     short = 0
     for first, last in runs:
-        start, end = times[first], times[last] + step
-        if end - start < MIN_FLIGHT:
+        end = times[last] + step
+        # Flying time, not span: hops and crash-flips between re-arms add up to
+        # a long span with little flying in it.
+        if states[first : last + 1].count("F") * step < MIN_FLIGHT:
             short += 1
             continue
         before = first
         while before > 0 and times[first] - times[before - 1] <= PRE_ROLL:
-            if readings[before - 1] == STATIC:
+            if readings[before - 1] == STATIC or across(
+                times[before - 1], times[before]
+            ):
                 break
             before -= 1
         after = last
         while after + 1 < len(times) and times[after + 1] - end < POST_ROLL:
-            if readings[after + 1] == STATIC:
+            if readings[after + 1] == STATIC or across(times[after], times[after + 1]):
                 break
             after += 1
         flights.append([times[before], times[after] + step])
@@ -379,7 +479,7 @@ def detect_flights(paths: list[Path]) -> Detection:
     for offset, file_readings in zip(session.offsets, session.readings):
         times += [offset + i / FPS for i in range(len(file_readings))]
         readings += file_readings
-    spans, short = split_flights(np.array(times), readings)
+    spans, short = split_flights(np.array(times), readings, session.seams)
     clips = [to_cuts(session, start, end) for start, end in spans]
 
     used = {file for cuts in clips for file, _, _ in cuts}
@@ -439,6 +539,10 @@ def grab_frame_box(spec: str, box: tuple[int, int, int, int], sources: Path):
 
 def cmd_learn(args):
     paths = sorted(args.recordings)
+    profiles = {profile_of(path) for path in paths}
+    if len(profiles) != 1:
+        sys.exit(f"learn from one kind of recording at a time, not {profiles}")
+    templates = profiles.pop().templates
     masks = learn_masks(paths)
     clusters = [c for c in cluster(masks) if len(c) >= args.min_count]
     print(f"{len(masks)} glyphs in {len(clusters)} clusters (>= {args.min_count}).")
@@ -484,14 +588,14 @@ def cmd_learn(args):
     glyphs = np.stack([np.mean(labels[g], 0)[crop] >= 0.5 for g in GLYPHS])
     sources = paths[0].parent
     np.savez_compressed(
-        TEMPLATES,
+        templates,
         glyphs=glyphs,
         **{
             word: grab_word(getattr(args, word.replace("-", "_")), box, sources)
             for word, (box, _) in WORDS.items()
         },
     )
-    print(f"Saved {TEMPLATES.relative_to(HUGO_ROOT)}.")
+    print(f"Saved {templates.relative_to(HUGO_ROOT)}.")
 
 
 def cmd_read(args):
