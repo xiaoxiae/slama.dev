@@ -2,11 +2,15 @@
   Image row shortcode for displaying multiple images in a row.
   Used inside image_section for grouped, clickable images.
 
-  Usage: {{< image_row "img1.jpg :: Alt 1 :: Caption | img2.jpg :: Alt 2" >}}
+  Usage: {{< image_row "img1.jpg :: Alt 1 :: Caption | img2.jpg :: Alt 2 :: :: fill 600x800 Center" >}}
 
   - Images are separated by |
   - Alt text is optional, specified with ::
   - Caption is optional, specified with a second ::
+  - Crop is optional, specified with a third :: as a Hugo processing spec
+    ("fill WxH Anchor" scales then crops, "crop WxH Anchor" cuts without scaling;
+    anchors: Smart, Center, TopLeft, Top, ..., BottomRight) or a pixel rectangle
+    "x,y,w,h"; the lightbox still opens the uncropped original
   - All images are clickable with lightbox
 */ -}}
 
@@ -20,6 +24,7 @@
     {{- $imgPath := $imgSpec -}}
     {{- $altText := "" -}}
     {{- $caption := "" -}}
+    {{- $crop := "" -}}
 
     {{- /* Parse path, optional alt text, and optional caption */ -}}
     {{- if strings.Contains $imgSpec "::" -}}
@@ -30,6 +35,9 @@
         {{- end -}}
         {{- if ge (len $parts) 3 -}}
             {{- $caption = strings.TrimSpace (index $parts 2) -}}
+        {{- end -}}
+        {{- if ge (len $parts) 4 -}}
+            {{- $crop = strings.TrimSpace (index $parts 3) -}}
         {{- end -}}
     {{- end -}}
 
@@ -45,6 +53,7 @@
       "alt" $altText
       "clickable" true
       "lightbox" true
+      "process" $crop
     ) -}}
     {{- with $caption -}}<div class="image-caption">{{ . | markdownify }}</div>{{- end -}}
     </div>

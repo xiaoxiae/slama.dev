@@ -9,6 +9,9 @@
     - clickable: Link to original (default: false)
     - lightbox: If clickable, use lightbox vs. new tab (default: false)
     - class: CSS classes (default: "")
+    - process: Hugo image processing spec used instead of the default resize,
+      e.g. "fill 600x800 Center" or "crop 400x400 TopLeft", or a pixel
+      rectangle "x,y,w,h" (default: "")
 
   Usage:
     {{ partial "image" (dict "src" "photo.jpg" "page" . "alt" "A photo" "caption" "My caption" "clickable" true "lightbox" true) }}
@@ -21,6 +24,7 @@
 {{- $clickable := .clickable | default false -}}
 {{- $lightbox := .lightbox | default false -}}
 {{- $class := .class | default "" -}}
+{{- $process := .process | default "" -}}
 
 {{- $img := $page.Resources.Get $src -}}
 
@@ -31,7 +35,18 @@
 
   {{- /* Process image unless SVG or GIF */ -}}
   {{- if not (or $isSVG $isGIF) -}}
-    {{- $img = $img.Process "resize 800x webp" -}}
+    {{- if findRE `^\d+,\d+,\d+,\d+$` $process -}}
+      {{- /* Hugo only crops to an anchor, so a rectangle is two crops:
+             up to its bottom-right corner, then its size from there */ -}}
+      {{- $r := apply (split $process ",") "int" "." -}}
+      {{- $x := index $r 0 }}{{ $y := index $r 1 }}{{ $w := index $r 2 }}{{ $h := index $r 3 -}}
+      {{- $img = $img.Crop (printf "%dx%d TopLeft" (add $x $w) (add $y $h)) -}}
+      {{- $img = $img.Process (printf "crop %dx%d BottomRight webp" $w $h) -}}
+    {{- else if $process -}}
+      {{- $img = $img.Process (printf "%s webp" $process) -}}
+    {{- else -}}
+      {{- $img = $img.Process "resize 800x webp" -}}
+    {{- end -}}
   {{- end -}}
 
   {{- /* Build the img tag */ -}}
