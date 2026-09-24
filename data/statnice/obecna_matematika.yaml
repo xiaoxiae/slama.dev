@@ -51,14 +51,14 @@
             - délka křivky
 
 - title: Algebra a lineární algebra
-  resources: "Lingebra 1 a 2 [[skripta](la.pdf)] 🃏"
+  resources: "Lingebra 1 a 2 [[slidy 1](https://kam.mff.cuni.cz/~hladik/LA1/la_slides_zoom_pub.pdf), [slidy 2](https://kam.mff.cuni.cz/~hladik/LA2/la2_slides_zoom_pub.pdf)] 🃏"
   items:
     - name: Grupy a podgrupy (definice, příklady, komutativita)
-      links: [la.pdf#chapter.4]
+      links: ["https://kam.mff.cuni.cz/~hladik/LA1/la_slides_zoom_pub.pdf#page=108"]
     - name: Tělesa (definice, charakteristika tělesa, konečná tělesa)
-      links: [la.pdf#chapter.4]
+      links: ["https://kam.mff.cuni.cz/~hladik/LA1/la_slides_zoom_pub.pdf#page=122"]
     - name: Vektorové prostory a podprostory.
-      links: [la.pdf#chapter.5]
+      links: ["https://kam.mff.cuni.cz/~hladik/LA1/la_slides_zoom_pub.pdf#page=135"]
       details:
         - vlastnosti a základní pojmy (lineární kombinace, lineární obal, generátory, lineární závislost a nezávislost, báze, dimenze, souřadnice) a jejich použití
         - praktická dovednost testování lineární závislosti a nezávislosti, nalezení báze, určení dimenze atp.
@@ -66,22 +66,22 @@
         - norma a vztah se skalárním součinem, příklady
         - kolmost, ortonormální báze, její vlastnosti a použití (nalezení souřadnic a projekce)
     - name: Skalární součin, norma.
-      links: [la.pdf#section.8.1]
+      links: ["https://kam.mff.cuni.cz/~hladik/LA2/la2_slides_zoom_pub.pdf#page=3"]
     - name: Kolmost, ortonormální báze.
-      links: [la.pdf#section.8.2, la.pdf#section.8.3, la.pdf#section.8.4]
+      links: ["https://kam.mff.cuni.cz/~hladik/LA2/la2_slides_zoom_pub.pdf#page=24", "https://kam.mff.cuni.cz/~hladik/LA2/la2_slides_zoom_pub.pdf#page=39", "https://kam.mff.cuni.cz/~hladik/LA2/la2_slides_zoom_pub.pdf#page=56"]
     - name: Soustavy lineárních rovnic a množina řešení.
-      links: [la.pdf#chapter.2]
+      links: ["https://kam.mff.cuni.cz/~hladik/LA1/la_slides_zoom_pub.pdf#page=4"]
       details:
         - metody řešení, Gaussova a Gaussova-Jordanova eliminace, odstupňovaný tvar matice a jeho jednoznačnost (bez důkazu)
     - name: Matice a operace s maticemi (součet, součin, transpozice)
-      links: [la.pdf#chapter.3, la.pdf#chapter.9, la.pdf#chapter.11]
+      links: ["https://kam.mff.cuni.cz/~hladik/LA1/la_slides_zoom_pub.pdf#page=42", "https://kam.mff.cuni.cz/~hladik/LA2/la2_slides_zoom_pub.pdf#page=91", "https://kam.mff.cuni.cz/~hladik/LA2/la2_slides_zoom_pub.pdf#page=198"]
       details:
         - interpretace součinu matic pomocí skládání lineárních zobrazení
         - hodnost matice a její transpozice
         - name: vlastní čísla a vlastní vektory matice a jejich geometrický význam a vlastnosti, vícenásobná vlastní čísla, spektrální poloměr
-          links: [la.pdf#chapter.10]
+          links: ["https://kam.mff.cuni.cz/~hladik/LA2/la2_slides_zoom_pub.pdf#page=126"]
         - name: charakteristický polynom, vztah vlastních čísel s kořeny polynomů
-          links: [la.pdf#chapter.12]
+          links: ["https://kam.mff.cuni.cz/~hladik/LA2/la2_slides_zoom_pub.pdf#page=130"]
 
 - title: Diskrétní matematika
   resources: "Diskrétka [[poznámky](/poznamky/diskretni-matematika/)] 🃏, Kombagra 1 [[poznámky](/poznamky/kombinatorika-a-grafy-i/)] 🃏"
