@@ -107,6 +107,11 @@
 		<script src="{{ $halloweenJS.RelPermalink }}" defer></script>
 		{{ end }}
 
+		{{ if .HasShortcode "sound" }}
+		{{- $soundJS := resources.Get "js/sound.js" | minify | fingerprint }}
+		<script src="{{ $soundJS.RelPermalink }}" defer></script>
+		{{ end }}
+
 		{{ if .Params.htmx }}
 		<meta name="htmx-config" content='{"selfRequestsOnly": false}' />
 		{{- $htmxJS := resources.Get "js/htmx.min.js" | fingerprint }}

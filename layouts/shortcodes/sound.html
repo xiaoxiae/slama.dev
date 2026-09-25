@@ -1,0 +1,5 @@
+{{- /* Inline link that plays a sound effect: {{< sound "sounds/qte.ogg" >}}the QTE hit{{< /sound >}}. Played by js/sound.js (included by baseof); without JS it is a plain link to the file. */ -}}
+{{- $name := .Get 0 -}}
+{{- $src := $name -}}
+{{- with .Page.Resources.GetMatch $name }}{{ $src = .RelPermalink }}{{ else }}{{ if not (strings.HasPrefix $name "/") }}{{ errorf "sound: %q not found in %s" $name .Page.File.Path }}{{ end }}{{ end -}}
+<a class="sound" href="{{ $src }}"><i class="fa-solid fa-play" aria-hidden="true"></i><i class="fa-solid fa-pause" aria-hidden="true"></i>{{ .Inner | .Page.RenderString }}</a>

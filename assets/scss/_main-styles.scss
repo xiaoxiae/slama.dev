@@ -610,6 +610,24 @@ footer {
   border: 1px solid;
 }
 
+.rightFloat {
+  max-width: 30%;
+  margin-top: 0;
+  margin-left: $line-spacing;
+  margin-bottom: $line-spacing * 0.5;
+  float: right;
+
+  img {
+    max-width: 100%;
+  }
+
+  @media (max-width: $small-screen-threshold) {
+    float: none;
+    max-width: 100%;
+    margin-left: 0;
+  }
+}
+
 .rightFloatBox {
   max-width: 30%;
   font-size: $toc-size;
@@ -963,6 +981,24 @@ figcaption {
     font-size: 0.7em;
     margin-right: 0.2em;
     opacity: 0.6;
+  }
+}
+
+.sound {
+  white-space: nowrap;
+
+  i {
+    font-size: 0.75em;
+    margin-right: 0.3em;
+  }
+
+  .fa-pause,
+  &.playing .fa-play {
+    display: none;
+  }
+
+  &.playing .fa-pause {
+    display: inline;
   }
 }
 

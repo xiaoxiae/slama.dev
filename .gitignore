@@ -27,6 +27,8 @@ static/drone/
 **/*.webp
 **/*.mp4
 **/*.wav
+**/*.ogg
+**/*.mp3
 **/*.pdf
 **/*.zip
 **/*.ttf

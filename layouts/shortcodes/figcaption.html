@@ -1,0 +1,2 @@
+{{- /* Caption for an image_section that needs shortcodes in it (e.g. {{< sound >}}), which a caption="..." parameter can't hold. Goes last, after the images. */ -}}
+<figcaption>{{ .Inner | strings.TrimSpace | .Page.RenderString }}</figcaption>
