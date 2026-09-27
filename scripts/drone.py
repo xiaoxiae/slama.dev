@@ -38,6 +38,9 @@ VIDEOS_FOLDER = STATIC_DIR / "videos"
 SOURCES_FOLDER = VIDEOS_FOLDER / "sources"
 
 SOURCE_EXTENSIONS = (".mp4", ".mov", ".avi")
+# Written next to each recording by the HDZero goggles: its first frame (the
+# boot screen) at 320x180. Discarded along with the session.
+THUMBNAIL_EXTENSIONS = (".jpg", ".jpeg")
 
 # PyYAML drops comments, so the header is re-emitted on every save.
 DRONE_YAML_HEADER = """\
@@ -376,14 +379,25 @@ def cmd_add(args):
     date, index = args.date or (str(datetime.date.today()), None)
     place = resolve_place(args.place, places) if args.place else None
 
+    files = sorted(os.listdir(SOURCES_FOLDER))
+    recordings = {
+        Path(file).stem for file in files if file.lower().endswith(SOURCE_EXTENSIONS)
+    }
     new: list[str] = []
-    for file in sorted(os.listdir(SOURCES_FOLDER)):
+    thumbnails: list[str] = []
+    for file in files:
+        if file in known:
+            print(f"skipping {file} (already referenced in drone.yaml).")
+            continue
+        if (
+            file.lower().endswith(THUMBNAIL_EXTENSIONS)
+            and Path(file).stem in recordings
+        ):
+            thumbnails.append(file)
+            continue
         if not file.lower().endswith(SOURCE_EXTENSIONS):
             if (SOURCES_FOLDER / file).is_file():
                 print(f"ignoring {file} (not one of {', '.join(SOURCE_EXTENSIONS)}).")
-            continue
-        if file in known:
-            print(f"skipping {file} (already referenced in drone.yaml).")
             continue
         print(f"adding {file}.")
         new.append(file)
@@ -406,6 +420,9 @@ def cmd_add(args):
     if place is not None:
         flight["place"] = place
     clips, discard = seed_clips(new, not args.no_detect)
+    if thumbnails:
+        print(f"thumbnails (to discard): {', '.join(thumbnails)}")
+    discard += thumbnails
     flight.setdefault("clips", []).extend(clips)
     if discard:
         flight["discard"] = discarded(flight) + discard
