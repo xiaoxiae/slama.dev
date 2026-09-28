@@ -355,6 +355,11 @@ def seed_clips(files: list[str], detect: bool) -> tuple[list[dict], list[str]]:
         f"{len(clips)} flight(s), {format_timestamp(flown)} of "
         f"{format_timestamp(sum(lengths.values()))} recorded"
         + (f"; dropped {detection.short} too short to count" if detection.short else "")
+        + (
+            f"; dropped {detection.still} held still (in hand)"
+            if detection.still
+            else ""
+        )
         + "."
     )
 

@@ -28,7 +28,7 @@ HUGO_ROOT = SCRIPT_DIR.parent
 CACHE_DIR = HUGO_ROOT / ".cache" / "drone-osd"
 
 # Bump when the reading code changes, to invalidate cached readings.
-OSD_VERSION = 3
+OSD_VERSION = 4
 
 FPS = 5
 
@@ -44,6 +44,10 @@ class Profile:
     to_frame: str
     # What the journal keeps of a frame, as ffmpeg filters ending in a comma.
     picture: str = ""
+    # Whether the recorder splits one continuous stream into files, so that a
+    # flight may run on into the next one. Otherwise a file boundary is a gap
+    # in the recording (HDZero: a power cycle or a dropped link), clock or no.
+    chunked: bool = False
 
     @property
     def templates(self) -> Path:
@@ -53,7 +57,7 @@ class Profile:
 # Named after the recorder, not the video link: the HDZero goggles record
 # analog flights too.
 PROFILES = {
-    "analog": Profile("analog", f"scale={FRAME_W}:{FRAME_H}"),
+    "analog": Profile("analog", f"scale={FRAME_W}:{FRAME_H}", chunked=True),
     # 1280x720, the grid spanning x 189-1097 (32 px columns, measured).
     "hdzero-dvr": Profile(
         "hdzero-dvr",
@@ -91,15 +95,21 @@ BLANK_PIXELS = 4
 MATCH = 0.75
 
 # Detection, in seconds; see CLAUDE.md for how these were measured.
+# Disarmed reads < 0.3 A, armed on the ground 0.5-0.9 A, flying almost always > 1.5 A.
 FLY_AMPS = 1.0
-MIN_IDLE = 7.0  # recoveries idled <= 6.0 s, pickups >= 7.6 s (2026-09-23, HDZero)
+MIN_IDLE = 7.0  # recoveries idled <= 6.0 s, pickups >= 7.6 s (2026-09-24)
 MAX_BLACKOUT = 15.0
 PRE_ROLL = 1.0
 POST_ROLL = 2.0
 MIN_FLIGHT = 8.0  # seconds flown; failed hops and flip attempts had <= 6 s
+# A flight whose picture changes less than this (median of the mean absolute
+# difference between samples, over its flying samples) was held in hand:
+# throttling it armed draws flying current. Flights: 17-21; in hand: 9.6.
+MIN_MOTION = 13.0
 MIN_PIECE = 0.5
 MAX_SEAM = 1.0  # a longer gap between two recordings ends any flight
 
+# Mean difference between neighbouring pixels: footage < 20, static 25-50.
 STATIC_DIFF = 22
 MOSTLY_STATIC = 0.5
 
@@ -279,7 +289,9 @@ def cache_key(path: Path, profile: Profile, templates: Templates) -> dict:
     }
 
 
-def read_recording(path: Path, threads: int = 1) -> list:
+def read_recording(path: Path, threads: int = 1) -> tuple[list, list]:
+    """Per sample: the reading, and how much the picture changed since the
+    previous sample (NaN for the first)."""
     profile = profile_of(path)
     templates = Templates.load(profile)
     cache = CACHE_DIR / f"{path.name}.json"
@@ -289,17 +301,25 @@ def read_recording(path: Path, threads: int = 1) -> list:
         try:
             cached = json.loads(cache.read_text())
             if cached.get("key") == key:
-                return cached["readings"]
+                return cached["readings"], cached["motion"]
         except (ValueError, KeyError):
             pass
 
     readings: list = []
+    motion: list = []
+    previous = None
     for frames in decode(path, threads=threads):
         readings += classify(frames, templates)
+        small = frames[:, ::4, ::4].astype(np.int16)
+        if previous is not None:
+            small = np.concatenate([previous, small])
+        diffs = np.abs(np.diff(small, axis=0)).mean((1, 2)).tolist()
+        motion += diffs if previous is not None else [float("nan")] + diffs
+        previous = small[-1:]
 
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    cache.write_text(json.dumps({"key": key, "readings": readings}))
-    return readings
+    cache.write_text(json.dumps({"key": key, "readings": readings, "motion": motion}))
+    return readings, motion
 
 
 @dataclass
@@ -307,8 +327,11 @@ class Session:
     files: list[str]
     lengths: list[float]
     readings: list[list]
+    motion: list[list] | None = None
     # When each recording ended by the clock, if the goggles keep time.
     ends: list[float] | None = None
+    # Per recording, its profile's `chunked`.
+    chunked: list[bool] | None = None
 
     @property
     def offsets(self) -> list[float]:
@@ -323,10 +346,12 @@ class Session:
     def seams(self) -> list[float]:
         """Offsets of the recordings that start after a real gap."""
         offsets = self.offsets
+        chunked = self.chunked or [True] * len(offsets)
         return [
             offsets[i + 1]
             for i in range(len(offsets) - 1)
             if offsets[i + 1] - (offsets[i] + self.lengths[i]) > MAX_SEAM
+            or not (chunked[i] and chunked[i + 1])
         ]
 
 
@@ -348,7 +373,7 @@ def read_session(paths: list[Path]) -> Session:
     # Without a GPU, a few long HEVC files would otherwise leave cores idle.
     threads = max(1, cores // max(len(paths), 1))
 
-    def work(path: Path) -> tuple[float, list]:
+    def work(path: Path) -> tuple[float, tuple[list, list]]:
         length = float(probe(path).get("format", {}).get("duration", 0))
         return length, read_recording(path, threads)
 
@@ -358,8 +383,10 @@ def read_session(paths: list[Path]) -> Session:
     return Session(
         files=[path.name for path in paths],
         lengths=lengths,
-        readings=[readings for _, readings in results],
+        readings=[readings for _, (readings, _) in results],
+        motion=[motion for _, (_, motion) in results],
         ends=recording_ends(paths, lengths),
+        chunked=[profile_of(path).chunked for path in paths],
     )
 
 
@@ -384,8 +411,13 @@ def is_break(states: str, times: np.ndarray) -> bool:
 
 
 def split_flights(
-    times: np.ndarray, readings: list, seams: list[float] = ()
-) -> tuple[list, int]:
+    times: np.ndarray,
+    readings: list,
+    seams: list[float] = (),
+    motion: list | None = None,
+) -> tuple[list, int, int]:
+    """The flights' (start, end), how many were too short and how many were
+    held still."""
     step = 1 / FPS
     states = list(state(reading) for reading in readings)
     # A lone flying sample is a misread.
@@ -414,7 +446,7 @@ def split_flights(
         previous = index
 
     flights = []
-    short = 0
+    short = still = 0
     for first, last in runs:
         end = times[last] + step
         # Flying time, not span: hops and crash-flips between re-arms add up to
@@ -422,6 +454,11 @@ def split_flights(
         if states[first : last + 1].count("F") * step < MIN_FLIGHT:
             short += 1
             continue
+        if motion is not None:
+            flying = [motion[i] for i in range(first, last + 1) if states[i] == "F"]
+            if np.nanmedian(flying) < MIN_MOTION:
+                still += 1
+                continue
         before = first
         while before > 0 and times[first] - times[before - 1] <= PRE_ROLL:
             if readings[before - 1] == STATIC or across(
@@ -445,7 +482,7 @@ def split_flights(
             middle = (flight[1] + flights[index + 1][0]) / 2
             if flight[1] > flights[index + 1][0]:
                 flight[1] = flights[index + 1][0] = middle
-    return [tuple(f) for f in flights], short
+    return [tuple(f) for f in flights], short, still
 
 
 def to_cuts(session: Session, start: float, end: float) -> list:
@@ -469,17 +506,23 @@ class Detection:
     clips: list[list]
     spans: list[tuple[float, float]]
     short: int
+    still: int
     unread: list[str]
     discard: list[str]
 
 
 def detect_flights(paths: list[Path]) -> Detection:
     session = read_session(paths)
-    times, readings = [], []
-    for offset, file_readings in zip(session.offsets, session.readings):
+    times, readings, motion = [], [], []
+    for offset, file_readings, file_motion in zip(
+        session.offsets, session.readings, session.motion
+    ):
         times += [offset + i / FPS for i in range(len(file_readings))]
         readings += file_readings
-    spans, short = split_flights(np.array(times), readings, session.seams)
+        motion += file_motion
+    spans, short, still = split_flights(
+        np.array(times), readings, session.seams, motion
+    )
     clips = [to_cuts(session, start, end) for start, end in spans]
 
     used = {file for cuts in clips for file, _, _ in cuts}
@@ -491,7 +534,7 @@ def detect_flights(paths: list[Path]) -> Detection:
         read = any(r not in (None, STATIC) for r in file_readings)
         (discard if read or static >= MOSTLY_STATIC else unread).append(file)
 
-    return Detection(clips, spans, short, unread, discard)
+    return Detection(clips, spans, short, still, unread, discard)
 
 
 # --- Learning the templates -------------------------------------------------
