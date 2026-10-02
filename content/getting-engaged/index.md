@@ -15,7 +15,7 @@ and here is an article on why.
 This is not a [/r/LinkedInLunatics](https://www.reddit.com/r/LinkedInLunatics/) type thing, bear with me here.
 I made a cute video game, it took me many hours, I learned a lot of things, and I wanted to show it to you, in case you'd like to do something similar for a proposal (it worked; N=1 but we take those babyyy).
 
-{{< image_section caption="**_[You can play it online!](https://k.slama.dev)_**  _To play, you need a microphone and patience._" >}}
+{{< image_section caption="**_[You can play it online!](https://k.slama.dev)_**  _To play, you need a microphone and patience._<br>Yes, there is a speedrunning leaderboard. Don't ask why." >}}
 {{< image_row "shots/hub-hall/23-b1c0091.png | shots/cooking-play/10-ce5dbe7.png" >}}
 {{< /image_section >}}
 
