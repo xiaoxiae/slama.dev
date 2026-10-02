@@ -263,3 +263,30 @@ flights:
     - file: 2026-09-28-heidelberg-playground-kita-huttenbuhl-vwcfmcxb.mp4
     - file: 2026-09-28-heidelberg-playground-kita-huttenbuhl-wubnpjgy.mp4
     place: heidelberg-playground-kita-huttenbuhl
+  '2026-09-29':
+    clips:
+    - file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-abhrwfbn.mp4
+    - file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-azwntmll.mp4
+    - file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-jgndtwxo.mp4
+    - file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-jgtapvzs.mp4
+    - file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-nkgxjojb.mp4
+    - file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-otngxfmf.mp4
+    - file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-rnqfxnwa.mp4
+    - file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-wmxyppku.mp4
+    - file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-wovwfwcq.mp4
+    - file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-zofkelij.mp4
+    place: heidelberg-playground-kita-huttenbuhl
+    note: Getting the hang of the trippy spin. Just need to put the hours in, pretty much.
+  '2026-09-30':
+    clips:
+    - file: 2026-09-30-heidelberg-playground-kita-huttenbuhl-bekexrcf.mp4
+    - file: 2026-09-30-heidelberg-playground-kita-huttenbuhl-fceswdjk.mp4
+    - file: 2026-09-30-heidelberg-playground-kita-huttenbuhl-guhfecst.mp4
+    - file: 2026-09-30-heidelberg-playground-kita-huttenbuhl-mmflwmwu.mp4
+    - file: 2026-09-30-heidelberg-playground-kita-huttenbuhl-ojqsuqch.mp4
+    - file: 2026-09-30-heidelberg-playground-kita-huttenbuhl-ptdzupvu.mp4
+    - file: 2026-09-30-heidelberg-playground-kita-huttenbuhl-ynetyuvl.mp4
+    - file: 2026-09-30-heidelberg-playground-kita-huttenbuhl-yqgtxrhq.mp4
+    - file: 2026-09-30-heidelberg-playground-kita-huttenbuhl-zudbktti.mp4
+    place: heidelberg-playground-kita-huttenbuhl
+    note: Short flight, got wrecked by the rain in a little bit.
