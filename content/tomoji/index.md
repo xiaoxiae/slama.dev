@@ -1,7 +1,7 @@
 ---
 date: '2026-01-21'
 title: "Tomoji – Creating a Font from my Face"
-categoryIcon: /assets/category-icons/tomoji.webp
+categoryIcon: tomoji
 description: "Yes, it is literally as dumb as that sounds."
 hasTomoji: true
 ---

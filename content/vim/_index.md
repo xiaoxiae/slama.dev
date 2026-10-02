@@ -1,7 +1,7 @@
 ---
 title: Vim
 cascade:
-  categoryIcon: /assets/category-icons/vim.svg
+  categoryIcon: vim
 description: "Tips and tricks for the Vim text editor."
 ---
 

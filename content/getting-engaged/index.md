@@ -1,6 +1,7 @@
 ---
 date: '2026-09-07'
 title: Getting Engaged
+categoryIcon: k
 description: "She said yes!"
 toc: true
 ---

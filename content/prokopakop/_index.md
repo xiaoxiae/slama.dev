@@ -1,7 +1,7 @@
 ---
 title: Prokopakop
 cascade:
-  categoryIcon: /assets/category-icons/prokopakop.svg
+  categoryIcon: prokopakop
 description: "Writing a chess engine in Rust, commit by commit, article by article."
 ---
 

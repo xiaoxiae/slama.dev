@@ -1,7 +1,7 @@
 ---
 title: YouTube
 cascade:
-  categoryIcon: /assets/category-icons/youtube.svg
+  categoryIcon: youtube
 description: "Companion posts for the videos on my YouTube channel."
 ---
 

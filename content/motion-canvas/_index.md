@@ -1,7 +1,7 @@
 ---
 title: Motion Canvas
 cascade:
-  categoryIcon: /assets/category-icons/motion-canvas.svg
+  categoryIcon: motion-canvas
 description: "A multi-part introduction to Motion Canvas, from the perspective of a Manim user."
 ---
 

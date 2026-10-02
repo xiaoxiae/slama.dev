@@ -4,7 +4,7 @@ title: Generative Neural Networks
 ogImage: "bernoulli.webp"
 description: Lecture notes from the Generative Neural Networks for the Sciences course
   (Ullrich Köthe, 2023/2024).
-categoryIcon: /assets/category-icons/heidelberg.webp
+categoryIcon: heidelberg
 toc: true
 ---
 

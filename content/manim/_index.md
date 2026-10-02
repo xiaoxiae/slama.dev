@@ -1,7 +1,7 @@
 ---
 title: Manim
 cascade:
-  categoryIcon: /assets/category-icons/manim.svg
+  categoryIcon: manim
 description: "A multi-part introduction to Manim, the Python animation library."
 ---
 

@@ -1,0 +1,8 @@
+{{- /* Expects dict "icon" (a file name in static/assets/category-icons/, without extension) and "alt" */ -}}
+{{- $src := "" -}}
+{{- range slice "svg" "webp" "png" "ico" -}}
+	{{- $file := printf "assets/category-icons/%s.%s" $.icon . -}}
+	{{- if and (not $src) (fileExists (path.Join "static" $file)) }}{{ $src = printf "/%s" $file }}{{ end -}}
+{{- end -}}
+{{- if not $src }}{{ errorf "category icon %q not found in static/assets/category-icons/" .icon }}{{ end -}}
+<img class='icon' src='{{ $src }}' alt='{{ .alt }}'/>

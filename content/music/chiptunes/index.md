@@ -2,7 +2,7 @@
 date: '2024-01-19'
 title: Chiptunes
 description: An experiment in making chiptune music.
-categoryIcon: /assets/category-icons/music.svg
+categoryIcon: music
 ---
 
 

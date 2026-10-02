@@ -16,7 +16,7 @@
 <div class="post-item">
 	<div class="post-header">
 		<div class="post-title-row">
-			{{ with .Params.categoryIcon }}<img class='icon' src='{{ . }}' alt="Category icon"/>{{ end }}
+			{{ with .Params.categoryIcon }}{{ partial "category-icon.html" (dict "icon" . "alt" "Category icon") }}{{ end }}
 			{{ if or .Params.pdf .Params.pdfNogenerate }}<a href="{{ .Parent.RelPermalink }}{{ path.Base .RelPermalink }}.pdf" class="post-icon" aria-label="Download PDF"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></a>{{ end }}
 			{{ if eq .Params.language "cs" }}<span class="language-flag">🇨🇿</span>{{ end }}
 			<span class="post-title-link">

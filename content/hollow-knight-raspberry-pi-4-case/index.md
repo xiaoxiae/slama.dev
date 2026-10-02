@@ -3,7 +3,7 @@ date: '2026-03-11'
 title: "Hollow Knight Raspberry Pi 4 Case"
 ogImage: "example-1.jpg"
 description: "Making a Hollow Knight (Silksong) Raspberry Pi 4 case."
-categoryIcon: /assets/category-icons/hollow-knight.ico
+categoryIcon: hollow-knight
 ---
 
 I am a big fan of [Hollow Knight: Silksong](https://store.steampowered.com/app/1030300/Hollow_Knight_Silksong/). I've 100%ed the game and am trying Steel Soul attempts when I have time (which isn't often), and I think the design of the main characters lends itself to nice-looking art/posters.

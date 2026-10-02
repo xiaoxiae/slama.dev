@@ -4,7 +4,7 @@ title: Mining Massive Datasets
 ogImage: "sparkml.webp"
 description: Lecture notes from the Mining Massive Datasets course (Artur Andrzejak,
   2022/2023).
-categoryIcon: /assets/category-icons/heidelberg.webp
+categoryIcon: heidelberg
 toc: true
 ---
 

@@ -4,7 +4,7 @@ lastmod: '2022-06-07'
 title: The C# programming language
 description: Lecture notes from The C# programming language lecture (Pavel Ježek,
   2020/2021).
-categoryIcon: /assets/category-icons/mff.webp
+categoryIcon: mff
 toc: true
 ---
 

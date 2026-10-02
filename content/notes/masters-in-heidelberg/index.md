@@ -5,7 +5,7 @@ ogImage: "rhein-neckar-region.png"
 pdf: true
 description: Things we learned during our move to Heidelberg (Germany) for our master's
   degrees, including enrolment, housing, travel, torrenting, and more.
-categoryIcon: /assets/category-icons/heidelberg.webp
+categoryIcon: heidelberg
 toc: true
 ---
 

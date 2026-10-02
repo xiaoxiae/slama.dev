@@ -3,7 +3,7 @@ date: '2022-11-30'
 title: Robotics 1
 ogImage: "workspaces.png"
 description: Lecture notes from the Robotics 1 course (Lorenzo Masia, 2022/2023).
-categoryIcon: /assets/category-icons/heidelberg.webp
+categoryIcon: heidelberg
 toc: true
 ---
 
