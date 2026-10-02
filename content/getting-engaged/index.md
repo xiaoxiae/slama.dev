@@ -1,5 +1,5 @@
 ---
-date: '2026-09-07'
+date: '2026-10-02'
 title: Getting Engaged
 categoryIcon: k
 description: "She said yes!"
