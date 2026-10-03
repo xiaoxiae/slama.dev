@@ -1,0 +1,3 @@
+{{- if os.FileExists (printf "static/%s" .) -}}
+<span class='video-strip' aria-hidden='true'><img src='/{{ . }}' alt='' loading='lazy'></span>
+{{- end -}}

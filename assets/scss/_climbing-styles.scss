@@ -404,6 +404,19 @@ ul.climbing-entry-header {
   list-style-type: none;
   padding-left: 0;
   padding-bottom: $line-spacing * 0.2;
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+  > li {
+    grid-column: 1;
+  }
+
+  > li.climbing-entry-strip {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    display: flex;
+    padding: 0;
+  }
 
   li {
     padding-bottom: $line-spacing / 6;

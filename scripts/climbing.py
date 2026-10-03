@@ -24,6 +24,7 @@ from video_common import (
     file_key,
     generate_poster,
     load_yaml,
+    make_strips,
     require_frames,
     require_tools,
     run,
@@ -66,6 +67,7 @@ STATIC_DIR = HUGO_ROOT / "static" / "climbing"
 CLIMBING_YAML = DATA_DIR / "climbing.yaml"
 WALLS_YAML = DATA_DIR / "walls.yaml"
 VIDEOS_FOLDER = STATIC_DIR / "videos"
+STRIPS_FOLDER = VIDEOS_FOLDER / "strips"
 
 # Training boards, mapped to the per-session setting they're recorded with.
 # Videos end up under a session key of the same name, grouped by grade instead
@@ -316,6 +318,22 @@ def process_video(
     return name, video
 
 
+def make_session_strips(data: dict) -> None:
+    make_strips(
+        {
+            date: [
+                VIDEOS_FOLDER / file
+                for file in sorted(
+                    session_files(session), key=lambda f: (file_key(f) or 0, f)
+                )
+            ]
+            for date, session in data.get("sessions", {}).items()
+        },
+        STRIPS_FOLDER,
+        height=96,
+    )
+
+
 def cmd_build(args):
     """Process videos (rename, trim, encode, generate posters)."""
     # ffmpeg (trim/encode/poster frame) and cwebp (poster encode) are always
@@ -363,6 +381,7 @@ def cmd_build(args):
                         video_file = v.get("file")
                         if video_file and (VIDEOS_FOLDER / video_file).exists():
                             generate_poster(VIDEOS_FOLDER / video_file)
+        make_session_strips(data)
         return
 
     print(f"Processing {pending_count} pending video(s)...")
@@ -442,6 +461,7 @@ def cmd_build(args):
         session.pop("_pending_videos", None)
 
     save_yaml(CLIMBING_YAML, data)
+    make_session_strips(data)
     print("climbing videos generated (and reformatted).", flush=True)
 
 

@@ -327,3 +327,56 @@ def generate_poster(video_path: Path, max_width: int = 720) -> Path:
     )
     os.remove(poster_jpeg)
     return poster_webp
+
+
+# Right-aligned on the page, so only the newest posters need to fit.
+STRIP_MAX_WIDTH = 1800
+STRIP_QUALITY = 60
+STRIP_GAP = 6
+
+
+def make_strips(groups: dict[str, list[Path]], folder: Path, height: int) -> None:
+    """Poster strip per group of videos; deletes strips of gone groups."""
+    folder.mkdir(parents=True, exist_ok=True)
+    wanted: set[str] = set()
+    for key, videos in groups.items():
+        tiles: list[Image.Image] = []
+        width = 0
+        for video in reversed(videos):
+            poster = video.with_suffix(".webp")
+            if not poster.exists():
+                continue
+            with Image.open(poster) as image:
+                if image.height > image.width:
+                    top = (image.height - image.width) // 2
+                    image = image.crop((0, top, image.width, top + image.width))
+                tile_width = round(image.width * height / image.height)
+                tile = image.convert("RGB").resize(
+                    (tile_width, height), Image.Resampling.LANCZOS
+                )
+            gap = STRIP_GAP if tiles else 0
+            if tiles and width + gap + tile_width > STRIP_MAX_WIDTH:
+                break
+            tiles.append(tile)
+            width += gap + tile_width
+        if not tiles:
+            continue
+
+        strip = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+        x = 0
+        for tile in reversed(tiles):
+            strip.paste(tile, (x, 0))
+            x += tile.width + STRIP_GAP
+
+        path = folder / f"{key}.webp"
+        wanted.add(path.name)
+        temp_path = path.with_name(f"tmp_{path.name}")
+        strip.save(temp_path, quality=STRIP_QUALITY)
+        if path.exists() and path.read_bytes() == temp_path.read_bytes():
+            temp_path.unlink()
+        else:
+            os.replace(temp_path, path)
+
+    for path in folder.glob("*.webp"):
+        if path.name not in wanted:
+            path.unlink()

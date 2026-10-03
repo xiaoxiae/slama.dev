@@ -21,19 +21,14 @@
   font-family: $monospaced-font, monospace;
 }
 
-// The flight's posters behind the summary.
-.drone-strip {
-  flex: 1;
-  align-self: stretch;
+.drone-clips summary .video-strip {
   margin: (-$line-spacing * 0.25) (-$line-spacing * 0.5) (-$line-spacing * 0.25)
     0.75em;
   border-radius: 0 $code-border-roundness $code-border-roundness 0;
-  background: var(--strip) 0 0 / auto 100% no-repeat;
-  mask-image: linear-gradient(to right, transparent, black 4em);
+}
 
-  [open] > summary > & {
-    visibility: hidden;
-  }
+.drone-clips[open] .video-strip {
+  visibility: hidden;
 }
 
 .drone-grid {

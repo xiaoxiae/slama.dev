@@ -11,7 +11,6 @@ from pathlib import Path
 from typing import NoReturn
 
 import yaml
-from PIL import Image
 
 from drone_osd import detect_flights, profile_of
 from video_common import (
@@ -20,6 +19,7 @@ from video_common import (
     find_todos,
     generate_poster,
     load_yaml,
+    make_strips,
     probe,
     require_frames,
     require_tools,
@@ -64,11 +64,6 @@ DENOISE_FILTER = "hqdn3d=4:3:2:2"
 MAX_HEIGHT = 720
 OUTPUT_FPS = 30
 KEEP_AUDIO = False
-
-# Strip of posters behind each flight's summary (2x its height for HiDPI).
-STRIP_POSTER_SIZE = (86, 64)
-STRIP_WIDTH = 1800
-STRIP_QUALITY = 60
 
 DURATION_TOLERANCE = 0.5
 # Keep this below DURATION_TOLERANCE.
@@ -625,47 +620,19 @@ def validate_flight(key: str, flight: dict, places: dict) -> list[list] | None:
     return cuts_by_clip
 
 
-def make_strips(flights: dict) -> None:
-    """Regenerate all strips (it's cheap) and delete ones for gone flights."""
-    STRIPS_FOLDER.mkdir(parents=True, exist_ok=True)
-    width, height = STRIP_POSTER_SIZE
-    wanted: set[str] = set()
-    for key, flight in flights.items():
-        files = [
-            clip["file"]
-            for clip in (flight.get("clips") or [])
-            if isinstance(clip, dict) and clip.get("file")
-        ]
-        posters = [VIDEOS_FOLDER / Path(file).with_suffix(".webp") for file in files]
-        posters = [poster for poster in posters if poster.exists()]
-        if not posters:
-            continue
-        tiles = []
-        for poster in posters:
-            with Image.open(poster) as image:
-                tiles.append(
-                    image.convert("RGB").resize(
-                        STRIP_POSTER_SIZE, Image.Resampling.LANCZOS
-                    )
-                )
-
-        count = math.ceil(STRIP_WIDTH / width)
-        strip = Image.new("RGB", (width * count, height))
-        for i in range(count):
-            strip.paste(tiles[i % len(tiles)], (i * width, 0))
-
-        path = STRIPS_FOLDER / f"{key}.webp"
-        wanted.add(path.name)
-        temp_path = path.with_name(f"tmp_{path.name}")
-        strip.save(temp_path, quality=STRIP_QUALITY)
-        if path.exists() and path.read_bytes() == temp_path.read_bytes():
-            temp_path.unlink()
-        else:
-            os.replace(temp_path, path)
-
-    for path in STRIPS_FOLDER.glob("*.webp"):
-        if path.name not in wanted:
-            path.unlink()
+def make_flight_strips(flights: dict) -> None:
+    make_strips(
+        {
+            key: [
+                VIDEOS_FOLDER / clip["file"]
+                for clip in flight.get("clips") or []
+                if isinstance(clip, dict) and clip.get("file")
+            ]
+            for key, flight in flights.items()
+        },
+        STRIPS_FOLDER,
+        height=64,
+    )
 
 
 def cmd_build(args):
@@ -685,7 +652,7 @@ def cmd_build(args):
 
     if not pending:
         print("No pending flights to process.")
-        make_strips(flights)
+        make_flight_strips(flights)
         return
 
     ready: dict[str, list[list]] = {}
@@ -731,7 +698,7 @@ def cmd_build(args):
         )
         sys.exit(1)
 
-    make_strips(flights)
+    make_flight_strips(flights)
     print(f"\n{total} drone clip(s) generated.", flush=True)
 
 

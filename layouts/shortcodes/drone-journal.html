@@ -47,10 +47,7 @@
 <details class='drone-clips'>
 <summary><span><strong>{{ $count }}</strong> {{ cond (eq $count 1) "clip" "clips" }}
   {{- with $seconds }} (<strong class='drone-time'>{{ printf "%d:%02d" (div . 60) (mod . 60) }}</strong> flight time){{ end }}</span>
-  {{- $strip := printf "drone/videos/strips/%s.webp" $key -}}
-  {{- if os.FileExists (printf "static/%s" $strip) }}
-<span class='drone-strip' style='{{ printf "--strip: url(/%s)" $strip | safeCSS }}' aria-hidden='true'></span>
-  {{- end -}}
+  {{- partial "video-strip.html" (printf "drone/videos/strips/%s.webp" $key) -}}
 </summary>
 <div class='drone-grid'>
   {{- range collections.Reverse $flight.clips -}}

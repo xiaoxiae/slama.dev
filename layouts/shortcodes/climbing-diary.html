@@ -211,7 +211,7 @@
       {{- end -}}
     {{- end -}}
   {{- end -}}
-</li></ul>
+</li><li class='climbing-entry-strip'>{{ partial "video-strip.html" (printf "climbing/videos/strips/%s.webp" $date) }}</li></ul>
 
   {{- /* Routes */ -}}
   {{- with $session.routes -}}
