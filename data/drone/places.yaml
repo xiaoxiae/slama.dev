@@ -1,9 +1,5 @@
-# Flying spots for the drone journal.
-# A flight refers to a spot by its key here (`drone.py add <key>`), and the page
-# takes the name and map pin from this file. Paste `coords` from OpenStreetMap
-# as "lat,lon"; omit it for a place that shouldn't get a map pin. An optional
-# `alias` is shorthand for the key, in `drone.py add` and in a flight's `place:`
-# (the script rewrites it to the key on its next run).
+# Flying spots. The page shows `display` (or `name`); `coords` aren't shown.
+# `alias` can be used instead of the key.
 
 heidelberg-airfield:
   name: "Heidelberg Airfield"
@@ -25,10 +21,12 @@ praha-hriste:
 heidelberg-playground-cuzaring:
   alias: heidelberg-playground-1
   name: "Heidelberg Playground (Cuzaring)"
+  display: "Heidelberg Playground 1"
 
 heidelberg-playground-kita-huttenbuhl:
   alias: heidelberg-playground-2
   name: "Heidelberg Playground (Kita Hüttenbühl)"
+  display: "Heidelberg Playground 2"
 
 krimml-chateau-playground:
   name: "Playground at the Krimml Chateau"

@@ -1,18 +1,46 @@
 @import "variables";
 
 .drone-entry {
-  padding-bottom: $line-spacing;
+  padding-bottom: $line-spacing * 1.5;
 }
 
+.drone-entry-header,
 .drone-note {
-  margin-bottom: $line-spacing * 0.5;
+  margin-bottom: $line-spacing * 0.25;
+}
+
+.drone-clips {
+  margin-bottom: 0;
+
+  summary {
+    display: flex;
+  }
+}
+
+.drone-time {
+  font-family: $monospaced-font, monospace;
+}
+
+// The flight's posters behind the summary.
+.drone-strip {
+  flex: 1;
+  align-self: stretch;
+  margin: (-$line-spacing * 0.25) (-$line-spacing * 0.5) (-$line-spacing * 0.25)
+    0.75em;
+  border-radius: 0 $code-border-roundness $code-border-roundness 0;
+  background: var(--strip) 0 0 / auto 100% no-repeat;
+  mask-image: linear-gradient(to right, transparent, black 4em);
+
+  [open] > summary > & {
+    visibility: hidden;
+  }
 }
 
 .drone-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 0.75rem;
-  // Stop the site-wide `video { height: 100% }` stretching figures to the row.
+  // Otherwise the site-wide `video { height: 100% }` stretches figures.
   align-items: start;
 
   @media (max-width: $small-screen-threshold) {
@@ -27,6 +55,10 @@
     width: 100%;
     height: auto;
     aspect-ratio: 4 / 3;
+    // Background instead of `poster`, so closed flights don't load it.
+    background:
+      var(--poster) center / cover,
+      black;
   }
 
   figcaption {

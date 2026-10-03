@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Drone journal: `add` registers recordings, `build` cuts them into clips."""
+"""Drone journal: `add` new recordings, `build` them into clips."""
 
 import argparse
 import datetime
@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import NoReturn
 
 import yaml
+from PIL import Image
 
 from drone_osd import detect_flights, profile_of
 from video_common import (
@@ -36,20 +37,19 @@ DRONE_YAML = DATA_DIR / "drone.yaml"
 PLACES_YAML = DATA_DIR / "places.yaml"
 VIDEOS_FOLDER = STATIC_DIR / "videos"
 SOURCES_FOLDER = VIDEOS_FOLDER / "sources"
+STRIPS_FOLDER = VIDEOS_FOLDER / "strips"
 
 SOURCE_EXTENSIONS = (".mp4", ".mov", ".avi")
-# Written next to each recording by the HDZero goggles: its first frame (the
-# boot screen) at 320x180. Discarded along with the session.
+# HDZero goggles save a thumbnail next to each recording; we delete those too.
 THUMBNAIL_EXTENSIONS = (".jpg", ".jpeg")
 
-# PyYAML drops comments, so the header is re-emitted on every save.
+# PyYAML drops comments, so we write the header back on every save.
 DRONE_YAML_HEADER = """\
-# Drone journal, written by scripts/drone.py (see CLAUDE.md).
+# Drone journal, managed by scripts/drone.py.
 #
-# A flight: optional `place` (key or alias from places.yaml), optional `note`,
-# `clips`, and `discard` (recordings deleted on build). A clip: optional
-# `description` and `cuts`, spliced in order. A cut is "FILE: START,END"; either
-# side may be empty to run from the start or to the end.
+# Flights have an optional place, note, clips and discard (files to delete).
+# Clips have cuts ("FILE: START,END", either side can be empty) until they're
+# built, then a file and duration.
 #
 #   clips:
 #   - description: low pass over the dam, then the return
@@ -65,11 +65,16 @@ MAX_HEIGHT = 720
 OUTPUT_FPS = 30
 KEEP_AUDIO = False
 
+# Strip of posters behind each flight's summary (2x its height for HiDPI).
+STRIP_POSTER_SIZE = (86, 64)
+STRIP_WIDTH = 1800
+STRIP_QUALITY = 60
+
 DURATION_TOLERANCE = 0.5
-# Must stay below DURATION_TOLERANCE, or a short clip would pass verification.
+# Keep this below DURATION_TOLERANCE.
 RANGE_EPSILON = 0.05
 
-# `- FILE: ,19` is not valid YAML; quoted on load, unquoted on save.
+# `- FILE: ,19` isn't valid YAML, so we quote it on load and unquote on save.
 OPEN_START_CUT = re.compile(r"^(\s*- \S+: )(,\S*)$", re.M)
 QUOTED_OPEN_START_CUT = re.compile(r"^(\s*- \S+: )'(,[^']*)'$", re.M)
 
@@ -135,7 +140,7 @@ def rename_flight(flights: dict, old: str, new: str) -> None:
 def choose_flight(
     flights: dict, date: str, place: str | None, index: int | None
 ) -> str:
-    """Reuses the day's latest flight at the same place, else starts the next."""
+    """Day's last flight if it's at the same place, otherwise a new one."""
     existing = day_flights(flights, date)
 
     if index is None:
@@ -172,7 +177,7 @@ def parse_timestamp(value: str) -> float:
 
 
 def format_timestamp(seconds: float) -> str:
-    # Rounded first, or 59.996 would come out as "0:60.00".
+    # Round first, otherwise 59.996 becomes "0:60.00".
     minutes, seconds = divmod(round(seconds, 2), 60)
     return f"{int(minutes)}:{seconds:05.2f}"
 
@@ -412,7 +417,6 @@ def cmd_add(args):
         print("No new recordings found.")
         return
 
-    # Only recordings added together are read as one session.
     previous = previous_chunk(new[0])
     if previous in known:
         print(
@@ -446,7 +450,7 @@ def previous_chunk(file: str) -> str | None:
 
 
 def extract_clip(cuts: list[tuple[str, float, float]], target: Path) -> None:
-    # One pass: stream-copying the cuts breaks on the variable frame rate.
+    # Stream-copying breaks on variable frame rate, so we re-encode in one go.
     command = ["ffmpeg", "-nostdin", "-y"]
     for file, start, end in cuts:
         command += [
@@ -458,7 +462,6 @@ def extract_clip(cuts: list[tuple[str, float, float]], target: Path) -> None:
             str(SOURCES_FOLDER / file),
         ]
 
-    # A clip's recordings all share a resolution, so they share a profile.
     picture = profile_of(SOURCES_FOLDER / cuts[0][0]).picture
     scale = f"scale=-2:'min({MAX_HEIGHT},ih)'"
     graph = "".join(f"[{i}:v]{picture}{scale}[s{i}];" for i in range(len(cuts)))
@@ -503,8 +506,8 @@ def extract_clip(cuts: list[tuple[str, float, float]], target: Path) -> None:
     run(command, target, label=target.name)
 
 
-def verify_clip(path: Path, expected_duration: float) -> None:
-    # ffmpeg exits 0 on a zero-frame output, and the recording is deleted after.
+def verify_clip(path: Path, expected_duration: float) -> float:
+    # ffmpeg can exit 0 with no frames written, and we delete the source after.
     require_frames(path, path.name)
 
     duration = float(probe(path).get("format", {}).get("duration", 0))
@@ -512,6 +515,7 @@ def verify_clip(path: Path, expected_duration: float) -> None:
         raise RuntimeError(
             f"'{path.name}' is {duration:.2f}s, expected {expected_duration:.2f}s"
         )
+    return duration
 
 
 def process_flight(
@@ -532,9 +536,9 @@ def process_flight(
             for file, start, end in cuts:
                 print(f"  {file} [{start:g}s-{end:g}s]", flush=True)
             extract_clip(cuts, temp_path)
-            verify_clip(temp_path, duration)
+            measured = verify_clip(temp_path, duration)
 
-            entry: dict = {"file": final_path.name}
+            entry: dict = {"file": final_path.name, "duration": round(measured)}
             if clip.get("description"):
                 entry["description"] = clip["description"]
             staged.append((temp_path, final_path, entry))
@@ -621,6 +625,49 @@ def validate_flight(key: str, flight: dict, places: dict) -> list[list] | None:
     return cuts_by_clip
 
 
+def make_strips(flights: dict) -> None:
+    """Regenerate all strips (it's cheap) and delete ones for gone flights."""
+    STRIPS_FOLDER.mkdir(parents=True, exist_ok=True)
+    width, height = STRIP_POSTER_SIZE
+    wanted: set[str] = set()
+    for key, flight in flights.items():
+        files = [
+            clip["file"]
+            for clip in (flight.get("clips") or [])
+            if isinstance(clip, dict) and clip.get("file")
+        ]
+        posters = [VIDEOS_FOLDER / Path(file).with_suffix(".webp") for file in files]
+        posters = [poster for poster in posters if poster.exists()]
+        if not posters:
+            continue
+        tiles = []
+        for poster in posters:
+            with Image.open(poster) as image:
+                tiles.append(
+                    image.convert("RGB").resize(
+                        STRIP_POSTER_SIZE, Image.Resampling.LANCZOS
+                    )
+                )
+
+        count = math.ceil(STRIP_WIDTH / width)
+        strip = Image.new("RGB", (width * count, height))
+        for i in range(count):
+            strip.paste(tiles[i % len(tiles)], (i * width, 0))
+
+        path = STRIPS_FOLDER / f"{key}.webp"
+        wanted.add(path.name)
+        temp_path = path.with_name(f"tmp_{path.name}")
+        strip.save(temp_path, quality=STRIP_QUALITY)
+        if path.exists() and path.read_bytes() == temp_path.read_bytes():
+            temp_path.unlink()
+        else:
+            os.replace(temp_path, path)
+
+    for path in STRIPS_FOLDER.glob("*.webp"):
+        if path.name not in wanted:
+            path.unlink()
+
+
 def cmd_build(args):
     require_tools("ffmpeg", "ffprobe", "cwebp")
 
@@ -638,6 +685,7 @@ def cmd_build(args):
 
     if not pending:
         print("No pending flights to process.")
+        make_strips(flights)
         return
 
     ready: dict[str, list[list]] = {}
@@ -683,6 +731,7 @@ def cmd_build(args):
         )
         sys.exit(1)
 
+    make_strips(flights)
     print(f"\n{total} drone clip(s) generated.", flush=True)
 
 

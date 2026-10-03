@@ -3,9 +3,10 @@ title: Drone
 schemaType: CollectionPage
 layout: default
 noHeading: true
+icon: fa-drone
 description: "A journal of my FPV drone flights."
 ---
 
-I've recently bought a small FPV drone. This page records flights, so I can keep track of whether I'm getting better or worse.
+I've recently bought a small FPV drone. This page records flights, so I can keep track of whether I'm getting better or worse. For my setup, I'm flying an **[Air75 II](https://betafpv.com/products/air75-ii-brushless-whoop-quadcopter)** Whoop with a **[Radiomaster Pocket](https://radiomasterrc.com/products/pocket-crush-radio-controller?variant=46486325067968)** controller using a **[HDZero BoxPro+](https://www.hd-zero.com/product-page/hdzero-boxpro-boxpro)**, and I'm very happy 🙂.
 
 {{< drone-journal >}}

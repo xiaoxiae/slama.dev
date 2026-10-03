@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Finds flights in goggle recordings by reading the Betaflight OSD."""
+"""Find flights in goggle recordings by reading the Betaflight OSD."""
 
 import argparse
 import hashlib
@@ -13,7 +13,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from subprocess import DEVNULL, PIPE, Popen
 
-# Recordings are read one thread each; BLAS threads would only oversubscribe.
+# We already run one thread per recording.
 for variable in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
     os.environ.setdefault(variable, "1")
 
@@ -27,7 +27,7 @@ SCRIPT_DIR = Path(__file__).parent
 HUGO_ROOT = SCRIPT_DIR.parent
 CACHE_DIR = HUGO_ROOT / ".cache" / "drone-osd"
 
-# Bump when the reading code changes, to invalidate cached readings.
+# Bump to invalidate the cache.
 OSD_VERSION = 4
 
 FPS = 5
@@ -37,16 +37,14 @@ FRAME_W, FRAME_H = 640, 480
 
 @dataclass(frozen=True)
 class Profile:
-    """A kind of recording: how its frame maps onto the 640x480 OSD grid all
-    the positions below are in, and the templates its OSD font is matched to."""
+    """How a recorder's frame maps onto the 640x480 OSD grid."""
 
     name: str
     to_frame: str
-    # What the journal keeps of a frame, as ffmpeg filters ending in a comma.
+    # ffmpeg filters (ending in a comma) for the part of the frame we keep.
     picture: str = ""
-    # Whether the recorder splits one continuous stream into files, so that a
-    # flight may run on into the next one. Otherwise a file boundary is a gap
-    # in the recording (HDZero: a power cycle or a dropped link), clock or no.
+    # Whether a flight can continue into the next file. On HDZero a new file
+    # means the link dropped or the goggles restarted.
     chunked: bool = False
 
     @property
@@ -54,15 +52,14 @@ class Profile:
         return SCRIPT_DIR / f"drone_osd-{self.name}.npz"
 
 
-# Named after the recorder, not the video link: the HDZero goggles record
-# analog flights too.
+# By recorder, not video link (the HDZero goggles record analog too).
 PROFILES = {
     "analog": Profile("analog", f"scale={FRAME_W}:{FRAME_H}", chunked=True),
-    # 1280x720, the grid spanning x 189-1097 (32 px columns, measured).
+    # 1280x720, OSD grid spans x 189-1097 (measured).
     "hdzero-dvr": Profile(
         "hdzero-dvr",
         f"crop=ih*1.2611:ih:(iw-ih*1.2611)/2+ih*0.0042:0,scale={FRAME_W}:{FRAME_H}",
-        # The 4:3 picture, without the goggles' own icons in the bars aside.
+        # Crop to 4:3 to drop the goggles' icons on the sides.
         picture="crop=ih*4/3:ih,",
     ),
 }
@@ -74,7 +71,7 @@ def profile_of(path: Path) -> Profile:
     return PROFILES["hdzero-dvr" if widescreen else "analog"]
 
 
-# Current is right-aligned in cells 21-26 as ` 6.12A` or `10.45A`.
+# Current, e.g. ` 6.12A` or `10.45A`, right-aligned in cells 21-26.
 CELL_W, CELL_X0 = 22.4, 9.0
 CELL_Y, CELL_H = 404, 28
 AMPS_CELLS = range(21, 27)
@@ -88,28 +85,26 @@ CELL_SLACK, WORD_SLACK = 2, 4
 
 CROP = (176, 108, 444, 332)
 
-# Text is bright with a dark outline, unlike a bright sky or a white shirt.
+# OSD text is white with a dark outline, which a bright sky isn't.
 WHITE = 190
 OUTLINE, CONTRAST = 3, 100
 BLANK_PIXELS = 4
 MATCH = 0.75
 
-# Detection, in seconds; see CLAUDE.md for how these were measured.
-# Disarmed reads < 0.3 A, armed on the ground 0.5-0.9 A, flying almost always > 1.5 A.
+# Measured: disarmed < 0.3 A, armed on the ground 0.5-0.9 A, flying > 1.5 A.
 FLY_AMPS = 1.0
-MIN_IDLE = 7.0  # recoveries idled <= 6.0 s, pickups >= 7.6 s (2026-09-24)
+MIN_IDLE = 7.0  # crash recoveries idle <= 6 s, picking it up >= 7.6 s
 MAX_BLACKOUT = 15.0
 PRE_ROLL = 1.0
 POST_ROLL = 2.0
-MIN_FLIGHT = 8.0  # seconds flown; failed hops and flip attempts had <= 6 s
-# A flight whose picture changes less than this (median of the mean absolute
-# difference between samples, over its flying samples) was held in hand:
-# throttling it armed draws flying current. Flights: 17-21; in hand: 9.6.
+MIN_FLIGHT = 8.0  # failed hops and flip attempts are <= 6 s
+# Less motion than this means I was holding it and throttling (flights 17-21,
+# in hand 9.6).
 MIN_MOTION = 13.0
 MIN_PIECE = 0.5
-MAX_SEAM = 1.0  # a longer gap between two recordings ends any flight
+MAX_SEAM = 1.0  # longer gap between recordings = separate flights
 
-# Mean difference between neighbouring pixels: footage < 20, static 25-50.
+# Mean difference of neighbouring pixels: footage < 20, static 25-50.
 STATIC_DIFF = 22
 MOSTLY_STATIC = 0.5
 
@@ -224,7 +219,7 @@ def classify(frames: np.ndarray, templates: Templates) -> list:
         if readings[index] is None:
             readings[index] = STATIC
 
-    # TURTLE last: ARMED can flash along with it.
+    # TURTLE goes last, since ARMED can flash at the same time.
     for word, (box, reading) in sorted(WORDS.items(), key=lambda w: w[1][1]):
         mask = text_mask(frames, box, WORD_SLACK)
         for index in np.flatnonzero(best_dice(mask, templates.words[word]) >= MATCH):
@@ -242,8 +237,7 @@ def decode(
 ):
     x, y, w, h = CROP
     command = ["ffmpeg", "-nostdin", "-v", "error", "-threads", str(threads)]
-    # HEVC decodes 13x faster on the GPU; MJPEG, which NVDEC refuses here, just
-    # falls back to the CPU.
+    # Much faster for HEVC; MJPEG just falls back to the CPU.
     if HAS_CUDA:
         command += ["-hwaccel", "cuda"]
     command += ["-ss", str(seek), "-i", str(path)]
@@ -278,7 +272,7 @@ def cache_key(path: Path, profile: Profile, templates: Templates) -> dict:
     stat = path.stat()
     return {
         "size": stat.st_size,
-        # The goggles restart their numbering, so the name alone is not enough.
+        # The goggles reuse file names.
         "mtime": stat.st_mtime,
         "profile": profile.to_frame,
         "templates": templates.digest,
@@ -290,12 +284,11 @@ def cache_key(path: Path, profile: Profile, templates: Templates) -> dict:
 
 
 def read_recording(path: Path, threads: int = 1) -> tuple[list, list]:
-    """Per sample: the reading, and how much the picture changed since the
-    previous sample (NaN for the first)."""
+    """Readings and motion (NaN for the first sample) per sample."""
     profile = profile_of(path)
     templates = Templates.load(profile)
     cache = CACHE_DIR / f"{path.name}.json"
-    # As JSON stores it (tuples come back as lists), or it would never match.
+    # Round-trip through JSON so it compares equal to the cached one.
     key = json.loads(json.dumps(cache_key(path, profile, templates)))
     if cache.exists():
         try:
@@ -328,15 +321,13 @@ class Session:
     lengths: list[float]
     readings: list[list]
     motion: list[list] | None = None
-    # When each recording ended by the clock, if the goggles keep time.
+    # Recording end times, if the goggles have a clock.
     ends: list[float] | None = None
-    # Per recording, its profile's `chunked`.
     chunked: list[bool] | None = None
 
     @property
     def offsets(self) -> list[float]:
-        """Where each recording starts on the session timeline: back to back,
-        or with the real gaps between them where the clock can be trusted."""
+        """Recording start times, with real gaps if we have a clock."""
         if self.ends is None:
             return list(np.cumsum([0.0] + self.lengths[:-1]))
         first = self.ends[0] - self.lengths[0]
@@ -344,7 +335,7 @@ class Session:
 
     @property
     def seams(self) -> list[float]:
-        """Offsets of the recordings that start after a real gap."""
+        """Starts of recordings that come after a gap."""
         offsets = self.offsets
         chunked = self.chunked or [True] * len(offsets)
         return [
@@ -356,9 +347,8 @@ class Session:
 
 
 def recording_ends(paths: list[Path], lengths: list[float]) -> list[float] | None:
-    """The mtimes, if they read as when each recording ended. The analog
-    goggles have no clock (2090 dates, overlapping recordings); HDZero does,
-    and splits a session into files wherever the video link dropped."""
+    """mtimes as end times, if they make sense (the analog goggles have no
+    clock and write dates like 2090)."""
     ends = [path.stat().st_mtime for path in paths]
     if max(ends) > time.time():
         return None
@@ -370,7 +360,6 @@ def recording_ends(paths: list[Path], lengths: list[float]) -> list[float] | Non
 
 def read_session(paths: list[Path]) -> Session:
     cores = os.cpu_count() or 4
-    # Without a GPU, a few long HEVC files would otherwise leave cores idle.
     threads = max(1, cores // max(len(paths), 1))
 
     def work(path: Path) -> tuple[float, tuple[list, list]]:
@@ -397,7 +386,7 @@ def state(reading) -> str:
 
 
 def is_break(states: str, times: np.ndarray) -> bool:
-    """Whether a gap between two flying samples separates two flights."""
+    """Whether a gap between flying samples splits two flights."""
     step = 1 / FPS
     start = 0
     for part in states.split("T"):
@@ -416,11 +405,10 @@ def split_flights(
     seams: list[float] = (),
     motion: list | None = None,
 ) -> tuple[list, int, int]:
-    """The flights' (start, end), how many were too short and how many were
-    held still."""
+    """Flight (start, end)s, plus how many were too short and held still."""
     step = 1 / FPS
     states = list(state(reading) for reading in readings)
-    # A lone flying sample is a misread.
+    # A single flying sample is a misread.
     for index, current in enumerate(states):
         near = states[max(index - 2, 0) : index] + states[index + 1 : index + 3]
         if current == "F" and "F" not in near:
@@ -449,8 +437,7 @@ def split_flights(
     short = still = 0
     for first, last in runs:
         end = times[last] + step
-        # Flying time, not span: hops and crash-flips between re-arms add up to
-        # a long span with little flying in it.
+        # Count time flown, not the span, which crash-flips can drag out.
         if states[first : last + 1].count("F") * step < MIN_FLIGHT:
             short += 1
             continue
@@ -537,7 +524,7 @@ def detect_flights(paths: list[Path]) -> Detection:
     return Detection(clips, spans, short, still, unread, discard)
 
 
-# --- Learning the templates -------------------------------------------------
+# --- Learning the templates ---
 
 
 def cluster(masks: list[np.ndarray], threshold: float = 0.9) -> list[list[int]]:
