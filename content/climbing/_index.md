@@ -3,7 +3,7 @@ title: Climbing
 schemaType: CollectionPage
 layout: default
 noHeading: true
-icon: fa-bolt
+icon: fa-climber
 description: "A journal of my climbing life, including videos!"
 ---
 

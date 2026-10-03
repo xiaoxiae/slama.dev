@@ -16,6 +16,9 @@ _vendor/
 # Generated sticker sheet (built from content/stickers/stickers.svg)
 assets/stickers/
 
+# Generated Font Awesome (built from assets/fontawesome/ + assets/fa-custom/)
+static/assets/fa/
+
 # Large static files
 static/climbing/
 static/drone/
@@ -41,6 +44,9 @@ static/drone/
 # Social-card source is a build input (assets/), not content media: it is
 # processed into a 1200x630 og:image by layouts/_default/baseof.html.
 !assets/og/*.png
+
+# Custom Font Awesome icons, baked into the font by scripts/fontawesome.py
+!assets/fa-custom/*.svg
 
 # Python (uv)
 .venv/

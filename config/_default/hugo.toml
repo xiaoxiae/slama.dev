@@ -108,7 +108,14 @@ disableKinds = ["taxonomy", "term"]
   pageRef = "/climbing"
   weight = 400
   [menus.main.params]
-    icon = "fa-bolt"
+    icon = "fa-climber"
+
+[[menus.main]]
+  name = "Drone"
+  pageRef = "/drone"
+  weight = 900
+  [menus.main.params]
+    icon = "fa-drone"
 
 [[menus.main]]
   name = "Photos"

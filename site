@@ -11,6 +11,11 @@ function stickers
     uv run python scripts/stickers.py
 end
 
+function fontawesome
+    echo "Building Font Awesome..."
+    uv run python scripts/fontawesome.py
+end
+
 function serve
     echo "Starting Hugo development server..."
     if pgrep -f "hugo server" > /dev/null
@@ -19,6 +24,7 @@ function serve
     end
 
     stickers
+    fontawesome; or return 1
 
     hugo server -D -F --cleanDestinationDir
 end
@@ -59,6 +65,7 @@ function build
     uv run python scripts/lightext.py content/light/index.md; or return 1
 
     stickers
+    fontawesome; or return 1
 
     echo "Generating CV PDF..."
     typst compile --root . content/cv/cv.typ static/cv.pdf; or return 1
@@ -90,6 +97,8 @@ function check
         echo "ERROR: npm/npx is not installed."
         return 1
     end
+
+    fontawesome; or return 1
 
     # Start server for accessibility testing
     echo "Starting local server..."
@@ -234,6 +243,8 @@ switch $argv[1]
         clean
     case "stickers"
         stickers
+    case "fontawesome"
+        fontawesome
     case "build"
         build
     case "check"
@@ -251,6 +262,7 @@ switch $argv[1]
         echo "  serve   - Start development server with drafts and future posts"
         echo "  clean   - Clean generated files"
         echo "  stickers - Rebuild the sticker sheet from content/stickers/stickers.svg"
+        echo "  fontawesome - Rebuild Font Awesome with the custom icons in assets/fa-custom/"
         echo "  build   - Build the site (minified)"
         echo "  check   - Run all checks (html-validate, lychee, pa11y)"
         echo "  upload  - Check for localhost, confirm feed/sitemap changes since the"
