@@ -8,6 +8,7 @@ import os
 import re
 import sys
 import time
+from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
@@ -28,7 +29,7 @@ HUGO_ROOT = SCRIPT_DIR.parent
 CACHE_DIR = HUGO_ROOT / ".cache" / "drone-osd"
 
 # Bump to invalidate the cache.
-OSD_VERSION = 5
+OSD_VERSION = 6
 
 FPS = 5
 
@@ -82,7 +83,10 @@ WORDS = {
     "crash-flip": ((208, 118, 116, 25), "T"),
 }
 CELL_SLACK, WORD_SLACK = 2, 4
+# The craft name, e.g. `SYL`, left-aligned from cell 1 of this row.
+CRAFT_CELL, CRAFT_Y = 1, 44
 
+# Where we measure motion and static.
 CROP = (176, 108, 444, 332)
 
 # OSD text is white with a dark outline, which a bright sky isn't.
@@ -116,20 +120,27 @@ DISARMED, TURTLE, STATIC = "D", "T", "S"
 def box_slice(box: tuple[int, int, int, int], slack: int) -> tuple[slice, slice]:
     x, y, w, h = box
     if not (
-        CROP[0] <= x - slack
-        and x + w + slack <= CROP[0] + CROP[2]
-        and CROP[1] <= y - slack
-        and y + h + slack <= CROP[1] + CROP[3]
+        0 <= x - slack
+        and x + w + slack <= FRAME_W
+        and 0 <= y - slack
+        and y + h + slack <= FRAME_H
     ):
-        raise ValueError(f"{box} grown by {slack} px is not within CROP {CROP}")
-    return (
-        slice(y - slack - CROP[1], y + h + slack - CROP[1]),
-        slice(x - slack - CROP[0], x + w + slack - CROP[0]),
-    )
+        raise ValueError(f"{box} grown by {slack} px is not within the frame")
+    return slice(y - slack, y + h + slack), slice(x - slack, x + w + slack)
 
 
 def cell_box(cell: int) -> tuple[int, int, int, int]:
     return (round(CELL_X0 + cell * CELL_W), CELL_Y, round(CELL_W), CELL_H)
+
+
+def craft_box(name: str) -> tuple[int, int, int, int]:
+    x = round(CELL_X0 + CRAFT_CELL * CELL_W)
+    return (x, CRAFT_Y, round(len(name) * CELL_W), CELL_H)
+
+
+def cropped(frames: np.ndarray) -> np.ndarray:
+    x, y, w, h = CROP
+    return frames[:, y : y + h, x : x + w]
 
 
 def shifted(template: np.ndarray, slack: int) -> np.ndarray:
@@ -163,6 +174,8 @@ def best_dice(windows: np.ndarray, placements: np.ndarray) -> np.ndarray:
 class Templates:
     glyphs: list[np.ndarray]
     words: dict[str, np.ndarray]
+    # By craft name, lowercase.
+    crafts: dict[str, np.ndarray]
     digest: str
 
     @classmethod
@@ -177,6 +190,11 @@ class Templates:
         return cls(
             glyphs=[shifted(glyph, CELL_SLACK) for glyph in data["glyphs"]],
             words={word: shifted(data[word], WORD_SLACK) for word in WORDS},
+            crafts={
+                key.removeprefix("craft-"): shifted(data[key], WORD_SLACK)
+                for key in data.files
+                if key.startswith("craft-")
+            },
             digest=hashlib.sha1(path.read_bytes()).hexdigest(),
         )
 
@@ -217,7 +235,7 @@ def classify(frames: np.ndarray, templates: Templates) -> list:
     """Per frame: amps, DISARMED, TURTLE, STATIC or None."""
     readings: list = [parse_amps(cells) for cells in read_glyphs(frames, templates)]
 
-    jumps = np.abs(np.diff(frames.astype(np.int16), axis=2)).mean((1, 2))
+    jumps = np.abs(np.diff(cropped(frames).astype(np.int16), axis=2)).mean((1, 2))
     for index in np.flatnonzero(jumps > STATIC_DIFF):
         if readings[index] is None:
             readings[index] = STATIC
@@ -230,6 +248,17 @@ def classify(frames: np.ndarray, templates: Templates) -> list:
     return readings
 
 
+def read_crafts(frames: np.ndarray, templates: Templates) -> list[str | None]:
+    """Per frame: the craft name, if it matches one we know."""
+    best: list[str | None] = [None] * len(frames)
+    scores = np.full(len(frames), MATCH)
+    for name, template in templates.crafts.items():
+        dice = best_dice(text_mask(frames, craft_box(name), WORD_SLACK), template)
+        for index in np.flatnonzero(dice >= scores):
+            best[index], scores[index] = name, dice[index]
+    return best
+
+
 def decode(
     path: Path,
     fps: float = FPS,
@@ -238,7 +267,6 @@ def decode(
     limit: int = 0,
     threads: int = 1,
 ):
-    x, y, w, h = CROP
     command = ["ffmpeg", "-nostdin", "-v", "error", "-threads", str(threads)]
     # Much faster for HEVC; MJPEG just falls back to the CPU.
     if HAS_CUDA:
@@ -249,21 +277,23 @@ def decode(
     command += [
         "-an",
         "-vf",
-        f"fps={fps},{profile_of(path).to_frame},crop={w}:{h}:{x}:{y},format=gray",
+        f"fps={fps},{profile_of(path).to_frame},format=gray",
         "-f",
         "rawvideo",
         "-",
     ]
     proc = Popen(command, stdin=DEVNULL, stdout=PIPE, stderr=DEVNULL)
     assert proc.stdout is not None
-    size = w * h
+    size = FRAME_W * FRAME_H
     try:
         while True:
             data = proc.stdout.read(size * chunk)
             if not data:
                 break
             frames = len(data) // size
-            yield np.frombuffer(data[: frames * size], np.uint8).reshape(frames, h, w)
+            yield np.frombuffer(data[: frames * size], np.uint8).reshape(
+                frames, FRAME_H, FRAME_W
+            )
     finally:
         proc.stdout.close()
         proc.wait()
@@ -281,13 +311,13 @@ def cache_key(path: Path, profile: Profile, templates: Templates) -> dict:
         "templates": templates.digest,
         "version": OSD_VERSION,
         "tunables": [FPS, CELL_W, CELL_X0, CELL_Y, CELL_H, AMPS_CELLS.start]
-        + [WORDS, CELL_SLACK, WORD_SLACK, *CROP]
+        + [WORDS, CELL_SLACK, WORD_SLACK, CRAFT_CELL, CRAFT_Y, *CROP]
         + [WHITE, OUTLINE, CONTRAST, BLANK_PIXELS, MATCH, STATIC_DIFF],
     }
 
 
-def read_recording(path: Path, threads: int = 1) -> tuple[list, list]:
-    """Readings and motion (NaN for the first sample) per sample."""
+def read_recording(path: Path, threads: int = 1) -> tuple[list, list, list]:
+    """Readings, motion (NaN for the first sample) and craft per sample."""
     profile = profile_of(path)
     templates = Templates.load(profile)
     cache = CACHE_DIR / f"{path.name}.json"
@@ -297,16 +327,18 @@ def read_recording(path: Path, threads: int = 1) -> tuple[list, list]:
         try:
             cached = json.loads(cache.read_text())
             if cached.get("key") == key:
-                return cached["readings"], cached["motion"]
+                return cached["readings"], cached["motion"], cached["crafts"]
         except (ValueError, KeyError):
             pass
 
     readings: list = []
     motion: list = []
+    crafts: list = []
     previous = None
     for frames in decode(path, threads=threads):
         readings += classify(frames, templates)
-        small = frames[:, ::4, ::4].astype(np.int16)
+        crafts += read_crafts(frames, templates)
+        small = cropped(frames)[:, ::4, ::4].astype(np.int16)
         if previous is not None:
             small = np.concatenate([previous, small])
         diffs = np.abs(np.diff(small, axis=0)).mean((1, 2)).tolist()
@@ -314,8 +346,12 @@ def read_recording(path: Path, threads: int = 1) -> tuple[list, list]:
         previous = small[-1:]
 
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    cache.write_text(json.dumps({"key": key, "readings": readings, "motion": motion}))
-    return readings, motion
+    cache.write_text(
+        json.dumps(
+            {"key": key, "readings": readings, "motion": motion, "crafts": crafts}
+        )
+    )
+    return readings, motion, crafts
 
 
 @dataclass
@@ -324,6 +360,7 @@ class Session:
     lengths: list[float]
     readings: list[list]
     motion: list[list] | None = None
+    crafts: list[list] | None = None
     # Recording end times, if the goggles have a clock.
     ends: list[float] | None = None
     chunked: list[bool] | None = None
@@ -365,7 +402,7 @@ def read_session(paths: list[Path]) -> Session:
     cores = os.cpu_count() or 4
     threads = max(1, cores // max(len(paths), 1))
 
-    def work(path: Path) -> tuple[float, tuple[list, list]]:
+    def work(path: Path) -> tuple[float, tuple[list, list, list]]:
         length = float(probe(path).get("format", {}).get("duration", 0))
         return length, read_recording(path, threads)
 
@@ -375,8 +412,9 @@ def read_session(paths: list[Path]) -> Session:
     return Session(
         files=[path.name for path in paths],
         lengths=lengths,
-        readings=[readings for _, (readings, _) in results],
-        motion=[motion for _, (_, motion) in results],
+        readings=[readings for _, (readings, _, _) in results],
+        motion=[motion for _, (_, motion, _) in results],
+        crafts=[crafts for _, (_, _, crafts) in results],
         ends=recording_ends(paths, lengths),
         chunked=[profile_of(path).chunked for path in paths],
     )
@@ -495,6 +533,8 @@ def to_cuts(session: Session, start: float, end: float) -> list:
 class Detection:
     clips: list[list]
     spans: list[tuple[float, float]]
+    # The craft name read most often in each clip, if any.
+    crafts: list[str | None]
     short: int
     still: int
     unread: list[str]
@@ -503,17 +543,26 @@ class Detection:
 
 def detect_flights(paths: list[Path]) -> Detection:
     session = read_session(paths)
-    times, readings, motion = [], [], []
-    for offset, file_readings, file_motion in zip(
-        session.offsets, session.readings, session.motion
+    times, readings, motion, crafts = [], [], [], []
+    for offset, file_readings, file_motion, file_crafts in zip(
+        session.offsets, session.readings, session.motion, session.crafts
     ):
         times += [offset + i / FPS for i in range(len(file_readings))]
         readings += file_readings
         motion += file_motion
+        crafts += file_crafts
     spans, short, still = split_flights(
         np.array(times), readings, session.seams, motion
     )
     clips = [to_cuts(session, start, end) for start, end in spans]
+    times = np.array(times)
+    span_crafts = []
+    for start, end in spans:
+        seen = Counter(
+            crafts[i] for i in np.flatnonzero((times >= start) & (times < end))
+        )
+        seen.pop(None, None)
+        span_crafts.append(seen.most_common(1)[0][0] if seen else None)
 
     used = {file for cuts in clips for file, _, _ in cuts}
     unread, discard = [], []
@@ -524,7 +573,7 @@ def detect_flights(paths: list[Path]) -> Detection:
         read = any(r not in (None, STATIC) for r in file_readings)
         (discard if read or static >= MOSTLY_STATIC else unread).append(file)
 
-    return Detection(clips, spans, short, still, unread, discard)
+    return Detection(clips, spans, span_crafts, short, still, unread, discard)
 
 
 # --- Learning the templates ---
@@ -622,6 +671,7 @@ def cmd_learn(args):
     sources = paths[0].parent
     np.savez_compressed(
         templates,
+        **saved_crafts(templates),
         glyphs=glyphs,
         **{
             word: grab_word(getattr(args, word.replace("-", "_")), box, sources)
@@ -631,14 +681,40 @@ def cmd_learn(args):
     print(f"Saved {templates.relative_to(HUGO_ROOT)}.")
 
 
+def saved_crafts(templates: Path) -> dict[str, np.ndarray]:
+    if not templates.exists():
+        return {}
+    data = np.load(templates)
+    return {key: data[key] for key in data.files if key.startswith("craft-")}
+
+
+def cmd_learn_craft(args):
+    name = args.name.lower()
+    paths = [Path(spec.partition("@")[0]) for spec in args.frames]
+    profiles = {profile_of(path) for path in paths}
+    if len(profiles) != 1:
+        sys.exit(f"learn from one kind of recording at a time, not {profiles}")
+    templates = profiles.pop().templates
+    if not templates.exists():
+        sys.exit(f"no {templates.relative_to(HUGO_ROOT)} yet; run `learn` first")
+    data = dict(np.load(templates))
+    data[f"craft-{name}"] = grab_word(args.frames, craft_box(name), Path())
+    np.savez_compressed(templates, **data)
+    print(f"Saved {name.upper()} to {templates.relative_to(HUGO_ROOT)}.")
+
+
 def cmd_read(args):
     session = read_session(sorted(args.recordings))
-    for file, readings in zip(session.files, session.readings):
+    for file, readings, crafts in zip(session.files, session.readings, session.crafts):
         known = sum(r is not None for r in readings)
-        print(f"{file}: {known}/{len(readings)} read")
+        seen = Counter(c for c in crafts if c is not None)
+        print(
+            f"{file}: {known}/{len(readings)} read, crafts "
+            + (", ".join(f"{c} {n}" for c, n in seen.most_common()) or "none")
+        )
         if args.verbose:
-            for index, reading in enumerate(readings):
-                print(f"  {index / FPS:7.1f}  {reading}")
+            for index, (reading, craft) in enumerate(zip(readings, crafts)):
+                print(f"  {index / FPS:7.1f}  {reading}  {craft or ''}")
 
 
 def main():
@@ -658,6 +734,18 @@ def main():
     learn.add_argument("--min-count", type=int, default=20)
     learn.add_argument("--montage", default="osd-clusters.png")
     learn.set_defaults(func=cmd_learn)
+
+    learn_craft = subparsers.add_parser(
+        "learn-craft", help="Add or replace the template of a craft name"
+    )
+    learn_craft.add_argument("name", help="as on the OSD, e.g. syl")
+    learn_craft.add_argument(
+        "frames",
+        nargs="+",
+        metavar="FILE@SECONDS",
+        help="frames showing the name (several to average a few)",
+    )
+    learn_craft.set_defaults(func=cmd_learn_craft)
 
     read = subparsers.add_parser("read", help="Print the readings of recordings")
     read.add_argument("recordings", nargs="+", type=Path)

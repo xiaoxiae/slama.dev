@@ -35,6 +35,7 @@ STATIC_DIR = HUGO_ROOT / "static" / "drone"
 
 DRONE_YAML = DATA_DIR / "drone.yaml"
 PLACES_YAML = DATA_DIR / "places.yaml"
+DRONES_YAML = DATA_DIR / "drones.yaml"
 VIDEOS_FOLDER = STATIC_DIR / "videos"
 SOURCES_FOLDER = VIDEOS_FOLDER / "sources"
 STRIPS_FOLDER = VIDEOS_FOLDER / "strips"
@@ -48,11 +49,12 @@ DRONE_YAML_HEADER = """\
 # Drone journal, managed by scripts/drone.py.
 #
 # Flights have an optional place, note, clips and discard (files to delete).
-# Clips have cuts ("FILE: START,END", either side can be empty) until they're
-# built, then a file and duration.
+# Clips have a drone (see drones.yaml) and cuts ("FILE: START,END", either side
+# can be empty) until they're built, then a file and duration.
 #
 #   clips:
 #   - description: low pass over the dam, then the return
+#     drone: syl
 #     cuts:
 #     - VID00004.AVI: 0:12,0:31
 #     - VID00005.AVI: 0,10
@@ -319,6 +321,7 @@ def resolve_place(name: str, places: dict) -> str:
 
 
 def seed_clips(files: list[str], detect: bool) -> tuple[list[dict], list[str]]:
+    """Clips with the drone read from the OSD, or TODO if it couldn't be."""
     lengths = {}
     for file in files:
         try:
@@ -328,27 +331,41 @@ def seed_clips(files: list[str], detect: bool) -> tuple[list[dict], list[str]]:
         except RuntimeError as error:
             fail(f"{file}: {error}")
 
-    whole = {file: [{file: f"0,{format_timestamp(lengths[file])}"}] for file in files}
+    whole = {
+        file: {
+            "cuts": [{file: f"0,{format_timestamp(lengths[file])}"}],
+            "drone": "TODO",
+        }
+        for file in files
+    }
     if not detect:
-        return [{"cuts": whole[file]} for file in files], []
+        return [whole[file] for file in files], []
 
     try:
         detection = detect_flights([SOURCES_FOLDER / file for file in files])
     except (RuntimeError, ValueError) as error:
         print(f"WARNING: could not find the flights ({error}); seeding whole files.")
-        return [{"cuts": whole[file]} for file in files], []
+        return [whole[file] for file in files], []
 
     def edge(seconds: float | None) -> str:
         return "" if seconds is None else format_timestamp(seconds)
 
     clips = []
-    for cuts, (start, end) in zip(detection.clips, detection.spans):
+    for cuts, (start, end), drone in zip(
+        detection.clips, detection.spans, detection.crafts, strict=True
+    ):
         clips.append(
-            {"cuts": [{file: f"{edge(low)},{edge(high)}"} for file, low, high in cuts]}
+            {
+                "cuts": [
+                    {file: f"{edge(low)},{edge(high)}"} for file, low, high in cuts
+                ],
+                "drone": drone or "TODO",
+            }
         )
         print(
             f"flight {format_timestamp(start)}-{format_timestamp(end)} "
-            f"({end - start:.0f}s): {', '.join(file for file, _, _ in cuts)}"
+            f"({end - start:.0f}s, {drone or 'drone unread'}): "
+            f"{', '.join(file for file, _, _ in cuts)}"
         )
     flown = sum(end - start for start, end in detection.spans)
     print(
@@ -365,7 +382,7 @@ def seed_clips(files: list[str], detect: bool) -> tuple[list[dict], list[str]]:
 
     for file in detection.unread:
         print(f"WARNING: no OSD readable in {file} (OSD off?); seeding it whole.")
-        clips.append({"cuts": whole[file]})
+        clips.append(whole[file])
     if detection.discard:
         print(f"no flight in (to discard): {', '.join(detection.discard)}")
     return clips, detection.discard
@@ -533,7 +550,11 @@ def process_flight(
             extract_clip(cuts, temp_path)
             measured = verify_clip(temp_path, duration)
 
-            entry: dict = {"file": final_path.name, "duration": round(measured)}
+            entry: dict = {
+                "file": final_path.name,
+                "duration": round(measured),
+                "drone": clip["drone"],
+            }
             if clip.get("description"):
                 entry["description"] = clip["description"]
             staged.append((temp_path, final_path, entry))
@@ -550,7 +571,9 @@ def process_flight(
     return [entry for _, _, entry in staged]
 
 
-def validate_flight(key: str, flight: dict, places: dict) -> list[list] | None:
+def validate_flight(
+    key: str, flight: dict, places: dict, drones: dict
+) -> list[list] | None:
     todos = find_todos(flight)
     if todos:
         print(f"WARNING: skipping {key}, it still contains placeholders:")
@@ -565,6 +588,11 @@ def validate_flight(key: str, flight: dict, places: dict) -> list[list] | None:
     clips = pending_clips(flight)
     files: list[str] = []
     for clip in clips:
+        if clip.get("drone") not in drones:
+            fail(
+                f"{key}: clip {describe_clip(clip)} has drone {clip.get('drone')!r}, "
+                f"not one of {DRONES_YAML.name} ({', '.join(map(str, drones))})"
+            )
         cuts = clip.get("cuts")
         if not isinstance(cuts, list) or not cuts:
             fail(f"{key}: clip {describe_clip(clip)} needs a non-empty list of cuts")
@@ -642,6 +670,7 @@ def cmd_build(args):
     SOURCES_FOLDER.mkdir(parents=True, exist_ok=True)
 
     places = load_places()
+    drones = load_yaml(DRONES_YAML)
     data = load_drone_yaml()
     flights = normalized_flights(data, places)
     pending = {
@@ -658,7 +687,7 @@ def cmd_build(args):
     ready: dict[str, list[list]] = {}
     owner: dict[str, str] = {}
     for key, flight in pending.items():
-        cuts_by_clip = validate_flight(key, flight, places)
+        cuts_by_clip = validate_flight(key, flight, places, drones)
         if cuts_by_clip is None:
             continue
         ready[key] = cuts_by_clip

@@ -1,11 +1,12 @@
 # Drone journal, managed by scripts/drone.py.
 #
 # Flights have an optional place, note, clips and discard (files to delete).
-# Clips have cuts ("FILE: START,END", either side can be empty) until they're
-# built, then a file and duration.
+# Clips have a drone (see drones.yaml) and cuts ("FILE: START,END", either side
+# can be empty) until they're built, then a file and duration.
 #
 #   clips:
 #   - description: low pass over the dam, then the return
+#     drone: syl
 #     cuts:
 #     - VID00004.AVI: 0:12,0:31
 #     - VID00005.AVI: 0,10
@@ -13,627 +14,890 @@ flights:
   '2026-08-22':
     clips:
     - description: First clip of me flying!
+      drone: syl
       duration: 19
       file: 2026-08-22-heidelberg-airfield-avxuioda.mp4
-    - duration: 43
+    - drone: syl
+      duration: 43
       file: 2026-08-22-heidelberg-airfield-evehxzyy.mp4
-    - duration: 152
+    - drone: syl
+      duration: 152
       file: 2026-08-22-heidelberg-airfield-onykjqje.mp4
-    - duration: 122
+    - drone: syl
+      duration: 122
       file: 2026-08-22-heidelberg-airfield-qhylvluk.mp4
-    - duration: 138
+    - drone: syl
+      duration: 138
       file: 2026-08-22-heidelberg-airfield-ttouyiqt.mp4
     note: First session! Got some fun clips at the end, but the recording broke the SD card so I couldn't really get those. In either case, getting more comfortable with flying and crashing.
     place: heidelberg-airfield
   '2026-08-23':
     clips:
-    - duration: 149
+    - drone: syl
+      duration: 149
       file: 2026-08-23-heidelberg-farm-aonzrqdo.mp4
-    - duration: 120
+    - drone: syl
+      duration: 120
       file: 2026-08-23-heidelberg-farm-dkbbxlmw.mp4
-    - duration: 25
+    - drone: syl
+      duration: 25
       file: 2026-08-23-heidelberg-farm-dshfjbdn.mp4
-    - duration: 78
+    - drone: syl
+      duration: 78
       file: 2026-08-23-heidelberg-farm-dxfioacs.mp4
-    - duration: 124
+    - drone: syl
+      duration: 124
       file: 2026-08-23-heidelberg-farm-hfxzejkf.mp4
     - description: A cool clip of flying through the frame of the bike and then through the fence a few times.
+      drone: syl
       duration: 96
       file: 2026-08-23-heidelberg-farm-hznizxlj.mp4
-    - duration: 31
+    - drone: syl
+      duration: 31
       file: 2026-08-23-heidelberg-farm-tmtjmpff.mp4
-    - duration: 118
+    - drone: syl
+      duration: 118
       file: 2026-08-23-heidelberg-farm-xxuxokcv.mp4
     - description: Pretty clean flying.
+      drone: syl
       duration: 68
       file: 2026-08-23-heidelberg-farm-yfltrvkb.mp4
-    - duration: 69
+    - drone: syl
+      duration: 69
       file: 2026-08-23-heidelberg-farm-yybjavli.mp4
     note: Found a pretty awesome location 6 bike minutes away from my apartment. Pretty fun lines, will definitely be back here soon.
     place: heidelberg-farm
   '2026-08-24':
     clips:
-    - duration: 84
+    - drone: syl
+      duration: 84
       file: 2026-08-24-heidelberg-farm-jbyaaumm.mp4
-    - duration: 119
+    - drone: syl
+      duration: 119
       file: 2026-08-24-heidelberg-farm-kcqauhdl.mp4
-    - duration: 100
+    - drone: syl
+      duration: 100
       file: 2026-08-24-heidelberg-farm-mfhzkgiu.mp4
-    - duration: 40
+    - drone: syl
+      duration: 40
       file: 2026-08-24-heidelberg-farm-wetsdooo.mp4
-    - duration: 116
+    - drone: syl
+      duration: 116
       file: 2026-08-24-heidelberg-farm-wkbyxfeq.mp4
-    - duration: 78
+    - drone: syl
+      duration: 78
       file: 2026-08-24-heidelberg-farm-xblzqyiv.mp4
-    - duration: 49
+    - drone: syl
+      duration: 49
       file: 2026-08-24-heidelberg-farm-xdpsowyp.mp4
-    - duration: 58
+    - drone: syl
+      duration: 58
       file: 2026-08-24-heidelberg-farm-yldwusmm.mp4
     note: Okay flying; a lot of wind as well. I'm a bit rash, I need to calm down, but definitely more confident than last time.
     place: heidelberg-farm
   '2026-08-26':
     clips:
-    - duration: 77
+    - drone: syl
+      duration: 77
       file: 2026-08-26-heidelberg-farm-aqutjqvm.mp4
-    - duration: 138
+    - drone: syl
+      duration: 138
       file: 2026-08-26-heidelberg-farm-cdapyfao.mp4
-    - duration: 138
+    - drone: syl
+      duration: 138
       file: 2026-08-26-heidelberg-farm-ipymteyk.mp4
-    - duration: 111
+    - drone: syl
+      duration: 111
       file: 2026-08-26-heidelberg-farm-kolsxdsm.mp4
-    - duration: 100
+    - drone: syl
+      duration: 100
       file: 2026-08-26-heidelberg-farm-mybbdzsf.mp4
-    - duration: 108
+    - drone: syl
+      duration: 108
       file: 2026-08-26-heidelberg-farm-rgwadzbg.mp4
-    - duration: 77
+    - drone: syl
+      duration: 77
       file: 2026-08-26-heidelberg-farm-sftjrgei.mp4
-    - duration: 118
+    - drone: syl
+      duration: 118
       file: 2026-08-26-heidelberg-farm-tchvpuch.mp4
     - description: Did a loop!
+      drone: syl
       duration: 106
       file: 2026-08-26-heidelberg-farm-yxplpdgl.mp4
     note: Beautiful weather, getting more and more confidence; did a loop!
     place: heidelberg-farm
   '2026-08-27':
     clips:
-    - duration: 76
+    - drone: syl
+      duration: 76
       file: 2026-08-27-heidelberg-farm-ceqztpvv.mp4
-    - duration: 53
+    - drone: syl
+      duration: 53
       file: 2026-08-27-heidelberg-farm-edufaagg.mp4
-    - duration: 139
+    - drone: syl
+      duration: 139
       file: 2026-08-27-heidelberg-farm-hmdehulw.mp4
-    - duration: 22
+    - drone: syl
+      duration: 22
       file: 2026-08-27-heidelberg-farm-ijsphifn.mp4
-    - duration: 76
+    - drone: syl
+      duration: 76
       file: 2026-08-27-heidelberg-farm-lmouxasw.mp4
-    - duration: 121
+    - drone: syl
+      duration: 121
       file: 2026-08-27-heidelberg-farm-loqvhtxi.mp4
-    - duration: 115
+    - drone: syl
+      duration: 115
       file: 2026-08-27-heidelberg-farm-qtcbhdjt.mp4
-    - duration: 133
+    - drone: syl
+      duration: 133
       file: 2026-08-27-heidelberg-farm-rzhqwafy.mp4
     place: heidelberg-farm
   '2026-08-30':
     clips:
-    - duration: 129
+    - drone: syl
+      duration: 129
       file: 2026-08-30-heidelberg-farm-dmgeqghv.mp4
-    - duration: 105
+    - drone: syl
+      duration: 105
       file: 2026-08-30-heidelberg-farm-gkkalnmx.mp4
-    - duration: 62
+    - drone: syl
+      duration: 62
       file: 2026-08-30-heidelberg-farm-hzkbjbfc.mp4
-    - duration: 123
+    - drone: syl
+      duration: 123
       file: 2026-08-30-heidelberg-farm-tqjrdrbz.mp4
-    - duration: 104
+    - drone: syl
+      duration: 104
       file: 2026-08-30-heidelberg-farm-wnasouto.mp4
-    - duration: 93
+    - drone: syl
+      duration: 93
       file: 2026-08-30-heidelberg-farm-wouxljqv.mp4
-    - duration: 79
+    - drone: syl
+      duration: 79
       file: 2026-08-30-heidelberg-farm-yvydjggx.mp4
     note: Fun day with Kačka, some okay flights.
     place: heidelberg-farm
   '2026-09-01':
     clips:
-    - duration: 34
+    - drone: syl
+      duration: 34
       file: 2026-09-01-heidelberg-farm-aoojzbed.mp4
-    - duration: 115
+    - drone: syl
+      duration: 115
       file: 2026-09-01-heidelberg-farm-bxncdgxf.mp4
-    - duration: 89
+    - drone: syl
+      duration: 89
       file: 2026-09-01-heidelberg-farm-grvvusol.mp4
-    - duration: 122
+    - drone: syl
+      duration: 122
       file: 2026-09-01-heidelberg-farm-qzigqjku.mp4
-    - duration: 40
+    - drone: syl
+      duration: 40
       file: 2026-09-01-heidelberg-farm-stnqhsdt.mp4
     note: A motor died :(. Otherwise pretty bad flying.
     place: heidelberg-farm
   '2026-09-06':
     clips:
-    - duration: 76
+    - drone: syl
+      duration: 76
       file: 2026-09-06-vrat-bdyxelof.mp4
-    - duration: 62
+    - drone: syl
+      duration: 62
       file: 2026-09-06-vrat-comumqpg.mp4
-    - duration: 130
+    - drone: syl
+      duration: 130
       file: 2026-09-06-vrat-odkuyqin.mp4
-    - duration: 134
+    - drone: syl
+      duration: 134
       file: 2026-09-06-vrat-sbflqpwi.mp4
-    - duration: 86
+    - drone: syl
+      duration: 86
       file: 2026-09-06-vrat-yxmilnrn.mp4
     note: Casual flying with family.
     place: vrat
   '2026-09-08':
     clips:
-    - duration: 52
+    - drone: syl
+      duration: 52
       file: 2026-09-08-praha-hriste-akuyocck.mp4
-    - duration: 33
+    - drone: syl
+      duration: 33
       file: 2026-09-08-praha-hriste-bhlvjtug.mp4
-    - duration: 37
+    - drone: syl
+      duration: 37
       file: 2026-09-08-praha-hriste-bloydyyg.mp4
-    - duration: 58
+    - drone: syl
+      duration: 58
       file: 2026-09-08-praha-hriste-ckvzrcyh.mp4
-    - duration: 152
+    - drone: syl
+      duration: 152
       file: 2026-09-08-praha-hriste-cxwnhwtr.mp4
-    - duration: 23
+    - drone: syl
+      duration: 23
       file: 2026-09-08-praha-hriste-eqrkgxjw.mp4
-    - duration: 68
+    - drone: syl
+      duration: 68
       file: 2026-09-08-praha-hriste-fmrchfxn.mp4
-    - duration: 17
+    - drone: syl
+      duration: 17
       file: 2026-09-08-praha-hriste-igvcywhp.mp4
-    - duration: 110
+    - drone: syl
+      duration: 110
       file: 2026-09-08-praha-hriste-jgxfbjrb.mp4
-    - duration: 56
+    - drone: syl
+      duration: 56
       file: 2026-09-08-praha-hriste-kdjdsvos.mp4
-    - duration: 25
+    - drone: syl
+      duration: 25
       file: 2026-09-08-praha-hriste-kefdqazb.mp4
-    - duration: 25
+    - drone: syl
+      duration: 25
       file: 2026-09-08-praha-hriste-qdrblwbn.mp4
-    - duration: 90
+    - drone: syl
+      duration: 90
       file: 2026-09-08-praha-hriste-qfovlqpb.mp4
-    - duration: 23
+    - drone: syl
+      duration: 23
       file: 2026-09-08-praha-hriste-uivnuouw.mp4
-    - duration: 22
+    - drone: syl
+      duration: 22
       file: 2026-09-08-praha-hriste-uqgvrngd.mp4
     - description: A pretty clean segment.
+      drone: syl
       duration: 50
       file: 2026-09-08-praha-hriste-wmmbtbit.mp4
     - description: Genuinely nice.
+      drone: syl
       duration: 320
       file: 2026-09-08-praha-hriste-xdehsodk.mp4
     - description: Flew through a tiny thing!
+      drone: syl
       duration: 37
       file: 2026-09-08-praha-hriste-yckwmkjj.mp4
     note: Flying with friends; honestly not bad.
     place: praha-hriste
   2026-09-11-1:
     clips:
-    - duration: 90
+    - drone: syl
+      duration: 90
       file: 2026-09-11-heidelberg-playground-cuzaring-ejnebpew.mp4
-    - duration: 70
+    - drone: syl
+      duration: 70
       file: 2026-09-11-heidelberg-playground-cuzaring-fcdaejfp.mp4
-    - duration: 59
+    - drone: syl
+      duration: 59
       file: 2026-09-11-heidelberg-playground-cuzaring-gapureit.mp4
-    - duration: 23
+    - drone: syl
+      duration: 23
       file: 2026-09-11-heidelberg-playground-cuzaring-uvxaefsm.mp4
-    - duration: 72
+    - drone: syl
+      duration: 72
       file: 2026-09-11-heidelberg-playground-cuzaring-wfsqynzd.mp4
-    - duration: 71
+    - drone: syl
+      duration: 71
       file: 2026-09-11-heidelberg-playground-cuzaring-yeztptdd.mp4
-    - duration: 119
+    - drone: syl
+      duration: 119
       file: 2026-09-11-heidelberg-playground-cuzaring-zjrmzqut.mp4
-    - duration: 110
+    - drone: syl
+      duration: 110
       file: 2026-09-11-heidelberg-playground-cuzaring-znefdoyi.mp4
     note: New location unlocked. Pretty nice, but the actually interesting spot has sand under... shame.
     place: heidelberg-playground-cuzaring
   2026-09-11-2:
     clips:
-    - duration: 157
+    - drone: syl
+      duration: 157
       file: 2026-09-11-flight-bnmacsnj.mp4
-    - duration: 206
+    - drone: syl
+      duration: 206
       file: 2026-09-11-flight-ebishbco.mp4
-    - duration: 149
+    - drone: syl
+      duration: 149
       file: 2026-09-11-flight-gytdfxsd.mp4
-    - duration: 133
+    - drone: syl
+      duration: 133
       file: 2026-09-11-flight-ignvrzhi.mp4
-    - duration: 248
+    - drone: syl
+      duration: 248
       file: 2026-09-11-flight-rybknigj.mp4
-    - duration: 142
+    - drone: syl
+      duration: 142
       file: 2026-09-11-flight-vcfwexgv.mp4
     - description: Broke a fan here lol.
+      drone: syl
       duration: 200
       file: 2026-09-11-flight-yhokuuxj.mp4
     note: Incredible location; fun wooden beams with sawdust under, great to crash-flip from.
   '2026-09-12':
     clips:
-    - duration: 29
+    - drone: syl
+      duration: 29
       file: 2026-09-12-flight-nmtlmhmu.mp4
-    - duration: 58
+    - drone: syl
+      duration: 58
       file: 2026-09-12-flight-qnjveitz.mp4
-    - duration: 158
+    - drone: syl
+      duration: 158
       file: 2026-09-12-flight-vmfyueln.mp4
-    - duration: 98
+    - drone: syl
+      duration: 98
       file: 2026-09-12-flight-wdimbjnl.mp4
     - description: It was completely dark here btw. It's insane how well the camera performs even in near-absolute darkness. Excuse the flying hihi.
+      drone: syl
       duration: 150
       file: 2026-09-12-flight-ziuzrazu.mp4
     note: Did NOT catch the sunset here, although we tried.
   '2026-09-13':
     clips:
-    - duration: 39
+    - drone: syl
+      duration: 39
       file: 2026-09-13-flight-nllkvgio.mp4
-    - duration: 109
+    - drone: syl
+      duration: 109
       file: 2026-09-13-flight-nngsijqi.mp4
     - description: An absolutely unhinged save.
+      drone: syl
       duration: 94
       file: 2026-09-13-flight-pfmdmwqo.mp4
-    - duration: 61
+    - drone: syl
+      duration: 61
       file: 2026-09-13-flight-vialnidf.mp4
-    - duration: 82
+    - drone: syl
+      duration: 82
       file: 2026-09-13-flight-vungrcby.mp4
-    - duration: 40
+    - drone: syl
+      duration: 40
       file: 2026-09-13-flight-xgvejodz.mp4
     - description: First-ever send attempt recorder on a drone.
+      drone: syl
       duration: 153
       file: 2026-09-13-flight-ylrhrelk.mp4
     note: Nothing too crazy; flying after climbing, forests like this truly suck.
   '2026-09-16':
     clips:
-    - duration: 246
+    - drone: syl
+      duration: 246
       file: 2026-09-16-krimml-chateau-playground-ateblhkv.mp4
-    - duration: 319
+    - drone: syl
+      duration: 319
       file: 2026-09-16-krimml-chateau-playground-cnbhxhbw.mp4
-    - duration: 75
+    - drone: syl
+      duration: 75
       file: 2026-09-16-krimml-chateau-playground-hhwuylqy.mp4
-    - duration: 204
+    - drone: syl
+      duration: 204
       file: 2026-09-16-krimml-chateau-playground-hogiptqa.mp4
-    - duration: 140
+    - drone: syl
+      duration: 140
       file: 2026-09-16-krimml-chateau-playground-ibbszzit.mp4
-    - duration: 46
+    - drone: syl
+      duration: 46
       file: 2026-09-16-krimml-chateau-playground-kjwbhehk.mp4
-    - duration: 67
+    - drone: syl
+      duration: 67
       file: 2026-09-16-krimml-chateau-playground-qshxaihr.mp4
-    - duration: 110
+    - drone: syl
+      duration: 110
       file: 2026-09-16-krimml-chateau-playground-rbtxfmkn.mp4
-    - duration: 185
+    - drone: syl
+      duration: 185
       file: 2026-09-16-krimml-chateau-playground-rjxdwnzi.mp4
-    - duration: 170
+    - drone: syl
+      duration: 170
       file: 2026-09-16-krimml-chateau-playground-rqvqkrnb.mp4
-    - duration: 43
+    - drone: syl
+      duration: 43
       file: 2026-09-16-krimml-chateau-playground-sndgcbzi.mp4
-    - duration: 105
+    - drone: syl
+      duration: 105
       file: 2026-09-16-krimml-chateau-playground-vbgchesv.mp4
-    - duration: 138
+    - drone: syl
+      duration: 138
       file: 2026-09-16-krimml-chateau-playground-wcunwjsn.mp4
-    - duration: 214
+    - drone: syl
+      duration: 214
       file: 2026-09-16-krimml-chateau-playground-yzcazvvr.mp4
     note: Turns out the chateau has an absolutely sick playground that you can do tricks on. I need to calm down and fly much slower, but I think I'm generally getting better (smoother / more confident flying). But I'm also getting lazy and I think the drone will not survive much longer if I keep crash-flipping in tall grass; also, I keep holding the controller very asymmetrically -- I just noticed it and need to get that sorted until it becomes a habit.
     place: krimml-chateau-playground
   '2026-09-22':
     clips:
-    - duration: 247
+    - drone: syl
+      duration: 247
       file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-axwjgmhy.mp4
-    - duration: 266
+    - drone: syl
+      duration: 266
       file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-beiiywjy.mp4
-    - duration: 17
+    - drone: syl
+      duration: 17
       file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-dphwcing.mp4
-    - duration: 67
+    - drone: syl
+      duration: 67
       file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-dtexbbkm.mp4
-    - duration: 335
+    - drone: syl
+      duration: 335
       file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-eqwwglih.mp4
-    - duration: 54
+    - drone: syl
+      duration: 54
       file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-kxisjddd.mp4
-    - duration: 234
+    - drone: syl
+      duration: 234
       file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-lictjrbw.mp4
-    - duration: 44
+    - drone: syl
+      duration: 44
       file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-nulrllui.mp4
-    - duration: 279
+    - drone: syl
+      duration: 279
       file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-obkhygbs.mp4
-    - duration: 258
+    - drone: syl
+      duration: 258
       file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-pmmswvjr.mp4
-    - duration: 289
+    - drone: syl
+      duration: 289
       file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-thpdtphg.mp4
-    - duration: 408
+    - drone: syl
+      duration: 408
       file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-tifejirb.mp4
-    - duration: 152
+    - drone: syl
+      duration: 152
       file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-wpelsqjo.mp4
-    - duration: 133
+    - drone: syl
+      duration: 133
       file: 2026-09-22-heidelberg-playground-kita-huttenbuhl-xxnnkewa.mp4
     note: Good weather, fun flying.
     place: heidelberg-playground-kita-huttenbuhl
   '2026-09-24':
     clips:
-    - duration: 210
+    - drone: syl
+      duration: 210
       file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-adjfuxqp.mp4
-    - duration: 63
+    - drone: syl
+      duration: 63
       file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-axlgdlgu.mp4
-    - duration: 17
+    - drone: syl
+      duration: 17
       file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-bfwprito.mp4
-    - duration: 278
+    - drone: syl
+      duration: 278
       file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-crukiuxo.mp4
-    - duration: 29
+    - drone: syl
+      duration: 29
       file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-exjwwsct.mp4
-    - duration: 321
+    - drone: syl
+      duration: 321
       file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-gnzaxytp.mp4
-    - duration: 286
+    - drone: syl
+      duration: 286
       file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-idrlaeii.mp4
-    - duration: 350
+    - drone: syl
+      duration: 350
       file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-ndtvqkmz.mp4
-    - duration: 159
+    - drone: syl
+      duration: 159
       file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-olsgmsyg.mp4
-    - duration: 289
+    - drone: syl
+      duration: 289
       file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-qbbssxxe.mp4
-    - duration: 23
+    - drone: syl
+      duration: 23
       file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-qfzftiuz.mp4
-    - duration: 200
+    - drone: syl
+      duration: 200
       file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-qwrcdfmz.mp4
-    - duration: 241
+    - drone: syl
+      duration: 241
       file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-rhqgwjta.mp4
-    - duration: 23
+    - drone: syl
+      duration: 23
       file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-vnsrwlks.mp4
-    - duration: 111
+    - drone: syl
+      duration: 111
       file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-xopxxgsz.mp4
-    - duration: 171
+    - drone: syl
+      duration: 171
       file: 2026-09-24-heidelberg-playground-kita-huttenbuhl-zgvjzoee.mp4
     note: Got HDZero BoxPro+! It's awesome -- fits glasses, nice software, inputs/outputs (can use it to fly the sim!) and got antenas to go along with it; unfortunately I didn't superglue it to the drone and so it fell out during flying, I'll need to glue it properly before flying again. The flying itself was kind of meh, but I just need to put the hours in.
     place: heidelberg-playground-kita-huttenbuhl
   '2026-09-25':
     clips:
-    - duration: 76
+    - drone: syl
+      duration: 76
       file: 2026-09-25-heidelberg-playground-kita-huttenbuhl-ejtgbnfy.mp4
-    - duration: 151
+    - drone: syl
+      duration: 151
       file: 2026-09-25-heidelberg-playground-kita-huttenbuhl-gqkefmem.mp4
-    - duration: 38
+    - drone: syl
+      duration: 38
       file: 2026-09-25-heidelberg-playground-kita-huttenbuhl-gzgsacsl.mp4
-    - duration: 181
+    - drone: syl
+      duration: 181
       file: 2026-09-25-heidelberg-playground-kita-huttenbuhl-hhyfhwcw.mp4
-    - duration: 303
+    - drone: syl
+      duration: 303
       file: 2026-09-25-heidelberg-playground-kita-huttenbuhl-hrehylly.mp4
-    - duration: 106
+    - drone: syl
+      duration: 106
       file: 2026-09-25-heidelberg-playground-kita-huttenbuhl-iwtjtefy.mp4
-    - duration: 136
+    - drone: syl
+      duration: 136
       file: 2026-09-25-heidelberg-playground-kita-huttenbuhl-mdkduijc.mp4
-    - duration: 23
+    - drone: syl
+      duration: 23
       file: 2026-09-25-heidelberg-playground-kita-huttenbuhl-nsyettec.mp4
-    - duration: 109
+    - drone: syl
+      duration: 109
       file: 2026-09-25-heidelberg-playground-kita-huttenbuhl-rezjgpiu.mp4
-    - duration: 177
+    - drone: syl
+      duration: 177
       file: 2026-09-25-heidelberg-playground-kita-huttenbuhl-tbckzieb.mp4
-    - duration: 16
+    - drone: syl
+      duration: 16
       file: 2026-09-25-heidelberg-playground-kita-huttenbuhl-upoxnlkx.mp4
-    - duration: 191
+    - drone: syl
+      duration: 191
       file: 2026-09-25-heidelberg-playground-kita-huttenbuhl-ybebrhse.mp4
     place: heidelberg-playground-kita-huttenbuhl
   '2026-09-28':
     clips:
-    - duration: 152
+    - drone: syl
+      duration: 152
       file: 2026-09-28-heidelberg-playground-kita-huttenbuhl-breqcdqe.mp4
-    - duration: 142
+    - drone: syl
+      duration: 142
       file: 2026-09-28-heidelberg-playground-kita-huttenbuhl-cayyzktq.mp4
-    - duration: 78
+    - drone: syl
+      duration: 78
       file: 2026-09-28-heidelberg-playground-kita-huttenbuhl-fcuyzhax.mp4
-    - duration: 25
+    - drone: syl
+      duration: 25
       file: 2026-09-28-heidelberg-playground-kita-huttenbuhl-fhlefoww.mp4
-    - duration: 52
+    - drone: syl
+      duration: 52
       file: 2026-09-28-heidelberg-playground-kita-huttenbuhl-gctliwod.mp4
-    - duration: 126
+    - drone: syl
+      duration: 126
       file: 2026-09-28-heidelberg-playground-kita-huttenbuhl-hgvnvvez.mp4
-    - duration: 26
+    - drone: syl
+      duration: 26
       file: 2026-09-28-heidelberg-playground-kita-huttenbuhl-ipswhikz.mp4
-    - duration: 160
+    - drone: syl
+      duration: 160
       file: 2026-09-28-heidelberg-playground-kita-huttenbuhl-jzjscvbv.mp4
-    - duration: 61
+    - drone: syl
+      duration: 61
       file: 2026-09-28-heidelberg-playground-kita-huttenbuhl-kifwtxyv.mp4
-    - duration: 79
+    - drone: syl
+      duration: 79
       file: 2026-09-28-heidelberg-playground-kita-huttenbuhl-mbuzdjma.mp4
-    - duration: 62
+    - drone: syl
+      duration: 62
       file: 2026-09-28-heidelberg-playground-kita-huttenbuhl-msrltuzl.mp4
-    - duration: 56
+    - drone: syl
+      duration: 56
       file: 2026-09-28-heidelberg-playground-kita-huttenbuhl-ripkxlej.mp4
-    - duration: 196
+    - drone: syl
+      duration: 196
       file: 2026-09-28-heidelberg-playground-kita-huttenbuhl-rznjkspx.mp4
-    - duration: 107
+    - drone: syl
+      duration: 107
       file: 2026-09-28-heidelberg-playground-kita-huttenbuhl-sgwuobyx.mp4
-    - duration: 161
+    - drone: syl
+      duration: 161
       file: 2026-09-28-heidelberg-playground-kita-huttenbuhl-tyefhqro.mp4
-    - duration: 22
+    - drone: syl
+      duration: 22
       file: 2026-09-28-heidelberg-playground-kita-huttenbuhl-vwcfmcxb.mp4
-    - duration: 260
+    - drone: syl
+      duration: 260
       file: 2026-09-28-heidelberg-playground-kita-huttenbuhl-wubnpjgy.mp4
     place: heidelberg-playground-kita-huttenbuhl
   '2026-09-29':
     clips:
-    - duration: 49
+    - drone: syl
+      duration: 49
       file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-abhrwfbn.mp4
-    - duration: 153
+    - drone: syl
+      duration: 153
       file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-azwntmll.mp4
-    - duration: 197
+    - drone: syl
+      duration: 197
       file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-jgndtwxo.mp4
-    - duration: 278
+    - drone: syl
+      duration: 278
       file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-jgtapvzs.mp4
-    - duration: 212
+    - drone: syl
+      duration: 212
       file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-nkgxjojb.mp4
-    - duration: 242
+    - drone: syl
+      duration: 242
       file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-otngxfmf.mp4
-    - duration: 44
+    - drone: syl
+      duration: 44
       file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-rnqfxnwa.mp4
-    - duration: 197
+    - drone: syl
+      duration: 197
       file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-wmxyppku.mp4
-    - duration: 330
+    - drone: syl
+      duration: 330
       file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-wovwfwcq.mp4
-    - duration: 231
+    - drone: syl
+      duration: 231
       file: 2026-09-29-heidelberg-playground-kita-huttenbuhl-zofkelij.mp4
     note: Getting the hang of the trippy spin. Just need to put the hours in, pretty much.
     place: heidelberg-playground-kita-huttenbuhl
   '2026-09-30':
     clips:
-    - duration: 33
+    - drone: syl
+      duration: 33
       file: 2026-09-30-heidelberg-playground-kita-huttenbuhl-bekexrcf.mp4
-    - duration: 118
+    - drone: syl
+      duration: 118
       file: 2026-09-30-heidelberg-playground-kita-huttenbuhl-fceswdjk.mp4
-    - duration: 189
+    - drone: syl
+      duration: 189
       file: 2026-09-30-heidelberg-playground-kita-huttenbuhl-guhfecst.mp4
-    - duration: 80
+    - drone: syl
+      duration: 80
       file: 2026-09-30-heidelberg-playground-kita-huttenbuhl-mmflwmwu.mp4
-    - duration: 74
+    - drone: syl
+      duration: 74
       file: 2026-09-30-heidelberg-playground-kita-huttenbuhl-ojqsuqch.mp4
-    - duration: 102
+    - drone: syl
+      duration: 102
       file: 2026-09-30-heidelberg-playground-kita-huttenbuhl-ptdzupvu.mp4
-    - duration: 69
+    - drone: syl
+      duration: 69
       file: 2026-09-30-heidelberg-playground-kita-huttenbuhl-ynetyuvl.mp4
-    - duration: 125
+    - drone: syl
+      duration: 125
       file: 2026-09-30-heidelberg-playground-kita-huttenbuhl-yqgtxrhq.mp4
-    - duration: 47
+    - drone: syl
+      duration: 47
       file: 2026-09-30-heidelberg-playground-kita-huttenbuhl-zudbktti.mp4
     note: Short flight, got wrecked by the rain in a little bit.
     place: heidelberg-playground-kita-huttenbuhl
   '2026-10-04':
     clips:
-    - duration: 14
+    - drone: syl
+      duration: 14
       file: 2026-10-04-heidelberg-playground-kita-huttenbuhl-azmboiji.mp4
     - description: Nice trippy spin.
+      drone: syl
       duration: 178
       file: 2026-10-04-heidelberg-playground-kita-huttenbuhl-cbpmvyio.mp4
-    - duration: 75
+    - drone: syl
+      duration: 75
       file: 2026-10-04-heidelberg-playground-kita-huttenbuhl-clwwhzsp.mp4
-    - duration: 29
+    - drone: syl
+      duration: 29
       file: 2026-10-04-heidelberg-playground-kita-huttenbuhl-hrdjwnzf.mp4
-    - duration: 162
+    - drone: syl
+      duration: 162
       file: 2026-10-04-heidelberg-playground-kita-huttenbuhl-ipjsprfh.mp4
-    - duration: 232
+    - drone: syl
+      duration: 232
       file: 2026-10-04-heidelberg-playground-kita-huttenbuhl-kurdiwsp.mp4
-    - duration: 156
+    - drone: syl
+      duration: 156
       file: 2026-10-04-heidelberg-playground-kita-huttenbuhl-lxgjufny.mp4
-    - duration: 161
+    - drone: syl
+      duration: 161
       file: 2026-10-04-heidelberg-playground-kita-huttenbuhl-nbctvlxb.mp4
-    - duration: 189
+    - drone: syl
+      duration: 189
       file: 2026-10-04-heidelberg-playground-kita-huttenbuhl-pjaxkjmv.mp4
-    - duration: 324
+    - drone: syl
+      duration: 324
       file: 2026-10-04-heidelberg-playground-kita-huttenbuhl-reewqjss.mp4
-    - duration: 132
+    - drone: syl
+      duration: 132
       file: 2026-10-04-heidelberg-playground-kita-huttenbuhl-tjicdadt.mp4
-    - duration: 148
+    - drone: syl
+      duration: 148
       file: 2026-10-04-heidelberg-playground-kita-huttenbuhl-vjpcafhl.mp4
-    - duration: 54
+    - drone: syl
+      duration: 54
       file: 2026-10-04-heidelberg-playground-kita-huttenbuhl-vzigvqje.mp4
-    - duration: 43
+    - drone: syl
+      duration: 43
       file: 2026-10-04-heidelberg-playground-kita-huttenbuhl-whjognci.mp4
-    - duration: 217
+    - drone: syl
+      duration: 217
       file: 2026-10-04-heidelberg-playground-kita-huttenbuhl-xpedxbqp.mp4
-    - duration: 223
+    - drone: syl
+      duration: 223
       file: 2026-10-04-heidelberg-playground-kita-huttenbuhl-zkupnatt.mp4
-    - duration: 48
+    - drone: syl
+      duration: 48
       file: 2026-10-04-heidelberg-playground-kita-huttenbuhl-zplwdvio.mp4
     note: Busy but super fun, definitely can feel that I'm improving.
     place: heidelberg-playground-kita-huttenbuhl
   '2026-10-06':
     clips:
-    - duration: 29
+    - drone: syl
+      duration: 29
       file: 2026-10-06-heidelberg-playground-johanna-geissmar-strasse-auhhegru.mp4
-    - duration: 211
+    - drone: syl
+      duration: 211
       file: 2026-10-06-heidelberg-playground-johanna-geissmar-strasse-bdqsnwlg.mp4
-    - duration: 189
+    - drone: syl
+      duration: 189
       file: 2026-10-06-heidelberg-playground-johanna-geissmar-strasse-bkhehwtv.mp4
-    - duration: 56
+    - drone: syl
+      duration: 56
       file: 2026-10-06-heidelberg-playground-johanna-geissmar-strasse-bxclkwyw.mp4
-    - duration: 80
+    - drone: syl
+      duration: 80
       file: 2026-10-06-heidelberg-playground-johanna-geissmar-strasse-eywevbzg.mp4
-    - duration: 40
+    - drone: syl
+      duration: 40
       file: 2026-10-06-heidelberg-playground-johanna-geissmar-strasse-kvmlvong.mp4
-    - duration: 165
+    - drone: syl
+      duration: 165
       file: 2026-10-06-heidelberg-playground-johanna-geissmar-strasse-oxyzvhyy.mp4
-    - duration: 75
+    - drone: syl
+      duration: 75
       file: 2026-10-06-heidelberg-playground-johanna-geissmar-strasse-psdszhhj.mp4
-    - duration: 18
+    - drone: syl
+      duration: 18
       file: 2026-10-06-heidelberg-playground-johanna-geissmar-strasse-rlzjxmfs.mp4
-    - duration: 40
+    - drone: syl
+      duration: 40
       file: 2026-10-06-heidelberg-playground-johanna-geissmar-strasse-uicbrgkj.mp4
-    - duration: 160
+    - drone: syl
+      duration: 160
       file: 2026-10-06-heidelberg-playground-johanna-geissmar-strasse-vdvqosjf.mp4
-    - duration: 172
+    - drone: syl
+      duration: 172
       file: 2026-10-06-heidelberg-playground-johanna-geissmar-strasse-vmxlilsh.mp4
-    - duration: 21
+    - drone: syl
+      duration: 21
       file: 2026-10-06-heidelberg-playground-johanna-geissmar-strasse-vrwqnbem.mp4
-    - duration: 77
+    - drone: syl
+      duration: 77
       file: 2026-10-06-heidelberg-playground-johanna-geissmar-strasse-wbxulddn.mp4
-    - duration: 139
+    - drone: syl
+      duration: 139
       file: 2026-10-06-heidelberg-playground-johanna-geissmar-strasse-xnvlpbiq.mp4
     note: I can't believe I haven't been to this playground yet, considering it is quite literally 30 seconds away from the apartment. It is MUCH cleaner and easier to do loops + trippy spins, will definitely be back here.
     place: heidelberg-playground-johanna-geissmar-strasse
   '2026-10-07':
     clips:
-    - duration: 17
+    - drone: syl
+      duration: 17
       file: 2026-10-07-heidelberg-playground-kita-huttenbuhl-bbvfvuky.mp4
-    - duration: 148
+    - drone: syl
+      duration: 148
       file: 2026-10-07-heidelberg-playground-kita-huttenbuhl-cnnygtgj.mp4
-    - duration: 60
+    - drone: syl
+      duration: 60
       file: 2026-10-07-heidelberg-playground-kita-huttenbuhl-dniyloku.mp4
-    - duration: 68
+    - drone: syl
+      duration: 68
       file: 2026-10-07-heidelberg-playground-kita-huttenbuhl-ezibcnsj.mp4
-    - duration: 13
+    - drone: syl
+      duration: 13
       file: 2026-10-07-heidelberg-playground-kita-huttenbuhl-fpwubuqi.mp4
-    - duration: 185
+    - drone: syl
+      duration: 185
       file: 2026-10-07-heidelberg-playground-kita-huttenbuhl-ghjqnemx.mp4
-    - duration: 117
+    - drone: syl
+      duration: 117
       file: 2026-10-07-heidelberg-playground-kita-huttenbuhl-kbyqvgvz.mp4
-    - duration: 121
+    - drone: syl
+      duration: 121
       file: 2026-10-07-heidelberg-playground-kita-huttenbuhl-kddjgwot.mp4
-    - duration: 128
+    - drone: syl
+      duration: 128
       file: 2026-10-07-heidelberg-playground-kita-huttenbuhl-ktwqjfqo.mp4
-    - duration: 253
+    - drone: syl
+      duration: 253
       file: 2026-10-07-heidelberg-playground-kita-huttenbuhl-msezbuuc.mp4
-    - duration: 295
+    - drone: syl
+      duration: 295
       file: 2026-10-07-heidelberg-playground-kita-huttenbuhl-nrgzhcis.mp4
-    - duration: 207
+    - drone: syl
+      duration: 207
       file: 2026-10-07-heidelberg-playground-kita-huttenbuhl-vixdrttg.mp4
-    - duration: 81
+    - drone: syl
+      duration: 81
       file: 2026-10-07-heidelberg-playground-kita-huttenbuhl-vwqslghh.mp4
     place: heidelberg-playground-kita-huttenbuhl
   '2026-10-12':
     clips:
-    - duration: 247
+    - drone: syl
+      duration: 247
       file: 2026-10-12-heidelberg-playground-kita-huttenbuhl-cqcgxyoq.mp4
-    - duration: 64
+    - drone: syl
+      duration: 64
       file: 2026-10-12-heidelberg-playground-kita-huttenbuhl-fnxyoxpn.mp4
-    - duration: 153
+    - drone: syl
+      duration: 153
       file: 2026-10-12-heidelberg-playground-kita-huttenbuhl-hhpettaw.mp4
-    - duration: 39
+    - drone: syl
+      duration: 39
       file: 2026-10-12-heidelberg-playground-kita-huttenbuhl-ixatwyuc.mp4
-    - duration: 249
+    - drone: syl
+      duration: 249
       file: 2026-10-12-heidelberg-playground-kita-huttenbuhl-sjssplow.mp4
-    - duration: 68
+    - drone: syl
+      duration: 68
       file: 2026-10-12-heidelberg-playground-kita-huttenbuhl-sqstfmyy.mp4
-    - duration: 112
+    - drone: syl
+      duration: 112
       file: 2026-10-12-heidelberg-playground-kita-huttenbuhl-urnzgdpj.mp4
-    - duration: 52
+    - drone: syl
+      duration: 52
       file: 2026-10-12-heidelberg-playground-kita-huttenbuhl-wmpqpkci.mp4
-    - duration: 215
+    - drone: syl
+      duration: 215
       file: 2026-10-12-heidelberg-playground-kita-huttenbuhl-wunafzky.mp4
-    - duration: 100
+    - drone: syl
+      duration: 100
       file: 2026-10-12-heidelberg-playground-kita-huttenbuhl-yifsjvvm.mp4
-    - duration: 144
+    - drone: syl
+      duration: 144
       file: 2026-10-12-heidelberg-playground-kita-huttenbuhl-ymaqgfsm.mp4
-    - duration: 267
+    - drone: syl
+      duration: 267
       file: 2026-10-12-heidelberg-playground-kita-huttenbuhl-yzhkyyhw.mp4
     place: heidelberg-playground-kita-huttenbuhl
   '2026-10-14':
+    note: Had some really clean lines here, the playground near the apartment is genuinely perfect (you just need to come early to not disturb people).
     clips:
-    - duration: 34
+    - drone: syl
+      duration: 34
       file: 2026-10-14-heidelberg-playground-kita-huttenbuhl-aprybrpp.mp4
-    - duration: 40
+    - drone: syl
+      duration: 40
       file: 2026-10-14-heidelberg-playground-kita-huttenbuhl-cdlfhzoh.mp4
-    - duration: 81
+    - drone: syl
+      duration: 81
       file: 2026-10-14-heidelberg-playground-kita-huttenbuhl-dqvbargp.mp4
-    - duration: 170
+    - drone: syl
+      duration: 170
       file: 2026-10-14-heidelberg-playground-kita-huttenbuhl-hosvglqf.mp4
-    - duration: 194
+    - drone: syl
+      duration: 194
       file: 2026-10-14-heidelberg-playground-kita-huttenbuhl-hyuohvsb.mp4
-    - duration: 177
+    - drone: syl
+      duration: 177
       file: 2026-10-14-heidelberg-playground-kita-huttenbuhl-ieatmvjh.mp4
-    - duration: 170
+    - drone: syl
+      duration: 170
       file: 2026-10-14-heidelberg-playground-kita-huttenbuhl-izrprrsg.mp4
-    - duration: 170
+    - drone: syl
+      duration: 170
       file: 2026-10-14-heidelberg-playground-kita-huttenbuhl-koxrcugk.mp4
-    - duration: 178
+    - drone: syl
+      duration: 178
       file: 2026-10-14-heidelberg-playground-kita-huttenbuhl-ofxvqhno.mp4
-    - duration: 108
+    - drone: syl
+      duration: 108
       file: 2026-10-14-heidelberg-playground-kita-huttenbuhl-tpggevsv.mp4
-    - duration: 44
+    - drone: syl
+      duration: 44
       file: 2026-10-14-heidelberg-playground-kita-huttenbuhl-wvnjzswx.mp4
     place: heidelberg-playground-kita-huttenbuhl

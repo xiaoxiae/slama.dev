@@ -1,5 +1,6 @@
 {{- $flights := and hugo.Data.drone hugo.Data.drone.drone hugo.Data.drone.drone.flights -}}
 {{- $places := and hugo.Data.drone hugo.Data.drone.places | default dict -}}
+{{- $drones := and hugo.Data.drone hugo.Data.drone.drones | default dict -}}
 
 {{/* Keys are dates, with -1, -2, ... for several flights a day. */}}
 {{- $entries := slice -}}
@@ -35,7 +36,19 @@
 
 <div class='drone-entry' id='{{ $key }}'>
 <p class='drone-entry-header'><strong>{{ $d.Day }}. {{ $d.Format "1" }}. {{ $d.Year }}</strong>
-  {{- with $location }} (at <strong>{{ . }}</strong>){{ end }}</p>
+  {{- with $location }} (at <strong>{{ . }}</strong>){{ end }}
+  {{- $flown := dict -}}
+  {{- $order := slice -}}
+  {{- range $flight.clips -}}
+    {{- if not (isset $flown .drone) -}}{{- $order = $order | append .drone -}}{{- end -}}
+    {{- $flown = merge $flown (dict .drone (add (index $flown .drone | default 0) (int (default 0 .duration)))) -}}
+  {{- end -}}
+  {{- range $i, $key := $order -}}
+    {{- $drone := index $drones $key | default dict -}}
+    {{- if $i }},{{ else }} · {{ end }}
+    {{- if gt (len $order) 1 }} <span class='drone-time'>{{ printf "%d:%02d" (div (index $flown $key) 60) (mod (index $flown $key) 60) }}</span>{{ end }}
+    <span class='drone-name' title='{{ $drone.model }}'>{{ $drone.name | default $key }} <i class='fa-solid fa-drone-{{ $key }}' aria-hidden='true'></i></span>
+  {{- end -}}</p>
 
   {{- with $flight.note -}}
 <p class='drone-note'>{{ . | markdownify }}</p>

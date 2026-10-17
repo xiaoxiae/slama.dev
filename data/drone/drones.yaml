@@ -1,0 +1,12 @@
+# Drones, keyed by the craft name on their OSD (lowercase, so `SYL` is `syl`).
+# Their icon is `fa-drone-KEY`, from assets/fa-custom/drone-KEY.svg.
+
+syl:
+  name: "Syl"
+  model: "BETAFPV Air75 II"
+  type: whoop
+
+kaladin:
+  name: "Kaladin"
+  model: "Seeker 3 (custom)"
+  type: seeker
