@@ -28,7 +28,7 @@ HUGO_ROOT = SCRIPT_DIR.parent
 CACHE_DIR = HUGO_ROOT / ".cache" / "drone-osd"
 
 # Bump to invalidate the cache.
-OSD_VERSION = 4
+OSD_VERSION = 5
 
 FPS = 5
 
@@ -204,6 +204,9 @@ def read_glyphs(frames: np.ndarray, templates: Templates) -> list[list[str | Non
 
 
 def parse_amps(cells: list[str | None]) -> float | None:
+    # The small A loses its outline against bright foliage; it is always there.
+    if cells[-1] is None:
+        cells = [*cells[:-1], "A"]
     if None in cells:
         return None
     text = "".join(cell or "" for cell in cells)

@@ -28,5 +28,12 @@ heidelberg-playground-kita-huttenbuhl:
   name: "Heidelberg Playground (Kita Hüttenbühl)"
   display: "Heidelberg Playground 2"
 
+heidelberg-playground-johanna-geissmar-strasse:
+  alias: heidelberg-playground-3
+  name: "Heidelberg Playground (Johanna-Geißmar-Straße)"
+  display: "Heidelberg Playground 3"
+
 krimml-chateau-playground:
   name: "Playground at the Krimml Chateau"
+
+
