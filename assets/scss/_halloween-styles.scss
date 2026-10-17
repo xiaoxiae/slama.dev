@@ -97,3 +97,18 @@ html.halloween .post-item {
     transform: translateY(0);
   }
 }
+
+/* Halloween versions of the homepage photos (lazy, so they only load when shown) */
+.me-flip .me-halloween {
+  display: none;
+}
+
+html.halloween .me-flip {
+  img:not(.me-halloween) {
+    display: none;
+  }
+
+  .me-halloween {
+    display: block;
+  }
+}

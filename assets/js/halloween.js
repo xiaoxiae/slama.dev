@@ -28,6 +28,7 @@ const halloweenNameMapping = {
   Reading: "Tomes",
   CV: "Scripture",
   Climbing: "Adventure",
+  Drone: "Broomstick",
   Photos: "Negatives",
   Videos: "Horror",
   Stickers: "Stamps",
@@ -40,7 +41,8 @@ const halloweenIconMapping = {
   "fa-house": "fa-chess-rook",
   "fa-book": "fa-book-skull",
   "fa-id-card": "fa-scroll",
-  "fa-bolt": "fa-person-hiking",
+  "fa-climber": "fa-person-hiking",
+  "fa-drone": "fa-broom",
   "fa-camera": "fa-camera-retro",
   "fa-youtube": "fa-video",
   "fa-note-sticky": "fa-stamp",
@@ -177,6 +179,7 @@ function applyFooterLinkMapping() {
         original === "Reading" ||
         original === "CV" ||
         original === "Climbing" ||
+        original === "Drone" ||
         original === "Photos" ||
         original === "Videos" ||
         original === "Stickers"
