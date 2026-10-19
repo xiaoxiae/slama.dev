@@ -47,7 +47,7 @@
     {{- $drone := index $drones $key | default dict -}}
     {{- if $i }},{{ else }} · {{ end }}
     {{- if gt (len $order) 1 }} <span class='drone-time'>{{ printf "%d:%02d" (div (index $flown $key) 60) (mod (index $flown $key) 60) }}</span>{{ end }}
-    <span class='drone-name' title='{{ $drone.model }}'>{{ $drone.name | default $key }} <i class='fa-solid fa-drone-{{ $key }}' aria-hidden='true'></i></span>
+    <strong class='drone-name' title='{{ $drone.model }}'>{{ $drone.name | default $key }} <i class='fa-solid fa-drone-{{ $key }}' aria-hidden='true'></i></strong>
   {{- end -}}</p>
 
   {{- with $flight.note -}}
