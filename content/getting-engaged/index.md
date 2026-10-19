@@ -175,7 +175,7 @@ The one thing that makes this a bit more interesting is the shader that is used 
 It's pretty simple (sample a column and stretch it towards the projector, making closer pixels brighter), but it's a touch that makes the scene more alive.
 
 {{< image_section caption="The projector shader on two separate frames from an unspecified movie." >}}
-{{< image_row "images/projector-1.png :: Projector shader :: :: 580,360,305,200 | images/projector-2.png :: Projector shader :: :: 580,360,305,200" >}}
+{{< image_row "images/projector-1.png :: Projector shader | images/projector-2.png :: Projector shader" >}}
 {{< /image_section >}}
 
 

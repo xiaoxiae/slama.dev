@@ -386,6 +386,17 @@ table {
       padding: 0 ($line-spacing / 3);
     }
   }
+
+  // columns with an empty header (see render-table.html)
+  .bare {
+    padding: 0;
+    border-bottom: none;
+  }
+
+  .bare + td,
+  .bare + th {
+    padding-left: 0;
+  }
 }
 
 figure {
