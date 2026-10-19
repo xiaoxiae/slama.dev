@@ -66,14 +66,18 @@
   {{- range collections.Reverse $flight.clips -}}
     {{- $clip := . -}}
     {{- with $clip.file -}}
+      {{- $drone := index $drones (string $clip.drone) | default dict -}}
+      {{- $seconds := int (default 0 $clip.duration) -}}
 <figure>
-<video style='{{ printf "--poster: url(/drone/videos/%s)" (replaceRE `\.mp4$` ".webp" .) | safeCSS }}' controls preload='none' aria-label='
+<video style='{{ printf "--poster: url(/drone/videos/%s)" (replaceRE `\.mp4$` ".webp" .) | safeCSS }}
+  {{- with $clip.size }}{{ printf "; aspect-ratio: %s" (replace . "x" " / ") | safeCSS }}{{ end }}' controls preload='none' aria-label='
   {{- with $clip.description }}{{ . }}{{ else }}Drone clip{{ with $location }} from {{ . }}{{ end }}, {{ $date }}{{ end }}'>
 <source src='/drone/videos/{{ . }}' type='video/mp4'>
 </video>
-      {{- with $clip.description -}}
-<figcaption>{{ . | markdownify }}</figcaption>
-      {{- end -}}
+<figcaption><span class='drone-time'>{{ printf "%d:%02d" (div $seconds 60) (mod $seconds 60) }}</span>
+  {{- " " -}}<a class='drone-source' href='/drone/videos/{{ $clip.fpv | default . }}' title='{{ $drone.name | default $clip.drone }} (FPV)' aria-label='FPV recording'><i class='fa-solid fa-drone-{{ $clip.drone }}' aria-hidden='true'></i></a>
+  {{- with $clip.cam }} <a class='drone-source' href='/drone/videos/{{ . }}' title='Camera' aria-label='Camera recording'><i class='fa-solid fa-camera' aria-hidden='true'></i></a>{{ end }}
+  {{- with $clip.description }}: {{ . | markdownify }}{{ end }}</figcaption>
 </figure>
     {{- end -}}
   {{- end -}}

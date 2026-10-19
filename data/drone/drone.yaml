@@ -1,8 +1,15 @@
 # Drone journal, managed by scripts/drone.py.
 #
-# Flights have an optional place, note, clips and discard (files to delete).
-# Clips have a drone (see drones.yaml) and cuts ("FILE: START,END", either side
-# can be empty) until they're built, then a file and duration.
+# Flights have an optional place, note, clips, camera and discard (files to
+# delete; camera/FILE for camera recordings). Clips have a drone (see
+# drones.yaml) and cuts ("FILE: START,END", either side can be empty) until
+# they're built, then a file, duration and size (plus fpv and cam, the two
+# halves of a clip combined with camera footage). Camera maps a recording to
+# the camera recordings it overlaps, by offset (camera time = its time + offset):
+#
+#   camera:
+#     hdz_0037.mp4:
+#       DJI_20261019123254_0094_D.MP4: -63.2
 #
 #   clips:
 #   - description: low pass over the dam, then the return
@@ -865,7 +872,6 @@ flights:
       file: 2026-10-12-heidelberg-playground-kita-huttenbuhl-yzhkyyhw.mp4
     place: heidelberg-playground-kita-huttenbuhl
   '2026-10-14':
-    note: Had some really clean lines here, the playground near the apartment is genuinely perfect (you just need to come early to not disturb people).
     clips:
     - drone: syl
       duration: 34
@@ -900,4 +906,43 @@ flights:
     - drone: syl
       duration: 44
       file: 2026-10-14-heidelberg-playground-kita-huttenbuhl-wvnjzswx.mp4
+    note: Had some really clean lines here, the playground near the apartment is genuinely perfect (you just need to come early to not disturb people).
     place: heidelberg-playground-kita-huttenbuhl
+  '2026-10-19':
+    clips:
+    - drone: kaladin
+      duration: 271
+      file: 2026-10-19-heidelberg-farm-dlbyhrxg.mp4
+      size: 1280x720
+    - cam: cam/2026-10-19-heidelberg-farm-eixjebkj.mp4
+      drone: kaladin
+      duration: 285
+      file: 2026-10-19-heidelberg-farm-eixjebkj.mp4
+      fpv: fpv/2026-10-19-heidelberg-farm-eixjebkj.mp4
+      size: 1280x720
+    - cam: cam/2026-10-19-heidelberg-farm-evratjuu.mp4
+      drone: kaladin
+      duration: 171
+      file: 2026-10-19-heidelberg-farm-evratjuu.mp4
+      fpv: fpv/2026-10-19-heidelberg-farm-evratjuu.mp4
+      size: 1280x720
+    - cam: cam/2026-10-19-heidelberg-farm-gvbswnhn.mp4
+      drone: kaladin
+      duration: 117
+      file: 2026-10-19-heidelberg-farm-gvbswnhn.mp4
+      fpv: fpv/2026-10-19-heidelberg-farm-gvbswnhn.mp4
+      size: 1280x720
+    - cam: cam/2026-10-19-heidelberg-farm-hhcgiykn.mp4
+      drone: kaladin
+      duration: 190
+      file: 2026-10-19-heidelberg-farm-hhcgiykn.mp4
+      fpv: fpv/2026-10-19-heidelberg-farm-hhcgiykn.mp4
+      size: 1280x720
+    - cam: cam/2026-10-19-heidelberg-farm-odcqnhso.mp4
+      drone: kaladin
+      duration: 18
+      file: 2026-10-19-heidelberg-farm-odcqnhso.mp4
+      fpv: fpv/2026-10-19-heidelberg-farm-odcqnhso.mp4
+      size: 1280x720
+    note: First flight with Kaladin (the Seeker 3)! Absolutely incredible feeling. Some things went right (it flew), other things went wrong (crash flip cut the battery cable, I almost lost the VTX cable since it wasn't bolded on properly, there is a reason for why the VTX antenna is on the outside, I left one of the batteries in the field and I had to go back, the drone almost cut my hand), but nothing went so wrong that it couldn't be soldered. The drone lives to fly another day, I'll iterate on the 3D prints, and it truly makes me so happy that something I put so much time into actually works and flies.
+    place: heidelberg-farm

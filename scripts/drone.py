@@ -7,12 +7,14 @@ import math
 import os
 import re
 import sys
+from dataclasses import dataclass
 from pathlib import Path
 from typing import NoReturn
 
 import yaml
 
 from drone_osd import detect_flights, profile_of
+from drone_sync import MIN_COVER, describe, goggle_start, sync
 from video_common import (
     allocate_sequence,
     file_key,
@@ -38,9 +40,15 @@ PLACES_YAML = DATA_DIR / "places.yaml"
 DRONES_YAML = DATA_DIR / "drones.yaml"
 VIDEOS_FOLDER = STATIC_DIR / "videos"
 SOURCES_FOLDER = VIDEOS_FOLDER / "sources"
+# Action camera recordings, synced to the goggles' by drone_sync.py.
+CAMERA_FOLDER = VIDEOS_FOLDER / "camera"
 STRIPS_FOLDER = VIDEOS_FOLDER / "strips"
+# A clip with camera footage is shown combined; these hold its two halves.
+FPV_FOLDER = VIDEOS_FOLDER / "fpv"
+CAM_FOLDER = VIDEOS_FOLDER / "cam"
 
 SOURCE_EXTENSIONS = (".mp4", ".mov", ".avi")
+CAMERA_EXTENSIONS = (".mp4", ".mov")
 # HDZero goggles save a thumbnail next to each recording; we delete those too.
 THUMBNAIL_EXTENSIONS = (".jpg", ".jpeg")
 
@@ -48,9 +56,16 @@ THUMBNAIL_EXTENSIONS = (".jpg", ".jpeg")
 DRONE_YAML_HEADER = """\
 # Drone journal, managed by scripts/drone.py.
 #
-# Flights have an optional place, note, clips and discard (files to delete).
-# Clips have a drone (see drones.yaml) and cuts ("FILE: START,END", either side
-# can be empty) until they're built, then a file and duration.
+# Flights have an optional place, note, clips, camera and discard (files to
+# delete; camera/FILE for camera recordings). Clips have a drone (see
+# drones.yaml) and cuts ("FILE: START,END", either side can be empty) until
+# they're built, then a file, duration and size (plus fpv and cam, the two
+# halves of a clip combined with camera footage). Camera maps a recording to
+# the camera recordings it overlaps, by offset (camera time = its time + offset):
+#
+#   camera:
+#     hdz_0037.mp4:
+#       DJI_20261019123254_0094_D.MP4: -63.2
 #
 #   clips:
 #   - description: low pass over the dam, then the return
@@ -65,7 +80,14 @@ ENCODE_PRESET = "slower"
 DENOISE_FILTER = "hqdn3d=4:3:2:2"
 MAX_HEIGHT = 720
 OUTPUT_FPS = 30
-KEEP_AUDIO = False
+AUDIO_BITRATE = "96k"
+# The goggles record much quieter than the camera, so we even them out.
+AUDIO_FILTER = (
+    "asetpts=PTS-STARTPTS,loudnorm=I=-23:TP=-2,"
+    "aformat=sample_rates=48000:channel_layouts=stereo"
+)
+# Of the combined clip's width, top right.
+INSET = 1 / 3
 
 DURATION_TOLERANCE = 0.5
 # Keep this below DURATION_TOLERANCE.
@@ -252,12 +274,28 @@ def discarded(flight: dict) -> list[str]:
     return [str(file) for file in flight.get("discard") or []]
 
 
+def camera_map(flight: dict) -> dict[str, dict[str, float]]:
+    return flight.get("camera") or {}
+
+
+def known_cameras(data: dict) -> set[str]:
+    """Camera recordings referenced anywhere, as `camera/FILE`."""
+    found: set[str] = set()
+    for flight in (data.get("flights") or {}).values():
+        if isinstance(flight, dict):
+            found.update(d for d in discarded(flight) if d.startswith("camera/"))
+            for cameras in camera_map(flight).values():
+                found.update(f"camera/{camera}" for camera in cameras)
+    return found
+
+
 def known_files(data: dict) -> set[str]:
     found: set[str] = set()
     for flight in (data.get("flights") or {}).values():
         if not isinstance(flight, dict):
             continue
         found.update(discarded(flight))
+        found.update(camera_map(flight))
         for clip in flight.get("clips") or []:
             if isinstance(clip, dict):
                 for cut in clip.get("cuts") or []:
@@ -436,20 +474,61 @@ def cmd_add(args):
             "a flight running across the two will have been split in half."
         )
 
-    key = choose_flight(flights, date, place, index)
-    flight = flights.setdefault(key, {})
-    if place is not None:
-        flight["place"] = place
-    clips, discard = seed_clips(new, not args.no_detect)
-    if thumbnails:
-        print(f"thumbnails (to discard): {', '.join(thumbnails)}")
-    discard += thumbnails
-    flight.setdefault("clips", []).extend(clips)
-    if discard:
-        flight["discard"] = discarded(flight) + discard
+    known_camera = known_cameras(data)
+    listed = sorted(os.listdir(CAMERA_FOLDER)) if CAMERA_FOLDER.is_dir() else []
+    cameras = [
+        file
+        for file in listed
+        if file.lower().endswith(CAMERA_EXTENSIONS)
+        and f"camera/{file}" not in known_camera
+    ]
+    synced = None
+    if cameras:
+        print(f"syncing to {len(cameras)} camera recording(s)...", flush=True)
+        synced = sync(
+            [SOURCES_FOLDER / file for file in new],
+            [CAMERA_FOLDER / file for file in cameras],
+        )
+        print("\n".join(describe(synced)))
+
+    days: dict[str, list[str]] = {}
+    for file in new:
+        day = date
+        if synced is not None and synced.clock is not None:
+            start = goggle_start(SOURCES_FOLDER / file) + synced.clock
+            day = str(datetime.datetime.fromtimestamp(start).date())
+            if args.date and day != date:
+                fail(f"{file} is from {day} by the camera, not {date}")
+        days.setdefault(day, []).append(file)
+
+    keys = []
+    for day, group in days.items():
+        key = choose_flight(flights, day, place, index if day == date else None)
+        keys.append(key)
+        flight = flights.setdefault(key, {})
+        if place is not None:
+            flight["place"] = place
+        clips, discard = seed_clips(group, not args.no_detect)
+        stems = {Path(file).stem for file in group}
+        ours = [file for file in thumbnails if Path(file).stem in stems]
+        if ours:
+            print(f"thumbnails (to discard): {', '.join(ours)}")
+        discard += ours
+        if synced is not None:
+            offsets = {f: synced.offsets[f] for f in group if f in synced.offsets}
+            if offsets:
+                flight["camera"] = camera_map(flight) | offsets
+        flight.setdefault("clips", []).extend(clips)
+        if discard:
+            flight["discard"] = discarded(flight) + discard
+
+    if synced is not None and synced.unused:
+        print(f"no flight on camera (to discard): {', '.join(synced.unused)}")
+        unused = [f"camera/{file}" for file in synced.unused]
+        flight["discard"] = discarded(flight) + unused
 
     save_drone_yaml(data)
-    print(f"\nAdded {len(new)} new recording(s) under {key}.")
+    print(f"\nAdded {len(new)} new recording(s) under {', '.join(keys)}.")
     print(f"Check the cuts in {DRONE_YAML}, then run `build`.")
 
 
@@ -461,30 +540,129 @@ def previous_chunk(file: str) -> str | None:
     return f"{prefix}{int(number) - 1:0{len(number)}d}{suffix}"
 
 
-def extract_clip(cuts: list[tuple[str, float, float]], target: Path) -> None:
-    # Stream-copying breaks on variable frame rate, so we re-encode in one go.
-    command = ["ffmpeg", "-nostdin", "-y"]
+@dataclass
+class Segment:
+    """A piece of a clip: a stretch of one recording, and of the camera's if it
+    was running."""
+
+    file: str
+    start: float
+    end: float
+    camera: str | None = None
+    camera_start: float = 0.0
+
+
+def clip_segments(
+    cuts: list[tuple[str, float, float]],
+    camera: dict[str, dict[str, float]],
+    camera_lengths: dict[str, float],
+) -> list[Segment]:
+    segments = []
     for file, start, end in cuts:
-        command += [
+        covered = []
+        for recording, offset in (camera.get(file) or {}).items():
+            low = max(start, -offset)
+            high = min(end, camera_lengths[recording] - offset)
+            if high - low >= MIN_COVER:
+                covered.append((low, high, recording, offset))
+        at = start
+        for low, high, recording, offset in sorted(covered):
+            low = max(low, at)
+            if high - low < MIN_COVER:
+                continue
+            if low > at:
+                segments.append(Segment(file, at, low))
+            segments.append(Segment(file, low, high, recording, low + offset))
+            at = high
+        if end > at:
+            segments.append(Segment(file, at, end))
+    return segments
+
+
+def has_audio(path: Path) -> bool:
+    streams = probe(path).get("streams", [])
+    return any(stream.get("codec_type") == "audio" for stream in streams)
+
+
+def camera_canvas(segments: list[Segment]) -> tuple[int, int] | None:
+    """The combined clip's size: the camera's aspect, at most MAX_HEIGHT."""
+    recording = next((s.camera for s in segments if s.camera), None)
+    if recording is None:
+        return None
+    stream = video_stream(CAMERA_FOLDER / recording)
+    width, height = int(stream["width"]), int(stream["height"])
+    out = min(MAX_HEIGHT, height)
+    return round(out * width / height / 2) * 2, out
+
+
+def extract_clip(segments: list[Segment], targets: dict[str, Path]) -> None:
+    """Encode `file` (and with the camera, `fpv` and `cam`) in one go.
+
+    Stream-copying breaks on variable frame rate, so we re-encode."""
+    command = ["ffmpeg", "-nostdin", "-y"]
+    inputs = 0
+
+    def add_input(*args: str) -> int:
+        nonlocal inputs
+        command.extend(args)
+        inputs += 1
+        return inputs - 1
+
+    picture = profile_of(SOURCES_FOLDER / segments[0].file).picture
+    canvas = camera_canvas(segments)
+    graph: list[str] = []
+    parts: dict[str, list[str]] = {"file": [], "fpv": [], "cam": []}
+    for i, segment in enumerate(segments):
+        length = f"{segment.end - segment.start:.3f}"
+        source = SOURCES_FOLDER / segment.file
+        dvr = add_input("-ss", f"{segment.start:.3f}", "-t", length, "-i", str(source))
+        audio = f"[{dvr}:a:0]"
+        if not has_audio(source):
+            silence = f"anullsrc=r=48000:cl=stereo:d={length}"
+            audio = f"[{add_input('-f', 'lavfi', '-i', silence)}:a]"
+        graph.append(
+            f"[{dvr}:v:0]setpts=PTS-STARTPTS,{picture}"
+            f"scale=-2:'min({MAX_HEIGHT},ih)',{DENOISE_FILTER},fps={OUTPUT_FPS},"
+            f"setsar=1,format=yuv420p[d{i}]"
+        )
+        graph.append(f"{audio}{AUDIO_FILTER}[da{i}]")
+        if canvas is None:
+            parts["file"].append(f"[d{i}][da{i}]")
+            continue
+
+        width, height = canvas
+        graph.append(f"[d{i}]split[f{i}][dv{i}]")
+        graph.append(f"[da{i}]asplit[fa{i}][dva{i}]")
+        parts["fpv"].append(f"[f{i}][fa{i}]")
+        if segment.camera is None:
+            graph.append(
+                f"[dv{i}]scale={width}:{height}:force_original_aspect_ratio=decrease,"
+                f"pad={width}:{height}:(ow-iw)/2:(oh-ih)/2,setsar=1[v{i}]"
+            )
+            parts["file"].append(f"[v{i}][dva{i}]")
+            continue
+
+        graph.append(f"[dva{i}]anullsink")
+        camera = add_input(
             "-ss",
-            f"{start:.3f}",
+            f"{segment.camera_start:.3f}",
             "-t",
-            f"{end - start:.3f}",
+            length,
             "-i",
-            str(SOURCES_FOLDER / file),
+            str(CAMERA_FOLDER / segment.camera),
+        )
+        inset = round(width * INSET / 2) * 2
+        graph += [
+            f"[{camera}:v:0]setpts=PTS-STARTPTS,scale={width}:{height},"
+            f"fps={OUTPUT_FPS},setsar=1,format=yuv420p,split[c{i}][cv{i}]",
+            f"[{camera}:a:0]{AUDIO_FILTER},asplit[ca{i}][cva{i}]",
+            f"[dv{i}]scale={inset}:-2[i{i}]",
+            f"[cv{i}][i{i}]overlay=W-w:0[v{i}]",
         ]
+        parts["file"].append(f"[v{i}][cva{i}]")
+        parts["cam"].append(f"[c{i}][ca{i}]")
 
-    picture = profile_of(SOURCES_FOLDER / cuts[0][0]).picture
-    scale = f"scale=-2:'min({MAX_HEIGHT},ih)'"
-    graph = "".join(f"[{i}:v]{picture}{scale}[s{i}];" for i in range(len(cuts)))
-    graph += "".join(f"[s{i}]" for i in range(len(cuts)))
-    graph += f"concat=n={len(cuts)}:v=1:a=0,{DENOISE_FILTER}[v]"
-
-    command += [
-        "-filter_complex",
-        graph,
-        "-map",
-        "[v]",
+    encode = [
         # Strip the take-off GPS.
         "-map_metadata",
         "-1",
@@ -502,20 +680,23 @@ def extract_clip(cuts: list[tuple[str, float, float]], target: Path) -> None:
         str(OUTPUT_FPS),
         "-fps_mode",
         "cfr",
+        "-c:a",
+        "aac",
+        "-b:a",
+        AUDIO_BITRATE,
         "-movflags",
         "+faststart",
     ]
-    if KEEP_AUDIO:
-        audio = "".join(f"[{i}:a]" for i in range(len(cuts)))
-        command[command.index("-filter_complex") + 1] = (
-            graph + f";{audio}concat=n={len(cuts)}:v=0:a=1[a]"
-        )
-        command += ["-map", "[a]", "-c:a", "aac", "-b:a", "96k"]
-    else:
-        command += ["-an"]
-    command += [str(target)]
+    outputs = []
+    for name, pieces in parts.items():
+        if pieces:
+            n = len(pieces)
+            graph.append("".join(pieces) + f"concat=n={n}:v=1:a=1[{name}v][{name}a]")
+            outputs += ["-map", f"[{name}v]", "-map", f"[{name}a]", *encode]
+            outputs.append(str(targets[name]))
 
-    run(command, target, label=target.name)
+    command += ["-filter_complex", ";".join(graph), *outputs]
+    run(command, targets["file"], label=targets["file"].name)
 
 
 def verify_clip(path: Path, expected_duration: float) -> float:
@@ -531,49 +712,65 @@ def verify_clip(path: Path, expected_duration: float) -> float:
 
 
 def process_flight(
-    key: str, flight: dict, cuts_by_clip: list[list], names: list[str]
+    key: str, flight: dict, segments_by_clip: list[list[Segment]], names: list[str]
 ) -> list[dict]:
-    staged: list[tuple[Path, Path, dict]] = []
+    staged: list[tuple[Path, Path]] = []
+    entries: list[dict] = []
     created: list[Path] = []
     try:
         clips = pending_clips(flight)
-        for clip, cuts, name in zip(clips, cuts_by_clip, names, strict=True):
-            duration = sum(end - start for _, start, end in cuts)
-
-            final_path = VIDEOS_FOLDER / name
-            temp_path = VIDEOS_FOLDER / f"tmp_{final_path.name}"
-            created.append(temp_path)
+        for clip, segments, name in zip(clips, segments_by_clip, names, strict=True):
+            duration = sum(s.end - s.start for s in segments)
+            covered = sum(s.end - s.start for s in segments if s.camera)
+            folders = {"file": VIDEOS_FOLDER}
+            if covered:
+                folders |= {"fpv": FPV_FOLDER, "cam": CAM_FOLDER}
+            targets = {}
+            for kind, folder in folders.items():
+                folder.mkdir(parents=True, exist_ok=True)
+                targets[kind] = folder / f"tmp_{name}"
+                created.append(targets[kind])
 
             print(f"clip {describe_clip(clip)}:", flush=True)
-            for file, start, end in cuts:
-                print(f"  {file} [{start:g}s-{end:g}s]", flush=True)
-            extract_clip(cuts, temp_path)
-            measured = verify_clip(temp_path, duration)
+            for s in segments:
+                camera = f" + {s.camera} [{s.camera_start:g}s-]" if s.camera else ""
+                print(f"  {s.file} [{s.start:g}s-{s.end:g}s]{camera}", flush=True)
+            extract_clip(segments, targets)
+            measured = verify_clip(targets["file"], duration)
+            if covered:
+                verify_clip(targets["fpv"], duration)
+                verify_clip(targets["cam"], covered)
 
+            stream = video_stream(targets["file"])
             entry: dict = {
-                "file": final_path.name,
+                "file": name,
                 "duration": round(measured),
                 "drone": clip["drone"],
+                "size": f"{stream['width']}x{stream['height']}",
             }
+            if covered:
+                entry |= {"fpv": f"fpv/{name}", "cam": f"cam/{name}"}
             if clip.get("description"):
                 entry["description"] = clip["description"]
-            staged.append((temp_path, final_path, entry))
+            entries.append(entry)
+            staged += [(path, path.with_name(name)) for path in targets.values()]
 
-        for temp_path, final_path, _ in staged:
+        for temp_path, final_path in staged:
             os.rename(temp_path, final_path)
             created.append(final_path)
-            created.append(generate_poster(final_path))
+            if final_path.parent == VIDEOS_FOLDER:
+                created.append(generate_poster(final_path))
     except BaseException:
         for path in created:
             path.unlink(missing_ok=True)
         raise
 
-    return [entry for _, _, entry in staged]
+    return entries
 
 
 def validate_flight(
     key: str, flight: dict, places: dict, drones: dict
-) -> list[list] | None:
+) -> list[list[Segment]] | None:
     todos = find_todos(flight)
     if todos:
         print(f"WARNING: skipping {key}, it still contains placeholders:")
@@ -623,13 +820,23 @@ def validate_flight(
         except RuntimeError as error:
             fail(f"{key}: {file}: {error}")
 
-    cuts_by_clip: list[list] = []
+    camera_lengths: dict[str, float] = {}
+    for file in files:
+        for camera in camera_map(flight).get(file) or {}:
+            camera_path = CAMERA_FOLDER / camera
+            if not camera_path.exists():
+                fail(f"{key}: nonexistent camera recording '{camera}'")
+            camera_lengths[camera] = float(
+                probe(camera_path).get("format", {}).get("duration", 0)
+            )
+
+    segments_by_clip: list[list[Segment]] = []
     for clip in clips:
         try:
             cuts = parse_clip(clip, lengths)
         except ValueError as error:
             fail(f"{key}: {error}")
-        cuts_by_clip.append(cuts)
+        segments_by_clip.append(clip_segments(cuts, camera_map(flight), camera_lengths))
         if len({sizes[file] for file, _, _ in cuts}) > 1:
             fail(
                 f"{key}: clip {describe_clip(clip)} mixes recordings of different "
@@ -645,7 +852,7 @@ def validate_flight(
                     f"but '{file}' is only {lengths[file]:.1f}s long"
                 )
 
-    return cuts_by_clip
+    return segments_by_clip
 
 
 def make_flight_strips(flights: dict) -> None:
@@ -684,14 +891,14 @@ def cmd_build(args):
         make_flight_strips(flights)
         return
 
-    ready: dict[str, list[list]] = {}
+    ready: dict[str, list[list[Segment]]] = {}
     owner: dict[str, str] = {}
     for key, flight in pending.items():
-        cuts_by_clip = validate_flight(key, flight, places, drones)
-        if cuts_by_clip is None:
+        segments_by_clip = validate_flight(key, flight, places, drones)
+        if segments_by_clip is None:
             continue
-        ready[key] = cuts_by_clip
-        files = {file for cuts in cuts_by_clip for file, _, _ in cuts}
+        ready[key] = segments_by_clip
+        files = {s.file for segments in segments_by_clip for s in segments}
         for file in files | set(discarded(flight)):
             if file in owner:
                 fail(f"'{file}' is used by both {owner[file]} and {key}")
@@ -700,12 +907,12 @@ def cmd_build(args):
     taken = existing_keys(VIDEOS_FOLDER)
     total = 0
     try:
-        for key, cuts_by_clip in ready.items():
+        for key, segments_by_clip in ready.items():
             flight = pending[key]
-            used = {file for cuts in cuts_by_clip for file, _, _ in cuts}
+            used = {s.file for segments in segments_by_clip for s in segments}
             names = plan_names(key, flight, taken)
             taken |= {Path(name).stem.rsplit("-", 1)[-1] for name in names}
-            entries = process_flight(key, flight, cuts_by_clip, names)
+            entries = process_flight(key, flight, segments_by_clip, names)
             built = iter(entries)
 
             flight["clips"] = [
@@ -714,10 +921,17 @@ def cmd_build(args):
             ]
             used |= set(discarded(flight))
             flight.pop("discard", None)
+            cameras = {c for cs in camera_map(flight).values() for c in cs}
+            flight.pop("camera", None)
             save_drone_yaml(data)
 
+            # Another flight's recordings may still need a camera recording.
+            still_needed = known_cameras(data)
+            used |= {f"camera/{c}" for c in cameras} - still_needed
             for file in sorted(used):
-                (SOURCES_FOLDER / file).unlink(missing_ok=True)
+                # Discarded camera recordings are camera/FILE, the rest bare.
+                folder = VIDEOS_FOLDER if "/" in file else SOURCES_FOLDER
+                (folder / file).unlink(missing_ok=True)
             total += len(entries)
     except RuntimeError as error:
         print(f"\nERROR: {error}", file=sys.stderr)

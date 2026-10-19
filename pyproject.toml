@@ -11,6 +11,7 @@ dependencies = [
     "markdown>=3.10",
     "numpy>=2.0.0",
     "onnx>=1.22.0",
+    "opencv-python>=4.13",
     "pillow>=12.3.0",
     "pydantic>=2.12.5",
     "pyyaml>=6.0.3",
