@@ -11,7 +11,7 @@ import sys
 import time
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 from subprocess import DEVNULL, PIPE, Popen
 
@@ -107,6 +107,16 @@ HD_LAYOUT = Layout(
     blank_pixels=2,
 )
 
+# The same OSD in 4:3 (the goggles' setting since 20 Oct), over the 4:3 picture
+# in the middle of the frame: same rows and font, a narrower grid.
+HD43_LAYOUT = replace(
+    HD_LAYOUT,
+    cell_x0=9,
+    amps_cells=range(37, 43),
+    craft_cell=9,
+    crop=(300, 100, 360, 340),
+)
+
 
 @dataclass(frozen=True, eq=False)
 class Profile:
@@ -120,10 +130,12 @@ class Profile:
     # Whether a flight can continue into the next file. On HDZero a new file
     # means the link dropped or the goggles restarted.
     chunked: bool = False
+    # Another profile's templates, for the same font at the same scale.
+    font: str = ""
 
     @property
     def templates(self) -> Path:
-        return SCRIPT_DIR / f"drone_osd-{self.name}.npz"
+        return SCRIPT_DIR / f"drone_osd-{self.font or self.name}.npz"
 
 
 # By recorder and OSD, not video link (the HDZero goggles record analog too).
@@ -138,13 +150,25 @@ PROFILES = {
         picture="crop=ih*4/3:ih,",
     ),
     "hdzero-hd": Profile("hdzero-hd", "scale=960:540", HD_LAYOUT),
+    "hdzero-hd43": Profile(
+        "hdzero-hd43",
+        "scale=960:540",
+        HD43_LAYOUT,
+        picture="crop=ih*4/3:ih,",
+        font="hdzero-hd",
+    ),
 }
 # Set by --profile, for recordings without a recognisable OSD yet.
 FORCED_PROFILE: Profile | None = None
 
-# Where only the HD OSD has text: left of the 4:3 picture (the craft name),
-# right of it (the amps) and its STATS.
-HD_MARKS = ((56, 70, 50, 24), (852, 474, 46, 24), HD_LAYOUT.words["stats"][0])
+# Where only that HD OSD has text, checked in order. The 16:9 one: left of the
+# 4:3 picture (the craft name) and right of it (the amps). The 4:3 one: the
+# bottom of its amps row, below the analog OSD's taller amps, and the STATS
+# (where both have it, so last).
+HD_MARKS = {
+    "hdzero-hd": ((56, 70, 50, 24), (852, 474, 46, 24)),
+    "hdzero-hd43": ((695, 486, 80, 7), HD_LAYOUT.words["stats"][0]),
+}
 # Lit pixels in a mark, and marked frames of those sampled, for an HD OSD.
 HD_INK, HD_SAMPLES, HD_FRAMES = 16, 20, 2
 
@@ -157,14 +181,19 @@ def profile_of(path: Path) -> Profile:
     stream = next(s for s in info["streams"] if s.get("codec_type") == "video")
     if int(stream["width"]) / int(stream["height"]) <= 1.5:
         return PROFILES["analog"]
-    hd = PROFILES["hdzero-hd"]
+    # Both HD profiles decode to the same frame.
     length = float(info.get("format", {}).get("duration", 0))
-    sampled = decode(path, hd, fps=HD_SAMPLES / max(length, 1), keyframes=True)
+    sampled = decode(
+        path, PROFILES["hdzero-hd"], fps=HD_SAMPLES / max(length, 1), keyframes=True
+    )
     frames = np.concatenate(list(sampled))
-    marked = np.zeros(len(frames), bool)
-    for box in HD_MARKS:
-        marked |= text_mask(frames, box, 0).sum((1, 2)) >= HD_INK
-    return hd if marked.sum() >= HD_FRAMES else PROFILES["hdzero-dvr"]
+    for name, marks in HD_MARKS.items():
+        marked = np.zeros(len(frames), bool)
+        for box in marks:
+            marked |= text_mask(frames, box, 0).sum((1, 2)) >= HD_INK
+        if marked.sum() >= HD_FRAMES:
+            return PROFILES[name]
+    return PROFILES["hdzero-dvr"]
 
 
 # OSD text is white with a dark outline, which a bright sky isn't.

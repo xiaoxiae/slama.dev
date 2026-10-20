@@ -395,7 +395,9 @@ def seed_clips(files: list[str], detect: bool) -> tuple[list[dict], list[str]]:
         clips.append(
             {
                 "cuts": [
-                    {file: f"{edge(low)},{edge(high)}"} for file, low, high in cuts
+                    # YAML can't read back a value starting with a comma.
+                    {file: f"{format_timestamp(low or 0)},{edge(high)}"}
+                    for file, low, high in cuts
                 ],
                 "drone": drone or "TODO",
             }

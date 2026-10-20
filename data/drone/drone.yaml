@@ -946,3 +946,35 @@ flights:
       size: 1280x720
     note: First flight with Kaladin (the Seeker 3)! Absolutely incredible feeling. Some things went right (it flew), other things went wrong (crash flip cut the battery cable, I almost lost the VTX cable since it wasn't bolded on properly, there is a reason for why the VTX antenna is on the outside, I left one of the batteries in the field and I had to go back, the drone almost cut my hand), but nothing went so wrong that it couldn't be soldered. The drone lives to fly another day, I'll iterate on the 3D prints, and it truly makes me so happy that something I put so much time into actually works and flies.
     place: heidelberg-farm
+  '2026-10-20':
+    note: Second flight; despite the VTX being secured harder, it still went, I don't know what people do to hold it down. Also one of the propellers cut the battery voltage outputs, fuck my life. Also the stack wires got disconnected and so the amp readings stopped in the last two videos. We still flew!
+    clips:
+    - drone: kaladin
+      duration: 192
+      file: 2026-10-20-heidelberg-farm-bzskfbzs.mp4
+      size: 960x720
+    - drone: kaladin
+      duration: 221
+      file: 2026-10-20-heidelberg-farm-dcyuuaad.mp4
+      size: 960x720
+    - drone: kaladin
+      duration: 22
+      file: 2026-10-20-heidelberg-farm-gwwmufrk.mp4
+      size: 960x720
+    - drone: kaladin
+      duration: 319
+      file: 2026-10-20-heidelberg-farm-jdhcdvbf.mp4
+      size: 960x720
+    - drone: kaladin
+      duration: 148
+      file: 2026-10-20-heidelberg-farm-kcuurndl.mp4
+      size: 960x720
+    - drone: kaladin
+      duration: 113
+      file: 2026-10-20-heidelberg-farm-qdsnfpha.mp4
+      size: 960x720
+    - drone: kaladin
+      duration: 31
+      file: 2026-10-20-heidelberg-farm-tugbtsqt.mp4
+      size: 960x720
+    place: heidelberg-farm
