@@ -38,6 +38,7 @@ STATIC_DIR = HUGO_ROOT / "static" / "drone"
 DRONE_YAML = DATA_DIR / "drone.yaml"
 PLACES_YAML = DATA_DIR / "places.yaml"
 DRONES_YAML = DATA_DIR / "drones.yaml"
+CAMERA_LUT = SCRIPT_DIR / "dlog-m-to-rec709.cube"
 VIDEOS_FOLDER = STATIC_DIR / "videos"
 SOURCES_FOLDER = VIDEOS_FOLDER / "sources"
 # Action camera recordings, synced to the goggles' by drone_sync.py.
@@ -656,6 +657,7 @@ def extract_clip(segments: list[Segment], targets: dict[str, Path]) -> None:
         inset = round(width * INSET / 2) * 2
         graph += [
             f"[{camera}:v:0]setpts=PTS-STARTPTS,scale={width}:{height},"
+            f"format=rgb48le,lut3d='{CAMERA_LUT}':interp=tetrahedral,"
             f"fps={OUTPUT_FPS},setsar=1,format=yuv420p,split[c{i}][cv{i}]",
             f"[{camera}:a:0]{AUDIO_FILTER},asplit[ca{i}][cva{i}]",
             f"[dv{i}]scale={inset}:-2[i{i}]",

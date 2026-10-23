@@ -947,7 +947,6 @@ flights:
     note: First flight with Kaladin (the Seeker 3)! Absolutely incredible feeling. Some things went right (it flew), other things went wrong (crash flip cut the battery cable, I almost lost the VTX cable since it wasn't bolded on properly, there is a reason for why the VTX antenna is on the outside, I left one of the batteries in the field and I had to go back, the drone almost cut my hand), but nothing went so wrong that it couldn't be soldered. The drone lives to fly another day, I'll iterate on the 3D prints, and it truly makes me so happy that something I put so much time into actually works and flies.
     place: heidelberg-farm
   '2026-10-20':
-    note: Second flight; despite the VTX being secured harder, it still went, I don't know what people do to hold it down. Also one of the propellers cut the battery voltage outputs, fuck my life. Also the stack wires got disconnected and so the amp readings stopped in the last two videos. We still flew!
     clips:
     - drone: kaladin
       duration: 192
@@ -976,5 +975,50 @@ flights:
     - drone: kaladin
       duration: 31
       file: 2026-10-20-heidelberg-farm-tugbtsqt.mp4
+      size: 960x720
+    note: Second flight; despite the VTX being secured harder, it still went, I don't know what people do to hold it down. Also one of the propellers cut the battery voltage outputs, fuck my life. Also the stack wires got disconnected and so the amp readings stopped in the last two videos. We still flew!
+    place: heidelberg-farm
+  '2026-10-22':
+    note: It is extremely exciting to me that with the new drone, each flight I learn something new because things break in new ways. For these flights, the primary thing that broke was that the battery fell out of the drone a number of times, and (more terrifyingly) so did the camera. It looks like I will be re-printing some parts...
+    clips:
+    - cam: cam/2026-10-22-heidelberg-farm-bfpcbwly.mp4
+      drone: kaladin
+      duration: 153
+      file: 2026-10-22-heidelberg-farm-bfpcbwly.mp4
+      fpv: fpv/2026-10-22-heidelberg-farm-bfpcbwly.mp4
+      size: 960x720
+    - cam: cam/2026-10-22-heidelberg-farm-chyguwrx.mp4
+      drone: kaladin
+      duration: 198
+      file: 2026-10-22-heidelberg-farm-chyguwrx.mp4
+      fpv: fpv/2026-10-22-heidelberg-farm-chyguwrx.mp4
+      size: 960x720
+    - cam: cam/2026-10-22-heidelberg-farm-fdulerwf.mp4
+      drone: kaladin
+      duration: 184
+      file: 2026-10-22-heidelberg-farm-fdulerwf.mp4
+      fpv: fpv/2026-10-22-heidelberg-farm-fdulerwf.mp4
+      size: 960x720
+    - drone: kaladin
+      duration: 29
+      file: 2026-10-22-heidelberg-farm-hxradels.mp4
+      size: 960x720
+    - drone: kaladin
+      duration: 158
+      file: 2026-10-22-heidelberg-farm-iurgmtyj.mp4
+      size: 960x720
+    - cam: cam/2026-10-22-heidelberg-farm-ncvlgteh.mp4
+      drone: kaladin
+      duration: 60
+      file: 2026-10-22-heidelberg-farm-ncvlgteh.mp4
+      fpv: fpv/2026-10-22-heidelberg-farm-ncvlgteh.mp4
+      size: 960x720
+    - drone: kaladin
+      duration: 168
+      file: 2026-10-22-heidelberg-farm-sgrldltc.mp4
+      size: 960x720
+    - drone: kaladin
+      duration: 181
+      file: 2026-10-22-heidelberg-farm-ulezvlwz.mp4
       size: 960x720
     place: heidelberg-farm
