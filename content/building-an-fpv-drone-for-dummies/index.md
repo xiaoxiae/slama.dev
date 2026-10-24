@@ -1,5 +1,5 @@
 ---
-date: '2026-10-19'
+date: '2026-10-25'
 title: "Building an FPV Drone (for dummies)"
 description: "What I wish I knew, but had to learn in the process of building a drone."
 toc: true
@@ -88,6 +88,7 @@ The frame came with a [few stock 3D-printed parts](https://www.deepspacefpv.com/
 Omitting the Osmo Nano, which I couldn't mount at all, most of the pre-made parts were technically functional, but very much did not fit the exact component configuration I had (the ELRS was too floppy and the VTX didn't fit).
 
 So I designed my own!
+All three are also on MakerWorld: the [camera mount](https://makerworld.com/en/models/3488265-deepspace-seeker-3-hdzero-nano-90-camera-mount), the [Osmo Nano mount](https://makerworld.com/en/models/3488246-deepspace-seeker-3-dji-osmo-nano-top-mount) and the [antenna mounts](https://makerworld.com/en/models/3488297-seeker-3-airscrew-vtx-elrs-antenna-mounts).
 
 The design process was essentially LLM-assisted CAD design with [build123d](https://github.com/gumyr/build123d), calipers to measure proportions, and a touch of [COLMAP](https://colmap.github.io/index.html) for 3D reconstruction of the camera mount profile.
 You can do `uv run <source.py>` and it will create the `out/*.stl` files.
@@ -116,7 +117,7 @@ Finally, I caliper-measured the important parts of the camera, and designed the 
 - getting the **inner** part to pretty much be extruded contours minus the camera (rotated 30 degrees based on the top edge), and
 - iterating on cutting out and chamfering parts so it's light and 3D-printable
 
-{{< image_section caption="The Nano 90 camera mount [[right plate](cam-mount-outer-right.stl)] [[cradle](cam-mount-cradle.stl)] [[left plate](cam-mount-outer-left.stl)] [[source](cam-mount.py)]" >}}
+{{< image_section caption="The Nano 90 camera mount [[right plate](cam-mount-outer-right.stl)] [[cradle](cam-mount-cradle.stl)] [[left plate](cam-mount-outer-left.stl)] [[source](cam-mount.py)] [[MakerWorld](https://makerworld.com/en/models/3488265-deepspace-seeker-3-hdzero-nano-90-camera-mount)]" >}}
 {{< image_row "cam-mount-iso.webp :: The camera mount from an angle. | cam-mount-real.webp :: The printed camera mount on the drone." >}}
 {{< image_row "cam-mount-outer-right.webp :: The camera mount's right plate. | cam-mount-cradle.webp :: The camera mount's cradle. | cam-mount-outer-left.webp :: The camera mount's left plate." >}}
 {{< /image_section >}}
@@ -131,7 +132,7 @@ For the mount on the top and bottom itself, I wanted the mount to slide in, so I
 
 Now I can do those sick dives I see on Instagram!
 
-{{< image_section caption="The Osmo Nano top mount [[base](nano-mount-base.stl)] [[cradle](nano-mount-cradle.stl)] [[source](nano-mount.py)]" >}}
+{{< image_section caption="The Osmo Nano top mount [[base](nano-mount-base.stl)] [[cradle](nano-mount-cradle.stl)] [[source](nano-mount.py)] [[MakerWorld](https://makerworld.com/en/models/3488246-deepspace-seeker-3-dji-osmo-nano-top-mount)]" >}}
 {{< image_row "nano-mount-iso.webp :: The Osmo Nano mount from an angle. | nano-mount-real.webp :: The printed Osmo Nano mount on the drone." >}}
 {{< image_row "nano-mount-base.webp :: The Osmo Nano mount's base. | nano-mount-cradle.webp :: The Osmo Nano mount's cradle. | nano-mount-cradle-front.webp :: The Osmo Nano mount's cradle from the front." >}}
 {{< /image_section >}}
@@ -145,7 +146,7 @@ The VTX antenna mount is simply a [small cylinder](https://www.reddit.com/r/AskR
 The ELRS antenna mount is split into two parts, because otherwise the antenna wouldn't be held in place.
 The intended setup is that these go on the antenna, get attached to the frame, and then the VTX antenna mount slides down to hold them in place and prevent them from rotating.
 
-{{< image_section caption="The VTX and RX antenna mounts [[VTX mount](antenna-mounts-vtx.stl)] [[left RX holder](antenna-mounts-rx-left.stl)] [[right RX holder](antenna-mounts-rx-right.stl)] [[source](antenna-mounts.py)]" >}}
+{{< image_section caption="The VTX and RX antenna mounts [[VTX mount](antenna-mounts-vtx.stl)] [[left RX holder](antenna-mounts-rx-left.stl)] [[right RX holder](antenna-mounts-rx-right.stl)] [[source](antenna-mounts.py)] [[MakerWorld](https://makerworld.com/en/models/3488297-seeker-3-airscrew-vtx-elrs-antenna-mounts)]" >}}
 {{< image_row "antenna-mounts-iso.webp :: The antenna mounts from an angle. | antenna-mounts-real.webp :: The printed antenna mounts on the drone." >}}
 {{< image_row "antenna-mounts-vtx.webp :: The VTX antenna mount. | antenna-mounts-rx-left.webp :: The left RX antenna holder. | antenna-mounts-rx-right.webp :: The right RX antenna holder." >}}
 {{< /image_section >}}
