@@ -59,7 +59,7 @@ This was my list of parts, and my reasons for picking them, with footnotes going
 
 [^vtx]: This is actually really important -- before, I didn't really understand why we have antennas sticking out so far from the drones, so I tried it with the antenna from my Air75 II because there was a mix-up in delivery. The reason is that **you will lose video when the drone turns towards you**, and will have to reverse-fly back in shame because you're dumb and don't understand how physics works.
 
-I did exclude a bunch of additional equipment that I bought, such as the battery charger, soldering equipment that I previously did not possess, and black TPU filament that I used to print a few [custom parts](#the-custom-parts), but those are more interchangeable and less important for the purposes of this article, so I'm not including them.
+I did exclude a bunch of additional equipment that I bought, such as the battery charger, soldering equipment that I previously did not possess, and black TPU filament that I used to print a few [custom parts](#the-custom-parts), but those are more interchangeable and less important for the purposes of this article.
 
 ## Building
 
