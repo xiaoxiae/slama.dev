@@ -397,6 +397,21 @@ table {
   .bare + th {
     padding-left: 0;
   }
+
+  // the columns merged on small screens (see render-table.html)
+  .narrow {
+    display: none;
+  }
+
+  @media (max-width: $small-screen-threshold) {
+    .narrow {
+      display: table-cell;
+    }
+
+    .wide {
+      display: none;
+    }
+  }
 }
 
 figure {

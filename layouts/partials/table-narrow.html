@@ -1,0 +1,7 @@
+{{- /* the merged cell of a table row in the narrow layout (see render-table.html) */ -}}
+{{- $merged := "" }}
+{{- range $s := .segments }}
+  {{- with string (index $.row $s.n).Text }}{{ $merged = printf "%s%s%s" $merged $s.text . }}{{ end }}
+{{- end }}
+{{- /* the cells are rendered twice, so drop the IDs (footnote references) */ -}}
+{{- return (replaceRE ` id="[^"]*"` "" (printf "%s%s" $merged .trailing) | safeHTML) }}

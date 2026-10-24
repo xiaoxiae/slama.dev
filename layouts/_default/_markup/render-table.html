@@ -5,16 +5,35 @@
     {{- if not $c.Text }}{{ $bare = $bare | append $i }}{{ end }}
   {{- end }}
 {{- end -}}
+{{- /* {narrow="{1} -- {2} ({3})"} merges these columns into one on small screens;
+       the text before each {n} is dropped when that cell is empty */ -}}
+{{- $segments := slice }}
+{{- $used := slice }}
+{{- $trailing := "" }}
+{{- with .Attributes.narrow }}
+  {{- range findRE `[^{]*\{\d+\}` . }}
+    {{- $n := sub (int (replaceRE `^.*\{(\d+)\}$` "$1" .)) 1 }}
+    {{- $segments = $segments | append (dict "text" (replaceRE `\{\d+\}$` "" .) "n" $n) }}
+    {{- $used = $used | append $n }}
+  {{- end }}
+  {{- $trailing = replaceRE `^.*\}` "" . }}
+{{- end }}
+{{- $first := -1 }}
+{{- with $used }}{{ $first = index (sort .) 0 }}{{ end -}}
 <table
   {{- range $k, $v := .Attributes }}
-    {{- if $v }}{{ printf " %s=%q" $k $v | safeHTMLAttr }}{{ end }}
+    {{- if and $v (ne $k "narrow") }}{{ printf " %s=%q" $k $v | safeHTMLAttr }}{{ end }}
   {{- end }}>
   <thead>
     {{- range .THead }}
+      {{- $row := . }}
       <tr>
-        {{- range $i, $c := . }}
+        {{- range $i, $c := $row }}
+          {{- if eq $i $first }}
+            <th class="narrow">{{ partial "table-narrow.html" (dict "row" $row "segments" $segments "trailing" $trailing) }}</th>
+          {{- end }}
           <th
-            {{- if in $bare $i }} class="bare"{{ end }}
+            {{- with (slice (cond (in $bare $i) "bare" "") (cond (in $used $i) "wide" "")) | complement (slice "") }} class="{{ delimit . " " }}"{{ end }}
             {{- with $c.Alignment }}{{ printf " style=%q" (printf "text-align: %s" .) | safeHTMLAttr }}{{ end -}}
           >{{- $c.Text -}}</th>
         {{- end }}
@@ -23,10 +42,14 @@
   </thead>
   <tbody>
     {{- range .TBody }}
+      {{- $row := . }}
       <tr>
-        {{- range $i, $c := . }}
+        {{- range $i, $c := $row }}
+          {{- if eq $i $first }}
+            <td class="narrow">{{ partial "table-narrow.html" (dict "row" $row "segments" $segments "trailing" $trailing) }}</td>
+          {{- end }}
           <td
-            {{- if in $bare $i }} class="bare"{{ end }}
+            {{- with (slice (cond (in $bare $i) "bare" "") (cond (in $used $i) "wide" "")) | complement (slice "") }} class="{{ delimit . " " }}"{{ end }}
             {{- with $c.Alignment }}{{ printf " style=%q" (printf "text-align: %s" .) | safeHTMLAttr }}{{ end -}}
           >{{- $c.Text -}}</td>
         {{- end }}
