@@ -1,6 +1,7 @@
 baseURL = "https://slama.dev"
 title = "slama.dev"
 defaultContentLanguage = "en"
+buildFuture = true
 
 # Language configuration for i18n support
 [languages]
