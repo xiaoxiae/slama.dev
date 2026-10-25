@@ -3,7 +3,6 @@ date: '2026-10-25'
 title: "Building an FPV Drone (for dummies)"
 description: "What I wish I knew, but had to learn in the process of building a drone."
 toc: true
-hidden: true
 ---
 
 Over the past few months, I have gotten quite a bit into [FPV drones](/drone).
@@ -15,7 +14,7 @@ Hence my journey of building an FPV drone began.
 My requirements were as follows: I wanted something that
 - I **built myself**, since I'll break it anyway at some point and I want to know how to fix it, 
 - weighs **under 250 grams** (because of [EU regulations](https://www.easa.europa.eu/en/domains/drones-air-mobility/operating-drone/open-category-low-risk-civil-drones)), and
-- can fly comfortably with an **action camera** mounted on top (my trusty [Osmo Nano](https://www.dji.com/osmo-nano)).
+- can fly comfortably with an **action camera** mounted on top (my trusty [Osmo Nano](https://www.dji.com/nano)).
 
 The goal of this article is to document the entire process, from shopping to flying, since it might be useful to people who are in the same position as I was, and to highlight **things that I did not know but should have**.
 
@@ -36,13 +35,13 @@ This was my list of parts, and my reasons for picking them, with footnotes going
 | Part | Model | Price | Why |
 | :-- | :-- | --: | :-- |
 | <i class='fa-solid fa-part-camera' aria-hidden='true'></i> Camera + <i class='fa-solid fa-part-vtx' aria-hidden='true'></i> VTX | **[Nano 90 V2](https://n-factory.de/HDZero-Nano-90-V2-Cam-162-720p-60-90-FPS)** + **[HDZero Race V3](https://n-factory.de/HDZero-Race-V3-VTX-en)** | €149.90 | I wanted to use the [HDZero](https://www.hd-zero.com/) protocol, since I've got the [BoxPro goggles](https://www.hd-zero.com/product-page/hdzero-boxpro-boxpro), and I think the company is cool. |
-| <i class='fa-solid fa-part-frame' aria-hidden='true'></i> Frame | **[DeepSpace Seeker 3 DC (3")](https://n-factory.de/DeepSpace-Seeker-3-DC-3-inch-Freestyle-Frame-Kit)** | €46.90 | Since I wanted sub-250 grams, we're in the 3" territory. This was a frame that was decently priced, light, and had a separate 20x20mm mount at the back for the video stack. |
+| <i class='fa-solid fa-part-frame' aria-hidden='true'></i> Frame | **[DeepSpace Seeker 3 DC (3")](https://n-factory.de/DeepSpace-Seeker-3-DC-3-inch-Freestyle-Frame-Kit)** | €46.90 | Since I wanted sub-250 grams, I'm in the 3" territory. This was a frame that was decently priced, light, and had a separate 20x20 mm mount at the back for the video stack. |
 | <i class='fa-solid fa-part-propeller' aria-hidden='true'></i> Propellers | \(5\times\) **[HQ Durable T3x3x3](https://www.fpv24.com/en/hqprop/hq-durable-prop-3030-dreiblatt-t3x3x3-schwarz-4-stueck-pc-fpv-propeller)** | €14.45 | Matches the frame (3"). |
 | <i class='fa-solid fa-part-motor' aria-hidden='true'></i> Motors | \(6\times\) **[T-Motor F1404 4600KV](https://n-factory.de/T-Motor-F1404-4600KV-Ultra-Light-Motor)** | €113.40 |  They match the frame (9x9 mm), the propellers (3"), and should have a sufficient thrust-to-weight ratio for the drone to fly well[^motor]. |
 | <i class='fa-solid fa-part-battery' aria-hidden='true'></i> Battery | \(4\times\) **[CNHL MiniStar 650 mAh 4S 70C XT30U](https://www.fpv24.com/en/cnhl/cnhl-ministar-lipo-akku-650mah-148v-4s-70c-xt30u)** | €50.00 | Induced by the KV of the motor; 4S is the standard cell count for 3" builds, and this one was not too heavy and not too expensive. |
-| <i class='fa-solid fa-part-stack' aria-hidden='true'></i> FC + ESC | **[OddityRC F405 Mini AM32 40A](https://www.fpv24.com/en/oddityrc/oddityrc-f405-mini-am32-40a-stack)** | €52.90 | Decently small + cheap stack. Needed to fit the 20x20 mm mount of the Seeker frame and have a 9V output for the camera setup. Handles the motors fine (rated for 40A per motor, ours do 20A max). Costlier ones add features that I don't really need, so I went for this one[^stack]. |
+| <i class='fa-solid fa-part-stack' aria-hidden='true'></i> FC + ESC | **[OddityRC F405 Mini AM32 40A](https://www.fpv24.com/en/oddityrc/oddityrc-f405-mini-am32-40a-stack)** | €52.90 | Decently small + cheap stack. Needed to fit the 20x20 mm mount of the Seeker frame and have a 9V output for the camera setup. Handles the motors fine (rated for 40A per motor, mine do 20A max). Costlier ones add features that I don't really need, so I went for this one[^stack]. |
 | <i class='fa-solid fa-part-antenna' aria-hidden='true'></i> VTX antenna | **[TBS VAS Airscrew u.FL RHCP](https://n-factory.de/TBS-VAS-Airscrew-UFL-RHCP-FPV-Antenna)** | €22.90 | The camera stack has a u.FL connector for the antenna. Otherwise arbitrary; should be tougher than the whoop variants, and should stick out sufficiently above the drone so the coverage from different angles is better[^vtx]. |
-| <i class='fa-solid fa-part-receiver' aria-hidden='true'></i> Receiver | **[RadioMaster XR1 Nano ELRS](https://www.fpv24.com/en/radiomaster/radiomaster-xr1-nano-multi-frequency-24ghz-elrs-empfaenger)** | €15.90 | The stack doesn't have a built-in ELRS, so we needed one. No particular reason for this one except being reasonably cheap, and the video will drop much sooner than the receiver ever will. |
+| <i class='fa-solid fa-part-receiver' aria-hidden='true'></i> Receiver | **[RadioMaster XR1 Nano ELRS](https://www.fpv24.com/en/radiomaster/radiomaster-xr1-nano-multi-frequency-24ghz-elrs-empfaenger)** | €15.90 | The stack doesn't have a built-in ELRS, so I needed one. No particular reason for this one except being reasonably cheap, and the video will drop much sooner than the receiver ever will. |
 | **Total** | | **€466.35** | €379.49 for the drone itself (\(4\times\) motors, \(1\times\) battery, \(1\times\) propellers); the rest are spares. |
 {narrow="{1} – {2} ({3})"}
 
@@ -70,7 +69,7 @@ At this point I'll pretty much defer the entire build part to Oscar Liang's awes
 What I will mention are some fuckups during the build process that Oscar's article either didn't mention, or I can't read (honestly probably the latter); specifically:
 1. **buy soldering flux** -- a bunch of my solders are pretty bad, and flux would have saved them
 2. **do not route the wires** from the **outside** -- it might look natural that the wires will go from the side of the ESC, but that's where you'll be holding the drone from and it is on the outside of the drone -- things should not be poking out when looking at the drone from above
-3. **battery wires yearn for the propellers** -- if you can manually move either the **main** or the **balance leads** from the battery to the propellers such that they touch, **they will**; my solution was zipties, [Oscar used rubber bands](https://oscarliang.com/secure-lipo-balance-lead/); both work fine
+3. **battery wires yearn for the propellers** -- if you can manually move either the **main** or the **balance leads** from the battery to the propellers such that they touch, **they will**; my solution was zip ties, [Oscar used rubber bands](https://oscarliang.com/secure-lipo-balance-lead/); both work fine
 
 {{< image_section caption="Battery wires meeting the propellers." >}}
 {{< image_row "wires-battery-leads.webp :: The battery leads and balance plug, chewed through. | wires-whoop-xt30.webp :: The XT30 pigtail, cut down to the strands." >}}
@@ -79,7 +78,7 @@ What I will mention are some fuckups during the build process that Oscar's artic
 
 4. **do NOT leave your drone running for long without flying unless you configured it to do that**, and **definitely not without the antenna plugged in** -- the VTX chip generates power that it sends to the antenna, and if the power has nowhere to go, it... won't; you **will fry your VTX** (I fortunately did not, but not for lack of trying)
 5. **get a practice soldering board** and **practice** -- it is much harder than one might think, and it's better to mess up wires that don't lead to the expensive component you bought for the drone, since a cut wire will be forever shorter
-6. **get a multimeter** and a **smokestopper** -- the peace of mind knowing that your leads aren't shorted and that the drone will (probably) not catch on fire is worth the few extra bucks
+6. **get a multimeter** and a **smoke stopper** -- the peace of mind knowing that your leads aren't shorted and that the drone will (probably) not catch on fire is worth the few extra bucks
 
 ### The Custom Parts
 
@@ -91,7 +90,7 @@ Omitting the Osmo Nano, which I couldn't mount at all, most of the pre-made part
 So I designed my own!
 All three are also on MakerWorld: the [camera mount](https://makerworld.com/en/models/3488265-deepspace-seeker-3-hdzero-nano-90-camera-mount), the [Osmo Nano mount](https://makerworld.com/en/models/3488246-deepspace-seeker-3-dji-osmo-nano-top-mount) and the [antenna mounts](https://makerworld.com/en/models/3488297-seeker-3-airscrew-vtx-elrs-antenna-mounts).
 
-The design process was essentially LLM-assisted CAD design with [build123d](https://github.com/gumyr/build123d), calipers to measure proportions, and a touch of [COLMAP](https://colmap.github.io/index.html) for 3D reconstruction of the camera mount profile.
+The design process was essentially LLM-assisted CAD design with [build123d](https://github.com/gumyr/build123d), calipers to measure proportions, and a touch of [COLMAP](https://colmap.github.io/index.html) for 3D reconstruction of the frame's side plate profile.
 You can do `uv run <source.py>` and it will create the `out/*.stl` files.
 
 I'll go more in depth in the subsequent sections, but I just wanted to say that I feel both excited and depressed that something that would take me days in Onshape can be done in an hour with Opus 5.5.
@@ -103,7 +102,7 @@ Enough introspection, let's look at some sick renders.
 
 So it turns out that I kind of got the wrong camera.
 
-It was not wrong in the sense that it wouldn't send video correctly to my goggles; it's just that neither the Seeker frame nor the camera came with any sort of mount that would bridge the gap between the 14mm camera and the 23mm gap in the frame.
+It was not wrong in the sense that it wouldn't send video correctly to my goggles; it's just that neither the Seeker frame nor the camera came with any sort of mount that would bridge the gap between the 14 mm camera and the 23 mm gap in the frame.
 
 Since the frame was rather complex, I opted to go for a 3D reconstruction (scaled to real proportions by measuring the circle with calipers).
 This yielded a reconstruction that you could then project to 2D, and trace the edges via brightness, as seen in the images below.
@@ -129,7 +128,7 @@ This one was pretty easy.
 
 For the top side, I took an existing 3D model of the Osmo Nano, rotated it 30 degrees, subtracted it from a rectangle, cut out the front, chamfered a bit and we're done!
 
-For the mount on the top and bottom itself, I wanted the mount to slide in, so I added a center and a sides 45-degree cutout, as well as a small 1.5mm channel to not hit the screws (didn't want them to be sunken since everything would need to be taller).
+I wanted the cradle to slide onto the base, so I added 45-degree cutouts in the center and on the sides, as well as a small 1.5 mm channel so it doesn't hit the screws (I didn't want them sunken, since everything would need to be taller).
 
 Now I can do those sick dives I see on Instagram!
 
