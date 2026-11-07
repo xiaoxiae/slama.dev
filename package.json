@@ -2,7 +2,7 @@
   "name": "slama-dev",
   "private": true,
   "devDependencies": {
-    "html-validate": "^8.0.0",
+    "html-validate": "^11.19.0",
     "pa11y": "^8.0.0",
     "pa11y-ci": "^4.1.1",
     "prettier": "^3.0.0",
